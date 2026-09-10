@@ -966,6 +966,43 @@
             "https://www.googleapis.com/auth/compute"
           ]
         },
+        "calendarModeExtension": {
+          "description": "Advises on whether extending an existing future reservation is possible\nbased on the desired extension end time. If capacity isn't available for\nthe entire requested duration, the method recommends the longest possible\nextension.",
+          "flatPath": "projects/{project}/regions/{region}/advice/calendarModeExtension",
+          "httpMethod": "POST",
+          "id": "compute.advice.calendarModeExtension",
+          "parameterOrder": [
+            "project",
+            "region"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/advice/calendarModeExtension",
+          "request": {
+            "$ref": "CalendarModeExtensionAdviceRequest"
+          },
+          "response": {
+            "$ref": "CalendarModeExtensionAdviceResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
         "capacity": {
           "description": "Advice on making real-time decisions (such as choosing zone or\nmachine types) during deployment to maximize your chances of obtaining\ncapacity.",
           "flatPath": "projects/{project}/regions/{region}/advice/capacity",
@@ -38891,6 +38928,55 @@
             "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
+        "getIamPolicy": {
+          "description": "Gets the access control policy for a resource. May be empty if no such\npolicy or resource exists.",
+          "flatPath": "projects/{project}/regions/{region}/sslPolicies/{resource}/getIamPolicy",
+          "httpMethod": "GET",
+          "id": "compute.regionSslPolicies.getIamPolicy",
+          "parameterOrder": [
+            "project",
+            "region",
+            "resource"
+          ],
+          "parameters": {
+            "optionsRequestedPolicyVersion": {
+              "description": "Requested IAM Policy version.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/sslPolicies/{resource}/getIamPolicy",
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
         "insert": {
           "description": "Creates a new policy in the specified project and region using the data\nincluded in the request.",
           "flatPath": "projects/{project}/regions/{region}/sslPolicies",
@@ -39102,6 +39188,51 @@
           },
           "response": {
             "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "setIamPolicy": {
+          "description": "Sets the access control policy on the specified resource.\nReplaces any existing policy.",
+          "flatPath": "projects/{project}/regions/{region}/sslPolicies/{resource}/setIamPolicy",
+          "httpMethod": "POST",
+          "id": "compute.regionSslPolicies.setIamPolicy",
+          "parameterOrder": [
+            "project",
+            "region",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/sslPolicies/{resource}/setIamPolicy",
+          "request": {
+            "$ref": "RegionSetPolicyRequest"
+          },
+          "response": {
+            "$ref": "Policy"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -47217,6 +47348,47 @@
             "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
+        "getIamPolicy": {
+          "description": "Gets the access control policy for a resource. May be empty if no such\npolicy or resource exists.",
+          "flatPath": "projects/{project}/global/sslPolicies/{resource}/getIamPolicy",
+          "httpMethod": "GET",
+          "id": "compute.sslPolicies.getIamPolicy",
+          "parameterOrder": [
+            "project",
+            "resource"
+          ],
+          "parameters": {
+            "optionsRequestedPolicyVersion": {
+              "description": "Requested IAM Policy version.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/sslPolicies/{resource}/getIamPolicy",
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
         "insert": {
           "description": "Returns the specified SSL policy resource.",
           "flatPath": "projects/{project}/global/sslPolicies",
@@ -47396,6 +47568,43 @@
           },
           "response": {
             "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "setIamPolicy": {
+          "description": "Sets the access control policy on the specified resource.\nReplaces any existing policy.",
+          "flatPath": "projects/{project}/global/sslPolicies/{resource}/setIamPolicy",
+          "httpMethod": "POST",
+          "id": "compute.sslPolicies.setIamPolicy",
+          "parameterOrder": [
+            "project",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/sslPolicies/{resource}/setIamPolicy",
+          "request": {
+            "$ref": "GlobalSetPolicyRequest"
+          },
+          "response": {
+            "$ref": "Policy"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -54071,7 +54280,7 @@
       }
     }
   },
-  "revision": "20260821",
+  "revision": "20260828",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -55456,6 +55665,18 @@
       "description": "An alias IP range attached to an instance's network interface.",
       "id": "AliasIpRange",
       "properties": {
+        "candidateSubnetworkRangeNames": {
+          "description": "Identifies the candidate subnetwork range names for the alias\nIPs to be allocated from. When it is set, the IP would be allocated from\nany subnetwork range defined here if the IPs are available.\nOnly one of subnetwork_range_name or candidate_subnetwork_range_names\nshould be set.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "effectiveSubnetworkRangeName": {
+          "description": "Output only. [Output Only] The subnetwork range name where the IP is allocated.\nIt will be set to the subnetwork range where the IP is allocated only.",
+          "readOnly": true,
+          "type": "string"
+        },
         "ipCidrRange": {
           "description": "The IP alias ranges to allocate for this interface. This IP CIDR range\nmust belong to the specified subnetwork and cannot contain IP addresses\nreserved by system or used by other network interfaces. This range may be\na single IP address (such as 10.2.3.4), a netmask (such as/24) or a CIDR-formatted string (such as10.1.2.0/24).",
           "type": "string"
@@ -58791,7 +59012,7 @@
       "id": "BackendServiceHAPolicyLeaderNetworkEndpoint",
       "properties": {
         "instance": {
-          "description": "The name of the VM instance of the leader network endpoint. The\ninstance must already be attached to the NEG specified in the\nhaPolicy.leader.backendGroup.\n\nThe name must be 1-63 characters long, and comply with RFC1035.\nAuthorization requires the following IAM permission on the\nspecified resource instance: compute.instances.use",
+          "description": "The name of the VM instance of the leader network endpoint. The\ninstance must already be attached to the NEG specified in the\nhaPolicy.leader.backendGroup.\n\nThe value must be a valid RFC1035 name (1-63 characters) or a valid\ninstance URL.\nAuthorization requires the following IAM permission on the\nspecified resource instance: compute.instances.use",
           "type": "string"
         }
       },
@@ -60302,6 +60523,67 @@
       },
       "type": "object"
     },
+    "CalendarModeExtensionAdviceRequest": {
+      "description": "A request to recommend the maximum duration for extending an existing future\nreservation in calendar mode. The recommended duration is shorter than or\nequal to the specified extension duration.",
+      "id": "CalendarModeExtensionAdviceRequest",
+      "properties": {
+        "endTimeNotLaterThan": {
+          "description": "Required. The desired end time for the extension.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "futureReservation": {
+          "description": "Required. Reference to the future reservation, in the format:\nprojects/{project}/zones/{zone}/futureReservations/{name}\nFull URIs that include hostnames (like compute.googleapis.com or\nwww.googleapis.com) are also supported.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CalendarModeExtensionAdviceResponse": {
+      "description": "A response that contains the recommended duration for extending\na future reservation in calendar mode based on available capacity\nduring the extension period.",
+      "id": "CalendarModeExtensionAdviceResponse",
+      "properties": {
+        "endTime": {
+          "description": "The recommended end time for the extension, which is either the end time\nrequested by the caller or the longest alternative with sufficient\ncapacity. If the extension is not possible, this field is empty, and\nnotRecommendedReason is populated instead.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "notRecommendedReason": {
+          "$ref": "CalendarModeExtensionAdviceResponseNotRecommendedReason",
+          "description": "The reason why the future reservation can't be extended. If a\nrecommendation is provided, whether for the requested end time or an\nalternative, this field is empty."
+        },
+        "recommendationId": {
+          "description": "The unique ID of the recommendation, which is a UUID string generated by\nthe API.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CalendarModeExtensionAdviceResponseNotRecommendedReason": {
+      "description": "Information about why no recommendation was provided.",
+      "id": "CalendarModeExtensionAdviceResponseNotRecommendedReason",
+      "properties": {
+        "details": {
+          "description": "Human-readable details describing why the recommendation wasn't provided.\nFor example, if the status is CONDITIONS_NOT_MET, this field explains why\nthe requested extension duration isn't possible.",
+          "type": "string"
+        },
+        "status": {
+          "description": "Status of recommendation.",
+          "enum": [
+            "CONDITIONS_NOT_MET",
+            "NOT_RECOMMENDED_REASON_STATUS_UNSPECIFIED",
+            "NO_CAPACITY"
+          ],
+          "enumDescriptions": [
+            "The requested extension window doesn't meet the\nrequired conditions.",
+            "Default value, unused.",
+            "There is no available capacity for the extension to be provided."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CalendarModeRecommendation": {
       "description": "A single recommendation to create requested resources. Contains detailed\nrecommendations for every future resources specification specified in\nCalendarModeAdviceRequest.",
       "id": "CalendarModeRecommendation",
@@ -60356,7 +60638,7 @@
             "Picks zones for creating VM instances to fulfill the requested number\nof VMs within present resource constraints.",
             "Creates all VM instances within a single zone. The zone is selected\nbased on the present resource constraints.",
             "Prioritizes acquisition of resources, scheduling VMs in zones where\nresources are available while distributing VMs as evenly as possible\nacross selected zones to minimize the impact of zonal failure.",
-            ""
+            "Default value, unused."
           ],
           "type": "string"
         },
@@ -60583,7 +60865,7 @@
               "PRICE"
             ],
             "enumDescriptions": [
-              "",
+              "Default value, unused.",
               "Preemption history.",
               "Price history."
             ],
@@ -64580,6 +64862,25 @@
         "seconds": {
           "description": "Span of time at a resolution of a second. Must be from 0\nto 315,576,000,000 inclusive. Note: these bounds are computed from:\n60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DynamicCompressionPolicy": {
+      "description": "Dynamic compression policy for this URL Map's route.",
+      "id": "DynamicCompressionPolicy",
+      "properties": {
+        "compressionMode": {
+          "description": "Compress text responses using Brotli or gzip compression, based on\nthe client's Accept-Encoding header.",
+          "enum": [
+            "AUTOMATIC",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Automatically uses the best compression based on the Accept-Encoding\nheader sent by the client.",
+            "Disables compression. Existing compressed responses cached by\nCloud CDN will not be served to clients."
+          ],
           "type": "string"
         }
       },
@@ -69339,6 +69640,7 @@
           "description": "The ID of a supported feature. To add multiple values, use commas to\nseparate values. Set to one or more of the following values:\n   \n   - VIRTIO_SCSI_MULTIQUEUE\n   - WINDOWS\n   - MULTI_IP_SUBNET\n   - UEFI_COMPATIBLE\n   - GVNIC\n   - SEV_CAPABLE\n   - SUSPEND_RESUME_COMPATIBLE\n   - SEV_LIVE_MIGRATABLE_V2\n   - SEV_SNP_CAPABLE\n   - TDX_CAPABLE\n   - IDPF\n   - SNP_SVSM_CAPABLE\n   - CCA_CAPABLE\n   - SUSPEND_SAFE_FPR\n\n\nFor more information, see\nEnabling guest operating system features.",
           "enum": [
             "BARE_METAL_LINUX_COMPATIBLE",
+            "BMSAI_CAPABLE",
             "CCA_CAPABLE",
             "FEATURE_TYPE_UNSPECIFIED",
             "GVNIC",
@@ -69358,6 +69660,7 @@
           ],
           "enumDescriptions": [
             "",
+            "Indicates the guest OS is capable of Bare Metal Secure AI (BMSAI)\nconfidential computing.",
             "",
             "",
             "",
@@ -72820,6 +73123,10 @@
         "corsPolicy": {
           "$ref": "CorsPolicy",
           "description": "The specification for allowing client-side cross-origin requests. For more\ninformation about the W3C recommendation for cross-origin resource sharing\n(CORS), see Fetch API Living\nStandard.\n\nNot supported when the URL map is bound to a target gRPC proxy."
+        },
+        "dynamicCompressionPolicy": {
+          "$ref": "DynamicCompressionPolicy",
+          "description": "Dynamic compression policy for this URL Map's route. Available only for\nGlobal EXTERNAL_MANAGED load balancer schemes."
         },
         "faultInjectionPolicy": {
           "$ref": "HttpFaultInjection",
@@ -78246,6 +78553,10 @@
       "description": "Represents the change that you want to make to the instance properties.",
       "id": "InstancePropertiesPatch",
       "properties": {
+        "exposeHostTopology": {
+          "description": "This optional flag exposes the hashed physical host ID.",
+          "type": "boolean"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -83437,6 +83748,10 @@
         "failOpen": {
           "description": "If set to true, the Interconnect connection is configured with ashould-secure MACsec security policy, that allows the Google\nrouter to fallback to cleartext traffic if the MKA session cannot be\nestablished. By default, the Interconnect connection is configured with amust-secure security policy that drops all traffic if the\nMKA session cannot be established with your router.",
           "type": "boolean"
+        },
+        "interconnectKeyGroup": {
+          "description": "Optional. URL of the InterconnectKeyGroup resource to use for MACsec, in the\nformat:\nprojects/{project}/locations/{region}/interconnectKeyGroups/{interconnectKeyGroup}.",
+          "type": "string"
         },
         "preSharedKeys": {
           "description": "Required. A keychain placeholder describing a set of named key objects\nalong with their start times. A MACsec CKN/CAK is generated for each\nkey in the key chain. Google router automatically picks the key with\nthe most recent startTime when establishing or re-establishing a MACsec\nsecure link.",
@@ -104462,6 +104777,11 @@
           "description": "[Output Only] The ID of the host on which the running instance is located.\nInstances on the same host experience the lowest possible network\nlatency.",
           "type": "string"
         },
+        "machine": {
+          "description": "Output only. [Output Only] The ID of the machine on which the running instance is\nlocated. It is only populated for machines which have multiple hosts.",
+          "readOnly": true,
+          "type": "string"
+        },
         "subblock": {
           "description": "[Output Only] The ID of the sub-block in which the running instance is\nlocated. Instances in the same sub-block experience lower network latency\nthan instances in the same block.",
           "type": "string"
@@ -108435,6 +108755,10 @@
           "description": "Specifies the availability domain to place the instance in. The value\nmust be a number between 1 and the number of availability domains\nspecified in the spread placement policy attached to the instance.",
           "format": "int32",
           "type": "integer"
+        },
+        "exposeHostTopology": {
+          "description": "This optional flag exposes the hashed physical host ID in the\nResourceStatus resource of the VM.",
+          "type": "boolean"
         },
         "gracefulShutdown": {
           "$ref": "SchedulingGracefulShutdown"

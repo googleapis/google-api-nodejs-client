@@ -174,6 +174,7 @@ export namespace compute_v1 {
     packetMirrorings: Resource$Packetmirrorings;
     previewFeatures: Resource$Previewfeatures;
     projects: Resource$Projects;
+    projectViews: Resource$Projectviews;
     publicAdvertisedPrefixes: Resource$Publicadvertisedprefixes;
     publicDelegatedPrefixes: Resource$Publicdelegatedprefixes;
     regionAutoscalers: Resource$Regionautoscalers;
@@ -332,6 +333,7 @@ export namespace compute_v1 {
       this.packetMirrorings = new Resource$Packetmirrorings(this.context);
       this.previewFeatures = new Resource$Previewfeatures(this.context);
       this.projects = new Resource$Projects(this.context);
+      this.projectViews = new Resource$Projectviews(this.context);
       this.publicAdvertisedPrefixes = new Resource$Publicadvertisedprefixes(
         this.context
       );
@@ -3996,7 +3998,8 @@ export namespace compute_v1 {
      * instance must already be attached to the NEG specified in the
      * haPolicy.leader.backendGroup.
      *
-     * The name must be 1-63 characters long, and comply with RFC1035.
+     * The value must be a valid RFC1035 name (1-63 characters) or a valid
+     * instance URL.
      * Authorization requires the following IAM permission on the
      * specified resource instance: compute.instances.use
      */
@@ -5212,6 +5215,294 @@ export namespace compute_v1 {
     recommendationsPerSpec?: {
       [key: string]: Schema$FutureResourcesRecommendation;
     } | null;
+  }
+  /**
+   * A request to provide Assistant Scores. These scores determine VM
+   * obtainability and preemption likelihood.
+   */
+  export interface Schema$CapacityAdviceRequest {
+    /**
+     * Policy specifying the distribution of instances across
+     * zones within the requested region.
+     */
+    distributionPolicy?: Schema$CapacityAdviceRequestDistributionPolicy;
+    /**
+     * Policy for instance selectors.
+     */
+    instanceFlexibilityPolicy?: Schema$CapacityAdviceRequestInstanceFlexibilityPolicy;
+    /**
+     * Instance properties for this request.
+     */
+    instanceProperties?: Schema$CapacityAdviceRequestInstanceProperties;
+    /**
+     * The number of VM instances to request.
+     */
+    size?: number | null;
+  }
+  /**
+   * Distribution policy.
+   */
+  export interface Schema$CapacityAdviceRequestDistributionPolicy {
+    /**
+     * Target distribution shape. You can specify the following values:ANY, ANY_SINGLE_ZONE, or BALANCED.
+     */
+    targetShape?: string | null;
+    /**
+     * Zones where Capacity Advisor looks for capacity.
+     */
+    zones?: Schema$CapacityAdviceRequestDistributionPolicyZoneConfiguration[];
+  }
+  /**
+   * Zone configuration for the distribution policy.
+   */
+  export interface Schema$CapacityAdviceRequestDistributionPolicyZoneConfiguration {
+    /**
+     * The URL of the zone. It can be a
+     * partial or full URL. For example, the following are valid values:
+     *
+     *
+     *      - https://www.googleapis.com/compute/v1/projects/project/zones/zone
+     *    - projects/project/zones/zone
+     *    - zones/zone
+     */
+    zone?: string | null;
+  }
+  /**
+   * Specification of alternative, flexible instance configurations.
+   */
+  export interface Schema$CapacityAdviceRequestInstanceFlexibilityPolicy {
+    /**
+     * Named instance selections to configure properties.
+     * The key is an arbitrary, unique RFC1035 string that identifies the
+     * instance selection.
+     */
+    instanceSelections?: {
+      [
+        key: string
+      ]: Schema$CapacityAdviceRequestInstanceFlexibilityPolicyInstanceSelection;
+    } | null;
+  }
+  /**
+   * Machine specification.
+   */
+  export interface Schema$CapacityAdviceRequestInstanceFlexibilityPolicyInstanceSelection {
+    /**
+     * Local SSDs.
+     */
+    disks?: Schema$CapacityAdviceRequestInstanceFlexibilityPolicyInstanceSelectionAttachedDisk[];
+    /**
+     * Accelerators configuration.
+     */
+    guestAccelerators?: Schema$AcceleratorConfig[];
+    /**
+     * Full machine-type names, e.g. "n1-standard-16".
+     */
+    machineTypes?: string[] | null;
+  }
+  /**
+   * Attached disk configuration.
+   */
+  export interface Schema$CapacityAdviceRequestInstanceFlexibilityPolicyInstanceSelectionAttachedDisk {
+    /**
+     * Specifies the type of the disk.
+     */
+    type?: string | null;
+  }
+  /**
+   * Instance provisioning properties.
+   */
+  export interface Schema$CapacityAdviceRequestInstanceProperties {
+    /**
+     * Specifies the scheduling options.
+     */
+    scheduling?: Schema$CapacityAdviceRequestInstancePropertiesScheduling;
+  }
+  /**
+   * Defines the instance scheduling options.
+   */
+  export interface Schema$CapacityAdviceRequestInstancePropertiesScheduling {
+    /**
+     * Specifies the provisioning model.
+     */
+    provisioningModel?: string | null;
+  }
+  /**
+   * A response contains scoring recommendations.
+   */
+  export interface Schema$CapacityAdviceResponse {
+    /**
+     * Initially the API will provide one recommendation which balances the
+     * individual scores according to the service provider's preference.
+     */
+    recommendations?: Schema$CapacityAdviceResponseRecommendation[];
+  }
+  /**
+   * Recommendation.
+   */
+  export interface Schema$CapacityAdviceResponseRecommendation {
+    /**
+     * Scores for the recommendation.
+     */
+    scores?: Schema$CapacityAdviceResponseRecommendationScores;
+    /**
+     * Shards represent blocks of uniform capacity in recommendations.
+     */
+    shards?: Schema$CapacityAdviceResponseRecommendationShard[];
+  }
+  /**
+   * Groups information about a shard of capacity.
+   */
+  export interface Schema$CapacityAdviceResponseRecommendationScores {
+    /**
+     * The estimated run time of the majority of Spot VMs in the request
+     * before preemption. The estimate is best-effort only. It is based on
+     * historical data and current conditions.
+     */
+    estimatedUptime?: string | null;
+    /**
+     * The obtainability score indicates the likelihood of successfully
+     * obtaining (provisioning) the requested number of VMs.
+     * The score range is 0.0 through 1.0. Higher is better.
+     */
+    obtainability?: number | null;
+  }
+  /**
+   * Shards represent blocks of uniform capacity in recommendations.
+   * Each shard is for a single zone and a single machine shape. Each shard
+   * defines a size expressed as the number of VMs.
+   */
+  export interface Schema$CapacityAdviceResponseRecommendationShard {
+    /**
+     * The number of instances.
+     */
+    instanceCount?: number | null;
+    /**
+     * The machine type corresponds to the instance selection in the request.
+     */
+    machineType?: string | null;
+    /**
+     * The provisioning model that you want to view recommendations for.
+     */
+    provisioningModel?: string | null;
+    /**
+     * Output only. The zone name for this shard.
+     */
+    zone?: string | null;
+  }
+  /**
+   * A request to get the capacity history.
+   */
+  export interface Schema$CapacityHistoryRequest {
+    /**
+     * Instance properties for this request.
+     */
+    instanceProperties?: Schema$CapacityHistoryRequestInstanceProperties;
+    /**
+     * Location policy for this request.
+     */
+    locationPolicy?: Schema$CapacityHistoryRequestLocationPolicy;
+    /**
+     * List of history types to get capacity history for.
+     */
+    types?: string[] | null;
+  }
+  /**
+   * Instance properties for this request.
+   */
+  export interface Schema$CapacityHistoryRequestInstanceProperties {
+    /**
+     * The machine type for the VM, such as `n2-standard-4`.
+     */
+    machineType?: string | null;
+    /**
+     * Specifies the scheduling options.
+     */
+    scheduling?: Schema$CapacityHistoryRequestInstancePropertiesScheduling;
+  }
+  /**
+   * Scheduling options.
+   */
+  export interface Schema$CapacityHistoryRequestInstancePropertiesScheduling {
+    /**
+     * The provisioning model to get capacity history for.
+     * This field must be set to SPOT.
+     *
+     * For more information, see
+     * Compute Engine instances provisioning models.
+     */
+    provisioningModel?: string | null;
+  }
+  /**
+   * Location policy for this request.
+   */
+  export interface Schema$CapacityHistoryRequestLocationPolicy {
+    /**
+     * The region or zone to get capacity history for.
+     *
+     * It can be a partial or full URL. For example, the following are valid
+     * values:
+     *
+     *
+     *      - https://www.googleapis.com/compute/v1/projects/project/zones/zone
+     *    - projects/project/zones/zone
+     *    - zones/zone
+     *
+     *
+     *
+     * This field is optional.
+     */
+    location?: string | null;
+  }
+  /**
+   * Contains the capacity history.
+   */
+  export interface Schema$CapacityHistoryResponse {
+    /**
+     * Output only. The location (region or zone) for which the capacity history is returned.
+     * It is returned as a URL - For example,https://www.googleapis.com/compute/v1/projects/project/zones/zone.
+     */
+    location?: string | null;
+    /**
+     * The machine type for which the capacity history is returned.
+     */
+    machineType?: string | null;
+    /**
+     * The preemption history for the requested machine type and location.
+     */
+    preemptionHistory?: Schema$CapacityHistoryResponsePreemptionRecord[];
+    /**
+     * The price history for the requested machine type and location.
+     */
+    priceHistory?: Schema$CapacityHistoryResponsePriceRecord[];
+  }
+  /**
+   * A record of Spot VM preemption history.
+   */
+  export interface Schema$CapacityHistoryResponsePreemptionRecord {
+    /**
+     * The time interval for this preemption record.
+     */
+    interval?: Schema$Interval;
+    /**
+     * The preemption rate during the interval, representing the fraction of
+     * Spot VMs that were preempted. Range: 0.0 to 1.0. Preemption rate is
+     * calculated as (total preempted Spots) / (total Spots that stopped
+     * running).
+     */
+    preemptionRate?: number | null;
+  }
+  /**
+   * A record of price history.
+   */
+  export interface Schema$CapacityHistoryResponsePriceRecord {
+    /**
+     * The time interval for this price record.
+     */
+    interval?: Schema$Interval;
+    /**
+     * The Spot VM list price during the interval.
+     */
+    listPrice?: Schema$Money;
   }
   /**
    * Settings controlling the volume of requests, connections and retries to this
@@ -14968,6 +15259,10 @@ export namespace compute_v1 {
    */
   export interface Schema$InstancePropertiesPatch {
     /**
+     * This optional flag exposes the hashed physical host ID.
+     */
+    exposeHostTopology?: boolean | null;
+    /**
      * The label key-value pairs that you want to patch onto the instance.
      */
     labels?: {[key: string]: string} | null;
@@ -18209,6 +18504,30 @@ export namespace compute_v1 {
     result?: Schema$InterconnectMacsecConfig;
   }
   /**
+   * Represents a time interval, encoded as a Timestamp start (inclusive) and a
+   * Timestamp end (exclusive).
+   *
+   * The start must be less than or equal to the end.
+   * When the start equals the end, the interval is empty (matches no time).
+   * When both start and end are unspecified, the interval matches any time.
+   */
+  export interface Schema$Interval {
+    /**
+     * Optional. Exclusive end of the interval.
+     *
+     * If specified, a Timestamp matching this interval will have to be before the
+     * end.
+     */
+    endTime?: string | null;
+    /**
+     * Optional. Inclusive start of the interval.
+     *
+     * If specified, a Timestamp matching this interval will have to be the same
+     * or after the start.
+     */
+    startTime?: string | null;
+  }
+  /**
    * Represents a License resource.
    *
    * A License represents billing and aggregate usage data forpublic andmarketplace images.
@@ -19271,6 +19590,29 @@ export namespace compute_v1 {
      * value can have a maximum length of 1024 characters.
      */
     value?: string | null;
+  }
+  /**
+   * Represents an amount of money with its currency type.
+   */
+  export interface Schema$Money {
+    /**
+     * The three-letter currency code defined in ISO 4217.
+     */
+    currencyCode?: string | null;
+    /**
+     * Number of nano (10^-9) units of the amount.
+     * The value must be between -999,999,999 and +999,999,999 inclusive.
+     * If `units` is positive, `nanos` must be positive or zero.
+     * If `units` is zero, `nanos` can be positive, zero, or negative.
+     * If `units` is negative, `nanos` must be negative or zero.
+     * For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
+     */
+    nanos?: number | null;
+    /**
+     * The whole units of the amount.
+     * For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
+     */
+    units?: string | null;
   }
   /**
    * The named port. For example: <"http", 80\>.
@@ -23442,6 +23784,23 @@ export namespace compute_v1 {
      * Default network tier to be set.
      */
     networkTier?: string | null;
+  }
+  /**
+   * Represents a ProjectView resource.
+   *
+   * A ProjectView resource contains read-only project data which is available
+   * globally.
+   */
+  export interface Schema$ProjectView {
+    /**
+     * The project data.
+     * The returned Project data does not contain regional or zonal quota
+     * usage data. Global quota limits are present. For accurate, real-time quota
+     * usage numbers, query the global
+     * [projects.get](https://cloud.google.com/compute/docs/reference/rest/v1/projects/get)
+     * endpoint.
+     */
+    project?: Schema$Project;
   }
   /**
    * A public advertised prefix represents an aggregated IP prefix or netblock
@@ -28603,6 +28962,11 @@ export namespace compute_v1 {
      * specified in the spread placement policy attached to the instance.
      */
     availabilityDomain?: number | null;
+    /**
+     * This optional flag exposes the hashed physical host ID in the
+     * ResourceStatus resource of the VM.
+     */
+    exposeHostTopology?: boolean | null;
     gracefulShutdown?: Schema$SchedulingGracefulShutdown;
     /**
      * Specify the time in seconds for host error detection, the value must be
@@ -39408,6 +39772,323 @@ export namespace compute_v1 {
         return createAPIRequest<Schema$CalendarModeAdviceResponse>(parameters);
       }
     }
+
+    /**
+     * Advice on making real-time decisions (such as choosing zone or
+     * machine types) during deployment to maximize your chances of obtaining
+     * capacity.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.advice.capacity({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "distributionPolicy": {},
+     *       //   "instanceFlexibilityPolicy": {},
+     *       //   "instanceProperties": {},
+     *       //   "size": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "recommendations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    capacity(
+      params: Params$Resource$Advice$Capacity,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    capacity(
+      params?: Params$Resource$Advice$Capacity,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CapacityAdviceResponse>>;
+    capacity(
+      params: Params$Resource$Advice$Capacity,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    capacity(
+      params: Params$Resource$Advice$Capacity,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$CapacityAdviceResponse>,
+      callback: BodyResponseCallback<Schema$CapacityAdviceResponse>
+    ): void;
+    capacity(
+      params: Params$Resource$Advice$Capacity,
+      callback: BodyResponseCallback<Schema$CapacityAdviceResponse>
+    ): void;
+    capacity(
+      callback: BodyResponseCallback<Schema$CapacityAdviceResponse>
+    ): void;
+    capacity(
+      paramsOrCallback?:
+        | Params$Resource$Advice$Capacity
+        | BodyResponseCallback<Schema$CapacityAdviceResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CapacityAdviceResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CapacityAdviceResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CapacityAdviceResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Advice$Capacity;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advice$Capacity;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/advice/capacity'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CapacityAdviceResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CapacityAdviceResponse>(parameters);
+      }
+    }
+
+    /**
+     * Gets the capacity history.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.advice.capacityHistory({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "instanceProperties": {},
+     *       //   "locationPolicy": {},
+     *       //   "types": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "location": "my_location",
+     *   //   "machineType": "my_machineType",
+     *   //   "preemptionHistory": [],
+     *   //   "priceHistory": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    capacityHistory(
+      params: Params$Resource$Advice$Capacityhistory,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    capacityHistory(
+      params?: Params$Resource$Advice$Capacityhistory,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CapacityHistoryResponse>>;
+    capacityHistory(
+      params: Params$Resource$Advice$Capacityhistory,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    capacityHistory(
+      params: Params$Resource$Advice$Capacityhistory,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$CapacityHistoryResponse>,
+      callback: BodyResponseCallback<Schema$CapacityHistoryResponse>
+    ): void;
+    capacityHistory(
+      params: Params$Resource$Advice$Capacityhistory,
+      callback: BodyResponseCallback<Schema$CapacityHistoryResponse>
+    ): void;
+    capacityHistory(
+      callback: BodyResponseCallback<Schema$CapacityHistoryResponse>
+    ): void;
+    capacityHistory(
+      paramsOrCallback?:
+        | Params$Resource$Advice$Capacityhistory
+        | BodyResponseCallback<Schema$CapacityHistoryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CapacityHistoryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CapacityHistoryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CapacityHistoryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advice$Capacityhistory;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advice$Capacityhistory;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/advice/capacityHistory'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CapacityHistoryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CapacityHistoryResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Advice$Calendarmode extends StandardParameters {
@@ -39424,6 +40105,36 @@ export namespace compute_v1 {
      * Request body metadata
      */
     requestBody?: Schema$CalendarModeAdviceRequest;
+  }
+  export interface Params$Resource$Advice$Capacity extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CapacityAdviceRequest;
+  }
+  export interface Params$Resource$Advice$Capacityhistory extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CapacityHistoryRequest;
   }
 
   export class Resource$Autoscalers {
@@ -101667,6 +102378,7 @@ export namespace compute_v1 {
      *       // {
      *       //   "automaticRestart": false,
      *       //   "availabilityDomain": 0,
+     *       //   "exposeHostTopology": false,
      *       //   "gracefulShutdown": {},
      *       //   "hostErrorTimeoutSeconds": 0,
      *       //   "instanceTerminationAction": "my_instanceTerminationAction",
@@ -156148,6 +156860,174 @@ export namespace compute_v1 {
      * Request body metadata
      */
     requestBody?: Schema$UsageExportLocation;
+  }
+
+  export class Resource$Projectviews {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns the specified global ProjectViews resource, with a regional
+     * context.
+     * This regional API endpoint reads resource metadata from regional
+     * read-only replicas. Because changes are copied to these regional replicas
+     * asynchronously, for real-time resource reads or any write operations
+     * (creating, updating, or deleting resources), use the global
+     * [projects.get](https://cloud.google.com/compute/docs/reference/rest/v1/projects/get)
+     * endpoint.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.projectViews.get({
+     *     // Required. Project ID for this request. This is part of the URL path.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Required. Name of the region for this request. This is part of the URL path.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "project": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projectviews$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projectviews$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProjectView>>;
+    get(
+      params: Params$Resource$Projectviews$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projectviews$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ProjectView>,
+      callback: BodyResponseCallback<Schema$ProjectView>
+    ): void;
+    get(
+      params: Params$Resource$Projectviews$Get,
+      callback: BodyResponseCallback<Schema$ProjectView>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ProjectView>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projectviews$Get
+        | BodyResponseCallback<Schema$ProjectView>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProjectView>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProjectView>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ProjectView>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Projectviews$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projectviews$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/projectViews'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProjectView>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ProjectView>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projectviews$Get extends StandardParameters {
+    /**
+     * Required. Project ID for this request. This is part of the URL path.
+     */
+    project?: string;
+    /**
+     * Required. Name of the region for this request. This is part of the URL path.
+     */
+    region?: string;
   }
 
   export class Resource$Publicadvertisedprefixes {
