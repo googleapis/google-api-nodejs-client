@@ -180,7 +180,7 @@ export namespace webcontentpublisher_v1 {
    */
   export interface Schema$DomainProperty {
     /**
-     * Optional. Whether the domain ownership has been verified (e.g., via Google Search Console).
+     * Output only. Whether the domain ownership has been verified (e.g., via Google Search Console).
      */
     ownershipVerified?: boolean | null;
     /**
@@ -422,7 +422,7 @@ export namespace webcontentpublisher_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
-     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage',
+     *       'https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system',
      *     ],
      *   });
      *
@@ -604,8 +604,7 @@ export namespace webcontentpublisher_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
-     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage',
-     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly',
+     *       'https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system',
      *     ],
      *   });
      *
@@ -758,8 +757,7 @@ export namespace webcontentpublisher_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
-     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage',
-     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly',
+     *       'https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system',
      *     ],
      *   });
      *
@@ -907,7 +905,7 @@ export namespace webcontentpublisher_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
-     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage',
+     *       'https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system',
      *     ],
      *   });
      *
@@ -1148,7 +1146,7 @@ export namespace webcontentpublisher_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
-     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage',
+     *       'https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system',
      *     ],
      *   });
      *
@@ -1302,8 +1300,7 @@ export namespace webcontentpublisher_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
-     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage',
-     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly',
+     *       'https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system',
      *     ],
      *   });
      *
@@ -1443,8 +1440,7 @@ export namespace webcontentpublisher_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
-     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage',
-     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly',
+     *       'https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system',
      *     ],
      *   });
      *
@@ -1586,7 +1582,7 @@ export namespace webcontentpublisher_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
-     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage',
+     *       'https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system',
      *     ],
      *   });
      *
@@ -1797,10 +1793,7 @@ export namespace webcontentpublisher_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage',
-     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly',
-     *     ],
+     *     scopes: [],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1967,10 +1960,7 @@ export namespace webcontentpublisher_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage',
-     *       'https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly',
-     *     ],
+     *     scopes: [],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
