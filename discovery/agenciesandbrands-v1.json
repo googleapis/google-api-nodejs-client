@@ -377,7 +377,7 @@
       }
     }
   },
-  "revision": "20260828",
+  "revision": "20260901",
   "rootUrl": "https://agenciesandbrands.googleapis.com/",
   "schemas": {
     "Date": {
@@ -683,7 +683,7 @@
             "Clicks.",
             "CPC.",
             "CPM.",
-            "Curator fee.",
+            "Curator fee. This will be redacted to 0.00 if the package's visibility is set to non-disclosed. Use the PACKAGE_FEE_VISIBILITY dimension to check if the package's fee is disclosed.",
             "Discount amount in media planner currency.",
             "Discount rate in media planner currency.",
             "Engaged views.",
@@ -1104,7 +1104,7 @@
               "Clicks.",
               "CPC.",
               "CPM.",
-              "Curator fee.",
+              "Curator fee. This will be redacted to 0.00 if the package's visibility is set to non-disclosed. Use the PACKAGE_FEE_VISIBILITY dimension to check if the package's fee is disclosed.",
               "Discount amount in media planner currency.",
               "Discount rate in media planner currency.",
               "Engaged views.",
