@@ -125,15 +125,6 @@ export namespace alloydb_v1beta {
   }
 
   /**
-   * AlloyDbInternalDebugInfo contains internal debugging information for AlloyDB errors. It is explicitly kept out of the allowlist (errors.yaml) to ensure it is sanitized (stripped) by OnePlatform for all external requests. Used only to carry internal error details to across UPC/FlowLib boundary for ObservabilityInfo.
-   */
-  export interface Schema$AlloydbClhErrorsAlloyDbInternalDebugInfo {
-    /**
-     * The original error message or details before sanitization, used internally for debugging and logging.
-     */
-    originalError?: string | null;
-  }
-  /**
    * AuthorizedNetwork contains metadata for an authorized network.
    */
   export interface Schema$AuthorizedNetwork {
@@ -816,6 +807,19 @@ export namespace alloydb_v1beta {
      * Time in UTC when the deny period starts on start_date and ends on end_date. This can be: * Full time OR * All zeros for 00:00:00 UTC
      */
     time?: Schema$GoogleTypeTimeOfDay;
+  }
+  /**
+   * DnsAutomationInfo contains information about the DNS automation for the instance.
+   */
+  export interface Schema$DnsAutomationInfo {
+    /**
+     * Output only. The fully qualified domain name of the instance for DNS automation. Example: "...alloydb.goog.". Note: The AUDIT directive is intentionally omitted because this field contains sensitive network topology information.
+     */
+    fullyQualifiedDomainName?: string | null;
+    /**
+     * Output only. The state of the DNS automation.
+     */
+    state?: string | null;
   }
   /**
    * The DNS config for the endpoint, containing the DNS record name, type and targets.
@@ -1706,9 +1710,21 @@ export namespace alloydb_v1beta {
      */
     consumerProject?: string | null;
     /**
+     * Output only. List of DNS automation info for the PSC auto connection.
+     */
+    dnsAutomationInfos?: Schema$DnsAutomationInfo[];
+    /**
      * Output only. The IP address of the PSC service automation endpoint.
      */
     ipAddress?: string | null;
+    /**
+     * Output only. The PSC service connection policy name. The format is "projects//regions//serviceConnectionPolicies/"
+     */
+    serviceConnectionPolicy?: string | null;
+    /**
+     * Output only. The creation state or result of the connection policy. Possible values include: - `ACTIVE`: The policy was created successfully. - `PERMISSION_DENIED`: Sufficient permissions were not provided. Note that this field is an unstructured output and customers should not rely on the specific string value or error message directly.
+     */
+    serviceConnectionPolicyCreationState?: string | null;
     /**
      * Output only. The status of the PSC service automation connection. Possible values: "STATE_UNSPECIFIED" - An invalid state as the default case. "ACTIVE" - The connection has been created successfully. "FAILED" - The connection is not functional since some resources on the connection fail to be created. "CREATING" - The connection is being created. "DELETING" - The connection is being deleted. "CREATE_REPAIRING" - The connection is being repaired to complete creation. "DELETE_REPAIRING" - The connection is being repaired to complete deletion.
      */
