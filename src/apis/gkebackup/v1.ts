@@ -657,9 +657,13 @@ export namespace gkebackup_v1 {
     workloadsAffectedCount?: number | null;
   }
   /**
-   * Log entry for Backup and Restore Job for resources using BackupPlan based protection. Next Id: 26
+   * Log entry for Backup and Restore Job for resources using BackupPlan based protection. Next Id: 27
    */
   export interface Schema$BDRBackupRestoreJobLog {
+    /**
+     * The auto-protection policy that created the backup.
+     */
+    autoProtectionPolicy?: string | null;
     /**
      * Backup consistency time.
      */
