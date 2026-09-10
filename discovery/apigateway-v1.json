@@ -1094,7 +1094,7 @@
       }
     }
   },
-  "revision": "20260422",
+  "revision": "20260902",
   "rootUrl": "https://apigateway.googleapis.com/",
   "schemas": {
     "ApigatewayApi": {
@@ -1412,6 +1412,21 @@
           "description": "Optional. Display name.",
           "type": "string"
         },
+        "effectiveStreamingMode": {
+          "description": "Output only. The streaming mode this gateway is actually served with, which the service resolves at creation from `streaming_mode`, the referenced API Config, and the platform default at the time. Read this rather than `streaming_mode` to determine whether a gateway supports response streaming.",
+          "enum": [
+            "EFFECTIVE_STREAMING_MODE_UNSPECIFIED",
+            "EFFECTIVE_STREAMING_MODE_DISABLED",
+            "EFFECTIVE_STREAMING_MODE_ENABLED"
+          ],
+          "enumDescriptions": [
+            "The service has not resolved a mode. Every gateway returned by `GetGateway` and `ListGateways` carries a resolved mode, so this value should not be returned under normal circumstances.",
+            "The gateway does not support response streaming.",
+            "The gateway supports response streaming."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -1443,6 +1458,18 @@
             "Gateway is being updated."
           ],
           "readOnly": true,
+          "type": "string"
+        },
+        "streamingMode": {
+          "description": "Optional. Immutable. Requests response streaming for a new gateway. An attempt to change it on update is rejected. If unset, the service selects the mode. This field records only what was requested and is never modified by the service; read `effective_streaming_mode` for the mode the gateway is served with.",
+          "enum": [
+            "STREAMING_MODE_UNSPECIFIED",
+            "STREAMING_MODE_ENABLED"
+          ],
+          "enumDescriptions": [
+            "The service selects the streaming mode.",
+            "Streaming is enabled. The gateway supports response streaming: server-sent events, HTTP chunked transfer, WebSockets, and gRPC/HTTP2 bidirectional streaming."
+          ],
           "type": "string"
         },
         "updateTime": {
