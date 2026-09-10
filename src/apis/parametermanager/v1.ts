@@ -263,6 +263,10 @@ export namespace parametermanager_v1 {
      */
     policyMember?: Schema$ResourcePolicyMember;
     /**
+     * Optional. Input only. Immutable. Tag keys and tag values that are bound to this Parameter. You must represent each item in the map as: `"" : ""`. For example, a single resource can have the following tags: ``` "123/environment": "production", "123/costCenter": "marketing", ``` Tags are used to organize and group resources. Tags can be used to control policy evaluation for the resource.
+     */
+    tags?: {[key: string]: string} | null;
+    /**
      * Output only. [Output only] Update time stamp
      */
     updateTime?: string | null;
@@ -271,6 +275,10 @@ export namespace parametermanager_v1 {
    * Message describing ParameterVersion resource
    */
   export interface Schema$ParameterVersion {
+    /**
+     * Optional. Output only. [Output only] The source of the checksum.
+     */
+    checksumSource?: string | null;
     /**
      * Output only. [Output only] Create time stamp
      */
@@ -304,6 +312,10 @@ export namespace parametermanager_v1 {
      * Required. bytes data for storing payload.
      */
     data?: string | null;
+    /**
+     * Optional. [Optional] The integrity checksum of the payload. If provided, the server will verify that the checksum matches the payload. If not provided, the server will generate the checksum.
+     */
+    dataCrc32c?: string | null;
   }
   /**
    * Message describing RenderParameterVersionResponse resource
@@ -815,6 +827,7 @@ export namespace parametermanager_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "policyMember": {},
+     *       //   "tags": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -829,6 +842,7 @@ export namespace parametermanager_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "policyMember": {},
+     *   //   "tags": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -1106,6 +1120,7 @@ export namespace parametermanager_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "policyMember": {},
+     *   //   "tags": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -1399,6 +1414,7 @@ export namespace parametermanager_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "policyMember": {},
+     *       //   "tags": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -1413,6 +1429,7 @@ export namespace parametermanager_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "policyMember": {},
+     *   //   "tags": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -1637,6 +1654,7 @@ export namespace parametermanager_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "checksumSource": "my_checksumSource",
      *         //   "createTime": "my_createTime",
      *         //   "disabled": false,
      *         //   "kmsKeyVersion": "my_kmsKeyVersion",
@@ -1650,6 +1668,7 @@ export namespace parametermanager_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "checksumSource": "my_checksumSource",
      *   //   "createTime": "my_createTime",
      *   //   "disabled": false,
      *   //   "kmsKeyVersion": "my_kmsKeyVersion",
@@ -1934,6 +1953,7 @@ export namespace parametermanager_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "checksumSource": "my_checksumSource",
      *   //   "createTime": "my_createTime",
      *   //   "disabled": false,
      *   //   "kmsKeyVersion": "my_kmsKeyVersion",
@@ -2237,6 +2257,7 @@ export namespace parametermanager_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "checksumSource": "my_checksumSource",
      *         //   "createTime": "my_createTime",
      *         //   "disabled": false,
      *         //   "kmsKeyVersion": "my_kmsKeyVersion",
@@ -2250,6 +2271,7 @@ export namespace parametermanager_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "checksumSource": "my_checksumSource",
      *   //   "createTime": "my_createTime",
      *   //   "disabled": false,
      *   //   "kmsKeyVersion": "my_kmsKeyVersion",
