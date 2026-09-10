@@ -1578,10 +1578,6 @@ export namespace games_v1 {
      * A string value.
      */
     stringValue?: string | null;
-    /**
-     * A timestamp value.
-     */
-    timestampValue?: string | null;
   }
   /**
    * Recall token data returned from RetrievePlayerTokens RPC
