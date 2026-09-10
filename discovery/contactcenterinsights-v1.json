@@ -1595,12 +1595,14 @@
                               "enum": [
                                 "CONVERSATION_VIEW_UNSPECIFIED",
                                 "FULL",
-                                "BASIC"
+                                "BASIC",
+                                "FULL_WITH_STRUCTURED_TRANSCRIPT"
                               ],
                               "enumDescriptions": [
                                 "The conversation view is not specified. * Defaults to `FULL` in `GetConversationRequest`. * Defaults to `BASIC` in `ListConversationsRequest`.",
                                 "Populates all fields in the conversation.",
-                                "Populates all fields in the conversation except the transcript."
+                                "Populates all fields in the conversation except the transcript.",
+                                "Populates all fields in the conversation, including the structured transcript parts."
                               ],
                               "location": "query",
                               "type": "string"
@@ -1656,12 +1658,14 @@
                               "enum": [
                                 "CONVERSATION_VIEW_UNSPECIFIED",
                                 "FULL",
-                                "BASIC"
+                                "BASIC",
+                                "FULL_WITH_STRUCTURED_TRANSCRIPT"
                               ],
                               "enumDescriptions": [
                                 "The conversation view is not specified. * Defaults to `FULL` in `GetConversationRequest`. * Defaults to `BASIC` in `ListConversationsRequest`.",
                                 "Populates all fields in the conversation.",
-                                "Populates all fields in the conversation except the transcript."
+                                "Populates all fields in the conversation except the transcript.",
+                                "Populates all fields in the conversation, including the structured transcript parts."
                               ],
                               "location": "query",
                               "type": "string"
@@ -2668,12 +2672,14 @@
                       "enum": [
                         "CONVERSATION_VIEW_UNSPECIFIED",
                         "FULL",
-                        "BASIC"
+                        "BASIC",
+                        "FULL_WITH_STRUCTURED_TRANSCRIPT"
                       ],
                       "enumDescriptions": [
                         "The conversation view is not specified. * Defaults to `FULL` in `GetConversationRequest`. * Defaults to `BASIC` in `ListConversationsRequest`.",
                         "Populates all fields in the conversation.",
-                        "Populates all fields in the conversation except the transcript."
+                        "Populates all fields in the conversation except the transcript.",
+                        "Populates all fields in the conversation, including the structured transcript parts."
                       ],
                       "location": "query",
                       "type": "string"
@@ -2757,12 +2763,14 @@
                       "enum": [
                         "CONVERSATION_VIEW_UNSPECIFIED",
                         "FULL",
-                        "BASIC"
+                        "BASIC",
+                        "FULL_WITH_STRUCTURED_TRANSCRIPT"
                       ],
                       "enumDescriptions": [
                         "The conversation view is not specified. * Defaults to `FULL` in `GetConversationRequest`. * Defaults to `BASIC` in `ListConversationsRequest`.",
                         "Populates all fields in the conversation.",
-                        "Populates all fields in the conversation except the transcript."
+                        "Populates all fields in the conversation except the transcript.",
+                        "Populates all fields in the conversation, including the structured transcript parts."
                       ],
                       "location": "query",
                       "type": "string"
@@ -4274,12 +4282,14 @@
                           "enum": [
                             "CONVERSATION_VIEW_UNSPECIFIED",
                             "FULL",
-                            "BASIC"
+                            "BASIC",
+                            "FULL_WITH_STRUCTURED_TRANSCRIPT"
                           ],
                           "enumDescriptions": [
                             "The conversation view is not specified. * Defaults to `FULL` in `GetConversationRequest`. * Defaults to `BASIC` in `ListConversationsRequest`.",
                             "Populates all fields in the conversation.",
-                            "Populates all fields in the conversation except the transcript."
+                            "Populates all fields in the conversation except the transcript.",
+                            "Populates all fields in the conversation, including the structured transcript parts."
                           ],
                           "location": "query",
                           "type": "string"
@@ -4363,12 +4373,14 @@
                           "enum": [
                             "CONVERSATION_VIEW_UNSPECIFIED",
                             "FULL",
-                            "BASIC"
+                            "BASIC",
+                            "FULL_WITH_STRUCTURED_TRANSCRIPT"
                           ],
                           "enumDescriptions": [
                             "The conversation view is not specified. * Defaults to `FULL` in `GetConversationRequest`. * Defaults to `BASIC` in `ListConversationsRequest`.",
                             "Populates all fields in the conversation.",
-                            "Populates all fields in the conversation except the transcript."
+                            "Populates all fields in the conversation except the transcript.",
+                            "Populates all fields in the conversation, including the structured transcript parts."
                           ],
                           "location": "query",
                           "type": "string"
@@ -6236,7 +6248,7 @@
       }
     }
   },
-  "revision": "20260825",
+  "revision": "20260902",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudCesV1mainAgentTransfer": {
@@ -6349,6 +6361,10 @@
       "description": "Represents an image input or output in the conversation.",
       "id": "GoogleCloudCesV1mainImage",
       "properties": {
+        "altText": {
+          "description": "Optional. The alternative text for the image.",
+          "type": "string"
+        },
         "data": {
           "description": "Required. Raw bytes of the image.",
           "format": "byte",
@@ -12144,12 +12160,14 @@
           "enum": [
             "PREDEFINED_QUESTION_TYPE_UNSPECIFIED",
             "CONVERSATION_OUTCOME",
-            "CONVERSATION_OUTCOME_ESCALATION_INITIATOR_ROLE"
+            "CONVERSATION_OUTCOME_ESCALATION_INITIATOR_ROLE",
+            "CONVERSATION_OUTCOME_AI_AVERSION"
           ],
           "enumDescriptions": [
             "The type of the predefined question is unspecified.",
             "A prebuilt classifier classfying the outcome of the conversation. For example, if the customer issue mentioned in a conversation has been resolved or not.",
-            "A prebuilt classifier classfying the initiator of the conversation escalation. For example, if it was initiated by the customer or the agent."
+            "A prebuilt classifier classfying the initiator of the conversation escalation. For example, if it was initiated by the customer or the agent.",
+            "Classifies whether the customer demonstrates AI aversion by instantly requesting escalation to a human agent without attempting to work with the AI agent."
           ],
           "type": "string"
         }
