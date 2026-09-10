@@ -790,6 +790,11 @@
                   "required": true,
                   "type": "string"
                 },
+                "regionalFanoutRequested": {
+                  "description": "Optional.",
+                  "location": "query",
+                  "type": "boolean"
+                },
                 "view": {
                   "deprecated": true,
                   "description": "Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.",
@@ -1022,6 +1027,11 @@
                   "location": "path",
                   "required": true,
                   "type": "string"
+                },
+                "regionalFanoutRequested": {
+                  "description": "Optional.",
+                  "location": "query",
+                  "type": "boolean"
                 },
                 "view": {
                   "deprecated": true,
@@ -1867,6 +1877,11 @@
                       "location": "path",
                       "required": true,
                       "type": "string"
+                    },
+                    "regionalFanoutRequested": {
+                      "description": "Optional.",
+                      "location": "query",
+                      "type": "boolean"
                     },
                     "view": {
                       "deprecated": true,
@@ -2884,7 +2899,7 @@
       }
     }
   },
-  "revision": "20260818",
+  "revision": "20260825",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
