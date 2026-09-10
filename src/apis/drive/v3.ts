@@ -7260,6 +7260,8 @@ export namespace drive_v3 {
      *
      *   // Do the magic
      *   const res = await drive.files.copy({
+     *     // Whether to copy the comments associated with the file.
+     *     copyComments: 'placeholder-value',
      *     // Deprecated: Copying files into multiple folders is no longer supported. Use shortcuts instead.
      *     enforceSingleParent: 'placeholder-value',
      *     // The ID of the file.
@@ -9837,6 +9839,10 @@ export namespace drive_v3 {
   }
 
   export interface Params$Resource$Files$Copy extends StandardParameters {
+    /**
+     * Whether to copy the comments associated with the file.
+     */
+    copyComments?: boolean;
     /**
      * Deprecated: Copying files into multiple folders is no longer supported. Use shortcuts instead.
      */
