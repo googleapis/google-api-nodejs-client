@@ -15,16 +15,20 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {health_v4} from './v4';
+import {health_v4beta} from './v4beta';
 
 export const VERSIONS = {
   v4: health_v4.Health,
+  v4beta: health_v4beta.Health,
 };
 
 export function health(version: 'v4'): health_v4.Health;
 export function health(options: health_v4.Options): health_v4.Health;
-export function health<T = health_v4.Health>(
+export function health(version: 'v4beta'): health_v4beta.Health;
+export function health(options: health_v4beta.Options): health_v4beta.Health;
+export function health<T = health_v4.Health | health_v4beta.Health>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v4' | health_v4.Options
+  versionOrOptions: 'v4' | health_v4.Options | 'v4beta' | health_v4beta.Options
 ) {
   return getAPI<T>('health', versionOrOptions, VERSIONS, this);
 }
@@ -32,6 +36,7 @@ export function health<T = health_v4.Health>(
 const auth = new AuthPlus();
 export {auth};
 export {health_v4};
+export {health_v4beta};
 export {
   AuthPlus,
   GlobalOptions,

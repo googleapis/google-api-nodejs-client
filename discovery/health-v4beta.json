@@ -80,7 +80,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "health:v4",
+  "id": "health:v4beta",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://health.mtls.googleapis.com/",
   "name": "health",
@@ -171,7 +171,7 @@
           "methods": {
             "create": {
               "description": "Registers a new subscriber endpoint to receive notifications. A subscriber represents an application or service that wishes to receive data change notifications for users who have granted consent. **Endpoint Verification:** For a subscriber to be successfully created, the provided `endpoint_uri` must be a valid HTTPS endpoint and must pass an automated verification check. The backend will send two HTTP POST requests to the `endpoint_uri`: 1. **Verification with Authorization:** * **Headers:** Includes `Content-Type: application/json` and `Authorization` (with the exact value from `CreateSubscriberPayload.endpoint_authorization.secret`). * **Body:** `{\"type\": \"verification\"}` * **Expected Response:** HTTP `201 Created`. 2. **Verification without Authorization:** * **Headers:** Includes `Content-Type: application/json`. The `Authorization` header is OMITTED. * **Body:** `{\"type\": \"verification\"}` * **Expected Response:** HTTP `401 Unauthorized` or `403 Forbidden`. Both tests must pass for the subscriber creation to succeed. If verification fails, the operation will not be completed and an error will be returned. This process ensures the endpoint is reachable and correctly validates the `Authorization` header.",
-              "flatPath": "v4/projects/{projectsId}/subscribers",
+              "flatPath": "v4beta/projects/{projectsId}/subscribers",
               "httpMethod": "POST",
               "id": "health.projects.subscribers.create",
               "parameterOrder": [
@@ -191,7 +191,7 @@
                   "type": "string"
                 }
               },
-              "path": "v4/{+parent}/subscribers",
+              "path": "v4beta/{+parent}/subscribers",
               "request": {
                 "$ref": "CreateSubscriberPayload"
               },
@@ -204,7 +204,7 @@
             },
             "delete": {
               "description": "Deletes a subscriber registration. This will stop all notifications to the subscriber's endpoint.",
-              "flatPath": "v4/projects/{projectsId}/subscribers/{subscribersId}",
+              "flatPath": "v4beta/projects/{projectsId}/subscribers/{subscribersId}",
               "httpMethod": "DELETE",
               "id": "health.projects.subscribers.delete",
               "parameterOrder": [
@@ -224,7 +224,7 @@
                   "type": "string"
                 }
               },
-              "path": "v4/{+name}",
+              "path": "v4beta/{+name}",
               "response": {
                 "$ref": "Operation"
               },
@@ -234,7 +234,7 @@
             },
             "list": {
               "description": "Lists all subscribers registered within the owned Google Cloud Project.",
-              "flatPath": "v4/projects/{projectsId}/subscribers",
+              "flatPath": "v4beta/projects/{projectsId}/subscribers",
               "httpMethod": "GET",
               "id": "health.projects.subscribers.list",
               "parameterOrder": [
@@ -260,7 +260,7 @@
                   "type": "string"
                 }
               },
-              "path": "v4/{+parent}/subscribers",
+              "path": "v4beta/{+parent}/subscribers",
               "response": {
                 "$ref": "ListSubscribersResponse"
               },
@@ -270,7 +270,7 @@
             },
             "patch": {
               "description": "Updates the configuration of an existing subscriber, such as the endpoint URI or the data types it's interested in. **Endpoint Verification:** If the `endpoint_uri` or `endpoint_authorization` field is included in the `update_mask`, the backend will re-verify the endpoint. The verification process is the same as described in `CreateSubscriber`: 1. **Verification with Authorization:** POST to the new or existing `endpoint_uri` with the new or existing `Authorization` secret. Expects HTTP `201 Created`. 2. **Verification without Authorization:** POST to the `endpoint_uri` without the `Authorization` header. Expects HTTP `401 Unauthorized` or `403 Forbidden`. Both tests must pass using the potentially updated values for the subscriber update to succeed. If verification fails, the update will not be applied, and an error will be returned.",
-              "flatPath": "v4/projects/{projectsId}/subscribers/{subscribersId}",
+              "flatPath": "v4beta/projects/{projectsId}/subscribers/{subscribersId}",
               "httpMethod": "PATCH",
               "id": "health.projects.subscribers.patch",
               "parameterOrder": [
@@ -291,7 +291,7 @@
                   "type": "string"
                 }
               },
-              "path": "v4/{+name}",
+              "path": "v4beta/{+name}",
               "request": {
                 "$ref": "Subscriber"
               },
@@ -308,7 +308,7 @@
               "methods": {
                 "create": {
                   "description": "Creates a subscription for a specific user to a specific subscriber. This method requires the subscriber to have a `SubscriptionCreatePolicy` set to `MANUAL` for the given data types.",
-                  "flatPath": "v4/projects/{projectsId}/subscribers/{subscribersId}/subscriptions",
+                  "flatPath": "v4beta/projects/{projectsId}/subscribers/{subscribersId}/subscriptions",
                   "httpMethod": "POST",
                   "id": "health.projects.subscribers.subscriptions.create",
                   "parameterOrder": [
@@ -328,7 +328,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v4/{+parent}/subscriptions",
+                  "path": "v4beta/{+parent}/subscriptions",
                   "request": {
                     "$ref": "CreateSubscriptionPayload"
                   },
@@ -341,7 +341,7 @@
                 },
                 "delete": {
                   "description": "Deletes a specific user subscription, stopping notifications for this user to this subscriber.",
-                  "flatPath": "v4/projects/{projectsId}/subscribers/{subscribersId}/subscriptions/{subscriptionsId}",
+                  "flatPath": "v4beta/projects/{projectsId}/subscribers/{subscribersId}/subscriptions/{subscriptionsId}",
                   "httpMethod": "DELETE",
                   "id": "health.projects.subscribers.subscriptions.delete",
                   "parameterOrder": [
@@ -356,7 +356,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v4/{+name}",
+                  "path": "v4beta/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -366,7 +366,7 @@
                 },
                 "list": {
                   "description": "Lists all active subscriptions for a given subscriber. This can be filtered, for example, by user or data type.",
-                  "flatPath": "v4/projects/{projectsId}/subscribers/{subscribersId}/subscriptions",
+                  "flatPath": "v4beta/projects/{projectsId}/subscribers/{subscribersId}/subscriptions",
                   "httpMethod": "GET",
                   "id": "health.projects.subscribers.subscriptions.list",
                   "parameterOrder": [
@@ -397,7 +397,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v4/{+parent}/subscriptions",
+                  "path": "v4beta/{+parent}/subscriptions",
                   "response": {
                     "$ref": "ListSubscriptionsResponse"
                   },
@@ -407,7 +407,7 @@
                 },
                 "patch": {
                   "description": "Updates the data types for an existing user subscription.",
-                  "flatPath": "v4/projects/{projectsId}/subscribers/{subscribersId}/subscriptions/{subscriptionsId}",
+                  "flatPath": "v4beta/projects/{projectsId}/subscribers/{subscribersId}/subscriptions/{subscriptionsId}",
                   "httpMethod": "PATCH",
                   "id": "health.projects.subscribers.subscriptions.patch",
                   "parameterOrder": [
@@ -428,7 +428,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v4/{+name}",
+                  "path": "v4beta/{+name}",
                   "request": {
                     "$ref": "Subscription"
                   },
@@ -451,7 +451,7 @@
           "methods": {
             "getShlManifest": {
               "description": "Forward a manifest request for a given SHL",
-              "flatPath": "v4/shl/m/{externalShlId}",
+              "flatPath": "v4beta/shl/m/{externalShlId}",
               "httpMethod": "POST",
               "id": "health.shl.m.getShlManifest",
               "parameterOrder": [
@@ -465,7 +465,7 @@
                   "type": "string"
                 }
               },
-              "path": "v4/shl/m/{externalShlId}",
+              "path": "v4beta/shl/m/{externalShlId}",
               "request": {
                 "$ref": "ManifestParams"
               },
@@ -479,7 +479,7 @@
           "methods": {
             "get": {
               "description": "Forward a resource request for a given SHL",
-              "flatPath": "v4/shl/r/{externalShlId}/{resourceToken}",
+              "flatPath": "v4beta/shl/r/{externalShlId}/{resourceToken}",
               "httpMethod": "GET",
               "id": "health.shl.r.get",
               "parameterOrder": [
@@ -500,7 +500,7 @@
                   "type": "string"
                 }
               },
-              "path": "v4/shl/r/{externalShlId}/{resourceToken}",
+              "path": "v4beta/shl/r/{externalShlId}/{resourceToken}",
               "response": {
                 "$ref": "HttpBody"
               }
@@ -513,7 +513,7 @@
       "methods": {
         "getIdentity": {
           "description": "Gets the user's identity. It includes the legacy Fitbit user ID and the Google user ID and it can be used by migrating clients to map identifiers between the two systems.",
-          "flatPath": "v4/users/{usersId}/identity",
+          "flatPath": "v4beta/users/{usersId}/identity",
           "httpMethod": "GET",
           "id": "health.users.getIdentity",
           "parameterOrder": [
@@ -528,7 +528,7 @@
               "type": "string"
             }
           },
-          "path": "v4/{+name}",
+          "path": "v4beta/{+name}",
           "response": {
             "$ref": "Identity"
           },
@@ -547,7 +547,7 @@
         },
         "getIrnProfile": {
           "description": "Returns user's IRN Profile details.",
-          "flatPath": "v4/users/{usersId}/irnProfile",
+          "flatPath": "v4beta/users/{usersId}/irnProfile",
           "httpMethod": "GET",
           "id": "health.users.getIrnProfile",
           "parameterOrder": [
@@ -562,7 +562,7 @@
               "type": "string"
             }
           },
-          "path": "v4/{+name}",
+          "path": "v4beta/{+name}",
           "response": {
             "$ref": "IrnProfile"
           },
@@ -572,7 +572,7 @@
         },
         "getProfile": {
           "description": "Returns user Profile details.",
-          "flatPath": "v4/users/{usersId}/profile",
+          "flatPath": "v4beta/users/{usersId}/profile",
           "httpMethod": "GET",
           "id": "health.users.getProfile",
           "parameterOrder": [
@@ -587,7 +587,7 @@
               "type": "string"
             }
           },
-          "path": "v4/{+name}",
+          "path": "v4beta/{+name}",
           "response": {
             "$ref": "Profile"
           },
@@ -597,7 +597,7 @@
         },
         "getSettings": {
           "description": "Returns user settings details.",
-          "flatPath": "v4/users/{usersId}/settings",
+          "flatPath": "v4beta/users/{usersId}/settings",
           "httpMethod": "GET",
           "id": "health.users.getSettings",
           "parameterOrder": [
@@ -612,7 +612,7 @@
               "type": "string"
             }
           },
-          "path": "v4/{+name}",
+          "path": "v4beta/{+name}",
           "response": {
             "$ref": "Settings"
           },
@@ -622,7 +622,7 @@
         },
         "updateProfile": {
           "description": "Updates the user's profile details.",
-          "flatPath": "v4/users/{usersId}/profile",
+          "flatPath": "v4beta/users/{usersId}/profile",
           "httpMethod": "PATCH",
           "id": "health.users.updateProfile",
           "parameterOrder": [
@@ -643,7 +643,7 @@
               "type": "string"
             }
           },
-          "path": "v4/{+name}",
+          "path": "v4beta/{+name}",
           "request": {
             "$ref": "Profile"
           },
@@ -656,7 +656,7 @@
         },
         "updateSettings": {
           "description": "Updates the user's settings details.",
-          "flatPath": "v4/users/{usersId}/settings",
+          "flatPath": "v4beta/users/{usersId}/settings",
           "httpMethod": "PATCH",
           "id": "health.users.updateSettings",
           "parameterOrder": [
@@ -677,7 +677,7 @@
               "type": "string"
             }
           },
-          "path": "v4/{+name}",
+          "path": "v4beta/{+name}",
           "request": {
             "$ref": "Settings"
           },
@@ -696,7 +696,7 @@
               "methods": {
                 "batchDelete": {
                   "description": "Delete a batch of identifyable data points.",
-                  "flatPath": "v4/users/{usersId}/dataTypes/{dataTypesId}/dataPoints:batchDelete",
+                  "flatPath": "v4beta/users/{usersId}/dataTypes/{dataTypesId}/dataPoints:batchDelete",
                   "httpMethod": "POST",
                   "id": "health.users.dataTypes.dataPoints.batchDelete",
                   "parameterOrder": [
@@ -711,7 +711,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v4/{+parent}/dataPoints:batchDelete",
+                  "path": "v4beta/{+parent}/dataPoints:batchDelete",
                   "request": {
                     "$ref": "BatchDeleteDataPointsRequest"
                   },
@@ -730,7 +730,7 @@
                 },
                 "create": {
                   "description": "Creates a single identifiable data point.",
-                  "flatPath": "v4/users/{usersId}/dataTypes/{dataTypesId}/dataPoints",
+                  "flatPath": "v4beta/users/{usersId}/dataTypes/{dataTypesId}/dataPoints",
                   "httpMethod": "POST",
                   "id": "health.users.dataTypes.dataPoints.create",
                   "parameterOrder": [
@@ -745,7 +745,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v4/{+parent}/dataPoints",
+                  "path": "v4beta/{+parent}/dataPoints",
                   "request": {
                     "$ref": "DataPoint"
                   },
@@ -764,7 +764,7 @@
                 },
                 "dailyRollUp": {
                   "description": "Roll up data points over civil time intervals for supported data types.",
-                  "flatPath": "v4/users/{usersId}/dataTypes/{dataTypesId}/dataPoints:dailyRollUp",
+                  "flatPath": "v4beta/users/{usersId}/dataTypes/{dataTypesId}/dataPoints:dailyRollUp",
                   "httpMethod": "POST",
                   "id": "health.users.dataTypes.dataPoints.dailyRollUp",
                   "parameterOrder": [
@@ -779,7 +779,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v4/{+parent}/dataPoints:dailyRollUp",
+                  "path": "v4beta/{+parent}/dataPoints:dailyRollUp",
                   "request": {
                     "$ref": "DailyRollUpDataPointsRequest"
                   },
@@ -805,7 +805,7 @@
                 },
                 "exportExerciseTcx": {
                   "description": "Exports exercise data in TCX format. **IMPORTANT:** HTTP clients must append `?alt=media` to the request URL to download the raw TCX file. Example: `https://health.googleapis.com/v4/users/me/dataTypes/exercise/dataPoints/EXERCISE_ID:exportExerciseTcx?alt=media` Without `alt=media`, the server returns a JSON response (`ExportExerciseTcxResponse`) which is intended primarily for gRPC clients. **Note:** While the Authorization section below states that any one of the listed scopes is accepted, this specific method requires the user to provide both one of the `activity_and_fitness` scopes (`normal` or `readonly`) AND one of the `location` scopes (`normal` or `readonly`) in their access token to succeed.",
-                  "flatPath": "v4/users/{usersId}/dataTypes/{dataTypesId}/dataPoints/{dataPointsId}:exportExerciseTcx",
+                  "flatPath": "v4beta/users/{usersId}/dataTypes/{dataTypesId}/dataPoints/{dataPointsId}:exportExerciseTcx",
                   "httpMethod": "GET",
                   "id": "health.users.dataTypes.dataPoints.exportExerciseTcx",
                   "parameterOrder": [
@@ -825,7 +825,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v4/{+name}:exportExerciseTcx",
+                  "path": "v4beta/{+name}:exportExerciseTcx",
                   "response": {
                     "$ref": "ExportExerciseTcxResponse"
                   },
@@ -838,7 +838,7 @@
                 },
                 "get": {
                   "description": "Get a single identifyable data point.",
-                  "flatPath": "v4/users/{usersId}/dataTypes/{dataTypesId}/dataPoints/{dataPointsId}",
+                  "flatPath": "v4beta/users/{usersId}/dataTypes/{dataTypesId}/dataPoints/{dataPointsId}",
                   "httpMethod": "GET",
                   "id": "health.users.dataTypes.dataPoints.get",
                   "parameterOrder": [
@@ -853,7 +853,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v4/{+name}",
+                  "path": "v4beta/{+name}",
                   "response": {
                     "$ref": "DataPoint"
                   },
@@ -876,7 +876,7 @@
                 },
                 "list": {
                   "description": "Query user health and fitness data points.",
-                  "flatPath": "v4/users/{usersId}/dataTypes/{dataTypesId}/dataPoints",
+                  "flatPath": "v4beta/users/{usersId}/dataTypes/{dataTypesId}/dataPoints",
                   "httpMethod": "GET",
                   "id": "health.users.dataTypes.dataPoints.list",
                   "parameterOrder": [
@@ -907,7 +907,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v4/{+parent}/dataPoints",
+                  "path": "v4beta/{+parent}/dataPoints",
                   "response": {
                     "$ref": "ListDataPointsResponse"
                   },
@@ -930,7 +930,7 @@
                 },
                 "patch": {
                   "description": "Updates a single identifiable data point. If a data point with the specified `name` is not found, the request will fail.",
-                  "flatPath": "v4/users/{usersId}/dataTypes/{dataTypesId}/dataPoints/{dataPointsId}",
+                  "flatPath": "v4beta/users/{usersId}/dataTypes/{dataTypesId}/dataPoints/{dataPointsId}",
                   "httpMethod": "PATCH",
                   "id": "health.users.dataTypes.dataPoints.patch",
                   "parameterOrder": [
@@ -945,7 +945,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v4/{+name}",
+                  "path": "v4beta/{+name}",
                   "request": {
                     "$ref": "DataPoint"
                   },
@@ -964,7 +964,7 @@
                 },
                 "reconcile": {
                   "description": "Reconcile data points from multiple data sources into a single data stream.",
-                  "flatPath": "v4/users/{usersId}/dataTypes/{dataTypesId}/dataPoints:reconcile",
+                  "flatPath": "v4beta/users/{usersId}/dataTypes/{dataTypesId}/dataPoints:reconcile",
                   "httpMethod": "GET",
                   "id": "health.users.dataTypes.dataPoints.reconcile",
                   "parameterOrder": [
@@ -1000,7 +1000,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v4/{+parent}/dataPoints:reconcile",
+                  "path": "v4beta/{+parent}/dataPoints:reconcile",
                   "response": {
                     "$ref": "ReconcileDataPointsResponse"
                   },
@@ -1023,7 +1023,7 @@
                 },
                 "rollUp": {
                   "description": "Roll up data points over physical time intervals for supported data types.",
-                  "flatPath": "v4/users/{usersId}/dataTypes/{dataTypesId}/dataPoints:rollUp",
+                  "flatPath": "v4beta/users/{usersId}/dataTypes/{dataTypesId}/dataPoints:rollUp",
                   "httpMethod": "POST",
                   "id": "health.users.dataTypes.dataPoints.rollUp",
                   "parameterOrder": [
@@ -1038,7 +1038,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v4/{+parent}/dataPoints:rollUp",
+                  "path": "v4beta/{+parent}/dataPoints:rollUp",
                   "request": {
                     "$ref": "RollUpDataPointsRequest"
                   },
@@ -1070,7 +1070,7 @@
           "methods": {
             "get": {
               "description": "Returns user's Device.",
-              "flatPath": "v4/users/{usersId}/pairedDevices/{pairedDevicesId}",
+              "flatPath": "v4beta/users/{usersId}/pairedDevices/{pairedDevicesId}",
               "httpMethod": "GET",
               "id": "health.users.pairedDevices.get",
               "parameterOrder": [
@@ -1085,7 +1085,7 @@
                   "type": "string"
                 }
               },
-              "path": "v4/{+name}",
+              "path": "v4beta/{+name}",
               "response": {
                 "$ref": "PairedDevice"
               },
@@ -1095,7 +1095,7 @@
             },
             "list": {
               "description": "Returns the user's list of paired 1P trackers and smartwatches.",
-              "flatPath": "v4/users/{usersId}/pairedDevices",
+              "flatPath": "v4beta/users/{usersId}/pairedDevices",
               "httpMethod": "GET",
               "id": "health.users.pairedDevices.list",
               "parameterOrder": [
@@ -1121,7 +1121,7 @@
                   "type": "string"
                 }
               },
-              "path": "v4/{+parent}/pairedDevices",
+              "path": "v4beta/{+parent}/pairedDevices",
               "response": {
                 "$ref": "ListPairedDevicesResponse"
               },
@@ -6620,6 +6620,6 @@
   },
   "servicePath": "",
   "title": "Google Health API",
-  "version": "v4",
+  "version": "v4beta",
   "version_module": true
 }

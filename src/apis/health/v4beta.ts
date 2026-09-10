@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace health_v4 {
+export namespace health_v4beta {
   export interface Options extends GlobalOptions {
-    version: 'v4';
+    version: 'v4beta';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace health_v4 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const health = google.health('v4');
+   * const health = google.health('v4beta');
    * ```
    */
   export class Health {
@@ -3319,7 +3319,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3430,7 +3430,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/subscribers').replace(
+            url: (rootUrl + '/v4beta/{+parent}/subscribers').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3471,7 +3471,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3572,7 +3572,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -3610,7 +3610,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3713,7 +3713,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/subscribers').replace(
+            url: (rootUrl + '/v4beta/{+parent}/subscribers').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3754,7 +3754,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3869,7 +3869,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -3969,7 +3969,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4079,7 +4079,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/subscriptions').replace(
+            url: (rootUrl + '/v4beta/{+parent}/subscriptions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4120,7 +4120,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4214,7 +4214,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -4252,7 +4252,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4358,7 +4358,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/subscriptions').replace(
+            url: (rootUrl + '/v4beta/{+parent}/subscriptions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4399,7 +4399,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4509,7 +4509,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -4620,7 +4620,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4727,7 +4727,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/shl/m/{externalShlId}').replace(
+            url: (rootUrl + '/v4beta/shl/m/{externalShlId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4787,7 +4787,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4886,7 +4886,7 @@ export namespace health_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v4/shl/r/{externalShlId}/{resourceToken}'
+              rootUrl + '/v4beta/shl/r/{externalShlId}/{resourceToken}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -4947,7 +4947,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5055,7 +5055,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5093,7 +5093,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5191,7 +5191,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5229,7 +5229,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5329,7 +5329,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5367,7 +5367,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5476,7 +5476,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5514,7 +5514,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5631,7 +5631,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -5669,7 +5669,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5802,7 +5802,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -5911,7 +5911,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6026,7 +6026,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/dataPoints:batchDelete').replace(
+            url: (rootUrl + '/v4beta/{+parent}/dataPoints:batchDelete').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6067,7 +6067,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6225,7 +6225,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/dataPoints').replace(
+            url: (rootUrl + '/v4beta/{+parent}/dataPoints').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6266,7 +6266,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6393,7 +6393,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/dataPoints:dailyRollUp').replace(
+            url: (rootUrl + '/v4beta/{+parent}/dataPoints:dailyRollUp').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6436,7 +6436,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6541,7 +6541,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}:exportExerciseTcx').replace(
+            url: (rootUrl + '/v4beta/{+name}:exportExerciseTcx').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6582,7 +6582,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6735,7 +6735,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6773,7 +6773,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6892,7 +6892,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/dataPoints').replace(
+            url: (rootUrl + '/v4beta/{+parent}/dataPoints').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6933,7 +6933,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7091,7 +7091,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -7129,7 +7129,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7253,7 +7253,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/dataPoints:reconcile').replace(
+            url: (rootUrl + '/v4beta/{+parent}/dataPoints:reconcile').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -7294,7 +7294,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7421,7 +7421,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/dataPoints:rollUp').replace(
+            url: (rootUrl + '/v4beta/{+parent}/dataPoints:rollUp').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -7581,7 +7581,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7684,7 +7684,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v4beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7722,7 +7722,7 @@ export namespace health_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const health = google.health('v4');
+     * const health = google.health('v4beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7826,7 +7826,7 @@ export namespace health_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v4/{+parent}/pairedDevices').replace(
+            url: (rootUrl + '/v4beta/{+parent}/pairedDevices').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
