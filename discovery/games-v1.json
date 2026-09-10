@@ -1501,7 +1501,7 @@
       }
     }
   },
-  "revision": "20260813",
+  "revision": "20260907",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
@@ -3409,11 +3409,6 @@
         },
         "stringValue": {
           "description": "A string value.",
-          "type": "string"
-        },
-        "timestampValue": {
-          "description": "A timestamp value.",
-          "format": "google-datetime",
           "type": "string"
         }
       },
