@@ -1,4 +1,13 @@
 {
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system": {
+          "description": "Private Service: https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system"
+        }
+      }
+    }
+  },
   "basePath": "",
   "baseUrl": "https://webcontentpublisher.googleapis.com/",
   "batchPath": "batch",
@@ -128,7 +137,10 @@
               },
               "response": {
                 "$ref": "Publication"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system"
+              ]
             },
             "get": {
               "description": "Gets a publication.",
@@ -150,7 +162,10 @@
               "path": "v1/{+name}",
               "response": {
                 "$ref": "Publication"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system"
+              ]
             },
             "list": {
               "description": "Lists publications.",
@@ -188,7 +203,10 @@
               "path": "v1/{+parent}/publications",
               "response": {
                 "$ref": "ListPublicationsResponse"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system"
+              ]
             },
             "patch": {
               "description": "Updates a publication.",
@@ -219,7 +237,10 @@
               },
               "response": {
                 "$ref": "Publication"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system"
+              ]
             }
           },
           "resources": {
@@ -253,7 +274,10 @@
                   },
                   "response": {
                     "$ref": "Cta"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system"
+                  ]
                 },
                 "get": {
                   "description": "Gets a CTA.",
@@ -275,7 +299,10 @@
                   "path": "v1/{+name}",
                   "response": {
                     "$ref": "Cta"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system"
+                  ]
                 },
                 "list": {
                   "description": "Lists CTAs.",
@@ -308,7 +335,10 @@
                   "path": "v1/{+parent}/ctas",
                   "response": {
                     "$ref": "ListCtasResponse"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system"
+                  ]
                 },
                 "patch": {
                   "description": "Updates a CTA.",
@@ -339,7 +369,10 @@
                   },
                   "response": {
                     "$ref": "Cta"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system"
+                  ]
                 }
               }
             }
@@ -413,7 +446,7 @@
       }
     }
   },
-  "revision": "20260827",
+  "revision": "20260906",
   "rootUrl": "https://webcontentpublisher.googleapis.com/",
   "schemas": {
     "CheckFreeAccessResponse": {
@@ -514,7 +547,8 @@
       "id": "DomainProperty",
       "properties": {
         "ownershipVerified": {
-          "description": "Optional. Whether the domain ownership has been verified (e.g., via Google Search Console).",
+          "description": "Output only. Whether the domain ownership has been verified (e.g., via Google Search Console).",
+          "readOnly": true,
           "type": "boolean"
         },
         "url": {
