@@ -403,7 +403,7 @@ export namespace cloudtasks_v2beta3 {
     url?: string | null;
   }
   /**
-   * HTTP target. When specified as a Queue, all the tasks with [HttpRequest] will be overridden according to the target.
+   * HTTP target. When specified at the Queue level, all tasks with HttpRequest are overridden according to the target.
    */
   export interface Schema$HttpTarget {
     /**
