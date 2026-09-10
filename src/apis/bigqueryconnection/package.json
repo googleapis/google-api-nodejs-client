@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/bigqueryconnection",
-  "version": "7.0.0",
+  "version": "8.0.0",
   "description": "bigqueryconnection",
   "main": "build/index.js",
   "types": "build/index.d.ts",
