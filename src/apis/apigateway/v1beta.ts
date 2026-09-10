@@ -343,6 +343,10 @@ export namespace apigateway_v1beta {
      */
     displayName?: string | null;
     /**
+     * Output only. The streaming mode this gateway is actually served with, which the service resolves at creation from `streaming_mode`, the referenced API Config, and the platform default at the time. Read this rather than `streaming_mode` to determine whether a gateway supports response streaming.
+     */
+    effectiveStreamingMode?: string | null;
+    /**
      * Optional. Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources
      */
     labels?: {[key: string]: string} | null;
@@ -354,6 +358,10 @@ export namespace apigateway_v1beta {
      * Output only. The current state of the Gateway.
      */
     state?: string | null;
+    /**
+     * Optional. Immutable. Requests response streaming for a new gateway. An attempt to change it on update is rejected. If unset, the service selects the mode. This field records only what was requested and is never modified by the service; read `effective_streaming_mode` for the mode the gateway is served with.
+     */
+    streamingMode?: string | null;
     /**
      * Output only. Updated time.
      */
@@ -3632,9 +3640,11 @@ export namespace apigateway_v1beta {
      *       //   "createTime": "my_createTime",
      *       //   "defaultHostname": "my_defaultHostname",
      *       //   "displayName": "my_displayName",
+     *       //   "effectiveStreamingMode": "my_effectiveStreamingMode",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "state": "my_state",
+     *       //   "streamingMode": "my_streamingMode",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -3926,9 +3936,11 @@ export namespace apigateway_v1beta {
      *   //   "createTime": "my_createTime",
      *   //   "defaultHostname": "my_defaultHostname",
      *   //   "displayName": "my_displayName",
+     *   //   "effectiveStreamingMode": "my_effectiveStreamingMode",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "state": "my_state",
+     *   //   "streamingMode": "my_streamingMode",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -4364,9 +4376,11 @@ export namespace apigateway_v1beta {
      *       //   "createTime": "my_createTime",
      *       //   "defaultHostname": "my_defaultHostname",
      *       //   "displayName": "my_displayName",
+     *       //   "effectiveStreamingMode": "my_effectiveStreamingMode",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "state": "my_state",
+     *       //   "streamingMode": "my_streamingMode",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
