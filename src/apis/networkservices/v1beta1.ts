@@ -374,6 +374,48 @@ export namespace networkservices_v1beta1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * `CdnEdgeExtension` is a resource that lets the extension service modify the headers of both requests to the cache and responses from the cache served by an [`EdgeCacheService`](https://cloud.google.com/media-cdn/docs/reference/rest/v1/projects.locations.edgeCacheServices).
+   */
+  export interface Schema$CdnEdgeExtension {
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A human-readable description of the resource.
+     */
+    description?: string | null;
+    /**
+     * Required. A set of ordered extension chains that contain the match conditions and extensions to execute. Match conditions for each extension chain are evaluated in sequence for a given request. The first extension chain that has a condition that matches the request is executed. Any subsequent extension chains do not execute. Limited to 5 extension chains per resource.
+     */
+    extensionChains?: Schema$ExtensionChain[];
+    /**
+     * Optional. Set of labels associated with the `CdnEdgeExtension` resource. The format must comply with [the requirements for labels](https://cloud.google.com/compute/docs/labeling-resources#requirements) for Google Cloud resources.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. Identifier. Name of the `CdnEdgeExtension` resource in the following format: `projects/{project\}/locations/{location\}/cdnEdgeExtensions/{cdn_edge_extension\}`.
+     */
+    name?: string | null;
+    /**
+     * Required. Specifies the set of resources to which this extension should be applied to.
+     */
+    target?: Schema$CdnEdgeExtensionTarget;
+    /**
+     * Output only. The timestamp when the resource was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Specifies the set of targets to which `CdnEdgeExtension` should be applied to.
+   */
+  export interface Schema$CdnEdgeExtensionTarget {
+    /**
+     * Required. A list of references to the resources that are targeted by `CdnEdgeExtension`. Types of resources supported: `EdgeCacheService`. The format must be the full resource name of [EdgeCacheService](https://cloud.google.com/media-cdn/docs/reference/rest/v1/projects.locations.edgeCacheServices) in the following format: `//networkservices.googleapis.com/projects/{project\}/locations/{location\}/edgeCacheServices/{edgeCacheService\}`.
+     */
+    resources?: string[] | null;
+  }
+  /**
    * DNS Peering configuration.
    */
   export interface Schema$DnsPeeringConfig {
@@ -1683,6 +1725,23 @@ export namespace networkservices_v1beta1 {
     unreachable?: string[] | null;
   }
   /**
+   * Message for response to listing `CdnEdgeExtension` resources.
+   */
+  export interface Schema$ListCdnEdgeExtensionsResponse {
+    /**
+     * The list of `CdnEdgeExtension` resources.
+     */
+    cdnEdgeExtensions?: Schema$CdnEdgeExtension[];
+    /**
+     * A token identifying a page of results that the server returns.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response returned by the ListEndpointPolicies method.
    */
   export interface Schema$ListEndpointPoliciesResponse {
@@ -2780,6 +2839,7 @@ export namespace networkservices_v1beta1 {
     agentConnectivityTemplates: Resource$Projects$Locations$Agentconnectivitytemplates;
     agentGateways: Resource$Projects$Locations$Agentgateways;
     authzExtensions: Resource$Projects$Locations$Authzextensions;
+    cdnEdgeExtensions: Resource$Projects$Locations$Cdnedgeextensions;
     endpointPolicies: Resource$Projects$Locations$Endpointpolicies;
     extensionBindings: Resource$Projects$Locations$Extensionbindings;
     gateways: Resource$Projects$Locations$Gateways;
@@ -2809,6 +2869,8 @@ export namespace networkservices_v1beta1 {
       this.authzExtensions = new Resource$Projects$Locations$Authzextensions(
         this.context
       );
+      this.cdnEdgeExtensions =
+        new Resource$Projects$Locations$Cdnedgeextensions(this.context);
       this.endpointPolicies = new Resource$Projects$Locations$Endpointpolicies(
         this.context
       );
@@ -5690,6 +5752,848 @@ export namespace networkservices_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$AuthzExtension;
+  }
+
+  export class Resource$Projects$Locations$Cdnedgeextensions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new `CdnEdgeExtension` resource in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.cdnEdgeExtensions.create(
+     *     {
+     *       // Required. User-provided ID of the `CdnEdgeExtension` resource to be created.
+     *       cdnEdgeExtensionId: 'placeholder-value',
+     *       // Required. The parent resource of the `CdnEdgeExtension` resource. Must be in the format `projects/{project\}/locations/{location\}`.
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "description": "my_description",
+     *         //   "extensionChains": [],
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "target": {},
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Cdnedgeextensions$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Cdnedgeextensions$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Cdnedgeextensions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Cdnedgeextensions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/cdnEdgeExtensions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the specified `CdnEdgeExtension` resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.cdnEdgeExtensions.delete(
+     *     {
+     *       // Required. The name of the `CdnEdgeExtension` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/cdnEdgeExtensions/{cdn_edge_extension\}`.
+     *       name: 'projects/my-project/locations/my-location/cdnEdgeExtensions/my-cdnEdgeExtension',
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Cdnedgeextensions$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Cdnedgeextensions$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Cdnedgeextensions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Cdnedgeextensions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of the specified `CdnEdgeExtension` resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.cdnEdgeExtensions.get({
+     *     // Required. A name of the `CdnEdgeExtension` resource to get. Must be in the format `projects/{project\}/locations/{location\}/cdnEdgeExtensions/{cdn_edge_extension\}`.
+     *     name: 'projects/my-project/locations/my-location/cdnEdgeExtensions/my-cdnEdgeExtension',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "extensionChains": [],
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "target": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Cdnedgeextensions$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CdnEdgeExtension>>;
+    get(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CdnEdgeExtension>,
+      callback: BodyResponseCallback<Schema$CdnEdgeExtension>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$Get,
+      callback: BodyResponseCallback<Schema$CdnEdgeExtension>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$CdnEdgeExtension>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Cdnedgeextensions$Get
+        | BodyResponseCallback<Schema$CdnEdgeExtension>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CdnEdgeExtension>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CdnEdgeExtension>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CdnEdgeExtension>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Cdnedgeextensions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Cdnedgeextensions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CdnEdgeExtension>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CdnEdgeExtension>(parameters);
+      }
+    }
+
+    /**
+     * Lists `CdnEdgeExtensions` resources in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.cdnEdgeExtensions.list({
+     *     // Optional. Filtering results.
+     *     filter: 'placeholder-value',
+     *     // Optional. Hint about how to order the results.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results that the server returns.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project and location from which the `CdnEdgeExtension` resources are listed. These values are specified in the following format: `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cdnEdgeExtensions": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Cdnedgeextensions$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCdnEdgeExtensionsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCdnEdgeExtensionsResponse>,
+      callback: BodyResponseCallback<Schema$ListCdnEdgeExtensionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$List,
+      callback: BodyResponseCallback<Schema$ListCdnEdgeExtensionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListCdnEdgeExtensionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Cdnedgeextensions$List
+        | BodyResponseCallback<Schema$ListCdnEdgeExtensionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCdnEdgeExtensionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCdnEdgeExtensionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCdnEdgeExtensionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Cdnedgeextensions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Cdnedgeextensions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/cdnEdgeExtensions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCdnEdgeExtensionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCdnEdgeExtensionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of the specified `CdnEdgeExtension` resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.cdnEdgeExtensions.patch({
+     *     // Required. Identifier. Name of the `CdnEdgeExtension` resource in the following format: `projects/{project\}/locations/{location\}/cdnEdgeExtensions/{cdn_edge_extension\}`.
+     *     name: 'projects/my-project/locations/my-location/cdnEdgeExtensions/my-cdnEdgeExtension',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Optional. Used to specify the fields to be overwritten in the `CdnEdgeExtension` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not specify a mask, then all fields are overwritten.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "extensionChains": [],
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "target": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Cdnedgeextensions$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Cdnedgeextensions$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Cdnedgeextensions$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Cdnedgeextensions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Cdnedgeextensions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Cdnedgeextensions$Create extends StandardParameters {
+    /**
+     * Required. User-provided ID of the `CdnEdgeExtension` resource to be created.
+     */
+    cdnEdgeExtensionId?: string;
+    /**
+     * Required. The parent resource of the `CdnEdgeExtension` resource. Must be in the format `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CdnEdgeExtension;
+  }
+  export interface Params$Resource$Projects$Locations$Cdnedgeextensions$Delete extends StandardParameters {
+    /**
+     * Required. The name of the `CdnEdgeExtension` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/cdnEdgeExtensions/{cdn_edge_extension\}`.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Cdnedgeextensions$Get extends StandardParameters {
+    /**
+     * Required. A name of the `CdnEdgeExtension` resource to get. Must be in the format `projects/{project\}/locations/{location\}/cdnEdgeExtensions/{cdn_edge_extension\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Cdnedgeextensions$List extends StandardParameters {
+    /**
+     * Optional. Filtering results.
+     */
+    filter?: string;
+    /**
+     * Optional. Hint about how to order the results.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results that the server returns.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location from which the `CdnEdgeExtension` resources are listed. These values are specified in the following format: `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Cdnedgeextensions$Patch extends StandardParameters {
+    /**
+     * Required. Identifier. Name of the `CdnEdgeExtension` resource in the following format: `projects/{project\}/locations/{location\}/cdnEdgeExtensions/{cdn_edge_extension\}`.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. Used to specify the fields to be overwritten in the `CdnEdgeExtension` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not specify a mask, then all fields are overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CdnEdgeExtension;
   }
 
   export class Resource$Projects$Locations$Endpointpolicies {
