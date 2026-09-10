@@ -212,6 +212,14 @@ export namespace cloudresourcemanager_v2beta1 {
     sourceParent?: string | null;
   }
   /**
+   * A status object which is used as the `metadata` field for the Operation returned by CreateBoundary. Currently empty.
+   */
+  export interface Schema$CreateBoundaryMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by CreateCapabilityConfig. Currently empty.
+   */
+  export interface Schema$CreateCapabilityConfigMetadata {}
+  /**
    * Metadata pertaining to the Folder creation process.
    */
   export interface Schema$CreateFolderMetadata {
@@ -253,6 +261,14 @@ export namespace cloudresourcemanager_v2beta1 {
    * Runtime operation information for creating a TagValue.
    */
   export interface Schema$CreateTagValueMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by DeleteBoundary. Currently empty.
+   */
+  export interface Schema$DeleteBoundaryMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by DeleteCapabilityConfig. Currently empty.
+   */
+  export interface Schema$DeleteCapabilityConfigMetadata {}
   /**
    * A status object which is used as the `metadata` field for the `Operation` returned by `DeleteFolder`.
    */
@@ -583,6 +599,18 @@ export namespace cloudresourcemanager_v2beta1 {
    * A status object which is used as the `metadata` field for the Operation returned by `UndeleteProject`.
    */
   export interface Schema$UndeleteProjectMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by UpdateBoundaryConfig. Currently empty.
+   */
+  export interface Schema$UpdateBoundaryConfigMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by UpdateBoundary. Currently empty.
+   */
+  export interface Schema$UpdateBoundaryMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by UpdateCapabilityConfig. Currently empty.
+   */
+  export interface Schema$UpdateCapabilityConfigMetadata {}
   /**
    * A status object which is used as the `metadata` field for the Operation returned by UpdateFolder.
    */
