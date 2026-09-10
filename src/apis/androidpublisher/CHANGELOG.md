@@ -1,5 +1,32 @@
 # Changelog
 
+## [41.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v40.0.0...androidpublisher-v41.0.0) (2026-09-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+* run the generator
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **androidpublisher:** update the API ([f90da98](https://github.com/googleapis/google-api-nodejs-client/commit/f90da98b75630838c0e56673fe18f3d1b49750c4))
+* **androidpublisher:** update the API ([0d59254](https://github.com/googleapis/google-api-nodejs-client/commit/0d592544958eaac0d148a5bb93dfae73190ae975))
+* **androidpublisher:** update the API ([cfdc6a1](https://github.com/googleapis/google-api-nodejs-client/commit/cfdc6a1515669c69ca0f64397c979be8cc622040))
+* **androidpublisher:** update the API ([b579920](https://github.com/googleapis/google-api-nodejs-client/commit/b579920a6f054666f82cde0c6bc9506f881669ba))
+* run the generator ([5f7d438](https://github.com/googleapis/google-api-nodejs-client/commit/5f7d438db1d60a1a0d6e8f8c0495f3e9f0e3c9d7))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+* upgrade dependencies in generated packages to Node 22 ([de9d20d](https://github.com/googleapis/google-api-nodejs-client/commit/de9d20d36f008e68867947bd8ff65121343d8bd2))
+
 ## [40.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v39.0.0...androidpublisher-v40.0.0) (2026-09-10)
 
 

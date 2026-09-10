@@ -1,5 +1,32 @@
 # Changelog
 
+## [30.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v29.0.0...chromemanagement-v30.0.0) (2026-09-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+* run the generator
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **chromemanagement:** update the API ([59e1441](https://github.com/googleapis/google-api-nodejs-client/commit/59e14410c6c72eb5f814f2ee92f845c155a89d7a))
+* **chromemanagement:** update the API ([3ecf8a1](https://github.com/googleapis/google-api-nodejs-client/commit/3ecf8a16f7113bd9f067997bdad0766e2a1322d6))
+* **chromemanagement:** update the API ([9b73f21](https://github.com/googleapis/google-api-nodejs-client/commit/9b73f21296237351b2304470caab689ec6d1703b))
+* regenerate index files ([7fa3d49](https://github.com/googleapis/google-api-nodejs-client/commit/7fa3d498cd5973402ed52f7516454c56c5be8be2))
+* run the generator ([5f7d438](https://github.com/googleapis/google-api-nodejs-client/commit/5f7d438db1d60a1a0d6e8f8c0495f3e9f0e3c9d7))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+* upgrade dependencies in generated packages to Node 22 ([de9d20d](https://github.com/googleapis/google-api-nodejs-client/commit/de9d20d36f008e68867947bd8ff65121343d8bd2))
+
 ## [29.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v28.0.0...chromemanagement-v29.0.0) (2026-09-10)
 
 
