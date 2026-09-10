@@ -1,5 +1,30 @@
 # Changelog
 
+## [41.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v40.0.0...iam-v41.0.0) (2026-09-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+* run the generator
+* This release has breaking changes.
+* **iam:** This release has breaking changes.
+
+### Features
+
+* **iam:** update the API ([c9e5398](https://github.com/googleapis/google-api-nodejs-client/commit/c9e53986628c5480f87b92185595be8b5859ea6e))
+* run the generator ([5f7d438](https://github.com/googleapis/google-api-nodejs-client/commit/5f7d438db1d60a1a0d6e8f8c0495f3e9f0e3c9d7))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+* **iam:** update the API ([70a1b23](https://github.com/googleapis/google-api-nodejs-client/commit/70a1b235e2c04368933a9e508ca306d040773711))
+* **iam:** update the API ([de6fba9](https://github.com/googleapis/google-api-nodejs-client/commit/de6fba97cf84b8fe31764337673943ce7aa90698))
+* upgrade dependencies in generated packages to Node 22 ([de9d20d](https://github.com/googleapis/google-api-nodejs-client/commit/de9d20d36f008e68867947bd8ff65121343d8bd2))
+
 ## [40.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v39.0.0...iam-v40.0.0) (2026-09-10)
 
 

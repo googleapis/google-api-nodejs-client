@@ -1,5 +1,33 @@
 # Changelog
 
+## [30.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v29.0.0...firebaseml-v30.0.0) (2026-09-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+* run the generator
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **firebaseml:** update the API ([785fde5](https://github.com/googleapis/google-api-nodejs-client/commit/785fde5e6c09100909d36c88eaf3abd575d638fe))
+* **firebaseml:** update the API ([2172147](https://github.com/googleapis/google-api-nodejs-client/commit/2172147383fab602e03841f670df27d16281c8bd))
+* **firebaseml:** update the API ([1c55a8a](https://github.com/googleapis/google-api-nodejs-client/commit/1c55a8a8a26208b4b5ef514f47aebad3052f898c))
+* **firebaseml:** update the API ([eea5878](https://github.com/googleapis/google-api-nodejs-client/commit/eea5878fca509af275196642c196e29ba6f4192f))
+* run the generator ([5f7d438](https://github.com/googleapis/google-api-nodejs-client/commit/5f7d438db1d60a1a0d6e8f8c0495f3e9f0e3c9d7))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+* **firebaseml:** update the API ([712f730](https://github.com/googleapis/google-api-nodejs-client/commit/712f730b92b266edd24ea3a5e618552299653d61))
+* upgrade dependencies in generated packages to Node 22 ([de9d20d](https://github.com/googleapis/google-api-nodejs-client/commit/de9d20d36f008e68867947bd8ff65121343d8bd2))
+
 ## [29.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v28.0.0...firebaseml-v29.0.0) (2026-09-10)
 
 

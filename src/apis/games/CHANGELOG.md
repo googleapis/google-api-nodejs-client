@@ -1,5 +1,32 @@
 # Changelog
 
+## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/games-v17.0.0...games-v18.0.0) (2026-09-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **games:** This release has breaking changes.
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+* run the generator
+* **games:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **games:** update the API ([9da17c3](https://github.com/googleapis/google-api-nodejs-client/commit/9da17c37dde8d69169235819e39cc57928a99846))
+* **games:** update the API ([ecc91a5](https://github.com/googleapis/google-api-nodejs-client/commit/ecc91a5c99b0d38acdbf3916ba4b7c4db0bba8d2))
+* **games:** update the API ([94e1b0a](https://github.com/googleapis/google-api-nodejs-client/commit/94e1b0aeca93f26397b2e7ac7893f5c3671fb79d))
+* **games:** update the API ([00b309b](https://github.com/googleapis/google-api-nodejs-client/commit/00b309bb5d1f4d7b8ebbad7e3dd204285d7badd8))
+* run the generator ([5f7d438](https://github.com/googleapis/google-api-nodejs-client/commit/5f7d438db1d60a1a0d6e8f8c0495f3e9f0e3c9d7))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+* upgrade dependencies in generated packages to Node 22 ([de9d20d](https://github.com/googleapis/google-api-nodejs-client/commit/de9d20d36f008e68867947bd8ff65121343d8bd2))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/games-v16.0.0...games-v17.0.0) (2026-09-10)
 
 
