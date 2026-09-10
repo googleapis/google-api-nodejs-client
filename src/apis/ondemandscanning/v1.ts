@@ -1164,6 +1164,10 @@ export namespace ondemandscanning_v1 {
      * Status of the scan.
      */
     scanStatus?: string | null;
+    /**
+     * Telemetry metrics tracking token usage for the AI scan.
+     */
+    tokenUsage?: Schema$TokenUsage;
   }
   /**
    * Result of Malicious Content Static scan.
@@ -1937,6 +1941,31 @@ export namespace ondemandscanning_v1 {
      */
     digest?: {[key: string]: string} | null;
     name?: string | null;
+  }
+  /**
+   * Token usage associated with an AI scan.
+   */
+  export interface Schema$TokenUsage {
+    /**
+     * Cache matched tokens for implicit cache.
+     */
+    cacheCount?: string | null;
+    /**
+     * Tokens in the model response.
+     */
+    candidateCount?: string | null;
+    /**
+     * Tokens in the user request.
+     */
+    promptCount?: string | null;
+    /**
+     * Tokens in the thinking output.
+     */
+    thinkingCount?: string | null;
+    /**
+     * Prompt tokens for using tools.
+     */
+    toolUsePromptCount?: string | null;
   }
   /**
    * The Upgrade Distribution represents metadata about the Upgrade for each operating system (CPE). Some distributions have additional metadata around updates, classifying them into various categories and severities.
