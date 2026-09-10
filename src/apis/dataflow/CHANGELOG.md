@@ -1,5 +1,32 @@
 # Changelog
 
+## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v24.0.0...dataflow-v25.0.0) (2026-09-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+* run the generator
+* This release has breaking changes.
+
+### Features
+
+* **dataflow:** update the API ([50fb008](https://github.com/googleapis/google-api-nodejs-client/commit/50fb008e3499ee1ddeec381ef20c3547e4febd72))
+* **dataflow:** update the API ([0f7b716](https://github.com/googleapis/google-api-nodejs-client/commit/0f7b716d5b83c62a285c4bc12f06712a7d391303))
+* **dataflow:** update the API ([c225012](https://github.com/googleapis/google-api-nodejs-client/commit/c22501258c9dc8b6f38cf040cebb893180f1705e))
+* **dataflow:** update the API ([efe33ba](https://github.com/googleapis/google-api-nodejs-client/commit/efe33bac804708ee3b8ebab08ec11e7197fbe56a))
+* **dataflow:** update the API ([cc4895c](https://github.com/googleapis/google-api-nodejs-client/commit/cc4895cba6ee394cf3b7760964e1eab99139d9a3))
+* regenerate index files ([7fa3d49](https://github.com/googleapis/google-api-nodejs-client/commit/7fa3d498cd5973402ed52f7516454c56c5be8be2))
+* run the generator ([5f7d438](https://github.com/googleapis/google-api-nodejs-client/commit/5f7d438db1d60a1a0d6e8f8c0495f3e9f0e3c9d7))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+* upgrade dependencies in generated packages to Node 22 ([de9d20d](https://github.com/googleapis/google-api-nodejs-client/commit/de9d20d36f008e68867947bd8ff65121343d8bd2))
+
 ## [24.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v23.0.0...dataflow-v24.0.0) (2026-09-10)
 
 

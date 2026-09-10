@@ -1,5 +1,33 @@
 # Changelog
 
+## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v19.0.0...dataform-v20.0.0) (2026-09-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+* run the generator
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **dataform:** update the API ([9a46491](https://github.com/googleapis/google-api-nodejs-client/commit/9a46491e17915d5152d9880a61722e7dcccfd3c7))
+* **dataform:** update the API ([4e37868](https://github.com/googleapis/google-api-nodejs-client/commit/4e378689319789f883684316a495e6313db3493d))
+* **dataform:** update the API ([ee9c7f5](https://github.com/googleapis/google-api-nodejs-client/commit/ee9c7f5c7dc40c656003d9077a6eb2c815404fa6))
+* run the generator ([5f7d438](https://github.com/googleapis/google-api-nodejs-client/commit/5f7d438db1d60a1a0d6e8f8c0495f3e9f0e3c9d7))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+* upgrade dependencies in generated packages to Node 22 ([de9d20d](https://github.com/googleapis/google-api-nodejs-client/commit/de9d20d36f008e68867947bd8ff65121343d8bd2))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v18.0.0...dataform-v19.0.0) (2026-09-10)
 
 
