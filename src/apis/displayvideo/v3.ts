@@ -227,7 +227,7 @@ export namespace displayvideo_v3 {
     targetingExpansion?: Schema$TargetingExpansionConfig;
   }
   /**
-   * A single ad associated with an ad group.
+   * LINT: LEGACY_NAMES A single ad associated with an ad group.
    */
   export interface Schema$AdGroupAd {
     /**
@@ -3474,7 +3474,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$DigitalContentLabelAssignedTargetingOptionDetails {
     /**
-     * Required. The display name of the digital content label rating tier to be EXCLUDED.
+     * Required. The display name of the digital content label rating tier to be EXCLUDED. **Starting on *October 1, 2026*, this field will only accept the value `CONTENT_RATING_TIER_UNRATED`. All other values will be deprecated and no longer be accepted.**
      */
     excludedContentRatingTier?: string | null;
   }
@@ -6016,7 +6016,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$SensitiveCategoryAssignedTargetingOptionDetails {
     /**
-     * Required. An enum for the DV360 Sensitive category content classified to be EXCLUDED.
+     * Required. An enum for the DV360 Sensitive category content classified to be EXCLUDED. **Starting on *October 1, 2026*, this field will only accept `SENSITIVE_CATEGORY_EMBEDDED_VIDEO` or `SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO`. All other values will be deprecated and no longer be accepted.**
      */
     excludedSensitiveCategory?: string | null;
   }
