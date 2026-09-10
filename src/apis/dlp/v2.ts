@@ -1142,10 +1142,6 @@ export namespace dlp_v2 {
      */
     inspectConfig?: Schema$GooglePrivacyDlpV2InspectConfig;
     /**
-     * Optional. InspectTemplate to use to produce findings. Deprecated: use inspect_config instead.
-     */
-    inspectTemplate?: Schema$GooglePrivacyDlpV2InspectTemplate;
-    /**
      * Optional. Log the actions taken by the content policy to external systems.
      */
     loggingConfigs?: Schema$GooglePrivacyDlpV2LoggingConfig[];
@@ -1193,9 +1189,13 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2ConversationMessage {
     /**
-     * The contents of this message.
+     * Deprecated: Use `message_parts` instead. The contents of this message. Only one of `content` and `message_parts` can be set.
      */
     content?: string | null;
+    /**
+     * Optional. The parts of the message. Restricted to being at most a single text item. Only one of `content` and `message_parts` can be set.
+     */
+    messageParts?: Schema$GooglePrivacyDlpV2MessagePart[];
     /**
      * The type of message.
      */
@@ -4189,6 +4189,15 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2Manual {}
   /**
+   * A part of a conversation message.
+   */
+  export interface Schema$GooglePrivacyDlpV2MessagePart {
+    /**
+     * String content for text-based messages.
+     */
+    text?: string | null;
+  }
+  /**
    * Configuration for a custom infoType that detects key-value pairs in the metadata matching the specified regular expressions.
    */
   export interface Schema$GooglePrivacyDlpV2MetadataKeyValueExpression {
@@ -4442,10 +4451,6 @@ export namespace dlp_v2 {
      * Optional. Conditions that must match for this rule to apply. All conditions must match (`AND`). For `OR` conditions, use multiple rules.
      */
     conditions?: Schema$GooglePrivacyDlpV2PolicyCondition[];
-    /**
-     * If set, the verdict will be returned to the user. Deprecated: Use `action` instead.
-     */
-    returnVerdict?: string | null;
   }
   /**
    * A rule for transforming a value.
@@ -22390,7 +22395,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.contentPolicies.create({
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization): + Projects scope: `projects/{project_id\}/locations/{location_id\}` + Organizations scope: `organizations/{org_id\}/locations/{location_id\}`
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project): + Projects scope: `projects/{project_id\}/locations/{location_id\}`
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -22413,7 +22418,6 @@ export namespace dlp_v2 {
      *   //   "failedToScanSupportedFileType": {},
      *   //   "inputTooLarge": {},
      *   //   "inspectConfig": {},
-     *   //   "inspectTemplate": {},
      *   //   "loggingConfigs": [],
      *   //   "name": "my_name",
      *   //   "rules": [],
@@ -22702,7 +22706,6 @@ export namespace dlp_v2 {
      *   //   "failedToScanSupportedFileType": {},
      *   //   "inputTooLarge": {},
      *   //   "inspectConfig": {},
-     *   //   "inspectTemplate": {},
      *   //   "loggingConfigs": [],
      *   //   "name": "my_name",
      *   //   "rules": [],
@@ -22844,7 +22847,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. Page token from a previous page to return the next set of results. If set, all other request fields must match the original request.
      *     pageToken: 'placeholder-value',
-     *     // Required. Resource name of the organization or project, for example, `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.
+     *     // Required. Resource name of the project, for example, `projects/project-id/locations/asia`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -23015,7 +23018,6 @@ export namespace dlp_v2 {
      *   //   "failedToScanSupportedFileType": {},
      *   //   "inputTooLarge": {},
      *   //   "inspectConfig": {},
-     *   //   "inspectTemplate": {},
      *   //   "loggingConfigs": [],
      *   //   "name": "my_name",
      *   //   "rules": [],
@@ -23125,7 +23127,7 @@ export namespace dlp_v2 {
 
   export interface Params$Resource$Projects$Locations$Contentpolicies$Create extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization): + Projects scope: `projects/{project_id\}/locations/{location_id\}` + Organizations scope: `organizations/{org_id\}/locations/{location_id\}`
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project): + Projects scope: `projects/{project_id\}/locations/{location_id\}`
      */
     parent?: string;
 
@@ -23156,7 +23158,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the organization or project, for example, `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.
+     * Required. Resource name of the project, for example, `projects/project-id/locations/asia`.
      */
     parent?: string;
   }
