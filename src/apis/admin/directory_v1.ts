@@ -1241,6 +1241,15 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Details regarding the expiration of this role assignment. Used to automatically revoke access when the time limit is reached.
+   */
+  export interface Schema$ExpirationDetails {
+    /**
+     * The specific timestamp when the role assignment expires.
+     */
+    expireTime?: string | null;
+  }
+  /**
    * External identifier used to link and identify this group across external directory systems.
    */
   export interface Schema$ExternalId {
@@ -2030,6 +2039,10 @@ export namespace admin_directory_v1 {
      * ETag of the resource.
      */
     etag?: string | null;
+    /**
+     * Optional. Details regarding the expiration of this role assignment.
+     */
+    expirationDetails?: Schema$ExpirationDetails;
     /**
      * The type of the API resource. This is always `admin#directory#roleAssignment`.
      */
@@ -17672,6 +17685,7 @@ export namespace admin_directory_v1 {
      *   //   "assigneeType": "my_assigneeType",
      *   //   "condition": "my_condition",
      *   //   "etag": "my_etag",
+     *   //   "expirationDetails": {},
      *   //   "kind": "my_kind",
      *   //   "orgUnitId": "my_orgUnitId",
      *   //   "roleAssignmentId": "my_roleAssignmentId",
@@ -17817,6 +17831,7 @@ export namespace admin_directory_v1 {
      *       //   "assigneeType": "my_assigneeType",
      *       //   "condition": "my_condition",
      *       //   "etag": "my_etag",
+     *       //   "expirationDetails": {},
      *       //   "kind": "my_kind",
      *       //   "orgUnitId": "my_orgUnitId",
      *       //   "roleAssignmentId": "my_roleAssignmentId",
@@ -17833,6 +17848,7 @@ export namespace admin_directory_v1 {
      *   //   "assigneeType": "my_assigneeType",
      *   //   "condition": "my_condition",
      *   //   "etag": "my_etag",
+     *   //   "expirationDetails": {},
      *   //   "kind": "my_kind",
      *   //   "orgUnitId": "my_orgUnitId",
      *   //   "roleAssignmentId": "my_roleAssignmentId",
