@@ -1965,6 +1965,154 @@
               "scopes": [
                 "https://www.googleapis.com/auth/chrome.management.reports.readonly"
               ]
+            },
+            "findSaasUsage": {
+              "description": "Find SaaS usage reports of a customer based on the given search and sorting criteria.",
+              "flatPath": "v1/customers/{customersId}/reports:findSaasUsage",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.findSaasUsage",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. Obfuscated customer ID prefixed with \"customers/C\" or \"customers/my_customer\".",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Optional. The filter expression to narrow down the SaaS reports to return. Supported operators are: =, !=, <, <=, >, >=, :. Logical operators AND, OR, and NOT are supported. Supported fields: * app * org_unit_id * first_navigation_time * last_navigation_time * category * organization * founded_year * headquarters * primary_domain * domains * encryption_protocols * visits_count * distinct_users_count * distinct_browsers_count * content_transfer_count Example: `(first_navigation_time < \"2026-01-31T00:00:00Z\" AND last_navigation_time > \"2026-01-01T00:00:00Z\") AND visits_count > 100`",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. The order by expression to sort the SaaS reports. Supported fields: * app * category * organization * founded_year * headquarters * primary_domain * visits_count * distinct_users_count * distinct_browsers_count * content_transfer_count Default order is ascending. To specify descending order for a field, append \" desc\". Example: `visits_count desc`",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The maximum number of reports to return. The service may return fewer than this value. If unspecified, at most 100 reports will be returned. The maximum value is 200; values above 200 will be coerced to 200.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `FindSaasUsageReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FindSaasUsageReports` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/reports:findSaasUsage",
+              "response": {
+                "$ref": "GoogleChromeManagementV1FindSaasUsageReportsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
+            },
+            "findSaasUsageBrowsers": {
+              "description": "Find SaaS usage reports of a customer grouped by browsers based on the given search and sorting criteria.",
+              "flatPath": "v1/customers/{customersId}/reports:findSaasUsageBrowsers",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.findSaasUsageBrowsers",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "app": {
+                  "description": "Required. The name of the SaaS application (e.g., `ChatGPT`, `Gemini`).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "customer": {
+                  "description": "Required. Obfuscated customer ID prefixed with \"customers/C\" or \"customers/my_customer\".",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Optional. The filter expression to narrow down the SaaS browser reports to return. Supported operators are: =, !=, <, <=, >, >=, :. Logical operators AND, OR, and NOT are supported. Supported fields: * machine * os_platform * first_navigation_time * last_navigation_time * org_unit_id",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. The order by expression to sort the SaaS browser reports. Supported fields: * machine * os_platform * first_navigation_time * last_navigation_time Default order is ascending. To specify descending order for a field, append \" desc\".",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The maximum number of browsers to return. The service may return fewer than this value. If unspecified, at most 100 browsers will be returned. The maximum value is 200; values above 200 will be coerced to 200.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `FindSaasUsageBrowsers` call. Provide this to retrieve the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/reports:findSaasUsageBrowsers",
+              "response": {
+                "$ref": "GoogleChromeManagementV1FindSaasUsageBrowsersResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
+            },
+            "findSaasUsageProfiles": {
+              "description": "Find SaaS usage reports of a customer grouped by profiles based on the given search and sorting criteria.",
+              "flatPath": "v1/customers/{customersId}/reports:findSaasUsageProfiles",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.findSaasUsageProfiles",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "app": {
+                  "description": "Required. The name of the SaaS application (e.g., `ChatGPT`, `Gemini`).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "customer": {
+                  "description": "Required. Obfuscated customer ID prefixed with \"customers/C\" or \"customers/my_customer\".",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Optional. The filter expression to narrow down the SaaS profile reports to return. Supported operators are: =, !=, <, <=, >, >=, :. Logical operators AND, OR, and NOT are supported. Supported fields: * email * org_unit_id * os_platform * first_navigation_time * last_navigation_time",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. The order by expression to sort the SaaS profile reports. Supported fields: * email * os_platform * first_navigation_time * last_navigation_time Default order is ascending. To specify descending order for a field, append \" desc\".",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The maximum number of reports to return. The service may return fewer than this value. If unspecified, at most 100 reports will be returned. The maximum value is 200; values above 200 will be coerced to 200.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `FindSaasUsageProfiles` call. Provide this to retrieve the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/reports:findSaasUsageProfiles",
+              "response": {
+                "$ref": "GoogleChromeManagementV1FindSaasUsageProfilesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
             }
           }
         },
@@ -2409,7 +2557,7 @@
       }
     }
   },
-  "revision": "20260715",
+  "revision": "20260907",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -4031,6 +4179,75 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1FindSaasUsageBrowsersResponse": {
+      "description": "Response to `FindSaasUsageBrowsers` method.",
+      "id": "GoogleChromeManagementV1FindSaasUsageBrowsersResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page.",
+          "type": "string"
+        },
+        "saasUsageBrowsers": {
+          "description": "The list of SaaS usage browser reports.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1SaasUsageBrowser"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "Total number of SaaS usage browser reports that match the request.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1FindSaasUsageProfilesResponse": {
+      "description": "Response to `FindSaasUsageProfiles` method.",
+      "id": "GoogleChromeManagementV1FindSaasUsageProfilesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "profileReports": {
+          "description": "The list of SaaS usage profile reports.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1SaasUsageProfileReport"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "Total number of SaaS usage profile reports that match the request.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1FindSaasUsageReportsResponse": {
+      "description": "Response to `FindSaasUsage` method.",
+      "id": "GoogleChromeManagementV1FindSaasUsageReportsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "saasReports": {
+          "description": "The list of SaaS usage reports.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1SaasUsageReport"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "Total number of SaaS usage reports that match the request.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1GraphicsAdapterInfo": {
       "description": "Information of a graphics adapter (GPU).",
       "id": "GoogleChromeManagementV1GraphicsAdapterInfo",
@@ -5037,6 +5254,241 @@
         "uptimeRuntimeDuration": {
           "description": "Total lifetime runtime. Currently always S0 runtime from Intel vPro PSR.",
           "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1SaasUsageBrowser": {
+      "description": "Details of a SaaS usage browser.",
+      "id": "GoogleChromeManagementV1SaasUsageBrowser",
+      "properties": {
+        "devicePermanentId": {
+          "description": "Output only. The device permanent ID.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "firstNavigationTime": {
+          "description": "Output only. The timestamp when the application was first navigated to by this browser.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastNavigationTime": {
+          "description": "Output only. The timestamp when the application was last navigated to by this browser.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "machine": {
+          "description": "Output only. The machine name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "orgUnitId": {
+          "description": "Output only. The ID of the organizational unit.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "osPlatform": {
+          "description": "Output only. The OS platform.",
+          "enum": [
+            "DEVICE_SYSTEM_UNSPECIFIED",
+            "SYSTEM_OTHER",
+            "SYSTEM_ANDROID",
+            "SYSTEM_IOS",
+            "SYSTEM_CROS",
+            "SYSTEM_WINDOWS",
+            "SYSTEM_MAC",
+            "SYSTEM_LINUX"
+          ],
+          "enumDescriptions": [
+            "No operating system specified.",
+            "Other operating system.",
+            "Android operating system.",
+            "Apple iOS operating system.",
+            "ChromeOS operating system.",
+            "Microsoft Windows operating system.",
+            "Apple macOS operating system.",
+            "Linux operating system."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "osVersion": {
+          "description": "Output only. The OS version.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1SaasUsageProfileReport": {
+      "description": "Represents a single SaaS report entry grouped by profile.",
+      "id": "GoogleChromeManagementV1SaasUsageProfileReport",
+      "properties": {
+        "email": {
+          "description": "Output only. The email of the user.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "firstNavigationTime": {
+          "description": "Output only. The timestamp when the application was first navigated to by this profile.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastNavigationTime": {
+          "description": "Output only. The timestamp when the application was last navigated to by this profile.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "orgUnitId": {
+          "description": "Output only. The ID of the organizational unit.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "osPlatform": {
+          "description": "Output only. The OS platform.",
+          "enum": [
+            "DEVICE_SYSTEM_UNSPECIFIED",
+            "SYSTEM_OTHER",
+            "SYSTEM_ANDROID",
+            "SYSTEM_IOS",
+            "SYSTEM_CROS",
+            "SYSTEM_WINDOWS",
+            "SYSTEM_MAC",
+            "SYSTEM_LINUX"
+          ],
+          "enumDescriptions": [
+            "No operating system specified.",
+            "Other operating system.",
+            "Android operating system.",
+            "Apple iOS operating system.",
+            "ChromeOS operating system.",
+            "Microsoft Windows operating system.",
+            "Apple macOS operating system.",
+            "Linux operating system."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "osVersion": {
+          "description": "Output only. The OS version.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "profilePermanentId": {
+          "description": "Output only. The permanent ID of the profile.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1SaasUsageReport": {
+      "description": "Represents a single SaaS report entry.",
+      "id": "GoogleChromeManagementV1SaasUsageReport",
+      "properties": {
+        "app": {
+          "description": "Output only. The name of the application.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "category": {
+          "description": "Output only. The category of the application.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "contentTransferDetails": {
+          "$ref": "GoogleChromeManagementV1SaasUsageReportContentTransferDetails",
+          "description": "Output only. Provides information about content transfer events, if available.",
+          "readOnly": true
+        },
+        "distinctBrowsersCount": {
+          "description": "Output only. Number of distinct browsers that visited the application.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "distinctUsersCount": {
+          "description": "Output only. Number of distinct users who visited the application.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "domains": {
+          "description": "Output only. A list of domains and subdomains associated with the application.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "encryptionProtocols": {
+          "description": "Output only. A list of encryption protocols used to access the application.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "firstNavigationTime": {
+          "description": "Output only. The timestamp when the application was first navigated to.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "foundedYear": {
+          "description": "Output only. The year the organization was founded.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "headquarters": {
+          "description": "Output only. The headquarters location of the organization.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastNavigationTime": {
+          "description": "Output only. The timestamp when the application was last navigated to.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "orgUnitId": {
+          "description": "Output only. The ID of the organizational unit.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "organization": {
+          "description": "Output only. The organization that develops the application.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "primaryDomain": {
+          "description": "Output only. The primary domain of the application.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "visitsCount": {
+          "description": "Output only. Total number of visits to the application.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1SaasUsageReportContentTransferDetails": {
+      "description": "Provides information about content transfer events, if available.",
+      "id": "GoogleChromeManagementV1SaasUsageReportContentTransferDetails",
+      "properties": {
+        "contentTransferCount": {
+          "description": "Output only. Total number of content transfers associated with the application.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
