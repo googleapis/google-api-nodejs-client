@@ -1,5 +1,34 @@
 # Changelog
 
+## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/accesscontextmanager-v17.0.0...accesscontextmanager-v18.0.0) (2026-09-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **accesscontextmanager:** This release has breaking changes.
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+* run the generator
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **accesscontextmanager:** update the API ([5cd0b00](https://github.com/googleapis/google-api-nodejs-client/commit/5cd0b00756589d584b7f0d9514efcebaad58302f))
+* **accesscontextmanager:** update the API ([b5cce86](https://github.com/googleapis/google-api-nodejs-client/commit/b5cce86dd6c55b14f24f19d87260fc19f7b5aa3b))
+* **accesscontextmanager:** update the API ([3a44c2e](https://github.com/googleapis/google-api-nodejs-client/commit/3a44c2ef2f3e8d3a43a089807947c0fc03a1ac6c))
+* **accesscontextmanager:** update the API ([12148cb](https://github.com/googleapis/google-api-nodejs-client/commit/12148cbc262a8ef2061d7d32cc75d951ae66db3e))
+* run the generator ([5f7d438](https://github.com/googleapis/google-api-nodejs-client/commit/5f7d438db1d60a1a0d6e8f8c0495f3e9f0e3c9d7))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
+
+### Bug Fixes
+
+* **accesscontextmanager:** update the API ([bd5315d](https://github.com/googleapis/google-api-nodejs-client/commit/bd5315d1f1f08485709a65e1e9ca34424906c8d8))
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+* upgrade dependencies in generated packages to Node 22 ([de9d20d](https://github.com/googleapis/google-api-nodejs-client/commit/de9d20d36f008e68867947bd8ff65121343d8bd2))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/accesscontextmanager-v16.0.0...accesscontextmanager-v17.0.0) (2026-09-10)
 
 

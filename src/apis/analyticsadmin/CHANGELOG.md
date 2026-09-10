@@ -1,5 +1,30 @@
 # Changelog
 
+## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v20.0.0...analyticsadmin-v21.0.0) (2026-09-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011))
+* run the generator
+* This release has breaking changes.
+* **analyticsadmin:** This release has breaking changes.
+
+### Features
+
+* **analyticsadmin:** update the API ([7e96bd5](https://github.com/googleapis/google-api-nodejs-client/commit/7e96bd548842ec4942e08f5c80d5f674dd0b99dd))
+* run the generator ([5f7d438](https://github.com/googleapis/google-api-nodejs-client/commit/5f7d438db1d60a1a0d6e8f8c0495f3e9f0e3c9d7))
+* run the generator ([#3955](https://github.com/googleapis/google-api-nodejs-client/issues/3955)) ([c429a9b](https://github.com/googleapis/google-api-nodejs-client/commit/c429a9b6f8272f1a651084f83ffcf4b88124c59f))
+* Update apiary to minimum Node version of 22. ([#4011](https://github.com/googleapis/google-api-nodejs-client/issues/4011)) ([ec5a6bf](https://github.com/googleapis/google-api-nodejs-client/commit/ec5a6bf892c4278bec2aa0d006cb6a63c889f116))
+
+
+### Bug Fixes
+
+* add back support for node 18 ([eccac1d](https://github.com/googleapis/google-api-nodejs-client/commit/eccac1df8b92551e617fbae0198ebfa67009a4de))
+* **analyticsadmin:** update the API ([a97fd47](https://github.com/googleapis/google-api-nodejs-client/commit/a97fd47d4b2c0b23261637a446054f3eb6a3d0a1))
+* **analyticsadmin:** update the API ([bb68807](https://github.com/googleapis/google-api-nodejs-client/commit/bb688075ff376106e55b53ad6f5662f278deff52))
+* upgrade dependencies in generated packages to Node 22 ([de9d20d](https://github.com/googleapis/google-api-nodejs-client/commit/de9d20d36f008e68867947bd8ff65121343d8bd2))
+
 ## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v19.0.0...analyticsadmin-v20.0.0) (2026-09-10)
 
 
