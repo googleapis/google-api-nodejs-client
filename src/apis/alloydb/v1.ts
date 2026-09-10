@@ -767,6 +767,19 @@ export namespace alloydb_v1 {
     time?: Schema$GoogleTypeTimeOfDay;
   }
   /**
+   * DnsAutomationInfo contains information about the DNS automation for the instance.
+   */
+  export interface Schema$DnsAutomationInfo {
+    /**
+     * Output only. The fully qualified domain name of the instance for DNS automation. Example: "...alloydb.goog.". Note: The AUDIT directive is intentionally omitted because this field contains sensitive network topology information.
+     */
+    fullyQualifiedDomainName?: string | null;
+    /**
+     * Output only. The state of the DNS automation.
+     */
+    state?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -1067,6 +1080,10 @@ export namespace alloydb_v1 {
      * Optional. The configuration for Private Service Connect (PSC) for the instance.
      */
     pscInstanceConfig?: Schema$PscInstanceConfig;
+    /**
+     * Output only. Information about the Private Service Connect (PSC) for the instance.
+     */
+    pscInstanceInfo?: Schema$PscInstanceInfo;
     /**
      * Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.
      */
@@ -1502,9 +1519,21 @@ export namespace alloydb_v1 {
      */
     consumerProject?: string | null;
     /**
+     * Output only. List of DNS automation info for the PSC auto connection.
+     */
+    dnsAutomationInfos?: Schema$DnsAutomationInfo[];
+    /**
      * Output only. The IP address of the PSC service automation endpoint.
      */
     ipAddress?: string | null;
+    /**
+     * Output only. The PSC service connection policy name. The format is "projects//regions//serviceConnectionPolicies/"
+     */
+    serviceConnectionPolicy?: string | null;
+    /**
+     * Output only. The creation state or result of the connection policy. Possible values include: - `ACTIVE`: The policy was created successfully. - `PERMISSION_DENIED`: Sufficient permissions were not provided. Note that this field is an unstructured output and customers should not rely on the specific string value or error message directly.
+     */
+    serviceConnectionPolicyCreationState?: string | null;
     /**
      * Output only. The status of the PSC service automation connection. Possible values: "STATE_UNSPECIFIED" - An invalid state as the default case. "ACTIVE" - The connection has been created successfully. "FAILED" - The connection is not functional since some resources on the connection fail to be created. "CREATING" - The connection is being created. "DELETING" - The connection is being deleted. "CREATE_REPAIRING" - The connection is being repaired to complete creation. "DELETE_REPAIRING" - The connection is being repaired to complete deletion.
      */
@@ -1532,9 +1561,17 @@ export namespace alloydb_v1 {
      */
     allowedConsumerProjects?: string[] | null;
     /**
+     * Optional. Configuration for setting up PSC auto connection for the instance.
+     */
+    pscAutoConnectionPolicyState?: string | null;
+    /**
      * Optional. Configurations for setting up PSC service automation.
      */
     pscAutoConnections?: Schema$PscAutoConnectionConfig[];
+    /**
+     * Optional. Configuration for setting up PSC auto DNS for the instance.
+     */
+    pscAutoDnsState?: string | null;
     /**
      * Output only. The DNS name of the instance for PSC connectivity. Name convention: ...alloydb-psc.goog
      */
@@ -1547,6 +1584,27 @@ export namespace alloydb_v1 {
      * Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of `projects//regions//serviceAttachments/`
      */
     serviceAttachmentLink?: string | null;
+  }
+  /**
+   * Information about the Private Service Connect (PSC) for the instance.
+   */
+  export interface Schema$PscInstanceInfo {
+    /**
+     * Output only. Indicates if the PSC auto connection policy is enabled for the instance. For older instances, this will be off by default, but for newer instances, this will be auto-enabled.
+     */
+    effectivePscAutoConnectionPolicy?: boolean | null;
+    /**
+     * Output only. The effective state of the PSC auto DNS for the instance.
+     */
+    effectivePscAutoDnsEnabled?: boolean | null;
+    /**
+     * Output only. Specifies the auto DNS names for the instance.
+     */
+    pscAutoDnsNames?: string[] | null;
+    /**
+     * Output only. The PSC service connection policy name. The format is "projects//regions//serviceConnectionPolicies/"
+     */
+    serviceConnectionPolicy?: string | null;
   }
   /**
    * Configuration for setting up a PSC interface to enable outbound connectivity.
@@ -6496,6 +6554,7 @@ export namespace alloydb_v1 {
      *       //   "observabilityConfig": {},
      *       //   "outboundPublicIpAddresses": [],
      *       //   "pscInstanceConfig": {},
+     *       //   "pscInstanceInfo": {},
      *       //   "publicIpAddress": "my_publicIpAddress",
      *       //   "queryInsightsConfig": {},
      *       //   "readPoolConfig": {},
@@ -6683,6 +6742,7 @@ export namespace alloydb_v1 {
      *         //   "observabilityConfig": {},
      *         //   "outboundPublicIpAddresses": [],
      *         //   "pscInstanceConfig": {},
+     *         //   "pscInstanceInfo": {},
      *         //   "publicIpAddress": "my_publicIpAddress",
      *         //   "queryInsightsConfig": {},
      *         //   "readPoolConfig": {},
@@ -7159,6 +7219,7 @@ export namespace alloydb_v1 {
      *   //   "observabilityConfig": {},
      *   //   "outboundPublicIpAddresses": [],
      *   //   "pscInstanceConfig": {},
+     *   //   "pscInstanceInfo": {},
      *   //   "publicIpAddress": "my_publicIpAddress",
      *   //   "queryInsightsConfig": {},
      *   //   "readPoolConfig": {},
@@ -7779,6 +7840,7 @@ export namespace alloydb_v1 {
      *       //   "observabilityConfig": {},
      *       //   "outboundPublicIpAddresses": [],
      *       //   "pscInstanceConfig": {},
+     *       //   "pscInstanceInfo": {},
      *       //   "publicIpAddress": "my_publicIpAddress",
      *       //   "queryInsightsConfig": {},
      *       //   "readPoolConfig": {},
