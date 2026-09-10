@@ -4,6 +4,15 @@
 
 > The Address Validation API allows developers to verify the accuracy of addresses. Given an address, it returns information about the correctness of the components of the parsed address, a geocode, and a verdict on the deliverability of the parsed address.
 
+## Support status
+**Note**: Google provides multiple libraries for this service. This library is in
+maintenance mode, and will continue to be made available for users who have
+existing applications. If you're building a new application, or modernizing a
+legacy application, please use [@googlemaps/addressvalidation](https://www.npmjs.com/package/@googlemaps/addressvalidation) instead.
+The [@googlemaps/addressvalidation](https://www.npmjs.com/package/@googlemaps/addressvalidation) library is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh
