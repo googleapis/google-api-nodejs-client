@@ -344,7 +344,7 @@
       }
     }
   },
-  "revision": "20260821",
+  "revision": "20260828",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AISkillAnalysisOccurrence": {
@@ -2167,6 +2167,10 @@
             "Scan was not performed."
           ],
           "type": "string"
+        },
+        "tokenUsage": {
+          "$ref": "TokenUsage",
+          "description": "Telemetry metrics tracking token usage for the AI scan."
         }
       },
       "type": "object"
@@ -3455,6 +3459,38 @@
           "type": "object"
         },
         "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TokenUsage": {
+      "description": "Token usage associated with an AI scan.",
+      "id": "TokenUsage",
+      "properties": {
+        "cacheCount": {
+          "description": "Cache matched tokens for implicit cache.",
+          "format": "int64",
+          "type": "string"
+        },
+        "candidateCount": {
+          "description": "Tokens in the model response.",
+          "format": "int64",
+          "type": "string"
+        },
+        "promptCount": {
+          "description": "Tokens in the user request.",
+          "format": "int64",
+          "type": "string"
+        },
+        "thinkingCount": {
+          "description": "Tokens in the thinking output.",
+          "format": "int64",
+          "type": "string"
+        },
+        "toolUsePromptCount": {
+          "description": "Prompt tokens for using tools.",
+          "format": "int64",
           "type": "string"
         }
       },
