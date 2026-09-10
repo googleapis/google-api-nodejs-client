@@ -15,16 +15,23 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {backupdr_v1} from './v1';
+import {backupdr_v1beta} from './v1beta';
 
 export const VERSIONS = {
   v1: backupdr_v1.Backupdr,
+  v1beta: backupdr_v1beta.Backupdr,
 };
 
 export function backupdr(version: 'v1'): backupdr_v1.Backupdr;
 export function backupdr(options: backupdr_v1.Options): backupdr_v1.Backupdr;
-export function backupdr<T = backupdr_v1.Backupdr>(
+export function backupdr(version: 'v1beta'): backupdr_v1beta.Backupdr;
+export function backupdr(
+  options: backupdr_v1beta.Options
+): backupdr_v1beta.Backupdr;
+export function backupdr<T = backupdr_v1.Backupdr | backupdr_v1beta.Backupdr>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | backupdr_v1.Options
+  versionOrOptions:
+    'v1' | backupdr_v1.Options | 'v1beta' | backupdr_v1beta.Options
 ) {
   return getAPI<T>('backupdr', versionOrOptions, VERSIONS, this);
 }
@@ -32,6 +39,7 @@ export function backupdr<T = backupdr_v1.Backupdr>(
 const auth = new AuthPlus();
 export {auth};
 export {backupdr_v1};
+export {backupdr_v1beta};
 export {
   AuthPlus,
   GlobalOptions,
