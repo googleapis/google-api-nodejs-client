@@ -4,6 +4,15 @@
 
 > Publishes 360 photos to Google Maps, along with position, orientation, and connectivity metadata. Apps can offer an interface for positioning, connecting, and uploading user-generated Street View images.
 
+## Support status
+**Note**: Google provides multiple libraries for this service. This library is in
+maintenance mode, and will continue to be made available for users who have
+existing applications. If you're building a new application, or modernizing a
+legacy application, please use [@googlemaps/streetview-publish](https://www.npmjs.com/package/@googlemaps/streetview-publish) instead.
+The [@googlemaps/streetview-publish](https://www.npmjs.com/package/@googlemaps/streetview-publish) library is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh
