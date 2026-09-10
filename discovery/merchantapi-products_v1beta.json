@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20260901",
+  "revision": "20260903",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -340,7 +340,7 @@
           "type": "string"
         },
         "certifications": {
-          "description": "Product Certifications, for example for energy efficiency labeling of products recorded in the [EU EPREL](https://eprel.ec.europa.eu/screen/home) database. See the [Help Center](https://support.google.com/merchants/answer/13528839) article for more information.",
+          "description": "Product Certifications, for example for energy efficiency labeling of products recorded in the [EU EPREL](https://eprel.ec.europa.eu/screen/home) database. For more information, see [Certification](https://support.google.com/merchants/answer/13528839).",
           "items": {
             "$ref": "Certification"
           },
@@ -774,6 +774,14 @@
         },
         "certificationCode": {
           "description": "The certification code. Maximum length is 2000 characters.",
+          "type": "string"
+        },
+        "certificationDocumentLink": {
+          "description": "Optional. URL to the certification document (eg. `https://www.example.com/document`), for example, the product data sheet or fiche required by UK's DESNZ or EU's EPREL. Maximum length is 2000 characters. For more information, see [Certification](https://support.google.com/merchants/answer/13528839).",
+          "type": "string"
+        },
+        "certificationLabelLink": {
+          "description": "Optional. URL to the certification label (eg. `https://www.example.com/label`), for example, the energy efficiency label required by UK's DESNZ or EU's EPREL. Maximum length is 2000 characters. For more information, see [Certification](https://support.google.com/merchants/answer/13528839).",
           "type": "string"
         },
         "certificationName": {
