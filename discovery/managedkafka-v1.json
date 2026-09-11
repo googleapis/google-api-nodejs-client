@@ -3186,7 +3186,7 @@
       }
     }
   },
-  "revision": "20260827",
+  "revision": "20260904",
   "rootUrl": "https://managedkafka.googleapis.com/",
   "schemas": {
     "AccessConfig": {
@@ -3449,8 +3449,7 @@
           "description": "Required. Configuration properties for a Kafka cluster deployed to Google Cloud Platform."
         },
         "kafkaVersion": {
-          "description": "Output only. Only populated when FULL view is requested. The Kafka version of the cluster.",
-          "readOnly": true,
+          "description": "Optional. The Apache Kafka version of the cluster (for example, `3.7.x`, `4.3.x`). If not specified during cluster creation, defaults to `3.7.x`.",
           "type": "string"
         },
         "labels": {
