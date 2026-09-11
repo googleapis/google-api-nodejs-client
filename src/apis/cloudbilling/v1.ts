@@ -113,9 +113,12 @@ export namespace cloudbilling_v1 {
   export class Cloudbilling {
     context: APIRequestContext;
     billingAccounts: Resource$Billingaccounts;
+    message: Resource$Message;
     organizations: Resource$Organizations;
     projects: Resource$Projects;
     services: Resource$Services;
+    tasks: Resource$Tasks;
+    v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -124,12 +127,214 @@ export namespace cloudbilling_v1 {
       };
 
       this.billingAccounts = new Resource$Billingaccounts(this.context);
+      this.message = new Resource$Message(this.context);
       this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
       this.services = new Resource$Services(this.context);
+      this.tasks = new Resource$Tasks(this.context);
+      this.v1 = new Resource$V1(this.context);
     }
   }
 
+  /**
+   * Defines the A2A feature set supported by the agent
+   */
+  export interface Schema$AgentCapabilities {
+    /**
+     * Extensions supported by this agent.
+     */
+    extensions?: Schema$AgentExtension[];
+    /**
+     * If the agent can send push notifications to the clients webhook
+     */
+    pushNotifications?: boolean | null;
+    /**
+     * If the agent will support streaming responses
+     */
+    streaming?: boolean | null;
+  }
+  /**
+   * AgentCard conveys key information: - Overall details (version, name, description, uses) - Skills; a set of actions/solutions the agent can perform - Default modalities/content types supported by the agent. - Authentication requirements Next ID: 19
+   */
+  export interface Schema$AgentCard {
+    /**
+     * Announcement of additional supported transports. Client can use any of the supported transports.
+     */
+    additionalInterfaces?: Schema$AgentInterface[];
+    /**
+     * A2A Capability set supported by the agent.
+     */
+    capabilities?: Schema$AgentCapabilities;
+    /**
+     * protolint:enable REPEATED_FIELD_NAMES_PLURALIZED The set of interaction modes that the agent supports across all skills. This can be overridden per skill. Defined as mime types.
+     */
+    defaultInputModes?: string[] | null;
+    /**
+     * The mime types supported as outputs from this agent.
+     */
+    defaultOutputModes?: string[] | null;
+    /**
+     * A description of the agent's domain of action/solution space. Example: "Agent that helps users with recipes and cooking."
+     */
+    description?: string | null;
+    /**
+     * A url to provide additional documentation about the agent.
+     */
+    documentationUrl?: string | null;
+    /**
+     * An optional URL to an icon for the agent.
+     */
+    iconUrl?: string | null;
+    /**
+     * A human readable name for the agent. Example: "Recipe Agent"
+     */
+    name?: string | null;
+    /**
+     * The transport of the preferred endpoint. If empty, defaults to JSONRPC.
+     */
+    preferredTransport?: string | null;
+    /**
+     * The version of the A2A protocol this agent supports.
+     */
+    protocolVersion?: string | null;
+    /**
+     * The service provider of the agent.
+     */
+    provider?: Schema$AgentProvider;
+    /**
+     * protolint:disable REPEATED_FIELD_NAMES_PLURALIZED Security requirements for contacting the agent. This list can be seen as an OR of ANDs. Each object in the list describes one possible set of security requirements that must be present on a request. This allows specifying, for example, "callers must either use OAuth OR an API Key AND mTLS." Example: security { schemes { key: "oauth" value { list: ["read"] \} \} \} security { schemes { key: "api-key" \} schemes { key: "mtls" \} \}
+     */
+    security?: Schema$Security[];
+    /**
+     * The security scheme details used for authenticating with this agent.
+     */
+    securitySchemes?: {[key: string]: Schema$SecurityScheme} | null;
+    /**
+     * JSON Web Signatures computed for this AgentCard.
+     */
+    signatures?: Schema$AgentCardSignature[];
+    /**
+     * Skills represent a unit of ability an agent can perform. This may somewhat abstract but represents a more focused set of actions that the agent is highly likely to succeed at.
+     */
+    skills?: Schema$AgentSkill[];
+    /**
+     * Whether the agent supports providing an extended agent card when the user is authenticated, i.e. is the card from .well-known different than the card from GetAgentCard.
+     */
+    supportsAuthenticatedExtendedCard?: boolean | null;
+    /**
+     * A URL to the address the agent is hosted at. This represents the preferred endpoint as declared by the agent.
+     */
+    url?: string | null;
+    /**
+     * The version of the agent. Example: "1.0.0"
+     */
+    version?: string | null;
+  }
+  /**
+   * AgentCardSignature represents a JWS signature of an AgentCard. This follows the JSON format of an RFC 7515 JSON Web Signature (JWS).
+   */
+  export interface Schema$AgentCardSignature {
+    /**
+     * The unprotected JWS header values.
+     */
+    header?: {[key: string]: any} | null;
+    /**
+     * Required. The protected JWS header for the signature. This is always a base64url-encoded JSON object. Required.
+     */
+    protected?: string | null;
+    /**
+     * Required. The computed signature, base64url-encoded. Required.
+     */
+    signature?: string | null;
+  }
+  /**
+   * A declaration of an extension supported by an Agent.
+   */
+  export interface Schema$AgentExtension {
+    /**
+     * A description of how this agent uses this extension. Example: "Google OAuth 2.0 authentication"
+     */
+    description?: string | null;
+    /**
+     * Optional configuration for the extension.
+     */
+    params?: {[key: string]: any} | null;
+    /**
+     * Whether the client must follow specific requirements of the extension. Example: false
+     */
+    required?: boolean | null;
+    /**
+     * The URI of the extension. Example: "https://developers.google.com/identity/protocols/oauth2"
+     */
+    uri?: string | null;
+  }
+  /**
+   * Defines additional transport information for the agent.
+   */
+  export interface Schema$AgentInterface {
+    /**
+     * Tenant to be set in the request when calling the agent. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string | null;
+    /**
+     * The transport supported this url. This is an open form string, to be easily extended for many transport protocols. The core ones officially supported are JSONRPC, GRPC and HTTP+JSON.
+     */
+    transport?: string | null;
+    /**
+     * The url this interface is found at.
+     */
+    url?: string | null;
+  }
+  /**
+   * Represents information about the service provider of an agent.
+   */
+  export interface Schema$AgentProvider {
+    /**
+     * The providers organization name Example: "Google"
+     */
+    organization?: string | null;
+    /**
+     * The providers reference url Example: "https://ai.google.dev"
+     */
+    url?: string | null;
+  }
+  /**
+   * AgentSkill represents a unit of action/solution that the agent can perform. One can think of this as a type of highly reliable solution that an agent can be tasked to provide. Agents have the autonomy to choose how and when to use specific skills, but clients should have confidence that if the skill is defined that unit of action can be reliably performed.
+   */
+  export interface Schema$AgentSkill {
+    /**
+     * A human (or llm) readable description of the skill details and behaviors.
+     */
+    description?: string | null;
+    /**
+     * A set of example queries that this skill is designed to address. These examples should help the caller to understand how to craft requests to the agent to achieve specific goals. Example: ["I need a recipe for bread"]
+     */
+    examples?: string[] | null;
+    /**
+     * Unique identifier of the skill within this agent.
+     */
+    id?: string | null;
+    /**
+     * Possible input modalities supported.
+     */
+    inputModes?: string[] | null;
+    /**
+     * A human readable name for the skill.
+     */
+    name?: string | null;
+    /**
+     * Possible output modalities produced
+     */
+    outputModes?: string[] | null;
+    /**
+     * protolint:disable REPEATED_FIELD_NAMES_PLURALIZED Security schemes necessary for the agent to leverage this skill. As in the overall AgentCard.security, this list represents a logical OR of security requirement objects. Each object is a set of security schemes that must be used together (a logical AND). protolint:enable REPEATED_FIELD_NAMES_PLURALIZED
+     */
+    security?: Schema$Security[];
+    /**
+     * A set of tags for the skill to enhance categorization/utilization. Example: ["cooking", "customer support", "billing"]
+     */
+    tags?: string[] | null;
+  }
   /**
    * Represents the aggregation level and interval for pricing of a single SKU.
    */
@@ -140,6 +345,49 @@ export namespace cloudbilling_v1 {
     aggregationCount?: number | null;
     aggregationInterval?: string | null;
     aggregationLevel?: string | null;
+  }
+  export interface Schema$APIKeySecurityScheme {
+    /**
+     * Description of this security scheme.
+     */
+    description?: string | null;
+    /**
+     * Location of the API key, valid values are "query", "header", or "cookie"
+     */
+    location?: string | null;
+    /**
+     * Name of the header, query or cookie parameter to be used.
+     */
+    name?: string | null;
+  }
+  /**
+   * Artifacts are the container for task completed results. These are similar to Messages but are intended to be the product of a task, as opposed to point-to-point communication.
+   */
+  export interface Schema$Artifact {
+    /**
+     * Unique identifier (e.g. UUID) for the artifact. It must be at least unique within a task.
+     */
+    artifactId?: string | null;
+    /**
+     * A human readable description of the artifact, optional.
+     */
+    description?: string | null;
+    /**
+     * The URIs of extensions that are present or contributed to this Artifact.
+     */
+    extensions?: string[] | null;
+    /**
+     * Optional metadata included with the artifact.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * A human readable name for the artifact.
+     */
+    name?: string | null;
+    /**
+     * The content of the artifact.
+     */
+    parts?: Schema$Part[];
   }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
@@ -166,6 +414,37 @@ export namespace cloudbilling_v1 {
      * The log type that this config enables.
      */
     logType?: string | null;
+  }
+  /**
+   * Defines authentication details, used for push notifications.
+   */
+  export interface Schema$AuthenticationInfo {
+    /**
+     * Optional credentials
+     */
+    credentials?: string | null;
+    /**
+     * Supported authentication schemes - e.g. Basic, Bearer, etc
+     */
+    schemes?: string[] | null;
+  }
+  export interface Schema$AuthorizationCodeOAuthFlow {
+    /**
+     * The authorization URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS
+     */
+    authorizationUrl?: string | null;
+    /**
+     * The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
+     */
+    refreshUrl?: string | null;
+    /**
+     * The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.
+     */
+    scopes?: {[key: string]: string} | null;
+    /**
+     * The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
+     */
+    tokenUrl?: string | null;
   }
   /**
    * A billing account in the [Google Cloud Console](https://console.cloud.google.com/). You can assign a billing account to one or more projects.
@@ -213,6 +492,12 @@ export namespace cloudbilling_v1 {
      */
     role?: string | null;
   }
+  export interface Schema$CancelTaskRequest {
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string | null;
+  }
   /**
    * Represents the category hierarchy of a SKU.
    */
@@ -234,6 +519,30 @@ export namespace cloudbilling_v1 {
      */
     usageType?: string | null;
   }
+  export interface Schema$ClientCredentialsOAuthFlow {
+    /**
+     * The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
+     */
+    refreshUrl?: string | null;
+    /**
+     * The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.
+     */
+    scopes?: {[key: string]: string} | null;
+    /**
+     * The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
+     */
+    tokenUrl?: string | null;
+  }
+  /**
+   * DataPart represents a structured blob. This is most commonly a JSON payload.
+   */
+  export interface Schema$DataPart {
+    data?: {[key: string]: any} | null;
+  }
+  /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
+   */
+  export interface Schema$Empty {}
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
@@ -256,6 +565,15 @@ export namespace cloudbilling_v1 {
     title?: string | null;
   }
   /**
+   * FilePart represents the different ways files can be provided. If files are small, directly feeding the bytes is supported via file_with_bytes. If the file is large, the agent should read the content as appropriate directly from the file_with_uri source.
+   */
+  export interface Schema$FilePart {
+    fileWithBytes?: string | null;
+    fileWithUri?: string | null;
+    mimeType?: string | null;
+    name?: string | null;
+  }
+  /**
    * Encapsulates the geographic taxonomy data for a sku.
    */
   export interface Schema$GeoTaxonomy {
@@ -267,6 +585,34 @@ export namespace cloudbilling_v1 {
      * The type of Geo Taxonomy: GLOBAL, REGIONAL, or MULTI_REGIONAL.
      */
     type?: string | null;
+  }
+  export interface Schema$HTTPAuthSecurityScheme {
+    /**
+     * A hint to the client to identify how the bearer token is formatted. Bearer tokens are usually generated by an authorization server, so this information is primarily for documentation purposes.
+     */
+    bearerFormat?: string | null;
+    /**
+     * Description of this security scheme.
+     */
+    description?: string | null;
+    /**
+     * The name of the HTTP Authentication scheme to be used in the Authorization header as defined in RFC7235. The values used SHOULD be registered in the IANA Authentication Scheme registry. The value is case-insensitive, as defined in RFC7235.
+     */
+    scheme?: string | null;
+  }
+  export interface Schema$ImplicitOAuthFlow {
+    /**
+     * The authorization URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS
+     */
+    authorizationUrl?: string | null;
+    /**
+     * The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
+     */
+    refreshUrl?: string | null;
+    /**
+     * The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.
+     */
+    scopes?: {[key: string]: string} | null;
   }
   /**
    * Response message for `ListBillingAccounts`.
@@ -320,6 +666,49 @@ export namespace cloudbilling_v1 {
      */
     skus?: Schema$Sku[];
   }
+  export interface Schema$ListTaskPushNotificationConfigResponse {
+    /**
+     * The list of push notification configurations.
+     */
+    configs?: Schema$TaskPushNotificationConfig[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Message is one unit of communication between client and server. It is associated with a context and optionally a task. Since the server is responsible for the context definition, it must always provide a context_id in its messages. The client can optionally provide the context_id if it knows the context to associate the message to. Similarly for task_id, except the server decides if a task is created and whether to include the task_id.
+   */
+  export interface Schema$Message {
+    /**
+     * protolint:disable REPEATED_FIELD_NAMES_PLURALIZED Content is the container of the message content.
+     */
+    content?: Schema$Part[];
+    /**
+     * The context id of the message. This is optional and if set, the message will be associated with the given context.
+     */
+    contextId?: string | null;
+    /**
+     * The URIs of extensions that are present or contributed to this Message.
+     */
+    extensions?: string[] | null;
+    /**
+     * The unique identifier (e.g. UUID)of the message. This is required and created by the message creator.
+     */
+    messageId?: string | null;
+    /**
+     * protolint:enable REPEATED_FIELD_NAMES_PLURALIZED Any optional metadata to provide along with the message.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * A role for the message.
+     */
+    role?: string | null;
+    /**
+     * The task id of the message. This is optional and if set, the message will be associated with the given task.
+     */
+    taskId?: string | null;
+  }
   /**
    * Represents an amount of money with its currency type.
    */
@@ -345,6 +734,68 @@ export namespace cloudbilling_v1 {
      * Required. The resource name of the Organization to move the billing account under. Must be of the form `organizations/{organization_id\}`.
      */
     destinationParent?: string | null;
+  }
+  export interface Schema$MutualTlsSecurityScheme {
+    /**
+     * Description of this security scheme.
+     */
+    description?: string | null;
+  }
+  export interface Schema$OAuth2SecurityScheme {
+    /**
+     * Description of this security scheme.
+     */
+    description?: string | null;
+    /**
+     * An object containing configuration information for the flow types supported
+     */
+    flows?: Schema$OAuthFlows;
+    /**
+     * URL to the oauth2 authorization server metadata [RFC8414](https://datatracker.ietf.org/doc/html/rfc8414). TLS is required.
+     */
+    oauth2MetadataUrl?: string | null;
+  }
+  export interface Schema$OAuthFlows {
+    authorizationCode?: Schema$AuthorizationCodeOAuthFlow;
+    clientCredentials?: Schema$ClientCredentialsOAuthFlow;
+    implicit?: Schema$ImplicitOAuthFlow;
+    password?: Schema$PasswordOAuthFlow;
+  }
+  export interface Schema$OpenIdConnectSecurityScheme {
+    /**
+     * Description of this security scheme.
+     */
+    description?: string | null;
+    /**
+     * Well-known URL to discover the [[OpenID-Connect-Discovery]] provider metadata.
+     */
+    openIdConnectUrl?: string | null;
+  }
+  /**
+   * Part represents a container for a section of communication content. Parts can be purely textual, some sort of file (image, video, etc) or a structured data blob (i.e. JSON).
+   */
+  export interface Schema$Part {
+    data?: Schema$DataPart;
+    file?: Schema$FilePart;
+    /**
+     * Optional metadata associated with this part.
+     */
+    metadata?: {[key: string]: any} | null;
+    text?: string | null;
+  }
+  export interface Schema$PasswordOAuthFlow {
+    /**
+     * The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
+     */
+    refreshUrl?: string | null;
+    /**
+     * The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.
+     */
+    scopes?: {[key: string]: string} | null;
+    /**
+     * The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
+     */
+    tokenUrl?: string | null;
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
@@ -447,6 +898,86 @@ export namespace cloudbilling_v1 {
     projectId?: string | null;
   }
   /**
+   * Configuration for setting up push notifications for task updates.
+   */
+  export interface Schema$PushNotificationConfig {
+    /**
+     * Information about the authentication to sent with the notification
+     */
+    authentication?: Schema$AuthenticationInfo;
+    /**
+     * A unique identifier (e.g. UUID) for this push notification.
+     */
+    id?: string | null;
+    /**
+     * Token unique for this task/session
+     */
+    token?: string | null;
+    /**
+     * Url to send the notification too
+     */
+    url?: string | null;
+  }
+  export interface Schema$Security {
+    schemes?: {[key: string]: Schema$StringList} | null;
+  }
+  export interface Schema$SecurityScheme {
+    apiKeySecurityScheme?: Schema$APIKeySecurityScheme;
+    httpAuthSecurityScheme?: Schema$HTTPAuthSecurityScheme;
+    mtlsSecurityScheme?: Schema$MutualTlsSecurityScheme;
+    oauth2SecurityScheme?: Schema$OAuth2SecurityScheme;
+    openIdConnectSecurityScheme?: Schema$OpenIdConnectSecurityScheme;
+  }
+  /**
+   * Configuration of a send message request.
+   */
+  export interface Schema$SendMessageConfiguration {
+    /**
+     * The output modes that the agent is expected to respond with.
+     */
+    acceptedOutputModes?: string[] | null;
+    /**
+     * If true, the message will be blocking until the task is completed. If false, the message will be non-blocking and the task will be returned immediately. It is the caller's responsibility to check for any task updates.
+     */
+    blocking?: boolean | null;
+    /**
+     * The maximum number of messages to include in the history. if 0, the history will be unlimited.
+     */
+    historyLength?: number | null;
+    /**
+     * A configuration of a webhook that can be used to receive updates
+     */
+    pushNotification?: Schema$PushNotificationConfig;
+  }
+  /**
+   * /////////// Request Messages ///////////
+   */
+  export interface Schema$SendMessageRequest {
+    /**
+     * Configuration for the send request.
+     */
+    configuration?: Schema$SendMessageConfiguration;
+    /**
+     * Required. The message to send to the agent.
+     */
+    message?: Schema$Message;
+    /**
+     * Optional metadata for the request.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string | null;
+  }
+  /**
+   * ////// Response Messages ///////////
+   */
+  export interface Schema$SendMessageResponse {
+    message?: Schema$Message;
+    task?: Schema$Task;
+  }
+  /**
    * Encapsulates a single service in Google Cloud Platform.
    */
   export interface Schema$Service {
@@ -516,6 +1047,131 @@ export namespace cloudbilling_v1 {
      * The identifier for the SKU. Example: "D041-B8A1-6E0B"
      */
     skuId?: string | null;
+  }
+  /**
+   * The stream response for a message. The stream should be one of the following sequences: If the response is a message, the stream should contain one, and only one, message and then close If the response is a task lifecycle, the first response should be a Task object followed by zero or more TaskStatusUpdateEvents and TaskArtifactUpdateEvents. The stream should complete when the Task if in an interrupted or terminal state. A stream that ends before these conditions are met are
+   */
+  export interface Schema$StreamResponse {
+    artifactUpdate?: Schema$TaskArtifactUpdateEvent;
+    message?: Schema$Message;
+    statusUpdate?: Schema$TaskStatusUpdateEvent;
+    task?: Schema$Task;
+  }
+  /**
+   * protolint:disable REPEATED_FIELD_NAMES_PLURALIZED
+   */
+  export interface Schema$StringList {
+    list?: string[] | null;
+  }
+  /**
+   * Task is the core unit of action for A2A. It has a current status and when results are created for the task they are stored in the artifact. If there are multiple turns for a task, these are stored in history.
+   */
+  export interface Schema$Task {
+    /**
+     * A set of output artifacts for a Task.
+     */
+    artifacts?: Schema$Artifact[];
+    /**
+     * Unique identifier (e.g. UUID) for the contextual collection of interactions (tasks and messages). Created by the A2A server.
+     */
+    contextId?: string | null;
+    /**
+     * protolint:disable REPEATED_FIELD_NAMES_PLURALIZED The history of interactions from a task.
+     */
+    history?: Schema$Message[];
+    /**
+     * Unique identifier (e.g. UUID) for the task, generated by the server for a new task.
+     */
+    id?: string | null;
+    /**
+     * protolint:enable REPEATED_FIELD_NAMES_PLURALIZED A key/value object to store custom metadata about a task.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * The current status of a Task, including state and a message.
+     */
+    status?: Schema$TaskStatus;
+  }
+  /**
+   * TaskArtifactUpdateEvent represents a task delta where an artifact has been generated.
+   */
+  export interface Schema$TaskArtifactUpdateEvent {
+    /**
+     * Whether this should be appended to a prior one produced
+     */
+    append?: boolean | null;
+    /**
+     * The artifact itself
+     */
+    artifact?: Schema$Artifact;
+    /**
+     * The id of the context that this task belongs too
+     */
+    contextId?: string | null;
+    /**
+     * Whether this represents the last part of an artifact
+     */
+    lastChunk?: boolean | null;
+    /**
+     * Optional metadata associated with the artifact update.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * The id of the task for this artifact
+     */
+    taskId?: string | null;
+  }
+  export interface Schema$TaskPushNotificationConfig {
+    /**
+     * The resource name of the config. Format: tasks/{task_id\}/pushNotificationConfigs/{config_id\}
+     */
+    name?: string | null;
+    /**
+     * The push notification configuration details.
+     */
+    pushNotificationConfig?: Schema$PushNotificationConfig;
+  }
+  /**
+   * A container for the status of a task
+   */
+  export interface Schema$TaskStatus {
+    /**
+     * A message associated with the status.
+     */
+    message?: Schema$Message;
+    /**
+     * The current state of this task
+     */
+    state?: string | null;
+    /**
+     * Timestamp when the status was recorded. Example: "2023-10-27T10:00:00Z"
+     */
+    timestamp?: string | null;
+  }
+  /**
+   * TaskStatusUpdateEvent is a delta even on a task indicating that a task has changed.
+   */
+  export interface Schema$TaskStatusUpdateEvent {
+    /**
+     * The id of the context that the task belongs to
+     */
+    contextId?: string | null;
+    /**
+     * Whether this is the last status update expected for this task.
+     */
+    final?: boolean | null;
+    /**
+     * Optional metadata to associate with the task update.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * The new status of the task.
+     */
+    status?: Schema$TaskStatus;
+    /**
+     * The id of the task that is changed
+     */
+    taskId?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -2383,6 +3039,320 @@ export namespace cloudbilling_v1 {
     parent?: string;
   }
 
+  export class Resource$Message {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Send a message to the agent. This is a blocking call that will return the task once it is completed, or a LRO if requested.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudbilling = google.cloudbilling('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-billing.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.message.send({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "configuration": {},
+     *       //   "message": {},
+     *       //   "metadata": {},
+     *       //   "tenant": "my_tenant"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "message": {},
+     *   //   "task": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    send(
+      params: Params$Resource$Message$Send,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    send(
+      params?: Params$Resource$Message$Send,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SendMessageResponse>>;
+    send(
+      params: Params$Resource$Message$Send,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    send(
+      params: Params$Resource$Message$Send,
+      options: MethodOptions | BodyResponseCallback<Schema$SendMessageResponse>,
+      callback: BodyResponseCallback<Schema$SendMessageResponse>
+    ): void;
+    send(
+      params: Params$Resource$Message$Send,
+      callback: BodyResponseCallback<Schema$SendMessageResponse>
+    ): void;
+    send(callback: BodyResponseCallback<Schema$SendMessageResponse>): void;
+    send(
+      paramsOrCallback?:
+        | Params$Resource$Message$Send
+        | BodyResponseCallback<Schema$SendMessageResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SendMessageResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SendMessageResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SendMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Message$Send;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Message$Send;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/message:send').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SendMessageResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SendMessageResponse>(parameters);
+      }
+    }
+
+    /**
+     * SendStreamingMessage is a streaming call that will return a stream of task update events until the Task is in an interrupted or terminal state.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudbilling = google.cloudbilling('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-billing.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.message.stream({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "configuration": {},
+     *       //   "message": {},
+     *       //   "metadata": {},
+     *       //   "tenant": "my_tenant"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifactUpdate": {},
+     *   //   "message": {},
+     *   //   "statusUpdate": {},
+     *   //   "task": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    stream(
+      params: Params$Resource$Message$Stream,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    stream(
+      params?: Params$Resource$Message$Stream,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StreamResponse>>;
+    stream(
+      params: Params$Resource$Message$Stream,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    stream(
+      params: Params$Resource$Message$Stream,
+      options: MethodOptions | BodyResponseCallback<Schema$StreamResponse>,
+      callback: BodyResponseCallback<Schema$StreamResponse>
+    ): void;
+    stream(
+      params: Params$Resource$Message$Stream,
+      callback: BodyResponseCallback<Schema$StreamResponse>
+    ): void;
+    stream(callback: BodyResponseCallback<Schema$StreamResponse>): void;
+    stream(
+      paramsOrCallback?:
+        | Params$Resource$Message$Stream
+        | BodyResponseCallback<Schema$StreamResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StreamResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StreamResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$StreamResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Message$Stream;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Message$Stream;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/message:stream').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$StreamResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$StreamResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Message$Send extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SendMessageRequest;
+  }
+  export interface Params$Resource$Message$Stream extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SendMessageRequest;
+  }
+
   export class Resource$Organizations {
     context: APIRequestContext;
     billingAccounts: Resource$Organizations$Billingaccounts;
@@ -3567,5 +4537,1317 @@ export namespace cloudbilling_v1 {
      * Optional inclusive start time of the time range for which the pricing versions will be returned. Timestamps in the future are not allowed. The time range has to be within a single calendar month in America/Los_Angeles timezone. Time range as a whole is optional. If not specified, the latest pricing will be returned (up to 12 hours old at most).
      */
     startTime?: string;
+  }
+
+  export class Resource$Tasks {
+    context: APIRequestContext;
+    pushNotificationConfigs: Resource$Tasks$Pushnotificationconfigs;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.pushNotificationConfigs = new Resource$Tasks$Pushnotificationconfigs(
+        this.context
+      );
+    }
+
+    /**
+     * Cancel a task from the agent. If supported one should expect no more task updates for the task.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudbilling = google.cloudbilling('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-billing.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.tasks.cancel({
+     *     // The resource name of the task to cancel. Format: tasks/{task_id\}
+     *     name: 'tasks/my-task',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "tenant": "my_tenant"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifacts": [],
+     *   //   "contextId": "my_contextId",
+     *   //   "history": [],
+     *   //   "id": "my_id",
+     *   //   "metadata": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Tasks$Cancel,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    cancel(
+      params?: Params$Resource$Tasks$Cancel,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Task>>;
+    cancel(
+      params: Params$Resource$Tasks$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Tasks$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
+    cancel(
+      params: Params$Resource$Tasks$Cancel,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Task>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Tasks$Cancel
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Task> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Task>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasks$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Task>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Task>(parameters);
+      }
+    }
+
+    /**
+     * Get the current state of a task from the agent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudbilling = google.cloudbilling('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-billing.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.tasks.get({
+     *     // The number of most recent messages from the task's history to retrieve.
+     *     historyLength: 'placeholder-value',
+     *     // Required. The resource name of the task. Format: tasks/{task_id\}
+     *     name: 'tasks/my-task',
+     *     // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *     tenant: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifacts": [],
+     *   //   "contextId": "my_contextId",
+     *   //   "history": [],
+     *   //   "id": "my_id",
+     *   //   "metadata": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Tasks$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Tasks$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Task>>;
+    get(
+      params: Params$Resource$Tasks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Tasks$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
+    get(
+      params: Params$Resource$Tasks$Get,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Task>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Tasks$Get
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Task> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Task>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasks$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Task>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Task>(parameters);
+      }
+    }
+
+    /**
+     * TaskSubscription is a streaming call that will return a stream of task update events. This attaches the stream to an existing in process task. If the task is complete the stream will return the completed task (like GetTask) and close the stream.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudbilling = google.cloudbilling('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-billing.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.tasks.subscribe({
+     *     // The resource name of the task to subscribe to. Format: tasks/{task_id\}
+     *     name: 'tasks/my-task',
+     *     // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *     tenant: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifactUpdate": {},
+     *   //   "message": {},
+     *   //   "statusUpdate": {},
+     *   //   "task": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    subscribe(
+      params: Params$Resource$Tasks$Subscribe,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    subscribe(
+      params?: Params$Resource$Tasks$Subscribe,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StreamResponse>>;
+    subscribe(
+      params: Params$Resource$Tasks$Subscribe,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    subscribe(
+      params: Params$Resource$Tasks$Subscribe,
+      options: MethodOptions | BodyResponseCallback<Schema$StreamResponse>,
+      callback: BodyResponseCallback<Schema$StreamResponse>
+    ): void;
+    subscribe(
+      params: Params$Resource$Tasks$Subscribe,
+      callback: BodyResponseCallback<Schema$StreamResponse>
+    ): void;
+    subscribe(callback: BodyResponseCallback<Schema$StreamResponse>): void;
+    subscribe(
+      paramsOrCallback?:
+        | Params$Resource$Tasks$Subscribe
+        | BodyResponseCallback<Schema$StreamResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StreamResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StreamResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$StreamResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Subscribe;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasks$Subscribe;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:subscribe').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$StreamResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$StreamResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Tasks$Cancel extends StandardParameters {
+    /**
+     * The resource name of the task to cancel. Format: tasks/{task_id\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelTaskRequest;
+  }
+  export interface Params$Resource$Tasks$Get extends StandardParameters {
+    /**
+     * The number of most recent messages from the task's history to retrieve.
+     */
+    historyLength?: number;
+    /**
+     * Required. The resource name of the task. Format: tasks/{task_id\}
+     */
+    name?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
+  }
+  export interface Params$Resource$Tasks$Subscribe extends StandardParameters {
+    /**
+     * The resource name of the task to subscribe to. Format: tasks/{task_id\}
+     */
+    name?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
+  }
+
+  export class Resource$Tasks$Pushnotificationconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Set a push notification config for a task.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudbilling = google.cloudbilling('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-billing.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.tasks.pushNotificationConfigs.create({
+     *     // Required. The ID for the new config.
+     *     configId: 'placeholder-value',
+     *     // Required. The parent task resource for this config. Format: tasks/{task_id\}
+     *     parent: 'tasks/my-task/pushNotificationConfigs',
+     *     // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *     tenant: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "pushNotificationConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "pushNotificationConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Tasks$Pushnotificationconfigs$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Tasks$Pushnotificationconfigs$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TaskPushNotificationConfig>>;
+    create(
+      params: Params$Resource$Tasks$Pushnotificationconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Tasks$Pushnotificationconfigs$Create,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$TaskPushNotificationConfig>,
+      callback: BodyResponseCallback<Schema$TaskPushNotificationConfig>
+    ): void;
+    create(
+      params: Params$Resource$Tasks$Pushnotificationconfigs$Create,
+      callback: BodyResponseCallback<Schema$TaskPushNotificationConfig>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$TaskPushNotificationConfig>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Tasks$Pushnotificationconfigs$Create
+        | BodyResponseCallback<Schema$TaskPushNotificationConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TaskPushNotificationConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TaskPushNotificationConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TaskPushNotificationConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Tasks$Pushnotificationconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasks$Pushnotificationconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TaskPushNotificationConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TaskPushNotificationConfig>(parameters);
+      }
+    }
+
+    /**
+     * Delete a push notification config for a task.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudbilling = google.cloudbilling('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-billing.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.tasks.pushNotificationConfigs.delete({
+     *     // The resource name of the config to delete. Format: tasks/{task_id\}/pushNotificationConfigs/{config_id\}
+     *     name: 'tasks/my-task/pushNotificationConfigs/my-pushNotificationConfig',
+     *     // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *     tenant: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Tasks$Pushnotificationconfigs$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Tasks$Pushnotificationconfigs$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Tasks$Pushnotificationconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Tasks$Pushnotificationconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Tasks$Pushnotificationconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Tasks$Pushnotificationconfigs$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Tasks$Pushnotificationconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasks$Pushnotificationconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Get a push notification config for a task.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudbilling = google.cloudbilling('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-billing.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.tasks.pushNotificationConfigs.get({
+     *     // The resource name of the config to retrieve. Format: tasks/{task_id\}/pushNotificationConfigs/{config_id\}
+     *     name: 'tasks/my-task/pushNotificationConfigs/my-pushNotificationConfig',
+     *     // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *     tenant: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "pushNotificationConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Tasks$Pushnotificationconfigs$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Tasks$Pushnotificationconfigs$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TaskPushNotificationConfig>>;
+    get(
+      params: Params$Resource$Tasks$Pushnotificationconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Tasks$Pushnotificationconfigs$Get,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$TaskPushNotificationConfig>,
+      callback: BodyResponseCallback<Schema$TaskPushNotificationConfig>
+    ): void;
+    get(
+      params: Params$Resource$Tasks$Pushnotificationconfigs$Get,
+      callback: BodyResponseCallback<Schema$TaskPushNotificationConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$TaskPushNotificationConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Tasks$Pushnotificationconfigs$Get
+        | BodyResponseCallback<Schema$TaskPushNotificationConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TaskPushNotificationConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TaskPushNotificationConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TaskPushNotificationConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Tasks$Pushnotificationconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasks$Pushnotificationconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TaskPushNotificationConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TaskPushNotificationConfig>(parameters);
+      }
+    }
+
+    /**
+     * Get a list of push notifications configured for a task.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudbilling = google.cloudbilling('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-billing.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.tasks.pushNotificationConfigs.list({
+     *     // For AIP-158 these fields are present. Usually not used/needed. The maximum number of configurations to return. If unspecified, all configs will be returned.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from a previous ListTaskPushNotificationConfigRequest call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTaskPushNotificationConfigRequest` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // The parent task resource. Format: tasks/{task_id\}
+     *     parent: 'tasks/my-task',
+     *     // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *     tenant: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Tasks$Pushnotificationconfigs$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Tasks$Pushnotificationconfigs$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListTaskPushNotificationConfigResponse>
+    >;
+    list(
+      params: Params$Resource$Tasks$Pushnotificationconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Tasks$Pushnotificationconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTaskPushNotificationConfigResponse>,
+      callback: BodyResponseCallback<Schema$ListTaskPushNotificationConfigResponse>
+    ): void;
+    list(
+      params: Params$Resource$Tasks$Pushnotificationconfigs$List,
+      callback: BodyResponseCallback<Schema$ListTaskPushNotificationConfigResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListTaskPushNotificationConfigResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Tasks$Pushnotificationconfigs$List
+        | BodyResponseCallback<Schema$ListTaskPushNotificationConfigResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTaskPushNotificationConfigResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTaskPushNotificationConfigResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListTaskPushNotificationConfigResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Tasks$Pushnotificationconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasks$Pushnotificationconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/pushNotificationConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListTaskPushNotificationConfigResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListTaskPushNotificationConfigResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Tasks$Pushnotificationconfigs$Create extends StandardParameters {
+    /**
+     * Required. The ID for the new config.
+     */
+    configId?: string;
+    /**
+     * Required. The parent task resource for this config. Format: tasks/{task_id\}
+     */
+    parent?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TaskPushNotificationConfig;
+  }
+  export interface Params$Resource$Tasks$Pushnotificationconfigs$Delete extends StandardParameters {
+    /**
+     * The resource name of the config to delete. Format: tasks/{task_id\}/pushNotificationConfigs/{config_id\}
+     */
+    name?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
+  }
+  export interface Params$Resource$Tasks$Pushnotificationconfigs$Get extends StandardParameters {
+    /**
+     * The resource name of the config to retrieve. Format: tasks/{task_id\}/pushNotificationConfigs/{config_id\}
+     */
+    name?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
+  }
+  export interface Params$Resource$Tasks$Pushnotificationconfigs$List extends StandardParameters {
+    /**
+     * For AIP-158 these fields are present. Usually not used/needed. The maximum number of configurations to return. If unspecified, all configs will be returned.
+     */
+    pageSize?: number;
+    /**
+     * A page token received from a previous ListTaskPushNotificationConfigRequest call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTaskPushNotificationConfigRequest` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * The parent task resource. Format: tasks/{task_id\}
+     */
+    parent?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
+  }
+
+  export class Resource$V1 {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * GetAgentCard returns the agent card for the agent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudbilling = google.cloudbilling('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-billing.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.getCard({
+     *     // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *     tenant: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalInterfaces": [],
+     *   //   "capabilities": {},
+     *   //   "defaultInputModes": [],
+     *   //   "defaultOutputModes": [],
+     *   //   "description": "my_description",
+     *   //   "documentationUrl": "my_documentationUrl",
+     *   //   "iconUrl": "my_iconUrl",
+     *   //   "name": "my_name",
+     *   //   "preferredTransport": "my_preferredTransport",
+     *   //   "protocolVersion": "my_protocolVersion",
+     *   //   "provider": {},
+     *   //   "security": [],
+     *   //   "securitySchemes": {},
+     *   //   "signatures": [],
+     *   //   "skills": [],
+     *   //   "supportsAuthenticatedExtendedCard": false,
+     *   //   "url": "my_url",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getCard(
+      params: Params$Resource$V1$Getcard,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getCard(
+      params?: Params$Resource$V1$Getcard,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AgentCard>>;
+    getCard(
+      params: Params$Resource$V1$Getcard,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getCard(
+      params: Params$Resource$V1$Getcard,
+      options: MethodOptions | BodyResponseCallback<Schema$AgentCard>,
+      callback: BodyResponseCallback<Schema$AgentCard>
+    ): void;
+    getCard(
+      params: Params$Resource$V1$Getcard,
+      callback: BodyResponseCallback<Schema$AgentCard>
+    ): void;
+    getCard(callback: BodyResponseCallback<Schema$AgentCard>): void;
+    getCard(
+      paramsOrCallback?:
+        | Params$Resource$V1$Getcard
+        | BodyResponseCallback<Schema$AgentCard>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AgentCard>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$AgentCard> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AgentCard>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$V1$Getcard;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Getcard;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/card').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AgentCard>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AgentCard>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$V1$Getcard extends StandardParameters {
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
   }
 }
