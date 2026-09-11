@@ -243,6 +243,14 @@ export namespace cloudresourcemanager_v3 {
     sourceParent?: string | null;
   }
   /**
+   * A status object which is used as the `metadata` field for the Operation returned by CreateBoundary. Currently empty.
+   */
+  export interface Schema$CreateBoundaryMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by CreateCapabilityConfig. Currently empty.
+   */
+  export interface Schema$CreateCapabilityConfigMetadata {}
+  /**
    * Metadata pertaining to the Folder creation process.
    */
   export interface Schema$CreateFolderMetadata {
@@ -284,6 +292,14 @@ export namespace cloudresourcemanager_v3 {
    * Runtime operation information for creating a TagValue.
    */
   export interface Schema$CreateTagValueMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by DeleteBoundary. Currently empty.
+   */
+  export interface Schema$DeleteBoundaryMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by DeleteCapabilityConfig. Currently empty.
+   */
+  export interface Schema$DeleteCapabilityConfigMetadata {}
   /**
    * A status object which is used as the `metadata` field for the `Operation` returned by `DeleteFolder`.
    */
@@ -769,6 +785,10 @@ export namespace cloudresourcemanager_v3 {
      */
     etag?: string | null;
     /**
+     * Output only. If `true`, this project is a Management Project. A Management Project manages dedicated project groups for specific purposes (e.g., agent management or app management).
+     */
+    isManagementProject?: boolean | null;
+    /**
      * Optional. The labels associated with this project. Label keys must be between 1 and 63 characters long and must conform to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?. Label values must be between 0 and 63 characters long and must conform to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?. No more than 64 labels can be associated with a given resource. Clients should store labels in a representation such as JSON that does not depend on specific characters being disallowed. Example: `"myBusinessDimension" : "businessValue"`
      */
     labels?: {[key: string]: string} | null;
@@ -1074,6 +1094,18 @@ export namespace cloudresourcemanager_v3 {
    * The request sent to the UndeleteProject method.
    */
   export interface Schema$UndeleteProjectRequest {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by UpdateBoundaryConfig. Currently empty.
+   */
+  export interface Schema$UpdateBoundaryConfigMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by UpdateBoundary. Currently empty.
+   */
+  export interface Schema$UpdateBoundaryMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by UpdateCapabilityConfig. Currently empty.
+   */
+  export interface Schema$UpdateCapabilityConfigMetadata {}
   /**
    * A status object which is used as the `metadata` field for the Operation returned by UpdateFolder.
    */
@@ -5435,6 +5467,7 @@ export namespace cloudresourcemanager_v3 {
      *       //   "deleteTime": "my_deleteTime",
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
+     *       //   "isManagementProject": false,
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
@@ -5731,6 +5764,7 @@ export namespace cloudresourcemanager_v3 {
      *   //   "deleteTime": "my_deleteTime",
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
+     *   //   "isManagementProject": false,
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
@@ -6318,6 +6352,7 @@ export namespace cloudresourcemanager_v3 {
      *       //   "deleteTime": "my_deleteTime",
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
+     *       //   "isManagementProject": false,
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
