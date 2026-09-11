@@ -4341,7 +4341,7 @@
       }
     }
   },
-  "revision": "20260828",
+  "revision": "20260904",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AccessRestrictions": {
@@ -6520,11 +6520,13 @@
           "description": "Optional. Gemini Enterprise only. Specifies whether the workforce identity pool provider uses SCIM-managed groups instead of the `google.groups` attribute mapping for authorization checks. The `scim_usage` and `extended_attributes_oauth2_client` fields are mutually exclusive. A request that enables both fields on the same workforce identity pool provider will produce an error.",
           "enum": [
             "SCIM_USAGE_UNSPECIFIED",
-            "ENABLED_FOR_GROUPS"
+            "ENABLED_FOR_GROUPS",
+            "ENABLED_FOR_USERS_GROUPS"
           ],
           "enumDescriptions": [
-            "Gemini Enterprise only. Do not use SCIM data.",
-            "Gemini Enterprise only. SCIM sync is enabled and SCIM-managed groups are used for authorization checks."
+            "Indicates that SCIM data is not used.",
+            "Gemini Enterprise only. SCIM sync is enabled and SCIM-managed groups are used for authorization checks.",
+            "Looker only. SCIM sync is enabled, and SCIM-managed user claims and groups are used for authorization checks."
           ],
           "type": "string"
         },
