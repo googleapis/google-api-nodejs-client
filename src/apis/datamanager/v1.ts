@@ -132,2150 +132,620 @@ export namespace datamanager_v1 {
     }
   }
 
-  /**
-   * Address information for the user.
-   */
   export interface Schema$AddressInfo {
-    /**
-     * Optional. The street and number of the user's address. Used only for Google Analytics. This field is hashed and possibly encrypted. Normalize the value before hashing: - Remove symbol characters - Convert to lowercase - Remove leading and trailing whitespace
-     */
     addressLine?: string | null;
-    /**
-     * Optional. The administrative area (state/province) of the user's address. Used only for Google Analytics. The value should be normalized as such: - Remove symbol characters - Convert to lowercase - Remove leading and trailing whitespace
-     */
     administrativeArea?: string | null;
-    /**
-     * Optional. The city of the user's address. Used only for Google Analytics. The value should be normalized as such: - Remove symbol characters - Convert to lowercase - Remove leading and trailing whitespace
-     */
     city?: string | null;
-    /**
-     * Required. Family (last) name of the user, all lowercase, with no punctuation, no leading or trailing whitespace, and hashed as SHA-256.
-     */
     familyName?: string | null;
-    /**
-     * Required. Given (first) name of the user, all lowercase, with no punctuation, no leading or trailing whitespace, and hashed as SHA-256.
-     */
     givenName?: string | null;
-    /**
-     * Required. The postal code of the user's address.
-     */
     postalCode?: string | null;
-    /**
-     * Required. The 2-letter region code in ISO-3166-1 alpha-2 of the user's address.
-     */
     regionCode?: string | null;
   }
-  /**
-   * An ad event.
-   */
   export interface Schema$AdEvent {
-    /**
-     * Enum value for ad format.
-     */
     adFormat?: string | null;
-    /**
-     * String value for ad format.
-     */
     adFormatString?: string | null;
-    /**
-     * Optional. The ID of the associated ad group.
-     */
     adGroupId?: string | null;
-    /**
-     * Optional. The height of the ad in pixels.
-     */
     adHeight?: number | null;
-    /**
-     * Optional. The ID of the associated ad within the group.
-     */
     adId?: string | null;
-    /**
-     * Enum value for ad placement.
-     */
     adPlacement?: string | null;
-    /**
-     * String value for ad placement.
-     */
     adPlacementString?: string | null;
-    /**
-     * Enum value for ad type.
-     */
     adType?: string | null;
-    /**
-     * String value for ad type.
-     */
     adTypeString?: string | null;
-    /**
-     * Required. The ID of the advertiser for the ad event. This must match the ID sent in the linking flow.
-     */
     advertiserId?: string | null;
-    /**
-     * Optional. The width of the ad in pixels.
-     */
     adWidth?: number | null;
-    /**
-     * Optional. The partner-assumed attribution status for this ad event. This acts only as a signal for how the partner assumed attribution played out, and does not force an end result in final reports.
-     */
     attributionHint?: string | null;
-    /**
-     * Required. The ID of the associated campaign.
-     */
     campaignId?: string | null;
-    /**
-     * Required. The name of the associated campaign.
-     */
     campaignName?: string | null;
-    /**
-     * Required. Information gathered about the device being used when the ad event happened.
-     */
     deviceInfo?: Schema$DeviceInfo;
-    /**
-     * Optional. An ID created and managed by the caller that uniquely identifies this event. Required if you want to deduplicate ad events that are included in multiple requests. Otherwise, this field is optional.
-     */
     eventId?: string | null;
-    /**
-     * Enum value for event subtype.
-     */
     eventSubtype?: string | null;
-    /**
-     * String value for event subtype.
-     */
     eventSubtypeString?: string | null;
-    /**
-     * Required. The type of the event.
-     */
     eventType?: string | null;
-    /**
-     * Optional. Represents if the row is allowed to be used for measurement purposes, as governed by applicable privacy laws within regional jurisdiction.
-     */
+    ipAddress?: string | null;
     measurementAllowed?: boolean | null;
-    /**
-     * Required. The medium of the ad, akin to the Google Analytics medium.
-     */
     medium?: string | null;
-    /**
-     * Optional. The device ID of the device that the ad was served to.
-     */
     mobileDeviceId?: string | null;
-    /**
-     * Enum value for platform.
-     */
     platform?: string | null;
-    /**
-     * String value for platform.
-     */
     platformString?: string | null;
-    /**
-     * Enum value for platform type.
-     */
     platformType?: string | null;
-    /**
-     * String value for platform type.
-     */
     platformTypeString?: string | null;
-    /**
-     * Optional. The ISO 3166-2 country plus subdivision.
-     */
     regionCode?: string | null;
-    /**
-     * Required. The platform source of the ad, akin to the Google Analytics source.
-     */
     source?: string | null;
-    /**
-     * Enum value for targeting type.
-     */
     targetingType?: string | null;
-    /**
-     * String value for targeting type.
-     */
     targetingTypeString?: string | null;
-    /**
-     * Required. The time the event occurred.
-     */
     timestamp?: string | null;
-    /**
-     * Optional. Multiple pieces of user-provided data, representing the user the event is associated with. It is possible to provide multiple instances of the same type of data (e.g. email address). The more data provided, the more likely a match will be found.
-     */
     userData?: Schema$UserData;
-    /**
-     * Required. Details of the viewability of the ad served.
-     */
     viewabilityInfo?: Schema$ViewabilityInfo;
   }
-  /**
-   * Identifiers and other information used to match the conversion event with other online activity (such as ad clicks).
-   */
   export interface Schema$AdIdentifiers {
-    /**
-     * Optional. The display click ID associated with this event.
-     */
     dclid?: string | null;
-    /**
-     * Optional. Any number of encrypted user IDs.
-     */
     encryptedUserIds?: Schema$EncryptedUserId[];
-    /**
-     * Optional. The click identifier for clicks associated with app events and originating from iOS devices starting with iOS14.
-     */
     gbraid?: string | null;
-    /**
-     * Optional. The Google click ID (gclid) associated with this event.
-     */
     gclid?: string | null;
-    /**
-     * Optional. The impression ID associated with this event.
-     */
     impressionId?: string | null;
-    /**
-     * Optional. Information gathered about the device being used (if any) at the time of landing onto the advertiser’s site after interacting with the ad.
-     */
     landingPageDeviceInfo?: Schema$DeviceInfo;
-    /**
-     * Optional. The match ID field used to join this event with a previous event.
-     */
     matchId?: string | null;
-    /**
-     * Optional. The mobile identifier for advertisers. This would be IDFA on iOS, AdID on Android, or other platforms’ identifiers for advertisers.
-     */
     mobileDeviceId?: string | null;
-    /**
-     * Optional. Session attributes for event attribution and modeling.
-     */
+    ppid?: string | null;
     sessionAttributes?: string | null;
-    /**
-     * Optional. The click identifier for clicks associated with web events and originating from iOS devices starting with iOS14.
-     */
+    visitorPpid?: string | null;
     wbraid?: string | null;
   }
-  /**
-   * The audience member to be operated on.
-   */
   export interface Schema$AudienceMember {
-    /**
-     * Group of multiple identifier types.
-     */
     compositeData?: Schema$CompositeData;
-    /**
-     * Optional. The consent setting for the user.
-     */
     consent?: Schema$Consent;
-    /**
-     * Optional. Defines which Destination to send the audience member to.
-     */
     destinationReferences?: string[] | null;
-    /**
-     * Encrypted Google User IDs.
-     */
     googleUserIdData?: Schema$GoogleUserIdData;
-    /**
-     * Data identifying the user's mobile devices.
-     */
     mobileData?: Schema$MobileData;
-    /**
-     * [Publisher Advertiser Identity Reconciliation (PAIR) IDs](//support.google.com/admanager/answer/15067908). This feature is only available to data partners.
-     */
     pairData?: Schema$PairData;
-    /**
-     * Partner-provided identifiers.
-     */
     partnerProvidedIdData?: Schema$PartnerProvidedIdData;
-    /**
-     * Data related to publisher provided identifiers. This feature is only available to data partners.
-     */
     ppidData?: Schema$PpidData;
-    /**
-     * User-provided data that identifies the user.
-     */
     userData?: Schema$UserData;
-    /**
-     * Data related to unique identifiers for a user, as defined by the advertiser.
-     */
     userIdData?: Schema$UserIdData;
   }
-  /**
-   * A data encryption key wrapped by an AWS KMS key.
-   */
   export interface Schema$AwsWrappedKeyInfo {
-    /**
-     * Required. The base64 encoded encrypted data encryption key.
-     */
     encryptedDek?: string | null;
-    /**
-     * Required. The URI of the AWS KMS key used to decrypt the DEK. Should be in the format of `arn:{partition\}:kms:{region\}:{account_id\}:key/{key_id\}` or `aws-kms://arn:{partition\}:kms:{region\}:{account_id\}:key/{key_id\}`
-     */
     kekUri?: string | null;
-    /**
-     * Required. The type of algorithm used to encrypt the data.
-     */
     keyType?: string | null;
-    /**
-     * Required. The Amazon Resource Name of the IAM Role to assume for KMS decryption access. Should be in the format of `arn:{partition\}:iam::{account_id\}:role/{role_name\}`
-     */
     roleArn?: string | null;
   }
-  /**
-   * Baseline criteria against which insights are compared.
-   */
   export interface Schema$Baseline {
-    /**
-     * The baseline location of the request. Baseline location is an OR-list of the requested regions.
-     */
     baselineLocation?: Schema$Location;
-    /**
-     * If set to true, the service will try to automatically detect the baseline location for insights.
-     */
     locationAutoDetectionEnabled?: boolean | null;
   }
-  /**
-   * The cart data associated with the event.
-   */
   export interface Schema$CartData {
-    /**
-     * Optional. The list of coupon codes that were applied to the cart. Cart-level and item-level coupon codes are independent. If the event is for a Google Analytics destination, only provide a single coupon code. Google Analytics ignores additional coupon codes.
-     */
     couponCodes?: string[] | null;
-    /**
-     * Optional. The list of items associated with the event.
-     */
     items?: Schema$Item[];
-    /**
-     * Optional. The Merchant Center feed label associated with the feed of the items.
-     */
     merchantFeedLabel?: string | null;
-    /**
-     * Optional. The language code in ISO 639-1 associated with the Merchant Center feed of the items.where your items are uploaded.
-     */
     merchantFeedLanguageCode?: string | null;
-    /**
-     * Optional. The Merchant Center ID associated with the items.
-     */
     merchantId?: string | null;
-    /**
-     * Optional. The sum of all discounts associated with the transaction.
-     */
     transactionDiscount?: number | null;
   }
-  /**
-   * Composite data holding identifiers and associated data for a user. At least one of `user_data` or `ip_data` is required.
-   */
   export interface Schema$CompositeData {
-    /**
-     * Optional. IP address data representing customer interaction used to build the audience.
-     */
     ipData?: Schema$IpData[];
-    /**
-     * Optional. User-provided data that identifies the user.
-     */
     userData?: Schema$UserData;
   }
-  /**
-   * [Digital Markets Act (DMA)](//digital-markets-act.ec.europa.eu/index_en) consent settings for the user.
-   */
   export interface Schema$Consent {
-    /**
-     * Optional. Represents if the user consents to ad personalization.
-     */
     adPersonalization?: string | null;
-    /**
-     * Optional. Represents if the user consents to ad user data.
-     */
     adUserData?: string | null;
   }
-  /**
-   * Additional information when `CONTACT_ID` is one of the `upload_key_types`.
-   */
   export interface Schema$ContactIdInfo {
-    /**
-     * Optional. Immutable. Source of the upload data
-     */
     dataSourceType?: string | null;
-    /**
-     * Output only. Match rate for customer match user lists.
-     */
     matchRatePercentage?: number | null;
   }
-  /**
-   * Information about the coordinator key.
-   */
   export interface Schema$CoordinatorKeyInfo {
-    /**
-     * Required. The ID of the chosen coordinator key.
-     */
     keyId?: string | null;
   }
-  /**
-   * Custom variable for ads conversions.
-   */
   export interface Schema$CustomVariable {
-    /**
-     * Optional. Reference string used to determine which of the Event.destination_references the custom variable should be sent to. If empty, the Event.destination_references will be used.
-     */
     destinationReferences?: string[] | null;
-    /**
-     * Optional. The value to store for the custom variable.
-     */
     value?: string | null;
-    /**
-     * Optional. The name of the custom variable to set. If the variable is not found for the given destination, it will be ignored.
-     */
     variable?: string | null;
   }
-  /**
-   * The count for a specific data type.
-   */
   export interface Schema$DataTypeCount {
-    /**
-     * The count for this data type.
-     */
     count?: string | null;
-    /**
-     * The type of data.
-     */
     type?: string | null;
   }
-  /**
-   * The Google product you're sending data to. For example, a Google Ads account.
-   */
   export interface Schema$Destination {
-    /**
-     * Optional. An account that the calling user's `login_account` has access to, through an established account link. For example, a data partner's `login_account` might have access to a client's `linked_account`. The partner might use this field to send data from the `linked_account` to another `operating_account`.
-     */
     linkedAccount?: Schema$ProductAccount;
-    /**
-     * Optional. The account used to make this API call. To add or remove data from the `operating_account`, this `login_account` must have write access to the `operating_account`. For example, a manager account of the `operating_account`, or an account with an established link to the `operating_account`.
-     */
     loginAccount?: Schema$ProductAccount;
-    /**
-     * Required. The account to send the data to or remove the data from.
-     */
     operatingAccount?: Schema$ProductAccount;
-    /**
-     * Optional. The object within the product account to ingest into. For example, a Google Ads audience ID, a Display & Video 360 audience ID or a Google Ads conversion action ID. This field is optional for Google Ad Manager event ingestion and User ingestion. Required for all other use cases.
-     */
     productDestinationId?: string | null;
-    /**
-     * Optional. ID for this `Destination` resource, unique within the request. Use to reference this `Destination` in the IngestEventsRequest and IngestAudienceMembersRequest.
-     */
     reference?: string | null;
   }
-  /**
-   * Information about the device being used (if any) when the event happened.
-   */
   export interface Schema$DeviceInfo {
-    /**
-     * Optional. The brand of the device.
-     */
     brand?: string | null;
-    /**
-     * Optional. The brand or type of the browser.
-     */
     browser?: string | null;
-    /**
-     * Optional. The version of the browser.
-     */
     browserVersion?: string | null;
-    /**
-     * Optional. The category of device. For example, “desktop”, “tablet”, “mobile”, “smart TV”.
-     */
     category?: string | null;
-    /**
-     * Optional. The IP address of the device for the given context. Required when used in an AdEvent.
-     */
     ipAddress?: string | null;
-    /**
-     * Optional. The language the device uses in ISO 639-1 format.
-     */
     languageCode?: string | null;
-    /**
-     * Optional. The model of the device.
-     */
     model?: string | null;
-    /**
-     * Optional. The operating system or platform of the device.
-     */
     operatingSystem?: string | null;
-    /**
-     * Optional. The version of the operating system or platform.
-     */
     operatingSystemVersion?: string | null;
-    /**
-     * Optional. The height of the screen in pixels.
-     */
     screenHeight?: number | null;
-    /**
-     * Optional. The width of the screen in pixels.
-     */
     screenWidth?: number | null;
-    /**
-     * Optional. The user-agent string of the device for the given context.
-     */
     userAgent?: string | null;
   }
-  /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
-   */
   export interface Schema$Empty {}
-  /**
-   * A user identifier issued to be used for attribution. All fields are required if this is used.
-   */
   export interface Schema$EncryptedUserId {
-    /**
-     * Required. The alphanumeric encrypted id.
-     */
     encryptedId?: string | null;
-    /**
-     * Required. The encryption entity ID. This should match the encryption configuration for ad serving or Data Transfer.
-     */
     entityId?: string | null;
-    /**
-     * Required. The encryption entity type. This should match the encryption configuration for ad serving or Data Transfer.
-     */
     entityType?: string | null;
-    /**
-     * Required. Describes whether the encrypted cookie was received from ad serving (the %m macro) or from Data Transfer.
-     */
     source?: string | null;
   }
-  /**
-   * Encryption information for the data being ingested.
-   */
   export interface Schema$EncryptionInfo {
-    /**
-     * Amazon Web Services wrapped key information.
-     */
     awsWrappedKeyInfo?: Schema$AwsWrappedKeyInfo;
-    /**
-     * Key information for the chosen coordinator key. This is not supported for the IngestEvents, IngestAudienceMembers, and RemoveAudienceMembers methods.
-     */
     coordinatorKeyInfo?: Schema$CoordinatorKeyInfo;
-    /**
-     * Google Cloud Platform wrapped key information.
-     */
     gcpWrappedKeyInfo?: Schema$GcpWrappedKeyInfo;
   }
-  /**
-   * The error count for a given error reason.
-   */
   export interface Schema$ErrorCount {
-    /**
-     * The error reason of the failed records.
-     */
     reason?: string | null;
-    /**
-     * The count of records that failed to upload for a given reason.
-     */
     recordCount?: string | null;
   }
-  /**
-   * Error counts for each type of error.
-   */
   export interface Schema$ErrorInfo {
-    /**
-     * A list of errors and counts per error reason. May not be populated in all cases.
-     */
     errorCounts?: Schema$ErrorCount[];
   }
-  /**
-   * An event representing a user interaction with an advertiser's website or app.
-   */
   export interface Schema$Event {
-    /**
-     * Optional. A bucket of any [event parameters](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events) to be included within the event that were not already specified using other structured fields.
-     */
     additionalEventParameters?: Schema$EventParameter[];
-    /**
-     * Optional. Identifiers and other information used to match the conversion event with other online activity (such as ad clicks).
-     */
     adIdentifiers?: Schema$AdIdentifiers;
-    /**
-     * Optional. A unique identifier for the user instance of an app client for this GA4 app stream.
-     */
     appInstanceId?: string | null;
-    /**
-     * Optional. Information about the transaction and items associated with the event.
-     */
     cartData?: Schema$CartData;
-    /**
-     * Optional. A unique identifier for the user instance of a web client for this GA4 web stream.
-     */
     clientId?: string | null;
-    /**
-     * Optional. Information about whether the associated user has provided different types of consent.
-     */
     consent?: Schema$Consent;
-    /**
-     * Optional. The conversion quantity associated with the event, for counting-based conversions.
-     */
     conversionCount?: number | null;
-    /**
-     * Optional. The conversion value associated with the event, for value-based conversions.
-     */
     conversionValue?: number | null;
-    /**
-     * Optional. The currency code associated with all monetary values within this event.
-     */
     currency?: string | null;
-    /**
-     * Optional. Additional key/value pair information to send to the conversion containers (conversion action or FL activity).
-     */
     customVariables?: Schema$CustomVariable[];
-    /**
-     * Optional. Reference string used to determine the destination. If empty, the event will be sent to all destinations in the request.
-     */
     destinationReferences?: string[] | null;
-    /**
-     * Optional. Information gathered about the device being used (if any) when the event happened.
-     */
     eventDeviceInfo?: Schema$DeviceInfo;
-    /**
-     * Optional. Information gathered about the location of the user when this event occurred.
-     */
     eventLocation?: Schema$EventLocation;
-    /**
-     * Optional. The name of the event. Required for GA4 events.
-     */
     eventName?: string | null;
-    /**
-     * Optional. Signal for where the event happened (web, app, in-store, etc.).
-     */
     eventSource?: string | null;
-    /**
-     * Required. The time the event occurred.
-     */
     eventTimestamp?: string | null;
-    /**
-     * Optional. A list of key/value pairs for experimental fields that may eventually be promoted to be part of the API.
-     */
     experimentalFields?: Schema$ExperimentalField[];
-    /**
-     * Optional. The last time the event was updated.
-     */
     lastUpdatedTimestamp?: string | null;
-    /**
-     * Optional. The same type of data provided in user_data, but explicitly flagged as being provided as owned by a third-party and not first-party advertiser data.
-     */
     thirdPartyUserData?: Schema$UserData;
-    /**
-     * Optional. The unique identifier for this event. Required for events sent as an additional data source for tag conversions.
-     */
     transactionId?: string | null;
-    /**
-     * Optional. Pieces of user provided data, representing the user the event is associated with.
-     */
     userData?: Schema$UserData;
-    /**
-     * Optional. A unique identifier for a user, as defined by the advertiser.
-     */
     userId?: string | null;
-    /**
-     * Optional. Advertiser-assessed information about the user at the time that the event happened.
-     */
     userProperties?: Schema$UserProperties;
   }
-  /**
-   * The location where the event occurred.
-   */
   export interface Schema$EventLocation {
-    /**
-     * Optional. The name of the city where the event occurred.
-     */
     city?: string | null;
-    /**
-     * Optional. The continent code in UN M49 format where the event occurred.
-     */
     continentCode?: string | null;
-    /**
-     * Optional. The 2-letter CLDR region code of the user's address.
-     */
     regionCode?: string | null;
-    /**
-     * Optional. Required for Store Sales. The identifier to represent a physical store where the event happened.
-     */
     storeId?: string | null;
-    /**
-     * Optional. The subcontinent code in UN M49 format where the event occurred.
-     */
     subcontinentCode?: string | null;
-    /**
-     * Optional. The ISO 3166-2 subdivision code where the event occurred.
-     */
     subdivisionCode?: string | null;
   }
-  /**
-   * Event parameter for GA4 events.
-   */
   export interface Schema$EventParameter {
-    /**
-     * Required. The name of the parameter to use.
-     */
     parameterName?: string | null;
-    /**
-     * Required. The string representation of the value of the parameter to set.
-     */
     value?: string | null;
   }
-  /**
-   * Experimental field representing unofficial fields.
-   */
   export interface Schema$ExperimentalField {
-    /**
-     * Optional. The name of the field to use.
-     */
     field?: string | null;
-    /**
-     * Optional. The value the field to set.
-     */
     value?: string | null;
   }
-  /**
-   * Detailed row-level warning with field paths.
-   */
   export interface Schema$FieldWarning {
-    /**
-     * The detailed warning message describing the issue.
-     */
     description?: string | null;
-    /**
-     * The field path that triggered the warning. Uses the same format as google.rpc.BadRequest.FieldViolation.field.
-     */
     field?: string | null;
-    /**
-     * The warning reason.
-     */
     reason?: string | null;
   }
-  /**
-   * Information about the Google Cloud Platform wrapped key.
-   */
   export interface Schema$GcpWrappedKeyInfo {
-    /**
-     * Required. The base64 encoded encrypted data encryption key.
-     */
     encryptedDek?: string | null;
-    /**
-     * Required. Google Cloud Platform [Cloud Key Management Service resource ID](//cloud.google.com/kms/docs/getting-resource-ids). Should be in the format of `projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{key\}` or `gcp-kms://projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{key\}`
-     */
     kekUri?: string | null;
-    /**
-     * Required. The type of algorithm used to encrypt the data.
-     */
     keyType?: string | null;
-    /**
-     * Required. The [Workload Identity](//cloud.google.com/iam/docs/workload-identity-federation) pool provider required to use KEK.
-     */
     wipProvider?: string | null;
   }
-  /**
-   * Google user id data holding encrypted google user IDs. At least one google user ID is required.
-   */
   export interface Schema$GoogleUserIdData {
-    /**
-     * Required. The list of encrypted google user IDs.
-     */
     googleUserIds?: string[] | null;
   }
-  /**
-   * Request to upload ad events.
-   */
   export interface Schema$IngestAdEventsRequest {
-    /**
-     * Required. Required (at least 1). A list of ad events.
-     */
     adEvents?: Schema$AdEvent[];
-    /**
-     * Required. Information about encryption keys which are used to encrypt the data.
-     */
     encryptionInfo?: Schema$EncryptionInfo;
-    /**
-     * Optional. If true, the request is validated, but not executed.
-     */
     validateOnly?: boolean | null;
   }
-  /**
-   * Response from an ad event ingestion operation.
-   */
   export interface Schema$IngestAdEventsResponse {}
-  /**
-   * Request to upload audience members to the provided destinations. Returns an IngestAudienceMembersResponse.
-   */
   export interface Schema$IngestAudienceMembersRequest {
-    /**
-     * Required. The list of users to send to the specified destinations. At most 10000 AudienceMember resources can be sent in a single request.
-     */
     audienceMembers?: Schema$AudienceMember[];
-    /**
-     * Optional. Request-level consent to apply to all users in the request. User-level consent overrides request-level consent, and can be specified in each AudienceMember.
-     */
     consent?: Schema$Consent;
-    /**
-     * Required. The list of destinations to send the audience members to.
-     */
     destinations?: Schema$Destination[];
-    /**
-     * Optional. Required for UserData uploads. The encoding type of the user identifiers. For hashed user identifiers, this is the encoding type of the hashed string. For encrypted hashed user identifiers, this is the encoding type of the outer encrypted string, but not necessarily the inner hashed string, meaning the inner hashed string could be encoded in a different way than the outer encrypted string. For non `UserData` uploads, this field is ignored.
-     */
     encoding?: string | null;
-    /**
-     * Optional. Encryption information for UserData uploads. If not set, it's assumed that uploaded identifying information is hashed but not encrypted. For non `UserData` uploads, this field is ignored.
-     */
     encryptionInfo?: Schema$EncryptionInfo;
-    /**
-     * Optional. The terms of service that the user has accepted/rejected.
-     */
     termsOfService?: Schema$TermsOfService;
-    /**
-     * Optional. For testing purposes. If `true`, the request is validated but not executed. Only errors are returned, not results.
-     */
     validateOnly?: boolean | null;
   }
-  /**
-   * Response from the IngestAudienceMembersRequest.
-   */
   export interface Schema$IngestAudienceMembersResponse {
-    /**
-     * Detailed row-level warnings with field paths.
-     */
     fieldWarnings?: Schema$FieldWarning[];
-    /**
-     * The auto-generated ID of the request.
-     */
     requestId?: string | null;
   }
-  /**
-   * The status of the ingest audience members request.
-   */
   export interface Schema$IngestAudienceMembersStatus {
-    /**
-     * The status of the composite data ingestion to the destination.
-     */
     compositeDataIngestionStatus?: Schema$IngestCompositeDataStatus;
-    /**
-     * The status of the google user id data ingestion to the destination.
-     */
     googleUserIdDataIngestionStatus?: Schema$IngestGoogleUserIdDataStatus;
-    /**
-     * The status of the mobile data ingestion to the destination.
-     */
     mobileDataIngestionStatus?: Schema$IngestMobileDataStatus;
-    /**
-     * The status of the pair data ingestion to the destination.
-     */
     pairDataIngestionStatus?: Schema$IngestPairDataStatus;
-    /**
-     * The status of the partner provided id data ingestion to the destination.
-     */
     partnerProvidedIdDataIngestionStatus?: Schema$IngestPartnerProvidedIdDataStatus;
-    /**
-     * The status of the ppid data ingestion to the destination.
-     */
     ppidDataIngestionStatus?: Schema$IngestPpidDataStatus;
-    /**
-     * The status of the user data ingestion to the destination.
-     */
     userDataIngestionStatus?: Schema$IngestUserDataStatus;
-    /**
-     * The status of the user id data ingestion to the destination.
-     */
     userIdDataIngestionStatus?: Schema$IngestUserIdDataStatus;
   }
-  /**
-   * The status of the composite data ingestion to the destination containing stats related to the ingestion.
-   */
   export interface Schema$IngestCompositeDataStatus {
-    /**
-     * The total count of data types sent in the upload request for the destination, broken down by data type. Includes all data types in the request, regardless of whether they were successfully ingested or not.
-     */
     dataTypeCounts?: Schema$DataTypeCount[];
-    /**
-     * The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.
-     */
     recordCount?: string | null;
-    /**
-     * The match rate range of the upload.
-     */
     uploadMatchRateRange?: string | null;
   }
-  /**
-   * Represents a user list that is populated by user provided data.
-   */
   export interface Schema$IngestedUserListInfo {
-    /**
-     * Optional. Additional information when `CONTACT_ID` is one of the `upload_key_types`.
-     */
     contactIdInfo?: Schema$ContactIdInfo;
-    /**
-     * Optional. Additional information when `MOBILE_ID` is one of the `upload_key_types`.
-     */
     mobileIdInfo?: Schema$MobileIdInfo;
-    /**
-     * Optional. Additional information when `PAIR_ID` is one of the `upload_key_types`. This feature is only available to data partners.
-     */
     pairIdInfo?: Schema$PairIdInfo;
-    /**
-     * Optional. Additional information for partner audiences. This feature is only available to data partners.
-     */
     partnerAudienceInfo?: Schema$PartnerAudienceInfo;
-    /**
-     * Optional. Additional information for `PSEUDONYMOUS_ID` is one of the `upload_key_types`.
-     */
     pseudonymousIdInfo?: Schema$PseudonymousIdInfo;
-    /**
-     * Required. Immutable. Upload key types of this user list.
-     */
     uploadKeyTypes?: string[] | null;
-    /**
-     * Optional. Additional information when `USER_ID` is one of the `upload_key_types`.
-     */
     userIdInfo?: Schema$UserIdInfo;
   }
-  /**
-   * Request to upload audience members to the provided destinations. Returns an IngestEventsResponse.
-   */
   export interface Schema$IngestEventsRequest {
-    /**
-     * Optional. Request-level consent to apply to all users in the request. User-level consent overrides request-level consent, and can be specified in each Event.
-     */
     consent?: Schema$Consent;
-    /**
-     * Required. The list of destinations to send the events to.
-     */
     destinations?: Schema$Destination[];
-    /**
-     * Optional. Required for UserData uploads. The encoding type of the user identifiers. For hashed user identifiers, this is the encoding type of the hashed string. For encrypted hashed user identifiers, this is the encoding type of the outer encrypted string, but not necessarily the inner hashed string, meaning the inner hashed string could be encoded in a different way than the outer encrypted string. For non `UserData` uploads, this field is ignored.
-     */
     encoding?: string | null;
-    /**
-     * Optional. Encryption information for UserData uploads. If not set, it's assumed that uploaded identifying information is hashed but not encrypted. For non `UserData` uploads, this field is ignored.
-     */
     encryptionInfo?: Schema$EncryptionInfo;
-    /**
-     * Required. The list of events to send to the specified destinations. At most 2000 Event resources can be sent in a single request.
-     */
     events?: Schema$Event[];
-    /**
-     * Optional. For testing purposes. If `true`, the request is validated but not executed. Only errors are returned, not results.
-     */
     validateOnly?: boolean | null;
   }
-  /**
-   * Response from the IngestEventsRequest.
-   */
   export interface Schema$IngestEventsResponse {
-    /**
-     * Detailed row-level warnings with field paths.
-     */
     fieldWarnings?: Schema$FieldWarning[];
-    /**
-     * The auto-generated ID of the request.
-     */
     requestId?: string | null;
   }
-  /**
-   * The status of the events ingestion to the destination.
-   */
   export interface Schema$IngestEventsStatus {
-    /**
-     * The total count of events sent in the upload request. Includes all events in the request, regardless of whether they were successfully ingested or not.
-     */
     recordCount?: string | null;
   }
-  /**
-   * The status of the google user id data ingestion to the destination containing stats related to the ingestion.
-   */
   export interface Schema$IngestGoogleUserIdDataStatus {
-    /**
-     * The total count of google user ids sent in the upload request for the destination. Includes all google user ids in the request, regardless of whether they were successfully ingested or not.
-     */
     googleUserIdCount?: string | null;
-    /**
-     * The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.
-     */
     recordCount?: string | null;
   }
-  /**
-   * The status of the mobile data ingestion to the destination containing stats related to the ingestion.
-   */
   export interface Schema$IngestMobileDataStatus {
-    /**
-     * The total count of mobile ids sent in the upload request for the destination. Includes all mobile ids in the request, regardless of whether they were successfully ingested or not.
-     */
     mobileIdCount?: string | null;
-    /**
-     * The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.
-     */
     recordCount?: string | null;
   }
-  /**
-   * The status of the pair data ingestion to the destination containing stats related to the ingestion.
-   */
   export interface Schema$IngestPairDataStatus {
-    /**
-     * The total count of pair ids sent in the upload request for the destination. Includes all pair ids in the request, regardless of whether they were successfully ingested or not.
-     */
     pairIdCount?: string | null;
-    /**
-     * The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.
-     */
     recordCount?: string | null;
   }
-  /**
-   * The status of the partner provided id data ingestion to the destination containing stats related to the ingestion.
-   */
   export interface Schema$IngestPartnerProvidedIdDataStatus {
-    /**
-     * The total count of partner provided ids sent in the upload request for the destination. Includes all partner provided ids in the request, regardless of whether they were successfully ingested or not.
-     */
     partnerProvidedIdCount?: string | null;
-    /**
-     * The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.
-     */
     recordCount?: string | null;
   }
-  /**
-   * The status of the ppid data ingestion to the destination containing stats related to the ingestion.
-   */
   export interface Schema$IngestPpidDataStatus {
-    /**
-     * The total count of ppids sent in the upload request for the destination. Includes all ppids in the request, regardless of whether they were successfully ingested or not.
-     */
     ppidCount?: string | null;
-    /**
-     * The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.
-     */
     recordCount?: string | null;
   }
-  /**
-   * The status of the user data ingestion to the destination containing stats related to the ingestion.
-   */
   export interface Schema$IngestUserDataStatus {
-    /**
-     * The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.
-     */
     recordCount?: string | null;
-    /**
-     * The match rate range of the upload.
-     */
     uploadMatchRateRange?: string | null;
-    /**
-     * The total count of user identifiers sent in the upload request for the destination. Includes all user identifiers in the request, regardless of whether they were successfully ingested or not.
-     */
     userIdentifierCount?: string | null;
   }
-  /**
-   * The status of the user id data ingestion to the destination containing stats related to the ingestion.
-   */
   export interface Schema$IngestUserIdDataStatus {
-    /**
-     * The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.
-     */
     recordCount?: string | null;
-    /**
-     * The total count of user ids sent in the upload request for the destination. Includes all user ids in the request, regardless of whether they were successfully ingested or not.
-     */
     userIdCount?: string | null;
   }
-  /**
-   * IP address information for a user. We recommend including observe_start_time and observe_end_time to help improve Customer Match match rates.
-   */
   export interface Schema$IpData {
-    /**
-     * Required. IP address captured at the time of customer interaction. Accepts standard string formats for both IPv4 and IPv6.
-     */
     ipAddress?: string | null;
-    /**
-     * Optional. Last recorded interaction time from this IP address in a session.
-     */
     observeEndTime?: string | null;
-    /**
-     * Optional. First recorded interaction time from this IP address in a session.
-     */
     observeStartTime?: string | null;
   }
-  /**
-   * Represents an item in the cart associated with the event.
-   */
   export interface Schema$Item {
-    /**
-     * Optional. A bucket of any [event parameters related to an item](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events) to be included within the event that were not already specified using other structured fields.
-     */
     additionalItemParameters?: Schema$ItemParameter[];
-    /**
-     * Optional. The conversion value associated with this item within the event, for cases where the conversion value is different for each item.
-     */
     conversionValue?: number | null;
-    /**
-     * Optional. Additional key/value pair information to send to the conversion containers (conversion action or Floodlight activity), when tracking per-item conversions.
-     */
     customVariables?: Schema$ItemCustomVariable[];
-    /**
-     * Optional. A unique identifier to reference the item.
-     */
     itemId?: string | null;
-    /**
-     * Optional. The feed label of the Merchant Center feed. If countries are still being used, the 2-letter country code in ISO-3166-1 alpha-2 can be used instead. For Store Sales events this will override the value set at the cart level. This field is ignored for other events.
-     */
     merchantFeedLabel?: string | null;
-    /**
-     * Optional. The language code in ISO 639-1 associated with the Merchant Center feed where your items are uploaded.
-     */
     merchantFeedLanguageCode?: string | null;
-    /**
-     * Optional. The Merchant Center ID associated with the item. For Store Sales events this will override the value set at the cart level. This field is ignored for other events.
-     */
     merchantId?: string | null;
-    /**
-     * Optional. The product ID within the Merchant Center account.
-     */
     merchantProductId?: string | null;
-    /**
-     * Optional. The number of this item associated with the event.
-     */
     quantity?: string | null;
-    /**
-     * Optional. The unit price excluding tax, shipping, and any transaction level discounts.
-     */
     unitPrice?: number | null;
   }
-  /**
-   * Item-level custom variable for ads conversions.
-   */
   export interface Schema$ItemCustomVariable {
-    /**
-     * Optional. Reference string used to determine which of the Event.destination_references the custom variable should be sent to. If empty, the Event.destination_references will be used.
-     */
     destinationReferences?: string[] | null;
-    /**
-     * Optional. The value to store for the custom variable.
-     */
     value?: string | null;
-    /**
-     * Optional. The name of the custom variable to set. If the variable is not found for the given destination, it will be ignored.
-     */
     variable?: string | null;
   }
-  /**
-   * A bucket of any [event parameters related to an item](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events) to be included within the event that were not already specified using other structured fields.
-   */
   export interface Schema$ItemParameter {
-    /**
-     * Required. The name of the parameter to use.
-     */
     parameterName?: string | null;
-    /**
-     * Required. The string representation of the value of the parameter to set.
-     */
     value?: string | null;
   }
-  /**
-   * Response from the ListUserListDirectLicensesRequest.
-   */
   export interface Schema$ListUserListDirectLicensesResponse {
-    /**
-     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
-     */
     nextPageToken?: string | null;
-    /**
-     * The licenses for the given user list in the request.
-     */
     userListDirectLicenses?: Schema$UserListDirectLicense[];
   }
-  /**
-   * Response from the ListUserListGlobalLicensesCustomerInfoRequest.
-   */
   export interface Schema$ListUserListGlobalLicenseCustomerInfosResponse {
-    /**
-     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
-     */
     nextPageToken?: string | null;
-    /**
-     * The customer information for the given license in the request.
-     */
     userListGlobalLicenseCustomerInfos?: Schema$UserListGlobalLicenseCustomerInfo[];
   }
-  /**
-   * Response from the ListUserListGlobalLicensesRequest.
-   */
   export interface Schema$ListUserListGlobalLicensesResponse {
-    /**
-     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
-     */
     nextPageToken?: string | null;
-    /**
-     * The licenses for the given user list in the request.
-     */
     userListGlobalLicenses?: Schema$UserListGlobalLicense[];
   }
-  /**
-   * Response message for ListUserLists.
-   */
   export interface Schema$ListUserListsResponse {
-    /**
-     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
-     */
     nextPageToken?: string | null;
-    /**
-     * The user lists from the specified account.
-     */
     userLists?: Schema$UserList[];
   }
-  /**
-   * The baseline location of the request. Baseline location is on OR-list of ISO 3166-1 alpha-2 region codes of the requested regions.
-   */
   export interface Schema$Location {
-    /**
-     * List of ISO 3166-1 alpha-2 region codes.
-     */
     regionCodes?: string[] | null;
   }
-  /**
-   * Insights for marketing data. This feature is only available to data partners.
-   */
   export interface Schema$MarketingDataInsight {
-    /**
-     * Insights for values of a given dimension.
-     */
     attributes?: Schema$MarketingDataInsightsAttribute[];
-    /**
-     * The dimension to which the insight belongs.
-     */
     dimension?: string | null;
   }
-  /**
-   * Insights for a collection of related attributes of the same dimension.
-   */
   export interface Schema$MarketingDataInsightsAttribute {
-    /**
-     * Age range of the audience for which the lift is provided.
-     */
     ageRange?: string | null;
-    /**
-     * Gender of the audience for which the lift is provided.
-     */
     gender?: string | null;
-    /**
-     * Measure of lift that the audience has for the attribute value as compared to the baseline. Range [0-1].
-     */
     lift?: number | null;
-    /**
-     * The user interest ID.
-     */
     userInterestId?: string | null;
   }
-  /**
-   * Mobile IDs for the audience. At least one mobile ID is required.
-   */
   export interface Schema$MobileData {
-    /**
-     * Required. The list of mobile device IDs (Android advertising ID, iOS IDFA for Customer Match user lists and Android advertising ID, iOS IDFA, Xbox or Microsoft ID, Amazon Fire TV ID, Roku ID, Generic Device ID for basic user lists). At most 10 `mobileIds` can be provided in a single AudienceMember.
-     */
     mobileIds?: string[] | null;
   }
-  /**
-   * Additional information when `MOBILE_ID` is one of the `upload_key_types`.
-   */
   export interface Schema$MobileIdInfo {
-    /**
-     * Required. Immutable. A string that uniquely identifies a mobile application from which the data was collected.
-     */
     appId?: string | null;
-    /**
-     * Optional. Immutable. Source of the upload data.
-     */
     dataSourceType?: string | null;
-    /**
-     * Required. Immutable. The key space of mobile IDs.
-     */
     keySpace?: string | null;
   }
-  /**
-   * [PAIR](//support.google.com/admanager/answer/15067908) IDs for the audience. At least one PAIR ID is required. This feature is only available to data partners.
-   */
   export interface Schema$PairData {
-    /**
-     * Required. Cleanroom-provided PII data, hashed with SHA256, and encrypted with an EC commutative cipher using publisher key for the [PAIR]((//support.google.com/admanager/answer/15067908)) user list. At most 10 `pairIds` can be provided in a single AudienceMember.
-     */
     pairIds?: string[] | null;
   }
-  /**
-   * Additional information when `PAIR_ID` is one of the `upload_key_types`. This feature is only available to data partners.
-   */
   export interface Schema$PairIdInfo {
-    /**
-     * Optional. The count of the advertiser's first party data records that have been uploaded to a clean room provider. This does not signify the size of a PAIR user list.
-     */
     advertiserIdentifierCount?: string | null;
-    /**
-     * Required. Immutable. Identifies a unique advertiser to publisher relationship with one clean room provider or across multiple clean room providers.
-     */
     cleanRoomIdentifier?: string | null;
-    /**
-     * Required. This field denotes the percentage of membership match of this user list with the corresponding publisher's first party data. Must be between 0 and 100 inclusive.
-     */
     matchRatePercentage?: number | null;
-    /**
-     * Required. Immutable. Identifies the publisher that the Publisher Advertiser Identity Reconciliation user list is reconciled with. This field is provided by the cleanroom provider and is only unique in the scope of that cleanroom. This cannot be used as a global identifier across multiple cleanrooms.
-     */
     publisherId?: string | null;
-    /**
-     * Required. Descriptive name of the publisher to be displayed in the UI for a better targeting experience.
-     */
     publisherName?: string | null;
   }
-  /**
-   * Additional information for partner audiences. This feature is only available to data partners.
-   */
   export interface Schema$PartnerAudienceInfo {
-    /**
-     * Optional. The commerce partner name. Only allowed if `partner_audience_source` is `COMMERCE_AUDIENCE`.
-     */
     commercePartner?: string | null;
-    /**
-     * Required. Immutable. The source of the partner audience.
-     */
     partnerAudienceSource?: string | null;
   }
-  /**
-   * Represents a customer account in the partner's system.
-   */
   export interface Schema$PartnerCustomerAccount {
-    /**
-     * Required. The identifier of the customer account in the partner's ID space.
-     */
     accountId?: string | null;
-    /**
-     * Optional. The name of the account.
-     */
     accountName?: string | null;
-    /**
-     * Optional. The type of the account. Can be used to distinguish between advertiser accounts and business level accounts, for example.
-     */
     accountType?: string | null;
   }
-  /**
-   * A partner link between an owning account and a partner account.
-   */
   export interface Schema$PartnerLink {
-    /**
-     * Optional. Immutable. The set of features supported for the partner link. If not specified, the system behavior defaults to FEATURE_SET_AUDIENCE_AND_EVENT_MANAGEMENT.
-     */
     featureSet?: string | null;
-    /**
-     * Identifier. The name of the partner link. Format: accountTypes/{account_type\}/accounts/{account\}/partnerLinks/{partner_link\}
-     */
     name?: string | null;
-    /**
-     * Required. The owning account granting access to the partner account.
-     */
     owningAccount?: Schema$ProductAccount;
-    /**
-     * Required. The partner account granted access by the owning account.
-     */
     partnerAccount?: Schema$ProductAccount;
-    /**
-     * Optional. The customer account in the partner system. This is required for partner links with the FEATURE_SET_AD_EVENT_MANAGEMENT feature set.
-     */
     partnerCustomerAccount?: Schema$PartnerCustomerAccount;
-    /**
-     * Output only. The partner link ID.
-     */
     partnerLinkId?: string | null;
-    /**
-     * Optional. Metadata associated with the partner link. This is optional and only accepted for partner links with the FEATURE_SET_AD_EVENT_MANAGEMENT.
-     */
     partnerLinkMetadata?: Schema$PartnerLinkMetadata;
   }
-  /**
-   * Represents metadata associated with a partner link.
-   */
   export interface Schema$PartnerLinkMetadata {
-    /**
-     * Optional. The list of implicit accounts.
-     */
     implicitAccounts?: Schema$PartnerCustomerAccount[];
   }
-  /**
-   * Partner-provided data holding the partner-provided identifiers. At least one partner-provided identifier is required.
-   */
   export interface Schema$PartnerProvidedIdData {
-    /**
-     * Required. The list of partner-provided identifiers.
-     */
     partnerProvidedIds?: string[] | null;
   }
-  /**
-   * Publisher provided identifiers data holding the ppids. At least one ppid is required. This feature is only available to data partners.
-   */
   export interface Schema$PpidData {
-    /**
-     * Required. The list of publisher provided identifiers for a user.
-     */
     ppids?: string[] | null;
   }
-  /**
-   * Represents a specific account.
-   */
   export interface Schema$ProductAccount {
-    /**
-     * Required. The ID of the account. For example, your Google Ads account ID.
-     */
     accountId?: string | null;
-    /**
-     * Required. The type of the account. For example, `GOOGLE_ADS`. Either `account_type` or the deprecated `product` is required. If both are set, the values must match.
-     */
     accountType?: string | null;
-    /**
-     * Deprecated. Use `account_type` instead.
-     */
     product?: string | null;
   }
-  /**
-   * Additional information when `PSEUDONYMOUS_ID` is one of the `upload_key_types`.
-   */
   export interface Schema$PseudonymousIdInfo {
-    /**
-     * Optional. Immutable. The number of billable records (e.g. uploaded or matched).
-     */
     billableRecordCount?: string | null;
-    /**
-     * Output only. Sync status of the user list.
-     */
     syncStatus?: string | null;
   }
-  /**
-   * Request to remove all users from an audience in the provided destinations. Returns a RemoveAllAudienceMembersResponse.
-   */
   export interface Schema$RemoveAllAudienceMembersRequest {
-    /**
-     * Required. The list of destinations to remove the users from.
-     */
     destinations?: Schema$Destination[];
-    /**
-     * Optional. The remove as of time. If set, only audience members last added before this time will be removed. If not set, it defaults to current time. The remove as of time must not be in the future.
-     */
     removeAsOfTime?: string | null;
-    /**
-     * Optional. For testing purposes. If `true`, the request is validated but not executed. Only errors are returned, not results.
-     */
     validateOnly?: boolean | null;
   }
-  /**
-   * Response from the RemoveAllAudienceMembersRequest.
-   */
   export interface Schema$RemoveAllAudienceMembersResponse {
-    /**
-     * The auto-generated ID of the request.
-     */
     requestId?: string | null;
   }
-  /**
-   * The status of the remove all audience members request.
-   */
   export interface Schema$RemoveAllAudienceMembersStatus {}
-  /**
-   * Request to remove users from an audience in the provided destinations. Returns a RemoveAudienceMembersResponse.
-   */
   export interface Schema$RemoveAudienceMembersRequest {
-    /**
-     * Required. The list of users to remove.
-     */
     audienceMembers?: Schema$AudienceMember[];
-    /**
-     * Required. The list of destinations to remove the users from.
-     */
     destinations?: Schema$Destination[];
-    /**
-     * Optional. Required for UserData uploads. The encoding type of the user identifiers. Applies to only the outer encoding for encrypted user identifiers. For non `UserData` uploads, this field is ignored.
-     */
     encoding?: string | null;
-    /**
-     * Optional. Encryption information for UserData uploads. If not set, it's assumed that uploaded identifying information is hashed but not encrypted. For non `UserData` uploads, this field is ignored.
-     */
     encryptionInfo?: Schema$EncryptionInfo;
-    /**
-     * Optional. For testing purposes. If `true`, the request is validated but not executed. Only errors are returned, not results.
-     */
     validateOnly?: boolean | null;
   }
-  /**
-   * Response from the RemoveAudienceMembersRequest.
-   */
   export interface Schema$RemoveAudienceMembersResponse {
-    /**
-     * The auto-generated ID of the request.
-     */
     requestId?: string | null;
   }
-  /**
-   * The status of the remove audience members request.
-   */
   export interface Schema$RemoveAudienceMembersStatus {
-    /**
-     * The status of the composite data removal from the destination.
-     */
     compositeDataRemovalStatus?: Schema$RemoveCompositeDataStatus;
-    /**
-     * The status of the google user id data removal from the destination.
-     */
     googleUserIdDataRemovalStatus?: Schema$RemoveGoogleUserIdDataStatus;
-    /**
-     * The status of the mobile data removal from the destination.
-     */
     mobileDataRemovalStatus?: Schema$RemoveMobileDataStatus;
-    /**
-     * The status of the pair data removal from the destination.
-     */
     pairDataRemovalStatus?: Schema$RemovePairDataStatus;
-    /**
-     * The status of the partner provided id data removal from the destination.
-     */
     partnerProvidedIdDataRemovalStatus?: Schema$RemovePartnerProvidedIdDataStatus;
-    /**
-     * The status of the ppid data removal from the destination.
-     */
     ppidDataRemovalStatus?: Schema$RemovePpidDataStatus;
-    /**
-     * The status of the user data removal from the destination.
-     */
     userDataRemovalStatus?: Schema$RemoveUserDataStatus;
-    /**
-     * The status of the user id data removal from the destination.
-     */
     userIdDataRemovalStatus?: Schema$RemoveUserIdDataStatus;
   }
-  /**
-   * The status of the composite data removal from the destination.
-   */
   export interface Schema$RemoveCompositeDataStatus {
-    /**
-     * The total count of data types sent in the removal request, broken down by data type. Includes all data types in the request, regardless of whether they were successfully removed or not.
-     */
     dataTypeCounts?: Schema$DataTypeCount[];
-    /**
-     * The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.
-     */
     recordCount?: string | null;
   }
-  /**
-   * The status of the google user id data removal from the destination.
-   */
   export interface Schema$RemoveGoogleUserIdDataStatus {
-    /**
-     * The total count of google user ids sent in the removal request. Includes all google user ids in the request, regardless of whether they were successfully removed or not.
-     */
     googleUserIdCount?: string | null;
-    /**
-     * The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.
-     */
     recordCount?: string | null;
   }
-  /**
-   * The status of the mobile data removal from the destination.
-   */
   export interface Schema$RemoveMobileDataStatus {
-    /**
-     * The total count of mobile Ids sent in the removal request. Includes all mobile ids in the request, regardless of whether they were successfully removed or not.
-     */
     mobileIdCount?: string | null;
-    /**
-     * The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.
-     */
     recordCount?: string | null;
   }
-  /**
-   * The status of the pair data removal from the destination.
-   */
   export interface Schema$RemovePairDataStatus {
-    /**
-     * The total count of pair ids sent in the removal request. Includes all pair ids in the request, regardless of whether they were successfully removed or not.
-     */
     pairIdCount?: string | null;
-    /**
-     * The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.
-     */
     recordCount?: string | null;
   }
-  /**
-   * The status of the partner provided id data removal from the destination.
-   */
   export interface Schema$RemovePartnerProvidedIdDataStatus {
-    /**
-     * The total count of partner provided ids sent in the removal request. Includes all partner provided ids in the request, regardless of whether they were successfully removed or not.
-     */
     partnerProvidedIdCount?: string | null;
-    /**
-     * The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.
-     */
     recordCount?: string | null;
   }
-  /**
-   * The status of the ppid data removal from the destination.
-   */
   export interface Schema$RemovePpidDataStatus {
-    /**
-     * The total count of ppids sent in the removal request. Includes all ppids in the request, regardless of whether they were successfully removed or not.
-     */
     ppidCount?: string | null;
-    /**
-     * The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.
-     */
     recordCount?: string | null;
   }
-  /**
-   * The status of the user data removal from the destination.
-   */
   export interface Schema$RemoveUserDataStatus {
-    /**
-     * The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.
-     */
     recordCount?: string | null;
-    /**
-     * The total count of user identifiers sent in the removal request. Includes all user identifiers in the request, regardless of whether they were successfully removed or not.
-     */
     userIdentifierCount?: string | null;
   }
-  /**
-   * The status of the user id data removal from the destination.
-   */
   export interface Schema$RemoveUserIdDataStatus {
-    /**
-     * The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.
-     */
     recordCount?: string | null;
-    /**
-     * The total count of user ids sent in the removal request. Includes all user ids in the request, regardless of whether they were successfully removed or not.
-     */
     userIdCount?: string | null;
   }
-  /**
-   * A request status per destination.
-   */
   export interface Schema$RequestStatusPerDestination {
-    /**
-     * The status of the ingest audience members request.
-     */
     audienceMembersIngestionStatus?: Schema$IngestAudienceMembersStatus;
-    /**
-     * The status of the remove audience members request.
-     */
     audienceMembersRemovalStatus?: Schema$RemoveAudienceMembersStatus;
-    /**
-     * A destination within a DM API request.
-     */
     destination?: Schema$Destination;
-    /**
-     * An error info error containing the error reason and error counts related to the upload. Only populated if the `request_status` is `FAILED` or `PARTIAL_SUCCESS`. This field isn't populated while the request has `request_status` of `PROCESSING`.
-     */
     errorInfo?: Schema$ErrorInfo;
-    /**
-     * The status of the ingest events request.
-     */
     eventsIngestionStatus?: Schema$IngestEventsStatus;
-    /**
-     * The status of the remove all audience members request.
-     */
     removeAllAudienceMembersStatus?: Schema$RemoveAllAudienceMembersStatus;
-    /**
-     * The request status of the destination.
-     */
     requestStatus?: string | null;
-    /**
-     * A warning info containing the warning reason and warning counts related to the upload. This field isn't populated while the request has `request_status` of `PROCESSING`.
-     */
     warningInfo?: Schema$WarningInfo;
   }
-  /**
-   * Request message for DM API MarketingDataInsightsService.RetrieveInsights
-   */
   export interface Schema$RetrieveInsightsRequest {
-    /**
-     * Required. Baseline for the insights requested.
-     */
     baseline?: Schema$Baseline;
-    /**
-     * Required. The user list ID for which insights are requested.
-     */
     userListId?: string | null;
   }
-  /**
-   * Response message for DM API MarketingDataInsightsService.RetrieveInsights
-   */
   export interface Schema$RetrieveInsightsResponse {
-    /**
-     * Contains the insights for the marketing data.
-     */
     marketingDataInsights?: Schema$MarketingDataInsight[];
   }
-  /**
-   * Response from the RetrieveRequestStatusRequest.
-   */
   export interface Schema$RetrieveRequestStatusResponse {
-    /**
-     * A list of request statuses per destination. The order of the statuses matches the order of the destinations in the original request.
-     */
     requestStatusPerDestination?: Schema$RequestStatusPerDestination[];
   }
-  /**
-   * Response from the SearchPartnerLinksRequest.
-   */
   export interface Schema$SearchPartnerLinksResponse {
-    /**
-     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
-     */
     nextPageToken?: string | null;
-    /**
-     * The partner links for the given account.
-     */
     partnerLinks?: Schema$PartnerLink[];
   }
-  /**
-   * Estimated number of members in this user list in different target networks.
-   */
   export interface Schema$SizeInfo {
-    /**
-     * Output only. Estimated number of members in this user list, on the Google Display Network.
-     */
     displayNetworkMembersCount?: string | null;
-    /**
-     * Output only. Estimated number of members in this user list on Gmail.
-     */
     gmailMembersCount?: string | null;
-    /**
-     * Output only. Estimated number of members in this user list in the google.com domain. These are the members available for targeting in Search campaigns.
-     */
     searchNetworkMembersCount?: string | null;
-    /**
-     * Output only. Estimated number of members in this user list on YouTube.
-     */
     youtubeMembersCount?: string | null;
   }
-  /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
-   */
   export interface Schema$Status {
-    /**
-     * The status code, which should be an enum value of google.rpc.Code.
-     */
     code?: number | null;
-    /**
-     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
-     */
     details?: Array<{[key: string]: any}> | null;
-    /**
-     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
-     */
     message?: string | null;
   }
-  /**
-   * Eligibility information for different target networks.
-   */
   export interface Schema$TargetNetworkInfo {
-    /**
-     * Output only. Indicates this user list is eligible for Google Display Network.
-     */
     eligibleForDisplay?: boolean | null;
-    /**
-     * Optional. Indicates if this user list is eligible for Google Search Network.
-     */
     eligibleForSearch?: boolean | null;
   }
-  /**
-   * The terms of service that the user has accepted/rejected.
-   */
   export interface Schema$TermsOfService {
-    /**
-     * Optional. The Customer Match terms of service: https://support.google.com/adspolicy/answer/6299717. This must be accepted when ingesting UserData or MobileData. This field is not required for Partner Match User list.
-     */
     customerMatchTermsOfServiceStatus?: string | null;
   }
-  /**
-   * Data that identifies the user. At least one identifier is required.
-   */
   export interface Schema$UserData {
-    /**
-     * Required. The identifiers for the user. It's possible to provide multiple instances of the same type of data (for example, multiple email addresses). To increase the likelihood of a match, provide as many identifiers as possible. At most 10 `userIdentifiers` can be provided in a single AudienceMember or Event.
-     */
     userIdentifiers?: Schema$UserIdentifier[];
   }
-  /**
-   * User id data holding the user id.
-   */
   export interface Schema$UserIdData {
-    /**
-     * Required. A unique identifier for a user, as defined by the advertiser.
-     */
     userId?: string | null;
   }
-  /**
-   * A single identifier for the user.
-   */
   export interface Schema$UserIdentifier {
-    /**
-     * The known components of a user's address. Holds a grouping of identifiers that are matched all at once.
-     */
     address?: Schema$AddressInfo;
-    /**
-     * Hashed email address using SHA-256 hash function after normalization.
-     */
     emailAddress?: string | null;
-    /**
-     * Hashed phone number using SHA-256 hash function after normalization (E164 standard).
-     */
     phoneNumber?: string | null;
   }
-  /**
-   * Additional information when `USER_ID` is one of the `upload_key_types`.
-   */
   export interface Schema$UserIdInfo {
-    /**
-     * Optional. Immutable. Source of the upload data.
-     */
     dataSourceType?: string | null;
   }
-  /**
-   * A user list resource.
-   */
   export interface Schema$UserList {
-    /**
-     * Output only. The reason this account has been granted access to the list.
-     */
     accessReason?: string | null;
-    /**
-     * Optional. Indicates if this share is still enabled. When a user list is shared with the account this field is set to `ENABLED`. Later the user list owner can decide to revoke the share and make it `DISABLED`.
-     */
     accountAccessStatus?: string | null;
-    /**
-     * Output only. The reason why this user list membership status is closed.
-     */
     closingReason?: string | null;
-    /**
-     * Optional. A description of the user list.
-     */
     description?: string | null;
-    /**
-     * Required. The display name of the user list.
-     */
     displayName?: string | null;
-    /**
-     * Output only. The unique ID of the user list.
-     */
     id?: string | null;
-    /**
-     * Optional. Represents a user list that is populated by user ingested data.
-     */
     ingestedUserListInfo?: Schema$IngestedUserListInfo;
-    /**
-     * Optional. An ID from external system. It is used by user list sellers to correlate IDs on their systems.
-     */
     integrationCode?: string | null;
-    /**
-     * Optional. The duration a user remains in the user list. Valid durations are exact multiples of 24 hours (86400 seconds). Providing a value that is not an exact multiple of 24 hours will result in an INVALID_ARGUMENT error.
-     */
     membershipDuration?: string | null;
-    /**
-     * Optional. Membership status of this user list.
-     */
     membershipStatus?: string | null;
-    /**
-     * Identifier. The resource name of the user list. Format: accountTypes/{account_type\}/accounts/{account\}/userLists/{user_list\}
-     */
     name?: string | null;
-    /**
-     * Output only. An option that indicates if a user may edit a list.
-     */
     readOnly?: boolean | null;
-    /**
-     * Output only. Estimated number of members in this user list in different target networks.
-     */
     sizeInfo?: Schema$SizeInfo;
-    /**
-     * Optional. Eligibility information for different target networks.
-     */
     targetNetworkInfo?: Schema$TargetNetworkInfo;
   }
-  /**
-   * A user list direct license. This feature is only available to data partners.
-   */
   export interface Schema$UserListDirectLicense {
-    /**
-     * Output only. Name of client customer which the user list is being licensed to. This field is read-only.
-     */
     clientAccountDisplayName?: string | null;
-    /**
-     * Immutable. ID of client customer which the user list is being licensed to.
-     */
     clientAccountId?: string | null;
-    /**
-     * Immutable. Account type of client customer which the user list is being licensed to.
-     */
     clientAccountType?: string | null;
-    /**
-     * Output only. Pricing history of this user list license. This field is read-only.
-     */
     historicalPricings?: Schema$UserListLicensePricing[];
-    /**
-     * Output only. Metrics related to this license This field is read-only and only populated if the start and end dates are set in the ListUserListDirectLicenses call
-     */
     metrics?: Schema$UserListLicenseMetrics;
-    /**
-     * Identifier. The resource name of the user list direct license.
-     */
     name?: string | null;
-    /**
-     * Optional. UserListDirectLicense pricing.
-     */
     pricing?: Schema$UserListLicensePricing;
-    /**
-     * Optional. Status of UserListDirectLicense - ENABLED or DISABLED.
-     */
     status?: string | null;
-    /**
-     * Output only. Name of the user list being licensed. This field is read-only.
-     */
     userListDisplayName?: string | null;
-    /**
-     * Immutable. ID of the user list being licensed.
-     */
     userListId?: string | null;
   }
-  /**
-   * A user list global license. This feature is only available to data partners.
-   */
   export interface Schema$UserListGlobalLicense {
-    /**
-     * Output only. Pricing history of this user list license. This field is read-only.
-     */
     historicalPricings?: Schema$UserListLicensePricing[];
-    /**
-     * Immutable. Product type of client customer which the user list is being licensed to.
-     */
     licenseType?: string | null;
-    /**
-     * Output only. Metrics related to this license This field is read-only and only populated if the start and end dates are set in the ListUserListGlobalLicenses call
-     */
     metrics?: Schema$UserListLicenseMetrics;
-    /**
-     * Identifier. The resource name of the user list global license.
-     */
     name?: string | null;
-    /**
-     * Optional. UserListGlobalLicense pricing.
-     */
     pricing?: Schema$UserListLicensePricing;
-    /**
-     * Optional. Status of UserListGlobalLicense - ENABLED or DISABLED.
-     */
     status?: string | null;
-    /**
-     * Output only. Name of the user list being licensed. This field is read-only.
-     */
     userListDisplayName?: string | null;
-    /**
-     * Immutable. ID of the user list being licensed.
-     */
     userListId?: string | null;
   }
-  /**
-   * Information about a customer of a user list global license. This will automatically be created by the system when a customer purchases a global license.
-   */
   export interface Schema$UserListGlobalLicenseCustomerInfo {
-    /**
-     * Output only. Name of client customer which the user list is being licensed to.
-     */
     clientAccountDisplayName?: string | null;
-    /**
-     * Output only. ID of client customer which the user list is being licensed to.
-     */
     clientAccountId?: string | null;
-    /**
-     * Output only. Product type of client customer which the user list is being licensed to.
-     */
     clientAccountType?: string | null;
-    /**
-     * Output only. Pricing history of this user list license.
-     */
     historicalPricings?: Schema$UserListLicensePricing[];
-    /**
-     * Output only. Product type of client customer which the user list is being licensed to.
-     */
     licenseType?: string | null;
-    /**
-     * Output only. Metrics related to this license This field is only populated if the start and end dates are set in the ListUserListGlobalLicenseCustomerInfos call.
-     */
     metrics?: Schema$UserListLicenseMetrics;
-    /**
-     * Identifier. The resource name of the user list global license customer.
-     */
     name?: string | null;
-    /**
-     * Output only. UserListDirectLicense pricing.
-     */
     pricing?: Schema$UserListLicensePricing;
-    /**
-     * Output only. Status of UserListDirectLicense - ENABLED or DISABLED.
-     */
     status?: string | null;
-    /**
-     * Output only. Name of the user list being licensed.
-     */
     userListDisplayName?: string | null;
-    /**
-     * Output only. ID of the user list being licensed.
-     */
     userListId?: string | null;
   }
-  /**
-   * Metrics related to a user list license.
-   */
   export interface Schema$UserListLicenseMetrics {
-    /**
-     * Output only. The number of clicks for the user list license.
-     */
     clickCount?: string | null;
-    /**
-     * Output only. The end date (inclusive) of the metrics in the format YYYYMMDD. For example, 20260102 represents January 2, 2026. If `start_date` is used in the filter, `end_date` is also required. If neither `start_date` nor `end_date` are included in the filter, the UserListLicenseMetrics fields will not be populated in the response.
-     */
     endDate?: string | null;
-    /**
-     * Output only. The number of impressions for the user list license.
-     */
     impressionCount?: string | null;
-    /**
-     * Output only. The revenue for the user list license in USD micros.
-     */
     revenueUsdMicros?: string | null;
-    /**
-     * Output only. The start date (inclusive) of the metrics in the format YYYYMMDD. For example, 20260102 represents January 2, 2026. If `end_date` is used in the filter, `start_date` is also required. If neither `start_date` nor `end_date` are included in the filter, the UserListLicenseMetrics fields will not be populated in the response.
-     */
     startDate?: string | null;
   }
-  /**
-   * A user list license pricing.
-   */
   export interface Schema$UserListLicensePricing {
-    /**
-     * Output only. The buyer approval state of this pricing. This field is read-only.
-     */
     buyerApprovalState?: string | null;
-    /**
-     * Optional. The cost associated with the model, in micro units (10^-6), in the currency specified by the currency_code field. For example, 2000000 means $2 if `currency_code` is `USD`.
-     */
     costMicros?: string | null;
-    /**
-     * Immutable. The cost type of this pricing. Can be set only in the `create` operation. Can't be updated for an existing license.
-     */
     costType?: string | null;
-    /**
-     * Optional. The currency in which cost and max_cost is specified. Must be a three-letter currency code defined in ISO 4217.
-     */
     currencyCode?: string | null;
-    /**
-     * Optional. End time of the pricing.
-     */
     endTime?: string | null;
-    /**
-     * Optional. The maximum CPM a commerce audience can be charged when the MEDIA_SHARE cost type is used. The value is in micro units (10^-6) and in the currency specified by the currency_code field. For example, 2000000 means $2 if `currency_code` is `USD`. This is only relevant when cost_type is MEDIA_SHARE. When cost_type is not MEDIA_SHARE, and this field is set, a MAX_COST_NOT_ALLOWED error will be returned. If not set or set to`0`, there is no cap.
-     */
     maxCostMicros?: string | null;
-    /**
-     * Output only. Whether this pricing is active.
-     */
     pricingActive?: boolean | null;
-    /**
-     * Output only. The ID of this pricing.
-     */
     pricingId?: string | null;
-    /**
-     * Output only. Start time of the pricing.
-     */
     startTime?: string | null;
   }
-  /**
-   * Advertiser-assessed information about the user at the time that the event happened. See https://support.google.com/google-ads/answer/14007601 for more details.
-   */
   export interface Schema$UserProperties {
-    /**
-     * Optional. A bucket of any additional [user properties](https://developers.google.com/analytics/devguides/collection/protocol/ga4/user-properties) for the user associated with this event.
-     */
     additionalUserProperties?: Schema$UserProperty[];
-    /**
-     * Optional. Type of the customer associated with the event.
-     */
     customerType?: string | null;
-    /**
-     * Optional. The advertiser-assessed value of the customer.
-     */
     customerValueBucket?: string | null;
   }
-  /**
-   * A bucket of any additional [user properties](https://developers.google.com/analytics/devguides/collection/protocol/ga4/user-properties) for the user associated with this event.
-   */
   export interface Schema$UserProperty {
-    /**
-     * Required. The name of the user property to use.
-     */
     propertyName?: string | null;
-    /**
-     * Required. The string representation of the value of the user property to use.
-     */
     value?: string | null;
   }
-  /**
-   * Details of the viewability of the ad served.
-   */
   export interface Schema$ViewabilityInfo {
-    /**
-     * Optional. The duration of the ad media.
-     */
     mediaDuration?: string | null;
-    /**
-     * Optional. The amount of the media that was played as discrete quartiles.
-     */
     mediaQuartile?: string | null;
-    /**
-     * Optional. Whether the ad media was skippable or not.
-     */
     mediaSkippable?: boolean | null;
-    /**
-     * Optional. The numerical percent (0-100) of the volume of the media playback.
-     */
     mediaVolumePercent?: number | null;
-    /**
-     * Optional. The duration of playback of the ad media, regardless of whether it was viewable or not.
-     */
     playbackDuration?: string | null;
-    /**
-     * Optional. The amount of time the ad was viewable for.
-     */
     viewableDuration?: string | null;
-    /**
-     * Optional. The numerical percent (0-100) of the pixels that were viewable.
-     */
     viewablePercent?: number | null;
-    /**
-     * Required. The type of the event.
-     */
     viewType?: string | null;
   }
-  /**
-   * The warning count for a given warning reason.
-   */
   export interface Schema$WarningCount {
-    /**
-     * The warning reason.
-     */
     reason?: string | null;
-    /**
-     * The count of records that have a warning.
-     */
     recordCount?: string | null;
   }
-  /**
-   * Warning counts for each type of warning.
-   */
   export interface Schema$WarningInfo {
-    /**
-     * A list of warnings and counts per warning reason.
-     */
     warningCounts?: Schema$WarningCount[];
   }
 
@@ -2318,7 +788,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Retrieves marketing data insights for a given user list. This feature is only available to data partners. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType\}/accounts/{loginAccountId\}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType\}/accounts/{linkedAccountId\}`
      * @example
      * ```js
      * // Before running the sample:
@@ -2348,7 +817,6 @@ export namespace datamanager_v1 {
      *
      *   // Do the magic
      *   const res = await datamanager.accountTypes.accounts.insights.retrieve({
-     *     // Required. The parent account that owns the user list. Format: `accountTypes/{account_type\}/accounts/{account\}`
      *     parent: 'accountTypes/my-accountType/accounts/my-account',
      *
      *     // Request body metadata
@@ -2469,7 +937,7 @@ export namespace datamanager_v1 {
 
   export interface Params$Resource$Accounttypes$Accounts$Insights$Retrieve extends StandardParameters {
     /**
-     * Required. The parent account that owns the user list. Format: `accountTypes/{account_type\}/accounts/{account\}`
+     *
      */
     parent?: string;
 
@@ -2486,7 +954,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Creates a partner link for the given account. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType\}/accounts/{loginAccountId\}`
      * @example
      * ```js
      * // Before running the sample:
@@ -2519,7 +986,6 @@ export namespace datamanager_v1 {
      *
      *   // Do the magic
      *   const res = await datamanager.accountTypes.accounts.partnerLinks.create({
-     *     // Required. The parent, which owns this collection of partner links. Format: accountTypes/{account_type\}/accounts/{account\}
      *     parent: 'accountTypes/my-accountType/accounts/my-account',
      *
      *     // Request body metadata
@@ -2647,7 +1113,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Deletes a partner link for the given account. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType\}/accounts/{loginAccountId\}`
      * @example
      * ```js
      * // Before running the sample:
@@ -2680,7 +1145,6 @@ export namespace datamanager_v1 {
      *
      *   // Do the magic
      *   const res = await datamanager.accountTypes.accounts.partnerLinks.delete({
-     *     // Required. The resource name of the partner link to delete. Format: accountTypes/{account_type\}/accounts/{account\}/partnerLinks/{partner_link\}
      *     name: 'accountTypes/my-accountType/accounts/my-account/partnerLinks/my-partnerLink',
      *   });
      *   console.log(res.data);
@@ -2782,7 +1246,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Searches for all partner links to and from a given account. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType\}/accounts/{loginAccountId\}`
      * @example
      * ```js
      * // Before running the sample:
@@ -2815,13 +1278,12 @@ export namespace datamanager_v1 {
      *
      *   // Do the magic
      *   const res = await datamanager.accountTypes.accounts.partnerLinks.search({
-     *     // Optional. A [filter string](https://google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `partner_link_id = 123456789`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. Supported operations: - `AND` - `=` - `!=` Supported fields: - `partner_link_id` - `owning_account.account_type` - `owning_account.account_id` - `partner_account.account_type` - `partner_account.account_id` - `feature_set` For partner links with the FEATURE_SET_AD_EVENT_MANAGEMENT feature set, the following fields are also supported: - `partner_customer_account.account_id` Example: `owning_account.account_type = "GOOGLE_ADS" AND partner_account.account_id = 987654321`
      *     filter: 'placeholder-value',
-     *     // The maximum number of partner links to return. The service may return fewer than this value. If unspecified, at most 50 partner links will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     *
      *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `SearchPartnerLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchPartnerLinks` must match the call that provided the page token.
+     *
      *     pageToken: 'placeholder-value',
-     *     // Required. Account to search for partner links. If no `filter` is specified, all partner links where this account is either the `owning_account` or `partner_account` are returned. Format: `accountTypes/{account_type\}/accounts/{account\}`
+     *
      *     parent: 'accountTypes/my-accountType/accounts/my-account',
      *   });
      *   console.log(res.data);
@@ -2935,7 +1397,7 @@ export namespace datamanager_v1 {
 
   export interface Params$Resource$Accounttypes$Accounts$Partnerlinks$Create extends StandardParameters {
     /**
-     * Required. The parent, which owns this collection of partner links. Format: accountTypes/{account_type\}/accounts/{account\}
+     *
      */
     parent?: string;
 
@@ -2946,25 +1408,25 @@ export namespace datamanager_v1 {
   }
   export interface Params$Resource$Accounttypes$Accounts$Partnerlinks$Delete extends StandardParameters {
     /**
-     * Required. The resource name of the partner link to delete. Format: accountTypes/{account_type\}/accounts/{account\}/partnerLinks/{partner_link\}
+     *
      */
     name?: string;
   }
   export interface Params$Resource$Accounttypes$Accounts$Partnerlinks$Search extends StandardParameters {
     /**
-     * Optional. A [filter string](https://google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `partner_link_id = 123456789`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. Supported operations: - `AND` - `=` - `!=` Supported fields: - `partner_link_id` - `owning_account.account_type` - `owning_account.account_id` - `partner_account.account_type` - `partner_account.account_id` - `feature_set` For partner links with the FEATURE_SET_AD_EVENT_MANAGEMENT feature set, the following fields are also supported: - `partner_customer_account.account_id` Example: `owning_account.account_type = "GOOGLE_ADS" AND partner_account.account_id = 987654321`
+     *
      */
     filter?: string;
     /**
-     * The maximum number of partner links to return. The service may return fewer than this value. If unspecified, at most 50 partner links will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     *
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous `SearchPartnerLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchPartnerLinks` must match the call that provided the page token.
+     *
      */
     pageToken?: string;
     /**
-     * Required. Account to search for partner links. If no `filter` is specified, all partner links where this account is either the `owning_account` or `partner_account` are returned. Format: `accountTypes/{account_type\}/accounts/{account\}`
+     *
      */
     parent?: string;
   }
@@ -2976,7 +1438,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Creates a user list direct license. This feature is only available to data partners.
      * @example
      * ```js
      * // Before running the sample:
@@ -3007,7 +1468,6 @@ export namespace datamanager_v1 {
      *   // Do the magic
      *   const res =
      *     await datamanager.accountTypes.accounts.userListDirectLicenses.create({
-     *       // Required. The account that owns the user list being licensed. Should be in the format accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}
      *       parent: 'accountTypes/my-accountType/accounts/my-account',
      *
      *       // Request body metadata
@@ -3142,7 +1602,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Retrieves a user list direct license. This feature is only available to data partners.
      * @example
      * ```js
      * // Before running the sample:
@@ -3173,7 +1632,6 @@ export namespace datamanager_v1 {
      *   // Do the magic
      *   const res =
      *     await datamanager.accountTypes.accounts.userListDirectLicenses.get({
-     *       // Required. The resource name of the user list direct license.
      *       name: 'accountTypes/my-accountType/accounts/my-account/userListDirectLicenses/my-userListDirectLicense',
      *     });
      *   console.log(res.data);
@@ -3288,7 +1746,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Lists all user list direct licenses owned by the parent account. This feature is only available to data partners.
      * @example
      * ```js
      * // Before running the sample:
@@ -3319,13 +1776,12 @@ export namespace datamanager_v1 {
      *   // Do the magic
      *   const res =
      *     await datamanager.accountTypes.accounts.userListDirectLicenses.list({
-     *       // Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(user_list_id, 123, 456)` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
      *       filter: 'placeholder-value',
-     *       // Optional. The maximum number of licenses to return per page. The service may return fewer than this value. If unspecified, at most 50 licenses will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *
      *       pageSize: 'placeholder-value',
-     *       // Optional. A page token, received from a previous `ListUserListDirectLicense` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserListDirectLicense` must match the call that provided the page token.
+     *
      *       pageToken: 'placeholder-value',
-     *       // Required. The account whose licenses are being queried. Should be in the format accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}
+     *
      *       parent: 'accountTypes/my-accountType/accounts/my-account',
      *     });
      *   console.log(res.data);
@@ -3444,7 +1900,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Updates a user list direct license. This feature is only available to data partners.
      * @example
      * ```js
      * // Before running the sample:
@@ -3475,9 +1930,8 @@ export namespace datamanager_v1 {
      *   // Do the magic
      *   const res =
      *     await datamanager.accountTypes.accounts.userListDirectLicenses.patch({
-     *       // Identifier. The resource name of the user list direct license.
      *       name: 'accountTypes/my-accountType/accounts/my-account/userListDirectLicenses/my-userListDirectLicense',
-     *       // Optional. The list of fields to update. The special character `*` is not supported and an `INVALID_UPDATE_MASK` error will be thrown if used.
+     *
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -3611,7 +2065,7 @@ export namespace datamanager_v1 {
 
   export interface Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Create extends StandardParameters {
     /**
-     * Required. The account that owns the user list being licensed. Should be in the format accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}
+     *
      */
     parent?: string;
 
@@ -3622,35 +2076,35 @@ export namespace datamanager_v1 {
   }
   export interface Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Get extends StandardParameters {
     /**
-     * Required. The resource name of the user list direct license.
+     *
      */
     name?: string;
   }
   export interface Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$List extends StandardParameters {
     /**
-     * Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(user_list_id, 123, 456)` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
+     *
      */
     filter?: string;
     /**
-     * Optional. The maximum number of licenses to return per page. The service may return fewer than this value. If unspecified, at most 50 licenses will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *
      */
     pageSize?: number;
     /**
-     * Optional. A page token, received from a previous `ListUserListDirectLicense` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserListDirectLicense` must match the call that provided the page token.
+     *
      */
     pageToken?: string;
     /**
-     * Required. The account whose licenses are being queried. Should be in the format accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}
+     *
      */
     parent?: string;
   }
   export interface Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Patch extends StandardParameters {
     /**
-     * Identifier. The resource name of the user list direct license.
+     *
      */
     name?: string;
     /**
-     * Optional. The list of fields to update. The special character `*` is not supported and an `INVALID_UPDATE_MASK` error will be thrown if used.
+     *
      */
     updateMask?: string;
 
@@ -3672,7 +2126,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Creates a user list global license. This feature is only available to data partners.
      * @example
      * ```js
      * // Before running the sample:
@@ -3703,7 +2156,6 @@ export namespace datamanager_v1 {
      *   // Do the magic
      *   const res =
      *     await datamanager.accountTypes.accounts.userListGlobalLicenses.create({
-     *       // Required. The account that owns the user list being licensed. Should be in the format accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}
      *       parent: 'accountTypes/my-accountType/accounts/my-account',
      *
      *       // Request body metadata
@@ -3834,7 +2286,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Retrieves a user list global license. This feature is only available to data partners.
      * @example
      * ```js
      * // Before running the sample:
@@ -3865,7 +2316,6 @@ export namespace datamanager_v1 {
      *   // Do the magic
      *   const res =
      *     await datamanager.accountTypes.accounts.userListGlobalLicenses.get({
-     *       // Required. The resource name of the user list global license.
      *       name: 'accountTypes/my-accountType/accounts/my-account/userListGlobalLicenses/my-userListGlobalLicense',
      *     });
      *   console.log(res.data);
@@ -3978,7 +2428,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Lists all user list global licenses owned by the parent account. This feature is only available to data partners.
      * @example
      * ```js
      * // Before running the sample:
@@ -4009,13 +2458,12 @@ export namespace datamanager_v1 {
      *   // Do the magic
      *   const res =
      *     await datamanager.accountTypes.accounts.userListGlobalLicenses.list({
-     *       // Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(user_list_id, 123, 456)` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
      *       filter: 'placeholder-value',
-     *       // Optional. The maximum number of licenses to return. The service may return fewer than this value. If unspecified, at most 50 licenses will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *
      *       pageSize: 'placeholder-value',
-     *       // Optional. A page token, received from a previous `ListUserListGlobalLicense` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserListDirectLicense` must match the call that provided the page token.
+     *
      *       pageToken: 'placeholder-value',
-     *       // Required. The account whose licenses are being queried. Should be in the format accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}
+     *
      *       parent: 'accountTypes/my-accountType/accounts/my-account',
      *     });
      *   console.log(res.data);
@@ -4134,7 +2582,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Updates a user list global license. This feature is only available to data partners.
      * @example
      * ```js
      * // Before running the sample:
@@ -4165,9 +2612,8 @@ export namespace datamanager_v1 {
      *   // Do the magic
      *   const res =
      *     await datamanager.accountTypes.accounts.userListGlobalLicenses.patch({
-     *       // Identifier. The resource name of the user list global license.
      *       name: 'accountTypes/my-accountType/accounts/my-account/userListGlobalLicenses/my-userListGlobalLicense',
-     *       // Optional. The list of fields to update. The special character `*` is not supported and an `INVALID_UPDATE_MASK` error will be thrown if used.
+     *
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -4297,7 +2743,7 @@ export namespace datamanager_v1 {
 
   export interface Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Create extends StandardParameters {
     /**
-     * Required. The account that owns the user list being licensed. Should be in the format accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}
+     *
      */
     parent?: string;
 
@@ -4308,35 +2754,35 @@ export namespace datamanager_v1 {
   }
   export interface Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Get extends StandardParameters {
     /**
-     * Required. The resource name of the user list global license.
+     *
      */
     name?: string;
   }
   export interface Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$List extends StandardParameters {
     /**
-     * Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(user_list_id, 123, 456)` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
+     *
      */
     filter?: string;
     /**
-     * Optional. The maximum number of licenses to return. The service may return fewer than this value. If unspecified, at most 50 licenses will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *
      */
     pageSize?: number;
     /**
-     * Optional. A page token, received from a previous `ListUserListGlobalLicense` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserListDirectLicense` must match the call that provided the page token.
+     *
      */
     pageToken?: string;
     /**
-     * Required. The account whose licenses are being queried. Should be in the format accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}
+     *
      */
     parent?: string;
   }
   export interface Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Patch extends StandardParameters {
     /**
-     * Identifier. The resource name of the user list global license.
+     *
      */
     name?: string;
     /**
-     * Optional. The list of fields to update. The special character `*` is not supported and an `INVALID_UPDATE_MASK` error will be thrown if used.
+     *
      */
     updateMask?: string;
 
@@ -4353,7 +2799,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Lists all customer info for a user list global license. This feature is only available to data partners.
      * @example
      * ```js
      * // Before running the sample:
@@ -4385,13 +2830,12 @@ export namespace datamanager_v1 {
      *   const res =
      *     await datamanager.accountTypes.accounts.userListGlobalLicenses.userListGlobalLicenseCustomerInfos.list(
      *       {
-     *         // Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(user_list_id, 123, 456)` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
      *         filter: 'placeholder-value',
-     *         // Optional. The maximum number of licenses to return. The service may return fewer than this value. If unspecified, at most 50 licenses will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *
      *         pageSize: 'placeholder-value',
-     *         // Optional. A page token, received from a previous `ListUserListDirectLicense` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserListDirectLicense` must match the call that provided the page token.
+     *
      *         pageToken: 'placeholder-value',
-     *         // Required. The global license whose customer info are being queried. Should be in the format `accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}/userListGlobalLicenses/{USER_LIST_GLOBAL_LICENSE_ID\}`. To list all global license customer info under an account, replace the user list global license id with a '-' (for example, `accountTypes/DATA_PARTNER/accounts/123/userListGlobalLicenses/-`)
+     *
      *         parent:
      *           'accountTypes/my-accountType/accounts/my-account/userListGlobalLicenses/my-userListGlobalLicense',
      *       },
@@ -4513,19 +2957,19 @@ export namespace datamanager_v1 {
 
   export interface Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Userlistgloballicensecustomerinfos$List extends StandardParameters {
     /**
-     * Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(user_list_id, 123, 456)` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
+     *
      */
     filter?: string;
     /**
-     * Optional. The maximum number of licenses to return. The service may return fewer than this value. If unspecified, at most 50 licenses will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *
      */
     pageSize?: number;
     /**
-     * Optional. A page token, received from a previous `ListUserListDirectLicense` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserListDirectLicense` must match the call that provided the page token.
+     *
      */
     pageToken?: string;
     /**
-     * Required. The global license whose customer info are being queried. Should be in the format `accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}/userListGlobalLicenses/{USER_LIST_GLOBAL_LICENSE_ID\}`. To list all global license customer info under an account, replace the user list global license id with a '-' (for example, `accountTypes/DATA_PARTNER/accounts/123/userListGlobalLicenses/-`)
+     *
      */
     parent?: string;
   }
@@ -4537,7 +2981,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Creates a UserList. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType\}/accounts/{loginAccountId\}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType\}/accounts/{linkedAccountId\}`
      * @example
      * ```js
      * // Before running the sample:
@@ -4567,9 +3010,8 @@ export namespace datamanager_v1 {
      *
      *   // Do the magic
      *   const res = await datamanager.accountTypes.accounts.userLists.create({
-     *     // Required. The parent account where this user list will be created. Format: accountTypes/{account_type\}/accounts/{account\}
      *     parent: 'accountTypes/my-accountType/accounts/my-account',
-     *     // Optional. If true, the request is validated but not executed.
+     *
      *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4709,7 +3151,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Deletes a UserList. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType\}/accounts/{loginAccountId\}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType\}/accounts/{linkedAccountId\}`
      * @example
      * ```js
      * // Before running the sample:
@@ -4739,9 +3180,8 @@ export namespace datamanager_v1 {
      *
      *   // Do the magic
      *   const res = await datamanager.accountTypes.accounts.userLists.delete({
-     *     // Required. The name of the user list to delete. Format: accountTypes/{account_type\}/accounts/{account\}/userLists/{user_list\}
      *     name: 'accountTypes/my-accountType/accounts/my-account/userLists/my-userList',
-     *     // Optional. If true, the request is validated but not executed.
+     *
      *     validateOnly: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4842,7 +3282,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Gets a UserList. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType\}/accounts/{loginAccountId\}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType\}/accounts/{linkedAccountId\}`
      * @example
      * ```js
      * // Before running the sample:
@@ -4872,7 +3311,6 @@ export namespace datamanager_v1 {
      *
      *   // Do the magic
      *   const res = await datamanager.accountTypes.accounts.userLists.get({
-     *     // Required. The resource name of the UserList to retrieve. Format: accountTypes/{account_type\}/accounts/{account\}/userLists/{user_list\}
      *     name: 'accountTypes/my-accountType/accounts/my-account/userLists/my-userList',
      *   });
      *   console.log(res.data);
@@ -4988,7 +3426,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Lists UserLists. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType\}/accounts/{loginAccountId\}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType\}/accounts/{linkedAccountId\}`
      * @example
      * ```js
      * // Before running the sample:
@@ -5018,13 +3455,12 @@ export namespace datamanager_v1 {
      *
      *   // Do the magic
      *   const res = await datamanager.accountTypes.accounts.userLists.list({
-     *     // Optional. A [filter string](https://google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `display_name = "list 1"`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. Supported operations: - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` - `:` (has) **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(display_name, "name1", "name2")` Supported fields: - `id` - `display_name` - `description` - `membership_status` - `integration_code` - `access_reason` - `ingested_user_list_info.upload_key_types`
      *     filter: 'placeholder-value',
-     *     // Optional. The maximum number of user lists to return. The service may return fewer than this value. If unspecified, at most 50 user lists will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *
      *     pageSize: 'placeholder-value',
-     *     // Optional. A page token, received from a previous `ListUserLists` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLists` must match the call that provided the page token.
+     *
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent account which owns this collection of user lists. Format: accountTypes/{account_type\}/accounts/{account\}
+     *
      *     parent: 'accountTypes/my-accountType/accounts/my-account',
      *   });
      *   console.log(res.data);
@@ -5133,7 +3569,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Updates a UserList. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType\}/accounts/{loginAccountId\}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType\}/accounts/{linkedAccountId\}`
      * @example
      * ```js
      * // Before running the sample:
@@ -5163,11 +3598,10 @@ export namespace datamanager_v1 {
      *
      *   // Do the magic
      *   const res = await datamanager.accountTypes.accounts.userLists.patch({
-     *     // Identifier. The resource name of the user list. Format: accountTypes/{account_type\}/accounts/{account\}/userLists/{user_list\}
      *     name: 'accountTypes/my-accountType/accounts/my-account/userLists/my-userList',
-     *     // Optional. The list of fields to update.
+     *
      *     updateMask: 'placeholder-value',
-     *     // Optional. If true, the request is validated but not executed.
+     *
      *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5306,11 +3740,11 @@ export namespace datamanager_v1 {
 
   export interface Params$Resource$Accounttypes$Accounts$Userlists$Create extends StandardParameters {
     /**
-     * Required. The parent account where this user list will be created. Format: accountTypes/{account_type\}/accounts/{account\}
+     *
      */
     parent?: string;
     /**
-     * Optional. If true, the request is validated but not executed.
+     *
      */
     validateOnly?: boolean;
 
@@ -5321,49 +3755,49 @@ export namespace datamanager_v1 {
   }
   export interface Params$Resource$Accounttypes$Accounts$Userlists$Delete extends StandardParameters {
     /**
-     * Required. The name of the user list to delete. Format: accountTypes/{account_type\}/accounts/{account\}/userLists/{user_list\}
+     *
      */
     name?: string;
     /**
-     * Optional. If true, the request is validated but not executed.
+     *
      */
     validateOnly?: boolean;
   }
   export interface Params$Resource$Accounttypes$Accounts$Userlists$Get extends StandardParameters {
     /**
-     * Required. The resource name of the UserList to retrieve. Format: accountTypes/{account_type\}/accounts/{account\}/userLists/{user_list\}
+     *
      */
     name?: string;
   }
   export interface Params$Resource$Accounttypes$Accounts$Userlists$List extends StandardParameters {
     /**
-     * Optional. A [filter string](https://google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `display_name = "list 1"`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. Supported operations: - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` - `:` (has) **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(display_name, "name1", "name2")` Supported fields: - `id` - `display_name` - `description` - `membership_status` - `integration_code` - `access_reason` - `ingested_user_list_info.upload_key_types`
+     *
      */
     filter?: string;
     /**
-     * Optional. The maximum number of user lists to return. The service may return fewer than this value. If unspecified, at most 50 user lists will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *
      */
     pageSize?: number;
     /**
-     * Optional. A page token, received from a previous `ListUserLists` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLists` must match the call that provided the page token.
+     *
      */
     pageToken?: string;
     /**
-     * Required. The parent account which owns this collection of user lists. Format: accountTypes/{account_type\}/accounts/{account\}
+     *
      */
     parent?: string;
   }
   export interface Params$Resource$Accounttypes$Accounts$Userlists$Patch extends StandardParameters {
     /**
-     * Identifier. The resource name of the user list. Format: accountTypes/{account_type\}/accounts/{account\}/userLists/{user_list\}
+     *
      */
     name?: string;
     /**
-     * Optional. The list of fields to update.
+     *
      */
     updateMask?: string;
     /**
-     * Optional. If true, the request is validated but not executed.
+     *
      */
     validateOnly?: boolean;
 
@@ -5380,7 +3814,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Uploads a list of AdEvent resources to Google Analytics. This feature is only available to accounts on an allowlist.
      * @example
      * ```js
      * // Before running the sample:
@@ -5536,7 +3969,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Uploads a list of AudienceMember resources to the provided Destination.
      * @example
      * ```js
      * // Before running the sample:
@@ -5691,7 +4123,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Removes a list of AudienceMember resources from the provided Destination.
      * @example
      * ```js
      * // Before running the sample:
@@ -5843,7 +4274,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Removes all audience members from the provided destinations.
      * @example
      * ```js
      * // Before running the sample:
@@ -6023,7 +4453,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Uploads a list of Event resources from the provided Destination.
      * @example
      * ```js
      * // Before running the sample:
@@ -6182,7 +4611,6 @@ export namespace datamanager_v1 {
     }
 
     /**
-     * Gets the status of a request given request id.
      * @example
      * ```js
      * // Before running the sample:
@@ -6212,7 +4640,6 @@ export namespace datamanager_v1 {
      *
      *   // Do the magic
      *   const res = await datamanager.requestStatus.retrieve({
-     *     // Required. Required. The request ID of the Data Manager API request.
      *     requestId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6327,7 +4754,7 @@ export namespace datamanager_v1 {
 
   export interface Params$Resource$Requeststatus$Retrieve extends StandardParameters {
     /**
-     * Required. Required. The request ID of the Data Manager API request.
+     *
      */
     requestId?: string;
   }
