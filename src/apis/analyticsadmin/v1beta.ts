@@ -10080,7 +10080,7 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
-     * Retrieve a single Key Event.
+     * Retrieves a single Key Event.
      * @example
      * ```js
      * // Before running the sample:

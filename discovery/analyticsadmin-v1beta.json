@@ -1687,7 +1687,7 @@
               ]
             },
             "get": {
-              "description": "Retrieve a single Key Event.",
+              "description": "Retrieves a single Key Event.",
               "flatPath": "v1beta/properties/{propertiesId}/keyEvents/{keyEventsId}",
               "httpMethod": "GET",
               "id": "analyticsadmin.properties.keyEvents.get",
@@ -1788,7 +1788,7 @@
       }
     }
   },
-  "revision": "20260802",
+  "revision": "20260908",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1betaAccessBetweenFilter": {
