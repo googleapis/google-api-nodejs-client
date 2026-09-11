@@ -365,7 +365,7 @@ export namespace run_v2 {
      */
     sandboxLauncher?: boolean | null;
     /**
-     * Optional. Location of the source.
+     * Optional. Location of the source. This field is only supported in Cloud Run Service.
      */
     sourceCode?: Schema$GoogleCloudRunV2SourceCode;
     /**
@@ -911,6 +911,10 @@ export namespace run_v2 {
     satisfiesPzs?: boolean | null;
     serviceAccount?: string | null;
     /**
+     * Optional. Enables SSH access to the Instance.
+     */
+    sshEnabled?: boolean | null;
+    /**
      * Output only. The Condition of this Instance, containing its readiness status, and detailed error information in case it did not reach a serving state. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.
      */
     terminalCondition?: Schema$GoogleCloudRunV2Condition;
@@ -1017,6 +1021,10 @@ export namespace run_v2 {
      * Output only. For a deleted resource, the time after which it will be permamently deleted.
      */
     expireTime?: string | null;
+    /**
+     * Optional. The functional type of the Job.
+     */
+    functionalType?: string | null;
     /**
      * Output only. A number that monotonically increases every time the user modifies the desired state.
      */
@@ -1457,6 +1465,10 @@ export namespace run_v2 {
      * VPC Access configuration for this Revision. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
      */
     vpcAccess?: Schema$GoogleCloudRunV2VpcAccess;
+    /**
+     * Optional. The Revision's workload identity settings.
+     */
+    workloadIdentityConfig?: Schema$GoogleCloudRunV2WorkloadIdentityConfig;
   }
   /**
    * Settings for revision-level scaling settings.
@@ -1576,6 +1588,10 @@ export namespace run_v2 {
      * Optional. VPC Access configuration to use for this Revision. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
      */
     vpcAccess?: Schema$GoogleCloudRunV2VpcAccess;
+    /**
+     * Optional. The Revision's workload identity settings.
+     */
+    workloadIdentityConfig?: Schema$GoogleCloudRunV2WorkloadIdentityConfig;
   }
   /**
    * Request message to create a new Execution of a Job.
@@ -1677,10 +1693,6 @@ export namespace run_v2 {
      */
     description?: string | null;
     /**
-     * Optional. Immutable. Indicates whether the Service has durable execution enabled. This field is immutable once the Service is created.
-     */
-    durableExecution?: boolean | null;
-    /**
      * Optional. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
      */
     etag?: string | null;
@@ -1688,6 +1700,10 @@ export namespace run_v2 {
      * Output only. For a deleted resource, the time after which it will be permanently deleted.
      */
     expireTime?: string | null;
+    /**
+     * Optional. The functional type of the Service.
+     */
+    functionalType?: string | null;
     /**
      * Output only. A number that monotonically increases every time the user modifies the desired state. Please note that unlike v1, this is an int64 value. As with most Google APIs, its JSON representation will be a `string` instead of an `integer`.
      */
@@ -1828,7 +1844,7 @@ export namespace run_v2 {
      */
     cloudStorageSource?: Schema$GoogleCloudRunV2CloudStorageSource;
     /**
-     * Optional. Input only. Source code inlined in the request. Cloud Run will store the inlined_source to Cloud Storage and replace the field with cloud_storage_source.
+     * Optional. Input only. Source code inlined in the request. Cloud Run will store the inlined_source to Cloud Storage and replace the field with cloud_storage_source. This field is only supported in Cloud Run Service.
      */
     inlinedSource?: Schema$GoogleCloudRunV2InlinedSource;
   }
@@ -2086,6 +2102,10 @@ export namespace run_v2 {
      * Output only. VPC Access configuration to use for this Task. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
      */
     vpcAccess?: Schema$GoogleCloudRunV2VpcAccess;
+    /**
+     * Optional. The Task's workload identity settings.
+     */
+    workloadIdentityConfig?: Schema$GoogleCloudRunV2WorkloadIdentityConfig;
   }
   /**
    * Result of a task attempt.
@@ -2148,6 +2168,10 @@ export namespace run_v2 {
      * Optional. VPC Access configuration to use for this Task. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
      */
     vpcAccess?: Schema$GoogleCloudRunV2VpcAccess;
+    /**
+     * Optional. The Task's workload identity settings.
+     */
+    workloadIdentityConfig?: Schema$GoogleCloudRunV2WorkloadIdentityConfig;
   }
   /**
    * TCPSocketAction describes an action based on opening a socket
@@ -2500,6 +2524,23 @@ export namespace run_v2 {
      * Optional. The total number of instances in manual scaling mode.
      */
     manualInstanceCount?: number | null;
+  }
+  /**
+   * Workload identity settings.
+   */
+  export interface Schema$GoogleCloudRunV2WorkloadIdentityConfig {
+    /**
+     * Optional. The Revision's SPIFFE workload identity. Enables provisioning of SPIFFE workload certificates.
+     */
+    identity?: string | null;
+    /**
+     * Optional. Controls whether an instance receives a MWLID certificate. Corresponds to the intention of the original --[no-]identity-certificate flag.
+     */
+    identityCertificateEnabled?: boolean | null;
+    /**
+     * Optional. The type of identity to use.
+     */
+    identityType?: string | null;
   }
   /**
    * ApprovalConfig describes configuration for manual approval of a build.
@@ -4783,6 +4824,7 @@ export namespace run_v2 {
      *       //   "restartPolicy": "my_restartPolicy",
      *       //   "satisfiesPzs": false,
      *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "sshEnabled": false,
      *       //   "terminalCondition": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime",
@@ -5125,6 +5167,7 @@ export namespace run_v2 {
      *   //   "restartPolicy": "my_restartPolicy",
      *   //   "satisfiesPzs": false,
      *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "sshEnabled": false,
      *   //   "terminalCondition": {},
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime",
@@ -5614,6 +5657,7 @@ export namespace run_v2 {
      *       //   "restartPolicy": "my_restartPolicy",
      *       //   "satisfiesPzs": false,
      *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "sshEnabled": false,
      *       //   "terminalCondition": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime",
@@ -6553,6 +6597,7 @@ export namespace run_v2 {
      *       //   "etag": "my_etag",
      *       //   "executionCount": 0,
      *       //   "expireTime": "my_expireTime",
+     *       //   "functionalType": "my_functionalType",
      *       //   "generation": "my_generation",
      *       //   "labels": {},
      *       //   "lastModifier": "my_lastModifier",
@@ -6879,6 +6924,7 @@ export namespace run_v2 {
      *   //   "etag": "my_etag",
      *   //   "executionCount": 0,
      *   //   "expireTime": "my_expireTime",
+     *   //   "functionalType": "my_functionalType",
      *   //   "generation": "my_generation",
      *   //   "labels": {},
      *   //   "lastModifier": "my_lastModifier",
@@ -7348,6 +7394,7 @@ export namespace run_v2 {
      *       //   "etag": "my_etag",
      *       //   "executionCount": 0,
      *       //   "expireTime": "my_expireTime",
+     *       //   "functionalType": "my_functionalType",
      *       //   "generation": "my_generation",
      *       //   "labels": {},
      *       //   "lastModifier": "my_lastModifier",
@@ -8997,7 +9044,8 @@ export namespace run_v2 {
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime",
      *   //   "volumes": [],
-     *   //   "vpcAccess": {}
+     *   //   "vpcAccess": {},
+     *   //   "workloadIdentityConfig": {}
      *   // }
      * }
      *
@@ -9995,9 +10043,9 @@ export namespace run_v2 {
      *       //   "defaultUriDisabled": false,
      *       //   "deleteTime": "my_deleteTime",
      *       //   "description": "my_description",
-     *       //   "durableExecution": false,
      *       //   "etag": "my_etag",
      *       //   "expireTime": "my_expireTime",
+     *       //   "functionalType": "my_functionalType",
      *       //   "generation": "my_generation",
      *       //   "iapEnabled": false,
      *       //   "ingress": "my_ingress",
@@ -10338,9 +10386,9 @@ export namespace run_v2 {
      *   //   "defaultUriDisabled": false,
      *   //   "deleteTime": "my_deleteTime",
      *   //   "description": "my_description",
-     *   //   "durableExecution": false,
      *   //   "etag": "my_etag",
      *   //   "expireTime": "my_expireTime",
+     *   //   "functionalType": "my_functionalType",
      *   //   "generation": "my_generation",
      *   //   "iapEnabled": false,
      *   //   "ingress": "my_ingress",
@@ -10830,9 +10878,9 @@ export namespace run_v2 {
      *       //   "defaultUriDisabled": false,
      *       //   "deleteTime": "my_deleteTime",
      *       //   "description": "my_description",
-     *       //   "durableExecution": false,
      *       //   "etag": "my_etag",
      *       //   "expireTime": "my_expireTime",
+     *       //   "functionalType": "my_functionalType",
      *       //   "generation": "my_generation",
      *       //   "iapEnabled": false,
      *       //   "ingress": "my_ingress",
@@ -11787,7 +11835,8 @@ export namespace run_v2 {
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime",
      *   //   "volumes": [],
-     *   //   "vpcAccess": {}
+     *   //   "vpcAccess": {},
+     *   //   "workloadIdentityConfig": {}
      *   // }
      * }
      *
@@ -13974,7 +14023,8 @@ export namespace run_v2 {
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime",
      *   //   "volumes": [],
-     *   //   "vpcAccess": {}
+     *   //   "vpcAccess": {},
+     *   //   "workloadIdentityConfig": {}
      *   // }
      * }
      *
