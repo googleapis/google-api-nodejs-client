@@ -6524,6 +6524,8 @@ export namespace dataflow_v1b3 {
      *     pageToken: 'placeholder-value',
      *     // The project which owns the jobs.
      *     projectId: 'placeholder-value',
+     *     // Optional.
+     *     regionalFanoutRequested: 'placeholder-value',
      *     // Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
      *     view: 'placeholder-value',
      *   });
@@ -7204,6 +7206,8 @@ export namespace dataflow_v1b3 {
      *     pageToken: 'placeholder-value',
      *     // The project which owns the jobs.
      *     projectId: 'placeholder-value',
+     *     // Optional.
+     *     regionalFanoutRequested: 'placeholder-value',
      *     // Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
      *     view: 'placeholder-value',
      *   });
@@ -7708,6 +7712,10 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
     /**
+     * Optional.
+     */
+    regionalFanoutRequested?: boolean;
+    /**
      * Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
      */
     view?: string;
@@ -7796,6 +7804,10 @@ export namespace dataflow_v1b3 {
      * The project which owns the jobs.
      */
     projectId?: string;
+    /**
+     * Optional.
+     */
+    regionalFanoutRequested?: boolean;
     /**
      * Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
      */
@@ -10656,6 +10668,8 @@ export namespace dataflow_v1b3 {
      *     pageToken: 'placeholder-value',
      *     // The project which owns the jobs.
      *     projectId: 'placeholder-value',
+     *     // Optional.
+     *     regionalFanoutRequested: 'placeholder-value',
      *     // Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
      *     view: 'placeholder-value',
      *   });
@@ -11242,6 +11256,10 @@ export namespace dataflow_v1b3 {
      * The project which owns the jobs.
      */
     projectId?: string;
+    /**
+     * Optional.
+     */
+    regionalFanoutRequested?: boolean;
     /**
      * Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
      */
