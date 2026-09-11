@@ -407,7 +407,7 @@ export namespace dataproc_v1 {
      */
     diskSizeGb?: number | null;
     /**
-     * Optional. Disk type.
+     * Optional. Deprecated: Use type instead.
      */
     diskType?: string | null;
     /**
@@ -418,6 +418,10 @@ export namespace dataproc_v1 {
      * Optional. Indicates how much throughput to provision for the attached disk. This sets the number of throughput mb per second that the disk can handle. See https://cloud.google.com/compute/docs/disks/hyperdisks#hyperdisk-features
      */
     provisionedThroughput?: string | null;
+    /**
+     * Optional. Attached disk type. Currently only supports Hyperdisks. See https://cloud.google.com/compute/docs/disks/hyperdisks. Note: Hyperdisk Balanced High Availability is not supported.Allowed values are: hyperdisk-balanced hyperdisk-extreme hyperdisk-ml hyperdisk-throughput
+     */
+    type?: string | null;
   }
   /**
    * Metadata describing the Attachment operation.
