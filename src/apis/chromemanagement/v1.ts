@@ -1181,6 +1181,57 @@ export namespace chromemanagement_v1 {
     totalSize?: number | null;
   }
   /**
+   * Response to `FindSaasUsageBrowsers` method.
+   */
+  export interface Schema$GoogleChromeManagementV1FindSaasUsageBrowsersResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of SaaS usage browser reports.
+     */
+    saasUsageBrowsers?: Schema$GoogleChromeManagementV1SaasUsageBrowser[];
+    /**
+     * Total number of SaaS usage browser reports that match the request.
+     */
+    totalSize?: string | null;
+  }
+  /**
+   * Response to `FindSaasUsageProfiles` method.
+   */
+  export interface Schema$GoogleChromeManagementV1FindSaasUsageProfilesResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of SaaS usage profile reports.
+     */
+    profileReports?: Schema$GoogleChromeManagementV1SaasUsageProfileReport[];
+    /**
+     * Total number of SaaS usage profile reports that match the request.
+     */
+    totalSize?: string | null;
+  }
+  /**
+   * Response to `FindSaasUsage` method.
+   */
+  export interface Schema$GoogleChromeManagementV1FindSaasUsageReportsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of SaaS usage reports.
+     */
+    saasReports?: Schema$GoogleChromeManagementV1SaasUsageReport[];
+    /**
+     * Total number of SaaS usage reports that match the request.
+     */
+    totalSize?: string | null;
+  }
+  /**
    * Information of a graphics adapter (GPU).
    */
   export interface Schema$GoogleChromeManagementV1GraphicsAdapterInfo {
@@ -1779,6 +1830,146 @@ export namespace chromemanagement_v1 {
      * Total lifetime runtime. Currently always S0 runtime from Intel vPro PSR.
      */
     uptimeRuntimeDuration?: string | null;
+  }
+  /**
+   * Details of a SaaS usage browser.
+   */
+  export interface Schema$GoogleChromeManagementV1SaasUsageBrowser {
+    /**
+     * Output only. The device permanent ID.
+     */
+    devicePermanentId?: string | null;
+    /**
+     * Output only. The timestamp when the application was first navigated to by this browser.
+     */
+    firstNavigationTime?: string | null;
+    /**
+     * Output only. The timestamp when the application was last navigated to by this browser.
+     */
+    lastNavigationTime?: string | null;
+    /**
+     * Output only. The machine name.
+     */
+    machine?: string | null;
+    /**
+     * Output only. The ID of the organizational unit.
+     */
+    orgUnitId?: string | null;
+    /**
+     * Output only. The OS platform.
+     */
+    osPlatform?: string | null;
+    /**
+     * Output only. The OS version.
+     */
+    osVersion?: string | null;
+  }
+  /**
+   * Represents a single SaaS report entry grouped by profile.
+   */
+  export interface Schema$GoogleChromeManagementV1SaasUsageProfileReport {
+    /**
+     * Output only. The email of the user.
+     */
+    email?: string | null;
+    /**
+     * Output only. The timestamp when the application was first navigated to by this profile.
+     */
+    firstNavigationTime?: string | null;
+    /**
+     * Output only. The timestamp when the application was last navigated to by this profile.
+     */
+    lastNavigationTime?: string | null;
+    /**
+     * Output only. The ID of the organizational unit.
+     */
+    orgUnitId?: string | null;
+    /**
+     * Output only. The OS platform.
+     */
+    osPlatform?: string | null;
+    /**
+     * Output only. The OS version.
+     */
+    osVersion?: string | null;
+    /**
+     * Output only. The permanent ID of the profile.
+     */
+    profilePermanentId?: string | null;
+  }
+  /**
+   * Represents a single SaaS report entry.
+   */
+  export interface Schema$GoogleChromeManagementV1SaasUsageReport {
+    /**
+     * Output only. The name of the application.
+     */
+    app?: string | null;
+    /**
+     * Output only. The category of the application.
+     */
+    category?: string | null;
+    /**
+     * Output only. Provides information about content transfer events, if available.
+     */
+    contentTransferDetails?: Schema$GoogleChromeManagementV1SaasUsageReportContentTransferDetails;
+    /**
+     * Output only. Number of distinct browsers that visited the application.
+     */
+    distinctBrowsersCount?: string | null;
+    /**
+     * Output only. Number of distinct users who visited the application.
+     */
+    distinctUsersCount?: string | null;
+    /**
+     * Output only. A list of domains and subdomains associated with the application.
+     */
+    domains?: string[] | null;
+    /**
+     * Output only. A list of encryption protocols used to access the application.
+     */
+    encryptionProtocols?: string[] | null;
+    /**
+     * Output only. The timestamp when the application was first navigated to.
+     */
+    firstNavigationTime?: string | null;
+    /**
+     * Output only. The year the organization was founded.
+     */
+    foundedYear?: number | null;
+    /**
+     * Output only. The headquarters location of the organization.
+     */
+    headquarters?: string | null;
+    /**
+     * Output only. The timestamp when the application was last navigated to.
+     */
+    lastNavigationTime?: string | null;
+    /**
+     * Output only. The organization that develops the application.
+     */
+    organization?: string | null;
+    /**
+     * Output only. The ID of the organizational unit.
+     */
+    orgUnitId?: string | null;
+    /**
+     * Output only. The primary domain of the application.
+     */
+    primaryDomain?: string | null;
+    /**
+     * Output only. Total number of visits to the application.
+     */
+    visitsCount?: string | null;
+  }
+  /**
+   * Provides information about content transfer events, if available.
+   */
+  export interface Schema$GoogleChromeManagementV1SaasUsageReportContentTransferDetails {
+    /**
+     * Output only. Total number of content transfers associated with the application.
+     */
+    contentTransferCount?: string | null;
   }
   /**
    * Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceStorageStatus](https://chromeenterprise.google/policies/#ReportDeviceStorageStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_STORAGE_INFO
@@ -11449,6 +11640,488 @@ export namespace chromemanagement_v1 {
         );
       }
     }
+
+    /**
+     * Find SaaS usage reports of a customer based on the given search and sorting criteria.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.reports.findSaasUsage({
+     *     // Required. Obfuscated customer ID prefixed with "customers/C" or "customers/my_customer".
+     *     customer: 'customers/my-customer',
+     *     // Optional. The filter expression to narrow down the SaaS reports to return. Supported operators are: =, !=, <, <=, \>, \>=, :. Logical operators AND, OR, and NOT are supported. Supported fields: * app * org_unit_id * first_navigation_time * last_navigation_time * category * organization * founded_year * headquarters * primary_domain * domains * encryption_protocols * visits_count * distinct_users_count * distinct_browsers_count * content_transfer_count Example: `(first_navigation_time < "2026-01-31T00:00:00Z" AND last_navigation_time \> "2026-01-01T00:00:00Z") AND visits_count \> 100`
+     *     filter: 'placeholder-value',
+     *     // Optional. The order by expression to sort the SaaS reports. Supported fields: * app * category * organization * founded_year * headquarters * primary_domain * visits_count * distinct_users_count * distinct_browsers_count * content_transfer_count Default order is ascending. To specify descending order for a field, append " desc". Example: `visits_count desc`
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of reports to return. The service may return fewer than this value. If unspecified, at most 100 reports will be returned. The maximum value is 200; values above 200 will be coerced to 200.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `FindSaasUsageReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FindSaasUsageReports` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "saasReports": [],
+     *   //   "totalSize": "my_totalSize"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    findSaasUsage(
+      params: Params$Resource$Customers$Reports$Findsaasusage,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    findSaasUsage(
+      params?: Params$Resource$Customers$Reports$Findsaasusage,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1FindSaasUsageReportsResponse>
+    >;
+    findSaasUsage(
+      params: Params$Resource$Customers$Reports$Findsaasusage,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    findSaasUsage(
+      params: Params$Resource$Customers$Reports$Findsaasusage,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageReportsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageReportsResponse>
+    ): void;
+    findSaasUsage(
+      params: Params$Resource$Customers$Reports$Findsaasusage,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageReportsResponse>
+    ): void;
+    findSaasUsage(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageReportsResponse>
+    ): void;
+    findSaasUsage(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Reports$Findsaasusage
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageReportsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageReportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageReportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1FindSaasUsageReportsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Reports$Findsaasusage;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Reports$Findsaasusage;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+customer}/reports:findSaasUsage').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1FindSaasUsageReportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1FindSaasUsageReportsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Find SaaS usage reports of a customer grouped by browsers based on the given search and sorting criteria.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.reports.findSaasUsageBrowsers({
+     *     // Required. The name of the SaaS application (e.g., `ChatGPT`, `Gemini`).
+     *     app: 'placeholder-value',
+     *     // Required. Obfuscated customer ID prefixed with "customers/C" or "customers/my_customer".
+     *     customer: 'customers/my-customer',
+     *     // Optional. The filter expression to narrow down the SaaS browser reports to return. Supported operators are: =, !=, <, <=, \>, \>=, :. Logical operators AND, OR, and NOT are supported. Supported fields: * machine * os_platform * first_navigation_time * last_navigation_time * org_unit_id
+     *     filter: 'placeholder-value',
+     *     // Optional. The order by expression to sort the SaaS browser reports. Supported fields: * machine * os_platform * first_navigation_time * last_navigation_time Default order is ascending. To specify descending order for a field, append " desc".
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of browsers to return. The service may return fewer than this value. If unspecified, at most 100 browsers will be returned. The maximum value is 200; values above 200 will be coerced to 200.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `FindSaasUsageBrowsers` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "saasUsageBrowsers": [],
+     *   //   "totalSize": "my_totalSize"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    findSaasUsageBrowsers(
+      params: Params$Resource$Customers$Reports$Findsaasusagebrowsers,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    findSaasUsageBrowsers(
+      params?: Params$Resource$Customers$Reports$Findsaasusagebrowsers,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1FindSaasUsageBrowsersResponse>
+    >;
+    findSaasUsageBrowsers(
+      params: Params$Resource$Customers$Reports$Findsaasusagebrowsers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    findSaasUsageBrowsers(
+      params: Params$Resource$Customers$Reports$Findsaasusagebrowsers,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageBrowsersResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageBrowsersResponse>
+    ): void;
+    findSaasUsageBrowsers(
+      params: Params$Resource$Customers$Reports$Findsaasusagebrowsers,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageBrowsersResponse>
+    ): void;
+    findSaasUsageBrowsers(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageBrowsersResponse>
+    ): void;
+    findSaasUsageBrowsers(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Reports$Findsaasusagebrowsers
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageBrowsersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageBrowsersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageBrowsersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1FindSaasUsageBrowsersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Reports$Findsaasusagebrowsers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Reports$Findsaasusagebrowsers;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/reports:findSaasUsageBrowsers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1FindSaasUsageBrowsersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1FindSaasUsageBrowsersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Find SaaS usage reports of a customer grouped by profiles based on the given search and sorting criteria.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.reports.findSaasUsageProfiles({
+     *     // Required. The name of the SaaS application (e.g., `ChatGPT`, `Gemini`).
+     *     app: 'placeholder-value',
+     *     // Required. Obfuscated customer ID prefixed with "customers/C" or "customers/my_customer".
+     *     customer: 'customers/my-customer',
+     *     // Optional. The filter expression to narrow down the SaaS profile reports to return. Supported operators are: =, !=, <, <=, \>, \>=, :. Logical operators AND, OR, and NOT are supported. Supported fields: * email * org_unit_id * os_platform * first_navigation_time * last_navigation_time
+     *     filter: 'placeholder-value',
+     *     // Optional. The order by expression to sort the SaaS profile reports. Supported fields: * email * os_platform * first_navigation_time * last_navigation_time Default order is ascending. To specify descending order for a field, append " desc".
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of reports to return. The service may return fewer than this value. If unspecified, at most 100 reports will be returned. The maximum value is 200; values above 200 will be coerced to 200.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `FindSaasUsageProfiles` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "profileReports": [],
+     *   //   "totalSize": "my_totalSize"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    findSaasUsageProfiles(
+      params: Params$Resource$Customers$Reports$Findsaasusageprofiles,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    findSaasUsageProfiles(
+      params?: Params$Resource$Customers$Reports$Findsaasusageprofiles,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1FindSaasUsageProfilesResponse>
+    >;
+    findSaasUsageProfiles(
+      params: Params$Resource$Customers$Reports$Findsaasusageprofiles,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    findSaasUsageProfiles(
+      params: Params$Resource$Customers$Reports$Findsaasusageprofiles,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageProfilesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageProfilesResponse>
+    ): void;
+    findSaasUsageProfiles(
+      params: Params$Resource$Customers$Reports$Findsaasusageprofiles,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageProfilesResponse>
+    ): void;
+    findSaasUsageProfiles(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageProfilesResponse>
+    ): void;
+    findSaasUsageProfiles(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Reports$Findsaasusageprofiles
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FindSaasUsageProfilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1FindSaasUsageProfilesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Reports$Findsaasusageprofiles;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Reports$Findsaasusageprofiles;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/reports:findSaasUsageProfiles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1FindSaasUsageProfilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1FindSaasUsageProfilesResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Customers$Reports$Countactivedevices extends StandardParameters {
@@ -11792,6 +12465,80 @@ export namespace chromemanagement_v1 {
     pageSize?: number;
     /**
      * Optional. Token to specify the page of the request to be returned.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Customers$Reports$Findsaasusage extends StandardParameters {
+    /**
+     * Required. Obfuscated customer ID prefixed with "customers/C" or "customers/my_customer".
+     */
+    customer?: string;
+    /**
+     * Optional. The filter expression to narrow down the SaaS reports to return. Supported operators are: =, !=, <, <=, \>, \>=, :. Logical operators AND, OR, and NOT are supported. Supported fields: * app * org_unit_id * first_navigation_time * last_navigation_time * category * organization * founded_year * headquarters * primary_domain * domains * encryption_protocols * visits_count * distinct_users_count * distinct_browsers_count * content_transfer_count Example: `(first_navigation_time < "2026-01-31T00:00:00Z" AND last_navigation_time \> "2026-01-01T00:00:00Z") AND visits_count \> 100`
+     */
+    filter?: string;
+    /**
+     * Optional. The order by expression to sort the SaaS reports. Supported fields: * app * category * organization * founded_year * headquarters * primary_domain * visits_count * distinct_users_count * distinct_browsers_count * content_transfer_count Default order is ascending. To specify descending order for a field, append " desc". Example: `visits_count desc`
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of reports to return. The service may return fewer than this value. If unspecified, at most 100 reports will be returned. The maximum value is 200; values above 200 will be coerced to 200.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `FindSaasUsageReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FindSaasUsageReports` must match the call that provided the page token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Customers$Reports$Findsaasusagebrowsers extends StandardParameters {
+    /**
+     * Required. The name of the SaaS application (e.g., `ChatGPT`, `Gemini`).
+     */
+    app?: string;
+    /**
+     * Required. Obfuscated customer ID prefixed with "customers/C" or "customers/my_customer".
+     */
+    customer?: string;
+    /**
+     * Optional. The filter expression to narrow down the SaaS browser reports to return. Supported operators are: =, !=, <, <=, \>, \>=, :. Logical operators AND, OR, and NOT are supported. Supported fields: * machine * os_platform * first_navigation_time * last_navigation_time * org_unit_id
+     */
+    filter?: string;
+    /**
+     * Optional. The order by expression to sort the SaaS browser reports. Supported fields: * machine * os_platform * first_navigation_time * last_navigation_time Default order is ascending. To specify descending order for a field, append " desc".
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of browsers to return. The service may return fewer than this value. If unspecified, at most 100 browsers will be returned. The maximum value is 200; values above 200 will be coerced to 200.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `FindSaasUsageBrowsers` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Customers$Reports$Findsaasusageprofiles extends StandardParameters {
+    /**
+     * Required. The name of the SaaS application (e.g., `ChatGPT`, `Gemini`).
+     */
+    app?: string;
+    /**
+     * Required. Obfuscated customer ID prefixed with "customers/C" or "customers/my_customer".
+     */
+    customer?: string;
+    /**
+     * Optional. The filter expression to narrow down the SaaS profile reports to return. Supported operators are: =, !=, <, <=, \>, \>=, :. Logical operators AND, OR, and NOT are supported. Supported fields: * email * org_unit_id * os_platform * first_navigation_time * last_navigation_time
+     */
+    filter?: string;
+    /**
+     * Optional. The order by expression to sort the SaaS profile reports. Supported fields: * email * os_platform * first_navigation_time * last_navigation_time Default order is ascending. To specify descending order for a field, append " desc".
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of reports to return. The service may return fewer than this value. If unspecified, at most 100 reports will be returned. The maximum value is 200; values above 200 will be coerced to 200.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `FindSaasUsageProfiles` call. Provide this to retrieve the subsequent page.
      */
     pageToken?: string;
   }
