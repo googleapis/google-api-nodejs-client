@@ -250,7 +250,7 @@
       }
     }
   },
-  "revision": "20260809",
+  "revision": "20260830",
   "rootUrl": "https://developerknowledge.googleapis.com/",
   "schemas": {
     "Answer": {
@@ -413,7 +413,7 @@
           "type": "string"
         },
         "uri": {
-          "description": "Output only. Provides the URI of the content, such as `docs.cloud.google.com/storage/docs/creating-buckets`.",
+          "description": "Output only. Provides the URI of the content, such as `https://docs.cloud.google.com/storage/docs/creating-buckets`.",
           "readOnly": true,
           "type": "string"
         },
