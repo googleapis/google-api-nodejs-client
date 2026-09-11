@@ -336,6 +336,7 @@
     "src/apis/androiddeveloperidstatus": {},
     "src/apis/ftp": {},
     "src/apis/agenciesandbrands": {},
-    "src/apis/curationpartners": {}
+    "src/apis/curationpartners": {},
+    "src/apis/auditmanager": {}
   }
 }
