@@ -5274,7 +5274,7 @@
       }
     }
   },
-  "revision": "20260825",
+  "revision": "20260829",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -6828,11 +6828,6 @@
           "$ref": "GooglePrivacyDlpV2InspectConfig",
           "description": "Optional. InspectConfig to use to produce findings."
         },
-        "inspectTemplate": {
-          "$ref": "GooglePrivacyDlpV2InspectTemplate",
-          "deprecated": true,
-          "description": "Optional. InspectTemplate to use to produce findings. Deprecated: use inspect_config instead."
-        },
         "loggingConfigs": {
           "description": "Optional. Log the actions taken by the content policy to external systems.",
           "items": {
@@ -6900,8 +6895,16 @@
       "id": "GooglePrivacyDlpV2ConversationMessage",
       "properties": {
         "content": {
-          "description": "The contents of this message.",
+          "deprecated": true,
+          "description": "Deprecated: Use `message_parts` instead. The contents of this message. Only one of `content` and `message_parts` can be set.",
           "type": "string"
+        },
+        "messageParts": {
+          "description": "Optional. The parts of the message. Restricted to being at most a single text item. Only one of `content` and `message_parts` can be set.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2MessagePart"
+          },
+          "type": "array"
         },
         "messageType": {
           "description": "The type of message.",
@@ -11375,6 +11378,17 @@
       "properties": {},
       "type": "object"
     },
+    "GooglePrivacyDlpV2MessagePart": {
+      "description": "A part of a conversation message.",
+      "id": "GooglePrivacyDlpV2MessagePart",
+      "properties": {
+        "text": {
+          "description": "String content for text-based messages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2MetadataKeyValueExpression": {
       "description": "Configuration for a custom infoType that detects key-value pairs in the metadata matching the specified regular expressions.",
       "id": "GooglePrivacyDlpV2MetadataKeyValueExpression",
@@ -11719,21 +11733,6 @@
             "$ref": "GooglePrivacyDlpV2PolicyCondition"
           },
           "type": "array"
-        },
-        "returnVerdict": {
-          "deprecated": true,
-          "description": "If set, the verdict will be returned to the user. Deprecated: Use `action` instead.",
-          "enum": [
-            "CONTENT_POLICY_VERDICT_UNSPECIFIED",
-            "ALLOW",
-            "BLOCK"
-          ],
-          "enumDescriptions": [
-            "Not used.",
-            "The policy allows the provided content to be used.",
-            "The policy prevents the provided content from being used. This should result in a blocked file upload, exclusion from training dataset, or other similar block action. (specific action will depend on the caller)."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
