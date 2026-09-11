@@ -5404,16 +5404,18 @@
                               "type": "string"
                             },
                             "modelInfoView": {
-                              "description": "Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `MODEL_INFO_VIEW_ADMIN` is set by the Cloud Console admin \"Feature Management\" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; unset / `MODEL_INFO_VIEW_WEB` returns the end-user selector. The mobile surface is detected from the `X-Goog-Gemini-Enterprise-Mobile` header instead (see `ModelInfoView`).",
+                              "description": "Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin \"Feature Management\" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.",
                               "enum": [
                                 "MODEL_INFO_VIEW_UNSPECIFIED",
                                 "END_USER_WEB",
-                                "ADMIN"
+                                "ADMIN",
+                                "END_USER_MOBILE"
                               ],
                               "enumDescriptions": [
                                 "Not specified.",
                                 "The end-user web model selector view.",
-                                "The Cloud Console admin \"Feature Control\" view that displays model toggles. Returns admin-surfaced models with `ResolvedModel.admin_view` populated."
+                                "The Cloud Console admin \"Feature Control\" view that displays model toggles. Returns admin-surfaced models with `ResolvedModel.admin_view` populated.",
+                                "The end-user model selector view for the Gemini Enterprise mobile app. Returns only mobile-surfaced models, with the mobile default selected. Set explicitly by the mobile client."
                               ],
                               "location": "query",
                               "type": "string"
@@ -8191,16 +8193,18 @@
                               "type": "string"
                             },
                             "modelInfoView": {
-                              "description": "Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `MODEL_INFO_VIEW_ADMIN` is set by the Cloud Console admin \"Feature Management\" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; unset / `MODEL_INFO_VIEW_WEB` returns the end-user selector. The mobile surface is detected from the `X-Goog-Gemini-Enterprise-Mobile` header instead (see `ModelInfoView`).",
+                              "description": "Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin \"Feature Management\" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.",
                               "enum": [
                                 "MODEL_INFO_VIEW_UNSPECIFIED",
                                 "END_USER_WEB",
-                                "ADMIN"
+                                "ADMIN",
+                                "END_USER_MOBILE"
                               ],
                               "enumDescriptions": [
                                 "Not specified.",
                                 "The end-user web model selector view.",
-                                "The Cloud Console admin \"Feature Control\" view that displays model toggles. Returns admin-surfaced models with `ResolvedModel.admin_view` populated."
+                                "The Cloud Console admin \"Feature Control\" view that displays model toggles. Returns admin-surfaced models with `ResolvedModel.admin_view` populated.",
+                                "The end-user model selector view for the Gemini Enterprise mobile app. Returns only mobile-surfaced models, with the mobile default selected. Set explicitly by the mobile client."
                               ],
                               "location": "query",
                               "type": "string"
@@ -11520,16 +11524,18 @@
                           "type": "string"
                         },
                         "modelInfoView": {
-                          "description": "Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `MODEL_INFO_VIEW_ADMIN` is set by the Cloud Console admin \"Feature Management\" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; unset / `MODEL_INFO_VIEW_WEB` returns the end-user selector. The mobile surface is detected from the `X-Goog-Gemini-Enterprise-Mobile` header instead (see `ModelInfoView`).",
+                          "description": "Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin \"Feature Management\" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.",
                           "enum": [
                             "MODEL_INFO_VIEW_UNSPECIFIED",
                             "END_USER_WEB",
-                            "ADMIN"
+                            "ADMIN",
+                            "END_USER_MOBILE"
                           ],
                           "enumDescriptions": [
                             "Not specified.",
                             "The end-user web model selector view.",
-                            "The Cloud Console admin \"Feature Control\" view that displays model toggles. Returns admin-surfaced models with `ResolvedModel.admin_view` populated."
+                            "The Cloud Console admin \"Feature Control\" view that displays model toggles. Returns admin-surfaced models with `ResolvedModel.admin_view` populated.",
+                            "The end-user model selector view for the Gemini Enterprise mobile app. Returns only mobile-surfaced models, with the mobile default selected. Set explicitly by the mobile client."
                           ],
                           "location": "query",
                           "type": "string"
@@ -12265,163 +12271,6 @@
               }
             },
             "notebooks": {
-              "methods": {
-                "batchDelete": {
-                  "description": "Batch deletes Notebooks.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks:batchDelete",
-                  "httpMethod": "POST",
-                  "id": "discoveryengine.projects.locations.notebooks.batchDelete",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Required. The parent branch resource name, such as `projects/{project}/locations/{location}`.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/notebooks:batchDelete",
-                  "request": {
-                    "$ref": "GoogleCloudNotebooklmV1alphaBatchDeleteNotebooksRequest"
-                  },
-                  "response": {
-                    "$ref": "GoogleProtobufEmpty"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/discoveryengine.readwrite",
-                    "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
-                  ]
-                },
-                "create": {
-                  "description": "Creates a notebook.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks",
-                  "httpMethod": "POST",
-                  "id": "discoveryengine.projects.locations.notebooks.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Required. The parent resource name, such as `projects/{project}/locations/{location}`.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/notebooks",
-                  "request": {
-                    "$ref": "GoogleCloudNotebooklmV1alphaNotebook"
-                  },
-                  "response": {
-                    "$ref": "GoogleCloudNotebooklmV1alphaNotebook"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/discoveryengine.readwrite",
-                    "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
-                  ]
-                },
-                "get": {
-                  "description": "Gets a notebook.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks/{notebooksId}",
-                  "httpMethod": "GET",
-                  "id": "discoveryengine.projects.locations.notebooks.get",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. Full resource name of Notebook, such as `projects/{project}/locations/{location}/notebooks/{notebook_id}`.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/notebooks/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "response": {
-                    "$ref": "GoogleCloudNotebooklmV1alphaNotebook"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/discoveryengine.readwrite",
-                    "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
-                  ]
-                },
-                "listRecentlyViewed": {
-                  "description": "Lists the notebooks ordered by last view time.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks:listRecentlyViewed",
-                  "httpMethod": "GET",
-                  "id": "discoveryengine.projects.locations.notebooks.listRecentlyViewed",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "pageSize": {
-                      "description": "Optional. Maximum number of Notebooks to return. If unspecified, defaults to \"500\". The maximum allowed value is \"500\". If this field is negative, will use the default value.",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "pageToken": {
-                      "description": "Optional. The page token, provide this to retrieve the subsequent page.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. The parent branch resource name, such as `projects/{project}/locations/{location}`.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/notebooks:listRecentlyViewed",
-                  "response": {
-                    "$ref": "GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/discoveryengine.readwrite",
-                    "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
-                  ]
-                },
-                "share": {
-                  "description": "Shares a notebook to other accounts.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks/{notebooksId}:share",
-                  "httpMethod": "POST",
-                  "id": "discoveryengine.projects.locations.notebooks.share",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. Full resource name of Notebook, such as `projects/{project}/locations/{location}/notebooks/{notebook_id}`.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/notebooks/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+name}:share",
-                  "request": {
-                    "$ref": "GoogleCloudNotebooklmV1alphaShareNotebookRequest"
-                  },
-                  "response": {
-                    "$ref": "GoogleCloudNotebooklmV1alphaShareNotebookResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/discoveryengine.readwrite",
-                    "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
-                  ]
-                }
-              },
               "resources": {
                 "audioOverviews": {
                   "methods": {
@@ -12475,98 +12324,6 @@
                       "path": "v1alpha/{+name}",
                       "response": {
                         "$ref": "GoogleProtobufEmpty"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/discoveryengine.readwrite",
-                        "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
-                      ]
-                    }
-                  }
-                },
-                "sources": {
-                  "methods": {
-                    "batchCreate": {
-                      "description": "Creates a list of Sources.",
-                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks/{notebooksId}/sources:batchCreate",
-                      "httpMethod": "POST",
-                      "id": "discoveryengine.projects.locations.notebooks.sources.batchCreate",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "parent": {
-                          "description": "Required. The parent resource where the sources will be created. Format: projects/{project}/locations/{location}/notebooks/{notebook}",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/notebooks/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha/{+parent}/sources:batchCreate",
-                      "request": {
-                        "$ref": "GoogleCloudNotebooklmV1alphaBatchCreateSourcesRequest"
-                      },
-                      "response": {
-                        "$ref": "GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
-                        "https://www.googleapis.com/auth/discoveryengine.readwrite",
-                        "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
-                      ]
-                    },
-                    "batchDelete": {
-                      "description": "Deletes multiple sources",
-                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks/{notebooksId}/sources:batchDelete",
-                      "httpMethod": "POST",
-                      "id": "discoveryengine.projects.locations.notebooks.sources.batchDelete",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "parent": {
-                          "description": "Required. The parent resource where the sources will be deleted. Format: projects/{project}/locations/{location}/notebooks/{notebook}",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/notebooks/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha/{+parent}/sources:batchDelete",
-                      "request": {
-                        "$ref": "GoogleCloudNotebooklmV1alphaBatchDeleteSourcesRequest"
-                      },
-                      "response": {
-                        "$ref": "GoogleProtobufEmpty"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/discoveryengine.readwrite",
-                        "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
-                      ]
-                    },
-                    "get": {
-                      "description": "Gets a Source.",
-                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks/{notebooksId}/sources/{sourcesId}",
-                      "httpMethod": "GET",
-                      "id": "discoveryengine.projects.locations.notebooks.sources.get",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The resource name for source Format: projects/{project}/locations/{location}/notebooks/{notebook}/sources/{source}",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/notebooks/[^/]+/sources/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha/{+name}",
-                      "response": {
-                        "$ref": "GoogleCloudNotebooklmV1alphaSource"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -13647,7 +13404,7 @@
       }
     }
   },
-  "revision": "20260823",
+  "revision": "20260908",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -14345,6 +14102,10 @@
             "$ref": "GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase"
           },
           "type": "array"
+        },
+        "dataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1DataProtectionPolicy",
+          "description": "Optional. Data protection policy to be used for sanitizing file uploads."
         },
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1AssistantCustomerPolicyModelArmorConfig",
@@ -15262,6 +15023,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "dataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1DataProtectionPolicy",
+          "description": "Optional. Specifies the data protection policy for the connector."
+        },
         "dataSource": {
           "description": "Required. The identifier for the data source. For the full, up-to-date list of supported connectors and their values, see [Connect a third-party data source](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/connect-third-party-data-source#sources-by-launch-stage).",
           "type": "string"
@@ -15672,6 +15437,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1DataProtectionPolicy": {
+      "description": "Contains the data protection policy config for a DataStore or a connector.",
+      "id": "GoogleCloudDiscoveryengineV1DataProtectionPolicy",
+      "properties": {
+        "sensitiveDataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1DataProtectionPolicySensitiveDataProtectionPolicy",
+          "description": "Optional. Specifies the sensitive data protection policy for the connector source."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DataProtectionPolicySensitiveDataProtectionPolicy": {
+      "description": "Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.",
+      "id": "GoogleCloudDiscoveryengineV1DataProtectionPolicySensitiveDataProtectionPolicy",
+      "properties": {
+        "policy": {
+          "description": "Optional. Specifies the resource name of the Sensitive Data Protection content policy.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1DataStore": {
       "description": "DataStore captures global settings and configs at the DataStore level.",
       "id": "GoogleCloudDiscoveryengineV1DataStore",
@@ -15737,6 +15524,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "dataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1DataProtectionPolicy",
+          "description": "Optional. Specifies the data protection policy for the data store."
         },
         "defaultSchemaId": {
           "description": "Output only. The id of the default Schema associated to this data store.",
@@ -16496,7 +16287,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
           "type": "object"
         },
         "industryVertical": {
@@ -16576,6 +16367,10 @@
         "searchEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineSearchEngineConfig",
           "description": "Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
+        },
+        "sessionConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1SessionConfig",
+          "description": "Optional. Non-empty default. Session config for the engine."
         },
         "solutionType": {
           "description": "Required. The solutions of the engine.",
@@ -18183,6 +17978,43 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1SessionConfig": {
+      "description": "Configuration for the session.",
+      "id": "GoogleCloudDiscoveryengineV1SessionConfig",
+      "properties": {
+        "sessionManagementPolicy": {
+          "description": "Optional. Session management policy that defines who will manage the session.",
+          "enum": [
+            "SESSION_MANAGEMENT_POLICY_UNSPECIFIED",
+            "NOT_MANAGED",
+            "VERTEX_AI_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The session will be managed by the customer.",
+            "Sessions multi-tenancy will be controlled by Google using 1P or 3P identity providers."
+          ],
+          "type": "string"
+        },
+        "sessionTtl": {
+          "$ref": "GoogleCloudDiscoveryengineV1SessionConfigSessionTtl",
+          "description": "Optional. The TTL for the session. If unset, the default value is 60 days."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1SessionConfigSessionTtl": {
+      "description": "Defines the TTL for sessions.",
+      "id": "GoogleCloudDiscoveryengineV1SessionConfigSessionTtl",
+      "properties": {
+        "days": {
+          "description": "Defines the number of days for session TTL.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1SetUpDataConnectorMetadata": {
       "description": "Metadata for DataConnectorService.SetUpDataConnector method.",
       "id": "GoogleCloudDiscoveryengineV1SetUpDataConnectorMetadata",
@@ -19697,6 +19529,24 @@
       "properties": {
         "name": {
           "description": "Required. Model name (e.g. `gemini-2.5-flash`, `gemini-3.1-pro-preview`). See `model_mixture` for the list of allowed models.",
+          "type": "string"
+        },
+        "thinkingLevel": {
+          "description": "Optional. Sent as Vertex `ThinkingConfig.thinking_level`.",
+          "enum": [
+            "THINKING_LEVEL_UNSPECIFIED",
+            "MINIMAL",
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Unset. The model applies its own default, which is not the same level for every model.",
+            "Least thinking. Not offered by every model.",
+            "Vertex `LOW`.",
+            "Vertex `MEDIUM`.",
+            "Vertex `HIGH`."
+          ],
           "type": "string"
         },
         "weight": {
@@ -21434,6 +21284,10 @@
         "generationConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfig",
           "description": "Optional. Configuration for the generation of the assistant response."
+        },
+        "knowledgeCatalogEnabled": {
+          "description": "Optional. Indicates whether Knowledge Catalog is enabled for this specific assistant. When enabled, it powers discovery context using organizational data.",
+          "type": "boolean"
         },
         "name": {
           "description": "Immutable. Resource name of the assistant. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}` It must be a UTF-8 encoded string with a length limit of 1024 characters.",
@@ -26136,7 +25990,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
           "type": "object"
         },
         "industryVertical": {
@@ -26221,6 +26075,10 @@
         "searchEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineSearchEngineConfig",
           "description": "Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
+        },
+        "sessionConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSessionConfig",
+          "description": "Optional. Non-empty default. Session config for the engine."
         },
         "similarDocumentsConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineSimilarDocumentsEngineConfig",
@@ -33414,6 +33272,43 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaSessionConfig": {
+      "description": "Configuration for the session.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSessionConfig",
+      "properties": {
+        "sessionManagementPolicy": {
+          "description": "Optional. Session management policy that defines who will manage the session.",
+          "enum": [
+            "SESSION_MANAGEMENT_POLICY_UNSPECIFIED",
+            "NOT_MANAGED",
+            "VERTEX_AI_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The session will be managed by the customer.",
+            "Sessions multi-tenancy will be controlled by Google using 1P or 3P identity providers."
+          ],
+          "type": "string"
+        },
+        "sessionTtl": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSessionConfigSessionTtl",
+          "description": "Optional. The TTL for the session. If unset, the default value is 60 days."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSessionConfigSessionTtl": {
+      "description": "Defines the TTL for sessions.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSessionConfigSessionTtl",
+      "properties": {
+        "days": {
+          "description": "Defines the number of days for session TTL.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaSessionTurn": {
       "description": "Represents a turn, including a query from the user and a answer from service.",
       "id": "GoogleCloudDiscoveryengineV1alphaSessionTurn",
@@ -35187,6 +35082,23 @@
       "description": "Customer provided configurations.",
       "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigCustomerProvidedConfig",
       "properties": {
+        "complianceLevel": {
+          "description": "Output only. The customer's Assured Workloads compliance level. `customer_type` collapses every compliance level into a single `GOVERNMENT_CUSTOMER` value, so a client that gates a feature on one specific level rather than on government status as a whole must read this field instead.",
+          "enum": [
+            "COMPLIANCE_LEVEL_UNSPECIFIED",
+            "COMPLIANCE_LEVEL_FEDRAMP_HIGH",
+            "COMPLIANCE_LEVEL_IL4",
+            "COMPLIANCE_LEVEL_IL5"
+          ],
+          "enumDescriptions": [
+            "The project has no Assured Workloads compliance level, or reports one that this API version does not model.",
+            "FedRAMP High compliance level.",
+            "Impact Level 4 (IL4) compliance level.",
+            "Impact Level 5 (IL5) compliance level."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "customerType": {
           "description": "Customer type.",
           "enum": [
@@ -35541,7 +35453,7 @@
             ],
             "type": "string"
           },
-          "description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
+          "description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
           "readOnly": true,
           "type": "object"
         },
@@ -35725,6 +35637,11 @@
         },
         "icon": {
           "description": "Output only. GM3-compatible icon token associated with the model (e.g. `rocket_launch`, `bolt`, `graph_5`).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "iconUrl": {
+          "description": "Output only. Absolute URL of a brand mark to render instead of `icon`, for models whose vendor logo is not a GM3 glyph. `icon` stays populated as the fallback, so a client that does not render images, or that fails to fetch this one, shows the glyph instead of nothing.",
           "readOnly": true,
           "type": "string"
         },
@@ -36464,6 +36381,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaDataProtectionPolicy": {
+      "description": "Contains the data protection policy config for a DataStore or a connector.",
+      "id": "GoogleCloudDiscoveryengineV1betaDataProtectionPolicy",
+      "properties": {
+        "sensitiveDataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDataProtectionPolicySensitiveDataProtectionPolicy",
+          "description": "Optional. Specifies the sensitive data protection policy for the connector source."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDataProtectionPolicySensitiveDataProtectionPolicy": {
+      "description": "Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.",
+      "id": "GoogleCloudDiscoveryengineV1betaDataProtectionPolicySensitiveDataProtectionPolicy",
+      "properties": {
+        "policy": {
+          "description": "Optional. Specifies the resource name of the Sensitive Data Protection content policy.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaDataStore": {
       "description": "DataStore captures global settings and configs at the DataStore level.",
       "id": "GoogleCloudDiscoveryengineV1betaDataStore",
@@ -36529,6 +36468,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "dataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDataProtectionPolicy",
+          "description": "Optional. Specifies the data protection policy for the data store."
         },
         "defaultSchemaId": {
           "description": "Output only. The id of the default Schema associated to this data store.",
@@ -37212,7 +37155,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
           "type": "object"
         },
         "industryVertical": {
@@ -37292,6 +37235,10 @@
         "searchEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig",
           "description": "Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
+        },
+        "sessionConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSessionConfig",
+          "description": "Optional. Non-empty default. Session config for the engine."
         },
         "solutionType": {
           "description": "Required. The solutions of the engine.",
@@ -39805,6 +39752,43 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaSessionConfig": {
+      "description": "Configuration for the session.",
+      "id": "GoogleCloudDiscoveryengineV1betaSessionConfig",
+      "properties": {
+        "sessionManagementPolicy": {
+          "description": "Optional. Session management policy that defines who will manage the session.",
+          "enum": [
+            "SESSION_MANAGEMENT_POLICY_UNSPECIFIED",
+            "NOT_MANAGED",
+            "VERTEX_AI_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The session will be managed by the customer.",
+            "Sessions multi-tenancy will be controlled by Google using 1P or 3P identity providers."
+          ],
+          "type": "string"
+        },
+        "sessionTtl": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSessionConfigSessionTtl",
+          "description": "Optional. The TTL for the session. If unset, the default value is 60 days."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSessionConfigSessionTtl": {
+      "description": "Defines the TTL for sessions.",
+      "id": "GoogleCloudDiscoveryengineV1betaSessionConfigSessionTtl",
+      "properties": {
+        "days": {
+          "description": "Defines the number of days for session TTL.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaSetDedicatedCrawlRateMetadata": {
       "description": "Metadata related to the progress of the CrawlRateManagementService.SetDedicatedCrawlRate operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1betaSetDedicatedCrawlRateMetadata",
@@ -40288,52 +40272,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudNotebooklmV1alphaAccountAndRole": {
-      "description": "Account and role information.",
-      "id": "GoogleCloudNotebooklmV1alphaAccountAndRole",
-      "properties": {
-        "email": {
-          "description": "Required. The email address associated with the account.",
-          "type": "string"
-        },
-        "role": {
-          "description": "Required. The role in the notebook.",
-          "enum": [
-            "PROJECT_ROLE_UNKNOWN",
-            "PROJECT_ROLE_OWNER",
-            "PROJECT_ROLE_WRITER",
-            "PROJECT_ROLE_READER",
-            "PROJECT_ROLE_NOT_SHARED"
-          ],
-          "enumDescriptions": [
-            "Unknown role.",
-            "The user owns the project.",
-            "The user has writer permissions on the project.",
-            "The user has reader permissions on the project.",
-            "The user has no access to the project."
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaAgentspaceMetadata": {
-      "description": "Metadata about an agentspace source.",
-      "id": "GoogleCloudNotebooklmV1alphaAgentspaceMetadata",
-      "properties": {
-        "documentName": {
-          "description": "Output only. The full document name in Agentspace.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "documentTitle": {
-          "description": "Output only. The title of the document.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudNotebooklmV1alphaAudioOverview": {
       "description": "An audio overview of a notebook. This is a summary of the notebook in audio format.",
       "id": "GoogleCloudNotebooklmV1alphaAudioOverview",
@@ -40412,73 +40350,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudNotebooklmV1alphaBatchCreateSourcesRequest": {
-      "description": "Request for SourceService.BatchCreateSources method.",
-      "id": "GoogleCloudNotebooklmV1alphaBatchCreateSourcesRequest",
-      "properties": {
-        "userContents": {
-          "description": "Required. The UserContents to be uploaded.",
-          "items": {
-            "$ref": "GoogleCloudNotebooklmV1alphaUserContent"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse": {
-      "description": "Response for SourceService.BatchCreateSources method.",
-      "id": "GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse",
-      "properties": {
-        "sources": {
-          "description": "The Sources.",
-          "items": {
-            "$ref": "GoogleCloudNotebooklmV1alphaSource"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaBatchDeleteNotebooksRequest": {
-      "description": "Request for NotebookService.BatchDeleteNotebooks method.",
-      "id": "GoogleCloudNotebooklmV1alphaBatchDeleteNotebooksRequest",
-      "properties": {
-        "names": {
-          "description": "Required. Full resource names of Notebook, such as `projects/{project}/locations/{location}/notebooks/{notebook_id}`.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaBatchDeleteSourcesRequest": {
-      "description": "Request for BatchDeleteSourcesRequest method.",
-      "id": "GoogleCloudNotebooklmV1alphaBatchDeleteSourcesRequest",
-      "properties": {
-        "names": {
-          "description": "Required. Names of sources to be deleted. Format: projects/{project}/locations/{location}/notebooks/{notebook}/sources/{source}",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaCmekConfig": {
-      "description": "Customer-managed encryption configuration for Notebooks.",
-      "id": "GoogleCloudNotebooklmV1alphaCmekConfig",
-      "properties": {
-        "kmsKey": {
-          "description": "Required. KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudNotebooklmV1alphaCreateAudioOverviewRequest": {
       "description": "Request for AudioOverviewService.CreateAudioOverview method.",
       "id": "GoogleCloudNotebooklmV1alphaCreateAudioOverviewRequest",
@@ -40501,583 +40372,12 @@
       },
       "type": "object"
     },
-    "GoogleCloudNotebooklmV1alphaFailureReason": {
-      "description": "Failure reason containing details about why a source failed to ingest.",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReason",
-      "properties": {
-        "audioTranscriptionError": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonAudioTranscriptionError",
-          "description": "An audio file transcription specific error."
-        },
-        "domainBlocked": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonDomainBlocked",
-          "description": "Error if the user tries to add a source from a blocked domain."
-        },
-        "googleDriveError": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonGoogleDriveError",
-          "description": "A google drive specific error."
-        },
-        "ingestionError": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonIngestionError",
-          "description": "Indicates an error occurred while ingesting the source."
-        },
-        "mimeTypeBlocked": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonMimeTypeBlocked",
-          "description": "Indicates that the source MIME type is blocked."
-        },
-        "paywallError": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonPaywallError",
-          "description": "Indicates that the source is paywalled and cannot be ingested."
-        },
-        "policyCheckFailed": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonPolicyCheckFailed",
-          "description": "Indicates that the policy check failed."
-        },
-        "sourceEmpty": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonSourceEmpty",
-          "description": "Indicates that the source is empty."
-        },
-        "sourceLimitExceeded": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonSourceLimitExceeded",
-          "description": "Error if the user tries to update beyond their limits."
-        },
-        "sourceTooLong": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonSourceTooLong",
-          "description": "Indicates source word count exceeded the user's limit."
-        },
-        "sourceUnreachable": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonSourceUnreachable",
-          "description": "Indicates that the source is unreachable."
-        },
-        "unknown": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonUnknown",
-          "description": "Indicates an unknown error occurred."
-        },
-        "uploadError": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonUploadError",
-          "description": "Indicates an error occurred while uploading the source."
-        },
-        "youtubeError": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonYoutubeError",
-          "description": "A youtube specific error."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaFailureReasonAudioTranscriptionError": {
-      "description": "An audio file transcription specific error.",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReasonAudioTranscriptionError",
-      "properties": {
-        "languageDetectionFailed": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonAudioTranscriptionErrorLanguageDetectionFailed",
-          "description": "Could not detect language of the file (it may not be speech)."
-        },
-        "noAudioDetected": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonAudioTranscriptionErrorNoAudioDetected",
-          "description": "No audio was detected in the input file (it may have been a video)."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaFailureReasonAudioTranscriptionErrorLanguageDetectionFailed": {
-      "description": "Could not detect language of the file (it may not be speech).",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReasonAudioTranscriptionErrorLanguageDetectionFailed",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaFailureReasonAudioTranscriptionErrorNoAudioDetected": {
-      "description": "No audio was detected in the input file.",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReasonAudioTranscriptionErrorNoAudioDetected",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaFailureReasonDomainBlocked": {
-      "description": "Error to indicate that the source was removed because the domain was blocked.",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReasonDomainBlocked",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaFailureReasonGoogleDriveError": {
-      "description": "A google drive specific error.",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReasonGoogleDriveError",
-      "properties": {
-        "downloadPrevented": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonGoogleDriveErrorDownloadPrevented",
-          "description": "The user was prevented from downloading the file."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaFailureReasonGoogleDriveErrorDownloadPrevented": {
-      "description": "The user was prevented from downloading the file.",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReasonGoogleDriveErrorDownloadPrevented",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaFailureReasonIngestionError": {
-      "description": "Indicates an error occurred while ingesting the source.",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReasonIngestionError",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaFailureReasonMimeTypeBlocked": {
-      "description": "Indicates that the source MIME type is blocked.",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReasonMimeTypeBlocked",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaFailureReasonPaywallError": {
-      "description": "Indicates that the source is paywalled and cannot be ingested.",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReasonPaywallError",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaFailureReasonPolicyCheckFailed": {
-      "description": "Indicates that the policy check failed.",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReasonPolicyCheckFailed",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaFailureReasonSourceEmpty": {
-      "description": "Indicates that the source is empty.",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReasonSourceEmpty",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaFailureReasonSourceLimitExceeded": {
-      "description": "Indicates that the user does not have space for this source.",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReasonSourceLimitExceeded",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaFailureReasonSourceTooLong": {
-      "description": "Indicates source word count exceeded the user's limit.",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReasonSourceTooLong",
-      "properties": {
-        "wordCount": {
-          "description": "The number of words in the source.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "wordLimit": {
-          "description": "The word count limit for the current user at the time of the upload.",
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaFailureReasonSourceUnreachable": {
-      "description": "Indicates that the source is unreachable. This is primarily used for sources that are added via URL.",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReasonSourceUnreachable",
-      "properties": {
-        "errorDetails": {
-          "description": "Describes why the source is unreachable.",
-          "enum": [
-            "ERROR_REASON_UNSPECIFIED",
-            "ERROR_REASON_INVALID_URL",
-            "ERROR_REASON_NOT_ACCESSIBLE",
-            "ERROR_REASON_NOT_REACHABLE",
-            "ERROR_REASON_URL_NOT_FOUND",
-            "ERROR_REASON_TRANSIENT_ERROR",
-            "ERROR_REASON_FETCH_FAILED",
-            "ERROR_REASON_NOT_SUPPORTED"
-          ],
-          "enumDescriptions": [
-            "Default",
-            "The source URL is invalid.",
-            "The source URL is not accessible.",
-            "The source URL is not reachable.",
-            "The source URL returned 404.",
-            "The source URL not reachable due to a transient network error or host timeout etc.",
-            "The source URL could not be fetched due to an internal error.",
-            "The URL is not yet supported. Examples include: the fetched content exceeds the trawler fetch max size, the fetched content is a type we do not yet support, etc."
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaFailureReasonUnknown": {
-      "description": "Indicates an unknown error occurred.",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReasonUnknown",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaFailureReasonUploadError": {
-      "description": "Indicates an error occurred while uploading the source.",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReasonUploadError",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaFailureReasonYoutubeError": {
-      "description": "A youtube specific error.",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReasonYoutubeError",
-      "properties": {
-        "videoDeleted": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonYoutubeErrorVideoDeleted",
-          "description": "Error to indicate that the source was removed because the video was deleted."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaFailureReasonYoutubeErrorVideoDeleted": {
-      "description": "Error to indicate that the source was removed because the video was deleted.",
-      "id": "GoogleCloudNotebooklmV1alphaFailureReasonYoutubeErrorVideoDeleted",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaGoogleDocsSourceMetadata": {
-      "description": "Metadata about a google doc source.",
-      "id": "GoogleCloudNotebooklmV1alphaGoogleDocsSourceMetadata",
-      "properties": {
-        "documentId": {
-          "description": "Output only. The document id of the google doc.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "revisionId": {
-          "description": "Output only. Revision id for the doc.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse": {
-      "description": "Response for NotebookService.ListRecentlyViewedNotebooks method.",
-      "id": "GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "The page token, provide this to retrieve the subsequent page.",
-          "type": "string"
-        },
-        "notebooks": {
-          "description": "The list of recently viewed notebooks.",
-          "items": {
-            "$ref": "GoogleCloudNotebooklmV1alphaNotebook"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaNotebook": {
-      "description": "Notebook is a resource where users can store their content (as sources) and interacts with the content.",
-      "id": "GoogleCloudNotebooklmV1alphaNotebook",
-      "properties": {
-        "cmekConfig": {
-          "$ref": "GoogleCloudNotebooklmV1alphaCmekConfig",
-          "description": "Output only. CMEK-related information for the Notebook.",
-          "readOnly": true
-        },
-        "emoji": {
-          "description": "Output only. The emoji of the notebook.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "metadata": {
-          "$ref": "GoogleCloudNotebooklmV1alphaNotebookMetadata",
-          "description": "Output only. The metadata of the notebook.",
-          "readOnly": true
-        },
-        "name": {
-          "description": "Identifier. The identifier of the notebook. Format: `projects/{project}/locations/{location}/notebooks/{notebook_id}`. This field must be a UTF-8 encoded string.",
-          "type": "string"
-        },
-        "notebookId": {
-          "description": "Output only. Notebook id, which is the last segment of the notebook's resource name.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "sources": {
-          "description": "Output only. List of sources in the notebook. This is an output only field.",
-          "items": {
-            "$ref": "GoogleCloudNotebooklmV1alphaSource"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "title": {
-          "description": "Optional. The title of the notebook.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaNotebookMetadata": {
-      "description": "Metadata for a notebook.",
-      "id": "GoogleCloudNotebooklmV1alphaNotebookMetadata",
-      "properties": {
-        "createTime": {
-          "description": "The time at which this project was created.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "isShareable": {
-          "description": "True if the project is shareable.",
-          "type": "boolean"
-        },
-        "isShared": {
-          "description": "True if this project is currently shared with other people, false otherwise.",
-          "type": "boolean"
-        },
-        "lastViewed": {
-          "description": "A timestamp indicating the time that the current in session user has last viewed the project.",
-          "format": "google-datetime",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaShareNotebookRequest": {
-      "description": "Request for NotebookService.ShareNotebook method.",
-      "id": "GoogleCloudNotebooklmV1alphaShareNotebookRequest",
-      "properties": {
-        "accountAndRoles": {
-          "description": "Required. The list of accounts and roles to share the notebook with.",
-          "items": {
-            "$ref": "GoogleCloudNotebooklmV1alphaAccountAndRole"
-          },
-          "type": "array"
-        },
-        "notifyViaEmail": {
-          "description": "Required. Whether to notify the shared users via email.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaShareNotebookResponse": {
-      "description": "Response for NotebookService.ShareNotebook method.",
-      "id": "GoogleCloudNotebooklmV1alphaShareNotebookResponse",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaSource": {
-      "description": "Source represents a single source of content.",
-      "id": "GoogleCloudNotebooklmV1alphaSource",
-      "properties": {
-        "metadata": {
-          "$ref": "GoogleCloudNotebooklmV1alphaSourceMetadata",
-          "description": "Output only. Metadata about the source.",
-          "readOnly": true
-        },
-        "name": {
-          "description": "Identifier. The full resource name of the source. Format: `projects/{project}/locations/{location}/notebooks/{notebook}/sources/{source_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
-          "type": "string"
-        },
-        "settings": {
-          "$ref": "GoogleCloudNotebooklmV1alphaSourceSettings",
-          "description": "Output only. Status of the source, and any failure reasons.",
-          "readOnly": true
-        },
-        "sourceId": {
-          "$ref": "GoogleCloudNotebooklmV1alphaSourceId",
-          "description": "Optional. Output only. Source id, which is the last segment of the source's resource name.",
-          "readOnly": true
-        },
-        "title": {
-          "description": "Optional. Title of the source.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudNotebooklmV1alphaSourceId": {
       "description": "SourceId is the last segment of the source's resource name.",
       "id": "GoogleCloudNotebooklmV1alphaSourceId",
       "properties": {
         "id": {
           "description": "The id of the source.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaSourceMetadata": {
-      "description": "Represents the metadata of a source and some additional information.",
-      "id": "GoogleCloudNotebooklmV1alphaSourceMetadata",
-      "properties": {
-        "agentspaceMetadata": {
-          "$ref": "GoogleCloudNotebooklmV1alphaAgentspaceMetadata",
-          "description": "Metadata for an agentspace source."
-        },
-        "googleDocsMetadata": {
-          "$ref": "GoogleCloudNotebooklmV1alphaGoogleDocsSourceMetadata",
-          "description": "Metadata for a google doc source."
-        },
-        "sourceAddedTimestamp": {
-          "description": "The timestamp the source was added.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "tokenCount": {
-          "description": "The number of tokens in the source.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "wordCount": {
-          "description": "The word count of the source.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "youtubeMetadata": {
-          "$ref": "GoogleCloudNotebooklmV1alphaYoutubeMetadata",
-          "description": "Metadata for a youtube video source."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaSourceSettings": {
-      "description": "Allows extension of Source Settings in the BatchCreateSources (Formerly AddSource request).",
-      "id": "GoogleCloudNotebooklmV1alphaSourceSettings",
-      "properties": {
-        "failureReason": {
-          "$ref": "GoogleCloudNotebooklmV1alphaFailureReason",
-          "description": "Failure reason containing details about why a source failed to ingest."
-        },
-        "status": {
-          "description": "Status of the source.",
-          "enum": [
-            "SOURCE_STATUS_UNSPECIFIED",
-            "SOURCE_STATUS_PENDING",
-            "SOURCE_STATUS_COMPLETE",
-            "SOURCE_STATUS_ERROR",
-            "SOURCE_STATUS_PENDING_DELETION",
-            "SOURCE_STATUS_TENTATIVE"
-          ],
-          "enumDescriptions": [
-            "Unspecified status.",
-            "The source is pending addition.",
-            "Source addition is complete and successful.",
-            "Source addition has permanently failed.",
-            "The source is pending deletion.",
-            "The user is attempting to add a source, but we have not yet uploaded it or checked user limits. Does not count towards the user's source limit."
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaUserContent": {
-      "description": "The \"Content\" messages refer to data the user wants to upload.",
-      "id": "GoogleCloudNotebooklmV1alphaUserContent",
-      "properties": {
-        "agentspaceContent": {
-          "$ref": "GoogleCloudNotebooklmV1alphaUserContentAgentspaceContent",
-          "description": "Agentspace content uploaded as source."
-        },
-        "googleDriveContent": {
-          "$ref": "GoogleCloudNotebooklmV1alphaUserContentGoogleDriveContent",
-          "description": "The content from Google Drive."
-        },
-        "textContent": {
-          "$ref": "GoogleCloudNotebooklmV1alphaUserContentTextContent",
-          "description": "The text content uploaded as source."
-        },
-        "videoContent": {
-          "$ref": "GoogleCloudNotebooklmV1alphaUserContentVideoContent",
-          "description": "The video content uploaded as source."
-        },
-        "webContent": {
-          "$ref": "GoogleCloudNotebooklmV1alphaUserContentWebContent",
-          "description": "The web content uploaded as source."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaUserContentAgentspaceContent": {
-      "description": "Agentspace content uploaded as source.",
-      "id": "GoogleCloudNotebooklmV1alphaUserContentAgentspaceContent",
-      "properties": {
-        "documentName": {
-          "description": "Optional. The full resource name of the Agentspace document. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document_id}`.",
-          "type": "string"
-        },
-        "engineName": {
-          "description": "Optional. Engine to verify the permission of the document. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`.",
-          "type": "string"
-        },
-        "ideaforgeIdeaName": {
-          "description": "Optional. Resource name of the idea forge instance. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/ideaForgeInstances/{instance}`",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaUserContentGoogleDriveContent": {
-      "description": "The content from Google Drive.",
-      "id": "GoogleCloudNotebooklmV1alphaUserContentGoogleDriveContent",
-      "properties": {
-        "documentId": {
-          "description": "The document id of the selected document.",
-          "type": "string"
-        },
-        "mimeType": {
-          "description": "The mime type of the selected document. This can be used to differentiate type of content selected in the drive picker. Use application/vnd.google-apps.document for Google Docs or application/vnd.google-apps.presentation for Google Slides.",
-          "type": "string"
-        },
-        "sourceName": {
-          "description": "The name to be displayed for the source.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaUserContentTextContent": {
-      "description": "The text content uploaded as source.",
-      "id": "GoogleCloudNotebooklmV1alphaUserContentTextContent",
-      "properties": {
-        "content": {
-          "description": "The name to be displayed for the source.",
-          "type": "string"
-        },
-        "sourceName": {
-          "description": "The display name of the text source.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaUserContentVideoContent": {
-      "description": "Video content uploaded as source.",
-      "id": "GoogleCloudNotebooklmV1alphaUserContentVideoContent",
-      "properties": {
-        "youtubeUrl": {
-          "description": "The youtube url of the video content.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaUserContentWebContent": {
-      "description": "The web content uploaded as source.",
-      "id": "GoogleCloudNotebooklmV1alphaUserContentWebContent",
-      "properties": {
-        "sourceName": {
-          "description": "The name to be displayed for the source.",
-          "type": "string"
-        },
-        "url": {
-          "description": "If URL is supplied, will fetch the webpage in the backend.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudNotebooklmV1alphaYoutubeMetadata": {
-      "description": "Metadata about a youtube video source.",
-      "id": "GoogleCloudNotebooklmV1alphaYoutubeMetadata",
-      "properties": {
-        "channelName": {
-          "description": "Output only. The channel name of the youtube video.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "videoId": {
-          "description": "Output only. The id of the youtube video.",
-          "readOnly": true,
           "type": "string"
         }
       },

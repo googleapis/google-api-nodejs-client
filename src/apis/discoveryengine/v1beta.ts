@@ -880,6 +880,10 @@ export namespace discoveryengine_v1beta {
      */
     name?: string | null;
     /**
+     * Optional. Sent as Vertex `ThinkingConfig.thinking_level`.
+     */
+    thinkingLevel?: string | null;
+    /**
      * Optional. Relative weight for this model in the mixture. Must be a finite, strictly positive value. Weights across all entries are normalized server-side, so they need not sum to 1.0. Defaults to 1.0 when unset, which is convenient when configuring a single model or an even mixture. Some Pro-tier models are capped at most 50% of the total weight; requests violating that cap are rejected with INVALID_ARGUMENT.
      */
     weight?: number | null;
@@ -3326,7 +3330,7 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -3369,6 +3373,10 @@ export namespace discoveryengine_v1beta {
      * Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH.
      */
     searchEngineConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineSearchEngineConfig;
+    /**
+     * Optional. Non-empty default. Session config for the engine.
+     */
+    sessionConfig?: Schema$GoogleCloudDiscoveryengineV1alphaSessionConfig;
     /**
      * Additional config specs for a `similar-items` engine.
      */
@@ -5709,6 +5717,28 @@ export namespace discoveryengine_v1beta {
     userPseudoId?: string | null;
   }
   /**
+   * Configuration for the session.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSessionConfig {
+    /**
+     * Optional. Session management policy that defines who will manage the session.
+     */
+    sessionManagementPolicy?: string | null;
+    /**
+     * Optional. The TTL for the session. If unset, the default value is 60 days.
+     */
+    sessionTtl?: Schema$GoogleCloudDiscoveryengineV1alphaSessionConfigSessionTtl;
+  }
+  /**
+   * Defines the TTL for sessions.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSessionConfigSessionTtl {
+    /**
+     * Defines the number of days for session TTL.
+     */
+    days?: number | null;
+  }
+  /**
    * Represents a turn, including a query from the user and a answer from service.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSessionTurn {
@@ -6230,6 +6260,10 @@ export namespace discoveryengine_v1beta {
      * Optional. List of banned phrases.
      */
     bannedPhrases?: Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase[];
+    /**
+     * Optional. Data protection policy to be used for sanitizing file uploads.
+     */
+    dataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1DataProtectionPolicy;
     /**
      * Optional. Model Armor configuration to be used for sanitizing user prompts and assistant responses.
      */
@@ -7808,6 +7842,10 @@ export namespace discoveryengine_v1beta {
      */
     bannedPhrases?: Schema$GoogleCloudDiscoveryengineV1betaAssistantCustomerPolicyBannedPhrase[];
     /**
+     * Optional. Data protection policy to be used for sanitizing file uploads.
+     */
+    dataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1betaDataProtectionPolicy;
+    /**
      * Optional. Model Armor configuration to be used for sanitizing user prompts and assistant responses.
      */
     modelArmorConfig?: Schema$GoogleCloudDiscoveryengineV1betaAssistantCustomerPolicyModelArmorConfig;
@@ -9126,6 +9164,24 @@ export namespace discoveryengine_v1beta {
     trainingStartTime?: string | null;
   }
   /**
+   * Contains the data protection policy config for a DataStore or a connector.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDataProtectionPolicy {
+    /**
+     * Optional. Specifies the sensitive data protection policy for the connector source.
+     */
+    sensitiveDataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1betaDataProtectionPolicySensitiveDataProtectionPolicy;
+  }
+  /**
+   * Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDataProtectionPolicySensitiveDataProtectionPolicy {
+    /**
+     * Optional. Specifies the resource name of the Sensitive Data Protection content policy.
+     */
+    policy?: string | null;
+  }
+  /**
    * DataStore captures global settings and configs at the DataStore level.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDataStore {
@@ -9161,6 +9217,10 @@ export namespace discoveryengine_v1beta {
      * Output only. Timestamp the DataStore was created at.
      */
     createTime?: string | null;
+    /**
+     * Optional. Specifies the data protection policy for the data store.
+     */
+    dataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1betaDataProtectionPolicy;
     /**
      * Output only. The id of the default Schema associated to this data store.
      */
@@ -9860,7 +9920,7 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -9899,6 +9959,10 @@ export namespace discoveryengine_v1beta {
      * Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH.
      */
     searchEngineConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig;
+    /**
+     * Optional. Non-empty default. Session config for the engine.
+     */
+    sessionConfig?: Schema$GoogleCloudDiscoveryengineV1betaSessionConfig;
     /**
      * Required. The solutions of the engine.
      */
@@ -13658,6 +13722,28 @@ export namespace discoveryengine_v1beta {
     userPseudoId?: string | null;
   }
   /**
+   * Configuration for the session.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSessionConfig {
+    /**
+     * Optional. Session management policy that defines who will manage the session.
+     */
+    sessionManagementPolicy?: string | null;
+    /**
+     * Optional. The TTL for the session. If unset, the default value is 60 days.
+     */
+    sessionTtl?: Schema$GoogleCloudDiscoveryengineV1betaSessionConfigSessionTtl;
+  }
+  /**
+   * Defines the TTL for sessions.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSessionConfigSessionTtl {
+    /**
+     * Defines the number of days for session TTL.
+     */
+    days?: number | null;
+  }
+  /**
    * Represents a turn, including a query from the user and a answer from service.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSessionTurn {
@@ -14809,6 +14895,10 @@ export namespace discoveryengine_v1beta {
      */
     createTime?: string | null;
     /**
+     * Optional. Specifies the data protection policy for the connector.
+     */
+    dataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1DataProtectionPolicy;
+    /**
      * Required. The identifier for the data source. For the full, up-to-date list of supported connectors and their values, see [Connect a third-party data source](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/connect-third-party-data-source#sources-by-launch-stage).
      */
     dataSource?: string | null;
@@ -15072,6 +15162,24 @@ export namespace discoveryengine_v1beta {
     startingSchema?: Schema$GoogleCloudDiscoveryengineV1Schema;
   }
   /**
+   * Contains the data protection policy config for a DataStore or a connector.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DataProtectionPolicy {
+    /**
+     * Optional. Specifies the sensitive data protection policy for the connector source.
+     */
+    sensitiveDataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1DataProtectionPolicySensitiveDataProtectionPolicy;
+  }
+  /**
+   * Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DataProtectionPolicySensitiveDataProtectionPolicy {
+    /**
+     * Optional. Specifies the resource name of the Sensitive Data Protection content policy.
+     */
+    policy?: string | null;
+  }
+  /**
    * DataStore captures global settings and configs at the DataStore level.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DataStore {
@@ -15107,6 +15215,10 @@ export namespace discoveryengine_v1beta {
      * Output only. Timestamp the DataStore was created at.
      */
     createTime?: string | null;
+    /**
+     * Optional. Specifies the data protection policy for the data store.
+     */
+    dataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1DataProtectionPolicy;
     /**
      * Output only. The id of the default Schema associated to this data store.
      */
@@ -15668,7 +15780,7 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -15707,6 +15819,10 @@ export namespace discoveryengine_v1beta {
      * Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH.
      */
     searchEngineConfig?: Schema$GoogleCloudDiscoveryengineV1EngineSearchEngineConfig;
+    /**
+     * Optional. Non-empty default. Session config for the engine.
+     */
+    sessionConfig?: Schema$GoogleCloudDiscoveryengineV1SessionConfig;
     /**
      * Required. The solutions of the engine.
      */
@@ -16798,6 +16914,28 @@ export namespace discoveryengine_v1beta {
      * Specifies the event type used for demoting recommendation result. Currently supported values: * `view-item`: Item viewed. * `media-play`: Start/resume watching a video, playing a song, etc. * `media-complete`: Finished or stopped midway through a video, song, etc. If unset, watch history demotion will not be applied. Content freshness demotion will still be applied.
      */
     demotionEventType?: string | null;
+  }
+  /**
+   * Configuration for the session.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1SessionConfig {
+    /**
+     * Optional. Session management policy that defines who will manage the session.
+     */
+    sessionManagementPolicy?: string | null;
+    /**
+     * Optional. The TTL for the session. If unset, the default value is 60 days.
+     */
+    sessionTtl?: Schema$GoogleCloudDiscoveryengineV1SessionConfigSessionTtl;
+  }
+  /**
+   * Defines the TTL for sessions.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1SessionConfigSessionTtl {
+    /**
+     * Defines the number of days for session TTL.
+     */
+    days?: number | null;
   }
   /**
    * Metadata for DataConnectorService.SetUpDataConnector method.
@@ -20695,6 +20833,7 @@ export namespace discoveryengine_v1beta {
      *         //   "configurableBillingApproachUpdateTime": "my_configurableBillingApproachUpdateTime",
      *         //   "contentConfig": "my_contentConfig",
      *         //   "createTime": "my_createTime",
+     *         //   "dataProtectionPolicy": {},
      *         //   "defaultSchemaId": "my_defaultSchemaId",
      *         //   "displayName": "my_displayName",
      *         //   "documentProcessingConfig": {},
@@ -21025,6 +21164,7 @@ export namespace discoveryengine_v1beta {
      *   //   "configurableBillingApproachUpdateTime": "my_configurableBillingApproachUpdateTime",
      *   //   "contentConfig": "my_contentConfig",
      *   //   "createTime": "my_createTime",
+     *   //   "dataProtectionPolicy": {},
      *   //   "defaultSchemaId": "my_defaultSchemaId",
      *   //   "displayName": "my_displayName",
      *   //   "documentProcessingConfig": {},
@@ -21145,6 +21285,159 @@ export namespace discoveryengine_v1beta {
         return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaDataStore>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Gets the IAM access control policy for a DataStore. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.getIamPolicy(
+     *       {
+     *         // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *         'options.requestedPolicyVersion': 'placeholder-value',
+     *         // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Getiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Getiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Getiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Getiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
       }
     }
 
@@ -21516,6 +21809,7 @@ export namespace discoveryengine_v1beta {
      *         //   "configurableBillingApproachUpdateTime": "my_configurableBillingApproachUpdateTime",
      *         //   "contentConfig": "my_contentConfig",
      *         //   "createTime": "my_createTime",
+     *         //   "dataProtectionPolicy": {},
      *         //   "defaultSchemaId": "my_defaultSchemaId",
      *         //   "displayName": "my_displayName",
      *         //   "documentProcessingConfig": {},
@@ -21547,6 +21841,7 @@ export namespace discoveryengine_v1beta {
      *   //   "configurableBillingApproachUpdateTime": "my_configurableBillingApproachUpdateTime",
      *   //   "contentConfig": "my_contentConfig",
      *   //   "createTime": "my_createTime",
+     *   //   "dataProtectionPolicy": {},
      *   //   "defaultSchemaId": "my_defaultSchemaId",
      *   //   "displayName": "my_displayName",
      *   //   "documentProcessingConfig": {},
@@ -21667,6 +21962,165 @@ export namespace discoveryengine_v1beta {
         return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaDataStore>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Sets the IAM access control policy for a DataStore. A `NOT_FOUND` error is returned if the resource does not exist. **Important:** When setting a policy directly on a DataStore resource, the only recommended roles in the bindings are: `roles/discoveryengine.admin` `roles/discoveryengine.agentspaceAdmin` `roles/discoveryengine.viewer` `roles/discoveryengine.agentspaceViewer` `roles/discoveryengine.user` `roles/discoveryengine.agentspaceUser` Attempting to grant any other role will result in a warning in logging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.setIamPolicy(
+     *       {
+     *         // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "policy": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Setiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Setiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Setiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Setiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
       }
     }
 
@@ -21901,6 +22355,16 @@ export namespace discoveryengine_v1beta {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Getiampolicy extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Getsitesearchengine extends StandardParameters {
     /**
      * Required. Resource name of SiteSearchEngine, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`. If the caller does not have permission to access the [SiteSearchEngine], regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
@@ -21939,6 +22403,17 @@ export namespace discoveryengine_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaDataStore;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Setiampolicy extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Traincustommodel extends StandardParameters {
     /**
@@ -36014,6 +36489,7 @@ export namespace discoveryengine_v1beta {
      *         //   "observabilityConfig": {},
      *         //   "procurementContactEmails": [],
      *         //   "searchEngineConfig": {},
+     *         //   "sessionConfig": {},
      *         //   "solutionType": "my_solutionType",
      *         //   "updateTime": "my_updateTime"
      *         // }
@@ -36344,6 +36820,7 @@ export namespace discoveryengine_v1beta {
      *   //   "observabilityConfig": {},
      *   //   "procurementContactEmails": [],
      *   //   "searchEngineConfig": {},
+     *   //   "sessionConfig": {},
      *   //   "solutionType": "my_solutionType",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -36835,6 +37312,7 @@ export namespace discoveryengine_v1beta {
      *         //   "observabilityConfig": {},
      *         //   "procurementContactEmails": [],
      *         //   "searchEngineConfig": {},
+     *         //   "sessionConfig": {},
      *         //   "solutionType": "my_solutionType",
      *         //   "updateTime": "my_updateTime"
      *         // }
@@ -36867,6 +37345,7 @@ export namespace discoveryengine_v1beta {
      *   //   "observabilityConfig": {},
      *   //   "procurementContactEmails": [],
      *   //   "searchEngineConfig": {},
+     *   //   "sessionConfig": {},
      *   //   "solutionType": "my_solutionType",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -37048,6 +37527,7 @@ export namespace discoveryengine_v1beta {
      *   //   "observabilityConfig": {},
      *   //   "procurementContactEmails": [],
      *   //   "searchEngineConfig": {},
+     *   //   "sessionConfig": {},
      *   //   "solutionType": "my_solutionType",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -37232,6 +37712,7 @@ export namespace discoveryengine_v1beta {
      *   //   "observabilityConfig": {},
      *   //   "procurementContactEmails": [],
      *   //   "searchEngineConfig": {},
+     *   //   "sessionConfig": {},
      *   //   "solutionType": "my_solutionType",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -45458,6 +45939,7 @@ export namespace discoveryengine_v1beta {
      *       //   "configurableBillingApproachUpdateTime": "my_configurableBillingApproachUpdateTime",
      *       //   "contentConfig": "my_contentConfig",
      *       //   "createTime": "my_createTime",
+     *       //   "dataProtectionPolicy": {},
      *       //   "defaultSchemaId": "my_defaultSchemaId",
      *       //   "displayName": "my_displayName",
      *       //   "documentProcessingConfig": {},
@@ -45784,6 +46266,7 @@ export namespace discoveryengine_v1beta {
      *   //   "configurableBillingApproachUpdateTime": "my_configurableBillingApproachUpdateTime",
      *   //   "contentConfig": "my_contentConfig",
      *   //   "createTime": "my_createTime",
+     *   //   "dataProtectionPolicy": {},
      *   //   "defaultSchemaId": "my_defaultSchemaId",
      *   //   "displayName": "my_displayName",
      *   //   "documentProcessingConfig": {},
@@ -45903,6 +46386,156 @@ export namespace discoveryengine_v1beta {
         return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaDataStore>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Gets the IAM access control policy for a DataStore. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.dataStores.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Datastores$Getiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Datastores$Getiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Datastores$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Datastores$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Datastores$Getiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Getiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
       }
     }
 
@@ -46268,6 +46901,7 @@ export namespace discoveryengine_v1beta {
      *       //   "configurableBillingApproachUpdateTime": "my_configurableBillingApproachUpdateTime",
      *       //   "contentConfig": "my_contentConfig",
      *       //   "createTime": "my_createTime",
+     *       //   "dataProtectionPolicy": {},
      *       //   "defaultSchemaId": "my_defaultSchemaId",
      *       //   "displayName": "my_displayName",
      *       //   "documentProcessingConfig": {},
@@ -46299,6 +46933,7 @@ export namespace discoveryengine_v1beta {
      *   //   "configurableBillingApproachUpdateTime": "my_configurableBillingApproachUpdateTime",
      *   //   "contentConfig": "my_contentConfig",
      *   //   "createTime": "my_createTime",
+     *   //   "dataProtectionPolicy": {},
      *   //   "defaultSchemaId": "my_defaultSchemaId",
      *   //   "displayName": "my_displayName",
      *   //   "documentProcessingConfig": {},
@@ -46420,6 +47055,162 @@ export namespace discoveryengine_v1beta {
         );
       }
     }
+
+    /**
+     * Sets the IAM access control policy for a DataStore. A `NOT_FOUND` error is returned if the resource does not exist. **Important:** When setting a policy directly on a DataStore resource, the only recommended roles in the bindings are: `roles/discoveryengine.admin` `roles/discoveryengine.agentspaceAdmin` `roles/discoveryengine.viewer` `roles/discoveryengine.agentspaceViewer` `roles/discoveryengine.user` `roles/discoveryengine.agentspaceUser` Attempting to grant any other role will result in a warning in logging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.dataStores.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Datastores$Setiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Datastores$Setiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Datastores$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Datastores$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Datastores$Setiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Setiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Datastores$Completequery extends StandardParameters {
@@ -46487,6 +47278,16 @@ export namespace discoveryengine_v1beta {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Datastores$Getiampolicy extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
   export interface Params$Resource$Projects$Locations$Datastores$Getsitesearchengine extends StandardParameters {
     /**
      * Required. Resource name of SiteSearchEngine, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`. If the caller does not have permission to access the [SiteSearchEngine], regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
@@ -46525,6 +47326,17 @@ export namespace discoveryengine_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaDataStore;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$Setiampolicy extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
 
   export class Resource$Projects$Locations$Datastores$Branches {
