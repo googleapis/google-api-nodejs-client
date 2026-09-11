@@ -1879,7 +1879,7 @@
       }
     }
   },
-  "revision": "20260818",
+  "revision": "20260826",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -2931,6 +2931,39 @@
       },
       "type": "object"
     },
+    "DnsAutomationInfo": {
+      "description": "DnsAutomationInfo contains information about the DNS automation for the instance.",
+      "id": "DnsAutomationInfo",
+      "properties": {
+        "fullyQualifiedDomainName": {
+          "description": "Output only. The fully qualified domain name of the instance for DNS automation. Example: \"...alloydb.goog.\". Note: The AUDIT directive is intentionally omitted because this field contains sensitive network topology information.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the DNS automation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING_CREATE",
+            "ACTIVE",
+            "PENDING_DELETE",
+            "CREATE_FAILED",
+            "DELETE_FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "DNS record creation is pending.",
+            "DNS record is active.",
+            "DNS record deletion is pending.",
+            "DNS record creation failed.",
+            "DNS record deletion failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -3366,6 +3399,11 @@
         "pscInstanceConfig": {
           "$ref": "PscInstanceConfig",
           "description": "Optional. The configuration for Private Service Connect (PSC) for the instance."
+        },
+        "pscInstanceInfo": {
+          "$ref": "PscInstanceInfo",
+          "description": "Output only. Information about the Private Service Connect (PSC) for the instance.",
+          "readOnly": true
         },
         "publicIpAddress": {
           "description": "Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.",
@@ -4023,8 +4061,26 @@
           "description": "The consumer project to which the PSC service automation endpoint will be created.",
           "type": "string"
         },
+        "dnsAutomationInfos": {
+          "description": "Output only. List of DNS automation info for the PSC auto connection.",
+          "items": {
+            "$ref": "DnsAutomationInfo"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "ipAddress": {
           "description": "Output only. The IP address of the PSC service automation endpoint.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceConnectionPolicy": {
+          "description": "Output only. The PSC service connection policy name. The format is \"projects//regions//serviceConnectionPolicies/\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceConnectionPolicyCreationState": {
+          "description": "Output only. The creation state or result of the connection policy. Possible values include: - `ACTIVE`: The policy was created successfully. - `PERMISSION_DENIED`: Sufficient permissions were not provided. Note that this field is an unstructured output and customers should not rely on the specific string value or error message directly.",
           "readOnly": true,
           "type": "string"
         },
@@ -4064,12 +4120,40 @@
           },
           "type": "array"
         },
+        "pscAutoConnectionPolicyState": {
+          "description": "Optional. Configuration for setting up PSC auto connection for the instance.",
+          "enum": [
+            "PSC_AUTO_CONNECTION_POLICY_STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified. For old instances, this means the PSC auto connection is disabled. For new instances, this means the PSC auto connection is enabled by default.",
+            "Enables the PSC auto connection for the instance.",
+            "Disables the PSC auto connection for the instance."
+          ],
+          "type": "string"
+        },
         "pscAutoConnections": {
           "description": "Optional. Configurations for setting up PSC service automation.",
           "items": {
             "$ref": "PscAutoConnectionConfig"
           },
           "type": "array"
+        },
+        "pscAutoDnsState": {
+          "description": "Optional. Configuration for setting up PSC auto DNS for the instance.",
+          "enum": [
+            "PSC_AUTO_DNS_STATE_UNSPECIFIED",
+            "PSC_AUTO_DNS_STATE_ENABLED",
+            "PSC_AUTO_DNS_STATE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified. For old instances, this means the PSC auto DNS is disabled. For new instances, this means the PSC auto DNS is enabled by default. Use `effective_psc_auto_dns_enabled` to check the effective state of the PSC auto DNS.",
+            "Enables the PSC auto DNS for the instance.",
+            "Disables the PSC auto DNS for the instance."
+          ],
+          "type": "string"
         },
         "pscDnsName": {
           "description": "Output only. The DNS name of the instance for PSC connectivity. Name convention: ...alloydb-psc.goog",
@@ -4085,6 +4169,36 @@
         },
         "serviceAttachmentLink": {
           "description": "Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of `projects//regions//serviceAttachments/`",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PscInstanceInfo": {
+      "description": "Information about the Private Service Connect (PSC) for the instance.",
+      "id": "PscInstanceInfo",
+      "properties": {
+        "effectivePscAutoConnectionPolicy": {
+          "description": "Output only. Indicates if the PSC auto connection policy is enabled for the instance. For older instances, this will be off by default, but for newer instances, this will be auto-enabled.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "effectivePscAutoDnsEnabled": {
+          "description": "Output only. The effective state of the PSC auto DNS for the instance.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "pscAutoDnsNames": {
+          "description": "Output only. Specifies the auto DNS names for the instance.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "serviceConnectionPolicy": {
+          "description": "Output only. The PSC service connection policy name. The format is \"projects//regions//serviceConnectionPolicies/\"",
           "readOnly": true,
           "type": "string"
         }
