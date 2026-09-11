@@ -842,7 +842,7 @@
       }
     }
   },
-  "revision": "20260823",
+  "revision": "20260830",
   "rootUrl": "https://threatintelligence.googleapis.com/",
   "schemas": {
     "Alert": {
@@ -1274,7 +1274,8 @@
         },
         "legacyMonitorMetadata": {
           "$ref": "LegacyMetadata",
-          "description": "Optional. Legacy metadata associated with this scenario/monitor."
+          "description": "Output only. Legacy metadata associated with this scenario/monitor.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -2098,71 +2099,89 @@
       "id": "LegacyMetadata",
       "properties": {
         "aggregationEnabled": {
-          "description": "Optional. Whether aggregation is enabled for alerts from this monitor.",
+          "description": "Output only. Whether aggregation is enabled for alerts from this monitor.",
+          "readOnly": true,
           "type": "boolean"
         },
         "aggregationSimilarity": {
-          "description": "Optional. Similarity threshold for aggregation.",
+          "description": "Output only. Similarity threshold for aggregation.",
           "format": "double",
+          "readOnly": true,
           "type": "number"
         },
         "conditionVersion": {
-          "description": "Optional. Version of the condition schema.",
+          "description": "Output only. Version of the condition schema.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "creatorUserId": {
-          "description": "Optional. User ID who created the monitor.",
+          "description": "Output only. User ID who created the monitor.",
+          "readOnly": true,
           "type": "string"
         },
         "description": {
-          "description": "Optional. Description of the legacy monitor.",
+          "description": "Output only. Description of the legacy monitor.",
+          "readOnly": true,
           "type": "string"
         },
         "disabledCode": {
-          "description": "Optional. Code indicating why the monitor is disabled (if applicable).",
+          "description": "Output only. Code indicating why the monitor is disabled (if applicable).",
+          "readOnly": true,
           "type": "string"
         },
         "disabledReason": {
-          "description": "Optional. Reason why the monitor is disabled (if applicable).",
+          "description": "Output only. Reason why the monitor is disabled (if applicable).",
+          "readOnly": true,
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. Name of the legacy monitor.",
+          "description": "Output only. Name of the legacy monitor.",
+          "readOnly": true,
           "type": "string"
         },
         "emailNotificationEnabled": {
-          "description": "Optional. Whether email notifications are enabled.",
+          "deprecated": true,
+          "description": "Output only. Deprecated: Whether email notifications are enabled. This field will not be used as email notifications are handled through the GTI Mail Hub.",
+          "readOnly": true,
           "type": "boolean"
         },
         "emailNotificationImmediate": {
-          "description": "Optional. Whether email notifications are intermediate/immediate.",
+          "deprecated": true,
+          "description": "Output only. Deprecated: Whether email notifications are intermediate/immediate. This field will not be used as email notifications are handled through the GTI Mail Hub.",
+          "readOnly": true,
           "type": "boolean"
         },
         "legacyMonitorId": {
-          "description": "Optional. Unique identifier of the legacy monitor.",
+          "description": "Output only. Unique identifier of the legacy monitor.",
+          "readOnly": true,
           "type": "string"
         },
         "staleTime": {
-          "description": "Optional. Time the legacy monitor was considered stale.",
+          "description": "Output only. Time the legacy monitor was considered stale.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "templateId": {
-          "description": "Optional. ID of the template this monitor was created from.",
+          "description": "Output only. ID of the template this monitor was created from.",
+          "readOnly": true,
           "type": "string"
         },
         "tenantId": {
-          "description": "Optional. ID of the tenant owning the monitor.",
+          "description": "Output only. ID of the tenant owning the monitor.",
+          "readOnly": true,
           "type": "string"
         },
         "updaterUserId": {
-          "description": "Optional. User ID who last updated the monitor.",
+          "description": "Output only. User ID who last updated the monitor.",
+          "readOnly": true,
           "type": "string"
         },
         "version": {
-          "description": "Optional. Version of the monitor configuration.",
+          "description": "Output only. Version of the monitor configuration.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
