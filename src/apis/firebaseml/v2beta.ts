@@ -1031,6 +1031,10 @@ export namespace firebaseml_v2beta {
      * Optional. Specifies the nucleus sampling threshold. The model considers only the smallest set of tokens whose cumulative probability is at least `top_p`. This helps generate more diverse and less repetitive responses. For example, a `top_p` of 0.9 means the model considers tokens until the cumulative probability of the tokens to select from reaches 0.9. It's recommended to adjust either temperature or `top_p`, but not both.
      */
     topP?: number | null;
+    /**
+     * Optional. Config for translation.
+     */
+    translationConfig?: Schema$GoogleCloudAiplatformV1beta1TranslationConfig;
   }
   /**
    * Config for model selection.
@@ -2177,6 +2181,19 @@ export namespace firebaseml_v2beta {
      * Optional. Instructs Vertex Grounding to use Parallel's Zero Data Retention Marketplace product. If this value is "false" or omitted, the Parallel Web Search for Grounding standard subscription will be used. If this value is "true", the Parallel Web Search for Grounding - ZDR subscription will be used.
      */
     enableZeroDataRetention?: boolean | null;
+  }
+  /**
+   * Config for translation features.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TranslationConfig {
+    /**
+     * Optional. If `true`, the model will generate audio when the target language is spoken, essentially it will parrot the input. If `false`, we will not produce audio for the target language.
+     */
+    echoTargetLanguage?: boolean | null;
+    /**
+     * Required. The target language for translation. Supported values are BCP-47 language codes (e.g. "en", "es", "fr").
+     */
+    targetLanguageCode?: string | null;
   }
   /**
    * Tool to support URL context.
