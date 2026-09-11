@@ -280,6 +280,10 @@ export namespace bigquerydatatransfer_v1 {
      */
     required?: boolean | null;
     /**
+     * Output only. If true, the parameter value can be provided through Secret Manager.
+     */
+    secretManagerAllowed?: boolean | null;
+    /**
      * Parameter type.
      */
     type?: string | null;
@@ -464,6 +468,15 @@ export namespace bigquerydatatransfer_v1 {
      * The Dataplex Universal Catalog configuration.
      */
     dataplexConfiguration?: Schema$DataplexConfiguration;
+  }
+  /**
+   * Configuration for data source parameters.
+   */
+  export interface Schema$ParameterConfig {
+    /**
+     * Optional. The list of parameters that are stored in Secret Manager. The value of a parameter included in this list will be interpreted as a Secret Manager key version resource name instead of a raw value. The raw value will be retrieved from Secret Manager upon execution.
+     */
+    secretManagerManagedParams?: string[] | null;
   }
   /**
    * Partition details related to hierarchy.
@@ -673,6 +686,10 @@ export namespace bigquerydatatransfer_v1 {
      */
     ownerInfo?: Schema$UserInfo;
     /**
+     * Optional. The config for values in `params`.
+     */
+    paramConfig?: Schema$ParameterConfig;
+    /**
      * Parameters specific to each data source. For more information see the bq tab in the 'Setting up a data transfer' section for each data source. For example the parameters for Cloud Storage transfers are listed here: https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
      */
     params?: {[key: string]: any} | null;
@@ -808,6 +825,10 @@ export namespace bigquerydatatransfer_v1 {
      * Output only. Pub/Sub topic where a notification will be sent after this transfer run finishes. The format for specifying a pubsub topic is: `projects/{project_id\}/topics/{topic_id\}`
      */
     notificationPubsubTopic?: string | null;
+    /**
+     * Output only. The parameter config of the transfer run.
+     */
+    parameterConfig?: Schema$ParameterConfig;
     /**
      * Output only. Parameters specific to each data source. For more information see the bq tab in the 'Setting up a data transfer' section for each data source. For example the parameters for Cloud Storage transfers are listed here: https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
      */
@@ -2801,6 +2822,7 @@ export namespace bigquerydatatransfer_v1 {
      *         //   "nextRunTime": "my_nextRunTime",
      *         //   "notificationPubsubTopic": "my_notificationPubsubTopic",
      *         //   "ownerInfo": {},
+     *         //   "paramConfig": {},
      *         //   "params": {},
      *         //   "schedule": "my_schedule",
      *         //   "scheduleOptions": {},
@@ -2830,6 +2852,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
      *   //   "ownerInfo": {},
+     *   //   "paramConfig": {},
      *   //   "params": {},
      *   //   "schedule": "my_schedule",
      *   //   "scheduleOptions": {},
@@ -3133,6 +3156,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
      *   //   "ownerInfo": {},
+     *   //   "paramConfig": {},
      *   //   "params": {},
      *   //   "schedule": "my_schedule",
      *   //   "scheduleOptions": {},
@@ -3452,6 +3476,7 @@ export namespace bigquerydatatransfer_v1 {
      *         //   "nextRunTime": "my_nextRunTime",
      *         //   "notificationPubsubTopic": "my_notificationPubsubTopic",
      *         //   "ownerInfo": {},
+     *         //   "paramConfig": {},
      *         //   "params": {},
      *         //   "schedule": "my_schedule",
      *         //   "scheduleOptions": {},
@@ -3481,6 +3506,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
      *   //   "ownerInfo": {},
+     *   //   "paramConfig": {},
      *   //   "params": {},
      *   //   "schedule": "my_schedule",
      *   //   "scheduleOptions": {},
@@ -4206,6 +4232,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "errorStatus": {},
      *   //   "name": "my_name",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "parameterConfig": {},
      *   //   "params": {},
      *   //   "runTime": "my_runTime",
      *   //   "schedule": "my_schedule",
@@ -5092,6 +5119,7 @@ export namespace bigquerydatatransfer_v1 {
      *       //   "nextRunTime": "my_nextRunTime",
      *       //   "notificationPubsubTopic": "my_notificationPubsubTopic",
      *       //   "ownerInfo": {},
+     *       //   "paramConfig": {},
      *       //   "params": {},
      *       //   "schedule": "my_schedule",
      *       //   "scheduleOptions": {},
@@ -5121,6 +5149,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
      *   //   "ownerInfo": {},
+     *   //   "paramConfig": {},
      *   //   "params": {},
      *   //   "schedule": "my_schedule",
      *   //   "scheduleOptions": {},
@@ -5419,6 +5448,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
      *   //   "ownerInfo": {},
+     *   //   "paramConfig": {},
      *   //   "params": {},
      *   //   "schedule": "my_schedule",
      *   //   "scheduleOptions": {},
@@ -5736,6 +5766,7 @@ export namespace bigquerydatatransfer_v1 {
      *       //   "nextRunTime": "my_nextRunTime",
      *       //   "notificationPubsubTopic": "my_notificationPubsubTopic",
      *       //   "ownerInfo": {},
+     *       //   "paramConfig": {},
      *       //   "params": {},
      *       //   "schedule": "my_schedule",
      *       //   "scheduleOptions": {},
@@ -5765,6 +5796,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
      *   //   "ownerInfo": {},
+     *   //   "paramConfig": {},
      *   //   "params": {},
      *   //   "schedule": "my_schedule",
      *   //   "scheduleOptions": {},
@@ -6478,6 +6510,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "errorStatus": {},
      *   //   "name": "my_name",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "parameterConfig": {},
      *   //   "params": {},
      *   //   "runTime": "my_runTime",
      *   //   "schedule": "my_schedule",

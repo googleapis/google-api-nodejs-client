@@ -1651,7 +1651,7 @@
       }
     }
   },
-  "revision": "20260703",
+  "revision": "20260905",
   "rootUrl": "https://bigquerydatatransfer.googleapis.com/",
   "schemas": {
     "CheckValidCredsRequest": {
@@ -1857,6 +1857,11 @@
         },
         "required": {
           "description": "Is parameter required.",
+          "type": "boolean"
+        },
+        "secretManagerAllowed": {
+          "description": "Output only. If true, the parameter value can be provided through Secret Manager.",
+          "readOnly": true,
           "type": "boolean"
         },
         "type": {
@@ -2145,6 +2150,20 @@
       },
       "type": "object"
     },
+    "ParameterConfig": {
+      "description": "Configuration for data source parameters.",
+      "id": "ParameterConfig",
+      "properties": {
+        "secretManagerManagedParams": {
+          "description": "Optional. The list of parameters that are stored in Secret Manager. The value of a parameter included in this list will be interpreted as a Secret Manager key version resource name instead of a raw value. The raw value will be retrieved from Secret Manager upon execution.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "PartitionDetail": {
       "description": "Partition details related to hierarchy.",
       "id": "PartitionDetail",
@@ -2414,6 +2433,10 @@
           "description": "Output only. Information about the user whose credentials are used to transfer data. Populated only for `transferConfigs.get` requests. In case the user information is not available, this field will not be populated.",
           "readOnly": true
         },
+        "paramConfig": {
+          "$ref": "ParameterConfig",
+          "description": "Optional. The config for values in `params`."
+        },
         "params": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -2647,6 +2670,11 @@
           "description": "Output only. Pub/Sub topic where a notification will be sent after this transfer run finishes. The format for specifying a pubsub topic is: `projects/{project_id}/topics/{topic_id}`",
           "readOnly": true,
           "type": "string"
+        },
+        "parameterConfig": {
+          "$ref": "ParameterConfig",
+          "description": "Output only. The parameter config of the transfer run.",
+          "readOnly": true
         },
         "params": {
           "additionalProperties": {
