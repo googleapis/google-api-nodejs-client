@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/youtubereporting",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "description": "youtubereporting",
   "main": "build/index.js",
   "types": "build/index.d.ts",
