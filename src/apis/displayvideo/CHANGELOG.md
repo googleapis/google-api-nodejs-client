@@ -1,5 +1,16 @@
 # Changelog
 
+## [44.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v43.0.0...displayvideo-v44.0.0) (2026-09-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update apiary to minimum Node version of 22 again - all packages ([#4020](https://github.com/googleapis/google-api-nodejs-client/issues/4020))
+
+### Features
+
+* Update apiary to minimum Node version of 22 again - all packages ([#4020](https://github.com/googleapis/google-api-nodejs-client/issues/4020)) ([4e5bae0](https://github.com/googleapis/google-api-nodejs-client/commit/4e5bae0a9f9726f3b44e6ad62b30bda11f3f6a1b))
+
 ## [43.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v42.0.0...displayvideo-v43.0.0) (2026-09-10)
 
 
