@@ -70,7 +70,7 @@
     "@types/qs": "^6.9.18",
     "@types/sinon": "^21.0.0",
     "@types/tmp": "^0.2.6",
-    "@types/url-template": "^2.0.28",
+    "@types/url-template": "^3.0.0",
     "@types/yargs-parser": "^21.0.3",
     "c8": "^10.1.3",
     "codecov": "^3.8.3",
