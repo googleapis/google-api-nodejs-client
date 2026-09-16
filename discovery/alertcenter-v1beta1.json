@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20260817",
+  "revision": "20260914",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AbuseDetected": {
@@ -2017,7 +2017,8 @@
             "CHROMEOS_FILE_TRANSFER",
             "GEMINI_ACCESS",
             "AGENT_EXECUTION",
-            "CHROME_DATA_COPIED"
+            "CHROME_DATA_COPIED",
+            "CHROME_NETWORK_REQUEST"
           ],
           "enumDescriptions": [
             "Trigger is unspecified.",
@@ -2033,7 +2034,8 @@
             "A file being transferred (copy or moved) between different file systems on ChromeOS.",
             "Gemini access.",
             "Agent execution.",
-            "Text copied from Chrome."
+            "Text copied from Chrome.",
+            "Network request from Chrome."
           ],
           "type": "string"
         },
