@@ -616,6 +616,127 @@ export namespace cloudbuild_v2 {
     verb?: string | null;
   }
   /**
+   * Message describing PipelineRun object
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV2PipelineRun {
+    /**
+     * User annotations. See https://google.aip.dev/128#annotations
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Output only. List of TaskRun and Run names and PipelineTask names for children of this PipelineRun.
+     */
+    childReferences?: Schema$ChildStatusReference[];
+    /**
+     * Output only. Time the pipeline completed.
+     */
+    completionTime?: string | null;
+    /**
+     * Output only. Kubernetes Conditions convention for PipelineRun status and error.
+     */
+    conditions?: Schema$GoogleDevtoolsCloudbuildV2Condition[];
+    /**
+     * Output only. Time at which the request to create the `PipelineRun` was received.
+     */
+    createTime?: string | null;
+    /**
+     * Needed for declarative-friendly resources.
+     */
+    etag?: string | null;
+    /**
+     * Output only. FinallyStartTime is when all non-finally tasks have been completed and only finally tasks are being executed. +optional
+     */
+    finallyStartTime?: string | null;
+    /**
+     * Output only. GCB default params.
+     */
+    gcbParams?: {[key: string]: string} | null;
+    /**
+     * Output only. The `PipelineRun` name with format `projects/{project\}/locations/{location\}/pipelineRuns/{pipeline_run\}`
+     */
+    name?: string | null;
+    /**
+     * Params is a list of parameter names and values.
+     */
+    params?: Schema$Param[];
+    /**
+     * PipelineRef refer to a specific instance of a Pipeline.
+     */
+    pipelineRef?: Schema$PipelineRef;
+    /**
+     * Pipelinerun status the user can provide. Used for cancellation.
+     */
+    pipelineRunStatus?: string | null;
+    /**
+     * PipelineSpec defines the desired state of Pipeline.
+     */
+    pipelineSpec?: Schema$PipelineSpec;
+    /**
+     * Output only. Inline pipelineSpec yaml string, used by workflow run requests.
+     */
+    pipelineSpecYaml?: string | null;
+    /**
+     * Optional. Provenance configuration.
+     */
+    provenance?: Schema$Provenance;
+    /**
+     * Output only. The `Record` of this `PipelineRun`. Format: `projects/{project\}/locations/{location\}/results/{result_id\}/records/{record_id\}`
+     */
+    record?: string | null;
+    /**
+     * Output only. The exact PipelineSpec used to instantiate the run.
+     */
+    resolvedPipelineSpec?: Schema$PipelineSpec;
+    /**
+     * Optional. Output only. List of results written out by the pipeline's containers
+     */
+    results?: Schema$PipelineRunResult[];
+    /**
+     * Optional. Security configuration.
+     */
+    security?: Schema$Security;
+    /**
+     * Service account used in the Pipeline. Deprecated; please use security.service_account instead.
+     */
+    serviceAccount?: string | null;
+    /**
+     * Output only. List of tasks that were skipped due to when expressions evaluating to false.
+     */
+    skippedTasks?: Schema$SkippedTask[];
+    /**
+     * Output only. Time the pipeline is actually started.
+     */
+    startTime?: string | null;
+    /**
+     * Time after which the Pipeline times out. Currently three keys are accepted in the map pipeline, tasks and finally with Timeouts.pipeline \>= Timeouts.tasks + Timeouts.finally
+     */
+    timeouts?: Schema$TimeoutFields;
+    /**
+     * Output only. A unique identifier for the `PipelineRun`.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Time at which the request to update the `PipelineRun` was received.
+     */
+    updateTime?: string | null;
+    /**
+     * Optional. Worker configuration.
+     */
+    worker?: Schema$Worker;
+    /**
+     * Output only. The WorkerPool used to run this PipelineRun.
+     */
+    workerPool?: string | null;
+    /**
+     * Output only. The Workflow used to create this PipelineRun.
+     */
+    workflow?: string | null;
+    /**
+     * Workspaces is a list of WorkspaceBindings from volumes to workspaces.
+     */
+    workspaces?: Schema$WorkspaceBinding[];
+  }
+  /**
    * ServiceDirectoryConfig represents Service Directory configuration for a connection.
    */
   export interface Schema$GoogleDevtoolsCloudbuildV2ServiceDirectoryConfig {
@@ -893,127 +1014,6 @@ export namespace cloudbuild_v2 {
      * Output only. Value of the result.
      */
     value?: Schema$ResultValue;
-  }
-  /**
-   * Message describing PipelineRun object
-   */
-  export interface Schema$PipelineRun {
-    /**
-     * User annotations. See https://google.aip.dev/128#annotations
-     */
-    annotations?: {[key: string]: string} | null;
-    /**
-     * Output only. List of TaskRun and Run names and PipelineTask names for children of this PipelineRun.
-     */
-    childReferences?: Schema$ChildStatusReference[];
-    /**
-     * Output only. Time the pipeline completed.
-     */
-    completionTime?: string | null;
-    /**
-     * Output only. Kubernetes Conditions convention for PipelineRun status and error.
-     */
-    conditions?: Schema$GoogleDevtoolsCloudbuildV2Condition[];
-    /**
-     * Output only. Time at which the request to create the `PipelineRun` was received.
-     */
-    createTime?: string | null;
-    /**
-     * Needed for declarative-friendly resources.
-     */
-    etag?: string | null;
-    /**
-     * Output only. FinallyStartTime is when all non-finally tasks have been completed and only finally tasks are being executed. +optional
-     */
-    finallyStartTime?: string | null;
-    /**
-     * Output only. GCB default params.
-     */
-    gcbParams?: {[key: string]: string} | null;
-    /**
-     * Output only. The `PipelineRun` name with format `projects/{project\}/locations/{location\}/pipelineRuns/{pipeline_run\}`
-     */
-    name?: string | null;
-    /**
-     * Params is a list of parameter names and values.
-     */
-    params?: Schema$Param[];
-    /**
-     * PipelineRef refer to a specific instance of a Pipeline.
-     */
-    pipelineRef?: Schema$PipelineRef;
-    /**
-     * Pipelinerun status the user can provide. Used for cancellation.
-     */
-    pipelineRunStatus?: string | null;
-    /**
-     * PipelineSpec defines the desired state of Pipeline.
-     */
-    pipelineSpec?: Schema$PipelineSpec;
-    /**
-     * Output only. Inline pipelineSpec yaml string, used by workflow run requests.
-     */
-    pipelineSpecYaml?: string | null;
-    /**
-     * Optional. Provenance configuration.
-     */
-    provenance?: Schema$Provenance;
-    /**
-     * Output only. The `Record` of this `PipelineRun`. Format: `projects/{project\}/locations/{location\}/results/{result_id\}/records/{record_id\}`
-     */
-    record?: string | null;
-    /**
-     * Output only. The exact PipelineSpec used to instantiate the run.
-     */
-    resolvedPipelineSpec?: Schema$PipelineSpec;
-    /**
-     * Optional. Output only. List of results written out by the pipeline's containers
-     */
-    results?: Schema$PipelineRunResult[];
-    /**
-     * Optional. Security configuration.
-     */
-    security?: Schema$Security;
-    /**
-     * Service account used in the Pipeline. Deprecated; please use security.service_account instead.
-     */
-    serviceAccount?: string | null;
-    /**
-     * Output only. List of tasks that were skipped due to when expressions evaluating to false.
-     */
-    skippedTasks?: Schema$SkippedTask[];
-    /**
-     * Output only. Time the pipeline is actually started.
-     */
-    startTime?: string | null;
-    /**
-     * Time after which the Pipeline times out. Currently three keys are accepted in the map pipeline, tasks and finally with Timeouts.pipeline \>= Timeouts.tasks + Timeouts.finally
-     */
-    timeouts?: Schema$TimeoutFields;
-    /**
-     * Output only. A unique identifier for the `PipelineRun`.
-     */
-    uid?: string | null;
-    /**
-     * Output only. Time at which the request to update the `PipelineRun` was received.
-     */
-    updateTime?: string | null;
-    /**
-     * Optional. Worker configuration.
-     */
-    worker?: Schema$Worker;
-    /**
-     * Output only. The WorkerPool used to run this PipelineRun.
-     */
-    workerPool?: string | null;
-    /**
-     * Output only. The Workflow used to create this PipelineRun.
-     */
-    workflow?: string | null;
-    /**
-     * Workspaces is a list of WorkspaceBindings from volumes to workspaces.
-     */
-    workspaces?: Schema$WorkspaceBinding[];
   }
   /**
    * PipelineRunResult used to describe the results of a pipeline

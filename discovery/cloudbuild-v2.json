@@ -1097,7 +1097,7 @@
       }
     }
   },
-  "revision": "20260511",
+  "revision": "20260904",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1745,6 +1745,184 @@
       },
       "type": "object"
     },
+    "GoogleDevtoolsCloudbuildV2PipelineRun": {
+      "description": "Message describing PipelineRun object",
+      "id": "GoogleDevtoolsCloudbuildV2PipelineRun",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "User annotations. See https://google.aip.dev/128#annotations",
+          "type": "object"
+        },
+        "childReferences": {
+          "description": "Output only. List of TaskRun and Run names and PipelineTask names for children of this PipelineRun.",
+          "items": {
+            "$ref": "ChildStatusReference"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "completionTime": {
+          "description": "Output only. Time the pipeline completed.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "conditions": {
+          "description": "Output only. Kubernetes Conditions convention for PipelineRun status and error.",
+          "items": {
+            "$ref": "GoogleDevtoolsCloudbuildV2Condition"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. Time at which the request to create the `PipelineRun` was received.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "Needed for declarative-friendly resources.",
+          "type": "string"
+        },
+        "finallyStartTime": {
+          "description": "Output only. FinallyStartTime is when all non-finally tasks have been completed and only finally tasks are being executed. +optional",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "gcbParams": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. GCB default params.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. The `PipelineRun` name with format `projects/{project}/locations/{location}/pipelineRuns/{pipeline_run}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "params": {
+          "description": "Params is a list of parameter names and values.",
+          "items": {
+            "$ref": "Param"
+          },
+          "type": "array"
+        },
+        "pipelineRef": {
+          "$ref": "PipelineRef",
+          "description": "PipelineRef refer to a specific instance of a Pipeline."
+        },
+        "pipelineRunStatus": {
+          "description": "Pipelinerun status the user can provide. Used for cancellation.",
+          "enum": [
+            "PIPELINE_RUN_STATUS_UNSPECIFIED",
+            "PIPELINE_RUN_CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Default enum type; should not be used.",
+            "Cancelled status."
+          ],
+          "type": "string"
+        },
+        "pipelineSpec": {
+          "$ref": "PipelineSpec",
+          "description": "PipelineSpec defines the desired state of Pipeline."
+        },
+        "pipelineSpecYaml": {
+          "description": "Output only. Inline pipelineSpec yaml string, used by workflow run requests.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "provenance": {
+          "$ref": "Provenance",
+          "description": "Optional. Provenance configuration."
+        },
+        "record": {
+          "description": "Output only. The `Record` of this `PipelineRun`. Format: `projects/{project}/locations/{location}/results/{result_id}/records/{record_id}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resolvedPipelineSpec": {
+          "$ref": "PipelineSpec",
+          "description": "Output only. The exact PipelineSpec used to instantiate the run.",
+          "readOnly": true
+        },
+        "results": {
+          "description": "Optional. Output only. List of results written out by the pipeline's containers",
+          "items": {
+            "$ref": "PipelineRunResult"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "security": {
+          "$ref": "Security",
+          "description": "Optional. Security configuration."
+        },
+        "serviceAccount": {
+          "deprecated": true,
+          "description": "Service account used in the Pipeline. Deprecated; please use security.service_account instead.",
+          "type": "string"
+        },
+        "skippedTasks": {
+          "description": "Output only. List of tasks that were skipped due to when expressions evaluating to false.",
+          "items": {
+            "$ref": "SkippedTask"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "startTime": {
+          "description": "Output only. Time the pipeline is actually started.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "timeouts": {
+          "$ref": "TimeoutFields",
+          "description": "Time after which the Pipeline times out. Currently three keys are accepted in the map pipeline, tasks and finally with Timeouts.pipeline >= Timeouts.tasks + Timeouts.finally"
+        },
+        "uid": {
+          "description": "Output only. A unique identifier for the `PipelineRun`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time at which the request to update the `PipelineRun` was received.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "worker": {
+          "$ref": "Worker",
+          "description": "Optional. Worker configuration."
+        },
+        "workerPool": {
+          "description": "Output only. The WorkerPool used to run this PipelineRun.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "workflow": {
+          "description": "Output only. The Workflow used to create this PipelineRun.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "workspaces": {
+          "description": "Workspaces is a list of WorkspaceBindings from volumes to workspaces.",
+          "items": {
+            "$ref": "WorkspaceBinding"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleDevtoolsCloudbuildV2ServiceDirectoryConfig": {
       "description": "ServiceDirectoryConfig represents Service Directory configuration for a connection.",
       "id": "GoogleDevtoolsCloudbuildV2ServiceDirectoryConfig",
@@ -2180,184 +2358,6 @@
           "$ref": "ResultValue",
           "description": "Output only. Value of the result.",
           "readOnly": true
-        }
-      },
-      "type": "object"
-    },
-    "PipelineRun": {
-      "description": "Message describing PipelineRun object",
-      "id": "PipelineRun",
-      "properties": {
-        "annotations": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "User annotations. See https://google.aip.dev/128#annotations",
-          "type": "object"
-        },
-        "childReferences": {
-          "description": "Output only. List of TaskRun and Run names and PipelineTask names for children of this PipelineRun.",
-          "items": {
-            "$ref": "ChildStatusReference"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "completionTime": {
-          "description": "Output only. Time the pipeline completed.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "conditions": {
-          "description": "Output only. Kubernetes Conditions convention for PipelineRun status and error.",
-          "items": {
-            "$ref": "GoogleDevtoolsCloudbuildV2Condition"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "createTime": {
-          "description": "Output only. Time at which the request to create the `PipelineRun` was received.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "etag": {
-          "description": "Needed for declarative-friendly resources.",
-          "type": "string"
-        },
-        "finallyStartTime": {
-          "description": "Output only. FinallyStartTime is when all non-finally tasks have been completed and only finally tasks are being executed. +optional",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "gcbParams": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Output only. GCB default params.",
-          "readOnly": true,
-          "type": "object"
-        },
-        "name": {
-          "description": "Output only. The `PipelineRun` name with format `projects/{project}/locations/{location}/pipelineRuns/{pipeline_run}`",
-          "readOnly": true,
-          "type": "string"
-        },
-        "params": {
-          "description": "Params is a list of parameter names and values.",
-          "items": {
-            "$ref": "Param"
-          },
-          "type": "array"
-        },
-        "pipelineRef": {
-          "$ref": "PipelineRef",
-          "description": "PipelineRef refer to a specific instance of a Pipeline."
-        },
-        "pipelineRunStatus": {
-          "description": "Pipelinerun status the user can provide. Used for cancellation.",
-          "enum": [
-            "PIPELINE_RUN_STATUS_UNSPECIFIED",
-            "PIPELINE_RUN_CANCELLED"
-          ],
-          "enumDescriptions": [
-            "Default enum type; should not be used.",
-            "Cancelled status."
-          ],
-          "type": "string"
-        },
-        "pipelineSpec": {
-          "$ref": "PipelineSpec",
-          "description": "PipelineSpec defines the desired state of Pipeline."
-        },
-        "pipelineSpecYaml": {
-          "description": "Output only. Inline pipelineSpec yaml string, used by workflow run requests.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "provenance": {
-          "$ref": "Provenance",
-          "description": "Optional. Provenance configuration."
-        },
-        "record": {
-          "description": "Output only. The `Record` of this `PipelineRun`. Format: `projects/{project}/locations/{location}/results/{result_id}/records/{record_id}`",
-          "readOnly": true,
-          "type": "string"
-        },
-        "resolvedPipelineSpec": {
-          "$ref": "PipelineSpec",
-          "description": "Output only. The exact PipelineSpec used to instantiate the run.",
-          "readOnly": true
-        },
-        "results": {
-          "description": "Optional. Output only. List of results written out by the pipeline's containers",
-          "items": {
-            "$ref": "PipelineRunResult"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "security": {
-          "$ref": "Security",
-          "description": "Optional. Security configuration."
-        },
-        "serviceAccount": {
-          "deprecated": true,
-          "description": "Service account used in the Pipeline. Deprecated; please use security.service_account instead.",
-          "type": "string"
-        },
-        "skippedTasks": {
-          "description": "Output only. List of tasks that were skipped due to when expressions evaluating to false.",
-          "items": {
-            "$ref": "SkippedTask"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "startTime": {
-          "description": "Output only. Time the pipeline is actually started.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "timeouts": {
-          "$ref": "TimeoutFields",
-          "description": "Time after which the Pipeline times out. Currently three keys are accepted in the map pipeline, tasks and finally with Timeouts.pipeline >= Timeouts.tasks + Timeouts.finally"
-        },
-        "uid": {
-          "description": "Output only. A unique identifier for the `PipelineRun`.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "updateTime": {
-          "description": "Output only. Time at which the request to update the `PipelineRun` was received.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "worker": {
-          "$ref": "Worker",
-          "description": "Optional. Worker configuration."
-        },
-        "workerPool": {
-          "description": "Output only. The WorkerPool used to run this PipelineRun.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "workflow": {
-          "description": "Output only. The Workflow used to create this PipelineRun.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "workspaces": {
-          "description": "Workspaces is a list of WorkspaceBindings from volumes to workspaces.",
-          "items": {
-            "$ref": "WorkspaceBinding"
-          },
-          "type": "array"
         }
       },
       "type": "object"
