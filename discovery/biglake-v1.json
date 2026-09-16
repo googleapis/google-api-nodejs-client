@@ -21,6 +21,16 @@
   "endpoints": [
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://biglake.europe-west10.rep.googleapis.com/",
+      "location": "europe-west10"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://biglake.europe-west3.rep.googleapis.com/",
+      "location": "europe-west3"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://biglake.us-central1.rep.googleapis.com/",
       "location": "us-central1"
     }
@@ -909,7 +919,7 @@
       }
     }
   },
-  "revision": "20260724",
+  "revision": "20260905",
   "rootUrl": "https://biglake.googleapis.com/",
   "schemas": {
     "AuditConfig": {
