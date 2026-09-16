@@ -2586,7 +2586,7 @@
       }
     }
   },
-  "revision": "20260903",
+  "revision": "20260914",
   "rootUrl": "https://ces.googleapis.com/",
   "schemas": {
     "Action": {
@@ -5110,6 +5110,14 @@
         "event": {
           "description": "Required. The name of the event.",
           "type": "string"
+        },
+        "variables": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Additional variables associated with the event.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -5564,6 +5572,10 @@
           "description": "Identifier. The unique identifier of the guardrail. Format: `projects/{project}/locations/{location}/apps/{app}/guardrails/{guardrail}`",
           "type": "string"
         },
+        "supervisor": {
+          "$ref": "GuardrailSupervisor",
+          "description": "Optional. Guardrail that runs supervisor intervention."
+        },
         "updateTime": {
           "description": "Output only. Timestamp when the guardrail was last updated.",
           "format": "google-datetime",
@@ -5776,6 +5788,51 @@
             "Block only high threshold (i.e. block less).",
             "Block none.",
             "Turn off the safety filter."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GuardrailSupervisor": {
+      "description": "Guardrail that runs supervisor intervention.",
+      "id": "GuardrailSupervisor",
+      "properties": {
+        "detectionMode": {
+          "description": "Optional. The detection mode of the supervisor.",
+          "enum": [
+            "DETECTION_MODE_UNSPECIFIED",
+            "NON_BLOCKING",
+            "BLOCKING"
+          ],
+          "enumDescriptions": [
+            "Detection mode is unspecified. Default to NON_BLOCKING.",
+            "Non blocking detection mode. Response is not blocked when the supervisor detection is ongoing.",
+            "Blocking detection mode. Response is blocked when the supervisor detection is ongoing."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. The type of the supervisor.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "INVALID_TEXT",
+            "LANGUAGE_SHIFT",
+            "SPEAKER_SHIFT",
+            "AUDIO_MISMATCH",
+            "MISSING_TOOL_CALL",
+            "CUSTOM",
+            "CHOPPY_AUDIO"
+          ],
+          "enumDescriptions": [
+            "Type is unspecified.",
+            "Invalid text issue type.",
+            "Language shift issue type.",
+            "Speaker shift issue type.",
+            "Audio mismatch issue type.",
+            "Missing tool call issue type.",
+            "Custom issue type.",
+            "Choppy audio issue type."
           ],
           "type": "string"
         }
@@ -7804,9 +7861,27 @@
           "description": "Required. The description of the tool.",
           "type": "string"
         },
+        "inputVariableMapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Mapping of input variable names of remote agent to GECX variable names.",
+          "type": "object"
+        },
         "name": {
           "description": "Required. The name of the tool.",
           "type": "string"
+        },
+        "outputVariableMapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Mapping of output variable names of remote agent to GECX variable names.",
+          "type": "object"
+        },
+        "statefulAgent": {
+          "description": "Optional. When enabled, the interaction between the CXAS app and the remote agent will share the same context. If the remote agent returns a context_id, it will be persisted for the entirety of the session for this remote agent tool.",
+          "type": "boolean"
         }
       },
       "type": "object"
