@@ -2676,6 +2676,10 @@ export namespace networkconnectivity_v1 {
      */
     advertisedRoutes?: string[] | null;
     /**
+     * Optional. Immutable. Controls whether resources proposed by the Transport are automatically accepted on behalf of the user. List of actions that can be automatically accepted are: 1. VPC Peering creation 2. Routing VPC Spoke creation 3. Hybrid Spoke creation
+     */
+    autoAccept?: boolean | null;
+    /**
      * Optional. Bandwidth of the Transport. This must be one of the supported bandwidths for the remote profile, and must be set when no activation key is being provided.
      */
     bandwidth?: string | null;
@@ -2691,6 +2695,10 @@ export namespace networkconnectivity_v1 {
      * Output only. Google-generated activation key. This is only output if the selected profile supports an OUTPUT key flow. Inputting this to the provider is only valid while the resource is in a PENDING_KEY state. Once the provider has accepted the key, the resource will move to the CONFIGURING state.
      */
     generatedActivationKey?: string | null;
+    /**
+     * Optional. Immutable. The NCC Hub that the Transport should attach to. The hub must be in the same project as the Transport. Format: `{hub\}` or `projects/{project\}/locations/global/hubs/{hub\}`
+     */
+    hub?: string | null;
     /**
      * Optional. Labels as key value pairs.
      */
@@ -2715,6 +2723,10 @@ export namespace networkconnectivity_v1 {
      * Optional. Immutable. Key used for establishing a connection with the remote transport. This key can only be provided if the profile supports an INPUT key flow and the resource is in the PENDING_KEY state.
      */
     providedActivationKey?: string | null;
+    /**
+     * Optional. Immutable. Controls whether a Routing VPC Spoke should be created and attached to the NCC Hub. This will provide Private Service Connect (PSC) connectivity through NCC. This can only be set when the Transport is first created.
+     */
+    pscRoutingEnabled?: boolean | null;
     /**
      * Optional. Immutable. The user supplied account id for the CSP associated with the remote profile.
      */
@@ -20542,16 +20554,19 @@ export namespace networkconnectivity_v1 {
      *       // request body parameters
      *       // {
      *       //   "advertisedRoutes": [],
+     *       //   "autoAccept": false,
      *       //   "bandwidth": "my_bandwidth",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "generatedActivationKey": "my_generatedActivationKey",
+     *       //   "hub": "my_hub",
      *       //   "labels": {},
      *       //   "mtuLimit": 0,
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "peeringNetwork": "my_peeringNetwork",
      *       //   "providedActivationKey": "my_providedActivationKey",
+     *       //   "pscRoutingEnabled": false,
      *       //   "remoteAccountId": "my_remoteAccountId",
      *       //   "remoteProfile": "my_remoteProfile",
      *       //   "stackType": "my_stackType",
@@ -20854,16 +20869,19 @@ export namespace networkconnectivity_v1 {
      *   // Example response
      *   // {
      *   //   "advertisedRoutes": [],
+     *   //   "autoAccept": false,
      *   //   "bandwidth": "my_bandwidth",
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "generatedActivationKey": "my_generatedActivationKey",
+     *   //   "hub": "my_hub",
      *   //   "labels": {},
      *   //   "mtuLimit": 0,
      *   //   "name": "my_name",
      *   //   "network": "my_network",
      *   //   "peeringNetwork": "my_peeringNetwork",
      *   //   "providedActivationKey": "my_providedActivationKey",
+     *   //   "pscRoutingEnabled": false,
      *   //   "remoteAccountId": "my_remoteAccountId",
      *   //   "remoteProfile": "my_remoteProfile",
      *   //   "stackType": "my_stackType",
@@ -21156,16 +21174,19 @@ export namespace networkconnectivity_v1 {
      *       // request body parameters
      *       // {
      *       //   "advertisedRoutes": [],
+     *       //   "autoAccept": false,
      *       //   "bandwidth": "my_bandwidth",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "generatedActivationKey": "my_generatedActivationKey",
+     *       //   "hub": "my_hub",
      *       //   "labels": {},
      *       //   "mtuLimit": 0,
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "peeringNetwork": "my_peeringNetwork",
      *       //   "providedActivationKey": "my_providedActivationKey",
+     *       //   "pscRoutingEnabled": false,
      *       //   "remoteAccountId": "my_remoteAccountId",
      *       //   "remoteProfile": "my_remoteProfile",
      *       //   "stackType": "my_stackType",
