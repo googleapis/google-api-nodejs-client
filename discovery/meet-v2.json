@@ -702,10 +702,194 @@
             "https://www.googleapis.com/auth/meetings.space.settings"
           ]
         }
+      },
+      "resources": {
+        "members": {
+          "methods": {
+            "batchUpdate": {
+              "description": "Updates members of one space within a batch.",
+              "flatPath": "v2/spaces/{spacesId}/members:batchUpdate",
+              "httpMethod": "POST",
+              "id": "meet.spaces.members.batchUpdate",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent resource shared by all Members being updated. Format: spaces/{space}",
+                  "location": "path",
+                  "pattern": "^spaces/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+parent}/members:batchUpdate",
+              "request": {
+                "$ref": "BatchUpdateMembersRequest"
+              },
+              "response": {
+                "$ref": "BatchUpdateMembersResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/meetings.space.created"
+              ]
+            },
+            "create": {
+              "description": "Creates a member. This API supports the `fields` parameter in [SystemParameterContext](https://cloud.google.com/apis/docs/system-parameters). When the `fields` parameter is omitted, this API response will default to \"name,email,role,user\".",
+              "flatPath": "v2/spaces/{spacesId}/members",
+              "httpMethod": "POST",
+              "id": "meet.spaces.members.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Format: spaces/{space}",
+                  "location": "path",
+                  "pattern": "^spaces/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+parent}/members",
+              "request": {
+                "$ref": "Member"
+              },
+              "response": {
+                "$ref": "Member"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/meetings.space.created"
+              ]
+            },
+            "delete": {
+              "description": "Deletes the member who was previously assigned roles in the space.",
+              "flatPath": "v2/spaces/{spacesId}/members/{membersId}",
+              "httpMethod": "DELETE",
+              "id": "meet.spaces.members.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Format: “spaces/{space}/members/{member}”",
+                  "location": "path",
+                  "pattern": "^spaces/[^/]+/members/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/meetings.space.created"
+              ]
+            },
+            "get": {
+              "description": "Gets a member. This API supports the `fields` parameter in [SystemParameterContext](https://cloud.google.com/apis/docs/system-parameters). When the `fields` parameter is omitted, this API response will default to \"name,email,role,user\".",
+              "flatPath": "v2/spaces/{spacesId}/members/{membersId}",
+              "httpMethod": "GET",
+              "id": "meet.spaces.members.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Format: “spaces/{space}/members/{member}”",
+                  "location": "path",
+                  "pattern": "^spaces/[^/]+/members/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}",
+              "response": {
+                "$ref": "Member"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/meetings.space.created",
+                "https://www.googleapis.com/auth/meetings.space.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists members. This API supports the `fields` parameter in [SystemParameterContext](https://cloud.google.com/apis/docs/system-parameters). When the `fields` parameter is omitted this API response will default to \"name,email,role,user\".",
+              "flatPath": "v2/spaces/{spacesId}/members",
+              "httpMethod": "GET",
+              "id": "meet.spaces.members.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. Maximum number of members to return. The service might return fewer than this value. If unspecified or set to 0, at most 250 members are returned. The maximum value is 500; values above 500 are coerced to 500. Maximum might change in the future.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Page token returned from previous List Call.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Format: spaces/{space}",
+                  "location": "path",
+                  "pattern": "^spaces/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+parent}/members",
+              "response": {
+                "$ref": "ListMembersResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/meetings.space.created",
+                "https://www.googleapis.com/auth/meetings.space.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a member.",
+              "flatPath": "v2/spaces/{spacesId}/members/{membersId}",
+              "httpMethod": "PATCH",
+              "id": "meet.spaces.members.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. Resource name of the member. Format: spaces/{space}/members/{member}",
+                  "location": "path",
+                  "pattern": "^spaces/[^/]+/members/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. Field mask used to specify the fields to be updated in the member. If update_mask isn't provided(not set, set with empty paths, or only has \"\" as paths), it defaults to update all fields provided with values in the request. Using \"*\" as update_mask will update all fields, including deleting fields not set in the request. In case of BatchUpdate, it must be absent or the same as the update_mask in BatchUpdateMembersRequest when UpdateMemberRequest is built as a child request of BatchUpdateMembersRequest.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}",
+              "request": {
+                "$ref": "Member"
+              },
+              "response": {
+                "$ref": "Member"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/meetings.space.created"
+              ]
+            }
+          }
+        }
       }
     }
   },
-  "revision": "20260421",
+  "revision": "20260910",
   "rootUrl": "https://meet.googleapis.com/",
   "schemas": {
     "ActiveConference": {
@@ -747,6 +931,39 @@
         "transcriptionConfig": {
           "$ref": "TranscriptionConfig",
           "description": "Configuration for auto-transcript."
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateMembersRequest": {
+      "description": "Request to update members of one space within a batch.",
+      "id": "BatchUpdateMembersRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The request message specifying the resources to update. A maximum of 500 members can be modified in a batch.",
+          "items": {
+            "$ref": "UpdateMemberRequest"
+          },
+          "type": "array"
+        },
+        "updateMask": {
+          "description": "Optional. Top-level field mask used to specify the fields to be updated in the member for all UpdateMemberRequests. There are 4 possible scenarios for top-level and child field mask: 1. top-level and child field mask is absent: All fields provided in the requests are updated, including deleting fields not set in the requests. 2. top-level field mask is present but child field mask is absent: The fields specified in the top-level field mask are updated. 3. top-level and child field mask is present: The child field mask must be the same as the top-level field mask. 4. top-level field mask is absent but child field mask is present: It isn't supported and will return an error.",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateMembersResponse": {
+      "description": "Response of batch update members.",
+      "id": "BatchUpdateMembersResponse",
+      "properties": {
+        "members": {
+          "description": "Members updated.",
+          "items": {
+            "$ref": "Member"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -864,6 +1081,24 @@
       },
       "type": "object"
     },
+    "ListMembersResponse": {
+      "description": "Response of list members.",
+      "id": "ListMembersResponse",
+      "properties": {
+        "members": {
+          "description": "The list of members for the current page.",
+          "items": {
+            "$ref": "Member"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to be circulated back for further list call if current list doesn't include all the members. Unset if all members are returned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListParticipantSessionsResponse": {
       "description": "Response of ListParticipants method.",
       "id": "ListParticipantSessionsResponse",
@@ -973,6 +1208,33 @@
             "$ref": "Transcript"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Member": {
+      "description": "Users who are configured to have a role in the space. These users can join the space without knocking.",
+      "id": "Member",
+      "properties": {
+        "email": {
+          "description": "Email for the member. This is required for creating the member.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Resource name of the member. Format: spaces/{space}/members/{member}",
+          "type": "string"
+        },
+        "role": {
+          "description": "The meeting role assigned to the member.",
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "COHOST"
+          ],
+          "enumDescriptions": [
+            "This is used to indicate the user hasn't specified any value and the user’s role will be determined upon joining the meetings between 'contributor' and 'viewer' role depending on meeting configuration. For more information about the viewer role, see [Assign View only roles in Google Meet](https://support.google.com/meet/answer/13658394).",
+            "Co-host role."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1504,6 +1766,22 @@
             "The artifact is generated automatically.",
             "The artifact is not generated automatically."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateMemberRequest": {
+      "description": "Request to update a member.",
+      "id": "UpdateMemberRequest",
+      "properties": {
+        "member": {
+          "$ref": "Member",
+          "description": "Required. The Member to update. Format: spaces/{space}/members/{member}"
+        },
+        "updateMask": {
+          "description": "Optional. Field mask used to specify the fields to be updated in the member. If update_mask isn't provided(not set, set with empty paths, or only has \"\" as paths), it defaults to update all fields provided with values in the request. Using \"*\" as update_mask will update all fields, including deleting fields not set in the request. In case of BatchUpdate, it must be absent or the same as the update_mask in BatchUpdateMembersRequest when UpdateMemberRequest is built as a child request of BatchUpdateMembersRequest.",
+          "format": "google-fieldmask",
           "type": "string"
         }
       },
