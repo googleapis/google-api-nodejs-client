@@ -807,7 +807,7 @@ export namespace iam_v1 {
    */
   export interface Schema$OauthClient {
     /**
-     * Required. The list of OAuth grant types is allowed for the OauthClient.
+     * Optional. The list of OAuth grant types is allowed for the OauthClient.
      */
     allowedGrantTypes?: string[] | null;
     /**
