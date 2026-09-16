@@ -129,6 +129,48 @@ export namespace agentidentitycredentials_v1alpha {
    */
   export interface Schema$GoogleCloudAgentidentitycredentialsV1alpha_ConsentRejected {}
   /**
+   * Request message for `ExchangeCredentials`.
+   */
+  export interface Schema$GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsRequest {
+    /**
+     * Optional. The desired downstream OAuth scopes to request for the exchanged token.
+     */
+    scopes?: string[] | null;
+    /**
+     * Required. The incoming identity or assertion token to be exchanged.
+     */
+    sourceCredential?: string | null;
+    /**
+     * Optional. The desired target token type to be returned from the exchange. If unspecified, defaults to the token type configured on the AuthProvider.
+     */
+    targetTokenType?: string | null;
+    /**
+     * Optional. The token binding parameters to be applied to downstream tokens and embedded into the ID-JAG assertion.
+     */
+    tokenBinding?: Schema$GoogleCloudAgentidentitycredentialsV1alpha_TokenBinding;
+  }
+  /**
+   * Response message for `ExchangeCredentials` containing the resulting credentials.
+   */
+  export interface Schema$GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsResponse {
+    /**
+     * Optional. The time when the token was acquired.
+     */
+    acquireTime?: string | null;
+    /**
+     * Optional. The expiration time of the exchanged access token.
+     */
+    expireTime?: string | null;
+    /**
+     * The scopes actually associated with the retrieved token.
+     */
+    scopes?: string[] | null;
+    /**
+     * The user-consented workforce access token resulting from the exchange.
+     */
+    token?: string | null;
+  }
+  /**
    * Request message for `FinalizeCredentials`.
    */
   export interface Schema$GoogleCloudAgentidentitycredentialsV1alpha_FinalizeCredentialsRequest {
@@ -217,6 +259,15 @@ export namespace agentidentitycredentials_v1alpha {
     token?: string | null;
   }
   /**
+   * Configuration for binding downstream credentials to client communication channel properties.
+   */
+  export interface Schema$GoogleCloudAgentidentitycredentialsV1alpha_TokenBinding {
+    /**
+     * Optional. The base64url-encoded SHA-256 hash of the DER-encoded X.509 client certificate, as defined in RFC 8705 Section 3.1 (corresponding to "x5t#S256"). Format requirements: - Base64url encoding (RFC 4648 Section 5) using URL-safe characters ('-' and '_') without padding ('='). - Exactly 43 characters long for a 256-bit SHA-256 digest.
+     */
+    certificateFingerprint?: string | null;
+  }
+  /**
    * Indicates that the user must visit the provided URI to consent to delegate permission to the agent to act on their behalf. The caller can either poll the `RetrieveCredentials` method, or await the /ValidateUserId callback.
    */
   export interface Schema$GoogleCloudAgentidentitycredentialsV1alpha_UriConsentRequired {
@@ -268,6 +319,172 @@ export namespace agentidentitycredentials_v1alpha {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Swaps an input credential for a target credential as per the rules and provider defined in the given auth provider.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/agentidentitycredentials.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const agentidentitycredentials = google.agentidentitycredentials('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await agentidentitycredentials.projects.locations.authProviders.credentials.exchange(
+     *       {
+     *         // Required. The resource name of the auth provider. Format: `projects/{project\}/locations/{location\}/authProviders/{auth_provider\}`
+     *         authProvider:
+     *           'projects/my-project/locations/my-location/authProviders/my-authProvider',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "scopes": [],
+     *           //   "sourceCredential": "my_sourceCredential",
+     *           //   "targetTokenType": "my_targetTokenType",
+     *           //   "tokenBinding": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireTime": "my_acquireTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "scopes": [],
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exchange(
+      params: Params$Resource$Projects$Locations$Authproviders$Credentials$Exchange,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    exchange(
+      params?: Params$Resource$Projects$Locations$Authproviders$Credentials$Exchange,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsResponse>
+    >;
+    exchange(
+      params: Params$Resource$Projects$Locations$Authproviders$Credentials$Exchange,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exchange(
+      params: Params$Resource$Projects$Locations$Authproviders$Credentials$Exchange,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsResponse>
+    ): void;
+    exchange(
+      params: Params$Resource$Projects$Locations$Authproviders$Credentials$Exchange,
+      callback: BodyResponseCallback<Schema$GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsResponse>
+    ): void;
+    exchange(
+      callback: BodyResponseCallback<Schema$GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsResponse>
+    ): void;
+    exchange(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authproviders$Credentials$Exchange
+        | BodyResponseCallback<Schema$GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authproviders$Credentials$Exchange;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Authproviders$Credentials$Exchange;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://agentidentitycredentials.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+authProvider}/credentials:exchange'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['authProvider'],
+        pathParams: ['authProvider'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -597,6 +814,17 @@ export namespace agentidentitycredentials_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Authproviders$Credentials$Exchange extends StandardParameters {
+    /**
+     * Required. The resource name of the auth provider. Format: `projects/{project\}/locations/{location\}/authProviders/{auth_provider\}`
+     */
+    authProvider?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsRequest;
+  }
   export interface Params$Resource$Projects$Locations$Authproviders$Credentials$Finalize extends StandardParameters {
     /**
      * Required. The resource name of the auth provider. Format: `projects/{project\}/locations/{location\}/authProviders/{auth_provider\}`
