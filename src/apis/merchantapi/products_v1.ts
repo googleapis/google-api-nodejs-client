@@ -1366,6 +1366,10 @@ export namespace merchantapi_products_v1 {
      */
     downpayment?: Schema$Price;
     /**
+     * Optional. The mileage allowance for the lease of the vehicle. Only applicable to vehicle products.
+     */
+    mileageAllowance?: Schema$Mileage;
+    /**
      * The number of installments the buyer has to pay.
      */
     months?: string | null;
