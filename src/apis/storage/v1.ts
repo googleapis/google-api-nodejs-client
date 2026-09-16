@@ -1264,6 +1264,10 @@ export namespace storage_v1 {
      */
     createTime?: string | null;
     /**
+     * The type URL of the object context's extended data.
+     */
+    extendedDataTypeUrl?: string | null;
+    /**
      * The time at which the object context was last updated in RFC 3339 format.
      */
     updateTime?: string | null;
