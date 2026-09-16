@@ -535,6 +535,10 @@ export namespace apihub_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. The deployments linked directly to this API operation. For operations parsed from a spec, `UpdateApiOperation` returns `FAILED_PRECONDITION`; link the parent spec to the deployment via `Spec.deployments` instead. Format is `projects/{project\}/locations/{location\}/deployments/{deployment\}`
+     */
+    deployments?: string[] | null;
+    /**
      * Optional. Operation details. Note: Even though this field is optional, it is required for CreateApiOperation API and we will fail the request if not provided.
      */
     details?: Schema$GoogleCloudApihubV1OperationDetails;
@@ -1036,6 +1040,10 @@ export namespace apihub_v1 {
    */
   export interface Schema$GoogleCloudApihubV1Deployment {
     /**
+     * Output only. The API operations linked directly to this deployment.
+     */
+    apiOperations?: string[] | null;
+    /**
      * Output only. The API versions linked to this deployment. Note: A particular deployment could be linked to multiple different API versions (of same or different APIs).
      */
     apiVersions?: string[] | null;
@@ -1102,9 +1110,17 @@ export namespace apihub_v1 {
      */
     sourceProject?: string | null;
     /**
+     * Optional. A revision identifier for the underlying gateway configuration that this deployment serves. For Apigee gateway variants, this is typically the proxy revision number populated automatically when the deployment is discovered.
+     */
+    sourceRevision?: string | null;
+    /**
      * Optional. The uri where additional source specific information for this deployment can be found. This maps to the following system defined attribute: `projects/{project\}/locations/{location\}/attributes/system-source-uri` The number of values for this attribute will be based on the cardinality of the attribute. The same can be retrieved via GetAttribute API. The value of the attribute should be a valid URI, and in case of Cloud Storage URI, it should point to a Cloud Storage object, not a directory.
      */
     sourceUri?: Schema$GoogleCloudApihubV1AttributeValues;
+    /**
+     * Output only. The specs linked directly to this deployment. Note: a deployment could serve multiple specs (e.g., across different revisions of the same underlying gateway configuration).
+     */
+    specs?: string[] | null;
     /**
      * Output only. The time at which the deployment was last updated.
      */
@@ -2592,6 +2608,10 @@ export namespace apihub_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. The deployments linked directly to this spec. Format is `projects/{project\}/locations/{location\}/deployments/{deployment\}`
+     */
+    deployments?: string[] | null;
+    /**
      * Output only. Details parsed from the spec.
      */
     details?: Schema$GoogleCloudApihubV1SpecDetails;
@@ -2662,6 +2682,10 @@ export namespace apihub_v1 {
    * The metadata associated with a spec of the API version.
    */
   export interface Schema$GoogleCloudApihubV1SpecMetadata {
+    /**
+     * Optional. The gateway-side URIs of deployments that serve this spec. If provided, the API Hub service creates links between this spec and the deployments identified by these URIs. URIs that don't match any known deployment are ignored; a subsequent ingestion cycle that includes the missing deployment will re-establish the link. The maximum number of URIs allowed is 100.
+     */
+    deploymentResourceUris?: string[] | null;
     /**
      * Optional. Timestamp indicating when the spec was created at the source.
      */
@@ -7430,6 +7454,7 @@ export namespace apihub_v1 {
      *       // {
      *       //   "attributes": {},
      *       //   "createTime": "my_createTime",
+     *       //   "deployments": [],
      *       //   "details": {},
      *       //   "name": "my_name",
      *       //   "sourceMetadata": [],
@@ -7444,6 +7469,7 @@ export namespace apihub_v1 {
      *   // {
      *   //   "attributes": {},
      *   //   "createTime": "my_createTime",
+     *   //   "deployments": [],
      *   //   "details": {},
      *   //   "name": "my_name",
      *   //   "sourceMetadata": [],
@@ -7733,6 +7759,7 @@ export namespace apihub_v1 {
      *   // {
      *   //   "attributes": {},
      *   //   "createTime": "my_createTime",
+     *   //   "deployments": [],
      *   //   "details": {},
      *   //   "name": "my_name",
      *   //   "sourceMetadata": [],
@@ -8045,6 +8072,7 @@ export namespace apihub_v1 {
      *       // {
      *       //   "attributes": {},
      *       //   "createTime": "my_createTime",
+     *       //   "deployments": [],
      *       //   "details": {},
      *       //   "name": "my_name",
      *       //   "sourceMetadata": [],
@@ -8059,6 +8087,7 @@ export namespace apihub_v1 {
      *   // {
      *   //   "attributes": {},
      *   //   "createTime": "my_createTime",
+     *   //   "deployments": [],
      *   //   "details": {},
      *   //   "name": "my_name",
      *   //   "sourceMetadata": [],
@@ -8282,6 +8311,7 @@ export namespace apihub_v1 {
      *       //   "attributes": {},
      *       //   "contents": {},
      *       //   "createTime": "my_createTime",
+     *       //   "deployments": [],
      *       //   "details": {},
      *       //   "displayName": "my_displayName",
      *       //   "documentation": {},
@@ -8303,6 +8333,7 @@ export namespace apihub_v1 {
      *   //   "attributes": {},
      *   //   "contents": {},
      *   //   "createTime": "my_createTime",
+     *   //   "deployments": [],
      *   //   "details": {},
      *   //   "displayName": "my_displayName",
      *   //   "documentation": {},
@@ -8753,6 +8784,7 @@ export namespace apihub_v1 {
      *   //   "attributes": {},
      *   //   "contents": {},
      *   //   "createTime": "my_createTime",
+     *   //   "deployments": [],
      *   //   "details": {},
      *   //   "displayName": "my_displayName",
      *   //   "documentation": {},
@@ -9357,6 +9389,7 @@ export namespace apihub_v1 {
      *       //   "attributes": {},
      *       //   "contents": {},
      *       //   "createTime": "my_createTime",
+     *       //   "deployments": [],
      *       //   "details": {},
      *       //   "displayName": "my_displayName",
      *       //   "documentation": {},
@@ -9378,6 +9411,7 @@ export namespace apihub_v1 {
      *   //   "attributes": {},
      *   //   "contents": {},
      *   //   "createTime": "my_createTime",
+     *   //   "deployments": [],
      *   //   "details": {},
      *   //   "displayName": "my_displayName",
      *   //   "documentation": {},
@@ -12196,6 +12230,7 @@ export namespace apihub_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "apiOperations": [],
      *       //   "apiVersions": [],
      *       //   "attributes": {},
      *       //   "createTime": "my_createTime",
@@ -12212,7 +12247,9 @@ export namespace apihub_v1 {
      *       //   "sourceEnvironment": "my_sourceEnvironment",
      *       //   "sourceMetadata": [],
      *       //   "sourceProject": "my_sourceProject",
+     *       //   "sourceRevision": "my_sourceRevision",
      *       //   "sourceUri": {},
+     *       //   "specs": [],
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -12221,6 +12258,7 @@ export namespace apihub_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "apiOperations": [],
      *   //   "apiVersions": [],
      *   //   "attributes": {},
      *   //   "createTime": "my_createTime",
@@ -12237,7 +12275,9 @@ export namespace apihub_v1 {
      *   //   "sourceEnvironment": "my_sourceEnvironment",
      *   //   "sourceMetadata": [],
      *   //   "sourceProject": "my_sourceProject",
+     *   //   "sourceRevision": "my_sourceRevision",
      *   //   "sourceUri": {},
+     *   //   "specs": [],
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -12519,6 +12559,7 @@ export namespace apihub_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "apiOperations": [],
      *   //   "apiVersions": [],
      *   //   "attributes": {},
      *   //   "createTime": "my_createTime",
@@ -12535,7 +12576,9 @@ export namespace apihub_v1 {
      *   //   "sourceEnvironment": "my_sourceEnvironment",
      *   //   "sourceMetadata": [],
      *   //   "sourceProject": "my_sourceProject",
+     *   //   "sourceRevision": "my_sourceRevision",
      *   //   "sourceUri": {},
+     *   //   "specs": [],
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -12839,6 +12882,7 @@ export namespace apihub_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "apiOperations": [],
      *       //   "apiVersions": [],
      *       //   "attributes": {},
      *       //   "createTime": "my_createTime",
@@ -12855,7 +12899,9 @@ export namespace apihub_v1 {
      *       //   "sourceEnvironment": "my_sourceEnvironment",
      *       //   "sourceMetadata": [],
      *       //   "sourceProject": "my_sourceProject",
+     *       //   "sourceRevision": "my_sourceRevision",
      *       //   "sourceUri": {},
+     *       //   "specs": [],
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -12864,6 +12910,7 @@ export namespace apihub_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "apiOperations": [],
      *   //   "apiVersions": [],
      *   //   "attributes": {},
      *   //   "createTime": "my_createTime",
@@ -12880,7 +12927,9 @@ export namespace apihub_v1 {
      *   //   "sourceEnvironment": "my_sourceEnvironment",
      *   //   "sourceMetadata": [],
      *   //   "sourceProject": "my_sourceProject",
+     *   //   "sourceRevision": "my_sourceRevision",
      *   //   "sourceUri": {},
+     *   //   "specs": [],
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
