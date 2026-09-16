@@ -1028,7 +1028,7 @@
       }
     }
   },
-  "revision": "20260312",
+  "revision": "20260827",
   "rootUrl": "https://deploymentmanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1125,13 +1125,15 @@
             "STATUS_UNSPECIFIED",
             "CREATING",
             "ROLLING_BACK",
-            "DONE"
+            "DONE",
+            "PENDING"
           ],
           "enumDescriptions": [
             "",
             "Rolling forward - creating VMs.",
             "Rolling back - cleaning up after an error.",
-            "Done"
+            "Done",
+            "Pending - waiting until the capacity is available."
           ],
           "type": "string"
         },
@@ -1366,12 +1368,107 @@
       "type": "object"
     },
     "FirewallPolicyRuleOperationMetadata": {
+      "description": "Metadata for FirewallPolicyRule operations.",
       "id": "FirewallPolicyRuleOperationMetadata",
       "properties": {
         "allocatedPriority": {
-          "description": "The priority allocated for the firewall policy rule if query parameters specified minPriority/maxPriority.",
+          "description": "Output only. [Output Only] The priority allocated for the firewall policy rule if query parameters specified minPriority/maxPriority.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GetHealthOperationMetadata": {
+      "description": "Metadata for GetHealth operations.",
+      "id": "GetHealthOperationMetadata",
+      "properties": {
+        "healthInfo": {
+          "$ref": "GetHealthOperationMetadataHealthInfo",
+          "description": "Output only. The health information.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GetHealthOperationMetadataHealthInfo": {
+      "description": "Health information.",
+      "id": "GetHealthOperationMetadataHealthInfo",
+      "properties": {
+        "availabilitySloStatus": {
+          "description": "Output only. The availability SLO status.",
+          "enum": [
+            "AVAILABILITY_SLO_STATUS_UNSPECIFIED",
+            "AVAILABILITY_SLO_STATUS_IN_SLO",
+            "AVAILABILITY_SLO_STATUS_OUT_OF_SLO",
+            "AVAILABILITY_SLO_STATUS_SLO_UNKNOWN"
+          ],
+          "enumDescriptions": [
+            "Unspecified availability SLO status.",
+            "The slot availability is in SLO.",
+            "The slot availability is out of SLO.",
+            "The slot availability is unknown."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "healthStatus": {
+          "description": "Output only. The health status.",
+          "enum": [
+            "HEALTH_STATUS_UNSPECIFIED",
+            "HEALTH_STATUS_HEALTHY",
+            "HEALTH_STATUS_UNHEALTHY"
+          ],
+          "enumDescriptions": [
+            "Unspecified health status.",
+            "The reservation slot is healthy.",
+            "The reservation slot is unhealthy."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "repairCategory": {
+          "description": "Output only. The repair category.",
+          "enum": [
+            "REPAIR_CATEGORY_UNSPECIFIED",
+            "REPAIR_CATEGORY_PLANNED_MAINTENANCE",
+            "REPAIR_CATEGORY_EMERGENT_MAINTENANCE",
+            "REPAIR_CATEGORY_USER_REPORTED_FAULT",
+            "REPAIR_CATEGORY_CRITICAL_FAILURE"
+          ],
+          "enumDescriptions": [
+            "Unspecified repair category.",
+            "The repair is because of a planned maintenance",
+            "The repair is because of an emergent maintenance",
+            "The repair is because of a user reported fault",
+            "The repair is because of critical failures, that are scoped outside emergent maintenance"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "unhealthyReason": {
+          "description": "Output only. The reason for unhealthy status.",
+          "enum": [
+            "UNHEALTHY_REASON_UNSPECIFIED",
+            "UNHEALTHY_REASON_REPAIRING",
+            "UNHEALTHY_REASON_PENDING_USER_APPROVAL",
+            "UNHEALTHY_REASON_UNSCHEDULABLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified unhealthy reason.",
+            "The slot is unhealthy because repair is in progress",
+            "The slot is unhealthy because there is a pending repair, waiting for customer approval",
+            "The slot is unhealthy because a vm cannot be scheduled on it, and no repairs are running on the slot"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when health info was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1392,14 +1489,14 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "SBOM versions currently applied to the resource. The key is the component name and the value is the version.",
+          "description": "A mapping of components to their currently-applied versions or other appropriate identifiers.",
           "type": "object"
         },
         "targetComponentVersions": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "SBOM versions scheduled for the next maintenance. The key is the component name and the value is the version.",
+          "description": "A mapping of components to their target versions or other appropriate identifiers.",
           "type": "object"
         }
       },
@@ -1488,6 +1585,18 @@
           },
           "description": "Status information per location (location name is key). Example key: zones/us-central1-a",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "InstancesTroubleshootOperationMetadata": {
+      "description": "[Output Only] Operation metadata for instances.troubleshoot.",
+      "id": "InstancesTroubleshootOperationMetadata",
+      "properties": {
+        "troubleshootOutput": {
+          "description": "Output only. [Output Only] Serialized output of the troubleshooting diagnostic run.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1592,6 +1701,10 @@
           "description": "[Output Only] A textual description of the operation, which is set when the operation is created.",
           "type": "string"
         },
+        "details": {
+          "$ref": "OperationDetails",
+          "description": "[Output Only] Extended details about the operation's execution."
+        },
         "endTime": {
           "description": "[Output Only] The time that this operation was completed. This value is in RFC3339 text format.",
           "type": "string"
@@ -1602,6 +1715,7 @@
             "errors": {
               "description": "[Output Only] The array of errors encountered while processing this operation.",
               "items": {
+                "description": "Represents a single error encountered during the processing of an operation.",
                 "properties": {
                   "arguments": {
                     "description": "Output only. [Output Only] Optional error details WARNING: DO NOT MAKE VISIBLE This is for internal use-only (like componentization) (thus the visibility \"none\") and in case of public exposure it is strongly recommended to follow pattern of: https://aip.dev/193 and expose as details field.",
@@ -1617,23 +1731,29 @@
                   },
                   "debugInfo": {
                     "$ref": "DebugInfo",
+                    "description": "Output only. [Output Only] Advanced debugging information with stack traces and other diagnostic details for the error.",
                     "readOnly": true
                   },
                   "errorDetails": {
                     "description": "[Output Only] An optional list of messages that contain the error details. There is a set of defined message types to use for providing details.The syntax depends on the error code. For example, QuotaExceededInfo will have details when the error code is QUOTA_EXCEEDED.",
                     "items": {
+                      "description": "Container for structured error details providing additional context specific to the encountered error code.",
                       "properties": {
                         "errorInfo": {
-                          "$ref": "ErrorInfo"
+                          "$ref": "ErrorInfo",
+                          "description": "Error information containing structured domain, reason, and metadata."
                         },
                         "help": {
-                          "$ref": "Help"
+                          "$ref": "Help",
+                          "description": "Links and information to help the user resolve the error."
                         },
                         "localizedMessage": {
-                          "$ref": "LocalizedMessage"
+                          "$ref": "LocalizedMessage",
+                          "description": "A localized human-readable error message intended for end users."
                         },
                         "quotaInfo": {
-                          "$ref": "QuotaExceededInfo"
+                          "$ref": "QuotaExceededInfo",
+                          "description": "Details about quota limits and metrics when a quota is exceeded."
                         }
                       },
                       "type": "object"
@@ -1657,7 +1777,14 @@
           "type": "object"
         },
         "firewallPolicyRuleOperationMetadata": {
-          "$ref": "FirewallPolicyRuleOperationMetadata"
+          "$ref": "FirewallPolicyRuleOperationMetadata",
+          "description": "Output only. [Output Only] Metadata containing the allocated priority from the networkFirewallPolicies.addRule and regionNetworkFirewallPolicies.addRule methods if not explicitly provided by the user.",
+          "readOnly": true
+        },
+        "getHealthOperationMetadata": {
+          "$ref": "GetHealthOperationMetadata",
+          "description": "Output only. Metadata for GetHealth operations.",
+          "readOnly": true
         },
         "getVersionOperationMetadata": {
           "$ref": "GetVersionOperationMetadata"
@@ -1682,6 +1809,11 @@
         },
         "instancesBulkInsertOperationMetadata": {
           "$ref": "InstancesBulkInsertOperationMetadata"
+        },
+        "instancesTroubleshootOperationMetadata": {
+          "$ref": "InstancesTroubleshootOperationMetadata",
+          "description": "Output only. [Output Only] Operation metadata for instances.troubleshoot.",
+          "readOnly": true
         },
         "kind": {
           "default": "compute#operation",
@@ -1741,9 +1873,9 @@
             "DONE"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            ""
+            "The operation is waiting to be processed.",
+            "The operation is actively being processed.",
+            "The operation has completed processing successfully or with an error."
           ],
           "type": "string"
         },
@@ -1902,7 +2034,7 @@
                 "type": "string"
               },
               "data": {
-                "description": "[Output Only] Metadata about this warning in key: value format. For example: \"data\": [ { \"key\": \"scope\", \"value\": \"zones/us-east1-d\" } ",
+                "description": "[Output Only] Metadata about this warning in key: value format. For example: \"data\": [ { \"key\": \"scope\", \"value\": \"zones/us-east1-d\" }] ",
                 "items": {
                   "properties": {
                     "key": {
@@ -1929,6 +2061,23 @@
         },
         "zone": {
           "description": "[Output Only] The URL of the zone where the operation resides. Only applicable when performing per-zone operations.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OperationDetails": {
+      "id": "OperationDetails",
+      "properties": {
+        "data": {
+          "additionalProperties": {
+            "type": "any"
+          },
+          "description": "Machine readable data from the message.",
+          "type": "object"
+        },
+        "message": {
+          "description": "Human or AI readable details on execution of the operation.",
           "type": "string"
         }
       },
@@ -2212,7 +2361,7 @@
                 "type": "string"
               },
               "data": {
-                "description": "[Output Only] Metadata about this warning in key: value format. For example: \"data\": [ { \"key\": \"scope\", \"value\": \"zones/us-east1-d\" } ",
+                "description": "[Output Only] Metadata about this warning in key: value format. For example: \"data\": [ { \"key\": \"scope\", \"value\": \"zones/us-east1-d\" }] ",
                 "items": {
                   "properties": {
                     "key": {
@@ -2264,6 +2413,7 @@
             "errors": {
               "description": "[Output Only] The array of errors encountered while processing this operation.",
               "items": {
+                "description": "Represents a single error encountered during the processing of an operation.",
                 "properties": {
                   "arguments": {
                     "description": "Output only. [Output Only] Optional error details WARNING: DO NOT MAKE VISIBLE This is for internal use-only (like componentization) (thus the visibility \"none\") and in case of public exposure it is strongly recommended to follow pattern of: https://aip.dev/193 and expose as details field.",
@@ -2279,23 +2429,29 @@
                   },
                   "debugInfo": {
                     "$ref": "DebugInfo",
+                    "description": "Output only. [Output Only] Advanced debugging information with stack traces and other diagnostic details for the error.",
                     "readOnly": true
                   },
                   "errorDetails": {
                     "description": "[Output Only] An optional list of messages that contain the error details. There is a set of defined message types to use for providing details.The syntax depends on the error code. For example, QuotaExceededInfo will have details when the error code is QUOTA_EXCEEDED.",
                     "items": {
+                      "description": "Container for structured error details providing additional context specific to the encountered error code.",
                       "properties": {
                         "errorInfo": {
-                          "$ref": "ErrorInfo"
+                          "$ref": "ErrorInfo",
+                          "description": "Error information containing structured domain, reason, and metadata."
                         },
                         "help": {
-                          "$ref": "Help"
+                          "$ref": "Help",
+                          "description": "Links and information to help the user resolve the error."
                         },
                         "localizedMessage": {
-                          "$ref": "LocalizedMessage"
+                          "$ref": "LocalizedMessage",
+                          "description": "A localized human-readable error message intended for end users."
                         },
                         "quotaInfo": {
-                          "$ref": "QuotaExceededInfo"
+                          "$ref": "QuotaExceededInfo",
+                          "description": "Details about quota limits and metrics when a quota is exceeded."
                         }
                       },
                       "type": "object"
@@ -2506,7 +2662,7 @@
                 "type": "string"
               },
               "data": {
-                "description": "[Output Only] Metadata about this warning in key: value format. For example: \"data\": [ { \"key\": \"scope\", \"value\": \"zones/us-east1-d\" } ",
+                "description": "[Output Only] Metadata about this warning in key: value format. For example: \"data\": [ { \"key\": \"scope\", \"value\": \"zones/us-east1-d\" }] ",
                 "items": {
                   "properties": {
                     "key": {

@@ -389,6 +389,14 @@ export namespace ftp_v1alpha {
      */
     name?: string | null;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. Service agent used to access the customer bucket.
      */
     serviceAgent?: string | null;
@@ -1521,6 +1529,8 @@ export namespace ftp_v1alpha {
      *       //   "internalConfig": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
      *       //   "serviceAgent": "my_serviceAgent",
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
@@ -1818,6 +1828,8 @@ export namespace ftp_v1alpha {
      *   //   "internalConfig": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
      *   //   "serviceAgent": "my_serviceAgent",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
@@ -2114,6 +2126,8 @@ export namespace ftp_v1alpha {
      *       //   "internalConfig": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
      *       //   "serviceAgent": "my_serviceAgent",
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"

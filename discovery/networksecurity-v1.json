@@ -6141,7 +6141,7 @@
       }
     }
   },
-  "revision": "20260824",
+  "revision": "20260910",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -6702,7 +6702,7 @@
       "id": "AuthzPolicyAuthzRuleToRequestOperationMCP",
       "properties": {
         "baseProtocolMethodsOption": {
-          "description": "Optional. If specified, matches on the MCP protocol’s non-access specific methods namely: * initialize * completion/ * logging/ * notifications/ * ping Defaults to SKIP_BASE_PROTOCOL_METHODS if not specified.",
+          "description": "Optional. If specified, matches on the MCP protocol's non-access specific methods namely: * initialize * completion/ * logging/ * notifications/ * ping Defaults to SKIP_BASE_PROTOCOL_METHODS if not specified.",
           "enum": [
             "BASE_PROTOCOL_METHODS_OPTION_UNSPECIFIED",
             "SKIP_BASE_PROTOCOL_METHODS",

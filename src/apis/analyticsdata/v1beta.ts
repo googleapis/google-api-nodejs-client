@@ -398,6 +398,40 @@ export namespace analyticsdata_v1beta {
     dimensionNames?: string[] | null;
   }
   /**
+   * Define the truncated date range from start_date to end_date.
+   */
+  export interface Schema$DataTruncationDateRange {
+    /**
+     * The end date in the format YYYY-MM-DD (inclusive).
+     */
+    endDate?: string | null;
+    /**
+     * The start date in the format YYYY-MM-DD (inclusive).
+     */
+    startDate?: string | null;
+  }
+  /**
+   * Describes a reason for data truncation in the report.
+   */
+  export interface Schema$DataTruncationReason {
+    /**
+     * The data truncation date in the format YYYY-MM-DD. Indicates data before this date is truncated.
+     */
+    dataTruncationDate?: string | null;
+    /**
+     * The truncated date ranges.
+     */
+    dataTruncationDateRanges?: Schema$DataTruncationDateRange[];
+    /**
+     * A descriptive message explaining the data truncation.
+     */
+    dataTruncationMessage?: string | null;
+    /**
+     * The type of data truncation.
+     */
+    dataTruncationType?: string | null;
+  }
+  /**
    * A contiguous set of days: `startDate`, `startDate + 1`, ..., `endDate`. Requests are allowed up to 4 date ranges.
    */
   export interface Schema$DateRange {
@@ -975,6 +1009,10 @@ export namespace analyticsdata_v1beta {
      * If true, indicates some buckets of dimension combinations are rolled into "(other)" row. This can happen for high cardinality reports. The metadata parameter dataLossFromOtherRow is populated based on the aggregated data table used in the report. The parameter will be accurately populated regardless of the filters and limits in the report. For example, the (other) row could be dropped from the report because the request contains a filter on sessionSource = google. This parameter will still be populated if data loss from other row was present in the input aggregate data used to generate this report. To learn more, see [About the (other) row and data sampling](https://support.google.com/analytics/answer/13208658#reports).
      */
     dataLossFromOtherRow?: boolean | null;
+    /**
+     * If set, indicate there is data truncation in the report.
+     */
+    dataTruncationReasons?: Schema$DataTruncationReason[];
     /**
      * If empty reason is specified, the report is empty for this reason.
      */

@@ -20,6 +20,31 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://workstations.us-central1.rep.googleapis.com/",
       "location": "us-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://workstations.us-east1.rep.googleapis.com/",
+      "location": "us-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://workstations.us-east4.rep.googleapis.com/",
+      "location": "us-east4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://workstations.us-east5.rep.googleapis.com/",
+      "location": "us-east5"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://workstations.us-west1.rep.googleapis.com/",
+      "location": "us-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://workstations.us-west4.rep.googleapis.com/",
+      "location": "us-west4"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1210,7 +1235,7 @@
       }
     }
   },
-  "revision": "20260901",
+  "revision": "20260909",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {

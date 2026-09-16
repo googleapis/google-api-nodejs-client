@@ -198,7 +198,7 @@
       }
     }
   },
-  "revision": "20250828",
+  "revision": "20260910",
   "rootUrl": "https://playintegrity.googleapis.com/",
   "schemas": {
     "AccountActivity": {
@@ -471,6 +471,31 @@
         "appAccessRiskVerdict": {
           "$ref": "AppAccessRiskVerdict",
           "description": "The evaluation of the App Access Risk verdicts."
+        },
+        "locationSpoofingRiskVerdict": {
+          "description": "The evaluation of the Location Spoofing Risk verdict.",
+          "items": {
+            "enum": [
+              "LOCATION_SPOOFING_RISK_VERDICT_UNSPECIFIED",
+              "LOW_RISK_DEVICE",
+              "LOW_RISK_NETWORK",
+              "MEDIUM_RISK_DEVICE",
+              "MEDIUM_RISK_NETWORK",
+              "HIGH_RISK_DEVICE",
+              "HIGH_RISK_NETWORK"
+            ],
+            "enumDescriptions": [
+              "Catch-all for unrecognized enum values.",
+              "Device-related spoofing was evaluated, and no issues were detected.",
+              "Network-related spoofing was evaluated, and no issues were detected.",
+              "Potential device-related spoofing was detected.",
+              "Potential network-related spoofing was detected.",
+              "Likely device-related spoofing was detected.",
+              "Likely network-related spoofing was detected."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         },
         "playProtectVerdict": {
           "description": "The evaluation of Play Protect verdict.",

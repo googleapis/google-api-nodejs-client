@@ -2837,7 +2837,7 @@
       }
     }
   },
-  "revision": "20260818",
+  "revision": "20260901",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2923,6 +2923,22 @@
       "properties": {
         "network": {
           "description": "Name of the VPC where the additional interface belongs",
+          "type": "string"
+        },
+        "stackType": {
+          "description": "Optional. Additional NIC stack type, configured by the client.",
+          "enum": [
+            "STACK_TYPE_UNSPECIFIED",
+            "IPV4",
+            "IPV4_IPV6",
+            "IPV6"
+          ],
+          "enumDescriptions": [
+            "Unspecified stack type.",
+            "IPv4 stack type.",
+            "IPv4/IPv6 stack type.",
+            "IPv6 stack type."
+          ],
           "type": "string"
         },
         "subnetwork": {
@@ -3054,7 +3070,8 @@
         },
         "parallelstoreCsiDriverConfig": {
           "$ref": "ParallelstoreCsiDriverConfig",
-          "description": "Configuration for the Cloud Storage Parallelstore CSI driver."
+          "deprecated": true,
+          "description": "Deprecated: The Parallelstore CSI driver is no longer supported. Configuration for the Cloud Storage Parallelstore CSI driver."
         },
         "podSnapshotConfig": {
           "$ref": "PodSnapshotConfig",
@@ -7962,6 +7979,10 @@
           "format": "int64",
           "type": "string"
         },
+        "reservedResourcesConfig": {
+          "$ref": "ReservedResourcesConfig",
+          "description": "Optional. Controls the reserved resources on the node. Only included if any fields are specified."
+        },
         "shutdownGracePeriodCriticalPodsSeconds": {
           "description": "Optional. shutdown_grace_period_critical_pods_seconds is the maximum allowed grace period (in seconds) used to terminate critical pods during a node shutdown. This value should be <= shutdown_grace_period_seconds, and is only valid if shutdown_grace_period_seconds is set. https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/ Range: [0, 120].",
           "format": "int32",
@@ -8752,7 +8773,8 @@
       "type": "object"
     },
     "ParallelstoreCsiDriverConfig": {
-      "description": "Configuration for the Cloud Storage Parallelstore CSI driver.",
+      "deprecated": true,
+      "description": "Deprecated: The Parallelstore CSI driver is no longer supported. Configuration for the Cloud Storage Parallelstore CSI driver.",
       "id": "ParallelstoreCsiDriverConfig",
       "properties": {
         "enabled": {
@@ -9317,6 +9339,35 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ReservedResourcesConfig": {
+      "description": "ReservedResourcesConfig contains the configuration for the reserved resources on the node.",
+      "id": "ReservedResourcesConfig",
+      "properties": {
+        "cpuReservedMillicore": {
+          "description": "Optional. The amount of CPU to reserve for system daemons. This is a user-specified value. If unspecified, GKE decides the default based on node version using different formula.",
+          "format": "int64",
+          "type": "string"
+        },
+        "effectiveCpuReservedMillicore": {
+          "description": "Output only. The effective amount of CPU reserved for system daemons. If `cpu_reserved_millicore` is specified, user-specified value is used. Otherwise the GKE default is applied.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "effectiveMemoryReservedMib": {
+          "description": "Output only. The effective amount of memory reserved for system daemons. If `memory_reserved_mib` is specified, the user-specified value is used. Otherwise the GKE default is applied.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "memoryReservedMib": {
+          "description": "Optional. The amount of memory to reserve for system daemons (in MiB). This is a user-specified value. If unspecified, GKE decides the default based on node version using different formula.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"

@@ -940,6 +940,34 @@
       "resources": {
         "creatives": {
           "methods": {
+            "addDeals": {
+              "description": "Adds a list of deals to a creative, which submits the creative for publisher review. Returns the updated creative.",
+              "flatPath": "v1/buyers/{buyersId}/creatives/{creativesId}:addDeals",
+              "httpMethod": "POST",
+              "id": "realtimebidding.buyers.creatives.addDeals",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the creative to add the deals to. See creative.name.",
+                  "location": "path",
+                  "pattern": "^buyers/[^/]+/creatives/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:addDeals",
+              "request": {
+                "$ref": "AddDealsRequest"
+              },
+              "response": {
+                "$ref": "Creative"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            },
             "create": {
               "description": "Creates a creative.",
               "flatPath": "v1/buyers/{buyersId}/creatives",
@@ -1305,7 +1333,7 @@
       }
     }
   },
-  "revision": "20260716",
+  "revision": "20260914",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "ActivatePretargetingConfigRequest": {
@@ -1336,6 +1364,20 @@
         },
         "unidentifiedProviderDomains": {
           "description": "Domains of detected unidentified ad technology providers (if any). You must ensure that the creatives used in bids placed for inventory that will serve to EEA or UK users does not contain unidentified ad technology providers. Google reserves the right to filter non-compliant bids.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AddDealsRequest": {
+      "description": "A request to add deals to a creative resource.",
+      "id": "AddDealsRequest",
+      "properties": {
+        "dealIds": {
+          "description": "Required. The IDs of the deals to associate with the creative. This can include Programmatic Guaranteed, Private Auction, Preferred Deal, and Marketplace Package deal IDs. You can associate no more than 100 deal IDs per request.",
           "items": {
             "type": "string"
           },

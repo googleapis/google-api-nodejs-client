@@ -440,7 +440,7 @@
       }
     }
   },
-  "revision": "20241117",
+  "revision": "20260909",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "ActiveMetricRestriction": {
@@ -842,6 +842,73 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DataTruncationDateRange": {
+      "description": "Define the truncated date range from start_date to end_date.",
+      "id": "DataTruncationDateRange",
+      "properties": {
+        "endDate": {
+          "description": "The end date in the format YYYY-MM-DD (inclusive).",
+          "type": "string"
+        },
+        "startDate": {
+          "description": "The start date in the format YYYY-MM-DD (inclusive).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataTruncationReason": {
+      "description": "Describes a reason for data truncation in the report.",
+      "id": "DataTruncationReason",
+      "properties": {
+        "dataTruncationDate": {
+          "description": "The data truncation date in the format YYYY-MM-DD. Indicates data before this date is truncated.",
+          "type": "string"
+        },
+        "dataTruncationDateRanges": {
+          "description": "The truncated date ranges.",
+          "items": {
+            "$ref": "DataTruncationDateRange"
+          },
+          "type": "array"
+        },
+        "dataTruncationMessage": {
+          "description": "A descriptive message explaining the data truncation.",
+          "type": "string"
+        },
+        "dataTruncationType": {
+          "description": "The type of data truncation.",
+          "enum": [
+            "DATA_TRUNCATION_TYPE_UNSPECIFIED",
+            "DATA_TRUNCATION_TYPE_RULES_BASED_MODELS",
+            "DATA_TRUNCATION_TYPE_DATA_DRIVEN_ATTRIBUTION",
+            "DATA_TRUNCATION_TYPE_DV360",
+            "DATA_TRUNCATION_TYPE_CM360",
+            "DATA_TRUNCATION_TYPE_ITEM_SCOPED_ECOMMERCE_METRICS",
+            "DATA_TRUNCATION_TYPE_EVENT_SCOPED_ECOMMERCE_METRICS",
+            "DATA_TRUNCATION_TYPE_DATE_RANGE",
+            "DATA_TRUNCATION_TYPE_PROPERTY",
+            "DATA_TRUNCATION_TYPE_CONVERSIONS",
+            "DATA_TRUNCATION_TYPE_GOOGLE_ADS"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Data is truncated in attribution report for rules-based models golden date.",
+            "Data is truncated in attribution report for data driven attribution golden date.",
+            "Data is truncated because DV360 policy does not permit data older than 2 years from being returned.",
+            "Data is truncated because CM360 policy does not permit data older than 2 years from being returned.",
+            "New item-scoped ecommerce metrics only have data after a specific date.",
+            "New event-scoped ecommerce metrics only have data after a specific date.",
+            "Query date range may not be fully served.",
+            "Data truncated because the query attempts to read event data prior to its retention date.",
+            "Data is truncated in conversions report.",
+            "Data is truncated due to Google Ads 36 month retention policy."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1693,6 +1760,13 @@
         "dataLossFromOtherRow": {
           "description": "If true, indicates some buckets of dimension combinations are rolled into \"(other)\" row. This can happen for high cardinality reports. The metadata parameter dataLossFromOtherRow is populated based on the aggregated data table used in the report. The parameter will be accurately populated regardless of the filters and limits in the report. For example, the (other) row could be dropped from the report because the request contains a filter on sessionSource = google. This parameter will still be populated if data loss from other row was present in the input aggregate data used to generate this report. To learn more, see [About the (other) row and data sampling](https://support.google.com/analytics/answer/13208658#reports).",
           "type": "boolean"
+        },
+        "dataTruncationReasons": {
+          "description": "If set, indicate there is data truncation in the report.",
+          "items": {
+            "$ref": "DataTruncationReason"
+          },
+          "type": "array"
         },
         "emptyReason": {
           "description": "If empty reason is specified, the report is empty for this reason.",

@@ -449,6 +449,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. A filter expression to filter the results listed in the response. The expression must follow the syntax described in [AIP-160](https://google.aip.dev/160).",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. Maximum number of AgentGateways to return per call.",
                       "format": "int32",
@@ -4189,7 +4194,7 @@
       }
     }
   },
-  "revision": "20260816",
+  "revision": "20260901",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AgentConnectivityTemplate": {

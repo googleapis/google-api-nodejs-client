@@ -270,6 +270,10 @@ export namespace playintegrity_v1 {
      */
     appAccessRiskVerdict?: Schema$AppAccessRiskVerdict;
     /**
+     * The evaluation of the Location Spoofing Risk verdict.
+     */
+    locationSpoofingRiskVerdict?: string[] | null;
+    /**
      * The evaluation of Play Protect verdict.
      */
     playProtectVerdict?: string | null;

@@ -3450,7 +3450,7 @@
       }
     }
   },
-  "revision": "20260831",
+  "revision": "20260907",
   "rootUrl": "https://apihub.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -3954,6 +3954,13 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "deployments": {
+          "description": "Optional. The deployments linked directly to this API operation. For operations parsed from a spec, `UpdateApiOperation` returns `FAILED_PRECONDITION`; link the parent spec to the deployment via `Spec.deployments` instead. Format is `projects/{project}/locations/{location}/deployments/{deployment}`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "details": {
           "$ref": "GoogleCloudApihubV1OperationDetails",
@@ -4808,6 +4815,14 @@
       "description": "Details of the deployment where APIs are hosted. A deployment could represent an Apigee proxy, API gateway, other Google Cloud services or non-Google Cloud services as well. A deployment entity is a root level entity in the API hub and exists independent of any API.",
       "id": "GoogleCloudApihubV1Deployment",
       "properties": {
+        "apiOperations": {
+          "description": "Output only. The API operations linked directly to this deployment.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "apiVersions": {
           "description": "Output only. The API versions linked to this deployment. Note: A particular deployment could be linked to multiple different API versions (of same or different APIs).",
           "items": {
@@ -4888,9 +4903,21 @@
           "description": "Optional. The project to which the deployment belongs. For Google Cloud gateways, this will refer to the project identifier. For others like Edge/OPDK, this will refer to the org identifier.",
           "type": "string"
         },
+        "sourceRevision": {
+          "description": "Optional. A revision identifier for the underlying gateway configuration that this deployment serves. For Apigee gateway variants, this is typically the proxy revision number populated automatically when the deployment is discovered.",
+          "type": "string"
+        },
         "sourceUri": {
           "$ref": "GoogleCloudApihubV1AttributeValues",
           "description": "Optional. The uri where additional source specific information for this deployment can be found. This maps to the following system defined attribute: `projects/{project}/locations/{location}/attributes/system-source-uri` The number of values for this attribute will be based on the cardinality of the attribute. The same can be retrieved via GetAttribute API. The value of the attribute should be a valid URI, and in case of Cloud Storage URI, it should point to a Cloud Storage object, not a directory."
+        },
+        "specs": {
+          "description": "Output only. The specs linked directly to this deployment. Note: a deployment could serve multiple specs (e.g., across different revisions of the same underlying gateway configuration).",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "updateTime": {
           "description": "Output only. The time at which the deployment was last updated.",
@@ -7125,6 +7152,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "deployments": {
+          "description": "Optional. The deployments linked directly to this spec. Format is `projects/{project}/locations/{location}/deployments/{deployment}`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "details": {
           "$ref": "GoogleCloudApihubV1SpecDetails",
           "description": "Output only. Details parsed from the spec.",
@@ -7222,6 +7256,13 @@
       "description": "The metadata associated with a spec of the API version.",
       "id": "GoogleCloudApihubV1SpecMetadata",
       "properties": {
+        "deploymentResourceUris": {
+          "description": "Optional. The gateway-side URIs of deployments that serve this spec. If provided, the API Hub service creates links between this spec and the deployments identified by these URIs. URIs that don't match any known deployment are ignored; a subsequent ingestion cycle that includes the missing deployment will re-establish the link. The maximum number of URIs allowed is 100.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "originalCreateTime": {
           "description": "Optional. Timestamp indicating when the spec was created at the source.",
           "format": "google-datetime",

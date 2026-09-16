@@ -287,7 +287,7 @@ export namespace container_v1 {
      */
     nodeReadinessConfig?: Schema$NodeReadinessConfig;
     /**
-     * Configuration for the Cloud Storage Parallelstore CSI driver.
+     * Deprecated: The Parallelstore CSI driver is no longer supported. Configuration for the Cloud Storage Parallelstore CSI driver.
      */
     parallelstoreCsiDriverConfig?: Schema$ParallelstoreCsiDriverConfig;
     /**
@@ -3503,6 +3503,10 @@ export namespace container_v1 {
      */
     podPidsLimit?: string | null;
     /**
+     * Optional. Controls the reserved resources on the node. Only included if any fields are specified.
+     */
+    reservedResourcesConfig?: Schema$ReservedResourcesConfig;
+    /**
      * Optional. shutdown_grace_period_critical_pods_seconds is the maximum allowed grace period (in seconds) used to terminate critical pods during a node shutdown. This value should be <= shutdown_grace_period_seconds, and is only valid if shutdown_grace_period_seconds is set. https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/ Range: [0, 120].
      */
     shutdownGracePeriodCriticalPodsSeconds?: number | null;
@@ -3982,7 +3986,7 @@ export namespace container_v1 {
     status?: string | null;
   }
   /**
-   * Configuration for the Cloud Storage Parallelstore CSI driver.
+   * Deprecated: The Parallelstore CSI driver is no longer supported. Configuration for the Cloud Storage Parallelstore CSI driver.
    */
   export interface Schema$ParallelstoreCsiDriverConfig {
     /**
@@ -4329,6 +4333,27 @@ export namespace container_v1 {
      * Corresponds to the label value(s) of reservation resource(s).
      */
     values?: string[] | null;
+  }
+  /**
+   * ReservedResourcesConfig contains the configuration for the reserved resources on the node.
+   */
+  export interface Schema$ReservedResourcesConfig {
+    /**
+     * Optional. The amount of CPU to reserve for system daemons. This is a user-specified value. If unspecified, GKE decides the default based on node version using different formula.
+     */
+    cpuReservedMillicore?: string | null;
+    /**
+     * Output only. The effective amount of CPU reserved for system daemons. If `cpu_reserved_millicore` is specified, user-specified value is used. Otherwise the GKE default is applied.
+     */
+    effectiveCpuReservedMillicore?: string | null;
+    /**
+     * Output only. The effective amount of memory reserved for system daemons. If `memory_reserved_mib` is specified, the user-specified value is used. Otherwise the GKE default is applied.
+     */
+    effectiveMemoryReservedMib?: string | null;
+    /**
+     * Optional. The amount of memory to reserve for system daemons (in MiB). This is a user-specified value. If unspecified, GKE decides the default based on node version using different formula.
+     */
+    memoryReservedMib?: string | null;
   }
   /**
    * Collection of [Resource Manager labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels).

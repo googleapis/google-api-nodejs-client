@@ -4046,7 +4046,7 @@
       }
     }
   },
-  "revision": "20260715",
+  "revision": "20260908",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -8180,6 +8180,10 @@
           },
           "type": "array"
         },
+        "autoAccept": {
+          "description": "Optional. Immutable. Controls whether resources proposed by the Transport are automatically accepted on behalf of the user. List of actions that can be automatically accepted are: 1. VPC Peering creation 2. Routing VPC Spoke creation 3. Hybrid Spoke creation",
+          "type": "boolean"
+        },
         "bandwidth": {
           "description": "Optional. Bandwidth of the Transport. This must be one of the supported bandwidths for the remote profile, and must be set when no activation key is being provided.",
           "enum": [
@@ -8231,6 +8235,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "hub": {
+          "description": "Optional. Immutable. The NCC Hub that the Transport should attach to. The hub must be in the same project as the Transport. Format: `{hub}` or `projects/{project}/locations/global/hubs/{hub}`",
+          "type": "string"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -8260,6 +8268,10 @@
         "providedActivationKey": {
           "description": "Optional. Immutable. Key used for establishing a connection with the remote transport. This key can only be provided if the profile supports an INPUT key flow and the resource is in the PENDING_KEY state.",
           "type": "string"
+        },
+        "pscRoutingEnabled": {
+          "description": "Optional. Immutable. Controls whether a Routing VPC Spoke should be created and attached to the NCC Hub. This will provide Private Service Connect (PSC) connectivity through NCC. This can only be set when the Transport is first created.",
+          "type": "boolean"
         },
         "remoteAccountId": {
           "description": "Optional. Immutable. The user supplied account id for the CSP associated with the remote profile.",

@@ -1883,6 +1883,10 @@ export namespace ces_v1 {
      * Required. The name of the event.
      */
     event?: string | null;
+    /**
+     * Optional. Additional variables associated with the event.
+     */
+    variables?: {[key: string]: any} | null;
   }
   /**
    * An example represents a sample conversation between the user and the agent(s).
@@ -2220,6 +2224,10 @@ export namespace ces_v1 {
      */
     name?: string | null;
     /**
+     * Optional. Guardrail that runs supervisor intervention.
+     */
+    supervisor?: Schema$GuardrailSupervisor;
+    /**
      * Output only. Timestamp when the guardrail was last updated.
      */
     updateTime?: string | null;
@@ -2346,6 +2354,19 @@ export namespace ces_v1 {
      * Required. The harm block threshold.
      */
     threshold?: string | null;
+  }
+  /**
+   * Guardrail that runs supervisor intervention.
+   */
+  export interface Schema$GuardrailSupervisor {
+    /**
+     * Optional. The detection mode of the supervisor.
+     */
+    detectionMode?: string | null;
+    /**
+     * Optional. The type of the supervisor.
+     */
+    type?: string | null;
   }
   /**
    * Represents an image input or output in the conversation.
@@ -3886,9 +3907,21 @@ export namespace ces_v1 {
      */
     description?: string | null;
     /**
+     * Optional. Mapping of input variable names of remote agent to GECX variable names.
+     */
+    inputVariableMapping?: {[key: string]: string} | null;
+    /**
      * Required. The name of the tool.
      */
     name?: string | null;
+    /**
+     * Optional. Mapping of output variable names of remote agent to GECX variable names.
+     */
+    outputVariableMapping?: {[key: string]: string} | null;
+    /**
+     * Optional. When enabled, the interaction between the CXAS app and the remote agent will share the same context. If the remote agent returns a context_id, it will be persisted for the entirety of the session for this remote agent tool.
+     */
+    statefulAgent?: boolean | null;
   }
   /**
    * Request message for AgentService.RestoreAppVersion
@@ -11157,6 +11190,7 @@ export namespace ces_v1 {
      *       //   "llmPromptSecurity": {},
      *       //   "modelSafety": {},
      *       //   "name": "my_name",
+     *       //   "supervisor": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -11177,6 +11211,7 @@ export namespace ces_v1 {
      *   //   "llmPromptSecurity": {},
      *   //   "modelSafety": {},
      *   //   "name": "my_name",
+     *   //   "supervisor": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -11468,6 +11503,7 @@ export namespace ces_v1 {
      *   //   "llmPromptSecurity": {},
      *   //   "modelSafety": {},
      *   //   "name": "my_name",
+     *   //   "supervisor": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -11768,6 +11804,7 @@ export namespace ces_v1 {
      *       //   "llmPromptSecurity": {},
      *       //   "modelSafety": {},
      *       //   "name": "my_name",
+     *       //   "supervisor": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -11788,6 +11825,7 @@ export namespace ces_v1 {
      *   //   "llmPromptSecurity": {},
      *   //   "modelSafety": {},
      *   //   "name": "my_name",
+     *   //   "supervisor": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }

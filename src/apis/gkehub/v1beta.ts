@@ -3039,7 +3039,7 @@ export namespace gkehub_v1beta {
     predefinedRole?: string | null;
   }
   /**
-   * Rollout contains the Rollout metadata and configuration. Next ID: 31
+   * Rollout contains the Rollout metadata and configuration. Next ID: 32
    */
   export interface Schema$Rollout {
     /**
