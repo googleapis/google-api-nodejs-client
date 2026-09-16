@@ -468,7 +468,7 @@ export namespace networksecurity_v1beta1 {
    */
   export interface Schema$AuthzPolicyAuthzRuleToRequestOperationMCP {
     /**
-     * Optional. If specified, matches on the MCP protocol’s non-access specific methods namely: * initialize * completion/ * logging/ * notifications/ * ping Defaults to SKIP_BASE_PROTOCOL_METHODS if not specified.
+     * Optional. If specified, matches on the MCP protocol's non-access specific methods namely: * initialize * completion/ * logging/ * notifications/ * ping Defaults to SKIP_BASE_PROTOCOL_METHODS if not specified.
      */
     baseProtocolMethodsOption?: string | null;
     /**
