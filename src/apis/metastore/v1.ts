@@ -1050,13 +1050,17 @@ export namespace metastore_v1 {
      */
     catalogSummaries?: Schema$CatalogSummary[];
     /**
-     * Output only. The UTC time when this report was finalized.
+     * Output only. The UTC time when the source metadata read was initiated.
      */
     createTime?: string | null;
     /**
      * Output only. Whether the migration was a dry run.
      */
     dryRun?: boolean | null;
+    /**
+     * Output only. The UTC time when the report was written.
+     */
+    endTime?: string | null;
     /**
      * Output only. The Dataproc Metastore service name (format: projects/x/locations/x/services/x) on which the migration was executed.
      */
