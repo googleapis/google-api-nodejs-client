@@ -301,6 +301,14 @@ export namespace assuredworkloads_v1beta1 {
      * The number of findings for the cloud control.
      */
     findingsCount?: number | null;
+    /**
+     * Output only. Number of organization policy findings for the cloud control.
+     */
+    orgPolicyFindingCount?: string | null;
+    /**
+     * Output only. Number of resource findings for the cloud control.
+     */
+    resourceFindingCount?: string | null;
   }
   /**
    * The cloud control report.
@@ -470,9 +478,17 @@ export namespace assuredworkloads_v1beta1 {
      */
     name?: string | null;
     /**
+     * Output only. Number of organization policy findings for this control.
+     */
+    orgPolicyFindingCount?: string | null;
+    /**
      * Output only. The overall evaluation status of the control.
      */
     overallEvaluationState?: string | null;
+    /**
+     * Output only. Number of resource findings for this control.
+     */
+    resourceFindingCount?: string | null;
     /**
      * The list of similar controls.
      */
@@ -5109,11 +5125,11 @@ export namespace assuredworkloads_v1beta1 {
      *
      *   // Do the magic
      *   const res = await assuredworkloads.organizations.locations.workloads.list({
-     *     // A custom filter for filtering by properties of a workload. At this time, only filtering by labels is supported.
+     *     // Optional. A custom filter for filtering by properties of a workload. At this time, only filtering by labels is supported.
      *     filter: 'placeholder-value',
-     *     // Page size.
+     *     // Optional. Page size.
      *     pageSize: 'placeholder-value',
-     *     // Page token returned from previous request. Page token contains context from previous request. Page token needs to be passed in the second and following requests.
+     *     // Optional. Page token returned from previous request. Page token contains context from previous request. Page token needs to be passed in the second and following requests.
      *     pageToken: 'placeholder-value',
      *     // Required. Parent Resource to list workloads from. Must be of the form `organizations/{org_id\}/locations/{location\}`.
      *     parent: 'organizations/my-organization/locations/my-location',
@@ -5669,15 +5685,15 @@ export namespace assuredworkloads_v1beta1 {
   }
   export interface Params$Resource$Organizations$Locations$Workloads$List extends StandardParameters {
     /**
-     * A custom filter for filtering by properties of a workload. At this time, only filtering by labels is supported.
+     * Optional. A custom filter for filtering by properties of a workload. At this time, only filtering by labels is supported.
      */
     filter?: string;
     /**
-     * Page size.
+     * Optional. Page size.
      */
     pageSize?: number;
     /**
-     * Page token returned from previous request. Page token contains context from previous request. Page token needs to be passed in the second and following requests.
+     * Optional. Page token returned from previous request. Page token contains context from previous request. Page token needs to be passed in the second and following requests.
      */
     pageToken?: string;
     /**

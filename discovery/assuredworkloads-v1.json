@@ -897,18 +897,18 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "A custom filter for filtering by properties of a workload. At this time, only filtering by labels is supported.",
+                      "description": "Optional. A custom filter for filtering by properties of a workload. At this time, only filtering by labels is supported.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Page size.",
+                      "description": "Optional. Page size.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Page token returned from previous request. Page token contains context from previous request. Page token needs to be passed in the second and following requests.",
+                      "description": "Optional. Page token returned from previous request. Page token contains context from previous request. Page token needs to be passed in the second and following requests.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1452,7 +1452,7 @@
       }
     }
   },
-  "revision": "20260810",
+  "revision": "20260914",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest": {
@@ -1708,6 +1708,18 @@
           "description": "The number of findings for the cloud control.",
           "format": "int32",
           "type": "integer"
+        },
+        "orgPolicyFindingCount": {
+          "description": "Output only. Number of organization policy findings for the cloud control.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceFindingCount": {
+          "description": "Output only. Number of resource findings for the cloud control.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2111,6 +2123,12 @@
           "description": "Identifier. The name of the control compliance summary.",
           "type": "string"
         },
+        "orgPolicyFindingCount": {
+          "description": "Output only. Number of organization policy findings for this control.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "overallEvaluationState": {
           "description": "Output only. The overall evaluation status of the control.",
           "enum": [
@@ -2125,6 +2143,12 @@
             "The control is failing.",
             "The control is not assessed."
           ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceFindingCount": {
+          "description": "Output only. Number of resource findings for this control.",
+          "format": "int64",
           "readOnly": true,
           "type": "string"
         },
