@@ -1094,7 +1094,7 @@
       }
     }
   },
-  "revision": "20260902",
+  "revision": "20260909",
   "rootUrl": "https://apigateway.googleapis.com/",
   "schemas": {
     "ApigatewayApi": {
@@ -1404,7 +1404,7 @@
           "type": "string"
         },
         "defaultHostname": {
-          "description": "Output only. The default API Gateway host name of the form `{gateway_id}-{hash}.{region_code}.gateway.dev`.",
+          "description": "Output only. The default hostname that serves traffic for this Gateway.",
           "readOnly": true,
           "type": "string"
         },

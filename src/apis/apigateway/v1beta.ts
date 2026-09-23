@@ -335,7 +335,7 @@ export namespace apigateway_v1beta {
      */
     createTime?: string | null;
     /**
-     * Output only. The default API Gateway host name of the form `{gateway_id\}-{hash\}.{region_code\}.gateway.dev`.
+     * Output only. The default hostname that serves traffic for this Gateway.
      */
     defaultHostname?: string | null;
     /**
