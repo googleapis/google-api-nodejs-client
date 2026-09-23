@@ -639,7 +639,7 @@ export namespace testing_v1 {
      */
     activeStartTime?: string | null;
     /**
-     * Required. The requested device
+     * Required. The requested device.
      */
     androidDevice?: Schema$AndroidDevice;
     /**

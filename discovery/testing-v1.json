@@ -454,7 +454,7 @@
       }
     }
   },
-  "revision": "20251111",
+  "revision": "20260911",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -1228,7 +1228,7 @@
         },
         "androidDevice": {
           "$ref": "AndroidDevice",
-          "description": "Required. The requested device"
+          "description": "Required. The requested device."
         },
         "createTime": {
           "description": "Output only. The time that the Session was created.",
