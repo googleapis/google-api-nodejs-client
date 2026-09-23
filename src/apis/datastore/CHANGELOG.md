@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datastore-v14.0.0...datastore-v14.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **datastore:** update the API ([82b8dd2](https://github.com/googleapis/google-api-nodejs-client/commit/82b8dd2aa3ce6d51cdb022c39e187442885ed79f))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastore-v13.0.0...datastore-v14.0.0) (2026-09-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/advisorynotifications-v10.0.0...advisorynotifications-v10.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **advisorynotifications:** update the API ([83868f0](https://github.com/googleapis/google-api-nodejs-client/commit/83868f03d30524e989a639dd7072734f5dcf73ac))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/advisorynotifications-v9.0.0...advisorynotifications-v10.0.0) (2026-09-14)
 
 

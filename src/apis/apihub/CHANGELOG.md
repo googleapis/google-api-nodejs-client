@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/apihub-v13.0.0...apihub-v13.1.0) (2026-09-23)
+
+
+### Features
+
+* **apihub:** update the API ([4f0913b](https://github.com/googleapis/google-api-nodejs-client/commit/4f0913bf7f3f9f75e26bfcfe32ab44e65988c8bc))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apihub-v12.0.0...apihub-v13.0.0) (2026-09-14)
 
 

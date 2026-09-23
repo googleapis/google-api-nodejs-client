@@ -1,5 +1,12 @@
 # Changelog
 
+## [30.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/container-v30.0.0...container-v30.1.0) (2026-09-23)
+
+
+### Features
+
+* **container:** update the API ([8280efe](https://github.com/googleapis/google-api-nodejs-client/commit/8280efe25456d27f4272175b4ad9405f7b559d75))
+
 ## [30.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/container-v29.0.0...container-v30.0.0) (2026-09-14)
 
 

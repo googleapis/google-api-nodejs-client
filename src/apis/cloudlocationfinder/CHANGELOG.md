@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudlocationfinder-v10.0.0...cloudlocationfinder-v10.1.0) (2026-09-23)
+
+
+### Features
+
+* **cloudlocationfinder:** update the API ([f9d1ac2](https://github.com/googleapis/google-api-nodejs-client/commit/f9d1ac2d762b8afaf0a422a117ece95298f334b6))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudlocationfinder-v9.0.0...cloudlocationfinder-v10.0.0) (2026-09-14)
 
 

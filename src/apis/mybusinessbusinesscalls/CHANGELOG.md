@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessbusinesscalls-v12.0.0...mybusinessbusinesscalls-v12.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **mybusinessbusinesscalls:** update the API ([f47c6ef](https://github.com/googleapis/google-api-nodejs-client/commit/f47c6efc16363dcda364597a8acb6d3450058949))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessbusinesscalls-v11.0.0...mybusinessbusinesscalls-v12.0.0) (2026-09-14)
 
 

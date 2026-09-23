@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/essentialcontacts-v9.0.0...essentialcontacts-v9.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **essentialcontacts:** update the API ([6bc5e9f](https://github.com/googleapis/google-api-nodejs-client/commit/6bc5e9fb60c44dd62d8d4d9d2706dbf1e3debabe))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/essentialcontacts-v8.0.0...essentialcontacts-v9.0.0) (2026-09-14)
 
 

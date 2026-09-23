@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gamesmanagement-v11.0.0...gamesmanagement-v11.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **gamesManagement:** update the API ([42867f4](https://github.com/googleapis/google-api-nodejs-client/commit/42867f4875247455b4a2f6950add327fe3678f60))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gamesmanagement-v10.0.0...gamesmanagement-v11.0.0) (2026-09-14)
 
 

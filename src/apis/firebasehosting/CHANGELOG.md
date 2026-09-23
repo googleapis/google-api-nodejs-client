@@ -1,5 +1,16 @@
 # Changelog
 
+## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasehosting-v19.0.0...firebasehosting-v20.0.0) (2026-09-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **firebasehosting:** This release has breaking changes.
+
+### Features
+
+* **firebasehosting:** update the API ([aa2e9c0](https://github.com/googleapis/google-api-nodejs-client/commit/aa2e9c07050bb278c31c16a4b53b9b6a6964cca3))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasehosting-v18.0.0...firebasehosting-v19.0.0) (2026-09-14)
 
 

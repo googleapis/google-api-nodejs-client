@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/clouderrorreporting-v13.0.0...clouderrorreporting-v13.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **clouderrorreporting:** update the API ([b593850](https://github.com/googleapis/google-api-nodejs-client/commit/b593850ea7ad6f18c0a7dd8883c8cf3b1b3a6bfa))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouderrorreporting-v12.0.0...clouderrorreporting-v13.0.0) (2026-09-14)
 
 

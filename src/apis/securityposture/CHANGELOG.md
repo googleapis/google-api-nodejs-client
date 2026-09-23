@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/securityposture-v12.0.0...securityposture-v12.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **securityposture:** update the API ([b93a0cc](https://github.com/googleapis/google-api-nodejs-client/commit/b93a0cc1364aeca19c0fa220b09d432ec125b6bd))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/securityposture-v11.0.0...securityposture-v12.0.0) (2026-09-14)
 
 

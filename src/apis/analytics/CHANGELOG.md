@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/analytics-v15.0.0...analytics-v15.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **analytics:** update the API ([b86a483](https://github.com/googleapis/google-api-nodejs-client/commit/b86a483bc460b49f634253a7cf8c66a0e0128ea0))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analytics-v14.0.0...analytics-v15.0.0) (2026-09-14)
 
 

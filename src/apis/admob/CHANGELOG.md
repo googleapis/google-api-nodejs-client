@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v11.0.0...admob-v11.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **admob:** update the API ([f2ab486](https://github.com/googleapis/google-api-nodejs-client/commit/f2ab486219eb5c0caebfcedadffcde1607b2a60c))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v10.0.0...admob-v11.0.0) (2026-09-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/blockchainnodeengine-v15.0.0...blockchainnodeengine-v15.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **blockchainnodeengine:** update the API ([1deff33](https://github.com/googleapis/google-api-nodejs-client/commit/1deff331981d21185f405d91b62538022d543e06))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/blockchainnodeengine-v14.0.0...blockchainnodeengine-v15.0.0) (2026-09-14)
 
 

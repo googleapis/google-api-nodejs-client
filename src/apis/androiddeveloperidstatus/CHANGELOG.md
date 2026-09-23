@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/androiddeveloperidstatus-v3.0.0...androiddeveloperidstatus-v3.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **androiddeveloperidstatus:** update the API ([f46c807](https://github.com/googleapis/google-api-nodejs-client/commit/f46c807ee824e2b641a7d00edf67a7bbbefe14be))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androiddeveloperidstatus-v2.0.0...androiddeveloperidstatus-v3.0.0) (2026-09-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [22.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datafusion-v22.0.0...datafusion-v22.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **datafusion:** update the API ([5a4e31a](https://github.com/googleapis/google-api-nodejs-client/commit/5a4e31a6046a69ccd2f20c91327fe1411edb9c29))
+
 ## [22.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datafusion-v21.0.0...datafusion-v22.0.0) (2026-09-14)
 
 

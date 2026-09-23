@@ -1,5 +1,12 @@
 # Changelog
 
+## [47.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/content-v47.0.0...content-v47.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **content:** update the API ([2ff62be](https://github.com/googleapis/google-api-nodejs-client/commit/2ff62bea279aa91aeb7f3676117c8381ad29fd43))
+
 ## [47.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v46.0.0...content-v47.0.0) (2026-09-14)
 
 

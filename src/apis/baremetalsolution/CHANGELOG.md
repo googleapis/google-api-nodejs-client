@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/baremetalsolution-v9.0.0...baremetalsolution-v9.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **baremetalsolution:** update the API ([d0778d0](https://github.com/googleapis/google-api-nodejs-client/commit/d0778d0d02ef8d9b175e06864514d7997e4d7646))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/baremetalsolution-v8.0.0...baremetalsolution-v9.0.0) (2026-09-14)
 
 

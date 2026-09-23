@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/bigqueryconnection-v10.0.0...bigqueryconnection-v10.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **bigqueryconnection:** update the API ([3192524](https://github.com/googleapis/google-api-nodejs-client/commit/319252473132b99c613375ae4275fe2b1c7cf682))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigqueryconnection-v9.0.0...bigqueryconnection-v10.0.0) (2026-09-14)
 
 

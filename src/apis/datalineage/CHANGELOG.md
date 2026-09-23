@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datalineage-v9.0.0...datalineage-v9.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **datalineage:** update the API ([bc93830](https://github.com/googleapis/google-api-nodejs-client/commit/bc938307c3c208cd1e16e528027aac3431d2ae90))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datalineage-v8.0.0...datalineage-v9.0.0) (2026-09-14)
 
 

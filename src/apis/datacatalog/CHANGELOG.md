@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v17.0.0...datacatalog-v17.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **datacatalog:** update the API ([cfeb45f](https://github.com/googleapis/google-api-nodejs-client/commit/cfeb45ff7c8dd878ffc504ef300ab34ee2c2fe4d))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v16.0.0...datacatalog-v17.0.0) (2026-09-14)
 
 

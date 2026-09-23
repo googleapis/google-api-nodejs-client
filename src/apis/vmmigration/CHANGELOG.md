@@ -1,5 +1,12 @@
 # Changelog
 
+## [25.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v25.0.0...vmmigration-v25.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **vmmigration:** update the API ([78cff84](https://github.com/googleapis/google-api-nodejs-client/commit/78cff84c25a3da20e63589586f633b0075ef36a7))
+
 ## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v24.0.0...vmmigration-v25.0.0) (2026-09-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebasestorage-v17.0.0...firebasestorage-v17.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **firebasestorage:** update the API ([53e07ba](https://github.com/googleapis/google-api-nodejs-client/commit/53e07ba59df96a23e82dba49a79ab3f519b83c8e))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasestorage-v16.0.0...firebasestorage-v17.0.0) (2026-09-14)
 
 

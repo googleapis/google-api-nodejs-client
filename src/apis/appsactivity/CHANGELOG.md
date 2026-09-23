@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/appsactivity-v9.0.0...appsactivity-v9.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **appsactivity:** update the API ([b0b62d4](https://github.com/googleapis/google-api-nodejs-client/commit/b0b62d42a2bd7c10666fa2a149e62b151fbc21af))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/appsactivity-v8.0.0...appsactivity-v9.0.0) (2026-09-14)
 
 

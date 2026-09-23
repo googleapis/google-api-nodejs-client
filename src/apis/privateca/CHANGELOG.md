@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/privateca-v18.0.0...privateca-v18.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **privateca:** update the API ([251f6d2](https://github.com/googleapis/google-api-nodejs-client/commit/251f6d2e9a60b7a8438e894b4ac571feff8d7353))
+
 ## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/privateca-v17.0.0...privateca-v18.0.0) (2026-09-14)
 
 

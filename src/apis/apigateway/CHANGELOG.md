@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/apigateway-v9.0.0...apigateway-v9.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **apigateway:** update the API ([1416fb5](https://github.com/googleapis/google-api-nodejs-client/commit/1416fb506c19ddcacd9a3cebf17b89a0cbacef8f))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apigateway-v8.1.0...apigateway-v9.0.0) (2026-09-14)
 
 

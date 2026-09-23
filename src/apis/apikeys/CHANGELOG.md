@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/apikeys-v13.0.0...apikeys-v13.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **apikeys:** update the API ([630a4fd](https://github.com/googleapis/google-api-nodejs-client/commit/630a4fd950bf808bc4e58174fb45e3dd7551af7c))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apikeys-v12.0.0...apikeys-v13.0.0) (2026-09-14)
 
 

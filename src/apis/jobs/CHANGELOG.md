@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/jobs-v13.0.0...jobs-v13.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **jobs:** update the API ([be2e52e](https://github.com/googleapis/google-api-nodejs-client/commit/be2e52e8a7b7f2621daec45572b2fdc50710244f))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/jobs-v12.0.0...jobs-v13.0.0) (2026-09-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [25.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dataproc-v25.0.0...dataproc-v25.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **dataproc:** update the API ([ff5830a](https://github.com/googleapis/google-api-nodejs-client/commit/ff5830a0b1490c257a98ea68c0b215aa852f2e36))
+
 ## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataproc-v24.0.0...dataproc-v25.0.0) (2026-09-14)
 
 

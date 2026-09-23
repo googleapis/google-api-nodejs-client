@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/vectortile-v9.0.0...vectortile-v9.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **vectortile:** update the API ([2715a83](https://github.com/googleapis/google-api-nodejs-client/commit/2715a83264befa6804d91d3e933100af4c543856))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vectortile-v8.0.0...vectortile-v9.0.0) (2026-09-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sql-v9.0.0...sql-v9.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **sql:** update the API ([4fb4e06](https://github.com/googleapis/google-api-nodejs-client/commit/4fb4e0678134d367232a30d9d8016a34cc7a4c28))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sql-v8.0.0...sql-v9.0.0) (2026-09-14)
 
 

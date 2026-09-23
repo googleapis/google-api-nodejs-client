@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/marketingplatformadmin",
-  "version": "9.0.0",
+  "version": "9.1.0",
   "description": "marketingplatformadmin",
   "main": "build/index.js",
   "types": "build/index.d.ts",

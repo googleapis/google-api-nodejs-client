@@ -1,5 +1,12 @@
 # Changelog
 
+## [24.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v24.0.0...containeranalysis-v24.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **containeranalysis:** update the API ([2be576a](https://github.com/googleapis/google-api-nodejs-client/commit/2be576afd4367ce90a35253791f1412c0de1588d))
+
 ## [24.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v23.0.0...containeranalysis-v24.0.0) (2026-09-14)
 
 

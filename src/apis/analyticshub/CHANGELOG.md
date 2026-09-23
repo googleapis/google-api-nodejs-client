@@ -1,5 +1,16 @@
 # Changelog
 
+## [24.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v23.0.0...analyticshub-v24.0.0) (2026-09-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **analyticshub:** This release has breaking changes.
+
+### Features
+
+* **analyticshub:** update the API ([dc0b9ae](https://github.com/googleapis/google-api-nodejs-client/commit/dc0b9ae163b741885b3183d05e3c9edc50be3821))
+
 ## [23.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v22.0.0...analyticshub-v23.0.0) (2026-09-14)
 
 

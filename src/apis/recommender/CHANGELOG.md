@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/recommender-v16.0.0...recommender-v16.1.0) (2026-09-23)
+
+
+### Features
+
+* **recommender:** update the API ([cb319b6](https://github.com/googleapis/google-api-nodejs-client/commit/cb319b69618ab388578e4a57c691c46f442599e9))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/recommender-v15.0.0...recommender-v16.0.0) (2026-09-14)
 
 

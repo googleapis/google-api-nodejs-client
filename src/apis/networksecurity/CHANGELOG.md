@@ -1,5 +1,12 @@
 # Changelog
 
+## [21.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v21.0.0...networksecurity-v21.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **networksecurity:** update the API ([8d6a249](https://github.com/googleapis/google-api-nodejs-client/commit/8d6a24955ddad7510c806f837d366b543643bea9))
+
 ## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v20.0.0...networksecurity-v21.0.0) (2026-09-14)
 
 

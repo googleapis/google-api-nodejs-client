@@ -1,5 +1,12 @@
 # Changelog
 
+## [26.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v26.0.0...drive-v26.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **drive:** update the API ([3d3571d](https://github.com/googleapis/google-api-nodejs-client/commit/3d3571d6a41420c92b5f3226ecd5e00a61bcfec0))
+
 ## [26.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v25.0.0...drive-v26.0.0) (2026-09-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/memcache-v17.0.0...memcache-v17.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **memcache:** update the API ([1c81ea0](https://github.com/googleapis/google-api-nodejs-client/commit/1c81ea0b1649688288f7a87bb63b72f02d0ae936))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/memcache-v16.0.0...memcache-v17.0.0) (2026-09-14)
 
 

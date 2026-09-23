@@ -1,5 +1,12 @@
 # Changelog
 
+## [35.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v35.0.0...aiplatform-v35.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **aiplatform:** update the API ([c13a404](https://github.com/googleapis/google-api-nodejs-client/commit/c13a404e7ed13f20c965e5fc70d4a261cbf73b37))
+
 ## [35.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v34.0.0...aiplatform-v35.0.0) (2026-09-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/appsmarket-v3.0.0...appsmarket-v3.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **appsmarket:** update the API ([adfdb1c](https://github.com/googleapis/google-api-nodejs-client/commit/adfdb1c887371a125121f8c6c5a0b22f2e025881))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/appsmarket-v2.0.0...appsmarket-v3.0.0) (2026-09-14)
 
 

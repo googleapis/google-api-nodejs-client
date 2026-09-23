@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/docs-v14.0.0...docs-v14.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **docs:** update the API ([9be31e0](https://github.com/googleapis/google-api-nodejs-client/commit/9be31e0b78237e6d7b3dae739cfc5d4aa239df22))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/docs-v13.0.0...docs-v14.0.0) (2026-09-14)
 
 

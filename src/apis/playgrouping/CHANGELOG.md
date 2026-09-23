@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/playgrouping-v9.0.0...playgrouping-v9.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **playgrouping:** update the API ([cc6521c](https://github.com/googleapis/google-api-nodejs-client/commit/cc6521c909c54eb2ef92a4e9685e36549f31b4e8))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/playgrouping-v8.0.0...playgrouping-v9.0.0) (2026-09-14)
 
 

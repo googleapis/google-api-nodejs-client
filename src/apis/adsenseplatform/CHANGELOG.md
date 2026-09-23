@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/adsenseplatform-v10.0.0...adsenseplatform-v10.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **adsenseplatform:** update the API ([b1b1857](https://github.com/googleapis/google-api-nodejs-client/commit/b1b185721aa88cbcd81c7cfd4f7f4d6c3809d721))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/adsenseplatform-v9.0.0...adsenseplatform-v10.0.0) (2026-09-14)
 
 

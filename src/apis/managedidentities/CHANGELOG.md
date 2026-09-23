@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/managedidentities-v14.0.0...managedidentities-v14.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **managedidentities:** update the API ([b48108e](https://github.com/googleapis/google-api-nodejs-client/commit/b48108ee3c365a0a2a4aff58b510fe7a34b4a15a))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/managedidentities-v13.0.0...managedidentities-v14.0.0) (2026-09-14)
 
 
