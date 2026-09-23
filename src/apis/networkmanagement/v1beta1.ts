@@ -462,6 +462,31 @@ export namespace networkmanagement_v1beta1 {
     subnetworkUri?: string | null;
   }
   /**
+   * For display only. Metadata associated with a serverless direct VPC ingress connection.
+   */
+  export interface Schema$DirectVpcIngressConnectionInfo {
+    /**
+     * URI of the VPC network for direct ingress. Format: `projects/{project_id\}/global/networks/{network_id\}`
+     */
+    networkUri?: string | null;
+    /**
+     * Region in which the Direct VPC ingress is deployed.
+     */
+    region?: string | null;
+    /**
+     * Selected destination IP address, from the selected IP range.
+     */
+    selectedIpAddress?: string | null;
+    /**
+     * Selected IP range.
+     */
+    selectedIpRange?: string | null;
+    /**
+     * URI of the subnetwork for direct ingress. Format: `projects/{project_id\}/regions/{region\}/subnetworks/{subnetwork_id\}`
+     */
+    subnetworkUri?: string | null;
+  }
+  /**
    * Details of the final state "drop" and associated resource.
    */
   export interface Schema$DropInfo {
@@ -1873,6 +1898,10 @@ export namespace networkmanagement_v1beta1 {
      * Display information of a serverless direct VPC egress connection.
      */
     directVpcEgressConnection?: Schema$DirectVpcEgressConnectionInfo;
+    /**
+     * Display information of a serverless direct VPC ingress connection.
+     */
+    directVpcIngressConnection?: Schema$DirectVpcIngressConnectionInfo;
     /**
      * Display information of a DMS Private Connection.
      */
