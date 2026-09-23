@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/licensing-v10.0.0...licensing-v10.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **licensing:** update the API ([7f806b2](https://github.com/googleapis/google-api-nodejs-client/commit/7f806b2905a01c5e30a1998f53bbdcffbaaa61c9))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/licensing-v9.0.0...licensing-v10.0.0) (2026-09-14)
 
 

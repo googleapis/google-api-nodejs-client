@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/integrations-v10.0.0...integrations-v10.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **integrations:** update the API ([8d180d0](https://github.com/googleapis/google-api-nodejs-client/commit/8d180d061d14062418c14fa8205e43e0d2a088f4))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/integrations-v9.0.0...integrations-v10.0.0) (2026-09-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/forms-v11.0.0...forms-v11.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **forms:** update the API ([9e770a8](https://github.com/googleapis/google-api-nodejs-client/commit/9e770a841e6e3962588b7c9b00b4d2bf83939d05))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/forms-v10.0.0...forms-v11.0.0) (2026-09-14)
 
 

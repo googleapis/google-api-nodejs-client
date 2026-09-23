@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gmailpostmastertools-v10.0.0...gmailpostmastertools-v10.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **gmailpostmastertools:** update the API ([1a53075](https://github.com/googleapis/google-api-nodejs-client/commit/1a53075b7d23bbc7b2c4956a354a03fd0bc223a2))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmailpostmastertools-v9.0.0...gmailpostmastertools-v10.0.0) (2026-09-14)
 
 

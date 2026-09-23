@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebasedatabase-v10.0.0...firebasedatabase-v10.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **firebasedatabase:** update the API ([106d9f9](https://github.com/googleapis/google-api-nodejs-client/commit/106d9f9cfc54e7a20318c4745af45ddf47b0a89e))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasedatabase-v9.0.0...firebasedatabase-v10.0.0) (2026-09-14)
 
 

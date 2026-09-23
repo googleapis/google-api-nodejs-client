@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/localservices-v12.0.0...localservices-v12.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **localservices:** update the API ([16d312a](https://github.com/googleapis/google-api-nodejs-client/commit/16d312ad0575bc0d4c87f88431e146f71d499a3e))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/localservices-v11.0.0...localservices-v12.0.0) (2026-09-14)
 
 

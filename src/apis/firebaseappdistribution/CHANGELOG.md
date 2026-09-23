@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappdistribution-v18.0.0...firebaseappdistribution-v18.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **firebaseappdistribution:** update the API ([c636c03](https://github.com/googleapis/google-api-nodejs-client/commit/c636c034e99205b194e80e1e32a0bfea667b6bf6))
+
 ## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappdistribution-v17.0.0...firebaseappdistribution-v18.0.0) (2026-09-14)
 
 

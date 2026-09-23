@@ -1,5 +1,12 @@
 # Changelog
 
+## [32.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v32.0.0...healthcare-v32.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **healthcare:** update the API ([b4d3215](https://github.com/googleapis/google-api-nodejs-client/commit/b4d3215bc1fba666b424d69ae3426b23ad51480c))
+
 ## [32.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v31.0.0...healthcare-v32.0.0) (2026-09-14)
 
 

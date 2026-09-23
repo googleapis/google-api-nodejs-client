@@ -1,5 +1,12 @@
 # Changelog
 
+## [22.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v22.0.0...gmail-v22.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **gmail:** update the API ([dfc5b92](https://github.com/googleapis/google-api-nodejs-client/commit/dfc5b9282c44952bcb0f338eb79f8a72c09b2456))
+
 ## [22.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v21.0.0...gmail-v22.0.0) (2026-09-14)
 
 

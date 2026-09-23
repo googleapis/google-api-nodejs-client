@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/genomics-v11.0.0...genomics-v11.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **genomics:** update the API ([ea86a83](https://github.com/googleapis/google-api-nodejs-client/commit/ea86a832d3b3f70f313dc97141412ef11b437fe0))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/genomics-v10.0.0...genomics-v11.0.0) (2026-09-14)
 
 

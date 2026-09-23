@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gameservices-v10.0.0...gameservices-v10.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **gameservices:** update the API ([a957340](https://github.com/googleapis/google-api-nodejs-client/commit/a957340093c4652471f5c80b61c12e8f5b1982ea))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gameservices-v9.0.0...gameservices-v10.0.0) (2026-09-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/libraryagent-v9.0.0...libraryagent-v9.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **libraryagent:** update the API ([62b6f08](https://github.com/googleapis/google-api-nodejs-client/commit/62b6f088f9304c851045068e591686bb1dbf9e80))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/libraryagent-v8.0.0...libraryagent-v9.0.0) (2026-09-14)
 
 

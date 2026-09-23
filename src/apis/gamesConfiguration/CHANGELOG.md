@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gamesconfiguration-v11.0.0...gamesconfiguration-v11.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **gamesConfiguration:** update the API ([ac0f68c](https://github.com/googleapis/google-api-nodejs-client/commit/ac0f68c2ead4f1ceb7d208d2beab7292a66f5541))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gamesconfiguration-v10.0.0...gamesconfiguration-v11.0.0) (2026-09-14)
 
 
