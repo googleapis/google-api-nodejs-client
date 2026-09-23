@@ -5094,6 +5094,15 @@ export namespace compute_beta {
   }
   export interface Schema$CacheInvalidationRule {
     /**
+     * If set, this invalidation rule will only apply to requests routed to the
+     * given backend service or backend bucket.
+     * For example, for a backend bucket `bb1` in the same scope as the URL map,
+     * the path would be `projects/my-project/global/backendBuckets/bb1`; and
+     * for a backend service `bs1` in the same scope as the URL map, the path
+     * would be `projects/my-project/global/backendServices/bs1`.
+     */
+    backendService?: string | null;
+    /**
      * A list of cache tags used to identify cached objects.
      *
      *
@@ -5109,10 +5118,21 @@ export namespace compute_beta {
      */
     cacheTags?: string[] | null;
     /**
+     * If set, this invalidation rule will only apply to responses with the given
+     * content-type. Parameters are not allowed and are ignored from the response
+     * when matching. Wildcards are not allowed.
+     */
+    contentType?: string | null;
+    /**
      * If set, this invalidation rule will only apply to requests with a Host
      * header matching host.
      */
     host?: string | null;
+    /**
+     * If set, this invalidation rule will only apply to responses with the
+     * given HTTP status. Valid range is 200-599.
+     */
+    httpStatus?: number | null;
     path?: string | null;
   }
   /**
@@ -5964,7 +5984,7 @@ export namespace compute_beta {
      * resource types.
      *
      *  The type must be one of the following:ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3,ACCELERATOR_OPTIMIZED_A3_MEGA,COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D,
-     *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,GRAPHICS_OPTIMIZED_G4_VGPU,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3. For
+     *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,GRAPHICS_OPTIMIZED_G4_VGPU,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3,STORAGE_OPTIMIZED_Z4DS, STORAGE_OPTIMIZED_Z4DH,STORAGE_OPTIMIZED_Z4D4T. For
      * example, type MEMORY_OPTIMIZED specifies a commitment that
      * applies only to eligible resources of memory optimized M1 and M2 machine
      * series. Type GENERAL_PURPOSE specifies a commitment that
@@ -8029,6 +8049,13 @@ export namespace compute_beta {
   }
   export interface Schema$DistributionPolicyZoneConfiguration {
     /**
+     * Optional. The maximum size of the group in this zone. This value can be either a
+     * fixed number or, a percentage. If you set a percentage, the number of
+     * instances is rounded up if necessary. If unset, it is interpreted as
+     * unbounded.
+     */
+    maxSize?: Schema$FixedOrPercent;
+    /**
      * The URL of thezone.
      * The zone must exist in the region where the managed instance group is
      * located.
@@ -9946,6 +9973,12 @@ export namespace compute_beta {
      */
     autoDeleteAutoCreatedReservations?: boolean | null;
     /**
+     * Full or partial URL of an existing future reservation to indicate
+     * intent for reserving capacity in the same cluster as the colocation
+     * resource.
+     */
+    colocationResource?: string | null;
+    /**
      * If not present, then FR will not deliver a new commitment or update an
      * existing commitment.
      */
@@ -10626,7 +10659,7 @@ export namespace compute_beta {
      */
     description?: string | null;
     /**
-     * Output only. For optimistic locking
+     * Output only. For optimistic locking.
      */
     etag?: string | null;
     /**
@@ -10652,6 +10685,9 @@ export namespace compute_beta {
    * Response to an UpdateGlobalFrontendSettingsRequest.
    */
   export interface Schema$GlobalFrontendSettingsPatchResponse {
+    /**
+     * The Operation resource for this long-running operation.
+     */
     operation?: Schema$Operation;
   }
   export interface Schema$GlobalNetworkEndpointGroupsAttachEndpointsRequest {
@@ -13892,7 +13928,45 @@ export namespace compute_beta {
    * Represents a read-only view of a global Image resource.
    */
   export interface Schema$ImageView {
+    /**
+     * The Image resource.
+     */
     image?: Schema$Image;
+  }
+  /**
+   * Response message for ImageViewsService.List
+   */
+  export interface Schema$ImageViewsListResponse {
+    /**
+     * Etag of the resource.
+     */
+    etag?: string | null;
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of Image resources.
+     */
+    items?: Schema$ImageView[];
+    kind?: string | null;
+    nextPageToken?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Unreachable resources.
+     */
+    unreachables?: string[] | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
   }
   /**
    * Initial State for shielded instance,
@@ -14898,6 +14972,10 @@ export namespace compute_beta {
   }
   export interface Schema$InstanceGroupManagerInstanceFlexibilityPolicy {
     /**
+     * Constraints applied to instance flexibility spreading and selection.
+     */
+    constraints?: Schema$InstanceGroupManagerInstanceFlexibilityPolicyConstraints;
+    /**
      * Named instance selections configuring properties that the group will use
      * when creating new VMs.
      */
@@ -14911,6 +14989,17 @@ export namespace compute_beta {
      * create instances.
      */
     provisioningModelMix?: Schema$InstanceGroupManagerInstanceFlexibilityPolicyProvisioningModelMix;
+  }
+  /**
+   * Constraints applied to instance flexibility spreading and selection.
+   */
+  export interface Schema$InstanceGroupManagerInstanceFlexibilityPolicyConstraints {
+    /**
+     * When set to true, all instances in the group will be provisioned with
+     * the exact same machine type, ensuring cluster homogeneity across zones.
+     * Defaults to false.
+     */
+    singleMachineType?: boolean | null;
   }
   export interface Schema$InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection {
     /**
@@ -20920,6 +21009,9 @@ export namespace compute_beta {
   }
   export interface Schema$ManagedRulesetList {
     id?: string | null;
+    /**
+     * The list of managed rulesets.
+     */
     items?: Schema$ManagedRuleset[];
     nextPageToken?: string | null;
     warning?: {
@@ -30210,6 +30302,13 @@ export namespace compute_beta {
      */
     encryptedInterconnectRouter?: boolean | null;
     /**
+     * ETag for optimistic concurrency control as described by AIP 154. Used to
+     * prevent conflicting updates. If provided, the request will succeed only if
+     * the etag matches the current etag of the router; otherwise, the request
+     * fails with an ABORTED error.
+     */
+    etag?: string | null;
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      */
@@ -30972,6 +31071,10 @@ export namespace compute_beta {
      * must be unique among rules within a NAT.
      */
     ruleNumber?: number | null;
+    /**
+     * A list of source workload identities.
+     */
+    sourceWorkloadIdentities?: string[] | null;
   }
   export interface Schema$RouterNatRuleAction {
     /**
@@ -72129,6 +72232,7 @@ export namespace compute_beta {
      *   //   "autoCreatedReservationsDeleteTime": "my_autoCreatedReservationsDeleteTime",
      *   //   "autoCreatedReservationsDuration": {},
      *   //   "autoDeleteAutoCreatedReservations": false,
+     *   //   "colocationResource": "my_colocationResource",
      *   //   "commitmentInfo": {},
      *   //   "confidentialComputeType": "my_confidentialComputeType",
      *   //   "creationTimestamp": "my_creationTimestamp",
@@ -72316,6 +72420,7 @@ export namespace compute_beta {
      *       //   "autoCreatedReservationsDeleteTime": "my_autoCreatedReservationsDeleteTime",
      *       //   "autoCreatedReservationsDuration": {},
      *       //   "autoDeleteAutoCreatedReservations": false,
+     *       //   "colocationResource": "my_colocationResource",
      *       //   "commitmentInfo": {},
      *       //   "confidentialComputeType": "my_confidentialComputeType",
      *       //   "creationTimestamp": "my_creationTimestamp",
@@ -72787,6 +72892,7 @@ export namespace compute_beta {
      *       //   "autoCreatedReservationsDeleteTime": "my_autoCreatedReservationsDeleteTime",
      *       //   "autoCreatedReservationsDuration": {},
      *       //   "autoDeleteAutoCreatedReservations": false,
+     *       //   "colocationResource": "my_colocationResource",
      *       //   "commitmentInfo": {},
      *       //   "confidentialComputeType": "my_confidentialComputeType",
      *       //   "creationTimestamp": "my_creationTimestamp",
@@ -76785,6 +76891,7 @@ export namespace compute_beta {
      *
      *   // Do the magic
      *   const res = await compute.globalFrontendSettings.get({
+     *     // Required. Project ID for this request.
      *     project: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -76931,10 +77038,11 @@ export namespace compute_beta {
      *
      *   // Do the magic
      *   const res = await compute.globalFrontendSettings.patch({
+     *     // Required. Project ID for this request.
      *     project: 'placeholder-value',
-     *
+     *     // An optional request ID to identify requests.
      *     requestId: 'placeholder-value',
-     *     // e.g., "type"
+     *     // Field mask to support patch. E.g., "type".
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -77067,21 +77175,21 @@ export namespace compute_beta {
 
   export interface Params$Resource$Globalfrontendsettings$Get extends StandardParameters {
     /**
-     *
+     * Required. Project ID for this request.
      */
     project?: string;
   }
   export interface Params$Resource$Globalfrontendsettings$Patch extends StandardParameters {
     /**
-     *
+     * Required. Project ID for this request.
      */
     project?: string;
     /**
-     *
+     * An optional request ID to identify requests.
      */
     requestId?: string;
     /**
-     * e.g., "type"
+     * Field mask to support patch. E.g., "type".
      */
     updateMask?: string;
 
@@ -92269,6 +92377,246 @@ export namespace compute_beta {
         return createAPIRequest<Schema$ImageView>(parameters);
       }
     }
+
+    /**
+     * Returns a list of global ImageView resources, with a regional
+     * context.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.imageViews.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Required. Name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Imageviews$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Imageviews$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ImageViewsListResponse>>;
+    list(
+      params: Params$Resource$Imageviews$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Imageviews$List,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$ImageViewsListResponse>,
+      callback: BodyResponseCallback<Schema$ImageViewsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Imageviews$List,
+      callback: BodyResponseCallback<Schema$ImageViewsListResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ImageViewsListResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Imageviews$List
+        | BodyResponseCallback<Schema$ImageViewsListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ImageViewsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ImageViewsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ImageViewsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Imageviews$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Imageviews$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/imageViews'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ImageViewsListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ImageViewsListResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Imageviews$Get extends StandardParameters {
@@ -92284,6 +92632,114 @@ export namespace compute_beta {
      * Name of the image resource to return.
      */
     resourceId?: string;
+  }
+  export interface Params$Resource$Imageviews$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Required. Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Required. Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Instancegroupmanagerresizerequests {
@@ -239743,8 +240199,11 @@ export namespace compute_beta {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "backendService": "my_backendService",
      *       //   "cacheTags": [],
+     *       //   "contentType": "my_contentType",
      *       //   "host": "my_host",
+     *       //   "httpStatus": 0,
      *       //   "path": "my_path"
      *       // }
      *     },
@@ -253889,6 +254348,11 @@ export namespace compute_beta {
      *
      *   // Do the magic
      *   const res = await compute.routers.delete({
+     *     // ETag for optimistic concurrency control as described by AIP 154. Used to
+     *     // prevent conflicting updates. If provided, the request will succeed only if
+     *     // the etag matches the current etag of the router; otherwise, the request
+     *     // fails with an ABORTED error.
+     *     etag: 'placeholder-value',
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
@@ -254465,6 +254929,7 @@ export namespace compute_beta {
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
      *   //   "encryptedInterconnectRouter": false,
+     *   //   "etag": "my_etag",
      *   //   "id": "my_id",
      *   //   "interfaces": [],
      *   //   "kind": "my_kind",
@@ -255494,6 +255959,7 @@ export namespace compute_beta {
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
      *       //   "encryptedInterconnectRouter": false,
+     *       //   "etag": "my_etag",
      *       //   "id": "my_id",
      *       //   "interfaces": [],
      *       //   "kind": "my_kind",
@@ -256689,6 +257155,7 @@ export namespace compute_beta {
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
      *       //   "encryptedInterconnectRouter": false,
+     *       //   "etag": "my_etag",
      *       //   "id": "my_id",
      *       //   "interfaces": [],
      *       //   "kind": "my_kind",
@@ -257278,6 +257745,7 @@ export namespace compute_beta {
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
      *       //   "encryptedInterconnectRouter": false,
+     *       //   "etag": "my_etag",
      *       //   "id": "my_id",
      *       //   "interfaces": [],
      *       //   "kind": "my_kind",
@@ -257622,6 +258090,7 @@ export namespace compute_beta {
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
      *       //   "encryptedInterconnectRouter": false,
+     *       //   "etag": "my_etag",
      *       //   "id": "my_id",
      *       //   "interfaces": [],
      *       //   "kind": "my_kind",
@@ -258279,6 +258748,13 @@ export namespace compute_beta {
     serviceProjectNumber?: string;
   }
   export interface Params$Resource$Routers$Delete extends StandardParameters {
+    /**
+     * ETag for optimistic concurrency control as described by AIP 154. Used to
+     * prevent conflicting updates. If provided, the request will succeed only if
+     * the etag matches the current etag of the router; otherwise, the request
+     * fails with an ABORTED error.
+     */
+    etag?: string;
     /**
      * Project ID for this request.
      */
@@ -298628,8 +299104,11 @@ export namespace compute_beta {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "backendService": "my_backendService",
      *       //   "cacheTags": [],
+     *       //   "contentType": "my_contentType",
      *       //   "host": "my_host",
+     *       //   "httpStatus": 0,
      *       //   "path": "my_path"
      *       // }
      *     },

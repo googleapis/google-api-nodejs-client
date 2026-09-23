@@ -7379,6 +7379,7 @@
           ],
           "parameters": {
             "project": {
+              "description": "Required. Project ID for this request.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -7404,16 +7405,18 @@
           ],
           "parameters": {
             "project": {
+              "description": "Required. Project ID for this request.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "requestId": {
+              "description": "An optional request ID to identify requests.",
               "location": "query",
               "type": "string"
             },
             "updateMask": {
-              "description": "e.g., \"type\"",
+              "description": "Field mask to support patch. E.g., \"type\".",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -9758,6 +9761,69 @@
           "path": "projects/{project}/regions/{region}/imageViews/{resourceId}",
           "response": {
             "$ref": "ImageView"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "list": {
+          "description": "Returns a list of global ImageView resources, with a regional\ncontext.",
+          "flatPath": "projects/{project}/regions/{region}/imageViews",
+          "httpMethod": "GET",
+          "id": "compute.imageViews.list",
+          "parameterOrder": [
+            "project",
+            "region"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "A filter expression that filters resources listed in the response. Most\nCompute resources support two types of filter expressions:\nexpressions that support regular expressions and expressions that follow\nAPI improvement proposal AIP-160.\nThese two types of filter expressions cannot be mixed in one request.\n\nIf you want to use AIP-160, your expression must specify the field name, an\noperator, and the value that you want to use for filtering. The value\nmust be a string, a number, or a boolean. The operator\nmust be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`.\n\nFor example, if you are filtering Compute Engine instances, you can\nexclude instances named `example-instance` by specifying\n`name != example-instance`.\n\nThe `:*` comparison can be used to test whether a key has been defined.\nFor example, to find all objects with `owner` label use:\n```\nlabels.owner:*\n```\n\nYou can also filter nested fields. For example, you could specify\n`scheduling.automaticRestart = false` to include instances only\nif they are not scheduled for automatic restarts. You can use filtering\non nested fields to filter based onresource labels.\n\nTo filter on multiple expressions, provide each separate expression within\nparentheses. For example:\n```\n(scheduling.automaticRestart = true)\n(cpuPlatform = \"Intel Skylake\")\n```\nBy default, each expression is an `AND` expression. However, you\ncan include `AND` and `OR` expressions explicitly.\nFor example:\n```\n(cpuPlatform = \"Intel Skylake\") OR\n(cpuPlatform = \"Intel Broadwell\") AND\n(scheduling.automaticRestart = true)\n```\n\nIf you want to use a regular expression, use the `eq` (equal) or `ne`\n(not equal) operator against a single un-parenthesized expression with or\nwithout quotes or against multiple parenthesized expressions. Examples:\n\n`fieldname eq unquoted literal`\n`fieldname eq 'single quoted literal'`\n`fieldname eq \"double quoted literal\"`\n`(fieldname1 eq literal) (fieldname2 ne \"literal\")`\n\nThe literal value is interpreted as a regular expression using GoogleRE2 library syntax.\nThe literal value must match the entire field.\n\nFor example, to filter for instances that do not end with name \"instance\",\nyou would use `name ne .*instance`.\n\nYou cannot combine constraints on multiple fields using regular\nexpressions.",
+              "location": "query",
+              "type": "string"
+            },
+            "maxResults": {
+              "default": "500",
+              "description": "The maximum number of results per page that should be returned.\nIf the number of available results is larger than `maxResults`,\nCompute Engine returns a `nextPageToken` that can be used to get\nthe next page of results in subsequent list requests. Acceptable values are\n`0` to `500`, inclusive. (Default: `500`)",
+              "format": "uint32",
+              "location": "query",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "orderBy": {
+              "description": "Sorts list results by a certain order. By default, results\nare returned in alphanumerical order based on the resource name.\n\nYou can also sort results in descending order based on the creation\ntimestamp using `orderBy=\"creationTimestamp desc\"`. This sorts\nresults based on the `creationTimestamp` field in\nreverse chronological order (newest result first). Use this to sort\nresources like operations so that the newest operation is returned first.\n\nCurrently, only sorting by `name` or\n`creationTimestamp desc` is supported.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "Specifies a page token to use. Set `pageToken` to the\n`nextPageToken` returned by a previous list request to get\nthe next page of results.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Required. Name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "Opt-in for partial success behavior which provides partial results in case\nof failure. The default value is false.\n\nFor example, when partial success behavior is enabled, aggregatedList for a\nsingle zone scope either returns all resources in the zone or no resources,\nwith an error code.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/imageViews",
+          "response": {
+            "$ref": "ImageViewsListResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -43596,6 +43662,11 @@
             "router"
           ],
           "parameters": {
+            "etag": {
+              "description": "ETag for optimistic concurrency control as described by AIP 154. Used to\nprevent conflicting updates. If provided, the request will succeed only if\nthe etag matches the current etag of the router; otherwise, the request\nfails with an ABORTED error.",
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Project ID for this request.",
               "location": "path",
@@ -54280,7 +54351,7 @@
       }
     }
   },
-  "revision": "20260828",
+  "revision": "20260910",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -60305,6 +60376,10 @@
     "CacheInvalidationRule": {
       "id": "CacheInvalidationRule",
       "properties": {
+        "backendService": {
+          "description": "If set, this invalidation rule will only apply to requests routed to the\ngiven backend service or backend bucket.\nFor example, for a backend bucket `bb1` in the same scope as the URL map,\nthe path would be `projects/my-project/global/backendBuckets/bb1`; and\nfor a backend service `bs1` in the same scope as the URL map, the path\nwould be `projects/my-project/global/backendServices/bs1`.",
+          "type": "string"
+        },
         "cacheTags": {
           "description": "A list of cache tags used to identify cached objects.\n\n   \n   - Cache tags are specified when the response is first cached, by setting\n   the `Cache-Tag` response header at the origin.\n   - Multiple cache tags in the same invalidation request are treated as\n   Boolean `OR` - for example, `tag1 OR tag2 OR tag3`.\n   - If other fields are also specified, these are treated as Boolean `AND`\n   with any tags.\n\n\nUp to 10 tags can be specified in a single invalidation request.",
           "items": {
@@ -60312,9 +60387,18 @@
           },
           "type": "array"
         },
+        "contentType": {
+          "description": "If set, this invalidation rule will only apply to responses with the given\ncontent-type. Parameters are not allowed and are ignored from the response\nwhen matching. Wildcards are not allowed.",
+          "type": "string"
+        },
         "host": {
           "description": "If set, this invalidation rule will only apply to requests with a Host\nheader matching host.",
           "type": "string"
+        },
+        "httpStatus": {
+          "description": "If set, this invalidation rule will only apply to responses with the\ngiven HTTP status. Valid range is 200-599.",
+          "format": "int32",
+          "type": "integer"
         },
         "path": {
           "type": "string"
@@ -61186,7 +61270,7 @@
           "type": "string"
         },
         "type": {
-          "description": "The type of commitment; specifies the\nmachine series for which you want to commit to purchasing resources.\nThe choice of machine series affects the discount rate and the eligible\nresource types.\n\n The type must be one of the following:ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3,ACCELERATOR_OPTIMIZED_A3_MEGA,COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D,\n COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,GRAPHICS_OPTIMIZED_G4_VGPU,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3. For\nexample, type MEMORY_OPTIMIZED specifies a commitment that\napplies only to eligible resources of memory optimized M1 and M2 machine\nseries. Type GENERAL_PURPOSE specifies a commitment that\napplies only to eligible resources of general purpose N1 machine series.",
+          "description": "The type of commitment; specifies the\nmachine series for which you want to commit to purchasing resources.\nThe choice of machine series affects the discount rate and the eligible\nresource types.\n\n The type must be one of the following:ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3,ACCELERATOR_OPTIMIZED_A3_MEGA,COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D,\n COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,GRAPHICS_OPTIMIZED_G4_VGPU,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3,STORAGE_OPTIMIZED_Z4DS, STORAGE_OPTIMIZED_Z4DH,STORAGE_OPTIMIZED_Z4D4T. For\nexample, type MEMORY_OPTIMIZED specifies a commitment that\napplies only to eligible resources of memory optimized M1 and M2 machine\nseries. Type GENERAL_PURPOSE specifies a commitment that\napplies only to eligible resources of general purpose N1 machine series.",
           "enum": [
             "ACCELERATOR_OPTIMIZED",
             "ACCELERATOR_OPTIMIZED_A3",
@@ -61231,6 +61315,9 @@
             "NETWORK_OPTIMIZED_U4P",
             "NETWORK_OPTIMIZED_U4S",
             "STORAGE_OPTIMIZED_Z3",
+            "STORAGE_OPTIMIZED_Z4D4T",
+            "STORAGE_OPTIMIZED_Z4DH",
+            "STORAGE_OPTIMIZED_Z4DS",
             "TYPE_UNSPECIFIED"
           ],
           "enumDescriptions": [
@@ -61277,6 +61364,9 @@
             "CUD bucket for NETWORK_OPTIMIZED_U4P machines.",
             "CUD bucket for NETWORK_OPTIMIZED_U4S machines.",
             "",
+            "CUD bucket for Z4D-4T machines.",
+            "CUD bucket for Z4DH machines.",
+            "CUD bucket for Z4DS machines.",
             "Note for internal users: When adding a new enum Type for v1, make sure\nto also add it in the comment for the `optional Type type` definition.\nThis ensures that the public documentation displays the new enum Type."
           ],
           "type": "string"
@@ -64837,6 +64927,10 @@
     "DistributionPolicyZoneConfiguration": {
       "id": "DistributionPolicyZoneConfiguration",
       "properties": {
+        "maxSize": {
+          "$ref": "FixedOrPercent",
+          "description": "Optional. The maximum size of the group in this zone. This value can be either a\nfixed number or, a percentage. If you set a percentage, the number of\ninstances is rounded up if necessary. If unset, it is interpreted as\nunbounded."
+        },
         "zone": {
           "annotations": {
             "required": [
@@ -67486,6 +67580,10 @@
           "description": "Setting for enabling or disabling automatic deletion for auto-created\nreservation. If set to true, auto-created reservations will be\ndeleted at Future Reservation's end time (default) or at user's defined\ntimestamp if any of the\n[auto_created_reservations_delete_time, auto_created_reservations_duration]\nvalues is specified.\nFor keeping auto-created reservation indefinitely, this value should be set\nto false.",
           "type": "boolean"
         },
+        "colocationResource": {
+          "description": "Full or partial URL of an existing future reservation to indicate\nintent for reserving capacity in the same cluster as the colocation\nresource.",
+          "type": "string"
+        },
         "commitmentInfo": {
           "$ref": "FutureReservationCommitmentInfo",
           "description": "If not present, then FR will not deliver a new commitment or update an\nexisting commitment."
@@ -68940,9 +69038,9 @@
             "INDIVIDUAL"
           ],
           "enumDescriptions": [
-            "Bundling is not active",
-            "Standard Global Frontend bundle",
-            "Ala Carte mode"
+            "Bundling is not active.",
+            "Standard Global Frontend bundle.",
+            "Ala Carte mode."
           ],
           "type": "string"
         },
@@ -68957,7 +69055,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Output only. For optimistic locking",
+          "description": "Output only. For optimistic locking.",
           "readOnly": true,
           "type": "string"
         },
@@ -68985,7 +69083,8 @@
       "id": "GlobalFrontendSettingsPatchResponse",
       "properties": {
         "operation": {
-          "$ref": "Operation"
+          "$ref": "Operation",
+          "description": "The Operation resource for this long-running operation."
         }
       },
       "type": "object"
@@ -73948,7 +74047,175 @@
       "id": "ImageView",
       "properties": {
         "image": {
-          "$ref": "Image"
+          "$ref": "Image",
+          "description": "The Image resource."
+        }
+      },
+      "type": "object"
+    },
+    "ImageViewsListResponse": {
+      "description": "Response message for ImageViewsService.List",
+      "id": "ImageViewsListResponse",
+      "properties": {
+        "etag": {
+          "description": "Etag of the resource.",
+          "type": "string"
+        },
+        "id": {
+          "description": "[Output Only] Unique identifier for the resource; defined by the server.",
+          "type": "string"
+        },
+        "items": {
+          "description": "A list of Image resources.",
+          "items": {
+            "$ref": "ImageView"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "default": "compute#imageViewList",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nextPageToken": {
+          "type": "string"
+        },
+        "selfLink": {
+          "description": "Output only. [Output Only] Server-defined URL for this resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "unreachables": {
+          "description": "Output only. [Output Only] Unreachable resources.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "warning": {
+          "description": "[Output Only] Informational warning message.",
+          "properties": {
+            "code": {
+              "description": "[Output Only] A warning code, if applicable. For example, Compute\nEngine returns NO_RESULTS_ON_PAGE if there\nare no results in the response.",
+              "enum": [
+                "CLEANUP_FAILED",
+                "DEPRECATED_RESOURCE_USED",
+                "DEPRECATED_TYPE_USED",
+                "DISK_SIZE_LARGER_THAN_IMAGE_SIZE",
+                "EXPERIMENTAL_TYPE_USED",
+                "EXTERNAL_API_WARNING",
+                "FIELD_VALUE_OVERRIDEN",
+                "INJECTED_KERNELS_DEPRECATED",
+                "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB",
+                "LARGE_DEPLOYMENT_WARNING",
+                "LIST_OVERHEAD_QUOTA_EXCEED",
+                "MISSING_TYPE_DEPENDENCY",
+                "NEXT_HOP_ADDRESS_NOT_ASSIGNED",
+                "NEXT_HOP_CANNOT_IP_FORWARD",
+                "NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE",
+                "NEXT_HOP_INSTANCE_NOT_FOUND",
+                "NEXT_HOP_INSTANCE_NOT_ON_NETWORK",
+                "NEXT_HOP_NOT_RUNNING",
+                "NOT_CRITICAL_ERROR",
+                "NO_RESULTS_ON_PAGE",
+                "PARTIAL_SUCCESS",
+                "QUOTA_INFO_UNAVAILABLE",
+                "REQUIRED_TOS_AGREEMENT",
+                "RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING",
+                "RESOURCE_NOT_DELETED",
+                "SCHEMA_VALIDATION_IGNORED",
+                "SINGLE_INSTANCE_PROPERTY_TEMPLATE",
+                "UNDECLARED_PROPERTIES",
+                "UNREACHABLE"
+              ],
+              "enumDeprecated": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "enumDescriptions": [
+                "Warning about failed cleanup of transient changes made by a failed\noperation.",
+                "A link to a deprecated resource was created.",
+                "When deploying and at least one of the resources has a type marked as\ndeprecated",
+                "The user created a boot disk that is larger than image size.",
+                "When deploying and at least one of the resources has a type marked as\nexperimental",
+                "Warning that is present in an external api call",
+                "Warning that value of a field has been overridden.\nDeprecated unused field.",
+                "The operation involved use of an injected kernel, which is deprecated.",
+                "A WEIGHTED_MAGLEV backend service is associated with a health check that is\nnot of type HTTP/HTTPS/HTTP2.",
+                "When deploying a deployment with a exceedingly large number of resources",
+                "Resource can't be retrieved due to list overhead quota exceed\nwhich captures the amount of resources filtered out by\nuser-defined list filter.",
+                "A resource depends on a missing type",
+                "The route's nextHopIp address is not assigned to an instance on the\nnetwork.",
+                "The route's next hop instance cannot ip forward.",
+                "The route's nextHopInstance URL refers to an instance that does not have an\nipv6 interface on the same network as the route.",
+                "The route's nextHopInstance URL refers to an instance that does not exist.",
+                "The route's nextHopInstance URL refers to an instance that is not on the\nsame network as the route.",
+                "The route's next hop instance does not have a status of RUNNING.",
+                "Error which is not critical. We decided to continue the process despite\nthe mentioned error.",
+                "No results are present on a particular list page.",
+                "Success is reported, but some results may be missing due to errors",
+                "Quota information is not available to client requests (e.g:\nregions.list).",
+                "The user attempted to use a resource that requires a TOS they have not\naccepted.",
+                "Warning that a resource is in use.",
+                "One or more of the resources set to auto-delete could not be deleted\nbecause they were in use.",
+                "When a resource schema validation is ignored.",
+                "Instance template used in instance group manager is valid as such, but\nits application does not make a lot of sense, because it allows only\nsingle instance in instance group.",
+                "When undeclared properties in the schema are present",
+                "A given scope cannot be reached."
+              ],
+              "type": "string"
+            },
+            "data": {
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
+              "items": {
+                "properties": {
+                  "key": {
+                    "description": "[Output Only] A key that provides more detail on the warning being\nreturned. For example, for warnings where there are no results in a list\nrequest for a particular zone, this key might be scope and\nthe key value might be the zone name. Other examples might be a key\nindicating a deprecated resource and a suggested replacement, or a\nwarning about invalid network settings (for example, if an instance\nattempts to perform IP forwarding but is not enabled for IP forwarding).",
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "[Output Only] A warning data value corresponding to the key.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "message": {
+              "description": "[Output Only] A human-readable description of the warning code.",
+              "type": "string"
+            }
+          },
+          "type": "object"
         }
       },
       "type": "object"
@@ -75484,6 +75751,10 @@
     "InstanceGroupManagerInstanceFlexibilityPolicy": {
       "id": "InstanceGroupManagerInstanceFlexibilityPolicy",
       "properties": {
+        "constraints": {
+          "$ref": "InstanceGroupManagerInstanceFlexibilityPolicyConstraints",
+          "description": "Constraints applied to instance flexibility spreading and selection."
+        },
         "instanceSelections": {
           "additionalProperties": {
             "$ref": "InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection"
@@ -75494,6 +75765,17 @@
         "provisioningModelMix": {
           "$ref": "InstanceGroupManagerInstanceFlexibilityPolicyProvisioningModelMix",
           "description": "Provisioning model configuration used by this managed instance group to\ncreate instances."
+        }
+      },
+      "type": "object"
+    },
+    "InstanceGroupManagerInstanceFlexibilityPolicyConstraints": {
+      "description": "Constraints applied to instance flexibility spreading and selection.",
+      "id": "InstanceGroupManagerInstanceFlexibilityPolicyConstraints",
+      "properties": {
+        "singleMachineType": {
+          "description": "When set to true, all instances in the group will be provisioned with\nthe exact same machine type, ensuring cluster homogeneity across zones.\nDefaults to false.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -86699,6 +86981,7 @@
           "type": "string"
         },
         "items": {
+          "description": "The list of managed rulesets.",
           "items": {
             "$ref": "ManagedRuleset"
           },
@@ -103494,6 +103777,9 @@
           "enum": [
             "FAULT_BEHAVIOR_UNSPECIFIED",
             "GPU_ERROR",
+            "NVSWITCH_FAULT_CONTROLLER_ERROR",
+            "NVSWITCH_FAULT_DEGRADED_BANDWIDTH",
+            "NVSWITCH_FAULT_SWITCH_ERROR",
             "PERFORMANCE",
             "SILENT_DATA_CORRUPTION",
             "SWITCH_FAILURE"
@@ -103501,6 +103787,9 @@
           "enumDescriptions": [
             "",
             "The subBlock experienced a GPU error.",
+            "The subBlock experienced an NVSwitch controller error.",
+            "The subBlock experienced NVSwitch degraded bandwidth.",
+            "The subBlock experienced an NVSwitch switch error.",
             "The subBlock experienced performance issues.",
             "The subBlock experienced silent data corruption.",
             "The subBlock experienced a switch failure."
@@ -106441,6 +106730,10 @@
           "description": "Indicates if a router is dedicated for use with encrypted VLAN\nattachments (interconnectAttachments).",
           "type": "boolean"
         },
+        "etag": {
+          "description": "ETag for optimistic concurrency control as described by AIP 154. Used to\nprevent conflicting updates. If provided, the request will succeed only if\nthe etag matches the current etag of the router; otherwise, the request\nfails with an ABORTED error.",
+          "type": "string"
+        },
         "id": {
           "description": "[Output Only] The unique identifier for the resource. This identifier is\ndefined by the server.",
           "format": "uint64",
@@ -107426,6 +107719,13 @@
           "description": "An integer uniquely identifying a rule in the list. The rule number\nmust be a positive value between 0 and 65000, and\nmust be unique among rules within a NAT.",
           "format": "uint32",
           "type": "integer"
+        },
+        "sourceWorkloadIdentities": {
+          "description": "A list of source workload identities.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

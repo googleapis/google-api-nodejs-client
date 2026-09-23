@@ -5986,6 +5986,12 @@ export namespace compute_alpha {
      * Full machine-type names, e.g. "n1-standard-16".
      */
     machineTypes?: string[] | null;
+    /**
+     * Optional. Rank when prioritizing the shape flexibilities.
+     * The instance selections are considered in the ascending order of the
+     * rank. If not set, defaults to 0.
+     */
+    rank?: string | null;
   }
   /**
    * Attached disk configuration.
@@ -6123,6 +6129,14 @@ export namespace compute_alpha {
    */
   export interface Schema$CapacityHistoryRequestInstanceProperties {
     /**
+     * Local SSDs.
+     */
+    disks?: Schema$CapacityHistoryRequestInstancePropertiesAttachedDisk[];
+    /**
+     * Accelerators configuration.
+     */
+    guestAccelerators?: Schema$AcceleratorConfig[];
+    /**
      * The machine type for the VM, such as `n2-standard-4`.
      */
     machineType?: string | null;
@@ -6130,6 +6144,15 @@ export namespace compute_alpha {
      * Specifies the scheduling options.
      */
     scheduling?: Schema$CapacityHistoryRequestInstancePropertiesScheduling;
+  }
+  /**
+   * AttachedDisk modeled after Instance's AttachedDisk.
+   */
+  export interface Schema$CapacityHistoryRequestInstancePropertiesAttachedDisk {
+    /**
+     * Specifies the type of the disk.
+     */
+    type?: string | null;
   }
   /**
    * Scheduling options.
@@ -6483,7 +6506,7 @@ export namespace compute_alpha {
      * resource types.
      *
      *  The type must be one of the following:ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3,ACCELERATOR_OPTIMIZED_A3_MEGA,COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D,
-     *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,GRAPHICS_OPTIMIZED_G4_VGPU,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3. For
+     *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,GRAPHICS_OPTIMIZED_G4_VGPU,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3,STORAGE_OPTIMIZED_Z4DS, STORAGE_OPTIMIZED_Z4DH,STORAGE_OPTIMIZED_Z4D4T. For
      * example, type MEMORY_OPTIMIZED specifies a commitment that
      * applies only to eligible resources of memory optimized M1 and M2 machine
      * series. Type GENERAL_PURPOSE specifies a commitment that
@@ -8703,6 +8726,13 @@ export namespace compute_alpha {
     zones?: Schema$DistributionPolicyZoneConfiguration[];
   }
   export interface Schema$DistributionPolicyZoneConfiguration {
+    /**
+     * Optional. The maximum size of the group in this zone. This value can be either a
+     * fixed number or, a percentage. If you set a percentage, the number of
+     * instances is rounded up if necessary. If unset, it is interpreted as
+     * unbounded.
+     */
+    maxSize?: Schema$FixedOrPercent;
     /**
      * The URL of thezone.
      * The zone must exist in the region where the managed instance group is
@@ -11495,7 +11525,7 @@ export namespace compute_alpha {
      */
     description?: string | null;
     /**
-     * Output only. For optimistic locking
+     * Output only. For optimistic locking.
      */
     etag?: string | null;
     /**
@@ -11521,6 +11551,9 @@ export namespace compute_alpha {
    * Response to an UpdateGlobalFrontendSettingsRequest.
    */
   export interface Schema$GlobalFrontendSettingsPatchResponse {
+    /**
+     * The Operation resource for this long-running operation.
+     */
     operation?: Schema$Operation;
   }
   export interface Schema$GlobalListVmExtensionsResponse {
@@ -15328,12 +15361,18 @@ export namespace compute_alpha {
    * Represents a read-only view of a global Image resource.
    */
   export interface Schema$ImageView {
+    /**
+     * The Image resource.
+     */
     image?: Schema$Image;
   }
   /**
    * Response message for ImageViewsService.List
    */
   export interface Schema$ImageViewsListResponse {
+    /**
+     * Etag of the resource.
+     */
     etag?: string | null;
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
@@ -16463,6 +16502,10 @@ export namespace compute_alpha {
   }
   export interface Schema$InstanceGroupManagerInstanceFlexibilityPolicy {
     /**
+     * Constraints applied to instance flexibility spreading and selection.
+     */
+    constraints?: Schema$InstanceGroupManagerInstanceFlexibilityPolicyConstraints;
+    /**
      * Named instance selections configuring properties that the group will use
      * when creating new VMs.
      */
@@ -16485,6 +16528,17 @@ export namespace compute_alpha {
      * create instances.
      */
     provisioningModelMix?: Schema$InstanceGroupManagerInstanceFlexibilityPolicyProvisioningModelMix;
+  }
+  /**
+   * Constraints applied to instance flexibility spreading and selection.
+   */
+  export interface Schema$InstanceGroupManagerInstanceFlexibilityPolicyConstraints {
+    /**
+     * When set to true, all instances in the group will be provisioned with
+     * the exact same machine type, ensuring cluster homogeneity across zones.
+     * Defaults to false.
+     */
+    singleMachineType?: boolean | null;
   }
   export interface Schema$InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection {
     /**
@@ -23289,6 +23343,9 @@ export namespace compute_alpha {
   }
   export interface Schema$ManagedRulesetList {
     id?: string | null;
+    /**
+     * The list of managed rulesets.
+     */
     items?: Schema$ManagedRuleset[];
     nextPageToken?: string | null;
     warning?: {
@@ -76162,6 +76219,7 @@ export namespace compute_alpha {
      *
      *   // Do the magic
      *   const res = await compute.folderGlobalVmExtensionPolicies.getVmExtension({
+     *     // Required. Name of the VM extension for this request.
      *     extensionName: 'placeholder-value',
      *     // Folder ID for this request.
      *     folder: 'folders/[0-9]{0,20}',
@@ -77328,7 +77386,7 @@ export namespace compute_alpha {
   }
   export interface Params$Resource$Folderglobalvmextensionpolicies$Getvmextension extends StandardParameters {
     /**
-     *
+     * Required. Name of the VM extension for this request.
      */
     extensionName?: string;
     /**
@@ -77988,6 +78046,7 @@ export namespace compute_alpha {
      *
      *   // Do the magic
      *   const res = await compute.folderZoneVmExtensionPolicies.getVmExtension({
+     *     // Required. Name of the VM extension for this request.
      *     extensionName: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
      *     // Folder ID for this request.
      *     folder: 'folders/[0-9]{0,20}',
@@ -79039,7 +79098,7 @@ export namespace compute_alpha {
   }
   export interface Params$Resource$Folderzonevmextensionpolicies$Getvmextension extends StandardParameters {
     /**
-     *
+     * Required. Name of the VM extension for this request.
      */
     extensionName?: string;
     /**
@@ -87756,6 +87815,7 @@ export namespace compute_alpha {
      *
      *   // Do the magic
      *   const res = await compute.globalFrontendSettings.get({
+     *     // Required. Project ID for this request.
      *     project: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -87902,10 +87962,11 @@ export namespace compute_alpha {
      *
      *   // Do the magic
      *   const res = await compute.globalFrontendSettings.patch({
+     *     // Required. Project ID for this request.
      *     project: 'placeholder-value',
-     *
+     *     // An optional request ID to identify requests.
      *     requestId: 'placeholder-value',
-     *     // e.g., "type"
+     *     // Field mask to support patch. E.g., "type".
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -88038,21 +88099,21 @@ export namespace compute_alpha {
 
   export interface Params$Resource$Globalfrontendsettings$Get extends StandardParameters {
     /**
-     *
+     * Required. Project ID for this request.
      */
     project?: string;
   }
   export interface Params$Resource$Globalfrontendsettings$Patch extends StandardParameters {
     /**
-     *
+     * Required. Project ID for this request.
      */
     project?: string;
     /**
-     *
+     * An optional request ID to identify requests.
      */
     requestId?: string;
     /**
-     * e.g., "type"
+     * Field mask to support patch. E.g., "type".
      */
     updateMask?: string;
 
@@ -93681,6 +93742,7 @@ export namespace compute_alpha {
      *
      *   // Do the magic
      *   const res = await compute.globalVmExtensionPolicies.getVmExtension({
+     *     // Required. Name of the VM extension for this request.
      *     extensionName: 'placeholder-value',
      *     // Project ID for this request.
      *     project:
@@ -94853,7 +94915,7 @@ export namespace compute_alpha {
   }
   export interface Params$Resource$Globalvmextensionpolicies$Getvmextension extends StandardParameters {
     /**
-     *
+     * Required. Name of the VM extension for this request.
      */
     extensionName?: string;
     /**
@@ -175434,6 +175496,7 @@ export namespace compute_alpha {
      *   // Do the magic
      *   const res =
      *     await compute.organizationGlobalVmExtensionPolicies.getVmExtension({
+     *       // Required. Name of the VM extension for this request.
      *       extensionName: 'placeholder-value',
      *       // Organization ID for this request.
      *       organization: 'organizations/[0-9]{0,20}',
@@ -176606,7 +176669,7 @@ export namespace compute_alpha {
   }
   export interface Params$Resource$Organizationglobalvmextensionpolicies$Getvmextension extends StandardParameters {
     /**
-     *
+     * Required. Name of the VM extension for this request.
      */
     extensionName?: string;
     /**
@@ -183691,6 +183754,7 @@ export namespace compute_alpha {
      *
      *   // Do the magic
      *   const res = await compute.organizationZoneVmExtensionPolicies.getVmExtension({
+     *     // Required. Name of the VM extension for this request.
      *     extensionName: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
      *     // Organization ID for this request.
      *     organization: 'organizations/[0-9]{0,20}',
@@ -184716,7 +184780,7 @@ export namespace compute_alpha {
   }
   export interface Params$Resource$Organizationzonevmextensionpolicies$Getvmextension extends StandardParameters {
     /**
-     *
+     * Required. Name of the VM extension for this request.
      */
     extensionName?: string;
     /**
@@ -333129,6 +333193,7 @@ export namespace compute_alpha {
      *
      *   // Do the magic
      *   const res = await compute.zoneVmExtensionPolicies.getVmExtension({
+     *     // Required. Name of the VM extension for this request.
      *     extensionName: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
      *     // Project ID for this request.
      *     project:
@@ -334184,7 +334249,7 @@ export namespace compute_alpha {
   }
   export interface Params$Resource$Zonevmextensionpolicies$Getvmextension extends StandardParameters {
     /**
-     *
+     * Required. Name of the VM extension for this request.
      */
     extensionName?: string;
     /**

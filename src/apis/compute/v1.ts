@@ -132,6 +132,7 @@ export namespace compute_v1 {
     futureReservations: Resource$Futurereservations;
     globalAddresses: Resource$Globaladdresses;
     globalForwardingRules: Resource$Globalforwardingrules;
+    globalFrontendSettings: Resource$Globalfrontendsettings;
     globalNetworkEndpointGroups: Resource$Globalnetworkendpointgroups;
     globalOperations: Resource$Globaloperations;
     globalOrganizationOperations: Resource$Globalorganizationoperations;
@@ -143,6 +144,7 @@ export namespace compute_v1 {
     httpsHealthChecks: Resource$Httpshealthchecks;
     imageFamilyViews: Resource$Imagefamilyviews;
     images: Resource$Images;
+    imageViews: Resource$Imageviews;
     instanceGroupManagerResizeRequests: Resource$Instancegroupmanagerresizerequests;
     instanceGroupManagers: Resource$Instancegroupmanagers;
     instanceGroups: Resource$Instancegroups;
@@ -161,6 +163,7 @@ export namespace compute_v1 {
     licenses: Resource$Licenses;
     machineImages: Resource$Machineimages;
     machineTypes: Resource$Machinetypes;
+    managedRulesets: Resource$Managedrulesets;
     networkAttachments: Resource$Networkattachments;
     networkEdgeSecurityServices: Resource$Networkedgesecurityservices;
     networkEndpointGroups: Resource$Networkendpointgroups;
@@ -269,6 +272,9 @@ export namespace compute_v1 {
       this.globalForwardingRules = new Resource$Globalforwardingrules(
         this.context
       );
+      this.globalFrontendSettings = new Resource$Globalfrontendsettings(
+        this.context
+      );
       this.globalNetworkEndpointGroups =
         new Resource$Globalnetworkendpointgroups(this.context);
       this.globalOperations = new Resource$Globaloperations(this.context);
@@ -285,6 +291,7 @@ export namespace compute_v1 {
       this.httpsHealthChecks = new Resource$Httpshealthchecks(this.context);
       this.imageFamilyViews = new Resource$Imagefamilyviews(this.context);
       this.images = new Resource$Images(this.context);
+      this.imageViews = new Resource$Imageviews(this.context);
       this.instanceGroupManagerResizeRequests =
         new Resource$Instancegroupmanagerresizerequests(this.context);
       this.instanceGroupManagers = new Resource$Instancegroupmanagers(
@@ -314,6 +321,7 @@ export namespace compute_v1 {
       this.licenses = new Resource$Licenses(this.context);
       this.machineImages = new Resource$Machineimages(this.context);
       this.machineTypes = new Resource$Machinetypes(this.context);
+      this.managedRulesets = new Resource$Managedrulesets(this.context);
       this.networkAttachments = new Resource$Networkattachments(this.context);
       this.networkEdgeSecurityServices =
         new Resource$Networkedgesecurityservices(this.context);
@@ -5704,7 +5712,7 @@ export namespace compute_v1 {
      * resource types.
      *
      *  The type must be one of the following:ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3,ACCELERATOR_OPTIMIZED_A3_MEGA,COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D,
-     *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,GRAPHICS_OPTIMIZED_G4_VGPU,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3. For
+     *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,GRAPHICS_OPTIMIZED_G4_VGPU,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3,STORAGE_OPTIMIZED_Z4DS, STORAGE_OPTIMIZED_Z4DH,STORAGE_OPTIMIZED_Z4D4T. For
      * example, type MEMORY_OPTIMIZED specifies a commitment that
      * applies only to eligible resources of memory optimized M1 and M2 machine
      * series. Type GENERAL_PURPOSE specifies a commitment that
@@ -8237,6 +8245,15 @@ export namespace compute_v1 {
      */
     name?: string | null;
     /**
+     * An integer indicating the priority of an association. The priority
+     * must be a positive value between 1 and 2147483647.
+     * Firewall Policies are evaluated from highest to lowest priority where 1
+     * is the highest priority and 2147483647 is the lowest priority.
+     * The default value is `1000`. If two associations have the same priority
+     * then lexicographical order on association names is applied.
+     */
+    priority?: number | null;
+    /**
      * Output only. [Output Only] The short name of the firewall policy of the association.
      */
     shortName?: string | null;
@@ -9214,6 +9231,12 @@ export namespace compute_v1 {
      */
     autoDeleteAutoCreatedReservations?: boolean | null;
     /**
+     * Full or partial URL of an existing future reservation to indicate
+     * intent for reserving capacity in the same cluster as the colocation
+     * resource.
+     */
+    colocationResource?: string | null;
+    /**
      * If not present, then FR will not deliver a new commitment or update an
      * existing commitment.
      */
@@ -9880,6 +9903,54 @@ export namespace compute_v1 {
      * Note that destination project must be different from the source project. So/global/addresses/address is not valid partial url.
      */
     destinationAddress?: string | null;
+  }
+  /**
+   * Represents the Global Frontend Bundle settings for a single project.
+   */
+  export interface Schema$GlobalFrontendSettings {
+    /**
+     * Customer-settable bundle type.
+     */
+    bundleType?: string | null;
+    /**
+     * Output only. [Output Only] Creation timestamp in RFC3339 text format.
+     */
+    creationTimestamp?: string | null;
+    /**
+     * Output only. [Output Only] An optional description of this resource.
+     */
+    description?: string | null;
+    /**
+     * Output only. For optimistic locking.
+     */
+    etag?: string | null;
+    /**
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string | null;
+    /**
+     * Output only. OUTPUT_ONLY fields
+     * [Output Only] Name of the resource. Must be 1-63 characters long and match
+     * the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
+     */
+    name?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string | null;
+  }
+  /**
+   * Response to an UpdateGlobalFrontendSettingsRequest.
+   */
+  export interface Schema$GlobalFrontendSettingsPatchResponse {
+    /**
+     * The Operation resource for this long-running operation.
+     */
+    operation?: Schema$Operation;
   }
   export interface Schema$GlobalNetworkEndpointGroupsAttachEndpointsRequest {
     /**
@@ -12979,6 +13050,50 @@ export namespace compute_v1 {
     resourceManagerTags?: {[key: string]: string} | null;
   }
   /**
+   * Represents a read-only view of a global Image resource.
+   */
+  export interface Schema$ImageView {
+    /**
+     * The Image resource.
+     */
+    image?: Schema$Image;
+  }
+  /**
+   * Response message for ImageViewsService.List
+   */
+  export interface Schema$ImageViewsListResponse {
+    /**
+     * Etag of the resource.
+     */
+    etag?: string | null;
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of Image resources.
+     */
+    items?: Schema$ImageView[];
+    kind?: string | null;
+    nextPageToken?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Unreachable resources.
+     */
+    unreachables?: string[] | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  /**
    * Initial State for shielded instance,
    * these are public keys which are safe to store in public
    */
@@ -13940,9 +14055,19 @@ export namespace compute_v1 {
   }
   export interface Schema$InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection {
     /**
+     * List of disks to be attached to the instances created from this
+     * selection.
+     */
+    disks?: Schema$AttachedDisk[];
+    /**
      * Full machine-type names, e.g. "n1-standard-16".
      */
     machineTypes?: string[] | null;
+    /**
+     * Name of the minimum CPU platform to be used by this instance selection.
+     * e.g. 'Intel Ice Lake'.
+     */
+    minCpuPlatform?: string | null;
     /**
      * Preference of this instance selection. Lower number means higher
      * preference. MIG will first try to create a VM based on the machine-type
@@ -19464,9 +19589,18 @@ export namespace compute_v1 {
   }
   export interface Schema$ManagedInstancePropertiesFromFlexibilityPolicy {
     /**
+     * List of disks to be attached to the instance.
+     */
+    disks?: Schema$AttachedDisk[];
+    /**
      * Output only. The machine type to be used for this instance.
      */
     machineType?: string | null;
+    /**
+     * Name of the minimum CPU platform to be used by this instance.
+     * e.g. 'Intel Ice Lake'.
+     */
+    minCpuPlatform?: string | null;
   }
   export interface Schema$ManagedInstanceScheduling {
     /**
@@ -19504,6 +19638,70 @@ export namespace compute_v1 {
      * Output only. [Output Only] Name of the version.
      */
     name?: string | null;
+  }
+  /**
+   * Represents a ManagedRuleset resource.
+   *
+   * Managed internally by Cloud Armor CLH for Managed Rules features.
+   * Customers can only view these resources to modify their Security Policies.
+   * For more information, see
+   * https://cloud.google.com/armor/docs/.
+   */
+  export interface Schema$ManagedRuleset {
+    /**
+     * Output only. [Output Only] The change log for this managed ruleset.
+     */
+    changeLog?: string | null;
+    /**
+     * Output only. [Output Only] Creation timestamp in RFC3339 text format.
+     */
+    creationTimestamp?: string | null;
+    /**
+     * [Output Only] An optional description of this resource.
+     */
+    description?: string | null;
+    /**
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string | null;
+    /**
+     * Name of the resource. Generated internally when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
+     */
+    name?: string | null;
+    /**
+     * Output only. [Output Only] The list of managed rule IDs that are included in
+     * this managed ruleset.
+     */
+    ruleIds?: string[] | null;
+    /**
+     * Output only. [Output Only] The managed ruleset identifier that can be configured in
+     * Security Policy rules.
+     */
+    rulesetId?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string | null;
+  }
+  export interface Schema$ManagedRulesetList {
+    id?: string | null;
+    /**
+     * The list of managed rulesets.
+     */
+    items?: Schema$ManagedRuleset[];
+    nextPageToken?: string | null;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
   }
   /**
    * A metadata key/value entry.
@@ -29793,6 +29991,11 @@ export namespace compute_v1 {
     exclusions?: Schema$SecurityPolicyRulePreconfiguredWafConfigExclusion[];
   }
   export interface Schema$SecurityPolicyRulePreconfiguredWafConfigExclusion {
+    /**
+     * A list of request body fields to be excluded from inspection during
+     * preconfigured WAF evaluation.
+     */
+    requestBodiesToExclude?: Schema$SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams[];
     /**
      * A list of request cookie names whose value will be excluded from
      * inspection during preconfigured WAF evaluation.
@@ -57757,6 +57960,7 @@ export namespace compute_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "firewallPolicyId": "my_firewallPolicyId",
      *       //   "name": "my_name",
+     *       //   "priority": 0,
      *       //   "shortName": "my_shortName"
      *       // }
      *     },
@@ -58661,6 +58865,7 @@ export namespace compute_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "firewallPolicyId": "my_firewallPolicyId",
      *   //   "name": "my_name",
+     *   //   "priority": 0,
      *   //   "shortName": "my_shortName"
      *   // }
      * }
@@ -65825,6 +66030,7 @@ export namespace compute_v1 {
      *   //   "autoCreatedReservationsDeleteTime": "my_autoCreatedReservationsDeleteTime",
      *   //   "autoCreatedReservationsDuration": {},
      *   //   "autoDeleteAutoCreatedReservations": false,
+     *   //   "colocationResource": "my_colocationResource",
      *   //   "commitmentInfo": {},
      *   //   "confidentialComputeType": "my_confidentialComputeType",
      *   //   "creationTimestamp": "my_creationTimestamp",
@@ -66011,6 +66217,7 @@ export namespace compute_v1 {
      *       //   "autoCreatedReservationsDeleteTime": "my_autoCreatedReservationsDeleteTime",
      *       //   "autoCreatedReservationsDuration": {},
      *       //   "autoDeleteAutoCreatedReservations": false,
+     *       //   "colocationResource": "my_colocationResource",
      *       //   "commitmentInfo": {},
      *       //   "confidentialComputeType": "my_confidentialComputeType",
      *       //   "creationTimestamp": "my_creationTimestamp",
@@ -66481,6 +66688,7 @@ export namespace compute_v1 {
      *       //   "autoCreatedReservationsDeleteTime": "my_autoCreatedReservationsDeleteTime",
      *       //   "autoCreatedReservationsDuration": {},
      *       //   "autoDeleteAutoCreatedReservations": false,
+     *       //   "colocationResource": "my_colocationResource",
      *       //   "commitmentInfo": {},
      *       //   "confidentialComputeType": "my_confidentialComputeType",
      *       //   "creationTimestamp": "my_creationTimestamp",
@@ -70252,6 +70460,355 @@ export namespace compute_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TargetReference;
+  }
+
+  export class Resource$Globalfrontendsettings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the Global Frontend Billing Bundle Settings for a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.globalFrontendSettings.get({
+     *     // Required. Project ID for this request.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bundleType": "my_bundleType",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Globalfrontendsettings$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Globalfrontendsettings$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GlobalFrontendSettings>>;
+    get(
+      params: Params$Resource$Globalfrontendsettings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Globalfrontendsettings$Get,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GlobalFrontendSettings>,
+      callback: BodyResponseCallback<Schema$GlobalFrontendSettings>
+    ): void;
+    get(
+      params: Params$Resource$Globalfrontendsettings$Get,
+      callback: BodyResponseCallback<Schema$GlobalFrontendSettings>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GlobalFrontendSettings>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Globalfrontendsettings$Get
+        | BodyResponseCallback<Schema$GlobalFrontendSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GlobalFrontendSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GlobalFrontendSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GlobalFrontendSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Globalfrontendsettings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Globalfrontendsettings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/global/globalFrontendSettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GlobalFrontendSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GlobalFrontendSettings>(parameters);
+      }
+    }
+
+    /**
+     * Updates the Global Frontend Billing Bundle Settings for a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.globalFrontendSettings.patch({
+     *     // Required. Project ID for this request.
+     *     project: 'placeholder-value',
+     *     // An optional request ID to identify requests.
+     *     requestId: 'placeholder-value',
+     *     // Field mask to support patch. E.g., "type".
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bundleType": "my_bundleType",
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "name": "my_name",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "operation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Globalfrontendsettings$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Globalfrontendsettings$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GlobalFrontendSettingsPatchResponse>
+    >;
+    patch(
+      params: Params$Resource$Globalfrontendsettings$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Globalfrontendsettings$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GlobalFrontendSettingsPatchResponse>,
+      callback: BodyResponseCallback<Schema$GlobalFrontendSettingsPatchResponse>
+    ): void;
+    patch(
+      params: Params$Resource$Globalfrontendsettings$Patch,
+      callback: BodyResponseCallback<Schema$GlobalFrontendSettingsPatchResponse>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GlobalFrontendSettingsPatchResponse>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Globalfrontendsettings$Patch
+        | BodyResponseCallback<Schema$GlobalFrontendSettingsPatchResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GlobalFrontendSettingsPatchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GlobalFrontendSettingsPatchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GlobalFrontendSettingsPatchResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Globalfrontendsettings$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Globalfrontendsettings$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/global/globalFrontendSettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GlobalFrontendSettingsPatchResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GlobalFrontendSettingsPatchResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Globalfrontendsettings$Get extends StandardParameters {
+    /**
+     * Required. Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Globalfrontendsettings$Patch extends StandardParameters {
+    /**
+     * Required. Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests.
+     */
+    requestId?: string;
+    /**
+     * Field mask to support patch. E.g., "type".
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalFrontendSettings;
   }
 
   export class Resource$Globalnetworkendpointgroups {
@@ -85253,6 +85810,521 @@ export namespace compute_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestPermissionsRequest;
+  }
+
+  export class Resource$Imageviews {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns the specified global ImageView resource, with a regional
+     * context.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.imageViews.get({
+     *     // Required. Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Required. Name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Name of the image resource to return.
+     *     resourceId: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "image": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Imageviews$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Imageviews$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ImageView>>;
+    get(
+      params: Params$Resource$Imageviews$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Imageviews$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ImageView>,
+      callback: BodyResponseCallback<Schema$ImageView>
+    ): void;
+    get(
+      params: Params$Resource$Imageviews$Get,
+      callback: BodyResponseCallback<Schema$ImageView>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ImageView>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Imageviews$Get
+        | BodyResponseCallback<Schema$ImageView>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ImageView>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$ImageView> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ImageView>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Imageviews$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Imageviews$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/imageViews/{resourceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resourceId'],
+        pathParams: ['project', 'region', 'resourceId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ImageView>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ImageView>(parameters);
+      }
+    }
+
+    /**
+     * Returns a list of global ImageView resources, with a regional
+     * context.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.imageViews.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Required. Name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Imageviews$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Imageviews$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ImageViewsListResponse>>;
+    list(
+      params: Params$Resource$Imageviews$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Imageviews$List,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$ImageViewsListResponse>,
+      callback: BodyResponseCallback<Schema$ImageViewsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Imageviews$List,
+      callback: BodyResponseCallback<Schema$ImageViewsListResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ImageViewsListResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Imageviews$List
+        | BodyResponseCallback<Schema$ImageViewsListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ImageViewsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ImageViewsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ImageViewsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Imageviews$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Imageviews$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/imageViews'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ImageViewsListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ImageViewsListResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Imageviews$Get extends StandardParameters {
+    /**
+     * Required. Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Required. Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name of the image resource to return.
+     */
+    resourceId?: string;
+  }
+  export interface Params$Resource$Imageviews$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Required. Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Required. Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Instancegroupmanagerresizerequests {
@@ -127057,6 +128129,511 @@ export namespace compute_v1 {
     zone?: string;
   }
 
+  export class Resource$Managedrulesets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the details for the specified managed ruleset name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.managedRulesets.get({
+     *     // Name of the managed ruleset to return.
+     *     managedRuleset: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "changeLog": "my_changeLog",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "ruleIds": [],
+     *   //   "rulesetId": "my_rulesetId",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Managedrulesets$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Managedrulesets$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManagedRuleset>>;
+    get(
+      params: Params$Resource$Managedrulesets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Managedrulesets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ManagedRuleset>,
+      callback: BodyResponseCallback<Schema$ManagedRuleset>
+    ): void;
+    get(
+      params: Params$Resource$Managedrulesets$Get,
+      callback: BodyResponseCallback<Schema$ManagedRuleset>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ManagedRuleset>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Managedrulesets$Get
+        | BodyResponseCallback<Schema$ManagedRuleset>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ManagedRuleset>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ManagedRuleset>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManagedRuleset>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedrulesets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedrulesets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/global/managedRulesets/{managedRuleset}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'managedRuleset'],
+        pathParams: ['managedRuleset', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ManagedRuleset>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ManagedRuleset>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the list of all the managed rulesets available.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.managedRulesets.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Managedrulesets$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Managedrulesets$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManagedRulesetList>>;
+    list(
+      params: Params$Resource$Managedrulesets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Managedrulesets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ManagedRulesetList>,
+      callback: BodyResponseCallback<Schema$ManagedRulesetList>
+    ): void;
+    list(
+      params: Params$Resource$Managedrulesets$List,
+      callback: BodyResponseCallback<Schema$ManagedRulesetList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ManagedRulesetList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Managedrulesets$List
+        | BodyResponseCallback<Schema$ManagedRulesetList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ManagedRulesetList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ManagedRulesetList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManagedRulesetList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedrulesets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedrulesets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/compute/v1/projects/{project}/global/managedRulesets'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ManagedRulesetList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ManagedRulesetList>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Managedrulesets$Get extends StandardParameters {
+    /**
+     * Name of the managed ruleset to return.
+     */
+    managedRuleset?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Managedrulesets$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+  }
+
   export class Resource$Networkattachments {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -132947,6 +134524,7 @@ export namespace compute_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "firewallPolicyId": "my_firewallPolicyId",
      *       //   "name": "my_name",
+     *       //   "priority": 0,
      *       //   "shortName": "my_shortName"
      *       // }
      *     },
@@ -134350,6 +135928,7 @@ export namespace compute_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "firewallPolicyId": "my_firewallPolicyId",
      *   //   "name": "my_name",
+     *   //   "priority": 0,
      *   //   "shortName": "my_shortName"
      *   // }
      * }
@@ -197531,6 +199110,11 @@ export namespace compute_v1 {
      *
      *   // Do the magic
      *   const res = await compute.regionNetworkFirewallPolicies.addAssociation({
+     *     // Name of the firewall policy associated with the target network to swap
+     *     // association with. This field is mutually exclusive with
+     *     // 'replace_existing_association'.
+     *     associatedPolicyToBeReplaced:
+     *       '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
      *     // Name of the firewall policy to update.
      *     firewallPolicy: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
      *     // Project ID for this request.
@@ -197565,6 +199149,7 @@ export namespace compute_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "firewallPolicyId": "my_firewallPolicyId",
      *       //   "name": "my_name",
+     *       //   "priority": 0,
      *       //   "shortName": "my_shortName"
      *       // }
      *     },
@@ -198501,6 +200086,7 @@ export namespace compute_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "firewallPolicyId": "my_firewallPolicyId",
      *   //   "name": "my_name",
+     *   //   "priority": 0,
      *   //   "shortName": "my_shortName"
      *   // }
      * }
@@ -199734,6 +201320,205 @@ export namespace compute_v1 {
     }
 
     /**
+     * Updates an association for the specified network firewall policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionNetworkFirewallPolicies.patchAssociation({
+     *     // Name of the firewall policy to update.
+     *     firewallPolicy: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attachmentTarget": "my_attachmentTarget",
+     *       //   "displayName": "my_displayName",
+     *       //   "firewallPolicyId": "my_firewallPolicyId",
+     *       //   "name": "my_name",
+     *       //   "priority": 0,
+     *       //   "shortName": "my_shortName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getHealthOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patchAssociation(
+      params: Params$Resource$Regionnetworkfirewallpolicies$Patchassociation,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patchAssociation(
+      params?: Params$Resource$Regionnetworkfirewallpolicies$Patchassociation,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patchAssociation(
+      params: Params$Resource$Regionnetworkfirewallpolicies$Patchassociation,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patchAssociation(
+      params: Params$Resource$Regionnetworkfirewallpolicies$Patchassociation,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patchAssociation(
+      params: Params$Resource$Regionnetworkfirewallpolicies$Patchassociation,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patchAssociation(callback: BodyResponseCallback<Schema$Operation>): void;
+    patchAssociation(
+      paramsOrCallback?:
+        | Params$Resource$Regionnetworkfirewallpolicies$Patchassociation
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionnetworkfirewallpolicies$Patchassociation;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Regionnetworkfirewallpolicies$Patchassociation;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/patchAssociation'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'firewallPolicy'],
+        pathParams: ['firewallPolicy', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Patches a rule of the specified priority.
      * @example
      * ```js
@@ -200639,6 +202424,12 @@ export namespace compute_v1 {
 
   export interface Params$Resource$Regionnetworkfirewallpolicies$Addassociation extends StandardParameters {
     /**
+     * Name of the firewall policy associated with the target network to swap
+     * association with. This field is mutually exclusive with
+     * 'replace_existing_association'.
+     */
+    associatedPolicyToBeReplaced?: string;
+    /**
      * Name of the firewall policy to update.
      */
     firewallPolicy?: string;
@@ -201042,6 +202833,41 @@ export namespace compute_v1 {
      * Request body metadata
      */
     requestBody?: Schema$FirewallPolicy;
+  }
+  export interface Params$Resource$Regionnetworkfirewallpolicies$Patchassociation extends StandardParameters {
+    /**
+     * Name of the firewall policy to update.
+     */
+    firewallPolicy?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FirewallPolicyAssociation;
   }
   export interface Params$Resource$Regionnetworkfirewallpolicies$Patchrule extends StandardParameters {
     /**
