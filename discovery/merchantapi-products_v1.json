@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20260903",
+  "revision": "20260910",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AutomatedDiscounts": {
@@ -2884,6 +2884,10 @@
         "downpayment": {
           "$ref": "Price",
           "description": "The up-front down payment amount the buyer has to pay."
+        },
+        "mileageAllowance": {
+          "$ref": "Mileage",
+          "description": "Optional. The mileage allowance for the lease of the vehicle. Only applicable to vehicle products."
         },
         "months": {
           "description": "The number of installments the buyer has to pay.",
