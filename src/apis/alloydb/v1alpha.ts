@@ -228,6 +228,10 @@ export namespace alloydb_v1alpha {
      */
     displayName?: string | null;
     /**
+     * Output only. The edition of the cluster this backup was created from. Any restored cluster created from this backup will have the same edition.
+     */
+    edition?: string | null;
+    /**
      * Optional. The encryption config can be specified to encrypt the backup with a customer-managed encryption key (CMEK). When this field is not specified, the backup will then use default encryption scheme to protect the user data.
      */
     encryptionConfig?: Schema$EncryptionConfig;
@@ -488,6 +492,10 @@ export namespace alloydb_v1alpha {
      * User-settable and human-readable display name for the Cluster.
      */
     displayName?: string | null;
+    /**
+     * Optional. Edition of the cluster. If left unspecified, the cluster behaves as `EDITION_ALLOYDB`.
+     */
+    edition?: string | null;
     /**
      * Optional. The encryption config can be specified to encrypt the data disks and other persistent data resources of a cluster with a customer-managed encryption key (CMEK). When this field is not specified, the cluster will then use default encryption scheme to protect the user data.
      */
@@ -3573,6 +3581,7 @@ export namespace alloydb_v1alpha {
      *       //   "deleteTime": "my_deleteTime",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
+     *       //   "edition": "my_edition",
      *       //   "encryptionConfig": {},
      *       //   "encryptionInfo": {},
      *       //   "etag": "my_etag",
@@ -3891,6 +3900,7 @@ export namespace alloydb_v1alpha {
      *   //   "deleteTime": "my_deleteTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
+     *   //   "edition": "my_edition",
      *   //   "encryptionConfig": {},
      *   //   "encryptionInfo": {},
      *   //   "etag": "my_etag",
@@ -4206,6 +4216,7 @@ export namespace alloydb_v1alpha {
      *       //   "deleteTime": "my_deleteTime",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
+     *       //   "edition": "my_edition",
      *       //   "encryptionConfig": {},
      *       //   "encryptionInfo": {},
      *       //   "etag": "my_etag",
@@ -4504,6 +4515,7 @@ export namespace alloydb_v1alpha {
      *       //   "dataplexConfig": {},
      *       //   "deleteTime": "my_deleteTime",
      *       //   "displayName": "my_displayName",
+     *       //   "edition": "my_edition",
      *       //   "encryptionConfig": {},
      *       //   "encryptionInfo": {},
      *       //   "etag": "my_etag",
@@ -4698,6 +4710,7 @@ export namespace alloydb_v1alpha {
      *       //   "dataplexConfig": {},
      *       //   "deleteTime": "my_deleteTime",
      *       //   "displayName": "my_displayName",
+     *       //   "edition": "my_edition",
      *       //   "encryptionConfig": {},
      *       //   "encryptionInfo": {},
      *       //   "etag": "my_etag",
@@ -5184,6 +5197,7 @@ export namespace alloydb_v1alpha {
      *   //   "dataplexConfig": {},
      *   //   "deleteTime": "my_deleteTime",
      *   //   "displayName": "my_displayName",
+     *   //   "edition": "my_edition",
      *   //   "encryptionConfig": {},
      *   //   "encryptionInfo": {},
      *   //   "etag": "my_etag",
@@ -5665,6 +5679,7 @@ export namespace alloydb_v1alpha {
      *       //   "dataplexConfig": {},
      *       //   "deleteTime": "my_deleteTime",
      *       //   "displayName": "my_displayName",
+     *       //   "edition": "my_edition",
      *       //   "encryptionConfig": {},
      *       //   "encryptionInfo": {},
      *       //   "etag": "my_etag",

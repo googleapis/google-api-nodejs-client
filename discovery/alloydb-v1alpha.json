@@ -2086,7 +2086,7 @@
       }
     }
   },
-  "revision": "20260826",
+  "revision": "20260904",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -2207,11 +2207,13 @@
             "POSTGRES_15",
             "POSTGRES_16",
             "POSTGRES_17",
-            "POSTGRES_18"
+            "POSTGRES_18",
+            "POSTGRES_19"
           ],
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2225,7 +2227,8 @@
             "The database version is Postgres 15.",
             "The database version is Postgres 16.",
             "The database version is Postgres 17.",
-            "The database version is Postgres 18."
+            "The database version is Postgres 18.",
+            "The database version is Postgres 19."
           ],
           "readOnly": true,
           "type": "string"
@@ -2242,6 +2245,21 @@
         },
         "displayName": {
           "description": "User-settable and human-readable display name for the Backup.",
+          "type": "string"
+        },
+        "edition": {
+          "description": "Output only. The edition of the cluster this backup was created from. Any restored cluster created from this backup will have the same edition.",
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "EDITION_ALLOYDB",
+            "EDITION_ALLOYDB_DEVELOPER"
+          ],
+          "enumDescriptions": [
+            "An unknown Edition type.",
+            "Standard AlloyDB cluster.",
+            "Developer edition cluster."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "encryptionConfig": {
@@ -2612,11 +2630,13 @@
             "POSTGRES_15",
             "POSTGRES_16",
             "POSTGRES_17",
-            "POSTGRES_18"
+            "POSTGRES_18",
+            "POSTGRES_19"
           ],
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2630,7 +2650,8 @@
             "The database version is Postgres 15.",
             "The database version is Postgres 16.",
             "The database version is Postgres 17.",
-            "The database version is Postgres 18."
+            "The database version is Postgres 18.",
+            "The database version is Postgres 19."
           ],
           "type": "string"
         },
@@ -2646,6 +2667,20 @@
         },
         "displayName": {
           "description": "User-settable and human-readable display name for the Cluster.",
+          "type": "string"
+        },
+        "edition": {
+          "description": "Optional. Edition of the cluster. If left unspecified, the cluster behaves as `EDITION_ALLOYDB`.",
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "EDITION_ALLOYDB",
+            "EDITION_ALLOYDB_DEVELOPER"
+          ],
+          "enumDescriptions": [
+            "An unknown Edition type.",
+            "Standard AlloyDB cluster.",
+            "Developer edition cluster."
+          ],
           "type": "string"
         },
         "encryptionConfig": {
@@ -2857,11 +2892,13 @@
             "POSTGRES_15",
             "POSTGRES_16",
             "POSTGRES_17",
-            "POSTGRES_18"
+            "POSTGRES_18",
+            "POSTGRES_19"
           ],
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2875,7 +2912,8 @@
             "The database version is Postgres 15.",
             "The database version is Postgres 16.",
             "The database version is Postgres 17.",
-            "The database version is Postgres 18."
+            "The database version is Postgres 18.",
+            "The database version is Postgres 19."
           ],
           "type": "string"
         },
@@ -7508,11 +7546,13 @@
               "POSTGRES_15",
               "POSTGRES_16",
               "POSTGRES_17",
-              "POSTGRES_18"
+              "POSTGRES_18",
+              "POSTGRES_19"
             ],
             "enumDeprecated": [
               false,
               true,
+              false,
               false,
               false,
               false,
@@ -7526,7 +7566,8 @@
               "The database version is Postgres 15.",
               "The database version is Postgres 16.",
               "The database version is Postgres 17.",
-              "The database version is Postgres 18."
+              "The database version is Postgres 18.",
+              "The database version is Postgres 19."
             ],
             "type": "string"
           },
@@ -7652,11 +7693,13 @@
             "POSTGRES_15",
             "POSTGRES_16",
             "POSTGRES_17",
-            "POSTGRES_18"
+            "POSTGRES_18",
+            "POSTGRES_19"
           ],
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -7670,7 +7713,8 @@
             "The database version is Postgres 15.",
             "The database version is Postgres 16.",
             "The database version is Postgres 17.",
-            "The database version is Postgres 18."
+            "The database version is Postgres 18.",
+            "The database version is Postgres 19."
           ],
           "type": "string"
         }
@@ -7736,11 +7780,13 @@
             "POSTGRES_15",
             "POSTGRES_16",
             "POSTGRES_17",
-            "POSTGRES_18"
+            "POSTGRES_18",
+            "POSTGRES_19"
           ],
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -7754,7 +7800,8 @@
             "The database version is Postgres 15.",
             "The database version is Postgres 16.",
             "The database version is Postgres 17.",
-            "The database version is Postgres 18."
+            "The database version is Postgres 18.",
+            "The database version is Postgres 19."
           ],
           "type": "string"
         },
@@ -7798,11 +7845,13 @@
             "POSTGRES_15",
             "POSTGRES_16",
             "POSTGRES_17",
-            "POSTGRES_18"
+            "POSTGRES_18",
+            "POSTGRES_19"
           ],
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -7816,7 +7865,8 @@
             "The database version is Postgres 15.",
             "The database version is Postgres 16.",
             "The database version is Postgres 17.",
-            "The database version is Postgres 18."
+            "The database version is Postgres 18.",
+            "The database version is Postgres 19."
           ],
           "type": "string"
         }
