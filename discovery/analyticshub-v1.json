@@ -18,13 +18,6 @@
   "description": "Exchange data and analytics assets securely and efficiently.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/bigquery/docs/analytics-hub-introduction",
-  "endpoints": [
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://analyticshub.us-east7.rep.googleapis.com/",
-      "location": "us-east7"
-    }
-  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -1254,7 +1247,7 @@
       }
     }
   },
-  "revision": "20260727",
+  "revision": "20260914",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AIInference": {
@@ -1266,7 +1259,7 @@
           "type": "string"
         },
         "serviceAccountEmail": {
-          "description": "Optional. The service account to use to make prediction requests against endpoints. The resource creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent]({$universe.dns_names.final_documentation_domain}/iam/docs/service-agents), service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.",
+          "description": "Optional. The service account to use to make prediction requests against endpoints. The resource creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent](https://cloud.google.com/iam/docs/service-agents), service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.",
           "type": "string"
         },
         "unstructuredInference": {
@@ -1422,7 +1415,7 @@
           "type": "string"
         },
         "serviceAccountEmail": {
-          "description": "Optional. The service account to use to write to Bigtable. The subscription creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent]({$universe.dns_names.final_documentation_domain}/iam/docs/service-agents), service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.",
+          "description": "Optional. The service account to use to write to Bigtable. The subscription creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent](https://cloud.google.com/iam/docs/service-agents), service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.",
           "type": "string"
         },
         "table": {
@@ -1722,6 +1715,17 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "EncryptionConfig": {
+      "description": "Encryption configuration for the query template.",
+      "id": "EncryptionConfig",
+      "properties": {
+        "kmsKeyName": {
+          "description": "Optional. The KMS key used to encrypt the query template. Format: `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}`",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ExpirationPolicy": {
@@ -2502,6 +2506,10 @@
         "documentation": {
           "description": "Optional. Documentation describing the QueryTemplate.",
           "type": "string"
+        },
+        "encryptionConfiguration": {
+          "$ref": "EncryptionConfig",
+          "description": "Optional. Encryption configuration for the query template. If set, the customer-managed KMS key is used to encrypt the query template definition body."
         },
         "name": {
           "description": "Output only. The resource name of the QueryTemplate. e.g. `projects/myproject/locations/us/dataExchanges/123/queryTemplates/456`",

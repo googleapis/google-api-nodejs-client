@@ -18,13 +18,6 @@
   "description": "Exchange data and analytics assets securely and efficiently.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/bigquery/docs/analytics-hub-introduction",
-  "endpoints": [
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://analyticshub.us-east7.rep.googleapis.com/",
-      "location": "us-east7"
-    }
-  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -702,7 +695,7 @@
       }
     }
   },
-  "revision": "20260727",
+  "revision": "20260914",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AuditConfig": {

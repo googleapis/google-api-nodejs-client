@@ -135,7 +135,7 @@ export namespace analyticshub_v1 {
      */
     endpoint?: string | null;
     /**
-     * Optional. The service account to use to make prediction requests against endpoints. The resource creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent]({$universe.dns_names.final_documentation_domain\}/iam/docs/service-agents), service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     * Optional. The service account to use to make prediction requests against endpoints. The resource creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent](https://cloud.google.com/iam/docs/service-agents), service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      */
     serviceAccountEmail?: string | null;
     /**
@@ -249,7 +249,7 @@ export namespace analyticshub_v1 {
      */
     appProfileId?: string | null;
     /**
-     * Optional. The service account to use to write to Bigtable. The subscription creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent]({$universe.dns_names.final_documentation_domain\}/iam/docs/service-agents), service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     * Optional. The service account to use to write to Bigtable. The subscription creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent](https://cloud.google.com/iam/docs/service-agents), service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      */
     serviceAccountEmail?: string | null;
     /**
@@ -476,6 +476,15 @@ export namespace analyticshub_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Encryption configuration for the query template.
+   */
+  export interface Schema$EncryptionConfig {
+    /**
+     * Optional. The KMS key used to encrypt the query template. Format: `projects/{project\}/locations/{location\}/keyRings/{keyring\}/cryptoKeys/{key\}`
+     */
+    kmsKeyName?: string | null;
+  }
   /**
    * A policy that specifies the conditions for resource expiration (i.e., automatic resource deletion).
    */
@@ -1035,6 +1044,10 @@ export namespace analyticshub_v1 {
      * Optional. Documentation describing the QueryTemplate.
      */
     documentation?: string | null;
+    /**
+     * Optional. Encryption configuration for the query template. If set, the customer-managed KMS key is used to encrypt the query template definition body.
+     */
+    encryptionConfiguration?: Schema$EncryptionConfig;
     /**
      * Output only. The resource name of the QueryTemplate. e.g. `projects/myproject/locations/us/dataExchanges/123/queryTemplates/456`
      */
@@ -5060,6 +5073,7 @@ export namespace analyticshub_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "documentation": "my_documentation",
+     *   //   "encryptionConfiguration": {},
      *   //   "name": "my_name",
      *   //   "primaryContact": "my_primaryContact",
      *   //   "proposer": "my_proposer",
@@ -5214,6 +5228,7 @@ export namespace analyticshub_v1 {
      *         //   "description": "my_description",
      *         //   "displayName": "my_displayName",
      *         //   "documentation": "my_documentation",
+     *         //   "encryptionConfiguration": {},
      *         //   "name": "my_name",
      *         //   "primaryContact": "my_primaryContact",
      *         //   "proposer": "my_proposer",
@@ -5231,6 +5246,7 @@ export namespace analyticshub_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "documentation": "my_documentation",
+     *   //   "encryptionConfiguration": {},
      *   //   "name": "my_name",
      *   //   "primaryContact": "my_primaryContact",
      *   //   "proposer": "my_proposer",
@@ -5518,6 +5534,7 @@ export namespace analyticshub_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "documentation": "my_documentation",
+     *   //   "encryptionConfiguration": {},
      *   //   "name": "my_name",
      *   //   "primaryContact": "my_primaryContact",
      *   //   "proposer": "my_proposer",
@@ -5819,6 +5836,7 @@ export namespace analyticshub_v1 {
      *         //   "description": "my_description",
      *         //   "displayName": "my_displayName",
      *         //   "documentation": "my_documentation",
+     *         //   "encryptionConfiguration": {},
      *         //   "name": "my_name",
      *         //   "primaryContact": "my_primaryContact",
      *         //   "proposer": "my_proposer",
@@ -5836,6 +5854,7 @@ export namespace analyticshub_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "documentation": "my_documentation",
+     *   //   "encryptionConfiguration": {},
      *   //   "name": "my_name",
      *   //   "primaryContact": "my_primaryContact",
      *   //   "proposer": "my_proposer",
@@ -5990,6 +6009,7 @@ export namespace analyticshub_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "documentation": "my_documentation",
+     *   //   "encryptionConfiguration": {},
      *   //   "name": "my_name",
      *   //   "primaryContact": "my_primaryContact",
      *   //   "proposer": "my_proposer",
