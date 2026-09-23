@@ -113,7 +113,7 @@
         "messages": {
           "methods": {
             "send": {
-              "description": "Send a message to specified target (a registration token, topic or condition).",
+              "description": "Send a message to specified target (a [Firebase Installation ID (FID)](/docs/cloud-messaging/android/get-started#access-firebase-installation-id), registration token, topic, or condition).",
               "flatPath": "v1/projects/{projectsId}/messages:send",
               "httpMethod": "POST",
               "id": "fcm.projects.messages.send",
@@ -142,11 +142,181 @@
               ]
             }
           }
+        },
+        "registrations": {
+          "resources": {
+            "topicSubscriptions": {
+              "methods": {
+                "create": {
+                  "description": "Creates a TopicSubscription. Subscribes an app installation instance (by registration_id, either FID or FCM Token) to a topicSubscription. Returns a TopicSubscription if it is created successfully. If the subscription already exists, returns error of ALREADY_EXISTS.",
+                  "flatPath": "v1/projects/{projectsId}/registrations/{registrationsId}/topicSubscriptions",
+                  "httpMethod": "POST",
+                  "id": "fcm.projects.registrations.topicSubscriptions.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource where this subscription will be created. Format: projects/{project}/registrations/{registration} The {registration} part can be an FID or an FCM Token.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/registrations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "topicName": {
+                      "description": "Required. The ID to use for the subscription, which is the topic name. This will become the last segment of the TopicSubscription's resource name. Topic names match the pattern of \"[a-zA-Z0-9-_.~%]{1,900}\".",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/topicSubscriptions",
+                  "request": {
+                    "$ref": "TopicSubscription"
+                  },
+                  "response": {
+                    "$ref": "TopicSubscription"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase.messaging"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a TopicSubscription.",
+                  "flatPath": "v1/projects/{projectsId}/registrations/{registrationsId}/topicSubscriptions/{topicSubscriptionsId}",
+                  "httpMethod": "DELETE",
+                  "id": "fcm.projects.registrations.topicSubscriptions.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "allowMissing": {
+                      "description": "Optional. If set to true, and the topic subscription is not found, the request will succeed but no action will be taken on the server.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Required. The name of the topic subscription to delete. Format: projects/{project}/registrations/{registration}/topicSubscriptions/{topicSubscription}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/registrations/[^/]+/topicSubscriptions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase.messaging"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a TopicSubscription.",
+                  "flatPath": "v1/projects/{projectsId}/registrations/{registrationsId}/topicSubscriptions/{topicSubscriptionsId}",
+                  "httpMethod": "GET",
+                  "id": "fcm.projects.registrations.topicSubscriptions.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the topic subscription to retrieve. Format: projects/{project}/registrations/{registration}/topicSubscriptions/{topicSubscription}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/registrations/[^/]+/topicSubscriptions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "TopicSubscription"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase.messaging"
+                  ]
+                },
+                "list": {
+                  "description": "Lists TopicSubscriptions for a given app instance.",
+                  "flatPath": "v1/projects/{projectsId}/registrations/{registrationsId}/topicSubscriptions",
+                  "httpMethod": "GET",
+                  "id": "fcm.projects.registrations.topicSubscriptions.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 1000 subscriptions will be returned. The maximum value is 2000; values above 2000 will be coerced to 2000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListTopicSubscriptions` call. Provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource, which owns this collection of subscriptions. Format: projects/{project}/registrations/{registration} The {registration} part can be an FID or an FCM Token.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/registrations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/topicSubscriptions",
+                  "response": {
+                    "$ref": "ListTopicSubscriptionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase.messaging"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a TopicSubscription. Subscribes an app installation instance by registration_id, either FID or FCM Token, to a topicSubscription. Returns an existing TopicSubscription or creates a new one if it does not exist.",
+                  "flatPath": "v1/projects/{projectsId}/registrations/{registrationsId}/topicSubscriptions/{topicSubscriptionsId}",
+                  "httpMethod": "PATCH",
+                  "id": "fcm.projects.registrations.topicSubscriptions.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "allowMissing": {
+                      "description": "Optional. If set to true, and the topic subscription is not found, a new topic subscription will be created.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Identifier. The resource name of the subscription. Format: projects/{project}/registrations/{registration}/topicSubscriptions/{topicSubscription} The {registration} part contains the registration ID (e.g., FID).",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/registrations/[^/]+/topicSubscriptions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "TopicSubscription"
+                  },
+                  "response": {
+                    "$ref": "TopicSubscription"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase.messaging"
+                  ]
+                }
+              }
+            }
+          }
         }
       }
     }
   },
-  "revision": "20260619",
+  "revision": "20260911",
   "rootUrl": "https://fcm.googleapis.com/",
   "schemas": {
     "AndroidConfig": {
@@ -459,6 +629,12 @@
       },
       "type": "object"
     },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
+      "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
     "FcmOptions": {
       "description": "Platform independent options for features provided by the FCM SDKs.",
       "id": "FcmOptions",
@@ -491,6 +667,24 @@
       },
       "type": "object"
     },
+    "ListTopicSubscriptionsResponse": {
+      "description": "Response message for ListTopicSubscriptions.",
+      "id": "ListTopicSubscriptionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "topicSubscriptions": {
+          "description": "The topic subscriptions for the instance.",
+          "items": {
+            "$ref": "TopicSubscription"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Message": {
       "description": "Message to send by Firebase Cloud Messaging Service.",
       "id": "Message",
@@ -519,7 +713,7 @@
           "description": "Input only. Template for FCM SDK feature options to use across all platforms."
         },
         "fid": {
-          "description": "Firebase Installation ID to send a message to.",
+          "description": "[Firebase Installation ID (FID)](/docs/cloud-messaging/android/get-started#access-firebase-installation-id) to send a message to.",
           "type": "string"
         },
         "name": {
@@ -532,7 +726,7 @@
         },
         "token": {
           "deprecated": true,
-          "description": "Deprecated: Use `fid` instead. Registration token to send a message to. During the transition period, this field also accepts a Firebase Installation ID (FID).",
+          "description": "Deprecated: Use `fid` instead. During the transition period, this field also accepts a Firebase Installation ID (FID). Registration token to send a message to.",
           "type": "string"
         },
         "topic": {
@@ -576,6 +770,28 @@
         "validateOnly": {
           "description": "Flag for testing the request without actually delivering the message.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "TopicSubscription": {
+      "description": "Represents a subscription of a single app instance to a single FCM topic.",
+      "id": "TopicSubscription",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time when the subscription was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the subscription. Format: projects/{project}/registrations/{registration}/topicSubscriptions/{topicSubscription} The {registration} part contains the registration ID (e.g., FID).",
+          "type": "string"
+        },
+        "topicName": {
+          "description": "Output only. The ID of the TopicSubscription, which is the topic name. This corresponds to the {topicSubscription} segment in the resource name. Topic names match the pattern of \"[a-zA-Z0-9-_.~%]{1,900}\".",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

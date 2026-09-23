@@ -347,6 +347,10 @@ export namespace fcm_v1 {
     red?: number | null;
   }
   /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
+   */
+  export interface Schema$Empty {}
+  /**
    * Platform independent options for features provided by the FCM SDKs.
    */
   export interface Schema$FcmOptions {
@@ -373,6 +377,19 @@ export namespace fcm_v1 {
     lightOnDuration?: string | null;
   }
   /**
+   * Response message for ListTopicSubscriptions.
+   */
+  export interface Schema$ListTopicSubscriptionsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The topic subscriptions for the instance.
+     */
+    topicSubscriptions?: Schema$TopicSubscription[];
+  }
+  /**
    * Message to send by Firebase Cloud Messaging Service.
    */
   export interface Schema$Message {
@@ -397,7 +414,7 @@ export namespace fcm_v1 {
      */
     fcmOptions?: Schema$FcmOptions;
     /**
-     * Firebase Installation ID to send a message to.
+     * [Firebase Installation ID (FID)](/docs/cloud-messaging/android/get-started#access-firebase-installation-id) to send a message to.
      */
     fid?: string | null;
     /**
@@ -409,7 +426,7 @@ export namespace fcm_v1 {
      */
     notification?: Schema$Notification;
     /**
-     * Deprecated: Use `fid` instead. Registration token to send a message to. During the transition period, this field also accepts a Firebase Installation ID (FID).
+     * Deprecated: Use `fid` instead. During the transition period, this field also accepts a Firebase Installation ID (FID). Registration token to send a message to.
      */
     token?: string | null;
     /**
@@ -452,6 +469,23 @@ export namespace fcm_v1 {
     validateOnly?: boolean | null;
   }
   /**
+   * Represents a subscription of a single app instance to a single FCM topic.
+   */
+  export interface Schema$TopicSubscription {
+    /**
+     * Output only. Time when the subscription was created.
+     */
+    createTime?: string | null;
+    /**
+     * Identifier. The resource name of the subscription. Format: projects/{project\}/registrations/{registration\}/topicSubscriptions/{topicSubscription\} The {registration\} part contains the registration ID (e.g., FID).
+     */
+    name?: string | null;
+    /**
+     * Output only. The ID of the TopicSubscription, which is the topic name. This corresponds to the {topicSubscription\} segment in the resource name. Topic names match the pattern of "[a-zA-Z0-9-_.~%]{1,900\}".
+     */
+    topicName?: string | null;
+  }
+  /**
    * [Webpush protocol](https://tools.ietf.org/html/rfc8030) options.
    */
   export interface Schema$WebpushConfig {
@@ -489,9 +523,11 @@ export namespace fcm_v1 {
   export class Resource$Projects {
     context: APIRequestContext;
     messages: Resource$Projects$Messages;
+    registrations: Resource$Projects$Registrations;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.messages = new Resource$Projects$Messages(this.context);
+      this.registrations = new Resource$Projects$Registrations(this.context);
     }
   }
 
@@ -502,7 +538,7 @@ export namespace fcm_v1 {
     }
 
     /**
-     * Send a message to specified target (a registration token, topic or condition).
+     * Send a message to specified target (a [Firebase Installation ID (FID)](/docs/cloud-messaging/android/get-started#access-firebase-installation-id), registration token, topic, or condition).
      * @example
      * ```js
      * // Before running the sample:
@@ -670,5 +706,819 @@ export namespace fcm_v1 {
      * Request body metadata
      */
     requestBody?: Schema$SendMessageRequest;
+  }
+
+  export class Resource$Projects$Registrations {
+    context: APIRequestContext;
+    topicSubscriptions: Resource$Projects$Registrations$Topicsubscriptions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.topicSubscriptions =
+        new Resource$Projects$Registrations$Topicsubscriptions(this.context);
+    }
+  }
+
+  export class Resource$Projects$Registrations$Topicsubscriptions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a TopicSubscription. Subscribes an app installation instance (by registration_id, either FID or FCM Token) to a topicSubscription. Returns a TopicSubscription if it is created successfully. If the subscription already exists, returns error of ALREADY_EXISTS.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fcm.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const fcm = google.fcm('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase.messaging',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fcm.projects.registrations.topicSubscriptions.create({
+     *     // Required. The parent resource where this subscription will be created. Format: projects/{project\}/registrations/{registration\} The {registration\} part can be an FID or an FCM Token.
+     *     parent: 'projects/my-project/registrations/my-registration',
+     *     // Required. The ID to use for the subscription, which is the topic name. This will become the last segment of the TopicSubscription's resource name. Topic names match the pattern of "[a-zA-Z0-9-_.~%]{1,900\}".
+     *     topicName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "name": "my_name",
+     *       //   "topicName": "my_topicName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "topicName": "my_topicName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Registrations$Topicsubscriptions$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TopicSubscription>>;
+    create(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$TopicSubscription>,
+      callback: BodyResponseCallback<Schema$TopicSubscription>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$Create,
+      callback: BodyResponseCallback<Schema$TopicSubscription>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$TopicSubscription>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Registrations$Topicsubscriptions$Create
+        | BodyResponseCallback<Schema$TopicSubscription>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TopicSubscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TopicSubscription>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TopicSubscription>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Registrations$Topicsubscriptions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Registrations$Topicsubscriptions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://fcm.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/topicSubscriptions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TopicSubscription>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TopicSubscription>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a TopicSubscription.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fcm.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const fcm = google.fcm('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase.messaging',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fcm.projects.registrations.topicSubscriptions.delete({
+     *     // Optional. If set to true, and the topic subscription is not found, the request will succeed but no action will be taken on the server.
+     *     allowMissing: 'placeholder-value',
+     *     // Required. The name of the topic subscription to delete. Format: projects/{project\}/registrations/{registration\}/topicSubscriptions/{topicSubscription\}
+     *     name: 'projects/my-project/registrations/my-registration/topicSubscriptions/my-topicSubscription',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Registrations$Topicsubscriptions$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Registrations$Topicsubscriptions$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Registrations$Topicsubscriptions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Registrations$Topicsubscriptions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://fcm.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a TopicSubscription.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fcm.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const fcm = google.fcm('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase.messaging',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fcm.projects.registrations.topicSubscriptions.get({
+     *     // Required. The name of the topic subscription to retrieve. Format: projects/{project\}/registrations/{registration\}/topicSubscriptions/{topicSubscription\}
+     *     name: 'projects/my-project/registrations/my-registration/topicSubscriptions/my-topicSubscription',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "topicName": "my_topicName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Registrations$Topicsubscriptions$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TopicSubscription>>;
+    get(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TopicSubscription>,
+      callback: BodyResponseCallback<Schema$TopicSubscription>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$Get,
+      callback: BodyResponseCallback<Schema$TopicSubscription>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$TopicSubscription>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Registrations$Topicsubscriptions$Get
+        | BodyResponseCallback<Schema$TopicSubscription>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TopicSubscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TopicSubscription>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TopicSubscription>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Registrations$Topicsubscriptions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Registrations$Topicsubscriptions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://fcm.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TopicSubscription>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TopicSubscription>(parameters);
+      }
+    }
+
+    /**
+     * Lists TopicSubscriptions for a given app instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fcm.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const fcm = google.fcm('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase.messaging',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fcm.projects.registrations.topicSubscriptions.list({
+     *     // Optional. The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 1000 subscriptions will be returned. The maximum value is 2000; values above 2000 will be coerced to 2000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListTopicSubscriptions` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource, which owns this collection of subscriptions. Format: projects/{project\}/registrations/{registration\} The {registration\} part can be an FID or an FCM Token.
+     *     parent: 'projects/my-project/registrations/my-registration',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "topicSubscriptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Registrations$Topicsubscriptions$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTopicSubscriptionsResponse>>;
+    list(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>,
+      callback: BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$List,
+      callback: BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Registrations$Topicsubscriptions$List
+        | BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTopicSubscriptionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Registrations$Topicsubscriptions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Registrations$Topicsubscriptions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://fcm.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/topicSubscriptions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListTopicSubscriptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListTopicSubscriptionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a TopicSubscription. Subscribes an app installation instance by registration_id, either FID or FCM Token, to a topicSubscription. Returns an existing TopicSubscription or creates a new one if it does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fcm.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const fcm = google.fcm('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase.messaging',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fcm.projects.registrations.topicSubscriptions.patch({
+     *     // Optional. If set to true, and the topic subscription is not found, a new topic subscription will be created.
+     *     allowMissing: 'placeholder-value',
+     *     // Identifier. The resource name of the subscription. Format: projects/{project\}/registrations/{registration\}/topicSubscriptions/{topicSubscription\} The {registration\} part contains the registration ID (e.g., FID).
+     *     name: 'projects/my-project/registrations/my-registration/topicSubscriptions/my-topicSubscription',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "name": "my_name",
+     *       //   "topicName": "my_topicName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "topicName": "my_topicName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Registrations$Topicsubscriptions$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TopicSubscription>>;
+    patch(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$TopicSubscription>,
+      callback: BodyResponseCallback<Schema$TopicSubscription>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Registrations$Topicsubscriptions$Patch,
+      callback: BodyResponseCallback<Schema$TopicSubscription>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$TopicSubscription>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Registrations$Topicsubscriptions$Patch
+        | BodyResponseCallback<Schema$TopicSubscription>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TopicSubscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TopicSubscription>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TopicSubscription>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Registrations$Topicsubscriptions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Registrations$Topicsubscriptions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://fcm.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TopicSubscription>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TopicSubscription>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Registrations$Topicsubscriptions$Create extends StandardParameters {
+    /**
+     * Required. The parent resource where this subscription will be created. Format: projects/{project\}/registrations/{registration\} The {registration\} part can be an FID or an FCM Token.
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the subscription, which is the topic name. This will become the last segment of the TopicSubscription's resource name. Topic names match the pattern of "[a-zA-Z0-9-_.~%]{1,900\}".
+     */
+    topicName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TopicSubscription;
+  }
+  export interface Params$Resource$Projects$Registrations$Topicsubscriptions$Delete extends StandardParameters {
+    /**
+     * Optional. If set to true, and the topic subscription is not found, the request will succeed but no action will be taken on the server.
+     */
+    allowMissing?: boolean;
+    /**
+     * Required. The name of the topic subscription to delete. Format: projects/{project\}/registrations/{registration\}/topicSubscriptions/{topicSubscription\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Registrations$Topicsubscriptions$Get extends StandardParameters {
+    /**
+     * Required. The name of the topic subscription to retrieve. Format: projects/{project\}/registrations/{registration\}/topicSubscriptions/{topicSubscription\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Registrations$Topicsubscriptions$List extends StandardParameters {
+    /**
+     * Optional. The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 1000 subscriptions will be returned. The maximum value is 2000; values above 2000 will be coerced to 2000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListTopicSubscriptions` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource, which owns this collection of subscriptions. Format: projects/{project\}/registrations/{registration\} The {registration\} part can be an FID or an FCM Token.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Registrations$Topicsubscriptions$Patch extends StandardParameters {
+    /**
+     * Optional. If set to true, and the topic subscription is not found, a new topic subscription will be created.
+     */
+    allowMissing?: boolean;
+    /**
+     * Identifier. The resource name of the subscription. Format: projects/{project\}/registrations/{registration\}/topicSubscriptions/{topicSubscription\} The {registration\} part contains the registration ID (e.g., FID).
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TopicSubscription;
   }
 }
