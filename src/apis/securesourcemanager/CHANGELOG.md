@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/securesourcemanager-v8.0.0...securesourcemanager-v8.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **securesourcemanager:** update the API ([f7e815d](https://github.com/googleapis/google-api-nodejs-client/commit/f7e815d178d979c83b91cf40f5d95bd39d7f1c09))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/securesourcemanager-v7.0.0...securesourcemanager-v8.0.0) (2026-09-14)
 
 

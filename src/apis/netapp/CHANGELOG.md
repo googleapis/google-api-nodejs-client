@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/netapp-v13.0.0...netapp-v13.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **netapp:** update the API ([eb10daa](https://github.com/googleapis/google-api-nodejs-client/commit/eb10daad335d2b17d1bc00ddc7bf0706c61960e7))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/netapp-v12.0.0...netapp-v13.0.0) (2026-09-14)
 
 

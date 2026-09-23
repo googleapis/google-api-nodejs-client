@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/verifiedaccess-v12.0.0...verifiedaccess-v12.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **verifiedaccess:** update the API ([9c884c1](https://github.com/googleapis/google-api-nodejs-client/commit/9c884c1f43dffb81dc47913badda56e27dda4641))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/verifiedaccess-v11.0.0...verifiedaccess-v12.0.0) (2026-09-14)
 
 

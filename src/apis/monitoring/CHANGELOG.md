@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/monitoring-v18.0.0...monitoring-v18.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **monitoring:** update the API ([f4ac4d7](https://github.com/googleapis/google-api-nodejs-client/commit/f4ac4d7f495b37d5b269f1103f06c5dad47da26f))
+
 ## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/monitoring-v17.0.0...monitoring-v18.0.0) (2026-09-14)
 
 

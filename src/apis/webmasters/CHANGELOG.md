@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/webmasters-v9.0.0...webmasters-v9.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **webmasters:** update the API ([23358e6](https://github.com/googleapis/google-api-nodejs-client/commit/23358e65cf325445cdc9ab64de886e70d5976a23))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/webmasters-v8.0.0...webmasters-v9.0.0) (2026-09-14)
 
 
