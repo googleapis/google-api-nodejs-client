@@ -526,6 +526,165 @@
               ]
             }
           }
+        },
+        "capabilityConfigs": {
+          "methods": {
+            "create": {
+              "description": "Creates a CapabilityConfig under a parent Organization, Folder or Project. Creating a CapabilityConfig triggers the creation of a Management Project if one is not supplied.",
+              "flatPath": "v3/folders/{foldersId}/capabilityConfigs",
+              "httpMethod": "POST",
+              "id": "cloudresourcemanager.folders.capabilityConfigs.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "capabilityConfigId": {
+                  "description": "Required. The user-assigned ID for the CapabilityConfig, which will become the final component of the CapabilityConfig's resource name. Must be unique within the parent resource. It must be 6 to 30 lowercase ASCII letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. Example: `my-capability-config-123`",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent resource under which the CapabilityConfig will be created. Format: `organizations/{organization_id}` or `folders/{folder_id}` or `projects/{project_number}`",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+parent}/capabilityConfigs",
+              "request": {
+                "$ref": "CapabilityConfig"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes the CapabilityConfig identified by the specified `name` (for example, `folders/123456789/capabilityConfigs/my-capability-config`).",
+              "flatPath": "v3/folders/{foldersId}/capabilityConfigs/{capabilityConfigsId}",
+              "httpMethod": "DELETE",
+              "id": "cloudresourcemanager.folders.capabilityConfigs.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the CapabilityConfig to delete. Format: `organizations/{organization}/capabilityConfigs/{capabilityConfig}` or, `folders/{folder}/capabilityConfigs/{capabilityConfig}` or, `projects/{project}/capabilityConfigs/{capabilityConfig}`",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+/capabilityConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Retrieves the CapabilityConfig identified by the specified `name` (for example, `folders/123456789/capabilityConfigs/my-capability-config`).",
+              "flatPath": "v3/folders/{foldersId}/capabilityConfigs/{capabilityConfigsId}",
+              "httpMethod": "GET",
+              "id": "cloudresourcemanager.folders.capabilityConfigs.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the CapabilityConfig to retrieve. Format: `organizations/{organization}/capabilityConfigs/{capabilityConfig}` or, `folders/{folder}/capabilityConfigs/{capabilityConfig}` or, `projects/{project}/capabilityConfigs/{capabilityConfig}` Example: `folders/123456789/capabilityConfigs/my-capability-config`",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+/capabilityConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "response": {
+                "$ref": "CapabilityConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
+            "list": {
+              "description": "Lists CapabilityConfigs that are direct children of the specified organization, folder or project resource.",
+              "flatPath": "v3/folders/{foldersId}/capabilityConfigs",
+              "httpMethod": "GET",
+              "id": "cloudresourcemanager.folders.capabilityConfigs.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of CapabilityConfigs to return in the response. The service may return fewer CapabilityConfigs than requested. If unspecified, at most 100 CapabilityConfigs will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A pagination token received from a previous call to `ListCapabilityConfigs` that indicates from where listing should continue. Provide this to retrieve the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the parent resource whose CapabilityConfigs are being listed. Format: `organizations/{organization_id}` or `folders/{folder_id}`",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+parent}/capabilityConfigs",
+              "response": {
+                "$ref": "ListCapabilityConfigsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
+            "patch": {
+              "description": "Updates the `display_name`, `types` and `boundaries` of the CapabilityConfig identified by the specified `name` (for example, `folders/123456789/capabilityConfigs/my-capability-config`).",
+              "flatPath": "v3/folders/{foldersId}/capabilityConfigs/{capabilityConfigsId}",
+              "httpMethod": "PATCH",
+              "id": "cloudresourcemanager.folders.capabilityConfigs.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The unique resource name of the CapabilityConfig. Format: `organizations/{organization}/capabilityConfigs/{capabilityConfig}` or, `folders/{folder}/capabilityConfigs/{capabilityConfig}` or, `projects/{project}/capabilityConfigs/{capabilityConfig}`",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+/capabilityConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The list of fields to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "request": {
+                "$ref": "CapabilityConfig"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
         }
       }
     },
@@ -912,6 +1071,167 @@
             "https://www.googleapis.com/auth/cloud-platform.read-only"
           ]
         }
+      },
+      "resources": {
+        "capabilityConfigs": {
+          "methods": {
+            "create": {
+              "description": "Creates a CapabilityConfig under a parent Organization, Folder or Project. Creating a CapabilityConfig triggers the creation of a Management Project if one is not supplied.",
+              "flatPath": "v3/organizations/{organizationsId}/capabilityConfigs",
+              "httpMethod": "POST",
+              "id": "cloudresourcemanager.organizations.capabilityConfigs.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "capabilityConfigId": {
+                  "description": "Required. The user-assigned ID for the CapabilityConfig, which will become the final component of the CapabilityConfig's resource name. Must be unique within the parent resource. It must be 6 to 30 lowercase ASCII letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. Example: `my-capability-config-123`",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent resource under which the CapabilityConfig will be created. Format: `organizations/{organization_id}` or `folders/{folder_id}` or `projects/{project_number}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+parent}/capabilityConfigs",
+              "request": {
+                "$ref": "CapabilityConfig"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes the CapabilityConfig identified by the specified `name` (for example, `folders/123456789/capabilityConfigs/my-capability-config`).",
+              "flatPath": "v3/organizations/{organizationsId}/capabilityConfigs/{capabilityConfigsId}",
+              "httpMethod": "DELETE",
+              "id": "cloudresourcemanager.organizations.capabilityConfigs.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the CapabilityConfig to delete. Format: `organizations/{organization}/capabilityConfigs/{capabilityConfig}` or, `folders/{folder}/capabilityConfigs/{capabilityConfig}` or, `projects/{project}/capabilityConfigs/{capabilityConfig}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/capabilityConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Retrieves the CapabilityConfig identified by the specified `name` (for example, `folders/123456789/capabilityConfigs/my-capability-config`).",
+              "flatPath": "v3/organizations/{organizationsId}/capabilityConfigs/{capabilityConfigsId}",
+              "httpMethod": "GET",
+              "id": "cloudresourcemanager.organizations.capabilityConfigs.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the CapabilityConfig to retrieve. Format: `organizations/{organization}/capabilityConfigs/{capabilityConfig}` or, `folders/{folder}/capabilityConfigs/{capabilityConfig}` or, `projects/{project}/capabilityConfigs/{capabilityConfig}` Example: `folders/123456789/capabilityConfigs/my-capability-config`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/capabilityConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "response": {
+                "$ref": "CapabilityConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
+            "list": {
+              "description": "Lists CapabilityConfigs that are direct children of the specified organization, folder or project resource.",
+              "flatPath": "v3/organizations/{organizationsId}/capabilityConfigs",
+              "httpMethod": "GET",
+              "id": "cloudresourcemanager.organizations.capabilityConfigs.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of CapabilityConfigs to return in the response. The service may return fewer CapabilityConfigs than requested. If unspecified, at most 100 CapabilityConfigs will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A pagination token received from a previous call to `ListCapabilityConfigs` that indicates from where listing should continue. Provide this to retrieve the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the parent resource whose CapabilityConfigs are being listed. Format: `organizations/{organization_id}` or `folders/{folder_id}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+parent}/capabilityConfigs",
+              "response": {
+                "$ref": "ListCapabilityConfigsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
+            "patch": {
+              "description": "Updates the `display_name`, `types` and `boundaries` of the CapabilityConfig identified by the specified `name` (for example, `folders/123456789/capabilityConfigs/my-capability-config`).",
+              "flatPath": "v3/organizations/{organizationsId}/capabilityConfigs/{capabilityConfigsId}",
+              "httpMethod": "PATCH",
+              "id": "cloudresourcemanager.organizations.capabilityConfigs.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The unique resource name of the CapabilityConfig. Format: `organizations/{organization}/capabilityConfigs/{capabilityConfig}` or, `folders/{folder}/capabilityConfigs/{capabilityConfig}` or, `projects/{project}/capabilityConfigs/{capabilityConfig}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/capabilityConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The list of fields to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "request": {
+                "$ref": "CapabilityConfig"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        }
       }
     },
     "projects": {
@@ -1231,6 +1551,167 @@
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
           ]
+        }
+      },
+      "resources": {
+        "capabilityConfigs": {
+          "methods": {
+            "create": {
+              "description": "Creates a CapabilityConfig under a parent Organization, Folder or Project. Creating a CapabilityConfig triggers the creation of a Management Project if one is not supplied.",
+              "flatPath": "v3/projects/{projectsId}/capabilityConfigs",
+              "httpMethod": "POST",
+              "id": "cloudresourcemanager.projects.capabilityConfigs.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "capabilityConfigId": {
+                  "description": "Required. The user-assigned ID for the CapabilityConfig, which will become the final component of the CapabilityConfig's resource name. Must be unique within the parent resource. It must be 6 to 30 lowercase ASCII letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. Example: `my-capability-config-123`",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent resource under which the CapabilityConfig will be created. Format: `organizations/{organization_id}` or `folders/{folder_id}` or `projects/{project_number}`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+parent}/capabilityConfigs",
+              "request": {
+                "$ref": "CapabilityConfig"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes the CapabilityConfig identified by the specified `name` (for example, `folders/123456789/capabilityConfigs/my-capability-config`).",
+              "flatPath": "v3/projects/{projectsId}/capabilityConfigs/{capabilityConfigsId}",
+              "httpMethod": "DELETE",
+              "id": "cloudresourcemanager.projects.capabilityConfigs.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the CapabilityConfig to delete. Format: `organizations/{organization}/capabilityConfigs/{capabilityConfig}` or, `folders/{folder}/capabilityConfigs/{capabilityConfig}` or, `projects/{project}/capabilityConfigs/{capabilityConfig}`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/capabilityConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Retrieves the CapabilityConfig identified by the specified `name` (for example, `folders/123456789/capabilityConfigs/my-capability-config`).",
+              "flatPath": "v3/projects/{projectsId}/capabilityConfigs/{capabilityConfigsId}",
+              "httpMethod": "GET",
+              "id": "cloudresourcemanager.projects.capabilityConfigs.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the CapabilityConfig to retrieve. Format: `organizations/{organization}/capabilityConfigs/{capabilityConfig}` or, `folders/{folder}/capabilityConfigs/{capabilityConfig}` or, `projects/{project}/capabilityConfigs/{capabilityConfig}` Example: `folders/123456789/capabilityConfigs/my-capability-config`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/capabilityConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "response": {
+                "$ref": "CapabilityConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
+            "list": {
+              "description": "Lists CapabilityConfigs that are direct children of the specified organization, folder or project resource.",
+              "flatPath": "v3/projects/{projectsId}/capabilityConfigs",
+              "httpMethod": "GET",
+              "id": "cloudresourcemanager.projects.capabilityConfigs.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of CapabilityConfigs to return in the response. The service may return fewer CapabilityConfigs than requested. If unspecified, at most 100 CapabilityConfigs will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A pagination token received from a previous call to `ListCapabilityConfigs` that indicates from where listing should continue. Provide this to retrieve the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the parent resource whose CapabilityConfigs are being listed. Format: `organizations/{organization_id}` or `folders/{folder_id}`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+parent}/capabilityConfigs",
+              "response": {
+                "$ref": "ListCapabilityConfigsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
+            "patch": {
+              "description": "Updates the `display_name`, `types` and `boundaries` of the CapabilityConfig identified by the specified `name` (for example, `folders/123456789/capabilityConfigs/my-capability-config`).",
+              "flatPath": "v3/projects/{projectsId}/capabilityConfigs/{capabilityConfigsId}",
+              "httpMethod": "PATCH",
+              "id": "cloudresourcemanager.projects.capabilityConfigs.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The unique resource name of the CapabilityConfig. Format: `organizations/{organization}/capabilityConfigs/{capabilityConfig}` or, `folders/{folder}/capabilityConfigs/{capabilityConfig}` or, `projects/{project}/capabilityConfigs/{capabilityConfig}`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/capabilityConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The list of fields to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "request": {
+                "$ref": "CapabilityConfig"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
         }
       }
     },
@@ -1994,7 +2475,7 @@
       }
     }
   },
-  "revision": "20260820",
+  "revision": "20260917",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2078,6 +2559,78 @@
         "value": {
           "description": "Required. The configured value of the capability at the given parent resource.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "CapabilityConfig": {
+      "description": "A CapabilityConfig allows managing experiences like applications and agents on a logical administrative perimeter of Projects (Boundary).",
+      "id": "CapabilityConfig",
+      "properties": {
+        "boundaries": {
+          "description": "Optional. The list of Boundaries associated with this CapabilityConfig. Format: `organizations/{organization}/boundaries/{boundary}` or, `folders/{folder}/boundaries/{boundary}` or, `projects/{project}/boundaries/{boundary}`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. The creation time of the CapabilityConfig.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Human-readable non-unique display name of the CapabilityConfig. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point. Example: `My CapabilityConfig`",
+          "type": "string"
+        },
+        "etag": {
+          "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "managementProject": {
+          "description": "Optional. Immutable. The Management Project associated with this CapabilityConfig. If not provided during creation, a management project will be automatically created. Cannot be modified after creation. Format: `projects/{project_number}` Example: `projects/123456789012`",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The unique resource name of the CapabilityConfig. Format: `organizations/{organization}/capabilityConfigs/{capabilityConfig}` or, `folders/{folder}/capabilityConfigs/{capabilityConfig}` or, `projects/{project}/capabilityConfigs/{capabilityConfig}`",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The lifecycle state of the CapabilityConfig.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "CapabilityConfig is operational, and the management project is fully active."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "types": {
+          "description": "Required. The CapabilityConfig types.",
+          "items": {
+            "enum": [
+              "TYPE_UNSPECIFIED",
+              "APP_MANAGEMENT",
+              "AGENT_MANAGEMENT"
+            ],
+            "enumDescriptions": [
+              "Unspecified type.",
+              "For AppHub applications.",
+              "For Agent Registry."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. The most recent time this CapabilityConfig was modified.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2562,6 +3115,24 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListCapabilityConfigsResponse": {
+      "description": "A page of the response received from the ListCapabilityConfigs method. A paginated response where more pages are available has `next_page_token` set. This token can be used in a subsequent request to retrieve the next page. NOTE: A response may contain fewer elements than the request `page_size` and still have a `next_page_token`.",
+      "id": "ListCapabilityConfigsResponse",
+      "properties": {
+        "capabilityConfigs": {
+          "description": "The list of CapabilityConfigs under the parent. This list can be paginated.",
+          "items": {
+            "$ref": "CapabilityConfig"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Pagination token. If the result set is too large to fit in a single response, this token is returned. It encodes the position of the current result cursor. Feeding this value into a new list request with the `page_token` parameter gives the next page of the results. When `next_page_token` is not filled in, there is no next page and the list returned is the last page in the result set.",
+          "type": "string"
         }
       },
       "type": "object"
