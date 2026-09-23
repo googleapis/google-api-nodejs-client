@@ -5274,7 +5274,7 @@
       }
     }
   },
-  "revision": "20260829",
+  "revision": "20260912",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -5394,10 +5394,10 @@
           ],
           "enumDescriptions": [
             "Invalid.",
-            "Full match. - Dictionary: join of Dictionary results matched the complete finding quote - Regex: all regex matches fill a finding quote from start to end - Exclude infoType: completely inside affecting infoTypes findings",
-            "Partial match. - Dictionary: at least one of the tokens in the finding matches - Regex: substring of the finding matches - Exclude infoType: intersects with affecting infoTypes findings",
-            "Inverse match. - Dictionary: no tokens in the finding match the dictionary - Regex: finding doesn't match the regex - Exclude infoType: no intersection with affecting infoTypes findings",
-            "Rule-specific match. The matching logic is based on the specific rule being used. This is required for rules where the matching behavior is not a simple string comparison (e.g., image containment). This matching type can only be used with the `ExcludeByImageFindings` rule. - Exclude by image findings: The matching logic is defined within `ExcludeByImageFindings` based on spatial relationships between bounding boxes."
+            "Full match. - Dictionary: join of Dictionary results matched the complete finding quote - Regex: all regex matches fill a finding quote from start to end - Exclude infoType: completely inside affecting infoTypes findings - Exclude by prompt: finding matches the prompt definition",
+            "Partial match. - Dictionary: at least one of the tokens in the finding matches - Regex: substring of the finding matches - Exclude infoType: intersects with affecting infoTypes findings - Exclude by prompt: not supported",
+            "Inverse match. - Dictionary: no tokens in the finding match the dictionary - Regex: finding doesn't match the regex - Exclude infoType: no intersection with affecting infoTypes findings - Exclude by prompt: finding does not match the prompt definition",
+            "Rule-specific match. The matching logic is based on the specific rule being used. This is required for rules where the matching behavior is not a simple string comparison (e.g., image containment). This matching type can only be used with the `ExcludeByImageFindings` rule. - Exclude by image findings: The matching logic is defined within `ExcludeByImageFindings` based on spatial relationships between bounding boxes. - Exclude by prompt: not supported"
           ],
           "type": "string"
         },
@@ -8989,10 +8989,10 @@
           ],
           "enumDescriptions": [
             "Invalid.",
-            "Full match. - Dictionary: join of Dictionary results matched the complete finding quote - Regex: all regex matches fill a finding quote from start to end - Exclude infoType: completely inside affecting infoTypes findings",
-            "Partial match. - Dictionary: at least one of the tokens in the finding matches - Regex: substring of the finding matches - Exclude infoType: intersects with affecting infoTypes findings",
-            "Inverse match. - Dictionary: no tokens in the finding match the dictionary - Regex: finding doesn't match the regex - Exclude infoType: no intersection with affecting infoTypes findings",
-            "Rule-specific match. The matching logic is based on the specific rule being used. This is required for rules where the matching behavior is not a simple string comparison (e.g., image containment). This matching type can only be used with the `ExcludeByImageFindings` rule. - Exclude by image findings: The matching logic is defined within `ExcludeByImageFindings` based on spatial relationships between bounding boxes."
+            "Full match. - Dictionary: join of Dictionary results matched the complete finding quote - Regex: all regex matches fill a finding quote from start to end - Exclude infoType: completely inside affecting infoTypes findings - Exclude by prompt: finding matches the prompt definition",
+            "Partial match. - Dictionary: at least one of the tokens in the finding matches - Regex: substring of the finding matches - Exclude infoType: intersects with affecting infoTypes findings - Exclude by prompt: not supported",
+            "Inverse match. - Dictionary: no tokens in the finding match the dictionary - Regex: finding doesn't match the regex - Exclude infoType: no intersection with affecting infoTypes findings - Exclude by prompt: finding does not match the prompt definition",
+            "Rule-specific match. The matching logic is based on the specific rule being used. This is required for rules where the matching behavior is not a simple string comparison (e.g., image containment). This matching type can only be used with the `ExcludeByImageFindings` rule. - Exclude by image findings: The matching logic is defined within `ExcludeByImageFindings` based on spatial relationships between bounding boxes. - Exclude by prompt: not supported"
           ],
           "type": "string"
         },
