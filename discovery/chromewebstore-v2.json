@@ -185,6 +185,49 @@
                 "https://www.googleapis.com/auth/chromewebstore"
               ]
             },
+            "fetchReviews": {
+              "description": "Fetch user reviews for an item.",
+              "flatPath": "v2/publishers/{publishersId}/items/{itemsId}:fetchReviews",
+              "httpMethod": "GET",
+              "id": "chromewebstore.publishers.items.fetchReviews",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. A filter to apply to the reviews. Only equality comparison on rating is supported, e.g. `rating = 5`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Required. The item resource name whose reviews are being fetched. Format: publishers/{publisher_id}/items/{item_id}",
+                  "location": "path",
+                  "pattern": "^publishers/[^/]+/items/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. An optional comma-separated list of fields by which to sort the results. Supported fields are `rating` and `create_time`. Supported orders are `asc` (default) and `desc`. Example: \"rating desc, create_time\".",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The maximum number of reviews to return. The service may return fewer than this value. If unspecified, at most 50 reviews will be returned. The maximum value is 200; values above 200 will be coerced to 200.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `FetchItemReviews` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchItemReviews` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}:fetchReviews",
+              "response": {
+                "$ref": "FetchItemReviewsResponse"
+              }
+            },
             "fetchStatus": {
               "description": "Fetch the status of an item.",
               "flatPath": "v2/publishers/{publishersId}/items/{itemsId}:fetchStatus",
@@ -272,9 +315,20 @@
       }
     }
   },
-  "revision": "20260601",
+  "revision": "20260916",
   "rootUrl": "https://chromewebstore.googleapis.com/",
   "schemas": {
+    "AuthorInfo": {
+      "description": "Info on the author of the review.",
+      "id": "AuthorInfo",
+      "properties": {
+        "displayName": {
+          "description": "Display name for the author.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CancelSubmissionRequest": {
       "description": "Request message for CancelSubmission.",
       "id": "CancelSubmissionRequest",
@@ -311,6 +365,24 @@
           "description": "The current deploy percentage for the release channel (nonnegative number between 0 and 100).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "FetchItemReviewsResponse": {
+      "description": "Response message for FetchItemReviews.",
+      "id": "FetchItemReviewsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "reviews": {
+          "description": "The list of reviews.",
+          "items": {
+            "$ref": "Review"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -484,6 +556,41 @@
           "$ref": "WarningsInfo",
           "description": "Output only. Non-blocking warnings encountered during the request.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "Review": {
+      "description": "A review written by a user to rate an item in the Chrome Web Store.",
+      "id": "Review",
+      "properties": {
+        "authorInfo": {
+          "$ref": "AuthorInfo",
+          "description": "Info on the author of the review."
+        },
+        "comment": {
+          "description": "Content of the review.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. When the review was posted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "item": {
+          "description": "Output only. The item that this review evaluates. Format: publishers/{publisher}/items/{item}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Review resource name. Format: reviews/{reviewId}",
+          "type": "string"
+        },
+        "rating": {
+          "description": "Rating of the item, between 1 and 5.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"

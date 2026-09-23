@@ -127,6 +127,15 @@ export namespace chromewebstore_v2 {
   }
 
   /**
+   * Info on the author of the review.
+   */
+  export interface Schema$AuthorInfo {
+    /**
+     * Display name for the author.
+     */
+    displayName?: string | null;
+  }
+  /**
    * Request message for CancelSubmission.
    */
   export interface Schema$CancelSubmissionRequest {}
@@ -155,6 +164,19 @@ export namespace chromewebstore_v2 {
      * The current deploy percentage for the release channel (nonnegative number between 0 and 100).
      */
     deployPercentage?: number | null;
+  }
+  /**
+   * Response message for FetchItemReviews.
+   */
+  export interface Schema$FetchItemReviewsResponse {
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of reviews.
+     */
+    reviews?: Schema$Review[];
   }
   /**
    * Response message for `FetchItemStatus`.
@@ -247,6 +269,35 @@ export namespace chromewebstore_v2 {
      * Output only. Non-blocking warnings encountered during the request.
      */
     warningInfo?: Schema$WarningsInfo;
+  }
+  /**
+   * A review written by a user to rate an item in the Chrome Web Store.
+   */
+  export interface Schema$Review {
+    /**
+     * Info on the author of the review.
+     */
+    authorInfo?: Schema$AuthorInfo;
+    /**
+     * Content of the review.
+     */
+    comment?: string | null;
+    /**
+     * Output only. When the review was posted.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The item that this review evaluates. Format: publishers/{publisher\}/items/{item\}
+     */
+    item?: string | null;
+    /**
+     * Identifier. Review resource name. Format: reviews/{reviewId\}
+     */
+    name?: string | null;
+    /**
+     * Rating of the item, between 1 and 5.
+     */
+    rating?: number | null;
   }
   /**
    * Request message for SetPublishedDeployPercentage.
@@ -654,6 +705,156 @@ export namespace chromewebstore_v2 {
         );
       } else {
         return createAPIRequest<Schema$CancelSubmissionResponse>(parameters);
+      }
+    }
+
+    /**
+     * Fetch user reviews for an item.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromewebstore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromewebstore = google.chromewebstore('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromewebstore.publishers.items.fetchReviews({
+     *     // Optional. A filter to apply to the reviews. Only equality comparison on rating is supported, e.g. `rating = 5`.
+     *     filter: 'placeholder-value',
+     *     // Required. The item resource name whose reviews are being fetched. Format: publishers/{publisher_id\}/items/{item_id\}
+     *     name: 'publishers/my-publisher/items/my-item',
+     *     // Optional. An optional comma-separated list of fields by which to sort the results. Supported fields are `rating` and `create_time`. Supported orders are `asc` (default) and `desc`. Example: "rating desc, create_time".
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of reviews to return. The service may return fewer than this value. If unspecified, at most 50 reviews will be returned. The maximum value is 200; values above 200 will be coerced to 200.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `FetchItemReviews` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchItemReviews` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reviews": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchReviews(
+      params: Params$Resource$Publishers$Items$Fetchreviews,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchReviews(
+      params?: Params$Resource$Publishers$Items$Fetchreviews,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FetchItemReviewsResponse>>;
+    fetchReviews(
+      params: Params$Resource$Publishers$Items$Fetchreviews,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchReviews(
+      params: Params$Resource$Publishers$Items$Fetchreviews,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$FetchItemReviewsResponse>,
+      callback: BodyResponseCallback<Schema$FetchItemReviewsResponse>
+    ): void;
+    fetchReviews(
+      params: Params$Resource$Publishers$Items$Fetchreviews,
+      callback: BodyResponseCallback<Schema$FetchItemReviewsResponse>
+    ): void;
+    fetchReviews(
+      callback: BodyResponseCallback<Schema$FetchItemReviewsResponse>
+    ): void;
+    fetchReviews(
+      paramsOrCallback?:
+        | Params$Resource$Publishers$Items$Fetchreviews
+        | BodyResponseCallback<Schema$FetchItemReviewsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchItemReviewsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchItemReviewsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FetchItemReviewsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Publishers$Items$Fetchreviews;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Publishers$Items$Fetchreviews;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromewebstore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:fetchReviews').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchItemReviewsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchItemReviewsResponse>(parameters);
       }
     }
 
@@ -1127,6 +1328,28 @@ export namespace chromewebstore_v2 {
      * Request body metadata
      */
     requestBody?: Schema$CancelSubmissionRequest;
+  }
+  export interface Params$Resource$Publishers$Items$Fetchreviews extends StandardParameters {
+    /**
+     * Optional. A filter to apply to the reviews. Only equality comparison on rating is supported, e.g. `rating = 5`.
+     */
+    filter?: string;
+    /**
+     * Required. The item resource name whose reviews are being fetched. Format: publishers/{publisher_id\}/items/{item_id\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional comma-separated list of fields by which to sort the results. Supported fields are `rating` and `create_time`. Supported orders are `asc` (default) and `desc`. Example: "rating desc, create_time".
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of reviews to return. The service may return fewer than this value. If unspecified, at most 50 reviews will be returned. The maximum value is 200; values above 200 will be coerced to 200.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `FetchItemReviews` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchItemReviews` must match the call that provided the page token.
+     */
+    pageToken?: string;
   }
   export interface Params$Resource$Publishers$Items$Fetchstatus extends StandardParameters {
     /**
