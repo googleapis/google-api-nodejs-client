@@ -5970,7 +5970,7 @@
       }
     }
   },
-  "revision": "20260909",
+  "revision": "20260917",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -6491,6 +6491,10 @@
       "description": "An installable set of active APKs. All APKs in this set should belong to the same version of the app. A set of APKs might only contain 1 APK if the app in question publishes using APKs. If the app uses app bundles (or a similar technology), this set should contain all APKs (even optional ones) that might be installed for this app. A set of APKs should be installable together. If certain APKs are exclusive to one another and cannot be installed together, then a separate AppStoreAppActiveApkSet should be created.",
       "id": "AppStoreAppActiveApkSet",
       "properties": {
+        "alreadyPublishedOnPlay": {
+          "description": "Optional. Whether all APKs referenced in this active APK set are published on Play Store (or derived from an app bundle published on Play Store). When this is set, version_code must be provided.",
+          "type": "boolean"
+        },
         "baseApkId": {
           "description": "Required. The ID for the main base application module. Example: base.apk or app.apk.",
           "type": "string"
@@ -6501,6 +6505,11 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "versionCode": {
+          "description": "Optional. Version code for the version this APK set represents.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"

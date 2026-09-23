@@ -543,6 +543,10 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$AppStoreAppActiveApkSet {
     /**
+     * Optional. Whether all APKs referenced in this active APK set are published on Play Store (or derived from an app bundle published on Play Store). When this is set, version_code must be provided.
+     */
+    alreadyPublishedOnPlay?: boolean | null;
+    /**
      * Required. The ID for the main base application module. Example: base.apk or app.apk.
      */
     baseApkId?: string | null;
@@ -550,6 +554,10 @@ export namespace androidpublisher_v3 {
      * Optional. IDs for split modules that might be installed in combination with the base APK. Can be empty if app bundles (or a similar technology) are not used. Example: config.en.apk.
      */
     splitApkId?: string[] | null;
+    /**
+     * Optional. Version code for the version this APK set represents.
+     */
+    versionCode?: string | null;
   }
   /**
    * Details about the app.
