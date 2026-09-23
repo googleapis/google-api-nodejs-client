@@ -1632,7 +1632,7 @@ export namespace osconfig_v1alpha {
     }
 
     /**
-     * Get OS policies compliance data for the specified Compute Engine VM instance.
+     * Deprecated: Use GetOSPolicyAssignmentReport instead. Get OS policies compliance data for the specified Compute Engine VM instance.
      * @example
      * ```js
      * // Before running the sample:
@@ -1781,7 +1781,7 @@ export namespace osconfig_v1alpha {
     }
 
     /**
-     * List OS policies compliance data for all Compute Engine VM instances in the specified zone.
+     * Deprecated: Use ListOSPolicyAssignmentReports instead. List OS policies compliance data for all Compute Engine VM instances in the specified zone.
      * @example
      * ```js
      * // Before running the sample:
