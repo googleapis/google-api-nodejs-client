@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/speech-v9.0.0...speech-v9.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **speech:** update the API ([0ca113f](https://github.com/googleapis/google-api-nodejs-client/commit/0ca113f6f49d7c68219419e8a002fb23d81ad93d))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/speech-v8.0.0...speech-v9.0.0) (2026-09-14)
 
 

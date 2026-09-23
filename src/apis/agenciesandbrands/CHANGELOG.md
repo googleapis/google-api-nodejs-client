@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/agenciesandbrands-v4.0.0...agenciesandbrands-v4.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **agenciesandbrands:** update the API ([d2f972a](https://github.com/googleapis/google-api-nodejs-client/commit/d2f972a1690c47b044e504b61ad1e458a996d23e))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/agenciesandbrands-v3.0.0...agenciesandbrands-v4.0.0) (2026-09-14)
 
 

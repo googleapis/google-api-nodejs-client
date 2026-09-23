@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/webcontentpublisher-v5.0.0...webcontentpublisher-v5.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **webcontentpublisher:** update the API ([07228f6](https://github.com/googleapis/google-api-nodejs-client/commit/07228f6caa8079572128eb7b49875193e72f6788))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/webcontentpublisher-v4.1.0...webcontentpublisher-v5.0.0) (2026-09-14)
 
 

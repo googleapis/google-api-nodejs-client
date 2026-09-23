@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datamanager-v8.0.0...datamanager-v8.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **datamanager:** update the API ([7824912](https://github.com/googleapis/google-api-nodejs-client/commit/7824912ec834d39fc05b1d48eea8e6ae6293dd99))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamanager-v7.0.0...datamanager-v8.0.0) (2026-09-14)
 
 

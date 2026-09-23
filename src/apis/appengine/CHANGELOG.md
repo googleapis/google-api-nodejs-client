@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v18.0.0...appengine-v18.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **appengine:** update the API ([deeb08b](https://github.com/googleapis/google-api-nodejs-client/commit/deeb08b01127edbf6b06c45ff054117b0482c323))
+
 ## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v17.0.0...appengine-v18.0.0) (2026-09-14)
 
 

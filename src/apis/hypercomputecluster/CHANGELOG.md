@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/hypercomputecluster-v6.0.0...hypercomputecluster-v6.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **hypercomputecluster:** update the API ([baefc4a](https://github.com/googleapis/google-api-nodejs-client/commit/baefc4a75741fecf4acd3b00297e8d41ea3b87bd))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/hypercomputecluster-v5.0.0...hypercomputecluster-v6.0.0) (2026-09-14)
 
 

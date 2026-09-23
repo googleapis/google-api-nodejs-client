@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/developerknowledge-v5.0.0...developerknowledge-v5.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **developerknowledge:** update the API ([3b17d96](https://github.com/googleapis/google-api-nodejs-client/commit/3b17d967b708a087e43dc8ed05eec225a4f4b850))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/developerknowledge-v4.0.1...developerknowledge-v5.0.0) (2026-09-14)
 
 

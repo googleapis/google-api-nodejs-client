@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudcommerceprocurement-v5.0.0...cloudcommerceprocurement-v5.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **cloudcommerceprocurement:** update the API ([37c4679](https://github.com/googleapis/google-api-nodejs-client/commit/37c46790665dbd3f2c6168ca6923a7b789093b20))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudcommerceprocurement-v4.0.0...cloudcommerceprocurement-v5.0.0) (2026-09-14)
 
 
