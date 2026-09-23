@@ -98,6 +98,51 @@
   "resources": {
     "publications": {
       "resources": {
+        "-": {
+          "resources": {
+            "readers": {
+              "resources": {
+                "entitlements": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists reader entitlements across parent publications via wildcard. - Returns PERMISSION_DENIED if the caller does not have access. - Returns NOT_FOUND if the reader does not exist.",
+                      "flatPath": "v1/publications/-/readers/{readersId}/entitlements",
+                      "httpMethod": "GET",
+                      "id": "readerrevenuesubscriptionlinking.publications.-.readers.entitlements.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. The maximum number of entitlements to return. The service may return fewer than this value. If unspecified, at most 50 entitlements will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListReaderEntitlements` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReaderEntitlements` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent reader scope. Format: \"publications/-/readers/{reader_id}\"",
+                          "location": "path",
+                          "pattern": "^publications/-/readers/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/entitlements",
+                      "response": {
+                        "$ref": "ListReaderEntitlementsResponse"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "readers": {
           "methods": {
             "delete": {
@@ -207,7 +252,7 @@
       }
     }
   },
-  "revision": "20260719",
+  "revision": "20260915",
   "rootUrl": "https://readerrevenuesubscriptionlinking.googleapis.com/",
   "schemas": {
     "DeleteReaderResponse": {
@@ -236,6 +281,24 @@
         "subscriptionToken": {
           "description": "A source-specific subscription token. This is an opaque string that the publisher provides to Google. This token is opaque and has no meaning to Google.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListReaderEntitlementsResponse": {
+      "description": "Response containing the aggregated collection of matching ReaderEntitlements objects.",
+      "id": "ListReaderEntitlementsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "readerEntitlements": {
+          "description": "The collection of ReaderEntitlements found across the scoped child publications. Every element's `name` field will contain the canonical sub-publication path, never the wildcard dash.",
+          "items": {
+            "$ref": "ReaderEntitlements"
+          },
+          "type": "array"
         }
       },
       "type": "object"
