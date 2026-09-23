@@ -14,7 +14,7 @@
   "canonicalName": "Policy Analyzer",
   "description": "",
   "discoveryVersion": "v1",
-  "documentationLink": "https://www.google.com",
+  "documentationLink": "https://cloud.google.com/policy-intelligence/docs/overview",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -277,7 +277,7 @@
       }
     }
   },
-  "revision": "20240602",
+  "revision": "20260910",
   "rootUrl": "https://policyanalyzer.googleapis.com/",
   "schemas": {
     "GoogleCloudPolicyanalyzerV1Activity": {
