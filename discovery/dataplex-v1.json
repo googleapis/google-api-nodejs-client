@@ -7631,7 +7631,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the metadata feed, in the format projects/{project_id_or_number}/locations/{location_id}/MetadataFeeds/{metadata_feed_id}.",
+                      "description": "Required. The resource name of the metadata feed, in the format projects/{project_id_or_number}/locations/{location_id}/metadataFeeds/{metadata_feed_id}.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/metadataFeeds/[^/]+$",
                       "required": true,
@@ -7657,7 +7657,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the metadata feed, in the format projects/{project_id_or_number}/locations/{location_id}/MetadataFeeds/{metadata_feed_id}.",
+                      "description": "Required. The resource name of the metadata feed, in the format projects/{project_id_or_number}/locations/{location_id}/metadataFeeds/{metadata_feed_id}.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/metadataFeeds/[^/]+$",
                       "required": true,
@@ -8044,7 +8044,7 @@
       }
     }
   },
-  "revision": "20260823",
+  "revision": "20260917",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -11766,6 +11766,10 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "dataDocumentation": {
+          "$ref": "GoogleCloudDataplexV1DataScanEventDataDocumentationResult",
+          "description": "Data documentation result for data documentation (insights) scan."
+        },
         "dataProfile": {
           "$ref": "GoogleCloudDataplexV1DataScanEventDataProfileResult",
           "description": "Data profile result for data profile type data scan."
@@ -11881,6 +11885,64 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1DataScanEventDataDocumentationResult": {
+      "description": "Data documentation result for data scan job.",
+      "id": "GoogleCloudDataplexV1DataScanEventDataDocumentationResult",
+      "properties": {
+        "billableTokenUsage": {
+          "$ref": "GoogleCloudDataplexV1DataScanEventDataDocumentationResultTokenUsage",
+          "description": "Breakdown of token consumption for the data documentation scan."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataScanEventDataDocumentationResultTokenUsage": {
+      "description": "Captures structured token usage breakdown for LLM-powered scans.",
+      "id": "GoogleCloudDataplexV1DataScanEventDataDocumentationResultTokenUsage",
+      "properties": {
+        "cachedContentTokenCount": {
+          "description": "Billable cached content tokens (billed at discounted prompt caching SKU).",
+          "format": "int64",
+          "type": "string"
+        },
+        "candidatesTokenCount": {
+          "description": "Generated candidate response tokens.",
+          "format": "int64",
+          "type": "string"
+        },
+        "inputTokenCount": {
+          "description": "Billable non-cached input tokens.",
+          "format": "int64",
+          "type": "string"
+        },
+        "outputTokenCount": {
+          "description": "Billable output tokens (candidates + thoughts).",
+          "format": "int64",
+          "type": "string"
+        },
+        "promptTokenCount": {
+          "description": "Base prompt and system instructions tokens.",
+          "format": "int64",
+          "type": "string"
+        },
+        "thoughtsTokenCount": {
+          "description": "Reasoning / Chain-of-Thought tokens.",
+          "format": "int64",
+          "type": "string"
+        },
+        "toolUsePromptTokenCount": {
+          "description": "Tool use context tokens (schema, profile, query history).",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalTokenCount": {
+          "description": "Total billable tokens (billable_input + billable_cached + billable_output). Evaluates to 0 for failed or cancelled jobs.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1DataScanEventDataProfileAppliedConfigs": {
       "description": "Applied configs for data profile type data scan job.",
       "id": "GoogleCloudDataplexV1DataScanEventDataProfileAppliedConfigs",
@@ -11905,6 +11967,11 @@
       "description": "Data profile result for data scan job.",
       "id": "GoogleCloudDataplexV1DataScanEventDataProfileResult",
       "properties": {
+        "dcuConsumed": {
+          "description": "Dataplex Compute Units (DCUs) used in the data scan job.",
+          "format": "double",
+          "type": "number"
+        },
         "rowCount": {
           "description": "The count of rows processed in the data scan job.",
           "format": "int64",

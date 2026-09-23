@@ -2758,6 +2758,10 @@ export namespace dataplex_v1 {
      */
     createTime?: string | null;
     /**
+     * Data documentation result for data documentation (insights) scan.
+     */
+    dataDocumentation?: Schema$GoogleCloudDataplexV1DataScanEventDataDocumentationResult;
+    /**
      * Data profile result for data profile type data scan.
      */
     dataProfile?: Schema$GoogleCloudDataplexV1DataScanEventDataProfileResult;
@@ -2819,6 +2823,52 @@ export namespace dataplex_v1 {
     type?: string | null;
   }
   /**
+   * Data documentation result for data scan job.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataScanEventDataDocumentationResult {
+    /**
+     * Breakdown of token consumption for the data documentation scan.
+     */
+    billableTokenUsage?: Schema$GoogleCloudDataplexV1DataScanEventDataDocumentationResultTokenUsage;
+  }
+  /**
+   * Captures structured token usage breakdown for LLM-powered scans.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataScanEventDataDocumentationResultTokenUsage {
+    /**
+     * Billable cached content tokens (billed at discounted prompt caching SKU).
+     */
+    cachedContentTokenCount?: string | null;
+    /**
+     * Generated candidate response tokens.
+     */
+    candidatesTokenCount?: string | null;
+    /**
+     * Billable non-cached input tokens.
+     */
+    inputTokenCount?: string | null;
+    /**
+     * Billable output tokens (candidates + thoughts).
+     */
+    outputTokenCount?: string | null;
+    /**
+     * Base prompt and system instructions tokens.
+     */
+    promptTokenCount?: string | null;
+    /**
+     * Reasoning / Chain-of-Thought tokens.
+     */
+    thoughtsTokenCount?: string | null;
+    /**
+     * Tool use context tokens (schema, profile, query history).
+     */
+    toolUsePromptTokenCount?: string | null;
+    /**
+     * Total billable tokens (billable_input + billable_cached + billable_output). Evaluates to 0 for failed or cancelled jobs.
+     */
+    totalTokenCount?: string | null;
+  }
+  /**
    * Applied configs for data profile type data scan job.
    */
   export interface Schema$GoogleCloudDataplexV1DataScanEventDataProfileAppliedConfigs {
@@ -2839,6 +2889,10 @@ export namespace dataplex_v1 {
    * Data profile result for data scan job.
    */
   export interface Schema$GoogleCloudDataplexV1DataScanEventDataProfileResult {
+    /**
+     * Dataplex Compute Units (DCUs) used in the data scan job.
+     */
+    dcuConsumed?: number | null;
     /**
      * The count of rows processed in the data scan job.
      */
@@ -41671,7 +41725,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.metadataFeeds.delete({
-     *     // Required. The resource name of the metadata feed, in the format projects/{project_id_or_number\}/locations/{location_id\}/MetadataFeeds/{metadata_feed_id\}.
+     *     // Required. The resource name of the metadata feed, in the format projects/{project_id_or_number\}/locations/{location_id\}/metadataFeeds/{metadata_feed_id\}.
      *     name: 'projects/my-project/locations/my-location/metadataFeeds/my-metadataFeed',
      *   });
      *   console.log(res.data);
@@ -41815,7 +41869,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.metadataFeeds.get({
-     *     // Required. The resource name of the metadata feed, in the format projects/{project_id_or_number\}/locations/{location_id\}/MetadataFeeds/{metadata_feed_id\}.
+     *     // Required. The resource name of the metadata feed, in the format projects/{project_id_or_number\}/locations/{location_id\}/metadataFeeds/{metadata_feed_id\}.
      *     name: 'projects/my-project/locations/my-location/metadataFeeds/my-metadataFeed',
      *   });
      *   console.log(res.data);
@@ -42280,13 +42334,13 @@ export namespace dataplex_v1 {
   }
   export interface Params$Resource$Projects$Locations$Metadatafeeds$Delete extends StandardParameters {
     /**
-     * Required. The resource name of the metadata feed, in the format projects/{project_id_or_number\}/locations/{location_id\}/MetadataFeeds/{metadata_feed_id\}.
+     * Required. The resource name of the metadata feed, in the format projects/{project_id_or_number\}/locations/{location_id\}/metadataFeeds/{metadata_feed_id\}.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Metadatafeeds$Get extends StandardParameters {
     /**
-     * Required. The resource name of the metadata feed, in the format projects/{project_id_or_number\}/locations/{location_id\}/MetadataFeeds/{metadata_feed_id\}.
+     * Required. The resource name of the metadata feed, in the format projects/{project_id_or_number\}/locations/{location_id\}/metadataFeeds/{metadata_feed_id\}.
      */
     name?: string;
   }
