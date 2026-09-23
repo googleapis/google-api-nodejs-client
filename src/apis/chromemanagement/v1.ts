@@ -2865,7 +2865,7 @@ export namespace chromemanagement_v1 {
      */
     commandState?: string | null;
     /**
-     * Required. Type of the remote command. The only supported command_type is "clearBrowsingData".
+     * Required. Type of the remote command. Supported commands: "clearBrowsingData" and "extensionUpdateCheck".
      */
     commandType?: string | null;
     /**
@@ -2877,7 +2877,7 @@ export namespace chromemanagement_v1 {
      */
     name?: string | null;
     /**
-     * Required. Payload of the remote command. The payload for "clearBrowsingData" command supports: - fields "clearCache" and "clearCookies" - values of boolean type.
+     * Required. Payload of the remote command. The payload for "clearBrowsingData" command supports: - fields "clearCache" and "clearCookies" - values of boolean type. The payload for "extensionUpdateCheck" should be empty.
      */
     payload?: {[key: string]: any} | null;
     /**
@@ -3010,6 +3010,10 @@ export namespace chromemanagement_v1 {
      * Pub/Sub XDR connector config.
      */
     pubSubXdrConfig?: Schema$GoogleChromeManagementVersionsV1PubSubXdrConfig;
+    /**
+     * Secure gateway connector config.
+     */
+    secureGatewayConfig?: Schema$GoogleChromeManagementVersionsV1SecureGatewayConfig;
     /**
      * Splunk connector config.
      */
@@ -3585,6 +3589,19 @@ export namespace chromemanagement_v1 {
      * Output only. The common name of the subject.
      */
     subjectCommonName?: string | null;
+  }
+  /**
+   * Secure gateway connector config.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1SecureGatewayConfig {
+    /**
+     * Optional. The enabled platforms for the secure gateway connector config.
+     */
+    enabledPlatforms?: string[] | null;
+    /**
+     * Required. The resource ID of the secure gateway connector config.
+     */
+    resourceId?: string | null;
   }
   /**
    * Request message for marking a certificate provisioning process as failed.

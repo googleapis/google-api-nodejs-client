@@ -2557,7 +2557,7 @@
       }
     }
   },
-  "revision": "20260907",
+  "revision": "20260917",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -7256,7 +7256,7 @@
           "type": "string"
         },
         "commandType": {
-          "description": "Required. Type of the remote command. The only supported command_type is \"clearBrowsingData\".",
+          "description": "Required. Type of the remote command. Supported commands: \"clearBrowsingData\" and \"extensionUpdateCheck\".",
           "type": "string"
         },
         "issueTime": {
@@ -7274,7 +7274,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Required. Payload of the remote command. The payload for \"clearBrowsingData\" command supports: - fields \"clearCache\" and \"clearCookies\" - values of boolean type.",
+          "description": "Required. Payload of the remote command. The payload for \"clearBrowsingData\" command supports: - fields \"clearCache\" and \"clearCookies\" - values of boolean type. The payload for \"extensionUpdateCheck\" should be empty.",
           "type": "object"
         },
         "validDuration": {
@@ -7408,7 +7408,8 @@
             "IDENTITY_BASED_ENROLLMENT",
             "CERTIFICATE_AUTHORITY",
             "ROOT_STORE",
-            "CONTENT_ANALYSIS"
+            "CONTENT_ANALYSIS",
+            "ENTERPRISE_PROXY"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -7418,7 +7419,8 @@
             "Authentication connector.",
             "Certificate authority connector. Not yet supported in the API.",
             "Root certificate connector.",
-            "Content analysis connector."
+            "Content analysis connector.",
+            "Enterprise proxy connector."
           ],
           "type": "string"
         }
@@ -7464,6 +7466,10 @@
         "pubSubXdrConfig": {
           "$ref": "GoogleChromeManagementVersionsV1PubSubXdrConfig",
           "description": "Pub/Sub XDR connector config."
+        },
+        "secureGatewayConfig": {
+          "$ref": "GoogleChromeManagementVersionsV1SecureGatewayConfig",
+          "description": "Secure gateway connector config."
         },
         "splunkConfig": {
           "$ref": "GoogleChromeManagementVersionsV1SplunkConfig",
@@ -8463,6 +8469,34 @@
         "subjectCommonName": {
           "description": "Output only. The common name of the subject.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1SecureGatewayConfig": {
+      "description": "Secure gateway connector config.",
+      "id": "GoogleChromeManagementVersionsV1SecureGatewayConfig",
+      "properties": {
+        "enabledPlatforms": {
+          "description": "Optional. The enabled platforms for the secure gateway connector config.",
+          "items": {
+            "enum": [
+              "PLATFORM_UNSPECIFIED",
+              "ANDROID",
+              "IOS"
+            ],
+            "enumDescriptions": [
+              "Default value. This value is unused.",
+              "Android platform.",
+              "iOS platform."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "resourceId": {
+          "description": "Required. The resource ID of the secure gateway connector config.",
           "type": "string"
         }
       },
