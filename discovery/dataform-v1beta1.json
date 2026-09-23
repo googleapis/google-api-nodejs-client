@@ -3428,7 +3428,7 @@
       }
     }
   },
-  "revision": "20260826",
+  "revision": "20260906",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -3554,6 +3554,82 @@
         },
         "sqlScript": {
           "description": "Output only. The generated BigQuery SQL script that will be executed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BigQueryUnitTest": {
+      "description": "Represents a BigQuery unit test.",
+      "id": "BigQueryUnitTest",
+      "properties": {
+        "dependencyTargets": {
+          "description": "A list of actions that this action depends on.",
+          "items": {
+            "$ref": "Target"
+          },
+          "type": "array"
+        },
+        "disabled": {
+          "description": "Whether this action is disabled (i.e. should not be run).",
+          "type": "boolean"
+        },
+        "displayName": {
+          "description": "The name of the unit test.",
+          "type": "string"
+        },
+        "expectedOutputQuery": {
+          "description": "Expected output query to compare against the test query.",
+          "type": "string"
+        },
+        "tags": {
+          "description": "Arbitrary, user-defined tags on this action.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "testQuery": {
+          "description": "Test query to execute.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BigQueryUnitTestAction": {
+      "description": "Represents a workflow action that will run a BigQuery unit test.",
+      "id": "BigQueryUnitTestAction",
+      "properties": {
+        "actualResultsJobId": {
+          "description": "Output only. Job ID for the actual results.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "actualResultsSqlScript": {
+          "description": "Output only. SQL script for the actual results.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expectedResultsJobId": {
+          "description": "Output only. Job ID for the expected results.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expectedResultsSqlScript": {
+          "description": "Output only. SQL script for the expected results.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalBilledBytes": {
+          "description": "Output only. Total bytes billed for this action. Combined total for actual and expected jobs.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalProcessedBytes": {
+          "description": "Output only. Total bytes processed for this action. Combined total for actual and expected jobs.",
+          "format": "int64",
           "readOnly": true,
           "type": "string"
         }
@@ -3935,6 +4011,10 @@
           "$ref": "Assertion",
           "description": "The assertion executed by this action."
         },
+        "bigqueryUnitTest": {
+          "$ref": "BigQueryUnitTest",
+          "description": "The unit test executed by this action."
+        },
         "canonicalTarget": {
           "$ref": "Target",
           "description": "The action's identifier if the project had been compiled without any overrides configured. Unique within the compilation result."
@@ -4195,6 +4275,33 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "EndUserAuthConfig": {
+      "description": "Includes configuration options for repository end user authentication.",
+      "id": "EndUserAuthConfig",
+      "properties": {
+        "oauthConfig": {
+          "$ref": "OAuthConfig",
+          "description": "Optional. OAuth configuration for repository end user authentication."
+        }
+      },
+      "type": "object"
+    },
+    "EndUserAuthenticationConfig": {
+      "description": "Includes configuration options for end user authentication.",
+      "id": "EndUserAuthenticationConfig",
+      "properties": {
+        "oauthConfig": {
+          "$ref": "OAuthConfig",
+          "description": "Optional. OAuth configuration for end user authentication."
+        },
+        "userEmail": {
+          "description": "Output only. Email address of the user to run workflow invocations under.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ErrorTable": {
@@ -4633,6 +4740,26 @@
       "description": "Includes various configuration options for a workflow invocation. If both `included_targets` and `included_tags` are unset, all actions will be included.",
       "id": "InvocationConfig",
       "properties": {
+        "endUserAuthConfig": {
+          "$ref": "EndUserAuthenticationConfig",
+          "description": "Optional. Configuration for end user authentication. Note that this should not be set when `service_account` is used."
+        },
+        "executionMode": {
+          "description": "Optional. Specifies the execution mode for the workflow invocation.",
+          "enum": [
+            "EXECUTION_MODE_UNSPECIFIED",
+            "DEFAULT",
+            "ALL_EXCEPT_UNIT_TESTS",
+            "UNIT_TESTS_ONLY"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Default execution mode, which runs all actions except unit tests. Same as ALL_EXCEPT_UNIT_TESTS.",
+            "Run all actions except unit tests.",
+            "Run unit tests only."
+          ],
+          "type": "string"
+        },
         "fullyRefreshIncrementalTablesEnabled": {
           "description": "Optional. When set to true, any incremental tables will be fully refreshed.",
           "type": "boolean"
@@ -5077,6 +5204,20 @@
         "gcsRepositorySnapshotDestination": {
           "$ref": "GcsRepositorySnapshotDestination",
           "description": "Optional. The Google Cloud Storage destination to upload the snapshot to. For empty URI it defaults to the provided gcs_output_bucket. Format: `gs://bucket-name/path/`."
+        }
+      },
+      "type": "object"
+    },
+    "OAuthConfig": {
+      "description": "OAuth configuration for end user authentication.",
+      "id": "OAuthConfig",
+      "properties": {
+        "additionalOauthScopes": {
+          "description": "Optional. Additional OAuth scopes to use for BigQuery executions. Scopes always in use: `https://www.googleapis.com/auth/bigquery`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5728,6 +5869,10 @@
           "description": "Optional. The repository's user-friendly name.",
           "type": "string"
         },
+        "endUserAuthConfig": {
+          "$ref": "EndUserAuthConfig",
+          "description": "Optional. Includes configuration options for end user authentication."
+        },
         "gitRemoteSettings": {
           "$ref": "GitRemoteSettings",
           "description": "Optional. If set, configures this repository to be linked to a Git remote."
@@ -6325,6 +6470,11 @@
         "bigqueryAction": {
           "$ref": "BigQueryAction",
           "description": "Output only. The workflow action's bigquery action details.",
+          "readOnly": true
+        },
+        "bigqueryUnitTestAction": {
+          "$ref": "BigQueryUnitTestAction",
+          "description": "Output only. The workflow action's unit test details.",
           "readOnly": true
         },
         "canonicalTarget": {

@@ -231,6 +231,64 @@ export namespace dataform_v1beta1 {
     sqlScript?: string | null;
   }
   /**
+   * Represents a BigQuery unit test.
+   */
+  export interface Schema$BigQueryUnitTest {
+    /**
+     * A list of actions that this action depends on.
+     */
+    dependencyTargets?: Schema$Target[];
+    /**
+     * Whether this action is disabled (i.e. should not be run).
+     */
+    disabled?: boolean | null;
+    /**
+     * The name of the unit test.
+     */
+    displayName?: string | null;
+    /**
+     * Expected output query to compare against the test query.
+     */
+    expectedOutputQuery?: string | null;
+    /**
+     * Arbitrary, user-defined tags on this action.
+     */
+    tags?: string[] | null;
+    /**
+     * Test query to execute.
+     */
+    testQuery?: string | null;
+  }
+  /**
+   * Represents a workflow action that will run a BigQuery unit test.
+   */
+  export interface Schema$BigQueryUnitTestAction {
+    /**
+     * Output only. Job ID for the actual results.
+     */
+    actualResultsJobId?: string | null;
+    /**
+     * Output only. SQL script for the actual results.
+     */
+    actualResultsSqlScript?: string | null;
+    /**
+     * Output only. Job ID for the expected results.
+     */
+    expectedResultsJobId?: string | null;
+    /**
+     * Output only. SQL script for the expected results.
+     */
+    expectedResultsSqlScript?: string | null;
+    /**
+     * Output only. Total bytes billed for this action. Combined total for actual and expected jobs.
+     */
+    totalBilledBytes?: string | null;
+    /**
+     * Output only. Total bytes processed for this action. Combined total for actual and expected jobs.
+     */
+    totalProcessedBytes?: string | null;
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -536,6 +594,10 @@ export namespace dataform_v1beta1 {
      */
     assertion?: Schema$Assertion;
     /**
+     * The unit test executed by this action.
+     */
+    bigqueryUnitTest?: Schema$BigQueryUnitTest;
+    /**
      * The action's identifier if the project had been compiled without any overrides configured. Unique within the compilation result.
      */
     canonicalTarget?: Schema$Target;
@@ -740,6 +802,28 @@ export namespace dataform_v1beta1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Includes configuration options for repository end user authentication.
+   */
+  export interface Schema$EndUserAuthConfig {
+    /**
+     * Optional. OAuth configuration for repository end user authentication.
+     */
+    oauthConfig?: Schema$OAuthConfig;
+  }
+  /**
+   * Includes configuration options for end user authentication.
+   */
+  export interface Schema$EndUserAuthenticationConfig {
+    /**
+     * Optional. OAuth configuration for end user authentication.
+     */
+    oauthConfig?: Schema$OAuthConfig;
+    /**
+     * Output only. Email address of the user to run workflow invocations under.
+     */
+    userEmail?: string | null;
+  }
   /**
    * Error table information, used to write error data into a BigQuery table.
    */
@@ -1075,6 +1159,14 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$InvocationConfig {
     /**
+     * Optional. Configuration for end user authentication. Note that this should not be set when `service_account` is used.
+     */
+    endUserAuthConfig?: Schema$EndUserAuthenticationConfig;
+    /**
+     * Optional. Specifies the execution mode for the workflow invocation.
+     */
+    executionMode?: string | null;
+    /**
      * Optional. When set to true, any incremental tables will be fully refreshed.
      */
     fullyRefreshIncrementalTablesEnabled?: boolean | null;
@@ -1400,6 +1492,15 @@ export namespace dataform_v1beta1 {
      * Optional. The Google Cloud Storage destination to upload the snapshot to. For empty URI it defaults to the provided gcs_output_bucket. Format: `gs://bucket-name/path/`.
      */
     gcsRepositorySnapshotDestination?: Schema$GcsRepositorySnapshotDestination;
+  }
+  /**
+   * OAuth configuration for end user authentication.
+   */
+  export interface Schema$OAuthConfig {
+    /**
+     * Optional. Additional OAuth scopes to use for BigQuery executions. Scopes always in use: `https://www.googleapis.com/auth/bigquery`
+     */
+    additionalOauthScopes?: string[] | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1865,6 +1966,10 @@ export namespace dataform_v1beta1 {
      */
     displayName?: string | null;
     /**
+     * Optional. Includes configuration options for end user authentication.
+     */
+    endUserAuthConfig?: Schema$EndUserAuthConfig;
+    /**
      * Optional. If set, configures this repository to be linked to a Git remote.
      */
     gitRemoteSettings?: Schema$GitRemoteSettings;
@@ -2316,6 +2421,10 @@ export namespace dataform_v1beta1 {
      * Output only. The workflow action's bigquery action details.
      */
     bigqueryAction?: Schema$BigQueryAction;
+    /**
+     * Output only. The workflow action's unit test details.
+     */
+    bigqueryUnitTestAction?: Schema$BigQueryUnitTestAction;
     /**
      * Output only. The action's identifier if the project had been compiled without any overrides configured. Unique within the compilation result.
      */
@@ -5941,6 +6050,7 @@ export namespace dataform_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "dataEncryptionState": {},
      *       //   "displayName": "my_displayName",
+     *       //   "endUserAuthConfig": {},
      *       //   "gitRemoteSettings": {},
      *       //   "internalMetadata": "my_internalMetadata",
      *       //   "kmsKeyName": "my_kmsKeyName",
@@ -5962,6 +6072,7 @@ export namespace dataform_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "dataEncryptionState": {},
      *   //   "displayName": "my_displayName",
+     *   //   "endUserAuthConfig": {},
      *   //   "gitRemoteSettings": {},
      *   //   "internalMetadata": "my_internalMetadata",
      *   //   "kmsKeyName": "my_kmsKeyName",
@@ -6700,6 +6811,7 @@ export namespace dataform_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "dataEncryptionState": {},
      *   //   "displayName": "my_displayName",
+     *   //   "endUserAuthConfig": {},
      *   //   "gitRemoteSettings": {},
      *   //   "internalMetadata": "my_internalMetadata",
      *   //   "kmsKeyName": "my_kmsKeyName",
@@ -7298,6 +7410,7 @@ export namespace dataform_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "dataEncryptionState": {},
      *       //   "displayName": "my_displayName",
+     *       //   "endUserAuthConfig": {},
      *       //   "gitRemoteSettings": {},
      *       //   "internalMetadata": "my_internalMetadata",
      *       //   "kmsKeyName": "my_kmsKeyName",
@@ -7319,6 +7432,7 @@ export namespace dataform_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "dataEncryptionState": {},
      *   //   "displayName": "my_displayName",
+     *   //   "endUserAuthConfig": {},
      *   //   "gitRemoteSettings": {},
      *   //   "internalMetadata": "my_internalMetadata",
      *   //   "kmsKeyName": "my_kmsKeyName",
