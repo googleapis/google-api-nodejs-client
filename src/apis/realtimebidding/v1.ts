@@ -131,6 +131,15 @@ export namespace realtimebidding_v1 {
    */
   export interface Schema$ActivatePretargetingConfigRequest {}
   /**
+   * A request to add deals to a creative resource.
+   */
+  export interface Schema$AddDealsRequest {
+    /**
+     * Required. The IDs of the deals to associate with the creative. This can include Programmatic Guaranteed, Private Auction, Preferred Deal, and Marketplace Package deal IDs. You can associate no more than 100 deal IDs per request.
+     */
+    dealIds?: string[] | null;
+  }
+  /**
    * A request to start targeting the provided app IDs in a specific pretargeting configuration. The pretargeting configuration itself specifies how these apps are targeted. in PretargetingConfig.appTargeting.mobileAppTargeting.
    */
   export interface Schema$AddTargetedAppsRequest {
@@ -5817,6 +5826,171 @@ export namespace realtimebidding_v1 {
     }
 
     /**
+     * Adds a list of deals to a creative, which submits the creative for publisher review. Returns the updated creative.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.buyers.creatives.addDeals({
+     *     // Required. Name of the creative to add the deals to. See creative.name.
+     *     name: 'buyers/my-buyer/creatives/my-creative',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dealIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adChoicesDestinationUrl": "my_adChoicesDestinationUrl",
+     *   //   "advertiserName": "my_advertiserName",
+     *   //   "agencyId": "my_agencyId",
+     *   //   "apiUpdateTime": "my_apiUpdateTime",
+     *   //   "creativeFormat": "my_creativeFormat",
+     *   //   "creativeId": "my_creativeId",
+     *   //   "creativeServingDecision": {},
+     *   //   "dealIds": [],
+     *   //   "declaredAttributes": [],
+     *   //   "declaredClickThroughUrls": [],
+     *   //   "declaredRestrictedCategories": [],
+     *   //   "declaredVendorIds": [],
+     *   //   "html": {},
+     *   //   "impressionTrackingUrls": [],
+     *   //   "name": "my_name",
+     *   //   "native": {},
+     *   //   "renderUrl": "my_renderUrl",
+     *   //   "restrictedCategories": [],
+     *   //   "version": 0,
+     *   //   "video": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addDeals(
+      params: Params$Resource$Buyers$Creatives$Adddeals,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    addDeals(
+      params?: Params$Resource$Buyers$Creatives$Adddeals,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Creative>>;
+    addDeals(
+      params: Params$Resource$Buyers$Creatives$Adddeals,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addDeals(
+      params: Params$Resource$Buyers$Creatives$Adddeals,
+      options: MethodOptions | BodyResponseCallback<Schema$Creative>,
+      callback: BodyResponseCallback<Schema$Creative>
+    ): void;
+    addDeals(
+      params: Params$Resource$Buyers$Creatives$Adddeals,
+      callback: BodyResponseCallback<Schema$Creative>
+    ): void;
+    addDeals(callback: BodyResponseCallback<Schema$Creative>): void;
+    addDeals(
+      paramsOrCallback?:
+        | Params$Resource$Buyers$Creatives$Adddeals
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Creative> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyers$Creatives$Adddeals;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buyers$Creatives$Adddeals;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:addDeals').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Creative>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Creative>(parameters);
+      }
+    }
+
+    /**
      * Creates a creative.
      * @example
      * ```js
@@ -6490,6 +6664,17 @@ export namespace realtimebidding_v1 {
     }
   }
 
+  export interface Params$Resource$Buyers$Creatives$Adddeals extends StandardParameters {
+    /**
+     * Required. Name of the creative to add the deals to. See creative.name.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddDealsRequest;
+  }
   export interface Params$Resource$Buyers$Creatives$Create extends StandardParameters {
     /**
      * Required. The name of the parent buyer that the new creative belongs to that must follow the pattern `buyers/{buyerAccountId\}`, where `{buyerAccountId\}` represents the account ID of the buyer who owns a creative. For a bidder accessing creatives on behalf of a child seat buyer, `{buyerAccountId\}` should represent the account ID of the child seat buyer.
