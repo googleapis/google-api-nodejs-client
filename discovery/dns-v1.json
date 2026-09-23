@@ -1043,11 +1043,6 @@
             "project"
           ],
           "parameters": {
-            "clientOperationId": {
-              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
-              "location": "query",
-              "type": "string"
-            },
             "project": {
               "description": "Identifies the project addressed by this request.",
               "location": "path",
@@ -1829,7 +1824,7 @@
       }
     }
   },
-  "revision": "20260714",
+  "revision": "20260915",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {
@@ -1860,6 +1855,7 @@
         },
         "kind": {
           "default": "dns#change",
+          "readOnly": true,
           "type": "string"
         },
         "startTime": {
@@ -1894,7 +1890,8 @@
         },
         "kind": {
           "default": "dns#changesListResponse",
-          "description": "Type of resource.",
+          "description": "Output only. Type of resource.",
+          "readOnly": true,
           "type": "string"
         },
         "nextPageToken": {
@@ -1961,6 +1958,7 @@
         },
         "kind": {
           "default": "dns#dnsKey",
+          "readOnly": true,
           "type": "string"
         },
         "publicKey": {
@@ -2047,6 +2045,7 @@
         },
         "kind": {
           "default": "dns#dnsKeySpec",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2065,7 +2064,8 @@
         },
         "kind": {
           "default": "dns#dnsKeysListResponse",
-          "description": "Type of resource.",
+          "description": "Output only. Type of resource.",
+          "readOnly": true,
           "type": "string"
         },
         "nextPageToken": {
@@ -2337,6 +2337,7 @@
         },
         "kind": {
           "default": "dns#managedZone",
+          "readOnly": true,
           "type": "string"
         },
         "labels": {
@@ -2402,6 +2403,7 @@
         },
         "kind": {
           "default": "dns#managedZoneCloudLoggingConfig",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2419,6 +2421,7 @@
         },
         "kind": {
           "default": "dns#managedZoneDnsSecConfig",
+          "readOnly": true,
           "type": "string"
         },
         "nonExistence": {
@@ -2455,6 +2458,7 @@
       "properties": {
         "kind": {
           "default": "dns#managedZoneForwardingConfig",
+          "readOnly": true,
           "type": "string"
         },
         "targetNameServers": {
@@ -2496,6 +2500,7 @@
         },
         "kind": {
           "default": "dns#managedZoneForwardingConfigNameServerTarget",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2506,7 +2511,8 @@
       "properties": {
         "kind": {
           "default": "dns#managedZoneOperationsListResponse",
-          "description": "Type of resource.",
+          "description": "Output only. Type of resource.",
+          "readOnly": true,
           "type": "string"
         },
         "nextPageToken": {
@@ -2528,6 +2534,7 @@
       "properties": {
         "kind": {
           "default": "dns#managedZonePeeringConfig",
+          "readOnly": true,
           "type": "string"
         },
         "targetNetwork": {
@@ -2546,6 +2553,7 @@
         },
         "kind": {
           "default": "dns#managedZonePeeringConfigTargetNetwork",
+          "readOnly": true,
           "type": "string"
         },
         "networkUrl": {
@@ -2567,6 +2575,7 @@
         },
         "kind": {
           "default": "dns#managedZonePrivateVisibilityConfig",
+          "readOnly": true,
           "type": "string"
         },
         "networks": {
@@ -2588,6 +2597,7 @@
         },
         "kind": {
           "default": "dns#managedZonePrivateVisibilityConfigGKECluster",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2598,6 +2608,7 @@
       "properties": {
         "kind": {
           "default": "dns#managedZonePrivateVisibilityConfigNetwork",
+          "readOnly": true,
           "type": "string"
         },
         "networkUrl": {
@@ -2612,6 +2623,7 @@
       "properties": {
         "kind": {
           "default": "dns#managedZoneReverseLookupConfig",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2623,6 +2635,7 @@
       "properties": {
         "kind": {
           "default": "dns#managedZoneServiceDirectoryConfig",
+          "readOnly": true,
           "type": "string"
         },
         "namespace": {
@@ -2641,6 +2654,7 @@
         },
         "kind": {
           "default": "dns#managedZoneServiceDirectoryConfigNamespace",
+          "readOnly": true,
           "type": "string"
         },
         "namespaceUrl": {
@@ -2655,7 +2669,8 @@
       "properties": {
         "kind": {
           "default": "dns#managedZonesListResponse",
-          "description": "Type of resource.",
+          "description": "Output only. Type of resource.",
+          "readOnly": true,
           "type": "string"
         },
         "managedZones": {
@@ -2686,6 +2701,7 @@
         },
         "kind": {
           "default": "dns#operation",
+          "readOnly": true,
           "type": "string"
         },
         "startTime": {
@@ -2752,7 +2768,8 @@
       "properties": {
         "kind": {
           "default": "dns#policiesListResponse",
-          "description": "Type of resource.",
+          "description": "Output only. Type of resource.",
+          "readOnly": true,
           "type": "string"
         },
         "nextPageToken": {
@@ -2818,6 +2835,7 @@
         },
         "kind": {
           "default": "dns#policy",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
@@ -2839,6 +2857,7 @@
       "properties": {
         "kind": {
           "default": "dns#policyAlternativeNameServerConfig",
+          "readOnly": true,
           "type": "string"
         },
         "targetNameServers": {
@@ -2876,6 +2895,7 @@
         },
         "kind": {
           "default": "dns#policyAlternativeNameServerConfigTargetNameServer",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2887,6 +2907,7 @@
       "properties": {
         "kind": {
           "default": "dns#policyDns64Config",
+          "readOnly": true,
           "type": "string"
         },
         "scope": {
@@ -2905,6 +2926,7 @@
         },
         "kind": {
           "default": "dns#policyDns64ConfigScope",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2915,6 +2937,7 @@
       "properties": {
         "kind": {
           "default": "dns#policyNetwork",
+          "readOnly": true,
           "type": "string"
         },
         "networkUrl": {
@@ -2934,6 +2957,7 @@
         },
         "kind": {
           "default": "dns#project",
+          "readOnly": true,
           "type": "string"
         },
         "number": {
@@ -2983,6 +3007,7 @@
         },
         "kind": {
           "default": "dns#quota",
+          "readOnly": true,
           "type": "string"
         },
         "managedZones": {
@@ -3098,6 +3123,7 @@
         },
         "kind": {
           "default": "dns#rRSetRoutingPolicy",
+          "readOnly": true,
           "type": "string"
         },
         "primaryBackup": {
@@ -3126,6 +3152,7 @@
         },
         "kind": {
           "default": "dns#rRSetRoutingPolicyGeoPolicy",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3141,6 +3168,7 @@
         },
         "kind": {
           "default": "dns#rRSetRoutingPolicyGeoPolicyGeoPolicyItem",
+          "readOnly": true,
           "type": "string"
         },
         "location": {
@@ -3208,6 +3236,7 @@
         },
         "kind": {
           "default": "dns#rRSetRoutingPolicyLoadBalancerTarget",
+          "readOnly": true,
           "type": "string"
         },
         "loadBalancerType": {
@@ -3255,6 +3284,7 @@
         },
         "kind": {
           "default": "dns#rRSetRoutingPolicyPrimaryBackupPolicy",
+          "readOnly": true,
           "type": "string"
         },
         "primaryTargets": {
@@ -3281,6 +3311,7 @@
         },
         "kind": {
           "default": "dns#rRSetRoutingPolicyWrrPolicy",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3296,6 +3327,7 @@
         },
         "kind": {
           "default": "dns#rRSetRoutingPolicyWrrPolicyWrrPolicyItem",
+          "readOnly": true,
           "type": "string"
         },
         "rrdatas": {
@@ -3325,6 +3357,7 @@
       "properties": {
         "kind": {
           "default": "dns#resourceRecordSet",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
@@ -3343,7 +3376,6 @@
           "type": "array"
         },
         "signatureRrdatas": {
-          "description": "As defined in RFC 4034 (section 3.2).",
           "items": {
             "type": "string"
           },
@@ -3371,7 +3403,8 @@
       "properties": {
         "kind": {
           "default": "dns#resourceRecordSetsListResponse",
-          "description": "Type of resource.",
+          "description": "Output only. Type of resource.",
+          "readOnly": true,
           "type": "string"
         },
         "nextPageToken": {
@@ -3445,6 +3478,7 @@
         },
         "kind": {
           "default": "dns#responsePolicy",
+          "readOnly": true,
           "type": "string"
         },
         "labels": {
@@ -3477,6 +3511,7 @@
         },
         "kind": {
           "default": "dns#responsePolicyGKECluster",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3487,6 +3522,7 @@
       "properties": {
         "kind": {
           "default": "dns#responsePolicyNetwork",
+          "readOnly": true,
           "type": "string"
         },
         "networkUrl": {
@@ -3518,6 +3554,7 @@
         },
         "kind": {
           "default": "dns#responsePolicyRule",
+          "readOnly": true,
           "type": "string"
         },
         "localData": {

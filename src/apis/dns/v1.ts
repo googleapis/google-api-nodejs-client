@@ -181,7 +181,7 @@ export namespace dns_v1 {
      */
     changes?: Schema$Change[];
     /**
-     * Type of resource.
+     * Output only. Type of resource.
      */
     kind?: string | null;
     /**
@@ -254,7 +254,7 @@ export namespace dns_v1 {
      */
     dnsKeys?: Schema$DnsKey[];
     /**
-     * Type of resource.
+     * Output only. Type of resource.
      */
     kind?: string | null;
     /**
@@ -559,7 +559,7 @@ export namespace dns_v1 {
   }
   export interface Schema$ManagedZoneOperationsListResponse {
     /**
-     * Type of resource.
+     * Output only. Type of resource.
      */
     kind?: string | null;
     /**
@@ -640,7 +640,7 @@ export namespace dns_v1 {
   }
   export interface Schema$ManagedZonesListResponse {
     /**
-     * Type of resource.
+     * Output only. Type of resource.
      */
     kind?: string | null;
     /**
@@ -708,7 +708,7 @@ export namespace dns_v1 {
   }
   export interface Schema$PoliciesListResponse {
     /**
-     * Type of resource.
+     * Output only. Type of resource.
      */
     kind?: string | null;
     /**
@@ -948,9 +948,6 @@ export namespace dns_v1 {
      * As defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1) -- see examples.
      */
     rrdatas?: string[] | null;
-    /**
-     * As defined in RFC 4034 (section 3.2).
-     */
     signatureRrdatas?: string[] | null;
     /**
      * Number of seconds that this `ResourceRecordSet` can be cached by resolvers.
@@ -964,7 +961,7 @@ export namespace dns_v1 {
   export interface Schema$ResourceRecordSetsDeleteResponse {}
   export interface Schema$ResourceRecordSetsListResponse {
     /**
-     * Type of resource.
+     * Output only. Type of resource.
      */
     kind?: string | null;
     /**
@@ -5143,8 +5140,6 @@ export namespace dns_v1 {
      *
      *   // Do the magic
      *   const res = await dns.projects.get({
-     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     *     clientOperationId: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
      *   });
@@ -5254,10 +5249,6 @@ export namespace dns_v1 {
   }
 
   export interface Params$Resource$Projects$Get extends StandardParameters {
-    /**
-     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     */
-    clientOperationId?: string;
     /**
      * Identifies the project addressed by this request.
      */
