@@ -2725,7 +2725,7 @@
       }
     }
   },
-  "revision": "20260812",
+  "revision": "20260908",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -6588,58 +6588,6 @@
           },
           "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "OperationMetadata": {
-      "description": "Represents the metadata of the long-running operation.",
-      "id": "OperationMetadata",
-      "properties": {
-        "additionalInfo": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Output only. AdditionalInfo contains additional Info related to backup plan association resource.",
-          "readOnly": true,
-          "type": "object"
-        },
-        "apiVersion": {
-          "description": "Output only. API version used to start the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "createTime": {
-          "description": "Output only. The time the operation was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "endTime": {
-          "description": "Output only. The time the operation finished running.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "requestedCancellation": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to 'Code.CANCELLED'.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "statusMessage": {
-          "description": "Output only. Human-readable status of the operation, if any.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "target": {
-          "description": "Output only. Server-defined resource path for the target of the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "verb": {
-          "description": "Output only. Name of the verb executed by the operation.",
-          "readOnly": true,
-          "type": "string"
         }
       },
       "type": "object"

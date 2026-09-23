@@ -2962,43 +2962,6 @@ export namespace backupdr_v1beta {
     response?: {[key: string]: any} | null;
   }
   /**
-   * Represents the metadata of the long-running operation.
-   */
-  export interface Schema$OperationMetadata {
-    /**
-     * Output only. AdditionalInfo contains additional Info related to backup plan association resource.
-     */
-    additionalInfo?: {[key: string]: string} | null;
-    /**
-     * Output only. API version used to start the operation.
-     */
-    apiVersion?: string | null;
-    /**
-     * Output only. The time the operation was created.
-     */
-    createTime?: string | null;
-    /**
-     * Output only. The time the operation finished running.
-     */
-    endTime?: string | null;
-    /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to 'Code.CANCELLED'.
-     */
-    requestedCancellation?: boolean | null;
-    /**
-     * Output only. Human-readable status of the operation, if any.
-     */
-    statusMessage?: string | null;
-    /**
-     * Output only. Server-defined resource path for the target of the operation.
-     */
-    target?: string | null;
-    /**
-     * Output only. Name of the verb executed by the operation.
-     */
-    verb?: string | null;
-  }
-  /**
    * Point in time recovery settings of the backup configuration resource.
    */
   export interface Schema$PitrSettings {
