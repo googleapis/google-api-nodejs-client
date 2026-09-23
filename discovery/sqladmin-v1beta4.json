@@ -3529,9 +3529,199 @@
           ]
         }
       }
+    },
+    "workloadCaptures": {
+      "methods": {
+        "list": {
+          "description": "Lists all captured workloads associated with the instance.",
+          "flatPath": "sql/v1beta4/projects/{project}/instances/{instance}/workloadCaptures",
+          "httpMethod": "GET",
+          "id": "sql.workloadCaptures.list",
+          "parameterOrder": [
+            "project",
+            "instance"
+          ],
+          "parameters": {
+            "instance": {
+              "description": "Required. Cloud SQL instance ID. This does not include the project ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID of the project that contains the instance.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "sql/v1beta4/projects/{project}/instances/{instance}/workloadCaptures",
+          "response": {
+            "$ref": "WorkloadCapturesListResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "start": {
+          "description": "Starts capturing the SQL queries, transactions, and other operations executed on the primary instance. This traffic is securely stored and forms a \"captured workload\". This workload can be replayed later on a different instance to safely test performance impacts, database upgrades, configuration changes etc. before applying them to production.",
+          "flatPath": "sql/v1beta4/projects/{project}/instances/{instance}/workloadCaptures:start",
+          "httpMethod": "POST",
+          "id": "sql.workloadCaptures.start",
+          "parameterOrder": [
+            "project",
+            "instance"
+          ],
+          "parameters": {
+            "instance": {
+              "description": "Required. Cloud SQL instance ID. This does not include the project ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID of the project that contains the instance.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "sql/v1beta4/projects/{project}/instances/{instance}/workloadCaptures:start",
+          "request": {
+            "$ref": "SqlWorkloadCapturesStartRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "startReplay": {
+          "description": "Starts executing a captured workload on a separate Cloud SQL instance provisioned for workload replay. This target instance simulates the production environment without affecting the primary instance.",
+          "flatPath": "sql/v1beta4/projects/{project}/instances/{instance}/workloadCaptures/{workloadId}:startReplay",
+          "httpMethod": "POST",
+          "id": "sql.workloadCaptures.startReplay",
+          "parameterOrder": [
+            "project",
+            "instance",
+            "workloadId"
+          ],
+          "parameters": {
+            "instance": {
+              "description": "Required. Cloud SQL instance ID. This does not include the project ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID of the project that contains the instance.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "workloadId": {
+              "description": "Required. The ID of the workload to replay.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "sql/v1beta4/projects/{project}/instances/{instance}/workloadCaptures/{workloadId}:startReplay",
+          "request": {
+            "$ref": "SqlWorkloadCapturesStartReplayRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "stop": {
+          "description": "Stops capturing the query traffic and related operations executed on the primary instance.",
+          "flatPath": "sql/v1beta4/projects/{project}/instances/{instance}/workloadCaptures:stop",
+          "httpMethod": "POST",
+          "id": "sql.workloadCaptures.stop",
+          "parameterOrder": [
+            "project",
+            "instance"
+          ],
+          "parameters": {
+            "instance": {
+              "description": "Required. Cloud SQL instance ID. This does not include the project ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID of the project that contains the instance.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "sql/v1beta4/projects/{project}/instances/{instance}/workloadCaptures:stop",
+          "request": {
+            "$ref": "SqlWorkloadCapturesStopRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "stopReplay": {
+          "description": "Stops executing a captured workload on the separate Cloud SQL instance.",
+          "flatPath": "sql/v1beta4/projects/{project}/instances/{instance}/workloadCaptures/{workloadId}:stopReplay",
+          "httpMethod": "POST",
+          "id": "sql.workloadCaptures.stopReplay",
+          "parameterOrder": [
+            "project",
+            "instance",
+            "workloadId"
+          ],
+          "parameters": {
+            "instance": {
+              "description": "Required. Cloud SQL instance ID. This does not include the project ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID of the project that contains the instance.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "workloadId": {
+              "description": "Required. The ID of the workload to replay.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "sql/v1beta4/projects/{project}/instances/{instance}/workloadCaptures/{workloadId}:stopReplay",
+          "request": {
+            "$ref": "SqlWorkloadCapturesStopReplayRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        }
+      }
     }
   },
-  "revision": "20260819",
+  "revision": "20260908",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -5901,6 +6091,10 @@
       "description": "Disk encryption configuration for an instance.",
       "id": "DiskEncryptionConfiguration",
       "properties": {
+        "cmekSourceLogEncryptionEnforced": {
+          "description": "Optional. Whether to enforce CMEK log encryption at source. When enforced, transaction logs are encrypted prior to being uploaded to Cloud Storage. If not enforced, then CMEK logs are encrypted by the Cloud Storage service.",
+          "type": "boolean"
+        },
         "confidentialMode": {
           "description": "Optional. If true, enables Confidential Mode for the instance's Hyperdisk Balanced volumes. Only supported for zonal C4A instances currently.",
           "type": "boolean"
@@ -7856,6 +8050,14 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "startWorkloadCaptureContext": {
+          "$ref": "StartWorkloadCaptureContext",
+          "description": "The context for the `StartWorkloadCapture` operation, which contains details to start recording the workload (SQL queries) on a Cloud SQL instance."
+        },
+        "startWorkloadReplayContext": {
+          "$ref": "StartWorkloadReplayContext",
+          "description": "The context for the `StartWorkloadReplay` operation, which contains details about starting the execution of a captured workload (recorded read and write SQL queries) on a replay instance (the Cloud SQL instance where the recorded SQL queries are executed)."
+        },
         "status": {
           "description": "The status of an operation.",
           "enum": [
@@ -7871,6 +8073,14 @@
             "The operation completed."
           ],
           "type": "string"
+        },
+        "stopWorkloadCaptureContext": {
+          "$ref": "StopWorkloadCaptureContext",
+          "description": "The context for the `StopWorkloadCapture` operation, which contains details to stop recording the workload (SQL queries) on a Cloud SQL instance."
+        },
+        "stopWorkloadReplayContext": {
+          "$ref": "StopWorkloadReplayContext",
+          "description": "The context for the `StopWorkloadReplay` operation, which contains details about stopping the execution of a captured workload (recorded read and write SQL queries) on a replay instance."
         },
         "subOperationType": {
           "$ref": "SqlSubOperationType",
@@ -9505,7 +9715,6 @@
       "type": "object"
     },
     "SqlInstancesExecuteSqlResponse": {
-      "description": "Execute SQL statements response.",
       "id": "SqlInstancesExecuteSqlResponse",
       "properties": {
         "messages": {
@@ -9926,6 +10135,50 @@
       },
       "type": "object"
     },
+    "SqlWorkloadCapturesStartReplayRequest": {
+      "description": "Request to start executing a captured workload on a replay instance (the Cloud SQL instance where the recorded SQL queries are executed).",
+      "id": "SqlWorkloadCapturesStartReplayRequest",
+      "properties": {
+        "startWorkloadReplayContext": {
+          "$ref": "StartWorkloadReplayContext",
+          "description": "Optional. Contains details about the start workload replay operation."
+        }
+      },
+      "type": "object"
+    },
+    "SqlWorkloadCapturesStartRequest": {
+      "description": "Request to start recording traffic from the primary instance (captured workload).",
+      "id": "SqlWorkloadCapturesStartRequest",
+      "properties": {
+        "startWorkloadCaptureContext": {
+          "$ref": "StartWorkloadCaptureContext",
+          "description": "Optional. Contains details about the start workload capture operation."
+        }
+      },
+      "type": "object"
+    },
+    "SqlWorkloadCapturesStopReplayRequest": {
+      "description": "Request to stop executing a captured workload on a replay instance.",
+      "id": "SqlWorkloadCapturesStopReplayRequest",
+      "properties": {
+        "stopWorkloadReplayContext": {
+          "$ref": "StopWorkloadReplayContext",
+          "description": "Optional. Contains details about the stop workload replay operation."
+        }
+      },
+      "type": "object"
+    },
+    "SqlWorkloadCapturesStopRequest": {
+      "description": "Request to stop recording traffic from the primary instance.",
+      "id": "SqlWorkloadCapturesStopRequest",
+      "properties": {
+        "stopWorkloadCaptureContext": {
+          "$ref": "StopWorkloadCaptureContext",
+          "description": "Optional. Contains details about the stop workload capture operation."
+        }
+      },
+      "type": "object"
+    },
     "SslCert": {
       "description": "SslCerts Resource",
       "id": "SslCert",
@@ -10053,6 +10306,37 @@
       },
       "type": "object"
     },
+    "StartWorkloadCaptureContext": {
+      "description": "The context for the `StartWorkloadCapture` operation, which contains details to start recording the workload (SQL queries) on a Cloud SQL instance.",
+      "id": "StartWorkloadCaptureContext",
+      "properties": {
+        "enableLiveReplay": {
+          "description": "Optional. If true, the captured workload is simultaneously executed on a separate, ephemeral Cloud SQL instance. This \"live replay\" instance is automatically provisioned and is cloned from the source instance. If false (the default), the workload is only stored and no live replay occurs. It can be replayed later using a separate `StartWorkloadReplayRequest`. Note: The workload capture runs continuously until an explicit `StopWorkloadCaptureRequest` is issued.",
+          "type": "boolean"
+        },
+        "replayInstance": {
+          "description": "Optional. Required if `enable_live_replay` is true. The name of the Cloud SQL instance where the captured workload (SQL queries) is being executed, excluding the project ID (for example, `my-replay-instance`). The instance name must start with a lowercase letter and contain only lowercase letters, numbers, and hyphens. The combined length of `project-ID:instance-name` must be 98 characters or less.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StartWorkloadReplayContext": {
+      "description": "The context for the `StartWorkloadReplay` operation, which contains details about starting the execution of a captured workload (recorded read and write SQL queries) on a replay instance (the Cloud SQL instance where the recorded SQL queries are executed).",
+      "id": "StartWorkloadReplayContext",
+      "properties": {
+        "replayInstance": {
+          "description": "Required. The name of the Cloud SQL instance where the captured workload (SQL queries) is being executed, excluding the project ID (for example, `my-replay-instance`). The instance name must start with a lowercase letter and contain only lowercase letters, numbers, and hyphens. The combined length of `project-ID:instance-name` must be 98 characters or less.",
+          "type": "string"
+        },
+        "workloadId": {
+          "description": "Output only. The ID of the workload to start executing on the replay instance. Each workload capture generates a unique ID in the format `workload-` (for example, `workload-1786046400`). Use this ID to start executing the recorded SQL queries.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -10075,6 +10359,33 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StopWorkloadCaptureContext": {
+      "description": "The context for the `StopWorkloadCapture` operation, which contains details to stop recording the workload (SQL queries) on a Cloud SQL instance.",
+      "id": "StopWorkloadCaptureContext",
+      "properties": {
+        "abortLiveReplay": {
+          "description": "Optional. If true, immediately aborts the concurrent live replay and discards any un-replayed traffic alongside stopping the capture. If false (the default), the capture stops recording new traffic, but the live replay will continue executing until the entire backlog of captured traffic has been replayed.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "StopWorkloadReplayContext": {
+      "description": "The context for the `StopWorkloadReplay` operation, which contains details about stopping the execution of a captured workload (recorded read and write SQL queries) on a replay instance.",
+      "id": "StopWorkloadReplayContext",
+      "properties": {
+        "replayInstance": {
+          "description": "Required. The name of the Cloud SQL instance where the captured workload (SQL queries) is being executed, excluding the project ID (for example, `my-replay-instance`). The instance name must start with a lowercase letter and contain only lowercase letters, numbers, and hyphens. The combined length of `project-ID:instance-name` must be 98 characters or less.",
+          "type": "string"
+        },
+        "workloadId": {
+          "description": "Output only. The ID of the workload to stop executing on the replay instance. Each workload capture generates a unique ID in the format `workload-` (for example, `workload-1786046400`). Use this ID to stop executing the recorded SQL queries.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -10312,7 +10623,7 @@
             "Cloud IAM group. Not used for login.",
             "Read-only. Login for a user that belongs to the Cloud IAM group.",
             "Read-only. Login for a service account that belongs to the Cloud IAM group.",
-            "Cloud IAM workforce identity user managed via workforce identity federation.",
+            "Cloud IAM workforce identity managed by Workforce Identity Federation.",
             "Microsoft Entra ID user."
           ],
           "type": "string"
@@ -10384,6 +10695,81 @@
         "value": {
           "description": "The cell value represented in string format.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadCapture": {
+      "description": "Captured workload for an instance.",
+      "id": "WorkloadCapture",
+      "properties": {
+        "endTime": {
+          "description": "Output only. The end time of the workload capture.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "replayInstance": {
+          "description": "Output only. The name of the replay instance, if live replay was enabled.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "retentionDays": {
+          "description": "Output only. The retention period in days for the captured workload.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "sourceInstance": {
+          "description": "Output only. The name of the source instance.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. The start time of the workload capture.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "workloadCaptureState": {
+          "description": "Output only. The state of the workload capture.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "COMPLETED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Workload capture is currently running.",
+            "Workload capture completed successfully.",
+            "Workload capture failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "workloadId": {
+          "description": "Output only. The ID of the captured workload.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadCapturesListResponse": {
+      "description": "Instance list captured workloads response.",
+      "id": "WorkloadCapturesListResponse",
+      "properties": {
+        "kind": {
+          "description": "This is always `sql#workloadCapturesList`.",
+          "type": "string"
+        },
+        "workloadCaptures": {
+          "description": "List of captured workloads for the instance.",
+          "items": {
+            "$ref": "WorkloadCapture"
+          },
+          "type": "array"
         }
       },
       "type": "object"
