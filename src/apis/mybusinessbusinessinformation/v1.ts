@@ -496,7 +496,7 @@ export namespace mybusinessbusinessinformation_v1 {
      */
     moreHours?: Schema$MoreHours[];
     /**
-     * Google identifier for this location in the form: `locations/{location_id\}`.
+     * Identifier. Google identifier for this location in the form: `locations/{location_id\}`.
      */
     name?: string | null;
     /**
@@ -573,7 +573,7 @@ export namespace mybusinessbusinessinformation_v1 {
      */
     canOperateHealthData?: boolean | null;
     /**
-     * Output only. Indicates if the listing can manage local posts. Deprecated: This field is no longer populated and will be removed in a future version.
+     * Output only. Deprecated: This field is no longer populated and will be removed in a future version.
      */
     canOperateLocalPost?: boolean | null;
     /**
@@ -597,7 +597,7 @@ export namespace mybusinessbusinessinformation_v1 {
      */
     hasVoiceOfMerchant?: boolean | null;
     /**
-     * Output only.
+     * Output only. Indicates whether the location is classified as a particularly personal place. This means there are restrictions on Location History features. If you believe this was a mistake, see the [help center article](https://support.google.com/business/answer/3480441).
      */
     isParticularlyPersonalPlace?: boolean | null;
     /**
@@ -708,7 +708,7 @@ export namespace mybusinessbusinessinformation_v1 {
    */
   export interface Schema$Places {
     /**
-     * The areas represented by place IDs. Limited to a maximum of 20 places.
+     * Optional. The areas represented by place IDs. Limited to a maximum of 20 places.
      */
     placeInfos?: Schema$PlaceInfo[];
   }
@@ -775,15 +775,15 @@ export namespace mybusinessbusinessinformation_v1 {
    */
   export interface Schema$RelationshipData {
     /**
-     * The list of children locations that this location has relations with.
+     * Optional. The list of children locations that this location has relations with.
      */
     childrenLocations?: Schema$RelevantLocation[];
     /**
-     * The resource name of the Chain that this location is member of. How to find Chain ID
+     * Optional. The resource name of the Chain that this location is member of. How to find Chain ID
      */
     parentChain?: string | null;
     /**
-     * The parent location that this location has relations with.
+     * Optional. The parent location that this location has relations with.
      */
     parentLocation?: Schema$RelevantLocation;
   }
@@ -857,7 +857,7 @@ export namespace mybusinessbusinessinformation_v1 {
      */
     businessType?: string | null;
     /**
-     * The area that this business serves defined through a set of places.
+     * Optional. The area that this business serves defined through a set of places.
      */
     places?: Schema$Places;
     /**
@@ -3021,7 +3021,7 @@ export namespace mybusinessbusinessinformation_v1 {
      *
      *   // Do the magic
      *   const res = await mybusinessbusinessinformation.locations.patch({
-     *     // Google identifier for this location in the form: `locations/{location_id\}`.
+     *     // Identifier. Google identifier for this location in the form: `locations/{location_id\}`.
      *     name: 'locations/my-location',
      *     // Required. The specific fields to update.
      *     updateMask: 'placeholder-value',
@@ -3357,7 +3357,7 @@ export namespace mybusinessbusinessinformation_v1 {
   }
   export interface Params$Resource$Locations$Patch extends StandardParameters {
     /**
-     * Google identifier for this location in the form: `locations/{location_id\}`.
+     * Identifier. Google identifier for this location in the form: `locations/{location_id\}`.
      */
     name?: string;
     /**

@@ -524,7 +524,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Google identifier for this location in the form: `locations/{location_id}`.",
+              "description": "Identifier. Google identifier for this location in the form: `locations/{location_id}`.",
               "location": "path",
               "pattern": "^locations/[^/]+$",
               "required": true,
@@ -612,7 +612,7 @@
       }
     }
   },
-  "revision": "20260826",
+  "revision": "20260916",
   "rootUrl": "https://mybusinessbusinessinformation.googleapis.com/",
   "schemas": {
     "AdWordsLocationExtensions": {
@@ -1111,7 +1111,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Google identifier for this location in the form: `locations/{location_id}`.",
+          "description": "Identifier. Google identifier for this location in the form: `locations/{location_id}`.",
           "type": "string"
         },
         "openInfo": {
@@ -1199,7 +1199,7 @@
         },
         "canOperateLocalPost": {
           "deprecated": true,
-          "description": "Output only. Indicates if the listing can manage local posts. Deprecated: This field is no longer populated and will be removed in a future version.",
+          "description": "Output only. Deprecated: This field is no longer populated and will be removed in a future version.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -1229,7 +1229,7 @@
           "type": "boolean"
         },
         "isParticularlyPersonalPlace": {
-          "description": "Output only.",
+          "description": "Output only. Indicates whether the location is classified as a particularly personal place. This means there are restrictions on Location History features. If you believe this was a mistake, see the [help center article](https://support.google.com/business/answer/3480441).",
           "readOnly": true,
           "type": "boolean"
         },
@@ -1382,7 +1382,7 @@
       "id": "Places",
       "properties": {
         "placeInfos": {
-          "description": "The areas represented by place IDs. Limited to a maximum of 20 places.",
+          "description": "Optional. The areas represented by place IDs. Limited to a maximum of 20 places.",
           "items": {
             "$ref": "PlaceInfo"
           },
@@ -1465,19 +1465,19 @@
       "id": "RelationshipData",
       "properties": {
         "childrenLocations": {
-          "description": "The list of children locations that this location has relations with.",
+          "description": "Optional. The list of children locations that this location has relations with.",
           "items": {
             "$ref": "RelevantLocation"
           },
           "type": "array"
         },
         "parentChain": {
-          "description": "The resource name of the Chain that this location is member of. How to find Chain ID",
+          "description": "Optional. The resource name of the Chain that this location is member of. How to find Chain ID",
           "type": "string"
         },
         "parentLocation": {
           "$ref": "RelevantLocation",
-          "description": "The parent location that this location has relations with."
+          "description": "Optional. The parent location that this location has relations with."
         }
       },
       "type": "object"
@@ -1596,7 +1596,7 @@
         },
         "places": {
           "$ref": "Places",
-          "description": "The area that this business serves defined through a set of places."
+          "description": "Optional. The area that this business serves defined through a set of places."
         },
         "regionCode": {
           "description": "Immutable. CLDR region code of the country/region that this service area business is based in. See http://cldr.unicode.org/ and http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: \"CH\" for Switzerland. This field is required for CUSTOMER_LOCATION_ONLY businesses, and is ignored otherwise. The region specified here can be different from regions for the areas that this business serves (e.g. service area businesses that provide services in regions other than the one that they are based in). If this location requires verification after creation, the address provided for verification purposes *must* be located within this region, and the business owner or their authorized representative *must* be able to receive postal mail at the provided verification address.",
