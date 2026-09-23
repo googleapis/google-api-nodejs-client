@@ -5249,6 +5249,10 @@ export namespace discoveryengine_v1 {
      * Optional. Configuration for NotebookLM settings.
      */
     notebooklmConfig?: Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfig;
+    /**
+     * Optional. Resource-level access control config for Gemini Enterprise users.
+     */
+    resourceAccessControlConfig?: Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigResourceAccessControlConfig;
   }
   /**
    * Configuration for NotebookLM.
@@ -5301,6 +5305,15 @@ export namespace discoveryengine_v1 {
      * Optional. The resource name of the Model Armor Template for sanitizing user prompts. Format: projects/{project\}/locations/{location\}/templates/{template_id\} If not specified, no sanitization will be applied to the user prompt.
      */
     userPromptTemplate?: string | null;
+  }
+  /**
+   * Controls resource-level access control for Gemini Enterprise users.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigResourceAccessControlConfig {
+    /**
+     * Optional. If `true`, the data stores and data connectors shown to Gemini Enterprise users are filtered to those the user has the required resource-level `.get` IAM permission on.
+     */
+    dataStoreAccessControlEnabled?: boolean | null;
   }
   /**
    * Metadata about the terms of service.
@@ -5546,6 +5559,10 @@ export namespace discoveryengine_v1 {
      * This field is expected to be a ui message in JSON format. As of Q1 2026, ui_json_payload is only supported for A2UI messages.
      */
     uiJsonPayload?: string | null;
+    /**
+     * Reference to a user-supplied file attached to a long-running-agent (Sobi) task. See `UserSuppliedSobiArtifactReference` above.
+     */
+    userSuppliedSobiArtifactReference?: Schema$GoogleCloudDiscoveryengineV1alphaQueryPartUserSuppliedSobiArtifactReference;
   }
   /**
    * Represents a document reference.
@@ -5637,6 +5654,19 @@ export namespace discoveryengine_v1 {
      * The person id of the person.
      */
     personId?: string | null;
+  }
+  /**
+   * Reference to a user-supplied file attached to a long-running-agent (Sobi) task. Rendered by the client as an attachment chip on the user turn's bubble. The file itself is stored on the task's `AgentArtifact` list; the client resolves full metadata (source URI, size, ...) for download or preview by calling `GetTask` on the Sobi Task API and matching `AgentArtifact.name` against `file_name`. Only `file_name` and `mime_type` appear on this wire deliberately: the backing `gs://` or Drive URI is not exposed to conversation-history readers. Same variant is used for both byte-uploaded and Drive-picked files -- "user attached a file" is one concept regardless of source.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaQueryPartUserSuppliedSobiArtifactReference {
+    /**
+     * Required. Client-supplied filename. Unique per task within the user-supplied artifact set (UI dedupes before upload). Doubles as the artifact identifier used to look up the artifact on `Task.artifacts`. The `_name` suffix is deliberate and the AIP-122 lint is suppressed: this field is not a resource name (which is what AIP-122 reserves the bare `name` for). It is the literal filename, and it serves as the join key against `AgentArtifact.name` on the backing Sobi task -- a structural role that `title` or `display_name` would not communicate to a client picking what to send. The internal mirror (`cloud/ml/discoveryengine/schema/assistant.proto`) uses the same field name so the round-trip converter stays name-for-name.
+     */
+    fileName?: string | null;
+    /**
+     * Optional. IANA MIME type. Used for icon/preview rendering.
+     */
+    mimeType?: string | null;
   }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.RecrawlUris operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -6519,6 +6549,27 @@ export namespace discoveryengine_v1 {
      * The condition under which search as you type should occur. Default to Condition.DISABLED.
      */
     condition?: string | null;
+    /**
+     * Optional. The list of fields to be used for Search As You Type scoring.
+     */
+    fields?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestSearchAsYouTypeSpecField[];
+    /**
+     * Optional. Search As You Type score threshold for filtering purpose. We keep the result if `score` \>= `score_threshold`.
+     */
+    scoreThreshold?: number | null;
+  }
+  /**
+   * A schema field to be used for Search As You Type scoring on this request. Overrides any data-store-level Search As You Type field configuration for the duration of the request.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestSearchAsYouTypeSpecField {
+    /**
+     * Required. A field key that has been indexed for Search As You Type.
+     */
+    key?: string | null;
+    /**
+     * Optional. Weight for scores from this field. Defaults to 1.0 if not specified.
+     */
+    weight?: number | null;
   }
   /**
    * Session specification.
@@ -10284,6 +10335,10 @@ export namespace discoveryengine_v1 {
      * Optional. Configuration for NotebookLM settings.
      */
     notebooklmConfig?: Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfig;
+    /**
+     * Optional. Resource-level access control config for Gemini Enterprise users.
+     */
+    resourceAccessControlConfig?: Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigResourceAccessControlConfig;
   }
   /**
    * Configuration for NotebookLM.
@@ -10336,6 +10391,15 @@ export namespace discoveryengine_v1 {
      * Optional. The resource name of the Model Armor Template for sanitizing user prompts. Format: projects/{project\}/locations/{location\}/templates/{template_id\} If not specified, no sanitization will be applied to the user prompt.
      */
     userPromptTemplate?: string | null;
+  }
+  /**
+   * Controls resource-level access control for Gemini Enterprise users.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigResourceAccessControlConfig {
+    /**
+     * Optional. If `true`, the data stores and data connectors shown to Gemini Enterprise users are filtered to those the user has the required resource-level `.get` IAM permission on.
+     */
+    dataStoreAccessControlEnabled?: boolean | null;
   }
   /**
    * Metadata about the terms of service.
@@ -11185,6 +11249,27 @@ export namespace discoveryengine_v1 {
      * The condition under which search as you type should occur. Default to Condition.DISABLED.
      */
     condition?: string | null;
+    /**
+     * Optional. The list of fields to be used for Search As You Type scoring.
+     */
+    fields?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestSearchAsYouTypeSpecField[];
+    /**
+     * Optional. Search As You Type score threshold for filtering purpose. We keep the result if `score` \>= `score_threshold`.
+     */
+    scoreThreshold?: number | null;
+  }
+  /**
+   * A schema field to be used for Search As You Type scoring on this request. Overrides any data-store-level Search As You Type field configuration for the duration of the request.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestSearchAsYouTypeSpecField {
+    /**
+     * Required. A field key that has been indexed for Search As You Type.
+     */
+    key?: string | null;
+    /**
+     * Optional. Weight for scores from this field. Defaults to 1.0 if not specified.
+     */
+    weight?: number | null;
   }
   /**
    * Session specification.
@@ -15025,6 +15110,10 @@ export namespace discoveryengine_v1 {
      * Optional. Configuration for NotebookLM settings.
      */
     notebooklmConfig?: Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfig;
+    /**
+     * Optional. Resource-level access control config for Gemini Enterprise users.
+     */
+    resourceAccessControlConfig?: Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigResourceAccessControlConfig;
   }
   /**
    * Configuration for NotebookLM.
@@ -15077,6 +15166,15 @@ export namespace discoveryengine_v1 {
      * Optional. The resource name of the Model Armor Template for sanitizing user prompts. Format: projects/{project\}/locations/{location\}/templates/{template_id\} If not specified, no sanitization will be applied to the user prompt.
      */
     userPromptTemplate?: string | null;
+  }
+  /**
+   * Controls resource-level access control for Gemini Enterprise users.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigResourceAccessControlConfig {
+    /**
+     * Optional. If `true`, the data stores and data connectors shown to Gemini Enterprise users are filtered to those the user has the required resource-level `.get` IAM permission on.
+     */
+    dataStoreAccessControlEnabled?: boolean | null;
   }
   /**
    * Metadata about the terms of service.
@@ -16173,6 +16271,27 @@ export namespace discoveryengine_v1 {
      * The condition under which search as you type should occur. Default to Condition.DISABLED.
      */
     condition?: string | null;
+    /**
+     * Optional. The list of fields to be used for Search As You Type scoring.
+     */
+    fields?: Schema$GoogleCloudDiscoveryengineV1SearchRequestSearchAsYouTypeSpecField[];
+    /**
+     * Optional. Search As You Type score threshold for filtering purpose. We keep the result if `score` \>= `score_threshold`.
+     */
+    scoreThreshold?: number | null;
+  }
+  /**
+   * A schema field to be used for Search As You Type scoring on this request. Overrides any data-store-level Search As You Type field configuration for the duration of the request.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1SearchRequestSearchAsYouTypeSpecField {
+    /**
+     * Required. A field key that has been indexed for Search As You Type.
+     */
+    key?: string | null;
+    /**
+     * Optional. Weight for scores from this field. Defaults to 1.0 if not specified.
+     */
+    weight?: number | null;
   }
   /**
    * Session specification.
@@ -18218,6 +18337,10 @@ export namespace discoveryengine_v1 {
      * Output only. Localized display name of the model (e.g. `Gemini 3.1 Pro`). Localized server-side based on the LookupWidgetConfigRequest.language_code and LookupWidgetConfigRequest.region_code of the request.
      */
     displayName?: string | null;
+    /**
+     * Output only. Groups models that render together in the selector. Models sharing a value form one group; empty means the model belongs to no group. Compared for equality only -- never parsed, and never shown to a user, so it is not localized.
+     */
+    family?: string | null;
     /**
      * Output only. GM3-compatible icon token associated with the model (e.g. `rocket_launch`, `bolt`, `graph_5`).
      */
