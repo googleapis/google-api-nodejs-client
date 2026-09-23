@@ -178,6 +178,59 @@ export namespace auditmanager_v1 {
     scopeId?: string | null;
   }
   /**
+   * An audit schedule, in one of the following formats: * `projects/{project\}/locations/{location\}/auditSchedules/{audit_schedule\}` * `folders/{folder\}/locations/{location\}/auditSchedules/{audit_schedule\}`
+   */
+  export interface Schema$AuditSchedule {
+    /**
+     * Required. Framework (set of controls) that the audit scope report is generated against. For example, `NIST_800_53`.
+     */
+    complianceFramework?: string | null;
+    /**
+     * Output only. Timestamp when the schedule was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Display name for the audit schedule.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Describes the error if the schedule is in an error state.
+     */
+    errorMessage?: string | null;
+    /**
+     * Required. Cloud Storage bucket where Audit Manager can upload the audit report and evidence. The format is `gs://{bucket_name\}`.
+     */
+    gcsUri?: string | null;
+    /**
+     * Output only. Timestamp when the audit run was last triggered.
+     */
+    lastTriggerTime?: string | null;
+    /**
+     * Identifier. Unique identifier for the audit schedule. Format: projects/{project\}/locations/{location\}/auditSchedules/{audit_schedule\} folders/{folder\}/locations/{location\}/auditSchedules/{audit_schedule\} organizations/{organization\}/locations/{location\}/auditSchedules/{audit_schedule\}
+     */
+    name?: string | null;
+    /**
+     * Output only. Calculated timestamp for the next scheduled run.
+     */
+    nextRunTime?: string | null;
+    /**
+     * Required. Format for the audit report.
+     */
+    reportFormat?: string | null;
+    /**
+     * Required. Configuration that defines when and how often audit runs are automatically triggered for this schedule.
+     */
+    scheduleConfig?: Schema$ScheduleConfig;
+    /**
+     * Optional. State of the audit schedule. While most states are managed by the system, you can use UpdateAuditSchedule to start, pause, or delete the schedule.
+     */
+    state?: string | null;
+    /**
+     * Output only. Timestamp when the schedule was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Audit scope report.
    */
   export interface Schema$AuditScopeReport {
@@ -312,6 +365,10 @@ export namespace auditmanager_v1 {
      * Required. Cloud Storage buckets that you can upload your audit reports to during the audit process. When you enroll an organization or folder, you can choose a Cloud Storage bucket from any project in the organization or folder. If you run an audit at the project level using the service agent at the organization or folder level, all the buckets that are associated with the service agent are available.
      */
     destinations?: Schema$EligibleDestination[];
+    /**
+     * Optional. If `true`, only validates the request and does not enroll the resource. This executes standard request validation (such as schema, IAM, and destination checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.
+     */
+    validateOnly?: boolean | null;
   }
   /**
    * Request message for GenerateAuditReport.
@@ -371,6 +428,23 @@ export namespace auditmanager_v1 {
      * Output only. A token that you can send as the `page_token` in a subsequent request to retrieve the next page of results. If this field is empty, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ListAuditSchedules.
+   */
+  export interface Schema$ListAuditSchedulesResponse {
+    /**
+     * List of audit schedules.
+     */
+    auditSchedules?: Schema$AuditSchedule[];
+    /**
+     * A token that you can send as the `page_token` in a subsequent request to retrieve the next page of results. If this field is empty, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that can't be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response message for ListControls.
@@ -595,6 +669,27 @@ export namespace auditmanager_v1 {
     name?: string | null;
   }
   /**
+   * Timing and frequency parameters for recurring audit runs.
+   */
+  export interface Schema$ScheduleConfig {
+    /**
+     * Optional. Date that the schedule stops. If not specified, the schedule runs indefinitely.
+     */
+    endTime?: string | null;
+    /**
+     * Required. Frequency of audit runs.
+     */
+    frequency?: string | null;
+    /**
+     * Required. Date and time when the first audit run is triggered. Subsequent runs are based on this time and the chosen frequency.
+     */
+    startTime?: string | null;
+    /**
+     * Optional. Time zone for the audit schedule in IANA format (for example, `America/New_York`). The time zone is used to interpret the `start_time` and the `end_time`, and to calculate subsequent run dates. If not specified, the time zone default is UTC.
+     */
+    timeZone?: string | null;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -624,6 +719,7 @@ export namespace auditmanager_v1 {
   export class Resource$Folders$Locations {
     context: APIRequestContext;
     auditReports: Resource$Folders$Locations$Auditreports;
+    auditSchedules: Resource$Folders$Locations$Auditschedules;
     auditScopeReports: Resource$Folders$Locations$Auditscopereports;
     operationDetails: Resource$Folders$Locations$Operationdetails;
     operationIds: Resource$Folders$Locations$Operationids;
@@ -632,6 +728,9 @@ export namespace auditmanager_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.auditReports = new Resource$Folders$Locations$Auditreports(
+        this.context
+      );
+      this.auditSchedules = new Resource$Folders$Locations$Auditschedules(
         this.context
       );
       this.auditScopeReports = new Resource$Folders$Locations$Auditscopereports(
@@ -689,7 +788,8 @@ export namespace auditmanager_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "destinations": []
+     *       //   "destinations": [],
+     *       //   "validateOnly": false
      *       // }
      *     },
      *   });
@@ -1294,6 +1394,714 @@ export namespace auditmanager_v1 {
      * Required. Parent organization, folder, or project to list reports for, in one of the following formats: * `projects/{project\}/locations/{location\}` * `folders/{folder\}/locations/{location\}` * `organizations/{organization\}/locations/{location\}`
      */
     parent?: string;
+  }
+
+  export class Resource$Folders$Locations$Auditschedules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new audit schedule in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/auditmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const auditmanager = google.auditmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-auditmanager',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await auditmanager.folders.locations.auditSchedules.create({
+     *     // Required. ID to use for the audit schedule, which becomes the final component of the audit schedule's resource name.
+     *     auditScheduleId: 'placeholder-value',
+     *     // Required. Project or folder that this audit schedule is for, in one of the following formats: * `projects/{project\}/locations/{location\}` * `folders/{folder\}/locations/{location\}`
+     *     parent: 'folders/my-folder/locations/my-location',
+     *     // Optional. If `true`, only validates the request and does not create the audit schedule. This executes standard request validation (such as schema, framework existence, scope, and IAM checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "complianceFramework": "my_complianceFramework",
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "errorMessage": "my_errorMessage",
+     *       //   "gcsUri": "my_gcsUri",
+     *       //   "lastTriggerTime": "my_lastTriggerTime",
+     *       //   "name": "my_name",
+     *       //   "nextRunTime": "my_nextRunTime",
+     *       //   "reportFormat": "my_reportFormat",
+     *       //   "scheduleConfig": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "complianceFramework": "my_complianceFramework",
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "gcsUri": "my_gcsUri",
+     *   //   "lastTriggerTime": "my_lastTriggerTime",
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "reportFormat": "my_reportFormat",
+     *   //   "scheduleConfig": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Folders$Locations$Auditschedules$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Folders$Locations$Auditschedules$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuditSchedule>>;
+    create(
+      params: Params$Resource$Folders$Locations$Auditschedules$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Locations$Auditschedules$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AuditSchedule>,
+      callback: BodyResponseCallback<Schema$AuditSchedule>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Locations$Auditschedules$Create,
+      callback: BodyResponseCallback<Schema$AuditSchedule>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AuditSchedule>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Auditschedules$Create
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuditSchedule>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Auditschedules$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Auditschedules$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://auditmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/auditSchedules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AuditSchedule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AuditSchedule>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single audit schedule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/auditmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const auditmanager = google.auditmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-auditmanager',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await auditmanager.folders.locations.auditSchedules.get({
+     *     // Required. Name of the audit schedule to retrieve, in one of the following formats: * `projects/{project\}/locations/{location\}/auditSchedules/{audit_schedule\}` * `folders/{folder\}/locations/{location\}/auditSchedules/{audit_schedule\}` * `organizations/{organization\}/locations/{location\}/auditSchedules/{audit_schedule\}`
+     *     name: 'folders/my-folder/locations/my-location/auditSchedules/my-auditSchedule',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "complianceFramework": "my_complianceFramework",
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "gcsUri": "my_gcsUri",
+     *   //   "lastTriggerTime": "my_lastTriggerTime",
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "reportFormat": "my_reportFormat",
+     *   //   "scheduleConfig": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Folders$Locations$Auditschedules$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Folders$Locations$Auditschedules$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuditSchedule>>;
+    get(
+      params: Params$Resource$Folders$Locations$Auditschedules$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Locations$Auditschedules$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AuditSchedule>,
+      callback: BodyResponseCallback<Schema$AuditSchedule>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Locations$Auditschedules$Get,
+      callback: BodyResponseCallback<Schema$AuditSchedule>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AuditSchedule>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Auditschedules$Get
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuditSchedule>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Auditschedules$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Auditschedules$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://auditmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AuditSchedule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AuditSchedule>(parameters);
+      }
+    }
+
+    /**
+     * Lists audit schedules in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/auditmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const auditmanager = google.auditmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-auditmanager',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await auditmanager.folders.locations.auditSchedules.list({
+     *     // Optional. Maximum number of items to return in a single page. The service might return fewer items than this value. If unspecified, the service picks an appropriate default. The maximum value is 100; values above 100 are reduced to 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous call, to retrieve the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Parent for the audit schedule, in one of the following formats: * `projects/{project\}/locations/{location\}` * `folders/{folder\}/locations/{location\}` * `organizations/{organization\}/locations/{location\}`
+     *     parent: 'folders/my-folder/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditSchedules": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Folders$Locations$Auditschedules$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Folders$Locations$Auditschedules$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAuditSchedulesResponse>>;
+    list(
+      params: Params$Resource$Folders$Locations$Auditschedules$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$Auditschedules$List,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$ListAuditSchedulesResponse>,
+      callback: BodyResponseCallback<Schema$ListAuditSchedulesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$Auditschedules$List,
+      callback: BodyResponseCallback<Schema$ListAuditSchedulesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAuditSchedulesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Auditschedules$List
+        | BodyResponseCallback<Schema$ListAuditSchedulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAuditSchedulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAuditSchedulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAuditSchedulesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Auditschedules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Auditschedules$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://auditmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/auditSchedules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAuditSchedulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAuditSchedulesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates an existing audit schedule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/auditmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const auditmanager = google.auditmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-auditmanager',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await auditmanager.folders.locations.auditSchedules.patch({
+     *     // Identifier. Unique identifier for the audit schedule. Format: projects/{project\}/locations/{location\}/auditSchedules/{audit_schedule\} folders/{folder\}/locations/{location\}/auditSchedules/{audit_schedule\} organizations/{organization\}/locations/{location\}/auditSchedules/{audit_schedule\}
+     *     name: 'folders/my-folder/locations/my-location/auditSchedules/my-auditSchedule',
+     *     // Optional. List of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. If `true`, only validates the request and does not update the audit schedule. This executes standard request validation (such as schema, framework existence, scope, and IAM checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "complianceFramework": "my_complianceFramework",
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "errorMessage": "my_errorMessage",
+     *       //   "gcsUri": "my_gcsUri",
+     *       //   "lastTriggerTime": "my_lastTriggerTime",
+     *       //   "name": "my_name",
+     *       //   "nextRunTime": "my_nextRunTime",
+     *       //   "reportFormat": "my_reportFormat",
+     *       //   "scheduleConfig": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "complianceFramework": "my_complianceFramework",
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "gcsUri": "my_gcsUri",
+     *   //   "lastTriggerTime": "my_lastTriggerTime",
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "reportFormat": "my_reportFormat",
+     *   //   "scheduleConfig": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Folders$Locations$Auditschedules$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Folders$Locations$Auditschedules$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuditSchedule>>;
+    patch(
+      params: Params$Resource$Folders$Locations$Auditschedules$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Locations$Auditschedules$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AuditSchedule>,
+      callback: BodyResponseCallback<Schema$AuditSchedule>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Locations$Auditschedules$Patch,
+      callback: BodyResponseCallback<Schema$AuditSchedule>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$AuditSchedule>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Auditschedules$Patch
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuditSchedule>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Auditschedules$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Auditschedules$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://auditmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AuditSchedule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AuditSchedule>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Locations$Auditschedules$Create extends StandardParameters {
+    /**
+     * Required. ID to use for the audit schedule, which becomes the final component of the audit schedule's resource name.
+     */
+    auditScheduleId?: string;
+    /**
+     * Required. Project or folder that this audit schedule is for, in one of the following formats: * `projects/{project\}/locations/{location\}` * `folders/{folder\}/locations/{location\}`
+     */
+    parent?: string;
+    /**
+     * Optional. If `true`, only validates the request and does not create the audit schedule. This executes standard request validation (such as schema, framework existence, scope, and IAM checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AuditSchedule;
+  }
+  export interface Params$Resource$Folders$Locations$Auditschedules$Get extends StandardParameters {
+    /**
+     * Required. Name of the audit schedule to retrieve, in one of the following formats: * `projects/{project\}/locations/{location\}/auditSchedules/{audit_schedule\}` * `folders/{folder\}/locations/{location\}/auditSchedules/{audit_schedule\}` * `organizations/{organization\}/locations/{location\}/auditSchedules/{audit_schedule\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Locations$Auditschedules$List extends StandardParameters {
+    /**
+     * Optional. Maximum number of items to return in a single page. The service might return fewer items than this value. If unspecified, the service picks an appropriate default. The maximum value is 100; values above 100 are reduced to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous call, to retrieve the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent for the audit schedule, in one of the following formats: * `projects/{project\}/locations/{location\}` * `folders/{folder\}/locations/{location\}` * `organizations/{organization\}/locations/{location\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Folders$Locations$Auditschedules$Patch extends StandardParameters {
+    /**
+     * Identifier. Unique identifier for the audit schedule. Format: projects/{project\}/locations/{location\}/auditSchedules/{audit_schedule\} folders/{folder\}/locations/{location\}/auditSchedules/{audit_schedule\} organizations/{organization\}/locations/{location\}/auditSchedules/{audit_schedule\}
+     */
+    name?: string;
+    /**
+     * Optional. List of fields to update.
+     */
+    updateMask?: string;
+    /**
+     * Optional. If `true`, only validates the request and does not update the audit schedule. This executes standard request validation (such as schema, framework existence, scope, and IAM checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AuditSchedule;
   }
 
   export class Resource$Folders$Locations$Auditscopereports {
@@ -2297,6 +3105,7 @@ export namespace auditmanager_v1 {
   export class Resource$Organizations$Locations {
     context: APIRequestContext;
     auditReports: Resource$Organizations$Locations$Auditreports;
+    auditSchedules: Resource$Organizations$Locations$Auditschedules;
     auditScopeReports: Resource$Organizations$Locations$Auditscopereports;
     operationDetails: Resource$Organizations$Locations$Operationdetails;
     operationIds: Resource$Organizations$Locations$Operationids;
@@ -2306,6 +3115,9 @@ export namespace auditmanager_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.auditReports = new Resource$Organizations$Locations$Auditreports(
+        this.context
+      );
+      this.auditSchedules = new Resource$Organizations$Locations$Auditschedules(
         this.context
       );
       this.auditScopeReports =
@@ -2368,7 +3180,8 @@ export namespace auditmanager_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "destinations": []
+     *       //   "destinations": [],
+     *       //   "validateOnly": false
      *       // }
      *     },
      *   });
@@ -2975,6 +3788,718 @@ export namespace auditmanager_v1 {
      * Required. Parent organization, folder, or project to list reports for, in one of the following formats: * `projects/{project\}/locations/{location\}` * `folders/{folder\}/locations/{location\}` * `organizations/{organization\}/locations/{location\}`
      */
     parent?: string;
+  }
+
+  export class Resource$Organizations$Locations$Auditschedules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new audit schedule in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/auditmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const auditmanager = google.auditmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-auditmanager',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await auditmanager.organizations.locations.auditSchedules.create({
+     *     // Required. ID to use for the audit schedule, which becomes the final component of the audit schedule's resource name.
+     *     auditScheduleId: 'placeholder-value',
+     *     // Required. Project or folder that this audit schedule is for, in one of the following formats: * `projects/{project\}/locations/{location\}` * `folders/{folder\}/locations/{location\}`
+     *     parent: 'organizations/my-organization/locations/my-location',
+     *     // Optional. If `true`, only validates the request and does not create the audit schedule. This executes standard request validation (such as schema, framework existence, scope, and IAM checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "complianceFramework": "my_complianceFramework",
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "errorMessage": "my_errorMessage",
+     *       //   "gcsUri": "my_gcsUri",
+     *       //   "lastTriggerTime": "my_lastTriggerTime",
+     *       //   "name": "my_name",
+     *       //   "nextRunTime": "my_nextRunTime",
+     *       //   "reportFormat": "my_reportFormat",
+     *       //   "scheduleConfig": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "complianceFramework": "my_complianceFramework",
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "gcsUri": "my_gcsUri",
+     *   //   "lastTriggerTime": "my_lastTriggerTime",
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "reportFormat": "my_reportFormat",
+     *   //   "scheduleConfig": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Locations$Auditschedules$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Organizations$Locations$Auditschedules$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuditSchedule>>;
+    create(
+      params: Params$Resource$Organizations$Locations$Auditschedules$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Auditschedules$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AuditSchedule>,
+      callback: BodyResponseCallback<Schema$AuditSchedule>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Auditschedules$Create,
+      callback: BodyResponseCallback<Schema$AuditSchedule>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AuditSchedule>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Auditschedules$Create
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuditSchedule>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Auditschedules$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Auditschedules$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://auditmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/auditSchedules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AuditSchedule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AuditSchedule>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single audit schedule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/auditmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const auditmanager = google.auditmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-auditmanager',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await auditmanager.organizations.locations.auditSchedules.get({
+     *     // Required. Name of the audit schedule to retrieve, in one of the following formats: * `projects/{project\}/locations/{location\}/auditSchedules/{audit_schedule\}` * `folders/{folder\}/locations/{location\}/auditSchedules/{audit_schedule\}` * `organizations/{organization\}/locations/{location\}/auditSchedules/{audit_schedule\}`
+     *     name: 'organizations/my-organization/locations/my-location/auditSchedules/my-auditSchedule',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "complianceFramework": "my_complianceFramework",
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "gcsUri": "my_gcsUri",
+     *   //   "lastTriggerTime": "my_lastTriggerTime",
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "reportFormat": "my_reportFormat",
+     *   //   "scheduleConfig": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Auditschedules$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Auditschedules$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuditSchedule>>;
+    get(
+      params: Params$Resource$Organizations$Locations$Auditschedules$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Auditschedules$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AuditSchedule>,
+      callback: BodyResponseCallback<Schema$AuditSchedule>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Auditschedules$Get,
+      callback: BodyResponseCallback<Schema$AuditSchedule>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AuditSchedule>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Auditschedules$Get
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuditSchedule>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Auditschedules$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Auditschedules$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://auditmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AuditSchedule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AuditSchedule>(parameters);
+      }
+    }
+
+    /**
+     * Lists audit schedules in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/auditmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const auditmanager = google.auditmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-auditmanager',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await auditmanager.organizations.locations.auditSchedules.list({
+     *     // Optional. Maximum number of items to return in a single page. The service might return fewer items than this value. If unspecified, the service picks an appropriate default. The maximum value is 100; values above 100 are reduced to 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous call, to retrieve the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Parent for the audit schedule, in one of the following formats: * `projects/{project\}/locations/{location\}` * `folders/{folder\}/locations/{location\}` * `organizations/{organization\}/locations/{location\}`
+     *     parent: 'organizations/my-organization/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditSchedules": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Auditschedules$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Auditschedules$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAuditSchedulesResponse>>;
+    list(
+      params: Params$Resource$Organizations$Locations$Auditschedules$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Auditschedules$List,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$ListAuditSchedulesResponse>,
+      callback: BodyResponseCallback<Schema$ListAuditSchedulesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Auditschedules$List,
+      callback: BodyResponseCallback<Schema$ListAuditSchedulesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAuditSchedulesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Auditschedules$List
+        | BodyResponseCallback<Schema$ListAuditSchedulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAuditSchedulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAuditSchedulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAuditSchedulesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Auditschedules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Auditschedules$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://auditmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/auditSchedules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAuditSchedulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAuditSchedulesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates an existing audit schedule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/auditmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const auditmanager = google.auditmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-auditmanager',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await auditmanager.organizations.locations.auditSchedules.patch({
+     *     // Identifier. Unique identifier for the audit schedule. Format: projects/{project\}/locations/{location\}/auditSchedules/{audit_schedule\} folders/{folder\}/locations/{location\}/auditSchedules/{audit_schedule\} organizations/{organization\}/locations/{location\}/auditSchedules/{audit_schedule\}
+     *     name: 'organizations/my-organization/locations/my-location/auditSchedules/my-auditSchedule',
+     *     // Optional. List of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. If `true`, only validates the request and does not update the audit schedule. This executes standard request validation (such as schema, framework existence, scope, and IAM checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "complianceFramework": "my_complianceFramework",
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "errorMessage": "my_errorMessage",
+     *       //   "gcsUri": "my_gcsUri",
+     *       //   "lastTriggerTime": "my_lastTriggerTime",
+     *       //   "name": "my_name",
+     *       //   "nextRunTime": "my_nextRunTime",
+     *       //   "reportFormat": "my_reportFormat",
+     *       //   "scheduleConfig": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "complianceFramework": "my_complianceFramework",
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "gcsUri": "my_gcsUri",
+     *   //   "lastTriggerTime": "my_lastTriggerTime",
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "reportFormat": "my_reportFormat",
+     *   //   "scheduleConfig": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Locations$Auditschedules$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Organizations$Locations$Auditschedules$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuditSchedule>>;
+    patch(
+      params: Params$Resource$Organizations$Locations$Auditschedules$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Auditschedules$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AuditSchedule>,
+      callback: BodyResponseCallback<Schema$AuditSchedule>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Auditschedules$Patch,
+      callback: BodyResponseCallback<Schema$AuditSchedule>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$AuditSchedule>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Auditschedules$Patch
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuditSchedule>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Auditschedules$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Auditschedules$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://auditmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AuditSchedule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AuditSchedule>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Auditschedules$Create extends StandardParameters {
+    /**
+     * Required. ID to use for the audit schedule, which becomes the final component of the audit schedule's resource name.
+     */
+    auditScheduleId?: string;
+    /**
+     * Required. Project or folder that this audit schedule is for, in one of the following formats: * `projects/{project\}/locations/{location\}` * `folders/{folder\}/locations/{location\}`
+     */
+    parent?: string;
+    /**
+     * Optional. If `true`, only validates the request and does not create the audit schedule. This executes standard request validation (such as schema, framework existence, scope, and IAM checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AuditSchedule;
+  }
+  export interface Params$Resource$Organizations$Locations$Auditschedules$Get extends StandardParameters {
+    /**
+     * Required. Name of the audit schedule to retrieve, in one of the following formats: * `projects/{project\}/locations/{location\}/auditSchedules/{audit_schedule\}` * `folders/{folder\}/locations/{location\}/auditSchedules/{audit_schedule\}` * `organizations/{organization\}/locations/{location\}/auditSchedules/{audit_schedule\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Auditschedules$List extends StandardParameters {
+    /**
+     * Optional. Maximum number of items to return in a single page. The service might return fewer items than this value. If unspecified, the service picks an appropriate default. The maximum value is 100; values above 100 are reduced to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous call, to retrieve the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent for the audit schedule, in one of the following formats: * `projects/{project\}/locations/{location\}` * `folders/{folder\}/locations/{location\}` * `organizations/{organization\}/locations/{location\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Auditschedules$Patch extends StandardParameters {
+    /**
+     * Identifier. Unique identifier for the audit schedule. Format: projects/{project\}/locations/{location\}/auditSchedules/{audit_schedule\} folders/{folder\}/locations/{location\}/auditSchedules/{audit_schedule\} organizations/{organization\}/locations/{location\}/auditSchedules/{audit_schedule\}
+     */
+    name?: string;
+    /**
+     * Optional. List of fields to update.
+     */
+    updateMask?: string;
+    /**
+     * Optional. If `true`, only validates the request and does not update the audit schedule. This executes standard request validation (such as schema, framework existence, scope, and IAM checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AuditSchedule;
   }
 
   export class Resource$Organizations$Locations$Auditscopereports {
@@ -4602,6 +6127,7 @@ export namespace auditmanager_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     auditReports: Resource$Projects$Locations$Auditreports;
+    auditSchedules: Resource$Projects$Locations$Auditschedules;
     auditScopeReports: Resource$Projects$Locations$Auditscopereports;
     operationDetails: Resource$Projects$Locations$Operationdetails;
     operationIds: Resource$Projects$Locations$Operationids;
@@ -4611,6 +6137,9 @@ export namespace auditmanager_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.auditReports = new Resource$Projects$Locations$Auditreports(
+        this.context
+      );
+      this.auditSchedules = new Resource$Projects$Locations$Auditschedules(
         this.context
       );
       this.auditScopeReports =
@@ -4672,7 +6201,8 @@ export namespace auditmanager_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "destinations": []
+     *       //   "destinations": [],
+     *       //   "validateOnly": false
      *       // }
      *     },
      *   });
@@ -5595,6 +7125,714 @@ export namespace auditmanager_v1 {
      * Required. Parent organization, folder, or project to list reports for, in one of the following formats: * `projects/{project\}/locations/{location\}` * `folders/{folder\}/locations/{location\}` * `organizations/{organization\}/locations/{location\}`
      */
     parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Auditschedules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new audit schedule in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/auditmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const auditmanager = google.auditmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-auditmanager',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await auditmanager.projects.locations.auditSchedules.create({
+     *     // Required. ID to use for the audit schedule, which becomes the final component of the audit schedule's resource name.
+     *     auditScheduleId: 'placeholder-value',
+     *     // Required. Project or folder that this audit schedule is for, in one of the following formats: * `projects/{project\}/locations/{location\}` * `folders/{folder\}/locations/{location\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. If `true`, only validates the request and does not create the audit schedule. This executes standard request validation (such as schema, framework existence, scope, and IAM checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "complianceFramework": "my_complianceFramework",
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "errorMessage": "my_errorMessage",
+     *       //   "gcsUri": "my_gcsUri",
+     *       //   "lastTriggerTime": "my_lastTriggerTime",
+     *       //   "name": "my_name",
+     *       //   "nextRunTime": "my_nextRunTime",
+     *       //   "reportFormat": "my_reportFormat",
+     *       //   "scheduleConfig": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "complianceFramework": "my_complianceFramework",
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "gcsUri": "my_gcsUri",
+     *   //   "lastTriggerTime": "my_lastTriggerTime",
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "reportFormat": "my_reportFormat",
+     *   //   "scheduleConfig": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Auditschedules$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Auditschedules$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuditSchedule>>;
+    create(
+      params: Params$Resource$Projects$Locations$Auditschedules$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Auditschedules$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AuditSchedule>,
+      callback: BodyResponseCallback<Schema$AuditSchedule>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Auditschedules$Create,
+      callback: BodyResponseCallback<Schema$AuditSchedule>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AuditSchedule>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Auditschedules$Create
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuditSchedule>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Auditschedules$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Auditschedules$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://auditmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/auditSchedules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AuditSchedule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AuditSchedule>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single audit schedule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/auditmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const auditmanager = google.auditmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-auditmanager',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await auditmanager.projects.locations.auditSchedules.get({
+     *     // Required. Name of the audit schedule to retrieve, in one of the following formats: * `projects/{project\}/locations/{location\}/auditSchedules/{audit_schedule\}` * `folders/{folder\}/locations/{location\}/auditSchedules/{audit_schedule\}` * `organizations/{organization\}/locations/{location\}/auditSchedules/{audit_schedule\}`
+     *     name: 'projects/my-project/locations/my-location/auditSchedules/my-auditSchedule',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "complianceFramework": "my_complianceFramework",
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "gcsUri": "my_gcsUri",
+     *   //   "lastTriggerTime": "my_lastTriggerTime",
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "reportFormat": "my_reportFormat",
+     *   //   "scheduleConfig": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Auditschedules$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Auditschedules$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuditSchedule>>;
+    get(
+      params: Params$Resource$Projects$Locations$Auditschedules$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Auditschedules$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AuditSchedule>,
+      callback: BodyResponseCallback<Schema$AuditSchedule>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Auditschedules$Get,
+      callback: BodyResponseCallback<Schema$AuditSchedule>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AuditSchedule>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Auditschedules$Get
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuditSchedule>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Auditschedules$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Auditschedules$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://auditmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AuditSchedule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AuditSchedule>(parameters);
+      }
+    }
+
+    /**
+     * Lists audit schedules in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/auditmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const auditmanager = google.auditmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-auditmanager',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await auditmanager.projects.locations.auditSchedules.list({
+     *     // Optional. Maximum number of items to return in a single page. The service might return fewer items than this value. If unspecified, the service picks an appropriate default. The maximum value is 100; values above 100 are reduced to 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous call, to retrieve the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Parent for the audit schedule, in one of the following formats: * `projects/{project\}/locations/{location\}` * `folders/{folder\}/locations/{location\}` * `organizations/{organization\}/locations/{location\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditSchedules": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Auditschedules$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Auditschedules$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAuditSchedulesResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Auditschedules$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Auditschedules$List,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$ListAuditSchedulesResponse>,
+      callback: BodyResponseCallback<Schema$ListAuditSchedulesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Auditschedules$List,
+      callback: BodyResponseCallback<Schema$ListAuditSchedulesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAuditSchedulesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Auditschedules$List
+        | BodyResponseCallback<Schema$ListAuditSchedulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAuditSchedulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAuditSchedulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAuditSchedulesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Auditschedules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Auditschedules$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://auditmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/auditSchedules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAuditSchedulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAuditSchedulesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates an existing audit schedule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/auditmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const auditmanager = google.auditmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-auditmanager',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await auditmanager.projects.locations.auditSchedules.patch({
+     *     // Identifier. Unique identifier for the audit schedule. Format: projects/{project\}/locations/{location\}/auditSchedules/{audit_schedule\} folders/{folder\}/locations/{location\}/auditSchedules/{audit_schedule\} organizations/{organization\}/locations/{location\}/auditSchedules/{audit_schedule\}
+     *     name: 'projects/my-project/locations/my-location/auditSchedules/my-auditSchedule',
+     *     // Optional. List of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. If `true`, only validates the request and does not update the audit schedule. This executes standard request validation (such as schema, framework existence, scope, and IAM checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "complianceFramework": "my_complianceFramework",
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "errorMessage": "my_errorMessage",
+     *       //   "gcsUri": "my_gcsUri",
+     *       //   "lastTriggerTime": "my_lastTriggerTime",
+     *       //   "name": "my_name",
+     *       //   "nextRunTime": "my_nextRunTime",
+     *       //   "reportFormat": "my_reportFormat",
+     *       //   "scheduleConfig": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "complianceFramework": "my_complianceFramework",
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "gcsUri": "my_gcsUri",
+     *   //   "lastTriggerTime": "my_lastTriggerTime",
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "reportFormat": "my_reportFormat",
+     *   //   "scheduleConfig": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Auditschedules$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Auditschedules$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuditSchedule>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Auditschedules$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Auditschedules$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AuditSchedule>,
+      callback: BodyResponseCallback<Schema$AuditSchedule>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Auditschedules$Patch,
+      callback: BodyResponseCallback<Schema$AuditSchedule>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$AuditSchedule>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Auditschedules$Patch
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuditSchedule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuditSchedule>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Auditschedules$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Auditschedules$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://auditmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AuditSchedule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AuditSchedule>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Auditschedules$Create extends StandardParameters {
+    /**
+     * Required. ID to use for the audit schedule, which becomes the final component of the audit schedule's resource name.
+     */
+    auditScheduleId?: string;
+    /**
+     * Required. Project or folder that this audit schedule is for, in one of the following formats: * `projects/{project\}/locations/{location\}` * `folders/{folder\}/locations/{location\}`
+     */
+    parent?: string;
+    /**
+     * Optional. If `true`, only validates the request and does not create the audit schedule. This executes standard request validation (such as schema, framework existence, scope, and IAM checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AuditSchedule;
+  }
+  export interface Params$Resource$Projects$Locations$Auditschedules$Get extends StandardParameters {
+    /**
+     * Required. Name of the audit schedule to retrieve, in one of the following formats: * `projects/{project\}/locations/{location\}/auditSchedules/{audit_schedule\}` * `folders/{folder\}/locations/{location\}/auditSchedules/{audit_schedule\}` * `organizations/{organization\}/locations/{location\}/auditSchedules/{audit_schedule\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Auditschedules$List extends StandardParameters {
+    /**
+     * Optional. Maximum number of items to return in a single page. The service might return fewer items than this value. If unspecified, the service picks an appropriate default. The maximum value is 100; values above 100 are reduced to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous call, to retrieve the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent for the audit schedule, in one of the following formats: * `projects/{project\}/locations/{location\}` * `folders/{folder\}/locations/{location\}` * `organizations/{organization\}/locations/{location\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Auditschedules$Patch extends StandardParameters {
+    /**
+     * Identifier. Unique identifier for the audit schedule. Format: projects/{project\}/locations/{location\}/auditSchedules/{audit_schedule\} folders/{folder\}/locations/{location\}/auditSchedules/{audit_schedule\} organizations/{organization\}/locations/{location\}/auditSchedules/{audit_schedule\}
+     */
+    name?: string;
+    /**
+     * Optional. List of fields to update.
+     */
+    updateMask?: string;
+    /**
+     * Optional. If `true`, only validates the request and does not update the audit schedule. This executes standard request validation (such as schema, framework existence, scope, and IAM checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AuditSchedule;
   }
 
   export class Resource$Projects$Locations$Auditscopereports {

@@ -256,6 +256,152 @@
                 }
               }
             },
+            "auditSchedules": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new audit schedule in a given project and location.",
+                  "flatPath": "v1/folders/{foldersId}/locations/{locationsId}/auditSchedules",
+                  "httpMethod": "POST",
+                  "id": "auditmanager.folders.locations.auditSchedules.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "auditScheduleId": {
+                      "description": "Required. ID to use for the audit schedule, which becomes the final component of the audit schedule's resource name.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Project or folder that this audit schedule is for, in one of the following formats: * `projects/{project}/locations/{location}` * `folders/{folder}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If `true`, only validates the request and does not create the audit schedule. This executes standard request validation (such as schema, framework existence, scope, and IAM checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+parent}/auditSchedules",
+                  "request": {
+                    "$ref": "AuditSchedule"
+                  },
+                  "response": {
+                    "$ref": "AuditSchedule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-auditmanager",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single audit schedule.",
+                  "flatPath": "v1/folders/{foldersId}/locations/{locationsId}/auditSchedules/{auditSchedulesId}",
+                  "httpMethod": "GET",
+                  "id": "auditmanager.folders.locations.auditSchedules.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the audit schedule to retrieve, in one of the following formats: * `projects/{project}/locations/{location}/auditSchedules/{audit_schedule}` * `folders/{folder}/locations/{location}/auditSchedules/{audit_schedule}` * `organizations/{organization}/locations/{location}/auditSchedules/{audit_schedule}`",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/auditSchedules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "AuditSchedule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-auditmanager",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists audit schedules in a given project and location.",
+                  "flatPath": "v1/folders/{foldersId}/locations/{locationsId}/auditSchedules",
+                  "httpMethod": "GET",
+                  "id": "auditmanager.folders.locations.auditSchedules.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Maximum number of items to return in a single page. The service might return fewer items than this value. If unspecified, the service picks an appropriate default. The maximum value is 100; values above 100 are reduced to 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous call, to retrieve the next page of results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent for the audit schedule, in one of the following formats: * `projects/{project}/locations/{location}` * `folders/{folder}/locations/{location}` * `organizations/{organization}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/auditSchedules",
+                  "response": {
+                    "$ref": "ListAuditSchedulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-auditmanager",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an existing audit schedule.",
+                  "flatPath": "v1/folders/{foldersId}/locations/{locationsId}/auditSchedules/{auditSchedulesId}",
+                  "httpMethod": "PATCH",
+                  "id": "auditmanager.folders.locations.auditSchedules.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Unique identifier for the audit schedule. Format: projects/{project}/locations/{location}/auditSchedules/{audit_schedule} folders/{folder}/locations/{location}/auditSchedules/{audit_schedule} organizations/{organization}/locations/{location}/auditSchedules/{audit_schedule}",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/auditSchedules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. List of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If `true`, only validates the request and does not update the audit schedule. This executes standard request validation (such as schema, framework existence, scope, and IAM checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "AuditSchedule"
+                  },
+                  "response": {
+                    "$ref": "AuditSchedule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-auditmanager",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "auditScopeReports": {
               "methods": {
                 "generate": {
@@ -588,6 +734,152 @@
                   "path": "v1/{+parent}/auditReports",
                   "response": {
                     "$ref": "ListAuditReportsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-auditmanager",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "auditSchedules": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new audit schedule in a given project and location.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/auditSchedules",
+                  "httpMethod": "POST",
+                  "id": "auditmanager.organizations.locations.auditSchedules.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "auditScheduleId": {
+                      "description": "Required. ID to use for the audit schedule, which becomes the final component of the audit schedule's resource name.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Project or folder that this audit schedule is for, in one of the following formats: * `projects/{project}/locations/{location}` * `folders/{folder}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If `true`, only validates the request and does not create the audit schedule. This executes standard request validation (such as schema, framework existence, scope, and IAM checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+parent}/auditSchedules",
+                  "request": {
+                    "$ref": "AuditSchedule"
+                  },
+                  "response": {
+                    "$ref": "AuditSchedule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-auditmanager",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single audit schedule.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/auditSchedules/{auditSchedulesId}",
+                  "httpMethod": "GET",
+                  "id": "auditmanager.organizations.locations.auditSchedules.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the audit schedule to retrieve, in one of the following formats: * `projects/{project}/locations/{location}/auditSchedules/{audit_schedule}` * `folders/{folder}/locations/{location}/auditSchedules/{audit_schedule}` * `organizations/{organization}/locations/{location}/auditSchedules/{audit_schedule}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/auditSchedules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "AuditSchedule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-auditmanager",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists audit schedules in a given project and location.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/auditSchedules",
+                  "httpMethod": "GET",
+                  "id": "auditmanager.organizations.locations.auditSchedules.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Maximum number of items to return in a single page. The service might return fewer items than this value. If unspecified, the service picks an appropriate default. The maximum value is 100; values above 100 are reduced to 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous call, to retrieve the next page of results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent for the audit schedule, in one of the following formats: * `projects/{project}/locations/{location}` * `folders/{folder}/locations/{location}` * `organizations/{organization}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/auditSchedules",
+                  "response": {
+                    "$ref": "ListAuditSchedulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-auditmanager",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an existing audit schedule.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/auditSchedules/{auditSchedulesId}",
+                  "httpMethod": "PATCH",
+                  "id": "auditmanager.organizations.locations.auditSchedules.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Unique identifier for the audit schedule. Format: projects/{project}/locations/{location}/auditSchedules/{audit_schedule} folders/{folder}/locations/{location}/auditSchedules/{audit_schedule} organizations/{organization}/locations/{location}/auditSchedules/{audit_schedule}",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/auditSchedules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. List of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If `true`, only validates the request and does not update the audit schedule. This executes standard request validation (such as schema, framework existence, scope, and IAM checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "AuditSchedule"
+                  },
+                  "response": {
+                    "$ref": "AuditSchedule"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-auditmanager",
@@ -1142,6 +1434,152 @@
                 }
               }
             },
+            "auditSchedules": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new audit schedule in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/auditSchedules",
+                  "httpMethod": "POST",
+                  "id": "auditmanager.projects.locations.auditSchedules.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "auditScheduleId": {
+                      "description": "Required. ID to use for the audit schedule, which becomes the final component of the audit schedule's resource name.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Project or folder that this audit schedule is for, in one of the following formats: * `projects/{project}/locations/{location}` * `folders/{folder}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If `true`, only validates the request and does not create the audit schedule. This executes standard request validation (such as schema, framework existence, scope, and IAM checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+parent}/auditSchedules",
+                  "request": {
+                    "$ref": "AuditSchedule"
+                  },
+                  "response": {
+                    "$ref": "AuditSchedule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-auditmanager",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single audit schedule.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/auditSchedules/{auditSchedulesId}",
+                  "httpMethod": "GET",
+                  "id": "auditmanager.projects.locations.auditSchedules.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the audit schedule to retrieve, in one of the following formats: * `projects/{project}/locations/{location}/auditSchedules/{audit_schedule}` * `folders/{folder}/locations/{location}/auditSchedules/{audit_schedule}` * `organizations/{organization}/locations/{location}/auditSchedules/{audit_schedule}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/auditSchedules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "AuditSchedule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-auditmanager",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists audit schedules in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/auditSchedules",
+                  "httpMethod": "GET",
+                  "id": "auditmanager.projects.locations.auditSchedules.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Maximum number of items to return in a single page. The service might return fewer items than this value. If unspecified, the service picks an appropriate default. The maximum value is 100; values above 100 are reduced to 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous call, to retrieve the next page of results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent for the audit schedule, in one of the following formats: * `projects/{project}/locations/{location}` * `folders/{folder}/locations/{location}` * `organizations/{organization}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/auditSchedules",
+                  "response": {
+                    "$ref": "ListAuditSchedulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-auditmanager",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an existing audit schedule.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/auditSchedules/{auditSchedulesId}",
+                  "httpMethod": "PATCH",
+                  "id": "auditmanager.projects.locations.auditSchedules.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Unique identifier for the audit schedule. Format: projects/{project}/locations/{location}/auditSchedules/{audit_schedule} folders/{folder}/locations/{location}/auditSchedules/{audit_schedule} organizations/{organization}/locations/{location}/auditSchedules/{audit_schedule}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/auditSchedules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. List of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If `true`, only validates the request and does not update the audit schedule. This executes standard request validation (such as schema, framework existence, scope, and IAM checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "AuditSchedule"
+                  },
+                  "response": {
+                    "$ref": "AuditSchedule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-auditmanager",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "auditScopeReports": {
               "methods": {
                 "generate": {
@@ -1447,7 +1885,7 @@
       }
     }
   },
-  "revision": "20260826",
+  "revision": "20260908",
   "rootUrl": "https://auditmanager.googleapis.com/",
   "schemas": {
     "AuditReport": {
@@ -1524,6 +1962,96 @@
         },
         "scopeId": {
           "description": "Output only. Project number, folder ID, or organization ID that the audit report was generated for.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AuditSchedule": {
+      "description": "An audit schedule, in one of the following formats: * `projects/{project}/locations/{location}/auditSchedules/{audit_schedule}` * `folders/{folder}/locations/{location}/auditSchedules/{audit_schedule}`",
+      "id": "AuditSchedule",
+      "properties": {
+        "complianceFramework": {
+          "description": "Required. Framework (set of controls) that the audit scope report is generated against. For example, `NIST_800_53`.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Timestamp when the schedule was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Display name for the audit schedule.",
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "Output only. Describes the error if the schedule is in an error state.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "gcsUri": {
+          "description": "Required. Cloud Storage bucket where Audit Manager can upload the audit report and evidence. The format is `gs://{bucket_name}`.",
+          "type": "string"
+        },
+        "lastTriggerTime": {
+          "description": "Output only. Timestamp when the audit run was last triggered.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Unique identifier for the audit schedule. Format: projects/{project}/locations/{location}/auditSchedules/{audit_schedule} folders/{folder}/locations/{location}/auditSchedules/{audit_schedule} organizations/{organization}/locations/{location}/auditSchedules/{audit_schedule}",
+          "type": "string"
+        },
+        "nextRunTime": {
+          "description": "Output only. Calculated timestamp for the next scheduled run.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reportFormat": {
+          "description": "Required. Format for the audit report.",
+          "enum": [
+            "AUDIT_REPORT_FORMAT_UNSPECIFIED",
+            "AUDIT_REPORT_FORMAT_ODF"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Open Document Format (ODF)."
+          ],
+          "type": "string"
+        },
+        "scheduleConfig": {
+          "$ref": "ScheduleConfig",
+          "description": "Required. Configuration that defines when and how often audit runs are automatically triggered for this schedule."
+        },
+        "state": {
+          "description": "Optional. State of the audit schedule. While most states are managed by the system, you can use UpdateAuditSchedule to start, pause, or delete the schedule.",
+          "enum": [
+            "SCHEDULE_STATE_UNSPECIFIED",
+            "SCHEDULE_STATE_ACTIVE",
+            "SCHEDULE_STATE_PAUSED",
+            "SCHEDULE_STATE_COMPLETED",
+            "SCHEDULE_STATE_FAILED_SETUP",
+            "SCHEDULE_STATE_ERROR",
+            "SCHEDULE_STATE_DELETED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Schedule is active and will trigger runs.",
+            "Schedule is paused and will not trigger runs.",
+            "Schedule end time has passed.",
+            "Schedule setup failed during creation or update.",
+            "Schedule is in an error state due to persistent failure to trigger an audit. Manual intervention is required.",
+            "Schedule has been marked for deletion by the user."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when the schedule was last updated.",
+          "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         }
@@ -1740,6 +2268,10 @@
             "$ref": "EligibleDestination"
           },
           "type": "array"
+        },
+        "validateOnly": {
+          "description": "Optional. If `true`, only validates the request and does not enroll the resource. This executes standard request validation (such as schema, IAM, and destination checks) and skips the apply phase. Use this field for the following purposes: * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run dry-run mutations (e.g., `terraform plan`) without creating real resources or incurring costs. * **User Interface Validation**: Enable real-time form and permission validation in custom UIs before submitting requests. * **CI/CD & Automation**: Test your scripts, permissions, and parameters safely without consuming resource quotas.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1847,6 +2379,31 @@
           "description": "Output only. A token that you can send as the `page_token` in a subsequent request to retrieve the next page of results. If this field is empty, there are no subsequent pages.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAuditSchedulesResponse": {
+      "description": "Response message for ListAuditSchedules.",
+      "id": "ListAuditSchedulesResponse",
+      "properties": {
+        "auditSchedules": {
+          "description": "List of audit schedules.",
+          "items": {
+            "$ref": "AuditSchedule"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that you can send as the `page_token` in a subsequent request to retrieve the next page of results. If this field is empty, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that can't be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2181,6 +2738,47 @@
         },
         "name": {
           "description": "Identifier. Name of the resource enrollment status, in one of the following formats: * `folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}` * `projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}` * `organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ScheduleConfig": {
+      "description": "Timing and frequency parameters for recurring audit runs.",
+      "id": "ScheduleConfig",
+      "properties": {
+        "endTime": {
+          "description": "Optional. Date that the schedule stops. If not specified, the schedule runs indefinitely.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "frequency": {
+          "description": "Required. Frequency of audit runs.",
+          "enum": [
+            "FREQUENCY_UNSPECIFIED",
+            "DAILY",
+            "WEEKLY",
+            "MONTHLY",
+            "QUARTERLY",
+            "ANNUALLY"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The audit runs every day.",
+            "The audit runs weekly on the same day of the week as `start_time`.",
+            "The audit runs monthly on the same day of the month as `start_time`.",
+            "The audit runs quarterly (every 3 months) on the same day of the month as `start_time`.",
+            "The audit runs annually on the same month and day as `start_time`."
+          ],
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Required. Date and time when the first audit run is triggered. Subsequent runs are based on this time and the chosen frequency.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "Optional. Time zone for the audit schedule in IANA format (for example, `America/New_York`). The time zone is used to interpret the `start_time` and the `end_time`, and to calculate subsequent run dates. If not specified, the time zone default is UTC.",
           "type": "string"
         }
       },
