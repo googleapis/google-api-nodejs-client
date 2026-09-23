@@ -1346,7 +1346,7 @@
           "parameters": {
             "copyComments": {
               "default": "false",
-              "description": "Whether to copy the comments associated with the file.",
+              "description": "Whether to copy the open (unresolved) comments associated with the file.",
               "location": "query",
               "type": "boolean"
             },
@@ -3044,7 +3044,7 @@
       }
     }
   },
-  "revision": "20260901",
+  "revision": "20260913",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
