@@ -313,6 +313,19 @@ export namespace cloudidentity_v1 {
     expireTime?: string | null;
   }
   /**
+   * An external identifier for an entity in the Cloud Identity Groups API. Used to link a `Group` in Cloud Identity Groups API with a corresponding entity in an external identity system or directory.
+   */
+  export interface Schema$ExternalId {
+    /**
+     * Required. The unique identifier assigned by the external identity provider. The API does not enforce uniqueness of IDs across entities, but clients should ensure IDs are unique within their namespace.
+     */
+    id?: string | null;
+    /**
+     * Required. The namespace in which the entity exists. Cannot be empty. Currently, the only allowable namespace is `"system/external"`.
+     */
+    namespace?: string | null;
+  }
+  /**
    * Metadata of GetMembershipGraphResponse LRO. This is currently empty to permit future extensibility.
    */
   export interface Schema$GetMembershipGraphMetadata {}
@@ -1015,6 +1028,10 @@ export namespace cloudidentity_v1 {
      * Optional. Dynamic group metadata like queries and status.
      */
     dynamicGroupMetadata?: Schema$DynamicGroupMetadata;
+    /**
+     * Optional. External identifiers associated with the `Group`. Enables external identity providers and directory sync tools to link their native unique identifiers with this group. Currently, the only allowable namespace is `"system/external"`.
+     */
+    externalIds?: Schema$ExternalId[];
     /**
      * Required. The `EntityKey` of the `Group`.
      */
@@ -6245,6 +6262,7 @@ export namespace cloudidentity_v1 {
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "dynamicGroupMetadata": {},
+     *       //   "externalIds": [],
      *       //   "groupKey": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
@@ -6543,6 +6561,7 @@ export namespace cloudidentity_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "dynamicGroupMetadata": {},
+     *   //   "externalIds": [],
      *   //   "groupKey": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -7122,6 +7141,7 @@ export namespace cloudidentity_v1 {
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "dynamicGroupMetadata": {},
+     *       //   "externalIds": [],
      *       //   "groupKey": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
