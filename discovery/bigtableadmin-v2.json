@@ -3238,7 +3238,7 @@
       }
     }
   },
-  "revision": "20260817",
+  "revision": "20260913",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -3418,6 +3418,20 @@
           "description": "The storage utilization that the Autoscaler should be trying to achieve. This number is limited between 2560 (2.5TiB) and 5120 (5TiB) for a SSD cluster and between 8192 (8TiB) and 16384 (16TiB) for an HDD cluster, otherwise it will return INVALID_ARGUMENT error. If this value is set to 0, it will be treated as if it were set to the default value: 2560 for SSD, 8192 for HDD.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AvroSchema": {
+      "description": "Represents a collection of Avro schemas.",
+      "id": "AvroSchema",
+      "properties": {
+        "jsonSchemas": {
+          "description": "Required. The Avro schemas in JSON format. Each element must be the content of a valid, self-contained Avro schema file (.avsc), as described in https://avro.apache.org/docs/1.8.1/spec.html. Use repeated elements to include multiple Avro schema files in a single bundle.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5688,6 +5702,10 @@
       "description": "A named collection of related schemas.",
       "id": "SchemaBundle",
       "properties": {
+        "avroSchema": {
+          "$ref": "AvroSchema",
+          "description": "Optional. Schema for Avros."
+        },
         "etag": {
           "description": "Optional. The etag for this schema bundle. This may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. The server returns an ABORTED error on a mismatched etag.",
           "type": "string"

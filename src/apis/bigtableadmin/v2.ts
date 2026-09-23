@@ -254,6 +254,15 @@ export namespace bigtableadmin_v2 {
     storageUtilizationGibPerNode?: number | null;
   }
   /**
+   * Represents a collection of Avro schemas.
+   */
+  export interface Schema$AvroSchema {
+    /**
+     * Required. The Avro schemas in JSON format. Each element must be the content of a valid, self-contained Avro schema file (.avsc), as described in https://avro.apache.org/docs/1.8.1/spec.html. Use repeated elements to include multiple Avro schema files in a single bundle.
+     */
+    jsonSchemas?: string[] | null;
+  }
+  /**
    * A backup of a Cloud Bigtable table.
    */
   export interface Schema$Backup {
@@ -1903,6 +1912,10 @@ export namespace bigtableadmin_v2 {
    * A named collection of related schemas.
    */
   export interface Schema$SchemaBundle {
+    /**
+     * Optional. Schema for Avros.
+     */
+    avroSchema?: Schema$AvroSchema;
     /**
      * Optional. The etag for this schema bundle. This may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. The server returns an ABORTED error on a mismatched etag.
      */
@@ -14834,6 +14847,7 @@ export namespace bigtableadmin_v2 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "avroSchema": {},
      *         //   "etag": "my_etag",
      *         //   "name": "my_name",
      *         //   "protoSchema": {}
@@ -15134,6 +15148,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "avroSchema": {},
      *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "protoSchema": {}
@@ -15595,6 +15610,7 @@ export namespace bigtableadmin_v2 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "avroSchema": {},
      *         //   "etag": "my_etag",
      *         //   "name": "my_name",
      *         //   "protoSchema": {}
