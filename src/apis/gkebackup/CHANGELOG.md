@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkebackup-v19.0.0...gkebackup-v19.1.0) (2026-09-23)
+
+
+### Features
+
+* **gkebackup:** update the API ([4fb5730](https://github.com/googleapis/google-api-nodejs-client/commit/4fb5730e08dd0dfd0028228978385365a20c94f5))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkebackup-v18.0.0...gkebackup-v19.0.0) (2026-09-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/binaryauthorization-v16.0.0...binaryauthorization-v16.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **binaryauthorization:** update the API ([9f2cf3c](https://github.com/googleapis/google-api-nodejs-client/commit/9f2cf3c797580831b3f40452860c38b01a781ea8))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/binaryauthorization-v15.0.0...binaryauthorization-v16.0.0) (2026-09-14)
 
 

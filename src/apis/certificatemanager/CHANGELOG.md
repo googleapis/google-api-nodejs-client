@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/certificatemanager-v16.0.0...certificatemanager-v16.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **certificatemanager:** update the API ([4d42499](https://github.com/googleapis/google-api-nodejs-client/commit/4d42499a10f6adf144bb44b1e91877bbc46900c2))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/certificatemanager-v15.0.0...certificatemanager-v16.0.0) (2026-09-14)
 
 

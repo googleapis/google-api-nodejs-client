@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v19.0.0...batch-v19.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **batch:** update the API ([271d457](https://github.com/googleapis/google-api-nodejs-client/commit/271d457893a79728da75186bac2c2a6fbbc30377))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v18.0.0...batch-v19.0.0) (2026-09-14)
 
 

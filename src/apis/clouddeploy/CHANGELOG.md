@@ -1,5 +1,12 @@
 # Changelog
 
+## [20.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v20.0.0...clouddeploy-v20.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **clouddeploy:** update the API ([929c62c](https://github.com/googleapis/google-api-nodejs-client/commit/929c62c5dff844385f856c5e5b6ae003b97bbdc3))
+
 ## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v19.0.0...clouddeploy-v20.0.0) (2026-09-14)
 
 

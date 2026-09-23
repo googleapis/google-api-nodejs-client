@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/solar-v10.0.0...solar-v10.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **solar:** update the API ([162a07d](https://github.com/googleapis/google-api-nodejs-client/commit/162a07d8061c8666a10124115d58eecb1dc11bf3))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/solar-v9.0.0...solar-v10.0.0) (2026-09-14)
 
 

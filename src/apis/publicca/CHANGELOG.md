@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/publicca-v9.0.0...publicca-v9.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **publicca:** update the API ([108e55b](https://github.com/googleapis/google-api-nodejs-client/commit/108e55bc033096087c88da96c11489f3b4b08c27))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/publicca-v8.0.0...publicca-v9.0.0) (2026-09-14)
 
 

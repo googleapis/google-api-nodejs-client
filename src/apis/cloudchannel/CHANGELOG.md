@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudchannel-v13.0.0...cloudchannel-v13.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **cloudchannel:** update the API ([45e25dd](https://github.com/googleapis/google-api-nodejs-client/commit/45e25ddd8c6d3e82fbeceeb75cb07fb0d1a75ff5))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudchannel-v12.0.0...cloudchannel-v13.0.0) (2026-09-14)
 
 
