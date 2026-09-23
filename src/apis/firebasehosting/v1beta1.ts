@@ -328,7 +328,7 @@ export namespace firebasehosting_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The fully-qualified name of the `CustomDomain`.
+     * Identifier. The fully-qualified name of the `CustomDomain`.
      */
     name?: string | null;
     /**
@@ -4284,7 +4284,7 @@ export namespace firebasehosting_v1beta1 {
      *   const res = await firebasehosting.projects.sites.customDomains.patch({
      *     // If true, Hosting creates the `CustomDomain` if it doesn't already exist.
      *     allowMissing: 'placeholder-value',
-     *     // Output only. The fully-qualified name of the `CustomDomain`.
+     *     // Identifier. The fully-qualified name of the `CustomDomain`.
      *     name: 'projects/my-project/sites/my-site/customDomains/my-customDomain',
      *     // The set of field names from your `CustomDomain` that you want to update. A field will be overwritten if, and only if, it's in the mask. If you don't provide a mask, Hosting updates the entire `CustomDomain`.
      *     updateMask: 'placeholder-value',
@@ -4639,7 +4639,7 @@ export namespace firebasehosting_v1beta1 {
      */
     allowMissing?: boolean;
     /**
-     * Output only. The fully-qualified name of the `CustomDomain`.
+     * Identifier. The fully-qualified name of the `CustomDomain`.
      */
     name?: string;
     /**

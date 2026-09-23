@@ -824,7 +824,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Output only. The fully-qualified name of the `CustomDomain`.",
+                      "description": "Identifier. The fully-qualified name of the `CustomDomain`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sites/[^/]+/customDomains/[^/]+$",
                       "required": true,
@@ -2427,7 +2427,7 @@
       }
     }
   },
-  "revision": "20251207",
+  "revision": "20260920",
   "rootUrl": "https://firebasehosting.googleapis.com/",
   "schemas": {
     "ActingUser": {
@@ -2756,8 +2756,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. The fully-qualified name of the `CustomDomain`.",
-          "readOnly": true,
+          "description": "Identifier. The fully-qualified name of the `CustomDomain`.",
           "type": "string"
         },
         "ownershipState": {
