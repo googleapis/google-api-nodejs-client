@@ -1,5 +1,12 @@
 # Changelog
 
+## [27.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sasportal-v27.0.0...sasportal-v27.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **sasportal:** update the API ([a17755d](https://github.com/googleapis/google-api-nodejs-client/commit/a17755da99c1e3714cb3384270496528db7376dc))
+
 ## [27.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sasportal-v26.0.0...sasportal-v27.0.0) (2026-09-14)
 
 

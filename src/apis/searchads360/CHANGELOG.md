@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/searchads360-v17.0.0...searchads360-v17.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **searchads360:** update the API ([ff96126](https://github.com/googleapis/google-api-nodejs-client/commit/ff96126a6d8f17b7102981d249f63a4502ed6f80))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/searchads360-v16.0.0...searchads360-v17.0.0) (2026-09-14)
 
 

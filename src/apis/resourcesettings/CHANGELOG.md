@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/resourcesettings-v9.0.0...resourcesettings-v9.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **resourcesettings:** update the API ([3c9436a](https://github.com/googleapis/google-api-nodejs-client/commit/3c9436a615c2f9bb7100f5317a2c31cb7f5ae3a4))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/resourcesettings-v8.0.0...resourcesettings-v9.0.0) (2026-09-14)
 
 

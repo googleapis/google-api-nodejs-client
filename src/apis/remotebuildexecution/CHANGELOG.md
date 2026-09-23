@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/remotebuildexecution-v11.0.0...remotebuildexecution-v11.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **remotebuildexecution:** update the API ([289b057](https://github.com/googleapis/google-api-nodejs-client/commit/289b057871159f55bdb62058612337afadfc3a2c))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/remotebuildexecution-v10.0.0...remotebuildexecution-v11.0.0) (2026-09-14)
 
 

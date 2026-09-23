@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/reseller-v13.0.0...reseller-v13.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **reseller:** update the API ([91c74c0](https://github.com/googleapis/google-api-nodejs-client/commit/91c74c0f75268f1ef6ad6c0efeffe08595f6101f))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/reseller-v12.0.0...reseller-v13.0.0) (2026-09-14)
 
 

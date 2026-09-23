@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/plus-v9.0.0...plus-v9.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **plus:** update the API ([6aa7f5c](https://github.com/googleapis/google-api-nodejs-client/commit/6aa7f5cad29621f0a24a605e6223502eab079d85))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/plus-v8.0.0...plus-v9.0.0) (2026-09-14)
 
 

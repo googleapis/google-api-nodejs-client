@@ -1,5 +1,12 @@
 # Changelog
 
+## [28.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/playintegrity-v28.0.0...playintegrity-v28.1.0) (2026-09-23)
+
+
+### Features
+
+* **playintegrity:** update the API ([a916356](https://github.com/googleapis/google-api-nodejs-client/commit/a916356f96253a21c210ad68fd9aa9540333d0cf))
+
 ## [28.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/playintegrity-v27.0.0...playintegrity-v28.0.0) (2026-09-14)
 
 
