@@ -709,6 +709,10 @@ export namespace threatintelligence_v1beta {
      * Output only. Legacy metadata associated with this scenario/monitor.
      */
     legacyMonitorMetadata?: Schema$LegacyMetadata;
+    /**
+     * Optional. The custom threat scenario type used to create this configuration.
+     */
+    scenarioType?: string | null;
   }
   /**
    * Captures the specific details of Data Leak alert.
@@ -744,10 +748,6 @@ export namespace threatintelligence_v1beta {
    * Represents a query to match documents.
    */
   export interface Schema$DocumentQuery {
-    /**
-     * Required. The data model to query against.
-     */
-    dataModel?: string | null;
     /**
      * Required. The query string.
      */

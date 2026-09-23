@@ -842,7 +842,7 @@
       }
     }
   },
-  "revision": "20260830",
+  "revision": "20260913",
   "rootUrl": "https://threatintelligence.googleapis.com/",
   "schemas": {
     "Alert": {
@@ -1276,6 +1276,34 @@
           "$ref": "LegacyMetadata",
           "description": "Output only. Legacy metadata associated with this scenario/monitor.",
           "readOnly": true
+        },
+        "scenarioType": {
+          "description": "Optional. The custom threat scenario type used to create this configuration.",
+          "enum": [
+            "CUSTOM_THREAT_SCENARIO_TYPE_UNSPECIFIED",
+            "DATA_LEAKS",
+            "DEEP_DARK_WEB",
+            "DOMAIN_PROTECTION",
+            "RANSOMWARE_THREATS",
+            "INITIAL_ACCESS_BROKER",
+            "NETBLOCKS_AND_DOMAIN_MENTIONS",
+            "SUPPLY_CHAIN_COMPROMISE",
+            "CARD_SHOPS",
+            "CUSTOM_MONITOR"
+          ],
+          "enumDescriptions": [
+            "Unspecified scenario type.",
+            "Data Leaks.",
+            "Deep & Dark Web.",
+            "Domain Protection.",
+            "Ransomware Threats.",
+            "Initial Access Broker.",
+            "Netblocks and Domain Mentions.",
+            "Supply Chain Compromise.",
+            "Card Shops.",
+            "Custom Monitor (Non-templated legacy monitor)."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1696,18 +1724,6 @@
       "description": "Represents a query to match documents.",
       "id": "DocumentQuery",
       "properties": {
-        "dataModel": {
-          "description": "Required. The data model to query against.",
-          "enum": [
-            "DATA_MODEL_UNSPECIFIED",
-            "DATA_MODEL_GTI"
-          ],
-          "enumDescriptions": [
-            "Default value, should never be set.",
-            "GTI data model."
-          ],
-          "type": "string"
-        },
         "query": {
           "description": "Required. The query string.",
           "type": "string"
@@ -1716,11 +1732,13 @@
           "description": "Required. The type of query.",
           "enum": [
             "QUERY_TYPE_UNSPECIFIED",
-            "QUERY_TYPE_LUCENE"
+            "JSON",
+            "STRING"
           ],
           "enumDescriptions": [
             "Default value, should never be set.",
-            "Lucene query type."
+            "Structured JSON condition tree built via query builder.",
+            "Raw search query string e.g., VTI search syntax."
           ],
           "type": "string"
         }
