@@ -1955,7 +1955,7 @@
       }
     }
   },
-  "revision": "20260824",
+  "revision": "20260914",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "AccountConnector": {
@@ -2876,7 +2876,7 @@
       "type": "object"
     },
     "GitProxyConfig": {
-      "description": "The git proxy configuration.",
+      "description": "Configuration for proxies. For legacy reasons, this message is named `GitProxyConfig`, but it includes settings for both Git and HTTP proxy.",
       "id": "GitProxyConfig",
       "properties": {
         "enabled": {

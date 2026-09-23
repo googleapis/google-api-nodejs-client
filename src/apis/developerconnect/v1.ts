@@ -829,7 +829,7 @@ export namespace developerconnect_v1 {
     webhookSecretSecretVersion?: string | null;
   }
   /**
-   * The git proxy configuration.
+   * Configuration for proxies. For legacy reasons, this message is named `GitProxyConfig`, but it includes settings for both Git and HTTP proxy.
    */
   export interface Schema$GitProxyConfig {
     /**
