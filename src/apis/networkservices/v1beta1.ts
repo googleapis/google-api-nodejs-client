@@ -4555,6 +4555,8 @@ export namespace networkservices_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.agentGateways.list({
+     *     // Optional. A filter expression to filter the results listed in the response. The expression must follow the syntax described in [AIP-160](https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
      *     // Optional. Maximum number of AgentGateways to return per call.
      *     pageSize: 'placeholder-value',
      *     // Optional. The value returned by the last `ListAgentGatewaysResponse` Indicates that this is a continuation of a prior `ListAgentGateways` call, and that the system should return the next page of data.
@@ -4866,6 +4868,10 @@ export namespace networkservices_v1beta1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Agentgateways$List extends StandardParameters {
+    /**
+     * Optional. A filter expression to filter the results listed in the response. The expression must follow the syntax described in [AIP-160](https://google.aip.dev/160).
+     */
+    filter?: string;
     /**
      * Optional. Maximum number of AgentGateways to return per call.
      */
