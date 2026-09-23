@@ -138,6 +138,35 @@ export namespace looker_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * ComponentMetrics contains sizing, timing, retries, and metrics for an exported component.
+   */
+  export interface Schema$ComponentMetrics {
+    /**
+     * Type of the exported component.
+     */
+    componentType?: string | null;
+    /**
+     * Duration of the component export.
+     */
+    duration?: string | null;
+    /**
+     * End timestamp of the component export.
+     */
+    endTime?: string | null;
+    /**
+     * Number of retries during the component export.
+     */
+    retryCount?: number | null;
+    /**
+     * Size of the exported component in gigabytes.
+     */
+    sizeGb?: number | null;
+    /**
+     * Start timestamp of the component export.
+     */
+    startTime?: string | null;
+  }
+  /**
    * Controlled egress configuration.
    */
   export interface Schema$ControlledEgressConfig {
@@ -257,6 +286,10 @@ export namespace looker_v1 {
      */
     exportEncryptionKey?: Schema$ExportMetadataEncryptionKey;
     /**
+     * Overall export metrics, timing, and component telemetry.
+     */
+    exportMetrics?: Schema$ExportMetrics;
+    /**
      * List of files created as part of export artifact (excluding the metadata). The paths are relative to the folder containing the metadata.
      */
     filePaths?: string[] | null;
@@ -293,6 +326,19 @@ export namespace looker_v1 {
      * Version of the CMEK.
      */
     version?: string | null;
+  }
+  /**
+   * ExportMetrics contains overall export execution metrics, timing, and component telemetry.
+   */
+  export interface Schema$ExportMetrics {
+    /**
+     * Metrics and telemetry for each exported component.
+     */
+    componentMetrics?: Schema$ComponentMetrics[];
+    /**
+     * Internal name of the instance being exported.
+     */
+    instanceInternalName?: string | null;
   }
   /**
    * Requestion options for importing looker data to an Instance

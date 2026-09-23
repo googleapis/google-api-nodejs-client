@@ -800,7 +800,7 @@
       }
     }
   },
-  "revision": "20260903",
+  "revision": "20260916",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {
@@ -821,6 +821,56 @@
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "ComponentMetrics": {
+      "description": "ComponentMetrics contains sizing, timing, retries, and metrics for an exported component.",
+      "id": "ComponentMetrics",
+      "properties": {
+        "componentType": {
+          "description": "Type of the exported component.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "BQ_ESA",
+            "DB",
+            "FS",
+            "ALL"
+          ],
+          "enumDescriptions": [
+            "Unspecified component type.",
+            "BigQuery Elite System Activity component.",
+            "Database component.",
+            "File system component.",
+            "Overall Export Job."
+          ],
+          "type": "string"
+        },
+        "duration": {
+          "description": "Duration of the component export.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "End timestamp of the component export.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "retryCount": {
+          "description": "Number of retries during the component export.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "sizeGb": {
+          "description": "Size of the exported component in gigabytes.",
+          "format": "double",
+          "type": "number"
+        },
+        "startTime": {
+          "description": "Start timestamp of the component export.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ControlledEgressConfig": {
@@ -998,6 +1048,10 @@
           "$ref": "ExportMetadataEncryptionKey",
           "description": "Encryption key that was used to encrypt the export artifacts."
         },
+        "exportMetrics": {
+          "$ref": "ExportMetrics",
+          "description": "Overall export metrics, timing, and component telemetry."
+        },
         "filePaths": {
           "description": "List of files created as part of export artifact (excluding the metadata). The paths are relative to the folder containing the metadata.",
           "items": {
@@ -1026,12 +1080,14 @@
           "enum": [
             "SOURCE_UNSPECIFIED",
             "LOOKER_CORE",
-            "LOOKER_ORIGINAL"
+            "LOOKER_ORIGINAL",
+            "LOOKER_SELF_HOSTED"
           ],
           "enumDescriptions": [
             "Source not specified",
             "Source of export is Looker Core",
-            "Source of export is Looker Original"
+            "Source of export is Looker Original",
+            "Source of export is Self-Hosted Looker"
           ],
           "type": "string"
         }
@@ -1048,6 +1104,24 @@
         },
         "version": {
           "description": "Version of the CMEK.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExportMetrics": {
+      "description": "ExportMetrics contains overall export execution metrics, timing, and component telemetry.",
+      "id": "ExportMetrics",
+      "properties": {
+        "componentMetrics": {
+          "description": "Metrics and telemetry for each exported component.",
+          "items": {
+            "$ref": "ComponentMetrics"
+          },
+          "type": "array"
+        },
+        "instanceInternalName": {
+          "description": "Internal name of the instance being exported.",
           "type": "string"
         }
       },
