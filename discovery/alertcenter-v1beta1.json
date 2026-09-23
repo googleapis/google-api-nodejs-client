@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20260817",
+  "revision": "20260921",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AbuseDetected": {
@@ -1514,7 +1514,8 @@
             "MISSING_SIGNATURE",
             "MISSING_ALGORITHM_NAME",
             "UNSUPPORTED_ALGORITHM",
-            "FETCH_REQUEST_ERROR"
+            "FETCH_REQUEST_ERROR",
+            "SERVER_SIDE_FETCH_REQUEST_ERROR"
           ],
           "enumDescriptions": [
             "Error info not specified.",
@@ -1523,7 +1524,8 @@
             "SMIME sign only: The sign response did not contain the signature.",
             "SMIME only: The sign response does not include the algorithm name.",
             "SMIME only: the algorithm name in the response is not supported by the client.",
-            "Fetch request on the client has failed."
+            "Fetch request on the client has failed.",
+            "Fetch request from the Google server to the key service has failed."
           ],
           "type": "string"
         },
@@ -2017,7 +2019,8 @@
             "CHROMEOS_FILE_TRANSFER",
             "GEMINI_ACCESS",
             "AGENT_EXECUTION",
-            "CHROME_DATA_COPIED"
+            "CHROME_DATA_COPIED",
+            "CHROME_NETWORK_REQUEST"
           ],
           "enumDescriptions": [
             "Trigger is unspecified.",
@@ -2033,7 +2036,8 @@
             "A file being transferred (copy or moved) between different file systems on ChromeOS.",
             "Gemini access.",
             "Agent execution.",
-            "Text copied from Chrome."
+            "Text copied from Chrome.",
+            "Network request from Chrome."
           ],
           "type": "string"
         },
