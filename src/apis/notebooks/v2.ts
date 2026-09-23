@@ -461,6 +461,10 @@ export namespace notebooks_v2 {
      */
     shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
     /**
+     * Output only. Represents system-managed metadata for this instance: the subset of `metadata` whose keys are recognized Workbench system keys.
+     */
+    systemMetadata?: {[key: string]: string} | null;
+    /**
      * Optional. The Compute Engine network tags to add to runtime (see [Add network tags](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      */
     tags?: string[] | null;

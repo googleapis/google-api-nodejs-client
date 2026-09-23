@@ -1002,7 +1002,7 @@
       }
     }
   },
-  "revision": "20260812",
+  "revision": "20260909",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1562,6 +1562,14 @@
         "shieldedInstanceConfig": {
           "$ref": "ShieldedInstanceConfig",
           "description": "Optional. Shielded VM configuration. [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm)."
+        },
+        "systemMetadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. Represents system-managed metadata for this instance: the subset of `metadata` whose keys are recognized Workbench system keys.",
+          "readOnly": true,
+          "type": "object"
         },
         "tags": {
           "description": "Optional. The Compute Engine network tags to add to runtime (see [Add network tags](https://cloud.google.com/vpc/docs/add-remove-network-tags)).",
