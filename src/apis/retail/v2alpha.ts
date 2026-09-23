@@ -840,6 +840,10 @@ export namespace retail_v2alpha {
      */
     denylistInputConfig?: Schema$GoogleCloudRetailV2alphaCompletionDataInputConfig;
     /**
+     * Optional. If set to true, the conversational shopping agent prompts will be served. Default value is false.
+     */
+    enableAgentPrompts?: boolean | null;
+    /**
      * Output only. Name of the LRO corresponding to the latest allowlist import. Can use GetOperation API to retrieve the latest state of the Long Running Operation.
      */
     lastAllowlistImportOperation?: string | null;
@@ -6512,6 +6516,7 @@ export namespace retail_v2alpha {
      *   //   "allowlistInputConfig": {},
      *   //   "autoLearning": false,
      *   //   "denylistInputConfig": {},
+     *   //   "enableAgentPrompts": false,
      *   //   "lastAllowlistImportOperation": "my_lastAllowlistImportOperation",
      *   //   "lastDenylistImportOperation": "my_lastDenylistImportOperation",
      *   //   "lastSuggestionsImportOperation": "my_lastSuggestionsImportOperation",
@@ -7737,6 +7742,7 @@ export namespace retail_v2alpha {
      *       //   "allowlistInputConfig": {},
      *       //   "autoLearning": false,
      *       //   "denylistInputConfig": {},
+     *       //   "enableAgentPrompts": false,
      *       //   "lastAllowlistImportOperation": "my_lastAllowlistImportOperation",
      *       //   "lastDenylistImportOperation": "my_lastDenylistImportOperation",
      *       //   "lastSuggestionsImportOperation": "my_lastSuggestionsImportOperation",
@@ -7755,6 +7761,7 @@ export namespace retail_v2alpha {
      *   //   "allowlistInputConfig": {},
      *   //   "autoLearning": false,
      *   //   "denylistInputConfig": {},
+     *   //   "enableAgentPrompts": false,
      *   //   "lastAllowlistImportOperation": "my_lastAllowlistImportOperation",
      *   //   "lastDenylistImportOperation": "my_lastDenylistImportOperation",
      *   //   "lastSuggestionsImportOperation": "my_lastSuggestionsImportOperation",

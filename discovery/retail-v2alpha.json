@@ -2874,7 +2874,7 @@
       }
     }
   },
-  "revision": "20260826",
+  "revision": "20260920",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -4458,6 +4458,10 @@
           "$ref": "GoogleCloudRetailV2alphaCompletionDataInputConfig",
           "description": "Output only. The source data for the latest import of the autocomplete denylist phrases.",
           "readOnly": true
+        },
+        "enableAgentPrompts": {
+          "description": "Optional. If set to true, the conversational shopping agent prompts will be served. Default value is false.",
+          "type": "boolean"
         },
         "lastAllowlistImportOperation": {
           "description": "Output only. Name of the LRO corresponding to the latest allowlist import. Can use GetOperation API to retrieve the latest state of the Long Running Operation.",
