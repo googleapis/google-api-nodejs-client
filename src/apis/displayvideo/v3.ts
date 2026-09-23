@@ -6607,7 +6607,7 @@ export namespace displayvideo_v3 {
      */
     displayUrlBreadcrumb2?: string | null;
     /**
-     * The domain of the display URL.
+     * Output only. The domain of the display URL.
      */
     domain?: string | null;
     /**

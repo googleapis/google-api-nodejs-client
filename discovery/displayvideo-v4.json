@@ -9618,7 +9618,7 @@
       }
     }
   },
-  "revision": "20260902",
+  "revision": "20260915",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -25920,7 +25920,8 @@
           "type": "string"
         },
         "domain": {
-          "description": "The domain of the display URL.",
+          "description": "Output only. The domain of the display URL.",
+          "readOnly": true,
           "type": "string"
         },
         "finalUrl": {
