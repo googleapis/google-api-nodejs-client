@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/oslogin-v13.0.0...oslogin-v13.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **oslogin:** update the API ([aed046f](https://github.com/googleapis/google-api-nodejs-client/commit/aed046fdc4b2f10745f827b22f5f861e73ca4403))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/oslogin-v12.0.0...oslogin-v13.0.0) (2026-09-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datastream-v19.0.0...datastream-v19.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **datastream:** update the API ([cd5fedf](https://github.com/googleapis/google-api-nodejs-client/commit/cd5fedf11eedc90246a2ad826c25410c2611b693))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastream-v18.0.0...datastream-v19.0.0) (2026-09-14)
 
 

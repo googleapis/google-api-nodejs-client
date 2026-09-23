@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/parametermanager-v10.0.0...parametermanager-v10.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **parametermanager:** update the API ([22cac17](https://github.com/googleapis/google-api-nodejs-client/commit/22cac17f9704a5d2068bce27a62ae1157c68dc6a))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/parametermanager-v9.0.0...parametermanager-v10.0.0) (2026-09-14)
 
 

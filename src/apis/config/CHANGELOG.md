@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/config-v13.0.0...config-v13.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **config:** update the API ([1b7a078](https://github.com/googleapis/google-api-nodejs-client/commit/1b7a0782a6aa1a72c91f4d849adaeca7560ac2b8))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/config-v12.0.0...config-v13.0.0) (2026-09-14)
 
 

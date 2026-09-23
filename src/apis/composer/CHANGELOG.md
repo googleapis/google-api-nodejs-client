@@ -1,5 +1,12 @@
 # Changelog
 
+## [20.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/composer-v20.0.0...composer-v20.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **composer:** update the API ([808f9ae](https://github.com/googleapis/google-api-nodejs-client/commit/808f9aeffa416260fb08418ec977fa8deaf3bb25))
+
 ## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/composer-v19.0.0...composer-v20.0.0) (2026-09-14)
 
 

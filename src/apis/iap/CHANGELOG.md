@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v17.0.0...iap-v17.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **iap:** update the API ([29dbb3a](https://github.com/googleapis/google-api-nodejs-client/commit/29dbb3ac811b41ef58fed1755dba05bba4740ef6))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v16.0.0...iap-v17.0.0) (2026-09-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [22.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v22.0.0...notebooks-v22.1.0) (2026-09-23)
+
+
+### Features
+
+* **notebooks:** update the API ([8dc4b42](https://github.com/googleapis/google-api-nodejs-client/commit/8dc4b426321873856fdfcc307b940946afdb617c))
+
 ## [22.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v21.0.0...notebooks-v22.0.0) (2026-09-14)
 
 

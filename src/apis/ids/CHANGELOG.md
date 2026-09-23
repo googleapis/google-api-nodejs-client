@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/ids-v15.0.0...ids-v15.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **ids:** update the API ([b6df52a](https://github.com/googleapis/google-api-nodejs-client/commit/b6df52a2eac8ce0ac9d753e139e4de7ae71e68df))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/ids-v14.0.0...ids-v15.0.0) (2026-09-14)
 
 

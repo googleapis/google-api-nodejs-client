@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/apigeeregistry-v11.0.0...apigeeregistry-v11.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **apigeeregistry:** update the API ([ba75f45](https://github.com/googleapis/google-api-nodejs-client/commit/ba75f454669423495fa78e243cae5f30fd9633b1))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apigeeregistry-v10.0.0...apigeeregistry-v11.0.0) (2026-09-14)
 
 

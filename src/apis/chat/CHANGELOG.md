@@ -1,5 +1,12 @@
 # Changelog
 
+## [51.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v51.0.0...chat-v51.1.0) (2026-09-23)
+
+
+### Features
+
+* **chat:** update the API ([ae24eb7](https://github.com/googleapis/google-api-nodejs-client/commit/ae24eb7f82ae043b5a5368030e84b62848ff3d41))
+
 ## [51.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v50.0.0...chat-v51.0.0) (2026-09-14)
 
 

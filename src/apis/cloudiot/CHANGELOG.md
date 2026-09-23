@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudiot-v9.0.0...cloudiot-v9.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **cloudiot:** update the API ([471dd57](https://github.com/googleapis/google-api-nodejs-client/commit/471dd578f7bbd14f482610ad531670cd3e23eb2d))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudiot-v8.0.0...cloudiot-v9.0.0) (2026-09-14)
 
 

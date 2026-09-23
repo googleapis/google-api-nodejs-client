@@ -1,5 +1,12 @@
 # Changelog
 
+## [21.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/places-v21.0.0...places-v21.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **places:** update the API ([4a2b80d](https://github.com/googleapis/google-api-nodejs-client/commit/4a2b80d9f039d7e9e14acf18ebea25bdeff047ac))
+
 ## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/places-v20.0.0...places-v21.0.0) (2026-09-14)
 
 

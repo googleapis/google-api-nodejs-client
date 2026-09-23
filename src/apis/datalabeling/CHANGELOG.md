@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datalabeling-v11.0.0...datalabeling-v11.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **datalabeling:** update the API ([7744713](https://github.com/googleapis/google-api-nodejs-client/commit/7744713184924105a3fcf8b1ab9d126a1c6297a8))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datalabeling-v10.0.0...datalabeling-v11.0.0) (2026-09-14)
 
 
