@@ -130,6 +130,146 @@ export namespace recommender_v1 {
     }
   }
 
+  export interface Schema$CloudRecommendationsRecommendersDatabasesV1ContentChunk {
+    /**
+     * Table with headers and rows content for the content chunk.
+     */
+    table?: Schema$CloudRecommendationsRecommendersDatabasesV1Table;
+  }
+  export interface Schema$CloudRecommendationsRecommendersDatabasesV1CtaConfig {
+    isPrimary?: boolean | null;
+    /**
+     * Enum used to map to the string to be shown in the UI for the button.
+     */
+    label?: string | null;
+    redirectPage?: string | null;
+  }
+  /**
+   * Presentational config that maps to the UI components of templatized issue subtasks.
+   */
+  export interface Schema$CloudRecommendationsRecommendersDatabasesV1DatabasesPresentationConfig {
+    /**
+     * Call to action buttons for the issue.
+     */
+    ctaConfigs?: Schema$CloudRecommendationsRecommendersDatabasesV1CtaConfig[];
+    /**
+     * Content chunks for the issue.
+     */
+    issueContentChunks?: Schema$CloudRecommendationsRecommendersDatabasesV1ContentChunk[];
+    /**
+     * Issue description for the issue.
+     */
+    issueDescription?: Schema$CloudRecommendationsRecommendersDatabasesV1Description;
+    /**
+     * Fields for the table containing metadata associated with the issue.
+     */
+    issueTableFields?: Schema$CloudRecommendationsRecommendersDatabasesV1TableField[];
+    /**
+     * Content chunks for the next steps.
+     */
+    nextStepsContentChunks?: Schema$CloudRecommendationsRecommendersDatabasesV1ContentChunk[];
+    /**
+     * Next steps description for the issue.
+     */
+    nextStepsDescription?: Schema$CloudRecommendationsRecommendersDatabasesV1Description;
+    /**
+     * Fields for the table containing metadata associated with the next steps.
+     */
+    nextStepsTableFields?: Schema$CloudRecommendationsRecommendersDatabasesV1TableField[];
+    /**
+     * Playbook links for the issue.
+     */
+    playbookLinks?: Schema$CloudRecommendationsRecommendersDatabasesV1PlaybookLink[];
+  }
+  export interface Schema$CloudRecommendationsRecommendersDatabasesV1Description {
+    /**
+     * Enum used to map to the html template to be shown in the UI.
+     */
+    descriptionEnum?: string | null;
+  }
+  export interface Schema$CloudRecommendationsRecommendersDatabasesV1Link {
+    /**
+     * String label for the link. This value is not translated
+     */
+    label?: string | null;
+    /**
+     * Enum used to map to the redirect page for the link.
+     */
+    redirectPage?: string | null;
+    /**
+     * Resource name for the table cell. This is used to construct the link.
+     */
+    resourceName?: string | null;
+  }
+  export interface Schema$CloudRecommendationsRecommendersDatabasesV1PlaybookLink {
+    /**
+     * Enum used to map to the string to be shown in the UI for the link.
+     */
+    label?: string | null;
+    link?: string | null;
+  }
+  export interface Schema$CloudRecommendationsRecommendersDatabasesV1SimpleValue {
+    /**
+     * Enum value for the table cell. This should be used when value MUST be translated and represents common status/field like Enabled, Disabled, Success, Failure, etc.
+     */
+    enumValue?: string | null;
+    /**
+     * Link value for the table cell.
+     */
+    linkValue?: Schema$CloudRecommendationsRecommendersDatabasesV1Link;
+    /**
+     * Number value for the table cell.
+     */
+    numberValue?: number | null;
+    /**
+     * String value for the table cell. This should be used when value doesn't need to be translated.
+     */
+    stringValue?: string | null;
+    /**
+     * Timestamp value for the table cell.
+     */
+    timestampValue?: string | null;
+  }
+  /**
+   * Field for adding custom complex table
+   */
+  export interface Schema$CloudRecommendationsRecommendersDatabasesV1Table {
+    /**
+     * Headers for the table. IMPORTANT: Each header defines a column and its title. All Headers must be unique and shouldn't be used more than once within the same list.
+     */
+    headers?: string[] | null;
+    /**
+     * Rows for the table. Ensure that the order of the cells in the row matches the order of the headers.
+     */
+    rows?: Schema$CloudRecommendationsRecommendersDatabasesV1TableRow[];
+  }
+  export interface Schema$CloudRecommendationsRecommendersDatabasesV1TableField {
+    /**
+     * Enum used to map to the string to be shown in the UI for the field.
+     */
+    key?: string | null;
+    /**
+     * Number value for the table field.
+     */
+    numberValue?: number | null;
+    /**
+     * String value for the table field. Note that this string won't be translated. It is advised to provide values that don't require translation.
+     */
+    stringValue?: string | null;
+    /**
+     * Timestamp value for the table field. Timestamp will be shown in the user's timezone with the format: "Feb 27, 2009 3:22:54 PM".
+     */
+    timestampValue?: string | null;
+  }
+  /**
+   * Table row for a table
+   */
+  export interface Schema$CloudRecommendationsRecommendersDatabasesV1TableRow {
+    /**
+     * Table cells for the table row.
+     */
+    cells?: Schema$CloudRecommendationsRecommendersDatabasesV1SimpleValue[];
+  }
   /**
    * Contains metadata about how much money a recommendation can save or incur.
    */
