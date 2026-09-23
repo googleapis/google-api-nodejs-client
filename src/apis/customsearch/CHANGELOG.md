@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/customsearch-v12.0.0...customsearch-v12.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **customsearch:** update the API ([5b08746](https://github.com/googleapis/google-api-nodejs-client/commit/5b08746983f0ea4fefeec18a4f0f832dbe361d40))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/customsearch-v11.0.0...customsearch-v12.0.0) (2026-09-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dataportability-v13.0.0...dataportability-v13.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **dataportability:** update the API ([bc63389](https://github.com/googleapis/google-api-nodejs-client/commit/bc6338945aa22f7c8bf542dcd8058c149e2e6329))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataportability-v12.0.0...dataportability-v13.0.0) (2026-09-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/clouddebugger-v9.0.0...clouddebugger-v9.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **clouddebugger:** update the API ([733de4d](https://github.com/googleapis/google-api-nodejs-client/commit/733de4d36c4461a1af689251878bd5a6b2f7bbad))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddebugger-v8.0.0...clouddebugger-v9.0.0) (2026-09-14)
 
 

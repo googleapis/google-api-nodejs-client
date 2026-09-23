@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/adsense-v19.0.0...adsense-v19.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **adsense:** update the API ([4fa08c9](https://github.com/googleapis/google-api-nodejs-client/commit/4fa08c9eb6ded0235c5dde58b0f658d7460065ad))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/adsense-v18.0.0...adsense-v19.0.0) (2026-09-14)
 
 

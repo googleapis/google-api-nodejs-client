@@ -1,5 +1,12 @@
 # Changelog
 
+## [24.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/civicinfo-v24.0.0...civicinfo-v24.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **civicinfo:** update the API ([5e7ebb4](https://github.com/googleapis/google-api-nodejs-client/commit/5e7ebb4a0950440c6e017a89ddc878e5d30683ea))
+
 ## [24.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/civicinfo-v23.0.0...civicinfo-v24.0.0) (2026-09-14)
 
 

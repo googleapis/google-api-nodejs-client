@@ -1,5 +1,12 @@
 # Changelog
 
+## [26.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v26.0.0...cloudsearch-v26.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **cloudsearch:** update the API ([c724887](https://github.com/googleapis/google-api-nodejs-client/commit/c7248872dc9df2d076126e4f61517127efb74d11))
+
 ## [26.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v25.0.0...cloudsearch-v26.0.0) (2026-09-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/adexperiencereport-v10.0.0...adexperiencereport-v10.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **adexperiencereport:** update the API ([b490cb8](https://github.com/googleapis/google-api-nodejs-client/commit/b490cb8ad1203bab9fa57b9c52db990a6f7ba822))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/adexperiencereport-v9.0.0...adexperiencereport-v10.0.0) (2026-09-14)
 
 

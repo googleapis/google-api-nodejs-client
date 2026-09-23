@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/addressvalidation-v8.0.0...addressvalidation-v8.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **addressvalidation:** update the API ([a3c9780](https://github.com/googleapis/google-api-nodejs-client/commit/a3c9780391d2762b12ea24bb87e4341feee2245b))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/addressvalidation-v7.0.0...addressvalidation-v8.0.0) (2026-09-14)
 
 

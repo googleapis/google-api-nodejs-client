@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/discovery-v9.0.0...discovery-v9.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **discovery:** update the API ([4d0597e](https://github.com/googleapis/google-api-nodejs-client/commit/4d0597ee1bbc31d2e58caeca25886204c882971c))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discovery-v8.0.0...discovery-v9.0.0) (2026-09-14)
 
 

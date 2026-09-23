@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v18.0.0...androidenterprise-v18.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **androidenterprise:** update the API ([0e7dd69](https://github.com/googleapis/google-api-nodejs-client/commit/0e7dd695a8dfc829bbd3f29011994a4f24973e0b))
+
 ## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v17.0.0...androidenterprise-v18.0.0) (2026-09-14)
 
 

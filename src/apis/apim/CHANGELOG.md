@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/apim-v12.0.0...apim-v12.0.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **apim:** update the API ([869caeb](https://github.com/googleapis/google-api-nodejs-client/commit/869caebbf3a5806f0217b1b1633312658c46e883))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apim-v11.0.0...apim-v12.0.0) (2026-09-14)
 
 
