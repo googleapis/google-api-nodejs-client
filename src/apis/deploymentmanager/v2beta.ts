@@ -512,22 +512,59 @@ export namespace deploymentmanager_v2beta {
      */
     title?: string | null;
   }
+  /**
+   * Metadata for FirewallPolicyRule operations.
+   */
   export interface Schema$FirewallPolicyRuleOperationMetadata {
     /**
-     * The priority allocated for the firewall policy rule if query parameters specified minPriority/maxPriority.
+     * Output only. [Output Only] The priority allocated for the firewall policy rule if query parameters specified minPriority/maxPriority.
      */
     allocatedPriority?: number | null;
+  }
+  /**
+   * Metadata for GetHealth operations.
+   */
+  export interface Schema$GetHealthOperationMetadata {
+    /**
+     * Output only. The health information.
+     */
+    healthInfo?: Schema$GetHealthOperationMetadataHealthInfo;
+  }
+  /**
+   * Health information.
+   */
+  export interface Schema$GetHealthOperationMetadataHealthInfo {
+    /**
+     * Output only. The availability SLO status.
+     */
+    availabilitySloStatus?: string | null;
+    /**
+     * Output only. The health status.
+     */
+    healthStatus?: string | null;
+    /**
+     * Output only. The repair category.
+     */
+    repairCategory?: string | null;
+    /**
+     * Output only. The reason for unhealthy status.
+     */
+    unhealthyReason?: string | null;
+    /**
+     * Output only. The time when health info was updated.
+     */
+    updateTime?: string | null;
   }
   export interface Schema$GetVersionOperationMetadata {
     inlineSbomInfo?: Schema$GetVersionOperationMetadataSbomInfo;
   }
   export interface Schema$GetVersionOperationMetadataSbomInfo {
     /**
-     * SBOM versions currently applied to the resource. The key is the component name and the value is the version.
+     * A mapping of components to their currently-applied versions or other appropriate identifiers.
      */
     currentComponentVersions?: {[key: string]: string} | null;
     /**
-     * SBOM versions scheduled for the next maintenance. The key is the component name and the value is the version.
+     * A mapping of components to their target versions or other appropriate identifiers.
      */
     targetComponentVersions?: {[key: string]: string} | null;
   }
@@ -615,6 +652,15 @@ export namespace deploymentmanager_v2beta {
     } | null;
   }
   /**
+   * [Output Only] Operation metadata for instances.troubleshoot.
+   */
+  export interface Schema$InstancesTroubleshootOperationMetadata {
+    /**
+     * Output only. [Output Only] Serialized output of the troubleshooting diagnostic run.
+     */
+    troubleshootOutput?: string | null;
+  }
+  /**
    * Provides a localized error message that is safe to return to the user which can be attached to an RPC error.
    */
   export interface Schema$LocalizedMessage {
@@ -696,6 +742,10 @@ export namespace deploymentmanager_v2beta {
      */
     description?: string | null;
     /**
+     * [Output Only] Extended details about the operation's execution.
+     */
+    details?: Schema$OperationDetails;
+    /**
      * [Output Only] The time that this operation was completed. This value is in RFC3339 text format.
      */
     endTime?: string | null;
@@ -717,7 +767,14 @@ export namespace deploymentmanager_v2beta {
         message?: string;
       }>;
     } | null;
+    /**
+     * Output only. [Output Only] Metadata containing the allocated priority from the networkFirewallPolicies.addRule and regionNetworkFirewallPolicies.addRule methods if not explicitly provided by the user.
+     */
     firewallPolicyRuleOperationMetadata?: Schema$FirewallPolicyRuleOperationMetadata;
+    /**
+     * Output only. Metadata for GetHealth operations.
+     */
+    getHealthOperationMetadata?: Schema$GetHealthOperationMetadata;
     getVersionOperationMetadata?: Schema$GetVersionOperationMetadata;
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as `NOT FOUND`.
@@ -736,6 +793,10 @@ export namespace deploymentmanager_v2beta {
      */
     insertTime?: string | null;
     instancesBulkInsertOperationMetadata?: Schema$InstancesBulkInsertOperationMetadata;
+    /**
+     * Output only. [Output Only] Operation metadata for instances.troubleshoot.
+     */
+    instancesTroubleshootOperationMetadata?: Schema$InstancesTroubleshootOperationMetadata;
     /**
      * Output only. [Output Only] Type of the resource. Always `compute#operation` for Operation resources.
      */
@@ -812,6 +873,16 @@ export namespace deploymentmanager_v2beta {
      * [Output Only] The URL of the zone where the operation resides. Only applicable when performing per-zone operations.
      */
     zone?: string | null;
+  }
+  export interface Schema$OperationDetails {
+    /**
+     * Machine readable data from the message.
+     */
+    data?: {[key: string]: any} | null;
+    /**
+     * Human or AI readable details on execution of the operation.
+     */
+    message?: string | null;
   }
   /**
    * A response containing a partial list of operations and a page token used to build the next request if the request has been truncated.
@@ -1412,15 +1483,18 @@ export namespace deploymentmanager_v2beta {
      *   //   "clientOperationId": "my_clientOperationId",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
+     *   //   "details": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getHealthOperationMetadata": {},
      *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
      *   //   "insertTime": "my_insertTime",
      *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
@@ -1755,15 +1829,18 @@ export namespace deploymentmanager_v2beta {
      *   //   "clientOperationId": "my_clientOperationId",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
+     *   //   "details": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getHealthOperationMetadata": {},
      *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
      *   //   "insertTime": "my_insertTime",
      *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
@@ -2101,15 +2178,18 @@ export namespace deploymentmanager_v2beta {
      *   //   "clientOperationId": "my_clientOperationId",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
+     *   //   "details": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getHealthOperationMetadata": {},
      *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
      *   //   "insertTime": "my_insertTime",
      *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
@@ -2291,15 +2371,18 @@ export namespace deploymentmanager_v2beta {
      *   //   "clientOperationId": "my_clientOperationId",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
+     *   //   "details": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getHealthOperationMetadata": {},
      *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
      *   //   "insertTime": "my_insertTime",
      *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
@@ -2582,15 +2665,18 @@ export namespace deploymentmanager_v2beta {
      *   //   "clientOperationId": "my_clientOperationId",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
+     *   //   "details": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getHealthOperationMetadata": {},
      *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
      *   //   "insertTime": "my_insertTime",
      *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
@@ -2758,15 +2844,18 @@ export namespace deploymentmanager_v2beta {
      *   //   "clientOperationId": "my_clientOperationId",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
+     *   //   "details": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getHealthOperationMetadata": {},
      *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
      *   //   "insertTime": "my_insertTime",
      *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
@@ -3259,15 +3348,18 @@ export namespace deploymentmanager_v2beta {
      *   //   "clientOperationId": "my_clientOperationId",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
+     *   //   "details": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getHealthOperationMetadata": {},
      *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
      *   //   "insertTime": "my_insertTime",
      *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
@@ -3611,15 +3703,18 @@ export namespace deploymentmanager_v2beta {
      *   //   "clientOperationId": "my_clientOperationId",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
+     *   //   "details": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getHealthOperationMetadata": {},
      *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
      *   //   "insertTime": "my_insertTime",
      *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
@@ -3948,15 +4043,18 @@ export namespace deploymentmanager_v2beta {
      *   //   "clientOperationId": "my_clientOperationId",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
+     *   //   "details": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getHealthOperationMetadata": {},
      *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
      *   //   "insertTime": "my_insertTime",
      *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
@@ -4302,15 +4400,18 @@ export namespace deploymentmanager_v2beta {
      *   //   "clientOperationId": "my_clientOperationId",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
+     *   //   "details": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getHealthOperationMetadata": {},
      *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
      *   //   "insertTime": "my_insertTime",
      *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
@@ -5070,15 +5171,18 @@ export namespace deploymentmanager_v2beta {
      *   //   "clientOperationId": "my_clientOperationId",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
+     *   //   "details": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getHealthOperationMetadata": {},
      *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
      *   //   "insertTime": "my_insertTime",
      *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
@@ -5805,15 +5909,18 @@ export namespace deploymentmanager_v2beta {
      *   //   "clientOperationId": "my_clientOperationId",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
+     *   //   "details": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getHealthOperationMetadata": {},
      *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
      *   //   "insertTime": "my_insertTime",
      *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
@@ -6307,15 +6414,18 @@ export namespace deploymentmanager_v2beta {
      *   //   "clientOperationId": "my_clientOperationId",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
+     *   //   "details": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getHealthOperationMetadata": {},
      *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
      *   //   "insertTime": "my_insertTime",
      *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
@@ -6816,15 +6926,18 @@ export namespace deploymentmanager_v2beta {
      *   //   "clientOperationId": "my_clientOperationId",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
+     *   //   "details": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getHealthOperationMetadata": {},
      *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
      *   //   "insertTime": "my_insertTime",
      *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
@@ -7008,15 +7121,18 @@ export namespace deploymentmanager_v2beta {
      *   //   "clientOperationId": "my_clientOperationId",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
+     *   //   "details": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getHealthOperationMetadata": {},
      *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
      *   //   "insertTime": "my_insertTime",
      *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
