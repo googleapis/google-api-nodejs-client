@@ -1265,7 +1265,7 @@
       }
     }
   },
-  "revision": "20260826",
+  "revision": "20260917",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -2765,8 +2765,8 @@
             "Clears the application data of specified apps. This is supported on Android 9 and above. Note that an application can store data outside of its application data, for example in external storage or in a user dictionary. See also clear_apps_data_params.",
             "Puts the device into lost mode. Only supported on fully managed devices or organization-owned devices with a managed profile. See also start_lost_mode_params.",
             "Takes the device out of lost mode. Only supported on fully managed devices or organization-owned devices with a managed profile. See also stop_lost_mode_params.",
-            "Adds an eSIM profile to the device. This is supported on Android 15 and above. See also addEsimParams. To remove an eSIM profile, use the REMOVE_ESIM command. To determine what happens to the eSIM profile when a device is wiped, set wipeDataFlags in the policy. Note: To provision multiple eSIMs on a single device, it is recommended to introduce a delay of a few minutes between successive executions of the command.",
-            "Removes an eSIM profile from the device. This is supported on Android 15 and above. See also removeEsimParams.",
+            "Adds an eSIM profile to the device. This is supported on Android 15 and above. See also addEsimParams. To remove an eSIM profile, use the REMOVE_ESIM command. Note that REMOVE_ESIM is not supported on company-owned devices with a work profile running Android 16 QPR2 or Android 16 QPR3. To determine what happens to the eSIM profile when a device is wiped, set wipeDataFlags in the policy. Note: To provision multiple eSIMs on a single device, it is recommended to introduce a delay of a few minutes between successive executions of the command.",
+            "Removes an eSIM profile from the device. This is supported on Android 15 and above. This command is not supported on company-owned devices with a work profile running Android 16 QPR2 or Android 16 QPR3. See also removeEsimParams.",
             "Request information related to the device.",
             "Wipes the device, via a factory reset for a company owned device, or by deleting the work profile for a personally owned device with work profile. The wipe only occurs once the device acknowledges the command. The command can be cancelled before then."
           ],
@@ -6206,6 +6206,20 @@
             "Defaults to AUTOFILL_USER_CHOICE.",
             "The user can choose and use an autofill service.",
             "Autofill is disabled and the user is not allowed to change this setting. This is supported only on Android 8 and above."
+          ],
+          "type": "string"
+        },
+        "backupService": {
+          "description": "Optional. Controls whether the backup service is disabled. Supported only on fully managed devices running Android 8 and above.",
+          "enum": [
+            "BACKUP_SERVICE_UNSPECIFIED",
+            "BACKUP_SERVICE_DISABLED",
+            "BACKUP_SERVICE_USER_CHOICE"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to BACKUP_SERVICE_DISABLED.",
+            "Backup service is disabled. The user is not allowed to change this setting. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 8 on a fully managed device.",
+            "The user can enable or disable the backup service. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 8 on a fully managed device."
           ],
           "type": "string"
         },

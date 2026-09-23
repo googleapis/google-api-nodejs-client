@@ -2752,6 +2752,10 @@ export namespace androidmanagement_v1 {
      */
     autoTimeRequired?: boolean | null;
     /**
+     * Optional. Controls whether the backup service is disabled. Supported only on fully managed devices running Android 8 and above.
+     */
+    backupService?: string | null;
+    /**
      * This field has no effect.
      */
     blockApplicationsEnabled?: boolean | null;
@@ -7932,6 +7936,7 @@ export namespace androidmanagement_v1 {
      *   //   "autoDateAndTimeZone": "my_autoDateAndTimeZone",
      *   //   "autoTimeRequired": false,
      *   //   "autofillPolicy": "my_autofillPolicy",
+     *   //   "backupService": "my_backupService",
      *   //   "blockApplicationsEnabled": false,
      *   //   "bluetoothConfigDisabled": false,
      *   //   "bluetoothContactSharingDisabled": false,
@@ -8470,6 +8475,7 @@ export namespace androidmanagement_v1 {
      *       //   "autoDateAndTimeZone": "my_autoDateAndTimeZone",
      *       //   "autoTimeRequired": false,
      *       //   "autofillPolicy": "my_autofillPolicy",
+     *       //   "backupService": "my_backupService",
      *       //   "blockApplicationsEnabled": false,
      *       //   "bluetoothConfigDisabled": false,
      *       //   "bluetoothContactSharingDisabled": false,
@@ -8578,6 +8584,7 @@ export namespace androidmanagement_v1 {
      *   //   "autoDateAndTimeZone": "my_autoDateAndTimeZone",
      *   //   "autoTimeRequired": false,
      *   //   "autofillPolicy": "my_autofillPolicy",
+     *   //   "backupService": "my_backupService",
      *   //   "blockApplicationsEnabled": false,
      *   //   "bluetoothConfigDisabled": false,
      *   //   "bluetoothContactSharingDisabled": false,
