@@ -304,7 +304,7 @@
       }
     }
   },
-  "revision": "20260527",
+  "revision": "20260909",
   "rootUrl": "https://cloudlocationfinder.googleapis.com/",
   "schemas": {
     "CloudLocation": {
@@ -359,12 +359,37 @@
           "description": "Optional. The human-readable name of the cloud location. Example: us-east-2, us-east1.",
           "type": "string"
         },
+        "gcpAttributes": {
+          "$ref": "GcpAttributes",
+          "description": "Optional. GCP-specific attributes."
+        },
         "name": {
           "description": "Identifier. Name of the cloud location. Unique name of the cloud location including project and location using the form: `projects/{project_id}/locations/{location}/cloudLocations/{cloud_location}`",
           "type": "string"
         },
         "territoryCode": {
           "description": "Optional. The two-letter ISO 3166-1 alpha-2 code of the cloud location. Examples: US, JP, KR.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GcpAttributes": {
+      "description": "GCP-specific attributes.",
+      "id": "GcpAttributes",
+      "properties": {
+        "zoneType": {
+          "description": "Optional. The type of the cloud zone.",
+          "enum": [
+            "GCP_ZONE_TYPE_UNSPECIFIED",
+            "GENERAL_PURPOSE",
+            "AI_ZONE"
+          ],
+          "enumDescriptions": [
+            "Default value. Unspecified zone type.",
+            "General purpose zone type.",
+            "AI zone type."
+          ],
           "type": "string"
         }
       },

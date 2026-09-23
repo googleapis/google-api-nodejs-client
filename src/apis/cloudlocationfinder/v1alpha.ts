@@ -149,6 +149,10 @@ export namespace cloudlocationfinder_v1alpha {
      */
     displayName?: string | null;
     /**
+     * Optional. GCP-specific attributes.
+     */
+    gcpAttributes?: Schema$GcpAttributes;
+    /**
      * Identifier. Name of the cloud location. Unique name of the cloud location including project and location using the form: `projects/{project_id\}/locations/{location\}/cloudLocations/{cloud_location\}`
      */
     name?: string | null;
@@ -156,6 +160,15 @@ export namespace cloudlocationfinder_v1alpha {
      * Optional. The two-letter ISO 3166-1 alpha-2 code of the cloud location. Examples: US, JP, KR.
      */
     territoryCode?: string | null;
+  }
+  /**
+   * GCP-specific attributes.
+   */
+  export interface Schema$GcpAttributes {
+    /**
+     * Optional. The type of the cloud zone.
+     */
+    zoneType?: string | null;
   }
   /**
    * Message for response to listing cloud locations.
@@ -606,6 +619,7 @@ export namespace cloudlocationfinder_v1alpha {
      *   //   "cloudProvider": "my_cloudProvider",
      *   //   "containingCloudLocation": "my_containingCloudLocation",
      *   //   "displayName": "my_displayName",
+     *   //   "gcpAttributes": {},
      *   //   "name": "my_name",
      *   //   "territoryCode": "my_territoryCode"
      *   // }
