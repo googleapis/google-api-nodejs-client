@@ -243,6 +243,19 @@ export namespace pubsub_v1beta1a {
     messageIds?: string[] | null;
   }
   /**
+   * Telemetry about a `Publish` operation which may or may not be common across individual RPCs.
+   */
+  export interface Schema$PublishOperation {
+    /**
+     * Optional. If the publisher client is using publish hedging, provides the attempt count for the hedge (starting at 1). A value of 0 indicates that the request was not hedged.
+     */
+    hedgedAttemptCount?: number | null;
+    /**
+     * Optional. Time at which the `publish()` call was initiated in the client library, meaning across all RPC retry attempts, see [grpc retries](https://grpc.io/docs/guides/retry/). Provides a sense of the end-to-end publish duration from the client perspective, across retries.
+     */
+    publishStartTime?: string | null;
+  }
+  /**
    * Request for the Publish method.
    */
   export interface Schema$PublishRequest {
@@ -254,6 +267,15 @@ export namespace pubsub_v1beta1a {
      * The message in the request will be published on this topic.
      */
     topic?: string | null;
+  }
+  /**
+   * Client-side telemetry about Pub/Sub requests, useful for debugging purposes. If the client opts to provide this information, it will be passed as a serialized proto in the `x-goog-pubsub-client-telemetry` header.
+   */
+  export interface Schema$PubsubClientTelemetry {
+    /**
+     * Optional. Telemetry about a `Publish` operation.
+     */
+    publishOperation?: Schema$PublishOperation;
   }
   /**
    * An event indicating a received message or truncation event.
