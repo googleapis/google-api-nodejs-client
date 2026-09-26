@@ -2171,7 +2171,7 @@
     "permissions": {
       "methods": {
         "create": {
-          "description": "Creates a permission for a file or shared drive. For more information, see [Share files, folders, and drives](https://developers.google.com/workspace/drive/api/guides/manage-sharing). **Warning:** Concurrent permissions operations on the same file aren't supported; only the last update is applied.",
+          "description": "Creates a permission for a file or shared drive. For more information, see [Share files, folders, and drives](https://developers.google.com/workspace/drive/api/guides/manage-sharing). **Warning:** Concurrent permission modifications (such as update or delete) on the same file, folder, or shared drive aren't supported across any users or clients; only the last update is applied.",
           "flatPath": "files/{fileId}/permissions",
           "httpMethod": "POST",
           "id": "drive.permissions.create",
@@ -2254,7 +2254,7 @@
           ]
         },
         "delete": {
-          "description": "Deletes a permission. For more information, see [Share files, folders, and drives](https://developers.google.com/workspace/drive/api/guides/manage-sharing). **Warning:** Concurrent permissions operations on the same file aren't supported; only the last update is applied.",
+          "description": "Deletes a permission. For more information, see [Share files, folders, and drives](https://developers.google.com/workspace/drive/api/guides/manage-sharing). **Warning:** Concurrent permission modifications (such as update or delete) on the same file, folder, or shared drive aren't supported across any users or clients; only the last update is applied.",
           "flatPath": "files/{fileId}/permissions/{permissionId}",
           "httpMethod": "DELETE",
           "id": "drive.permissions.delete",
@@ -2432,7 +2432,7 @@
           ]
         },
         "update": {
-          "description": "Updates a permission with patch semantics. For more information, see [Share files, folders, and drives](https://developers.google.com/workspace/drive/api/guides/manage-sharing). **Warning:** Concurrent permissions operations on the same file aren't supported; only the last update is applied.",
+          "description": "Updates a permission with patch semantics. For more information, see [Share files, folders, and drives](https://developers.google.com/workspace/drive/api/guides/manage-sharing). **Warning:** Concurrent permission modifications (such as update or delete) on the same file, folder, or shared drive aren't supported across any users or clients; only the last update is applied.",
           "flatPath": "files/{fileId}/permissions/{permissionId}",
           "httpMethod": "PATCH",
           "id": "drive.permissions.update",
@@ -3044,7 +3044,7 @@
       }
     }
   },
-  "revision": "20260913",
+  "revision": "20260916",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
