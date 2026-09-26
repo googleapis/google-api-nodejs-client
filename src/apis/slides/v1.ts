@@ -125,6 +125,28 @@ export namespace slides_v1 {
   }
 
   /**
+   * Inserts a reply Post into a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$AddCommentReplyRequest {
+    /**
+     * The ID of the CommentThread to add the reply to.
+     */
+    commentId?: string | null;
+    /**
+     * The Post representing the reply.
+     */
+    post?: Schema$Post;
+  }
+  /**
+   * The result of creating a reply. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$AddCommentReplyResponse {
+    /**
+     * The newly-inserted reply Post.
+     */
+    post?: Schema$Post;
+  }
+  /**
    * AffineTransform uses a 3x3 matrix with an implied last row of [ 0 0 1 ] to transform source coordinates (x,y) into destination coordinates (x', y') according to: x' x = shear_y scale_y translate_y 1 [ 1 ] After transformation, x' = scale_x * x + shear_x * y + translate_x; y' = scale_y * y + shear_y * x + translate_y; This message is therefore composed of these six matrix elements.
    */
   export interface Schema$AffineTransform {
@@ -209,6 +231,10 @@ export namespace slides_v1 {
    */
   export interface Schema$BatchUpdatePresentationResponse {
     /**
+     * Whether comment updates were applied in the batch request. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentUpdateState?: string | null;
+    /**
      * The presentation the updates were applied to.
      */
     presentationId?: string | null;
@@ -267,6 +293,48 @@ export namespace slides_v1 {
      * The relative position of the color stop in the gradient band measured in percentage. The value should be in the interval [0.0, 1.0].
      */
     position?: number | null;
+  }
+  /**
+   * Contains a list of all locations in a `Page` that are anchored to a CommentThread via the same anchorId. Multiple separate anchors may refer to the same location, either within a `Page` or across different pages, [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$CommentAnchor {
+    /**
+     * Output only. The unique ID of the comment anchor.
+     */
+    anchorId?: string | null;
+    /**
+     * Output only. All object ID-based locations within a page that refer to the anchor ID.
+     */
+    objectAnchors?: Schema$ObjectAnchor[];
+  }
+  /**
+   * Represents a single comment thread inside a presentation. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$CommentThread {
+    /**
+     * The ID of the CommentAnchor in the presentation that this thread is tied to.
+     */
+    anchorId?: string | null;
+    /**
+     * The unique ID of the comment thread.
+     */
+    commentId?: string | null;
+    /**
+     * The first post in the thread.
+     */
+    headPost?: Schema$Post;
+    /**
+     * The quoted text from the page element when the comment was created, formatted as plain-text.
+     */
+    plainTextQuote?: string | null;
+    /**
+     * Replies to the head post.
+     */
+    replies?: Schema$Post[];
+    /**
+     * Whether the thread is open or resolved.
+     */
+    status?: string | null;
   }
   /**
    * Creates an image.
@@ -521,6 +589,28 @@ export namespace slides_v1 {
     topOffset?: number | null;
   }
   /**
+   * Deletes a reply Post from a CommentThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. - The reply post contains a comment action. - The reply post contains an assignee. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$DeleteCommentReplyRequest {
+    /**
+     * The ID of the CommentThread which the post belongs to.
+     */
+    commentId?: string | null;
+    /**
+     * The ID of the reply Post being deleted.
+     */
+    postId?: string | null;
+  }
+  /**
+   * Deletes a CommentThread. Returns a 400 bad request error if the requesting user is not the author of the headPost. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$DeleteCommentRequest {
+    /**
+     * The ID of the CommentThread that is being deleted.
+     */
+    commentId?: string | null;
+  }
+  /**
    * Deletes an object, either pages or page elements, from the presentation.
    */
   export interface Schema$DeleteObjectRequest {
@@ -712,6 +802,44 @@ export namespace slides_v1 {
      * The transparency effect of the image. The value should be in the interval [0.0, 1.0], where 0 means no effect and 1 means completely transparent. This property is read-only.
      */
     transparency?: number | null;
+  }
+  /**
+   * Inserts a CommentThread into the presentation. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$InsertCommentRequest {
+    /**
+     * Optional. The email address of the assignee of the comment. Leave empty for a non-assigned comment. May not exceed 2048 UTF-8 code units.
+     */
+    assigneeEmailAddress?: string | null;
+    /**
+     * The text of the comment, as plain text. This text content will be handled similarly to comments created in the Slides editor. It will have similar behaviors for formatting, notifications, etc. This field cannot be empty, and must not exceed 2048 UTF-8 code units.
+     */
+    content?: string | null;
+    /**
+     * The object ID of the Page or PageElement that is tied to this comment. If the specified object_id is a Group, the comment will be anchored to at most 100 of the group's non-group descendants.
+     */
+    objectId?: string | null;
+    /**
+     * Anchors a comment to a specific range of text within a Shape.
+     */
+    shapeTextAnchor?: Schema$ShapeTextAnchor;
+    /**
+     * Anchors a comment to a specific range of cells within a Table. Returns a 400 bad request error if no cells within the range contain text.
+     */
+    tableAnchor?: Schema$TableAnchor;
+    /**
+     * Anchors a comment to a specific range of text within a single cell in a Table.
+     */
+    tableCellTextAnchor?: Schema$TableCellTextAnchor;
+  }
+  /**
+   * The result of creating a comment. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$InsertCommentResponse {
+    /**
+     * The newly-inserted comment thread.
+     */
+    commentThread?: Schema$CommentThread;
   }
   /**
    * Inserts columns into a table. Other columns in the table will be resized to fit the new column.
@@ -974,6 +1102,23 @@ export namespace slides_v1 {
     speakerNotesObjectId?: string | null;
   }
   /**
+   * Represents comment anchor data tied to a Slides object, for example a `Page` or PageElement. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$ObjectAnchor {
+    /**
+     * Output only. The page or page element that the comment thread is anchored to.
+     */
+    objectId?: string | null;
+    /**
+     * Populated for Shapes that have comments anchored to ranges of text in the shape's text.
+     */
+    shapeTextAnchors?: Schema$ShapeTextAnchors;
+    /**
+     * Populated for Tables that have comments anchored to ranges of text in one or more of the table's cells.
+     */
+    tableCellAnchors?: Schema$TableCellAnchors;
+  }
+  /**
    * A themeable solid color value.
    */
   export interface Schema$OpaqueColor {
@@ -1029,6 +1174,18 @@ export namespace slides_v1 {
    * A page in a presentation.
    */
   export interface Schema$Page {
+    /**
+     * Output only. The comment anchors present on the page. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentAnchors?: Schema$CommentAnchor[];
+    /**
+     * Output only. The comment threads associated with the page. Only populated if the page was fetched via a GetPageRequest with a populated comments_view_mode. Otherwise, comments are returned in the Presentation via the GetPresentationRequest. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    comments?: Schema$CommentThread[];
+    /**
+     * Output only. The comments view mode applied to the page. Only populated if the page was fetched via a GetPageRequest with a populated comments_view_mode. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentsViewMode?: string | null;
     /**
      * Layout specific properties. Only set if page_type = LAYOUT.
      */
@@ -1246,9 +1403,87 @@ export namespace slides_v1 {
     type?: string | null;
   }
   /**
+   * Represents a single post in a comment thread. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$Post {
+    /**
+     * Optional. The email of the user who is being newly assigned to the thread as part of this post. Returns a 400 bad request error if: - The parent thread is a CommentThread whose headPost does not have an assignee. - commentAction is specified as `RESOLVE` or `REOPEN`. - `assignee_email` exceeds 2048 UTF-8 code units.
+     */
+    assigneeEmail?: string | null;
+    /**
+     * Output only. The user who created the post.
+     */
+    author?: Schema$PostAuthor;
+    /**
+     * Action taken as part of creating the post.
+     */
+    commentAction?: string | null;
+    /**
+     * The content of the post. Required to be non-empty if comment_action is not `RESOLVE` or `REOPEN`. This text content will be handled similarly to comments created in the Slides editor. It will have similar behaviors for formatting, notifications, etc. May not exceed 2048 UTF-8 code units.
+     */
+    content?: string | null;
+    /**
+     * Output only. The content of the post as HTML.
+     */
+    contentHtml?: string | null;
+    /**
+     * Output only. The time the post was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Whether the post is deleted. If `true`, content and author fields will be empty.
+     */
+    deleted?: boolean | null;
+    /**
+     * Output only. Whether the post is from a copied presentation. This field cannot be set directly by callers.
+     */
+    fromCopiedPresentation?: boolean | null;
+    /**
+     * Output only. Whether the post is from an imported presentation. This field cannot be set directly by callers.
+     */
+    fromImportedPresentation?: boolean | null;
+    /**
+     * Output only. The unique ID of the post.
+     */
+    postId?: string | null;
+    /**
+     * Output only. The time the post was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Represents a user who authored a comment post. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$PostAuthor {
+    /**
+     * Whether the user is anonymous.
+     */
+    anonymous?: boolean | null;
+    /**
+     * The display name of the user. May be absent if the author is anonymous.
+     */
+    displayName?: string | null;
+    /**
+     * Whether the user is the authenticated user making the request.
+     */
+    me?: boolean | null;
+    /**
+     * The resource name of the post author user, which can also be used to identify the user in the [Google People API](https://developers.google.com/people/api/rest/v1/people). Format: `users/{user\}`. Will not be populated if the anonymous field is `true` or if the post is from an imported presentation.
+     */
+    user?: string | null;
+  }
+  /**
    * A Google Slides presentation.
    */
   export interface Schema$Presentation {
+    /**
+     * Output only. The comment threads associated with the presentation. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    comments?: Schema$CommentThread[];
+    /**
+     * Output only. The comments view mode applied to the presentation. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentsViewMode?: string | null;
     /**
      * The layouts in the presentation. A layout is a template that determines how content is arranged and styled on the slides that inherit from that layout.
      */
@@ -1441,6 +1676,10 @@ export namespace slides_v1 {
    */
   export interface Schema$Request {
     /**
+     * Adds a reply to a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    addCommentReply?: Schema$AddCommentReplyRequest;
+    /**
      * Creates an image.
      */
     createImage?: Schema$CreateImageRequest;
@@ -1473,6 +1712,14 @@ export namespace slides_v1 {
      */
     createVideo?: Schema$CreateVideoRequest;
     /**
+     * Deletes a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    deleteComment?: Schema$DeleteCommentRequest;
+    /**
+     * Deletes a reply Post from a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    deleteCommentReply?: Schema$DeleteCommentReplyRequest;
+    /**
      * Deletes a page or page element from the presentation.
      */
     deleteObject?: Schema$DeleteObjectRequest;
@@ -1500,6 +1747,10 @@ export namespace slides_v1 {
      * Groups objects, such as page elements.
      */
     groupObjects?: Schema$GroupObjectsRequest;
+    /**
+     * Inserts a CommentThread into the presentation. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    insertComment?: Schema$InsertCommentRequest;
     /**
      * Inserts columns into a table.
      */
@@ -1548,6 +1799,10 @@ export namespace slides_v1 {
      * Unmerges cells in a Table.
      */
     unmergeTableCells?: Schema$UnmergeTableCellsRequest;
+    /**
+     * Updates an existing post (head post or reply) of a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    updateCommentPost?: Schema$UpdateCommentPostRequest;
     /**
      * Updates the properties of an Image.
      */
@@ -1631,6 +1886,10 @@ export namespace slides_v1 {
    */
   export interface Schema$Response {
     /**
+     * The result of creating a reply. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    addCommentReply?: Schema$AddCommentReplyResponse;
+    /**
      * The result of creating an image.
      */
     createImage?: Schema$CreateImageResponse;
@@ -1666,6 +1925,10 @@ export namespace slides_v1 {
      * The result of grouping objects.
      */
     groupObjects?: Schema$GroupObjectsResponse;
+    /**
+     * The result of creating a comment. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    insertComment?: Schema$InsertCommentResponse;
     /**
      * The result of replacing all shapes matching some criteria with an image.
      */
@@ -1795,6 +2058,28 @@ export namespace slides_v1 {
      * The background fill of the shape. If unset, the background fill is inherited from a parent placeholder if it exists. If the shape has no parent, then the default background fill depends on the shape type, matching the defaults for new shapes created in the Slides editor.
      */
     shapeBackgroundFill?: Schema$ShapeBackgroundFill;
+  }
+  /**
+   * An anchor to a specific range of text within a Shape's text. [Developer Preview](https://developers.google.com/workspace/preview). To insert comments in speaker notes, use the ShapeTextAnchor with the speaker notes object ID.
+   */
+  export interface Schema$ShapeTextAnchor {
+    /**
+     * The object ID of the page element containing the text.
+     */
+    objectId?: string | null;
+    /**
+     * The text range for the anchor.
+     */
+    textRange?: Schema$Range;
+  }
+  /**
+   * Represents text ranges within a shape covered by a comment anchor. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$ShapeTextAnchors {
+    /**
+     * A list of text ranges covered by the comment anchor.
+     */
+    ranges?: Schema$TextRange[];
   }
   /**
    * A PageElement kind representing a linked chart embedded from Google Sheets.
@@ -1955,6 +2240,19 @@ export namespace slides_v1 {
     verticalBorderRows?: Schema$TableBorderRow[];
   }
   /**
+   * An anchor to a specific range of cells within a Table. Used to anchor a comment to all of the text in each cell in a range within a table. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$TableAnchor {
+    /**
+     * The object ID of the table.
+     */
+    objectId?: string | null;
+    /**
+     * The range of cells in the table to apply the anchor to. If omitted, all cells in the table will be used for the anchor.
+     */
+    tableRange?: Schema$TableRange;
+  }
+  /**
    * The properties of each border cell.
    */
   export interface Schema$TableBorderCell {
@@ -2028,6 +2326,15 @@ export namespace slides_v1 {
     text?: Schema$TextContent;
   }
   /**
+   * Represents table cell ranges within a table covered by a comment anchor. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$TableCellAnchors {
+    /**
+     * A list of all table cells in a table that have text covered by the anchor in the table.
+     */
+    cellRanges?: Schema$TableCellTextRanges[];
+  }
+  /**
    * The table cell background fill.
    */
   export interface Schema$TableCellBackgroundFill {
@@ -2065,6 +2372,36 @@ export namespace slides_v1 {
      * The background fill of the table cell. The default fill matches the fill for newly created table cells in the Slides editor.
      */
     tableCellBackgroundFill?: Schema$TableCellBackgroundFill;
+  }
+  /**
+   * An anchor to a specific range of text within a TableCell's TextElement. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$TableCellTextAnchor {
+    /**
+     * The location of the cell in the table.
+     */
+    cellLocation?: Schema$TableCellLocation;
+    /**
+     * The object ID of the table containing the cell.
+     */
+    objectId?: string | null;
+    /**
+     * The text range for the anchor.
+     */
+    textRange?: Schema$Range;
+  }
+  /**
+   * Represents text ranges within a table cell covered by a comment anchor. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$TableCellTextRanges {
+    /**
+     * The location of the table cell.
+     */
+    cellLocation?: Schema$TableCellLocation;
+    /**
+     * A list of all text ranges covered by the anchor in this cell.
+     */
+    ranges?: Schema$TextRange[];
   }
   /**
    * Properties of each column in a table.
@@ -2155,6 +2492,19 @@ export namespace slides_v1 {
      * A TextElement representing a run of text where all of the characters in the run have the same TextStyle. The `start_index` and `end_index` of TextRuns will always be fully contained in the index range of a single `paragraph_marker` TextElement. In other words, a TextRun will never span multiple paragraphs.
      */
     textRun?: Schema$TextRun;
+  }
+  /**
+   * Specifies a contiguous range of text within a shape or table cell's text. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$TextRange {
+    /**
+     * The zero-based index of the end of the range. This field is an Int32Value in order to accommodate future use cases with open-ended ranges.
+     */
+    endIndex?: number | null;
+    /**
+     * The zero-based index of the beginning range. This field is an Int32Value in order to accommodate future use cases with open-ended ranges.
+     */
+    startIndex?: number | null;
   }
   /**
    * A TextElement kind that represents a run of text that all has the same styling.
@@ -2273,6 +2623,23 @@ export namespace slides_v1 {
      * The table range specifying which cells of the table to unmerge. All merged cells in this range will be unmerged, and cells that are already unmerged will not be affected. If the range has no merged cells, the request will do nothing. If there is text in any of the merged cells, the text will remain in the upper-left ("head") cell of the resulting block of unmerged cells.
      */
     tableRange?: Schema$TableRange;
+  }
+  /**
+   * Updates a Post in a CommentThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$UpdateCommentPostRequest {
+    /**
+     * The ID of the CommentThread which the post belongs to.
+     */
+    commentId?: string | null;
+    /**
+     * The new text of the comment, as plain text. This text content will be handled similarly to comments created in the Slides editor. It will have similar behaviors for formatting, notifications, etc. This field cannot be empty, and must not exceed 2048 UTF-8 code units.
+     */
+    content?: string | null;
+    /**
+     * The ID of the post being updated.
+     */
+    postId?: string | null;
   }
   /**
    * Update the properties of an Image.
@@ -2727,6 +3094,7 @@ export namespace slides_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "commentUpdateState": "my_commentUpdateState",
      *   //   "presentationId": "my_presentationId",
      *   //   "replies": [],
      *   //   "writeControl": {}
@@ -2872,6 +3240,8 @@ export namespace slides_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "comments": [],
+     *       //   "commentsViewMode": "my_commentsViewMode",
      *       //   "layouts": [],
      *       //   "locale": "my_locale",
      *       //   "masters": [],
@@ -2888,6 +3258,8 @@ export namespace slides_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "comments": [],
+     *   //   "commentsViewMode": "my_commentsViewMode",
      *   //   "layouts": [],
      *   //   "locale": "my_locale",
      *   //   "masters": [],
@@ -3029,6 +3401,8 @@ export namespace slides_v1 {
      *
      *   // Do the magic
      *   const res = await slides.presentations.get({
+     *     // The comments view mode to apply to the presentation. This allows viewing the presentation with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. [Developer Preview](https://developers.google.com/workspace/preview).
+     *     commentsViewMode: 'placeholder-value',
      *     // The ID of the presentation to retrieve.
      *     presentationId: '[^/]+',
      *   });
@@ -3036,6 +3410,8 @@ export namespace slides_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "comments": [],
+     *   //   "commentsViewMode": "my_commentsViewMode",
      *   //   "layouts": [],
      *   //   "locale": "my_locale",
      *   //   "masters": [],
@@ -3163,6 +3539,10 @@ export namespace slides_v1 {
   }
   export interface Params$Resource$Presentations$Get extends StandardParameters {
     /**
+     * The comments view mode to apply to the presentation. This allows viewing the presentation with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentsViewMode?: string;
+    /**
      * The ID of the presentation to retrieve.
      */
     presentationId?: string;
@@ -3211,6 +3591,8 @@ export namespace slides_v1 {
      *
      *   // Do the magic
      *   const res = await slides.presentations.pages.get({
+     *     // The comments view mode to apply to the page. This allows viewing the page with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. [Developer Preview](https://developers.google.com/workspace/preview).
+     *     commentsViewMode: 'placeholder-value',
      *     // The object ID of the page to retrieve.
      *     pageObjectId: 'placeholder-value',
      *     // The ID of the presentation to retrieve.
@@ -3220,6 +3602,9 @@ export namespace slides_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "commentAnchors": [],
+     *   //   "comments": [],
+     *   //   "commentsViewMode": "my_commentsViewMode",
      *   //   "layoutProperties": {},
      *   //   "masterProperties": {},
      *   //   "notesProperties": {},
@@ -3478,6 +3863,10 @@ export namespace slides_v1 {
   }
 
   export interface Params$Resource$Presentations$Pages$Get extends StandardParameters {
+    /**
+     * The comments view mode to apply to the page. This allows viewing the page with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentsViewMode?: string;
     /**
      * The object ID of the page to retrieve.
      */
