@@ -951,7 +951,7 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$FileSearchResult {
     /**
-     * File system path relative to the workspace root.
+     * File system path relative to the file tree root.
      */
     path?: string | null;
   }
