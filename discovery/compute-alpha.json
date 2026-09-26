@@ -58444,7 +58444,7 @@
       }
     }
   },
-  "revision": "20260910",
+  "revision": "20260916",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -118065,7 +118065,7 @@
           "type": "string"
         },
         "match": {
-          "description": "CEL expression that specifies the match condition that egress traffic\nfrom a VM is evaluated against. If it evaluates to true, the\ncorresponding `action` is enforced.\n\nThe following examples are valid match expressions for public NAT:\n\n`inIpRange(destination.ip, '1.1.0.0/16') || inIpRange(destination.ip,\n     '2.2.0.0/16')`\n\n`destination.ip == '1.1.0.1' || destination.ip == '8.8.8.8'`\n\nThe following example is a valid match expression for private NAT:\n\n`nexthop.hub ==\n'//networkconnectivity.googleapis.com/projects/my-project/locations/global/hubs/hub-1'`",
+          "description": "CEL expression that specifies the match condition that egress traffic\nfrom a VM is evaluated against. If it evaluates to true, the\ncorresponding `action` is enforced.\n\nThe following examples are valid match expressions for public NAT:\n\n`inIpRange(destination.ip, '1.1.0.0/16') || inIpRange(destination.ip,\n     '2.2.0.0/16')`\n\n`destination.ip == '1.1.0.1' || destination.ip == '8.8.8.8'`\n\nThe following examples are valid match expressions for private NAT:\n\n(NAT 44)\n`nexthop.hub ==\n'//networkconnectivity.googleapis.com/projects/my-project/locations/global/hubs/hub-1'`\n\n`nexthop.is_hybrid`\n\n(NAT 64)\n`isIPv6(source.ip)`",
           "type": "string"
         },
         "ruleNumber": {

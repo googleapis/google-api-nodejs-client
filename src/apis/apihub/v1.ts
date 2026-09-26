@@ -247,7 +247,7 @@ export namespace apihub_v1 {
      */
     displayName?: string | null;
     /**
-     * Required. The ID of the allowed value. * If provided, the same will be used. The service will throw an error if the specified id is already used by another allowed value in the same attribute resource. * If not provided, a system generated id derived from the display name will be used. In this case, the service will handle conflict resolution by adding a system generated suffix in case of duplicates. This value should be 4-63 characters, and valid characters are /a-z-/.
+     * Required. The ID of the allowed value. * If provided, the same will be used. The service will throw an error if the specified id is already used by another allowed value in the same attribute resource. * If not provided, a system generated id derived from the display name will be used. In this case, the service will handle conflict resolution by adding a system generated suffix in case of duplicates. This value should be 3-500 characters, and valid characters are /a-z[0-9]-_/.
      */
     id?: string | null;
     /**
@@ -321,6 +321,10 @@ export namespace apihub_v1 {
      * Optional. The selected version for an API resource. This can be used when special handling is needed on client side for particular version of the API. Format is `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}`
      */
     selectedVersion?: string | null;
+    /**
+     * Optional. The type of the service. This maps to the following system defined attribute: `projects/{project\}/locations/{location\}/attributes/system-service-type` attribute. The cardinality of this attribute is 1. All values should be from the list of allowed values defined for the attribute.
+     */
+    serviceType?: Schema$GoogleCloudApihubV1AttributeValues;
     /**
      * Output only. The list of sources and metadata from the sources of the API resource.
      */
@@ -1356,11 +1360,11 @@ export namespace apihub_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. Description of the external API. Max length is 2000 characters (Unicode Code Points).
+     * Optional. Description of the external API. Max length is 500000 characters (Unicode Code Points).
      */
     description?: string | null;
     /**
-     * Required. Display name of the external API. Max length is 63 characters (Unicode Code Points).
+     * Required. Display name of the external API. Max length is 500 characters (Unicode Code Points).
      */
     displayName?: string | null;
     /**
@@ -2207,11 +2211,11 @@ export namespace apihub_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. The plugin description. Max length is 2000 characters (Unicode code points).
+     * Optional. The plugin description. Max length is 500000 characters (Unicode code points).
      */
     description?: string | null;
     /**
-     * Required. The display name of the plugin. Max length is 50 characters (Unicode code points).
+     * Required. The display name of the plugin. Max length is 500 characters (Unicode code points).
      */
     displayName?: string | null;
     /**
@@ -2295,7 +2299,7 @@ export namespace apihub_v1 {
      */
     createTime?: string | null;
     /**
-     * Required. The display name for this plugin instance. Max length is 255 characters.
+     * Required. The display name for this plugin instance. Max length is 500 characters.
      */
     displayName?: string | null;
     /**
@@ -5513,6 +5517,7 @@ export namespace apihub_v1 {
      *       //   "name": "my_name",
      *       //   "owner": {},
      *       //   "selectedVersion": "my_selectedVersion",
+     *       //   "serviceType": {},
      *       //   "sourceMetadata": [],
      *       //   "targetUser": {},
      *       //   "team": {},
@@ -5540,6 +5545,7 @@ export namespace apihub_v1 {
      *   //   "name": "my_name",
      *   //   "owner": {},
      *   //   "selectedVersion": "my_selectedVersion",
+     *   //   "serviceType": {},
      *   //   "sourceMetadata": [],
      *   //   "targetUser": {},
      *   //   "team": {},
@@ -5834,6 +5840,7 @@ export namespace apihub_v1 {
      *   //   "name": "my_name",
      *   //   "owner": {},
      *   //   "selectedVersion": "my_selectedVersion",
+     *   //   "serviceType": {},
      *   //   "sourceMetadata": [],
      *   //   "targetUser": {},
      *   //   "team": {},
@@ -6148,6 +6155,7 @@ export namespace apihub_v1 {
      *       //   "name": "my_name",
      *       //   "owner": {},
      *       //   "selectedVersion": "my_selectedVersion",
+     *       //   "serviceType": {},
      *       //   "sourceMetadata": [],
      *       //   "targetUser": {},
      *       //   "team": {},
@@ -6175,6 +6183,7 @@ export namespace apihub_v1 {
      *   //   "name": "my_name",
      *   //   "owner": {},
      *   //   "selectedVersion": "my_selectedVersion",
+     *   //   "serviceType": {},
      *   //   "sourceMetadata": [],
      *   //   "targetUser": {},
      *   //   "team": {},
@@ -7442,7 +7451,7 @@ export namespace apihub_v1 {
      *
      *   // Do the magic
      *   const res = await apihub.projects.locations.apis.versions.operations.create({
-     *     // Optional. The ID to use for the operation resource, which will become the final component of the operation's resource name. This field is optional. * If provided, the same will be used. The service will throw an error if the specified id is already used by another operation resource in the API hub. * If not provided, a system generated id will be used. This value should be 4-500 characters, overall resource name which will be of format `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/operations/{operation\}`, its length is limited to 700 characters, and valid characters are /a-z[0-9]-_/.
+     *     // Optional. The ID to use for the operation resource, which will become the final component of the operation's resource name. This field is optional. * If provided, the same will be used. The service will throw an error if the specified id is already used by another operation resource in the API hub. * If not provided, a system generated id will be used. This value should be 4-500 characters, overall resource name which will be of format `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/operations/{operation\}`, its length is limited to 1000 characters, and valid characters are /a-z[0-9]-_/.
      *     apiOperationId: 'placeholder-value',
      *     // Required. The parent resource for the operation resource. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}`
      *     parent:
@@ -8198,7 +8207,7 @@ export namespace apihub_v1 {
 
   export interface Params$Resource$Projects$Locations$Apis$Versions$Operations$Create extends StandardParameters {
     /**
-     * Optional. The ID to use for the operation resource, which will become the final component of the operation's resource name. This field is optional. * If provided, the same will be used. The service will throw an error if the specified id is already used by another operation resource in the API hub. * If not provided, a system generated id will be used. This value should be 4-500 characters, overall resource name which will be of format `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/operations/{operation\}`, its length is limited to 700 characters, and valid characters are /a-z[0-9]-_/.
+     * Optional. The ID to use for the operation resource, which will become the final component of the operation's resource name. This field is optional. * If provided, the same will be used. The service will throw an error if the specified id is already used by another operation resource in the API hub. * If not provided, a system generated id will be used. This value should be 4-500 characters, overall resource name which will be of format `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/operations/{operation\}`, its length is limited to 1000 characters, and valid characters are /a-z[0-9]-_/.
      */
     apiOperationId?: string;
     /**

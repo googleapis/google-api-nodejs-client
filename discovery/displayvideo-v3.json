@@ -493,7 +493,7 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Optional. Allows filtering by ad group ad fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `adGroupId` * `displayName` * `entityStatus` * `adGroupAdId` Examples: * All ad group ads under an ad group: `adGroupId=\"1234\"` * All ad group ads under an ad group with an entityStatus of `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`: `(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR entityStatus=\"ENTITY_STATUS_PAUSED\") AND adGroupId=\"12345\"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.",
+                  "description": "Optional. Allows filtering by ad group ad fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `adGroupId` * `displayName` * `entityStatus` * `adGroupAdId` * `parentCreativeId` Examples: * All ad group ads under an ad group: `adGroupId=\"1234\"` * All ad group ads under an ad group with an entityStatus of `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`: `(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR entityStatus=\"ENTITY_STATUS_PAUSED\") AND adGroupId=\"12345\"` * All ad group ads under a parent creative: `parentCreativeId=\"12345\"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.",
                   "location": "query",
                   "type": "string"
                 },
@@ -8360,7 +8360,7 @@
       }
     }
   },
-  "revision": "20260915",
+  "revision": "20260924",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -8616,8 +8616,7 @@
         },
         "bumperAd": {
           "$ref": "BumperAd",
-          "description": "Output only. Details of a [non-skippable short video ad](//support.google.com/displayvideo/answer/6274216), equal to or less than 6 seconds, used for reach.",
-          "readOnly": true
+          "description": "Optional. Details of a [non-skippable short video ad](//support.google.com/displayvideo/answer/6274216), equal to or less than 6 seconds, used for reach."
         },
         "dcmTrackingInfo": {
           "$ref": "DcmTrackingInfo",
@@ -8625,19 +8624,19 @@
         },
         "demandGenCarouselAd": {
           "$ref": "DemandGenCarouselAd",
-          "description": "Details of a [Demand Gen carousel ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#CarouselAd)."
+          "description": "Optional. Details of a [Demand Gen carousel ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#CarouselAd)."
         },
         "demandGenImageAd": {
           "$ref": "DemandGenImageAd",
-          "description": "Details of a [Demand Gen image ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#ImageAd)."
+          "description": "Optional. Details of a [Demand Gen image ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#ImageAd)."
         },
         "demandGenProductAd": {
           "$ref": "DemandGenProductAd",
-          "description": "Details of a [Demand Gen product ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#Product-onlyAd)."
+          "description": "Optional. Details of a [Demand Gen product ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#Product-onlyAd)."
         },
         "demandGenVideoAd": {
           "$ref": "DemandGenVideoAd",
-          "description": "Details of a [Demand Gen video ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#VideoAd)."
+          "description": "Optional. Details of a [Demand Gen video ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#VideoAd)."
         },
         "displayName": {
           "description": "Required. The display name of the ad. Must be UTF-8 encoded with a maximum size of 255 bytes.",
@@ -8670,8 +8669,7 @@
         },
         "inStreamAd": {
           "$ref": "InStreamAd",
-          "description": "Output only. Details of an [in-stream ad skippable after 5 seconds](//support.google.com/displayvideo/answer/6274216), used for brand awareness or reach marketing objectives.",
-          "readOnly": true
+          "description": "Optional. Details of an [in-stream ad skippable after 5 seconds](//support.google.com/displayvideo/answer/6274216), used for brand awareness or reach marketing objectives."
         },
         "mastheadAd": {
           "$ref": "MastheadAd",
@@ -8685,8 +8683,7 @@
         },
         "nonSkippableAd": {
           "$ref": "NonSkippableAd",
-          "description": "Output only. Details of a [non-skippable short in-stream video ad](//support.google.com/displayvideo/answer/6274216), between 6 and 15 seconds, used for reach marketing objectives.",
-          "readOnly": true
+          "description": "Optional. Details of a [non-skippable short in-stream video ad](//support.google.com/displayvideo/answer/6274216), between 6 and 15 seconds, used for reach marketing objectives."
         },
         "videoDiscoverAd": {
           "$ref": "VideoDiscoveryAd",
@@ -8695,8 +8692,7 @@
         },
         "videoPerformanceAd": {
           "$ref": "VideoPerformanceAd",
-          "description": "Output only. Details of an [ad used in a video action campaign](//support.google.com/google-ads/answer/10147229) to drive actions to the business, service or product.",
-          "readOnly": true
+          "description": "Optional. Details of an [ad used in a video action campaign](//support.google.com/google-ads/answer/10147229) to drive actions to the business, service or product."
         }
       },
       "type": "object"
@@ -12031,7 +12027,7 @@
       "properties": {
         "commonInStreamAttribute": {
           "$ref": "CommonInStreamAttribute",
-          "description": "Common ad attributes."
+          "description": "Required. Common ad attributes."
         }
       },
       "type": "object"
@@ -12713,32 +12709,33 @@
       "id": "CommonInStreamAttribute",
       "properties": {
         "actionButtonLabel": {
-          "description": "The text on the call-to-action button.",
+          "description": "Optional. The text on the call-to-action button.",
           "type": "string"
         },
         "actionHeadline": {
-          "description": "The headline of the call-to-action banner.",
+          "description": "Optional. The headline of the call-to-action banner.",
           "type": "string"
         },
         "companionBanner": {
           "$ref": "ImageAsset",
-          "description": "The image which shows next to the video ad."
+          "description": "Optional. The image which shows next to the video ad."
         },
         "displayUrl": {
-          "description": "The webpage address that appears with the ad.",
+          "description": "Required. The webpage address that appears with the ad.",
           "type": "string"
         },
         "finalUrl": {
-          "description": "The URL address of the webpage that people reach after they click the ad.",
+          "description": "Required. The URL address of the webpage that people reach after they click the ad.",
           "type": "string"
         },
         "trackingUrl": {
-          "description": "The URL address loaded in the background for tracking purposes.",
+          "description": "Output only. The URL address loaded in the background for tracking purposes.",
+          "readOnly": true,
           "type": "string"
         },
         "video": {
           "$ref": "YoutubeVideoDetails",
-          "description": "The YouTube video of the ad."
+          "description": "Required. The YouTube video of the ad."
         }
       },
       "type": "object"
@@ -14975,9 +14972,8 @@
           "type": "string"
         },
         "youtubeAndPartnersBidMultiplier": {
-          "description": "Output only. Bid multiplier allows you to show your ads more or less frequently based on the device type. It will apply a multiplier on the original bid price. When this field is 0, it indicates this field is not applicable instead of multiplying 0 on the original bid price. For example, if the bid price without multiplier is $10.0 and the multiplier is 1.5 for Tablet, the resulting bid price for Tablet will be $15.0. Only applicable to YouTube and Partners line items.",
+          "description": "Optional. Bid multiplier allows you to show your ads more or less frequently based on the device type. It will apply a multiplier on the original bid price. When this field is 0, it indicates this field is not applicable instead of multiplying 0 on the original bid price. For example, if the bid price without multiplier is $10.0 and the multiplier is 1.5 for Tablet, the resulting bid price for Tablet will be $15.0. Only applicable to YouTube and Partners line items.",
           "format": "double",
-          "readOnly": true,
           "type": "number"
         }
       },
@@ -17642,13 +17638,13 @@
       "properties": {
         "commonInStreamAttribute": {
           "$ref": "CommonInStreamAttribute",
-          "description": "Common ad attributes."
+          "description": "Required. Common ad attributes."
         },
         "customParameters": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The custom parameters and accompanying values to add to the tracking URL.",
+          "description": "Optional. The custom parameters and accompanying values to add to the tracking URL.",
           "type": "object"
         }
       },
@@ -19630,13 +19626,13 @@
       "properties": {
         "commonInStreamAttribute": {
           "$ref": "CommonInStreamAttribute",
-          "description": "Common ad attributes."
+          "description": "Required. Common ad attributes."
         },
         "customParameters": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The custom parameters and accompanying values to add to the tracking URL.",
+          "description": "Optional. The custom parameters and accompanying values to add to the tracking URL.",
           "type": "object"
         }
       },
@@ -22237,14 +22233,14 @@
       "id": "VideoPerformanceAd",
       "properties": {
         "actionButtonLabels": {
-          "description": "The list of text assets shown on the call-to-action button.",
+          "description": "Optional. The list of text assets shown on the call-to-action button.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "companionBanners": {
-          "description": "The list of companion banners used by this ad.",
+          "description": "Optional. The list of companion banners used by this ad.",
           "items": {
             "$ref": "ImageAsset"
           },
@@ -22254,22 +22250,22 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The custom parameters and accompanying values to add to the tracking URL.",
+          "description": "Optional. The custom parameters and accompanying values to add to the tracking URL.",
           "type": "object"
         },
         "descriptions": {
-          "description": "The list of descriptions shown on the call-to-action banner.",
+          "description": "Optional. The list of descriptions shown on the call-to-action banner.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "displayUrlBreadcrumb1": {
-          "description": "The first piece after the domain in the display URL.",
+          "description": "Optional. The first piece after the domain in the display URL.",
           "type": "string"
         },
         "displayUrlBreadcrumb2": {
-          "description": "The second piece after the domain in the display URL.",
+          "description": "Optional. The second piece after the domain in the display URL.",
           "type": "string"
         },
         "domain": {
@@ -22278,29 +22274,30 @@
           "type": "string"
         },
         "finalUrl": {
-          "description": "The URL address of the webpage that people reach after they click the ad.",
+          "description": "Required. The URL address of the webpage that people reach after they click the ad.",
           "type": "string"
         },
         "headlines": {
-          "description": "The list of headlines shown on the call-to-action banner.",
+          "description": "Optional. The list of headlines shown on the call-to-action banner.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "longHeadlines": {
-          "description": "The list of long headlines shown on the call-to-action banner.",
+          "description": "Optional. The list of long headlines shown on the call-to-action banner.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "trackingUrl": {
-          "description": "The URL address loaded in the background for tracking purposes.",
+          "description": "Output only. The URL address loaded in the background for tracking purposes.",
+          "readOnly": true,
           "type": "string"
         },
         "videos": {
-          "description": "The list of YouTube video assets used by this ad.",
+          "description": "Required. The list of YouTube video assets used by this ad.",
           "items": {
             "$ref": "YoutubeVideoDetails"
           },
@@ -22651,7 +22648,7 @@
           "type": "string"
         },
         "unavailableReason": {
-          "description": "The reason why the video data is not available.",
+          "description": "Output only. The reason why the video data is not available.",
           "enum": [
             "VIDEO_UNAVAILABLE_REASON_UNSPECIFIED",
             "VIDEO_UNAVAILABLE_REASON_PRIVATE",
@@ -22662,6 +22659,7 @@
             "The video is private.",
             "The video is deleted."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "videoAssetId": {

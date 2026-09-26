@@ -325,6 +325,35 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "generateOnboardingSuggestions": {
+                  "description": "Generates personalized onboarding suggestions for the AI assistant zero state: classifies the requesting user (new / exploring / returning) from their assistant-session history in the app and returns suggestion chips (resume a session, continue work, or start something new) to render before any message is sent.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apps/{appsId}:generateOnboardingSuggestions",
+                  "httpMethod": "POST",
+                  "id": "ces.projects.locations.apps.generateOnboardingSuggestions",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The app whose zero state is being rendered. Format: `projects/{project}/locations/{location}/apps/{app}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:generateOnboardingSuggestions",
+                  "request": {
+                    "$ref": "GenerateOnboardingSuggestionsRequest"
+                  },
+                  "response": {
+                    "$ref": "GenerateOnboardingSuggestionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/ces",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets details of the specified app.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apps/{appsId}",
@@ -693,6 +722,68 @@
                       },
                       "response": {
                         "$ref": "Agent"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/ces",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "assistantSessions": {
+                  "methods": {
+                    "cancelAssistantTurn": {
+                      "description": "Cancels the assistant session's in-flight turn, if any: the explicit user stop for a turn running detached from any stream. A cancel landing on a task that does not host the turn preempts it through the session turn epoch instead, ending it within one lease renewal.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apps/{appsId}/assistantSessions/{assistantSessionsId}:cancelAssistantTurn",
+                      "httpMethod": "POST",
+                      "id": "ces.projects.locations.apps.assistantSessions.cancelAssistantTurn",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The assistant session whose in-flight turn to cancel.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+/assistantSessions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:cancelAssistantTurn",
+                      "request": {
+                        "$ref": "CancelAssistantTurnRequest"
+                      },
+                      "response": {
+                        "$ref": "CancelAssistantTurnResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/ces",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "streamChatAiAssistant": {
+                      "description": "Runs the Chat AI assistant agent for the specified assistant session in a streaming fashion.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apps/{appsId}/assistantSessions/{assistantSessionsId}:streamChatAiAssistant",
+                      "httpMethod": "POST",
+                      "id": "ces.projects.locations.apps.assistantSessions.streamChatAiAssistant",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The assistant session to be used to run the assistant. Format: `projects/{project}/locations/{location}/apps/{app}/assistantSessions/{assistant_session}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+/assistantSessions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:streamChatAiAssistant",
+                      "request": {
+                        "$ref": "StreamChatAiAssistantRequest"
+                      },
+                      "response": {
+                        "$ref": "StreamChatAiAssistantResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/ces",
@@ -2586,7 +2677,7 @@
       }
     }
   },
-  "revision": "20260914",
+  "revision": "20260924",
   "rootUrl": "https://ces.googleapis.com/",
   "schemas": {
     "Action": {
@@ -3381,6 +3472,197 @@
       },
       "type": "object"
     },
+    "ArtifactChunk": {
+      "description": "A streamed fragment of a document artifact (e.g. a markdown TDD) that the assistant is generating. Content deltas stream while the document is being written so clients can render a live preview; the FINALIZED chunk carries the GCS URI once the file has been persisted.",
+      "id": "ArtifactChunk",
+      "properties": {
+        "artifactId": {
+          "description": "Identifier of the artifact, stable across all chunks of one artifact within the stream.",
+          "type": "string"
+        },
+        "contentDelta": {
+          "description": "Incremental artifact content. Set on DELTA chunks.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The file name shown to the user, e.g. \"hotel_booking_tdd.md\". Set on STARTED (and repeated on FINALIZED).",
+          "type": "string"
+        },
+        "gcsUri": {
+          "description": "The GCS object the artifact was persisted to. Set on FINALIZED chunks.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "The IANA media type of the artifact content, e.g. \"text/markdown\".",
+          "type": "string"
+        },
+        "state": {
+          "description": "Lifecycle position of this chunk.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STARTED",
+            "DELTA",
+            "FINALIZED",
+            "FAILED",
+            "CLOSED"
+          ],
+          "enumDescriptions": [
+            "Unused default.",
+            "The assistant started generating the artifact.",
+            "A content increment; content_delta is set.",
+            "The artifact was persisted; gcs_uri is set.",
+            "Generation or persistence failed; the artifact was not saved.",
+            "The document finished streaming: its content was fully delivered via content_delta chunks. Persistence may still follow; a FINALIZED chunk with a gcs_uri is sent if and when the artifact is saved."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AssistantConfirmationRequest": {
+      "description": "A blocking question or confirmation the assistant needs answered before an agent action can proceed. The requesting agent is paused and resumes only when the answer arrives on a later StreamChatAiAssistantRequest.confirmation_response.",
+      "id": "AssistantConfirmationRequest",
+      "properties": {
+        "agentName": {
+          "description": "Display label of the agent that raised the confirmation (e.g. `\"Contract Architect\"`), for the card header.",
+          "type": "string"
+        },
+        "confirmationId": {
+          "description": "Identifier correlating this request with its response. Opaque to clients; must be echoed verbatim on the answering request.",
+          "type": "string"
+        },
+        "context": {
+          "description": "Context describing what is being confirmed (e.g. the action the agent wants to take, or the question it needs answered). Rendered as plain text, not Markdown.",
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Time after which this confirmation can no longer be answered. An expired card renders as inactive, and the server declines the confirmation on the next turn so the paused agent does not wait indefinitely.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "negativeLabel": {
+          "description": "Label for the declining action of a binary confirmation (e.g. \"Not yet\"). Unset when `questions` is populated.",
+          "type": "string"
+        },
+        "positiveLabel": {
+          "description": "Label for the approving action of a binary confirmation (e.g. \"Publish\"). Unset when `questions` is populated.",
+          "type": "string"
+        },
+        "questions": {
+          "description": "Multi-choice form of the confirmation. When populated, the card renders a selectable option list and the chosen option's submit_text (or free-form user text) is returned as AssistantConfirmationResponse.answer_text.",
+          "items": {
+            "$ref": "OptionQuestionsChunkQuestion"
+          },
+          "type": "array"
+        },
+        "tool": {
+          "description": "Name of the tool call the agent paused on (e.g. \"update_app\"), for the card header. Unset for pure questions.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AssistantConfirmationResponse": {
+      "description": "The user's answer to an AssistantConfirmationRequest, sent on the next SessionService.StreamChatAiAssistant call to resume the paused agent.",
+      "id": "AssistantConfirmationResponse",
+      "properties": {
+        "answerText": {
+          "description": "The chosen option's submit_text, or free-form user text. The paused action is cancelled and the text is handed to the agent to act on.",
+          "type": "string"
+        },
+        "confirmationId": {
+          "description": "The AssistantConfirmationRequest.confirmation_id being answered.",
+          "type": "string"
+        },
+        "confirmed": {
+          "description": "Binary answer: true approves the paused action, false declines it.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "AssistantSuggestion": {
+      "description": "A single personalized onboarding suggestion chip for the AI assistant's zero state.",
+      "id": "AssistantSuggestion",
+      "properties": {
+        "candidateType": {
+          "description": "Rule-table candidate type in kebab-case (e.g. \"resume-pending-review\"), for metrics.",
+          "type": "string"
+        },
+        "icon": {
+          "description": "Icon hint for the chip.",
+          "enum": [
+            "ICON_UNSPECIFIED",
+            "RESUME",
+            "BUILD",
+            "EVALUATE",
+            "DEPLOY",
+            "EXPLORE",
+            "FIX"
+          ],
+          "enumDescriptions": [
+            "Unspecified icon.",
+            "Resume a previous session.",
+            "Build something new.",
+            "Evaluation-related suggestion.",
+            "Deployment-related suggestion.",
+            "Exploration / discovery suggestion.",
+            "Fix an error or failing state."
+          ],
+          "type": "string"
+        },
+        "label": {
+          "description": "Chip label shown to the user (at most 60 characters).",
+          "type": "string"
+        },
+        "loadSession": {
+          "$ref": "AssistantSuggestionLoadSession",
+          "description": "Open an existing assistant session."
+        },
+        "rationale": {
+          "description": "Optional short explanation of why this suggestion is shown (tooltip / rationale popover).",
+          "type": "string"
+        },
+        "seedPrompt": {
+          "description": "Prefill the composer with this text; the user reviews and sends.",
+          "type": "string"
+        },
+        "sendMessage": {
+          "description": "Prefill the composer with this text and submit immediately. Only used for quick-reply chips inside an active onboarding conversation.",
+          "type": "string"
+        },
+        "source": {
+          "description": "How this suggestion was produced.",
+          "enum": [
+            "SOURCE_UNSPECIFIED",
+            "RULE",
+            "LLM_RANKED"
+          ],
+          "enumDescriptions": [
+            "Unspecified source.",
+            "Deterministic rule-table candidate with template phrasing.",
+            "Rule-table candidate re-ranked and phrased by the LLM phrasing step."
+          ],
+          "type": "string"
+        },
+        "suggestionId": {
+          "description": "Stable identifier for this suggestion, round-tripped by clients in interaction logging.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AssistantSuggestionLoadSession": {
+      "description": "Parameters for the load_session action.",
+      "id": "AssistantSuggestionLoadSession",
+      "properties": {
+        "assistantSessionId": {
+          "description": "Identifier of the assistant session to open (the final segment of the AssistantSession resource name).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AudioProcessingConfig": {
       "description": "Configuration for how the input and output audio should be processed and delivered.",
       "id": "AudioProcessingConfig",
@@ -3525,6 +3807,28 @@
         "pythonCode": {
           "description": "Required. The python code to execute for the callback.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CancelAssistantTurnRequest": {
+      "description": "Request to cancel an assistant session's in-flight turn.",
+      "id": "CancelAssistantTurnRequest",
+      "properties": {
+        "turnId": {
+          "description": "Optional. The turn to cancel; empty cancels whichever turn is running. A cancel naming a turn that is no longer the running one is a no-op.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CancelAssistantTurnResponse": {
+      "description": "Response for CancelAssistantTurn.",
+      "id": "CancelAssistantTurnResponse",
+      "properties": {
+        "cancelled": {
+          "description": "Whether an in-flight turn was found and asked to stop (directly on this task, or through an epoch preemption for a turn hosted elsewhere).",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4274,8 +4578,57 @@
           "description": "Optional. Natural language instructions for voice style, tone, pacing, or pronunciation.",
           "type": "string"
         },
+        "voiceInstructionMode": {
+          "description": "Optional. Instruction mode for the voice sample. If unspecified, defaults to NO_INSTRUCTION.",
+          "enum": [
+            "VOICE_INSTRUCTION_MODE_UNSPECIFIED",
+            "NO_INSTRUCTION",
+            "GENERATE_INSTRUCTION",
+            "CUSTOM_INSTRUCTION"
+          ],
+          "enumDescriptions": [
+            "Unspecified instruction mode. Defaults to NO_INSTRUCTION.",
+            "No voice instruction will be used.",
+            "Voice instruction will be automatically generated by AI from the audio sample.",
+            "Custom voice instruction provided by the user."
+          ],
+          "type": "string"
+        },
         "voiceSampleGcsUri": {
           "description": "Optional. The Cloud Storage URI to the audio sample for voice cloning. The audio sample should be a mono-channel, 24kHz WAV file.",
+          "type": "string"
+        },
+        "warnings": {
+          "description": "Output only. Warning messages encountered during voice clone processing (e.g. low audio level).",
+          "items": {
+            "$ref": "CustomVoiceSampleWarning"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CustomVoiceSampleWarning": {
+      "description": "A warning message encountered during voice sample processing.",
+      "id": "CustomVoiceSampleWarning",
+      "properties": {
+        "message": {
+          "description": "Output only. A human-readable description of the warning.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The type of the warning.",
+          "enum": [
+            "WARNING_TYPE_UNSPECIFIED",
+            "LOW_AUDIO_LEVEL"
+          ],
+          "enumDescriptions": [
+            "Unspecified warning type.",
+            "The audio level of the voice sample is too low (e.g. low RMS amplitude)."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -5442,6 +5795,52 @@
       },
       "type": "object"
     },
+    "GenerateOnboardingSuggestionsRequest": {
+      "description": "Request message for SessionService.GenerateOnboardingSuggestions.",
+      "id": "GenerateOnboardingSuggestionsRequest",
+      "properties": {
+        "maxSuggestions": {
+          "description": "Optional. Maximum number of suggestions to return. Defaults to 4 when unset.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateOnboardingSuggestionsResponse": {
+      "description": "Response message for SessionService.GenerateOnboardingSuggestions.",
+      "id": "GenerateOnboardingSuggestionsResponse",
+      "properties": {
+        "contextToken": {
+          "description": "Opaque token capturing the onboarding snapshot used to generate these suggestions. Clients echo it on the first StreamChatAiAssistantRequest so the server can reuse the snapshot.",
+          "type": "string"
+        },
+        "suggestions": {
+          "description": "Personalized suggestions, ranked most relevant first.",
+          "items": {
+            "$ref": "AssistantSuggestion"
+          },
+          "type": "array"
+        },
+        "userProfile": {
+          "description": "Classification of the requesting user's history.",
+          "enum": [
+            "USER_PROFILE_UNSPECIFIED",
+            "NEW",
+            "EXPLORING",
+            "RETURNING"
+          ],
+          "enumDescriptions": [
+            "Unspecified profile.",
+            "No assistant sessions containing messages.",
+            "One or two assistant sessions containing messages.",
+            "More than two assistant sessions containing messages."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleSearchSuggestions": {
       "description": "Search suggestions from Google Search Tool.",
       "id": "GoogleSearchSuggestions",
@@ -5822,7 +6221,8 @@
             "AUDIO_MISMATCH",
             "MISSING_TOOL_CALL",
             "CUSTOM",
-            "CHOPPY_AUDIO"
+            "CHOPPY_AUDIO",
+            "PROFANITY"
           ],
           "enumDescriptions": [
             "Type is unspecified.",
@@ -5832,7 +6232,8 @@
             "Audio mismatch issue type.",
             "Missing tool call issue type.",
             "Custom issue type.",
-            "Choppy audio issue type."
+            "Choppy audio issue type.",
+            "Agent profanity issue type."
           ],
           "type": "string"
         }
@@ -7546,6 +7947,24 @@
           "description": "Optional. If set, this temperature will be used for the LLM model. Temperature controls the randomness of the model's responses. Lower temperatures produce responses that are more predictable. Higher temperatures produce responses that are more creative.",
           "format": "double",
           "type": "number"
+        },
+        "thinkingLevel": {
+          "description": "Optional. The thinking level of the model.",
+          "enum": [
+            "THINKING_LEVEL_UNSPECIFIED",
+            "DEFAULT",
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Thinking level is unspecified.",
+            "Default thinking level.",
+            "Low thinking level.",
+            "Medium thinking level.",
+            "High thinking level."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -7693,6 +8112,45 @@
       },
       "type": "object"
     },
+    "OperationCompletedEvent": {
+      "description": "Event sent by the client or background worker to resume an assistant session after an asynchronous Long-Running Operation (LRO) completes.",
+      "id": "OperationCompletedEvent",
+      "properties": {
+        "deduplicationToken": {
+          "description": "Optional deduplication token (e.g. UUID) to prevent duplicate turn execution from concurrent browser tabs.",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "Status",
+          "description": "Optional canonical error status if the operation failed."
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional structured result metadata (e.g. pass_rate, total_examples, export_uri).",
+          "type": "object"
+        },
+        "operationName": {
+          "description": "The operation resource name (e.g. `operations/{op}`).",
+          "type": "string"
+        },
+        "operationType": {
+          "description": "The operation type or tool name (e.g. \"run_evaluation\", \"copy_app\", \"export_app\").",
+          "type": "string"
+        },
+        "status": {
+          "description": "Status of the operation run (e.g. \"SUCCEEDED\", \"FAILED\", \"CANCELLED\").",
+          "type": "string"
+        },
+        "targetResourceName": {
+          "description": "The primary resource targeted or produced by the operation (e.g. evaluation run ID, app ID, dataset ID).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "OperationMetadata": {
       "description": "Represents the metadata of the long-running operation.",
       "id": "OperationMetadata",
@@ -7717,6 +8175,57 @@
         "statusMessage": {
           "description": "Output only. Human-readable status of the operation, if any.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OptionQuestionsChunk": {
+      "description": "Structured clarification options the assistant asks the user to choose among, transduced server-side out of the model's turn (the option block is stripped from the streamed and persisted text). The console renders a keyboard-navigable option list docked above the composer.",
+      "id": "OptionQuestionsChunk",
+      "properties": {
+        "questions": {
+          "description": "The questions asked this turn. More than one entry drives the console's \"1 of N\" pager.",
+          "items": {
+            "$ref": "OptionQuestionsChunkQuestion"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "OptionQuestionsChunkOption": {
+      "description": "A single selectable option.",
+      "id": "OptionQuestionsChunkOption",
+      "properties": {
+        "details": {
+          "description": "Optional trade-off details shown as secondary text.",
+          "type": "string"
+        },
+        "submitText": {
+          "description": "Optional message text to send when the option is chosen; defaults to `title` when empty.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Short plain-text option title (no markdown, no numbering).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OptionQuestionsChunkQuestion": {
+      "description": "One question with its options.",
+      "id": "OptionQuestionsChunkQuestion",
+      "properties": {
+        "options": {
+          "description": "The selectable options, in presentation order.",
+          "items": {
+            "$ref": "OptionQuestionsChunkOption"
+          },
+          "type": "array"
+        },
+        "question": {
+          "description": "The question header text.",
           "type": "string"
         }
       },
@@ -8184,6 +8693,17 @@
       },
       "type": "object"
     },
+    "SessionCheckpoint": {
+      "description": "Session checkpoint containing inferred user intent for session title and UI.",
+      "id": "SessionCheckpoint",
+      "properties": {
+        "userIntent": {
+          "description": "Inferred user goal or topic for the session (e.g. \"Building E-Commerce Support Agent\").",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SessionConfig": {
       "description": "The configuration for the session.",
       "id": "SessionConfig",
@@ -8325,17 +8845,6 @@
           "$ref": "Citations",
           "description": "Citations that provide the source information for the agent's generated text."
         },
-        "context": {
-          "description": "Context messages for external supervision guardrails.",
-          "items": {
-            "additionalProperties": {
-              "description": "Properties of the object. Contains field @type with type URL.",
-              "type": "any"
-            },
-            "type": "object"
-          },
-          "type": "array"
-        },
         "diagnosticInfo": {
           "$ref": "SessionOutputDiagnosticInfo",
           "description": "Optional. Diagnostic information contains execution details during the processing of the input. Only populated in the last SessionOutput (with `turn_completed=true`) for each turn."
@@ -8476,15 +8985,147 @@
       },
       "type": "object"
     },
+    "StreamChatAiAssistantRequest": {
+      "description": "Request message for SessionService.StreamChatAiAssistant.",
+      "id": "StreamChatAiAssistantRequest",
+      "properties": {
+        "attachOnly": {
+          "description": "Optional. Optional flag to attach to an existing in-flight turn without submitting a new message.",
+          "type": "boolean"
+        },
+        "attachedGcsUris": {
+          "description": "Optional. Cloud Storage URIs for files uploaded by the user during this turn. Example: \"gs://cxas-transient-uploads/uuid/prd.pdf\"",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "clientCapabilities": {
+          "description": "Optional. Response features this client can render. The server only emits events that need a capability (e.g. `confirmation_request`) when the capability is declared, so older clients never receive events they would silently drop.",
+          "items": {
+            "enum": [
+              "CLIENT_CAPABILITY_UNSPECIFIED",
+              "CONFIRMATION_CARDS",
+              "CLIENT_MANAGED_LRO"
+            ],
+            "enumDescriptions": [
+              "Unspecified capability; ignored.",
+              "The client renders AssistantConfirmationRequest cards and answers them via `confirmation_response`.",
+              "The client manages long-running operations out-of-band by polling the operation and sending `operation_completed_event` to resume the turn. If not declared, the server manages LRO polling and completes the turn inline."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "confirmationResponse": {
+          "$ref": "AssistantConfirmationResponse",
+          "description": "Optional. The user's answer to a pending AssistantConfirmationRequest. When set, the server resumes the paused agent with this answer instead of (or in addition to) starting a new prompt turn."
+        },
+        "contextToken": {
+          "description": "Optional. Opaque onboarding context token returned by SessionService.GenerateOnboardingSuggestions. When set and still fresh, the server reuses the onboarding snapshot computed for the zero state instead of recomputing it for the first conversation turn.",
+          "type": "string"
+        },
+        "message": {
+          "description": "Optional. The message to send to the assistant agent. May be empty when `confirmation_response` is set (answering a pending confirmation without adding a new message); at least one of the two must be provided.",
+          "type": "string"
+        },
+        "operationCompletedEvent": {
+          "$ref": "OperationCompletedEvent",
+          "description": "Optional. Resumes an assistant session paused waiting for a client-managed long-running operation to complete."
+        },
+        "resumeFromSequenceNumber": {
+          "description": "Optional. Optional cursor to resume and replay events from an in-flight or completed turn.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StreamChatAiAssistantResponse": {
+      "description": "Response message for SessionService.StreamChatAiAssistant.",
+      "id": "StreamChatAiAssistantResponse",
+      "properties": {
+        "artifactChunk": {
+          "$ref": "ArtifactChunk",
+          "description": "Generated-document artifact event (live preview deltas + final GCS pointer)."
+        },
+        "confirmationRequest": {
+          "$ref": "AssistantConfirmationRequest",
+          "description": "A blocking confirmation the agent paused on. The agent resumes when the answer arrives on a later request's `confirmation_response`. Only sent to clients that declared the CONFIRMATION_CARDS capability on the request."
+        },
+        "eventId": {
+          "description": "Unique identifier for the event.",
+          "type": "string"
+        },
+        "eventTime": {
+          "description": "Timestamp when the event occurred.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "handoff": {
+          "$ref": "TurnHandoffEvent",
+          "description": "Tells the client to silently reconnect with resume_from_sequence_number: the task serving this stream is going away and the turn will continue elsewhere. Not an error; the stream completes normally after this event."
+        },
+        "optionQuestionsChunk": {
+          "$ref": "OptionQuestionsChunk",
+          "description": "Structured clarification options parsed out of the model turn. The console renders these as a selectable option list instead of raw text."
+        },
+        "resumeSnapshot": {
+          "$ref": "TurnResumeSnapshot",
+          "description": "A compacted replay of an in-flight turn, sent as the first event of every attach or resume before any live event. The client replaces any locally rendered state for this turn with the snapshot's contents."
+        },
+        "sequenceNumber": {
+          "description": "Optional. Monotonically increasing sequence number for this session turn.",
+          "format": "int64",
+          "type": "string"
+        },
+        "sessionCheckpoint": {
+          "$ref": "SessionCheckpoint",
+          "description": "Session checkpoint/compaction recap event containing user intent and rolling summary."
+        },
+        "status": {
+          "$ref": "Status",
+          "description": "Simple status update."
+        },
+        "textChunk": {
+          "description": "Text Token (for streaming Gemini responses word-by-word).",
+          "type": "string"
+        },
+        "thoughtChunk": {
+          "description": "Thought text chunk (agent's reasoning before generating response).",
+          "type": "string"
+        },
+        "toolCall": {
+          "$ref": "ToolCall",
+          "description": "Tool call execution event."
+        },
+        "toolResponse": {
+          "$ref": "ToolResponse",
+          "description": "Tool call response event."
+        },
+        "turnCompleted": {
+          "$ref": "TurnCompletedEvent",
+          "description": "The turn has ended. Sent as the last event of every turn, on the original stream and on every attached or resumed stream, so clients can end the turn on an explicit signal instead of inferring it from stream closure."
+        },
+        "turnInProgress": {
+          "description": "Optional. Indicates whether the turn is still actively running in the background.",
+          "type": "boolean"
+        },
+        "turnMetadata": {
+          "$ref": "TurnMetadata",
+          "description": "Optional. Turn-level metadata and intent categorization."
+        },
+        "uiEvent": {
+          "$ref": "UiEvent",
+          "description": "Optional. UI event payload."
+        }
+      },
+      "type": "object"
+    },
     "SynthesizeSpeechConfig": {
       "description": "Configuration for how the agent response should be synthesized.",
       "id": "SynthesizeSpeechConfig",
       "properties": {
-        "consentAudioGcsUri": {
-          "deprecated": true,
-          "description": "Optional. Deprecated: Use `custom_voice_samples` in AudioProcessingConfig instead. The Cloud Storage URI to the consent audio for voice cloning.",
-          "type": "string"
-        },
         "instruction": {
           "description": "Optional. The instruction used to synthesize speech when using a generative model.",
           "type": "string"
@@ -8500,11 +9141,6 @@
         },
         "voice": {
           "description": "Optional. The name of the voice. If not set, the service will choose a voice based on the other parameters such as language_code. For the list of available voices, please refer to [Supported voices and languages](https://cloud.google.com/text-to-speech/docs/voices) from Cloud Text-to-Speech.",
-          "type": "string"
-        },
-        "voiceSampleGcsUri": {
-          "deprecated": true,
-          "description": "Optional. Deprecated: Use `custom_voice_samples` in AudioProcessingConfig instead. The Cloud Storage URI to the audio sample for voice cloning. The audio sample should be a mono-channel, 24kHz WAV file. Note: Please make sure the CES service agent `service-@gcp-sa-ces.iam.gserviceaccount.com` has `storage.objects.get` permission to the Cloud Storage object.",
           "type": "string"
         }
       },
@@ -8644,6 +9280,11 @@
         "pythonFunction": {
           "$ref": "PythonFunction",
           "description": "Optional. The python function tool."
+        },
+        "readOnly": {
+          "description": "Output only. Indicates whether the tool is read-only. If true, the tool cannot be modified by the user.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "remoteAgentTool": {
           "$ref": "RemoteAgentTool",
@@ -9011,6 +9652,137 @@
       "properties": {
         "agent": {
           "description": "Required. The name of the agent to transfer the conversation to. The agent must be in the same app as the current agent. Format: `projects/{project}/locations/{location}/apps/{app}/agents/{agent}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TurnCompletedEvent": {
+      "description": "Terminal event of a turn (see StreamChatAiAssistantResponse.turn_completed).",
+      "id": "TurnCompletedEvent",
+      "properties": {
+        "finalSequenceNumber": {
+          "description": "Sequence number of the last event the turn produced. A client whose cursor is lower missed content and should reload the session to see it.",
+          "format": "int64",
+          "type": "string"
+        },
+        "reason": {
+          "description": "Why the turn ended.",
+          "enum": [
+            "REASON_UNSPECIFIED",
+            "COMPLETED",
+            "ABANDONED",
+            "RESUME_UNAVAILABLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "The turn ran to completion; the session holds its committed output.",
+            "No task was driving the turn any more; it was sealed to a committed partial and cannot be continued.",
+            "This server does not serve attach or resume for the session, so nothing was tailed; the client should reload the session instead."
+          ],
+          "type": "string"
+        },
+        "turnId": {
+          "description": "Identifier of the turn that ended; matches TurnResumeSnapshot.turn_id and ActiveTurnInfo.turn_id.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TurnHandoffEvent": {
+      "description": "Emitted before this task stops serving the stream mid-turn (e.g. a server restart). The turn's state is persisted; a reconnect carrying resume_from_sequence_number continues it on another task.",
+      "id": "TurnHandoffEvent",
+      "properties": {
+        "reason": {
+          "description": "Why the stream is handing off.",
+          "enum": [
+            "REASON_UNSPECIFIED",
+            "SERVER_RESTART"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "The serving task is shutting down (release push or rescheduling)."
+          ],
+          "type": "string"
+        },
+        "turnId": {
+          "description": "Identifies the turn to resume.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TurnMetadata": {
+      "description": "Turn-level metadata and intent categorization.",
+      "id": "TurnMetadata",
+      "properties": {
+        "contractDraftComplete": {
+          "description": "Set on the terminal event of a contract draft whose every placeholder is resolved (contract_progress is 100%), whether or not the draft was published. Clients complete and dismiss the contract progress display on it; publication is reported separately by contract_finalized.",
+          "type": "boolean"
+        },
+        "contractFinalized": {
+          "description": "Set on the final artifact event of a turn whose contract draft was published (a revision was activated). Terminal for the clarification flow of this draft: contract_progress is authoritative and complete.",
+          "type": "boolean"
+        },
+        "contractRelated": {
+          "description": "Indicates whether this assistant turn was contract-related (e.g. contract drafting, alignment, extraction, or revision).",
+          "type": "boolean"
+        },
+        "contractStreamingPhase": {
+          "description": "Set only on in-flight progress estimates emitted while a contract artifact fence is streaming, and on the revision-turn-start event. Unset on authoritative payloads.",
+          "enum": [
+            "CONTRACT_STREAMING_PHASE_UNSPECIFIED",
+            "DRAFTING",
+            "REVISING"
+          ],
+          "enumDescriptions": [
+            "The payload is authoritative (computed from a complete contract document, a persisted snapshot, or the pre-draft state). Clients must replace any previously received progress with it.",
+            "An initial contract draft is streaming. contract_progress is an in-flight estimate: non-decreasing within one artifact fence, capped below the authoritative range, with pillar_breakdowns carrying total_item_count == 0 to mark estimated pillar states.",
+            "A revision of an existing contract is streaming (for example after an annotation submission). Same estimate semantics as DRAFTING."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TurnResumeSnapshot": {
+      "description": "A compacted replay of an in-flight turn: everything needed to render the turn's visible output so far, plus the position live events continue from.",
+      "id": "TurnResumeSnapshot",
+      "properties": {
+        "events": {
+          "description": "Compacted events reconstructing the turn's visible output, in render order, using the same event shapes as live streaming.",
+          "items": {
+            "$ref": "StreamChatAiAssistantResponse"
+          },
+          "type": "array"
+        },
+        "orphanDeadlineTime": {
+          "description": "When the turn will be wound down if no client remains attached.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "resolvedSequenceNumber": {
+          "description": "The position this snapshot represents. Live events follow with sequence_number strictly greater than this. When lower than the resume_from_sequence_number the client requested, flushed progress lags what the client already rendered: the client must discard its rendered content of this turn beyond this position before applying the snapshot.",
+          "format": "int64",
+          "type": "string"
+        },
+        "turnId": {
+          "description": "Identifies the turn being attached to.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UiEvent": {
+      "description": "Represents a UI event payload.",
+      "id": "UiEvent",
+      "properties": {
+        "jsonPayload": {
+          "description": "The JSON payload representing the A2UI surface.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "The media type (MIME type) indicating the format of the UI event payload (e.g., \"application/json+a2ui\").",
           "type": "string"
         }
       },

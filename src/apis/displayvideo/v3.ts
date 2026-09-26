@@ -255,7 +255,7 @@ export namespace displayvideo_v3 {
      */
     audioAd?: Schema$AudioAd;
     /**
-     * Output only. Details of a [non-skippable short video ad](//support.google.com/displayvideo/answer/6274216), equal to or less than 6 seconds, used for reach.
+     * Optional. Details of a [non-skippable short video ad](//support.google.com/displayvideo/answer/6274216), equal to or less than 6 seconds, used for reach.
      */
     bumperAd?: Schema$BumperAd;
     /**
@@ -263,19 +263,19 @@ export namespace displayvideo_v3 {
      */
     dcmTrackingInfo?: Schema$DcmTrackingInfo;
     /**
-     * Details of a [Demand Gen carousel ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#CarouselAd).
+     * Optional. Details of a [Demand Gen carousel ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#CarouselAd).
      */
     demandGenCarouselAd?: Schema$DemandGenCarouselAd;
     /**
-     * Details of a [Demand Gen image ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#ImageAd).
+     * Optional. Details of a [Demand Gen image ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#ImageAd).
      */
     demandGenImageAd?: Schema$DemandGenImageAd;
     /**
-     * Details of a [Demand Gen product ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#Product-onlyAd).
+     * Optional. Details of a [Demand Gen product ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#Product-onlyAd).
      */
     demandGenProductAd?: Schema$DemandGenProductAd;
     /**
-     * Details of a [Demand Gen video ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#VideoAd).
+     * Optional. Details of a [Demand Gen video ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#VideoAd).
      */
     demandGenVideoAd?: Schema$DemandGenVideoAd;
     /**
@@ -291,7 +291,7 @@ export namespace displayvideo_v3 {
      */
     entityStatus?: string | null;
     /**
-     * Output only. Details of an [in-stream ad skippable after 5 seconds](//support.google.com/displayvideo/answer/6274216), used for brand awareness or reach marketing objectives.
+     * Optional. Details of an [in-stream ad skippable after 5 seconds](//support.google.com/displayvideo/answer/6274216), used for brand awareness or reach marketing objectives.
      */
     inStreamAd?: Schema$InStreamAd;
     /**
@@ -303,7 +303,7 @@ export namespace displayvideo_v3 {
      */
     name?: string | null;
     /**
-     * Output only. Details of a [non-skippable short in-stream video ad](//support.google.com/displayvideo/answer/6274216), between 6 and 15 seconds, used for reach marketing objectives.
+     * Optional. Details of a [non-skippable short in-stream video ad](//support.google.com/displayvideo/answer/6274216), between 6 and 15 seconds, used for reach marketing objectives.
      */
     nonSkippableAd?: Schema$NonSkippableAd;
     /**
@@ -311,7 +311,7 @@ export namespace displayvideo_v3 {
      */
     videoDiscoverAd?: Schema$VideoDiscoveryAd;
     /**
-     * Output only. Details of an [ad used in a video action campaign](//support.google.com/google-ads/answer/10147229) to drive actions to the business, service or product.
+     * Optional. Details of an [ad used in a video action campaign](//support.google.com/google-ads/answer/10147229) to drive actions to the business, service or product.
      */
     videoPerformanceAd?: Schema$VideoPerformanceAd;
   }
@@ -2003,7 +2003,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$BumperAd {
     /**
-     * Common ad attributes.
+     * Required. Common ad attributes.
      */
     commonInStreamAttribute?: Schema$CommonInStreamAttribute;
   }
@@ -2395,31 +2395,31 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$CommonInStreamAttribute {
     /**
-     * The text on the call-to-action button.
+     * Optional. The text on the call-to-action button.
      */
     actionButtonLabel?: string | null;
     /**
-     * The headline of the call-to-action banner.
+     * Optional. The headline of the call-to-action banner.
      */
     actionHeadline?: string | null;
     /**
-     * The image which shows next to the video ad.
+     * Optional. The image which shows next to the video ad.
      */
     companionBanner?: Schema$ImageAsset;
     /**
-     * The webpage address that appears with the ad.
+     * Required. The webpage address that appears with the ad.
      */
     displayUrl?: string | null;
     /**
-     * The URL address of the webpage that people reach after they click the ad.
+     * Required. The URL address of the webpage that people reach after they click the ad.
      */
     finalUrl?: string | null;
     /**
-     * The URL address loaded in the background for tracking purposes.
+     * Output only. The URL address loaded in the background for tracking purposes.
      */
     trackingUrl?: string | null;
     /**
-     * The YouTube video of the ad.
+     * Required. The YouTube video of the ad.
      */
     video?: Schema$YoutubeVideoDetails;
   }
@@ -3456,7 +3456,7 @@ export namespace displayvideo_v3 {
      */
     deviceType?: string | null;
     /**
-     * Output only. Bid multiplier allows you to show your ads more or less frequently based on the device type. It will apply a multiplier on the original bid price. When this field is 0, it indicates this field is not applicable instead of multiplying 0 on the original bid price. For example, if the bid price without multiplier is $10.0 and the multiplier is 1.5 for Tablet, the resulting bid price for Tablet will be $15.0. Only applicable to YouTube and Partners line items.
+     * Optional. Bid multiplier allows you to show your ads more or less frequently based on the device type. It will apply a multiplier on the original bid price. When this field is 0, it indicates this field is not applicable instead of multiplying 0 on the original bid price. For example, if the bid price without multiplier is $10.0 and the multiplier is 1.5 for Tablet, the resulting bid price for Tablet will be $15.0. Only applicable to YouTube and Partners line items.
      */
     youtubeAndPartnersBidMultiplier?: number | null;
   }
@@ -4274,11 +4274,11 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$InStreamAd {
     /**
-     * Common ad attributes.
+     * Required. Common ad attributes.
      */
     commonInStreamAttribute?: Schema$CommonInStreamAttribute;
     /**
-     * The custom parameters and accompanying values to add to the tracking URL.
+     * Optional. The custom parameters and accompanying values to add to the tracking URL.
      */
     customParameters?: {[key: string]: string} | null;
   }
@@ -5275,11 +5275,11 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$NonSkippableAd {
     /**
-     * Common ad attributes.
+     * Required. Common ad attributes.
      */
     commonInStreamAttribute?: Schema$CommonInStreamAttribute;
     /**
-     * The custom parameters and accompanying values to add to the tracking URL.
+     * Optional. The custom parameters and accompanying values to add to the tracking URL.
      */
     customParameters?: {[key: string]: string} | null;
   }
@@ -6583,27 +6583,27 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$VideoPerformanceAd {
     /**
-     * The list of text assets shown on the call-to-action button.
+     * Optional. The list of text assets shown on the call-to-action button.
      */
     actionButtonLabels?: string[] | null;
     /**
-     * The list of companion banners used by this ad.
+     * Optional. The list of companion banners used by this ad.
      */
     companionBanners?: Schema$ImageAsset[];
     /**
-     * The custom parameters and accompanying values to add to the tracking URL.
+     * Optional. The custom parameters and accompanying values to add to the tracking URL.
      */
     customParameters?: {[key: string]: string} | null;
     /**
-     * The list of descriptions shown on the call-to-action banner.
+     * Optional. The list of descriptions shown on the call-to-action banner.
      */
     descriptions?: string[] | null;
     /**
-     * The first piece after the domain in the display URL.
+     * Optional. The first piece after the domain in the display URL.
      */
     displayUrlBreadcrumb1?: string | null;
     /**
-     * The second piece after the domain in the display URL.
+     * Optional. The second piece after the domain in the display URL.
      */
     displayUrlBreadcrumb2?: string | null;
     /**
@@ -6611,23 +6611,23 @@ export namespace displayvideo_v3 {
      */
     domain?: string | null;
     /**
-     * The URL address of the webpage that people reach after they click the ad.
+     * Required. The URL address of the webpage that people reach after they click the ad.
      */
     finalUrl?: string | null;
     /**
-     * The list of headlines shown on the call-to-action banner.
+     * Optional. The list of headlines shown on the call-to-action banner.
      */
     headlines?: string[] | null;
     /**
-     * The list of long headlines shown on the call-to-action banner.
+     * Optional. The list of long headlines shown on the call-to-action banner.
      */
     longHeadlines?: string[] | null;
     /**
-     * The URL address loaded in the background for tracking purposes.
+     * Output only. The URL address loaded in the background for tracking purposes.
      */
     trackingUrl?: string | null;
     /**
-     * The list of YouTube video assets used by this ad.
+     * Required. The list of YouTube video assets used by this ad.
      */
     videos?: Schema$YoutubeVideoDetails[];
   }
@@ -6802,7 +6802,7 @@ export namespace displayvideo_v3 {
      */
     id?: string | null;
     /**
-     * The reason why the video data is not available.
+     * Output only. The reason why the video data is not available.
      */
     unavailableReason?: string | null;
     /**
@@ -8698,7 +8698,7 @@ export namespace displayvideo_v3 {
      *   const res = await displayvideo.advertisers.adGroupAds.list({
      *     // Required. The ID of the advertiser the ads belong to.
      *     advertiserId: '[^/]+',
-     *     // Optional. Allows filtering by ad group ad fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `adGroupId` * `displayName` * `entityStatus` * `adGroupAdId` Examples: * All ad group ads under an ad group: `adGroupId="1234"` * All ad group ads under an ad group with an entityStatus of `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND adGroupId="12345"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     // Optional. Allows filtering by ad group ad fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `adGroupId` * `displayName` * `entityStatus` * `adGroupAdId` * `parentCreativeId` Examples: * All ad group ads under an ad group: `adGroupId="1234"` * All ad group ads under an ad group with an entityStatus of `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND adGroupId="12345"` * All ad group ads under a parent creative: `parentCreativeId="12345"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      *     filter: 'placeholder-value',
      *     // Optional. Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -9037,7 +9037,7 @@ export namespace displayvideo_v3 {
      */
     advertiserId?: string;
     /**
-     * Optional. Allows filtering by ad group ad fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `adGroupId` * `displayName` * `entityStatus` * `adGroupAdId` Examples: * All ad group ads under an ad group: `adGroupId="1234"` * All ad group ads under an ad group with an entityStatus of `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND adGroupId="12345"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     * Optional. Allows filtering by ad group ad fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `adGroupId` * `displayName` * `entityStatus` * `adGroupAdId` * `parentCreativeId` Examples: * All ad group ads under an ad group: `adGroupId="1234"` * All ad group ads under an ad group with an entityStatus of `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND adGroupId="12345"` * All ad group ads under a parent creative: `parentCreativeId="12345"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**

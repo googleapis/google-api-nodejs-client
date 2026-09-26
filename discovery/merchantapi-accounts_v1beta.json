@@ -2388,7 +2388,7 @@
       }
     }
   },
-  "revision": "20260901",
+  "revision": "20260924",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "About": {
@@ -2468,6 +2468,11 @@
         "adultContent": {
           "description": "Optional. Whether this account contains adult content.",
           "type": "boolean"
+        },
+        "homePageUri": {
+          "description": "Output only. URI (typically a URL) of the store's homepage.",
+          "readOnly": true,
+          "type": "string"
         },
         "languageCode": {
           "description": "Required. The account's [BCP-47 language code](https://tools.ietf.org/html/bcp47), such as `en-US` or `sr-Latn`.",

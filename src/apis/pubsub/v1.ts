@@ -798,6 +798,19 @@ export namespace pubsub_v1 {
     version?: number | null;
   }
   /**
+   * Telemetry about a `Publish` operation which may or may not be common across individual RPCs.
+   */
+  export interface Schema$PublishOperation {
+    /**
+     * Optional. If the publisher client is using publish hedging, provides the attempt count for the hedge (starting at 1). A value of 0 indicates that the request was not hedged.
+     */
+    hedgedAttemptCount?: number | null;
+    /**
+     * Optional. Time at which the `publish()` call was initiated in the client library, meaning across all RPC retry attempts, see [grpc retries](https://grpc.io/docs/guides/retry/). Provides a sense of the end-to-end publish duration from the client perspective, across retries.
+     */
+    publishStartTime?: string | null;
+  }
+  /**
    * Request for the Publish method.
    */
   export interface Schema$PublishRequest {
@@ -819,6 +832,15 @@ export namespace pubsub_v1 {
    * Configuration for reading Cloud Storage data written via [Cloud Storage subscriptions](https://cloud.google.com/pubsub/docs/cloudstorage). The data and attributes fields of the originally exported Pub/Sub message will be restored when publishing.
    */
   export interface Schema$PubSubAvroFormat {}
+  /**
+   * Client-side telemetry about Pub/Sub requests, useful for debugging purposes. If the client opts to provide this information, it will be passed as a serialized proto in the `x-goog-pubsub-client-telemetry` header.
+   */
+  export interface Schema$PubsubClientTelemetry {
+    /**
+     * Optional. Telemetry about a `Publish` operation.
+     */
+    publishOperation?: Schema$PublishOperation;
+  }
   /**
    * A message that is published by publishers and consumed by subscribers. The message must contain either a non-empty data field or at least one attribute. Note that client libraries represent this object differently depending on the language. See the corresponding [client library documentation](https://cloud.google.com/pubsub/docs/reference/libraries) for more information. See [quotas and limits] (https://cloud.google.com/pubsub/quotas) for more information about message limits.
    */

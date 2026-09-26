@@ -342,7 +342,7 @@
                 "openid": {
                   "methods": {
                     "getJwks": {
-                      "description": "Fetches the signing keys for an agentic or managed workload identity pool and returns them in JWKs format, defined in [RFC 7517](https://tools.ietf.org/html/rfc7517). For now, only agentic system pools are supported. **Preview** This feature is subject to the \"Pre-GA Offerings Terms\" in the General Service Terms section of the [Service Specific Terms](https://cloud.google.com/terms/service-terms#1). Pre-GA features are available \"as is\" and might have limited support. For more information, see the [launch stage descriptions](https://cloud.google.com/products#product-launch-stages).",
+                      "description": "Fetches the signing keys for an agentic or managed workload identity pool and returns them in JWK Set format, defined in [RFC 7517](https://tools.ietf.org/html/rfc7517). For now, only agentic system pools are supported. **Preview** This feature is subject to the \"Pre-GA Offerings Terms\" in the General Service Terms section of the [Service Specific Terms](https://cloud.google.com/terms/service-terms#1). Pre-GA features are available \"as is\" and might have limited support. For more information, see the [launch stage descriptions](https://cloud.google.com/products#product-launch-stages).",
                       "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/workloadIdentityPools/{workloadIdentityPoolsId}/openid/jwks",
                       "httpMethod": "GET",
                       "id": "sts.organizations.locations.workloadIdentityPools.openid.getJwks",
@@ -351,7 +351,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the pool whose JWKS needs to be retrieved. Format: 'organizations/{ORGANIZATION_NUMBER}/locations/global/workloadIdentityPools/{POOL_ID}' 'projects/{PROJECT_NUMBER}/locations/global/workloadIdentityPools/{POOL_ID}' Example(s): 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'",
+                          "description": "Required. The name of the pool whose JWKs need to be retrieved. Format: 'organizations/{ORGANIZATION_NUMBER}/locations/global/workloadIdentityPools/{POOL_ID}' 'projects/{PROJECT_NUMBER}/locations/global/workloadIdentityPools/{POOL_ID}' Example(s): 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/locations/[^/]+/workloadIdentityPools/[^/]+$",
                           "required": true,
@@ -406,7 +406,7 @@
                 "openid": {
                   "methods": {
                     "getJwks": {
-                      "description": "Fetches the signing keys for an agentic or managed workload identity pool and returns them in JWKs format, defined in [RFC 7517](https://tools.ietf.org/html/rfc7517). For now, only agentic system pools are supported. **Preview** This feature is subject to the \"Pre-GA Offerings Terms\" in the General Service Terms section of the [Service Specific Terms](https://cloud.google.com/terms/service-terms#1). Pre-GA features are available \"as is\" and might have limited support. For more information, see the [launch stage descriptions](https://cloud.google.com/products#product-launch-stages).",
+                      "description": "Fetches the signing keys for an agentic or managed workload identity pool and returns them in JWK Set format, defined in [RFC 7517](https://tools.ietf.org/html/rfc7517). For now, only agentic system pools are supported. **Preview** This feature is subject to the \"Pre-GA Offerings Terms\" in the General Service Terms section of the [Service Specific Terms](https://cloud.google.com/terms/service-terms#1). Pre-GA features are available \"as is\" and might have limited support. For more information, see the [launch stage descriptions](https://cloud.google.com/products#product-launch-stages).",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workloadIdentityPools/{workloadIdentityPoolsId}/openid/jwks",
                       "httpMethod": "GET",
                       "id": "sts.projects.locations.workloadIdentityPools.openid.getJwks",
@@ -415,7 +415,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the pool whose JWKS needs to be retrieved. Format: 'organizations/{ORGANIZATION_NUMBER}/locations/global/workloadIdentityPools/{POOL_ID}' 'projects/{PROJECT_NUMBER}/locations/global/workloadIdentityPools/{POOL_ID}' Example(s): 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'",
+                          "description": "Required. The name of the pool whose JWKs need to be retrieved. Format: 'organizations/{ORGANIZATION_NUMBER}/locations/global/workloadIdentityPools/{POOL_ID}' 'projects/{PROJECT_NUMBER}/locations/global/workloadIdentityPools/{POOL_ID}' Example(s): 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/workloadIdentityPools/[^/]+$",
                           "required": true,
@@ -481,7 +481,7 @@
       }
     }
   },
-  "revision": "20260722",
+  "revision": "20260916",
   "rootUrl": "https://sts.googleapis.com/",
   "schemas": {
     "GoogleIamV1Binding": {
@@ -607,7 +607,7 @@
       "type": "object"
     },
     "GoogleIdentityStsV1Jwk": {
-      "description": "A JSON web key set (JWK) See also https://datatracker.ietf.org/doc/html/rfc7517 and https://github.com/spiffe/spiffe/blob/main/standards/JWT-SVID.md#6-representation-in-the-spiffe-bundle",
+      "description": "A JSON web key set (JWK) See also https://datatracker.ietf.org/doc/html/rfc7517 and https://github.com/spiffe/spiffe/blob/main/standards/JWT-SVID.md#6-representation-in-the-spiffe-bundle.",
       "id": "GoogleIdentityStsV1Jwk",
       "properties": {
         "alg": {
@@ -642,7 +642,7 @@
       "id": "GoogleIdentityStsV1Jwks",
       "properties": {
         "keys": {
-          "description": "The JWKS for this OP.",
+          "description": "The JWKs for this OP.",
           "items": {
             "$ref": "GoogleIdentityStsV1Jwk"
           },
@@ -652,7 +652,7 @@
       "type": "object"
     },
     "GoogleIdentityStsV1OpenIdProviderConfig": {
-      "description": "Response message for GetOpenIdProviderConfig. Message fields are defined in https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse",
+      "description": "Response message for GetOpenIdProviderConfig. Message fields are defined in https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse.",
       "id": "GoogleIdentityStsV1OpenIdProviderConfig",
       "properties": {
         "authorization_endpoint": {
@@ -660,7 +660,7 @@
           "type": "string"
         },
         "id_token_signing_alg_values_supported": {
-          "description": "JSON array containing a list of the JWS signing algorithms (alg values) supported by the OP for the ID token to encode the claims in a JWT [JWT]. Note: Currently always \"[\"RS256\"]\".",
+          "description": "JSON array that contains a list of the JWS signing algorithms (alg values) supported by the OP for the ID token to encode the claims in a JWT. Supported value: `RS256`.",
           "items": {
             "type": "string"
           },
@@ -671,18 +671,18 @@
           "type": "string"
         },
         "jwks_uri": {
-          "description": "URL of the OP's JWK Set [JWK] document, which MUST use the https scheme.",
+          "description": "URL of the OP's JWK Set document, which MUST use the https scheme.",
           "type": "string"
         },
         "response_types_supported": {
-          "description": "JSON array containing a list of the OAuth 2.0 response_type values that this OP supports. Note: Currently always \"[\"id_token\"]\".",
+          "description": "JSON array that contains a list of the OAuth 2.0 response_type values that this OP supports. Supported value: `id_token`.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "subject_types_supported": {
-          "description": "JSON array containing a list of the subject identifier types that this OP supports. Note: Currently always \"[\"public\"]\".",
+          "description": "JSON array that contains a list of the subject identifier types that this OP supports. Supported value: `public`.",
           "items": {
             "type": "string"
           },
@@ -704,7 +704,7 @@
           "description": "An access boundary that defines the upper bound of permissions the credential may have. The value should be a JSON object of AccessBoundary. The access boundary can include up to 10 rules. The size of the parameter value should not exceed 2048 characters."
         },
         "bindCertFingerprint": {
-          "description": "The unpadded, url-escaped, base64-encoded SHA-256 hash of the certificate's DER encoding. It must be 43 characters long. The resulting token will be bound to this value.",
+          "description": "The unpadded, URL-escaped, base64-encoded SHA-256 hash of the certificate's DER encoding. It must be 43 characters long. The resulting token will be bound to this value.",
           "type": "string"
         },
         "userProject": {

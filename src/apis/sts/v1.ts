@@ -269,7 +269,7 @@ export namespace sts_v1 {
     token_type?: string | null;
   }
   /**
-   * A JSON web key set (JWK) See also https://datatracker.ietf.org/doc/html/rfc7517 and https://github.com/spiffe/spiffe/blob/main/standards/JWT-SVID.md#6-representation-in-the-spiffe-bundle
+   * A JSON web key set (JWK) See also https://datatracker.ietf.org/doc/html/rfc7517 and https://github.com/spiffe/spiffe/blob/main/standards/JWT-SVID.md#6-representation-in-the-spiffe-bundle.
    */
   export interface Schema$GoogleIdentityStsV1Jwk {
     /**
@@ -302,12 +302,12 @@ export namespace sts_v1 {
    */
   export interface Schema$GoogleIdentityStsV1Jwks {
     /**
-     * The JWKS for this OP.
+     * The JWKs for this OP.
      */
     keys?: Schema$GoogleIdentityStsV1Jwk[];
   }
   /**
-   * Response message for GetOpenIdProviderConfig. Message fields are defined in https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse
+   * Response message for GetOpenIdProviderConfig. Message fields are defined in https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse.
    */
   export interface Schema$GoogleIdentityStsV1OpenIdProviderConfig {
     /**
@@ -315,7 +315,7 @@ export namespace sts_v1 {
      */
     authorization_endpoint?: string | null;
     /**
-     * JSON array containing a list of the JWS signing algorithms (alg values) supported by the OP for the ID token to encode the claims in a JWT [JWT]. Note: Currently always "["RS256"]".
+     * JSON array that contains a list of the JWS signing algorithms (alg values) supported by the OP for the ID token to encode the claims in a JWT. Supported value: `RS256`.
      */
     id_token_signing_alg_values_supported?: string[] | null;
     /**
@@ -323,15 +323,15 @@ export namespace sts_v1 {
      */
     issuer?: string | null;
     /**
-     * URL of the OP's JWK Set [JWK] document, which MUST use the https scheme.
+     * URL of the OP's JWK Set document, which MUST use the https scheme.
      */
     jwks_uri?: string | null;
     /**
-     * JSON array containing a list of the OAuth 2.0 response_type values that this OP supports. Note: Currently always "["id_token"]".
+     * JSON array that contains a list of the OAuth 2.0 response_type values that this OP supports. Supported value: `id_token`.
      */
     response_types_supported?: string[] | null;
     /**
-     * JSON array containing a list of the subject identifier types that this OP supports. Note: Currently always "["public"]".
+     * JSON array that contains a list of the subject identifier types that this OP supports. Supported value: `public`.
      */
     subject_types_supported?: string[] | null;
     /**
@@ -348,7 +348,7 @@ export namespace sts_v1 {
      */
     accessBoundary?: Schema$GoogleIdentityStsV1AccessBoundary;
     /**
-     * The unpadded, url-escaped, base64-encoded SHA-256 hash of the certificate's DER encoding. It must be 43 characters long. The resulting token will be bound to this value.
+     * The unpadded, URL-escaped, base64-encoded SHA-256 hash of the certificate's DER encoding. It must be 43 characters long. The resulting token will be bound to this value.
      */
     bindCertFingerprint?: string | null;
     /**
@@ -423,7 +423,7 @@ export namespace sts_v1 {
     }
 
     /**
-     * Fetches the signing keys for an agentic or managed workload identity pool and returns them in JWKs format, defined in [RFC 7517](https://tools.ietf.org/html/rfc7517). For now, only agentic system pools are supported. **Preview** This feature is subject to the "Pre-GA Offerings Terms" in the General Service Terms section of the [Service Specific Terms](https://cloud.google.com/terms/service-terms#1). Pre-GA features are available "as is" and might have limited support. For more information, see the [launch stage descriptions](https://cloud.google.com/products#product-launch-stages).
+     * Fetches the signing keys for an agentic or managed workload identity pool and returns them in JWK Set format, defined in [RFC 7517](https://tools.ietf.org/html/rfc7517). For now, only agentic system pools are supported. **Preview** This feature is subject to the "Pre-GA Offerings Terms" in the General Service Terms section of the [Service Specific Terms](https://cloud.google.com/terms/service-terms#1). Pre-GA features are available "as is" and might have limited support. For more information, see the [launch stage descriptions](https://cloud.google.com/products#product-launch-stages).
      * @example
      * ```js
      * // Before running the sample:
@@ -454,7 +454,7 @@ export namespace sts_v1 {
      *   // Do the magic
      *   const res =
      *     await sts.organizations.locations.workloadIdentityPools.openid.getJwks({
-     *       // Required. The name of the pool whose JWKS needs to be retrieved. Format: 'organizations/{ORGANIZATION_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' 'projects/{PROJECT_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' Example(s): 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'
+     *       // Required. The name of the pool whose JWKs need to be retrieved. Format: 'organizations/{ORGANIZATION_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' 'projects/{PROJECT_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' Example(s): 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'
      *       name: 'organizations/my-organization/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
      *     });
      *   console.log(res.data);
@@ -567,7 +567,7 @@ export namespace sts_v1 {
 
   export interface Params$Resource$Organizations$Locations$Workloadidentitypools$Openid$Getjwks extends StandardParameters {
     /**
-     * Required. The name of the pool whose JWKS needs to be retrieved. Format: 'organizations/{ORGANIZATION_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' 'projects/{PROJECT_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' Example(s): 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'
+     * Required. The name of the pool whose JWKs need to be retrieved. Format: 'organizations/{ORGANIZATION_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' 'projects/{PROJECT_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' Example(s): 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'
      */
     name?: string;
   }
@@ -785,7 +785,7 @@ export namespace sts_v1 {
     }
 
     /**
-     * Fetches the signing keys for an agentic or managed workload identity pool and returns them in JWKs format, defined in [RFC 7517](https://tools.ietf.org/html/rfc7517). For now, only agentic system pools are supported. **Preview** This feature is subject to the "Pre-GA Offerings Terms" in the General Service Terms section of the [Service Specific Terms](https://cloud.google.com/terms/service-terms#1). Pre-GA features are available "as is" and might have limited support. For more information, see the [launch stage descriptions](https://cloud.google.com/products#product-launch-stages).
+     * Fetches the signing keys for an agentic or managed workload identity pool and returns them in JWK Set format, defined in [RFC 7517](https://tools.ietf.org/html/rfc7517). For now, only agentic system pools are supported. **Preview** This feature is subject to the "Pre-GA Offerings Terms" in the General Service Terms section of the [Service Specific Terms](https://cloud.google.com/terms/service-terms#1). Pre-GA features are available "as is" and might have limited support. For more information, see the [launch stage descriptions](https://cloud.google.com/products#product-launch-stages).
      * @example
      * ```js
      * // Before running the sample:
@@ -816,7 +816,7 @@ export namespace sts_v1 {
      *   // Do the magic
      *   const res = await sts.projects.locations.workloadIdentityPools.openid.getJwks(
      *     {
-     *       // Required. The name of the pool whose JWKS needs to be retrieved. Format: 'organizations/{ORGANIZATION_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' 'projects/{PROJECT_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' Example(s): 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'
+     *       // Required. The name of the pool whose JWKs need to be retrieved. Format: 'organizations/{ORGANIZATION_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' 'projects/{PROJECT_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' Example(s): 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'
      *       name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
      *     },
      *   );
@@ -930,7 +930,7 @@ export namespace sts_v1 {
 
   export interface Params$Resource$Projects$Locations$Workloadidentitypools$Openid$Getjwks extends StandardParameters {
     /**
-     * Required. The name of the pool whose JWKS needs to be retrieved. Format: 'organizations/{ORGANIZATION_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' 'projects/{PROJECT_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' Example(s): 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'
+     * Required. The name of the pool whose JWKs need to be retrieved. Format: 'organizations/{ORGANIZATION_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' 'projects/{PROJECT_NUMBER\}/locations/global/workloadIdentityPools/{POOL_ID\}' Example(s): 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog'
      */
     name?: string;
   }

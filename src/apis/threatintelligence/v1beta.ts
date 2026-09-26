@@ -206,6 +206,10 @@ export namespace threatintelligence_v1beta {
      */
     detailType?: string | null;
     /**
+     * Domain Monitoring alert detail type.
+     */
+    domainMonitoring?: Schema$DomainMonitoringAlertDetail;
+    /**
      * Initial Access Broker alert detail type.
      */
     initialAccessBroker?: Schema$InitialAccessBrokerAlertDetail;
@@ -323,6 +327,61 @@ export namespace threatintelligence_v1beta {
     updateTime?: string | null;
   }
   /**
+   * Details about the detection vendors.
+   */
+  export interface Schema$AVDetections {
+    /**
+     * Optional. Number of vendors that detected the threat.
+     */
+    detectedVendorCount?: number | null;
+    /**
+     * Optional. Total number of vendors.
+     */
+    totalVendorCount?: number | null;
+  }
+  /**
+   * Details regarding the SSL certificate configuration.
+   */
+  export interface Schema$CertificateDetails {
+    /**
+     * Optional. The SSL certificate issuer.
+     */
+    issuer?: string | null;
+    /**
+     * Optional. The SSL subject alternative names.
+     */
+    subjectAlternativeNames?: string[] | null;
+  }
+  /**
+   * Detailed communication context metadata for documents originating from deep and dark web communication channels.
+   */
+  export interface Schema$CommunicationContext {
+    /**
+     * Optional. Description of the communication channel.
+     */
+    channelDescription?: string | null;
+    /**
+     * Optional. Name of the communication channel.
+     */
+    channelName?: string | null;
+    /**
+     * Optional. Channel path (e.g. forum path or sub-channel).
+     */
+    channelPath?: string | null;
+    /**
+     * Optional. URL of the communication channel.
+     */
+    channelUrl?: string | null;
+    /**
+     * Optional. Service from the collection event origin (e.g. forum or chat service name).
+     */
+    serviceName?: string | null;
+    /**
+     * Optional. Conversation thread identifier.
+     */
+    threadId?: string | null;
+  }
+  /**
    * A configuration represents a behavior an engine should follow when producing new findings.
    */
   export interface Schema$Configuration {
@@ -383,6 +442,10 @@ export namespace threatintelligence_v1beta {
      * Domain Configuration detail config.
      */
     domainConfiguration?: Schema$DomainConfiguration;
+    /**
+     * Domain Monitoring detail config.
+     */
+    domainMonitoring?: Schema$DomainMonitoringConfig;
     /**
      * Technology Watchlist detail config.
      */
@@ -504,6 +567,10 @@ export namespace threatintelligence_v1beta {
      * Optional. A summarized version of the customer profile.
      */
     summary?: Schema$CustomerProfileSummary;
+    /**
+     * Optional. Technologies associated with the organization.
+     */
+    technologies?: Schema$CustomerProfileTechnology[];
     /**
      * Optional. Technology presence of the organization.
      */
@@ -677,6 +744,19 @@ export namespace threatintelligence_v1beta {
     title?: Schema$CustomerProfileCitedString;
   }
   /**
+   * Technology information for the customer profile.
+   */
+  export interface Schema$CustomerProfileTechnology {
+    /**
+     * Optional. The citation ids for the technology.
+     */
+    citationIds?: string[] | null;
+    /**
+     * Required. The name of the technology.
+     */
+    technology?: string | null;
+  }
+  /**
    * Web presence information for the customer profile.
    */
   export interface Schema$CustomerProfileWebPresence {
@@ -719,9 +799,13 @@ export namespace threatintelligence_v1beta {
    */
   export interface Schema$DataLeakAlertDetail {
     /**
-     * Required. Array of ids to accommodate multiple discovery documents
+     * Optional. Deprecated: Use `discovery_documents` instead. Array of ids to accommodate multiple discovery documents.
      */
     discoveryDocumentIds?: string[] | null;
+    /**
+     * Output only. New structured metadata payload.
+     */
+    discoveryDocuments?: Schema$DiscoveryDocument[];
     /**
      * Required. The severity of the Data Leak alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
      */
@@ -732,7 +816,11 @@ export namespace threatintelligence_v1beta {
    */
   export interface Schema$DataLeakFindingDetail {
     /**
-     * Required. The unique identifier of the document that triggered the Data Leak finding. This ID can be used to retrieve the content of the document for further analysis.
+     * Optional. The discovery document associated with the Data Leak finding.
+     */
+    discoveryDocument?: Schema$DiscoveryDocument;
+    /**
+     * Optional. Deprecated: Use `discovery_document` instead. The unique identifier of the document that triggered the Data Leak finding. This ID can be used to retrieve the content of the document for further analysis.
      */
     documentId?: string | null;
     /**
@@ -743,6 +831,48 @@ export namespace threatintelligence_v1beta {
      * Required. The severity of the Data Leak finding. This indicates the potential impact of the threat.
      */
     severity?: string | null;
+  }
+  /**
+   * Replaces the raw string ID to hold associated metadata.
+   */
+  export interface Schema$DiscoveryDocument {
+    /**
+     * Optional. Detailed communication context metadata for documents originating from deep and dark web communication channels.
+     */
+    communicationContext?: Schema$CommunicationContext;
+    /**
+     * Output only. The identifier of the discovery document.
+     */
+    documentId?: string | null;
+    /**
+     * Output only. The classification/type of the document (e.g. `COMMUNICATION`, `DDW_COMMUNICATION`, `message`).
+     */
+    documentType?: string | null;
+  }
+  /**
+   * Extracted WHOIS and DNS registration details of the domain.
+   */
+  export interface Schema$DnsRegistrationDetails {
+    /**
+     * Optional. The specific timestamp when the current domain registration expires.
+     */
+    expireTime?: string | null;
+    /**
+     * Optional. Indicates whether private registration is enabled on the WHOIS record.
+     */
+    privateRegistration?: boolean | null;
+    /**
+     * Optional. The country code of the registrant (e.g., US). Use ISO 3166-1 alpha-2 codes
+     */
+    registrantCountry?: string | null;
+    /**
+     * Optional. The registrar where the domain was registered (e.g., NameCheap).
+     */
+    registrar?: string | null;
+    /**
+     * Optional. The specific timestamp when the domain registration was created.
+     */
+    registrationTime?: string | null;
   }
   /**
    * Represents a query to match documents.
@@ -767,6 +897,132 @@ export namespace threatintelligence_v1beta {
     domainSettings?: Schema$DomainSetting[];
   }
   /**
+   * A detailed object for a Domain or URL alert.
+   */
+  export interface Schema$DomainMonitoringAlertDetail {
+    /**
+     * Optional. The DNS details of the domain or URL.
+     */
+    dnsDetails?: Schema$DomainMonitoringDnsDetails;
+    /**
+     * Details specific to a monitored domain.
+     */
+    domainDetails?: Schema$DomainMonitoringDomainDetails;
+    /**
+     * Optional. The GTI details of the domain or URL.
+     */
+    gtiDetails?: Schema$DomainMonitoringGtiDetails;
+    /**
+     * Optional. The infrastructure of the domain or URL.
+     */
+    infrastructure?: Schema$Infrastructure;
+    /**
+     * Optional. The matched domain.
+     */
+    matchedDomain?: string | null;
+    /**
+     * The protected brand name that triggered the alert.
+     */
+    protectedBrand?: string | null;
+    /**
+     * The protected domain that triggered the alert.
+     */
+    protectedDomain?: Schema$DomainMonitoringDomainDetails;
+    /**
+     * Optional. Extracted WHOIS and DNS registration details.
+     */
+    registrationDetails?: Schema$DnsRegistrationDetails;
+    /**
+     * Optional. The relationships of the domain or URL.
+     */
+    relationships?: Schema$Relationships;
+    /**
+     * Optional. The threat attribution details of the domain or URL.
+     */
+    threatAttributionDetails?: Schema$ThreatAttributionDetails;
+    /**
+     * Details specific to a monitored URL.
+     */
+    urlDetails?: Schema$DomainMonitoringUrlDetails;
+    /**
+     * Optional. The whois details of the domain or URL.
+     */
+    whoisDetails?: Schema$DomainMonitoringWhoIsDetails;
+  }
+  /**
+   * Any account-level configuration options will go here.
+   */
+  export interface Schema$DomainMonitoringConfig {
+    /**
+     * The domains to use as "seeds" for Suspicious Domain Monitoring.
+     */
+    domains?: Schema$DomainMonitoringDomain[];
+  }
+  /**
+   * The DNS details of the domain.
+   */
+  export interface Schema$DomainMonitoringDnsDetails {
+    /**
+     * Optional. The DNS records of the domain.
+     */
+    dnsRecords?: Schema$DomainMonitoringDnsRecord[];
+    /**
+     * Optional. The time the DNS details were retrieved.
+     */
+    retrievalTime?: string | null;
+  }
+  /**
+   * The DNS record of the domain.
+   */
+  export interface Schema$DomainMonitoringDnsRecord {
+    /**
+     * Optional. The ASN hosting the domain.
+     */
+    asnHosting?: string | null;
+    /**
+     * Optional. The region code of the ASN. Use ISO 3166-1 alpha-2 codes.
+     */
+    asnRegionCode?: string | null;
+    /**
+     * Optional. The region code associated with the resolved IP. Use ISO 3166-1 alpha-2 codes.
+     */
+    ipRegionCode?: string | null;
+    /**
+     * Optional. The value of the DNS record.
+     */
+    recordData?: string | null;
+    /**
+     * Optional. The resolved IP address.
+     */
+    resolvedIp?: string | null;
+    /**
+     * Optional. The TTL of the DNS record.
+     */
+    ttl?: number | null;
+    /**
+     * Optional. The type of the DNS record.
+     */
+    type?: string | null;
+  }
+  /**
+   * A Domain Monitoring "domain"
+   */
+  export interface Schema$DomainMonitoringDomain {
+    /**
+     * The domain name to match against.
+     */
+    domain?: string | null;
+  }
+  /**
+   * Details specific to a monitored domain.
+   */
+  export interface Schema$DomainMonitoringDomainDetails {
+    /**
+     * Required. The domain name to match against.
+     */
+    domain?: string | null;
+  }
+  /**
    * Specific configuration for the Domain Monitoring feature.
    */
   export interface Schema$DomainMonitoringFeatureConfig {
@@ -774,6 +1030,110 @@ export namespace threatintelligence_v1beta {
      * Optional. Whether the Domain Monitoring feature is disabled for the domain.
      */
     disabled?: boolean | null;
+  }
+  /**
+   * A detailed object for a Domain or URL finding.
+   */
+  export interface Schema$DomainMonitoringFindingDetail {
+    /**
+     * Optional. The DNS details of the domain or URL.
+     */
+    dnsDetails?: Schema$DomainMonitoringDnsDetails;
+    /**
+     * Details specific to a monitored domain.
+     */
+    domainDetails?: Schema$DomainMonitoringDomainDetails;
+    /**
+     * Optional. The GTI details of the domain or URL.
+     */
+    gtiDetails?: Schema$DomainMonitoringGtiDetails;
+    /**
+     * Optional. The infrastructure of the domain or URL.
+     */
+    infrastructure?: Schema$Infrastructure;
+    /**
+     * Optional. The matched domain.
+     */
+    matchedDomain?: string | null;
+    /**
+     * The protected brand name that triggered the alert.
+     */
+    protectedBrand?: string | null;
+    /**
+     * The protected domain that triggered the alert.
+     */
+    protectedDomain?: Schema$DomainMonitoringDomainDetails;
+    /**
+     * Optional. Extracted WHOIS and DNS registration details.
+     */
+    registrationDetails?: Schema$DnsRegistrationDetails;
+    /**
+     * Optional. The relationships of the domain or URL.
+     */
+    relationships?: Schema$Relationships;
+    /**
+     * Optional. The threat attribution details of the domain or URL.
+     */
+    threatAttributionDetails?: Schema$ThreatAttributionDetails;
+    /**
+     * Details specific to a monitored URL.
+     */
+    urlDetails?: Schema$DomainMonitoringUrlDetails;
+    /**
+     * Optional. The whois details of the domain or URL.
+     */
+    whoisDetails?: Schema$DomainMonitoringWhoIsDetails;
+  }
+  /**
+   * The GTI details of the domain.
+   */
+  export interface Schema$DomainMonitoringGtiDetails {
+    /**
+     * Optional. Detection counts across vendor feeds.
+     */
+    avDetections?: Schema$AVDetections;
+    /**
+     * Optional. The permutation technique used for the domain (e.g., dictionary, homoglyph).
+     */
+    domainPermutation?: string | null;
+    /**
+     * Optional. The GTI link for the domain.
+     */
+    gtiDomainUri?: string | null;
+    /**
+     * Optional. The GTI score of the domain. The threat score is a number between 0 and 100.
+     */
+    gtiScore?: number | null;
+    /**
+     * Optional. The threat classification of the domain, obtained from the domain report (e.g. DomainMonitoring).
+     */
+    threatClassification?: string | null;
+    /**
+     * Output only. The verdict of the domain.
+     */
+    verdict?: string | null;
+  }
+  /**
+   * Details specific to a monitored URL.
+   */
+  export interface Schema$DomainMonitoringUrlDetails {
+    /**
+     * Required. The URL to match against.
+     */
+    url?: string | null;
+  }
+  /**
+   * The whois details of the domain.
+   */
+  export interface Schema$DomainMonitoringWhoIsDetails {
+    /**
+     * Optional. The time the whois details were retrieved.
+     */
+    retrievalTime?: string | null;
+    /**
+     * Optional. The whois details of the domain.
+     */
+    whois?: string | null;
   }
   /**
    * Feature settings and toggles for a single specific domain.
@@ -922,6 +1282,10 @@ export namespace threatintelligence_v1beta {
      */
     detailType?: string | null;
     /**
+     * Domain Monitoring finding detail type.
+     */
+    domainMonitoring?: Schema$DomainMonitoringFindingDetail;
+    /**
      * Initial Access Broker finding detail type.
      */
     initialAccessBroker?: Schema$InitialAccessBrokerFindingDetail;
@@ -957,13 +1321,30 @@ export namespace threatintelligence_v1beta {
     password?: string | null;
   }
   /**
+   * Core infrastructure observations associated with the URL or Domain.
+   */
+  export interface Schema$Infrastructure {
+    /**
+     * Optional. SSL certificate details.
+     */
+    certificateDetails?: Schema$CertificateDetails;
+    /**
+     * Optional. The raw URL response string.
+     */
+    urlResponse?: string | null;
+  }
+  /**
    * Captures the specific details of InitialAccessBroker (IAB) alert.
    */
   export interface Schema$InitialAccessBrokerAlertDetail {
     /**
-     * Required. Array of ids to accommodate multiple discovery documents
+     * Optional. Deprecated: Use `discovery_documents` instead. Array of ids to accommodate multiple discovery documents.
      */
     discoveryDocumentIds?: string[] | null;
+    /**
+     * Output only. New structured metadata payload.
+     */
+    discoveryDocuments?: Schema$DiscoveryDocument[];
     /**
      * Required. The severity of the Initial Access Broker (IAB) alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
      */
@@ -974,7 +1355,11 @@ export namespace threatintelligence_v1beta {
    */
   export interface Schema$InitialAccessBrokerFindingDetail {
     /**
-     * Required. The unique identifier of the document that triggered the IAB finding. This ID can be used to retrieve the content of the document for further analysis.
+     * Optional. The discovery document associated with the IAB finding.
+     */
+    discoveryDocument?: Schema$DiscoveryDocument;
+    /**
+     * Optional. Deprecated: Use `discovery_document` instead. The unique identifier of the document that triggered the IAB finding. This ID can be used to retrieve the content of the document for further analysis.
      */
     documentId?: string | null;
     /**
@@ -991,9 +1376,13 @@ export namespace threatintelligence_v1beta {
    */
   export interface Schema$InsiderThreatAlertDetail {
     /**
-     * Required. Array of ids to accommodate multiple discovery documents
+     * Optional. Deprecated: Use `discovery_documents` instead. Array of ids to accommodate multiple discovery documents.
      */
     discoveryDocumentIds?: string[] | null;
+    /**
+     * Output only. New structured metadata payload.
+     */
+    discoveryDocuments?: Schema$DiscoveryDocument[];
     /**
      * Required. The severity of the Insider Threat alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
      */
@@ -1004,7 +1393,11 @@ export namespace threatintelligence_v1beta {
    */
   export interface Schema$InsiderThreatFindingDetail {
     /**
-     * Required. The unique identifier of the document that triggered the InsiderThreat finding. This ID can be used to retrieve the content of the document for further analysis.
+     * Optional. The discovery document associated with the Insider Threat finding.
+     */
+    discoveryDocument?: Schema$DiscoveryDocument;
+    /**
+     * Optional. Deprecated: Use `discovery_document` instead. The unique identifier of the document that triggered the InsiderThreat finding. This ID can be used to retrieve the content of the document for further analysis.
      */
     documentId?: string | null;
     /**
@@ -1271,6 +1664,23 @@ export namespace threatintelligence_v1beta {
     uri?: string | null;
   }
   /**
+   * Related entities and domains observed for the target.
+   */
+  export interface Schema$Relationships {
+    /**
+     * Optional. Related URLs associated with the domain.
+     */
+    relatedUrls?: string[] | null;
+    /**
+     * Optional. Sibling domains sharing the same IP address.
+     */
+    siblingDomains?: string[] | null;
+    /**
+     * Optional. Subdomains associated with the target domain or URL.
+     */
+    subdomains?: string[] | null;
+  }
+  /**
    * Structured relevance analysis for a threat.
    */
   export interface Schema$RelevanceAnalysis {
@@ -1397,6 +1807,23 @@ export namespace threatintelligence_v1beta {
      * Optional. List of vendor, technology or cpe fingerprint. example: Microsoft office 360 Apache Server 3.5 cpe:2.3:a:microsoft:outlook:*:*:*:*:*:*:*:*
      */
     technologies?: string[] | null;
+  }
+  /**
+   * Threat attribution information (actor, campaign, etc.).
+   */
+  export interface Schema$ThreatAttributionDetails {
+    /**
+     * Optional. The threat actors associated with the target.
+     */
+    actors?: string[] | null;
+    /**
+     * Optional. The threat collections detected.
+     */
+    collections?: string[] | null;
+    /**
+     * Optional. The malware associated with the threat.
+     */
+    malware?: string[] | null;
   }
   /**
    * Response message for UpsertConfiguration.

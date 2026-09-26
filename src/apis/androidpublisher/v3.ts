@@ -5864,7 +5864,12 @@ export namespace androidpublisher_v3 {
   /**
    * Response for updating an app record for an app store hosted app.
    */
-  export interface Schema$UpdateAppStoreHostedAppResponse {}
+  export interface Schema$UpdateAppStoreHostedAppResponse {
+    /**
+     * Unique identifier for the specific version of the hosted app submitted in this update. This identifier can be used to correlate publishing signals (such as those returned by ListHostedAppsPublishingSignals) with this specific app update.
+     */
+    updateId?: string | null;
+  }
   /**
    * Request message to update the state of a subscription base plan.
    */
@@ -8542,7 +8547,9 @@ export namespace androidpublisher_v3 {
      *   console.log(res.data);
      *
      *   // Example response
-     *   // {}
+     *   // {
+     *   //   "updateId": "my_updateId"
+     *   // }
      * }
      *
      * main().catch(e => {

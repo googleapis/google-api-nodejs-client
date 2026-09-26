@@ -966,10 +966,6 @@ export namespace servicecontrol_v1 {
      * Indicates the orgpolicy violations for this resource.
      */
     orgPolicyViolationInfo?: Schema$OrgPolicyViolationInfo;
-    /**
-     * Indicates the regional access boundary policy violations for this resource.
-     */
-    rabPolicyViolationInfo?: Schema$RabPolicyViolationInfo;
   }
   /**
    * Metadata about the Privileged Access Manager (PAM) backed authorization decisions.
@@ -1059,19 +1055,6 @@ export namespace servicecontrol_v1 {
      * Quota mode for this operation.
      */
     quotaMode?: string | null;
-  }
-  /**
-   * Represents Regional Access Boundary (RAB) Policy Violation information.
-   */
-  export interface Schema$RabPolicyViolationInfo {
-    /**
-     * Optional. Error message detailing what triggered the violation. The error message content originates from the authz library e.g., google3/cloud/security/iam/cap/deny_explanation/internal/make_error_msg.cc. This will be the same (canonical) error message provided by the http error code.
-     */
-    errorMessage?: string | null;
-    /**
-     * Optional. The list of target locations of the resource.
-     */
-    resourceLocations?: string[] | null;
   }
   /**
    * Represents the processing error of one Operation in the request.

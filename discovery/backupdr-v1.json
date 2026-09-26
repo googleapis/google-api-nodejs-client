@@ -2725,7 +2725,7 @@
       }
     }
   },
-  "revision": "20260908",
+  "revision": "20260918",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -6197,12 +6197,14 @@
               "ALLOY_DB",
               "FILESTORE",
               "BV_AF",
+              "GOOGLE_CLOUD_NETAPP_VOLUME",
               "CEP_MONITORING_COMPUTE_INSTANCE",
               "CEP_MONITORING_DISK",
               "BV_CUSTOM_PROBERS",
               "FT_CUSTOM_PROBERS"
             ],
             "enumDescriptions": [
+              "",
               "",
               "",
               "",

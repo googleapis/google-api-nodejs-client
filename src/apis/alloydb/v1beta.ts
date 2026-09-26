@@ -1572,7 +1572,7 @@ export namespace alloydb_v1beta {
      */
     trackActiveQueries?: boolean | null;
     /**
-     * Indicates whether to track active query plans for an instance. If not set, the default value is "off". Can only be enabled if track_active_queries is enabled.
+     * Indicates whether to track active query plans for an instance. If not set, the default value is "off". Can only be enabled if track_active_queries is enabled. Deprecated: Use track_active_queries instead.
      */
     trackActiveQueryPlan?: boolean | null;
     /**

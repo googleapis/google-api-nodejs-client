@@ -161,6 +161,28 @@ export namespace sheets_v4 {
     chart?: Schema$EmbeddedChart;
   }
   /**
+   * Inserts a reply Post into a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$AddCommentReplyRequest {
+    /**
+     * The ID of the CommentThread to add the reply to.
+     */
+    commentId?: string | null;
+    /**
+     * The Post representing the reply.
+     */
+    post?: Schema$Post;
+  }
+  /**
+   * The result of creating a reply. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$AddCommentReplyResponse {
+    /**
+     * The newly-inserted reply Post.
+     */
+    post?: Schema$Post;
+  }
+  /**
    * Adds a new conditional format rule at the given index. All subsequent rules' indexes are incremented.
    */
   export interface Schema$AddConditionalFormatRuleRequest {
@@ -779,6 +801,10 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchUpdateSpreadsheetRequest {
     /**
+     * The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. Meaningful only if include_spreadsheet_in_response is 'true'. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentsViewMode?: string | null;
+    /**
      * Determines if the update response should include the spreadsheet resource.
      */
     includeSpreadsheetInResponse?: boolean | null;
@@ -799,6 +825,10 @@ export namespace sheets_v4 {
    * The reply for batch updating a spreadsheet.
    */
   export interface Schema$BatchUpdateSpreadsheetResponse {
+    /**
+     * Whether comment updates were applied in the batch request. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentUpdateState?: string | null;
     /**
      * The reply of the updates. This maps 1:1 with the updates, although replies to some requests may be empty.
      */
@@ -1576,6 +1606,48 @@ export namespace sheets_v4 {
     themeColor?: string | null;
   }
   /**
+   * A location in the spreadsheet that is tied to a CommentThread with the same anchorId. Note: Multiple anchors may refer to the same location. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$CommentAnchor {
+    /**
+     * The unique ID of the comment anchor. Output only.
+     */
+    anchorId?: string | null;
+    /**
+     * The coordinate range inside the sheet where this comment is anchored.
+     */
+    range?: Schema$GridRange;
+  }
+  /**
+   * Represents a single comment thread inside a spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$CommentThread {
+    /**
+     * The ID of the CommentAnchor in the sheet that this thread is tied to.
+     */
+    anchorId?: string | null;
+    /**
+     * The unique ID of the comment thread.
+     */
+    commentId?: string | null;
+    /**
+     * The first post in the thread.
+     */
+    headPost?: Schema$Post;
+    /**
+     * The quoted text from the spreadsheet when the comment was created, formatted as plain-text.
+     */
+    plainTextQuote?: string | null;
+    /**
+     * Replies to the head post.
+     */
+    replies?: Schema$Post[];
+    /**
+     * Whether the thread is open or resolved.
+     */
+    status?: string | null;
+  }
+  /**
    * A rule describing a conditional format.
    */
   export interface Schema$ConditionalFormatRule {
@@ -2048,6 +2120,28 @@ export namespace sheets_v4 {
      * The ID of the banded range to delete.
      */
     bandedRangeId?: number | null;
+  }
+  /**
+   * Deletes a reply Post from a CommentThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. - The reply post contains a comment action. - The reply post contains an assignee. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$DeleteCommentReplyRequest {
+    /**
+     * The ID of the CommentThread which the post belongs to.
+     */
+    commentId?: string | null;
+    /**
+     * The ID of the reply Post being deleted.
+     */
+    postId?: string | null;
+  }
+  /**
+   * Deletes a CommentThread. Returns a 400 bad request error if the requesting user is not the author of the headPost. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$DeleteCommentRequest {
+    /**
+     * The ID of the CommentThread that is being deleted.
+     */
+    commentId?: string | null;
   }
   /**
    * Deletes a conditional format rule at the given index. All subsequent rules' indexes are decremented.
@@ -2664,6 +2758,10 @@ export namespace sheets_v4 {
    */
   export interface Schema$GetSpreadsheetByDataFilterRequest {
     /**
+     * The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentsViewMode?: string | null;
+    /**
      * The DataFilters used to select which ranges to retrieve from the spreadsheet.
      */
     dataFilters?: Schema$DataFilter[];
@@ -2851,6 +2949,32 @@ export namespace sheets_v4 {
      * The data for this histogram series.
      */
     data?: Schema$ChartData;
+  }
+  /**
+   * Inserts a CommentThread into the spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$InsertCommentRequest {
+    /**
+     * Optional. The email address of the assignee of the comment. Leave empty for a non-assigned comment. May not exceed 2048 UTF-8 code units.
+     */
+    assigneeEmailAddress?: string | null;
+    /**
+     * The text of the comment, as plain text. This text content will be handled similarly to comments created in the Sheets editor. It will have similar behaviors for formatting, notifications, etc. This field cannot be empty, and must not exceed 2048 UTF-8 code units.
+     */
+    content?: string | null;
+    /**
+     * The GridCoordinate in the sheet that is tied to this comment.
+     */
+    coordinate?: Schema$GridCoordinate;
+  }
+  /**
+   * The result of creating a comment. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$InsertCommentResponse {
+    /**
+     * The newly-inserted comment thread.
+     */
+    commentThread?: Schema$CommentThread;
   }
   /**
    * Inserts rows or columns in a sheet at a particular index.
@@ -3446,6 +3570,76 @@ export namespace sheets_v4 {
     size?: number | null;
   }
   /**
+   * Represents a single post in a comment thread. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$Post {
+    /**
+     * Optional. The email of the user who is being newly assigned to the thread as part of this post. Returns a 400 bad request error if: - The parent thread is a CommentThread whose headPost does not have an assignee. - commentAction is specified as `RESOLVE` or `REOPEN`. - `assignee_email` exceeds 2048 UTF-8 code units.
+     */
+    assigneeEmail?: string | null;
+    /**
+     * Output only. The user who created the post.
+     */
+    author?: Schema$PostAuthor;
+    /**
+     * Action taken as part of creating the post.
+     */
+    commentAction?: string | null;
+    /**
+     * The content of the post. Required to be non-empty if comment_action is not `RESOLVE` or `REOPEN`. This text content will be handled similarly to comments created in the Sheets editor. It will have similar behaviors for formatting, notifications, etc. May not exceed 2048 UTF-8 code units.
+     */
+    content?: string | null;
+    /**
+     * Output only. The content of the post as HTML.
+     */
+    contentHtml?: string | null;
+    /**
+     * Output only. The time the post was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Whether the post is deleted. If `true`, content and author fields will be empty.
+     */
+    deleted?: boolean | null;
+    /**
+     * Output only. Whether the post is from a copied spreadsheet. This field cannot be set directly by callers.
+     */
+    fromCopiedSpreadsheet?: boolean | null;
+    /**
+     * Output only. Whether the post is from an imported spreadsheet. This field cannot be set directly by callers.
+     */
+    fromImportedSpreadsheet?: boolean | null;
+    /**
+     * Output only. The unique ID of the post.
+     */
+    postId?: string | null;
+    /**
+     * Output only. The time the post was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Represents a user who authored a comment post. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$PostAuthor {
+    /**
+     * Whether the user is anonymous.
+     */
+    anonymous?: boolean | null;
+    /**
+     * The display name of the user. May be absent if the author is anonymous.
+     */
+    displayName?: string | null;
+    /**
+     * Whether the user is the authenticated user making the request.
+     */
+    me?: boolean | null;
+    /**
+     * The resource name of the post author user, which can also be used to identify the user in the [Google People API](https://developers.google.com/people/api/rest/v1/people). Format: `users/{user\}`. Will not be populated if the anonymous field is `true` or if the post is from an imported spreadsheet.
+     */
+    user?: string | null;
+  }
+  /**
    * A protected range.
    */
   export interface Schema$ProtectedRange {
@@ -3581,6 +3775,10 @@ export namespace sheets_v4 {
      */
     addChart?: Schema$AddChartRequest;
     /**
+     * Adds a reply to a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    addCommentReply?: Schema$AddCommentReplyRequest;
+    /**
      * Adds a new conditional format rule.
      */
     addConditionalFormatRule?: Schema$AddConditionalFormatRuleRequest;
@@ -3657,6 +3855,14 @@ export namespace sheets_v4 {
      */
     deleteBanding?: Schema$DeleteBandingRequest;
     /**
+     * Deletes a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    deleteComment?: Schema$DeleteCommentRequest;
+    /**
+     * Deletes a reply Post from a CommentThread [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    deleteCommentReply?: Schema$DeleteCommentReplyRequest;
+    /**
      * Deletes an existing conditional format rule.
      */
     deleteConditionalFormatRule?: Schema$DeleteConditionalFormatRuleRequest;
@@ -3720,6 +3926,10 @@ export namespace sheets_v4 {
      * Finds and replaces occurrences of some text with other text.
      */
     findReplace?: Schema$FindReplaceRequest;
+    /**
+     * Inserts a CommentThread into the spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    insertComment?: Schema$InsertCommentRequest;
     /**
      * Inserts new rows or columns in a sheet.
      */
@@ -3793,6 +4003,10 @@ export namespace sheets_v4 {
      */
     updateChartSpec?: Schema$UpdateChartSpecRequest;
     /**
+     * Updates an existing post (head post or reply) of a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    updateCommentPost?: Schema$UpdateCommentPostRequest;
+    /**
      * Updates an existing conditional format rule.
      */
     updateConditionalFormatRule?: Schema$UpdateConditionalFormatRuleRequest;
@@ -3862,6 +4076,10 @@ export namespace sheets_v4 {
      */
     addChart?: Schema$AddChartResponse;
     /**
+     * The result of creating a reply. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    addCommentReply?: Schema$AddCommentReplyResponse;
+    /**
      * A reply from adding a data source.
      */
     addDataSource?: Schema$AddDataSourceResponse;
@@ -3929,6 +4147,10 @@ export namespace sheets_v4 {
      * A reply from doing a find/replace.
      */
     findReplace?: Schema$FindReplaceResponse;
+    /**
+     * The result of creating a comment. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    insertComment?: Schema$InsertCommentResponse;
     /**
      * A reply from refreshing data source objects.
      */
@@ -4077,6 +4299,10 @@ export namespace sheets_v4 {
      * All column groups on this sheet, ordered by increasing range start index, then by group depth.
      */
     columnGroups?: Schema$DimensionGroup[];
+    /**
+     * The comment anchors on this sheet. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentAnchors?: Schema$CommentAnchor[];
     /**
      * The conditional format rules in this sheet.
      */
@@ -4288,6 +4514,14 @@ export namespace sheets_v4 {
    * Resource that represents a spreadsheet.
    */
   export interface Schema$Spreadsheet {
+    /**
+     * The comment threads associated with the spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    comments?: Schema$CommentThread[];
+    /**
+     * Output only. The comments view mode applied to the spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentsViewMode?: string | null;
     /**
      * A list of external data sources connected with the spreadsheet.
      */
@@ -4774,6 +5008,23 @@ export namespace sheets_v4 {
      * The specification to apply to the chart.
      */
     spec?: Schema$ChartSpec;
+  }
+  /**
+   * Updates a Post in a CommentThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$UpdateCommentPostRequest {
+    /**
+     * The ID of the CommentThread which the post belongs to.
+     */
+    commentId?: string | null;
+    /**
+     * The new text of the comment, as plain text. This text content will be handled similarly to comments created in the Sheets editor. It will have similar behaviors for formatting, notifications, etc. This field cannot be empty, and must not exceed 2048 UTF-8 code units.
+     */
+    content?: string | null;
+    /**
+     * The ID of the post being updated.
+     */
+    postId?: string | null;
   }
   /**
    * Updates a conditional format rule at the given index, or moves a conditional format rule to another index.
@@ -5286,6 +5537,7 @@ export namespace sheets_v4 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "commentsViewMode": "my_commentsViewMode",
      *       //   "includeSpreadsheetInResponse": false,
      *       //   "requests": [],
      *       //   "responseIncludeGridData": false,
@@ -5297,6 +5549,7 @@ export namespace sheets_v4 {
      *
      *   // Example response
      *   // {
+     *   //   "commentUpdateState": "my_commentUpdateState",
      *   //   "replies": [],
      *   //   "spreadsheetId": "my_spreadsheetId",
      *   //   "updatedSpreadsheet": {}
@@ -5442,6 +5695,8 @@ export namespace sheets_v4 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "comments": [],
+     *       //   "commentsViewMode": "my_commentsViewMode",
      *       //   "dataSourceSchedules": [],
      *       //   "dataSources": [],
      *       //   "developerMetadata": [],
@@ -5457,6 +5712,8 @@ export namespace sheets_v4 {
      *
      *   // Example response
      *   // {
+     *   //   "comments": [],
+     *   //   "commentsViewMode": "my_commentsViewMode",
      *   //   "dataSourceSchedules": [],
      *   //   "dataSources": [],
      *   //   "developerMetadata": [],
@@ -5597,6 +5854,8 @@ export namespace sheets_v4 {
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.get({
+     *     // The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. [Developer Preview](https://developers.google.com/workspace/preview).
+     *     commentsViewMode: 'placeholder-value',
      *     // True if tables should be excluded in the banded ranges. False if not set.
      *     excludeTablesInBandedRanges: 'placeholder-value',
      *     // True if grid data should be returned. This parameter is ignored if a field mask was set in the request.
@@ -5610,6 +5869,8 @@ export namespace sheets_v4 {
      *
      *   // Example response
      *   // {
+     *   //   "comments": [],
+     *   //   "commentsViewMode": "my_commentsViewMode",
      *   //   "dataSourceSchedules": [],
      *   //   "dataSources": [],
      *   //   "developerMetadata": [],
@@ -5757,6 +6018,7 @@ export namespace sheets_v4 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "commentsViewMode": "my_commentsViewMode",
      *       //   "dataFilters": [],
      *       //   "excludeTablesInBandedRanges": false,
      *       //   "includeGridData": false
@@ -5767,6 +6029,8 @@ export namespace sheets_v4 {
      *
      *   // Example response
      *   // {
+     *   //   "comments": [],
+     *   //   "commentsViewMode": "my_commentsViewMode",
      *   //   "dataSourceSchedules": [],
      *   //   "dataSources": [],
      *   //   "developerMetadata": [],
@@ -5891,6 +6155,10 @@ export namespace sheets_v4 {
     requestBody?: Schema$Spreadsheet;
   }
   export interface Params$Resource$Spreadsheets$Get extends StandardParameters {
+    /**
+     * The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentsViewMode?: string;
     /**
      * True if tables should be excluded in the banded ranges. False if not set.
      */

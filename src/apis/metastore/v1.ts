@@ -708,6 +708,19 @@ export namespace metastore_v1 {
     principal?: string | null;
   }
   /**
+   * Configuration for Dataproc Metastore to Lakehouse proxy routing.In a phased migration, namespaces are migrated from Dataproc Metastore to a Lakehouse Iceberg REST Catalog in batches. Between and after migration phases, the metastore service operates in PROXY state where requests for migrated namespaces are forwarded to the Lakehouse catalog while unmigrated namespaces continue to be served locally by DPMS.
+   */
+  export interface Schema$LakehouseProxyConfig {
+    /**
+     * Output only. The Lakehouse Iceberg REST Catalog where requests are being proxied to. Format: projects/{project_id_or_number\}/catalogs/{catalog_id\}.
+     */
+    catalog?: string | null;
+    /**
+     * Output only. The list of namespaces currently proxied to the Lakehouse catalog. As each migration batch completes, newly migrated namespaces are added to this list.
+     */
+    namespaces?: string[] | null;
+  }
+  /**
    * The details of the latest scheduled backup.
    */
   export interface Schema$LatestBackup {
@@ -1372,6 +1385,10 @@ export namespace metastore_v1 {
      * User-defined labels for the metastore service.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The Lakehouse proxy routing configuration for the metastore service.
+     */
+    lakehouseProxyConfig?: Schema$LakehouseProxyConfig;
     /**
      * Optional. The one hour maintenance window of the metastore service. This specifies when the service can be restarted for maintenance purposes in UTC time. Maintenance window is not needed for services with the SPANNER database type.
      */
@@ -4530,6 +4547,7 @@ export namespace metastore_v1 {
      *       //   "endpointUri": "my_endpointUri",
      *       //   "hiveMetastoreConfig": {},
      *       //   "labels": {},
+     *       //   "lakehouseProxyConfig": {},
      *       //   "maintenanceWindow": {},
      *       //   "metadataIntegration": {},
      *       //   "metadataManagementActivity": {},
@@ -4992,6 +5010,7 @@ export namespace metastore_v1 {
      *   //   "endpointUri": "my_endpointUri",
      *   //   "hiveMetastoreConfig": {},
      *   //   "labels": {},
+     *   //   "lakehouseProxyConfig": {},
      *   //   "maintenanceWindow": {},
      *   //   "metadataIntegration": {},
      *   //   "metadataManagementActivity": {},
@@ -5593,6 +5612,7 @@ export namespace metastore_v1 {
      *       //   "endpointUri": "my_endpointUri",
      *       //   "hiveMetastoreConfig": {},
      *       //   "labels": {},
+     *       //   "lakehouseProxyConfig": {},
      *       //   "maintenanceWindow": {},
      *       //   "metadataIntegration": {},
      *       //   "metadataManagementActivity": {},
