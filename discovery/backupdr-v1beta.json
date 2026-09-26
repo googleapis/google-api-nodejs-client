@@ -3179,7 +3179,7 @@
       }
     }
   },
-  "revision": "20260908",
+  "revision": "20260918",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -4597,7 +4597,8 @@
             "ACTIVE",
             "DELETING",
             "INACTIVE",
-            "UPDATING"
+            "UPDATING",
+            "PAUSED"
           ],
           "enumDescriptions": [
             "State not set.",
@@ -4605,7 +4606,8 @@
             "The resource has been created and is fully usable.",
             "The resource is being deleted.",
             "The resource has been created but is not usable.",
-            "The resource is being updated."
+            "The resource is being updated.",
+            "The resource has been created but backups are paused."
           ],
           "readOnly": true,
           "type": "string"
@@ -7033,12 +7035,14 @@
               "ALLOY_DB",
               "FILESTORE",
               "BV_AF",
+              "GOOGLE_CLOUD_NETAPP_VOLUME",
               "CEP_MONITORING_COMPUTE_INSTANCE",
               "CEP_MONITORING_DISK",
               "BV_CUSTOM_PROBERS",
               "FT_CUSTOM_PROBERS"
             ],
             "enumDescriptions": [
+              "",
               "",
               "",
               "",
