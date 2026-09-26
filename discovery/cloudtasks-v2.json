@@ -598,6 +598,62 @@
               "resources": {
                 "tasks": {
                   "methods": {
+                    "batchCreate": {
+                      "description": "Creates a batch of tasks and adds them to a queue. All tasks must be for the same queue. A maximum of 100 tasks can be created in a single batch.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/queues/{queuesId}/tasks:batchCreate",
+                      "httpMethod": "POST",
+                      "id": "cloudtasks.projects.locations.queues.tasks.batchCreate",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/queues/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/tasks:batchCreate",
+                      "request": {
+                        "$ref": "BatchCreateTasksRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "batchDelete": {
+                      "description": "Deletes a batch of tasks. This is a non-atomic operation: if deletion fails for some tasks, it can still succeed for others. The metadata field of google.longrunning.Operation contains details of failed deletions. A maximum of 1000 tasks can be deleted in a batch.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/queues/{queuesId}/tasks:batchDelete",
+                      "httpMethod": "POST",
+                      "id": "cloudtasks.projects.locations.queues.tasks.batchDelete",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The queue name. For example: Format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/queues/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/tasks:batchDelete",
+                      "request": {
+                        "$ref": "BatchDeleteTasksRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "buffer": {
                       "description": "Creates and buffers a new task without the need to explicitly define a Task message. The queue must have HTTP target. To create the task with a custom ID, use the following format and set TASK_ID to your desired ID: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID:buffer To create the task with an automatically generated ID, use the following format: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks:buffer.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/queues/{queuesId}/tasks/{taskId}:buffer",
@@ -814,7 +870,7 @@
       }
     }
   },
-  "revision": "20260831",
+  "revision": "20260916",
   "rootUrl": "https://cloudtasks.googleapis.com/",
   "schemas": {
     "AppEngineHttpRequest": {
@@ -917,6 +973,42 @@
       },
       "type": "object"
     },
+    "BatchCreateTasksRequest": {
+      "description": "Request message for [BatchCreateTasks].",
+      "id": "BatchCreateTasksRequest",
+      "properties": {
+        "requestId": {
+          "description": "Optional. This field will be used to identify the long running operation, avoiding duplication when user retries. If not provided, then a UUID will be generated at server side.",
+          "type": "string"
+        },
+        "requests": {
+          "description": "Required. The list of requests to create tasks. The queue specified in parent field of each CreateTaskRequest will be the same. This validation happens on the client side as well as in the handler. BatchCreateTasksRequest.parent will also be the same value as the individual CreateTaskRequest.parent . The maximum number of requests is 100.",
+          "items": {
+            "$ref": "CreateTaskRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchDeleteTasksRequest": {
+      "description": "Request message for deleting a batch of tasks using BatchDeleteTasks.",
+      "id": "BatchDeleteTasksRequest",
+      "properties": {
+        "names": {
+          "description": "Required. The names of the tasks to delete. A maximum of 1000 tasks can be deleted in a batch. For example: Format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "requestId": {
+          "description": "Optional. This field will be used to identify the long running operation, avoiding duplication when user retries. If not provided, then a UUID will be generated at server side.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Binding": {
       "description": "Associates `members`, or principals, with a `role`.",
       "id": "Binding",
@@ -981,6 +1073,10 @@
       "description": "Request message for CreateTask.",
       "id": "CreateTaskRequest",
       "properties": {
+        "parent": {
+          "description": "Required. The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.",
+          "type": "string"
+        },
         "responseView": {
           "description": "The response_view specifies which subset of the Task will be returned. By default response_view is BASIC; not all information is retrieved by default because some data, such as payloads, might be desirable to return only when needed because of its large size or because of the sensitivity of data that it contains. Authorization for FULL requires `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/) permission on the Task resource.",
           "enum": [
@@ -1649,6 +1745,10 @@
           "description": "Output only. The number of attempts which have received a response.",
           "format": "int32",
           "type": "integer"
+        },
+        "retryConfig": {
+          "$ref": "RetryConfig",
+          "description": "Optional. Specifies the task-level RetryConfig. If present, this overrides the Queue.retry_config for this task."
         },
         "scheduleTime": {
           "description": "The time when the task is scheduled to be attempted or retried. `schedule_time` will be truncated to the nearest microsecond.",

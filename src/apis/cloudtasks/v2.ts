@@ -192,6 +192,32 @@ export namespace cloudtasks_v2 {
     scheduleTime?: string | null;
   }
   /**
+   * Request message for [BatchCreateTasks].
+   */
+  export interface Schema$BatchCreateTasksRequest {
+    /**
+     * Optional. This field will be used to identify the long running operation, avoiding duplication when user retries. If not provided, then a UUID will be generated at server side.
+     */
+    requestId?: string | null;
+    /**
+     * Required. The list of requests to create tasks. The queue specified in parent field of each CreateTaskRequest will be the same. This validation happens on the client side as well as in the handler. BatchCreateTasksRequest.parent will also be the same value as the individual CreateTaskRequest.parent . The maximum number of requests is 100.
+     */
+    requests?: Schema$CreateTaskRequest[];
+  }
+  /**
+   * Request message for deleting a batch of tasks using BatchDeleteTasks.
+   */
+  export interface Schema$BatchDeleteTasksRequest {
+    /**
+     * Required. The names of the tasks to delete. A maximum of 1000 tasks can be deleted in a batch. For example: Format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     */
+    names?: string[] | null;
+    /**
+     * Optional. This field will be used to identify the long running operation, avoiding duplication when user retries. If not provided, then a UUID will be generated at server side.
+     */
+    requestId?: string | null;
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -243,6 +269,10 @@ export namespace cloudtasks_v2 {
    * Request message for CreateTask.
    */
   export interface Schema$CreateTaskRequest {
+    /**
+     * Required. The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.
+     */
+    parent?: string | null;
     /**
      * The response_view specifies which subset of the Task will be returned. By default response_view is BASIC; not all information is retrieved by default because some data, such as payloads, might be desirable to return only when needed because of its large size or because of the sensitivity of data that it contains. Authorization for FULL requires `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/) permission on the Task resource.
      */
@@ -713,6 +743,10 @@ export namespace cloudtasks_v2 {
      * Output only. The number of attempts which have received a response.
      */
     responseCount?: number | null;
+    /**
+     * Optional. Specifies the task-level RetryConfig. If present, this overrides the Queue.retry_config for this task.
+     */
+    retryConfig?: Schema$RetryConfig;
     /**
      * The time when the task is scheduled to be attempted or retried. `schedule_time` will be truncated to the nearest microsecond.
      */
@@ -3304,6 +3338,306 @@ export namespace cloudtasks_v2 {
     }
 
     /**
+     * Creates a batch of tasks and adds them to a queue. All tasks must be for the same queue. A maximum of 100 tasks can be created in a single batch.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudtasks = google.cloudtasks('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudtasks.projects.locations.queues.tasks.batchCreate({
+     *     // Required. The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.
+     *     parent: 'projects/my-project/locations/my-location/queues/my-queue',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requestId": "my_requestId",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Batchcreate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchCreate(
+      params?: Params$Resource$Projects$Locations$Queues$Tasks$Batchcreate,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Batchcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Batchcreate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Batchcreate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    batchCreate(callback: BodyResponseCallback<Schema$Operation>): void;
+    batchCreate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Tasks$Batchcreate
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Tasks$Batchcreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Queues$Tasks$Batchcreate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/tasks:batchCreate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a batch of tasks. This is a non-atomic operation: if deletion fails for some tasks, it can still succeed for others. The metadata field of google.longrunning.Operation contains details of failed deletions. A maximum of 1000 tasks can be deleted in a batch.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudtasks = google.cloudtasks('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudtasks.projects.locations.queues.tasks.batchDelete({
+     *     // Required. The queue name. For example: Format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     *     parent: 'projects/my-project/locations/my-location/queues/my-queue',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "names": [],
+     *       //   "requestId": "my_requestId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Batchdelete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchDelete(
+      params?: Params$Resource$Projects$Locations$Queues$Tasks$Batchdelete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Batchdelete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    batchDelete(callback: BodyResponseCallback<Schema$Operation>): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Tasks$Batchdelete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Tasks$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Queues$Tasks$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/tasks:batchDelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Creates and buffers a new task without the need to explicitly define a Task message. The queue must have HTTP target. To create the task with a custom ID, use the following format and set TASK_ID to your desired ID: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID:buffer To create the task with an automatically generated ID, use the following format: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks:buffer.
      * @example
      * ```js
@@ -3488,6 +3822,7 @@ export namespace cloudtasks_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "parent": "my_parent",
      *       //   "responseView": "my_responseView",
      *       //   "task": {}
      *       // }
@@ -3506,6 +3841,7 @@ export namespace cloudtasks_v2 {
      *   //   "lastAttempt": {},
      *   //   "name": "my_name",
      *   //   "responseCount": 0,
+     *   //   "retryConfig": {},
      *   //   "scheduleTime": "my_scheduleTime",
      *   //   "view": "my_view"
      *   // }
@@ -3785,6 +4121,7 @@ export namespace cloudtasks_v2 {
      *   //   "lastAttempt": {},
      *   //   "name": "my_name",
      *   //   "responseCount": 0,
+     *   //   "retryConfig": {},
      *   //   "scheduleTime": "my_scheduleTime",
      *   //   "view": "my_view"
      *   // }
@@ -4080,6 +4417,7 @@ export namespace cloudtasks_v2 {
      *   //   "lastAttempt": {},
      *   //   "name": "my_name",
      *   //   "responseCount": 0,
+     *   //   "retryConfig": {},
      *   //   "scheduleTime": "my_scheduleTime",
      *   //   "view": "my_view"
      *   // }
@@ -4177,6 +4515,28 @@ export namespace cloudtasks_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Batchcreate extends StandardParameters {
+    /**
+     * Required. The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchCreateTasksRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Batchdelete extends StandardParameters {
+    /**
+     * Required. The queue name. For example: Format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchDeleteTasksRequest;
+  }
   export interface Params$Resource$Projects$Locations$Queues$Tasks$Buffer extends StandardParameters {
     /**
      * Required. The parent queue name. For example: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.
