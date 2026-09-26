@@ -2404,6 +2404,10 @@ export namespace discoveryengine_v1alpha {
      */
     assistSkippedReasons?: string[] | null;
     /**
+     * Output only. Maps an internal connector agent name (the machine identifier embedded in tool names, e.g. `custom_mcp__agent`) to the connector's human-readable display name. Populated at serving time for custom MCP / agent gateway connectors so user-facing surfaces (e.g. the tool-call chip) can show the connector name instead of its internal identifier. Empty when there are no such connectors.
+     */
+    connectorDisplayNames?: {[key: string]: string} | null;
+    /**
      * Optional. The field contains information about the various policy checks' results like the banned phrases or the Model Armor checks. This field is populated only if the assist call was skipped due to a policy violation.
      */
     customerPolicyEnforcementResult?: Schema$GoogleCloudDiscoveryengineV1alphaAssistAnswerCustomerPolicyEnforcementResult;
@@ -2902,6 +2906,10 @@ export namespace discoveryengine_v1alpha {
      * Required. The URI the user is directed to when they need to authorize. Should include everything required for a successful authorization: OAuth ID, extra flags, etc. Example: `https://accounts.google.com/o/oauth2/v2/auth?client_id=OAUTH_ID&scope=https://www.googleapis.com/auth/calendar.events&response_type=code&access_type=offline&prompt=consent` The `redirect_uri` parameter will be overwritten by the Vertex AI Search frontend.
      */
     authorizationUri?: string | null;
+    /**
+     * Optional. Whether the OAuth token exchange uses HTTP Basic authentication (`client_secret_basic`) instead of sending the client credentials in the request body (`client_secret_post`). When `true`, the credentials (`client_id:client_secret`) are Base64 encoded and sent in the `Authorization` header. Some OAuth providers (e.g. Splunk) require `client_secret_basic`. When `false` or unset, the default `client_secret_post` is used.
+     */
+    basicAuthenticationEnabled?: boolean | null;
     /**
      * Required. The OAuth2 client ID.
      */
@@ -3894,7 +3902,7 @@ export namespace discoveryengine_v1alpha {
      */
     selectedPosition?: number | null;
     /**
-     * End user selected CompleteQueryResponse.QuerySuggestion.suggestion.
+     * Optional. End user selected CompleteQueryResponse.QuerySuggestion.suggestion.
      */
     selectedSuggestion?: string | null;
   }
@@ -4702,7 +4710,7 @@ export namespace discoveryengine_v1alpha {
      */
     syncMode?: string | null;
     /**
-     * Optional. Immutable. User-facing, version-independent label for this connector. May be shared by multiple connectors under the same (project, location, collection, data_source); tag-based lookup returns the one with the greatest create_time. Optional at Create time. Agent Designer resolves connectors via (data_source, tag) when set, falling back to the legacy resource-name lookup when unset, so connectors created before the tag-write launch continue to work without a backfill.
+     * Optional. Immutable. User-facing, version-independent label for this connector. May be shared by multiple connectors under the same (project, location, collection, data_source); tag-based lookup returns the one with the greatest create_time. Optional at Create time. If the caller omits `tag`, the server auto-derives one from the collection_id (falling back to data_source, else a time-based `t-` sentinel). The auto-derived tag is subject to the same immutability guarantee as a caller-supplied one, so callers who care about the exact tag value should provide it explicitly rather than relying on the server default. Agent Designer resolves connectors via (data_source, tag) when set, falling back to the legacy resource-name lookup when unset, so connectors created before the tag-write launch continue to work without a backfill.
      */
     tag?: string | null;
     /**
@@ -6174,6 +6182,10 @@ export namespace discoveryengine_v1alpha {
      * Required. The output location of the data.
      */
     outputConfig?: Schema$GoogleCloudDiscoveryengineV1alphaOutputConfig;
+    /**
+     * Optional. The earliest date (inclusive), interpreted in the UTC time zone, whose metrics are included in the export. If unset, defaults to 30 days before the current UTC date. The value must be a valid calendar date that is not in the future and not older than 180 days (the source data retention window); otherwise the request fails with `INVALID_ARGUMENT`.
+     */
+    startDate?: Schema$GoogleTypeDate;
   }
   /**
    * Response of the ExportMetricsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field.
@@ -7308,6 +7320,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. Whether the license config should be auto renewed when it reaches the end date.
      */
     autoRenew?: boolean | null;
+    /**
+     * Output only. The name of the BillingAccountLicenseConfig from which this LicenseConfig is assigned, if this field is set.
+     */
+    billingAccountLicenseConfig?: string | null;
     /**
      * Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.
      */
@@ -9382,7 +9398,7 @@ export namespace discoveryengine_v1alpha {
      */
     orderBy?: string | null;
     /**
-     * The user's search query. See SearchRequest.query for definition. The value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. At least one of search_query or PageInfo.page_category is required for `search` events. Other event types should not set this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Optional. The user's search query. See SearchRequest.query for definition. The value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. At least one of search_query or PageInfo.page_category is required for `search` events. Other event types should not set this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     searchQuery?: string | null;
   }
@@ -11629,7 +11645,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaUserEvent {
     /**
-     * Extra user event features to include in the recommendation model. These attributes must NOT contain data that needs to be parsed or processed further, e.g. JSON or other encodings. If you provide custom attributes for ingested user events, also include them in the user events that you associate with prediction requests. Custom attribute formatting must be consistent between imported events and events provided with prediction requests. This lets the Discovery Engine API use those custom attributes when training models and serving predictions, which helps improve recommendation quality. This field needs to pass all below criteria, otherwise an `INVALID_ARGUMENT` error is returned: * The key must be a UTF-8 encoded string with a length limit of 5,000 characters. * For text attributes, at most 400 values are allowed. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 256 characters. * For number attributes, at most 400 values are allowed. For product recommendations, an example of extra user information is `traffic_channel`, which is how a user arrives at the site. Users can arrive at the site by coming to the site directly, coming through Google search, or in other ways.
+     * Optional. Extra user event features to include in the recommendation model. These attributes must NOT contain data that needs to be parsed or processed further, e.g. JSON or other encodings. If you provide custom attributes for ingested user events, also include them in the user events that you associate with prediction requests. Custom attribute formatting must be consistent between imported events and events provided with prediction requests. This lets the Discovery Engine API use those custom attributes when training models and serving predictions, which helps improve recommendation quality. This field needs to pass all below criteria, otherwise an `INVALID_ARGUMENT` error is returned: * The key must be a UTF-8 encoded string with a length limit of 5,000 characters. * For text attributes, at most 400 values are allowed. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 256 characters. * For number attributes, at most 400 values are allowed. For product recommendations, an example of extra user information is `traffic_channel`, which is how a user arrives at the site. Users can arrive at the site by coming to the site directly, coming through Google search, or in other ways.
      */
     attributes?: {
       [key: string]: Schema$GoogleCloudDiscoveryengineV1alphaCustomAttribute;
@@ -12132,6 +12148,10 @@ export namespace discoveryengine_v1alpha {
      * The name of the collection. It should be collection resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}`. For APIs under WidgetService, such as WidgetService.LookupWidgetConfig, the project number and location part is erased in this field. For synthetic placeholder entries (see message-level comment) this carries a synthetic placeholder collection id that does not correspond to a real collection. Callers must not attempt to resolve / GET this resource until the user authorizes the connector.
      */
     name?: string | null;
+    /**
+     * Output only. The version-independent label of the connector backing this collection, mirroring `DataConnector.tag`. Unlike the version-pinned data store id it survives a connector version upgrade, so an upgraded connector keeps the same tag. Not a unique key. As `DataConnector.tag` documents, several connectors may share a tag under the same (project, location, collection, data_source), and tag-based lookup resolves to the one with the greatest create_time. Clients must not treat this as a connector identifier. Empty when the connector was created before the tag-write launch, and for synthetic placeholder entries, which have no underlying `DataConnector`. Populated only when `ConnectorsFeature.enable_connector_tag` is on.
+     */
+    tag?: string | null;
   }
   /**
    * Read-only connector in CollectionComponent auth state.
@@ -16456,7 +16476,7 @@ export namespace discoveryengine_v1alpha {
      */
     syncMode?: string | null;
     /**
-     * Optional. Immutable. User-facing, version-independent label for this connector. May be shared by multiple connectors under the same (project, location, collection, data_source); tag-based lookup returns the one with the greatest create_time. Optional at Create time. Agent Designer resolves connectors via (data_source, tag) when set, falling back to the legacy resource-name lookup when unset, so connectors created before the tag-write launch continue to work without a backfill.
+     * Optional. Immutable. User-facing, version-independent label for this connector. May be shared by multiple connectors under the same (project, location, collection, data_source); tag-based lookup returns the one with the greatest create_time. Optional at Create time. If the caller omits `tag`, the server auto-derives one from the collection_id (falling back to data_source, else a time-based `t-` sentinel). The auto-derived tag is subject to the same immutability guarantee as a caller-supplied one, so callers who care about the exact tag value should provide it explicitly rather than relying on the server default. Agent Designer resolves connectors via (data_source, tag) when set, falling back to the legacy resource-name lookup when unset, so connectors created before the tag-write launch continue to work without a backfill.
      */
     tag?: string | null;
     /**
@@ -46946,6 +46966,7 @@ export namespace discoveryengine_v1alpha {
     context: APIRequestContext;
     analytics: Resource$Projects$Locations$Collections$Engines$Analytics;
     assistants: Resource$Projects$Locations$Collections$Engines$Assistants;
+    collaborativeProjects: Resource$Projects$Locations$Collections$Engines$Collaborativeprojects;
     completionConfig: Resource$Projects$Locations$Collections$Engines$Completionconfig;
     controls: Resource$Projects$Locations$Collections$Engines$Controls;
     conversations: Resource$Projects$Locations$Collections$Engines$Conversations;
@@ -46961,6 +46982,10 @@ export namespace discoveryengine_v1alpha {
         );
       this.assistants =
         new Resource$Projects$Locations$Collections$Engines$Assistants(
+          this.context
+        );
+      this.collaborativeProjects =
+        new Resource$Projects$Locations$Collections$Engines$Collaborativeprojects(
           this.context
         );
       this.completionConfig =
@@ -49419,7 +49444,8 @@ export namespace discoveryengine_v1alpha {
      *         requestBody: {
      *           // request body parameters
      *           // {
-     *           //   "outputConfig": {}
+     *           //   "outputConfig": {},
+     *           //   "startDate": {}
      *           // }
      *         },
      *       },
@@ -53215,6 +53241,194 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaCannedQuery;
+  }
+
+  export class Resource$Projects$Locations$Collections$Engines$Collaborativeprojects {
+    context: APIRequestContext;
+    knowledgeSpaces: Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.knowledgeSpaces =
+        new Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces {
+    context: APIRequestContext;
+    operations: Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations =
+        new Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.collaborativeProjects.knowledgeSpaces.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/collaborativeProjects/my-collaborativeProject/knowledgeSpaces/my-knowledgeSpace/operations/my-operation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations$Get,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations$Get extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
   }
 
   export class Resource$Projects$Locations$Collections$Engines$Completionconfig {
@@ -81737,6 +81951,7 @@ export namespace discoveryengine_v1alpha {
      *       // {
      *       //   "alertPolicyResourceConfig": {},
      *       //   "autoRenew": false,
+     *       //   "billingAccountLicenseConfig": "my_billingAccountLicenseConfig",
      *       //   "earlyTerminated": false,
      *       //   "earlyTerminationDate": {},
      *       //   "endDate": {},
@@ -81758,6 +81973,7 @@ export namespace discoveryengine_v1alpha {
      *   // {
      *   //   "alertPolicyResourceConfig": {},
      *   //   "autoRenew": false,
+     *   //   "billingAccountLicenseConfig": "my_billingAccountLicenseConfig",
      *   //   "earlyTerminated": false,
      *   //   "earlyTerminationDate": {},
      *   //   "endDate": {},
@@ -81923,6 +82139,7 @@ export namespace discoveryengine_v1alpha {
      *   // {
      *   //   "alertPolicyResourceConfig": {},
      *   //   "autoRenew": false,
+     *   //   "billingAccountLicenseConfig": "my_billingAccountLicenseConfig",
      *   //   "earlyTerminated": false,
      *   //   "earlyTerminationDate": {},
      *   //   "endDate": {},
@@ -82246,6 +82463,7 @@ export namespace discoveryengine_v1alpha {
      *       // {
      *       //   "alertPolicyResourceConfig": {},
      *       //   "autoRenew": false,
+     *       //   "billingAccountLicenseConfig": "my_billingAccountLicenseConfig",
      *       //   "earlyTerminated": false,
      *       //   "earlyTerminationDate": {},
      *       //   "endDate": {},
@@ -82267,6 +82485,7 @@ export namespace discoveryengine_v1alpha {
      *   // {
      *   //   "alertPolicyResourceConfig": {},
      *   //   "autoRenew": false,
+     *   //   "billingAccountLicenseConfig": "my_billingAccountLicenseConfig",
      *   //   "earlyTerminated": false,
      *   //   "earlyTerminationDate": {},
      *   //   "endDate": {},
