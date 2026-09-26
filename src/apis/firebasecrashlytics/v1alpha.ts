@@ -517,6 +517,14 @@ export namespace firebasecrashlytics_v1alpha {
    */
   export interface Schema$IntervalMetrics {
     /**
+     * Mobile only. Percentage of crash-free sessions. (total_sessions_count - impacted_sessions_count) / total_sessions_count * 100.
+     */
+    crashFreeSessionsPercentage?: number | null;
+    /**
+     * Mobile only. Percentage of crash-free users. (total_users_count - impacted_users_count) / total_users_count * 100
+     */
+    crashFreeUsersPercentage?: number | null;
+    /**
      * The end of the interval covered by the computation.
      */
     endTime?: string | null;
@@ -525,17 +533,29 @@ export namespace firebasecrashlytics_v1alpha {
      */
     eventsCount?: string | null;
     /**
+     * The number of distinct sessions in the set of events.
+     */
+    impactedSessionsCount?: string | null;
+    /**
      * The number of distinct users in the set of events.
      */
     impactedUsersCount?: string | null;
     /**
-     * The number of distinct sessions in the set of events.
+     * Deprecated: Prefer `impacted_sessions_count`. The number of distinct sessions in the set of events.
      */
     sessionsCount?: string | null;
     /**
      * The start of the interval covered by the computation.
      */
     startTime?: string | null;
+    /**
+     * The number of distinct sessions.
+     */
+    totalSessionsCount?: string | null;
+    /**
+     * The number of distinct users.
+     */
+    totalUsersCount?: string | null;
   }
   /**
    * An issue describes a set of similar events that have been analyzed by Crashlytics and grouped together. All events within an issue will be of the same error_type: crash, non-fatal exception or ANR. All events within an issue will contain similar stack traces in their blamed thread.
@@ -1193,6 +1213,8 @@ export namespace firebasecrashlytics_v1alpha {
      *     'filter.operatingSystem.displayNames': 'placeholder-value',
      *     // Only counts events in the given app version. This string matches Version.display_name. Format: "display_version (build_version)" e.g. "1.2.3 (456)".
      *     'filter.version.displayNames': 'placeholder-value',
+     *     // Optional. Filters events by custom keys (https://firebase.google.com/docs/crashlytics/customize-crash-reports#add-keys). Supported forms: * Equality: `custom_keys.level = "vip"` or `custom_keys.level:"vip"` * Presence: `custom_keys.level:*` * OR across values of one key: `custom_keys.level = "vip" OR custom_keys.level = "enterprise"` * AND across different keys: `custom_keys.level = "vip" AND custom_keys.region = "us"` Keys are case-sensitive. Keys and values containing spaces must be double-quoted, for example `custom_keys."app state" = "background"`. OR across different keys, repeating a key within an AND, NOT, and comparators other than `=` and `:` are rejected with INVALID_ARGUMENT. Wildcards are not supported in values; use `custom_keys.:*` to match events that set a key to any value. Only supported for Android and iOS. This filter expression applies in addition to the `filter` field above. The syntax is a subset of AIP-160 (https://google.aip.dev/160).
+     *     filterExpression: 'placeholder-value',
      *     // Optional. The maximum number of events per page. If omitted, defaults to 10.
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous calls.
@@ -1379,6 +1401,10 @@ export namespace firebasecrashlytics_v1alpha {
      * Only counts events in the given app version. This string matches Version.display_name. Format: "display_version (build_version)" e.g. "1.2.3 (456)".
      */
     'filter.version.displayNames'?: string[];
+    /**
+     * Optional. Filters events by custom keys (https://firebase.google.com/docs/crashlytics/customize-crash-reports#add-keys). Supported forms: * Equality: `custom_keys.level = "vip"` or `custom_keys.level:"vip"` * Presence: `custom_keys.level:*` * OR across values of one key: `custom_keys.level = "vip" OR custom_keys.level = "enterprise"` * AND across different keys: `custom_keys.level = "vip" AND custom_keys.region = "us"` Keys are case-sensitive. Keys and values containing spaces must be double-quoted, for example `custom_keys."app state" = "background"`. OR across different keys, repeating a key within an AND, NOT, and comparators other than `=` and `:` are rejected with INVALID_ARGUMENT. Wildcards are not supported in values; use `custom_keys.:*` to match events that set a key to any value. Only supported for Android and iOS. This filter expression applies in addition to the `filter` field above. The syntax is a subset of AIP-160 (https://google.aip.dev/160).
+     */
+    filterExpression?: string;
     /**
      * Optional. The maximum number of events per page. If omitted, defaults to 10.
      */
