@@ -1187,7 +1187,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     unitFilter?: string | null;
     /**
-     * Required. Immutable. UnitKind that this rollout kind corresponds to. Rollouts stemming from this rollout kind will target the units of this unit kind. In other words, this defines the population of target units to be upgraded by rollouts.
+     * Optional. Immutable. UnitKind that this rollout kind corresponds to. Rollouts stemming from this rollout kind will target the units of this unit kind. In other words, this defines the population of target units to be upgraded by rollouts.
      */
     unitKind?: string | null;
     /**
@@ -1637,6 +1637,10 @@ export namespace saasservicemgmt_v1beta1 {
      * Output only. The timestamp when the resource was created.
      */
     createTime?: string | null;
+    /**
+     * Output only. The timestamp when the resource was marked for deletion (deletion is an asynchronous operation).
+     */
+    deleteTime?: string | null;
     /**
      * Output only. An opaque value that uniquely identifies a version or generation of a resource. It can be used to confirm that the client and server agree on the ordering of a resource being written.
      */
@@ -11358,6 +11362,7 @@ export namespace saasservicemgmt_v1beta1 {
      *         // {
      *         //   "annotations": {},
      *         //   "createTime": "my_createTime",
+     *         //   "deleteTime": "my_deleteTime",
      *         //   "etag": "my_etag",
      *         //   "labels": {},
      *         //   "name": "my_name",
@@ -11372,6 +11377,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   // {
      *   //   "annotations": {},
      *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
      *   //   "etag": "my_etag",
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -11663,6 +11669,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   // {
      *   //   "annotations": {},
      *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
      *   //   "etag": "my_etag",
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -11975,6 +11982,7 @@ export namespace saasservicemgmt_v1beta1 {
      *         // {
      *         //   "annotations": {},
      *         //   "createTime": "my_createTime",
+     *         //   "deleteTime": "my_deleteTime",
      *         //   "etag": "my_etag",
      *         //   "labels": {},
      *         //   "name": "my_name",
@@ -11989,6 +11997,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   // {
      *   //   "annotations": {},
      *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
      *   //   "etag": "my_etag",
      *   //   "labels": {},
      *   //   "name": "my_name",
