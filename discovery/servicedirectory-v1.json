@@ -564,7 +564,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. The resource name for the namespace in the format `projects/*/locations/*/namespaces/*`.",
+                      "description": "Identifier. The resource name for the namespace in the format `projects/*/locations/*/namespaces/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
                       "required": true,
@@ -815,7 +815,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Immutable. The resource name for the service in the format `projects/*/locations/*/namespaces/*/services/*`.",
+                          "description": "Identifier. The resource name for the service in the format `projects/*/locations/*/namespaces/*/services/*`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/services/[^/]+$",
                           "required": true,
@@ -1066,7 +1066,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Immutable. The resource name for the endpoint in the format `projects/*/locations/*/namespaces/*/services/*/endpoints/*`.",
+                              "description": "Identifier. The resource name for the endpoint in the format `projects/*/locations/*/namespaces/*/services/*/endpoints/*`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/services/[^/]+/endpoints/[^/]+$",
                               "required": true,
@@ -1101,7 +1101,7 @@
       }
     }
   },
-  "revision": "20260724",
+  "revision": "20260916",
   "rootUrl": "https://servicedirectory.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1148,7 +1148,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Immutable. The resource name for the endpoint in the format `projects/*/locations/*/namespaces/*/services/*/endpoints/*`.",
+          "description": "Identifier. The resource name for the endpoint in the format `projects/*/locations/*/namespaces/*/services/*/endpoints/*`.",
           "type": "string"
         },
         "network": {
@@ -1332,7 +1332,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Immutable. The resource name for the namespace in the format `projects/*/locations/*/namespaces/*`.",
+          "description": "Identifier. The resource name for the namespace in the format `projects/*/locations/*/namespaces/*`.",
           "type": "string"
         },
         "uid": {
@@ -1413,7 +1413,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Immutable. The resource name for the service in the format `projects/*/locations/*/namespaces/*/services/*`.",
+          "description": "Identifier. The resource name for the service in the format `projects/*/locations/*/namespaces/*/services/*`.",
           "type": "string"
         },
         "uid": {
