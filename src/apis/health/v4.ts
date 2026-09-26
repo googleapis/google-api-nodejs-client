@@ -137,7 +137,7 @@ export namespace health_v4 {
      */
     interval?: Schema$ObservationTimeInterval;
     /**
-     * Required. Energy burned during an activity, measured in kilocalories.
+     * Required. Energy burned during an activity, measured in kilocalories. Must be in the range `[0, 1000000]`.
      */
     kcal?: number | null;
   }
@@ -309,7 +309,7 @@ export namespace health_v4 {
    */
   export interface Schema$Altitude {
     /**
-     * Required. Altitude gain in millimeters over the observed interval.
+     * Required. Altitude gain in millimeters over the observed interval. Must be in the range `[-1000000000, 1000000000]`.
      */
     gainMillimeters?: string | null;
     /**
@@ -370,7 +370,7 @@ export namespace health_v4 {
    */
   export interface Schema$BloodGlucose {
     /**
-     * Required. Blood glucose level concentration in mg/dL.
+     * Required. Blood glucose level concentration in mg/dL. Must be in the range `[0, 900]`.
      */
     bloodGlucoseMilligramsPerDeciliter?: number | null;
     /**
@@ -412,7 +412,7 @@ export namespace health_v4 {
    */
   export interface Schema$BodyFat {
     /**
-     * Required. Body fat percentage, in range [0, 100].
+     * Required. Body fat percentage. Must be in the range `[0, 100]`.
      */
     percentage?: number | null;
     /**
@@ -494,7 +494,7 @@ export namespace health_v4 {
      */
     sampleTime?: Schema$ObservationSampleTime;
     /**
-     * Required. The core body temperature in Celsius.
+     * Required. The core body temperature in Celsius. Must be in the range `[0, 100]`.
      */
     temperatureCelsius?: number | null;
   }
@@ -588,7 +588,7 @@ export namespace health_v4 {
    */
   export interface Schema$DailyOxygenSaturation {
     /**
-     * Required. The average value of the oxygen saturation samples during the sleep.
+     * Required. The average value of the oxygen saturation samples during the sleep. Must be in the range `[0, 100]`.
      */
     averagePercentage?: number | null;
     /**
@@ -596,7 +596,7 @@ export namespace health_v4 {
      */
     date?: Schema$Date;
     /**
-     * Required. The lower bound of the confidence interval of oxygen saturation samples during sleep.
+     * Required. The lower bound of the confidence interval of oxygen saturation samples during sleep. Must be in the range `[0, 100]`.
      */
     lowerBoundPercentage?: number | null;
     /**
@@ -604,7 +604,7 @@ export namespace health_v4 {
      */
     standardDeviationPercentage?: number | null;
     /**
-     * Required. The upper bound of the confidence interval of oxygen saturation samples during sleep.
+     * Required. The upper bound of the confidence interval of oxygen saturation samples during sleep. Must be in the range `[0, 100]`.
      */
     upperBoundPercentage?: number | null;
   }
@@ -757,7 +757,7 @@ export namespace health_v4 {
    */
   export interface Schema$DailyRollUpDataPointsRequest {
     /**
-     * Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect.
+     * Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.
      */
     dataSourceFamily?: string | null;
     /**
@@ -824,7 +824,7 @@ export namespace health_v4 {
      */
     estimated?: boolean | null;
     /**
-     * Required. Daily VO2 max value measured as in ml consumed oxygen / kg of body weight / min.
+     * Required. Daily VO2 max value measured as in ml consumed oxygen / kg of body weight / min. Must be in the range `[0, 100]`.
      */
     vo2Max?: number | null;
     /**
@@ -1118,7 +1118,7 @@ export namespace health_v4 {
      */
     interval?: Schema$ObservationTimeInterval;
     /**
-     * Required. Distance in millimeters over the observed interval.
+     * Required. Distance in millimeters over the observed interval. Must be in the range `[0, 1000000000]`.
      */
     millimeters?: string | null;
   }
@@ -1190,7 +1190,7 @@ export namespace health_v4 {
    */
   export interface Schema$EnergyQuantity {
     /**
-     * Required. The energy value in kilocalories.
+     * Required. The energy value in kilocalories. Must be in the range `[0, 100000]`.
      */
     kcal?: number | null;
     /**
@@ -1308,7 +1308,7 @@ export namespace health_v4 {
    */
   export interface Schema$Floors {
     /**
-     * Required. Number of floors in the recorded interval
+     * Required. Number of floors in the recorded interval. Must be in the range `[0, 1000000]`.
      */
     count?: string | null;
     /**
@@ -1508,7 +1508,7 @@ export namespace health_v4 {
    */
   export interface Schema$HeartRate {
     /**
-     * Required. The heart rate value in beats per minute.
+     * Required. The heart rate value in beats per minute. Must be in the range `[1, 300]`.
      */
     beatsPerMinute?: string | null;
     /**
@@ -1559,7 +1559,7 @@ export namespace health_v4 {
      */
     metadata?: Schema$HeartRateVariabilityMetadata;
     /**
-     * Optional. The root mean square of successive differences between normal heartbeats. This is a measure of heart rate variability used by Google Health.
+     * Optional. The root mean square of successive differences between normal heartbeats. This is a measure of heart rate variability used by Google Health. Must be in the range `[1, 200]`.
      */
     rootMeanSquareOfSuccessiveDifferencesMilliseconds?: number | null;
     /**
@@ -1619,7 +1619,7 @@ export namespace health_v4 {
    */
   export interface Schema$Height {
     /**
-     * Required. Height of the user in millimeters.
+     * Required. Height of the user in millimeters. Must be in the range `[0, 3000]`.
      */
     heightMillimeters?: string | null;
     /**
@@ -2180,7 +2180,7 @@ export namespace health_v4 {
    */
   export interface Schema$OxygenSaturation {
     /**
-     * Required. The oxygen saturation percentage. Valid values are from 0 to 100.
+     * Required. The oxygen saturation percentage. Must be in the range `[0, 100]`.
      */
     percentage?: number | null;
     /**
@@ -2246,7 +2246,7 @@ export namespace health_v4 {
      */
     membershipStartDate?: Schema$Date;
     /**
-     * Identifier. The resource name of this Profile resource. Format: `users/{user\}/profile` Example: `users/1234567890/profile` or `users/me/profile` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.
+     * Identifier. The resource name of this Profile resource. Format: `users/{user\}/profile` Example: `users/1234567890/profile` or `users/me/profile` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user. This field is read-only.
      */
     name?: string | null;
     /**
@@ -2573,7 +2573,7 @@ export namespace health_v4 {
    */
   export interface Schema$RollUpDataPointsRequest {
     /**
-     * Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect.
+     * Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.
      */
     dataSourceFamily?: string | null;
     /**
@@ -2611,7 +2611,7 @@ export namespace health_v4 {
    */
   export interface Schema$RunVO2Max {
     /**
-     * Required. Run VO2 max value in ml/kg/min.
+     * Required. Run VO2 max value in ml/kg/min. Must be in the range `[0, 100]`.
      */
     runVo2Max?: number | null;
     /**
@@ -2729,7 +2729,7 @@ export namespace health_v4 {
      */
     languageLocale?: string | null;
     /**
-     * Identifier. The resource name of this Settings resource. Format: `users/{user\}/settings` Example: `users/1234567890/settings` or `users/me/settings` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.
+     * Identifier. The resource name of this Settings resource. Format: `users/{user\}/settings` Example: `users/1234567890/settings` or `users/me/settings` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user. This field is read-only.
      */
     name?: string | null;
     /**
@@ -2969,7 +2969,7 @@ export namespace health_v4 {
    */
   export interface Schema$Steps {
     /**
-     * Required. Number of steps in the recorded interval.
+     * Required. Number of steps in the recorded interval. Must be in the range `[0, 1000000]`.
      */
     count?: string | null;
     /**
@@ -3200,7 +3200,7 @@ export namespace health_v4 {
      */
     sampleTime?: Schema$ObservationSampleTime;
     /**
-     * Required. VO2 max value measured as in ml consumed oxygen / kg of body weight / min.
+     * Required. VO2 max value measured as in ml consumed oxygen / kg of body weight / min. Must be in the range `[0, 100]`.
      */
     vo2Max?: number | null;
   }
@@ -3209,7 +3209,7 @@ export namespace health_v4 {
    */
   export interface Schema$VolumeQuantity {
     /**
-     * Required. Value representing the volume in milliliters.
+     * Required. Value representing the volume in milliliters. Must be in the range `[0, 100000]`.
      */
     milliliters?: number | null;
     /**
@@ -3243,7 +3243,7 @@ export namespace health_v4 {
      */
     sampleTime?: Schema$ObservationSampleTime;
     /**
-     * Required. Weight of a user in grams.
+     * Required. Weight of a user in grams. Must be in the range `[0, 1000000]`.
      */
     weightGrams?: number | null;
   }
@@ -3252,7 +3252,7 @@ export namespace health_v4 {
    */
   export interface Schema$WeightQuantity {
     /**
-     * Required. The weight value in grams.
+     * Required. The weight value in grams. Must be in the range `[0, 100000]`.
      */
     grams?: number | null;
     /**
@@ -5528,7 +5528,7 @@ export namespace health_v4 {
      *
      *   // Do the magic
      *   const res = await health.users.updateProfile({
-     *     // Identifier. The resource name of this Profile resource. Format: `users/{user\}/profile` Example: `users/1234567890/profile` or `users/me/profile` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.
+     *     // Identifier. The resource name of this Profile resource. Format: `users/{user\}/profile` Example: `users/1234567890/profile` or `users/me/profile` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user. This field is read-only.
      *     name: 'users/my-user/profile',
      *     // Optional. The list of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -5683,7 +5683,7 @@ export namespace health_v4 {
      *
      *   // Do the magic
      *   const res = await health.users.updateSettings({
-     *     // Identifier. The resource name of this Settings resource. Format: `users/{user\}/settings` Example: `users/1234567890/settings` or `users/me/settings` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.
+     *     // Identifier. The resource name of this Settings resource. Format: `users/{user\}/settings` Example: `users/1234567890/settings` or `users/me/settings` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user. This field is read-only.
      *     name: 'users/my-user/settings',
      *     // Optional. The list of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -5850,7 +5850,7 @@ export namespace health_v4 {
   }
   export interface Params$Resource$Users$Updateprofile extends StandardParameters {
     /**
-     * Identifier. The resource name of this Profile resource. Format: `users/{user\}/profile` Example: `users/1234567890/profile` or `users/me/profile` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.
+     * Identifier. The resource name of this Profile resource. Format: `users/{user\}/profile` Example: `users/1234567890/profile` or `users/me/profile` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user. This field is read-only.
      */
     name?: string;
     /**
@@ -5865,7 +5865,7 @@ export namespace health_v4 {
   }
   export interface Params$Resource$Users$Updatesettings extends StandardParameters {
     /**
-     * Identifier. The resource name of this Settings resource. Format: `users/{user\}/settings` Example: `users/1234567890/settings` or `users/me/settings` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.
+     * Identifier. The resource name of this Settings resource. Format: `users/{user\}/settings` Example: `users/1234567890/settings` or `users/me/settings` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user. This field is read-only.
      */
     name?: string;
     /**
@@ -7158,7 +7158,7 @@ export namespace health_v4 {
      *
      *   // Do the magic
      *   const res = await health.users.dataTypes.dataPoints.reconcile({
-     *     // Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family\}` - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect.
+     *     // Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family\}` - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.
      *     dataSourceFamily: 'placeholder-value',
      *     // Optional. Filter expression based on https://aip.dev/160. A time range, either physical or civil, can be specified. See the ListDataPointsRequest.filter for the supported fields and syntax.
      *     filter: 'placeholder-value',
@@ -7526,7 +7526,7 @@ export namespace health_v4 {
   }
   export interface Params$Resource$Users$Datatypes$Datapoints$Reconcile extends StandardParameters {
     /**
-     * Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family\}` - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect.
+     * Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family\}` - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.
      */
     dataSourceFamily?: string;
     /**

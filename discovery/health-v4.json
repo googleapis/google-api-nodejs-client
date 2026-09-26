@@ -630,7 +630,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Identifier. The resource name of this Profile resource. Format: `users/{user}/profile` Example: `users/1234567890/profile` or `users/me/profile` The {user} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.",
+              "description": "Identifier. The resource name of this Profile resource. Format: `users/{user}/profile` Example: `users/1234567890/profile` or `users/me/profile` The {user} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user. This field is read-only.",
               "location": "path",
               "pattern": "^users/[^/]+/profile$",
               "required": true,
@@ -664,7 +664,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Identifier. The resource name of this Settings resource. Format: `users/{user}/settings` Example: `users/1234567890/settings` or `users/me/settings` The {user} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.",
+              "description": "Identifier. The resource name of this Settings resource. Format: `users/{user}/settings` Example: `users/1234567890/settings` or `users/me/settings` The {user} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user. This field is read-only.",
               "location": "path",
               "pattern": "^users/[^/]+/settings$",
               "required": true,
@@ -972,7 +972,7 @@
                   ],
                   "parameters": {
                     "dataSourceFamily": {
-                      "description": "Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family}` - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect.",
+                      "description": "Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family}` - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1134,7 +1134,7 @@
       }
     }
   },
-  "revision": "20260908",
+  "revision": "20260923",
   "rootUrl": "https://health.googleapis.com/",
   "schemas": {
     "ActiveEnergyBurned": {
@@ -1146,7 +1146,7 @@
           "description": "Required. Observed interval"
         },
         "kcal": {
-          "description": "Required. Energy burned during an activity, measured in kilocalories.",
+          "description": "Required. Energy burned during an activity, measured in kilocalories. Must be in the range `[0, 1000000]`.",
           "format": "double",
           "type": "number"
         }
@@ -1434,7 +1434,7 @@
       "id": "Altitude",
       "properties": {
         "gainMillimeters": {
-          "description": "Required. Altitude gain in millimeters over the observed interval.",
+          "description": "Required. Altitude gain in millimeters over the observed interval. Must be in the range `[-1000000000, 1000000000]`.",
           "format": "int64",
           "type": "string"
         },
@@ -1514,7 +1514,7 @@
       "id": "BloodGlucose",
       "properties": {
         "bloodGlucoseMilligramsPerDeciliter": {
-          "description": "Required. Blood glucose level concentration in mg/dL.",
+          "description": "Required. Blood glucose level concentration in mg/dL. Must be in the range `[0, 900]`.",
           "format": "double",
           "type": "number"
         },
@@ -1624,7 +1624,7 @@
       "id": "BodyFat",
       "properties": {
         "percentage": {
-          "description": "Required. Body fat percentage, in range [0, 100].",
+          "description": "Required. Body fat percentage. Must be in the range `[0, 100]`.",
           "format": "double",
           "type": "number"
         },
@@ -1778,7 +1778,7 @@
           "description": "Required. The time at which core body temperature was measured."
         },
         "temperatureCelsius": {
-          "description": "Required. The core body temperature in Celsius.",
+          "description": "Required. The core body temperature in Celsius. Must be in the range `[0, 100]`.",
           "format": "double",
           "type": "number"
         }
@@ -1901,7 +1901,7 @@
       "id": "DailyOxygenSaturation",
       "properties": {
         "averagePercentage": {
-          "description": "Required. The average value of the oxygen saturation samples during the sleep.",
+          "description": "Required. The average value of the oxygen saturation samples during the sleep. Must be in the range `[0, 100]`.",
           "format": "double",
           "type": "number"
         },
@@ -1910,7 +1910,7 @@
           "description": "Required. Date (in user's timezone) of the daily oxygen saturation record."
         },
         "lowerBoundPercentage": {
-          "description": "Required. The lower bound of the confidence interval of oxygen saturation samples during sleep.",
+          "description": "Required. The lower bound of the confidence interval of oxygen saturation samples during sleep. Must be in the range `[0, 100]`.",
           "format": "double",
           "type": "number"
         },
@@ -1920,7 +1920,7 @@
           "type": "number"
         },
         "upperBoundPercentage": {
-          "description": "Required. The upper bound of the confidence interval of oxygen saturation samples during sleep.",
+          "description": "Required. The upper bound of the confidence interval of oxygen saturation samples during sleep. Must be in the range `[0, 100]`.",
           "format": "double",
           "type": "number"
         }
@@ -1989,7 +1989,7 @@
       "id": "DailyRollUpDataPointsRequest",
       "properties": {
         "dataSourceFamily": {
-          "description": "Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect.",
+          "description": "Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.",
           "type": "string"
         },
         "pageSize": {
@@ -2195,7 +2195,7 @@
           "type": "boolean"
         },
         "vo2Max": {
-          "description": "Required. Daily VO2 max value measured as in ml consumed oxygen / kg of body weight / min.",
+          "description": "Required. Daily VO2 max value measured as in ml consumed oxygen / kg of body weight / min. Must be in the range `[0, 100]`.",
           "format": "double",
           "type": "number"
         },
@@ -2578,7 +2578,7 @@
           "description": "Required. Observed interval."
         },
         "millimeters": {
-          "description": "Required. Distance in millimeters over the observed interval.",
+          "description": "Required. Distance in millimeters over the observed interval. Must be in the range `[0, 1000000000]`.",
           "format": "int64",
           "type": "string"
         }
@@ -2692,7 +2692,7 @@
       "id": "EnergyQuantity",
       "properties": {
         "kcal": {
-          "description": "Required. The energy value in kilocalories.",
+          "description": "Required. The energy value in kilocalories. Must be in the range `[0, 100000]`.",
           "format": "double",
           "type": "number"
         },
@@ -3259,7 +3259,7 @@
       "id": "Floors",
       "properties": {
         "count": {
-          "description": "Required. Number of floors in the recorded interval",
+          "description": "Required. Number of floors in the recorded interval. Must be in the range `[0, 1000000]`.",
           "format": "int64",
           "type": "string"
         },
@@ -3533,7 +3533,7 @@
       "id": "HeartRate",
       "properties": {
         "beatsPerMinute": {
-          "description": "Required. The heart rate value in beats per minute.",
+          "description": "Required. The heart rate value in beats per minute. Must be in the range `[1, 300]`.",
           "format": "int64",
           "type": "string"
         },
@@ -3622,7 +3622,7 @@
           "description": "Optional. Metadata used in 1P surfaces."
         },
         "rootMeanSquareOfSuccessiveDifferencesMilliseconds": {
-          "description": "Optional. The root mean square of successive differences between normal heartbeats. This is a measure of heart rate variability used by Google Health.",
+          "description": "Optional. The root mean square of successive differences between normal heartbeats. This is a measure of heart rate variability used by Google Health. Must be in the range `[1, 200]`.",
           "format": "double",
           "type": "number"
         },
@@ -3712,7 +3712,7 @@
       "id": "Height",
       "properties": {
         "heightMillimeters": {
-          "description": "Required. Height of the user in millimeters.",
+          "description": "Required. Height of the user in millimeters. Must be in the range `[0, 3000]`.",
           "format": "int64",
           "type": "string"
         },
@@ -4210,7 +4210,19 @@
               "LONGING",
               "ACCOMPLISHED",
               "LOVING",
-              "COMPASSIONATE"
+              "COMPASSIONATE",
+              "DEPRESSED",
+              "GOOD",
+              "LOW_ENERGY",
+              "OBSESSIVE_THOUGHTS",
+              "PANIC",
+              "PLAYFUL",
+              "PLEASED",
+              "SENSITIVE",
+              "SLEEPY",
+              "SWINGS",
+              "UNHAPPY",
+              "VERY_SELF_CRITICAL"
             ],
             "enumDescriptions": [
               "Unspecified mood.",
@@ -4269,7 +4281,19 @@
               "Longing.",
               "Accomplished.",
               "Loving.",
-              "Compassionate."
+              "Compassionate.",
+              "Depressed.",
+              "Good.",
+              "Low energy.",
+              "Obsessive thoughts.",
+              "Panic.",
+              "Playful.",
+              "Pleased.",
+              "Sensitive.",
+              "Sleepy.",
+              "Mood swings.",
+              "Unhappy.",
+              "Very self-critical."
             ],
             "type": "string"
           },
@@ -4760,7 +4784,7 @@
       "id": "OxygenSaturation",
       "properties": {
         "percentage": {
-          "description": "Required. The oxygen saturation percentage. Valid values are from 0 to 100.",
+          "description": "Required. The oxygen saturation percentage. Must be in the range `[0, 100]`.",
           "format": "double",
           "type": "number"
         },
@@ -4859,7 +4883,7 @@
           "readOnly": true
         },
         "name": {
-          "description": "Identifier. The resource name of this Profile resource. Format: `users/{user}/profile` Example: `users/1234567890/profile` or `users/me/profile` The {user} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.",
+          "description": "Identifier. The resource name of this Profile resource. Format: `users/{user}/profile` Example: `users/1234567890/profile` or `users/me/profile` The {user} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user. This field is read-only.",
           "type": "string"
         },
         "userConfiguredRunningStrideLengthMm": {
@@ -5111,7 +5135,7 @@
       "id": "RollUpDataPointsRequest",
       "properties": {
         "dataSourceFamily": {
-          "description": "Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect.",
+          "description": "Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.",
           "type": "string"
         },
         "pageSize": {
@@ -5259,7 +5283,7 @@
       "id": "RunVO2Max",
       "properties": {
         "runVo2Max": {
-          "description": "Required. Run VO2 max value in ml/kg/min.",
+          "description": "Required. Run VO2 max value in ml/kg/min. Must be in the range `[0, 100]`.",
           "format": "double",
           "type": "number"
         },
@@ -5433,7 +5457,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The resource name of this Settings resource. Format: `users/{user}/settings` Example: `users/1234567890/settings` or `users/me/settings` The {user} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.",
+          "description": "Identifier. The resource name of this Settings resource. Format: `users/{user}/settings` Example: `users/1234567890/settings` or `users/me/settings` The {user} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user. This field is read-only.",
           "type": "string"
         },
         "strideLengthRunningType": {
@@ -5903,7 +5927,7 @@
       "id": "Steps",
       "properties": {
         "count": {
-          "description": "Required. Number of steps in the recorded interval.",
+          "description": "Required. Number of steps in the recorded interval. Must be in the range `[0, 1000000]`.",
           "format": "int64",
           "type": "string"
         },
@@ -6426,7 +6450,7 @@
           "description": "Required. The time at which VO2 max was measured."
         },
         "vo2Max": {
-          "description": "Required. VO2 max value measured as in ml consumed oxygen / kg of body weight / min.",
+          "description": "Required. VO2 max value measured as in ml consumed oxygen / kg of body weight / min. Must be in the range `[0, 100]`.",
           "format": "double",
           "type": "number"
         }
@@ -6438,7 +6462,7 @@
       "id": "VolumeQuantity",
       "properties": {
         "milliliters": {
-          "description": "Required. Value representing the volume in milliliters.",
+          "description": "Required. Value representing the volume in milliliters. Must be in the range `[0, 100000]`.",
           "format": "double",
           "type": "number"
         },
@@ -6522,7 +6546,7 @@
           "description": "Required. The time at which the weight was measured"
         },
         "weightGrams": {
-          "description": "Required. Weight of a user in grams.",
+          "description": "Required. Weight of a user in grams. Must be in the range `[0, 1000000]`.",
           "format": "double",
           "type": "number"
         }
@@ -6534,7 +6558,7 @@
       "id": "WeightQuantity",
       "properties": {
         "grams": {
-          "description": "Required. The weight value in grams.",
+          "description": "Required. The weight value in grams. Must be in the range `[0, 100000]`.",
           "format": "double",
           "type": "number"
         },
