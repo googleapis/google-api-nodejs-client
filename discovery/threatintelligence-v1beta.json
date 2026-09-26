@@ -842,9 +842,26 @@
       }
     }
   },
-  "revision": "20260913",
+  "revision": "20260924",
   "rootUrl": "https://threatintelligence.googleapis.com/",
   "schemas": {
+    "AVDetections": {
+      "description": "Details about the detection vendors.",
+      "id": "AVDetections",
+      "properties": {
+        "detectedVendorCount": {
+          "description": "Optional. Number of vendors that detected the threat.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalVendorCount": {
+          "description": "Optional. Total number of vendors.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Alert": {
       "description": "Stateful object representing a group of Findings. Key feature to an Alert is that it expresses the user's intent towards the findings of that group, even those that haven't occurred yet.",
       "id": "Alert",
@@ -977,6 +994,10 @@
           "description": "Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.",
           "readOnly": true,
           "type": "string"
+        },
+        "domainMonitoring": {
+          "$ref": "DomainMonitoringAlertDetail",
+          "description": "Domain Monitoring alert detail type."
         },
         "initialAccessBroker": {
           "$ref": "InitialAccessBrokerAlertDetail",
@@ -1149,6 +1170,55 @@
       },
       "type": "object"
     },
+    "CertificateDetails": {
+      "description": "Details regarding the SSL certificate configuration.",
+      "id": "CertificateDetails",
+      "properties": {
+        "issuer": {
+          "description": "Optional. The SSL certificate issuer.",
+          "type": "string"
+        },
+        "subjectAlternativeNames": {
+          "description": "Optional. The SSL subject alternative names.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CommunicationContext": {
+      "description": "Detailed communication context metadata for documents originating from deep and dark web communication channels.",
+      "id": "CommunicationContext",
+      "properties": {
+        "channelDescription": {
+          "description": "Optional. Description of the communication channel.",
+          "type": "string"
+        },
+        "channelName": {
+          "description": "Optional. Name of the communication channel.",
+          "type": "string"
+        },
+        "channelPath": {
+          "description": "Optional. Channel path (e.g. forum path or sub-channel).",
+          "type": "string"
+        },
+        "channelUrl": {
+          "description": "Optional. URL of the communication channel.",
+          "type": "string"
+        },
+        "serviceName": {
+          "description": "Optional. Service from the collection event origin (e.g. forum or chat service name).",
+          "type": "string"
+        },
+        "threadId": {
+          "description": "Optional. Conversation thread identifier.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Configuration": {
       "description": "A configuration represents a behavior an engine should follow when producing new findings.",
       "id": "Configuration",
@@ -1226,6 +1296,10 @@
         "domainConfiguration": {
           "$ref": "DomainConfiguration",
           "description": "Domain Configuration detail config."
+        },
+        "domainMonitoring": {
+          "$ref": "DomainMonitoringConfig",
+          "description": "Domain Monitoring detail config."
         },
         "technologyWatchlist": {
           "$ref": "TechnologyWatchListConfig",
@@ -1441,6 +1515,13 @@
           "$ref": "CustomerProfileSummary",
           "description": "Optional. A summarized version of the customer profile."
         },
+        "technologies": {
+          "description": "Optional. Technologies associated with the organization.",
+          "items": {
+            "$ref": "CustomerProfileTechnology"
+          },
+          "type": "array"
+        },
         "technologyPresence": {
           "description": "Optional. Technology presence of the organization.",
           "type": "string"
@@ -1650,6 +1731,24 @@
       },
       "type": "object"
     },
+    "CustomerProfileTechnology": {
+      "description": "Technology information for the customer profile.",
+      "id": "CustomerProfileTechnology",
+      "properties": {
+        "citationIds": {
+          "description": "Optional. The citation ids for the technology.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "technology": {
+          "description": "Required. The name of the technology.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CustomerProfileWebPresence": {
       "description": "Web presence information for the customer profile.",
       "id": "CustomerProfileWebPresence",
@@ -1673,10 +1772,19 @@
       "id": "DataLeakAlertDetail",
       "properties": {
         "discoveryDocumentIds": {
-          "description": "Required. Array of ids to accommodate multiple discovery documents",
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use `discovery_documents` instead. Array of ids to accommodate multiple discovery documents.",
           "items": {
             "type": "string"
           },
+          "type": "array"
+        },
+        "discoveryDocuments": {
+          "description": "Output only. New structured metadata payload.",
+          "items": {
+            "$ref": "DiscoveryDocument"
+          },
+          "readOnly": true,
           "type": "array"
         },
         "severity": {
@@ -1690,8 +1798,13 @@
       "description": "A detail object for a Data Leak finding.",
       "id": "DataLeakFindingDetail",
       "properties": {
+        "discoveryDocument": {
+          "$ref": "DiscoveryDocument",
+          "description": "Optional. The discovery document associated with the Data Leak finding."
+        },
         "documentId": {
-          "description": "Required. The unique identifier of the document that triggered the Data Leak finding. This ID can be used to retrieve the content of the document for further analysis.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use `discovery_document` instead. The unique identifier of the document that triggered the Data Leak finding. This ID can be used to retrieve the content of the document for further analysis.",
           "type": "string"
         },
         "matchScore": {
@@ -1715,6 +1828,56 @@
             "High severity.",
             "Critical severity."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryDocument": {
+      "description": "Replaces the raw string ID to hold associated metadata.",
+      "id": "DiscoveryDocument",
+      "properties": {
+        "communicationContext": {
+          "$ref": "CommunicationContext",
+          "description": "Optional. Detailed communication context metadata for documents originating from deep and dark web communication channels."
+        },
+        "documentId": {
+          "description": "Output only. The identifier of the discovery document.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "documentType": {
+          "description": "Output only. The classification/type of the document (e.g. `COMMUNICATION`, `DDW_COMMUNICATION`, `message`).",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DnsRegistrationDetails": {
+      "description": "Extracted WHOIS and DNS registration details of the domain.",
+      "id": "DnsRegistrationDetails",
+      "properties": {
+        "expireTime": {
+          "description": "Optional. The specific timestamp when the current domain registration expires.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "privateRegistration": {
+          "description": "Optional. Indicates whether private registration is enabled on the WHOIS record.",
+          "type": "boolean"
+        },
+        "registrantCountry": {
+          "description": "Optional. The country code of the registrant (e.g., US). Use ISO 3166-1 alpha-2 codes",
+          "type": "string"
+        },
+        "registrar": {
+          "description": "Optional. The registrar where the domain was registered (e.g., NameCheap).",
+          "type": "string"
+        },
+        "registrationTime": {
+          "description": "Optional. The specific timestamp when the domain registration was created.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -1759,6 +1922,152 @@
       },
       "type": "object"
     },
+    "DomainMonitoringAlertDetail": {
+      "description": "A detailed object for a Domain or URL alert.",
+      "id": "DomainMonitoringAlertDetail",
+      "properties": {
+        "dnsDetails": {
+          "$ref": "DomainMonitoringDnsDetails",
+          "description": "Optional. The DNS details of the domain or URL."
+        },
+        "domainDetails": {
+          "$ref": "DomainMonitoringDomainDetails",
+          "description": "Details specific to a monitored domain."
+        },
+        "gtiDetails": {
+          "$ref": "DomainMonitoringGtiDetails",
+          "description": "Optional. The GTI details of the domain or URL."
+        },
+        "infrastructure": {
+          "$ref": "Infrastructure",
+          "description": "Optional. The infrastructure of the domain or URL."
+        },
+        "matchedDomain": {
+          "description": "Optional. The matched domain.",
+          "type": "string"
+        },
+        "protectedBrand": {
+          "description": "The protected brand name that triggered the alert.",
+          "type": "string"
+        },
+        "protectedDomain": {
+          "$ref": "DomainMonitoringDomainDetails",
+          "description": "The protected domain that triggered the alert."
+        },
+        "registrationDetails": {
+          "$ref": "DnsRegistrationDetails",
+          "description": "Optional. Extracted WHOIS and DNS registration details."
+        },
+        "relationships": {
+          "$ref": "Relationships",
+          "description": "Optional. The relationships of the domain or URL."
+        },
+        "threatAttributionDetails": {
+          "$ref": "ThreatAttributionDetails",
+          "description": "Optional. The threat attribution details of the domain or URL."
+        },
+        "urlDetails": {
+          "$ref": "DomainMonitoringUrlDetails",
+          "description": "Details specific to a monitored URL."
+        },
+        "whoisDetails": {
+          "$ref": "DomainMonitoringWhoIsDetails",
+          "description": "Optional. The whois details of the domain or URL."
+        }
+      },
+      "type": "object"
+    },
+    "DomainMonitoringConfig": {
+      "description": "Any account-level configuration options will go here.",
+      "id": "DomainMonitoringConfig",
+      "properties": {
+        "domains": {
+          "description": "The domains to use as \"seeds\" for Suspicious Domain Monitoring.",
+          "items": {
+            "$ref": "DomainMonitoringDomain"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DomainMonitoringDnsDetails": {
+      "description": "The DNS details of the domain.",
+      "id": "DomainMonitoringDnsDetails",
+      "properties": {
+        "dnsRecords": {
+          "description": "Optional. The DNS records of the domain.",
+          "items": {
+            "$ref": "DomainMonitoringDnsRecord"
+          },
+          "type": "array"
+        },
+        "retrievalTime": {
+          "description": "Optional. The time the DNS details were retrieved.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DomainMonitoringDnsRecord": {
+      "description": "The DNS record of the domain.",
+      "id": "DomainMonitoringDnsRecord",
+      "properties": {
+        "asnHosting": {
+          "description": "Optional. The ASN hosting the domain.",
+          "type": "string"
+        },
+        "asnRegionCode": {
+          "description": "Optional. The region code of the ASN. Use ISO 3166-1 alpha-2 codes.",
+          "type": "string"
+        },
+        "ipRegionCode": {
+          "description": "Optional. The region code associated with the resolved IP. Use ISO 3166-1 alpha-2 codes.",
+          "type": "string"
+        },
+        "recordData": {
+          "description": "Optional. The value of the DNS record.",
+          "type": "string"
+        },
+        "resolvedIp": {
+          "description": "Optional. The resolved IP address.",
+          "type": "string"
+        },
+        "ttl": {
+          "description": "Optional. The TTL of the DNS record.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": {
+          "description": "Optional. The type of the DNS record.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DomainMonitoringDomain": {
+      "description": "A Domain Monitoring \"domain\"",
+      "id": "DomainMonitoringDomain",
+      "properties": {
+        "domain": {
+          "description": "The domain name to match against.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DomainMonitoringDomainDetails": {
+      "description": "Details specific to a monitored domain.",
+      "id": "DomainMonitoringDomainDetails",
+      "properties": {
+        "domain": {
+          "description": "Required. The domain name to match against.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DomainMonitoringFeatureConfig": {
       "description": "Specific configuration for the Domain Monitoring feature.",
       "id": "DomainMonitoringFeatureConfig",
@@ -1766,6 +2075,137 @@
         "disabled": {
           "description": "Optional. Whether the Domain Monitoring feature is disabled for the domain.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DomainMonitoringFindingDetail": {
+      "description": "A detailed object for a Domain or URL finding.",
+      "id": "DomainMonitoringFindingDetail",
+      "properties": {
+        "dnsDetails": {
+          "$ref": "DomainMonitoringDnsDetails",
+          "description": "Optional. The DNS details of the domain or URL."
+        },
+        "domainDetails": {
+          "$ref": "DomainMonitoringDomainDetails",
+          "description": "Details specific to a monitored domain."
+        },
+        "gtiDetails": {
+          "$ref": "DomainMonitoringGtiDetails",
+          "description": "Optional. The GTI details of the domain or URL."
+        },
+        "infrastructure": {
+          "$ref": "Infrastructure",
+          "description": "Optional. The infrastructure of the domain or URL."
+        },
+        "matchedDomain": {
+          "description": "Optional. The matched domain.",
+          "type": "string"
+        },
+        "protectedBrand": {
+          "description": "The protected brand name that triggered the alert.",
+          "type": "string"
+        },
+        "protectedDomain": {
+          "$ref": "DomainMonitoringDomainDetails",
+          "description": "The protected domain that triggered the alert."
+        },
+        "registrationDetails": {
+          "$ref": "DnsRegistrationDetails",
+          "description": "Optional. Extracted WHOIS and DNS registration details."
+        },
+        "relationships": {
+          "$ref": "Relationships",
+          "description": "Optional. The relationships of the domain or URL."
+        },
+        "threatAttributionDetails": {
+          "$ref": "ThreatAttributionDetails",
+          "description": "Optional. The threat attribution details of the domain or URL."
+        },
+        "urlDetails": {
+          "$ref": "DomainMonitoringUrlDetails",
+          "description": "Details specific to a monitored URL."
+        },
+        "whoisDetails": {
+          "$ref": "DomainMonitoringWhoIsDetails",
+          "description": "Optional. The whois details of the domain or URL."
+        }
+      },
+      "type": "object"
+    },
+    "DomainMonitoringGtiDetails": {
+      "description": "The GTI details of the domain.",
+      "id": "DomainMonitoringGtiDetails",
+      "properties": {
+        "avDetections": {
+          "$ref": "AVDetections",
+          "description": "Optional. Detection counts across vendor feeds."
+        },
+        "domainPermutation": {
+          "description": "Optional. The permutation technique used for the domain (e.g., dictionary, homoglyph).",
+          "type": "string"
+        },
+        "gtiDomainUri": {
+          "description": "Optional. The GTI link for the domain.",
+          "type": "string"
+        },
+        "gtiScore": {
+          "description": "Optional. The GTI score of the domain. The threat score is a number between 0 and 100.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "threatClassification": {
+          "description": "Optional. The threat classification of the domain, obtained from the domain report (e.g. DomainMonitoring).",
+          "type": "string"
+        },
+        "verdict": {
+          "description": "Output only. The verdict of the domain.",
+          "enum": [
+            "DOMAIN_MONITORING_GTI_VERDICT_UNSPECIFIED",
+            "DOMAIN_MONITORING_GTI_VERDICT_BENIGN",
+            "DOMAIN_MONITORING_GTI_VERDICT_UNDETECTED",
+            "DOMAIN_MONITORING_GTI_VERDICT_SUSPICIOUS",
+            "DOMAIN_MONITORING_GTI_VERDICT_MALICIOUS",
+            "DOMAIN_MONITORING_GTI_VERDICT_UNKNOWN"
+          ],
+          "enumDescriptions": [
+            "Default value. The verdict is not set or unspecified.",
+            "Verdict is clean; the entity is considered harmless.",
+            "Verdict is undetected; no immediate evidence of malicious intent.",
+            "Verdict is suspicious; possible malicious activity detected.",
+            "Verdict is malicious; high confidence that the entity poses a threat.",
+            "Verdict is not applicable; not able to generate a verdict for this entity."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DomainMonitoringUrlDetails": {
+      "description": "Details specific to a monitored URL.",
+      "id": "DomainMonitoringUrlDetails",
+      "properties": {
+        "url": {
+          "description": "Required. The URL to match against.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DomainMonitoringWhoIsDetails": {
+      "description": "The whois details of the domain.",
+      "id": "DomainMonitoringWhoIsDetails",
+      "properties": {
+        "retrievalTime": {
+          "description": "Optional. The time the whois details were retrieved.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "whois": {
+          "description": "Optional. The whois details of the domain.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1967,6 +2407,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "domainMonitoring": {
+          "$ref": "DomainMonitoringFindingDetail",
+          "description": "Domain Monitoring finding detail type."
+        },
         "initialAccessBroker": {
           "$ref": "InitialAccessBrokerFindingDetail",
           "description": "Initial Access Broker finding detail type."
@@ -2008,15 +2452,39 @@
       },
       "type": "object"
     },
+    "Infrastructure": {
+      "description": "Core infrastructure observations associated with the URL or Domain.",
+      "id": "Infrastructure",
+      "properties": {
+        "certificateDetails": {
+          "$ref": "CertificateDetails",
+          "description": "Optional. SSL certificate details."
+        },
+        "urlResponse": {
+          "description": "Optional. The raw URL response string.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "InitialAccessBrokerAlertDetail": {
       "description": "Captures the specific details of InitialAccessBroker (IAB) alert.",
       "id": "InitialAccessBrokerAlertDetail",
       "properties": {
         "discoveryDocumentIds": {
-          "description": "Required. Array of ids to accommodate multiple discovery documents",
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use `discovery_documents` instead. Array of ids to accommodate multiple discovery documents.",
           "items": {
             "type": "string"
           },
+          "type": "array"
+        },
+        "discoveryDocuments": {
+          "description": "Output only. New structured metadata payload.",
+          "items": {
+            "$ref": "DiscoveryDocument"
+          },
+          "readOnly": true,
           "type": "array"
         },
         "severity": {
@@ -2030,8 +2498,13 @@
       "description": "A detail object for an Initial Access Broker (IAB) finding.",
       "id": "InitialAccessBrokerFindingDetail",
       "properties": {
+        "discoveryDocument": {
+          "$ref": "DiscoveryDocument",
+          "description": "Optional. The discovery document associated with the IAB finding."
+        },
         "documentId": {
-          "description": "Required. The unique identifier of the document that triggered the IAB finding. This ID can be used to retrieve the content of the document for further analysis.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use `discovery_document` instead. The unique identifier of the document that triggered the IAB finding. This ID can be used to retrieve the content of the document for further analysis.",
           "type": "string"
         },
         "matchScore": {
@@ -2049,11 +2522,11 @@
             "CRITICAL"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Default value, should never be set.",
+            "Low severity.",
+            "Medium severity.",
+            "High severity.",
+            "Critical severity."
           ],
           "type": "string"
         }
@@ -2065,10 +2538,19 @@
       "id": "InsiderThreatAlertDetail",
       "properties": {
         "discoveryDocumentIds": {
-          "description": "Required. Array of ids to accommodate multiple discovery documents",
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use `discovery_documents` instead. Array of ids to accommodate multiple discovery documents.",
           "items": {
             "type": "string"
           },
+          "type": "array"
+        },
+        "discoveryDocuments": {
+          "description": "Output only. New structured metadata payload.",
+          "items": {
+            "$ref": "DiscoveryDocument"
+          },
+          "readOnly": true,
           "type": "array"
         },
         "severity": {
@@ -2082,8 +2564,13 @@
       "description": "A detail object for a InsiderThreat finding.",
       "id": "InsiderThreatFindingDetail",
       "properties": {
+        "discoveryDocument": {
+          "$ref": "DiscoveryDocument",
+          "description": "Optional. The discovery document associated with the Insider Threat finding."
+        },
         "documentId": {
-          "description": "Required. The unique identifier of the document that triggered the InsiderThreat finding. This ID can be used to retrieve the content of the document for further analysis.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use `discovery_document` instead. The unique identifier of the document that triggered the InsiderThreat finding. This ID can be used to retrieve the content of the document for further analysis.",
           "type": "string"
         },
         "matchScore": {
@@ -2503,6 +2990,34 @@
       },
       "type": "object"
     },
+    "Relationships": {
+      "description": "Related entities and domains observed for the target.",
+      "id": "Relationships",
+      "properties": {
+        "relatedUrls": {
+          "description": "Optional. Related URLs associated with the domain.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "siblingDomains": {
+          "description": "Optional. Sibling domains sharing the same IP address.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "subdomains": {
+          "description": "Optional. Subdomains associated with the target domain or URL.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "RelevanceAnalysis": {
       "description": "Structured relevance analysis for a threat.",
       "id": "RelevanceAnalysis",
@@ -2754,6 +3269,34 @@
         },
         "technologies": {
           "description": "Optional. List of vendor, technology or cpe fingerprint. example: Microsoft office 360 Apache Server 3.5 cpe:2.3:a:microsoft:outlook:*:*:*:*:*:*:*:*",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ThreatAttributionDetails": {
+      "description": "Threat attribution information (actor, campaign, etc.).",
+      "id": "ThreatAttributionDetails",
+      "properties": {
+        "actors": {
+          "description": "Optional. The threat actors associated with the target.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "collections": {
+          "description": "Optional. The threat collections detected.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "malware": {
+          "description": "Optional. The malware associated with the threat.",
           "items": {
             "type": "string"
           },
