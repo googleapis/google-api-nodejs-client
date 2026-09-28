@@ -1,3 +1,29 @@
 {
-  "extends": "./node_modules/gts"
+  "extends": "./node_modules/gts",
+  "overrides": [
+    {
+      "files": ["src/apis/**/*.ts"],
+      "parserOptions": {
+        "project": null
+      },
+      "rules": {
+        "@typescript-eslint/no-floating-promises": "off"
+      }
+    },
+    {
+      "files": [
+        "test/**/*.ts",
+        "system-test/**/*.ts",
+        "src/*.ts",
+        "src/generator/*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "./tsconfig.src.json",
+          "./tsconfig.test.json",
+          "./tsconfig.tools.json"
+        ]
+      }
+    }
+  ]
 }

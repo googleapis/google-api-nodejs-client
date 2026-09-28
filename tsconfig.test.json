@@ -1,6 +1,25 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "sourceMap": true
-  }
+    "rootDir": ".",
+    "outDir": "build",
+    "sourceMap": true,
+    "disableSourceOfProjectReferenceRedirect": true
+  },
+  "include": [
+    "test/*.ts",
+    "test/**/*.ts",
+    "system-test/**/*.ts",
+    "src/generator/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "test/fixtures",
+    "samples/**"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.src.json"
+    }
+  ]
 }

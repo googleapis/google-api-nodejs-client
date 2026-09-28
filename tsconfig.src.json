@@ -1,9 +1,15 @@
 {
-  "files": [],
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "rootDir": ".",
-    "outDir": "build"
+    "rootDir": "src",
+    "outDir": "build/src",
+    "disableSourceOfProjectReferenceRedirect": true
   },
+  "include": [
+    "src/index.ts",
+    "src/apis/index.ts",
+    "src/googleapis.ts"
+  ],
   "references": [
     {
       "path": "./src/apis/abusiveexperiencereport"
@@ -1012,9 +1018,6 @@
     },
     {
       "path": "./src/apis/youtubereporting"
-    },
-    {
-      "path": "./tsconfig.src.json"
     }
   ]
 }
