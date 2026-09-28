@@ -12,3 +12,4 @@ samples/**/credentials.json
 package-lock.json
 yarn.lock
 __pycache__
+.turbo

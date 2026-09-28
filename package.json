@@ -10,6 +10,7 @@
   "engines": {
     "node": ">=22.0.0"
   },
+  "packageManager": "pnpm@10.0.0",
   "files": [
     "build/src",
     "!build/src/**/*.map"
@@ -29,7 +30,7 @@
     "system-test": "mocha build/system-test",
     "samples-test": "cd samples && npm install && npm link ../ && pwd && npm test",
     "lint": "gts check",
-    "compile": "cross-env NODE_OPTIONS=--max-old-space-size=4096 tsc --build tsconfig.json",
+    "compile": "turbo run compile --concurrency=4 --output-logs=new-only && tsc -p tsconfig.src.json",
     "build-test": "cross-env NODE_OPTIONS=--max-old-space-size=4096 tsc --build tsconfig.test.json",
     "build-tools": "tsc -p tsconfig.tools.json",
     "clean": "gts clean",
@@ -96,6 +97,7 @@
     "server-destroy": "^1.0.1",
     "sinon": "21.0.3",
     "tmp": "^0.2.3",
+    "turbo": "^2.4.4",
     "typescript": "^5.8.3",
     "yargs-parser": "^21.1.1"
   },
