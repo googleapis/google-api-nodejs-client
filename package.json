@@ -17,6 +17,7 @@
   ],
   "scripts": {
     "pretest": "npm run build-test",
+    "prepare": "npm run compile",
     "test": "c8 mocha build/test",
     "predocs": "npm run build-tools",
     "precompile": "rimraf build",
@@ -73,6 +74,7 @@
     "c8": "^10.1.3",
     "codecov": "^3.8.3",
     "cross-env": "^7.0.3",
+    "eslint": "^8.57.1",
     "execa": "^5.0.0",
     "gaxios": "^7.1.0",
     "gts": "^6.0.2",
