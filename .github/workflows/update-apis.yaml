@@ -10,6 +10,7 @@ jobs:
   update-apis:
     runs-on: ubuntu-latest
     steps:
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: 22
@@ -19,11 +20,11 @@ jobs:
       - run: gh repo sync yoshi-code-bot/google-api-nodejs-client-autodisco --force
         env:
           GH_TOKEN: ${{ secrets.YOSHI_CODE_BOT_TOKEN }}
-      - run: npm install
+      - run: pnpm install
         working-directory: ./google-api-nodejs-client-autodisco
-      - run: npm run update-disclaimers
+      - run: pnpm run update-disclaimers
         working-directory: ./google-api-nodejs-client-autodisco
-      - run: npm run submit-prs
+      - run: pnpm run submit-prs
         working-directory: ./google-api-nodejs-client-autodisco
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
