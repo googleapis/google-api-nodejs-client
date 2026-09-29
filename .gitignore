@@ -13,4 +13,3 @@ package-lock.json
 yarn.lock
 pnpm-lock.yaml
 __pycache__
-src/apis/**/tsconfig.build.json
