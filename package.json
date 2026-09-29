@@ -10,7 +10,6 @@
   "engines": {
     "node": ">=22.0.0"
   },
-  "packageManager": "pnpm@10.0.0",
   "files": [
     "build/src",
     "!build/src/**/*.map"
@@ -20,7 +19,8 @@
     "prepare": "npm run compile",
     "test": "c8 mocha build/test",
     "predocs": "npm run build-tools",
-    "precompile": "echo nothing to precompile",
+    "precompile": "node ./scripts/generate-build-configs.js",
+    "prebuild-test": "node ./scripts/generate-build-configs.js",
     "docs": "npm run compile && node build/src/generator/docs",
     "predocs2": "npm run compile",
     "docs-extract": "node --max-old-space-size=4096 ./node_modules/@microsoft/api-extractor/bin/api-extractor run --local --verbose",
