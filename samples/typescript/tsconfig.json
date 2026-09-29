@@ -3,6 +3,7 @@
     "target": "es6",
     "module": "commonjs",
     "strict": true,
+    "skipLibCheck": true,
     "outDir": "build"
   }
 }

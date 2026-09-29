@@ -1,0 +1,10 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "../../../build/src/apis/meet"
+  },
+  "include": [
+    "*.ts"
+  ]
+}

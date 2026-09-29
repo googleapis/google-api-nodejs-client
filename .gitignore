@@ -11,4 +11,5 @@ samples/*.keys.json
 samples/**/credentials.json
 package-lock.json
 yarn.lock
+pnpm-lock.yaml
 __pycache__
