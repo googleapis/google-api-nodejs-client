@@ -15,36 +15,40 @@
 const fs = require('fs');
 const path = require('path');
 
-const apisDir = path.join(__dirname, '../src/apis');
+function generateBuildConfigs() {
+  const apisDir = path.join(__dirname, '../src/apis');
 
-if (!fs.existsSync(apisDir)) {
-  process.exit(0);
-}
+  if (!fs.existsSync(apisDir)) {
+    return;
+  }
 
-const entries = fs.readdirSync(apisDir, {withFileTypes: true});
-for (const entry of entries) {
-  if (entry.isDirectory()) {
-    const apiName = entry.name;
-    const configPath = path.join(apisDir, apiName, 'tsconfig.build.json');
-    const content =
-      JSON.stringify(
-        {
-          extends: '../../../tsconfig.base.json',
-          compilerOptions: {
-            rootDir: '.',
-            outDir: `../../../build/src/apis/${apiName}`,
+  const entries = fs.readdirSync(apisDir, {withFileTypes: true});
+  for (const entry of entries) {
+    if (entry.isDirectory()) {
+      const apiName = entry.name;
+      const configPath = path.join(apisDir, apiName, 'tsconfig.build.json');
+      const content =
+        JSON.stringify(
+          {
+            extends: '../../../tsconfig.base.json',
+            compilerOptions: {
+              rootDir: '.',
+              outDir: `../../../build/src/apis/${apiName}`,
+            },
+            include: ['*.ts'],
           },
-          include: ['*.ts'],
-        },
-        null,
-        2
-      ) + '\n';
+          null,
+          2,
+        ) + '\n';
 
-    if (
-      !fs.existsSync(configPath) ||
-      fs.readFileSync(configPath, 'utf8') !== content
-    ) {
-      fs.writeFileSync(configPath, content);
+      if (
+        !fs.existsSync(configPath) ||
+        fs.readFileSync(configPath, 'utf8') !== content
+      ) {
+        fs.writeFileSync(configPath, content);
+      }
     }
   }
 }
+
+generateBuildConfigs();
