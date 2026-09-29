@@ -12,1012 +12,1012 @@
   ],
   "references": [
     {
-      "path": "./src/apis/abusiveexperiencereport"
+      "path": "./src/apis/abusiveexperiencereport/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/acceleratedmobilepageurl"
+      "path": "./src/apis/acceleratedmobilepageurl/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/accessapproval"
+      "path": "./src/apis/accessapproval/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/accesscontextmanager"
+      "path": "./src/apis/accesscontextmanager/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/acmedns"
+      "path": "./src/apis/acmedns/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/addressvalidation"
+      "path": "./src/apis/addressvalidation/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/adexchangebuyer"
+      "path": "./src/apis/adexchangebuyer/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/adexchangebuyer2"
+      "path": "./src/apis/adexchangebuyer2/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/adexperiencereport"
+      "path": "./src/apis/adexperiencereport/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/admin"
+      "path": "./src/apis/admin/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/admob"
+      "path": "./src/apis/admob/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/adsense"
+      "path": "./src/apis/adsense/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/adsensehost"
+      "path": "./src/apis/adsensehost/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/adsenseplatform"
+      "path": "./src/apis/adsenseplatform/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/advisorynotifications"
+      "path": "./src/apis/advisorynotifications/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/agenciesandbrands"
+      "path": "./src/apis/agenciesandbrands/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/agentidentity"
+      "path": "./src/apis/agentidentity/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/agentidentitycredentials"
+      "path": "./src/apis/agentidentitycredentials/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/agentregistry"
+      "path": "./src/apis/agentregistry/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/aiplatform"
+      "path": "./src/apis/aiplatform/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/airquality"
+      "path": "./src/apis/airquality/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/alertcenter"
+      "path": "./src/apis/alertcenter/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/alloydb"
+      "path": "./src/apis/alloydb/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/analytics"
+      "path": "./src/apis/analytics/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/analyticsadmin"
+      "path": "./src/apis/analyticsadmin/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/analyticsdata"
+      "path": "./src/apis/analyticsdata/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/analyticshub"
+      "path": "./src/apis/analyticshub/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/analyticsreporting"
+      "path": "./src/apis/analyticsreporting/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/androiddeveloperidstatus"
+      "path": "./src/apis/androiddeveloperidstatus/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/androiddeviceprovisioning"
+      "path": "./src/apis/androiddeviceprovisioning/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/androidenterprise"
+      "path": "./src/apis/androidenterprise/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/androidmanagement"
+      "path": "./src/apis/androidmanagement/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/androidpublisher"
+      "path": "./src/apis/androidpublisher/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/apigateway"
+      "path": "./src/apis/apigateway/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/apigeeregistry"
+      "path": "./src/apis/apigeeregistry/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/apihub"
+      "path": "./src/apis/apihub/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/apikeys"
+      "path": "./src/apis/apikeys/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/apim"
+      "path": "./src/apis/apim/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/appengine"
+      "path": "./src/apis/appengine/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/apphub"
+      "path": "./src/apis/apphub/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/appsactivity"
+      "path": "./src/apis/appsactivity/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/appsmarket"
+      "path": "./src/apis/appsmarket/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/area120tables"
+      "path": "./src/apis/area120tables/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/areainsights"
+      "path": "./src/apis/areainsights/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/artifactregistry"
+      "path": "./src/apis/artifactregistry/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/assuredworkloads"
+      "path": "./src/apis/assuredworkloads/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/auditmanager"
+      "path": "./src/apis/auditmanager/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/authorizedbuyersmarketplace"
+      "path": "./src/apis/authorizedbuyersmarketplace/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/backupdr"
+      "path": "./src/apis/backupdr/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/baremetalsolution"
+      "path": "./src/apis/baremetalsolution/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/batch"
+      "path": "./src/apis/batch/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/beyondcorp"
+      "path": "./src/apis/beyondcorp/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/biglake"
+      "path": "./src/apis/biglake/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/bigquery"
+      "path": "./src/apis/bigquery/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/bigqueryconnection"
+      "path": "./src/apis/bigqueryconnection/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/bigquerydatapolicy"
+      "path": "./src/apis/bigquerydatapolicy/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/bigquerydatatransfer"
+      "path": "./src/apis/bigquerydatatransfer/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/bigqueryreservation"
+      "path": "./src/apis/bigqueryreservation/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/bigtableadmin"
+      "path": "./src/apis/bigtableadmin/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/billingbudgets"
+      "path": "./src/apis/billingbudgets/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/binaryauthorization"
+      "path": "./src/apis/binaryauthorization/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/blockchainnodeengine"
+      "path": "./src/apis/blockchainnodeengine/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/blogger"
+      "path": "./src/apis/blogger/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/books"
+      "path": "./src/apis/books/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/businessprofileperformance"
+      "path": "./src/apis/businessprofileperformance/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/calendar"
+      "path": "./src/apis/calendar/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/certificatemanager"
+      "path": "./src/apis/certificatemanager/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/ces"
+      "path": "./src/apis/ces/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/chat"
+      "path": "./src/apis/chat/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/checks"
+      "path": "./src/apis/checks/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/chromemanagement"
+      "path": "./src/apis/chromemanagement/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/chromepolicy"
+      "path": "./src/apis/chromepolicy/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/chromeuxreport"
+      "path": "./src/apis/chromeuxreport/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/chromewebstore"
+      "path": "./src/apis/chromewebstore/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/civicinfo"
+      "path": "./src/apis/civicinfo/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/classroom"
+      "path": "./src/apis/classroom/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudasset"
+      "path": "./src/apis/cloudasset/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudbilling"
+      "path": "./src/apis/cloudbilling/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudbuild"
+      "path": "./src/apis/cloudbuild/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudchannel"
+      "path": "./src/apis/cloudchannel/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudcommerceprocurement"
+      "path": "./src/apis/cloudcommerceprocurement/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudcontrolspartner"
+      "path": "./src/apis/cloudcontrolspartner/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/clouddebugger"
+      "path": "./src/apis/clouddebugger/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/clouddeploy"
+      "path": "./src/apis/clouddeploy/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/clouderrorreporting"
+      "path": "./src/apis/clouderrorreporting/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudfunctions"
+      "path": "./src/apis/cloudfunctions/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudidentity"
+      "path": "./src/apis/cloudidentity/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudiot"
+      "path": "./src/apis/cloudiot/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudkms"
+      "path": "./src/apis/cloudkms/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudlocationfinder"
+      "path": "./src/apis/cloudlocationfinder/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudnumberregistry"
+      "path": "./src/apis/cloudnumberregistry/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudproductregistry"
+      "path": "./src/apis/cloudproductregistry/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudprofiler"
+      "path": "./src/apis/cloudprofiler/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudresourcemanager"
+      "path": "./src/apis/cloudresourcemanager/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudscheduler"
+      "path": "./src/apis/cloudscheduler/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudsearch"
+      "path": "./src/apis/cloudsearch/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudshell"
+      "path": "./src/apis/cloudshell/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudsupport"
+      "path": "./src/apis/cloudsupport/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudtasks"
+      "path": "./src/apis/cloudtasks/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/cloudtrace"
+      "path": "./src/apis/cloudtrace/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/composer"
+      "path": "./src/apis/composer/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/compute"
+      "path": "./src/apis/compute/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/config"
+      "path": "./src/apis/config/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/connectors"
+      "path": "./src/apis/connectors/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/contactcenteraiplatform"
+      "path": "./src/apis/contactcenteraiplatform/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/contactcenterinsights"
+      "path": "./src/apis/contactcenterinsights/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/container"
+      "path": "./src/apis/container/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/containeranalysis"
+      "path": "./src/apis/containeranalysis/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/content"
+      "path": "./src/apis/content/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/contentwarehouse"
+      "path": "./src/apis/contentwarehouse/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/css"
+      "path": "./src/apis/css/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/curationpartners"
+      "path": "./src/apis/curationpartners/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/customsearch"
+      "path": "./src/apis/customsearch/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/databasecenter"
+      "path": "./src/apis/databasecenter/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/datacatalog"
+      "path": "./src/apis/datacatalog/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/dataflow"
+      "path": "./src/apis/dataflow/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/dataform"
+      "path": "./src/apis/dataform/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/datafusion"
+      "path": "./src/apis/datafusion/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/datalabeling"
+      "path": "./src/apis/datalabeling/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/datalineage"
+      "path": "./src/apis/datalineage/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/datamanager"
+      "path": "./src/apis/datamanager/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/datamigration"
+      "path": "./src/apis/datamigration/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/datapipelines"
+      "path": "./src/apis/datapipelines/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/dataplex"
+      "path": "./src/apis/dataplex/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/dataportability"
+      "path": "./src/apis/dataportability/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/dataproc"
+      "path": "./src/apis/dataproc/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/datastore"
+      "path": "./src/apis/datastore/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/datastream"
+      "path": "./src/apis/datastream/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/deploymentmanager"
+      "path": "./src/apis/deploymentmanager/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/developerconnect"
+      "path": "./src/apis/developerconnect/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/developerknowledge"
+      "path": "./src/apis/developerknowledge/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/dfareporting"
+      "path": "./src/apis/dfareporting/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/dialogflow"
+      "path": "./src/apis/dialogflow/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/digitalassetlinks"
+      "path": "./src/apis/digitalassetlinks/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/discovery"
+      "path": "./src/apis/discovery/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/discoveryengine"
+      "path": "./src/apis/discoveryengine/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/displayvideo"
+      "path": "./src/apis/displayvideo/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/dlp"
+      "path": "./src/apis/dlp/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/dns"
+      "path": "./src/apis/dns/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/docs"
+      "path": "./src/apis/docs/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/documentai"
+      "path": "./src/apis/documentai/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/domains"
+      "path": "./src/apis/domains/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/domainsrdap"
+      "path": "./src/apis/domainsrdap/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/doubleclickbidmanager"
+      "path": "./src/apis/doubleclickbidmanager/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/doubleclicksearch"
+      "path": "./src/apis/doubleclicksearch/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/drive"
+      "path": "./src/apis/drive/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/driveactivity"
+      "path": "./src/apis/driveactivity/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/drivelabels"
+      "path": "./src/apis/drivelabels/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/essentialcontacts"
+      "path": "./src/apis/essentialcontacts/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/eventarc"
+      "path": "./src/apis/eventarc/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/factchecktools"
+      "path": "./src/apis/factchecktools/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/fcm"
+      "path": "./src/apis/fcm/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/fcmdata"
+      "path": "./src/apis/fcmdata/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/file"
+      "path": "./src/apis/file/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/firebase"
+      "path": "./src/apis/firebase/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/firebaseappcheck"
+      "path": "./src/apis/firebaseappcheck/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/firebaseappdistribution"
+      "path": "./src/apis/firebaseappdistribution/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/firebaseapphosting"
+      "path": "./src/apis/firebaseapphosting/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/firebasecrashlytics"
+      "path": "./src/apis/firebasecrashlytics/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/firebasedatabase"
+      "path": "./src/apis/firebasedatabase/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/firebasedataconnect"
+      "path": "./src/apis/firebasedataconnect/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/firebasedynamiclinks"
+      "path": "./src/apis/firebasedynamiclinks/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/firebasehosting"
+      "path": "./src/apis/firebasehosting/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/firebaseml"
+      "path": "./src/apis/firebaseml/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/firebaserules"
+      "path": "./src/apis/firebaserules/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/firebasestorage"
+      "path": "./src/apis/firebasestorage/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/firestore"
+      "path": "./src/apis/firestore/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/fitness"
+      "path": "./src/apis/fitness/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/forms"
+      "path": "./src/apis/forms/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/ftp"
+      "path": "./src/apis/ftp/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/games"
+      "path": "./src/apis/games/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/gamesConfiguration"
+      "path": "./src/apis/gamesConfiguration/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/gamesManagement"
+      "path": "./src/apis/gamesManagement/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/gameservices"
+      "path": "./src/apis/gameservices/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/genomics"
+      "path": "./src/apis/genomics/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/gkebackup"
+      "path": "./src/apis/gkebackup/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/gkehub"
+      "path": "./src/apis/gkehub/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/gkeonprem"
+      "path": "./src/apis/gkeonprem/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/gmail"
+      "path": "./src/apis/gmail/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/gmailpostmastertools"
+      "path": "./src/apis/gmailpostmastertools/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/groupsmigration"
+      "path": "./src/apis/groupsmigration/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/groupssettings"
+      "path": "./src/apis/groupssettings/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/health"
+      "path": "./src/apis/health/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/healthcare"
+      "path": "./src/apis/healthcare/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/homegraph"
+      "path": "./src/apis/homegraph/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/hypercomputecluster"
+      "path": "./src/apis/hypercomputecluster/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/iam"
+      "path": "./src/apis/iam/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/iamcredentials"
+      "path": "./src/apis/iamcredentials/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/iap"
+      "path": "./src/apis/iap/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/ideahub"
+      "path": "./src/apis/ideahub/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/identitytoolkit"
+      "path": "./src/apis/identitytoolkit/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/ids"
+      "path": "./src/apis/ids/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/indexing"
+      "path": "./src/apis/indexing/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/integrations"
+      "path": "./src/apis/integrations/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/jobs"
+      "path": "./src/apis/jobs/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/keep"
+      "path": "./src/apis/keep/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/kgsearch"
+      "path": "./src/apis/kgsearch/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/kmsinventory"
+      "path": "./src/apis/kmsinventory/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/language"
+      "path": "./src/apis/language/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/libraryagent"
+      "path": "./src/apis/libraryagent/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/licensing"
+      "path": "./src/apis/licensing/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/localservices"
+      "path": "./src/apis/localservices/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/logging"
+      "path": "./src/apis/logging/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/looker"
+      "path": "./src/apis/looker/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/managedidentities"
+      "path": "./src/apis/managedidentities/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/managedkafka"
+      "path": "./src/apis/managedkafka/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/manufacturers"
+      "path": "./src/apis/manufacturers/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/marketingplatformadmin"
+      "path": "./src/apis/marketingplatformadmin/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/meet"
+      "path": "./src/apis/meet/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/memcache"
+      "path": "./src/apis/memcache/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/merchantapi"
+      "path": "./src/apis/merchantapi/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/metastore"
+      "path": "./src/apis/metastore/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/migrationcenter"
+      "path": "./src/apis/migrationcenter/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/ml"
+      "path": "./src/apis/ml/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/monitoring"
+      "path": "./src/apis/monitoring/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/mybusinessaccountmanagement"
+      "path": "./src/apis/mybusinessaccountmanagement/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/mybusinessbusinesscalls"
+      "path": "./src/apis/mybusinessbusinesscalls/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/mybusinessbusinessinformation"
+      "path": "./src/apis/mybusinessbusinessinformation/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/mybusinesslodging"
+      "path": "./src/apis/mybusinesslodging/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/mybusinessnotifications"
+      "path": "./src/apis/mybusinessnotifications/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/mybusinessplaceactions"
+      "path": "./src/apis/mybusinessplaceactions/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/mybusinessqanda"
+      "path": "./src/apis/mybusinessqanda/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/mybusinessverifications"
+      "path": "./src/apis/mybusinessverifications/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/netapp"
+      "path": "./src/apis/netapp/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/networkconnectivity"
+      "path": "./src/apis/networkconnectivity/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/networkmanagement"
+      "path": "./src/apis/networkmanagement/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/networksecurity"
+      "path": "./src/apis/networksecurity/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/networkservices"
+      "path": "./src/apis/networkservices/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/notebooks"
+      "path": "./src/apis/notebooks/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/oauth2"
+      "path": "./src/apis/oauth2/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/observability"
+      "path": "./src/apis/observability/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/ondemandscanning"
+      "path": "./src/apis/ondemandscanning/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/oracledatabase"
+      "path": "./src/apis/oracledatabase/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/orgpolicy"
+      "path": "./src/apis/orgpolicy/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/osconfig"
+      "path": "./src/apis/osconfig/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/oslogin"
+      "path": "./src/apis/oslogin/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/pagespeedonline"
+      "path": "./src/apis/pagespeedonline/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/parallelstore"
+      "path": "./src/apis/parallelstore/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/parametermanager"
+      "path": "./src/apis/parametermanager/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/paymentsresellersubscription"
+      "path": "./src/apis/paymentsresellersubscription/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/people"
+      "path": "./src/apis/people/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/places"
+      "path": "./src/apis/places/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/playablelocations"
+      "path": "./src/apis/playablelocations/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/playcustomapp"
+      "path": "./src/apis/playcustomapp/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/playdeveloperreporting"
+      "path": "./src/apis/playdeveloperreporting/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/playgrouping"
+      "path": "./src/apis/playgrouping/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/playintegrity"
+      "path": "./src/apis/playintegrity/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/plus"
+      "path": "./src/apis/plus/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/policyanalyzer"
+      "path": "./src/apis/policyanalyzer/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/policysimulator"
+      "path": "./src/apis/policysimulator/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/policytroubleshooter"
+      "path": "./src/apis/policytroubleshooter/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/pollen"
+      "path": "./src/apis/pollen/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/poly"
+      "path": "./src/apis/poly/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/privateca"
+      "path": "./src/apis/privateca/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/prod_tt_sasportal"
+      "path": "./src/apis/prod_tt_sasportal/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/publicca"
+      "path": "./src/apis/publicca/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/pubsub"
+      "path": "./src/apis/pubsub/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/pubsublite"
+      "path": "./src/apis/pubsublite/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/rapidmigrationassessment"
+      "path": "./src/apis/rapidmigrationassessment/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/readerrevenuesubscriptionlinking"
+      "path": "./src/apis/readerrevenuesubscriptionlinking/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/realtimebidding"
+      "path": "./src/apis/realtimebidding/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/recaptchaenterprise"
+      "path": "./src/apis/recaptchaenterprise/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/recommendationengine"
+      "path": "./src/apis/recommendationengine/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/recommender"
+      "path": "./src/apis/recommender/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/redis"
+      "path": "./src/apis/redis/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/remotebuildexecution"
+      "path": "./src/apis/remotebuildexecution/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/reseller"
+      "path": "./src/apis/reseller/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/resourcesettings"
+      "path": "./src/apis/resourcesettings/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/retail"
+      "path": "./src/apis/retail/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/run"
+      "path": "./src/apis/run/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/runtimeconfig"
+      "path": "./src/apis/runtimeconfig/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/saasservicemgmt"
+      "path": "./src/apis/saasservicemgmt/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/safebrowsing"
+      "path": "./src/apis/safebrowsing/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/sasportal"
+      "path": "./src/apis/sasportal/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/script"
+      "path": "./src/apis/script/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/searchads360"
+      "path": "./src/apis/searchads360/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/searchconsole"
+      "path": "./src/apis/searchconsole/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/secretmanager"
+      "path": "./src/apis/secretmanager/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/securesourcemanager"
+      "path": "./src/apis/securesourcemanager/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/securitycenter"
+      "path": "./src/apis/securitycenter/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/securityposture"
+      "path": "./src/apis/securityposture/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/serviceconsumermanagement"
+      "path": "./src/apis/serviceconsumermanagement/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/servicecontrol"
+      "path": "./src/apis/servicecontrol/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/servicedirectory"
+      "path": "./src/apis/servicedirectory/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/servicemanagement"
+      "path": "./src/apis/servicemanagement/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/servicenetworking"
+      "path": "./src/apis/servicenetworking/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/serviceusage"
+      "path": "./src/apis/serviceusage/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/sheets"
+      "path": "./src/apis/sheets/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/siteVerification"
+      "path": "./src/apis/siteVerification/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/slides"
+      "path": "./src/apis/slides/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/smartdevicemanagement"
+      "path": "./src/apis/smartdevicemanagement/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/solar"
+      "path": "./src/apis/solar/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/sourcerepo"
+      "path": "./src/apis/sourcerepo/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/spanner"
+      "path": "./src/apis/spanner/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/speech"
+      "path": "./src/apis/speech/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/sql"
+      "path": "./src/apis/sql/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/sqladmin"
+      "path": "./src/apis/sqladmin/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/storage"
+      "path": "./src/apis/storage/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/storagebatchoperations"
+      "path": "./src/apis/storagebatchoperations/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/storagetransfer"
+      "path": "./src/apis/storagetransfer/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/streetviewpublish"
+      "path": "./src/apis/streetviewpublish/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/sts"
+      "path": "./src/apis/sts/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/tagmanager"
+      "path": "./src/apis/tagmanager/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/tasks"
+      "path": "./src/apis/tasks/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/testing"
+      "path": "./src/apis/testing/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/texttospeech"
+      "path": "./src/apis/texttospeech/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/threatintelligence"
+      "path": "./src/apis/threatintelligence/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/toolresults"
+      "path": "./src/apis/toolresults/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/tpu"
+      "path": "./src/apis/tpu/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/trafficdirector"
+      "path": "./src/apis/trafficdirector/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/transcoder"
+      "path": "./src/apis/transcoder/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/translate"
+      "path": "./src/apis/translate/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/travelimpactmodel"
+      "path": "./src/apis/travelimpactmodel/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/vault"
+      "path": "./src/apis/vault/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/vectortile"
+      "path": "./src/apis/vectortile/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/verifiedaccess"
+      "path": "./src/apis/verifiedaccess/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/versionhistory"
+      "path": "./src/apis/versionhistory/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/videointelligence"
+      "path": "./src/apis/videointelligence/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/vision"
+      "path": "./src/apis/vision/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/vmmigration"
+      "path": "./src/apis/vmmigration/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/vmwareengine"
+      "path": "./src/apis/vmwareengine/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/vpcaccess"
+      "path": "./src/apis/vpcaccess/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/walletobjects"
+      "path": "./src/apis/walletobjects/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/webcontentpublisher"
+      "path": "./src/apis/webcontentpublisher/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/webfonts"
+      "path": "./src/apis/webfonts/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/webmasters"
+      "path": "./src/apis/webmasters/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/webrisk"
+      "path": "./src/apis/webrisk/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/websecurityscanner"
+      "path": "./src/apis/websecurityscanner/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/workflowexecutions"
+      "path": "./src/apis/workflowexecutions/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/workflows"
+      "path": "./src/apis/workflows/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/workloadmanager"
+      "path": "./src/apis/workloadmanager/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/workspaceevents"
+      "path": "./src/apis/workspaceevents/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/workstations"
+      "path": "./src/apis/workstations/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/youtube"
+      "path": "./src/apis/youtube/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/youtubeAnalytics"
+      "path": "./src/apis/youtubeAnalytics/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/youtubereporting"
+      "path": "./src/apis/youtubereporting/tsconfig.build.json"
     }
   ]
 }

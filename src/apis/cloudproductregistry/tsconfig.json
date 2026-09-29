@@ -1,10 +1,10 @@
 {
-  "extends": "../../../tsconfig.base.json",
+  "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
     "rootDir": ".",
-    "outDir": "../../../build/src/apis/cloudproductregistry"
+    "outDir": "build"
   },
   "include": [
-    "*.ts"
+    "*.ts",
   ]
 }

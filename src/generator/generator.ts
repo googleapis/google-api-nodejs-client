@@ -214,6 +214,13 @@ export class Generator {
           // generate the tsconfig.json
           const tsPath = path.join(apisPath, file, 'tsconfig.json');
           await this.render('tsconfig.json.njk', {name: file}, tsPath);
+          // generate the tsconfig.build.json
+          const tsBuildPath = path.join(apisPath, file, 'tsconfig.build.json');
+          await this.render(
+            'tsconfig.build.json.njk',
+            {name: file},
+            tsBuildPath,
+          );
           // generate the webpack.config.js
           const wpPath = path.join(apisPath, file, 'webpack.config.js');
           await this.render('webpack.config.js.njk', {name: file}, wpPath);
@@ -227,7 +234,9 @@ export class Generator {
     await this.render('root-index.njk', {apis}, rootIndexPath);
 
     const apiNames = Object.keys(apis).sort();
-    const references = apiNames.map(name => ({path: `./src/apis/${name}`}));
+    const references = apiNames.map(name => ({
+      path: `./src/apis/${name}/tsconfig.build.json`,
+    }));
 
     const tsconfigSrcPath = path.join(srcPath, '../tsconfig.src.json');
     const tsconfigSrc = JSON.parse(await readFile(tsconfigSrcPath, 'utf8'));
