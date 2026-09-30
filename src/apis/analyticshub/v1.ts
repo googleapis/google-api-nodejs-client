@@ -241,13 +241,17 @@ export namespace analyticshub_v1 {
     selectedResources?: Schema$SelectedResource[];
   }
   /**
-   * Configuration for a Bigtable subscription. The Pub/Sub message will be written to a Bigtable row as follows: - row key: subscription name, message ID hash, and message ID delimited by `#`. - columns: message bytes written to a single column family `data` with an empty-string column qualifier. - cell timestamp: the message publish timestamp.
+   * Configuration for a Bigtable subscription, which will write a Pub/Sub message to a Bigtable row. See the ColumnFamilyMapping documentation below for details on how the row keys and columns will be written.
    */
   export interface Schema$BigtableConfig {
     /**
      * Optional. The app profile to use for the Bigtable writes. If not specified, the "default" application profile will be used. The app profile must use single-cluster routing.
      */
     appProfileId?: string | null;
+    /**
+     * Optional. Configuration that allows writing row keys and/or columns based on fields in the input message. The input message format must be JSON if this field is set.
+     */
+    columnFamilyMapping?: Schema$ColumnFamilyMapping;
     /**
      * Optional. The service account to use to write to Bigtable. The subscription creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent](https://cloud.google.com/iam/docs/service-agents), service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      */
@@ -322,6 +326,19 @@ export namespace analyticshub_v1 {
      * Optional. If set, message data will be written to Cloud Storage in text format.
      */
     textConfig?: Schema$TextConfig;
+  }
+  /**
+   * Configuration for writing a Pub/Sub message to a Bigtable row with a user-defined key and writing to column families. If this field is set: - The subscription messages must be formatted as JSON. - The row key mapping is configured in the `key_definition` section. - The top-level fields will be written either: - By default, they will be written to the `data` column family with the field name as the column qualifier. - But if the field name matches an existing column family (except for the default `data` column), then that field will be written to that column family, either as a scalar or its next level nested fields if it's a JSON object. - The cell timestamp will be the message publish timestamp. If the field is not set, the default behavior is to write: - row key: subscription name, message ID hash, and message ID delimited by `#`. - columns: message bytes written to a single column family `data` with an empty-string column qualifier. - cell timestamp: the message publish timestamp.
+   */
+  export interface Schema$ColumnFamilyMapping {
+    /**
+     * Optional. If set, the row key is constructed from the given key fields and delimiter. All key fields must be present in the message; otherwise, the message remains in the subscription backlog.
+     */
+    delimitedKey?: Schema$DelimitedKey;
+    /**
+     * Optional. If set, the row key is constructed from the field names of the table's structured row key (https://docs.cloud.google.com/bigtable/docs/manage-row-key-schemas). Note that if the field is nullable in the structured row key, then it need not be present in the message; null will be used instead.
+     */
+    rowKeySchema?: Schema$RowKeySchema;
   }
   /**
    * Configuration for compressing/decompressing message data using a user-specified compression algorithm.
@@ -424,6 +441,19 @@ export namespace analyticshub_v1 {
    * Default Analytics Hub data exchange, used for secured data sharing.
    */
   export interface Schema$DefaultExchangeConfig {}
+  /**
+   * Row key definition based on fields from the message.
+   */
+  export interface Schema$DelimitedKey {
+    /**
+     * Optional. Byte sequence used to delimit concatenated fields. Must be specified if multiple key fields are used. The delimiter must contain at least 1 character and at most 50 characters.
+     */
+    delimiter?: string | null;
+    /**
+     * Optional. The key fields to construct from the row key. The fields must be present in the message as a top-level field, i.e. JSON path expressions will not traverse into nested objects.
+     */
+    keyFields?: string[] | null;
+  }
   /**
    * Defines the destination bigquery dataset.
    */
@@ -1176,6 +1206,10 @@ export namespace analyticshub_v1 {
      */
     routineType?: string | null;
   }
+  /**
+   * Row key definition that reads the input message fields based on the field names of the table's structured row key (https://docs.cloud.google.com/bigtable/docs/manage-row-key-schemas). Note that if the field is nullable in the structured row key, then it need not be present in the message; null will be used instead.
+   */
+  export interface Schema$RowKeySchema {}
   /**
    * Resource in this dataset that is selectively shared.
    */
