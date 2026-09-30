@@ -704,6 +704,139 @@ export namespace ces_v1 {
     updateTime?: string | null;
   }
   /**
+   * A streamed fragment of a document artifact (e.g. a markdown TDD) that the assistant is generating. Content deltas stream while the document is being written so clients can render a live preview; the FINALIZED chunk carries the GCS URI once the file has been persisted.
+   */
+  export interface Schema$ArtifactChunk {
+    /**
+     * Identifier of the artifact, stable across all chunks of one artifact within the stream.
+     */
+    artifactId?: string | null;
+    /**
+     * Incremental artifact content. Set on DELTA chunks.
+     */
+    contentDelta?: string | null;
+    /**
+     * The file name shown to the user, e.g. "hotel_booking_tdd.md". Set on STARTED (and repeated on FINALIZED).
+     */
+    displayName?: string | null;
+    /**
+     * The GCS object the artifact was persisted to. Set on FINALIZED chunks.
+     */
+    gcsUri?: string | null;
+    /**
+     * The IANA media type of the artifact content, e.g. "text/markdown".
+     */
+    mimeType?: string | null;
+    /**
+     * Lifecycle position of this chunk.
+     */
+    state?: string | null;
+  }
+  /**
+   * A blocking question or confirmation the assistant needs answered before an agent action can proceed. The requesting agent is paused and resumes only when the answer arrives on a later StreamChatAiAssistantRequest.confirmation_response.
+   */
+  export interface Schema$AssistantConfirmationRequest {
+    /**
+     * Display label of the agent that raised the confirmation (e.g. `"Contract Architect"`), for the card header.
+     */
+    agentName?: string | null;
+    /**
+     * Identifier correlating this request with its response. Opaque to clients; must be echoed verbatim on the answering request.
+     */
+    confirmationId?: string | null;
+    /**
+     * Context describing what is being confirmed (e.g. the action the agent wants to take, or the question it needs answered). Rendered as plain text, not Markdown.
+     */
+    context?: string | null;
+    /**
+     * Time after which this confirmation can no longer be answered. An expired card renders as inactive, and the server declines the confirmation on the next turn so the paused agent does not wait indefinitely.
+     */
+    expireTime?: string | null;
+    /**
+     * Label for the declining action of a binary confirmation (e.g. "Not yet"). Unset when `questions` is populated.
+     */
+    negativeLabel?: string | null;
+    /**
+     * Label for the approving action of a binary confirmation (e.g. "Publish"). Unset when `questions` is populated.
+     */
+    positiveLabel?: string | null;
+    /**
+     * Multi-choice form of the confirmation. When populated, the card renders a selectable option list and the chosen option's submit_text (or free-form user text) is returned as AssistantConfirmationResponse.answer_text.
+     */
+    questions?: Schema$OptionQuestionsChunkQuestion[];
+    /**
+     * Name of the tool call the agent paused on (e.g. "update_app"), for the card header. Unset for pure questions.
+     */
+    tool?: string | null;
+  }
+  /**
+   * The user's answer to an AssistantConfirmationRequest, sent on the next SessionService.StreamChatAiAssistant call to resume the paused agent.
+   */
+  export interface Schema$AssistantConfirmationResponse {
+    /**
+     * The chosen option's submit_text, or free-form user text. The paused action is cancelled and the text is handed to the agent to act on.
+     */
+    answerText?: string | null;
+    /**
+     * The AssistantConfirmationRequest.confirmation_id being answered.
+     */
+    confirmationId?: string | null;
+    /**
+     * Binary answer: true approves the paused action, false declines it.
+     */
+    confirmed?: boolean | null;
+  }
+  /**
+   * A single personalized onboarding suggestion chip for the AI assistant's zero state.
+   */
+  export interface Schema$AssistantSuggestion {
+    /**
+     * Rule-table candidate type in kebab-case (e.g. "resume-pending-review"), for metrics.
+     */
+    candidateType?: string | null;
+    /**
+     * Icon hint for the chip.
+     */
+    icon?: string | null;
+    /**
+     * Chip label shown to the user (at most 60 characters).
+     */
+    label?: string | null;
+    /**
+     * Open an existing assistant session.
+     */
+    loadSession?: Schema$AssistantSuggestionLoadSession;
+    /**
+     * Optional short explanation of why this suggestion is shown (tooltip / rationale popover).
+     */
+    rationale?: string | null;
+    /**
+     * Prefill the composer with this text; the user reviews and sends.
+     */
+    seedPrompt?: string | null;
+    /**
+     * Prefill the composer with this text and submit immediately. Only used for quick-reply chips inside an active onboarding conversation.
+     */
+    sendMessage?: string | null;
+    /**
+     * How this suggestion was produced.
+     */
+    source?: string | null;
+    /**
+     * Stable identifier for this suggestion, round-tripped by clients in interaction logging.
+     */
+    suggestionId?: string | null;
+  }
+  /**
+   * Parameters for the load_session action.
+   */
+  export interface Schema$AssistantSuggestionLoadSession {
+    /**
+     * Identifier of the assistant session to open (the final segment of the AssistantSession resource name).
+     */
+    assistantSessionId?: string | null;
+  }
+  /**
    * Configuration for how the input and output audio should be processed and delivered.
    */
   export interface Schema$AudioProcessingConfig {
@@ -824,6 +957,24 @@ export namespace ces_v1 {
      * Required. The python code to execute for the callback.
      */
     pythonCode?: string | null;
+  }
+  /**
+   * Request to cancel an assistant session's in-flight turn.
+   */
+  export interface Schema$CancelAssistantTurnRequest {
+    /**
+     * Optional. The turn to cancel; empty cancels whichever turn is running. A cancel naming a turn that is no longer the running one is a no-op.
+     */
+    turnId?: string | null;
+  }
+  /**
+   * Response for CancelAssistantTurn.
+   */
+  export interface Schema$CancelAssistantTurnResponse {
+    /**
+     * Whether an in-flight turn was found and asked to stop (directly on this task, or through an epoch preemption for a turn hosted elsewhere).
+     */
+    cancelled?: boolean | null;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -1330,9 +1481,30 @@ export namespace ces_v1 {
      */
     voiceInstruction?: string | null;
     /**
+     * Optional. Instruction mode for the voice sample. If unspecified, defaults to NO_INSTRUCTION.
+     */
+    voiceInstructionMode?: string | null;
+    /**
      * Optional. The Cloud Storage URI to the audio sample for voice cloning. The audio sample should be a mono-channel, 24kHz WAV file.
      */
     voiceSampleGcsUri?: string | null;
+    /**
+     * Output only. Warning messages encountered during voice clone processing (e.g. low audio level).
+     */
+    warnings?: Schema$CustomVoiceSampleWarning[];
+  }
+  /**
+   * A warning message encountered during voice sample processing.
+   */
+  export interface Schema$CustomVoiceSampleWarning {
+    /**
+     * Output only. A human-readable description of the warning.
+     */
+    message?: string | null;
+    /**
+     * Output only. The type of the warning.
+     */
+    type?: string | null;
   }
   /**
    * Settings for dashboards associated with the app, that show up in the Monitoring view.
@@ -2115,6 +2287,32 @@ export namespace ces_v1 {
      * The time at which the chat token expires.
      */
     expireTime?: string | null;
+  }
+  /**
+   * Request message for SessionService.GenerateOnboardingSuggestions.
+   */
+  export interface Schema$GenerateOnboardingSuggestionsRequest {
+    /**
+     * Optional. Maximum number of suggestions to return. Defaults to 4 when unset.
+     */
+    maxSuggestions?: number | null;
+  }
+  /**
+   * Response message for SessionService.GenerateOnboardingSuggestions.
+   */
+  export interface Schema$GenerateOnboardingSuggestionsResponse {
+    /**
+     * Opaque token capturing the onboarding snapshot used to generate these suggestions. Clients echo it on the first StreamChatAiAssistantRequest so the server can reuse the snapshot.
+     */
+    contextToken?: string | null;
+    /**
+     * Personalized suggestions, ranked most relevant first.
+     */
+    suggestions?: Schema$AssistantSuggestion[];
+    /**
+     * Classification of the requesting user's history.
+     */
+    userProfile?: string | null;
   }
   /**
    * Search suggestions from Google Search Tool.
@@ -3659,6 +3857,10 @@ export namespace ces_v1 {
      * Optional. If set, this temperature will be used for the LLM model. Temperature controls the randomness of the model's responses. Lower temperatures produce responses that are more predictable. Higher temperatures produce responses that are more creative.
      */
     temperature?: number | null;
+    /**
+     * Optional. The thinking level of the model.
+     */
+    thinkingLevel?: string | null;
   }
   /**
    * Configurations for authentication with OAuth.
@@ -3777,6 +3979,39 @@ export namespace ces_v1 {
     response?: {[key: string]: any} | null;
   }
   /**
+   * Event sent by the client or background worker to resume an assistant session after an asynchronous Long-Running Operation (LRO) completes.
+   */
+  export interface Schema$OperationCompletedEvent {
+    /**
+     * Optional deduplication token (e.g. UUID) to prevent duplicate turn execution from concurrent browser tabs.
+     */
+    deduplicationToken?: string | null;
+    /**
+     * Optional canonical error status if the operation failed.
+     */
+    error?: Schema$Status;
+    /**
+     * Optional structured result metadata (e.g. pass_rate, total_examples, export_uri).
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * The operation resource name (e.g. `operations/{op\}`).
+     */
+    operationName?: string | null;
+    /**
+     * The operation type or tool name (e.g. "run_evaluation", "copy_app", "export_app").
+     */
+    operationType?: string | null;
+    /**
+     * Status of the operation run (e.g. "SUCCEEDED", "FAILED", "CANCELLED").
+     */
+    status?: string | null;
+    /**
+     * The primary resource targeted or produced by the operation (e.g. evaluation run ID, app ID, dataset ID).
+     */
+    targetResourceName?: string | null;
+  }
+  /**
    * Represents the metadata of the long-running operation.
    */
   export interface Schema$OperationMetadata {
@@ -3796,6 +4031,45 @@ export namespace ces_v1 {
      * Output only. Human-readable status of the operation, if any.
      */
     statusMessage?: string | null;
+  }
+  /**
+   * Structured clarification options the assistant asks the user to choose among, transduced server-side out of the model's turn (the option block is stripped from the streamed and persisted text). The console renders a keyboard-navigable option list docked above the composer.
+   */
+  export interface Schema$OptionQuestionsChunk {
+    /**
+     * The questions asked this turn. More than one entry drives the console's "1 of N" pager.
+     */
+    questions?: Schema$OptionQuestionsChunkQuestion[];
+  }
+  /**
+   * A single selectable option.
+   */
+  export interface Schema$OptionQuestionsChunkOption {
+    /**
+     * Optional trade-off details shown as secondary text.
+     */
+    details?: string | null;
+    /**
+     * Optional message text to send when the option is chosen; defaults to `title` when empty.
+     */
+    submitText?: string | null;
+    /**
+     * Short plain-text option title (no markdown, no numbering).
+     */
+    title?: string | null;
+  }
+  /**
+   * One question with its options.
+   */
+  export interface Schema$OptionQuestionsChunkQuestion {
+    /**
+     * The selectable options, in presentation order.
+     */
+    options?: Schema$OptionQuestionsChunkOption[];
+    /**
+     * The question header text.
+     */
+    question?: string | null;
   }
   /**
    * OutputAudioConfig configures how the CES agent should synthesize outgoing audio responses.
@@ -4138,6 +4412,15 @@ export namespace ces_v1 {
     service?: string | null;
   }
   /**
+   * Session checkpoint containing inferred user intent for session title and UI.
+   */
+  export interface Schema$SessionCheckpoint {
+    /**
+     * Inferred user goal or topic for the session (e.g. "Building E-Commerce Support Agent").
+     */
+    userIntent?: string | null;
+  }
+  /**
    * The configuration for the session.
    */
   export interface Schema$SessionConfig {
@@ -4253,10 +4536,6 @@ export namespace ces_v1 {
      */
     citations?: Schema$Citations;
     /**
-     * Context messages for external supervision guardrails.
-     */
-    context?: Array<{[key: string]: any}> | null;
-    /**
      * Optional. Diagnostic information contains execution details during the processing of the input. Only populated in the last SessionOutput (with `turn_completed=true`) for each turn.
      */
     diagnosticInfo?: Schema$SessionOutputDiagnosticInfo;
@@ -4357,13 +4636,123 @@ export namespace ces_v1 {
     message?: string | null;
   }
   /**
+   * Request message for SessionService.StreamChatAiAssistant.
+   */
+  export interface Schema$StreamChatAiAssistantRequest {
+    /**
+     * Optional. Cloud Storage URIs for files uploaded by the user during this turn. Example: "gs://cxas-transient-uploads/uuid/prd.pdf"
+     */
+    attachedGcsUris?: string[] | null;
+    /**
+     * Optional. Optional flag to attach to an existing in-flight turn without submitting a new message.
+     */
+    attachOnly?: boolean | null;
+    /**
+     * Optional. Response features this client can render. The server only emits events that need a capability (e.g. `confirmation_request`) when the capability is declared, so older clients never receive events they would silently drop.
+     */
+    clientCapabilities?: string[] | null;
+    /**
+     * Optional. The user's answer to a pending AssistantConfirmationRequest. When set, the server resumes the paused agent with this answer instead of (or in addition to) starting a new prompt turn.
+     */
+    confirmationResponse?: Schema$AssistantConfirmationResponse;
+    /**
+     * Optional. Opaque onboarding context token returned by SessionService.GenerateOnboardingSuggestions. When set and still fresh, the server reuses the onboarding snapshot computed for the zero state instead of recomputing it for the first conversation turn.
+     */
+    contextToken?: string | null;
+    /**
+     * Optional. The message to send to the assistant agent. May be empty when `confirmation_response` is set (answering a pending confirmation without adding a new message); at least one of the two must be provided.
+     */
+    message?: string | null;
+    /**
+     * Optional. Resumes an assistant session paused waiting for a client-managed long-running operation to complete.
+     */
+    operationCompletedEvent?: Schema$OperationCompletedEvent;
+    /**
+     * Optional. Optional cursor to resume and replay events from an in-flight or completed turn.
+     */
+    resumeFromSequenceNumber?: string | null;
+  }
+  /**
+   * Response message for SessionService.StreamChatAiAssistant.
+   */
+  export interface Schema$StreamChatAiAssistantResponse {
+    /**
+     * Generated-document artifact event (live preview deltas + final GCS pointer).
+     */
+    artifactChunk?: Schema$ArtifactChunk;
+    /**
+     * A blocking confirmation the agent paused on. The agent resumes when the answer arrives on a later request's `confirmation_response`. Only sent to clients that declared the CONFIRMATION_CARDS capability on the request.
+     */
+    confirmationRequest?: Schema$AssistantConfirmationRequest;
+    /**
+     * Unique identifier for the event.
+     */
+    eventId?: string | null;
+    /**
+     * Timestamp when the event occurred.
+     */
+    eventTime?: string | null;
+    /**
+     * Tells the client to silently reconnect with resume_from_sequence_number: the task serving this stream is going away and the turn will continue elsewhere. Not an error; the stream completes normally after this event.
+     */
+    handoff?: Schema$TurnHandoffEvent;
+    /**
+     * Structured clarification options parsed out of the model turn. The console renders these as a selectable option list instead of raw text.
+     */
+    optionQuestionsChunk?: Schema$OptionQuestionsChunk;
+    /**
+     * A compacted replay of an in-flight turn, sent as the first event of every attach or resume before any live event. The client replaces any locally rendered state for this turn with the snapshot's contents.
+     */
+    resumeSnapshot?: Schema$TurnResumeSnapshot;
+    /**
+     * Optional. Monotonically increasing sequence number for this session turn.
+     */
+    sequenceNumber?: string | null;
+    /**
+     * Session checkpoint/compaction recap event containing user intent and rolling summary.
+     */
+    sessionCheckpoint?: Schema$SessionCheckpoint;
+    /**
+     * Simple status update.
+     */
+    status?: Schema$Status;
+    /**
+     * Text Token (for streaming Gemini responses word-by-word).
+     */
+    textChunk?: string | null;
+    /**
+     * Thought text chunk (agent's reasoning before generating response).
+     */
+    thoughtChunk?: string | null;
+    /**
+     * Tool call execution event.
+     */
+    toolCall?: Schema$ToolCall;
+    /**
+     * Tool call response event.
+     */
+    toolResponse?: Schema$ToolResponse;
+    /**
+     * The turn has ended. Sent as the last event of every turn, on the original stream and on every attached or resumed stream, so clients can end the turn on an explicit signal instead of inferring it from stream closure.
+     */
+    turnCompleted?: Schema$TurnCompletedEvent;
+    /**
+     * Optional. Indicates whether the turn is still actively running in the background.
+     */
+    turnInProgress?: boolean | null;
+    /**
+     * Optional. Turn-level metadata and intent categorization.
+     */
+    turnMetadata?: Schema$TurnMetadata;
+    /**
+     * Optional. UI event payload.
+     */
+    uiEvent?: Schema$UiEvent;
+  }
+  /**
    * Configuration for how the agent response should be synthesized.
    */
   export interface Schema$SynthesizeSpeechConfig {
-    /**
-     * Optional. Deprecated: Use `custom_voice_samples` in AudioProcessingConfig instead. The Cloud Storage URI to the consent audio for voice cloning.
-     */
-    consentAudioGcsUri?: string | null;
     /**
      * Optional. The instruction used to synthesize speech when using a generative model.
      */
@@ -4380,10 +4769,6 @@ export namespace ces_v1 {
      * Optional. The name of the voice. If not set, the service will choose a voice based on the other parameters such as language_code. For the list of available voices, please refer to [Supported voices and languages](https://cloud.google.com/text-to-speech/docs/voices) from Cloud Text-to-Speech.
      */
     voice?: string | null;
-    /**
-     * Optional. Deprecated: Use `custom_voice_samples` in AudioProcessingConfig instead. The Cloud Storage URI to the audio sample for voice cloning. The audio sample should be a mono-channel, 24kHz WAV file. Note: Please make sure the CES service agent `service-@gcp-sa-ces.iam.gserviceaccount.com` has `storage.objects.get` permission to the Cloud Storage object.
-     */
-    voiceSampleGcsUri?: string | null;
   }
   /**
    * Pre-defined system tool.
@@ -4493,6 +4878,10 @@ export namespace ces_v1 {
      * Optional. The python function tool.
      */
     pythonFunction?: Schema$PythonFunction;
+    /**
+     * Output only. Indicates whether the tool is read-only. If true, the tool cannot be modified by the user.
+     */
+    readOnly?: boolean | null;
     /**
      * Optional. The remote agent tool.
      */
@@ -4780,6 +5169,91 @@ export namespace ces_v1 {
      * Required. The name of the agent to transfer the conversation to. The agent must be in the same app as the current agent. Format: `projects/{project\}/locations/{location\}/apps/{app\}/agents/{agent\}`
      */
     agent?: string | null;
+  }
+  /**
+   * Terminal event of a turn (see StreamChatAiAssistantResponse.turn_completed).
+   */
+  export interface Schema$TurnCompletedEvent {
+    /**
+     * Sequence number of the last event the turn produced. A client whose cursor is lower missed content and should reload the session to see it.
+     */
+    finalSequenceNumber?: string | null;
+    /**
+     * Why the turn ended.
+     */
+    reason?: string | null;
+    /**
+     * Identifier of the turn that ended; matches TurnResumeSnapshot.turn_id and ActiveTurnInfo.turn_id.
+     */
+    turnId?: string | null;
+  }
+  /**
+   * Emitted before this task stops serving the stream mid-turn (e.g. a server restart). The turn's state is persisted; a reconnect carrying resume_from_sequence_number continues it on another task.
+   */
+  export interface Schema$TurnHandoffEvent {
+    /**
+     * Why the stream is handing off.
+     */
+    reason?: string | null;
+    /**
+     * Identifies the turn to resume.
+     */
+    turnId?: string | null;
+  }
+  /**
+   * Turn-level metadata and intent categorization.
+   */
+  export interface Schema$TurnMetadata {
+    /**
+     * Set on the terminal event of a contract draft whose every placeholder is resolved (contract_progress is 100%), whether or not the draft was published. Clients complete and dismiss the contract progress display on it; publication is reported separately by contract_finalized.
+     */
+    contractDraftComplete?: boolean | null;
+    /**
+     * Set on the final artifact event of a turn whose contract draft was published (a revision was activated). Terminal for the clarification flow of this draft: contract_progress is authoritative and complete.
+     */
+    contractFinalized?: boolean | null;
+    /**
+     * Indicates whether this assistant turn was contract-related (e.g. contract drafting, alignment, extraction, or revision).
+     */
+    contractRelated?: boolean | null;
+    /**
+     * Set only on in-flight progress estimates emitted while a contract artifact fence is streaming, and on the revision-turn-start event. Unset on authoritative payloads.
+     */
+    contractStreamingPhase?: string | null;
+  }
+  /**
+   * A compacted replay of an in-flight turn: everything needed to render the turn's visible output so far, plus the position live events continue from.
+   */
+  export interface Schema$TurnResumeSnapshot {
+    /**
+     * Compacted events reconstructing the turn's visible output, in render order, using the same event shapes as live streaming.
+     */
+    events?: Schema$StreamChatAiAssistantResponse[];
+    /**
+     * When the turn will be wound down if no client remains attached.
+     */
+    orphanDeadlineTime?: string | null;
+    /**
+     * The position this snapshot represents. Live events follow with sequence_number strictly greater than this. When lower than the resume_from_sequence_number the client requested, flushed progress lags what the client already rendered: the client must discard its rendered content of this turn beyond this position before applying the snapshot.
+     */
+    resolvedSequenceNumber?: string | null;
+    /**
+     * Identifies the turn being attached to.
+     */
+    turnId?: string | null;
+  }
+  /**
+   * Represents a UI event payload.
+   */
+  export interface Schema$UiEvent {
+    /**
+     * The JSON payload representing the A2UI surface.
+     */
+    jsonPayload?: string | null;
+    /**
+     * The media type (MIME type) indicating the format of the UI event payload (e.g., "application/json+a2ui").
+     */
+    mimeType?: string | null;
   }
   /**
    * VPC-SC settings for the app.
@@ -5252,6 +5726,7 @@ export namespace ces_v1 {
   export class Resource$Projects$Locations$Apps {
     context: APIRequestContext;
     agents: Resource$Projects$Locations$Apps$Agents;
+    assistantSessions: Resource$Projects$Locations$Apps$Assistantsessions;
     changelogs: Resource$Projects$Locations$Apps$Changelogs;
     conversations: Resource$Projects$Locations$Apps$Conversations;
     deployments: Resource$Projects$Locations$Apps$Deployments;
@@ -5265,6 +5740,8 @@ export namespace ces_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.agents = new Resource$Projects$Locations$Apps$Agents(this.context);
+      this.assistantSessions =
+        new Resource$Projects$Locations$Apps$Assistantsessions(this.context);
       this.changelogs = new Resource$Projects$Locations$Apps$Changelogs(
         this.context
       );
@@ -5923,6 +6400,166 @@ export namespace ces_v1 {
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Generates personalized onboarding suggestions for the AI assistant zero state: classifies the requesting user (new / exploring / returning) from their assistant-session history in the app and returns suggestion chips (resume a session, continue work, or start something new) to render before any message is sent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/ces.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const ces = google.ces('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/ces',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await ces.projects.locations.apps.generateOnboardingSuggestions({
+     *     // Required. The app whose zero state is being rendered. Format: `projects/{project\}/locations/{location\}/apps/{app\}`
+     *     name: 'projects/my-project/locations/my-location/apps/my-app',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "maxSuggestions": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contextToken": "my_contextToken",
+     *   //   "suggestions": [],
+     *   //   "userProfile": "my_userProfile"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateOnboardingSuggestions(
+      params: Params$Resource$Projects$Locations$Apps$Generateonboardingsuggestions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generateOnboardingSuggestions(
+      params?: Params$Resource$Projects$Locations$Apps$Generateonboardingsuggestions,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GenerateOnboardingSuggestionsResponse>
+    >;
+    generateOnboardingSuggestions(
+      params: Params$Resource$Projects$Locations$Apps$Generateonboardingsuggestions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateOnboardingSuggestions(
+      params: Params$Resource$Projects$Locations$Apps$Generateonboardingsuggestions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateOnboardingSuggestionsResponse>,
+      callback: BodyResponseCallback<Schema$GenerateOnboardingSuggestionsResponse>
+    ): void;
+    generateOnboardingSuggestions(
+      params: Params$Resource$Projects$Locations$Apps$Generateonboardingsuggestions,
+      callback: BodyResponseCallback<Schema$GenerateOnboardingSuggestionsResponse>
+    ): void;
+    generateOnboardingSuggestions(
+      callback: BodyResponseCallback<Schema$GenerateOnboardingSuggestionsResponse>
+    ): void;
+    generateOnboardingSuggestions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Apps$Generateonboardingsuggestions
+        | BodyResponseCallback<Schema$GenerateOnboardingSuggestionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateOnboardingSuggestionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateOnboardingSuggestionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GenerateOnboardingSuggestionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Apps$Generateonboardingsuggestions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Apps$Generateonboardingsuggestions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ces.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+name}:generateOnboardingSuggestions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateOnboardingSuggestionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateOnboardingSuggestionsResponse>(
+          parameters
+        );
       }
     }
 
@@ -6957,6 +7594,17 @@ export namespace ces_v1 {
      */
     requestBody?: Schema$ExportAppRequest;
   }
+  export interface Params$Resource$Projects$Locations$Apps$Generateonboardingsuggestions extends StandardParameters {
+    /**
+     * Required. The app whose zero state is being rendered. Format: `projects/{project\}/locations/{location\}/apps/{app\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GenerateOnboardingSuggestionsRequest;
+  }
   export interface Params$Resource$Projects$Locations$Apps$Get extends StandardParameters {
     /**
      * Required. The resource name of the app to retrieve.
@@ -7940,6 +8588,370 @@ export namespace ces_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Agent;
+  }
+
+  export class Resource$Projects$Locations$Apps$Assistantsessions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Cancels the assistant session's in-flight turn, if any: the explicit user stop for a turn running detached from any stream. A cancel landing on a task that does not host the turn preempts it through the session turn epoch instead, ending it within one lease renewal.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/ces.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const ces = google.ces('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/ces',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await ces.projects.locations.apps.assistantSessions.cancelAssistantTurn({
+     *       // Required. The assistant session whose in-flight turn to cancel.
+     *       name: 'projects/my-project/locations/my-location/apps/my-app/assistantSessions/my-assistantSession',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "turnId": "my_turnId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cancelled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancelAssistantTurn(
+      params: Params$Resource$Projects$Locations$Apps$Assistantsessions$Cancelassistantturn,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    cancelAssistantTurn(
+      params?: Params$Resource$Projects$Locations$Apps$Assistantsessions$Cancelassistantturn,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CancelAssistantTurnResponse>>;
+    cancelAssistantTurn(
+      params: Params$Resource$Projects$Locations$Apps$Assistantsessions$Cancelassistantturn,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancelAssistantTurn(
+      params: Params$Resource$Projects$Locations$Apps$Assistantsessions$Cancelassistantturn,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CancelAssistantTurnResponse>,
+      callback: BodyResponseCallback<Schema$CancelAssistantTurnResponse>
+    ): void;
+    cancelAssistantTurn(
+      params: Params$Resource$Projects$Locations$Apps$Assistantsessions$Cancelassistantturn,
+      callback: BodyResponseCallback<Schema$CancelAssistantTurnResponse>
+    ): void;
+    cancelAssistantTurn(
+      callback: BodyResponseCallback<Schema$CancelAssistantTurnResponse>
+    ): void;
+    cancelAssistantTurn(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Apps$Assistantsessions$Cancelassistantturn
+        | BodyResponseCallback<Schema$CancelAssistantTurnResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CancelAssistantTurnResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CancelAssistantTurnResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CancelAssistantTurnResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Apps$Assistantsessions$Cancelassistantturn;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Apps$Assistantsessions$Cancelassistantturn;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ces.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancelAssistantTurn').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CancelAssistantTurnResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CancelAssistantTurnResponse>(parameters);
+      }
+    }
+
+    /**
+     * Runs the Chat AI assistant agent for the specified assistant session in a streaming fashion.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/ces.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const ces = google.ces('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/ces',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await ces.projects.locations.apps.assistantSessions.streamChatAiAssistant({
+     *       // Required. The assistant session to be used to run the assistant. Format: `projects/{project\}/locations/{location\}/apps/{app\}/assistantSessions/{assistant_session\}`
+     *       name: 'projects/my-project/locations/my-location/apps/my-app/assistantSessions/my-assistantSession',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "attachOnly": false,
+     *         //   "attachedGcsUris": [],
+     *         //   "clientCapabilities": [],
+     *         //   "confirmationResponse": {},
+     *         //   "contextToken": "my_contextToken",
+     *         //   "message": "my_message",
+     *         //   "operationCompletedEvent": {},
+     *         //   "resumeFromSequenceNumber": "my_resumeFromSequenceNumber"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifactChunk": {},
+     *   //   "confirmationRequest": {},
+     *   //   "eventId": "my_eventId",
+     *   //   "eventTime": "my_eventTime",
+     *   //   "handoff": {},
+     *   //   "optionQuestionsChunk": {},
+     *   //   "resumeSnapshot": {},
+     *   //   "sequenceNumber": "my_sequenceNumber",
+     *   //   "sessionCheckpoint": {},
+     *   //   "status": {},
+     *   //   "textChunk": "my_textChunk",
+     *   //   "thoughtChunk": "my_thoughtChunk",
+     *   //   "toolCall": {},
+     *   //   "toolResponse": {},
+     *   //   "turnCompleted": {},
+     *   //   "turnInProgress": false,
+     *   //   "turnMetadata": {},
+     *   //   "uiEvent": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    streamChatAiAssistant(
+      params: Params$Resource$Projects$Locations$Apps$Assistantsessions$Streamchataiassistant,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    streamChatAiAssistant(
+      params?: Params$Resource$Projects$Locations$Apps$Assistantsessions$Streamchataiassistant,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StreamChatAiAssistantResponse>>;
+    streamChatAiAssistant(
+      params: Params$Resource$Projects$Locations$Apps$Assistantsessions$Streamchataiassistant,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    streamChatAiAssistant(
+      params: Params$Resource$Projects$Locations$Apps$Assistantsessions$Streamchataiassistant,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StreamChatAiAssistantResponse>,
+      callback: BodyResponseCallback<Schema$StreamChatAiAssistantResponse>
+    ): void;
+    streamChatAiAssistant(
+      params: Params$Resource$Projects$Locations$Apps$Assistantsessions$Streamchataiassistant,
+      callback: BodyResponseCallback<Schema$StreamChatAiAssistantResponse>
+    ): void;
+    streamChatAiAssistant(
+      callback: BodyResponseCallback<Schema$StreamChatAiAssistantResponse>
+    ): void;
+    streamChatAiAssistant(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Apps$Assistantsessions$Streamchataiassistant
+        | BodyResponseCallback<Schema$StreamChatAiAssistantResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StreamChatAiAssistantResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StreamChatAiAssistantResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$StreamChatAiAssistantResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Apps$Assistantsessions$Streamchataiassistant;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Apps$Assistantsessions$Streamchataiassistant;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ces.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:streamChatAiAssistant').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$StreamChatAiAssistantResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$StreamChatAiAssistantResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Apps$Assistantsessions$Cancelassistantturn extends StandardParameters {
+    /**
+     * Required. The assistant session whose in-flight turn to cancel.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelAssistantTurnRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Apps$Assistantsessions$Streamchataiassistant extends StandardParameters {
+    /**
+     * Required. The assistant session to be used to run the assistant. Format: `projects/{project\}/locations/{location\}/apps/{app\}/assistantSessions/{assistant_session\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StreamChatAiAssistantRequest;
   }
 
   export class Resource$Projects$Locations$Apps$Changelogs {
@@ -12897,6 +13909,7 @@ export namespace ces_v1 {
      *       //   "name": "my_name",
      *       //   "openApiTool": {},
      *       //   "pythonFunction": {},
+     *       //   "readOnly": false,
      *       //   "remoteAgentTool": {},
      *       //   "systemTool": {},
      *       //   "timeout": "my_timeout",
@@ -12925,6 +13938,7 @@ export namespace ces_v1 {
      *   //   "name": "my_name",
      *   //   "openApiTool": {},
      *   //   "pythonFunction": {},
+     *   //   "readOnly": false,
      *   //   "remoteAgentTool": {},
      *   //   "systemTool": {},
      *   //   "timeout": "my_timeout",
@@ -13222,6 +14236,7 @@ export namespace ces_v1 {
      *   //   "name": "my_name",
      *   //   "openApiTool": {},
      *   //   "pythonFunction": {},
+     *   //   "readOnly": false,
      *   //   "remoteAgentTool": {},
      *   //   "systemTool": {},
      *   //   "timeout": "my_timeout",
@@ -13529,6 +14544,7 @@ export namespace ces_v1 {
      *       //   "name": "my_name",
      *       //   "openApiTool": {},
      *       //   "pythonFunction": {},
+     *       //   "readOnly": false,
      *       //   "remoteAgentTool": {},
      *       //   "systemTool": {},
      *       //   "timeout": "my_timeout",
@@ -13557,6 +14573,7 @@ export namespace ces_v1 {
      *   //   "name": "my_name",
      *   //   "openApiTool": {},
      *   //   "pythonFunction": {},
+     *   //   "readOnly": false,
      *   //   "remoteAgentTool": {},
      *   //   "systemTool": {},
      *   //   "timeout": "my_timeout",
