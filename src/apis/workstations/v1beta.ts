@@ -333,11 +333,11 @@ export namespace workstations_v1beta {
      */
     maxSizeGb?: number | null;
     /**
-     * Optional. Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 3000 and 100,000.
+     * Optional. Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 3,000 and 100,000.
      */
     provisionedIops?: string | null;
     /**
-     * Optional. Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be between 1 and 2,400.
+     * Optional. Indicates how much throughput to provision for the disk. This sets the number of throughput MB per second that the disk can handle. Values must be between 1 and 2,400.
      */
     provisionedThroughput?: string | null;
     /**
@@ -1290,7 +1290,7 @@ export namespace workstations_v1beta {
      */
     replicaZones?: string[] | null;
     /**
-     * Optional. Number of seconds to wait before automatically stopping a workstation. We recommend that workstations be stopped daily so that security updates can be applied upon restart. The idle_timeout and running_timeout fields are independent of each other. Note that the running_timeout field stops workstations after the specified time, regardless of whether or not the workstations are idle. Note: This timeout applies to workstations in the following states: * STATE_RUNNING * STATE_SUSPENDED Suspending a workstation does not reset this timeout. Provide duration terminated by `s` for seconds—for example, `"54000s"` (15 hours). Defaults to `"43200s"` (12 hours). A value of `"0s"` indicates that workstations using this configuration should never time out. If encryption_key is set, it must be greater than `"0s"` and less than `"86400s"` (24 hours). Warning: A value of `"0s"` indicates that Cloud Workstations VMs created with this configuration have no maximum running time. This is strongly discouraged because you incur costs and will not pick up security updates.
+     * Optional. Number of seconds to wait before automatically stopping a workstation. We recommend that workstations be stopped daily so that security updates can be applied upon restart. The idle_timeout and running_timeout fields are independent of each other. Note that the running_timeout field stops workstations after the specified time, regardless of whether or not the workstations are idle. Note: This timeout applies to workstations in the following states: - STATE_RUNNING - STATE_SUSPENDED Suspending a workstation does not reset this timeout. Provide duration terminated by `s` for seconds—for example, `"54000s"` (15 hours). Defaults to `"43200s"` (12 hours). A value of `"0s"` indicates that workstations using this configuration should never time out. If encryption_key is set, it must be greater than `"0s"` and less than `"86400s"` (24 hours). Warning: A value of `"0s"` indicates that Cloud Workstations VMs created with this configuration have no maximum running time. This is strongly discouraged because you incur costs and will not pick up security updates.
      */
     runningTimeout?: string | null;
     /**

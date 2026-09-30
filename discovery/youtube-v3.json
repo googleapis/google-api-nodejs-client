@@ -803,7 +803,7 @@
           ],
           "parameters": {
             "onBehalfOfContentOwner": {
-              "description": "The *onBehalfOfContentOwner* parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.",
+              "description": "The *onBehalfOfContentOwner* parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner. This parameter must be provided if the request is authenticated with credentials for a CMS content owner user acting on a managed channel. If omitted, the request executes under the authenticated user's direct context and returns an HTTP 403 Forbidden error.",
               "location": "query",
               "type": "string"
             },
@@ -937,11 +937,6 @@
               "location": "query",
               "repeated": true,
               "required": true,
-              "type": "string"
-            },
-            "postId": {
-              "description": "Returns the comment threads of the specified post.",
-              "location": "query",
               "type": "string"
             },
             "searchTerms": {
@@ -2784,7 +2779,7 @@
                 "completed"
               ],
               "enumDescriptions": [
-                "",
+                "The resource does not have live broadcast content.",
                 "The live broadcast is upcoming.",
                 "The live broadcast is active.",
                 "The live broadcast has been completed."
@@ -3894,7 +3889,7 @@
                 "dislike"
               ],
               "enumDescriptions": [
-                "",
+                "The entity has not been rated.",
                 "The entity is liked.",
                 "The entity is disliked."
               ],
@@ -3963,7 +3958,7 @@
                 "dislike"
               ],
               "enumDescriptions": [
-                "",
+                "The entity has not been rated.",
                 "The entity is liked.",
                 "The entity is disliked."
               ],
@@ -4193,7 +4188,7 @@
       }
     }
   },
-  "revision": "20260902",
+  "revision": "20260924",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -4291,14 +4286,6 @@
           "$ref": "ActivityContentDetailsComment",
           "description": "The `comment` object contains information about a resource that received a comment. This property is only present if the `snippet.type` is `comment`."
         },
-        "favorite": {
-          "$ref": "ActivityContentDetailsFavorite",
-          "description": "The `favorite` object contains information about a video that was marked as a favorite video. This property is only present if the `snippet.type` is `favorite`. Deprecated: This property is no longer returned."
-        },
-        "like": {
-          "$ref": "ActivityContentDetailsLike",
-          "description": "The `like` object contains information about a resource that received a positive (like) rating. This property is only present if the `snippet.type` is `like`. Deprecated: This property is no longer returned."
-        },
         "playlistItem": {
           "$ref": "ActivityContentDetailsPlaylistItem",
           "description": "The `playlistItem` object contains information about a new playlist item. This property is only present if the `snippet.type` is `playlistItem`."
@@ -4317,7 +4304,7 @@
         },
         "subscription": {
           "$ref": "ActivityContentDetailsSubscription",
-          "description": "The `subscription` object contains information about a channel that a user subscribed to. This property is only present if the `snippet.type` is `subscription`. Deprecated: This property is no longer returned."
+          "description": "The `subscription` object contains information about a channel that a user subscribed to. This property is only present if the `snippet.type` is `subscription`."
         },
         "upload": {
           "$ref": "ActivityContentDetailsUpload",
@@ -4355,28 +4342,6 @@
         "resourceId": {
           "$ref": "ResourceId",
           "description": "The `resourceId` object contains information that identifies the resource associated with the comment."
-        }
-      },
-      "type": "object"
-    },
-    "ActivityContentDetailsFavorite": {
-      "description": "Information about a video that was marked as a favorite video. Deprecated: This resource is no longer returned.",
-      "id": "ActivityContentDetailsFavorite",
-      "properties": {
-        "resourceId": {
-          "$ref": "ResourceId",
-          "description": "The `resourceId` object contains information that identifies the resource that was marked as a favorite."
-        }
-      },
-      "type": "object"
-    },
-    "ActivityContentDetailsLike": {
-      "description": "Information about a resource that received a positive (like) rating. Deprecated: This resource is no longer returned.",
-      "id": "ActivityContentDetailsLike",
-      "properties": {
-        "resourceId": {
-          "$ref": "ResourceId",
-          "description": "The `resourceId` object contains information that identifies the rated resource."
         }
       },
       "type": "object"
@@ -4469,14 +4434,10 @@
           "description": "The reason that the resource is recommended to the user.",
           "enum": [
             "reasonUnspecified",
-            "videoFavorited",
-            "videoLiked",
             "videoWatched"
           ],
           "enumDescriptions": [
             "",
-            "Deprecated: This reason is no longer used.",
-            "Deprecated: This reason is no longer used.",
             ""
           ],
           "type": "string"
@@ -4532,7 +4493,7 @@
       "type": "object"
     },
     "ActivityContentDetailsSubscription": {
-      "description": "Information about a channel that a user subscribed to. Deprecated: This resource is no longer returned.",
+      "description": "Information about a channel that a user subscribed to.",
       "id": "ActivityContentDetailsSubscription",
       "properties": {
         "resourceId": {
@@ -4638,8 +4599,6 @@
           "enum": [
             "typeUnspecified",
             "upload",
-            "like",
-            "favorite",
             "comment",
             "subscription",
             "playlistItem",
@@ -4652,10 +4611,8 @@
           "enumDescriptions": [
             "",
             "",
-            "Deprecated: This type is no longer supported.",
-            "Deprecated: This type is no longer supported.",
             "",
-            "Deprecated: This type is no longer supported.",
+            "",
             "",
             "",
             "",
@@ -6019,10 +5976,6 @@
           "description": "The unique id of the top-level comment, only set for replies.",
           "type": "string"
         },
-        "postId": {
-          "description": "The ID of the post the comment refers to, if any.",
-          "type": "string"
-        },
         "publishedAt": {
           "description": "The date and time when the comment was originally published.",
           "format": "date-time",
@@ -6053,7 +6006,7 @@
             "dislike"
           ],
           "enumDescriptions": [
-            "",
+            "The entity has not been rated.",
             "The entity is liked.",
             "The entity is disliked."
           ],
@@ -6174,10 +6127,6 @@
         "isPublic": {
           "description": "Whether the thread (and therefore all its comments) is visible to all YouTube users.",
           "type": "boolean"
-        },
-        "postId": {
-          "description": "The ID of the post the comments refer to, if any.",
-          "type": "string"
         },
         "topLevelComment": {
           "$ref": "Comment",
@@ -10834,7 +10783,7 @@
             "completed"
           ],
           "enumDescriptions": [
-            "",
+            "The resource does not have live broadcast content.",
             "The live broadcast is upcoming.",
             "The live broadcast is active.",
             "The live broadcast has been completed."
@@ -12238,7 +12187,7 @@
             "dislike"
           ],
           "enumDescriptions": [
-            "",
+            "The entity has not been rated.",
             "The entity is liked.",
             "The entity is disliked."
           ],
@@ -12308,7 +12257,7 @@
             "completed"
           ],
           "enumDescriptions": [
-            "",
+            "The resource does not have live broadcast content.",
             "The live broadcast is upcoming.",
             "The live broadcast is active.",
             "The live broadcast has been completed."
@@ -12464,7 +12413,7 @@
       "type": "object"
     },
     "VideoStatus": {
-      "description": "Basic details about a video category, such as its localized title. Next Id: 19",
+      "description": "Basic details about a video category, such as its localized title. Next Id: 20",
       "id": "VideoStatus",
       "properties": {
         "containsSyntheticMedia": {
@@ -12502,8 +12451,8 @@
             "creativeCommon"
           ],
           "enumDescriptions": [
-            "",
-            ""
+            "Standard YouTube license.",
+            "Creative Commons license."
           ],
           "type": "string"
         },

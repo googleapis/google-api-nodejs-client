@@ -753,7 +753,7 @@ export namespace merchantapi_products_v1beta {
     ratio?: number | null;
   }
   /**
-   * A message that represents loyalty program.
+   * A message that represents loyalty program. For more information on loyalty programs, see [Overview of loyalty programs](/merchant/api/guides/loyalty/loyalty-programs).
    */
   export interface Schema$LoyaltyProgram {
     /**

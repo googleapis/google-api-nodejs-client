@@ -1715,7 +1715,7 @@
       }
     }
   },
-  "revision": "20260826",
+  "revision": "20260918",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AISkillAnalysisNote": {
@@ -3683,6 +3683,11 @@
           ],
           "type": "string"
         },
+        "resolvedWorkerRelease": {
+          "description": "Output only. Worker release resolved from the release channel.",
+          "readOnly": true,
+          "type": "string"
+        },
         "secretEnv": {
           "description": "A list of global environment variables, which are encrypted using a Cloud Key Management Service crypto key. These values must be specified in the build's `Secret`. These variables will be available to all build steps in this build.",
           "items": {
@@ -3736,6 +3741,10 @@
           "deprecated": true,
           "description": "This field deprecated; please use `pool.name` instead.",
           "type": "string"
+        },
+        "workerRelease": {
+          "description": "Optional. Option to specify which release or release channel (rapid|regular|stable) to use to run this build.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3746,6 +3755,16 @@
       "properties": {
         "name": {
           "description": "The `WorkerPool` resource to execute the build on. You must have `cloudbuild.workerpools.use` on the project hosting the WorkerPool. Format projects/{project}/locations/{location}/workerPools/{workerPoolId}",
+          "type": "string"
+        },
+        "resolvedWorkerRelease": {
+          "description": "Output only. OUTPUT_ONLY. Worker release resolved from the release channel.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "workerRelease": {
+          "description": "Output only. OUTPUT_ONLY. The release or release channel used to run the Build. This is set to the same value as `PrivatePoolV1Config.WorkerConfig.worker_release` for the UI to easily access.",
+          "readOnly": true,
           "type": "string"
         }
       },

@@ -529,6 +529,11 @@
                       "required": true,
                       "type": "string"
                     },
+                    "requestId": {
+                      "description": "Optional. An idempotency ID for the request. A random UUID is recommended. Restricted to 36 ASCII characters.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "updateMask": {
                       "description": "Required. The list of fields to update. Only a limited set of fields can be updated. The allowed fields are the following: - `product_payload.googleHomePayload.googleStructureId`",
                       "format": "google-fieldmask",
@@ -586,7 +591,7 @@
       }
     }
   },
-  "revision": "20260816",
+  "revision": "20260924",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "Amount": {

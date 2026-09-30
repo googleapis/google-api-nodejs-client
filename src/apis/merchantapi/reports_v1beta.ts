@@ -292,7 +292,7 @@ export namespace merchantapi_reports_v1beta {
      */
     date?: Schema$Date;
     /**
-     * Domain of your competitor or your domain, if 'is_your_domain' is true. Required in the `SELECT` clause. Cannot be filtered on in the 'WHERE' clause.
+     * Domain of your competitor or your domain, if `is_your_domain` is true. Required in the `SELECT` clause. Cannot be filtered on in the 'WHERE' clause.
      */
     domain?: string | null;
     /**
@@ -341,7 +341,7 @@ export namespace merchantapi_reports_v1beta {
      */
     date?: Schema$Date;
     /**
-     * Domain of your competitor or your domain, if 'is_your_domain' is true. Required in the `SELECT` clause. Cannot be filtered on in the 'WHERE' clause.
+     * Domain of your competitor or your domain, if `is_your_domain` is true. Required in the `SELECT` clause. Cannot be filtered on in the 'WHERE' clause.
      */
     domain?: string | null;
     /**

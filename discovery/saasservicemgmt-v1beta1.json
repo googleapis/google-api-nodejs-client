@@ -3323,7 +3323,7 @@
       }
     }
   },
-  "revision": "20260816",
+  "revision": "20260914",
   "rootUrl": "https://saasservicemgmt.googleapis.com/",
   "schemas": {
     "Aggregate": {
@@ -4867,7 +4867,7 @@
           "type": "string"
         },
         "unitKind": {
-          "description": "Required. Immutable. UnitKind that this rollout kind corresponds to. Rollouts stemming from this rollout kind will target the units of this unit kind. In other words, this defines the population of target units to be upgraded by rollouts.",
+          "description": "Optional. Immutable. UnitKind that this rollout kind corresponds to. Rollouts stemming from this rollout kind will target the units of this unit kind. In other words, this defines the population of target units to be upgraded by rollouts.",
           "type": "string"
         },
         "unitUpdatePacing": {
@@ -5619,6 +5619,12 @@
         },
         "createTime": {
           "description": "Output only. The timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. The timestamp when the resource was marked for deletion (deletion is an asynchronous operation).",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"

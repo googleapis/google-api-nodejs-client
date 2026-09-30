@@ -177,6 +177,23 @@
             "documentId"
           ],
           "parameters": {
+            "commentsViewMode": {
+              "description": "The comments view mode to apply to the document. This allows viewing the document with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. If you set comments_view_mode to any value, you must also set include_tabs_content to `true` or use a field mask that references the Document.tabs field (or any subfield). If you set comments_view_mode to COMMENTS_VIEW_MODE_INCLUDED, you must also explicitly set suggestions_view_mode to SUGGESTIONS_INLINE. If you set comments_view_mode to COMMENTS_VIEW_MODE_INCLUDED or COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS, you may not set suggestions_view_mode to PREVIEW_WITHOUT_SUGGESTIONS or PREVIEW_SUGGESTIONS_ACCEPTED. [Developer Preview](https://developers.google.com/workspace/preview).",
+              "enum": [
+                "COMMENTS_VIEW_MODE_UNSPECIFIED",
+                "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
+                "COMMENTS_VIEW_MODE_OMITTED",
+                "COMMENTS_VIEW_MODE_INCLUDED"
+              ],
+              "enumDescriptions": [
+                "The CommentsViewMode is unspecified. COMMENTS_VIEW_MODE_OMITTED is applied.",
+                "The CommentsViewMode applied to the returned document depends on the user's current access level. If the user only has view access, COMMENTS_VIEW_MODE_OMITTED is applied. Otherwise, COMMENTS_VIEW_MODE_INCLUDED is applied.",
+                "The returned document has comments omitted.",
+                "The returned document has comments included. Requests to retrieve a document using this mode will return a 403 error if the user does not have permission to view comments. When set, suggestions_view_mode must also be set to SUGGESTIONS_INLINE. Returns a 400 bad request error otherwise."
+              ],
+              "location": "query",
+              "type": "string"
+            },
             "documentId": {
               "description": "The ID of the document to retrieve.",
               "location": "path",
@@ -221,9 +238,50 @@
       }
     }
   },
-  "revision": "20260902",
+  "revision": "20260921",
   "rootUrl": "https://docs.googleapis.com/",
   "schemas": {
+    "AcceptSuggestionRequest": {
+      "description": "Accepts a suggestion. Returns a 403 forbidden error if the requesting user does not have edit access to the document. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "AcceptSuggestionRequest",
+      "properties": {
+        "suggestionId": {
+          "description": "The ID of the suggestion.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AddCommentReplyRequest": {
+      "description": "Inserts a reply Post into a CommentThread or SuggestionThread. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "AddCommentReplyRequest",
+      "properties": {
+        "commentId": {
+          "description": "The ID of the CommentThread to add the reply to.",
+          "type": "string"
+        },
+        "post": {
+          "$ref": "Post",
+          "description": "The Post representing the reply."
+        },
+        "suggestionId": {
+          "description": "The ID of the SuggestionThread to add the reply to.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AddCommentReplyResponse": {
+      "description": "Response message for adding a reply. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "AddCommentReplyResponse",
+      "properties": {
+        "post": {
+          "$ref": "Post",
+          "description": "The newly-inserted reply Post."
+        }
+      },
+      "type": "object"
+    },
     "AddDocumentTabRequest": {
       "description": "Adds a document tab. When a tab is added at a given index, all subsequent tabs' indexes are incremented.",
       "id": "AddDocumentTabRequest",
@@ -336,6 +394,22 @@
       "description": "Response message from a BatchUpdateDocument request.",
       "id": "BatchUpdateDocumentResponse",
       "properties": {
+        "commentUpdateState": {
+          "description": "Whether comment updates were applied in the batch request. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "enum": [
+            "COMMENT_UPDATE_STATE_UNSPECIFIED",
+            "NO_UPDATES_REQUESTED",
+            "ALL_SAVED",
+            "ALL_FAILED_UNKNOWN_REASON"
+          ],
+          "enumDescriptions": [
+            "The status of comment updates is unspecified.",
+            "No comment updates were requested in the batch request.",
+            "All requested comment updates were applied in the batch request.",
+            "All requested comment updates failed."
+          ],
+          "type": "string"
+        },
         "documentId": {
           "description": "The ID of the document to which the updates were applied to.",
           "type": "string"
@@ -344,6 +418,13 @@
           "description": "The reply of the updates. This maps 1:1 with the updates, although replies to some requests may be empty.",
           "items": {
             "$ref": "Response"
+          },
+          "type": "array"
+        },
+        "suggestionResponses": {
+          "description": "The suggestions which were affected by each update. This maps 1:1 with the updates. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "items": {
+            "$ref": "SuggestionResponse"
           },
           "type": "array"
         },
@@ -461,6 +542,68 @@
         "textStyle": {
           "$ref": "TextStyle",
           "description": "The text style of this ColumnBreak. Similar to text content, like text runs and footnote references, the text style of a column break can affect content layout as well as the styling of text inserted next to it."
+        }
+      },
+      "type": "object"
+    },
+    "CommentAnchor": {
+      "description": "One or more locations in the document that are tied to CommentThreads with the same anchorId. Note: Multiple anchors may refer to the same location. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "CommentAnchor",
+      "properties": {
+        "anchorId": {
+          "description": "The ID of the comment anchor.",
+          "type": "string"
+        },
+        "ranges": {
+          "description": "A collection of Ranges in the document which are tied to this anchor.",
+          "items": {
+            "$ref": "Range"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CommentThread": {
+      "description": "Represents a single comment thread. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "CommentThread",
+      "properties": {
+        "anchorId": {
+          "description": "The ID of the CommentAnchor in the document that this thread is tied to. Multiple comment threads may be anchored to the same CommentAnchor.",
+          "type": "string"
+        },
+        "commentId": {
+          "description": "The unique ID of the comment thread.",
+          "type": "string"
+        },
+        "headPost": {
+          "$ref": "Post",
+          "description": "The first post in the thread."
+        },
+        "plainTextQuote": {
+          "description": "The quoted text from the document when the comment was created, formatted as plain-text.",
+          "type": "string"
+        },
+        "replies": {
+          "description": "Replies to the head post.",
+          "items": {
+            "$ref": "Post"
+          },
+          "type": "array"
+        },
+        "status": {
+          "description": "Whether the thread is open or resolved.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "OPEN",
+            "RESOLVED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The comment thread is open.",
+            "The comment thread is resolved."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -830,6 +973,36 @@
       },
       "type": "object"
     },
+    "DeleteCommentReplyRequest": {
+      "description": "Deletes a reply Post from a CommentThread or SuggestionThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. - The reply post contains an action. - The reply post contains an assignee. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "DeleteCommentReplyRequest",
+      "properties": {
+        "commentId": {
+          "description": "The ID of the CommentThread which the post belongs to.",
+          "type": "string"
+        },
+        "postId": {
+          "description": "The ID of the reply Post being deleted.",
+          "type": "string"
+        },
+        "suggestionId": {
+          "description": "The ID of the SuggestionThread which the post belongs to.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeleteCommentRequest": {
+      "description": "Deletes a CommentThread. Returns a 400 bad request error if the requesting user is not the author of the headPost. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "DeleteCommentRequest",
+      "properties": {
+        "commentId": {
+          "description": "The ID of the CommentThread that is being deleted.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DeleteContentRangeRequest": {
       "description": "Deletes content from the document.",
       "id": "DeleteContentRangeRequest",
@@ -916,6 +1089,17 @@
       },
       "type": "object"
     },
+    "DeleteSuggestionRequest": {
+      "description": "Deletes a suggestion. Returns a 403 forbidden error if the requesting user is not the author of the suggestion. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "DeleteSuggestionRequest",
+      "properties": {
+        "suggestionId": {
+          "description": "The ID of the suggestion.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DeleteTabRequest": {
       "description": "Deletes a tab. If the tab has child tabs, they are deleted as well.",
       "id": "DeleteTabRequest",
@@ -980,6 +1164,29 @@
         "body": {
           "$ref": "Body",
           "description": "Output only. The main body of the document. Legacy field: Instead, use Document.tabs.documentTab.body, which exposes the actual document content from all tabs when the includeTabsContent parameter is set to `true`. If `false` or unset, this field contains information about the first tab in the document."
+        },
+        "comments": {
+          "description": "Output only. The comments associated with the document. Only populated if the commentsViewMode parameter is set to require comments (such as `COMMENTS_VIEW_MODE_INCLUDED`). [Developer Preview](https://developers.google.com/workspace/preview).",
+          "items": {
+            "$ref": "CommentThread"
+          },
+          "type": "array"
+        },
+        "commentsViewMode": {
+          "description": "Output only. The comments view mode applied to the document. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "enum": [
+            "COMMENTS_VIEW_MODE_UNSPECIFIED",
+            "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
+            "COMMENTS_VIEW_MODE_OMITTED",
+            "COMMENTS_VIEW_MODE_INCLUDED"
+          ],
+          "enumDescriptions": [
+            "The CommentsViewMode is unspecified. COMMENTS_VIEW_MODE_OMITTED is applied.",
+            "The CommentsViewMode applied to the returned document depends on the user's current access level. If the user only has view access, COMMENTS_VIEW_MODE_OMITTED is applied. Otherwise, COMMENTS_VIEW_MODE_INCLUDED is applied.",
+            "The returned document has comments omitted.",
+            "The returned document has comments included. Requests to retrieve a document using this mode will return a 403 error if the user does not have permission to view comments. When set, suggestions_view_mode must also be set to SUGGESTIONS_INLINE. Returns a 400 bad request error otherwise."
+          ],
+          "type": "string"
         },
         "documentId": {
           "description": "Output only. The ID of the document.",
@@ -1059,6 +1266,13 @@
           },
           "description": "Output only. The suggested changes to the named styles of the document, keyed by suggestion ID. Legacy field: Instead, use Document.tabs.documentTab.suggestedNamedStylesChanges, which exposes the actual document content from all tabs when the includeTabsContent parameter is set to `true`. If `false` or unset, this field contains information about the first tab in the document.",
           "type": "object"
+        },
+        "suggestions": {
+          "description": "Output only. The suggestions associated with the document. Only populated if the commentsViewMode parameter is set to require comments (such as `COMMENTS_VIEW_MODE_INCLUDED`). [Developer Preview](https://developers.google.com/workspace/preview).",
+          "items": {
+            "$ref": "SuggestionThread"
+          },
+          "type": "array"
         },
         "suggestionsViewMode": {
           "description": "Output only. The suggestions view mode applied to the document. Note: When editing a document, changes must be based on a document with SUGGESTIONS_INLINE.",
@@ -1289,6 +1503,13 @@
         "body": {
           "$ref": "Body",
           "description": "The main body of the document tab."
+        },
+        "commentAnchors": {
+          "additionalProperties": {
+            "$ref": "CommentAnchor"
+          },
+          "description": "The comment anchors in a document tab, keyed by anchor ID. Only populated if the commentsViewMode parameter is set to require comments (such as `COMMENTS_VIEW_MODE_INCLUDED`). [Developer Preview](https://developers.google.com/workspace/preview).",
+          "type": "object"
         },
         "documentStyle": {
           "$ref": "DocumentStyle",
@@ -1882,6 +2103,36 @@
         "embeddedObjectSuggestionState": {
           "$ref": "EmbeddedObjectSuggestionState",
           "description": "A mask that indicates which of the fields in embedded_object have been changed in this suggestion."
+        }
+      },
+      "type": "object"
+    },
+    "InsertCommentRequest": {
+      "description": "Inserts a CommentThread into the document. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "InsertCommentRequest",
+      "properties": {
+        "assigneeEmailAddress": {
+          "description": "Optional. The email address of the assignee of the comment. Leave empty for a non-assigned comment. May not exceed 2048 UTF-8 code units.",
+          "type": "string"
+        },
+        "content": {
+          "description": "The text of the comment, as plain text. This text content will be handled similarly to comments created in the Docs editor. It will have similar behaviors for formatting, notifications, etc. This field cannot be empty, and must not exceed 2048 UTF-8 code units.",
+          "type": "string"
+        },
+        "range": {
+          "$ref": "Range",
+          "description": "The Range in the document that is tied to this comment."
+        }
+      },
+      "type": "object"
+    },
+    "InsertCommentResponse": {
+      "description": "Response message for inserting a comment. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "InsertCommentResponse",
+      "properties": {
+        "commentThread": {
+          "$ref": "CommentThread",
+          "description": "The newly-inserted comment thread."
         }
       },
       "type": "object"
@@ -3155,6 +3406,114 @@
       },
       "type": "object"
     },
+    "Post": {
+      "description": "Represents a single post in a comment or suggestion thread. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "Post",
+      "properties": {
+        "assigneeEmail": {
+          "description": "Optional. The email of the user who is being newly assigned to the thread as part of this post. Returns a 400 bad request error if: - The parent thread is a CommentThread whose headPost does not have an assignee. - The parent thread is a SuggestionThread. - commentAction is specified as `RESOLVE` or `REOPEN`. - `assigneeEmail` exceeds 2048 UTF-8 code units.",
+          "type": "string"
+        },
+        "author": {
+          "$ref": "PostAuthor",
+          "description": "Output only. The user who created the post."
+        },
+        "commentAction": {
+          "description": "Optional. The action type for comment posts.",
+          "enum": [
+            "COMMENT_ACTION_TYPE_UNSPECIFIED",
+            "NO_COMMENT_ACTION_CHANGE",
+            "RESOLVE",
+            "REOPEN"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "No action change in this post.",
+            "This post resolves the thread.",
+            "This post reopens the thread."
+          ],
+          "type": "string"
+        },
+        "content": {
+          "description": "The content of the post. Required to be non-empty if commentAction is not `RESOLVE` or `REOPEN`. This text content will be handled similarly to comments created in the Docs editor. It will have similar behaviors for formatting, notifications, etc. May not exceed 2048 UTF-8 code units.",
+          "type": "string"
+        },
+        "contentHtml": {
+          "description": "Output only. The content of the post as HTML.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the post was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "deleted": {
+          "description": "Output only. Whether the post is deleted. If `true`, content and author fields will be empty.",
+          "type": "boolean"
+        },
+        "fromCopiedDocument": {
+          "description": "Output only. Whether the post is from a copied document. This field cannot be set directly by callers.",
+          "type": "boolean"
+        },
+        "fromDocumentComparison": {
+          "description": "Output only. Whether the post is from a document comparison. This field cannot be set directly by callers.",
+          "type": "boolean"
+        },
+        "fromImportedDocument": {
+          "description": "Output only. Whether the post is from an imported document. This field cannot be set directly by callers.",
+          "type": "boolean"
+        },
+        "postId": {
+          "description": "Output only. The unique ID of the post.",
+          "type": "string"
+        },
+        "suggestionAction": {
+          "description": "Output only. The action type for suggestion posts.",
+          "enum": [
+            "SUGGESTION_ACTION_TYPE_UNSPECIFIED",
+            "NO_SUGGESTION_ACTION_CHANGE",
+            "ACCEPT",
+            "REJECT"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "No action change in this post.",
+            "This post accepts the suggestion.",
+            "This post rejects the suggestion."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time the post was last updated.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PostAuthor": {
+      "description": "Represents a user who authored a comment or suggestion post. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "PostAuthor",
+      "properties": {
+        "anonymous": {
+          "description": "Whether the user is anonymous.",
+          "type": "boolean"
+        },
+        "displayName": {
+          "description": "The display name of the user. May be absent if the author is anonymous.",
+          "type": "string"
+        },
+        "me": {
+          "description": "Whether the user is the authenticated user making the request.",
+          "type": "boolean"
+        },
+        "user": {
+          "description": "The resource name of the post author user, which can also be used to identify the user in the [Google People API](https://developers.google.com/people/api/rest/v1/people). Format: `users/{user}`. Will not be populated if the anonymous field is `true` or if the post is from an imported document.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Range": {
       "description": "Specifies a contiguous range of text.",
       "id": "Range",
@@ -3175,6 +3534,17 @@
         },
         "tabId": {
           "description": "The tab that contains this range. When omitted, the request applies to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RejectSuggestionRequest": {
+      "description": "Rejects a suggestion. Returns a 403 forbidden error if the requesting user does not have edit access to the document and is not the author of the suggestion. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "RejectSuggestionRequest",
+      "properties": {
+        "suggestionId": {
+          "description": "The ID of the suggestion.",
           "type": "string"
         }
       },
@@ -3269,6 +3639,14 @@
       "description": "A single update to apply to a document.",
       "id": "Request",
       "properties": {
+        "acceptSuggestion": {
+          "$ref": "AcceptSuggestionRequest",
+          "description": "Accepts a suggestion. [Developer Preview](https://developers.google.com/workspace/preview)."
+        },
+        "addCommentReply": {
+          "$ref": "AddCommentReplyRequest",
+          "description": "Adds a reply to a CommentThread or SuggestionThread. [Developer Preview](https://developers.google.com/workspace/preview)."
+        },
         "addDocumentTab": {
           "$ref": "AddDocumentTabRequest",
           "description": "Adds a document tab."
@@ -3292,6 +3670,14 @@
         "createParagraphBullets": {
           "$ref": "CreateParagraphBulletsRequest",
           "description": "Creates bullets for paragraphs."
+        },
+        "deleteComment": {
+          "$ref": "DeleteCommentRequest",
+          "description": "Deletes a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview)."
+        },
+        "deleteCommentReply": {
+          "$ref": "DeleteCommentReplyRequest",
+          "description": "Deletes a reply Post from a CommentThread or SuggestionThread. [Developer Preview](https://developers.google.com/workspace/preview)."
         },
         "deleteContentRange": {
           "$ref": "DeleteContentRangeRequest",
@@ -3317,6 +3703,10 @@
           "$ref": "DeletePositionedObjectRequest",
           "description": "Deletes a positioned object from the document."
         },
+        "deleteSuggestion": {
+          "$ref": "DeleteSuggestionRequest",
+          "description": "Deletes a suggestion. [Developer Preview](https://developers.google.com/workspace/preview)."
+        },
         "deleteTab": {
           "$ref": "DeleteTabRequest",
           "description": "Deletes a document tab."
@@ -3328,6 +3718,10 @@
         "deleteTableRow": {
           "$ref": "DeleteTableRowRequest",
           "description": "Deletes a row from a table."
+        },
+        "insertComment": {
+          "$ref": "InsertCommentRequest",
+          "description": "Inserts a CommentThread into the document. [Developer Preview](https://developers.google.com/workspace/preview)."
         },
         "insertDate": {
           "$ref": "InsertDateRequest",
@@ -3377,6 +3771,10 @@
           "$ref": "PinTableHeaderRowsRequest",
           "description": "Updates the number of pinned header rows in a table."
         },
+        "rejectSuggestion": {
+          "$ref": "RejectSuggestionRequest",
+          "description": "Rejects a suggestion. [Developer Preview](https://developers.google.com/workspace/preview)."
+        },
         "replaceAllText": {
           "$ref": "ReplaceAllTextRequest",
           "description": "Replaces all instances of the specified text."
@@ -3392,6 +3790,10 @@
         "unmergeTableCells": {
           "$ref": "UnmergeTableCellsRequest",
           "description": "Unmerges cells in a table."
+        },
+        "updateCommentPost": {
+          "$ref": "UpdateCommentPostRequest",
+          "description": "Updates an existing post (head post or reply) of a CommentThread or SuggestionThread. [Developer Preview](https://developers.google.com/workspace/preview)."
         },
         "updateDocumentStyle": {
           "$ref": "UpdateDocumentStyleRequest",
@@ -3436,6 +3838,10 @@
       "description": "A single response from an update.",
       "id": "Response",
       "properties": {
+        "addCommentReply": {
+          "$ref": "AddCommentReplyResponse",
+          "description": "The result of adding a reply to a comment or suggestion. [Developer Preview](https://developers.google.com/workspace/preview)."
+        },
         "addDocumentTab": {
           "$ref": "AddDocumentTabResponse",
           "description": "The result of adding a document tab."
@@ -3455,6 +3861,10 @@
         "createNamedRange": {
           "$ref": "CreateNamedRangeResponse",
           "description": "The result of creating a named range."
+        },
+        "insertComment": {
+          "$ref": "InsertCommentResponse",
+          "description": "The result of inserting a comment. [Developer Preview](https://developers.google.com/workspace/preview)."
         },
         "insertInlineImage": {
           "$ref": "InsertInlineImageResponse",
@@ -4007,6 +4417,94 @@
         "textStyleSuggestionState": {
           "$ref": "TextStyleSuggestionState",
           "description": "A mask that indicates which of the fields on the base TextStyle have been changed in this suggestion."
+        }
+      },
+      "type": "object"
+    },
+    "SuggestionResponse": {
+      "description": "The suggestions which were affected by a given update. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "SuggestionResponse",
+      "properties": {
+        "acceptedSuggestionIds": {
+          "description": "The IDs of suggestions which were accepted during the update.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "createdSuggestionIds": {
+          "description": "The IDs of suggestions which were created during the update.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "deletedSuggestionIds": {
+          "description": "The IDs of suggestions which were deleted during the update.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "rejectedSuggestionIds": {
+          "description": "The IDs of suggestions which were rejected during the update.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "updatedSummarySuggestionIds": {
+          "description": "The IDs of suggestions whose summaries were updated during the update.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SuggestionThread": {
+      "description": "Represents a single suggestion thread. Suggestion threads are created as a byproduct of saving changes to the document while in suggestion mode, and cannot be created directly. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "SuggestionThread",
+      "properties": {
+        "headPost": {
+          "$ref": "Post",
+          "description": "The first post in the thread."
+        },
+        "replies": {
+          "description": "Replies to the head post.",
+          "items": {
+            "$ref": "Post"
+          },
+          "type": "array"
+        },
+        "status": {
+          "description": "Whether the thread is open, accepted, or rejected.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "OPEN",
+            "ACCEPTED",
+            "REJECTED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The suggestion thread is open.",
+            "The suggestion thread is accepted.",
+            "The suggestion thread is rejected."
+          ],
+          "type": "string"
+        },
+        "suggestionId": {
+          "description": "The unique ID of the suggestion.",
+          "type": "string"
+        },
+        "summaryHtml": {
+          "description": "Summary of the suggested differences in the document, in HTML. May be empty.",
+          "type": "string"
+        },
+        "summaryText": {
+          "description": "Summary of the suggested differences in the document, in plain text. May be empty.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4704,6 +5202,29 @@
       },
       "type": "object"
     },
+    "UpdateCommentPostRequest": {
+      "description": "Updates a Post in a CommentThread or SuggestionThread. Returns a 400 bad request error if: - The post is the headPost of a SuggestionThread. - The requesting user is not the author of the post. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "UpdateCommentPostRequest",
+      "properties": {
+        "commentId": {
+          "description": "The ID of the CommentThread which the post belongs to.",
+          "type": "string"
+        },
+        "content": {
+          "description": "The new text of the comment, as plain text. This text content will be handled similarly to comments created in the Docs editor. It will have similar behaviors for formatting, notifications, etc. This field cannot be empty, and must not exceed 2048 UTF-8 code units.",
+          "type": "string"
+        },
+        "postId": {
+          "description": "The ID of the post being updated.",
+          "type": "string"
+        },
+        "suggestionId": {
+          "description": "The ID of the SuggestionThread which the post belongs to.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "UpdateDocumentStyleRequest": {
       "description": "Updates the DocumentStyle.",
       "id": "UpdateDocumentStyleRequest",
@@ -4926,6 +5447,20 @@
         },
         "targetRevisionId": {
           "description": "The optional target revision ID of the document the write request is applied to. If collaborator changes have occurred after the document was read using the API, the changes produced by this write request are applied against the collaborator changes. This results in a new revision of the document that incorporates both the collaborator changes and the changes in the request, with the Docs server resolving conflicting changes. When using target revision ID, the API client can be thought of as another collaborator of the document. The target revision ID can only be used to write to recent versions of a document. If the target revision is too far behind the latest revision, the request is not processed and returns a 400 bad request error. The request should be tried again after retrieving the latest version of the document. Usually a revision ID remains valid for use as a target revision for several minutes after it's read, but for frequently edited documents this window might be shorter.",
+          "type": "string"
+        },
+        "writeMode": {
+          "description": "How the request updates should be applied to the document. If unspecified, the request updates will be applied as normal edits. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "enum": [
+            "WRITE_MODE_UNSPECIFIED",
+            "EDIT",
+            "SUGGEST"
+          ],
+          "enumDescriptions": [
+            "The write mode is unspecified. Defaults to EDIT behavior.",
+            "Apply all updates as normal edits.",
+            "Apply all updates as suggestions. [Developer Preview](https://developers.google.com/workspace/preview)."
+          ],
           "type": "string"
         }
       },

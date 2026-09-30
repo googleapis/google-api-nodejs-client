@@ -5306,6 +5306,12 @@ export namespace compute_v1 {
      * Full machine-type names, e.g. "n1-standard-16".
      */
     machineTypes?: string[] | null;
+    /**
+     * Optional. Rank when prioritizing the shape flexibilities.
+     * The instance selections are considered in the ascending order of the
+     * rank. If not set, defaults to 0.
+     */
+    rank?: string | null;
   }
   /**
    * Attached disk configuration.
@@ -5419,6 +5425,14 @@ export namespace compute_v1 {
    */
   export interface Schema$CapacityHistoryRequestInstanceProperties {
     /**
+     * Local SSDs.
+     */
+    disks?: Schema$CapacityHistoryRequestInstancePropertiesAttachedDisk[];
+    /**
+     * Accelerators configuration.
+     */
+    guestAccelerators?: Schema$AcceleratorConfig[];
+    /**
      * The machine type for the VM, such as `n2-standard-4`.
      */
     machineType?: string | null;
@@ -5426,6 +5440,15 @@ export namespace compute_v1 {
      * Specifies the scheduling options.
      */
     scheduling?: Schema$CapacityHistoryRequestInstancePropertiesScheduling;
+  }
+  /**
+   * AttachedDisk modeled after Instance's AttachedDisk.
+   */
+  export interface Schema$CapacityHistoryRequestInstancePropertiesAttachedDisk {
+    /**
+     * Specifies the type of the disk.
+     */
+    type?: string | null;
   }
   /**
    * Scheduling options.
@@ -5712,7 +5735,7 @@ export namespace compute_v1 {
      * resource types.
      *
      *  The type must be one of the following:ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3,ACCELERATOR_OPTIMIZED_A3_MEGA,COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D,
-     *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,GRAPHICS_OPTIMIZED_G4_VGPU,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3,STORAGE_OPTIMIZED_Z4DS, STORAGE_OPTIMIZED_Z4DH,STORAGE_OPTIMIZED_Z4D4T. For
+     *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,GRAPHICS_OPTIMIZED_G4_VGPU,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3,STORAGE_OPTIMIZED_Z4DS, STORAGE_OPTIMIZED_Z4DH,STORAGE_OPTIMIZED_Z4D4T,STORAGE_OPTIMIZED_Z4M. For
      * example, type MEMORY_OPTIMIZED specifies a commitment that
      * applies only to eligible resources of memory optimized M1 and M2 machine
      * series. Type GENERAL_PURPOSE specifies a commitment that
@@ -18629,6 +18652,21 @@ export namespace compute_v1 {
     result?: Schema$InterconnectMacsecConfig;
   }
   /**
+   * Request to rename an interconnect.
+   */
+  export interface Schema$InterconnectsSetNameRequest {
+    /**
+     * The current name of the interconnect.
+     * The name must be 1-63 characters long, and comply with RFC1035.
+     */
+    currentName?: string | null;
+    /**
+     * The new name of the interconnect.
+     * The name must be 1-63 characters long, and comply with RFC1035.
+     */
+    name?: string | null;
+  }
+  /**
    * Represents a time interval, encoded as a Timestamp start (inclusive) and a
    * Timestamp end (exclusive).
    *
@@ -28551,10 +28589,16 @@ export namespace compute_v1 {
      *
      * `destination.ip == '1.1.0.1' || destination.ip == '8.8.8.8'`
      *
-     * The following example is a valid match expression for private NAT:
+     * The following examples are valid match expressions for private NAT:
      *
+     * (NAT 44)
      * `nexthop.hub ==
      * '//networkconnectivity.googleapis.com/projects/my-project/locations/global/hubs/hub-1'`
+     *
+     * `nexthop.is_hybrid`
+     *
+     * (NAT 64)
+     * `isIPv6(source.ip)`
      */
     match?: string | null;
     /**
@@ -37059,13 +37103,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -37164,7 +37201,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/acceleratorTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -37321,7 +37358,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/acceleratorTypes/{acceleratorType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -37460,13 +37497,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -37559,7 +37589,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/acceleratorTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -37684,15 +37714,6 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
      */
@@ -37806,15 +37827,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The name of the zone for this request.
      */
@@ -37957,13 +37969,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -38060,7 +38065,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/addresses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -38244,7 +38249,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/addresses/{address}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -38408,7 +38413,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/addresses/{address}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -38619,7 +38624,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/addresses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -38760,13 +38765,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -38856,7 +38854,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/addresses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -39049,7 +39047,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/addresses/{address}/move'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -39244,7 +39242,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/addresses/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -39401,7 +39399,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/addresses/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -39525,15 +39523,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -39713,15 +39702,6 @@ export namespace compute_v1 {
      * Name of the region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Addresses$Move extends StandardParameters {
     /**
@@ -39957,7 +39937,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/advice/calendarMode'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -40115,7 +40095,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/advice/capacity'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -40274,7 +40254,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/advice/capacityHistory'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -40476,13 +40456,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -40579,7 +40552,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/autoscalers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -40764,7 +40737,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/autoscalers/{autoscaler}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -40921,7 +40894,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/autoscalers/{autoscaler}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -41126,7 +41099,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/autoscalers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -41265,13 +41238,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // Name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -41363,7 +41329,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/autoscalers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -41572,7 +41538,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/autoscalers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -41729,7 +41695,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/autoscalers/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -41936,7 +41902,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/autoscalers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -42060,15 +42026,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -42244,15 +42201,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * Name of the zone for this request.
      */
@@ -42529,7 +42477,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}/addSignedUrlKey'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -42679,13 +42627,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -42783,7 +42724,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/backendBuckets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -42966,7 +42907,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -43153,7 +43094,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}/deleteSignedUrlKey'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -43312,7 +43253,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -43461,7 +43402,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -43665,7 +43606,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/backendBuckets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -43804,13 +43745,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -43900,7 +43834,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/backendBuckets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -44038,13 +43972,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -44138,7 +44065,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/listUsable'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -44347,7 +44274,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -44541,7 +44468,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}/setEdgeSecurityPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -44697,7 +44624,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -44852,7 +44779,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -45059,7 +44986,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -45215,15 +45142,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -45432,15 +45350,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Backendbuckets$Listusable extends StandardParameters {
     /**
@@ -45536,15 +45445,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Backendbuckets$Patch extends StandardParameters {
     /**
@@ -45852,7 +45752,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}/addSignedUrlKey'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -46002,13 +45902,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -46107,7 +46000,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/backendServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -46292,7 +46185,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -46479,7 +46372,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}/deleteSignedUrlKey'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -46674,7 +46567,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -46812,7 +46705,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}/getEffectiveSecurityPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -46976,7 +46869,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}/getHealth'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -47125,7 +47018,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -47366,7 +47259,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/backendServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -47505,13 +47398,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -47601,7 +47487,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/backendServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -47742,13 +47628,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -47842,7 +47721,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/listUsable'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -48088,7 +47967,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -48282,7 +48161,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}/setEdgeSecurityPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -48438,7 +48317,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -48632,7 +48511,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}/setSecurityPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -48787,7 +48666,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -49031,7 +48910,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -49187,15 +49066,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -49429,15 +49299,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Backendservices$Listusable extends StandardParameters {
     /**
@@ -49533,15 +49394,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Backendservices$Patch extends StandardParameters {
     /**
@@ -49871,7 +49723,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks/{crossSiteNetwork}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -50020,7 +49872,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks/{crossSiteNetwork}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -50218,7 +50070,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -50356,13 +50208,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -50456,7 +50301,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -50660,7 +50505,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks/{crossSiteNetwork}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -50843,15 +50688,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Crosssitenetworks$Patch extends StandardParameters {
     /**
@@ -51076,7 +50912,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/addResourcePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -51225,13 +51061,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -51327,7 +51156,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/disks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -51519,7 +51348,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/bulkInsert'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -51713,7 +51542,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/bulkSetLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -51952,7 +51781,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/createSnapshot'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -52140,7 +51969,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -52333,7 +52162,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -52484,7 +52313,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -52728,7 +52557,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}/disks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -52867,13 +52696,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -52963,7 +52785,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}/disks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -53158,7 +52980,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/removeResourcePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -53351,7 +53173,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/resize'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -53509,7 +53331,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -53703,7 +53525,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -53899,7 +53721,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/startAsyncReplication'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -54087,7 +53909,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/stopAsyncReplication'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -54282,7 +54104,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/stopGroupAsyncReplication'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -54439,7 +54261,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -54686,7 +54508,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -54880,7 +54702,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/updateKmsKey'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -55039,15 +54861,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -55351,15 +55164,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The name of the zone for this request.
      */
@@ -55820,13 +55624,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -55923,7 +55720,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/diskTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -56077,7 +55874,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/diskTypes/{diskType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -56216,13 +56013,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -56313,7 +56103,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}/diskTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -56438,15 +56228,6 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
      */
@@ -56560,15 +56341,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The name of the zone for this request.
      */
@@ -56745,7 +56517,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/externalVpnGateways/{externalVpnGateway}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -56900,7 +56672,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/externalVpnGateways/{externalVpnGateway}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -57100,7 +56872,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/externalVpnGateways'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -57239,13 +57011,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -57338,7 +57103,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/externalVpnGateways'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -57518,7 +57283,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/externalVpnGateways/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -57673,7 +57438,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/externalVpnGateways/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -57850,15 +57615,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Externalvpngateways$Setlabels extends StandardParameters {
     /**
@@ -58075,7 +57831,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}/addAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -58279,7 +58035,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}/addRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -58461,7 +58217,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}/cloneRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -58641,7 +58397,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -58798,7 +58554,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -58949,7 +58705,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}/getAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -59095,7 +58851,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -59254,7 +59010,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}/getRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -59460,7 +59216,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/locations/global/firewallPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -59600,13 +59356,6 @@ export namespace compute_v1 {
      *     // if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the
      *     // parent is an organization.
      *     parentId: 'placeholder-value',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -59695,7 +59444,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/locations/global/firewallPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -59850,7 +59599,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/listAssociations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -60036,7 +59785,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}/move'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -60240,7 +59989,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -60446,7 +60195,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}/patchRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -60628,7 +60377,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}/removeAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -60810,7 +60559,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}/removeRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -60963,7 +60712,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -61115,7 +60864,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -61404,15 +61153,6 @@ export namespace compute_v1 {
      * parent is an organization.
      */
     parentId?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Firewallpolicies$Listassociations extends StandardParameters {
     /**
@@ -61757,7 +61497,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewalls/{firewall}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -61918,7 +61658,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewalls/{firewall}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -62125,7 +61865,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/firewalls'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -62264,13 +62004,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -62359,7 +62092,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/firewalls'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -62571,7 +62304,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewalls/{firewall}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -62726,7 +62459,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewalls/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -62938,7 +62671,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewalls/{firewall}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -63115,15 +62848,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Firewalls$Patch extends StandardParameters {
     /**
@@ -63339,13 +63063,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -63444,7 +63161,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/forwardingRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -63631,7 +63348,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -63817,7 +63534,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -64047,7 +63764,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/forwardingRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -64188,13 +63905,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -64285,7 +63995,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/forwardingRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -64520,7 +64230,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -64716,7 +64426,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/forwardingRules/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -64910,7 +64620,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}/setTarget'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -65034,15 +64744,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -65226,15 +64927,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Forwardingrules$Patch extends StandardParameters {
     /**
@@ -65478,13 +65170,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -65588,7 +65273,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/futureReservations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -65775,7 +65460,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/futureReservations/{futureReservation}/cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -65960,7 +65645,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/futureReservations/{futureReservation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -66136,7 +65821,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/futureReservations/{futureReservation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -66357,7 +66042,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/futureReservations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -66496,13 +66181,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // Name of the zone for this request. Name should conform to RFC1035.
      *     zone: 'placeholder-value',
      *   });
@@ -66601,7 +66279,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/futureReservations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -66828,7 +66506,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/futureReservations/{futureReservation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -66952,15 +66630,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -67166,15 +66835,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * Name of the zone for this request. Name should conform to RFC1035.
      */
@@ -67390,7 +67050,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/addresses/{address}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -67553,7 +67213,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/addresses/{address}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -67762,7 +67422,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/addresses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -67900,13 +67560,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -67996,7 +67649,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/addresses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -68188,7 +67841,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/addresses/{address}/move'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -68367,7 +68020,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/addresses/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -68522,7 +68175,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/addresses/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -68699,15 +68352,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Globaladdresses$Move extends StandardParameters {
     /**
@@ -68941,7 +68585,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/forwardingRules/{forwardingRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -69126,7 +68770,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/forwardingRules/{forwardingRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -69353,7 +68997,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/forwardingRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -69492,13 +69136,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -69588,7 +69225,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/forwardingRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -69821,7 +69458,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/forwardingRules/{forwardingRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -70001,7 +69638,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/forwardingRules/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -70193,7 +69830,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/forwardingRules/{forwardingRule}/setTarget'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -70374,15 +70011,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Globalforwardingrules$Patch extends StandardParameters {
     /**
@@ -70597,7 +70225,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/globalFrontendSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -70763,7 +70391,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/globalFrontendSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -70993,7 +70621,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networkEndpointGroups/{networkEndpointGroup}/attachNetworkEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -71178,7 +70806,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networkEndpointGroups/{networkEndpointGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -71373,7 +71001,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networkEndpointGroups/{networkEndpointGroup}/detachNetworkEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -71536,7 +71164,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networkEndpointGroups/{networkEndpointGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -71758,7 +71386,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networkEndpointGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -71897,13 +71525,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -71995,7 +71616,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networkEndpointGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -72136,13 +71757,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -72241,7 +71855,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networkEndpointGroups/{networkEndpointGroup}/listNetworkEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -72485,15 +72099,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Globalnetworkendpointgroups$Listnetworkendpoints extends StandardParameters {
     /**
@@ -72594,15 +72199,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Globaloperations {
@@ -72741,13 +72337,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -72844,7 +72433,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/operations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -72981,7 +72570,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -73152,7 +72741,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -73291,13 +72880,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -73387,7 +72969,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/operations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -73573,7 +73155,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/operations/{operation}/wait'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -73698,15 +73280,6 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
      */
@@ -73828,15 +73401,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Globaloperations$Wait extends StandardParameters {
     /**
@@ -73972,7 +73536,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/locations/global/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -74142,7 +73706,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/locations/global/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -74280,13 +73844,6 @@ export namespace compute_v1 {
      *     pageToken: 'placeholder-value',
      *     // Parent ID for this request.
      *     parentId: 'placeholder-value',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -74377,7 +73934,7 @@ export namespace compute_v1 {
               '$1'
             ),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -74513,15 +74070,6 @@ export namespace compute_v1 {
      * Parent ID for this request.
      */
     parentId?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Globalpublicdelegatedprefixes {
@@ -74694,7 +74242,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicDelegatedPrefixes/{publicDelegatedPrefix}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -74856,7 +74404,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicDelegatedPrefixes/{publicDelegatedPrefix}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -75063,7 +74611,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicDelegatedPrefixes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -75201,13 +74749,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -75301,7 +74842,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicDelegatedPrefixes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -75512,7 +75053,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicDelegatedPrefixes/{publicDelegatedPrefix}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -75689,15 +75230,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Globalpublicdelegatedprefixes$Patch extends StandardParameters {
     /**
@@ -75868,13 +75400,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -75978,7 +75503,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/vmExtensionPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -76179,7 +75704,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/vmExtensionPolicies/{globalVmExtensionPolicy}/delete'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -76337,7 +75862,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/vmExtensionPolicies/{globalVmExtensionPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -76538,7 +76063,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/vmExtensionPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -76676,13 +76201,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -76779,7 +76297,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/vmExtensionPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -76982,7 +76500,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/vmExtensionPolicies/{globalVmExtensionPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -77106,15 +76624,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -77283,15 +76792,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Globalvmextensionpolicies$Update extends StandardParameters {
     /**
@@ -77462,13 +76962,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -77565,7 +77058,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/healthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -77748,7 +77241,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/healthChecks/{healthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -77911,7 +77404,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/healthChecks/{healthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -78120,7 +77613,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/healthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -78259,13 +77752,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -78355,7 +77841,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/healthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -78569,7 +78055,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/healthChecks/{healthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -78724,7 +78210,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/healthChecks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -78936,7 +78422,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/healthChecks/{healthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -79060,15 +78546,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -79232,15 +78709,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Healthchecks$Patch extends StandardParameters {
     /**
@@ -79467,7 +78935,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{association}/hosts/{host}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -79653,7 +79121,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{association}/hosts/{host}/getVersion'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -79796,13 +79264,6 @@ export namespace compute_v1 {
      *     pageToken: 'placeholder-value',
      *     // The project ID for this request.
      *     project: 'placeholder-value',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the zone for this request, formatted as RFC1035.
      *     zone: 'placeholder-value',
      *   });
@@ -79896,7 +79357,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{association}/hosts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -80074,15 +79535,6 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * The name of the zone for this request, formatted as RFC1035.
      */
     zone?: string;
@@ -80258,7 +79710,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -80414,7 +79866,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -80615,7 +80067,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/httpHealthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -80754,13 +80206,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -80850,7 +80295,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/httpHealthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -81056,7 +80501,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -81211,7 +80656,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpHealthChecks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -81415,7 +80860,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -81592,15 +81037,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Httphealthchecks$Patch extends StandardParameters {
     /**
@@ -81850,7 +81286,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -82006,7 +81442,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -82208,7 +81644,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpsHealthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -82347,13 +81783,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -82445,7 +81874,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpsHealthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -82651,7 +82080,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -82806,7 +82235,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpsHealthChecks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -83010,7 +82439,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -83187,15 +82616,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Httpshealthchecks$Patch extends StandardParameters {
     /**
@@ -83409,7 +82829,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/imageFamilyViews/{family}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -83612,7 +83032,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/images/{image}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -83808,7 +83228,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/images/{image}/deprecate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -83983,7 +83403,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/images/{image}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -84163,7 +83583,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/images/family/{family}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -84312,7 +83732,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/images/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -84536,7 +83956,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/images'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -84680,13 +84100,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -84774,7 +84187,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/images'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -84999,7 +84412,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/images/{image}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -85155,7 +84568,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/images/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -85333,7 +84746,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/images/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -85488,7 +84901,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/images/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -85725,15 +85138,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Images$Patch extends StandardParameters {
     /**
@@ -85944,7 +85348,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/imageViews/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -86085,13 +85489,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Required. Name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -86184,7 +85581,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/imageViews'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -86316,15 +85713,6 @@ export namespace compute_v1 {
      * Required. Name of the region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Instancegroupmanagerresizerequests {
@@ -86508,7 +85896,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resizeRequests/{resizeRequest}/cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -86711,7 +86099,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resizeRequests/{resizeRequest}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -86893,7 +86281,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resizeRequests/{resizeRequest}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -87117,7 +86505,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resizeRequests'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -87258,13 +86646,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of thezone where the managed
      *     // instance group is located. The name should conform to RFC1035.
      *     zone: 'placeholder-value',
@@ -87366,7 +86747,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resizeRequests'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -87621,15 +87002,6 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * The name of thezone where the managed
      * instance group is located. The name should conform to RFC1035.
      */
@@ -87831,7 +87203,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/abandonInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -87980,13 +87352,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -88089,7 +87454,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/instanceGroupManagers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -88278,7 +87643,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/applyUpdatesToInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -88476,7 +87841,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/createInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -88668,7 +88033,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -88880,7 +88245,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/deleteInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -89067,7 +88432,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/deletePerInstanceConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -89247,7 +88612,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -89481,7 +88846,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -89620,13 +88985,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of thezone where the managed
      *     // instance group is located.
      *     zone: 'placeholder-value',
@@ -89721,7 +89079,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -89866,13 +89224,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of thezone where the managed
      *     // instance group is located.
      *     // It should conform to RFC1035.
@@ -89971,7 +89322,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/listErrors'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -90121,13 +89472,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of thezone where the managed
      *     // instance group is located.
      *     zone: 'placeholder-value',
@@ -90226,7 +89570,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/listManagedInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -90369,13 +89713,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of thezone
      *     // where the managed instance group is located.
      *     // It should conform to RFC1035.
@@ -90476,7 +89813,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/listPerInstanceConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -90718,7 +90055,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -90919,7 +90256,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/patchPerInstanceConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -91128,7 +90465,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/recreateInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -91340,7 +90677,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resize'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -91549,7 +90886,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resumeInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -91746,7 +91083,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -91946,7 +91283,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setTargetPools'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -92155,7 +91492,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/startInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -92377,7 +91714,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/stopInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -92596,7 +91933,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/suspendInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -92797,7 +92134,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/updatePerInstanceConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -92957,15 +92294,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -93271,15 +92599,6 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * The name of thezone where the managed
      * instance group is located.
      */
@@ -93387,15 +92706,6 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * The name of thezone where the managed
      * instance group is located.
      * It should conform to RFC1035.
@@ -93501,15 +92811,6 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * The name of thezone where the managed
      * instance group is located.
      */
@@ -93613,15 +92914,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The name of thezone
      * where the managed instance group is located.
@@ -94225,7 +93517,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/addInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -94374,13 +93666,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -94479,7 +93764,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/instanceGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -94668,7 +93953,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -94832,7 +94117,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -95037,7 +94322,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -95180,13 +94465,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of thezone
      *     // where the instance group is located.
      *     zone: 'placeholder-value',
@@ -95280,7 +94558,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -95424,13 +94702,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the zone
      *     // where the instance group is located.
      *     zone: 'placeholder-value',
@@ -95536,7 +94807,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/listInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -95737,7 +95008,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/removeInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -95932,7 +95203,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/setNamedPorts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -96089,7 +95360,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -96249,15 +95520,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -96437,15 +95699,6 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * The name of thezone
      * where the instance group is located.
      */
@@ -96550,15 +95803,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The name of the zone
      * where the instance group is located.
@@ -96854,7 +96098,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/addAccessConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -97069,7 +96313,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/addNetworkInterface'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -97264,7 +96508,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/addResourcePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -97417,13 +96661,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -97520,7 +96757,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/instances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -97737,7 +96974,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/attachDisk'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -97937,7 +97174,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/bulkInsert'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -98124,7 +97361,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -98313,7 +97550,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/deleteAccessConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -98513,7 +97750,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/deleteNetworkInterface'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -98701,7 +97938,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/detachDisk'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -98892,7 +98129,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -99049,7 +98286,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/getEffectiveFirewalls'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -99208,7 +98445,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/getGuestAttributes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -99359,7 +98596,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -99505,7 +98742,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/screenshot'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -99677,7 +98914,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/serialPort'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -99830,7 +99067,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/getShieldedInstanceIdentity'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -100087,7 +99324,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}/instances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -100226,13 +99463,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -100323,7 +99553,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}/instances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -100468,13 +99698,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -100570,7 +99793,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/referrers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -100755,7 +99978,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/performMaintenance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -100950,7 +100173,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/removeResourcePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -101144,7 +100367,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/reportHostAsFaulty'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -101330,7 +100553,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/reset'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -101515,7 +100738,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/resume'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -101653,7 +100876,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/sendDiagnosticInterrupt'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -101842,7 +101065,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{resource}/setDeletionProtection'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -102032,7 +101255,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setDiskAutoDelete'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -102196,7 +101419,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -102391,7 +101614,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -102585,7 +101808,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setMachineResources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -102779,7 +102002,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setMachineType'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -102975,7 +102198,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setMetadata'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -103171,7 +102394,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setMinCpuPlatform'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -103365,7 +102588,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setName'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -103579,7 +102802,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setScheduling'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -103776,7 +102999,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setSecurityPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -103972,7 +103195,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setServiceAccount'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -104171,7 +103394,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setShieldedInstanceIntegrityPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -104366,7 +103589,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setTags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -104557,7 +103780,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/simulateMaintenanceEvent'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -104743,7 +103966,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/start'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -104940,7 +104163,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/startWithEncryptionKey'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -105135,7 +104358,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/stop'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -105331,7 +104554,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/suspend'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -105488,7 +104711,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -105744,7 +104967,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -105951,7 +105174,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/updateAccessConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -106147,7 +105370,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/updateDisplayDevice'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -106370,7 +105593,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/updateNetworkInterface'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -106570,7 +105793,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/updateShieldedInstanceConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -106804,15 +106027,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -107321,15 +106535,6 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * The name of the zone for this request.
      */
     zone?: string;
@@ -107433,15 +106638,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The name of the zone for this request.
      */
@@ -108632,7 +107828,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -108828,7 +108024,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -109031,13 +108227,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -109135,7 +108324,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/instanceTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -109322,7 +108511,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/instanceTemplates/{instanceTemplate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -109475,7 +108664,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/instanceTemplates/{instanceTemplate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -109624,7 +108813,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/instanceTemplates/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -109826,7 +109015,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/instanceTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -109965,13 +109154,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -110063,7 +109245,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/instanceTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -110219,7 +109401,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/instanceTemplates/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -110374,7 +109556,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/instanceTemplates/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -110498,15 +109680,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -110684,15 +109857,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Instancetemplates$Setiampolicy extends StandardParameters {
     /**
@@ -110897,7 +110061,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshotGroups/{instantSnapshotGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -111055,7 +110219,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshotGroups/{instantSnapshotGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -111206,7 +110370,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshotGroups/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -111410,7 +110574,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshotGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -111549,13 +110713,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -111653,7 +110810,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshotGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -111811,7 +110968,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshotGroups/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -111968,7 +111125,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshotGroups/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -112180,15 +111337,6 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * The name of the zone for this request.
      */
     zone?: string;
@@ -112368,13 +111516,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -112473,7 +111614,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/instantSnapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -112667,7 +111808,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshots/{instantSnapshot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -112834,7 +111975,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshots/{instantSnapshot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -112985,7 +112126,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshots/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -113197,7 +112338,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -113336,13 +112477,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -113435,7 +112569,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -113593,7 +112727,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshots/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -113789,7 +112923,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshots/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -113946,7 +113080,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshots/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -114070,15 +113204,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -114272,15 +113397,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The name of the zone for this request.
      */
@@ -114532,7 +113648,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectAttachmentGroups/{interconnectAttachmentGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -114693,7 +113809,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectAttachmentGroups/{interconnectAttachmentGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -114843,7 +113959,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectAttachmentGroups/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -114999,7 +114115,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectAttachmentGroups/{interconnectAttachmentGroup}/getOperationalStatus'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -115203,7 +114319,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectAttachmentGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -115341,13 +114457,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -115448,7 +114557,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectAttachmentGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -115659,7 +114768,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectAttachmentGroups/{interconnectAttachmentGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -115816,7 +114925,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectAttachmentGroups/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -115972,7 +115081,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectAttachmentGroups/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -116175,15 +115284,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Interconnectattachmentgroups$Patch extends StandardParameters {
     /**
@@ -116388,13 +115488,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -116497,7 +115590,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/interconnectAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -116685,7 +115778,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments/{interconnectAttachment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -116879,7 +115972,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments/{interconnectAttachment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -117119,7 +116212,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -117260,13 +116353,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -117360,7 +116446,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -117603,7 +116689,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments/{interconnectAttachment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -117799,7 +116885,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -117923,15 +117009,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -118115,15 +117192,6 @@ export namespace compute_v1 {
      * Name of the region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Interconnectattachments$Patch extends StandardParameters {
     /**
@@ -118361,7 +117429,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups/{interconnectGroup}/createMembers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -118545,7 +117613,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups/{interconnectGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -118699,7 +117767,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups/{interconnectGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -118848,7 +117916,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -119002,7 +118070,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups/{interconnectGroup}/getOperationalStatus'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -119205,7 +118273,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -119343,13 +118411,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -119446,7 +118507,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -119655,7 +118716,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups/{interconnectGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -119811,7 +118872,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -119966,7 +119027,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -120184,15 +119245,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Interconnectgroups$Patch extends StandardParameters {
     /**
@@ -120413,7 +119465,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectLocations/{interconnectLocation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -120552,13 +119604,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -120650,7 +119695,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectLocations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -120774,15 +119819,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Interconnectremotelocations {
@@ -120941,7 +119977,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectRemoteLocations/{interconnectRemoteLocation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -121080,13 +120116,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -121181,7 +120210,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectRemoteLocations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -121307,15 +120336,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Interconnects {
@@ -121488,7 +120508,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnects/{interconnect}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -121670,7 +120690,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnects/{interconnect}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -121831,7 +120851,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnects/{interconnect}/getDiagnostics'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -121987,7 +121007,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnects/{interconnect}/getMacsecConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -122215,7 +121235,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/interconnects'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -122353,13 +121373,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -122449,7 +121462,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/interconnects'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -122680,7 +121693,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnects/{interconnect}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -122860,13 +121873,205 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnects/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Sets name of an interconnect.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.interconnects.setName({
+     *     // Name of the interconnect to update.
+     *     interconnect: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID
+     *     // so that if you must retry your request, the server will know to ignore
+     *     // the request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "currentName": "my_currentName",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getHealthOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setName(
+      params: Params$Resource$Interconnects$Setname,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setName(
+      params?: Params$Resource$Interconnects$Setname,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    setName(
+      params: Params$Resource$Interconnects$Setname,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setName(
+      params: Params$Resource$Interconnects$Setname,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setName(
+      params: Params$Resource$Interconnects$Setname,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setName(callback: BodyResponseCallback<Schema$Operation>): void;
+    setName(
+      paramsOrCallback?:
+        | Params$Resource$Interconnects$Setname
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Interconnects$Setname;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Interconnects$Setname;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/global/interconnects/{interconnect}/setName'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '2026-09-01',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'interconnect'],
+        pathParams: ['interconnect', 'project'],
         context: this.context,
       };
       if (callback) {
@@ -123057,15 +122262,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Interconnects$Patch extends StandardParameters {
     /**
@@ -123112,6 +122308,37 @@ export namespace compute_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GlobalSetLabelsRequest;
+  }
+  export interface Params$Resource$Interconnects$Setname extends StandardParameters {
+    /**
+     * Name of the interconnect to update.
+     */
+    interconnect?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InterconnectsSetNameRequest;
   }
 
   export class Resource$Licensecodes {
@@ -123266,7 +122493,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenseCodes/{licenseCode}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -123418,7 +122645,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenseCodes/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -123577,7 +122804,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenseCodes/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -123735,7 +122962,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenseCodes/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -123982,7 +123209,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenses/{license}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -124148,7 +123375,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenses/{license}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -124300,7 +123527,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenses/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -124514,7 +123741,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/licenses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -124660,13 +123887,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -124755,7 +123975,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/licenses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -124914,7 +124134,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenses/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -125072,7 +124292,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenses/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -125288,7 +124508,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenses/{license}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -125479,15 +124699,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Licenses$Setiampolicy extends StandardParameters {
     /**
@@ -125726,7 +124937,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/machineImages/{machineImage}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -125890,7 +125101,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/machineImages/{machineImage}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -126039,7 +125250,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/machineImages/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -126253,7 +125464,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/machineImages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -126392,13 +125603,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -126488,7 +125692,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/machineImages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -126644,7 +125848,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/machineImages/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -126823,7 +126027,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/machineImages/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -126978,7 +126182,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/machineImages/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -127173,15 +126377,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Machineimages$Setiampolicy extends StandardParameters {
     /**
@@ -127365,13 +126560,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -127468,7 +126656,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/machineTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -127629,7 +126817,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/machineTypes/{machineType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -127768,13 +126956,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -127867,7 +127048,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/machineTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -127992,15 +127173,6 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
      */
@@ -128114,15 +127286,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The name of the zone for this request.
      */
@@ -128267,7 +127430,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/managedRulesets/{managedRuleset}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -128405,13 +127568,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -128499,7 +127655,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/managedRulesets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -128623,15 +127779,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Networkattachments {
@@ -128771,13 +127918,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -128875,7 +128015,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/networkAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -129063,7 +128203,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkAttachments/{networkAttachment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -129223,7 +128363,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkAttachments/{networkAttachment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -129374,7 +128514,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkAttachments/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -129581,7 +128721,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -129721,13 +128861,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region of this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -129819,7 +128952,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -130030,7 +129163,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkAttachments/{networkAttachment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -130188,7 +129321,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkAttachments/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -130345,7 +129478,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkAttachments/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -130469,15 +129602,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -130677,15 +129801,6 @@ export namespace compute_v1 {
      * Name of the region of this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Networkattachments$Patch extends StandardParameters {
     /**
@@ -130899,13 +130014,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -131010,7 +130118,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/networkEdgeSecurityServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -131198,7 +130306,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEdgeSecurityServices/{networkEdgeSecurityService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -131357,7 +130465,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEdgeSecurityServices/{networkEdgeSecurityService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -131560,7 +130668,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEdgeSecurityServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -131767,7 +130875,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEdgeSecurityServices/{networkEdgeSecurityService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -131891,15 +130999,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -132165,13 +131264,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -132274,7 +131366,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/networkEndpointGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -132474,7 +131566,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups/{networkEndpointGroup}/attachNetworkEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -132664,7 +131756,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups/{networkEndpointGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -132863,7 +131955,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups/{networkEndpointGroup}/detachNetworkEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -133029,7 +132121,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups/{networkEndpointGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -133255,7 +132347,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -133394,13 +132486,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of thezone
      *     // where the network endpoint group is located. It should comply with RFC1035.
      *     zone: 'placeholder-value',
@@ -133495,7 +132580,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -133636,13 +132721,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the zone where
      *     // the network endpoint group is located. It should comply with RFC1035.
      *     zone: 'placeholder-value',
@@ -133752,7 +132830,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups/{networkEndpointGroup}/listNetworkEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -133911,7 +132989,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -134035,15 +133113,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -134299,15 +133368,6 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * The name of thezone
      * where the network endpoint group is located. It should comply with RFC1035.
      */
@@ -134412,15 +133472,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The name of the zone where
      * the network endpoint group is located. It should comply with RFC1035.
@@ -134639,7 +133690,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/addAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -134855,7 +133906,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/addPacketMirroringRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -135068,7 +134119,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/addRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -135219,13 +134270,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -135328,7 +134372,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/firewallPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -135515,7 +134559,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/cloneRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -135698,7 +134742,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -135858,7 +134902,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -136012,7 +135056,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/getAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -136161,7 +135205,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -136326,7 +135370,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/getPacketMirroringRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -136488,7 +135532,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/getRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -136693,7 +135737,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/firewallPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -136831,13 +135875,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -136926,7 +135963,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/firewallPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -137133,7 +136170,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -137345,7 +136382,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/patchPacketMirroringRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -137554,7 +136591,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/patchRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -137740,7 +136777,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/removeAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -137928,7 +136965,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/removePacketMirroringRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -138113,7 +137150,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/removeRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -138269,7 +137306,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -138425,7 +137462,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -138668,15 +137705,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -138926,15 +137954,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Networkfirewallpolicies$Patch extends StandardParameters {
     /**
@@ -139298,7 +138317,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networkProfiles/{networkProfile}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -139437,13 +138456,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -139539,7 +138551,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/networkProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -139663,15 +138675,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Networks {
@@ -139855,7 +138858,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}/addPeering'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -140050,7 +139053,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}/cancelRequestRemovePeering'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -140232,7 +139235,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -140393,7 +139396,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -140546,7 +139549,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}/getEffectiveFirewalls'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -140755,7 +139758,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/networks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -140893,13 +139896,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -140988,7 +139984,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/networks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -141135,13 +140131,6 @@ export namespace compute_v1 {
      *     // The region of the request. The response will include all subnet routes,
      *     // static routes and dynamic routes in the region.
      *     region: 'placeholder-value',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -141235,7 +140224,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}/listPeeringRoutes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -141445,7 +140434,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -141636,7 +140625,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}/removePeering'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -141830,7 +140819,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}/requestRemovePeering'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -142013,7 +141002,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}/switchToCustomMode'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -142206,7 +141195,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}/updatePeering'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -142455,15 +141444,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Networks$Listpeeringroutes extends StandardParameters {
     /**
@@ -142576,15 +141556,6 @@ export namespace compute_v1 {
      * static routes and dynamic routes in the region.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Networks$Patch extends StandardParameters {
     /**
@@ -142917,7 +141888,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/addNodes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -143067,13 +142038,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -143170,7 +142134,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/nodeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -143355,7 +142319,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -143548,7 +142512,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/deleteNodes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -143711,7 +142675,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -143862,7 +142826,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -144071,7 +143035,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}/nodeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -144210,13 +143174,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -144307,7 +143264,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}/nodeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -144447,13 +143404,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -144546,7 +143496,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/listNodes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -144754,7 +143704,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -144948,7 +143898,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/performMaintenance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -145106,7 +144056,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -145299,7 +144249,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/setNodeTemplate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -145495,7 +144445,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/simulateMaintenanceEvent'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -145652,7 +144602,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -145811,15 +144761,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -146053,15 +144994,6 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * The name of the zone for this request.
      */
     zone?: string;
@@ -146164,15 +145096,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The name of the zone for this request.
      */
@@ -146494,13 +145417,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -146598,7 +145514,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/nodeTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -146783,7 +145699,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{nodeTemplate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -146944,7 +145860,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{nodeTemplate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -147095,7 +146011,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -147302,7 +146218,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/nodeTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -147443,13 +146359,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // The name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -147540,7 +146449,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/nodeTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -147698,7 +146607,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -147855,7 +146764,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -147979,15 +146888,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -148185,15 +147085,6 @@ export namespace compute_v1 {
      * The name of the region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Nodetemplates$Setiampolicy extends StandardParameters {
     /**
@@ -148370,13 +147261,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -148473,7 +147357,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/nodeTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -148629,7 +147513,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeTypes/{nodeType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -148768,13 +147652,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -148865,7 +147742,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}/nodeTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -148990,15 +147867,6 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
      */
@@ -149112,15 +147980,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The name of the zone for this request.
      */
@@ -149322,7 +148181,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}/addAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -149524,7 +148383,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}/addRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -149711,7 +148570,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}/copyRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -149895,7 +148754,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -150059,7 +148918,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -150217,7 +149076,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}/getAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -150374,7 +149233,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}/getRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -150587,7 +149446,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/locations/global/securityPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -150729,13 +149588,6 @@ export namespace compute_v1 {
      *     pageToken: 'placeholder-value',
      *     // Parent ID for this request.
      *     parentId: 'placeholder-value',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -150824,7 +149676,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/locations/global/securityPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -150981,7 +149833,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/listAssociations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -151122,13 +149974,6 @@ export namespace compute_v1 {
      *       pageToken: 'placeholder-value',
      *       // Parent ID for this request.
      *       parentId: 'placeholder-value',
-     *       // Opt-in for partial success behavior which provides partial results in case
-     *       // of failure. The default value is false.
-     *       //
-     *       // For example, when partial success behavior is enabled, aggregatedList for a
-     *       // single zone scope either returns all resources in the zone or no resources,
-     *       // with an error code.
-     *       returnPartialSuccess: 'placeholder-value',
      *     });
      *   console.log(res.data);
      *
@@ -151223,7 +150068,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/listPreconfiguredExpressionSets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -151411,7 +150256,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}/move'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -151622,7 +150467,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -151827,7 +150672,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}/patchRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -152015,7 +150860,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}/removeAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -152202,7 +151047,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}/removeRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -152479,15 +151324,6 @@ export namespace compute_v1 {
      * Parent ID for this request.
      */
     parentId?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Organizationsecuritypolicies$Listassociations extends StandardParameters {
     /**
@@ -152590,15 +151426,6 @@ export namespace compute_v1 {
      * Parent ID for this request.
      */
     parentId?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Organizationsecuritypolicies$Move extends StandardParameters {
     /**
@@ -152873,13 +151700,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -152978,7 +151798,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/packetMirrorings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -153165,7 +151985,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/packetMirrorings/{packetMirroring}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -153323,7 +152143,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/packetMirrorings/{packetMirroring}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -153527,7 +152347,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/packetMirrorings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -153668,13 +152488,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -153765,7 +152578,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/packetMirrorings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -153973,7 +152786,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/packetMirrorings/{packetMirroring}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -154130,7 +152943,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/packetMirrorings/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -154254,15 +153067,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -154442,15 +153246,6 @@ export namespace compute_v1 {
      * Name of the region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Packetmirrorings$Patch extends StandardParameters {
     /**
@@ -154646,7 +153441,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/previewFeatures/{previewFeature}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -154784,13 +153579,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -154881,7 +153669,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/previewFeatures'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -155081,7 +153869,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/previewFeatures/{previewFeature}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -155205,15 +153993,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Previewfeatures$Update extends StandardParameters {
     /**
@@ -155414,7 +154193,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/disableXpnHost'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -155603,7 +154382,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/disableXpnResource'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -155783,7 +154562,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/enableXpnHost'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -155973,7 +154752,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/enableXpnResource'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -156135,7 +154914,7 @@ export namespace compute_v1 {
               '$1'
             ),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -156289,7 +155068,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/getXpnHost'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -156427,13 +155206,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -156523,7 +155295,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/getXpnResources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -156660,13 +155432,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -156764,7 +155529,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/listXpnHosts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -156967,7 +155732,7 @@ export namespace compute_v1 {
               '$1'
             ),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -157162,7 +155927,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/moveInstance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -157353,7 +156118,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/setCloudArmorTier'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -157547,7 +156312,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/setCommonInstanceMetadata'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -157739,7 +156504,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/setDefaultNetworkTier'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -157935,7 +156700,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/setUsageExportBucket'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -158159,15 +156924,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Listxpnhosts extends StandardParameters {
     /**
@@ -158263,15 +157019,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
 
     /**
      * Request body metadata
@@ -158578,7 +157325,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/projectViews'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -158779,7 +157526,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicAdvertisedPrefixes/{publicAdvertisedPrefix}/announce'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -158963,7 +157710,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicAdvertisedPrefixes/{publicAdvertisedPrefix}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -159123,7 +157870,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicAdvertisedPrefixes/{publicAdvertisedPrefix}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -159327,7 +158074,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicAdvertisedPrefixes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -159465,13 +158212,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -159565,7 +158305,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicAdvertisedPrefixes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -159774,7 +158514,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicAdvertisedPrefixes/{publicAdvertisedPrefix}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -159957,7 +158697,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicAdvertisedPrefixes/{publicAdvertisedPrefix}/withdraw'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -160160,15 +158900,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Publicadvertisedprefixes$Patch extends StandardParameters {
     /**
@@ -160365,13 +159096,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -160474,7 +159198,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/publicDelegatedPrefixes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -160662,7 +159386,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/publicDelegatedPrefixes/{publicDelegatedPrefix}/announce'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -160847,7 +159571,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/publicDelegatedPrefixes/{publicDelegatedPrefix}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -161011,7 +159735,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/publicDelegatedPrefixes/{publicDelegatedPrefix}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -161220,7 +159944,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/publicDelegatedPrefixes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -161360,13 +160084,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region of this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -161460,7 +160177,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/publicDelegatedPrefixes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -161673,7 +160390,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/publicDelegatedPrefixes/{publicDelegatedPrefix}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -161859,7 +160576,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/publicDelegatedPrefixes/{publicDelegatedPrefix}/withdraw'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -161983,15 +160700,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -162202,15 +160910,6 @@ export namespace compute_v1 {
      * Name of the region of this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Publicdelegatedprefixes$Patch extends StandardParameters {
     /**
@@ -162451,7 +161150,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/autoscalers/{autoscaler}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -162609,7 +161308,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/autoscalers/{autoscaler}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -162814,7 +161513,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/autoscalers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -162955,13 +161654,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -163053,7 +161745,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/autoscalers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -163262,7 +161954,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/autoscalers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -163419,7 +162111,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/autoscalers/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -163626,7 +162318,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/autoscalers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -163819,15 +162511,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regionautoscalers$Patch extends StandardParameters {
     /**
@@ -164092,7 +162775,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendBuckets/{backendBucket}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -164253,7 +162936,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendBuckets/{backendBucket}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -164404,7 +163087,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendBuckets/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -164611,7 +163294,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendBuckets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -164752,13 +163435,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region of this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -164849,7 +163525,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendBuckets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -164991,13 +163667,6 @@ export namespace compute_v1 {
      *     // Name of the region scoping this request.
      *     // It must be a string that meets the requirements in RFC1035.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -165091,7 +163760,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendBuckets/listUsable'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -165303,7 +163972,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendBuckets/{backendBucket}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -165461,7 +164130,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendBuckets/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -165618,7 +164287,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendBuckets/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -165830,15 +164499,6 @@ export namespace compute_v1 {
      * Name of the region of this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regionbackendbuckets$Listusable extends StandardParameters {
     /**
@@ -165939,15 +164599,6 @@ export namespace compute_v1 {
      * It must be a string that meets the requirements in RFC1035.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regionbackendbuckets$Patch extends StandardParameters {
     /**
@@ -166196,7 +164847,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -166393,7 +165044,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -166553,7 +165204,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}/getHealth'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -166704,7 +165355,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -166948,7 +165599,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -167089,13 +165740,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -167186,7 +165830,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -167330,13 +165974,6 @@ export namespace compute_v1 {
      *     // Name of the region scoping this request.
      *     // It must be a string that meets the requirements in RFC1035.
      *     region: 'placeholder-value',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -167430,7 +166067,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/listUsable'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -167678,7 +166315,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -167836,7 +166473,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -168032,7 +166669,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}/setSecurityPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -168189,7 +166826,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -168436,7 +167073,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -168666,15 +167303,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regionbackendservices$Listusable extends StandardParameters {
     /**
@@ -168775,15 +167403,6 @@ export namespace compute_v1 {
      * It must be a string that meets the requirements in RFC1035.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regionbackendservices$Patch extends StandardParameters {
     /**
@@ -169066,13 +167685,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -169169,7 +167781,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/commitments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -169337,7 +167949,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/commitments/{commitment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -169552,7 +168164,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/commitments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -169693,13 +168305,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -169790,7 +168395,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/commitments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -170012,7 +168617,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/commitments/{commitment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -170136,15 +168741,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -170294,15 +168890,6 @@ export namespace compute_v1 {
      * Name of the region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regioncommitments$Update extends StandardParameters {
     /**
@@ -170485,13 +169072,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -170595,7 +169175,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/compositeHealthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -170782,7 +169362,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks/{compositeHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -170939,7 +169519,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks/{compositeHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -171091,7 +169671,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks/{compositeHealthCheck}/getHealth'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -171293,7 +169873,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -171433,13 +170013,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -171531,7 +170104,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -171738,7 +170311,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks/{compositeHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -171896,7 +170469,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -172020,15 +170593,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -172222,15 +170786,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regioncompositehealthchecks$Patch extends StandardParameters {
     /**
@@ -172470,7 +171025,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}/addResourcePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -172663,7 +171218,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/bulkInsert'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -172899,7 +171454,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}/createSnapshot'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -173088,7 +171643,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -173281,7 +171836,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -173432,7 +171987,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -173674,7 +172229,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/regions/{region}/disks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -173815,13 +172370,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -173909,7 +172457,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/regions/{region}/disks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -174104,7 +172652,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}/removeResourcePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -174297,7 +172845,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}/resize'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -174455,7 +173003,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -174649,7 +173197,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -174845,7 +173393,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}/startAsyncReplication'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -175033,7 +173581,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}/stopAsyncReplication'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -175228,7 +173776,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/stopGroupAsyncReplication'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -175385,7 +173933,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -175632,7 +174180,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -175826,7 +174374,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}/updateKmsKey'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -176142,15 +174690,6 @@ export namespace compute_v1 {
      * Name of the region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regiondisks$Removeresourcepolicies extends StandardParameters {
     /**
@@ -176613,7 +175152,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/diskTypes/{diskType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -176753,13 +175292,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // The name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -176850,7 +175382,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/diskTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -176982,15 +175514,6 @@ export namespace compute_v1 {
      * The name of the region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Regionhealthaggregationpolicies {
@@ -177130,13 +175653,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -177240,7 +175756,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/healthAggregationPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -177428,7 +175944,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies/{healthAggregationPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -177587,7 +176103,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies/{healthAggregationPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -177790,7 +176306,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -177930,13 +176446,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -178031,7 +176540,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -178239,7 +176748,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies/{healthAggregationPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -178397,7 +176906,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -178521,15 +177030,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -178709,15 +177209,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regionhealthaggregationpolicies$Patch extends StandardParameters {
     /**
@@ -178947,7 +177438,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthChecks/{healthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -179113,7 +177604,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthChecks/{healthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -179325,7 +177816,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -179466,13 +177957,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -179563,7 +178047,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -179779,7 +178263,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthChecks/{healthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -179936,7 +178420,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthChecks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -180150,7 +178634,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthChecks/{healthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -180343,15 +178827,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regionhealthchecks$Patch extends StandardParameters {
     /**
@@ -180580,13 +179055,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -180689,7 +179157,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/healthCheckServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -180877,7 +179345,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthCheckServices/{healthCheckService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -181035,7 +179503,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthCheckServices/{healthCheckService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -181238,7 +179706,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthCheckServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -181379,13 +179847,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -181477,7 +179938,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthCheckServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -181685,7 +180146,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthCheckServices/{healthCheckService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -181843,7 +180304,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthCheckServices/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -181967,15 +180428,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -182157,15 +180609,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regionhealthcheckservices$Patch extends StandardParameters {
     /**
@@ -182360,13 +180803,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -182464,7 +180900,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/healthSources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -182649,7 +181085,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthSources/{healthSource}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -182806,7 +181242,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthSources/{healthSource}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -182955,7 +181391,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthSources/{healthSource}/getHealth'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -183158,7 +181594,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthSources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -183298,13 +181734,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -183395,7 +181824,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthSources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -183603,7 +182032,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthSources/{healthSource}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -183760,7 +182189,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthSources/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -183884,15 +182313,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -184086,15 +182506,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regionhealthsources$Patch extends StandardParameters {
     /**
@@ -184333,7 +182744,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resizeRequests/{resizeRequest}/cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -184536,7 +182947,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resizeRequests/{resizeRequest}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -184719,7 +183130,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resizeRequests/{resizeRequest}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -184941,7 +183352,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resizeRequests'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -185085,13 +183496,6 @@ export namespace compute_v1 {
      *     // Name of the region
      *     // scoping this request. Name should conform to RFC1035.
      *     region: 'placeholder-value',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -185193,7 +183597,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resizeRequests'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -185450,15 +183854,6 @@ export namespace compute_v1 {
      * scoping this request. Name should conform to RFC1035.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Regioninstancegroupmanagers {
@@ -185656,7 +184051,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/abandonInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -185843,7 +184238,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/applyUpdatesToInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -186044,7 +184439,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/createInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -186233,7 +184628,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -186445,7 +184840,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/deleteInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -186629,7 +185024,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/deletePerInstanceConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -186808,7 +185203,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -187039,7 +185434,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -187180,13 +185575,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: 'placeholder-value',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -187281,7 +185669,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -187430,13 +185818,6 @@ export namespace compute_v1 {
      *     // Name of the region scoping this request.
      *     // This should conform to RFC1035.
      *     region: 'placeholder-value',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -187531,7 +185912,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/listErrors'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -187680,13 +186061,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: 'placeholder-value',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -187782,7 +186156,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/listManagedInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -187927,13 +186301,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request, should conform to RFC1035.
      *     region: 'placeholder-value',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -188030,7 +186397,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/listPerInstanceConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -188271,7 +186638,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -188472,7 +186839,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/patchPerInstanceConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -188681,7 +187048,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/recreateInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -188881,7 +187248,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resize'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -189090,7 +187457,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resumeInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -189285,7 +187652,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -189481,7 +187848,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setTargetPools'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -189690,7 +188057,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/startInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -189912,7 +188279,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/stopInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -190131,7 +188498,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/suspendInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -190331,7 +188698,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/updatePerInstanceConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -190679,15 +189046,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regioninstancegroupmanagers$Listerrors extends StandardParameters {
     /**
@@ -190795,15 +189153,6 @@ export namespace compute_v1 {
      * This should conform to RFC1035.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regioninstancegroupmanagers$Listmanagedinstances extends StandardParameters {
     /**
@@ -190907,15 +189256,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regioninstancegroupmanagers$Listperinstanceconfigs extends StandardParameters {
     /**
@@ -191019,15 +189359,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request, should conform to RFC1035.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regioninstancegroupmanagers$Patch extends StandardParameters {
     /**
@@ -191572,7 +189903,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -191713,13 +190044,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: 'placeholder-value',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -191811,7 +190135,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -191957,13 +190281,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: 'placeholder-value',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -192071,7 +190388,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}/listInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -192267,7 +190584,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}/setNamedPorts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -192424,7 +190741,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroups/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -192556,15 +190873,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regioninstancegroups$Listinstances extends StandardParameters {
     /**
@@ -192669,15 +190977,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
 
     /**
      * Request body metadata
@@ -192925,7 +191224,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instances/bulkInsert'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -193150,7 +191449,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceTemplates/{instanceTemplate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -193305,7 +191604,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceTemplates/{instanceTemplate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -193506,7 +191805,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -193647,13 +191946,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // The name of the regions for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -193745,7 +192037,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -193938,15 +192230,6 @@ export namespace compute_v1 {
      * The name of the regions for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Regioninstantsnapshotgroups {
@@ -194121,7 +192404,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshotGroups/{instantSnapshotGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -194280,7 +192563,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshotGroups/{instantSnapshotGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -194431,7 +192714,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshotGroups/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -194635,7 +192918,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshotGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -194776,13 +193059,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // The name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -194878,7 +193154,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshotGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -195036,7 +193312,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshotGroups/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -195194,7 +193470,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshotGroups/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -195409,15 +193685,6 @@ export namespace compute_v1 {
      * The name of the region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regioninstantsnapshotgroups$Setiampolicy extends StandardParameters {
     /**
@@ -195637,7 +193904,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshots/{instantSnapshot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -195804,7 +194071,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshots/{instantSnapshot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -195955,7 +194222,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshots/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -196167,7 +194434,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -196308,13 +194575,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // The name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -196405,7 +194665,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -196563,7 +194823,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshots/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -196759,7 +195019,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshots/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -196917,7 +195177,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshots/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -197128,15 +195388,6 @@ export namespace compute_v1 {
      * The name of the region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regioninstantsnapshots$Setiampolicy extends StandardParameters {
     /**
@@ -197398,7 +195649,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups/{networkEndpointGroup}/attachNetworkEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -197586,7 +195837,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups/{networkEndpointGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -197786,7 +196037,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups/{networkEndpointGroup}/detachNetworkEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -197952,7 +196203,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups/{networkEndpointGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -198178,7 +196429,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -198320,13 +196571,6 @@ export namespace compute_v1 {
      *     // The name of theregion
      *     // where the network endpoint group is located. It should comply with RFC1035.
      *     region: 'placeholder-value',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -198418,7 +196662,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -198562,13 +196806,6 @@ export namespace compute_v1 {
      *     // The name of theregion
      *     // where the network endpoint group is located. It should comply with RFC1035.
      *     region: 'placeholder-value',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -198667,7 +196904,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups/{networkEndpointGroup}/listNetworkEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -198945,15 +197182,6 @@ export namespace compute_v1 {
      * where the network endpoint group is located. It should comply with RFC1035.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regionnetworkendpointgroups$Listnetworkendpoints extends StandardParameters {
     /**
@@ -199059,15 +197287,6 @@ export namespace compute_v1 {
      * where the network endpoint group is located. It should comply with RFC1035.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Regionnetworkfirewallpolicies {
@@ -199265,7 +197484,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/addAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -199480,7 +197699,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/addRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -199667,7 +197886,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/cloneRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -199852,7 +198071,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -200014,7 +198233,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -200171,7 +198390,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/getAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -200329,7 +198548,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/getEffectiveFirewalls'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -200483,7 +198702,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -200647,7 +198866,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/getRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -200854,7 +199073,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -200995,13 +199214,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -201091,7 +199303,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -201300,7 +199512,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -201499,7 +199711,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/patchAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -201710,7 +199922,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/patchRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -201898,7 +200110,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/removeAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -202085,7 +200297,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/removeRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -202244,7 +200456,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -202402,7 +200614,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -202789,15 +201001,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regionnetworkfirewallpolicies$Patch extends StandardParameters {
     /**
@@ -203149,13 +201352,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -203259,7 +201455,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/notificationEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -203446,7 +201642,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/notificationEndpoints/{notificationEndpoint}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -203600,7 +201796,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/notificationEndpoints/{notificationEndpoint}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -203799,7 +201995,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/notificationEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -203939,13 +202135,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -204037,7 +202226,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/notificationEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -204195,7 +202384,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/notificationEndpoints/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -204319,15 +202508,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -204507,15 +202687,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regionnotificationendpoints$Testiampermissions extends StandardParameters {
     /**
@@ -204663,7 +202834,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -204836,7 +203007,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -204977,13 +203148,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -205074,7 +203238,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/operations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -205262,7 +203426,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/operations/{operation}/wait'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -205410,15 +203574,6 @@ export namespace compute_v1 {
      * Name of the region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regionoperations$Wait extends StandardParameters {
     /**
@@ -205592,7 +203747,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/regions/{region}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -205748,13 +203903,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -205843,7 +203991,7 @@ export namespace compute_v1 {
               '$1'
             ),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -205967,15 +204115,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Regionsecuritypolicies {
@@ -206156,7 +204295,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{securityPolicy}/addRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -206341,7 +204480,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{securityPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -206506,7 +204645,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{securityPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -206664,7 +204803,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{securityPolicy}/getRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -206877,7 +205016,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -207018,13 +205157,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -207114,7 +205246,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -207332,7 +205464,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{securityPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -207528,7 +205660,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{securityPolicy}/patchRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -207701,7 +205833,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{securityPolicy}/removeRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -207897,7 +206029,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -208135,15 +206267,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regionsecuritypolicies$Patch extends StandardParameters {
     /**
@@ -208448,7 +206571,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshots/{snapshot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -208633,7 +206756,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshots/{snapshot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -208784,7 +206907,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshots/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -209016,7 +207139,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -209157,13 +207280,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -209254,7 +207370,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -209412,7 +207528,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshots/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -209608,7 +207724,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshots/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -209765,7 +207881,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshots/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -209959,7 +208075,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshots/{snapshot}/updateKmsKey'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -210170,15 +208286,6 @@ export namespace compute_v1 {
      * Name of the region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regionsnapshots$Setiampolicy extends StandardParameters {
     /**
@@ -210421,7 +208528,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshotSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -210615,7 +208722,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshotSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -210853,7 +208960,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslCertificates/{sslCertificate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -211014,7 +209121,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslCertificates/{sslCertificate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -211219,7 +209326,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslCertificates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -211360,13 +209467,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -211457,7 +209557,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslCertificates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -211650,15 +209750,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Regionsslpolicies {
@@ -211836,7 +209927,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslPolicies/{sslPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -211995,7 +210086,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslPolicies/{sslPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -212200,7 +210291,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -212341,13 +210432,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -212438,7 +210522,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -212579,13 +210663,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -212679,7 +210756,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslPolicies/listAvailableFeatures'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -212888,7 +210965,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslPolicies/{sslPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -213083,15 +211160,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regionsslpolicies$Listavailablefeatures extends StandardParameters {
     /**
@@ -213191,15 +211259,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regionsslpolicies$Patch extends StandardParameters {
     /**
@@ -213410,7 +211469,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpProxies/{targetHttpProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -213566,7 +211625,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpProxies/{targetHttpProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -213768,7 +211827,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -213909,13 +211968,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -214006,7 +212058,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -214199,7 +212251,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpProxies/{targetHttpProxy}/setUrlMap'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -214392,15 +212444,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regiontargethttpproxies$Seturlmap extends StandardParameters {
     /**
@@ -214610,7 +212653,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -214773,7 +212816,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -214982,7 +213025,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -215123,13 +213166,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -215221,7 +213257,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -215434,7 +213470,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -215629,7 +213665,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}/setSslCertificates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -215822,7 +213858,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}/setUrlMap'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -216015,15 +214051,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regiontargethttpsproxies$Patch extends StandardParameters {
     /**
@@ -216304,7 +214331,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetTcpProxies/{targetTcpProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -216460,7 +214487,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetTcpProxies/{targetTcpProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -216662,7 +214689,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetTcpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -216803,13 +214830,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -216900,7 +214920,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetTcpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -217093,15 +215113,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Regionurlmaps {
@@ -217265,7 +215276,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/urlMaps/{urlMap}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -217425,7 +215436,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/urlMaps/{urlMap}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -217621,7 +215632,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/urlMaps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -217762,13 +215773,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -217858,7 +215862,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/urlMaps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -218058,7 +216062,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/urlMaps/{urlMap}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -218256,7 +216260,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/urlMaps/{urlMap}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -218414,7 +216418,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/urlMaps/{urlMap}/validate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -218585,15 +216589,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Regionurlmaps$Patch extends StandardParameters {
     /**
@@ -218791,13 +216786,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -218885,7 +216873,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/regions/{region}/zones'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -219003,15 +216991,6 @@ export namespace compute_v1 {
      * Region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Reliabilityrisks {
@@ -219153,7 +217132,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/reliabilityRisks/{reliabilityRisk}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -219291,13 +217270,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -219392,7 +217364,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/reliabilityRisks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -219518,15 +217490,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Reservationblocks {
@@ -219671,7 +217634,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}/reservationBlocks/{reservationBlock}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -219826,7 +217789,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{parentResource}/reservationBlocks/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -219966,13 +217929,6 @@ export namespace compute_v1 {
      *     // The name of the reservation.
      *     // Name should conform to RFC1035 or be a resource ID.
      *     reservation: 'placeholder-value',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // Name of the zone for this request. Zone name should conform to RFC1035.
      *     zone: 'placeholder-value',
      *   });
@@ -220069,7 +218025,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}/reservationBlocks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -220267,7 +218223,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}/reservationBlocks/{reservationBlock}/performMaintenance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -220427,7 +218383,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{parentResource}/reservationBlocks/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -220586,7 +218542,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{parentResource}/reservationBlocks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -220751,15 +218707,6 @@ export namespace compute_v1 {
      * Name should conform to RFC1035 or be a resource ID.
      */
     reservation?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * Name of the zone for this request. Zone name should conform to RFC1035.
      */
@@ -220989,13 +218936,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -221092,7 +219032,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/reservations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -221277,7 +219217,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -221450,7 +219390,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -221601,7 +219541,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -221821,7 +219761,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -221960,13 +219900,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // Name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -222059,7 +219992,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -222252,7 +220185,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}/performMaintenance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -222447,7 +220380,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}/resize'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -222605,7 +220538,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -222762,7 +220695,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -222986,7 +220919,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -223110,15 +221043,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -223312,15 +221236,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * Name of the zone for this request.
      */
@@ -223620,7 +221535,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -223798,7 +221713,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}/getHealth'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -223995,7 +221910,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}/getVersion'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -224136,13 +222051,6 @@ export namespace compute_v1 {
      *       'reservations/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationSubBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})',
      *     // The project ID for this request.
      *     project: 'placeholder-value',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the zone for this request, formatted as RFC1035.
      *     zone: 'placeholder-value',
      *   });
@@ -224239,7 +222147,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSlots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -224434,7 +222342,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -224640,15 +222548,6 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * The name of the zone for this request, formatted as RFC1035.
      */
     zone?: string;
@@ -224824,7 +222723,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -224984,7 +222883,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentResource}/reservationSubBlocks/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -225181,7 +223080,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/getVersion'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -225327,13 +223226,6 @@ export namespace compute_v1 {
      *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
      *     // Project ID for this request.
      *     project: 'placeholder-value',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // Name of the zone for this request. Zone name should conform to RFC1035.
      *     zone: 'placeholder-value',
      *   });
@@ -225434,7 +223326,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -225625,7 +223517,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/performMaintenance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -225829,7 +223721,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/reportFaulty'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -225994,7 +223886,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentResource}/reservationSubBlocks/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -226153,7 +224045,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentResource}/reservationSubBlocks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -226359,15 +224251,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * Name of the zone for this request. Zone name should conform to RFC1035.
      */
@@ -226633,13 +224516,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -226739,7 +224615,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/resourcePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -226926,7 +224802,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/resourcePolicies/{resourcePolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -227085,7 +224961,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/resourcePolicies/{resourcePolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -227236,7 +225112,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/resourcePolicies/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -227440,7 +225316,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/resourcePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -227581,13 +225457,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -227679,7 +225548,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/resourcePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -227887,7 +225756,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/resourcePolicies/{resourcePolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -228045,7 +225914,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/resourcePolicies/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -228202,7 +226071,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/resourcePolicies/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -228326,15 +226195,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -228532,15 +226392,6 @@ export namespace compute_v1 {
      * Name of the region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Resourcepolicies$Patch extends StandardParameters {
     /**
@@ -228790,7 +226641,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/rolloutPlans/{rolloutPlan}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -228941,7 +226792,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/rolloutPlans/{rolloutPlan}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -229137,7 +226988,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/rolloutPlans'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -229275,13 +227126,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -229373,7 +227217,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/rolloutPlans'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -229550,15 +227394,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Rollouts {
@@ -229732,7 +227567,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/rollouts/{rollout}/advance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -229919,7 +227754,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/rollouts/{rollout}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -230101,7 +227936,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/rollouts/{rollout}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -230259,7 +228094,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/rollouts/{rollout}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -230397,13 +228232,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -230494,7 +228322,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/rollouts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -230680,7 +228508,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/rollouts/{rollout}/pause'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -230866,7 +228694,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/rollouts/{rollout}/resume'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -231079,15 +228907,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Rollouts$Pause extends StandardParameters {
     /**
@@ -231290,13 +229109,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -231393,7 +229205,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/routers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -231577,7 +229389,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -231764,7 +229576,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/deleteNamedSet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -231951,7 +229763,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/deleteRoutePolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -232110,7 +229922,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -232263,7 +230075,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/getNamedSet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -232416,7 +230228,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/getNatIpInfo'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -232560,13 +230372,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // Name of the Router resource to query for Nat Mapping information of
      *     // VM endpoints.
      *     router: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
@@ -232663,7 +230468,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/getNatMappingInfo'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -232816,7 +230621,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/getRoutePolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -232968,7 +230773,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/getRouterStatus'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -233174,7 +230979,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -233314,13 +231119,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -233409,7 +231207,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -233559,13 +231357,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // Name or id of the resource for this request.
      *     // Name should conform to RFC1035.
      *     router: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
@@ -233667,7 +231458,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/listBgpRoutes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -233808,13 +231599,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // Name or id of the resource for this request.
      *     // Name should conform to RFC1035.
      *     router: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
@@ -233913,7 +231697,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/listNamedSets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -234054,13 +231838,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // Name or id of the resource for this request.
      *     // Name should conform to RFC1035.
      *     router: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
@@ -234159,7 +231936,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/listRoutePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -234369,7 +232146,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -234566,7 +232343,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/patchNamedSet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -234763,7 +232540,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/patchRoutePolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -234935,7 +232712,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/preview'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -235145,7 +232922,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -235342,7 +233119,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/updateNamedSet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -235539,7 +233316,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/updateRoutePolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -235663,15 +233440,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -235935,15 +233703,6 @@ export namespace compute_v1 {
      */
     region?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * Name of the Router resource to query for Nat Mapping information of
      * VM endpoints.
      */
@@ -236111,15 +233870,6 @@ export namespace compute_v1 {
      * Name of the region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Routers$Listbgproutes extends StandardParameters {
     /**
@@ -236238,15 +233988,6 @@ export namespace compute_v1 {
      */
     region?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * Name or id of the resource for this request.
      * Name should conform to RFC1035.
      */
@@ -236356,15 +234097,6 @@ export namespace compute_v1 {
      */
     region?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * Name or id of the resource for this request.
      * Name should conform to RFC1035.
      */
@@ -236468,15 +234200,6 @@ export namespace compute_v1 {
      * Name of the region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * Name or id of the resource for this request.
      * Name should conform to RFC1035.
@@ -236881,7 +234604,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/routes/{route}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -237048,7 +234771,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/routes/{route}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -237262,7 +234985,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/routes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -237400,13 +235123,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -237494,7 +235210,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/routes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -237649,7 +235365,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/routes/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -237826,15 +235542,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Routes$Testiampermissions extends StandardParameters {
     /**
@@ -238028,7 +235735,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}/addRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -238178,13 +235885,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -238284,7 +235984,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/securityPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -238469,7 +236169,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -238632,7 +236332,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -238788,7 +236488,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}/getRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -238998,7 +236698,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/securityPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -239136,13 +236836,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -239231,7 +236924,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/securityPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -239370,13 +237063,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -239471,7 +237157,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/securityPolicies/listPreconfiguredExpressionSets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -239689,7 +237375,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -239883,7 +237569,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}/patchRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -240054,7 +237740,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}/removeRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -240234,7 +237920,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/securityPolicies/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -240377,15 +238063,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -240567,15 +238244,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Securitypolicies$Listpreconfiguredexpressionsets extends StandardParameters {
     /**
@@ -240671,15 +238339,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Securitypolicies$Patch extends StandardParameters {
     /**
@@ -240910,13 +238569,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -241015,7 +238667,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/serviceAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -241202,7 +238854,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/serviceAttachments/{serviceAttachment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -241371,7 +239023,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/serviceAttachments/{serviceAttachment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -241522,7 +239174,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/serviceAttachments/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -241735,7 +239387,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/serviceAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -241875,13 +239527,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region of this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -241973,7 +239618,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/serviceAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -242191,7 +239836,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/serviceAttachments/{serviceAttachment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -242349,7 +239994,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/serviceAttachments/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -242506,7 +240151,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/serviceAttachments/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -242630,15 +240275,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -242840,15 +240476,6 @@ export namespace compute_v1 {
      * Name of the region of this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Serviceattachments$Patch extends StandardParameters {
     /**
@@ -243101,7 +240728,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/snapshots/{snapshot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -243283,7 +240910,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/snapshots/{snapshot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -243432,7 +241059,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/snapshots/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -243663,7 +241290,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/snapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -243802,13 +241429,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -243897,7 +241517,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/snapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -244053,7 +241673,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/snapshots/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -244232,7 +241852,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/snapshots/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -244387,7 +242007,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/snapshots/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -244579,7 +242199,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/snapshots/{snapshot}/updateKmsKey'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -244770,15 +242390,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Snapshots$Setiampolicy extends StandardParameters {
     /**
@@ -244986,7 +242597,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/snapshotSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -245177,7 +242788,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/snapshotSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -245372,13 +242983,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -245477,7 +243081,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/sslCertificates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -245662,7 +243266,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/sslCertificates/{sslCertificate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -245819,7 +243423,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/sslCertificates/{sslCertificate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -246021,7 +243625,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/sslCertificates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -246160,13 +243764,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -246256,7 +243853,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/sslCertificates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -246380,15 +243977,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -246552,15 +244140,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Sslpolicies {
@@ -246700,13 +244279,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -246804,7 +244376,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/sslPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -246990,7 +244562,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/sslPolicies/{sslPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -247146,7 +244718,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/sslPolicies/{sslPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -247347,7 +244919,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/sslPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -247486,13 +245058,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -247581,7 +245146,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/sslPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -247720,13 +245285,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -247820,7 +245378,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/sslPolicies/listAvailableFeatures'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -248027,7 +245585,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/sslPolicies/{sslPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -248151,15 +245709,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -248325,15 +245874,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Sslpolicies$Listavailablefeatures extends StandardParameters {
     /**
@@ -248429,15 +245969,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Sslpolicies$Patch extends StandardParameters {
     /**
@@ -248608,13 +246139,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -248712,7 +246236,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/storagePools'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -248901,7 +246425,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePools/{storagePool}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -249068,7 +246592,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePools/{storagePool}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -249219,7 +246743,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePools/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -249432,7 +246956,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePools'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -249571,13 +247095,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -249672,7 +247189,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePools'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -249810,13 +247327,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // Name of the storage pool to list disks of.
      *     storagePool: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
      *     // The name of the zone for this request.
@@ -249916,7 +247426,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePools/{storagePool}/listDisks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -250074,7 +247584,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePools/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -250231,7 +247741,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePools/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -250451,7 +247961,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePools/{storagePool}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -250575,15 +248085,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -250778,15 +248279,6 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * The name of the zone for this request.
      */
     zone?: string;
@@ -250885,15 +248377,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * Name of the storage pool to list disks of.
      */
@@ -251117,13 +248600,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -251221,7 +248697,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/storagePoolTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -251385,7 +248861,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePoolTypes/{storagePoolType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -251524,13 +249000,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -251623,7 +249092,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePoolTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -251748,15 +249217,6 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
      */
@@ -251870,15 +249330,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The name of the zone for this request.
      */
@@ -252021,13 +249472,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -252130,7 +249574,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/subnetworks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -252315,7 +249759,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -252508,7 +249952,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}/expandIpCidrRange'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -252690,7 +250134,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -252841,7 +250285,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -253065,7 +250509,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -253206,13 +250650,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // Defines the extra views returned back in the subnetwork resource.
      *     // Supported values:
      *     //
@@ -253308,7 +250745,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -253446,13 +250883,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The project id or project number in which the subnetwork is intended to be
      *     // used. Only applied for Shared VPC. See [Shared VPC
      *     // documentation](https://cloud.google.com/vpc/docs/shared-vpc/)
@@ -253553,7 +250983,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/subnetworks/listUsable'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -253794,7 +251224,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -253952,7 +251382,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -254148,7 +251578,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}/setPrivateIpGoogleAccess'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -254305,7 +251735,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -254429,15 +251859,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -254687,15 +252108,6 @@ export namespace compute_v1 {
      */
     region?: string;
     /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
-    /**
      * Defines the extra views returned back in the subnetwork resource.
      * Supported values:
      *
@@ -254798,15 +252210,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The project id or project number in which the subnetwork is intended to be
      * used. Only applied for Shared VPC. See [Shared VPC
@@ -255105,7 +252508,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetGrpcProxies/{targetGrpcProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -255258,7 +252661,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetGrpcProxies/{targetGrpcProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -255457,7 +252860,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetGrpcProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -255595,13 +252998,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -255692,7 +253088,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetGrpcProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -255895,7 +253291,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetGrpcProxies/{targetGrpcProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -256072,15 +253468,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Targetgrpcproxies$Patch extends StandardParameters {
     /**
@@ -256251,13 +253638,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -256355,7 +253735,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/targetHttpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -256540,7 +253920,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpProxies/{targetHttpProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -256694,7 +254074,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpProxies/{targetHttpProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -256894,7 +254274,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -257033,13 +254413,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -257130,7 +254503,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -257334,7 +254707,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpProxies/{targetHttpProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -257525,7 +254898,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/targetHttpProxies/{targetHttpProxy}/setUrlMap'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -257649,15 +255022,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -257821,15 +255185,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Targethttpproxies$Patch extends StandardParameters {
     /**
@@ -258031,13 +255386,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -258136,7 +255484,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/targetHttpsProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -258321,7 +255669,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -258482,7 +255830,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -258689,7 +256037,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpsProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -258828,13 +256176,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -258926,7 +256267,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpsProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -259137,7 +256478,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -259329,7 +256670,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}/setCertificateMap'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -259521,7 +256862,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}/setQuicOverride'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -259713,7 +257054,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setSslCertificates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -259908,7 +257249,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}/setSslPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -260100,7 +257441,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setUrlMap'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -260224,15 +257565,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -260396,15 +257728,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Targethttpsproxies$Patch extends StandardParameters {
     /**
@@ -260734,13 +258057,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -260839,7 +258155,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/targetInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -261026,7 +258342,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/targetInstances/{targetInstance}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -261182,7 +258498,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/targetInstances/{targetInstance}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -261384,7 +258700,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/targetInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -261523,13 +258839,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // Name of the zone scoping this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -261622,7 +258931,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/targetInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -261818,7 +259127,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/targetInstances/{targetInstance}/setSecurityPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -261975,7 +259284,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/targetInstances/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -262099,15 +259408,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -262283,15 +259583,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * Name of the zone scoping this request.
      */
@@ -262533,7 +259824,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/addHealthCheck'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -262726,7 +260017,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/addInstance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -262875,13 +260166,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -262978,7 +260262,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/targetPools'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -263163,7 +260447,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -263319,7 +260603,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -263478,7 +260762,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/getHealth'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -263682,7 +260966,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -263823,13 +261107,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -263919,7 +261196,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -264112,7 +261389,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/removeHealthCheck'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -264305,7 +261582,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/removeInstance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -264500,7 +261777,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/setBackup'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -264696,7 +261973,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/setSecurityPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -264853,7 +262130,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -265047,15 +262324,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -265254,15 +262522,6 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Targetpools$Removehealthcheck extends StandardParameters {
     /**
@@ -265599,7 +262858,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -265753,7 +263012,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -265952,7 +263211,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/targetSslProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -266091,13 +263350,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -266187,7 +263439,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/targetSslProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -266379,7 +263631,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}/setBackendService'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -266571,7 +263823,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}/setCertificateMap'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -266762,7 +264014,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}/setProxyHeader'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -266954,7 +264206,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}/setSslCertificates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -267149,7 +264401,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}/setSslPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -267304,7 +264556,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetSslProxies/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -267481,15 +264733,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Targetsslproxies$Setbackendservice extends StandardParameters {
     /**
@@ -267803,13 +265046,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -267908,7 +265144,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/targetTcpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -268093,7 +265329,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetTcpProxies/{targetTcpProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -268247,7 +265483,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetTcpProxies/{targetTcpProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -268446,7 +265682,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/targetTcpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -268585,13 +265821,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -268681,7 +265910,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/targetTcpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -268873,7 +266102,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetTcpProxies/{targetTcpProxy}/setBackendService'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -269064,7 +266293,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetTcpProxies/{targetTcpProxy}/setProxyHeader'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -269219,7 +266448,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetTcpProxies/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -269343,15 +266572,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -269515,15 +266735,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Targettcpproxies$Setbackendservice extends StandardParameters {
     /**
@@ -269740,13 +266951,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -269845,7 +267049,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/targetVpnGateways'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -270032,7 +267236,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -270191,7 +267395,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -270396,7 +267600,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetVpnGateways'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -270537,13 +267741,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -270635,7 +267832,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetVpnGateways'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -270830,7 +268027,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetVpnGateways/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -270954,15 +268151,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -271142,15 +268330,6 @@ export namespace compute_v1 {
      * Name of the region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Targetvpngateways$Setlabels extends StandardParameters {
     /**
@@ -271325,13 +268504,6 @@ export namespace compute_v1 {
      *     // Name of the project scoping this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -271428,7 +268600,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/urlMaps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -271609,7 +268781,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/urlMaps/{urlMap}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -271765,7 +268937,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/urlMaps/{urlMap}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -271968,7 +269140,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/urlMaps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -272165,7 +269337,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/urlMaps/{urlMap}/invalidateCache'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -272304,13 +269476,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -272398,7 +269563,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/urlMaps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -272605,7 +269770,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/urlMaps/{urlMap}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -272760,7 +269925,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/urlMaps/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -272965,7 +270130,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/urlMaps/{urlMap}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -273121,7 +270286,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/urlMaps/{urlMap}/validate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -273245,15 +270410,6 @@ export namespace compute_v1 {
      * Name of the project scoping this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -273448,15 +270604,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Urlmaps$Patch extends StandardParameters {
     /**
@@ -273687,13 +270834,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -273790,7 +270930,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/vpnGateways'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -273975,7 +271115,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{vpnGateway}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -274132,7 +271272,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{vpnGateway}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -274282,7 +271422,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{vpnGateway}/getStatus'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -274489,7 +271629,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnGateways'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -274630,13 +271770,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -274726,7 +271859,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnGateways'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -274921,7 +272054,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -275078,7 +272211,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -275202,15 +272335,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -275404,15 +272528,6 @@ export namespace compute_v1 {
      * Name of the region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Vpngateways$Setlabels extends StandardParameters {
     /**
@@ -275605,13 +272720,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The Shared VPC service project id or service project number for which
      *     // aggregated list request is invoked for subnetworks list-usable api.
      *     serviceProjectNumber: 'placeholder-value',
@@ -275708,7 +272816,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/vpnTunnels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -275893,7 +273001,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnTunnels/{vpnTunnel}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -276062,7 +273170,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnTunnels/{vpnTunnel}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -276279,7 +273387,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnTunnels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -276420,13 +273528,6 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -276516,7 +273617,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnTunnels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -276711,7 +273812,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnTunnels/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -276835,15 +273936,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The Shared VPC service project id or service project number for which
      * aggregated list request is invoked for subnetworks list-usable api.
@@ -277023,15 +274115,6 @@ export namespace compute_v1 {
      * Name of the region for this request.
      */
     region?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Vpntunnels$Setlabels extends StandardParameters {
     /**
@@ -277241,7 +274324,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks/{crossSiteNetwork}/wireGroups/{wireGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -277395,7 +274478,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks/{crossSiteNetwork}/wireGroups/{wireGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -277600,7 +274683,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks/{crossSiteNetwork}/wireGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -277739,13 +274822,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -277837,7 +274913,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks/{crossSiteNetwork}/wireGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -278047,7 +275123,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks/{crossSiteNetwork}/wireGroups/{wireGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -278246,15 +275322,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Wiregroups$Patch extends StandardParameters {
     /**
@@ -278427,7 +275494,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -278600,7 +275667,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -278739,13 +275806,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // Name of the zone for request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -278837,7 +275897,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}/operations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -279024,7 +276084,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/operations/{operation}/wait'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -279168,15 +276228,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * Name of the zone for request.
      */
@@ -279337,7 +276388,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -279475,13 +276526,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -279570,7 +276614,7 @@ export namespace compute_v1 {
               '$1'
             ),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -279694,15 +276738,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Zonevmextensionpolicies {
@@ -279877,7 +276912,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/vmExtensionPolicies/{vmExtensionPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -280036,7 +277071,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/vmExtensionPolicies/{vmExtensionPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -280240,7 +277275,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/vmExtensionPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -280378,13 +277413,6 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case
-     *     // of failure. The default value is false.
-     *     //
-     *     // For example, when partial success behavior is enabled, aggregatedList for a
-     *     // single zone scope either returns all resources in the zone or no resources,
-     *     // with an error code.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // Name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -280480,7 +277508,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/vmExtensionPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -280686,7 +277714,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/vmExtensionPolicies/{vmExtensionPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '',
+            apiVersion: '2026-09-01',
           },
           options
         ),
@@ -280875,15 +277903,6 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     *
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * Name of the zone for this request.
      */

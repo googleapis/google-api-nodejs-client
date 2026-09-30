@@ -252,14 +252,6 @@ export namespace youtube_v3 {
      */
     comment?: Schema$ActivityContentDetailsComment;
     /**
-     * The `favorite` object contains information about a video that was marked as a favorite video. This property is only present if the `snippet.type` is `favorite`. Deprecated: This property is no longer returned.
-     */
-    favorite?: Schema$ActivityContentDetailsFavorite;
-    /**
-     * The `like` object contains information about a resource that received a positive (like) rating. This property is only present if the `snippet.type` is `like`. Deprecated: This property is no longer returned.
-     */
-    like?: Schema$ActivityContentDetailsLike;
-    /**
      * The `playlistItem` object contains information about a new playlist item. This property is only present if the `snippet.type` is `playlistItem`.
      */
     playlistItem?: Schema$ActivityContentDetailsPlaylistItem;
@@ -276,7 +268,7 @@ export namespace youtube_v3 {
      */
     social?: Schema$ActivityContentDetailsSocial;
     /**
-     * The `subscription` object contains information about a channel that a user subscribed to. This property is only present if the `snippet.type` is `subscription`. Deprecated: This property is no longer returned.
+     * The `subscription` object contains information about a channel that a user subscribed to. This property is only present if the `snippet.type` is `subscription`.
      */
     subscription?: Schema$ActivityContentDetailsSubscription;
     /**
@@ -308,24 +300,6 @@ export namespace youtube_v3 {
   export interface Schema$ActivityContentDetailsComment {
     /**
      * The `resourceId` object contains information that identifies the resource associated with the comment.
-     */
-    resourceId?: Schema$ResourceId;
-  }
-  /**
-   * Information about a video that was marked as a favorite video. Deprecated: This resource is no longer returned.
-   */
-  export interface Schema$ActivityContentDetailsFavorite {
-    /**
-     * The `resourceId` object contains information that identifies the resource that was marked as a favorite.
-     */
-    resourceId?: Schema$ResourceId;
-  }
-  /**
-   * Information about a resource that received a positive (like) rating. Deprecated: This resource is no longer returned.
-   */
-  export interface Schema$ActivityContentDetailsLike {
-    /**
-     * The `resourceId` object contains information that identifies the rated resource.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -434,7 +408,7 @@ export namespace youtube_v3 {
     type?: string | null;
   }
   /**
-   * Information about a channel that a user subscribed to. Deprecated: This resource is no longer returned.
+   * Information about a channel that a user subscribed to.
    */
   export interface Schema$ActivityContentDetailsSubscription {
     /**
@@ -1376,10 +1350,6 @@ export namespace youtube_v3 {
      */
     parentId?: string | null;
     /**
-     * The ID of the post the comment refers to, if any.
-     */
-    postId?: string | null;
-    /**
      * The date and time when the comment was originally published.
      */
     publishedAt?: string | null;
@@ -1494,10 +1464,6 @@ export namespace youtube_v3 {
      * Whether the thread (and therefore all its comments) is visible to all YouTube users.
      */
     isPublic?: boolean | null;
-    /**
-     * The ID of the post the comments refer to, if any.
-     */
-    postId?: string | null;
     /**
      * The top level comment of this thread.
      */
@@ -4828,7 +4794,7 @@ export namespace youtube_v3 {
     viewCount?: string | null;
   }
   /**
-   * Basic details about a video category, such as its localized title. Next Id: 19
+   * Basic details about a video category, such as its localized title. Next Id: 20
    */
   export interface Schema$VideoStatus {
     /**
@@ -6668,7 +6634,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.channels.update({
-     *     // The *onBehalfOfContentOwner* parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
+     *     // The *onBehalfOfContentOwner* parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner. This parameter must be provided if the request is authenticated with credentials for a CMS content owner user acting on a managed channel. If omitted, the request executes under the authenticated user's direct context and returns an HTTP 403 Forbidden error.
      *     onBehalfOfContentOwner: 'placeholder-value',
      *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. The API currently only allows the parameter value to be set to either brandingSettings or invideoPromotion. (You cannot update both of those parts with a single request.) Note that this method overrides the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies.
      *     part: 'placeholder-value',
@@ -6859,7 +6825,7 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Channels$Update extends StandardParameters {
     /**
-     * The *onBehalfOfContentOwner* parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
+     * The *onBehalfOfContentOwner* parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner. This parameter must be provided if the request is authenticated with credentials for a CMS content owner user acting on a managed channel. If omitted, the request executes under the authenticated user's direct context and returns an HTTP 403 Forbidden error.
      */
     onBehalfOfContentOwner?: string;
     /**
@@ -8704,8 +8670,6 @@ export namespace youtube_v3 {
      *     pageToken: 'placeholder-value',
      *     // The *part* parameter specifies a comma-separated list of one or more commentThread resource properties that the API response will include.
      *     part: 'placeholder-value',
-     *     // Returns the comment threads of the specified post.
-     *     postId: 'placeholder-value',
      *     // Limits the returned comment threads to those matching the specified key words. Not compatible with the 'id' filter.
      *     searchTerms: 'placeholder-value',
      *     // The requested text format for the returned comments.
@@ -8871,10 +8835,6 @@ export namespace youtube_v3 {
      * The *part* parameter specifies a comma-separated list of one or more commentThread resource properties that the API response will include.
      */
     part?: string[];
-    /**
-     * Returns the comment threads of the specified post.
-     */
-    postId?: string;
     /**
      * Limits the returned comment threads to those matching the specified key words. Not compatible with the 'id' filter.
      */
