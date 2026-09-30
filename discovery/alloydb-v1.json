@@ -1879,7 +1879,7 @@
       }
     }
   },
-  "revision": "20260826",
+  "revision": "20260917",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -7276,12 +7276,18 @@
           "enum": [
             "USER_TYPE_UNSPECIFIED",
             "ALLOYDB_BUILT_IN",
-            "ALLOYDB_IAM_USER"
+            "ALLOYDB_IAM_USER",
+            "ALLOYDB_IAM_GROUP",
+            "ALLOYDB_IAM_GROUP_USER",
+            "ALLOYDB_IAM_GROUP_SERVICE_ACCOUNT"
           ],
           "enumDescriptions": [
             "Unspecified user type.",
             "The default user type that authenticates via password-based authentication.",
-            "Database user that can authenticate via IAM-Based authentication."
+            "Database user that can authenticate via IAM-Based authentication.",
+            "Database user that represents an IAM group whose members can authenticate via IAM group-based authentication.",
+            "Represents a user that belongs to an IAM group.",
+            "Represents a service account that belongs to an IAM group."
           ],
           "type": "string"
         }
