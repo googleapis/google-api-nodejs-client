@@ -1704,6 +1704,23 @@ export namespace networksecurity_v1beta1 {
     unreachable?: string[] | null;
   }
   /**
+   * Contains a response to listing `RateLimitPolicy` resources.
+   */
+  export interface Schema$ListRateLimitPoliciesResponse {
+    /**
+     * Identifies a token for a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Contains a list of `RateLimitPolicy` resources.
+     */
+    rateLimitPolicies?: Schema$RateLimitPolicy[];
+    /**
+     * Unordered list. Lists locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response for `ListSACAttachments` method.
    */
   export interface Schema$ListSACAttachmentsResponse {
@@ -2196,6 +2213,356 @@ export namespace networksecurity_v1beta1 {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * Describes a `RateLimitPolicy` object.
+   */
+  export interface Schema$RateLimitPolicy {
+    /**
+     * Output only. Represents the create timestamp.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Provides a human-readable description of the resource.
+     */
+    description?: string | null;
+    /**
+     * Optional. Specifies a list of rate limit HTTP rules to match against the incoming request.
+     */
+    httpRules?: Schema$RateLimitPolicyRateLimitRule[];
+    /**
+     * Optional. Stores labels as key value pairs.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. Specifies the name of the `RateLimitPolicy` resource.
+     */
+    name?: string | null;
+    /**
+     * Optional. Specifies a list of rate limit buckets to be used for rate limiting. Rate limit buckets will be referenced by the rate limit actions by name.
+     */
+    rateLimitBuckets?: Schema$RateLimitPolicyRateLimitBucket[];
+    /**
+     * Required. Specifies a list of targets to which this policy applies.
+     */
+    targets?: Schema$RateLimitPolicyTarget[];
+    /**
+     * Output only. Represents the update timestamp.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Describes properties of a rate limit bucket.
+   */
+  export interface Schema$RateLimitPolicyRateLimitBucket {
+    /**
+     * Required. Specifies the default limit to apply for this rate limit bucket.
+     */
+    defaultLimit?: Schema$RateLimitPolicyRateLimitBucketLimit;
+    /**
+     * Optional. Specifies whether the rate limit bucket is in dry-run mode.
+     */
+    dryRun?: boolean | null;
+    /**
+     * Required. Specifies the keys to use for rate limiting. At least one key is required. If multiple keys are specified, the keys will be combined and used as a single key.
+     */
+    keys?: Schema$RateLimitPolicyRateLimitBucketKey[];
+    /**
+     * Required. Specifies the name of the rate limit bucket. Name will be used to reference the bucket in the RateLimitAction.
+     */
+    name?: string | null;
+    /**
+     * Optional. Specifies a list of user overrides to apply to the rate limit bucket.
+     */
+    userOverrides?: Schema$RateLimitPolicyRateLimitBucketUserOverride[];
+  }
+  /**
+   * Describes the count limit for enforcement.
+   */
+  export interface Schema$RateLimitPolicyRateLimitBucketCountLimit {
+    /**
+     * Required. Specifies the maximum number of costs allowed in the specified interval. Must be non-negative.
+     */
+    count?: string | null;
+    /**
+     * Required. Specifies the interval in units for which the count limit is enforced. Must be positive.
+     */
+    interval?: string | null;
+    /**
+     * Required. Specifies the unit of the interval. Defaults to MINUTES.
+     */
+    intervalUnit?: string | null;
+  }
+  /**
+   * Describes properties of a key to use for rate limiting.
+   */
+  export interface Schema$RateLimitPolicyRateLimitBucketKey {
+    /**
+     * Optional. Specifies the header name if key_type is HTTP_HEADER.
+     */
+    header?: string | null;
+    /**
+     * Required. Specifies the type of key to use for rate limiting.
+     */
+    keyType?: string | null;
+    /**
+     * Optional. Specifies the principal type if key_type is PRINCIPAL.
+     */
+    principalType?: string | null;
+  }
+  /**
+   * Describes a limit for enforcement.
+   */
+  export interface Schema$RateLimitPolicyRateLimitBucketLimit {
+    /**
+     * Required. Defines the count limit to enforce.
+     */
+    countLimit?: Schema$RateLimitPolicyRateLimitBucketCountLimit;
+  }
+  /**
+   * Describes properties of a user override for the rate limit bucket.
+   */
+  export interface Schema$RateLimitPolicyRateLimitBucketUserOverride {
+    /**
+     * Required. Specifies the limit to apply for this specific key.
+     */
+    limit?: Schema$RateLimitPolicyRateLimitBucketLimit;
+    /**
+     * Required. Specifies the key to override.
+     */
+    overrideKey?: Schema$RateLimitPolicyRateLimitBucketUserOverrideOverrideKey;
+  }
+  /**
+   * Specifies the key to override. Key fields must match the key types specified in the rate limit bucket. Key type ALL does not support overrides.
+   */
+  export interface Schema$RateLimitPolicyRateLimitBucketUserOverrideOverrideKey {
+    /**
+     * Optional. Specifies the HTTP headers if the rate limit bucket keys contain keys of type HTTP_HEADER. Number of headers and header names must match the rate limit bucket key.
+     */
+    httpHeaders?: Schema$RateLimitPolicyRateLimitBucketUserOverrideOverrideKeyHttpHeader[];
+    /**
+     * Optional. Specifies the HTTP path if the rate limit bucket keys contain a key of type HTTP_PATH.
+     */
+    httpPath?: string | null;
+    /**
+     * Optional. Specifies the MCP tool if the rate limit bucket keys contain a key of type MCP_TOOL.
+     */
+    mcpTool?: string | null;
+    /**
+     * Optional. Specifies the principals if the rate limit bucket keys contain keys of PRINCIPAL. Number of principals and principal types must match the rate limit bucket key.
+     */
+    principals?: Schema$RateLimitPolicyRateLimitBucketUserOverrideOverrideKeyPrincipal[];
+    /**
+     * Optional. Specifies the source IP if the rate limit bucket keys contain a key of type SOURCE_IP.
+     */
+    sourceIp?: string | null;
+  }
+  /**
+   * Specifies the key in the type HTTP header to override.
+   */
+  export interface Schema$RateLimitPolicyRateLimitBucketUserOverrideOverrideKeyHttpHeader {
+    /**
+     * Required. Specifies the header name of the key.
+     */
+    header?: string | null;
+    /**
+     * Required. Specifies the header value of the key.
+     */
+    value?: string | null;
+  }
+  /**
+   * Specifies the key in the type PRINCIPAL to override.
+   */
+  export interface Schema$RateLimitPolicyRateLimitBucketUserOverrideOverrideKeyPrincipal {
+    /**
+     * Required. Specifies the principal value of the key.
+     */
+    principal?: string | null;
+    /**
+     * Required. Specifies the principal type of the key.
+     */
+    principalType?: string | null;
+  }
+  /**
+   * Specifies conditions to match against the incoming request.
+   */
+  export interface Schema$RateLimitPolicyRateLimitRule {
+    /**
+     * Optional. Describes properties of a source of a request.
+     */
+    from?: Schema$RateLimitPolicyRateLimitRuleFrom;
+    /**
+     * Optional. Specifies the actions to take when this rule is matched.
+     */
+    rateLimitActions?: Schema$RateLimitPolicyRateLimitRuleRateLimitAction[];
+    /**
+     * Optional. Describes properties of a target of a request.
+     */
+    to?: Schema$RateLimitPolicyRateLimitRuleTo;
+  }
+  /**
+   * Describes properties of the sources of a request.
+   */
+  export interface Schema$RateLimitPolicyRateLimitRuleFrom {
+    /**
+     * Optional. Describes the negated properties of request source. Matches requests from source that does not match the criteria specified in this field. At least one of source or not_source must be specified.
+     */
+    notSource?: Schema$RateLimitPolicyRateLimitRuleFromSource;
+    /**
+     * Optional. Describes the properties of a request's source. At least one of source or not_source must be specified. A match occurs when ANY fields in either source or not_source matches the request. Within a single source, the match follows OR semantics across fields and AND semantics within a single field.
+     */
+    source?: Schema$RateLimitPolicyRateLimitRuleFromSource;
+  }
+  /**
+   * Describes the properties of a request source.
+   */
+  export interface Schema$RateLimitPolicyRateLimitRuleFromSource {
+    /**
+     * Required. Contains a list of identities derived from the client's certificate. This field does not match on a request unless frontend mutual TLS is enabled for the Gateway and the client certificate is successfully validated by mTLS. Each identity is a string whose value is matched against a list of URI SANs, DNS Name SANs, or the common name in the client's certificate. A match happens when any principal matches with the rule.
+     */
+    principals?: Schema$RateLimitPolicyRateLimitRulePrincipal[];
+  }
+  /**
+   * Determines how an HTTP header is matched.
+   */
+  export interface Schema$RateLimitPolicyRateLimitRuleHeaderMatch {
+    /**
+     * Optional. Specifies the name of the header in the request.
+     */
+    name?: string | null;
+    /**
+     * Optional. Specifies how the header match is performed.
+     */
+    value?: Schema$RateLimitPolicyRateLimitRuleStringMatch;
+  }
+  /**
+   * Describes the properties of a principal for matching.
+   */
+  export interface Schema$RateLimitPolicyRateLimitRulePrincipal {
+    /**
+     * Required. Matches a non-empty string against the principal value based on the principal_selector.
+     */
+    principal?: Schema$RateLimitPolicyRateLimitRuleStringMatch;
+    /**
+     * Optional. Decides what principal value the principal rule will match against. If not specified, defaults to CLIENT_CERT_URI_SAN.
+     */
+    principalSelector?: string | null;
+  }
+  /**
+   * Describes the action to take when the rate limit rule is matched.
+   */
+  export interface Schema$RateLimitPolicyRateLimitRuleRateLimitAction {
+    /**
+     * Required. Specifies the name of the rate limit bucket to apply when this rule is matched.
+     */
+    rateLimitBucket?: string | null;
+  }
+  /**
+   * Determines how a string value is matched.
+   */
+  export interface Schema$RateLimitPolicyRateLimitRuleStringMatch {
+    /**
+     * Checks if the input string contains the substring specified here. Note: empty contains match is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``xyz.abc.def``
+     */
+    contains?: string | null;
+    /**
+     * Matches the input string exactly to the string specified here. Examples: * ``abc`` only matches the value ``abc``.
+     */
+    exact?: string | null;
+    /**
+     * Optional. Indicates if the exact/prefix/suffix/contains matching should be case insensitive. For example, when true, the matcher ``data`` matches both input strings ``Data`` and ``data``.
+     */
+    ignoreCase?: boolean | null;
+    /**
+     * Checks if the input string has the prefix specified here. Note: empty prefix is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``abc.xyz``
+     */
+    prefix?: string | null;
+    /**
+     * Checks if the input string has the suffix specified here. Note: empty suffix is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``xyz.abc``
+     */
+    suffix?: string | null;
+  }
+  /**
+   * Describes properties of the targets of a request.
+   */
+  export interface Schema$RateLimitPolicyRateLimitRuleTo {
+    /**
+     * Optional. Describes properties of a request's destination. At least one of destination or not_destination must be specified. A match occurs when ANY fields in either destination or not_destination matches the request. Within a destination, the match follows OR semantics across fields and AND semantics within a single field.
+     */
+    destination?: Schema$RateLimitPolicyRateLimitRuleToDestination;
+    /**
+     * Optional. Describes the negated properties of a request's destination. Matches requests for destination that does not match the criteria specified in this field. At least one of destination or not_destination must be specified.
+     */
+    notDestination?: Schema$RateLimitPolicyRateLimitRuleToDestination;
+  }
+  /**
+   * Describes properties of a request target.
+   */
+  export interface Schema$RateLimitPolicyRateLimitRuleToDestination {
+    /**
+     * Optional. Specifies a list of headers to match against in http header.
+     */
+    headerSet?: Schema$RateLimitPolicyRateLimitRuleToDestinationHeaderSet;
+    /**
+     * Optional. Specifies a list of HTTP Hosts to match against. The match can be one of exact, prefix, suffix, or contains (substring match). Matches are always case sensitive unless the ignoreCase is set. The match follows OR semantics which means that if any of the hosts match, the operation is considered to be matched.
+     */
+    hosts?: Schema$RateLimitPolicyRateLimitRuleStringMatch[];
+    /**
+     * Optional. Specifies the MCP protocol attributes to match against. This field is only valid if the targeted Gateway or Forwarding Rule has an Agent Gateway attached to it.
+     */
+    mcp?: Schema$RateLimitPolicyRateLimitRuleToDestinationMCP;
+    /**
+     * Optional. Specifies a list of HTTP methods to match against. Each entry must be a valid HTTP method name (GET, PUT, POST, HEAD, PATCH, DELETE, OPTIONS). It only allows exact match and is always case sensitive. The match follows OR semantics which means that if any of the methods match, the operation is considered to be matched.
+     */
+    methods?: string[] | null;
+    /**
+     * Optional. Specifies a list of paths to match against. The match can be one of exact, prefix, suffix, or contains (substring match). Matches are always case sensitive unless the ignoreCase is set. The match follows OR semantics which means that if any of the paths match, the operation is considered to be matched. Note that this path match includes the query parameters. For gRPC services, this should be a fully-qualified name of the form /package.service/method.
+     */
+    paths?: Schema$RateLimitPolicyRateLimitRuleStringMatch[];
+  }
+  /**
+   * Describes a set of HTTP headers to match against.
+   */
+  export interface Schema$RateLimitPolicyRateLimitRuleToDestinationHeaderSet {
+    /**
+     * Required. Contains a list of headers to match against in http header. The match can be one of exact, prefix, suffix, or contains (substring match). The match follows AND semantics which means all the headers must match. Matches are always case sensitive unless the ignoreCase is set.
+     */
+    headers?: Schema$RateLimitPolicyRateLimitRuleHeaderMatch[];
+  }
+  /**
+   * Describes a set of MCP protocol attributes to match against for a given MCP request. This field is only valid if the targeted Gateway or Forwarding Rule has an Agent Gateway attached to it.
+   */
+  export interface Schema$RateLimitPolicyRateLimitRuleToDestinationMCP {
+    /**
+     * Optional. If specified, matches on the MCP protocol’s non-access specific methods namely: * initialize * completion/ * logging/ * notifications/ * ping Defaults to SKIP_BASE_PROTOCOL_METHODS if not specified.
+     */
+    baseProtocolMethodsOption?: string | null;
+    /**
+     * Optional. A list of MCP methods and associated parameter names to match on. It is recommended to use this field to match on tools, prompts and resource accesses while setting the baseProtocolMethodsOption to MATCH_BASE_PROTOCOL_METHODS to match on all the other MCP protocol methods. Limited to 10 MCP methods per Rate Limit Policy.
+     */
+    methods?: Schema$RateLimitPolicyRateLimitRuleToDestinationMCPMethod[];
+  }
+  /**
+   * Describes a set of MCP methods to match against. This field is only valid if the targeted Gateway or Forwarding Rule has an Agent Gateway attached to it.
+   */
+  export interface Schema$RateLimitPolicyRateLimitRuleToDestinationMCPMethod {
+    /**
+     * Required. Specifies the MCP method to match against. Allowed values are as follows: 1. `tools`, `prompts`, `resources` - these will match against all sub methods under the respective methods. 2. `prompts/list`, `tools/list`, `resources/list`, `resources/templates/list` 3. `prompts/get`, `tools/call`, `resources/subscribe`, `resources/unsubscribe`, `resources/read` Params cannot be specified for categories 1 and 2.
+     */
+    name?: string | null;
+    /**
+     * Optional. Specifies a list of MCP method parameter names to match against. The match can be one of exact, prefix, suffix, or contains (substring match). Matches are always case sensitive unless the ignoreCase is set.
+     */
+    params?: Schema$RateLimitPolicyRateLimitRuleStringMatch[];
+  }
+  /**
+   * Specifies the target to which this policy applies.
+   */
+  export interface Schema$RateLimitPolicyTarget {
+    /**
+     * Required. Reference to a Gateway or Forwarding Rule resource on which this policy will be applied.
+     */
+    resource?: string | null;
   }
   /**
    * Request used by the RemoveAddressGroupItems method.
@@ -8680,6 +9047,7 @@ export namespace networksecurity_v1beta1 {
     mirroringEndpointGroupAssociations: Resource$Projects$Locations$Mirroringendpointgroupassociations;
     mirroringEndpointGroups: Resource$Projects$Locations$Mirroringendpointgroups;
     operations: Resource$Projects$Locations$Operations;
+    rateLimitPolicies: Resource$Projects$Locations$Ratelimitpolicies;
     sacAttachments: Resource$Projects$Locations$Sacattachments;
     sacRealms: Resource$Projects$Locations$Sacrealms;
     securityProfileGroups: Resource$Projects$Locations$Securityprofilegroups;
@@ -8736,6 +9104,8 @@ export namespace networksecurity_v1beta1 {
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+      this.rateLimitPolicies =
+        new Resource$Projects$Locations$Ratelimitpolicies(this.context);
       this.sacAttachments = new Resource$Projects$Locations$Sacattachments(
         this.context
       );
@@ -28111,6 +28481,851 @@ export namespace networksecurity_v1beta1 {
      * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
+  }
+
+  export class Resource$Projects$Locations$Ratelimitpolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new `RateLimitPolicy` in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networksecurity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networksecurity = google.networksecurity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networksecurity.projects.locations.rateLimitPolicies.create(
+     *     {
+     *       // Required. Specifies the value for parent.
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Required. Specifies the ID of the requesting object. If auto-generating Id server-side, remove this field and rate_limit_policy_id from the method_signature of Create RPC
+     *       rateLimitPolicyId: 'placeholder-value',
+     *       // Optional. Specifies an optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "description": "my_description",
+     *         //   "httpRules": [],
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "rateLimitBuckets": [],
+     *         //   "targets": [],
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Ratelimitpolicies$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ratelimitpolicies$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ratelimitpolicies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ratelimitpolicies$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/rateLimitPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single `RateLimitPolicy`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networksecurity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networksecurity = google.networksecurity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networksecurity.projects.locations.rateLimitPolicies.delete(
+     *     {
+     *       // Required. Specifies the name of the resource.
+     *       name: 'projects/my-project/locations/my-location/rateLimitPolicies/my-rateLimitPolicie',
+     *       // Optional. Specifies an optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Ratelimitpolicies$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ratelimitpolicies$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ratelimitpolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ratelimitpolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single `RateLimitPolicy`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networksecurity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networksecurity = google.networksecurity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networksecurity.projects.locations.rateLimitPolicies.get({
+     *     // Required. Specifies the name of the resource.
+     *     name: 'projects/my-project/locations/my-location/rateLimitPolicies/my-rateLimitPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "httpRules": [],
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "rateLimitBuckets": [],
+     *   //   "targets": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Ratelimitpolicies$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RateLimitPolicy>>;
+    get(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$RateLimitPolicy>,
+      callback: BodyResponseCallback<Schema$RateLimitPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$Get,
+      callback: BodyResponseCallback<Schema$RateLimitPolicy>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$RateLimitPolicy>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ratelimitpolicies$Get
+        | BodyResponseCallback<Schema$RateLimitPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RateLimitPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RateLimitPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RateLimitPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ratelimitpolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Ratelimitpolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RateLimitPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RateLimitPolicy>(parameters);
+      }
+    }
+
+    /**
+     * Lists `RateLimitPolicy` resources in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networksecurity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networksecurity = google.networksecurity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networksecurity.projects.locations.rateLimitPolicies.list({
+     *     // Optional. Filters results.
+     *     filter: 'placeholder-value',
+     *     // Optional. Provides a hint for how to order the results.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Specifies the requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Identifies a token for a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Specifies the parent value for `ListRateLimitPoliciesRequest`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "rateLimitPolicies": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Ratelimitpolicies$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRateLimitPoliciesResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRateLimitPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListRateLimitPoliciesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$List,
+      callback: BodyResponseCallback<Schema$ListRateLimitPoliciesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRateLimitPoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ratelimitpolicies$List
+        | BodyResponseCallback<Schema$ListRateLimitPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRateLimitPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRateLimitPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRateLimitPoliciesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ratelimitpolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ratelimitpolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/rateLimitPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRateLimitPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRateLimitPoliciesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of a single `RateLimitPolicy`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networksecurity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networksecurity = google.networksecurity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networksecurity.projects.locations.rateLimitPolicies.patch({
+     *     // Identifier. Specifies the name of the `RateLimitPolicy` resource.
+     *     name: 'projects/my-project/locations/my-location/rateLimitPolicies/my-rateLimitPolicie',
+     *     // Optional. Specifies an optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Optional. Specifies the fields to be overwritten in the `RateLimitPolicy` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "httpRules": [],
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "rateLimitBuckets": [],
+     *       //   "targets": [],
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Ratelimitpolicies$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Ratelimitpolicies$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ratelimitpolicies$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ratelimitpolicies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ratelimitpolicies$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Ratelimitpolicies$Create extends StandardParameters {
+    /**
+     * Required. Specifies the value for parent.
+     */
+    parent?: string;
+    /**
+     * Required. Specifies the ID of the requesting object. If auto-generating Id server-side, remove this field and rate_limit_policy_id from the method_signature of Create RPC
+     */
+    rateLimitPolicyId?: string;
+    /**
+     * Optional. Specifies an optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RateLimitPolicy;
+  }
+  export interface Params$Resource$Projects$Locations$Ratelimitpolicies$Delete extends StandardParameters {
+    /**
+     * Required. Specifies the name of the resource.
+     */
+    name?: string;
+    /**
+     * Optional. Specifies an optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Ratelimitpolicies$Get extends StandardParameters {
+    /**
+     * Required. Specifies the name of the resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Ratelimitpolicies$List extends StandardParameters {
+    /**
+     * Optional. Filters results.
+     */
+    filter?: string;
+    /**
+     * Optional. Provides a hint for how to order the results.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Specifies the requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Identifies a token for a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Specifies the parent value for `ListRateLimitPoliciesRequest`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Ratelimitpolicies$Patch extends StandardParameters {
+    /**
+     * Identifier. Specifies the name of the `RateLimitPolicy` resource.
+     */
+    name?: string;
+    /**
+     * Optional. Specifies an optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. Specifies the fields to be overwritten in the `RateLimitPolicy` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RateLimitPolicy;
   }
 
   export class Resource$Projects$Locations$Sacattachments {
