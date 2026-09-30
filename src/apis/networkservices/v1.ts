@@ -421,14 +421,21 @@ export namespace networkservices_v1 {
    */
   export interface Schema$DnsPeeringConfig {
     /**
-     * Optional. The domain to peer.
+     * Optional. Deprecated: Use `domains` instead. The domain to peer.
      */
     domain?: string | null;
+    /**
+     * Optional. The domains to peer.
+     */
+    domains?: string[] | null;
     /**
      * Optional. The target network resource name for DNS peering. Format: projects/{project\}/global/networks/{network_id\}
      */
     targetNetwork?: string | null;
   }
+  /**
+   * Egress network config
+   */
   export interface Schema$EgressNetworkConfig {
     /**
      * Optional. DNS Peering configuration.
@@ -439,6 +446,10 @@ export namespace networkservices_v1 {
      */
     networkAttachment?: string | null;
     /**
+     * Optional. The TLS configuration for the egress traffic.
+     */
+    tlsConfig?: Schema$EgressNetworkConfigTlsConfig;
+    /**
      * Optional. Deprecated: Use tls_config instead. The trust config resource name. Format: projects/{project\}/locations/{location\}/trustConfigs/{trust_config\}
      */
     trustConfig?: string | null;
@@ -446,6 +457,19 @@ export namespace networkservices_v1 {
      * Optional. The VPC egress setting.
      */
     vpcEgress?: string | null;
+  }
+  /**
+   * Configuration for TLS connections.
+   */
+  export interface Schema$EgressNetworkConfigTlsConfig {
+    /**
+     * Optional. The additional roots to trust.
+     */
+    additionalRoots?: string | null;
+    /**
+     * Optional. The trust config resource name. Format: projects/{project\}/locations/{location\}/trustConfigs/{trust_config\}
+     */
+    trustConfig?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -730,7 +754,7 @@ export namespace networkservices_v1 {
    */
   export interface Schema$ExtensionChain {
     /**
-     * Required. A set of extensions to execute for the matching request. At least one extension is required. Up to 3 extensions can be defined for each extension chain for `LbTrafficExtension` resource. `LbRouteExtension` and `LbEdgeExtension` chains are limited to 1 extension per extension chain.
+     * Required. A set of extensions to execute for the matching request. At least one extension is required. Up to 3 extensions can be defined for each extension chain for `LbTrafficExtension` resource. `LbRouteExtension`, `LbEdgeExtension`, and `LbTcpExtension` chains are limited to 1 extension per extension chain.
      */
     extensions?: Schema$ExtensionChainExtension[];
     /**
@@ -787,7 +811,7 @@ export namespace networkservices_v1 {
      */
     service?: string | null;
     /**
-     * Optional. A set of events during request or response processing for which this extension is called. For the `LbTrafficExtension` resource, this field is required. For the `LbRouteExtension` resource, this field is optional. If unspecified, `REQUEST_HEADERS` event is assumed as supported. For the `LbEdgeExtension` resource, this field is required and must only contain `REQUEST_HEADERS` event. For the `AuthzExtension` resource, this field is optional. `REQUEST_HEADERS` is the only supported event. If unspecified, `REQUEST_HEADERS` event is assumed as supported.
+     * Optional. A set of events during request or response processing for which this extension is called. For the `LbTrafficExtension` resource, this field is required. For the `LbRouteExtension` resource, this field is optional. If unspecified, `REQUEST_HEADERS` event is assumed as supported. For the `LbEdgeExtension` resource, this field is required and must only contain `REQUEST_HEADERS` event. For the `AuthzExtension` resource, this field is optional. `REQUEST_HEADERS` is the only supported event. If unspecified, `REQUEST_HEADERS` event is assumed as supported. For the `CdnEdgeExtension` resource, this field is optional. Eligible values are `REQUEST_HEADERS` and `RESPONSE_HEADERS`. If unspecified, both are assumed as supported.
      */
     supportedEvents?: string[] | null;
     /**
@@ -2206,7 +2230,7 @@ export namespace networkservices_v1 {
      */
     description?: string | null;
     /**
-     * Optional. Labels as key-value pairs
+     * Optional. Labels as key-value pairs.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -2234,7 +2258,7 @@ export namespace networkservices_v1 {
      */
     state?: Schema$MulticastResourceState;
     /**
-     * Output only. [Output only] The Google-generated UUID for the resource. This value is unique across all multicast consumer association resources. If a consumer association is deleted and another with the same name is created, the new consumer association is assigned a different unique_id.
+     * Output only. [Output only] The Google-generated UUID for the resource. This value is unique across all multicast consumer association resources. If a multicast consumer association is deleted and another with the same name is created, the new multicast consumer association is assigned a different unique_id.
      */
     uniqueId?: string | null;
     /**
@@ -2255,7 +2279,7 @@ export namespace networkservices_v1 {
      */
     description?: string | null;
     /**
-     * Optional. Labels as key-value pairs
+     * Optional. Labels as key-value pairs.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -2267,11 +2291,11 @@ export namespace networkservices_v1 {
      */
     multicastConsumerAssociation?: string | null;
     /**
-     * Optional. The resource name of the multicast group created by the admin in the same zone as this multicast group consumer activation. Use the following format: // `projects/x/locations/x/multicastGroups/x`. This field is deprecated. Use multicast_group_range_activation instead.
+     * Optional. The resource name of the multicast group created by the admin in the same zone as this multicast group consumer activation. Use the following format: `projects/x/locations/x/multicastGroups/x`. This field is deprecated. Use multicast_group_range_activation instead.
      */
     multicastGroup?: string | null;
     /**
-     * Required. The resource name of the multicast group range activation created by the admin in the same zone as this multicast group consumer activation. Use the following format: // `projects/x/locations/x/multicastGroupRangeActivations/x`.
+     * Required. The resource name of the multicast group range activation created by the admin in the same zone as this multicast group consumer activation. Use the following format: `projects/x/locations/x/multicastGroupRangeActivations/x`.
      */
     multicastGroupRangeActivation?: string | null;
     /**
@@ -2287,7 +2311,7 @@ export namespace networkservices_v1 {
      */
     state?: Schema$MulticastResourceState;
     /**
-     * Output only. [Output only] The Google-generated UUID for the resource. This value is unique across all multicast group consumer activation resources. If a group consumer activation is deleted and another with the same name is created, the new group consumer activation is assigned a different unique_id.
+     * Output only. [Output only] The Google-generated UUID for the resource. This value is unique across all multicast group consumer activation resources. If a multicast group consumer activation is deleted and another with the same name is created, the new multicast group consumer activation is assigned a different unique_id.
      */
     uniqueId?: string | null;
     /**
@@ -5711,7 +5735,7 @@ export namespace networkservices_v1 {
      *     name: 'projects/my-project/locations/my-location/authzExtensions/my-authzExtension',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
-     *     // Required. Used to specify the fields to be overwritten in the `AuthzExtension` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not specify a mask, then all fields are overwritten.
+     *     // Optional. Used to specify the fields to be overwritten in the `AuthzExtension` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not specify a mask, then all fields are overwritten.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5907,7 +5931,7 @@ export namespace networkservices_v1 {
      */
     requestId?: string;
     /**
-     * Required. Used to specify the fields to be overwritten in the `AuthzExtension` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not specify a mask, then all fields are overwritten.
+     * Optional. Used to specify the fields to be overwritten in the `AuthzExtension` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not specify a mask, then all fields are overwritten.
      */
     updateMask?: string;
 
@@ -18562,6 +18586,8 @@ export namespace networkservices_v1 {
      *   const res = await networkservices.projects.locations.serviceBindings.create({
      *     // Required. The parent resource of the ServiceBinding. Must be in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees this for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID version 4 with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
      *     // Required. Short name of the ServiceBinding resource to be created.
      *     serviceBindingId: 'placeholder-value',
      *
@@ -18720,6 +18746,8 @@ export namespace networkservices_v1 {
      *   const res = await networkservices.projects.locations.serviceBindings.delete({
      *     // Required. A name of the ServiceBinding to delete. Must be in the format `projects/x/locations/x/serviceBindings/x`.
      *     name: 'projects/my-project/locations/my-location/serviceBindings/my-serviceBinding',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees this for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID version 4 with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -19148,6 +19176,8 @@ export namespace networkservices_v1 {
      *   const res = await networkservices.projects.locations.serviceBindings.patch({
      *     // Identifier. Name of the ServiceBinding resource. It matches pattern `projects/x/locations/x/serviceBindings/`.
      *     name: 'projects/my-project/locations/my-location/serviceBindings/my-serviceBinding',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees this for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID version 4 with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
      *     // Optional. Field mask is used to specify the fields to be overwritten in the ServiceBinding resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
      *
@@ -19276,6 +19306,10 @@ export namespace networkservices_v1 {
      */
     parent?: string;
     /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees this for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID version 4 with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
      * Required. Short name of the ServiceBinding resource to be created.
      */
     serviceBindingId?: string;
@@ -19290,6 +19324,10 @@ export namespace networkservices_v1 {
      * Required. A name of the ServiceBinding to delete. Must be in the format `projects/x/locations/x/serviceBindings/x`.
      */
     name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees this for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID version 4 with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
   }
   export interface Params$Resource$Projects$Locations$Servicebindings$Get extends StandardParameters {
     /**
@@ -19316,6 +19354,10 @@ export namespace networkservices_v1 {
      * Identifier. Name of the ServiceBinding resource. It matches pattern `projects/x/locations/x/serviceBindings/`.
      */
     name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees this for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID version 4 with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
     /**
      * Optional. Field mask is used to specify the fields to be overwritten in the ServiceBinding resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      */
