@@ -193,7 +193,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The parent organization whose publications to list. Format: `organizations/{organization}`.",
+                  "description": "Required. The parent organization whose publications to list, or \"organizations/-\" for all organizations a user has access to. Format: `organizations/{organization}`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -446,7 +446,7 @@
       }
     }
   },
-  "revision": "20260906",
+  "revision": "20260924",
   "rootUrl": "https://webcontentpublisher.googleapis.com/",
   "schemas": {
     "CheckFreeAccessResponse": {
