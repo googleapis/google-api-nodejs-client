@@ -1078,6 +1078,10 @@ export namespace containeranalysis_v1 {
      */
     requestedVerifyOption?: string | null;
     /**
+     * Output only. Worker release resolved from the release channel.
+     */
+    resolvedWorkerRelease?: string | null;
+    /**
      * A list of global environment variables, which are encrypted using a Cloud Key Management Service crypto key. These values must be specified in the build's `Secret`. These variables will be available to all build steps in this build.
      */
     secretEnv?: string[] | null;
@@ -1097,6 +1101,10 @@ export namespace containeranalysis_v1 {
      * This field deprecated; please use `pool.name` instead.
      */
     workerPool?: string | null;
+    /**
+     * Optional. Option to specify which release or release channel (rapid|regular|stable) to use to run this build.
+     */
+    workerRelease?: string | null;
   }
   /**
    * Details about how a build should be executed on a `WorkerPool`. See [running builds in a private pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool) for more information.
@@ -1106,6 +1114,14 @@ export namespace containeranalysis_v1 {
      * The `WorkerPool` resource to execute the build on. You must have `cloudbuild.workerpools.use` on the project hosting the WorkerPool. Format projects/{project\}/locations/{location\}/workerPools/{workerPoolId\}
      */
     name?: string | null;
+    /**
+     * Output only. OUTPUT_ONLY. Worker release resolved from the release channel.
+     */
+    resolvedWorkerRelease?: string | null;
+    /**
+     * Output only. OUTPUT_ONLY. The release or release channel used to run the Build. This is set to the same value as `PrivatePoolV1Config.WorkerConfig.worker_release` for the UI to easily access.
+     */
+    workerRelease?: string | null;
   }
   /**
    * A step in the build pipeline.
