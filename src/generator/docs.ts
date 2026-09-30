@@ -53,7 +53,7 @@ export async function main() {
   console.log(`Generating docs for ${dirs.length} APIs...`);
   await gfs.execa(process.execPath, [
     '--max-old-space-size=4096',
-    './node_modules/.bin/jsdoc',
+    require.resolve('jsdoc/jsdoc.js'),
     '-c',
     '.jsdoc.js',
   ]);
