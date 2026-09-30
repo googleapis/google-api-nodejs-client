@@ -16,9 +16,11 @@ jobs:
       - run: gh repo fork googleapis/google-api-nodejs-client --fork-name google-api-nodejs-client-autodisco --clone
         env:
           GH_TOKEN: ${{ secrets.YOSHI_CODE_BOT_TOKEN }}
-      - run: gh repo sync yoshi-code-bot/google-api-nodejs-client-autodisco --force
-        env:
-          GH_TOKEN: ${{ secrets.YOSHI_CODE_BOT_TOKEN }}
+      - run: |
+          git remote add upstream https://github.com/googleapis/google-api-nodejs-client.git 2>/dev/null || true
+          git fetch upstream main
+          git checkout -B main upstream/main
+        working-directory: ./google-api-nodejs-client-autodisco
       - run: npm install
         working-directory: ./google-api-nodejs-client-autodisco
       - run: npm run update-disclaimers
