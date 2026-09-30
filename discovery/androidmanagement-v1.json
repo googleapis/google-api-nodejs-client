@@ -1265,7 +1265,7 @@
       }
     }
   },
-  "revision": "20260917",
+  "revision": "20260928",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -2962,6 +2962,20 @@
             "The user is allowed to choose whether to stream notifications to other nearby devices which are signed in with the same authenticated managed account."
           ],
           "type": "string"
+        },
+        "taskContinuityHandoff": {
+          "description": "Optional. Controls the task continuity handoff (https://developer.android.com/partners/android-17/features#handoff) feature. This policy applies to the entire device for fully managed devices, and to the work profile for devices with a work profile. Requires Android 17 QPR1 or higher.",
+          "enum": [
+            "TASK_CONTINUITY_HANDOFF_UNSPECIFIED",
+            "TASK_CONTINUITY_HANDOFF_ALLOWED",
+            "TASK_CONTINUITY_HANDOFF_DISALLOWED"
+          ],
+          "enumDescriptions": [
+            "Defaults to TASK_CONTINUITY_HANDOFF_ALLOWED.",
+            "Allows the user to enable or disable the task continuity handoff feature in settings. A NonComplianceDetail with API_LEVEL is reported if the Android version is lower than Android 17 QPR1.",
+            "The task continuity handoff feature is disallowed. A NonComplianceDetail with API_LEVEL is reported if the Android version is lower than Android 17 QPR1."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -2985,7 +2999,7 @@
           "type": "string"
         },
         "crossProfileCopyPaste": {
-          "description": "Whether text copied from one profile (personal or work) can be pasted in the other profile.",
+          "description": "Optional. Whether text copied from one profile (personal or work) can be pasted in the other profile.",
           "enum": [
             "CROSS_PROFILE_COPY_PASTE_UNSPECIFIED",
             "COPY_FROM_WORK_TO_PERSONAL_DISALLOWED",
@@ -2999,7 +3013,7 @@
           "type": "string"
         },
         "crossProfileDataSharing": {
-          "description": "Whether data from one profile (personal or work) can be shared with apps in the other profile. Specifically controls simple data sharing via intents. Management of other cross-profile communication channels, such as contact search, copy/paste, or connected work & personal apps, are configured separately.",
+          "description": "Optional. Whether data from one profile (personal or work) can be shared with apps in the other profile. Specifically controls simple data sharing via intents. Management of other cross-profile communication channels, such as contact search, copy/paste, or connected work & personal apps, are configured separately.",
           "enum": [
             "CROSS_PROFILE_DATA_SHARING_UNSPECIFIED",
             "CROSS_PROFILE_DATA_SHARING_DISALLOWED",
@@ -3016,10 +3030,10 @@
         },
         "exemptionsToShowWorkContactsInPersonalProfile": {
           "$ref": "PackageNameList",
-          "description": "List of apps which are excluded from the ShowWorkContactsInPersonalProfile setting. For this to be set, ShowWorkContactsInPersonalProfile must be set to one of the following values: SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED. In this case, these exemptions act as a blocklist. SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED. In this case, these exemptions act as an allowlist. SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED_EXCEPT_SYSTEM. In this case, these exemptions act as an allowlist, in addition to the already allowlisted system apps.Supported on Android 14 and above. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 14."
+          "description": "Optional. List of apps which are excluded from the ShowWorkContactsInPersonalProfile setting. For this to be set, ShowWorkContactsInPersonalProfile must be set to one of the following values: SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED. In this case, these exemptions act as a blocklist. SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED. In this case, these exemptions act as an allowlist. SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED_EXCEPT_SYSTEM. In this case, these exemptions act as an allowlist, in addition to the already allowlisted system apps.Supported on Android 14 and above. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 14."
         },
         "showWorkContactsInPersonalProfile": {
-          "description": "Whether personal apps can access contacts stored in the work profile.See also exemptions_to_show_work_contacts_in_personal_profile.",
+          "description": "Optional. Whether personal apps can access contacts stored in the work profile.See also exemptions_to_show_work_contacts_in_personal_profile.",
           "enum": [
             "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_UNSPECIFIED",
             "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED",
@@ -3035,7 +3049,7 @@
           "type": "string"
         },
         "workProfileWidgetsDefault": {
-          "description": "Specifies the default behaviour for work profile widgets. If the policy does not specify work_profile_widgets for a specific application, it will behave according to the value specified here.",
+          "description": "Optional. Specifies the default behaviour for work profile widgets. If the policy does not specify work_profile_widgets for a specific application, it will behave according to the value specified here.",
           "enum": [
             "WORK_PROFILE_WIDGETS_DEFAULT_UNSPECIFIED",
             "WORK_PROFILE_WIDGETS_DEFAULT_ALLOWED",
@@ -4849,7 +4863,7 @@
       "id": "KioskCustomization",
       "properties": {
         "deviceSettings": {
-          "description": "Specifies whether the Settings app is allowed in kiosk mode.",
+          "description": "Optional. Specifies whether the Settings app is allowed in kiosk mode.",
           "enum": [
             "DEVICE_SETTINGS_UNSPECIFIED",
             "SETTINGS_ACCESS_ALLOWED",
@@ -4863,7 +4877,7 @@
           "type": "string"
         },
         "powerButtonActions": {
-          "description": "Sets the behavior of a device in kiosk mode when a user presses and holds (long-presses) the Power button.",
+          "description": "Optional. Sets the behavior of a device in kiosk mode when a user presses and holds (long-presses) the Power button.",
           "enum": [
             "POWER_BUTTON_ACTIONS_UNSPECIFIED",
             "POWER_BUTTON_AVAILABLE",
@@ -4877,7 +4891,7 @@
           "type": "string"
         },
         "statusBar": {
-          "description": "Specifies whether system info and notifications are disabled in kiosk mode.",
+          "description": "Optional. Specifies whether system info and notifications are disabled in kiosk mode.",
           "enum": [
             "STATUS_BAR_UNSPECIFIED",
             "NOTIFICATIONS_AND_SYSTEM_INFO_ENABLED",
@@ -4893,7 +4907,7 @@
           "type": "string"
         },
         "systemErrorWarnings": {
-          "description": "Specifies whether system error dialogs for crashed or unresponsive apps are blocked in kiosk mode. When blocked, the system will force-stop the app as if the user chooses the \"close app\" option on the UI.",
+          "description": "Optional. Specifies whether system error dialogs for crashed or unresponsive apps are blocked in kiosk mode. When blocked, the system will force-stop the app as if the user chooses the \"close app\" option on the UI.",
           "enum": [
             "SYSTEM_ERROR_WARNINGS_UNSPECIFIED",
             "ERROR_AND_WARNINGS_ENABLED",
@@ -4907,7 +4921,7 @@
           "type": "string"
         },
         "systemNavigation": {
-          "description": "Specifies which navigation features are enabled (e.g. Home, Overview buttons) in kiosk mode.",
+          "description": "Optional. Specifies which navigation features are enabled (e.g. Home, Overview buttons) in kiosk mode.",
           "enum": [
             "SYSTEM_NAVIGATION_UNSPECIFIED",
             "NAVIGATION_ENABLED",
@@ -5768,57 +5782,57 @@
       "id": "PasswordRequirements",
       "properties": {
         "maximumFailedPasswordsForWipe": {
-          "description": "Number of incorrect device-unlock passwords that can be entered before a device is wiped. A value of 0 means there is no restriction.",
+          "description": "Optional. Number of incorrect device-unlock passwords that can be entered before a device is wiped. A value of 0 means there is no restriction.",
           "format": "int32",
           "type": "integer"
         },
         "passwordExpirationTimeout": {
-          "description": "Password expiration timeout.",
+          "description": "Optional. Password expiration timeout.",
           "format": "google-duration",
           "type": "string"
         },
         "passwordHistoryLength": {
-          "description": "The length of the password history. After setting this field, the user won't be able to enter a new password that is the same as any password in the history. A value of 0 means there is no restriction.",
+          "description": "Optional. The length of the password history. After setting this field, the user won't be able to enter a new password that is the same as any password in the history. A value of 0 means there is no restriction.",
           "format": "int32",
           "type": "integer"
         },
         "passwordMinimumLength": {
-          "description": "The minimum allowed password length. A value of 0 means there is no restriction. Only enforced when password_quality is NUMERIC, NUMERIC_COMPLEX, ALPHABETIC, ALPHANUMERIC, or COMPLEX.",
+          "description": "Optional. The minimum allowed password length. A value of 0 means there is no restriction. Only enforced when password_quality is NUMERIC, NUMERIC_COMPLEX, ALPHABETIC, ALPHANUMERIC, or COMPLEX.",
           "format": "int32",
           "type": "integer"
         },
         "passwordMinimumLetters": {
-          "description": "Minimum number of letters required in the password. Only enforced when password_quality is COMPLEX.",
+          "description": "Optional. Minimum number of letters required in the password. Only enforced when password_quality is COMPLEX.",
           "format": "int32",
           "type": "integer"
         },
         "passwordMinimumLowerCase": {
-          "description": "Minimum number of lower case letters required in the password. Only enforced when password_quality is COMPLEX.",
+          "description": "Optional. Minimum number of lower case letters required in the password. Only enforced when password_quality is COMPLEX.",
           "format": "int32",
           "type": "integer"
         },
         "passwordMinimumNonLetter": {
-          "description": "Minimum number of non-letter characters (numerical digits or symbols) required in the password. Only enforced when password_quality is COMPLEX.",
+          "description": "Optional. Minimum number of non-letter characters (numerical digits or symbols) required in the password. Only enforced when password_quality is COMPLEX.",
           "format": "int32",
           "type": "integer"
         },
         "passwordMinimumNumeric": {
-          "description": "Minimum number of numerical digits required in the password. Only enforced when password_quality is COMPLEX.",
+          "description": "Optional. Minimum number of numerical digits required in the password. Only enforced when password_quality is COMPLEX.",
           "format": "int32",
           "type": "integer"
         },
         "passwordMinimumSymbols": {
-          "description": "Minimum number of symbols required in the password. Only enforced when password_quality is COMPLEX.",
+          "description": "Optional. Minimum number of symbols required in the password. Only enforced when password_quality is COMPLEX.",
           "format": "int32",
           "type": "integer"
         },
         "passwordMinimumUpperCase": {
-          "description": "Minimum number of upper case letters required in the password. Only enforced when password_quality is COMPLEX.",
+          "description": "Optional. Minimum number of upper case letters required in the password. Only enforced when password_quality is COMPLEX.",
           "format": "int32",
           "type": "integer"
         },
         "passwordQuality": {
-          "description": "The required password quality.",
+          "description": "Optional. The required password quality.",
           "enum": [
             "PASSWORD_QUALITY_UNSPECIFIED",
             "BIOMETRIC_WEAK",
@@ -5848,7 +5862,7 @@
           "type": "string"
         },
         "passwordScope": {
-          "description": "The scope that the password requirement applies to.",
+          "description": "Optional. The scope that the password requirement applies to.",
           "enum": [
             "SCOPE_UNSPECIFIED",
             "SCOPE_DEVICE",
@@ -5862,7 +5876,7 @@
           "type": "string"
         },
         "requirePasswordUnlock": {
-          "description": "The length of time after a device or work profile is unlocked using a strong form of authentication (password, PIN, pattern) that it can be unlocked using any other authentication method (e.g. fingerprint, trust agents, face). After the specified time period elapses, only strong forms of authentication can be used to unlock the device or work profile.",
+          "description": "Optional. The length of time after a device or work profile is unlocked using a strong form of authentication (password, PIN, pattern) that it can be unlocked using any other authentication method (e.g. fingerprint, trust agents, face). After the specified time period elapses, only strong forms of authentication can be used to unlock the device or work profile.",
           "enum": [
             "REQUIRE_PASSWORD_UNLOCK_UNSPECIFIED",
             "USE_DEFAULT_DEVICE_TIMEOUT",
@@ -5876,7 +5890,7 @@
           "type": "string"
         },
         "unifiedLockSettings": {
-          "description": "Controls whether a unified lock is allowed for the device and the work profile, on devices running Android 9 and above with a work profile. This can be set only if password_scope is set to SCOPE_PROFILE, the policy will be rejected otherwise. If user has not set a separate work lock and this field is set to REQUIRE_SEPARATE_WORK_LOCK, a NonComplianceDetail is reported with nonComplianceReason set to USER_ACTION.",
+          "description": "Optional. Controls whether a unified lock is allowed for the device and the work profile, on devices running Android 9 and above with a work profile. This can be set only if password_scope is set to SCOPE_PROFILE, the policy will be rejected otherwise. If user has not set a separate work lock and this field is set to REQUIRE_SEPARATE_WORK_LOCK, a NonComplianceDetail is reported with nonComplianceReason set to USER_ACTION.",
           "enum": [
             "UNIFIED_LOCK_SETTINGS_UNSPECIFIED",
             "ALLOW_UNIFIED_WORK_AND_PERSONAL_LOCK",
@@ -5994,6 +6008,27 @@
       },
       "type": "object"
     },
+    "PersonalCrossDevicePolicies": {
+      "description": "Policies controlling cross-device communication in the personal profile.",
+      "id": "PersonalCrossDevicePolicies",
+      "properties": {
+        "taskContinuityHandoff": {
+          "description": "Optional. Controls the task continuity handoff (https://developer.android.com/partners/android-17/features#handoff) feature for the personal profile on company-owned devices with a work profile. To disable Handoff device-wide on a company-owned device, both crossDevicePolicies.taskContinuityHandoff and this policy should be set to TASK_CONTINUITY_HANDOFF_DISALLOWED. Requires Android 17 QPR1 or higher.",
+          "enum": [
+            "TASK_CONTINUITY_HANDOFF_UNSPECIFIED",
+            "TASK_CONTINUITY_HANDOFF_ALLOWED",
+            "TASK_CONTINUITY_HANDOFF_DISALLOWED"
+          ],
+          "enumDescriptions": [
+            "Defaults to TASK_CONTINUITY_HANDOFF_ALLOWED.",
+            "Allows the user to enable or disable the task continuity handoff feature in settings. A NonComplianceDetail with API_LEVEL is reported if the Android version is lower than Android 17 QPR1.",
+            "The task continuity handoff feature is disallowed. A NonComplianceDetail with API_LEVEL is reported if the Android version is lower than Android 17 QPR1."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PersonalUsagePolicies": {
       "description": "Policies controlling personal usage on a company-owned device with a work profile.",
       "id": "PersonalUsagePolicies",
@@ -6022,6 +6057,10 @@
         "cameraDisabled": {
           "description": "If true, the camera is disabled on the personal profile.",
           "type": "boolean"
+        },
+        "crossDevicePolicies": {
+          "$ref": "PersonalCrossDevicePolicies",
+          "description": "Optional. Policies controlling cross-device communication in the personal profile."
         },
         "maxDaysWithWorkOff": {
           "description": "Controls how long the work profile can stay off. The minimum duration must be at least 3 days. Other details are as follows: - If the duration is set to 0, the feature is turned off. - If the duration is set to a value smaller than the minimum duration, the feature returns an error. *Note:* If you want to avoid personal profiles being suspended during long periods of off-time, you can temporarily set a large value for this parameter.",
@@ -6310,7 +6349,7 @@
         },
         "crossProfilePolicies": {
           "$ref": "CrossProfilePolicies",
-          "description": "Cross-profile policies applied on the device."
+          "description": "Optional. Cross-profile policies applied on the device."
         },
         "dataRoamingDisabled": {
           "description": "Whether roaming data services are disabled.",
@@ -6462,7 +6501,7 @@
         },
         "kioskCustomization": {
           "$ref": "KioskCustomization",
-          "description": "Settings controlling the behavior of a device in kiosk mode. To enable kiosk mode, set kioskCustomLauncherEnabled to true or specify an app in the policy with installType KIOSK."
+          "description": "Optional. Settings controlling the behavior of a device in kiosk mode. To enable kiosk mode, set kioskCustomLauncherEnabled to true or specify an app in the policy with installType KIOSK."
         },
         "locationMode": {
           "description": "The degree of location detection enabled.",
@@ -6576,7 +6615,7 @@
           "type": "boolean"
         },
         "passwordPolicies": {
-          "description": "Password requirement policies. Different policies can be set for work profile or fully managed devices by setting the password_scope field in the policy.",
+          "description": "Optional. Password requirement policies. Different policies can be set for work profile or fully managed devices by setting the password_scope field in the policy.",
           "items": {
             "$ref": "PasswordRequirements"
           },
