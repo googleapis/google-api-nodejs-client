@@ -490,10 +490,6 @@ export namespace servicecontrol_v2 {
      * Indicates the orgpolicy violations for this resource.
      */
     orgPolicyViolationInfo?: Schema$OrgPolicyViolationInfo;
-    /**
-     * Indicates the regional access boundary policy violations for this resource.
-     */
-    rabPolicyViolationInfo?: Schema$RabPolicyViolationInfo;
   }
   /**
    * Metadata about the Privileged Access Manager (PAM) backed authorization decisions.
@@ -503,19 +499,6 @@ export namespace servicecontrol_v2 {
      * Output only. If PAM is managing the elevated access, AuditPamBindingId is written to an Identity and Access Management (IAM) policy, which specifies access controls for resources. If the access is granted via an IAM policy with a binding which is managed by Privileged Access Manager, PrivilegedAccessManagerMetadata will contain the AuditPamBindingId.
      */
     pamBindingIds?: Schema$AuditPamBindingId[];
-  }
-  /**
-   * Represents Regional Access Boundary (RAB) Policy Violation information.
-   */
-  export interface Schema$RabPolicyViolationInfo {
-    /**
-     * Optional. Error message detailing what triggered the violation. The error message content originates from the authz library e.g., google3/cloud/security/iam/cap/deny_explanation/internal/make_error_msg.cc. This will be the same (canonical) error message provided by the http error code.
-     */
-    errorMessage?: string | null;
-    /**
-     * Optional. The list of target locations of the resource.
-     */
-    resourceLocations?: string[] | null;
   }
   /**
    * Request message for the Report method.
