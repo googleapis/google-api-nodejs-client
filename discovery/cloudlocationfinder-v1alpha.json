@@ -304,7 +304,7 @@
       }
     }
   },
-  "revision": "20260909",
+  "revision": "20260916",
   "rootUrl": "https://cloudlocationfinder.googleapis.com/",
   "schemas": {
     "CloudLocation": {
@@ -322,13 +322,15 @@
             "CLOUD_LOCATION_TYPE_UNSPECIFIED",
             "CLOUD_LOCATION_TYPE_REGION",
             "CLOUD_LOCATION_TYPE_ZONE",
-            "CLOUD_LOCATION_TYPE_GDCC_ZONE"
+            "CLOUD_LOCATION_TYPE_GDCC_ZONE",
+            "CLOUD_LOCATION_TYPE_GLOBAL"
           ],
           "enumDescriptions": [
             "Unspecified type.",
             "CloudLocation type for region.",
             "CloudLocation type for zone.",
-            "CloudLocation type for Google Distributed Cloud Connected Zone."
+            "CloudLocation type for Google Distributed Cloud Connected Zone.",
+            "CloudLocation type for global."
           ],
           "type": "string"
         },
