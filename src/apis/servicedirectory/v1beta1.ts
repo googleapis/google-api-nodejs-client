@@ -162,7 +162,7 @@ export namespace servicedirectory_v1beta1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Immutable. The resource name for the endpoint in the format `projects/x/locations/x/namespaces/x/services/x/endpoints/x`.
+     * Identifier. The resource name for the endpoint in the format `projects/x/locations/x/namespaces/x/services/x/endpoints/x`.
      */
     name?: string | null;
     /**
@@ -311,7 +311,7 @@ export namespace servicedirectory_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Immutable. The resource name for the namespace in the format `projects/x/locations/x/namespaces/x`.
+     * Identifier. The resource name for the namespace in the format `projects/x/locations/x/namespaces/x`.
      */
     name?: string | null;
     /**
@@ -376,7 +376,7 @@ export namespace servicedirectory_v1beta1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Immutable. The resource name for the service in the format `projects/x/locations/x/namespaces/x/services/x`.
+     * Identifier. The resource name for the service in the format `projects/x/locations/x/namespaces/x/services/x`.
      */
     name?: string | null;
     /**
@@ -1520,7 +1520,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.patch({
-     *     // Immutable. The resource name for the namespace in the format `projects/x/locations/x/namespaces/x`.
+     *     // Identifier. The resource name for the namespace in the format `projects/x/locations/x/namespaces/x`.
      *     name: 'projects/my-project/locations/my-location/namespaces/my-namespace',
      *     // Required. List of fields to be updated in this request.
      *     updateMask: 'placeholder-value',
@@ -2007,7 +2007,7 @@ export namespace servicedirectory_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Namespaces$Patch extends StandardParameters {
     /**
-     * Immutable. The resource name for the namespace in the format `projects/x/locations/x/namespaces/x`.
+     * Identifier. The resource name for the namespace in the format `projects/x/locations/x/namespaces/x`.
      */
     name?: string;
     /**
@@ -2823,7 +2823,7 @@ export namespace servicedirectory_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await servicedirectory.projects.locations.namespaces.services.patch({
-     *       // Immutable. The resource name for the service in the format `projects/x/locations/x/namespaces/x/services/x`.
+     *       // Identifier. The resource name for the service in the format `projects/x/locations/x/namespaces/x/services/x`.
      *       name: 'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
      *       // Required. List of fields to be updated in this request.
      *       updateMask: 'placeholder-value',
@@ -3466,7 +3466,7 @@ export namespace servicedirectory_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Patch extends StandardParameters {
     /**
-     * Immutable. The resource name for the service in the format `projects/x/locations/x/namespaces/x/services/x`.
+     * Identifier. The resource name for the service in the format `projects/x/locations/x/namespaces/x/services/x`.
      */
     name?: string;
     /**
@@ -4152,7 +4152,7 @@ export namespace servicedirectory_v1beta1 {
      *   const res =
      *     await servicedirectory.projects.locations.namespaces.services.endpoints.patch(
      *       {
-     *         // Immutable. The resource name for the endpoint in the format `projects/x/locations/x/namespaces/x/services/x/endpoints/x`.
+     *         // Identifier. The resource name for the endpoint in the format `projects/x/locations/x/namespaces/x/services/x/endpoints/x`.
      *         name: 'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service/endpoints/my-endpoint',
      *         // Required. List of fields to be updated in this request.
      *         updateMask: 'placeholder-value',
@@ -4333,7 +4333,7 @@ export namespace servicedirectory_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Patch extends StandardParameters {
     /**
-     * Immutable. The resource name for the endpoint in the format `projects/x/locations/x/namespaces/x/services/x/endpoints/x`.
+     * Identifier. The resource name for the endpoint in the format `projects/x/locations/x/namespaces/x/services/x/endpoints/x`.
      */
     name?: string;
     /**
