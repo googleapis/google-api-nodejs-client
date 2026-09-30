@@ -182,6 +182,10 @@ export namespace merchantapi_accounts_v1 {
      */
     adultContent?: boolean | null;
     /**
+     * Output only. URI (typically a URL) of the store's homepage.
+     */
+    homePageUri?: string | null;
+    /**
      * Required. The account's [BCP-47 language code](https://tools.ietf.org/html/bcp47), such as `en-US` or `sr-Latn`.
      */
     languageCode?: string | null;
@@ -2441,6 +2445,7 @@ export namespace merchantapi_accounts_v1 {
      *   //   "accountId": "my_accountId",
      *   //   "accountName": "my_accountName",
      *   //   "adultContent": false,
+     *   //   "homePageUri": "my_homePageUri",
      *   //   "languageCode": "my_languageCode",
      *   //   "name": "my_name",
      *   //   "testAccount": false,
@@ -2583,6 +2588,7 @@ export namespace merchantapi_accounts_v1 {
      *       //   "accountId": "my_accountId",
      *       //   "accountName": "my_accountName",
      *       //   "adultContent": false,
+     *       //   "homePageUri": "my_homePageUri",
      *       //   "languageCode": "my_languageCode",
      *       //   "name": "my_name",
      *       //   "testAccount": false,
@@ -2597,6 +2603,7 @@ export namespace merchantapi_accounts_v1 {
      *   //   "accountId": "my_accountId",
      *   //   "accountName": "my_accountName",
      *   //   "adultContent": false,
+     *   //   "homePageUri": "my_homePageUri",
      *   //   "languageCode": "my_languageCode",
      *   //   "name": "my_name",
      *   //   "testAccount": false,
@@ -2874,6 +2881,7 @@ export namespace merchantapi_accounts_v1 {
      *   //   "accountId": "my_accountId",
      *   //   "accountName": "my_accountName",
      *   //   "adultContent": false,
+     *   //   "homePageUri": "my_homePageUri",
      *   //   "languageCode": "my_languageCode",
      *   //   "name": "my_name",
      *   //   "testAccount": false,
@@ -3304,6 +3312,7 @@ export namespace merchantapi_accounts_v1 {
      *       //   "accountId": "my_accountId",
      *       //   "accountName": "my_accountName",
      *       //   "adultContent": false,
+     *       //   "homePageUri": "my_homePageUri",
      *       //   "languageCode": "my_languageCode",
      *       //   "name": "my_name",
      *       //   "testAccount": false,
@@ -3318,6 +3327,7 @@ export namespace merchantapi_accounts_v1 {
      *   //   "accountId": "my_accountId",
      *   //   "accountName": "my_accountName",
      *   //   "adultContent": false,
+     *   //   "homePageUri": "my_homePageUri",
      *   //   "languageCode": "my_languageCode",
      *   //   "name": "my_name",
      *   //   "testAccount": false,
