@@ -1421,6 +1421,10 @@ export namespace discoveryengine_v1beta {
      */
     assistSkippedReasons?: string[] | null;
     /**
+     * Output only. Maps an internal connector agent name (the machine identifier embedded in tool names, e.g. `custom_mcp__agent`) to the connector's human-readable display name. Populated at serving time for custom MCP / agent gateway connectors so user-facing surfaces (e.g. the tool-call chip) can show the connector name instead of its internal identifier. Empty when there are no such connectors.
+     */
+    connectorDisplayNames?: {[key: string]: string} | null;
+    /**
      * Optional. The field contains information about the various policy checks' results like the banned phrases or the Model Armor checks. This field is populated only if the assist call was skipped due to a policy violation.
      */
     customerPolicyEnforcementResult?: Schema$GoogleCloudDiscoveryengineV1alphaAssistAnswerCustomerPolicyEnforcementResult;
@@ -2492,7 +2496,7 @@ export namespace discoveryengine_v1beta {
      */
     syncMode?: string | null;
     /**
-     * Optional. Immutable. User-facing, version-independent label for this connector. May be shared by multiple connectors under the same (project, location, collection, data_source); tag-based lookup returns the one with the greatest create_time. Optional at Create time. Agent Designer resolves connectors via (data_source, tag) when set, falling back to the legacy resource-name lookup when unset, so connectors created before the tag-write launch continue to work without a backfill.
+     * Optional. Immutable. User-facing, version-independent label for this connector. May be shared by multiple connectors under the same (project, location, collection, data_source); tag-based lookup returns the one with the greatest create_time. Optional at Create time. If the caller omits `tag`, the server auto-derives one from the collection_id (falling back to data_source, else a time-based `t-` sentinel). The auto-derived tag is subject to the same immutability guarantee as a caller-supplied one, so callers who care about the exact tag value should provide it explicitly rather than relying on the server default. Agent Designer resolves connectors via (data_source, tag) when set, falling back to the legacy resource-name lookup when unset, so connectors created before the tag-write launch continue to work without a backfill.
      */
     tag?: string | null;
     /**
@@ -4107,6 +4111,10 @@ export namespace discoveryengine_v1beta {
      * Optional. Whether the license config should be auto renewed when it reaches the end date.
      */
     autoRenew?: boolean | null;
+    /**
+     * Output only. The name of the BillingAccountLicenseConfig from which this LicenseConfig is assigned, if this field is set.
+     */
+    billingAccountLicenseConfig?: string | null;
     /**
      * Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.
      */
@@ -7675,6 +7683,10 @@ export namespace discoveryengine_v1beta {
      */
     assistSkippedReasons?: string[] | null;
     /**
+     * Output only. Maps an internal connector agent name (the machine identifier embedded in tool names, e.g. `custom_mcp__agent`) to the connector's human-readable display name. Populated at serving time for custom MCP / agent gateway connectors so user-facing surfaces (e.g. the tool-call chip) can show the connector name instead of its internal identifier. Empty when there are no such connectors.
+     */
+    connectorDisplayNames?: {[key: string]: string} | null;
+    /**
      * Optional. The field contains information about the various policy checks' results like the banned phrases or the Model Armor checks. This field is populated only if the assist call was skipped due to a policy violation.
      */
     customerPolicyEnforcementResult?: Schema$GoogleCloudDiscoveryengineV1betaAssistAnswerCustomerPolicyEnforcementResult;
@@ -8724,7 +8736,7 @@ export namespace discoveryengine_v1beta {
      */
     selectedPosition?: number | null;
     /**
-     * End user selected CompleteQueryResponse.QuerySuggestion.suggestion.
+     * Optional. End user selected CompleteQueryResponse.QuerySuggestion.suggestion.
      */
     selectedSuggestion?: string | null;
   }
@@ -12342,7 +12354,7 @@ export namespace discoveryengine_v1beta {
      */
     orderBy?: string | null;
     /**
-     * The user's search query. See SearchRequest.query for definition. The value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. At least one of search_query or PageInfo.page_category is required for `search` events. Other event types should not set this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Optional. The user's search query. See SearchRequest.query for definition. The value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. At least one of search_query or PageInfo.page_category is required for `search` events. Other event types should not set this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     searchQuery?: string | null;
   }
@@ -14389,7 +14401,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaUserEvent {
     /**
-     * Extra user event features to include in the recommendation model. These attributes must NOT contain data that needs to be parsed or processed further, e.g. JSON or other encodings. If you provide custom attributes for ingested user events, also include them in the user events that you associate with prediction requests. Custom attribute formatting must be consistent between imported events and events provided with prediction requests. This lets the Discovery Engine API use those custom attributes when training models and serving predictions, which helps improve recommendation quality. This field needs to pass all below criteria, otherwise an `INVALID_ARGUMENT` error is returned: * The key must be a UTF-8 encoded string with a length limit of 5,000 characters. * For text attributes, at most 400 values are allowed. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 256 characters. * For number attributes, at most 400 values are allowed. For product recommendations, an example of extra user information is `traffic_channel`, which is how a user arrives at the site. Users can arrive at the site by coming to the site directly, coming through Google search, or in other ways.
+     * Optional. Extra user event features to include in the recommendation model. These attributes must NOT contain data that needs to be parsed or processed further, e.g. JSON or other encodings. If you provide custom attributes for ingested user events, also include them in the user events that you associate with prediction requests. Custom attribute formatting must be consistent between imported events and events provided with prediction requests. This lets the Discovery Engine API use those custom attributes when training models and serving predictions, which helps improve recommendation quality. This field needs to pass all below criteria, otherwise an `INVALID_ARGUMENT` error is returned: * The key must be a UTF-8 encoded string with a length limit of 5,000 characters. * For text attributes, at most 400 values are allowed. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 256 characters. * For number attributes, at most 400 values are allowed. For product recommendations, an example of extra user information is `traffic_channel`, which is how a user arrives at the site. Users can arrive at the site by coming to the site directly, coming through Google search, or in other ways.
      */
     attributes?: {
       [key: string]: Schema$GoogleCloudDiscoveryengineV1betaCustomAttribute;
@@ -15108,7 +15120,7 @@ export namespace discoveryengine_v1beta {
      */
     syncMode?: string | null;
     /**
-     * Optional. Immutable. User-facing, version-independent label for this connector. May be shared by multiple connectors under the same (project, location, collection, data_source); tag-based lookup returns the one with the greatest create_time. Optional at Create time. Agent Designer resolves connectors via (data_source, tag) when set, falling back to the legacy resource-name lookup when unset, so connectors created before the tag-write launch continue to work without a backfill.
+     * Optional. Immutable. User-facing, version-independent label for this connector. May be shared by multiple connectors under the same (project, location, collection, data_source); tag-based lookup returns the one with the greatest create_time. Optional at Create time. If the caller omits `tag`, the server auto-derives one from the collection_id (falling back to data_source, else a time-based `t-` sentinel). The auto-derived tag is subject to the same immutability guarantee as a caller-supplied one, so callers who care about the exact tag value should provide it explicitly rather than relying on the server default. Agent Designer resolves connectors via (data_source, tag) when set, falling back to the legacy resource-name lookup when unset, so connectors created before the tag-write launch continue to work without a backfill.
      */
     tag?: string | null;
     /**
