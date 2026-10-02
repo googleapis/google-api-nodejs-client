@@ -301,13 +301,17 @@ export namespace pubsub_v1 {
     writeMetadata?: boolean | null;
   }
   /**
-   * Configuration for a Bigtable subscription. The Pub/Sub message will be written to a Bigtable row as follows: - row key: subscription name, message ID hash, and message ID delimited by `#`. - columns: message bytes written to a single column family `data` with an empty-string column qualifier. - cell timestamp: the message publish timestamp.
+   * Configuration for a Bigtable subscription, which will write a Pub/Sub message to a Bigtable row. See the ColumnFamilyMapping documentation below for details on how the row keys and columns will be written.
    */
   export interface Schema$BigtableConfig {
     /**
      * Optional. The app profile to use for the Bigtable writes. If not specified, the "default" application profile will be used. The app profile must use single-cluster routing.
      */
     appProfileId?: string | null;
+    /**
+     * Optional. Configuration that allows writing row keys and/or columns based on fields in the input message. The input message format must be JSON if this field is set.
+     */
+    columnFamilyMapping?: Schema$ColumnFamilyMapping;
     /**
      * Optional. The service account to use to write to Bigtable. The subscription creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent](https://cloud.google.com/iam/docs/service-agents), service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      */
@@ -425,6 +429,19 @@ export namespace pubsub_v1 {
     textConfig?: Schema$TextConfig;
   }
   /**
+   * Configuration for writing a Pub/Sub message to a Bigtable row with a user-defined key and writing to column families. If this field is set: - The subscription messages must be formatted as JSON. - The row key mapping is configured in the `key_definition` section. - The top-level fields will be written either: - By default, they will be written to the `data` column family with the field name as the column qualifier. - But if the field name matches an existing column family (except for the default `data` column), then that field will be written to that column family, either as a scalar or its next level nested fields if it's a JSON object. - The cell timestamp will be the message publish timestamp. If the field is not set, the default behavior is to write: - row key: subscription name, message ID hash, and message ID delimited by `#`. - columns: message bytes written to a single column family `data` with an empty-string column qualifier. - cell timestamp: the message publish timestamp.
+   */
+  export interface Schema$ColumnFamilyMapping {
+    /**
+     * Optional. If set, the row key is constructed from the given key fields and delimiter. All key fields must be present in the message; otherwise, the message remains in the subscription backlog.
+     */
+    delimitedKey?: Schema$DelimitedKey;
+    /**
+     * Optional. If set, the row key is constructed from the field names of the table's structured row key ({$universe.dns_names.final_documentation_domain\}/bigtable/docs/manage-row-key-schemas). Note that if the field is nullable in the structured row key, then it need not be present in the message; null will be used instead.
+     */
+    rowKeySchema?: Schema$RowKeySchema;
+  }
+  /**
    * Request for CommitSchema method.
    */
   export interface Schema$CommitSchemaRequest {
@@ -517,6 +534,19 @@ export namespace pubsub_v1 {
      * Optional. The maximum number of delivery attempts for any message. The value must be between 5 and 100. The number of delivery attempts is defined as 1 + (the sum of number of NACKs and number of times the acknowledgment deadline has been exceeded for the message). A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that client libraries may automatically extend ack_deadlines. This field will be honored on a best effort basis. If this parameter is 0, a default value of 5 is used.
      */
     maxDeliveryAttempts?: number | null;
+  }
+  /**
+   * Row key definition based on fields from the message.
+   */
+  export interface Schema$DelimitedKey {
+    /**
+     * Optional. Byte sequence used to delimit concatenated fields. Must be specified if multiple key fields are used. The delimiter must contain at least 1 character and at most 50 characters.
+     */
+    delimiter?: string | null;
+    /**
+     * Optional. The key fields to construct from the row key. The fields must be present in the message as a top-level field, i.e. JSON path expressions will not traverse into nested objects.
+     */
+    keyFields?: string[] | null;
   }
   /**
    * Response for the DetachSubscription method. Reserved for future use.
@@ -798,6 +828,19 @@ export namespace pubsub_v1 {
     version?: number | null;
   }
   /**
+   * Telemetry about a `Publish` operation which may or may not be common across individual RPCs.
+   */
+  export interface Schema$PublishOperation {
+    /**
+     * Optional. If the publisher client is using publish hedging, provides the attempt count for the hedge (starting at 1). A value of 0 indicates that the request was not hedged.
+     */
+    hedgedAttemptCount?: number | null;
+    /**
+     * Optional. Time at which the `publish()` call was initiated in the client library, meaning across all RPC retry attempts, see [grpc retries](https://grpc.io/docs/guides/retry/). Provides a sense of the end-to-end publish duration from the client perspective, across retries.
+     */
+    publishStartTime?: string | null;
+  }
+  /**
    * Request for the Publish method.
    */
   export interface Schema$PublishRequest {
@@ -819,6 +862,15 @@ export namespace pubsub_v1 {
    * Configuration for reading Cloud Storage data written via [Cloud Storage subscriptions](https://cloud.google.com/pubsub/docs/cloudstorage). The data and attributes fields of the originally exported Pub/Sub message will be restored when publishing.
    */
   export interface Schema$PubSubAvroFormat {}
+  /**
+   * Client-side telemetry about Pub/Sub requests, useful for debugging purposes. If the client opts to provide this information, it will be passed as a serialized proto in the `x-goog-pubsub-client-telemetry` header.
+   */
+  export interface Schema$PubsubClientTelemetry {
+    /**
+     * Optional. Telemetry about a `Publish` operation.
+     */
+    publishOperation?: Schema$PublishOperation;
+  }
   /**
    * A message that is published by publishers and consumed by subscribers. The message must contain either a non-empty data field or at least one attribute. Note that client libraries represent this object differently depending on the language. See the corresponding [client library documentation](https://cloud.google.com/pubsub/docs/reference/libraries) for more information. See [quotas and limits] (https://cloud.google.com/pubsub/quotas) for more information about message limits.
    */
@@ -934,6 +986,10 @@ export namespace pubsub_v1 {
      */
     revisionId?: string | null;
   }
+  /**
+   * Row key definition that reads the input message fields based on the field names of the table's structured row key ({$universe.dns_names.final_documentation_domain\}/bigtable/docs/manage-row-key-schemas). Note that if the field is nullable in the structured row key, then it need not be present in the message; null will be used instead.
+   */
+  export interface Schema$RowKeySchema {}
   /**
    * A schema resource.
    */
