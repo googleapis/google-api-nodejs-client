@@ -641,7 +641,7 @@ export namespace saasservicemgmt_v1 {
      */
     unitFilter?: string | null;
     /**
-     * Required. Immutable. UnitKind that this rollout kind corresponds to. Rollouts stemming from this rollout kind will target the units of this unit kind. In other words, this defines the population of target units to be upgraded by rollouts.
+     * Optional. Immutable. UnitKind that this rollout kind corresponds to. Rollouts stemming from this rollout kind will target the units of this unit kind. In other words, this defines the population of target units to be upgraded by rollouts.
      */
     unitKind?: string | null;
     /**
