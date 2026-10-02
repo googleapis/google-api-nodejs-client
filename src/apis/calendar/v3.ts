@@ -4952,6 +4952,7 @@ export namespace calendar_v3 {
      *       'https://www.googleapis.com/auth/calendar.events.public.readonly',
      *       'https://www.googleapis.com/auth/calendar.events.readonly',
      *       'https://www.googleapis.com/auth/calendar.readonly',
+     *       'https://www.googleapis.com/auth/calendar.settings',
      *       'https://www.googleapis.com/auth/calendar.settings.readonly',
      *     ],
      *   });
@@ -8269,6 +8270,7 @@ export namespace calendar_v3 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
      *       'https://www.googleapis.com/auth/calendar.readonly',
+     *       'https://www.googleapis.com/auth/calendar.settings',
      *       'https://www.googleapis.com/auth/calendar.settings.readonly',
      *     ],
      *   });
@@ -8411,6 +8413,7 @@ export namespace calendar_v3 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
      *       'https://www.googleapis.com/auth/calendar.readonly',
+     *       'https://www.googleapis.com/auth/calendar.settings',
      *       'https://www.googleapis.com/auth/calendar.settings.readonly',
      *     ],
      *   });
@@ -8561,6 +8564,7 @@ export namespace calendar_v3 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/calendar',
      *       'https://www.googleapis.com/auth/calendar.readonly',
+     *       'https://www.googleapis.com/auth/calendar.settings',
      *       'https://www.googleapis.com/auth/calendar.settings.readonly',
      *     ],
      *   });
