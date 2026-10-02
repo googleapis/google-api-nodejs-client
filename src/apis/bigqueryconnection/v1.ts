@@ -171,6 +171,10 @@ export namespace bigqueryconnection_v1 {
      * Authentication using Google owned service account to assume into customer's AWS IAM Role.
      */
     accessRole?: Schema$AwsAccessRole;
+    /**
+     * Optional. Configuration options for cross-cloud caching of data and metadata files.
+     */
+    crossCloudCacheOptions?: Schema$CrossCloudCacheOptions;
   }
   /**
    * Container for connection properties specific to Azure.
@@ -184,6 +188,10 @@ export namespace bigqueryconnection_v1 {
      * Output only. The client id of the Azure Active Directory Application.
      */
     clientId?: string | null;
+    /**
+     * Optional. Configuration options for cross-cloud caching of data and metadata files.
+     */
+    crossCloudCacheOptions?: Schema$CrossCloudCacheOptions;
     /**
      * The id of customer's directory that host the data.
      */
@@ -539,6 +547,15 @@ export namespace bigqueryconnection_v1 {
     username?: string | null;
   }
   /**
+   * Options for caching cross-cloud data and metadata files.
+   */
+  export interface Schema$CrossCloudCacheOptions {
+    /**
+     * Optional. Whether cross-cloud caching is enabled. This only affects queries through BigQuery. If this value is `true`, read data and metadata are stored in a cache, which can increase performance and decrease network egress costs for cross-cloud queries. If this value is `false`, cross-cloud caching is disabled.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -628,6 +645,10 @@ export namespace bigqueryconnection_v1 {
    * Connection properties specific to Salesforce DataCloud. This is intended for use only by Salesforce partner projects.
    */
   export interface Schema$SalesforceDataCloudProperties {
+    /**
+     * Optional. Configuration options for cross-cloud caching of data and metadata files.
+     */
+    crossCloudCacheOptions?: Schema$CrossCloudCacheOptions;
     /**
      * Output only. A unique Google-owned and Google-generated service account identity for the connection.
      */
