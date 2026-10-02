@@ -1277,6 +1277,39 @@ export namespace storage_v1 {
     value?: string | null;
   }
   /**
+   * A full representation of an object context.
+   */
+  export interface Schema$ObjectFullContext {
+    /**
+     * The time at which the object context was created. This value is in RFC 3339 format.
+     */
+    createTime?: string | null;
+    /**
+     * The extended data of the object context.
+     */
+    extendedData?: {[key: string]: any} | null;
+    /**
+     * The key of the object context.
+     */
+    key?: string | null;
+    /**
+     * The kind of item this is. For ObjectFullContext, this is always storage#objectFullContext.
+     */
+    kind?: string | null;
+    /**
+     * The type of the object context.
+     */
+    type?: string | null;
+    /**
+     * The time at which the object context was last updated. This value is in RFC 3339 format.
+     */
+    updateTime?: string | null;
+    /**
+     * The value of the object context.
+     */
+    value?: string | null;
+  }
+  /**
    * A list of objects.
    */
   export interface Schema$Objects {
@@ -14834,6 +14867,164 @@ export namespace storage_v1 {
         return createAPIRequest<Schema$Object>(parameters);
       }
     }
+
+    /**
+     * Retrieves a specific object context with its extended data for a given object.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.viewFullContext({
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'placeholder-value',
+     *     // Key identifying the object context to retrieve.
+     *     contextKey: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "extendedData": {},
+     *   //   "key": "my_key",
+     *   //   "kind": "my_kind",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "value": "my_value"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    viewFullContext(
+      params: Params$Resource$Objects$Viewfullcontext,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    viewFullContext(
+      params?: Params$Resource$Objects$Viewfullcontext,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectFullContext>>;
+    viewFullContext(
+      params: Params$Resource$Objects$Viewfullcontext,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    viewFullContext(
+      params: Params$Resource$Objects$Viewfullcontext,
+      options: MethodOptions | BodyResponseCallback<Schema$ObjectFullContext>,
+      callback: BodyResponseCallback<Schema$ObjectFullContext>
+    ): void;
+    viewFullContext(
+      params: Params$Resource$Objects$Viewfullcontext,
+      callback: BodyResponseCallback<Schema$ObjectFullContext>
+    ): void;
+    viewFullContext(
+      callback: BodyResponseCallback<Schema$ObjectFullContext>
+    ): void;
+    viewFullContext(
+      paramsOrCallback?:
+        | Params$Resource$Objects$Viewfullcontext
+        | BodyResponseCallback<Schema$ObjectFullContext>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ObjectFullContext>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ObjectFullContext>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectFullContext>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Objects$Viewfullcontext;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objects$Viewfullcontext;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/storage/v1/b/{bucket}/o/{object}/viewFullContext'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'object'],
+        pathParams: ['bucket', 'object'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ObjectFullContext>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ObjectFullContext>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Objects$Bulkrestore extends StandardParameters {
@@ -15526,6 +15717,28 @@ export namespace storage_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Object;
+  }
+  export interface Params$Resource$Objects$Viewfullcontext extends StandardParameters {
+    /**
+     * Name of the bucket in which the object resides.
+     */
+    bucket?: string;
+    /**
+     * Key identifying the object context to retrieve.
+     */
+    contextKey?: string;
+    /**
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     */
+    generation?: string;
+    /**
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     */
+    object?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
+     */
+    userProject?: string;
   }
 
   export class Resource$Operations {
