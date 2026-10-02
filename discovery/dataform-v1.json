@@ -3220,7 +3220,7 @@
       }
     }
   },
-  "revision": "20260920",
+  "revision": "20260906",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -4163,7 +4163,7 @@
       "id": "FileSearchResult",
       "properties": {
         "path": {
-          "description": "File system path relative to the file tree root.",
+          "description": "File system path relative to the workspace root.",
           "type": "string"
         }
       },

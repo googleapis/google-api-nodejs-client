@@ -958,13 +958,13 @@ export namespace serviceusage_v1beta1 {
     serviceId?: string | null;
   }
   /**
-   * The consumer policy rule that defines enabled services and catalogs.
+   * The consumer policy rule that defines enabled services and groups.
    */
   export interface Schema$EnableRule {
     /**
-     * The names of the catalogs that are enabled. Example: `catalogs/default-cloud-services`.
+     * Deprecated: EnableType is not supported.
      */
-    catalogs?: string[] | null;
+    enableType?: string | null;
     /**
      * The names of the services that are enabled. Example: `services/storage.googleapis.com`.
      */
@@ -1554,10 +1554,6 @@ export namespace serviceusage_v1beta1 {
    * The consumer policy rule that defines enabled services, groups, and categories.
    */
   export interface Schema$GoogleApiServiceusageV2betaEnableRule {
-    /**
-     * The names of the catalogs that are enabled. Example: `catalogs/default-cloud-services`.
-     */
-    catalogs?: string[] | null;
     /**
      * The names of the services that are enabled. Example: `services/storage.googleapis.com`.
      */

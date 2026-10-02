@@ -2423,7 +2423,7 @@
       }
     }
   },
-  "revision": "20260923",
+  "revision": "20260914",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -2667,15 +2667,15 @@
       "type": "object"
     },
     "ExternalId": {
-      "description": "Represents an external identifier that links a Group in the Cloud Identity Groups API with a corresponding entity in an external directory or identity provider.",
+      "description": "An external identifier for an entity in the Cloud Identity Groups API. Used to link a `Group` in Cloud Identity Groups API with a corresponding entity in an external identity system or directory.",
       "id": "ExternalId",
       "properties": {
         "id": {
-          "description": "Required. The unique identifier assigned by the external identity provider. The API does not enforce unique IDs across entities, but clients **must** ensure IDs are unique within their namespace.",
+          "description": "Required. The unique identifier assigned by the external identity provider. The API does not enforce uniqueness of IDs across entities, but clients should ensure IDs are unique within their namespace.",
           "type": "string"
         },
         "namespace": {
-          "description": "Required. The namespace in which the entity exists. The only supported namespace is `system/external`.",
+          "description": "Required. The namespace in which the entity exists. Cannot be empty. Currently, the only allowable namespace is `\"system/external\"`.",
           "type": "string"
         }
       },
@@ -3290,8 +3290,7 @@
             "WINDOWS",
             "MAC_OS",
             "LINUX",
-            "CHROME_OS",
-            "GOOGLEBOOK"
+            "CHROME_OS"
           ],
           "enumDescriptions": [
             "Unknown device type",
@@ -3301,8 +3300,7 @@
             "Device is a Windows device.",
             "Device is a MacOS device.",
             "Device is a Linux device.",
-            "Device is a ChromeOS device.",
-            "Device is a Googlebook device."
+            "Device is a ChromeOS device."
           ],
           "readOnly": true,
           "type": "string"
@@ -3778,7 +3776,7 @@
           "description": "Optional. Dynamic group metadata like queries and status."
         },
         "externalIds": {
-          "description": "Optional. External identifiers associated with the `Group`. Allows external identity providers and directory sync tools link their native unique identifiers with this group. The only supported namespace is `system/external`.",
+          "description": "Optional. External identifiers associated with the `Group`. Enables external identity providers and directory sync tools to link their native unique identifiers with this group. Currently, the only allowable namespace is `\"system/external\"`.",
           "items": {
             "$ref": "ExternalId"
           },

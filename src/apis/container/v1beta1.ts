@@ -846,7 +846,7 @@ export namespace container_v1beta1 {
      */
     controlPlaneEndpointsConfig?: Schema$ControlPlaneEndpointsConfig;
     /**
-     * Configuration for the fine-grained cost allocation feature.
+     * Configuration for the fine-grained cost management feature.
      */
     costManagementConfig?: Schema$CostManagementConfig;
     /**
@@ -1315,7 +1315,7 @@ export namespace container_v1beta1 {
      */
     desiredControlPlaneEndpointsConfig?: Schema$ControlPlaneEndpointsConfig;
     /**
-     * The desired configuration for the fine-grained cost allocation feature.
+     * The desired configuration for the fine-grained cost management feature.
      */
     desiredCostManagementConfig?: Schema$CostManagementConfig;
     /**
@@ -1812,7 +1812,7 @@ export namespace container_v1beta1 {
     ipEndpointsConfig?: Schema$IPEndpointsConfig;
   }
   /**
-   * Configuration for fine-grained cost allocation feature.
+   * Configuration for fine-grained cost management feature.
    */
   export interface Schema$CostManagementConfig {
     /**

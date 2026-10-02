@@ -741,19 +741,6 @@ export namespace storagebatchoperations_v1 {
     temporaryHold?: string | null;
   }
   /**
-   * Operation metadata returned by the CLH during resource state reconciliation.
-   */
-  export interface Schema$ReconciliationOperationMetadata {
-    /**
-     * DEPRECATED. Use exclusive_action instead.
-     */
-    deleteResource?: boolean | null;
-    /**
-     * Excluisive action returned by the CLH.
-     */
-    exclusiveAction?: string | null;
-  }
-  /**
    * Describes options for object rewrite.
    */
   export interface Schema$RewriteObject {

@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20260927",
+  "revision": "20260916",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -2422,10 +2422,6 @@
           "$ref": "GoogleCloudAiplatformV1beta1PartMediaResolution",
           "description": "per part media resolution. Media resolution for the input media."
         },
-        "speechMetadata": {
-          "$ref": "GoogleCloudAiplatformV1beta1SpeechMetadata",
-          "description": "Optional. Turn-level metadata for speech generation (e.g. Daikon speaker/style). May be set alongside `text` to attach speaker and style information to a text part."
-        },
         "text": {
           "description": "Optional. The text content of the part. When sent from the VSCode Gemini Code Assist extension, references to @mentioned items will be converted to markdown boldface text. For example `@my-repo` will be converted to and sent as `**my-repo**` by the IDE agent.",
           "type": "string"
@@ -3188,21 +3184,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudAiplatformV1beta1SpeechMetadata": {
-      "description": "Structured Metadata Sub-Message for Part",
-      "id": "GoogleCloudAiplatformV1beta1SpeechMetadata",
-      "properties": {
-        "speaker": {
-          "description": "Optional. Identifies which speaker is speaking this turn.",
-          "type": "string"
-        },
-        "style": {
-          "description": "Optional. Natural language description of the vocal style (e.g., \"cheerful\").",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudAiplatformV1beta1TextResponseFormat": {
       "description": "Configuration for text-specific output formatting.",
       "id": "GoogleCloudAiplatformV1beta1TextResponseFormat",
@@ -3293,33 +3274,6 @@
       "description": "Tool to support computer use.",
       "id": "GoogleCloudAiplatformV1beta1ToolComputerUse",
       "properties": {
-        "disabledSafetyPolicies": {
-          "description": "Optional. Disabled safety policies for computer use.",
-          "items": {
-            "enum": [
-              "SAFETY_POLICY_UNSPECIFIED",
-              "FINANCIAL_TRANSACTIONS",
-              "SENSITIVE_DATA_MODIFICATION",
-              "COMMUNICATION_TOOL",
-              "ACCOUNT_CREATION",
-              "DATA_MODIFICATION",
-              "USER_CONSENT_MANAGEMENT",
-              "LEGAL_TERMS_AND_AGREEMENTS"
-            ],
-            "enumDescriptions": [
-              "Unspecified safety policy. This value should not be used.",
-              "Financial transactions safety policy.",
-              "Sensitive data modification safety policy.",
-              "Communication tool safety policy.",
-              "Account creation safety policy.",
-              "Data modification safety policy.",
-              "User consent management safety policy.",
-              "Legal terms and agreements safety policy."
-            ],
-            "type": "string"
-          },
-          "type": "array"
-        },
         "enablePromptInjectionDetection": {
           "description": "Optional. Enables the prompt injection detection check on computer-use request.",
           "type": "boolean"
@@ -3727,10 +3681,6 @@
         "replicatedVoiceConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1ReplicatedVoiceConfig",
           "description": "Optional. The configuration for a replicated voice. This enables users to replicate a voice from an audio sample."
-        },
-        "voice": {
-          "description": "Optional. The speaker identifier for synthesis. Supported formats: * Speaker name for prebuilt voices (for example, `Orus` or `Kore`). * Voice ID for stored voices (for example, `voice_xxx`). * Voice replication key (for example, `voicekey_xxx`).",
-          "type": "string"
         }
       },
       "type": "object"

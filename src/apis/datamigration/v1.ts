@@ -713,10 +713,6 @@ export namespace datamigration_v1 {
      */
     hasUncommittedChanges?: boolean | null;
     /**
-     * Optional. Output only. The timestamp when the workspace was last applied.
-     */
-    latestApplyTime?: string | null;
-    /**
      * Output only. The latest commit ID.
      */
     latestCommitId?: string | null;
@@ -724,10 +720,6 @@ export namespace datamigration_v1 {
      * Output only. The timestamp when the workspace was committed.
      */
     latestCommitTime?: string | null;
-    /**
-     * Optional. Output only. The timestamp when the workspace was last converted.
-     */
-    latestConvertTime?: string | null;
     /**
      * Full name of the workspace resource, in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
      */
@@ -1035,27 +1027,6 @@ export namespace datamigration_v1 {
     issueId?: string[] | null;
   }
   /**
-   * An entity identifier.
-   */
-  export interface Schema$EntityId {
-    /**
-     * The parent entity full name.
-     */
-    parentName?: string | null;
-    /**
-     * The type of the database entity (schema, table, view, ...).
-     */
-    parentType?: string | null;
-    /**
-     * The short name (e.g. table name) of the entity.
-     */
-    shortName?: string | null;
-    /**
-     * The type of the database entity (schema, table, view, index, ...).
-     */
-    type?: string | null;
-  }
-  /**
    * Issue related to the entity.
    */
   export interface Schema$EntityIssue {
@@ -1144,47 +1115,6 @@ export namespace datamigration_v1 {
     newSchema?: string | null;
   }
   /**
-   * A single entity for the UI view.
-   */
-  export interface Schema$EntityStatusView {
-    /**
-     * Optional. The set of entities that this entity directly depends on, i.e., it does not include transitive dependencies. Provided only for FULL_WITH_DEPENDENCIES view. Dependencies are provided according to the request tree type.
-     */
-    dependencies?: Schema$EntityId[];
-    /**
-     * The DDL Kind selected for apply. If UNSPECIFIED, the entity wasn't converted yet. For SUMMARY view, this rolls up from descendants with the logic of UNSPECIFIED < DETERMINISTIC < AI. USER_EDIT is not propagated.
-     */
-    draftDdlKind?: string | null;
-    /**
-     * The entity short name and type from the DRAFT tree.
-     */
-    draftEntity?: Schema$EntityId;
-    /**
-     * If ddl_kind is USER_EDIT, this holds the DDL kind of the original content - DETERMINISTIC or AI. Otherwise, this is DDL_KIND_UNSPECIFIED. Relevant only for FULL view.
-     */
-    editedDdlKind?: string | null;
-    /**
-     * Unresolved issues information according to the current Draft DdlKind.
-     */
-    issues?: Schema$IssueAggregateData;
-    /**
-     * Resolved issues information according to the current Draft DdlKind.
-     */
-    resolvedIssues?: Schema$IssueAggregateData;
-    /**
-     * The entity short name and type from the SOURCE tree.
-     */
-    sourceEntity?: Schema$EntityId;
-    /**
-     * Optional. Whether the entity has successfully generated and executed validation tests.
-     */
-    testedEntity?: boolean | null;
-    /**
-     * Was the entity applied on the destination. Relevant only for FULL view.
-     */
-    wasApplied?: boolean | null;
-  }
-  /**
    * Describes the cause of the error with structured details. Example of an error when contacting the "pubsub.googleapis.com" API when it is not enabled: { "reason": "API_DISABLED" "domain": "googleapis.com" "metadata": { "resource": "projects/123", "service": "pubsub.googleapis.com" \} \} This response indicates that the pubsub.googleapis.com API is not enabled. Example of an error that is returned when attempting to create a Spanner instance in a region that is out of stock: { "reason": "STOCKOUT" "domain": "spanner.googleapis.com", "metadata": { "availableRegions": "us-central1,us-east2" \} \}
    */
   export interface Schema$ErrorInfo {
@@ -1221,53 +1151,6 @@ export namespace datamigration_v1 {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
-  }
-  /**
-   * Response message for DataMigrationService.FetchEntitiesStatusView.
-   */
-  export interface Schema$FetchEntitiesStatusViewResponse {
-    /**
-     * A list of the entities matching the request, sorted by their full name (source name if requested the SOURCE tree, draft name if requested the DRAFT tree). Sub-entities (such as indexes) always appear immediately after their parent element.
-     */
-    entities?: Schema$EntityStatusView[];
-    /**
-     * A token which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
-     */
-    nextPageToken?: string | null;
-  }
-  /**
-   * Response for fetching issues of a conversion workspace.
-   */
-  export interface Schema$FetchIssuesResponse {
-    /**
-     * The list of issues for the conversion workspace.
-     */
-    issues?: Schema$Issue[];
-    /**
-     * A token which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
-     */
-    nextPageToken?: string | null;
-  }
-  /**
-   * Issue position.
-   */
-  export interface Schema$FetchIssuesResponseIssuePosition {
-    /**
-     * Issue column number.
-     */
-    column?: number | null;
-    /**
-     * Issue length.
-     */
-    length?: number | null;
-    /**
-     * Issue line number.
-     */
-    line?: number | null;
-    /**
-     * Issue offset.
-     */
-    offset?: number | null;
   }
   /**
    * Response message for a 'FetchStaticIps' request.
@@ -1539,72 +1422,6 @@ export namespace datamigration_v1 {
      * Required. Relation between source value and compare value
      */
     valueComparison?: string | null;
-  }
-  /**
-   * Issue related to the entity.
-   */
-  export interface Schema$Issue {
-    /**
-     * The category ID.
-     */
-    categoryId?: string | null;
-    /**
-     * Entity full name.
-     */
-    entityFullName?: string | null;
-    /**
-     * The entity type (if the DDL is for a sub entity).
-     */
-    entityType?: string | null;
-    /**
-     * The group ID.
-     */
-    groupId?: string | null;
-    /**
-     * Unique Issue ID. Use this ID when referencing a specific issue in other API calls, such as DataMigrationService.SetIssuesState.
-     */
-    id?: string | null;
-    /**
-     * The source of the issue (deterministic, gemini, etc).
-     */
-    issueOrigin?: string | null;
-    /**
-     * Output only. The state of the issue (open, resolved, etc).
-     */
-    issueState?: string | null;
-    /**
-     * Issue detailed message.
-     */
-    message?: string | null;
-    /**
-     * The position of the issue found, if relevant.
-     */
-    position?: Schema$FetchIssuesResponseIssuePosition;
-    /**
-     * Severity of the issue.
-     */
-    severity?: string | null;
-    /**
-     * The type of the issue.
-     */
-    type?: string | null;
-  }
-  /**
-   * Aggregate issue information.
-   */
-  export interface Schema$IssueAggregateData {
-    /**
-     * Number of error issues.
-     */
-    errorCount?: number | null;
-    /**
-     * Number of info issues.
-     */
-    infoCount?: number | null;
-    /**
-     * Number of warning issues.
-     */
-    warningCount?: number | null;
   }
   /**
    * Describes a URL link.
@@ -3001,39 +2818,6 @@ export namespace datamigration_v1 {
      */
     startValue?: string | null;
   }
-  /**
-   * Request message for DataMigrationService.SetDraftEntityDdl.
-   */
-  export interface Schema$SetDraftEntityDdlRequest {
-    /**
-     * Optional. Which DDL (Deterministic/AI) the updated DDL is based on. Defaults to DETERMINISTIC if not specified.
-     */
-    basedOnDdlKind?: string | null;
-    /**
-     * Required. The DDL to set.
-     */
-    ddl?: string | null;
-    /**
-     * Optional. The updated DDL Kind. Can be either USER_EDIT (default) or AI.
-     */
-    ddlKind?: string | null;
-    /**
-     * Required. The draft entity full name from the tree. .
-     */
-    entityName?: string | null;
-    /**
-     * Required. The type of the database entity (table, view, index, ...).
-     */
-    entityType?: string | null;
-    /**
-     * Optional. An optional explanation of the generated DDL if ddl_kind is AI.
-     */
-    explanation?: string | null;
-  }
-  /**
-   * Response message for DataMigrationService.SetDraftEntityDdl.
-   */
-  export interface Schema$SetDraftEntityDdlResponse {}
   /**
    * Request message for `SetIamPolicy` method.
    */
@@ -6243,10 +6027,8 @@ export namespace datamigration_v1 {
      *         //   "displayName": "my_displayName",
      *         //   "globalSettings": {},
      *         //   "hasUncommittedChanges": false,
-     *         //   "latestApplyTime": "my_latestApplyTime",
      *         //   "latestCommitId": "my_latestCommitId",
      *         //   "latestCommitTime": "my_latestCommitTime",
-     *         //   "latestConvertTime": "my_latestConvertTime",
      *         //   "name": "my_name",
      *         //   "source": {},
      *         //   "sourceProvider": "my_sourceProvider",
@@ -6829,319 +6611,6 @@ export namespace datamigration_v1 {
     }
 
     /**
-     * An internal, RPC only method that returns a list of the (filtered) entities with minimal information required for the entities tree view.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await datamigration.projects.locations.conversionWorkspaces.fetchEntitiesStatusView(
-     *       {
-     *         // Required. Name of the conversion workspace resource whose database entities are described. Must be in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
-     *         conversionWorkspace:
-     *           'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
-     *         // Optional. The view to fetch. If not specified, FULL is used.
-     *         fetchView: 'placeholder-value',
-     *         // Optional. Filter the returned entities based on AIP-160 standard.
-     *         filter: 'placeholder-value',
-     *         // Optional. The maximum number of entities to return. The service may return fewer entities than the value specifies. Default is 100000.
-     *         pageSize: 'placeholder-value',
-     *         // Optional. The nextPageToken value received in the previous call to conversionWorkspace.FetchEntitiesStatusView, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspace.FetchEntitiesStatusView must match the call that provided the page token, except for the page_size parameter.
-     *         pageToken: 'placeholder-value',
-     *         // Required. The tree to fetch.
-     *         tree: 'placeholder-value',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entities": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    fetchEntitiesStatusView(
-      params: Params$Resource$Projects$Locations$Conversionworkspaces$Fetchentitiesstatusview,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    fetchEntitiesStatusView(
-      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Fetchentitiesstatusview,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$FetchEntitiesStatusViewResponse>>;
-    fetchEntitiesStatusView(
-      params: Params$Resource$Projects$Locations$Conversionworkspaces$Fetchentitiesstatusview,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    fetchEntitiesStatusView(
-      params: Params$Resource$Projects$Locations$Conversionworkspaces$Fetchentitiesstatusview,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FetchEntitiesStatusViewResponse>,
-      callback: BodyResponseCallback<Schema$FetchEntitiesStatusViewResponse>
-    ): void;
-    fetchEntitiesStatusView(
-      params: Params$Resource$Projects$Locations$Conversionworkspaces$Fetchentitiesstatusview,
-      callback: BodyResponseCallback<Schema$FetchEntitiesStatusViewResponse>
-    ): void;
-    fetchEntitiesStatusView(
-      callback: BodyResponseCallback<Schema$FetchEntitiesStatusViewResponse>
-    ): void;
-    fetchEntitiesStatusView(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Conversionworkspaces$Fetchentitiesstatusview
-        | BodyResponseCallback<Schema$FetchEntitiesStatusViewResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$FetchEntitiesStatusViewResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$FetchEntitiesStatusViewResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$FetchEntitiesStatusViewResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Fetchentitiesstatusview;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Fetchentitiesstatusview;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://datamigration.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1/{+conversionWorkspace}:fetchEntitiesStatusView'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['conversionWorkspace'],
-        pathParams: ['conversionWorkspace'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$FetchEntitiesStatusViewResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$FetchEntitiesStatusViewResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * List issues of conversion workspace operations e.g. conversion.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await datamigration.projects.locations.conversionWorkspaces.fetchIssues({
-     *       // Optional. If 'true', gets all issues matching the filter. Otherwise, for each entity only the issues matching the DdlKind chosen for application on the destination are returned.
-     *       allIssues: 'placeholder-value',
-     *       // Required. Conversion workspace with issues to fetch. Must be in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
-     *       conversionWorkspace:
-     *         'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
-     *       // Optional. AIP-160 standard filter. Supporting both entity and issue fields. Supported fields: - `name` / `fullname`: The entity full name. - `type`: The entity type (e.g. `TABLE`, `VIEW`, `INDEX`, `TRIGGER`). - `ddlkind`: The kind of DDL (e.g. `DDL_KIND_SOURCE`, `DDL_KIND_AI`, `DDL_KIND_DETERMINISTIC`). - `issue.severity`: The severity of the issue (e.g. `INFO`, `WARNING`, `ERROR`). - `issue.state`: The state of the issue (e.g. `OPEN`, `RESOLVED`). - `issue.origin`: The origin of the issue (e.g. `DETERMINISTIC`, `AI`). - `issue.category_id`: The category ID of the issue. - `issue.group_id`: The group ID of the issue.
-     *       filter: 'placeholder-value',
-     *       // Optional. The maximum number of issues to return. The service may return fewer issues than the value specifies.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. The FetchIssuesResponse.next_page_token value received in the previous call to FetchIssues, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to FetchIssues must match the call that provided the page token, except for the page_size parameter.
-     *       pageToken: 'placeholder-value',
-     *       // Optional. The tree to fetch issues from. If not specified, source tree is assumed.
-     *       tree: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "issues": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    fetchIssues(
-      params: Params$Resource$Projects$Locations$Conversionworkspaces$Fetchissues,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    fetchIssues(
-      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Fetchissues,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$FetchIssuesResponse>>;
-    fetchIssues(
-      params: Params$Resource$Projects$Locations$Conversionworkspaces$Fetchissues,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    fetchIssues(
-      params: Params$Resource$Projects$Locations$Conversionworkspaces$Fetchissues,
-      options: MethodOptions | BodyResponseCallback<Schema$FetchIssuesResponse>,
-      callback: BodyResponseCallback<Schema$FetchIssuesResponse>
-    ): void;
-    fetchIssues(
-      params: Params$Resource$Projects$Locations$Conversionworkspaces$Fetchissues,
-      callback: BodyResponseCallback<Schema$FetchIssuesResponse>
-    ): void;
-    fetchIssues(
-      callback: BodyResponseCallback<Schema$FetchIssuesResponse>
-    ): void;
-    fetchIssues(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Conversionworkspaces$Fetchissues
-        | BodyResponseCallback<Schema$FetchIssuesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$FetchIssuesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$FetchIssuesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$FetchIssuesResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Fetchissues;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Fetchissues;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://datamigration.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+conversionWorkspace}:fetchIssues').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['conversionWorkspace'],
-        pathParams: ['conversionWorkspace'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$FetchIssuesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$FetchIssuesResponse>(parameters);
-      }
-    }
-
-    /**
      * Gets details of a single conversion workspace.
      * @example
      * ```js
@@ -7185,10 +6654,8 @@ export namespace datamigration_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "globalSettings": {},
      *   //   "hasUncommittedChanges": false,
-     *   //   "latestApplyTime": "my_latestApplyTime",
      *   //   "latestCommitId": "my_latestCommitId",
      *   //   "latestCommitTime": "my_latestCommitTime",
-     *   //   "latestConvertTime": "my_latestConvertTime",
      *   //   "name": "my_name",
      *   //   "source": {},
      *   //   "sourceProvider": "my_sourceProvider",
@@ -7641,10 +7108,8 @@ export namespace datamigration_v1 {
      *         //   "displayName": "my_displayName",
      *         //   "globalSettings": {},
      *         //   "hasUncommittedChanges": false,
-     *         //   "latestApplyTime": "my_latestApplyTime",
      *         //   "latestCommitId": "my_latestCommitId",
      *         //   "latestCommitTime": "my_latestCommitTime",
-     *         //   "latestConvertTime": "my_latestConvertTime",
      *         //   "name": "my_name",
      *         //   "source": {},
      *         //   "sourceProvider": "my_sourceProvider",
@@ -8211,162 +7676,6 @@ export namespace datamigration_v1 {
     }
 
     /**
-     * Updates the draft DDL of an entity.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await datamigration.projects.locations.conversionWorkspaces.setDraftEntityDdl(
-     *       {
-     *         // Required. Name of the conversion workspace resource in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
-     *         conversionWorkspace:
-     *           'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "basedOnDdlKind": "my_basedOnDdlKind",
-     *           //   "ddl": "my_ddl",
-     *           //   "ddlKind": "my_ddlKind",
-     *           //   "entityName": "my_entityName",
-     *           //   "entityType": "my_entityType",
-     *           //   "explanation": "my_explanation"
-     *           // }
-     *         },
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    setDraftEntityDdl(
-      params: Params$Resource$Projects$Locations$Conversionworkspaces$Setdraftentityddl,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    setDraftEntityDdl(
-      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Setdraftentityddl,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$SetDraftEntityDdlResponse>>;
-    setDraftEntityDdl(
-      params: Params$Resource$Projects$Locations$Conversionworkspaces$Setdraftentityddl,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    setDraftEntityDdl(
-      params: Params$Resource$Projects$Locations$Conversionworkspaces$Setdraftentityddl,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$SetDraftEntityDdlResponse>,
-      callback: BodyResponseCallback<Schema$SetDraftEntityDdlResponse>
-    ): void;
-    setDraftEntityDdl(
-      params: Params$Resource$Projects$Locations$Conversionworkspaces$Setdraftentityddl,
-      callback: BodyResponseCallback<Schema$SetDraftEntityDdlResponse>
-    ): void;
-    setDraftEntityDdl(
-      callback: BodyResponseCallback<Schema$SetDraftEntityDdlResponse>
-    ): void;
-    setDraftEntityDdl(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Conversionworkspaces$Setdraftentityddl
-        | BodyResponseCallback<Schema$SetDraftEntityDdlResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$SetDraftEntityDdlResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$SetDraftEntityDdlResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$SetDraftEntityDdlResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Setdraftentityddl;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Setdraftentityddl;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://datamigration.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1/{+conversionWorkspace}:setDraftEntityDdl'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['conversionWorkspace'],
-        pathParams: ['conversionWorkspace'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$SetDraftEntityDdlResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$SetDraftEntityDdlResponse>(parameters);
-      }
-    }
-
-    /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * ```js
@@ -8783,58 +8092,6 @@ export namespace datamigration_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Fetchentitiesstatusview extends StandardParameters {
-    /**
-     * Required. Name of the conversion workspace resource whose database entities are described. Must be in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
-     */
-    conversionWorkspace?: string;
-    /**
-     * Optional. The view to fetch. If not specified, FULL is used.
-     */
-    fetchView?: string;
-    /**
-     * Optional. Filter the returned entities based on AIP-160 standard.
-     */
-    filter?: string;
-    /**
-     * Optional. The maximum number of entities to return. The service may return fewer entities than the value specifies. Default is 100000.
-     */
-    pageSize?: number;
-    /**
-     * Optional. The nextPageToken value received in the previous call to conversionWorkspace.FetchEntitiesStatusView, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspace.FetchEntitiesStatusView must match the call that provided the page token, except for the page_size parameter.
-     */
-    pageToken?: string;
-    /**
-     * Required. The tree to fetch.
-     */
-    tree?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Fetchissues extends StandardParameters {
-    /**
-     * Optional. If 'true', gets all issues matching the filter. Otherwise, for each entity only the issues matching the DdlKind chosen for application on the destination are returned.
-     */
-    allIssues?: boolean;
-    /**
-     * Required. Conversion workspace with issues to fetch. Must be in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
-     */
-    conversionWorkspace?: string;
-    /**
-     * Optional. AIP-160 standard filter. Supporting both entity and issue fields. Supported fields: - `name` / `fullname`: The entity full name. - `type`: The entity type (e.g. `TABLE`, `VIEW`, `INDEX`, `TRIGGER`). - `ddlkind`: The kind of DDL (e.g. `DDL_KIND_SOURCE`, `DDL_KIND_AI`, `DDL_KIND_DETERMINISTIC`). - `issue.severity`: The severity of the issue (e.g. `INFO`, `WARNING`, `ERROR`). - `issue.state`: The state of the issue (e.g. `OPEN`, `RESOLVED`). - `issue.origin`: The origin of the issue (e.g. `DETERMINISTIC`, `AI`). - `issue.category_id`: The category ID of the issue. - `issue.group_id`: The group ID of the issue.
-     */
-    filter?: string;
-    /**
-     * Optional. The maximum number of issues to return. The service may return fewer issues than the value specifies.
-     */
-    pageSize?: number;
-    /**
-     * Optional. The FetchIssuesResponse.next_page_token value received in the previous call to FetchIssues, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to FetchIssues must match the call that provided the page token, except for the page_size parameter.
-     */
-    pageToken?: string;
-    /**
-     * Optional. The tree to fetch issues from. If not specified, source tree is assumed.
-     */
-    tree?: string;
-  }
   export interface Params$Resource$Projects$Locations$Conversionworkspaces$Get extends StandardParameters {
     /**
      * Required. Name of the conversion workspace resource to get.
@@ -8927,17 +8184,6 @@ export namespace datamigration_v1 {
      * Request body metadata
      */
     requestBody?: Schema$SeedConversionWorkspaceRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Setdraftentityddl extends StandardParameters {
-    /**
-     * Required. Name of the conversion workspace resource in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
-     */
-    conversionWorkspace?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SetDraftEntityDdlRequest;
   }
   export interface Params$Resource$Projects$Locations$Conversionworkspaces$Setiampolicy extends StandardParameters {
     /**

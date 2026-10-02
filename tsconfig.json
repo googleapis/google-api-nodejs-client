@@ -399,9 +399,6 @@
       "path": "./src/apis/developerknowledge/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/devicerun/tsconfig.build.json"
-    },
-    {
       "path": "./src/apis/dfareporting/tsconfig.build.json"
     },
     {

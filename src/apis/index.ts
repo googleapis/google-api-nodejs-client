@@ -338,7 +338,6 @@ import {
   VERSIONS as developerknowledgeVersions,
   developerknowledge,
 } from './developerknowledge';
-import {VERSIONS as devicerunVersions, devicerun} from './devicerun';
 import {VERSIONS as dfareportingVersions, dfareporting} from './dfareporting';
 import {VERSIONS as dialogflowVersions, dialogflow} from './dialogflow';
 import {
@@ -967,7 +966,6 @@ export const APIS: APIList = {
   deploymentmanager: deploymentmanagerVersions,
   developerconnect: developerconnectVersions,
   developerknowledge: developerknowledgeVersions,
-  devicerun: devicerunVersions,
   dfareporting: dfareportingVersions,
   dialogflow: dialogflowVersions,
   digitalassetlinks: digitalassetlinksVersions,
@@ -1307,7 +1305,6 @@ export class GeneratedAPIs {
   deploymentmanager = deploymentmanager;
   developerconnect = developerconnect;
   developerknowledge = developerknowledge;
-  devicerun = devicerun;
   dfareporting = dfareporting;
   dialogflow = dialogflow;
   digitalassetlinks = digitalassetlinks;

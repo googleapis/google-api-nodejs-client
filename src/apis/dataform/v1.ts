@@ -873,7 +873,7 @@ export namespace dataform_v1 {
    */
   export interface Schema$FileSearchResult {
     /**
-     * File system path relative to the file tree root.
+     * File system path relative to the workspace root.
      */
     path?: string | null;
   }
