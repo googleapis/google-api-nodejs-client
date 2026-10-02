@@ -2837,7 +2837,7 @@
       }
     }
   },
-  "revision": "20260901",
+  "revision": "20260922",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3835,7 +3835,7 @@
         },
         "costManagementConfig": {
           "$ref": "CostManagementConfig",
-          "description": "Configuration for the fine-grained cost management feature."
+          "description": "Configuration for the fine-grained cost allocation feature."
         },
         "createTime": {
           "description": "Output only. The time the cluster was created, in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.",
@@ -4428,7 +4428,7 @@
         },
         "desiredCostManagementConfig": {
           "$ref": "CostManagementConfig",
-          "description": "The desired configuration for the fine-grained cost management feature."
+          "description": "The desired configuration for the fine-grained cost allocation feature."
         },
         "desiredDatabaseEncryption": {
           "$ref": "DatabaseEncryption",
@@ -5089,7 +5089,7 @@
       "type": "object"
     },
     "CostManagementConfig": {
-      "description": "Configuration for fine-grained cost management feature.",
+      "description": "Configuration for fine-grained cost allocation feature.",
       "id": "CostManagementConfig",
       "properties": {
         "enabled": {
@@ -9544,11 +9544,13 @@
           "description": "Type of the sandbox to use for the node.",
           "enum": [
             "UNSPECIFIED",
-            "GVISOR"
+            "GVISOR",
+            "MICROVM"
           ],
           "enumDescriptions": [
             "Default value. This should not be used.",
-            "Run sandbox using gvisor."
+            "Run sandbox using gvisor.",
+            "Run sandbox using MicroVM."
           ],
           "type": "string"
         }
