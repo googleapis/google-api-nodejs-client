@@ -177,6 +177,23 @@
             "spreadsheetId"
           ],
           "parameters": {
+            "commentsViewMode": {
+              "description": "The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. [Developer Preview](https://developers.google.com/workspace/preview).",
+              "enum": [
+                "COMMENTS_VIEW_MODE_UNSPECIFIED",
+                "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
+                "COMMENTS_VIEW_MODE_OMITTED",
+                "COMMENTS_VIEW_MODE_INCLUDED"
+              ],
+              "enumDescriptions": [
+                "The CommentsViewMode is unspecified; COMMENTS_VIEW_MODE_OMITTED is applied.",
+                "The CommentsViewMode applied to the returned spreadsheet depends on the user's current access level. If the user only has view access, COMMENTS_VIEW_MODE_OMITTED is applied. Otherwise, COMMENTS_VIEW_MODE_INCLUDED is applied.",
+                "The returned spreadsheet has comments omitted.",
+                "The returned spreadsheet has comments included. Requests to retrieve a spreadsheet using this mode will return a 403 error if the user does not have permission to view comments."
+              ],
+              "location": "query",
+              "type": "string"
+            },
             "excludeTablesInBandedRanges": {
               "description": "True if tables should be excluded in the banded ranges. False if not set.",
               "location": "query",
@@ -875,7 +892,7 @@
       }
     }
   },
-  "revision": "20260610",
+  "revision": "20260921",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -918,6 +935,32 @@
         "chart": {
           "$ref": "EmbeddedChart",
           "description": "The newly added chart."
+        }
+      },
+      "type": "object"
+    },
+    "AddCommentReplyRequest": {
+      "description": "Inserts a reply Post into a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "AddCommentReplyRequest",
+      "properties": {
+        "commentId": {
+          "description": "The ID of the CommentThread to add the reply to.",
+          "type": "string"
+        },
+        "post": {
+          "$ref": "Post",
+          "description": "The Post representing the reply."
+        }
+      },
+      "type": "object"
+    },
+    "AddCommentReplyResponse": {
+      "description": "The result of creating a reply. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "AddCommentReplyResponse",
+      "properties": {
+        "post": {
+          "$ref": "Post",
+          "description": "The newly-inserted reply Post."
         }
       },
       "type": "object"
@@ -1833,6 +1876,22 @@
       "description": "The request for updating any aspect of a spreadsheet.",
       "id": "BatchUpdateSpreadsheetRequest",
       "properties": {
+        "commentsViewMode": {
+          "description": "The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. Meaningful only if include_spreadsheet_in_response is 'true'. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "enum": [
+            "COMMENTS_VIEW_MODE_UNSPECIFIED",
+            "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
+            "COMMENTS_VIEW_MODE_OMITTED",
+            "COMMENTS_VIEW_MODE_INCLUDED"
+          ],
+          "enumDescriptions": [
+            "The CommentsViewMode is unspecified; COMMENTS_VIEW_MODE_OMITTED is applied.",
+            "The CommentsViewMode applied to the returned spreadsheet depends on the user's current access level. If the user only has view access, COMMENTS_VIEW_MODE_OMITTED is applied. Otherwise, COMMENTS_VIEW_MODE_INCLUDED is applied.",
+            "The returned spreadsheet has comments omitted.",
+            "The returned spreadsheet has comments included. Requests to retrieve a spreadsheet using this mode will return a 403 error if the user does not have permission to view comments."
+          ],
+          "type": "string"
+        },
         "includeSpreadsheetInResponse": {
           "description": "Determines if the update response should include the spreadsheet resource.",
           "type": "boolean"
@@ -1862,6 +1921,22 @@
       "description": "The reply for batch updating a spreadsheet.",
       "id": "BatchUpdateSpreadsheetResponse",
       "properties": {
+        "commentUpdateState": {
+          "description": "Whether comment updates were applied in the batch request. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "enum": [
+            "COMMENT_UPDATE_STATE_UNSPECIFIED",
+            "NO_UPDATES_REQUESTED",
+            "ALL_SAVED",
+            "ALL_FAILED_UNKNOWN_REASON"
+          ],
+          "enumDescriptions": [
+            "The status of comment updates is unspecified.",
+            "No comment updates were requested in the batch request.",
+            "All requested comment updates were applied in the batch request.",
+            "All requested comment updates failed."
+          ],
+          "type": "string"
+        },
         "replies": {
           "description": "The reply of the updates. This maps 1:1 with the updates, although replies to some requests may be empty.",
           "items": {
@@ -3106,6 +3181,65 @@
       },
       "type": "object"
     },
+    "CommentAnchor": {
+      "description": "A location in the spreadsheet that is tied to a CommentThread with the same anchorId. Note: Multiple anchors may refer to the same location. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "CommentAnchor",
+      "properties": {
+        "anchorId": {
+          "description": "The unique ID of the comment anchor. Output only.",
+          "type": "string"
+        },
+        "range": {
+          "$ref": "GridRange",
+          "description": "The coordinate range inside the sheet where this comment is anchored."
+        }
+      },
+      "type": "object"
+    },
+    "CommentThread": {
+      "description": "Represents a single comment thread inside a spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "CommentThread",
+      "properties": {
+        "anchorId": {
+          "description": "The ID of the CommentAnchor in the sheet that this thread is tied to.",
+          "type": "string"
+        },
+        "commentId": {
+          "description": "The unique ID of the comment thread.",
+          "type": "string"
+        },
+        "headPost": {
+          "$ref": "Post",
+          "description": "The first post in the thread."
+        },
+        "plainTextQuote": {
+          "description": "The quoted text from the spreadsheet when the comment was created, formatted as plain-text.",
+          "type": "string"
+        },
+        "replies": {
+          "description": "Replies to the head post.",
+          "items": {
+            "$ref": "Post"
+          },
+          "type": "array"
+        },
+        "status": {
+          "description": "Whether the thread is open or resolved.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "OPEN",
+            "RESOLVED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The comment thread is open.",
+            "The comment thread is resolved."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ConditionValue": {
       "description": "The value of the condition.",
       "id": "ConditionValue",
@@ -3926,6 +4060,32 @@
           "description": "The ID of the banded range to delete.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DeleteCommentReplyRequest": {
+      "description": "Deletes a reply Post from a CommentThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. - The reply post contains a comment action. - The reply post contains an assignee. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "DeleteCommentReplyRequest",
+      "properties": {
+        "commentId": {
+          "description": "The ID of the CommentThread which the post belongs to.",
+          "type": "string"
+        },
+        "postId": {
+          "description": "The ID of the reply Post being deleted.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeleteCommentRequest": {
+      "description": "Deletes a CommentThread. Returns a 400 bad request error if the requesting user is not the author of the headPost. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "DeleteCommentRequest",
+      "properties": {
+        "commentId": {
+          "description": "The ID of the CommentThread that is being deleted.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4787,6 +4947,22 @@
       "description": "The request for retrieving a Spreadsheet.",
       "id": "GetSpreadsheetByDataFilterRequest",
       "properties": {
+        "commentsViewMode": {
+          "description": "The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "enum": [
+            "COMMENTS_VIEW_MODE_UNSPECIFIED",
+            "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
+            "COMMENTS_VIEW_MODE_OMITTED",
+            "COMMENTS_VIEW_MODE_INCLUDED"
+          ],
+          "enumDescriptions": [
+            "The CommentsViewMode is unspecified; COMMENTS_VIEW_MODE_OMITTED is applied.",
+            "The CommentsViewMode applied to the returned spreadsheet depends on the user's current access level. If the user only has view access, COMMENTS_VIEW_MODE_OMITTED is applied. Otherwise, COMMENTS_VIEW_MODE_INCLUDED is applied.",
+            "The returned spreadsheet has comments omitted.",
+            "The returned spreadsheet has comments included. Requests to retrieve a spreadsheet using this mode will return a 403 error if the user does not have permission to view comments."
+          ],
+          "type": "string"
+        },
         "dataFilters": {
           "description": "The DataFilters used to select which ranges to retrieve from the spreadsheet.",
           "items": {
@@ -5043,6 +5219,36 @@
         "data": {
           "$ref": "ChartData",
           "description": "The data for this histogram series."
+        }
+      },
+      "type": "object"
+    },
+    "InsertCommentRequest": {
+      "description": "Inserts a CommentThread into the spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "InsertCommentRequest",
+      "properties": {
+        "assigneeEmailAddress": {
+          "description": "Optional. The email address of the assignee of the comment. Leave empty for a non-assigned comment. May not exceed 2048 UTF-8 code units.",
+          "type": "string"
+        },
+        "content": {
+          "description": "The text of the comment, as plain text. This text content will be handled similarly to comments created in the Sheets editor. It will have similar behaviors for formatting, notifications, etc. This field cannot be empty, and must not exceed 2048 UTF-8 code units.",
+          "type": "string"
+        },
+        "coordinate": {
+          "$ref": "GridCoordinate",
+          "description": "The GridCoordinate in the sheet that is tied to this comment."
+        }
+      },
+      "type": "object"
+    },
+    "InsertCommentResponse": {
+      "description": "The result of creating a comment. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "InsertCommentResponse",
+      "properties": {
+        "commentThread": {
+          "$ref": "CommentThread",
+          "description": "The newly-inserted comment thread."
         }
       },
       "type": "object"
@@ -5997,6 +6203,94 @@
       },
       "type": "object"
     },
+    "Post": {
+      "description": "Represents a single post in a comment thread. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "Post",
+      "properties": {
+        "assigneeEmail": {
+          "description": "Optional. The email of the user who is being newly assigned to the thread as part of this post. Returns a 400 bad request error if: - The parent thread is a CommentThread whose headPost does not have an assignee. - commentAction is specified as `RESOLVE` or `REOPEN`. - `assignee_email` exceeds 2048 UTF-8 code units.",
+          "type": "string"
+        },
+        "author": {
+          "$ref": "PostAuthor",
+          "description": "Output only. The user who created the post."
+        },
+        "commentAction": {
+          "description": "Action taken as part of creating the post.",
+          "enum": [
+            "COMMENT_ACTION_TYPE_UNSPECIFIED",
+            "NO_COMMENT_ACTION_CHANGE",
+            "RESOLVE",
+            "REOPEN"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "No action change in this post.",
+            "This post resolves the thread.",
+            "This post reopens the thread."
+          ],
+          "type": "string"
+        },
+        "content": {
+          "description": "The content of the post. Required to be non-empty if comment_action is not `RESOLVE` or `REOPEN`. This text content will be handled similarly to comments created in the Sheets editor. It will have similar behaviors for formatting, notifications, etc. May not exceed 2048 UTF-8 code units.",
+          "type": "string"
+        },
+        "contentHtml": {
+          "description": "Output only. The content of the post as HTML.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the post was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "deleted": {
+          "description": "Output only. Whether the post is deleted. If `true`, content and author fields will be empty.",
+          "type": "boolean"
+        },
+        "fromCopiedSpreadsheet": {
+          "description": "Output only. Whether the post is from a copied spreadsheet. This field cannot be set directly by callers.",
+          "type": "boolean"
+        },
+        "fromImportedSpreadsheet": {
+          "description": "Output only. Whether the post is from an imported spreadsheet. This field cannot be set directly by callers.",
+          "type": "boolean"
+        },
+        "postId": {
+          "description": "Output only. The unique ID of the post.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time the post was last updated.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PostAuthor": {
+      "description": "Represents a user who authored a comment post. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "PostAuthor",
+      "properties": {
+        "anonymous": {
+          "description": "Whether the user is anonymous.",
+          "type": "boolean"
+        },
+        "displayName": {
+          "description": "The display name of the user. May be absent if the author is anonymous.",
+          "type": "string"
+        },
+        "me": {
+          "description": "Whether the user is the authenticated user making the request.",
+          "type": "boolean"
+        },
+        "user": {
+          "description": "The resource name of the post author user, which can also be used to identify the user in the [Google People API](https://developers.google.com/people/api/rest/v1/people). Format: `users/{user}`. Will not be populated if the anonymous field is `true` or if the post is from an imported spreadsheet.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ProtectedRange": {
       "description": "A protected range.",
       "id": "ProtectedRange",
@@ -6180,6 +6474,10 @@
           "$ref": "AddChartRequest",
           "description": "Adds a chart."
         },
+        "addCommentReply": {
+          "$ref": "AddCommentReplyRequest",
+          "description": "Adds a reply to a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview)."
+        },
         "addConditionalFormatRule": {
           "$ref": "AddConditionalFormatRuleRequest",
           "description": "Adds a new conditional format rule."
@@ -6256,6 +6554,14 @@
           "$ref": "DeleteBandingRequest",
           "description": "Removes a banded range"
         },
+        "deleteComment": {
+          "$ref": "DeleteCommentRequest",
+          "description": "Deletes a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview)."
+        },
+        "deleteCommentReply": {
+          "$ref": "DeleteCommentReplyRequest",
+          "description": "Deletes a reply Post from a CommentThread [Developer Preview](https://developers.google.com/workspace/preview)."
+        },
         "deleteConditionalFormatRule": {
           "$ref": "DeleteConditionalFormatRuleRequest",
           "description": "Deletes an existing conditional format rule."
@@ -6319,6 +6625,10 @@
         "findReplace": {
           "$ref": "FindReplaceRequest",
           "description": "Finds and replaces occurrences of some text with other text."
+        },
+        "insertComment": {
+          "$ref": "InsertCommentRequest",
+          "description": "Inserts a CommentThread into the spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview)."
         },
         "insertDimension": {
           "$ref": "InsertDimensionRequest",
@@ -6392,6 +6702,10 @@
           "$ref": "UpdateChartSpecRequest",
           "description": "Updates a chart's specifications."
         },
+        "updateCommentPost": {
+          "$ref": "UpdateCommentPostRequest",
+          "description": "Updates an existing post (head post or reply) of a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview)."
+        },
         "updateConditionalFormatRule": {
           "$ref": "UpdateConditionalFormatRuleRequest",
           "description": "Updates an existing conditional format rule."
@@ -6463,6 +6777,10 @@
           "$ref": "AddChartResponse",
           "description": "A reply from adding a chart."
         },
+        "addCommentReply": {
+          "$ref": "AddCommentReplyResponse",
+          "description": "The result of creating a reply. [Developer Preview](https://developers.google.com/workspace/preview)."
+        },
         "addDataSource": {
           "$ref": "AddDataSourceResponse",
           "description": "A reply from adding a data source."
@@ -6530,6 +6848,10 @@
         "findReplace": {
           "$ref": "FindReplaceResponse",
           "description": "A reply from doing a find/replace."
+        },
+        "insertComment": {
+          "$ref": "InsertCommentResponse",
+          "description": "The result of creating a comment. [Developer Preview](https://developers.google.com/workspace/preview)."
         },
         "refreshDataSource": {
           "$ref": "RefreshDataSourceResponse",
@@ -6740,6 +7062,13 @@
           "description": "All column groups on this sheet, ordered by increasing range start index, then by group depth.",
           "items": {
             "$ref": "DimensionGroup"
+          },
+          "type": "array"
+        },
+        "commentAnchors": {
+          "description": "The comment anchors on this sheet. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "items": {
+            "$ref": "CommentAnchor"
           },
           "type": "array"
         },
@@ -7053,6 +7382,29 @@
       "description": "Resource that represents a spreadsheet.",
       "id": "Spreadsheet",
       "properties": {
+        "comments": {
+          "description": "The comment threads associated with the spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "items": {
+            "$ref": "CommentThread"
+          },
+          "type": "array"
+        },
+        "commentsViewMode": {
+          "description": "Output only. The comments view mode applied to the spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "enum": [
+            "COMMENTS_VIEW_MODE_UNSPECIFIED",
+            "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
+            "COMMENTS_VIEW_MODE_OMITTED",
+            "COMMENTS_VIEW_MODE_INCLUDED"
+          ],
+          "enumDescriptions": [
+            "The CommentsViewMode is unspecified; COMMENTS_VIEW_MODE_OMITTED is applied.",
+            "The CommentsViewMode applied to the returned spreadsheet depends on the user's current access level. If the user only has view access, COMMENTS_VIEW_MODE_OMITTED is applied. Otherwise, COMMENTS_VIEW_MODE_INCLUDED is applied.",
+            "The returned spreadsheet has comments omitted.",
+            "The returned spreadsheet has comments included. Requests to retrieve a spreadsheet using this mode will return a 403 error if the user does not have permission to view comments."
+          ],
+          "type": "string"
+        },
         "dataSourceSchedules": {
           "description": "Output only. A list of data source refresh schedules.",
           "items": {
@@ -7729,6 +8081,25 @@
         "spec": {
           "$ref": "ChartSpec",
           "description": "The specification to apply to the chart."
+        }
+      },
+      "type": "object"
+    },
+    "UpdateCommentPostRequest": {
+      "description": "Updates a Post in a CommentThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "UpdateCommentPostRequest",
+      "properties": {
+        "commentId": {
+          "description": "The ID of the CommentThread which the post belongs to.",
+          "type": "string"
+        },
+        "content": {
+          "description": "The new text of the comment, as plain text. This text content will be handled similarly to comments created in the Sheets editor. It will have similar behaviors for formatting, notifications, etc. This field cannot be empty, and must not exceed 2048 UTF-8 code units.",
+          "type": "string"
+        },
+        "postId": {
+          "description": "The ID of the post being updated.",
+          "type": "string"
         }
       },
       "type": "object"
