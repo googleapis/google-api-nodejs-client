@@ -1,0 +1,3586 @@
+{
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/cloud-platform": {
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
+        }
+      }
+    }
+  },
+  "basePath": "",
+  "baseUrl": "https://integrations.googleapis.com/",
+  "batchPath": "batch",
+  "canonicalName": "Integrations",
+  "description": "",
+  "discoveryVersion": "v1",
+  "documentationLink": "https://cloud.google.com/application-integration",
+  "fullyEncodeReservedExpansion": true,
+  "icons": {
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+  },
+  "id": "integrations:v2",
+  "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://integrations.mtls.googleapis.com/",
+  "name": "integrations",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "$.xgafv": {
+      "description": "V1 error format.",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "enumDescriptions": [
+        "v1 error format",
+        "v2 error format"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
+      "location": "query",
+      "type": "string"
+    },
+    "fields": {
+      "description": "Selector specifying which fields to include in a partial response.",
+      "location": "query",
+      "type": "string"
+    },
+    "key": {
+      "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
+      "location": "query",
+      "type": "string"
+    },
+    "prettyPrint": {
+      "default": "true",
+      "description": "Returns response with indentations and line breaks.",
+      "location": "query",
+      "type": "boolean"
+    },
+    "quotaUser": {
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "location": "query",
+      "type": "string"
+    },
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "projects": {
+      "resources": {
+        "locations": {
+          "methods": {
+            "generateIntegration": {
+              "description": "Generates an integration skeleton based on a natural language prompt.",
+              "flatPath": "v2/projects/{projectsId}/locations/{locationsId}:generateIntegration",
+              "httpMethod": "POST",
+              "id": "integrations.projects.locations.generateIntegration",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The location in which the integration will be generated. Format: `projects/{project}/locations/{location}`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+parent}:generateIntegration",
+              "request": {
+                "$ref": "GoogleCloudIntegrationsV2DuetGenerateIntegrationRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudIntegrationsV2DuetGenerateIntegrationResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
+          "resources": {
+            "integrations": {
+              "methods": {
+                "execute": {
+                  "description": "Executes integrations synchronously. The response is not returned until the requested execution is either fulfilled or experienced an error. Only one integration can be executed. Request format URL: https://integrations.googleapis.com/v2/projects/$PROJECT/locations/$LOCATION/integrations/$INTEGRATION_NAME:execute Request payload: (the entire payload is optional unless input variables need to be set.) {\"variable1\": \"hello world\", \"variable2\": 1, \"variable3\": {\"my_json_key\": \"my json string value\" }",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}:execute",
+                  "httpMethod": "POST",
+                  "id": "integrations.projects.locations.integrations.execute",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The integration resource name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. This is used to de-dup incoming request: if the duplicate request was detected, the response from the previous execution is returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "triggerId": {
+                      "description": "Required. The API trigger id associated with the integration. An integration can have multiple trigger_id. This field is required to disambiguate which trigger should be invoked.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}:execute",
+                  "request": {
+                    "additionalProperties": {
+                      "description": "Properties of the object.",
+                      "type": "any"
+                    },
+                    "type": "object"
+                  },
+                  "response": {
+                    "$ref": "GoogleApiHttpBody"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "generateIntegrationBranch": {
+                  "description": "Generates an integration branch.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}:generateIntegrationBranch",
+                  "httpMethod": "POST",
+                  "id": "integrations.projects.locations.integrations.generateIntegrationBranch",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Format: `projects/{project}/locations/{location}/integrations/{integration}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}:generateIntegrationBranch",
+                  "request": {
+                    "$ref": "GoogleCloudIntegrationsV2DuetGenerateIntegrationBranchRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudIntegrationsV2DuetGenerateIntegrationBranchResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "generateIntegrationDocument": {
+                  "description": "Generates documentation for an integration version.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}:generateIntegrationDocument",
+                  "httpMethod": "POST",
+                  "id": "integrations.projects.locations.integrations.generateIntegrationDocument",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Format: `projects/{project}/locations/{location}/integrations/{integration}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}:generateIntegrationDocument",
+                  "request": {
+                    "$ref": "GoogleCloudIntegrationsV2DuetGenerateIntegrationDocumentRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudIntegrationsV2DuetGenerateIntegrationDocumentResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "generateJavascript": {
+                  "description": "Generates Javascript code for data mapping.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}:generateJavascript",
+                  "httpMethod": "POST",
+                  "id": "integrations.projects.locations.integrations.generateJavascript",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Format: `projects/{project}/locations/{location}/integrations/{integration}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}:generateJavascript",
+                  "request": {
+                    "$ref": "GoogleCloudIntegrationsV2DuetGenerateJavascriptRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudIntegrationsV2DuetGenerateJavascriptResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "recommendTasks": {
+                  "description": "Recommends tasks to replace a selected task.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}:recommendTasks",
+                  "httpMethod": "POST",
+                  "id": "integrations.projects.locations.integrations.recommendTasks",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Format: `projects/{project}/locations/{location}/integrations/{integration}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}:recommendTasks",
+                  "request": {
+                    "$ref": "GoogleCloudIntegrationsV2DuetRecommendTasksRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudIntegrationsV2DuetRecommendTasksResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "schedule": {
+                  "description": "Schedules an integration for execution.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}:schedule",
+                  "httpMethod": "POST",
+                  "id": "integrations.projects.locations.integrations.schedule",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The integration resource name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. This is used to de-dup incoming request: if the duplicate request was detected, the response from the previous execution is returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "scheduleTime": {
+                      "description": "Optional. The time that the integration should be executed. If the time is less or equal to the current time, the integration is executed immediately.",
+                      "format": "google-datetime",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "triggerId": {
+                      "description": "Required. The API trigger id associated with the integration. An integration can have multiple trigger_id. This field is required to disambiguate which trigger should be invoked",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}:schedule",
+                  "request": {
+                    "additionalProperties": {
+                      "description": "Properties of the object.",
+                      "type": "any"
+                    },
+                    "type": "object"
+                  },
+                  "response": {
+                    "$ref": "GoogleApiHttpBody"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "executions": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists the results of all the integration executions. The response includes the same information as the [execution log](https://cloud.google.com/application-integration/docs/viewing-logs) in the Integration UI.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/executions",
+                      "httpMethod": "GET",
+                      "id": "integrations.projects.locations.integrations.executions.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Standard filter field, we support filtering on following fields: integration_name: the name of the integration. create_time: the execution created time. update_time: the execution last update time. state: the state of the executions. execution_id: the id of the execution. trigger_id: the id of the trigger. All fields support for EQUALS, in additional: create_time and update_time support for LESS_THAN, GREATER_THAN Also supports operators like AND, OR, NOT For example: trigger_id=\\\"id1\\\" AND integration_name=\\\"testIntegration\\\"",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The size of entries in the response.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The token returned in the previous response.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. parent resource name of integration execution.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "readMask": {
+                          "description": "Optional. View mask for the response data. If set, only the field specified will be returned as part of the result. If not set, all fields in execution info will be filled and returned.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/executions",
+                      "response": {
+                        "$ref": "GoogleCloudIntegrationsV2ListExecutionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "troubleshoot": {
+                      "description": "View detailed explanation of why an integration execution failed, using LLM",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/executions/{executionsId}:troubleshoot",
+                      "httpMethod": "GET",
+                      "id": "integrations.projects.locations.integrations.executions.troubleshoot",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Execution resource name. Format: `projects/{project}/locations/{location}/integrations/{integration}/executions/{execution_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+/executions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}:troubleshoot",
+                      "response": {
+                        "$ref": "GoogleCloudIntegrationsV2DuetTroubleshootExecutionResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
+                  "resources": {
+                    "taskExecutions": {
+                      "methods": {
+                        "get": {
+                          "description": "Get a TaskExecution in the specified project.",
+                          "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/executions/{executionsId}/taskExecutions/{taskExecutionsId}",
+                          "httpMethod": "GET",
+                          "id": "integrations.projects.locations.integrations.executions.taskExecutions.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The TaskExecution to retrieve. Format: projects/{project}/locations/{location}/integrations/{integration}/executions/{execution}/taskExecutions/{task_execution}",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+/executions/[^/]+/taskExecutions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v2/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudIntegrationsV2TaskExecution"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "revision": "20260927",
+  "rootUrl": "https://integrations.googleapis.com/",
+  "schemas": {
+    "EnterpriseCrmEventbusAuthconfigAuthConfigTaskParam": {
+      "id": "EnterpriseCrmEventbusAuthconfigAuthConfigTaskParam",
+      "properties": {
+        "allowedCredentialTypes": {
+          "description": "Defines the credential types to be supported as Task may restrict specific types to use, e.g. Cloud SQL Task will use username/password type only.",
+          "items": {
+            "enum": [
+              "CREDENTIAL_TYPE_UNSPECIFIED",
+              "USERNAME_AND_PASSWORD",
+              "API_KEY",
+              "OAUTH2_AUTHORIZATION_CODE",
+              "OAUTH2_IMPLICIT",
+              "OAUTH2_CLIENT_CREDENTIALS",
+              "OAUTH2_RESOURCE_OWNER_CREDENTIALS",
+              "JWT",
+              "AUTH_TOKEN",
+              "SERVICE_ACCOUNT",
+              "CLIENT_CERTIFICATE_ONLY",
+              "OIDC_TOKEN"
+            ],
+            "enumDescriptions": [
+              "",
+              "Regular username/password pair.",
+              "API key.",
+              "OAuth 2.0 Authorization Code Grant Type.",
+              "OAuth 2.0 Implicit Grant Type.",
+              "OAuth 2.0 Client Credentials Grant Type.",
+              "OAuth 2.0 Resource Owner Credentials Grant Type.",
+              "JWT Token.",
+              "Auth Token, e.g. bearer token.",
+              "Service Account which can be used to generate token for authentication.",
+              "Client Certificate only.",
+              "Google OIDC ID Token"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "allowedServiceAccountInContext": {
+          "type": "boolean"
+        },
+        "authConfigId": {
+          "description": "UUID of the AuthConfig.",
+          "type": "string"
+        },
+        "scope": {
+          "description": "A space-delimited list of requested scope permissions.",
+          "type": "string"
+        },
+        "useServiceAccountInContext": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoAddress": {
+      "description": "Email address along with optional name and tokens. These tokens will be substituted for the variables in the form of [{var_name}], where var_name could be any string of no more than 32 bytes.",
+      "id": "EnterpriseCrmEventbusProtoAddress",
+      "properties": {
+        "email": {
+          "description": "Required.",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "tokens": {
+          "items": {
+            "$ref": "EnterpriseCrmEventbusProtoToken"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoBaseFunction": {
+      "id": "EnterpriseCrmEventbusProtoBaseFunction",
+      "properties": {
+        "functionName": {
+          "enum": [
+            "UNSPECIFIED",
+            "NOW_IN_MILLIS",
+            "INT_LIST",
+            "ENVIRONMENT",
+            "GET_EXECUTION_ID",
+            "GET_INTEGRATION_NAME",
+            "GET_REGION",
+            "GET_UUID",
+            "GET_PROJECT_ID"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoBaseValue": {
+      "id": "EnterpriseCrmEventbusProtoBaseValue",
+      "properties": {
+        "baseFunction": {
+          "$ref": "EnterpriseCrmEventbusProtoFunction",
+          "description": "Start with a function that does not build on existing values. Eg. CurrentTime, Min, Max, Exists, etc."
+        },
+        "literalValue": {
+          "$ref": "EnterpriseCrmEventbusProtoParameterValueType",
+          "description": "Start with a literal value."
+        },
+        "referenceValue": {
+          "description": "Start with a reference value to dereference.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoBooleanArrayFunction": {
+      "id": "EnterpriseCrmEventbusProtoBooleanArrayFunction",
+      "properties": {
+        "functionName": {
+          "enum": [
+            "UNSPECIFIED",
+            "GET",
+            "APPEND",
+            "SIZE",
+            "TO_SET",
+            "APPEND_ALL",
+            "TO_JSON",
+            "SET",
+            "REMOVE",
+            "REMOVE_AT",
+            "CONTAINS",
+            "FOR_EACH",
+            "FILTER"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoBooleanFunction": {
+      "id": "EnterpriseCrmEventbusProtoBooleanFunction",
+      "properties": {
+        "functionName": {
+          "enum": [
+            "UNSPECIFIED",
+            "TO_JSON",
+            "NOT",
+            "AND",
+            "NAND",
+            "OR",
+            "XOR",
+            "NOR",
+            "XNOR",
+            "TO_STRING",
+            "EQUALS"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoBooleanParameterArray": {
+      "id": "EnterpriseCrmEventbusProtoBooleanParameterArray",
+      "properties": {
+        "booleanValues": {
+          "items": {
+            "type": "boolean"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoBuganizerNotification": {
+      "id": "EnterpriseCrmEventbusProtoBuganizerNotification",
+      "properties": {
+        "assigneeEmailAddress": {
+          "description": "Whom to assign the new bug. Optional.",
+          "type": "string"
+        },
+        "componentId": {
+          "description": "ID of the buganizer component within which to create a new issue. Required.",
+          "format": "int64",
+          "type": "string"
+        },
+        "templateId": {
+          "description": "ID of the buganizer template to use. Optional.",
+          "format": "int64",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the issue to be created. Required.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoCloudKmsConfig": {
+      "id": "EnterpriseCrmEventbusProtoCloudKmsConfig",
+      "properties": {
+        "gcpProjectId": {
+          "description": "Optional. The id of GCP project where the KMS key is stored. If not provided, assume the key is stored in the same GCP project defined in Client (tag 14).",
+          "type": "string"
+        },
+        "keyName": {
+          "description": "A Cloud KMS key is a named object containing one or more key versions, along with metadata for the key. A key exists on exactly one key ring tied to a specific location.",
+          "type": "string"
+        },
+        "keyRingName": {
+          "description": "A key ring organizes keys in a specific Google Cloud location and allows you to manage access control on groups of keys. A key ring's name does not need to be unique across a Google Cloud project, but must be unique within a given location.",
+          "type": "string"
+        },
+        "keyVersionName": {
+          "description": "Optional. Each version of a key contains key material used for encryption or signing. A key's version is represented by an integer, starting at 1. To decrypt data or verify a signature, you must use the same key version that was used to encrypt or sign the data.",
+          "type": "string"
+        },
+        "locationName": {
+          "description": "Location name of the key ring, e.g. \"us-west1\".",
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "Optional. The service account used for authentication of this KMS key. If this is not provided, the service account in Client.clientSource will be used.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoConnectorsConnection": {
+      "id": "EnterpriseCrmEventbusProtoConnectorsConnection",
+      "properties": {
+        "connectionName": {
+          "description": "Connection name Format: projects/{project}/locations/{location}/connections/{connection}",
+          "type": "string"
+        },
+        "connectorVersion": {
+          "description": "Connector version Format: projects/{project}/locations/{location}/providers/{provider}/connectors/{connector}/versions/{version}",
+          "type": "string"
+        },
+        "host": {
+          "description": "The name of the Hostname of the Service Directory service with TLS if used.",
+          "type": "string"
+        },
+        "serviceName": {
+          "description": "Service name Format: projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoConnectorsGenericConnectorTaskConfig": {
+      "id": "EnterpriseCrmEventbusProtoConnectorsGenericConnectorTaskConfig",
+      "properties": {
+        "connection": {
+          "$ref": "EnterpriseCrmEventbusProtoConnectorsConnection",
+          "description": "User-selected connection."
+        },
+        "operation": {
+          "description": "Operation to perform using the configured connection.",
+          "enum": [
+            "OPERATION_UNSPECIFIED",
+            "EXECUTE_ACTION",
+            "LIST_ENTITIES",
+            "GET_ENTITY",
+            "CREATE_ENTITY",
+            "UPDATE_ENTITY",
+            "DELETE_ENTITY",
+            "EXECUTE_QUERY"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoCustomSuspensionRequest": {
+      "id": "EnterpriseCrmEventbusProtoCustomSuspensionRequest",
+      "properties": {
+        "postToQueueWithTriggerIdRequest": {
+          "$ref": "GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest",
+          "description": "Request to fire an event containing the SuspensionInfo message."
+        },
+        "suspensionInfoEventParameterKey": {
+          "description": "In the fired event, set the SuspensionInfo message as the value for this key.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoDoubleArrayFunction": {
+      "id": "EnterpriseCrmEventbusProtoDoubleArrayFunction",
+      "properties": {
+        "functionName": {
+          "enum": [
+            "UNSPECIFIED",
+            "GET",
+            "APPEND",
+            "SIZE",
+            "SUM",
+            "AVG",
+            "MAX",
+            "MIN",
+            "TO_SET",
+            "APPEND_ALL",
+            "TO_JSON",
+            "SET",
+            "REMOVE",
+            "REMOVE_AT",
+            "CONTAINS",
+            "FOR_EACH",
+            "FILTER"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoDoubleFunction": {
+      "id": "EnterpriseCrmEventbusProtoDoubleFunction",
+      "properties": {
+        "functionName": {
+          "enum": [
+            "UNSPECIFIED",
+            "TO_JSON",
+            "TO_STRING",
+            "ADD",
+            "SUBTRACT",
+            "MULTIPLY",
+            "DIVIDE",
+            "EXPONENT",
+            "ROUND",
+            "FLOOR",
+            "CEIL",
+            "GREATER_THAN",
+            "LESS_THAN",
+            "EQUALS",
+            "GREATER_THAN_EQUALS",
+            "LESS_THAN_EQUALS",
+            "MOD"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoDoubleParameterArray": {
+      "id": "EnterpriseCrmEventbusProtoDoubleParameterArray",
+      "properties": {
+        "doubleValues": {
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoEventParameters": {
+      "description": "LINT.IfChange This message is used for processing and persisting (when applicable) key value pair parameters for each event in the event bus. Please see",
+      "id": "EnterpriseCrmEventbusProtoEventParameters",
+      "properties": {
+        "parameters": {
+          "description": "Parameters are a part of Event and can be used to communicate between different tasks that are part of the same integration execution.",
+          "items": {
+            "$ref": "EnterpriseCrmEventbusProtoParameterEntry"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoExecutionTraceInfo": {
+      "description": "Message that helps aggregate all sub-executions triggered by one execution and keeps track of child-parent relationships.",
+      "id": "EnterpriseCrmEventbusProtoExecutionTraceInfo",
+      "properties": {
+        "parentEventExecutionInfoId": {
+          "description": "Parent event execution info id that triggers the current execution through SubWorkflowExecutorTask.",
+          "type": "string"
+        },
+        "traceId": {
+          "description": "Used to aggregate ExecutionTraceInfo.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoExternalTraffic": {
+      "description": "Represents external traffic type and id.",
+      "id": "EnterpriseCrmEventbusProtoExternalTraffic",
+      "properties": {
+        "enableInternalIp": {
+          "description": "Indicates the client enables internal IP feature, this is applicable for internal clients only.",
+          "type": "boolean"
+        },
+        "gcpProjectId": {
+          "description": "User’s GCP project id the traffic is referring to.",
+          "type": "string"
+        },
+        "gcpProjectNumber": {
+          "description": "User’s GCP project number the traffic is referring to.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Location for the user's request.",
+          "type": "string"
+        },
+        "retryRequestForQuota": {
+          "description": "Enqueue the execution request due to quota issue",
+          "type": "boolean"
+        },
+        "source": {
+          "enum": [
+            "SOURCE_UNSPECIFIED",
+            "APIGEE",
+            "SECURITY"
+          ],
+          "enumDescriptions": [
+            "",
+            "WARNING: not the Apigee product. Marks external CUSTOMER traffic, including live Standalone IP clients, so deleting an `== APIGEE` branch breaks every external customer. SECURITY is the other external source (see ExternalTrafficUtils.EXTERNAL_SOURCES). Real Apigee test: !is_branded_as_standalone.",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoField": {
+      "description": "Information about the value and type of the field.",
+      "id": "EnterpriseCrmEventbusProtoField",
+      "properties": {
+        "cardinality": {
+          "description": "By default, if the cardinality is unspecified the field is considered required while mapping.",
+          "enum": [
+            "UNSPECIFIED",
+            "OPTIONAL"
+          ],
+          "enumDescriptions": [
+            "For fields with unspecified cardinality.",
+            "If field cardinality is set to optional, ignore errors if input field value is null or the reference_key is not found."
+          ],
+          "type": "string"
+        },
+        "defaultValue": {
+          "$ref": "EnterpriseCrmEventbusProtoParameterValueType",
+          "description": "This holds the default values for the fields. This value is supplied by user so may or may not contain PII or SPII data."
+        },
+        "fieldType": {
+          "description": "Specifies the data type of the field.",
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "STRING_VALUE",
+            "INT_VALUE",
+            "DOUBLE_VALUE",
+            "BOOLEAN_VALUE",
+            "PROTO_VALUE",
+            "SERIALIZED_OBJECT_VALUE",
+            "STRING_ARRAY",
+            "INT_ARRAY",
+            "DOUBLE_ARRAY",
+            "PROTO_ARRAY",
+            "PROTO_ENUM",
+            "BOOLEAN_ARRAY",
+            "PROTO_ENUM_ARRAY",
+            "BYTES",
+            "BYTES_ARRAY",
+            "NON_SERIALIZABLE_OBJECT",
+            "JSON_VALUE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "BYTES and BYTES_ARRAY data types are not allowed for top-level params. They're only meant to support protobufs with BYTES (sub)fields.",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "protoDefPath": {
+          "description": "Optional. The fully qualified proto name (e.g. enterprise.crm.storage.Account). Required for output field of type PROTO_VALUE or PROTO_ARRAY. For e.g., if input field_type is BYTES and output field_type is PROTO_VALUE, then fully qualified proto type url should be provided to parse the input bytes. If field_type is *_ARRAY, then all the converted protos are of the same type.",
+          "type": "string"
+        },
+        "referenceKey": {
+          "description": "This holds the reference key of the workflow or task parameter. 1. Any workflow parameter, for e.g. $workflowParam1$. 2. Any task input or output parameter, for e.g. $task1_param1$. 3. Any workflow or task parameters with subfield references, for e.g., $task1_param1.employee.id$",
+          "type": "string"
+        },
+        "transformExpression": {
+          "$ref": "EnterpriseCrmEventbusProtoTransformExpression",
+          "description": "This is the transform expression to fetch the input field value. for e.g. $param1$.CONCAT('test'). Keep points - 1. Only input field can have a transform expression. 2. If a transform expression is provided, reference_key will be ignored. 3. If no value is returned after evaluation of transform expression, default_value can be mapped if provided. 4. The field_type should be the type of the final object returned after the transform expression is evaluated. Scrubs the transform expression before logging as value provided by user so may or may not contain PII or SPII data."
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoFieldMappingConfig": {
+      "description": "Field Mapping Config to map multiple output fields values from input fields values.",
+      "id": "EnterpriseCrmEventbusProtoFieldMappingConfig",
+      "properties": {
+        "mappedFields": {
+          "items": {
+            "$ref": "EnterpriseCrmEventbusProtoMappedField"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoFunction": {
+      "id": "EnterpriseCrmEventbusProtoFunction",
+      "properties": {
+        "functionType": {
+          "$ref": "EnterpriseCrmEventbusProtoFunctionType",
+          "description": "The name of the function to perform."
+        },
+        "parameters": {
+          "description": "List of parameters required for the transformation.",
+          "items": {
+            "$ref": "EnterpriseCrmEventbusProtoTransformExpression"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoFunctionType": {
+      "id": "EnterpriseCrmEventbusProtoFunctionType",
+      "properties": {
+        "baseFunction": {
+          "$ref": "EnterpriseCrmEventbusProtoBaseFunction",
+          "description": "LINT.IfChange"
+        },
+        "booleanArrayFunction": {
+          "$ref": "EnterpriseCrmEventbusProtoBooleanArrayFunction"
+        },
+        "booleanFunction": {
+          "$ref": "EnterpriseCrmEventbusProtoBooleanFunction"
+        },
+        "doubleArrayFunction": {
+          "$ref": "EnterpriseCrmEventbusProtoDoubleArrayFunction"
+        },
+        "doubleFunction": {
+          "$ref": "EnterpriseCrmEventbusProtoDoubleFunction"
+        },
+        "intArrayFunction": {
+          "$ref": "EnterpriseCrmEventbusProtoIntArrayFunction"
+        },
+        "intFunction": {
+          "$ref": "EnterpriseCrmEventbusProtoIntFunction"
+        },
+        "jsonFunction": {
+          "$ref": "EnterpriseCrmEventbusProtoJsonFunction"
+        },
+        "protoArrayFunction": {
+          "$ref": "EnterpriseCrmEventbusProtoProtoArrayFunction"
+        },
+        "protoFunction": {
+          "$ref": "EnterpriseCrmEventbusProtoProtoFunction"
+        },
+        "stringArrayFunction": {
+          "$ref": "EnterpriseCrmEventbusProtoStringArrayFunction"
+        },
+        "stringFunction": {
+          "$ref": "EnterpriseCrmEventbusProtoStringFunction"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoIntArrayFunction": {
+      "id": "EnterpriseCrmEventbusProtoIntArrayFunction",
+      "properties": {
+        "functionName": {
+          "enum": [
+            "UNSPECIFIED",
+            "GET",
+            "APPEND",
+            "SIZE",
+            "SUM",
+            "AVG",
+            "MAX",
+            "MIN",
+            "TO_SET",
+            "APPEND_ALL",
+            "TO_JSON",
+            "SET",
+            "REMOVE",
+            "REMOVE_AT",
+            "CONTAINS",
+            "FOR_EACH",
+            "FILTER"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoIntFunction": {
+      "id": "EnterpriseCrmEventbusProtoIntFunction",
+      "properties": {
+        "functionName": {
+          "enum": [
+            "UNSPECIFIED",
+            "ADD",
+            "SUBTRACT",
+            "MULTIPLY",
+            "DIVIDE",
+            "EXPONENT",
+            "GREATER_THAN_EQUAL_TO",
+            "GREATER_THAN",
+            "LESS_THAN_EQUAL_TO",
+            "LESS_THAN",
+            "TO_DOUBLE",
+            "TO_STRING",
+            "EQUALS",
+            "TO_JSON",
+            "MOD",
+            "EPOCH_TO_HUMAN_READABLE_TIME"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoIntParameterArray": {
+      "id": "EnterpriseCrmEventbusProtoIntParameterArray",
+      "properties": {
+        "intValues": {
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoJsonFunction": {
+      "id": "EnterpriseCrmEventbusProtoJsonFunction",
+      "properties": {
+        "functionName": {
+          "enum": [
+            "UNSPECIFIED",
+            "GET_PROPERTY",
+            "GET_ELEMENT",
+            "APPEND_ELEMENT",
+            "SIZE",
+            "SET_PROPERTY",
+            "FLATTEN",
+            "FLATTEN_ONCE",
+            "MERGE",
+            "TO_STRING",
+            "TO_INT",
+            "TO_DOUBLE",
+            "TO_BOOLEAN",
+            "TO_PROTO",
+            "TO_STRING_ARRAY",
+            "TO_INT_ARRAY",
+            "TO_DOUBLE_ARRAY",
+            "TO_PROTO_ARRAY",
+            "TO_BOOLEAN_ARRAY",
+            "REMOVE_PROPERTY",
+            "RESOLVE_TEMPLATE",
+            "EQUALS",
+            "FOR_EACH",
+            "FILTER_ELEMENTS"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoLoopMetadata": {
+      "id": "EnterpriseCrmEventbusProtoLoopMetadata",
+      "properties": {
+        "currentIterationCount": {
+          "description": "Starting from 1, not 0.",
+          "format": "int64",
+          "type": "string"
+        },
+        "currentIterationDetail": {
+          "description": "Needs to be set by the loop impl class before each iteration. The abstract loop class will append the request and response to it. Eg. The foreach Loop will clean up and set it as the current iteration element at the start of each loop. The post request and response will be appended to the value once they are available.",
+          "type": "string"
+        },
+        "errorMsg": {
+          "description": "Add the error message when loops fail.",
+          "type": "string"
+        },
+        "failureLocation": {
+          "description": "Indicates where in the loop logic did it error out.",
+          "enum": [
+            "UNKNOWN",
+            "SUBWORKFLOW",
+            "PARAM_OVERRIDING",
+            "PARAM_AGGREGATING",
+            "SETTING_ITERATION_ELEMENT",
+            "GETTING_LIST_TO_ITERATE",
+            "CONDITION_EVALUATION",
+            "BUILDING_REQUEST"
+          ],
+          "enumDescriptions": [
+            "No error or Unknown.",
+            "Subworkflow failed while firing/running.",
+            "Param overrides failed.",
+            "Param aggregation failed.",
+            "Setting for loop current element failed.",
+            "Getting the list to iterate.",
+            "Evaluating the while loop condition.",
+            "Building the iteration request"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoMappedField": {
+      "description": "Mapped field is a pair of input field and output field.",
+      "id": "EnterpriseCrmEventbusProtoMappedField",
+      "properties": {
+        "inputField": {
+          "$ref": "EnterpriseCrmEventbusProtoField",
+          "description": "The input field being mapped from."
+        },
+        "outputField": {
+          "$ref": "EnterpriseCrmEventbusProtoField",
+          "description": "The output field being mapped to."
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoNotification": {
+      "id": "EnterpriseCrmEventbusProtoNotification",
+      "properties": {
+        "buganizerNotification": {
+          "$ref": "EnterpriseCrmEventbusProtoBuganizerNotification"
+        },
+        "emailAddress": {
+          "$ref": "EnterpriseCrmEventbusProtoAddress"
+        },
+        "escalatorQueue": {
+          "type": "string"
+        },
+        "pubsubTopic": {
+          "type": "string"
+        },
+        "request": {
+          "$ref": "EnterpriseCrmEventbusProtoCustomSuspensionRequest",
+          "description": "If the out-of-the-box email/pubsub notifications are not suitable and custom logic is required, fire a workflow containing all info needed to notify users to resume execution."
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoParameterEntry": {
+      "description": "Key-value pair of EventBus parameters.",
+      "id": "EnterpriseCrmEventbusProtoParameterEntry",
+      "properties": {
+        "key": {
+          "description": "Key is used to retrieve the corresponding parameter value. This should be unique for a given fired event. These parameters must be predefined in the integration definition.",
+          "type": "string"
+        },
+        "masked": {
+          "description": "True if this parameter should be masked in the logs",
+          "type": "boolean"
+        },
+        "value": {
+          "$ref": "EnterpriseCrmEventbusProtoParameterValueType",
+          "description": "Values for the defined keys. Each value can either be string, int, double or any proto message."
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoParameterMap": {
+      "description": "A generic multi-map that holds key value pairs. They keys and values can be of any type, unless specified.",
+      "id": "EnterpriseCrmEventbusProtoParameterMap",
+      "properties": {
+        "entries": {
+          "items": {
+            "$ref": "EnterpriseCrmEventbusProtoParameterMapEntry"
+          },
+          "type": "array"
+        },
+        "keyType": {
+          "description": "Option to specify key value type for all entries of the map. If provided then field types for all entries must conform to this.",
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "STRING_VALUE",
+            "INT_VALUE",
+            "DOUBLE_VALUE",
+            "BOOLEAN_VALUE",
+            "PROTO_VALUE",
+            "SERIALIZED_OBJECT_VALUE",
+            "STRING_ARRAY",
+            "INT_ARRAY",
+            "DOUBLE_ARRAY",
+            "PROTO_ARRAY",
+            "PROTO_ENUM",
+            "BOOLEAN_ARRAY",
+            "PROTO_ENUM_ARRAY",
+            "BYTES",
+            "BYTES_ARRAY",
+            "NON_SERIALIZABLE_OBJECT",
+            "JSON_VALUE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "BYTES and BYTES_ARRAY data types are not allowed for top-level params. They're only meant to support protobufs with BYTES (sub)fields.",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "valueType": {
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "STRING_VALUE",
+            "INT_VALUE",
+            "DOUBLE_VALUE",
+            "BOOLEAN_VALUE",
+            "PROTO_VALUE",
+            "SERIALIZED_OBJECT_VALUE",
+            "STRING_ARRAY",
+            "INT_ARRAY",
+            "DOUBLE_ARRAY",
+            "PROTO_ARRAY",
+            "PROTO_ENUM",
+            "BOOLEAN_ARRAY",
+            "PROTO_ENUM_ARRAY",
+            "BYTES",
+            "BYTES_ARRAY",
+            "NON_SERIALIZABLE_OBJECT",
+            "JSON_VALUE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "BYTES and BYTES_ARRAY data types are not allowed for top-level params. They're only meant to support protobufs with BYTES (sub)fields.",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoParameterMapEntry": {
+      "description": "Entry is a pair of key and value.",
+      "id": "EnterpriseCrmEventbusProtoParameterMapEntry",
+      "properties": {
+        "key": {
+          "$ref": "EnterpriseCrmEventbusProtoParameterMapField"
+        },
+        "value": {
+          "$ref": "EnterpriseCrmEventbusProtoParameterMapField"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoParameterMapField": {
+      "description": "Field represents either the key or value in an entry.",
+      "id": "EnterpriseCrmEventbusProtoParameterMapField",
+      "properties": {
+        "literalValue": {
+          "$ref": "EnterpriseCrmEventbusProtoParameterValueType",
+          "description": "Passing a literal value."
+        },
+        "referenceKey": {
+          "description": "Referencing one of the WF variables.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoParameterValueType": {
+      "description": "LINT.IfChange To support various types of parameter values. Next available id: 14",
+      "id": "EnterpriseCrmEventbusProtoParameterValueType",
+      "properties": {
+        "booleanArray": {
+          "$ref": "EnterpriseCrmEventbusProtoBooleanParameterArray"
+        },
+        "booleanValue": {
+          "type": "boolean"
+        },
+        "doubleArray": {
+          "$ref": "EnterpriseCrmEventbusProtoDoubleParameterArray"
+        },
+        "doubleValue": {
+          "format": "double",
+          "type": "number"
+        },
+        "intArray": {
+          "$ref": "EnterpriseCrmEventbusProtoIntParameterArray"
+        },
+        "intValue": {
+          "format": "int64",
+          "type": "string"
+        },
+        "protoArray": {
+          "$ref": "EnterpriseCrmEventbusProtoProtoParameterArray"
+        },
+        "protoValue": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "type": "object"
+        },
+        "serializedObjectValue": {
+          "$ref": "EnterpriseCrmEventbusProtoSerializedObjectParameter"
+        },
+        "stringArray": {
+          "$ref": "EnterpriseCrmEventbusProtoStringParameterArray"
+        },
+        "stringValue": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoProtoArrayFunction": {
+      "id": "EnterpriseCrmEventbusProtoProtoArrayFunction",
+      "properties": {
+        "functionName": {
+          "enum": [
+            "UNSPECIFIED",
+            "GET",
+            "APPEND",
+            "SIZE",
+            "TO_SET",
+            "APPEND_ALL",
+            "TO_JSON",
+            "SET",
+            "REMOVE",
+            "REMOVE_AT",
+            "CONTAINS",
+            "FOR_EACH",
+            "FILTER"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoProtoFunction": {
+      "id": "EnterpriseCrmEventbusProtoProtoFunction",
+      "properties": {
+        "functionName": {
+          "enum": [
+            "UNSPECIFIED",
+            "GET_STRING_SUBFIELD",
+            "GET_INT_SUBFIELD",
+            "GET_DOUBLE_SUBFIELD",
+            "GET_BOOLEAN_SUBFIELD",
+            "GET_STRING_ARRAY_SUBFIELD",
+            "GET_INT_ARRAY_SUBFIELD",
+            "GET_DOUBLE_ARRAY_SUBFIELD",
+            "GET_BOOLEAN_ARRAY_SUBFIELD",
+            "GET_PROTO_ARRAY_SUBFIELD",
+            "GET_PROTO_SUBFIELD",
+            "TO_JSON",
+            "GET_BYTES_SUBFIELD_AS_UTF_8_STRING",
+            "GET_BYTES_SUBFIELD_AS_PROTO",
+            "EQUALS"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoProtoParameterArray": {
+      "id": "EnterpriseCrmEventbusProtoProtoParameterArray",
+      "properties": {
+        "protoValues": {
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoScatterResponse": {
+      "id": "EnterpriseCrmEventbusProtoScatterResponse",
+      "properties": {
+        "errorMsg": {
+          "description": "The error message of the failure if applicable.",
+          "type": "string"
+        },
+        "executionIds": {
+          "description": "The execution ids of each Subworkflow fired by this scatter.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "isSuccessful": {
+          "description": "If execution is sync, this is true if the execution passed and false if it failed. If the execution is async, this is true if the WF was fired off successfully, and false if it failed to execute. The success or failure of the subworkflows executed are not captured.",
+          "type": "boolean"
+        },
+        "responseParams": {
+          "description": "A list of all the response parameters in the aggregtorMap stored with the remapped key.",
+          "items": {
+            "$ref": "EnterpriseCrmEventbusProtoParameterEntry"
+          },
+          "type": "array"
+        },
+        "scatterElement": {
+          "$ref": "EnterpriseCrmEventbusProtoParameterValueType",
+          "description": "The element that was scattered for this execution."
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoSerializedObjectParameter": {
+      "id": "EnterpriseCrmEventbusProtoSerializedObjectParameter",
+      "properties": {
+        "objectValue": {
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoStringArrayFunction": {
+      "id": "EnterpriseCrmEventbusProtoStringArrayFunction",
+      "properties": {
+        "functionName": {
+          "enum": [
+            "UNSPECIFIED",
+            "GET",
+            "APPEND",
+            "SIZE",
+            "TO_SET",
+            "APPEND_ALL",
+            "TO_JSON",
+            "SET",
+            "REMOVE",
+            "REMOVE_AT",
+            "CONTAINS",
+            "FOR_EACH",
+            "FILTER"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoStringFunction": {
+      "id": "EnterpriseCrmEventbusProtoStringFunction",
+      "properties": {
+        "functionName": {
+          "enum": [
+            "UNSPECIFIED",
+            "CONCAT",
+            "TO_UPPERCASE",
+            "TO_LOWERCASE",
+            "CONTAINS",
+            "SPLIT",
+            "LENGTH",
+            "EQUALS",
+            "TO_INT",
+            "TO_DOUBLE",
+            "TO_BOOLEAN",
+            "TO_BASE_64",
+            "TO_JSON",
+            "EQUALS_IGNORE_CASE",
+            "REPLACE_ALL",
+            "SUBSTRING",
+            "RESOLVE_TEMPLATE",
+            "DECODE_BASE64_STRING"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoStringParameterArray": {
+      "id": "EnterpriseCrmEventbusProtoStringParameterArray",
+      "properties": {
+        "stringValues": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoSuspensionAuthPermissions": {
+      "description": "LINT.IfChange",
+      "id": "EnterpriseCrmEventbusProtoSuspensionAuthPermissions",
+      "properties": {
+        "gaiaIdentity": {
+          "$ref": "EnterpriseCrmEventbusProtoSuspensionAuthPermissionsGaiaIdentity",
+          "description": "Represents a Gaia identity for a person or service account."
+        },
+        "googleGroup": {
+          "$ref": "EnterpriseCrmEventbusProtoSuspensionAuthPermissionsGaiaIdentity"
+        },
+        "loasRole": {
+          "type": "string"
+        },
+        "mdbGroup": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoSuspensionAuthPermissionsGaiaIdentity": {
+      "id": "EnterpriseCrmEventbusProtoSuspensionAuthPermissionsGaiaIdentity",
+      "properties": {
+        "emailAddress": {
+          "type": "string"
+        },
+        "gaiaId": {
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoSuspensionConfig": {
+      "id": "EnterpriseCrmEventbusProtoSuspensionConfig",
+      "properties": {
+        "customMessage": {
+          "description": "Optional information to provide recipients of the suspension in addition to the resolution URL, typically containing relevant parameter values from the originating workflow.",
+          "type": "string"
+        },
+        "notifications": {
+          "items": {
+            "$ref": "EnterpriseCrmEventbusProtoNotification"
+          },
+          "type": "array"
+        },
+        "suspensionExpiration": {
+          "$ref": "EnterpriseCrmEventbusProtoSuspensionExpiration",
+          "description": "Indicates the next steps when no external actions happen on the suspension."
+        },
+        "whoMayResolve": {
+          "description": "Identities able to resolve this suspension.",
+          "items": {
+            "$ref": "EnterpriseCrmEventbusProtoSuspensionAuthPermissions"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoSuspensionExpiration": {
+      "id": "EnterpriseCrmEventbusProtoSuspensionExpiration",
+      "properties": {
+        "expireAfterMs": {
+          "description": "Milliseconds after which the suspension expires, if no action taken.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "liftWhenExpired": {
+          "description": "Whether the suspension will be REJECTED or LIFTED upon expiration. REJECTED is the default behavior.",
+          "type": "boolean"
+        },
+        "remindAfterMs": {
+          "description": "Milliseconds after which the previous suspension action reminder, if any, is sent using the selected notification option, for a suspension which is still PENDING_UNSPECIFIED.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoSuspensionResolutionInfo": {
+      "id": "EnterpriseCrmEventbusProtoSuspensionResolutionInfo",
+      "properties": {
+        "audit": {
+          "$ref": "EnterpriseCrmEventbusProtoSuspensionResolutionInfoAudit"
+        },
+        "clientId": {
+          "description": "The event data user sends as request.",
+          "type": "string"
+        },
+        "cloudKmsConfig": {
+          "$ref": "EnterpriseCrmEventbusProtoCloudKmsConfig",
+          "description": "KMS info, used by cmek/gmek integration"
+        },
+        "createdTimestamp": {
+          "description": "Auto-generated.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "encryptedSuspensionResolutionInfo": {
+          "description": "Encrypted SuspensionResolutionInfo",
+          "format": "byte",
+          "type": "string"
+        },
+        "eventExecutionInfoId": {
+          "description": "Required. ID of the associated execution.",
+          "type": "string"
+        },
+        "externalTraffic": {
+          "$ref": "EnterpriseCrmEventbusProtoExternalTraffic",
+          "description": "The origin of the suspension for periodic notifications."
+        },
+        "lastModifiedTimestamp": {
+          "description": "Auto-generated.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "product": {
+          "description": "Which Google product the suspension belongs to. If not set, the suspension belongs to Integration Platform by default.",
+          "enum": [
+            "UNSPECIFIED_PRODUCT",
+            "IP",
+            "APIGEE",
+            "SECURITY"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "PENDING_UNSPECIFIED",
+            "REJECTED",
+            "LIFTED",
+            "CANCELED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "suspensionConfig": {
+          "$ref": "EnterpriseCrmEventbusProtoSuspensionConfig"
+        },
+        "suspensionId": {
+          "description": "Primary key for the SuspensionResolutionInfoTable.",
+          "type": "string"
+        },
+        "taskNumber": {
+          "description": "Required. Task number of the associated SuspensionTask.",
+          "type": "string"
+        },
+        "workflowName": {
+          "description": "Required. The name of the originating workflow.",
+          "type": "string"
+        },
+        "wrappedDek": {
+          "description": "Wrapped dek",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoSuspensionResolutionInfoAudit": {
+      "id": "EnterpriseCrmEventbusProtoSuspensionResolutionInfoAudit",
+      "properties": {
+        "resolvedBy": {
+          "type": "string"
+        },
+        "resolvedByCpi": {
+          "type": "string"
+        },
+        "timestamp": {
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoToken": {
+      "id": "EnterpriseCrmEventbusProtoToken",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoTransformExpression": {
+      "id": "EnterpriseCrmEventbusProtoTransformExpression",
+      "properties": {
+        "initialValue": {
+          "$ref": "EnterpriseCrmEventbusProtoBaseValue",
+          "description": "Initial value upon which to perform transformations."
+        },
+        "transformationFunctions": {
+          "description": "Transformations to be applied sequentially.",
+          "items": {
+            "$ref": "EnterpriseCrmEventbusProtoFunction"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmFrontendsEventbusProtoBooleanParameterArray": {
+      "id": "EnterpriseCrmFrontendsEventbusProtoBooleanParameterArray",
+      "properties": {
+        "booleanValues": {
+          "items": {
+            "type": "boolean"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmFrontendsEventbusProtoDoubleParameterArray": {
+      "id": "EnterpriseCrmFrontendsEventbusProtoDoubleParameterArray",
+      "properties": {
+        "doubleValues": {
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmFrontendsEventbusProtoIntParameterArray": {
+      "id": "EnterpriseCrmFrontendsEventbusProtoIntParameterArray",
+      "properties": {
+        "intValues": {
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmFrontendsEventbusProtoParameterMap": {
+      "description": "A generic multi-map that holds key value pairs. They keys and values can be of any type, unless specified.",
+      "id": "EnterpriseCrmFrontendsEventbusProtoParameterMap",
+      "properties": {
+        "entries": {
+          "items": {
+            "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterMapEntry"
+          },
+          "type": "array"
+        },
+        "keyType": {
+          "description": "Option to specify key value type for all entries of the map. If provided then field types for all entries must conform to this.",
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "STRING_VALUE",
+            "INT_VALUE",
+            "DOUBLE_VALUE",
+            "BOOLEAN_VALUE",
+            "PROTO_VALUE",
+            "SERIALIZED_OBJECT_VALUE",
+            "STRING_ARRAY",
+            "INT_ARRAY",
+            "DOUBLE_ARRAY",
+            "PROTO_ARRAY",
+            "PROTO_ENUM",
+            "BOOLEAN_ARRAY",
+            "PROTO_ENUM_ARRAY",
+            "BYTES",
+            "BYTES_ARRAY",
+            "NON_SERIALIZABLE_OBJECT",
+            "JSON_VALUE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "BYTES and BYTES_ARRAY data types are not allowed for top-level params. They're only meant to support protobufs with BYTES (sub)fields.",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "valueType": {
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "STRING_VALUE",
+            "INT_VALUE",
+            "DOUBLE_VALUE",
+            "BOOLEAN_VALUE",
+            "PROTO_VALUE",
+            "SERIALIZED_OBJECT_VALUE",
+            "STRING_ARRAY",
+            "INT_ARRAY",
+            "DOUBLE_ARRAY",
+            "PROTO_ARRAY",
+            "PROTO_ENUM",
+            "BOOLEAN_ARRAY",
+            "PROTO_ENUM_ARRAY",
+            "BYTES",
+            "BYTES_ARRAY",
+            "NON_SERIALIZABLE_OBJECT",
+            "JSON_VALUE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "BYTES and BYTES_ARRAY data types are not allowed for top-level params. They're only meant to support protobufs with BYTES (sub)fields.",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmFrontendsEventbusProtoParameterMapEntry": {
+      "description": "Entry is a pair of key and value.",
+      "id": "EnterpriseCrmFrontendsEventbusProtoParameterMapEntry",
+      "properties": {
+        "key": {
+          "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterMapField"
+        },
+        "value": {
+          "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterMapField"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmFrontendsEventbusProtoParameterMapField": {
+      "description": "Field represents either the key or value in an entry.",
+      "id": "EnterpriseCrmFrontendsEventbusProtoParameterMapField",
+      "properties": {
+        "literalValue": {
+          "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterValueType",
+          "description": "Passing a literal value."
+        },
+        "referenceKey": {
+          "description": "Referencing one of the WF variables.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmFrontendsEventbusProtoParameterValueType": {
+      "description": "To support various types of parameter values. Next available id: 14",
+      "id": "EnterpriseCrmFrontendsEventbusProtoParameterValueType",
+      "properties": {
+        "booleanArray": {
+          "$ref": "EnterpriseCrmFrontendsEventbusProtoBooleanParameterArray"
+        },
+        "booleanValue": {
+          "type": "boolean"
+        },
+        "doubleArray": {
+          "$ref": "EnterpriseCrmFrontendsEventbusProtoDoubleParameterArray"
+        },
+        "doubleValue": {
+          "format": "double",
+          "type": "number"
+        },
+        "intArray": {
+          "$ref": "EnterpriseCrmFrontendsEventbusProtoIntParameterArray"
+        },
+        "intValue": {
+          "format": "int64",
+          "type": "string"
+        },
+        "jsonValue": {
+          "type": "string"
+        },
+        "protoArray": {
+          "$ref": "EnterpriseCrmFrontendsEventbusProtoProtoParameterArray"
+        },
+        "protoValue": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "type": "object"
+        },
+        "serializedObjectValue": {
+          "$ref": "EnterpriseCrmFrontendsEventbusProtoSerializedObjectParameter"
+        },
+        "stringArray": {
+          "$ref": "EnterpriseCrmFrontendsEventbusProtoStringParameterArray"
+        },
+        "stringValue": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmFrontendsEventbusProtoProtoParameterArray": {
+      "id": "EnterpriseCrmFrontendsEventbusProtoProtoParameterArray",
+      "properties": {
+        "protoValues": {
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmFrontendsEventbusProtoSerializedObjectParameter": {
+      "id": "EnterpriseCrmFrontendsEventbusProtoSerializedObjectParameter",
+      "properties": {
+        "objectValue": {
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmFrontendsEventbusProtoStringParameterArray": {
+      "id": "EnterpriseCrmFrontendsEventbusProtoStringParameterArray",
+      "properties": {
+        "stringValues": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiHttpBody": {
+      "description": "Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.",
+      "id": "GoogleApiHttpBody",
+      "properties": {
+        "contentType": {
+          "description": "The HTTP Content-Type header value specifying the content type of the body.",
+          "type": "string"
+        },
+        "data": {
+          "description": "The HTTP request/response body as raw binary.",
+          "format": "byte",
+          "type": "string"
+        },
+        "extensions": {
+          "description": "Application specific response metadata. Must be set in the first response for streaming APIs.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2AttemptStats": {
+      "description": "Status for the execution attempt.",
+      "id": "GoogleCloudIntegrationsV2AttemptStats",
+      "properties": {
+        "endTime": {
+          "description": "The end time of the execution for the current attempt.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The start time of the execution for the current attempt. This could be in the future if it's been scheduled.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2CloudLoggingDetails": {
+      "description": "Cloud Logging details for execution info",
+      "id": "GoogleCloudIntegrationsV2CloudLoggingDetails",
+      "properties": {
+        "cloudLoggingSeverity": {
+          "description": "Optional. Severity selected by the customer for the logs to be sent to Cloud Logging, for the integration version getting executed.",
+          "enum": [
+            "CLOUD_LOGGING_SEVERITY_UNSPECIFIED",
+            "INFO",
+            "ERROR",
+            "WARNING"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "If Severity selected is `INFO`, then all the Integration Execution States (`IN_PROCESS`, `ON_HOLD`, `SUCCEEDED`, `SUSPENDED`, `ERROR`, `CANCELLED`) will be sent to Cloud Logging.",
+            "If Severity selected is `ERROR`, then only the following Integration Execution States (`ERROR`, `CANCELLED`) will be sent to Cloud Logging.",
+            "If Severity selected is `WARNING`, then only the following Integration Execution States (`ERROR`, `CANCELLED`) will be sent to Cloud Logging."
+          ],
+          "type": "string"
+        },
+        "enableCloudLogging": {
+          "description": "Optional. Status of whether Cloud Logging is enabled or not for the integration version getting executed.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetBooleanParameterArray": {
+      "description": "This message only contains a field of boolean array.",
+      "id": "GoogleCloudIntegrationsV2DuetBooleanParameterArray",
+      "properties": {
+        "booleanValues": {
+          "description": "Boolean array.",
+          "items": {
+            "type": "boolean"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetCloudSchedulerConfig": {
+      "description": "Cloud Scheduler Trigger configuration",
+      "id": "GoogleCloudIntegrationsV2DuetCloudSchedulerConfig",
+      "properties": {
+        "cronTab": {
+          "description": "Required. The cron tab of cloud scheduler trigger.",
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "Optional. When the job was deleted from Pantheon UI, error_message will be populated when Get/List integrations",
+          "type": "string"
+        },
+        "location": {
+          "description": "Required. The location where associated cloud scheduler job will be created",
+          "type": "string"
+        },
+        "serviceAccountEmail": {
+          "description": "Required. Service account used by Cloud Scheduler to trigger the integration at scheduled time",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetDoubleParameterArray": {
+      "description": "This message only contains a field of double number array.",
+      "id": "GoogleCloudIntegrationsV2DuetDoubleParameterArray",
+      "properties": {
+        "doubleValues": {
+          "description": "Double number array.",
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetErrorCatcherConfig": {
+      "description": "Configuration detail of a error catch task",
+      "id": "GoogleCloudIntegrationsV2DuetErrorCatcherConfig",
+      "properties": {
+        "description": {
+          "description": "Optional. User-provided description intended to give more business context about the error catcher config.",
+          "type": "string"
+        },
+        "errorCatcherId": {
+          "description": "Required. An error catcher id is string representation for the error catcher config. Within a workflow, error_catcher_id uniquely identifies an error catcher config among all error catcher configs for the workflow",
+          "type": "string"
+        },
+        "errorCatcherNumber": {
+          "description": "Required. A number to uniquely identify each error catcher config within the workflow on UI.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Optional. The user created label for a particular error catcher. Optional.",
+          "type": "string"
+        },
+        "startErrorTasks": {
+          "description": "Required. The set of start tasks that are to be executed for the error catch flow",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2DuetNextTask"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetEventParameter": {
+      "description": "This message is used for processing and persisting (when applicable) key value pair parameters for each event in the event bus.",
+      "id": "GoogleCloudIntegrationsV2DuetEventParameter",
+      "properties": {
+        "key": {
+          "description": "Key is used to retrieve the corresponding parameter value. This should be unique for a given fired event. These parameters must be predefined in the integration definition.",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "GoogleCloudIntegrationsV2DuetValueType",
+          "description": "Values for the defined keys. Each value can either be string, int, double or any proto message."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetGenerateIntegrationBranchRequest": {
+      "description": "Request message for generating an integration branch containing tasks.",
+      "id": "GoogleCloudIntegrationsV2DuetGenerateIntegrationBranchRequest",
+      "properties": {
+        "integrationBranchRequest": {
+          "$ref": "GoogleCloudIntegrationsV2DuetIntegrationBranchRequest",
+          "description": "Required. The integration branch request payload."
+        },
+        "prompt": {
+          "description": "Required. User prompt.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetGenerateIntegrationBranchResponse": {
+      "description": "Response message containing the generated integration branch data.",
+      "id": "GoogleCloudIntegrationsV2DuetGenerateIntegrationBranchResponse",
+      "properties": {
+        "integrationBranch": {
+          "$ref": "GoogleCloudIntegrationsV2DuetIntegrationBranch",
+          "description": "The integration branch returned by Duet"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetGenerateIntegrationDocumentRequest": {
+      "description": "Request message for generating documentation for an integration version.",
+      "id": "GoogleCloudIntegrationsV2DuetGenerateIntegrationDocumentRequest",
+      "properties": {
+        "integrationDocumentRequest": {
+          "$ref": "GoogleCloudIntegrationsV2DuetIntegrationDocumentRequest",
+          "description": "Required. The integration document request payload."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetGenerateIntegrationDocumentResponse": {
+      "description": "Response message containing generated integration documentation text.",
+      "id": "GoogleCloudIntegrationsV2DuetGenerateIntegrationDocumentResponse",
+      "properties": {
+        "document": {
+          "description": "The description of the integration returned by Duet AI.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetGenerateIntegrationRequest": {
+      "description": "Request for generating an integration.",
+      "id": "GoogleCloudIntegrationsV2DuetGenerateIntegrationRequest",
+      "properties": {
+        "copilotEnabled": {
+          "description": "Optional. Indicates if copilot is enabled. Copilot features may alter the generated integration structure.",
+          "type": "boolean"
+        },
+        "prompt": {
+          "description": "Required. The natural language prompt based on which the integration will be generated.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetGenerateIntegrationResponse": {
+      "description": "Response for generating an integration.",
+      "id": "GoogleCloudIntegrationsV2DuetGenerateIntegrationResponse",
+      "properties": {
+        "skeletonIntegrations": {
+          "description": "The list of integration skeletons returned.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2DuetIntegrationSkeleton"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetGenerateJavascriptRequest": {
+      "description": "Request message for generating data mapping Javascript.",
+      "id": "GoogleCloudIntegrationsV2DuetGenerateJavascriptRequest",
+      "properties": {
+        "javascriptRequest": {
+          "$ref": "GoogleCloudIntegrationsV2DuetJavascriptRequest",
+          "description": "Required. The javascript request payload."
+        },
+        "prompt": {
+          "description": "Optional. User prompt.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetGenerateJavascriptResponse": {
+      "description": "Response message containing generated Javascript code recommendations.",
+      "id": "GoogleCloudIntegrationsV2DuetGenerateJavascriptResponse",
+      "properties": {
+        "recommendations": {
+          "description": "List of the Javascript recommendations.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2DuetJavascriptRecommendation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetIntParameterArray": {
+      "description": "This message only contains a field of integer array.",
+      "id": "GoogleCloudIntegrationsV2DuetIntParameterArray",
+      "properties": {
+        "intValues": {
+          "description": "Integer array.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetIntegrationBranch": {
+      "description": "An integration branch skeleton containing basic fields which can be used to create an integration branch on the UI.",
+      "id": "GoogleCloudIntegrationsV2DuetIntegrationBranch",
+      "properties": {
+        "branchCondition": {
+          "description": "The condition for the branch.",
+          "type": "string"
+        },
+        "explanation": {
+          "description": "Explanation of why this integration branch was generated.",
+          "type": "string"
+        },
+        "integrationParameters": {
+          "description": "The newly generated workflow parameters.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2DuetIntegrationParameter"
+          },
+          "type": "array"
+        },
+        "taskConfigs": {
+          "description": "The newly generated tasks which can be branched into the current integration.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2DuetTaskConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetIntegrationBranchRequest": {
+      "description": "The request for generating an integration branch.",
+      "id": "GoogleCloudIntegrationsV2DuetIntegrationBranchRequest",
+      "properties": {
+        "branchCondition": {
+          "description": "Optional. The condition for the particular branch which the user selected.",
+          "type": "string"
+        },
+        "integrationParameters": {
+          "description": "Optional. A list of all the workflow parameters of the current integration.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2DuetIntegrationParameter"
+          },
+          "type": "array"
+        },
+        "taskConfigs": {
+          "description": "Required. A list of all the tasks of the current integration.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2DuetTaskConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetIntegrationConfigParameter": {
+      "description": "Integration Config Parameter is defined in the integration config and are used to provide external configuration for integration. It provide information about data types of the expected parameters and provide any default values or value. They can also be used to add custom attributes.",
+      "id": "GoogleCloudIntegrationsV2DuetIntegrationConfigParameter",
+      "properties": {
+        "parameter": {
+          "$ref": "GoogleCloudIntegrationsV2DuetIntegrationParameter",
+          "description": "Optional. Integration Parameter to provide the default value, data type and attributes required for the Integration config variables."
+        },
+        "value": {
+          "$ref": "GoogleCloudIntegrationsV2DuetValueType",
+          "description": "Values for the defined keys. Each value can either be string, int, double or any proto message or a serialized object."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetIntegrationDocumentRequest": {
+      "description": "The request for generating description of an integration.",
+      "id": "GoogleCloudIntegrationsV2DuetIntegrationDocumentRequest",
+      "properties": {
+        "integrationVersion": {
+          "$ref": "GoogleCloudIntegrationsV2DuetIntegrationVersion",
+          "description": "Required. The current integrtion on the canvas."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetIntegrationParameter": {
+      "description": "Integration Parameter is defined in the integration config and are used to provide information about data types of the expected parameters and provide any default values if needed. They can also be used to add custom attributes. These are static in nature and should not be used for dynamic event definition.",
+      "id": "GoogleCloudIntegrationsV2DuetIntegrationParameter",
+      "properties": {
+        "dataType": {
+          "description": "Type of the parameter.",
+          "enum": [
+            "INTEGRATION_PARAMETER_DATA_TYPE_UNSPECIFIED",
+            "STRING_VALUE",
+            "INT_VALUE",
+            "DOUBLE_VALUE",
+            "BOOLEAN_VALUE",
+            "STRING_ARRAY",
+            "INT_ARRAY",
+            "DOUBLE_ARRAY",
+            "BOOLEAN_ARRAY",
+            "JSON_VALUE",
+            "PROTO_VALUE",
+            "PROTO_ARRAY"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "String.",
+            "Integer.",
+            "Double Number.",
+            "Boolean.",
+            "String Array.",
+            "Integer Array.",
+            "Double Number Array.",
+            "Boolean Array.",
+            "Json.",
+            "Proto Value (Internal use only).",
+            "Proto Array (Internal use only)."
+          ],
+          "type": "string"
+        },
+        "defaultValue": {
+          "$ref": "GoogleCloudIntegrationsV2DuetValueType",
+          "description": "Default values for the defined keys. Each value can either be string, int, double or any proto message or a serialized object."
+        },
+        "description": {
+          "description": "Optional. Description of the parameter.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The name (without prefix) to be displayed in the UI for this parameter. E.g. if the key is \"foo.bar.myName\", then the name would be \"myName\".",
+          "type": "string"
+        },
+        "inputOutputType": {
+          "description": "Specifies the input/output type for the parameter.",
+          "enum": [
+            "IN_OUT_TYPE_UNSPECIFIED",
+            "IN",
+            "OUT",
+            "IN_OUT"
+          ],
+          "enumDescriptions": [
+            "Default.",
+            "Input parameters for the integration. EventBus validates that these parameters exist in the integrations before execution.",
+            "Output Parameters for the integration. EventBus will only return the integration parameters tagged with OUT in the response back.",
+            "Input and Output Parameters. These can be used as both input and output. EventBus will validate for the existence of these parameters before execution and will also return this parameter back in the response."
+          ],
+          "type": "string"
+        },
+        "isTransient": {
+          "description": "Whether this parameter is a transient parameter.",
+          "type": "boolean"
+        },
+        "jsonSchema": {
+          "description": "This schema will be used to validate runtime JSON-typed values of this parameter.",
+          "type": "string"
+        },
+        "key": {
+          "description": "Key is used to retrieve the corresponding parameter value. This should be unique for a given fired event. These parameters must be predefined in the integration definition.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetIntegrationSkeleton": {
+      "description": "An integration skeleton containing basic fields which can be used to create an integration on the UI.",
+      "id": "GoogleCloudIntegrationsV2DuetIntegrationSkeleton",
+      "properties": {
+        "explanation": {
+          "description": "Explanation of why this integration was generated.",
+          "type": "string"
+        },
+        "integrationVersion": {
+          "$ref": "GoogleCloudIntegrationsV2DuetIntegrationVersion",
+          "description": "The integration version containing basic triggers and tasks."
+        },
+        "name": {
+          "description": "The name of the integration.",
+          "type": "string"
+        },
+        "tag": {
+          "description": "Indicate the strategy/methodology used to generate the integration.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetIntegrationVersion": {
+      "description": "The integration version definition.",
+      "id": "GoogleCloudIntegrationsV2DuetIntegrationVersion",
+      "properties": {
+        "description": {
+          "description": "Optional. The integration description.",
+          "type": "string"
+        },
+        "errorCatcherConfigs": {
+          "description": "Optional. Error Catch Task configuration for the integration. It's optional.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2DuetErrorCatcherConfig"
+          },
+          "type": "array"
+        },
+        "integrationConfigParameters": {
+          "description": "Optional. Config Parameters that are expected to be passed to the integration when an integration is published. This consists of all the parameters that are expected to provide configuration in the integration execution. This gives the user the ability to provide default values, value, add information like connection url, project based configuration value and also provide data types of each parameter.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2DuetIntegrationConfigParameter"
+          },
+          "type": "array"
+        },
+        "integrationParameters": {
+          "description": "Optional. Parameters that are expected to be passed to the integration when an event is triggered. This consists of all the parameters that are expected in the integration execution. This gives the user the ability to provide default values, add information like PII and also provide data types of each parameter.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2DuetIntegrationParameter"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Optional. Auto-generated primary key.",
+          "type": "string"
+        },
+        "snapshotNumber": {
+          "description": "Optional. An increasing sequence that is set when a new snapshot is created. The last created snapshot can be identified by [workflow_name, org_id latest(snapshot_number)]. However, last created snapshot need not be same as the HEAD. So users should always use \"HEAD\" tag to identify the head.",
+          "format": "int64",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. User should not set it as an input.",
+          "enum": [
+            "INTEGRATION_STATE_UNSPECIFIED",
+            "DRAFT",
+            "ACTIVE",
+            "ARCHIVED",
+            "SNAPSHOT"
+          ],
+          "enumDescriptions": [
+            "Default.",
+            "Draft.",
+            "Active.",
+            "Archived.",
+            "Snapshot."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "taskConfigs": {
+          "description": "Optional. Task configuration for the integration. It's optional, but the integration doesn't do anything without task_configs.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2DuetTaskConfig"
+          },
+          "type": "array"
+        },
+        "triggerConfigs": {
+          "description": "Optional. Trigger configurations.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2DuetTriggerConfig"
+          },
+          "type": "array"
+        },
+        "userLabel": {
+          "description": "Optional. A user-defined label that annotates an integration version. Typically, this is only set when the integration version is created.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetJavascriptRecommendation": {
+      "description": "Individual Javascript recommendation containing the task config with the new code, integration parameters and the explanation.",
+      "id": "GoogleCloudIntegrationsV2DuetJavascriptRecommendation",
+      "properties": {
+        "explanation": {
+          "description": "The explanation of the Javascript code.",
+          "type": "string"
+        },
+        "integrationParameters": {
+          "description": "Optional. The list of the new integration parameters.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2DuetIntegrationParameter"
+          },
+          "type": "array"
+        },
+        "taskConfig": {
+          "$ref": "GoogleCloudIntegrationsV2DuetTaskConfig",
+          "description": "Optional. The task config of the Javascript task."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetJavascriptRequest": {
+      "description": "Request message for Javascript Task using Gemini.",
+      "id": "GoogleCloudIntegrationsV2DuetJavascriptRequest",
+      "properties": {
+        "copilotEnabled": {
+          "description": "Optional. If this request is for copilot.",
+          "type": "boolean"
+        },
+        "integrationVersion": {
+          "$ref": "GoogleCloudIntegrationsV2DuetIntegrationVersion",
+          "description": "Required. The integration version which contains all the integration parameters, all triggers and tasks including the Javascript task."
+        },
+        "taskId": {
+          "description": "Required. The task id of the Javascript task.",
+          "type": "string"
+        },
+        "useCurrentScript": {
+          "description": "Optional. Whether to use the current javascript task config (JS code) to generate the Javascript code.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetNextTask": {
+      "description": "The task that is next in line to be executed, if the condition specified evaluated to true.",
+      "id": "GoogleCloudIntegrationsV2DuetNextTask",
+      "properties": {
+        "condition": {
+          "description": "Standard filter expression for this task to become an eligible next task.",
+          "type": "string"
+        },
+        "description": {
+          "description": "User-provided description intended to give additional business context about the task.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "User-provided label that is attached to this edge in the UI.",
+          "type": "string"
+        },
+        "taskConfigId": {
+          "description": "ID of the next task.",
+          "type": "string"
+        },
+        "taskId": {
+          "description": "Task number of the next task.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetRecommendTasksRequest": {
+      "description": "Request message for recommending tasks to replace a selected task.",
+      "id": "GoogleCloudIntegrationsV2DuetRecommendTasksRequest",
+      "properties": {
+        "prompt": {
+          "description": "Optional. User prompt.",
+          "type": "string"
+        },
+        "replaceTaskRequest": {
+          "$ref": "GoogleCloudIntegrationsV2DuetReplaceTaskRequest",
+          "description": "Required. The current task to replace and options."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetRecommendTasksResponse": {
+      "description": "Response message containing recommended tasks for replacement.",
+      "id": "GoogleCloudIntegrationsV2DuetRecommendTasksResponse",
+      "properties": {
+        "taskConfigs": {
+          "description": "The list of recommended tasks.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2DuetTaskConfig"
+          },
+          "type": "array"
+        },
+        "taskResponseStatuses": {
+          "description": "The list of task response status based on the task_types in the request.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2DuetTaskResponseStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetReplaceTaskRequest": {
+      "description": "Message for Replace Task Scenario.",
+      "id": "GoogleCloudIntegrationsV2DuetReplaceTaskRequest",
+      "properties": {
+        "copilotEnabled": {
+          "description": "Optional. If this request is for copilot.",
+          "type": "boolean"
+        },
+        "taskConfig": {
+          "$ref": "GoogleCloudIntegrationsV2DuetTaskConfig",
+          "description": "Required. The current task selected on the UI."
+        },
+        "taskTypes": {
+          "description": "The list of task types.",
+          "items": {
+            "enum": [
+              "TASK_TYPE_UNSPECIFIED",
+              "CONNECTOR_TASK",
+              "REST_TASK"
+            ],
+            "enumDescriptions": [
+              "Unspecified.",
+              "Connector Task.",
+              "Rest task."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetStringParameterArray": {
+      "description": "This message only contains a field of string array.",
+      "id": "GoogleCloudIntegrationsV2DuetStringParameterArray",
+      "properties": {
+        "stringValues": {
+          "description": "String array.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetTaskConfig": {
+      "description": "The task configuration details. This is not the implementation of Task. There might be multiple TaskConfigs for the same Task.",
+      "id": "GoogleCloudIntegrationsV2DuetTaskConfig",
+      "properties": {
+        "description": {
+          "description": "Optional. User-provided description intended to give additional business context about the task.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. User-provided label that is attached to this TaskConfig in the UI.",
+          "type": "string"
+        },
+        "errorCatcherId": {
+          "description": "Optional. Optional Error catcher id of the error catch flow which will be executed when execution error happens in the task",
+          "type": "string"
+        },
+        "externalTaskType": {
+          "description": "Optional. External task type of the task",
+          "enum": [
+            "EXTERNAL_TASK_TYPE_UNSPECIFIED",
+            "NORMAL_TASK",
+            "ERROR_TASK"
+          ],
+          "enumDescriptions": [
+            "Default value. External task type is not specified",
+            "Tasks belongs to the normal task flows",
+            "Task belongs to the error catch task flows"
+          ],
+          "type": "string"
+        },
+        "nextTasks": {
+          "description": "Optional. The set of tasks that are next in line to be executed as per the execution graph defined for the parent event, specified by `event_config_id`. Each of these next tasks are executed only if the condition associated with them evaluates to true.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2DuetNextTask"
+          },
+          "type": "array"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudIntegrationsV2DuetEventParameter"
+          },
+          "description": "Optional. The customized parameters the user can pass to this task.",
+          "type": "object"
+        },
+        "task": {
+          "description": "Optional. The name for the task.",
+          "type": "string"
+        },
+        "taskId": {
+          "description": "Required. The identifier of this task within its parent event config, specified by the client. This should be unique among all the tasks belong to the same event config. We use this field as the identifier to find next tasks (via field `next_tasks.task_id`).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetTaskResponseStatus": {
+      "description": "Message for task response status.",
+      "id": "GoogleCloudIntegrationsV2DuetTaskResponseStatus",
+      "properties": {
+        "errorMessage": {
+          "description": "The error message of the task response in case of failure.",
+          "type": "string"
+        },
+        "httpCode": {
+          "description": "The http code of the task response.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "taskType": {
+          "description": "The task type.",
+          "enum": [
+            "TASK_TYPE_UNSPECIFIED",
+            "CONNECTOR_TASK",
+            "REST_TASK"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Connector Task.",
+            "Rest task."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetTriggerConfig": {
+      "description": "Configuration detail of a trigger.",
+      "id": "GoogleCloudIntegrationsV2DuetTriggerConfig",
+      "properties": {
+        "cloudSchedulerConfig": {
+          "$ref": "GoogleCloudIntegrationsV2DuetCloudSchedulerConfig",
+          "description": "Optional. Cloud Scheduler Trigger related metadata"
+        },
+        "description": {
+          "description": "Optional. User-provided description intended to give additional business context about the task.",
+          "type": "string"
+        },
+        "errorCatcherId": {
+          "description": "Optional. Optional Error catcher id of the error catch flow which will be executed when execution error happens in the task",
+          "type": "string"
+        },
+        "inputVariables": {
+          "$ref": "GoogleCloudIntegrationsV2DuetTriggerConfigVariables",
+          "description": "Optional. List of input variables for the api trigger."
+        },
+        "label": {
+          "description": "Optional. The user created label for a particular trigger.",
+          "type": "string"
+        },
+        "outputVariables": {
+          "$ref": "GoogleCloudIntegrationsV2DuetTriggerConfigVariables",
+          "description": "Optional. List of output variables for the api trigger."
+        },
+        "properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Configurable properties of the trigger, not to be confused with integration parameters. E.g. \"name\" is a property for API triggers and \"subscription\" is a property for Pub/sub triggers.",
+          "type": "object"
+        },
+        "startTasks": {
+          "description": "Optional. Set of tasks numbers from where the integration execution is started by this trigger. If this is empty, then integration is executed with default start tasks. In the list of start tasks, none of two tasks can have direct ancestor-descendant relationships (i.e. in a same integration execution graph).",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2DuetNextTask"
+          },
+          "type": "array"
+        },
+        "trigger": {
+          "description": "Optional. Name of the trigger. Example: \"API Trigger\", \"Cloud Pub Sub Trigger\" When set will be sent out to monitoring dashabord for tracking purpose.",
+          "type": "string"
+        },
+        "triggerId": {
+          "description": "Optional. The backend trigger ID.",
+          "type": "string"
+        },
+        "triggerNumber": {
+          "description": "Required. A number to uniquely identify each trigger config within the integration on UI.",
+          "type": "string"
+        },
+        "triggerType": {
+          "description": "Optional. Type of trigger",
+          "enum": [
+            "TRIGGER_TYPE_UNSPECIFIED",
+            "CRON",
+            "API",
+            "SFDC_CHANNEL",
+            "CLOUD_PUBSUB_EXTERNAL",
+            "SFDC_CDC_CHANNEL",
+            "CLOUD_SCHEDULER",
+            "INTEGRATION_CONNECTOR_TRIGGER",
+            "PRIVATE_TRIGGER"
+          ],
+          "enumDescriptions": [
+            "Unknown.",
+            "Trigger by scheduled time.",
+            "Trigger by API call.",
+            "Trigger by Salesforce Channel.",
+            "Trigger by Pub/Sub external.",
+            "SFDC Channel Trigger for CDC.",
+            "Trigger by Cloud Scheduler job.",
+            "Trigger by Connector Event",
+            "Trigger for private workflow"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetTriggerConfigVariables": {
+      "description": "Variables names mapped to api trigger.",
+      "id": "GoogleCloudIntegrationsV2DuetTriggerConfigVariables",
+      "properties": {
+        "names": {
+          "description": "Optional. List of variable names.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetTroubleshootExecutionResponse": {
+      "description": "Response for troubleshooting an integration execution.",
+      "id": "GoogleCloudIntegrationsV2DuetTroubleshootExecutionResponse",
+      "properties": {
+        "detailedExplanation": {
+          "description": "Detailed explanation of the root cause of the integration execution failure.",
+          "type": "string"
+        },
+        "displayMessage": {
+          "description": "Display message to be shown to the user. Example - If integration execution succeeded, this field value can be \"Integration execution succeeded. No troubleshooting needed.\".",
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "Error message of the integration execution, if the execution failed.",
+          "type": "string"
+        },
+        "executionId": {
+          "description": "The execution id of the integration execution to be troubleshooted.",
+          "type": "string"
+        },
+        "rootCause": {
+          "description": "Root cause of the integration execution failure.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2DuetValueType": {
+      "description": "The type of the parameter.",
+      "id": "GoogleCloudIntegrationsV2DuetValueType",
+      "properties": {
+        "booleanArray": {
+          "$ref": "GoogleCloudIntegrationsV2DuetBooleanParameterArray",
+          "description": "Boolean Array."
+        },
+        "booleanValue": {
+          "description": "Boolean.",
+          "type": "boolean"
+        },
+        "doubleArray": {
+          "$ref": "GoogleCloudIntegrationsV2DuetDoubleParameterArray",
+          "description": "Double Number Array."
+        },
+        "doubleValue": {
+          "description": "Double Number.",
+          "format": "double",
+          "type": "number"
+        },
+        "intArray": {
+          "$ref": "GoogleCloudIntegrationsV2DuetIntParameterArray",
+          "description": "Integer Array."
+        },
+        "intValue": {
+          "description": "Integer.",
+          "format": "int64",
+          "type": "string"
+        },
+        "jsonValue": {
+          "description": "Json.",
+          "type": "string"
+        },
+        "stringArray": {
+          "$ref": "GoogleCloudIntegrationsV2DuetStringParameterArray",
+          "description": "String Array."
+        },
+        "stringValue": {
+          "description": "String.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2Execution": {
+      "description": "The Execution contains detailed information of an individual integration execution.",
+      "id": "GoogleCloudIntegrationsV2Execution",
+      "properties": {
+        "cloudLoggingDetails": {
+          "$ref": "GoogleCloudIntegrationsV2CloudLoggingDetails",
+          "description": "Cloud Logging details for the integration version"
+        },
+        "containTaskVariables": {
+          "description": "Indicates if the task execution contains variables.",
+          "type": "boolean"
+        },
+        "createTime": {
+          "description": "Output only. Time the execution is created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "executionAttemptStats": {
+          "description": "Start and end time of each execution attempt.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2AttemptStats"
+          },
+          "type": "array"
+        },
+        "integrationVersionNumber": {
+          "description": "Indicates which snapshot of integration is used for this execution.",
+          "format": "int64",
+          "type": "string"
+        },
+        "integrationVersionUserLabel": {
+          "description": "Optional. User-defined label that annotates the executed integration version.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Execution resource name.",
+          "type": "string"
+        },
+        "replayInfo": {
+          "$ref": "GoogleCloudIntegrationsV2ExecutionReplayInfo",
+          "description": "Output only. Replay info for the execution",
+          "readOnly": true
+        },
+        "requestVariables": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Variables provided in the request.",
+          "type": "object"
+        },
+        "responseVariables": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Variables returned as part of the response.",
+          "type": "object"
+        },
+        "state": {
+          "description": "Output only. Status of the execution.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ON_HOLD",
+            "IN_PROCESS",
+            "SUCCEEDED",
+            "FAILED",
+            "CANCELLED",
+            "RETRY_ON_HOLD",
+            "SUSPENDED"
+          ],
+          "enumDescriptions": [
+            "Default.",
+            "Execution is scheduled and awaiting to be triggered.",
+            "Execution is processing.",
+            "Execution successfully finished. There are no more changes after this state.",
+            "Execution failed. There's no more change after this state.",
+            "Execution is cancelled. There's no more change after this state.",
+            "Execution failed and is waiting for retry.",
+            "Execution suspended and waiting for manual intervention."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "taskExecutions": {
+          "description": "Optional. List of task executions.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2TaskExecution"
+          },
+          "type": "array"
+        },
+        "triggerId": {
+          "description": "The ID of the trigger invoked at the start of the execution.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time the execution is recently updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2ExecutionReplayInfo": {
+      "description": "Contains the details of the execution info: this includes the replay reason and replay tree connecting executions in a parent-child relationship",
+      "id": "GoogleCloudIntegrationsV2ExecutionReplayInfo",
+      "properties": {
+        "originalExecutionId": {
+          "description": "If this execution is a replay of another execution, then this field contains the original execution id.",
+          "type": "string"
+        },
+        "replayMode": {
+          "description": "Replay mode for the execution",
+          "enum": [
+            "REPLAY_MODE_UNSPECIFIED",
+            "REPLAY_MODE_FROM_BEGINNING",
+            "REPLAY_MODE_POINT_OF_FAILURE"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Replay the original execution from the beginning.",
+            "Replay the execution from the first failed task."
+          ],
+          "type": "string"
+        },
+        "replayReason": {
+          "description": "reason for replay",
+          "type": "string"
+        },
+        "replayedExecutionIds": {
+          "description": "If this execution has been replayed, then this field contains the execution ids of the replayed executions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2ListExecutionsResponse": {
+      "description": "Response for listing the Integration executions.",
+      "id": "GoogleCloudIntegrationsV2ListExecutionsResponse",
+      "properties": {
+        "executions": {
+          "description": "Required. The list of executions.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2Execution"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The token for retrieving the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2TaskExecution": {
+      "description": "Execution of a single task within an integration",
+      "id": "GoogleCloudIntegrationsV2TaskExecution",
+      "properties": {
+        "name": {
+          "description": "Identifier. Task execution resource name.",
+          "type": "string"
+        },
+        "taskExecutionDetails": {
+          "description": "Details of the task execution.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2TaskExecutionDetails"
+          },
+          "type": "array"
+        },
+        "taskExecutionMetadata": {
+          "$ref": "GoogleCloudIntegrationsV2TaskExecutionTaskExecutionMetadata",
+          "description": "Optional. Metadata of the task execution."
+        },
+        "variables": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Variables used during the execution.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2TaskExecutionDetails": {
+      "description": "Details of the task execution.",
+      "id": "GoogleCloudIntegrationsV2TaskExecutionDetails",
+      "properties": {
+        "taskAttemptStats": {
+          "description": "List for the current task execution attempts.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV2AttemptStats"
+          },
+          "type": "array"
+        },
+        "taskExecutionState": {
+          "description": "Output only. The execution state of this task.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "IN_PROCESS",
+            "SUCCEED",
+            "FAILED",
+            "FATAL",
+            "RETRY_ON_HOLD",
+            "CANCELLED",
+            "SUSPENDED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Task is under processing.",
+            "Task execution successfully finished. There are no more changes after this state.",
+            "Task execution failed. There's no more change after this state.",
+            "Task execution failed and cause the whole integration execution to fail immediately. There's no more change after this state.",
+            "Task execution failed and is waiting for retry.",
+            "Task execution cancelled when in progress. This happens when integration execution was cancelled or any other task fell into a fatal state.",
+            "Task is a SuspensionTask which has executed once, creating a pending suspension."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "taskNumber": {
+          "description": "Pointer to the task config it used for execution.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV2TaskExecutionTaskExecutionMetadata": {
+      "description": "Metadata of the task execution.",
+      "id": "GoogleCloudIntegrationsV2TaskExecutionTaskExecutionMetadata",
+      "properties": {
+        "ancestorIterationNumbers": {
+          "description": "Optional. Ancestor iteration number for the task (it will only be non-empty if the task is under 'private integration').",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ancestorTaskNumbers": {
+          "description": "Optional. Ancestor task number for the task (it will only be non-empty if the task is under 'private integration').",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "executionAttempt": {
+          "description": "The execution attempt number this execution belongs to.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "privateIntegrationName": {
+          "description": "Optional. The direct integration which the execution belongs to.",
+          "type": "string"
+        },
+        "task": {
+          "description": "The task name associated with this execution.",
+          "type": "string"
+        },
+        "taskAttempt": {
+          "description": "The task attempt number this execution belongs to.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "taskLabel": {
+          "description": "The task label associated with this execution.",
+          "type": "string"
+        },
+        "taskNumber": {
+          "description": "The task number associated with this execution.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest": {
+      "description": "LINT.IfChange Use this request to post all workflows associated with a given trigger id. Next available id: 13",
+      "id": "GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest",
+      "properties": {
+        "clientId": {
+          "description": "Optional. If the client id is provided, then the combination of trigger id and client id is matched across all the workflows. If the client id is not provided, then workflows with matching trigger id are executed for each client id in the {@link TriggerConfig}. For Api Trigger, the client id is required and will be validated against the allowed clients.",
+          "type": "string"
+        },
+        "ignoreErrorIfNoActiveWorkflow": {
+          "description": "Optional. Flag to determine whether clients would suppress a warning when no ACTIVE workflows are not found. If this flag is set to be true, an error will not be thrown if the requested trigger_id or client_id is not found in any ACTIVE workflow. Otherwise, the error is always thrown. The flag is set to be false by default.",
+          "type": "boolean"
+        },
+        "parameters": {
+          "$ref": "EnterpriseCrmEventbusProtoEventParameters",
+          "description": "Passed in as parameters to each workflow execution. Optional."
+        },
+        "priority": {
+          "description": "The request priority this request should be processed at. For internal users:",
+          "enum": [
+            "UNSPCIFIED",
+            "SHEDDABLE",
+            "SHEDDABLE_PLUS",
+            "CRITICAL",
+            "CRITICAL_PLUS"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Frequent partial and occasional full unavailability is expected and not pageable. * Requests to this band will be shed before all other requests. * This is the default for async calls sent from batch jobs.",
+            "Partial unavailability is expected and is not necessarily pageable. * Requests to this band will be shed before any critical traffic. * This is the default for async calls sent from production jobs.",
+            "Any outage is a pageable event. * During a production outage requests in this band will only be shed before CRITICAL_PLUS. * This is the default for sync calls sent from production jobs.",
+            "Any outage is a pageable event. * The guideline is for < 10% of requests to a service to be in this band. * During a production outage requests in this band will be prioritized above all others. * Opt-in to CRITICAL_PLUS when your workflow triggers by human."
+          ],
+          "type": "string"
+        },
+        "quotaRetryCount": {
+          "description": "Optional. This is a field to see the quota retry count for integration execution",
+          "format": "int32",
+          "type": "integer"
+        },
+        "requestId": {
+          "description": "Optional. This is used to de-dup incoming request: if the duplicate request was detected, the response from the previous execution is returned. Must have no more than 36 characters and contain only alphanumeric characters and hyphens.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "This field is only required when using Admin Access. The resource name of target, or the parent resource name. For example: \"projects/*/locations/*/integrations/*\"",
+          "type": "string"
+        },
+        "scheduledTime": {
+          "description": "Optional. Time in milliseconds since epoch when the given event would be scheduled.",
+          "format": "int64",
+          "type": "string"
+        },
+        "testMode": {
+          "description": "Optional. Sets test mode in {@link enterprise/crm/eventbus/event_message.proto}.",
+          "type": "boolean"
+        },
+        "triggerId": {
+          "description": "Matched against all {@link TriggerConfig}s across all workflows. i.e. TriggerConfig.trigger_id.equals(trigger_id) Required.",
+          "type": "string"
+        },
+        "userGeneratedExecutionId": {
+          "description": "This is a unique id provided by the method caller. If provided this will be used as the execution_id when a new execution info is created. This is a string representation of a UUID. Must have no more than 36 characters and contain only alphanumeric characters and hyphens.",
+          "type": "string"
+        },
+        "workflowName": {
+          "description": "Optional. If provided, the workflow_name is used to filter all the matched workflows having same trigger_id+client_id. A combination of trigger_id, client_id and workflow_name identifies a unique workflow.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "servicePath": "",
+  "title": "Application Integration API",
+  "version": "v2",
+  "version_module": true
+}

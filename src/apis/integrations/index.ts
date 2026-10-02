@@ -15,9 +15,11 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {integrations_v1alpha} from './v1alpha';
+import {integrations_v2} from './v2';
 
 export const VERSIONS = {
   v1alpha: integrations_v1alpha.Integrations,
+  v2: integrations_v2.Integrations,
 };
 
 export function integrations(
@@ -26,9 +28,16 @@ export function integrations(
 export function integrations(
   options: integrations_v1alpha.Options
 ): integrations_v1alpha.Integrations;
-export function integrations<T = integrations_v1alpha.Integrations>(
+export function integrations(version: 'v2'): integrations_v2.Integrations;
+export function integrations(
+  options: integrations_v2.Options
+): integrations_v2.Integrations;
+export function integrations<
+  T = integrations_v1alpha.Integrations | integrations_v2.Integrations,
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1alpha' | integrations_v1alpha.Options
+  versionOrOptions:
+    'v1alpha' | integrations_v1alpha.Options | 'v2' | integrations_v2.Options
 ) {
   return getAPI<T>('integrations', versionOrOptions, VERSIONS, this);
 }
@@ -36,6 +45,7 @@ export function integrations<T = integrations_v1alpha.Integrations>(
 const auth = new AuthPlus();
 export {auth};
 export {integrations_v1alpha};
+export {integrations_v2};
 export {
   AuthPlus,
   GlobalOptions,
