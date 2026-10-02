@@ -2461,7 +2461,7 @@
       }
     }
   },
-  "revision": "20260923",
+  "revision": "20260826",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -3278,8 +3278,7 @@
             "WINDOWS",
             "MAC_OS",
             "LINUX",
-            "CHROME_OS",
-            "GOOGLEBOOK"
+            "CHROME_OS"
           ],
           "enumDescriptions": [
             "Unknown device type",
@@ -3289,8 +3288,7 @@
             "Device is a Windows device.",
             "Device is a MacOS device.",
             "Device is a Linux device.",
-            "Device is a ChromeOS device.",
-            "Device is a Googlebook device."
+            "Device is a ChromeOS device."
           ],
           "readOnly": true,
           "type": "string"
@@ -4279,8 +4277,7 @@
             "WINDOWS",
             "MAC_OS",
             "LINUX",
-            "CHROME_OS",
-            "GOOGLEBOOK"
+            "CHROME_OS"
           ],
           "enumDescriptions": [
             "Unknown device type",
@@ -4290,8 +4287,7 @@
             "Device is a Windows device.",
             "Device is a MacOS device.",
             "Device is a Linux device.",
-            "Device is a ChromeOS device.",
-            "Device is a Googlebook device."
+            "Device is a ChromeOS device."
           ],
           "readOnly": true,
           "type": "string"

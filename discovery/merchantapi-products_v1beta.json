@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20260921",
+  "revision": "20260903",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -1199,7 +1199,7 @@
       "type": "object"
     },
     "LoyaltyProgram": {
-      "description": "A message that represents loyalty program. For more information on loyalty programs, see [Overview of loyalty programs](/merchant/api/guides/loyalty/loyalty-programs).",
+      "description": "A message that represents loyalty program.",
       "id": "LoyaltyProgram",
       "properties": {
         "cashbackForFutureUse": {

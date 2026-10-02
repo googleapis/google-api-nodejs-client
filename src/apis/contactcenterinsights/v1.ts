@@ -370,14 +370,6 @@ export namespace contactcenterinsights_v1 {
      * Output only. The time at which the analysis was requested.
      */
     requestTime?: string | null;
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
   }
   /**
    * The result of an analysis.
@@ -928,14 +920,6 @@ export namespace contactcenterinsights_v1 {
      * Output only. The annotations that were generated during the customer and agent interaction.
      */
     runtimeAnnotations?: Schema$GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotation[];
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
     /**
      * The time at which the conversation started.
      */
@@ -1642,14 +1626,6 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string | null;
     /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
-    /**
      * Optional. Option TTL for the dataset.
      */
     ttl?: string | null;
@@ -2007,14 +1983,6 @@ export namespace contactcenterinsights_v1 {
      * Immutable. The resource name of the encryption key specification resource. Format: projects/{project\}/locations/{location\}/encryptionSpec
      */
     name?: string | null;
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
   }
   /**
    * The data for an entity annotation. Represents a phrase in the conversation that is a known entity, such as a person, an organization, or location.
@@ -2233,14 +2201,6 @@ export namespace contactcenterinsights_v1 {
      * QaAnswer label used for Quality AI example conversations.
      */
     qaAnswerLabel?: Schema$GoogleCloudContactcenterinsightsV1alpha1QaAnswerAnswerValue;
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
     /**
      * Output only. Update time of the label.
      */
@@ -2985,14 +2945,6 @@ export namespace contactcenterinsights_v1 {
      * Optional. The list of Scorecard Question IDs that the tag applies to. Each QaQuestionId is represented as a full resource name containing the Question ID. Lastly, Since a tag may not necessarily be referenced by any Scorecard Questions, we treat this field as optional.
      */
     qaQuestionIds?: string[] | null;
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
     /**
      * Output only. The most recent time at which the question tag was updated.
      */
@@ -3917,14 +3869,6 @@ export namespace contactcenterinsights_v1 {
      * Output only. The time at which the analysis was requested.
      */
     requestTime?: string | null;
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
   }
   /**
    * The result of an analysis.
@@ -4014,14 +3958,6 @@ export namespace contactcenterinsights_v1 {
      * Identifier. The resource name of the analysis rule. Format: projects/{project\}/locations/{location\}/analysisRules/{analysis_rule\}
      */
     name?: string | null;
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
     /**
      * Output only. The most recent time at which this analysis rule was updated.
      */
@@ -4236,14 +4172,6 @@ export namespace contactcenterinsights_v1 {
      */
     sampleRule?: Schema$GoogleCloudContactcenterinsightsV1SampleRule;
     /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
-    /**
      * Schedule info for the assessment rule.
      */
     scheduleInfo?: Schema$GoogleCloudContactcenterinsightsV1ScheduleInfo;
@@ -4332,14 +4260,6 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string | null;
     /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
-    /**
      * Output only. The most recent time at which the authorized view was updated.
      */
     updateTime?: string | null;
@@ -4360,14 +4280,6 @@ export namespace contactcenterinsights_v1 {
      * Identifier. The resource name of the AuthorizedViewSet. Format: projects/{project\}/locations/{location\}/authorizedViewSets/{authorized_view_set\}
      */
     name?: string | null;
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
     /**
      * Output only. Update time.
      */
@@ -5127,14 +5039,6 @@ export namespace contactcenterinsights_v1 {
      * Output only. The annotations that were generated during the customer and agent interaction.
      */
     runtimeAnnotations?: Schema$GoogleCloudContactcenterinsightsV1RuntimeAnnotation[];
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
     /**
      * The time at which the conversation started.
      */
@@ -5942,14 +5846,6 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string | null;
     /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
-    /**
      * Optional. Option TTL for the dataset.
      */
     ttl?: string | null;
@@ -6337,14 +6233,6 @@ export namespace contactcenterinsights_v1 {
      * Immutable. The resource name of the encryption key specification resource. Format: projects/{project\}/locations/{location\}/encryptionSpec
      */
     name?: string | null;
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
   }
   /**
    * The data for an entity annotation. Represents a phrase in the conversation that is a known entity, such as a person, an organization, or location.
@@ -6572,14 +6460,6 @@ export namespace contactcenterinsights_v1 {
      * QaAnswer label used for Quality AI example conversations.
      */
     qaAnswerLabel?: Schema$GoogleCloudContactcenterinsightsV1QaAnswerAnswerValue;
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
     /**
      * Output only. Update time of the label.
      */
@@ -7671,14 +7551,6 @@ export namespace contactcenterinsights_v1 {
      * Output only. The time at which the analysis was requested.
      */
     requestTime?: string | null;
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
   }
   /**
    * The result of an analysis.
@@ -8354,14 +8226,6 @@ export namespace contactcenterinsights_v1 {
      * Output only. The annotations that were generated during the customer and agent interaction.
      */
     runtimeAnnotations?: Schema$GoogleCloudContactcenterinsightsV1mainRuntimeAnnotation[];
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
     /**
      * The time at which the conversation started.
      */
@@ -9068,14 +8932,6 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string | null;
     /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
-    /**
      * Optional. Option TTL for the dataset.
      */
     ttl?: string | null;
@@ -9433,14 +9289,6 @@ export namespace contactcenterinsights_v1 {
      * Immutable. The resource name of the encryption key specification resource. Format: projects/{project\}/locations/{location\}/encryptionSpec
      */
     name?: string | null;
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
   }
   /**
    * The data for an entity annotation. Represents a phrase in the conversation that is a known entity, such as a person, an organization, or location.
@@ -9659,14 +9507,6 @@ export namespace contactcenterinsights_v1 {
      * QaAnswer label used for Quality AI example conversations.
      */
     qaAnswerLabel?: Schema$GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerValue;
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
     /**
      * Output only. Update time of the label.
      */
@@ -10411,14 +10251,6 @@ export namespace contactcenterinsights_v1 {
      * Optional. The list of Scorecard Question IDs that the tag applies to. Each QaQuestionId is represented as a full resource name containing the Question ID. Lastly, Since a tag may not necessarily be referenced by any Scorecard Questions, we treat this field as optional.
      */
     qaQuestionIds?: string[] | null;
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
     /**
      * Output only. The most recent time at which the question tag was updated.
      */
@@ -11632,14 +11464,6 @@ export namespace contactcenterinsights_v1 {
      */
     questionType?: string | null;
     /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
-    /**
      * Questions are tagged for categorization and scoring. Tags can either be: - Default Tags: These are predefined categories. They are identified by their string value (e.g., "BUSINESS", "COMPLIANCE", and "CUSTOMER"). - Custom Tags: These are user-defined categories. They are identified by their full resource name (e.g., projects/{project\}/locations/{location\}/qaQuestionTags/{qa_question_tag\}). Both default and custom tags are used to group questions and to influence the scoring of each question.
      */
     tags?: string[] | null;
@@ -11729,14 +11553,6 @@ export namespace contactcenterinsights_v1 {
      */
     qaQuestionIds?: string[] | null;
     /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
-    /**
      * Output only. The most recent time at which the question tag was updated.
      */
     updateTime?: string | null;
@@ -11782,14 +11598,6 @@ export namespace contactcenterinsights_v1 {
      * Identifier. The scorecard name. Format: projects/{project\}/locations/{location\}/qaScorecards/{qa_scorecard\}
      */
     name?: string | null;
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
     /**
      * Output only. The source of the scorecard.
      */
@@ -11910,14 +11718,6 @@ export namespace contactcenterinsights_v1 {
      * Identifier. The name of the scorecard revision. Format: projects/{project\}/locations/{location\}/qaScorecards/{qa_scorecard\}/revisions/{revision\}
      */
     name?: string | null;
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
     /**
      * The snapshot of the scorecard at the time of this revision's creation.
      */
@@ -12634,14 +12434,6 @@ export namespace contactcenterinsights_v1 {
      * Default DLP redaction resources to be applied while ingesting conversations. This applies to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversations coming from CCAI Platform.
      */
     redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1RedactionConfig;
-    /**
-     * Output only. Whether this resource is zone isolated.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Whether this resource is zone separated.
-     */
-    satisfiesPzs?: boolean | null;
     /**
      * Optional. The path to a Cloud Storage bucket containing conversation screen recordings. If provided, Insights will search in the bucket for a screen recording file matching the conversation data source object name prefix. If matches are found, these file URIs will be stored in the conversation screen recordings field.
      */
@@ -14220,9 +14012,7 @@ export namespace contactcenterinsights_v1 {
      *   // Example response
      *   // {
      *   //   "kmsKey": "my_kmsKey",
-     *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false
+     *   //   "name": "my_name"
      *   // }
      * }
      *
@@ -14375,8 +14165,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "name": "my_name",
      *   //   "pubsubNotificationSettings": {},
      *   //   "redactionConfig": {},
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "screenRecordingBucketUri": "my_screenRecordingBucketUri",
      *   //   "speechConfig": {},
      *   //   "timeZone": "my_timeZone",
@@ -15325,8 +15113,6 @@ export namespace contactcenterinsights_v1 {
      *       //   "name": "my_name",
      *       //   "pubsubNotificationSettings": {},
      *       //   "redactionConfig": {},
-     *       //   "satisfiesPzi": false,
-     *       //   "satisfiesPzs": false,
      *       //   "screenRecordingBucketUri": "my_screenRecordingBucketUri",
      *       //   "speechConfig": {},
      *       //   "timeZone": "my_timeZone",
@@ -15346,8 +15132,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "name": "my_name",
      *   //   "pubsubNotificationSettings": {},
      *   //   "redactionConfig": {},
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "screenRecordingBucketUri": "my_screenRecordingBucketUri",
      *   //   "speechConfig": {},
      *   //   "timeZone": "my_timeZone",
@@ -15655,8 +15439,6 @@ export namespace contactcenterinsights_v1 {
      *         //   "createTime": "my_createTime",
      *         //   "displayName": "my_displayName",
      *         //   "name": "my_name",
-     *         //   "satisfiesPzi": false,
-     *         //   "satisfiesPzs": false,
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
@@ -15672,8 +15454,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -15963,8 +15743,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -16275,8 +16053,6 @@ export namespace contactcenterinsights_v1 {
      *         //   "createTime": "my_createTime",
      *         //   "displayName": "my_displayName",
      *         //   "name": "my_name",
-     *         //   "satisfiesPzi": false,
-     *         //   "satisfiesPzs": false,
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
@@ -16292,8 +16068,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -16507,8 +16281,6 @@ export namespace contactcenterinsights_v1 {
      *         //   "displayName": "my_displayName",
      *         //   "name": "my_name",
      *         //   "sampleRule": {},
-     *         //   "satisfiesPzi": false,
-     *         //   "satisfiesPzs": false,
      *         //   "scheduleInfo": {},
      *         //   "updateTime": "my_updateTime"
      *         // }
@@ -16523,8 +16295,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "sampleRule": {},
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "scheduleInfo": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -16816,8 +16586,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "sampleRule": {},
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "scheduleInfo": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -17126,8 +16894,6 @@ export namespace contactcenterinsights_v1 {
      *         //   "displayName": "my_displayName",
      *         //   "name": "my_name",
      *         //   "sampleRule": {},
-     *         //   "satisfiesPzi": false,
-     *         //   "satisfiesPzs": false,
      *         //   "scheduleInfo": {},
      *         //   "updateTime": "my_updateTime"
      *         // }
@@ -17142,8 +16908,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "sampleRule": {},
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "scheduleInfo": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -18067,8 +17831,6 @@ export namespace contactcenterinsights_v1 {
      *         //   "createTime": "my_createTime",
      *         //   "displayName": "my_displayName",
      *         //   "name": "my_name",
-     *         //   "satisfiesPzi": false,
-     *         //   "satisfiesPzs": false,
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
@@ -18080,8 +17842,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -18372,8 +18132,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -18685,8 +18443,6 @@ export namespace contactcenterinsights_v1 {
      *         //   "createTime": "my_createTime",
      *         //   "displayName": "my_displayName",
      *         //   "name": "my_name",
-     *         //   "satisfiesPzi": false,
-     *         //   "satisfiesPzs": false,
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
@@ -18698,8 +18454,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -18941,8 +18695,6 @@ export namespace contactcenterinsights_v1 {
      *           //   "createTime": "my_createTime",
      *           //   "displayName": "my_displayName",
      *           //   "name": "my_name",
-     *           //   "satisfiesPzi": false,
-     *           //   "satisfiesPzs": false,
      *           //   "updateTime": "my_updateTime"
      *           // }
      *         },
@@ -18956,8 +18708,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -19417,8 +19167,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -19885,8 +19633,6 @@ export namespace contactcenterinsights_v1 {
      *           //   "createTime": "my_createTime",
      *           //   "displayName": "my_displayName",
      *           //   "name": "my_name",
-     *           //   "satisfiesPzi": false,
-     *           //   "satisfiesPzs": false,
      *           //   "updateTime": "my_updateTime"
      *           // }
      *         },
@@ -19900,8 +19646,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -21494,8 +21238,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "obfuscatedUserId": "my_obfuscatedUserId",
      *   //   "qualityMetadata": {},
      *   //   "runtimeAnnotations": [],
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "startTime": "my_startTime",
      *   //   "transcript": {},
      *   //   "ttl": "my_ttl",
@@ -23782,8 +23524,6 @@ export namespace contactcenterinsights_v1 {
      *           //   "labeledResource": "my_labeledResource",
      *           //   "name": "my_name",
      *           //   "qaAnswerLabel": {},
-     *           //   "satisfiesPzi": false,
-     *           //   "satisfiesPzs": false,
      *           //   "updateTime": "my_updateTime"
      *           // }
      *         },
@@ -23798,8 +23538,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "labeledResource": "my_labeledResource",
      *   //   "name": "my_name",
      *   //   "qaAnswerLabel": {},
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -24094,8 +23832,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "labeledResource": "my_labeledResource",
      *   //   "name": "my_name",
      *   //   "qaAnswerLabel": {},
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -24411,8 +24147,6 @@ export namespace contactcenterinsights_v1 {
      *           //   "labeledResource": "my_labeledResource",
      *           //   "name": "my_name",
      *           //   "qaAnswerLabel": {},
-     *           //   "satisfiesPzi": false,
-     *           //   "satisfiesPzs": false,
      *           //   "updateTime": "my_updateTime"
      *           // }
      *         },
@@ -24427,8 +24161,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "labeledResource": "my_labeledResource",
      *   //   "name": "my_name",
      *   //   "qaAnswerLabel": {},
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -26671,8 +26403,6 @@ export namespace contactcenterinsights_v1 {
      *         //   "obfuscatedUserId": "my_obfuscatedUserId",
      *         //   "qualityMetadata": {},
      *         //   "runtimeAnnotations": [],
-     *         //   "satisfiesPzi": false,
-     *         //   "satisfiesPzs": false,
      *         //   "startTime": "my_startTime",
      *         //   "transcript": {},
      *         //   "ttl": "my_ttl",
@@ -26703,8 +26433,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "obfuscatedUserId": "my_obfuscatedUserId",
      *   //   "qualityMetadata": {},
      *   //   "runtimeAnnotations": [],
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "startTime": "my_startTime",
      *   //   "transcript": {},
      *   //   "ttl": "my_ttl",
@@ -27165,8 +26893,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "obfuscatedUserId": "my_obfuscatedUserId",
      *   //   "qualityMetadata": {},
      *   //   "runtimeAnnotations": [],
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "startTime": "my_startTime",
      *   //   "transcript": {},
      *   //   "ttl": "my_ttl",
@@ -27663,8 +27389,6 @@ export namespace contactcenterinsights_v1 {
      *         //   "obfuscatedUserId": "my_obfuscatedUserId",
      *         //   "qualityMetadata": {},
      *         //   "runtimeAnnotations": [],
-     *         //   "satisfiesPzi": false,
-     *         //   "satisfiesPzs": false,
      *         //   "startTime": "my_startTime",
      *         //   "transcript": {},
      *         //   "ttl": "my_ttl",
@@ -27695,8 +27419,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "obfuscatedUserId": "my_obfuscatedUserId",
      *   //   "qualityMetadata": {},
      *   //   "runtimeAnnotations": [],
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "startTime": "my_startTime",
      *   //   "transcript": {},
      *   //   "ttl": "my_ttl",
@@ -28330,9 +28052,7 @@ export namespace contactcenterinsights_v1 {
      *           //   "annotatorSelector": {},
      *           //   "createTime": "my_createTime",
      *           //   "name": "my_name",
-     *           //   "requestTime": "my_requestTime",
-     *           //   "satisfiesPzi": false,
-     *           //   "satisfiesPzs": false
+     *           //   "requestTime": "my_requestTime"
      *           // }
      *         },
      *       },
@@ -28629,9 +28349,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "annotatorSelector": {},
      *   //   "createTime": "my_createTime",
      *   //   "name": "my_name",
-     *   //   "requestTime": "my_requestTime",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false
+     *   //   "requestTime": "my_requestTime"
      *   // }
      * }
      *
@@ -30886,8 +30604,6 @@ export namespace contactcenterinsights_v1 {
      *           //   "labeledResource": "my_labeledResource",
      *           //   "name": "my_name",
      *           //   "qaAnswerLabel": {},
-     *           //   "satisfiesPzi": false,
-     *           //   "satisfiesPzs": false,
      *           //   "updateTime": "my_updateTime"
      *           // }
      *         },
@@ -30902,8 +30618,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "labeledResource": "my_labeledResource",
      *   //   "name": "my_name",
      *   //   "qaAnswerLabel": {},
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -31198,8 +30912,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "labeledResource": "my_labeledResource",
      *   //   "name": "my_name",
      *   //   "qaAnswerLabel": {},
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -31515,8 +31227,6 @@ export namespace contactcenterinsights_v1 {
      *           //   "labeledResource": "my_labeledResource",
      *           //   "name": "my_name",
      *           //   "qaAnswerLabel": {},
-     *           //   "satisfiesPzi": false,
-     *           //   "satisfiesPzs": false,
      *           //   "updateTime": "my_updateTime"
      *           // }
      *         },
@@ -31531,8 +31241,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "labeledResource": "my_labeledResource",
      *   //   "name": "my_name",
      *   //   "qaAnswerLabel": {},
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -34153,8 +33861,6 @@ export namespace contactcenterinsights_v1 {
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
-     *       //   "satisfiesPzi": false,
-     *       //   "satisfiesPzs": false,
      *       //   "ttl": "my_ttl",
      *       //   "type": "my_type",
      *       //   "updateTime": "my_updateTime"
@@ -34169,8 +33875,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "ttl": "my_ttl",
      *   //   "type": "my_type",
      *   //   "updateTime": "my_updateTime"
@@ -34467,8 +34171,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "ttl": "my_ttl",
      *   //   "type": "my_type",
      *   //   "updateTime": "my_updateTime"
@@ -34936,8 +34638,6 @@ export namespace contactcenterinsights_v1 {
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
-     *       //   "satisfiesPzi": false,
-     *       //   "satisfiesPzs": false,
      *       //   "ttl": "my_ttl",
      *       //   "type": "my_type",
      *       //   "updateTime": "my_updateTime"
@@ -34952,8 +34652,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "ttl": "my_ttl",
      *   //   "type": "my_type",
      *   //   "updateTime": "my_updateTime"
@@ -35864,8 +35562,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "obfuscatedUserId": "my_obfuscatedUserId",
      *   //   "qualityMetadata": {},
      *   //   "runtimeAnnotations": [],
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "startTime": "my_startTime",
      *   //   "transcript": {},
      *   //   "ttl": "my_ttl",
@@ -36613,8 +36309,6 @@ export namespace contactcenterinsights_v1 {
      *           //   "labeledResource": "my_labeledResource",
      *           //   "name": "my_name",
      *           //   "qaAnswerLabel": {},
-     *           //   "satisfiesPzi": false,
-     *           //   "satisfiesPzs": false,
      *           //   "updateTime": "my_updateTime"
      *           // }
      *         },
@@ -36629,8 +36323,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "labeledResource": "my_labeledResource",
      *   //   "name": "my_name",
      *   //   "qaAnswerLabel": {},
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -36925,8 +36617,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "labeledResource": "my_labeledResource",
      *   //   "name": "my_name",
      *   //   "qaAnswerLabel": {},
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -37242,8 +36932,6 @@ export namespace contactcenterinsights_v1 {
      *           //   "labeledResource": "my_labeledResource",
      *           //   "name": "my_name",
      *           //   "qaAnswerLabel": {},
-     *           //   "satisfiesPzi": false,
-     *           //   "satisfiesPzs": false,
      *           //   "updateTime": "my_updateTime"
      *           // }
      *         },
@@ -37258,8 +36946,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "labeledResource": "my_labeledResource",
      *   //   "name": "my_name",
      *   //   "qaAnswerLabel": {},
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -41828,8 +41514,6 @@ export namespace contactcenterinsights_v1 {
      *         //   "displayName": "my_displayName",
      *         //   "name": "my_name",
      *         //   "qaQuestionIds": [],
-     *         //   "satisfiesPzi": false,
-     *         //   "satisfiesPzs": false,
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
@@ -41842,8 +41526,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "qaQuestionIds": [],
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -42141,8 +41823,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "qaQuestionIds": [],
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -42447,8 +42127,6 @@ export namespace contactcenterinsights_v1 {
      *         //   "displayName": "my_displayName",
      *         //   "name": "my_name",
      *         //   "qaQuestionIds": [],
-     *         //   "satisfiesPzi": false,
-     *         //   "satisfiesPzs": false,
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
@@ -42671,8 +42349,6 @@ export namespace contactcenterinsights_v1 {
      *         //   "displayName": "my_displayName",
      *         //   "isDefault": false,
      *         //   "name": "my_name",
-     *         //   "satisfiesPzi": false,
-     *         //   "satisfiesPzs": false,
      *         //   "source": "my_source",
      *         //   "updateTime": "my_updateTime"
      *         // }
@@ -42687,8 +42363,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "isDefault": false,
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "source": "my_source",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -42979,8 +42653,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "isDefault": false,
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "source": "my_source",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -43290,8 +42962,6 @@ export namespace contactcenterinsights_v1 {
      *         //   "displayName": "my_displayName",
      *         //   "isDefault": false,
      *         //   "name": "my_name",
-     *         //   "satisfiesPzi": false,
-     *         //   "satisfiesPzs": false,
      *         //   "source": "my_source",
      *         //   "updateTime": "my_updateTime"
      *         // }
@@ -43307,8 +42977,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "isDefault": false,
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "source": "my_source",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -43540,8 +43208,6 @@ export namespace contactcenterinsights_v1 {
      *           //   "alternateIds": [],
      *           //   "createTime": "my_createTime",
      *           //   "name": "my_name",
-     *           //   "satisfiesPzi": false,
-     *           //   "satisfiesPzs": false,
      *           //   "snapshot": {},
      *           //   "state": "my_state"
      *           // }
@@ -43555,8 +43221,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "alternateIds": [],
      *   //   "createTime": "my_createTime",
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "snapshot": {},
      *   //   "state": "my_state"
      *   // }
@@ -43858,8 +43522,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "alternateIds": [],
      *   //   "createTime": "my_createTime",
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "snapshot": {},
      *   //   "state": "my_state"
      *   // }
@@ -44011,8 +43673,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "alternateIds": [],
      *   //   "createTime": "my_createTime",
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "snapshot": {},
      *   //   "state": "my_state"
      *   // }
@@ -44491,8 +44151,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "alternateIds": [],
      *   //   "createTime": "my_createTime",
      *   //   "name": "my_name",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "snapshot": {},
      *   //   "state": "my_state"
      *   // }
@@ -44753,8 +44411,6 @@ export namespace contactcenterinsights_v1 {
      *           //   "qaQuestionDataOptions": {},
      *           //   "questionBody": "my_questionBody",
      *           //   "questionType": "my_questionType",
-     *           //   "satisfiesPzi": false,
-     *           //   "satisfiesPzs": false,
      *           //   "tags": [],
      *           //   "tuningMetadata": {},
      *           //   "updateTime": "my_updateTime"
@@ -44777,8 +44433,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "qaQuestionDataOptions": {},
      *   //   "questionBody": "my_questionBody",
      *   //   "questionType": "my_questionType",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "tags": [],
      *   //   "tuningMetadata": {},
      *   //   "updateTime": "my_updateTime"
@@ -45081,8 +44735,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "qaQuestionDataOptions": {},
      *   //   "questionBody": "my_questionBody",
      *   //   "questionType": "my_questionType",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "tags": [],
      *   //   "tuningMetadata": {},
      *   //   "updateTime": "my_updateTime"
@@ -45404,8 +45056,6 @@ export namespace contactcenterinsights_v1 {
      *           //   "qaQuestionDataOptions": {},
      *           //   "questionBody": "my_questionBody",
      *           //   "questionType": "my_questionType",
-     *           //   "satisfiesPzi": false,
-     *           //   "satisfiesPzs": false,
      *           //   "tags": [],
      *           //   "tuningMetadata": {},
      *           //   "updateTime": "my_updateTime"
@@ -45428,8 +45078,6 @@ export namespace contactcenterinsights_v1 {
      *   //   "qaQuestionDataOptions": {},
      *   //   "questionBody": "my_questionBody",
      *   //   "questionType": "my_questionType",
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
      *   //   "tags": [],
      *   //   "tuningMetadata": {},
      *   //   "updateTime": "my_updateTime"

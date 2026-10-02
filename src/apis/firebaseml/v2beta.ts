@@ -1545,10 +1545,6 @@ export namespace firebaseml_v2beta {
      */
     mediaResolution?: Schema$GoogleCloudAiplatformV1beta1PartMediaResolution;
     /**
-     * Optional. Turn-level metadata for speech generation (e.g. Daikon speaker/style). May be set alongside `text` to attach speaker and style information to a text part.
-     */
-    speechMetadata?: Schema$GoogleCloudAiplatformV1beta1SpeechMetadata;
-    /**
      * Optional. The text content of the part. When sent from the VSCode Gemini Code Assist extension, references to @mentioned items will be converted to markdown boldface text. For example `@my-repo` will be converted to and sent as `**my-repo**` by the IDE agent.
      */
     text?: string | null;
@@ -2023,19 +2019,6 @@ export namespace firebaseml_v2beta {
     voiceConfig?: Schema$GoogleCloudAiplatformV1beta1VoiceConfig;
   }
   /**
-   * Structured Metadata Sub-Message for Part
-   */
-  export interface Schema$GoogleCloudAiplatformV1beta1SpeechMetadata {
-    /**
-     * Optional. Identifies which speaker is speaking this turn.
-     */
-    speaker?: string | null;
-    /**
-     * Optional. Natural language description of the vocal style (e.g., "cheerful").
-     */
-    style?: string | null;
-  }
-  /**
    * Configuration for text-specific output formatting.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1TextResponseFormat {
@@ -2105,10 +2088,6 @@ export namespace firebaseml_v2beta {
    * Tool to support computer use.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ToolComputerUse {
-    /**
-     * Optional. Disabled safety policies for computer use.
-     */
-    disabledSafetyPolicies?: string[] | null;
     /**
      * Optional. Enables the prompt injection detection check on computer-use request.
      */
@@ -2380,10 +2359,6 @@ export namespace firebaseml_v2beta {
      * Optional. The configuration for a replicated voice. This enables users to replicate a voice from an audio sample.
      */
     replicatedVoiceConfig?: Schema$GoogleCloudAiplatformV1beta1ReplicatedVoiceConfig;
-    /**
-     * Optional. The speaker identifier for synthesis. Supported formats: * Speaker name for prebuilt voices (for example, `Orus` or `Kore`). * Voice ID for stored voices (for example, `voice_xxx`). * Voice replication key (for example, `voicekey_xxx`).
-     */
-    voice?: string | null;
   }
   /**
    * An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges.

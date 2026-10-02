@@ -915,7 +915,7 @@ export namespace realtimebidding_v1 {
      */
     helpCenterUrl?: string | null;
     /**
-     * Whether or not the policy topic is missing a certificate.
+     * Whether or not the policy topic is missing a certificate. Some policy topics require a certificate to unblock serving in some regions. For more information about creative certification, refer to: https://support.google.com/authorizedbuyers/answer/7450776
      */
     missingCertificate?: boolean | null;
     /**

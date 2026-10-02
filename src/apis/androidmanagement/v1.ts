@@ -1018,10 +1018,6 @@ export namespace androidmanagement_v1 {
      * Optional. Manages streaming of notifications from apps on the device for fully managed devices or in the work profile for devices with work profiles to nearby devices. This is supported on Android 13 and above.
      */
     nearbyNotificationStreaming?: string | null;
-    /**
-     * Optional. Controls the task continuity handoff (https://developer.android.com/partners/android-17/features#handoff) feature. This policy applies to the entire device for fully managed devices, and to the work profile for devices with a work profile. Requires Android 17 QPR1 or higher.
-     */
-    taskContinuityHandoff?: string | null;
   }
   /**
    * Controls the data from the work profile that can be accessed from the personal profile and vice versa. A NonComplianceDetail with MANAGEMENT_MODE is reported if the device does not have a work profile.
@@ -1032,23 +1028,23 @@ export namespace androidmanagement_v1 {
      */
     crossProfileAppFunctions?: string | null;
     /**
-     * Optional. Whether text copied from one profile (personal or work) can be pasted in the other profile.
+     * Whether text copied from one profile (personal or work) can be pasted in the other profile.
      */
     crossProfileCopyPaste?: string | null;
     /**
-     * Optional. Whether data from one profile (personal or work) can be shared with apps in the other profile. Specifically controls simple data sharing via intents. Management of other cross-profile communication channels, such as contact search, copy/paste, or connected work & personal apps, are configured separately.
+     * Whether data from one profile (personal or work) can be shared with apps in the other profile. Specifically controls simple data sharing via intents. Management of other cross-profile communication channels, such as contact search, copy/paste, or connected work & personal apps, are configured separately.
      */
     crossProfileDataSharing?: string | null;
     /**
-     * Optional. List of apps which are excluded from the ShowWorkContactsInPersonalProfile setting. For this to be set, ShowWorkContactsInPersonalProfile must be set to one of the following values: SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED. In this case, these exemptions act as a blocklist. SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED. In this case, these exemptions act as an allowlist. SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED_EXCEPT_SYSTEM. In this case, these exemptions act as an allowlist, in addition to the already allowlisted system apps.Supported on Android 14 and above. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 14.
+     * List of apps which are excluded from the ShowWorkContactsInPersonalProfile setting. For this to be set, ShowWorkContactsInPersonalProfile must be set to one of the following values: SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED. In this case, these exemptions act as a blocklist. SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED. In this case, these exemptions act as an allowlist. SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED_EXCEPT_SYSTEM. In this case, these exemptions act as an allowlist, in addition to the already allowlisted system apps.Supported on Android 14 and above. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 14.
      */
     exemptionsToShowWorkContactsInPersonalProfile?: Schema$PackageNameList;
     /**
-     * Optional. Whether personal apps can access contacts stored in the work profile.See also exemptions_to_show_work_contacts_in_personal_profile.
+     * Whether personal apps can access contacts stored in the work profile.See also exemptions_to_show_work_contacts_in_personal_profile.
      */
     showWorkContactsInPersonalProfile?: string | null;
     /**
-     * Optional. Specifies the default behaviour for work profile widgets. If the policy does not specify work_profile_widgets for a specific application, it will behave according to the value specified here.
+     * Specifies the default behaviour for work profile widgets. If the policy does not specify work_profile_widgets for a specific application, it will behave according to the value specified here.
      */
     workProfileWidgetsDefault?: string | null;
   }
@@ -2040,23 +2036,23 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$KioskCustomization {
     /**
-     * Optional. Specifies whether the Settings app is allowed in kiosk mode.
+     * Specifies whether the Settings app is allowed in kiosk mode.
      */
     deviceSettings?: string | null;
     /**
-     * Optional. Sets the behavior of a device in kiosk mode when a user presses and holds (long-presses) the Power button.
+     * Sets the behavior of a device in kiosk mode when a user presses and holds (long-presses) the Power button.
      */
     powerButtonActions?: string | null;
     /**
-     * Optional. Specifies whether system info and notifications are disabled in kiosk mode.
+     * Specifies whether system info and notifications are disabled in kiosk mode.
      */
     statusBar?: string | null;
     /**
-     * Optional. Specifies whether system error dialogs for crashed or unresponsive apps are blocked in kiosk mode. When blocked, the system will force-stop the app as if the user chooses the "close app" option on the UI.
+     * Specifies whether system error dialogs for crashed or unresponsive apps are blocked in kiosk mode. When blocked, the system will force-stop the app as if the user chooses the "close app" option on the UI.
      */
     systemErrorWarnings?: string | null;
     /**
-     * Optional. Specifies which navigation features are enabled (e.g. Home, Overview buttons) in kiosk mode.
+     * Specifies which navigation features are enabled (e.g. Home, Overview buttons) in kiosk mode.
      */
     systemNavigation?: string | null;
   }
@@ -2554,59 +2550,59 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$PasswordRequirements {
     /**
-     * Optional. Number of incorrect device-unlock passwords that can be entered before a device is wiped. A value of 0 means there is no restriction.
+     * Number of incorrect device-unlock passwords that can be entered before a device is wiped. A value of 0 means there is no restriction.
      */
     maximumFailedPasswordsForWipe?: number | null;
     /**
-     * Optional. Password expiration timeout.
+     * Password expiration timeout.
      */
     passwordExpirationTimeout?: string | null;
     /**
-     * Optional. The length of the password history. After setting this field, the user won't be able to enter a new password that is the same as any password in the history. A value of 0 means there is no restriction.
+     * The length of the password history. After setting this field, the user won't be able to enter a new password that is the same as any password in the history. A value of 0 means there is no restriction.
      */
     passwordHistoryLength?: number | null;
     /**
-     * Optional. The minimum allowed password length. A value of 0 means there is no restriction. Only enforced when password_quality is NUMERIC, NUMERIC_COMPLEX, ALPHABETIC, ALPHANUMERIC, or COMPLEX.
+     * The minimum allowed password length. A value of 0 means there is no restriction. Only enforced when password_quality is NUMERIC, NUMERIC_COMPLEX, ALPHABETIC, ALPHANUMERIC, or COMPLEX.
      */
     passwordMinimumLength?: number | null;
     /**
-     * Optional. Minimum number of letters required in the password. Only enforced when password_quality is COMPLEX.
+     * Minimum number of letters required in the password. Only enforced when password_quality is COMPLEX.
      */
     passwordMinimumLetters?: number | null;
     /**
-     * Optional. Minimum number of lower case letters required in the password. Only enforced when password_quality is COMPLEX.
+     * Minimum number of lower case letters required in the password. Only enforced when password_quality is COMPLEX.
      */
     passwordMinimumLowerCase?: number | null;
     /**
-     * Optional. Minimum number of non-letter characters (numerical digits or symbols) required in the password. Only enforced when password_quality is COMPLEX.
+     * Minimum number of non-letter characters (numerical digits or symbols) required in the password. Only enforced when password_quality is COMPLEX.
      */
     passwordMinimumNonLetter?: number | null;
     /**
-     * Optional. Minimum number of numerical digits required in the password. Only enforced when password_quality is COMPLEX.
+     * Minimum number of numerical digits required in the password. Only enforced when password_quality is COMPLEX.
      */
     passwordMinimumNumeric?: number | null;
     /**
-     * Optional. Minimum number of symbols required in the password. Only enforced when password_quality is COMPLEX.
+     * Minimum number of symbols required in the password. Only enforced when password_quality is COMPLEX.
      */
     passwordMinimumSymbols?: number | null;
     /**
-     * Optional. Minimum number of upper case letters required in the password. Only enforced when password_quality is COMPLEX.
+     * Minimum number of upper case letters required in the password. Only enforced when password_quality is COMPLEX.
      */
     passwordMinimumUpperCase?: number | null;
     /**
-     * Optional. The required password quality.
+     * The required password quality.
      */
     passwordQuality?: string | null;
     /**
-     * Optional. The scope that the password requirement applies to.
+     * The scope that the password requirement applies to.
      */
     passwordScope?: string | null;
     /**
-     * Optional. The length of time after a device or work profile is unlocked using a strong form of authentication (password, PIN, pattern) that it can be unlocked using any other authentication method (e.g. fingerprint, trust agents, face). After the specified time period elapses, only strong forms of authentication can be used to unlock the device or work profile.
+     * The length of time after a device or work profile is unlocked using a strong form of authentication (password, PIN, pattern) that it can be unlocked using any other authentication method (e.g. fingerprint, trust agents, face). After the specified time period elapses, only strong forms of authentication can be used to unlock the device or work profile.
      */
     requirePasswordUnlock?: string | null;
     /**
-     * Optional. Controls whether a unified lock is allowed for the device and the work profile, on devices running Android 9 and above with a work profile. This can be set only if password_scope is set to SCOPE_PROFILE, the policy will be rejected otherwise. If user has not set a separate work lock and this field is set to REQUIRE_SEPARATE_WORK_LOCK, a NonComplianceDetail is reported with nonComplianceReason set to USER_ACTION.
+     * Controls whether a unified lock is allowed for the device and the work profile, on devices running Android 9 and above with a work profile. This can be set only if password_scope is set to SCOPE_PROFILE, the policy will be rejected otherwise. If user has not set a separate work lock and this field is set to REQUIRE_SEPARATE_WORK_LOCK, a NonComplianceDetail is reported with nonComplianceReason set to USER_ACTION.
      */
     unifiedLockSettings?: string | null;
   }
@@ -2663,15 +2659,6 @@ export namespace androidmanagement_v1 {
     packageName?: string | null;
   }
   /**
-   * Policies controlling cross-device communication in the personal profile.
-   */
-  export interface Schema$PersonalCrossDevicePolicies {
-    /**
-     * Optional. Controls the task continuity handoff (https://developer.android.com/partners/android-17/features#handoff) feature for the personal profile on company-owned devices with a work profile. To disable Handoff device-wide on a company-owned device, both crossDevicePolicies.taskContinuityHandoff and this policy should be set to TASK_CONTINUITY_HANDOFF_DISALLOWED. Requires Android 17 QPR1 or higher.
-     */
-    taskContinuityHandoff?: string | null;
-  }
-  /**
    * Policies controlling personal usage on a company-owned device with a work profile.
    */
   export interface Schema$PersonalUsagePolicies {
@@ -2687,10 +2674,6 @@ export namespace androidmanagement_v1 {
      * If true, the camera is disabled on the personal profile.
      */
     cameraDisabled?: boolean | null;
-    /**
-     * Optional. Policies controlling cross-device communication in the personal profile.
-     */
-    crossDevicePolicies?: Schema$PersonalCrossDevicePolicies;
     /**
      * Controls how long the work profile can stay off. The minimum duration must be at least 3 days. Other details are as follows: - If the duration is set to 0, the feature is turned off. - If the duration is set to a value smaller than the minimum duration, the feature returns an error. *Note:* If you want to avoid personal profiles being suspended during long periods of off-time, you can temporarily set a large value for this parameter.
      */
@@ -2825,7 +2808,7 @@ export namespace androidmanagement_v1 {
      */
     crossDevicePolicies?: Schema$CrossDevicePolicies;
     /**
-     * Optional. Cross-profile policies applied on the device.
+     * Cross-profile policies applied on the device.
      */
     crossProfilePolicies?: Schema$CrossProfilePolicies;
     /**
@@ -2901,7 +2884,7 @@ export namespace androidmanagement_v1 {
      */
     keyguardDisabledFeatures?: string[] | null;
     /**
-     * Optional. Settings controlling the behavior of a device in kiosk mode. To enable kiosk mode, set kioskCustomLauncherEnabled to true or specify an app in the policy with installType KIOSK.
+     * Settings controlling the behavior of a device in kiosk mode. To enable kiosk mode, set kioskCustomLauncherEnabled to true or specify an app in the policy with installType KIOSK.
      */
     kioskCustomization?: Schema$KioskCustomization;
     /**
@@ -2969,7 +2952,7 @@ export namespace androidmanagement_v1 {
      */
     outgoingCallsDisabled?: boolean | null;
     /**
-     * Optional. Password requirement policies. Different policies can be set for work profile or fully managed devices by setting the password_scope field in the policy.
+     * Password requirement policies. Different policies can be set for work profile or fully managed devices by setting the password_scope field in the policy.
      */
     passwordPolicies?: Schema$PasswordRequirements[];
     /**

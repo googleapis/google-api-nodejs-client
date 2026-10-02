@@ -297,10 +297,6 @@ export namespace networkmanagement_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * IP address of a Cloud Run revision. If the Cloud Run revision is in dual-stack subnetwork, this is the IP address relevant to the trace. Populated for `ARRIVE_AT_CLOUD_RUN_REVISION` steps.
-     */
-    ipAddress?: string | null;
-    /**
      * Location in which this revision is deployed.
      */
     location?: string | null;
@@ -313,7 +309,7 @@ export namespace networkmanagement_v1beta1 {
      */
     uri?: string | null;
     /**
-     * URI of Cloud Run worker pool this revision belongs to. Format: `projects/{project_id\}/locations/{location\}/workerPools/{worker_pool_id\}` Mutually exclusive with `service_uri`.
+     * URI of Cloud Run worker pool this revision belongs to. Format: `projects/{project_id\}/locations/{location\}/workerPools/{worker_pool_id\}`. Mutually exclusive with `service_uri`.
      */
     workerPoolUri?: string | null;
   }
@@ -462,6 +458,31 @@ export namespace networkmanagement_v1beta1 {
     selectedIpRange?: string | null;
     /**
      * URI of the subnetwork for direct egress. Format: `projects/{project_id\}/regions/{region\}/subnetworks/{subnetwork_id\}`
+     */
+    subnetworkUri?: string | null;
+  }
+  /**
+   * For display only. Metadata associated with a serverless direct VPC ingress connection.
+   */
+  export interface Schema$DirectVpcIngressConnectionInfo {
+    /**
+     * URI of the VPC network for direct ingress. Format: `projects/{project_id\}/global/networks/{network_id\}`
+     */
+    networkUri?: string | null;
+    /**
+     * Region in which the Direct VPC ingress is deployed.
+     */
+    region?: string | null;
+    /**
+     * Selected destination IP address, from the selected IP range.
+     */
+    selectedIpAddress?: string | null;
+    /**
+     * Selected IP range.
+     */
+    selectedIpRange?: string | null;
+    /**
+     * URI of the subnetwork for direct ingress. Format: `projects/{project_id\}/regions/{region\}/subnetworks/{subnetwork_id\}`
      */
     subnetworkUri?: string | null;
   }
@@ -1877,6 +1898,10 @@ export namespace networkmanagement_v1beta1 {
      * Display information of a serverless direct VPC egress connection.
      */
     directVpcEgressConnection?: Schema$DirectVpcEgressConnectionInfo;
+    /**
+     * Display information of a serverless direct VPC ingress connection.
+     */
+    directVpcIngressConnection?: Schema$DirectVpcIngressConnectionInfo;
     /**
      * Display information of a DMS Private Connection.
      */

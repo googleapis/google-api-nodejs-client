@@ -477,7 +477,7 @@ export namespace merchantapi_products_v1 {
     ratio?: number | null;
   }
   /**
-   * A message that represents loyalty program. For more information on loyalty programs, see [Overview of loyalty programs](/merchant/api/guides/loyalty/loyalty-programs).
+   * A message that represents loyalty program.
    */
   export interface Schema$LoyaltyProgram {
     /**
@@ -1195,7 +1195,7 @@ export namespace merchantapi_products_v1 {
      */
     virtualModelLink?: string | null;
     /**
-     * The [warranty](https://support.google.com/merchants/answer/15957626) of the product.
+     * The [warranty](https://support.google.com/google-ads/answer/15957626) of the vehicle.
      */
     warranty?: Schema$Warranty;
     /**
@@ -1778,15 +1778,11 @@ export namespace merchantapi_products_v1 {
    */
   export interface Schema$Warranty {
     /**
-     * The warranty duration in units. Default is in months, can be overridden by the `duration_unit` field.
+     * The warranty duration in months.
      */
     duration?: string | null;
     /**
-     * The unit for the warranty duration. Assumed to be `MONTH` if equal to `WARRANTY_DURATION_UNIT_UNSPECIFIED`.
-     */
-    durationUnit?: string | null;
-    /**
-     * The warranty mileage (only applies to vehicles).
+     * The warranty mileage.
      */
     mileage?: Schema$Mileage;
   }

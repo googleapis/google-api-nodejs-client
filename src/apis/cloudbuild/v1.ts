@@ -639,10 +639,6 @@ export namespace cloudbuild_v1 {
      */
     requestedVerifyOption?: string | null;
     /**
-     * Output only. Worker release resolved from the release channel.
-     */
-    resolvedWorkerRelease?: string | null;
-    /**
      * A list of global environment variables, which are encrypted using a Cloud Key Management Service crypto key. These values must be specified in the build's `Secret`. These variables will be available to all build steps in this build.
      */
     secretEnv?: string[] | null;
@@ -662,10 +658,6 @@ export namespace cloudbuild_v1 {
      * This field deprecated; please use `pool.name` instead.
      */
     workerPool?: string | null;
-    /**
-     * Optional. Option to specify which release or release channel (rapid|regular|stable) to use to run this build.
-     */
-    workerRelease?: string | null;
   }
   /**
    * A step in the build pipeline.
@@ -1702,14 +1694,6 @@ export namespace cloudbuild_v1 {
      * The `WorkerPool` resource to execute the build on. You must have `cloudbuild.workerpools.use` on the project hosting the WorkerPool. Format projects/{project\}/locations/{location\}/workerPools/{workerPoolId\}
      */
     name?: string | null;
-    /**
-     * Output only. OUTPUT_ONLY. Worker release resolved from the release channel.
-     */
-    resolvedWorkerRelease?: string | null;
-    /**
-     * Output only. OUTPUT_ONLY. The release or release channel used to run the Build. This is set to the same value as `PrivatePoolV1Config.WorkerConfig.worker_release` for the UI to easily access.
-     */
-    workerRelease?: string | null;
   }
   /**
    * Configuration for a V1 `PrivatePool`.
@@ -2385,10 +2369,6 @@ export namespace cloudbuild_v1 {
      * Optional. Machine type of a worker, such as `e2-medium`. See [Worker pool config file](https://cloud.google.com/build/docs/private-pools/worker-pool-config-file-schema). If left blank, Cloud Build will use a sensible default.
      */
     machineType?: string | null;
-    /**
-     * Optional. Option to specify which release or release channel (rapid|regular|stable) to use to run this build.
-     */
-    workerRelease?: string | null;
   }
   /**
    * Configuration for a `WorkerPool`. Cloud Build owns and maintains a pool of workers for general use and have no access to a project's private network. By default, builds submitted to Cloud Build will use a worker from this pool. If your build needs access to resources on a private network, create and use a `WorkerPool` to run your builds. Private `WorkerPool`s give your builds access to any single VPC network that you administer, including any on-prem resources connected to that VPC network. For an overview of private pools, see [Private pools overview](https://cloud.google.com/build/docs/private-pools/private-pools-overview).

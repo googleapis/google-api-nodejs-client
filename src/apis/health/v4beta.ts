@@ -137,7 +137,7 @@ export namespace health_v4beta {
      */
     interval?: Schema$ObservationTimeInterval;
     /**
-     * Required. Energy burned during an activity, measured in kilocalories. Must be in the range `[0, 1000000]`.
+     * Required. Energy burned during an activity, measured in kilocalories.
      */
     kcal?: number | null;
   }
@@ -309,7 +309,7 @@ export namespace health_v4beta {
    */
   export interface Schema$Altitude {
     /**
-     * Required. Altitude gain in millimeters over the observed interval. Must be in the range `[-1000000000, 1000000000]`.
+     * Required. Altitude gain in millimeters over the observed interval.
      */
     gainMillimeters?: string | null;
     /**
@@ -370,7 +370,7 @@ export namespace health_v4beta {
    */
   export interface Schema$BloodGlucose {
     /**
-     * Required. Blood glucose level concentration in mg/dL. Must be in the range `[0, 900]`.
+     * Required. Blood glucose level concentration in mg/dL.
      */
     bloodGlucoseMilligramsPerDeciliter?: number | null;
     /**
@@ -412,7 +412,7 @@ export namespace health_v4beta {
    */
   export interface Schema$BodyFat {
     /**
-     * Required. Body fat percentage. Must be in the range `[0, 100]`.
+     * Required. Body fat percentage, in range [0, 100].
      */
     percentage?: number | null;
     /**
@@ -494,7 +494,7 @@ export namespace health_v4beta {
      */
     sampleTime?: Schema$ObservationSampleTime;
     /**
-     * Required. The core body temperature in Celsius. Must be in the range `[0, 100]`.
+     * Required. The core body temperature in Celsius.
      */
     temperatureCelsius?: number | null;
   }
@@ -588,7 +588,7 @@ export namespace health_v4beta {
    */
   export interface Schema$DailyOxygenSaturation {
     /**
-     * Required. The average value of the oxygen saturation samples during the sleep. Must be in the range `[0, 100]`.
+     * Required. The average value of the oxygen saturation samples during the sleep.
      */
     averagePercentage?: number | null;
     /**
@@ -596,7 +596,7 @@ export namespace health_v4beta {
      */
     date?: Schema$Date;
     /**
-     * Required. The lower bound of the confidence interval of oxygen saturation samples during sleep. Must be in the range `[0, 100]`.
+     * Required. The lower bound of the confidence interval of oxygen saturation samples during sleep.
      */
     lowerBoundPercentage?: number | null;
     /**
@@ -604,7 +604,7 @@ export namespace health_v4beta {
      */
     standardDeviationPercentage?: number | null;
     /**
-     * Required. The upper bound of the confidence interval of oxygen saturation samples during sleep. Must be in the range `[0, 100]`.
+     * Required. The upper bound of the confidence interval of oxygen saturation samples during sleep.
      */
     upperBoundPercentage?: number | null;
   }
@@ -757,7 +757,7 @@ export namespace health_v4beta {
    */
   export interface Schema$DailyRollUpDataPointsRequest {
     /**
-     * Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.
+     * Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect.
      */
     dataSourceFamily?: string | null;
     /**
@@ -824,7 +824,7 @@ export namespace health_v4beta {
      */
     estimated?: boolean | null;
     /**
-     * Required. Daily VO2 max value measured as in ml consumed oxygen / kg of body weight / min. Must be in the range `[0, 100]`.
+     * Required. Daily VO2 max value measured as in ml consumed oxygen / kg of body weight / min.
      */
     vo2Max?: number | null;
     /**
@@ -1118,7 +1118,7 @@ export namespace health_v4beta {
      */
     interval?: Schema$ObservationTimeInterval;
     /**
-     * Required. Distance in millimeters over the observed interval. Must be in the range `[0, 1000000000]`.
+     * Required. Distance in millimeters over the observed interval.
      */
     millimeters?: string | null;
   }
@@ -1190,7 +1190,7 @@ export namespace health_v4beta {
    */
   export interface Schema$EnergyQuantity {
     /**
-     * Required. The energy value in kilocalories. Must be in the range `[0, 100000]`.
+     * Required. The energy value in kilocalories.
      */
     kcal?: number | null;
     /**
@@ -1308,7 +1308,7 @@ export namespace health_v4beta {
    */
   export interface Schema$Floors {
     /**
-     * Required. Number of floors in the recorded interval. Must be in the range `[0, 1000000]`.
+     * Required. Number of floors in the recorded interval
      */
     count?: string | null;
     /**
@@ -1508,7 +1508,7 @@ export namespace health_v4beta {
    */
   export interface Schema$HeartRate {
     /**
-     * Required. The heart rate value in beats per minute. Must be in the range `[1, 300]`.
+     * Required. The heart rate value in beats per minute.
      */
     beatsPerMinute?: string | null;
     /**
@@ -1555,11 +1555,11 @@ export namespace health_v4beta {
    */
   export interface Schema$HeartRateVariability {
     /**
-     * Optional. Additional information about the heart rate variability measurement.
+     * Optional. Metadata used in 1P surfaces.
      */
     metadata?: Schema$HeartRateVariabilityMetadata;
     /**
-     * Optional. The root mean square of successive differences between normal heartbeats. This is a measure of heart rate variability used by Google Health. Must be in the range `[1, 200]`.
+     * Optional. The root mean square of successive differences between normal heartbeats. This is a measure of heart rate variability used by Google Health.
      */
     rootMeanSquareOfSuccessiveDifferencesMilliseconds?: number | null;
     /**
@@ -1619,7 +1619,7 @@ export namespace health_v4beta {
    */
   export interface Schema$Height {
     /**
-     * Required. Height of the user in millimeters. Must be in the range `[0, 3000]`.
+     * Required. Height of the user in millimeters.
      */
     heightMillimeters?: string | null;
     /**
@@ -2180,7 +2180,7 @@ export namespace health_v4beta {
    */
   export interface Schema$OxygenSaturation {
     /**
-     * Required. The oxygen saturation percentage. Must be in the range `[0, 100]`.
+     * Required. The oxygen saturation percentage. Valid values are from 0 to 100.
      */
     percentage?: number | null;
     /**
@@ -2246,7 +2246,7 @@ export namespace health_v4beta {
      */
     membershipStartDate?: Schema$Date;
     /**
-     * Identifier. The resource name of this Profile resource. Format: `users/{user\}/profile` Example: `users/1234567890/profile` or `users/me/profile` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user. This field is read-only.
+     * Identifier. The resource name of this Profile resource. Format: `users/{user\}/profile` Example: `users/1234567890/profile` or `users/me/profile` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.
      */
     name?: string | null;
     /**
@@ -2573,7 +2573,7 @@ export namespace health_v4beta {
    */
   export interface Schema$RollUpDataPointsRequest {
     /**
-     * Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.
+     * Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect.
      */
     dataSourceFamily?: string | null;
     /**
@@ -2611,7 +2611,7 @@ export namespace health_v4beta {
    */
   export interface Schema$RunVO2Max {
     /**
-     * Required. Run VO2 max value in ml/kg/min. Must be in the range `[0, 100]`.
+     * Required. Run VO2 max value in ml/kg/min.
      */
     runVo2Max?: number | null;
     /**
@@ -2729,7 +2729,7 @@ export namespace health_v4beta {
      */
     languageLocale?: string | null;
     /**
-     * Identifier. The resource name of this Settings resource. Format: `users/{user\}/settings` Example: `users/1234567890/settings` or `users/me/settings` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user. This field is read-only.
+     * Identifier. The resource name of this Settings resource. Format: `users/{user\}/settings` Example: `users/1234567890/settings` or `users/me/settings` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.
      */
     name?: string | null;
     /**
@@ -2969,7 +2969,7 @@ export namespace health_v4beta {
    */
   export interface Schema$Steps {
     /**
-     * Required. Number of steps in the recorded interval. Must be in the range `[0, 1000000]`.
+     * Required. Number of steps in the recorded interval.
      */
     count?: string | null;
     /**
@@ -3200,7 +3200,7 @@ export namespace health_v4beta {
      */
     sampleTime?: Schema$ObservationSampleTime;
     /**
-     * Required. VO2 max value measured as in ml consumed oxygen / kg of body weight / min. Must be in the range `[0, 100]`.
+     * Required. VO2 max value measured as in ml consumed oxygen / kg of body weight / min.
      */
     vo2Max?: number | null;
   }
@@ -3209,7 +3209,7 @@ export namespace health_v4beta {
    */
   export interface Schema$VolumeQuantity {
     /**
-     * Required. Value representing the volume in milliliters. Must be in the range `[0, 100000]`.
+     * Required. Value representing the volume in milliliters.
      */
     milliliters?: number | null;
     /**
@@ -3243,7 +3243,7 @@ export namespace health_v4beta {
      */
     sampleTime?: Schema$ObservationSampleTime;
     /**
-     * Required. Weight of a user in grams. Must be in the range `[0, 1000000]`.
+     * Required. Weight of a user in grams.
      */
     weightGrams?: number | null;
   }
@@ -3252,7 +3252,7 @@ export namespace health_v4beta {
    */
   export interface Schema$WeightQuantity {
     /**
-     * Required. The weight value in grams. Must be in the range `[0, 100000]`.
+     * Required. The weight value in grams.
      */
     grams?: number | null;
     /**
@@ -5528,7 +5528,7 @@ export namespace health_v4beta {
      *
      *   // Do the magic
      *   const res = await health.users.updateProfile({
-     *     // Identifier. The resource name of this Profile resource. Format: `users/{user\}/profile` Example: `users/1234567890/profile` or `users/me/profile` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user. This field is read-only.
+     *     // Identifier. The resource name of this Profile resource. Format: `users/{user\}/profile` Example: `users/1234567890/profile` or `users/me/profile` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.
      *     name: 'users/my-user/profile',
      *     // Optional. The list of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -5683,7 +5683,7 @@ export namespace health_v4beta {
      *
      *   // Do the magic
      *   const res = await health.users.updateSettings({
-     *     // Identifier. The resource name of this Settings resource. Format: `users/{user\}/settings` Example: `users/1234567890/settings` or `users/me/settings` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user. This field is read-only.
+     *     // Identifier. The resource name of this Settings resource. Format: `users/{user\}/settings` Example: `users/1234567890/settings` or `users/me/settings` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.
      *     name: 'users/my-user/settings',
      *     // Optional. The list of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -5850,7 +5850,7 @@ export namespace health_v4beta {
   }
   export interface Params$Resource$Users$Updateprofile extends StandardParameters {
     /**
-     * Identifier. The resource name of this Profile resource. Format: `users/{user\}/profile` Example: `users/1234567890/profile` or `users/me/profile` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user. This field is read-only.
+     * Identifier. The resource name of this Profile resource. Format: `users/{user\}/profile` Example: `users/1234567890/profile` or `users/me/profile` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.
      */
     name?: string;
     /**
@@ -5865,7 +5865,7 @@ export namespace health_v4beta {
   }
   export interface Params$Resource$Users$Updatesettings extends StandardParameters {
     /**
-     * Identifier. The resource name of this Settings resource. Format: `users/{user\}/settings` Example: `users/1234567890/settings` or `users/me/settings` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user. This field is read-only.
+     * Identifier. The resource name of this Settings resource. Format: `users/{user\}/settings` Example: `users/1234567890/settings` or `users/me/settings` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.
      */
     name?: string;
     /**
@@ -6802,8 +6802,6 @@ export namespace health_v4beta {
      *
      *   // Do the magic
      *   const res = await health.users.dataTypes.dataPoints.list({
-     *     // Optional. The data source family name to filter by. If empty, data points from all available data sources will be returned. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data types may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error. Filtering by data source family is not supported for the `sleep`, `food` and `food-measurement-unit` data types, because the underlying listing implementation cannot restrict results by data source. Such requests fail with `INVALID_ARGUMENT` when the data source family is set explicitly, and with `PERMISSION_DENIED` when the restriction is only implied by the caller's scopes. For `sleep`, use ReconcileDataPoints instead.
-     *     dataSourceFamily: 'placeholder-value',
      *     // Optional. Filter expression following https://google.aip.dev/160. A time range (either physical or civil) can be specified. The supported filter fields are: - Interval start time: - Pattern: `{interval_data_type\}.interval.start_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `steps.interval.start_time \>= "2023-11-24T00:00:00Z" AND steps.interval.start_time < "2023-11-25T00:00:00Z"` - `distance.interval.start_time \>= "2024-08-14T12:34:56Z"` - Interval civil start time: - Pattern: `{interval_data_type\}.interval.civil_start_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `steps.interval.civil_start_time \>= "2023-11-24" AND steps.interval.civil_start_time < "2023-11-25"` - `distance.interval.civil_start_time \>= "2024-08-14T12:34:56"` - Sample observation physical time: - Pattern: `{sample_data_type\}.sample_time.physical_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `weight.sample_time.physical_time \>= "2023-11-24T00:00:00Z" AND weight.sample_time.physical_time < "2023-11-25T00:00:00Z"` - `weight.sample_time.physical_time \>= "2024-08-14T12:34:56Z"` - Sample observation civil time: - Pattern: `{sample_data_type\}.sample_time.civil_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `weight.sample_time.civil_time \>= "2023-11-24" AND weight.sample_time.civil_time < "2023-11-25"` - `weight.sample_time.civil_time \>= "2024-08-14T12:34:56"` - Daily summary date: - Pattern: `{daily_summary_data_type\}.date` - Supported comparison operators: `\>=`, `<` - Date literal expected in ISO 8601 `YYYY-MM-DD` format - Supported logical operators: `AND` - Example: - `daily_heart_rate_variability.date < "2024-08-15"` - Session civil start time (**Excluding Sleep and ECG**): - Pattern: `{session_data_type\}.interval.civil_start_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `exercise.interval.civil_start_time \>= "2023-11-24" AND exercise.interval.civil_start_time < "2023-11-25"` - `exercise.interval.civil_start_time \>= "2024-08-14T12:34:56"` - Session start time (**ECG specific**): - Pattern: `electrocardiogram.interval.start_time` - Supported comparison operators: `\>=` - Timestamp literal expected in RFC-3339 format - Example: - `electrocardiogram.interval.start_time \>= "2024-08-14T12:34:56Z"` - Note: Only filtering by start time is supported for ECG. Filtering by end time (e.g., `electrocardiogram.interval.end_time`) is not supported. - Session end time (**Sleep specific**): - Pattern: `sleep.interval.end_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.end_time \>= "2023-11-24T00:00:00Z" AND sleep.interval.end_time < "2023-11-25T00:00:00Z"` - Session civil end time (**Sleep specific**): - Pattern: `sleep.interval.civil_end_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.civil_end_time \>= "2023-11-24" AND sleep.interval.civil_end_time < "2023-11-25"` Data points in the response will be ordered by the interval start time in descending order.
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of data points to return. If unspecified, at most 1440 data points will be returned. The maximum page size is 10000; values above that will be truncated accordingly. For `exercise` and `sleep` the default page size is 25. The maximum page size for `exercise` and `sleep` is 25.
@@ -7160,7 +7158,7 @@ export namespace health_v4beta {
      *
      *   // Do the magic
      *   const res = await health.users.dataTypes.dataPoints.reconcile({
-     *     // Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family\}` - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.
+     *     // Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family\}` - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect.
      *     dataSourceFamily: 'placeholder-value',
      *     // Optional. Filter expression based on https://aip.dev/160. A time range, either physical or civil, can be specified. See the ListDataPointsRequest.filter for the supported fields and syntax.
      *     filter: 'placeholder-value',
@@ -7499,10 +7497,6 @@ export namespace health_v4beta {
   }
   export interface Params$Resource$Users$Datatypes$Datapoints$List extends StandardParameters {
     /**
-     * Optional. The data source family name to filter by. If empty, data points from all available data sources will be returned. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data types may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error. Filtering by data source family is not supported for the `sleep`, `food` and `food-measurement-unit` data types, because the underlying listing implementation cannot restrict results by data source. Such requests fail with `INVALID_ARGUMENT` when the data source family is set explicitly, and with `PERMISSION_DENIED` when the restriction is only implied by the caller's scopes. For `sleep`, use ReconcileDataPoints instead.
-     */
-    dataSourceFamily?: string;
-    /**
      * Optional. Filter expression following https://google.aip.dev/160. A time range (either physical or civil) can be specified. The supported filter fields are: - Interval start time: - Pattern: `{interval_data_type\}.interval.start_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `steps.interval.start_time \>= "2023-11-24T00:00:00Z" AND steps.interval.start_time < "2023-11-25T00:00:00Z"` - `distance.interval.start_time \>= "2024-08-14T12:34:56Z"` - Interval civil start time: - Pattern: `{interval_data_type\}.interval.civil_start_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `steps.interval.civil_start_time \>= "2023-11-24" AND steps.interval.civil_start_time < "2023-11-25"` - `distance.interval.civil_start_time \>= "2024-08-14T12:34:56"` - Sample observation physical time: - Pattern: `{sample_data_type\}.sample_time.physical_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `weight.sample_time.physical_time \>= "2023-11-24T00:00:00Z" AND weight.sample_time.physical_time < "2023-11-25T00:00:00Z"` - `weight.sample_time.physical_time \>= "2024-08-14T12:34:56Z"` - Sample observation civil time: - Pattern: `{sample_data_type\}.sample_time.civil_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `weight.sample_time.civil_time \>= "2023-11-24" AND weight.sample_time.civil_time < "2023-11-25"` - `weight.sample_time.civil_time \>= "2024-08-14T12:34:56"` - Daily summary date: - Pattern: `{daily_summary_data_type\}.date` - Supported comparison operators: `\>=`, `<` - Date literal expected in ISO 8601 `YYYY-MM-DD` format - Supported logical operators: `AND` - Example: - `daily_heart_rate_variability.date < "2024-08-15"` - Session civil start time (**Excluding Sleep and ECG**): - Pattern: `{session_data_type\}.interval.civil_start_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `exercise.interval.civil_start_time \>= "2023-11-24" AND exercise.interval.civil_start_time < "2023-11-25"` - `exercise.interval.civil_start_time \>= "2024-08-14T12:34:56"` - Session start time (**ECG specific**): - Pattern: `electrocardiogram.interval.start_time` - Supported comparison operators: `\>=` - Timestamp literal expected in RFC-3339 format - Example: - `electrocardiogram.interval.start_time \>= "2024-08-14T12:34:56Z"` - Note: Only filtering by start time is supported for ECG. Filtering by end time (e.g., `electrocardiogram.interval.end_time`) is not supported. - Session end time (**Sleep specific**): - Pattern: `sleep.interval.end_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.end_time \>= "2023-11-24T00:00:00Z" AND sleep.interval.end_time < "2023-11-25T00:00:00Z"` - Session civil end time (**Sleep specific**): - Pattern: `sleep.interval.civil_end_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.civil_end_time \>= "2023-11-24" AND sleep.interval.civil_end_time < "2023-11-25"` Data points in the response will be ordered by the interval start time in descending order.
      */
     filter?: string;
@@ -7532,7 +7526,7 @@ export namespace health_v4beta {
   }
   export interface Params$Resource$Users$Datatypes$Datapoints$Reconcile extends StandardParameters {
     /**
-     * Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family\}` - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.
+     * Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family\}` - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect.
      */
     dataSourceFamily?: string;
     /**

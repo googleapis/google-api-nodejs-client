@@ -1333,7 +1333,7 @@
       }
     }
   },
-  "revision": "20260929",
+  "revision": "20260914",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "ActivatePretargetingConfigRequest": {
@@ -2757,19 +2757,12 @@
             "APPROVED",
             "CERTIFICATE_REQUIRED"
           ],
-          "enumDeprecated": [
-            false,
-            false,
-            false,
-            false,
-            true
-          ],
           "enumDescriptions": [
             "Default value that should never be used.",
             "Creative is pending review.",
             "Creative cannot serve.",
             "Creative is approved.",
-            "Certificates are required for the creative to be served in some regions."
+            "Certificates are required for the creative to be served in some regions. For more information about creative certification, refer to: https://support.google.com/authorizedbuyers/answer/7450776"
           ],
           "type": "string"
         },
@@ -2799,8 +2792,7 @@
           "type": "string"
         },
         "missingCertificate": {
-          "deprecated": true,
-          "description": "Whether or not the policy topic is missing a certificate.",
+          "description": "Whether or not the policy topic is missing a certificate. Some policy topics require a certificate to unblock serving in some regions. For more information about creative certification, refer to: https://support.google.com/authorizedbuyers/answer/7450776",
           "type": "boolean"
         },
         "policyTopic": {

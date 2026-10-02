@@ -1187,7 +1187,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$BumperAd {
     /**
-     * Required. Common ad attributes.
+     * Common ad attributes.
      */
     commonInStreamAttribute?: Schema$CommonInStreamAttribute;
   }
@@ -1546,31 +1546,31 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$CommonInStreamAttribute {
     /**
-     * Optional. The text on the call-to-action button.
+     * The text on the call-to-action button.
      */
     actionButtonLabel?: string | null;
     /**
-     * Optional. The headline of the call-to-action banner.
+     * The headline of the call-to-action banner.
      */
     actionHeadline?: string | null;
     /**
-     * Optional. The image which shows next to the video ad.
+     * The image which shows next to the video ad.
      */
     companionBanner?: Schema$ImageAsset;
     /**
-     * Required. The webpage address that appears with the ad.
+     * The webpage address that appears with the ad.
      */
     displayUrl?: string | null;
     /**
-     * Required. The URL address of the webpage that people reach after they click the ad.
+     * The URL address of the webpage that people reach after they click the ad.
      */
     finalUrl?: string | null;
     /**
-     * Output only. The URL address loaded in the background for tracking purposes.
+     * The URL address loaded in the background for tracking purposes.
      */
     trackingUrl?: string | null;
     /**
-     * Required. The YouTube video of the ad.
+     * The YouTube video of the ad.
      */
     video?: Schema$YoutubeVideoDetails;
   }
@@ -2268,7 +2268,7 @@ export namespace displayvideo_v2 {
      */
     deviceType?: string | null;
     /**
-     * Optional. Bid multiplier allows you to show your ads more or less frequently based on the device type. It will apply a multiplier on the original bid price. When this field is 0, it indicates this field is not applicable instead of multiplying 0 on the original bid price. For example, if the bid price without multiplier is $10.0 and the multiplier is 1.5 for Tablet, the resulting bid price for Tablet will be $15.0. Only applicable to YouTube and Partners line items.
+     * Output only. Bid multiplier allows you to show your ads more or less frequently based on the device type. It will apply a multiplier on the original bid price. When this field is 0, it indicates this field is not applicable instead of multiplying 0 on the original bid price. For example, if the bid price without multiplier is $10.0 and the multiplier is 1.5 for Tablet, the resulting bid price for Tablet will be $15.0. Only applicable to YouTube and Partners line items.
      */
     youtubeAndPartnersBidMultiplier?: number | null;
   }
@@ -3056,11 +3056,11 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$InStreamAd {
     /**
-     * Required. Common ad attributes.
+     * Common ad attributes.
      */
     commonInStreamAttribute?: Schema$CommonInStreamAttribute;
     /**
-     * Optional. The custom parameters and accompanying values to add to the tracking URL.
+     * The custom parameters and accompanying values to add to the tracking URL.
      */
     customParameters?: {[key: string]: string} | null;
   }
@@ -4061,11 +4061,11 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$NonSkippableAd {
     /**
-     * Required. Common ad attributes.
+     * Common ad attributes.
      */
     commonInStreamAttribute?: Schema$CommonInStreamAttribute;
     /**
-     * Optional. The custom parameters and accompanying values to add to the tracking URL.
+     * The custom parameters and accompanying values to add to the tracking URL.
      */
     customParameters?: {[key: string]: string} | null;
   }
@@ -5319,27 +5319,27 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$VideoPerformanceAd {
     /**
-     * Optional. The list of text assets shown on the call-to-action button.
+     * The list of text assets shown on the call-to-action button.
      */
     actionButtonLabels?: string[] | null;
     /**
-     * Optional. The list of companion banners used by this ad.
+     * The list of companion banners used by this ad.
      */
     companionBanners?: Schema$ImageAsset[];
     /**
-     * Optional. The custom parameters and accompanying values to add to the tracking URL.
+     * The custom parameters and accompanying values to add to the tracking URL.
      */
     customParameters?: {[key: string]: string} | null;
     /**
-     * Optional. The list of descriptions shown on the call-to-action banner.
+     * The list of descriptions shown on the call-to-action banner.
      */
     descriptions?: string[] | null;
     /**
-     * Optional. The first piece after the domain in the display URL.
+     * The first piece after the domain in the display URL.
      */
     displayUrlBreadcrumb1?: string | null;
     /**
-     * Optional. The second piece after the domain in the display URL.
+     * The second piece after the domain in the display URL.
      */
     displayUrlBreadcrumb2?: string | null;
     /**
@@ -5347,23 +5347,23 @@ export namespace displayvideo_v2 {
      */
     domain?: string | null;
     /**
-     * Required. The URL address of the webpage that people reach after they click the ad.
+     * The URL address of the webpage that people reach after they click the ad.
      */
     finalUrl?: string | null;
     /**
-     * Optional. The list of headlines shown on the call-to-action banner.
+     * The list of headlines shown on the call-to-action banner.
      */
     headlines?: string[] | null;
     /**
-     * Optional. The list of long headlines shown on the call-to-action banner.
+     * The list of long headlines shown on the call-to-action banner.
      */
     longHeadlines?: string[] | null;
     /**
-     * Output only. The URL address loaded in the background for tracking purposes.
+     * The URL address loaded in the background for tracking purposes.
      */
     trackingUrl?: string | null;
     /**
-     * Required. The list of YouTube video assets used by this ad.
+     * The list of YouTube video assets used by this ad.
      */
     videos?: Schema$YoutubeVideoDetails[];
   }
@@ -5694,7 +5694,7 @@ export namespace displayvideo_v2 {
      */
     id?: string | null;
     /**
-     * Output only. The reason why the video data is not available.
+     * The reason why the video data is not available.
      */
     unavailableReason?: string | null;
     /**
