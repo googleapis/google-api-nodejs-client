@@ -2454,6 +2454,18 @@ export namespace compute_alpha {
      */
     timeAggregation?: Schema$AutoscalingPolicyTimeAggregation;
     /**
+     * The upper bound of the utilization range. Must be a float value in the
+     * range ('utilization_min', 1]. A value of 0.0 is equivalent to leaving the
+     * field unset.
+     */
+    utilizationMax?: number | null;
+    /**
+     * The lower bound of the utilization range. Must be a float value in the
+     * range (0, 'utilization_max']. A value of 0.0 is equivalent to leaving the
+     * field unset.
+     */
+    utilizationMin?: number | null;
+    /**
      * Defines a target range for CPU utilization. The values of
      * `min_utilization` and `max_utilization` must be in
      * the range (0.0, 1.0].
@@ -6506,7 +6518,7 @@ export namespace compute_alpha {
      * resource types.
      *
      *  The type must be one of the following:ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3,ACCELERATOR_OPTIMIZED_A3_MEGA,COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D,
-     *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,GRAPHICS_OPTIMIZED_G4_VGPU,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3,STORAGE_OPTIMIZED_Z4DS, STORAGE_OPTIMIZED_Z4DH,STORAGE_OPTIMIZED_Z4D4T. For
+     *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,GRAPHICS_OPTIMIZED_G4_VGPU,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3,STORAGE_OPTIMIZED_Z4DS, STORAGE_OPTIMIZED_Z4DH,STORAGE_OPTIMIZED_Z4D4T,STORAGE_OPTIMIZED_Z4M. For
      * example, type MEMORY_OPTIMIZED specifies a commitment that
      * applies only to eligible resources of memory optimized M1 and M2 machine
      * series. Type GENERAL_PURPOSE specifies a commitment that
@@ -34395,10 +34407,16 @@ export namespace compute_alpha {
      *
      * `destination.ip == '1.1.0.1' || destination.ip == '8.8.8.8'`
      *
-     * The following example is a valid match expression for private NAT:
+     * The following examples are valid match expressions for private NAT:
      *
+     * (NAT 44)
      * `nexthop.hub ==
      * '//networkconnectivity.googleapis.com/projects/my-project/locations/global/hubs/hub-1'`
+     *
+     * `nexthop.is_hybrid`
+     *
+     * (NAT 64)
+     * `isIPv6(source.ip)`
      */
     match?: string | null;
     /**
