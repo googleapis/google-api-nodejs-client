@@ -331,11 +331,11 @@ export namespace css_v1 {
      */
     material?: string | null;
     /**
-     * Maximum rating score of the product. Required if `rating` is provided. This field is for an upcoming feature and is not yet used.
+     * Maximum rating score of the product. Required if `rating` is provided.
      */
     maxRating?: string | null;
     /**
-     * Minimum rating score of the product. Required if `rating` is provided. This field is for an upcoming feature and is not yet used.
+     * Minimum rating score of the product. Required if `rating` is provided.
      */
     minRating?: string | null;
     /**
@@ -387,11 +387,11 @@ export namespace css_v1 {
      */
     productWidth?: Schema$ProductDimension;
     /**
-     * Average rating score of the product. The value must be within the range of [`min_rating`, `max_rating`], inclusive. When displayed on the product page, this rating is normalized to a scale of [1, 5] with one decimal place. If provided, `review_count`, `min_rating`, and `max_rating` are also required. This field is for an upcoming feature and is not yet used.
+     * Average rating score of the product. The value must be within the range of [`min_rating`, `max_rating`], inclusive. When displayed on the product page, this rating is normalized to a scale of [1, 5] with one decimal place. If provided, `review_count`, `min_rating`, and `max_rating` are also required.
      */
     rating?: number | null;
     /**
-     * Number of reviews of the product. Required if `rating` is provided. This field is for an upcoming feature and is not yet used.
+     * Number of reviews of the product. Required if `rating` is provided.
      */
     reviewCount?: string | null;
     /**
