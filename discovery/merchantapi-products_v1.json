@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20260910",
+  "revision": "20260921",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AutomatedDiscounts": {
@@ -1121,7 +1121,7 @@
       "type": "object"
     },
     "LoyaltyProgram": {
-      "description": "A message that represents loyalty program.",
+      "description": "A message that represents loyalty program. For more information on loyalty programs, see [Overview of loyalty programs](/merchant/api/guides/loyalty/loyalty-programs).",
       "id": "LoyaltyProgram",
       "properties": {
         "cashbackForFutureUse": {
@@ -2569,7 +2569,7 @@
         },
         "warranty": {
           "$ref": "Warranty",
-          "description": "The [warranty](https://support.google.com/google-ads/answer/15957626) of the vehicle."
+          "description": "The [warranty](https://support.google.com/merchants/answer/15957626) of the product."
         },
         "year": {
           "description": "The [Year](https://support.google.com/google-ads/answer/14152816) of the vehicle model.",
@@ -3552,13 +3552,27 @@
       "id": "Warranty",
       "properties": {
         "duration": {
-          "description": "The warranty duration in months.",
+          "description": "The warranty duration in units. Default is in months, can be overridden by the `duration_unit` field.",
           "format": "int64",
+          "type": "string"
+        },
+        "durationUnit": {
+          "description": "The unit for the warranty duration. Assumed to be `MONTH` if equal to `WARRANTY_DURATION_UNIT_UNSPECIFIED`.",
+          "enum": [
+            "WARRANTY_DURATION_UNIT_UNSPECIFIED",
+            "MONTH",
+            "YEAR"
+          ],
+          "enumDescriptions": [
+            "Indicates that the warranty duration unit is unspecified.",
+            "Indicates that the warranty duration unit is month.",
+            "Indicates that the warranty duration unit is year."
+          ],
           "type": "string"
         },
         "mileage": {
           "$ref": "Mileage",
-          "description": "The warranty mileage."
+          "description": "The warranty mileage (only applies to vehicles)."
         }
       },
       "type": "object"
