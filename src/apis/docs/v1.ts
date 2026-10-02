@@ -125,6 +125,41 @@ export namespace docs_v1 {
   }
 
   /**
+   * Accepts a suggestion. Returns a 403 forbidden error if the requesting user does not have edit access to the document. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$AcceptSuggestionRequest {
+    /**
+     * The ID of the suggestion.
+     */
+    suggestionId?: string | null;
+  }
+  /**
+   * Inserts a reply Post into a CommentThread or SuggestionThread. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$AddCommentReplyRequest {
+    /**
+     * The ID of the CommentThread to add the reply to.
+     */
+    commentId?: string | null;
+    /**
+     * The Post representing the reply.
+     */
+    post?: Schema$Post;
+    /**
+     * The ID of the SuggestionThread to add the reply to.
+     */
+    suggestionId?: string | null;
+  }
+  /**
+   * Response message for adding a reply. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$AddCommentReplyResponse {
+    /**
+     * The newly-inserted reply Post.
+     */
+    post?: Schema$Post;
+  }
+  /**
    * Adds a document tab. When a tab is added at a given index, all subsequent tabs' indexes are incremented.
    */
   export interface Schema$AddDocumentTabRequest {
@@ -205,6 +240,10 @@ export namespace docs_v1 {
    */
   export interface Schema$BatchUpdateDocumentResponse {
     /**
+     * Whether comment updates were applied in the batch request. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentUpdateState?: string | null;
+    /**
      * The ID of the document to which the updates were applied to.
      */
     documentId?: string | null;
@@ -212,6 +251,10 @@ export namespace docs_v1 {
      * The reply of the updates. This maps 1:1 with the updates, although replies to some requests may be empty.
      */
     replies?: Schema$Response[];
+    /**
+     * The suggestions which were affected by each update. This maps 1:1 with the updates. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    suggestionResponses?: Schema$SuggestionResponse[];
     /**
      * The updated write control after applying the request.
      */
@@ -304,6 +347,48 @@ export namespace docs_v1 {
      * The text style of this ColumnBreak. Similar to text content, like text runs and footnote references, the text style of a column break can affect content layout as well as the styling of text inserted next to it.
      */
     textStyle?: Schema$TextStyle;
+  }
+  /**
+   * One or more locations in the document that are tied to CommentThreads with the same anchorId. Note: Multiple anchors may refer to the same location. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$CommentAnchor {
+    /**
+     * The ID of the comment anchor.
+     */
+    anchorId?: string | null;
+    /**
+     * A collection of Ranges in the document which are tied to this anchor.
+     */
+    ranges?: Schema$Range[];
+  }
+  /**
+   * Represents a single comment thread. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$CommentThread {
+    /**
+     * The ID of the CommentAnchor in the document that this thread is tied to. Multiple comment threads may be anchored to the same CommentAnchor.
+     */
+    anchorId?: string | null;
+    /**
+     * The unique ID of the comment thread.
+     */
+    commentId?: string | null;
+    /**
+     * The first post in the thread.
+     */
+    headPost?: Schema$Post;
+    /**
+     * The quoted text from the document when the comment was created, formatted as plain-text.
+     */
+    plainTextQuote?: string | null;
+    /**
+     * Replies to the head post.
+     */
+    replies?: Schema$Post[];
+    /**
+     * Whether the thread is open or resolved.
+     */
+    status?: string | null;
   }
   /**
    * Creates a Footer. The new footer is applied to the SectionStyle at the location of the SectionBreak if specified, otherwise it is applied to the DocumentStyle. If a footer of the specified type already exists, a 400 bad request error is returned.
@@ -548,6 +633,32 @@ export namespace docs_v1 {
     timeZoneIdSuggested?: boolean | null;
   }
   /**
+   * Deletes a reply Post from a CommentThread or SuggestionThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. - The reply post contains an action. - The reply post contains an assignee. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$DeleteCommentReplyRequest {
+    /**
+     * The ID of the CommentThread which the post belongs to.
+     */
+    commentId?: string | null;
+    /**
+     * The ID of the reply Post being deleted.
+     */
+    postId?: string | null;
+    /**
+     * The ID of the SuggestionThread which the post belongs to.
+     */
+    suggestionId?: string | null;
+  }
+  /**
+   * Deletes a CommentThread. Returns a 400 bad request error if the requesting user is not the author of the headPost. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$DeleteCommentRequest {
+    /**
+     * The ID of the CommentThread that is being deleted.
+     */
+    commentId?: string | null;
+  }
+  /**
    * Deletes content from the document.
    */
   export interface Schema$DeleteContentRangeRequest {
@@ -622,6 +733,15 @@ export namespace docs_v1 {
     tabId?: string | null;
   }
   /**
+   * Deletes a suggestion. Returns a 403 forbidden error if the requesting user is not the author of the suggestion. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$DeleteSuggestionRequest {
+    /**
+     * The ID of the suggestion.
+     */
+    suggestionId?: string | null;
+  }
+  /**
    * Deletes a column from a table.
    */
   export interface Schema$DeleteTableColumnRequest {
@@ -669,6 +789,14 @@ export namespace docs_v1 {
      * Output only. The main body of the document. Legacy field: Instead, use Document.tabs.documentTab.body, which exposes the actual document content from all tabs when the includeTabsContent parameter is set to `true`. If `false` or unset, this field contains information about the first tab in the document.
      */
     body?: Schema$Body;
+    /**
+     * Output only. The comments associated with the document. Only populated if the commentsViewMode parameter is set to require comments (such as `COMMENTS_VIEW_MODE_INCLUDED`). [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    comments?: Schema$CommentThread[];
+    /**
+     * Output only. The comments view mode applied to the document. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentsViewMode?: string | null;
     /**
      * Output only. The ID of the document.
      */
@@ -725,6 +853,10 @@ export namespace docs_v1 {
     suggestedNamedStylesChanges?: {
       [key: string]: Schema$SuggestedNamedStyles;
     } | null;
+    /**
+     * Output only. The suggestions associated with the document. Only populated if the commentsViewMode parameter is set to require comments (such as `COMMENTS_VIEW_MODE_INCLUDED`). [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    suggestions?: Schema$SuggestionThread[];
     /**
      * Output only. The suggestions view mode applied to the document. Note: When editing a document, changes must be based on a document with SUGGESTIONS_INLINE.
      */
@@ -921,6 +1053,10 @@ export namespace docs_v1 {
      * The main body of the document tab.
      */
     body?: Schema$Body;
+    /**
+     * The comment anchors in a document tab, keyed by anchor ID. Only populated if the commentsViewMode parameter is set to require comments (such as `COMMENTS_VIEW_MODE_INCLUDED`). [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentAnchors?: {[key: string]: Schema$CommentAnchor} | null;
     /**
      * The style of the document tab.
      */
@@ -1387,6 +1523,32 @@ export namespace docs_v1 {
      * A mask that indicates which of the fields in embedded_object have been changed in this suggestion.
      */
     embeddedObjectSuggestionState?: Schema$EmbeddedObjectSuggestionState;
+  }
+  /**
+   * Inserts a CommentThread into the document. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$InsertCommentRequest {
+    /**
+     * Optional. The email address of the assignee of the comment. Leave empty for a non-assigned comment. May not exceed 2048 UTF-8 code units.
+     */
+    assigneeEmailAddress?: string | null;
+    /**
+     * The text of the comment, as plain text. This text content will be handled similarly to comments created in the Docs editor. It will have similar behaviors for formatting, notifications, etc. This field cannot be empty, and must not exceed 2048 UTF-8 code units.
+     */
+    content?: string | null;
+    /**
+     * The Range in the document that is tied to this comment.
+     */
+    range?: Schema$Range;
+  }
+  /**
+   * Response message for inserting a comment. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$InsertCommentResponse {
+    /**
+     * The newly-inserted comment thread.
+     */
+    commentThread?: Schema$CommentThread;
   }
   /**
    * Inserts a date at the specified location.
@@ -2325,6 +2487,84 @@ export namespace docs_v1 {
     positioningSuggestionState?: Schema$PositionedObjectPositioningSuggestionState;
   }
   /**
+   * Represents a single post in a comment or suggestion thread. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$Post {
+    /**
+     * Optional. The email of the user who is being newly assigned to the thread as part of this post. Returns a 400 bad request error if: - The parent thread is a CommentThread whose headPost does not have an assignee. - The parent thread is a SuggestionThread. - commentAction is specified as `RESOLVE` or `REOPEN`. - `assigneeEmail` exceeds 2048 UTF-8 code units.
+     */
+    assigneeEmail?: string | null;
+    /**
+     * Output only. The user who created the post.
+     */
+    author?: Schema$PostAuthor;
+    /**
+     * Optional. The action type for comment posts.
+     */
+    commentAction?: string | null;
+    /**
+     * The content of the post. Required to be non-empty if commentAction is not `RESOLVE` or `REOPEN`. This text content will be handled similarly to comments created in the Docs editor. It will have similar behaviors for formatting, notifications, etc. May not exceed 2048 UTF-8 code units.
+     */
+    content?: string | null;
+    /**
+     * Output only. The content of the post as HTML.
+     */
+    contentHtml?: string | null;
+    /**
+     * Output only. The time the post was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Whether the post is deleted. If `true`, content and author fields will be empty.
+     */
+    deleted?: boolean | null;
+    /**
+     * Output only. Whether the post is from a copied document. This field cannot be set directly by callers.
+     */
+    fromCopiedDocument?: boolean | null;
+    /**
+     * Output only. Whether the post is from a document comparison. This field cannot be set directly by callers.
+     */
+    fromDocumentComparison?: boolean | null;
+    /**
+     * Output only. Whether the post is from an imported document. This field cannot be set directly by callers.
+     */
+    fromImportedDocument?: boolean | null;
+    /**
+     * Output only. The unique ID of the post.
+     */
+    postId?: string | null;
+    /**
+     * Output only. The action type for suggestion posts.
+     */
+    suggestionAction?: string | null;
+    /**
+     * Output only. The time the post was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Represents a user who authored a comment or suggestion post. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$PostAuthor {
+    /**
+     * Whether the user is anonymous.
+     */
+    anonymous?: boolean | null;
+    /**
+     * The display name of the user. May be absent if the author is anonymous.
+     */
+    displayName?: string | null;
+    /**
+     * Whether the user is the authenticated user making the request.
+     */
+    me?: boolean | null;
+    /**
+     * The resource name of the post author user, which can also be used to identify the user in the [Google People API](https://developers.google.com/people/api/rest/v1/people). Format: `users/{user\}`. Will not be populated if the anonymous field is `true` or if the post is from an imported document.
+     */
+    user?: string | null;
+  }
+  /**
    * Specifies a contiguous range of text.
    */
   export interface Schema$Range {
@@ -2344,6 +2584,15 @@ export namespace docs_v1 {
      * The tab that contains this range. When omitted, the request applies to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.
      */
     tabId?: string | null;
+  }
+  /**
+   * Rejects a suggestion. Returns a 403 forbidden error if the requesting user does not have edit access to the document and is not the author of the suggestion. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$RejectSuggestionRequest {
+    /**
+     * The ID of the suggestion.
+     */
+    suggestionId?: string | null;
   }
   /**
    * Replaces all instances of text matching a criteria with replace text.
@@ -2418,6 +2667,14 @@ export namespace docs_v1 {
    */
   export interface Schema$Request {
     /**
+     * Accepts a suggestion. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    acceptSuggestion?: Schema$AcceptSuggestionRequest;
+    /**
+     * Adds a reply to a CommentThread or SuggestionThread. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    addCommentReply?: Schema$AddCommentReplyRequest;
+    /**
      * Adds a document tab.
      */
     addDocumentTab?: Schema$AddDocumentTabRequest;
@@ -2441,6 +2698,14 @@ export namespace docs_v1 {
      * Creates bullets for paragraphs.
      */
     createParagraphBullets?: Schema$CreateParagraphBulletsRequest;
+    /**
+     * Deletes a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    deleteComment?: Schema$DeleteCommentRequest;
+    /**
+     * Deletes a reply Post from a CommentThread or SuggestionThread. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    deleteCommentReply?: Schema$DeleteCommentReplyRequest;
     /**
      * Deletes content from the document.
      */
@@ -2466,6 +2731,10 @@ export namespace docs_v1 {
      */
     deletePositionedObject?: Schema$DeletePositionedObjectRequest;
     /**
+     * Deletes a suggestion. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    deleteSuggestion?: Schema$DeleteSuggestionRequest;
+    /**
      * Deletes a document tab.
      */
     deleteTab?: Schema$DeleteTabRequest;
@@ -2477,6 +2746,10 @@ export namespace docs_v1 {
      * Deletes a row from a table.
      */
     deleteTableRow?: Schema$DeleteTableRowRequest;
+    /**
+     * Inserts a CommentThread into the document. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    insertComment?: Schema$InsertCommentRequest;
     /**
      * Inserts a date.
      */
@@ -2526,6 +2799,10 @@ export namespace docs_v1 {
      */
     pinTableHeaderRows?: Schema$PinTableHeaderRowsRequest;
     /**
+     * Rejects a suggestion. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    rejectSuggestion?: Schema$RejectSuggestionRequest;
+    /**
      * Replaces all instances of the specified text.
      */
     replaceAllText?: Schema$ReplaceAllTextRequest;
@@ -2541,6 +2818,10 @@ export namespace docs_v1 {
      * Unmerges cells in a table.
      */
     unmergeTableCells?: Schema$UnmergeTableCellsRequest;
+    /**
+     * Updates an existing post (head post or reply) of a CommentThread or SuggestionThread. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    updateCommentPost?: Schema$UpdateCommentPostRequest;
     /**
      * Updates the style of the document.
      */
@@ -2583,6 +2864,10 @@ export namespace docs_v1 {
    */
   export interface Schema$Response {
     /**
+     * The result of adding a reply to a comment or suggestion. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    addCommentReply?: Schema$AddCommentReplyResponse;
+    /**
      * The result of adding a document tab.
      */
     addDocumentTab?: Schema$AddDocumentTabResponse;
@@ -2602,6 +2887,10 @@ export namespace docs_v1 {
      * The result of creating a named range.
      */
     createNamedRange?: Schema$CreateNamedRangeResponse;
+    /**
+     * The result of inserting a comment. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    insertComment?: Schema$InsertCommentResponse;
     /**
      * The result of inserting an inline image.
      */
@@ -3049,6 +3338,60 @@ export namespace docs_v1 {
      * A mask that indicates which of the fields on the base TextStyle have been changed in this suggestion.
      */
     textStyleSuggestionState?: Schema$TextStyleSuggestionState;
+  }
+  /**
+   * The suggestions which were affected by a given update. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$SuggestionResponse {
+    /**
+     * The IDs of suggestions which were accepted during the update.
+     */
+    acceptedSuggestionIds?: string[] | null;
+    /**
+     * The IDs of suggestions which were created during the update.
+     */
+    createdSuggestionIds?: string[] | null;
+    /**
+     * The IDs of suggestions which were deleted during the update.
+     */
+    deletedSuggestionIds?: string[] | null;
+    /**
+     * The IDs of suggestions which were rejected during the update.
+     */
+    rejectedSuggestionIds?: string[] | null;
+    /**
+     * The IDs of suggestions whose summaries were updated during the update.
+     */
+    updatedSummarySuggestionIds?: string[] | null;
+  }
+  /**
+   * Represents a single suggestion thread. Suggestion threads are created as a byproduct of saving changes to the document while in suggestion mode, and cannot be created directly. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$SuggestionThread {
+    /**
+     * The first post in the thread.
+     */
+    headPost?: Schema$Post;
+    /**
+     * Replies to the head post.
+     */
+    replies?: Schema$Post[];
+    /**
+     * Whether the thread is open, accepted, or rejected.
+     */
+    status?: string | null;
+    /**
+     * The unique ID of the suggestion.
+     */
+    suggestionId?: string | null;
+    /**
+     * Summary of the suggested differences in the document, in HTML. May be empty.
+     */
+    summaryHtml?: string | null;
+    /**
+     * Summary of the suggested differences in the document, in plain text. May be empty.
+     */
+    summaryText?: string | null;
   }
   /**
    * A tab in a document.
@@ -3574,6 +3917,27 @@ export namespace docs_v1 {
     tableRange?: Schema$TableRange;
   }
   /**
+   * Updates a Post in a CommentThread or SuggestionThread. Returns a 400 bad request error if: - The post is the headPost of a SuggestionThread. - The requesting user is not the author of the post. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$UpdateCommentPostRequest {
+    /**
+     * The ID of the CommentThread which the post belongs to.
+     */
+    commentId?: string | null;
+    /**
+     * The new text of the comment, as plain text. This text content will be handled similarly to comments created in the Docs editor. It will have similar behaviors for formatting, notifications, etc. This field cannot be empty, and must not exceed 2048 UTF-8 code units.
+     */
+    content?: string | null;
+    /**
+     * The ID of the post being updated.
+     */
+    postId?: string | null;
+    /**
+     * The ID of the SuggestionThread which the post belongs to.
+     */
+    suggestionId?: string | null;
+  }
+  /**
    * Updates the DocumentStyle.
    */
   export interface Schema$UpdateDocumentStyleRequest {
@@ -3759,6 +4123,10 @@ export namespace docs_v1 {
      * The optional target revision ID of the document the write request is applied to. If collaborator changes have occurred after the document was read using the API, the changes produced by this write request are applied against the collaborator changes. This results in a new revision of the document that incorporates both the collaborator changes and the changes in the request, with the Docs server resolving conflicting changes. When using target revision ID, the API client can be thought of as another collaborator of the document. The target revision ID can only be used to write to recent versions of a document. If the target revision is too far behind the latest revision, the request is not processed and returns a 400 bad request error. The request should be tried again after retrieving the latest version of the document. Usually a revision ID remains valid for use as a target revision for several minutes after it's read, but for frequently edited documents this window might be shorter.
      */
     targetRevisionId?: string | null;
+    /**
+     * How the request updates should be applied to the document. If unspecified, the request updates will be applied as normal edits. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    writeMode?: string | null;
   }
 
   export class Resource$Documents {
@@ -3818,8 +4186,10 @@ export namespace docs_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "commentUpdateState": "my_commentUpdateState",
      *   //   "documentId": "my_documentId",
      *   //   "replies": [],
+     *   //   "suggestionResponses": [],
      *   //   "writeControl": {}
      *   // }
      * }
@@ -3963,6 +4333,8 @@ export namespace docs_v1 {
      *       // request body parameters
      *       // {
      *       //   "body": {},
+     *       //   "comments": [],
+     *       //   "commentsViewMode": "my_commentsViewMode",
      *       //   "documentId": "my_documentId",
      *       //   "documentStyle": {},
      *       //   "footers": {},
@@ -3976,6 +4348,7 @@ export namespace docs_v1 {
      *       //   "revisionId": "my_revisionId",
      *       //   "suggestedDocumentStyleChanges": {},
      *       //   "suggestedNamedStylesChanges": {},
+     *       //   "suggestions": [],
      *       //   "suggestionsViewMode": "my_suggestionsViewMode",
      *       //   "tabs": [],
      *       //   "title": "my_title"
@@ -3987,6 +4360,8 @@ export namespace docs_v1 {
      *   // Example response
      *   // {
      *   //   "body": {},
+     *   //   "comments": [],
+     *   //   "commentsViewMode": "my_commentsViewMode",
      *   //   "documentId": "my_documentId",
      *   //   "documentStyle": {},
      *   //   "footers": {},
@@ -4000,6 +4375,7 @@ export namespace docs_v1 {
      *   //   "revisionId": "my_revisionId",
      *   //   "suggestedDocumentStyleChanges": {},
      *   //   "suggestedNamedStylesChanges": {},
+     *   //   "suggestions": [],
      *   //   "suggestionsViewMode": "my_suggestionsViewMode",
      *   //   "tabs": [],
      *   //   "title": "my_title"
@@ -4133,6 +4509,8 @@ export namespace docs_v1 {
      *
      *   // Do the magic
      *   const res = await docs.documents.get({
+     *     // The comments view mode to apply to the document. This allows viewing the document with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. If you set comments_view_mode to any value, you must also set include_tabs_content to `true` or use a field mask that references the Document.tabs field (or any subfield). If you set comments_view_mode to COMMENTS_VIEW_MODE_INCLUDED, you must also explicitly set suggestions_view_mode to SUGGESTIONS_INLINE. If you set comments_view_mode to COMMENTS_VIEW_MODE_INCLUDED or COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS, you may not set suggestions_view_mode to PREVIEW_WITHOUT_SUGGESTIONS or PREVIEW_SUGGESTIONS_ACCEPTED. [Developer Preview](https://developers.google.com/workspace/preview).
+     *     commentsViewMode: 'placeholder-value',
      *     // The ID of the document to retrieve.
      *     documentId: 'placeholder-value',
      *     // Whether to populate the `Document.tabs` field instead of the text content fields like `body` and `documentStyle` on `Document`. - When `true`: Document content populates in the `Document.tabs` field instead of the text content fields in `Document`. - When `false`: The content of the document's first tab populates the content fields in `Document` excluding `Document.tabs`. If a document has only one tab, then that tab is used to populate the document content. `Document.tabs` will be empty. If you use a field mask that references the `Document.tabs` field (or any subfield), the API implicitly treats the request as if you set `include_tabs_content` to `true`.
@@ -4145,6 +4523,8 @@ export namespace docs_v1 {
      *   // Example response
      *   // {
      *   //   "body": {},
+     *   //   "comments": [],
+     *   //   "commentsViewMode": "my_commentsViewMode",
      *   //   "documentId": "my_documentId",
      *   //   "documentStyle": {},
      *   //   "footers": {},
@@ -4158,6 +4538,7 @@ export namespace docs_v1 {
      *   //   "revisionId": "my_revisionId",
      *   //   "suggestedDocumentStyleChanges": {},
      *   //   "suggestedNamedStylesChanges": {},
+     *   //   "suggestions": [],
      *   //   "suggestionsViewMode": "my_suggestionsViewMode",
      *   //   "tabs": [],
      *   //   "title": "my_title"
@@ -4276,6 +4657,10 @@ export namespace docs_v1 {
     requestBody?: Schema$Document;
   }
   export interface Params$Resource$Documents$Get extends StandardParameters {
+    /**
+     * The comments view mode to apply to the document. This allows viewing the document with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. If you set comments_view_mode to any value, you must also set include_tabs_content to `true` or use a field mask that references the Document.tabs field (or any subfield). If you set comments_view_mode to COMMENTS_VIEW_MODE_INCLUDED, you must also explicitly set suggestions_view_mode to SUGGESTIONS_INLINE. If you set comments_view_mode to COMMENTS_VIEW_MODE_INCLUDED or COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS, you may not set suggestions_view_mode to PREVIEW_WITHOUT_SUGGESTIONS or PREVIEW_SUGGESTIONS_ACCEPTED. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentsViewMode?: string;
     /**
      * The ID of the document to retrieve.
      */
