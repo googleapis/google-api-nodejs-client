@@ -125,6 +125,41 @@ export namespace docs_v1 {
   }
 
   /**
+   * Accepts a suggestion. Returns a 403 forbidden error if the requesting user does not have edit access to the document. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$AcceptSuggestionRequest {
+    /**
+     * The ID of the suggestion.
+     */
+    suggestionId?: string | null;
+  }
+  /**
+   * Inserts a reply Post into a CommentThread or SuggestionThread. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$AddCommentReplyRequest {
+    /**
+     * The ID of the CommentThread to add the reply to.
+     */
+    commentId?: string | null;
+    /**
+     * The Post representing the reply.
+     */
+    post?: Schema$Post;
+    /**
+     * The ID of the SuggestionThread to add the reply to.
+     */
+    suggestionId?: string | null;
+  }
+  /**
+   * Response message for adding a reply. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$AddCommentReplyResponse {
+    /**
+     * The newly-inserted reply Post.
+     */
+    post?: Schema$Post;
+  }
+  /**
    * Adds a document tab. When a tab is added at a given index, all subsequent tabs' indexes are incremented.
    */
   export interface Schema$AddDocumentTabRequest {
@@ -205,6 +240,10 @@ export namespace docs_v1 {
    */
   export interface Schema$BatchUpdateDocumentResponse {
     /**
+     * Whether comment updates were applied in the batch request. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentUpdateState?: string | null;
+    /**
      * The ID of the document to which the updates were applied to.
      */
     documentId?: string | null;
@@ -212,6 +251,10 @@ export namespace docs_v1 {
      * The reply of the updates. This maps 1:1 with the updates, although replies to some requests may be empty.
      */
     replies?: Schema$Response[];
+    /**
+     * The suggestions which were affected by each update. This maps 1:1 with the updates. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    suggestionResponses?: Schema$SuggestionResponse[];
     /**
      * The updated write control after applying the request.
      */
@@ -304,6 +347,70 @@ export namespace docs_v1 {
      * The text style of this ColumnBreak. Similar to text content, like text runs and footnote references, the text style of a column break can affect content layout as well as the styling of text inserted next to it.
      */
     textStyle?: Schema$TextStyle;
+  }
+  /**
+   * One or more locations in the document that are tied to CommentThreads with the same anchorId. Note: Multiple anchors may refer to the same location. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$CommentAnchor {
+    /**
+     * The ID of the comment anchor.
+     */
+    anchorId?: string | null;
+    /**
+     * A collection of Ranges in the document which are tied to this anchor.
+     */
+    ranges?: Schema$Range[];
+  }
+  /**
+   * Represents a single comment thread. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$CommentThread {
+    /**
+     * The ID of the CommentAnchor in the document that this thread is tied to. Multiple comment threads may be anchored to the same CommentAnchor.
+     */
+    anchorId?: string | null;
+    /**
+     * The unique ID of the comment thread.
+     */
+    commentId?: string | null;
+    /**
+     * The first post in the thread.
+     */
+    headPost?: Schema$Post;
+    /**
+     * The quoted text from the document when the comment was created, formatted as plain-text.
+     */
+    plainTextQuote?: string | null;
+    /**
+     * Replies to the head post.
+     */
+    replies?: Schema$Post[];
+    /**
+     * Whether the thread is open or resolved.
+     */
+    status?: string | null;
+  }
+  /**
+   * Creates a new DropdownDefinition in the document.
+   */
+  export interface Schema$CreateDropdownDefinitionRequest {
+    /**
+     * Required. The DropdownDefinition to create.
+     */
+    dropdownDefinition?: Schema$DropdownDefinition;
+    /**
+     * The ID of the tab to create the dropdown definition in. When omitted, the request is applied to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.
+     */
+    tabId?: string | null;
+  }
+  /**
+   * Response message for creating a dropdown definition.
+   */
+  export interface Schema$CreateDropdownDefinitionResponse {
+    /**
+     * The newly-created DropdownDefinition.
+     */
+    dropdownDefinition?: Schema$DropdownDefinition;
   }
   /**
    * Creates a Footer. The new footer is applied to the SectionStyle at the location of the SectionBreak if specified, otherwise it is applied to the DocumentStyle. If a footer of the specified type already exists, a 400 bad request error is returned.
@@ -548,6 +655,32 @@ export namespace docs_v1 {
     timeZoneIdSuggested?: boolean | null;
   }
   /**
+   * Deletes a reply Post from a CommentThread or SuggestionThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. - The reply post contains an action. - The reply post contains an assignee. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$DeleteCommentReplyRequest {
+    /**
+     * The ID of the CommentThread which the post belongs to.
+     */
+    commentId?: string | null;
+    /**
+     * The ID of the reply Post being deleted.
+     */
+    postId?: string | null;
+    /**
+     * The ID of the SuggestionThread which the post belongs to.
+     */
+    suggestionId?: string | null;
+  }
+  /**
+   * Deletes a CommentThread. Returns a 400 bad request error if the requesting user is not the author of the headPost. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$DeleteCommentRequest {
+    /**
+     * The ID of the CommentThread that is being deleted.
+     */
+    commentId?: string | null;
+  }
+  /**
    * Deletes content from the document.
    */
   export interface Schema$DeleteContentRangeRequest {
@@ -555,6 +688,19 @@ export namespace docs_v1 {
      * The range of content to delete. Deleting text that crosses a paragraph boundary may result in changes to paragraph styles, lists, positioned objects and bookmarks as the two paragraphs are merged. Attempting to delete certain ranges can result in an invalid document structure in which case a 400 bad request error is returned. Some examples of invalid delete requests include: * Deleting one code unit of a surrogate pair. * Deleting the last newline character of a Body, Header, Footer, Footnote, TableCell or TableOfContents. * Deleting the start or end of a Table, TableOfContents or Equation without deleting the entire element. * Deleting the newline character before a Table, TableOfContents or SectionBreak without deleting the element. * Deleting individual rows or cells of a table. Deleting the content within a table cell is allowed.
      */
     range?: Schema$Range;
+  }
+  /**
+   * Deletes a DropdownDefinition. If the dropdown definition is referenced by any dropdown instances (chips) in the document, a 400 bad request error is returned.
+   */
+  export interface Schema$DeleteDropdownDefinitionRequest {
+    /**
+     * The ID of the DropdownDefinition to delete.
+     */
+    dropdownDefinitionId?: string | null;
+    /**
+     * The ID of the tab that contains the dropdown definition to delete. When omitted, the request is applied to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.
+     */
+    tabId?: string | null;
   }
   /**
    * Deletes a Footer from the document.
@@ -622,6 +768,15 @@ export namespace docs_v1 {
     tabId?: string | null;
   }
   /**
+   * Deletes a suggestion. Returns a 403 forbidden error if the requesting user is not the author of the suggestion. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$DeleteSuggestionRequest {
+    /**
+     * The ID of the suggestion.
+     */
+    suggestionId?: string | null;
+  }
+  /**
    * Deletes a column from a table.
    */
   export interface Schema$DeleteTableColumnRequest {
@@ -669,6 +824,14 @@ export namespace docs_v1 {
      * Output only. The main body of the document. Legacy field: Instead, use Document.tabs.documentTab.body, which exposes the actual document content from all tabs when the includeTabsContent parameter is set to `true`. If `false` or unset, this field contains information about the first tab in the document.
      */
     body?: Schema$Body;
+    /**
+     * Output only. The comments associated with the document. Only populated if the commentsViewMode parameter is set to require comments (such as `COMMENTS_VIEW_MODE_INCLUDED`). [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    comments?: Schema$CommentThread[];
+    /**
+     * Output only. The comments view mode applied to the document. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentsViewMode?: string | null;
     /**
      * Output only. The ID of the document.
      */
@@ -725,6 +888,10 @@ export namespace docs_v1 {
     suggestedNamedStylesChanges?: {
       [key: string]: Schema$SuggestedNamedStyles;
     } | null;
+    /**
+     * Output only. The suggestions associated with the document. Only populated if the commentsViewMode parameter is set to require comments (such as `COMMENTS_VIEW_MODE_INCLUDED`). [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    suggestions?: Schema$SuggestionThread[];
     /**
      * Output only. The suggestions view mode applied to the document. Note: When editing a document, changes must be based on a document with SUGGESTIONS_INLINE.
      */
@@ -922,9 +1089,17 @@ export namespace docs_v1 {
      */
     body?: Schema$Body;
     /**
+     * The comment anchors in a document tab, keyed by anchor ID. Only populated if the commentsViewMode parameter is set to require comments (such as `COMMENTS_VIEW_MODE_INCLUDED`). [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentAnchors?: {[key: string]: Schema$CommentAnchor} | null;
+    /**
      * The style of the document tab.
      */
     documentStyle?: Schema$DocumentStyle;
+    /**
+     * The dropdown definitions in a document tab, keyed by dropdown definition ID.
+     */
+    dropdownDefinitions?: {[key: string]: Schema$DropdownDefinition} | null;
     /**
      * The footers in the document tab, keyed by footer ID.
      */
@@ -969,6 +1144,139 @@ export namespace docs_v1 {
     suggestedNamedStylesChanges?: {
       [key: string]: Schema$SuggestedNamedStyles;
     } | null;
+  }
+  /**
+   * A dropdown in the document. The chip is displayed as a dropdown menu that allows users to select an option from a configurable list of options.
+   */
+  export interface Schema$Dropdown {
+    /**
+     * The ID of this dropdown.
+     */
+    dropdownId?: string | null;
+    /**
+     * The properties of this dropdown.
+     */
+    dropdownProperties?: Schema$DropdownProperties;
+    /**
+     * IDs for suggestions that remove this dropdown from the document. If empty, then this dropdown isn't suggested for deletion.
+     */
+    suggestedDeletionIds?: string[] | null;
+    /**
+     * The suggested properties changes to this dropdown, keyed by suggestion ID.
+     */
+    suggestedDropdownPropertiesChanges?: {
+      [key: string]: Schema$SuggestedDropdownProperties;
+    } | null;
+    /**
+     * IDs for suggestions that insert this dropdown into the document. If empty, then this dropdown isn't a suggested insertion.
+     */
+    suggestedInsertionIds?: string[] | null;
+    /**
+     * The suggested text style changes to this dropdown, keyed by suggestion ID.
+     */
+    suggestedTextStyleChanges?: {
+      [key: string]: Schema$SuggestedTextStyle;
+    } | null;
+    /**
+     * The text style of this dropdown.
+     */
+    textStyle?: Schema$TextStyle;
+  }
+  /**
+   * A dropdown definition in the document.
+   */
+  export interface Schema$DropdownDefinition {
+    /**
+     * The ID of this dropdown definition. If you specify an ID, it must be unique among all IDs in the tab. The ID must start with `kix.` and match regex `^kix\.[a-zA-Z0-9_-]{2,14\}$` (length 6-18 chars). If you don't specify an ID, a unique one is generated.
+     */
+    dropdownDefinitionId?: string | null;
+    /**
+     * The properties of this dropdown definition.
+     */
+    dropdownDefinitionProperties?: Schema$DropdownDefinitionProperties;
+    /**
+     * ID for suggestion that deletes this dropdown definition.
+     */
+    suggestedDeletionId?: string | null;
+    /**
+     * Suggested property changes to this definition, keyed by suggestion ID.
+     */
+    suggestedDropdownDefinitionPropertiesChanges?: {
+      [key: string]: Schema$SuggestedDropdownDefinitionProperties;
+    } | null;
+    /**
+     * ID for suggestion that inserts this dropdown definition.
+     */
+    suggestedInsertionId?: string | null;
+  }
+  /**
+   * Properties of a dropdown definition.
+   */
+  export interface Schema$DropdownDefinitionProperties {
+    /**
+     * The list of options defined by this dropdown definition. A dropdown definition must have at least 2 options and at most 50 options.
+     */
+    options?: Schema$DropdownOption[];
+    /**
+     * The title of the dropdown definition.
+     */
+    title?: string | null;
+  }
+  /**
+   * A mask that indicates which of the fields on the base DropdownDefinitionProperties have been changed in this suggestion. For any field set to true, there's a new suggested value.
+   */
+  export interface Schema$DropdownDefinitionPropertiesSuggestionState {
+    /**
+     * Indicates if there was a suggested change to options.
+     */
+    optionsSuggested?: boolean | null;
+    /**
+     * Indicates if there was a suggested change to title.
+     */
+    titleSuggested?: boolean | null;
+  }
+  /**
+   * An option in a Dropdown.
+   */
+  export interface Schema$DropdownOption {
+    /**
+     * The display value of this dropdown option.
+     */
+    displayValue?: string | null;
+    /**
+     * The ID of this dropdown option. If you specify an ID, it must be unique among all options in this dropdown definition. The ID must start with `dropdownItem.` and match regex `^dropdownItem\.[a-zA-Z0-9_-]{2,14\}$` (length 15-27 chars). If you don't specify an ID, a unique one is generated.
+     */
+    optionId?: string | null;
+    /**
+     * The text style of this dropdown option. Currently, only the `foreground_color` and `background_color` properties are supported. If other properties are set, a 400 bad request error is returned.
+     */
+    textStyle?: Schema$TextStyle;
+  }
+  /**
+   * Properties specific to a dropdown.
+   */
+  export interface Schema$DropdownProperties {
+    /**
+     * The human-readable display text of the currently selected item. This field is populated by the server based on the dropdown definition and the selected option ID. It may differ from `DropdownOption.display_value` if the underlying option definition was modified or deleted, or during pending suggested changes.
+     */
+    displayValue?: string | null;
+    /**
+     * The ID of the DropdownDefinition that defines the options for this dropdown.
+     */
+    dropdownDefinitionId?: string | null;
+    /**
+     * The ID of the selected option in this dropdown.
+     */
+    selectedOptionId?: string | null;
+  }
+  /**
+   * A mask that indicates which of the fields on the base DropdownProperties have been changed in this suggestion. For any field set to true, there's a new suggested value.
+   */
+  export interface Schema$DropdownPropertiesSuggestionState {
+    /**
+     * Indicates if there was a suggested change to selected_option_id.
+     */
+    selectedOptionIdSuggested?: boolean | null;
   }
   /**
    * The properties of an embedded drawing and used to differentiate the object type. An embedded drawing is one that's created and edited within a document. Note that extensive details are not supported.
@@ -1389,6 +1697,32 @@ export namespace docs_v1 {
     embeddedObjectSuggestionState?: Schema$EmbeddedObjectSuggestionState;
   }
   /**
+   * Inserts a CommentThread into the document. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$InsertCommentRequest {
+    /**
+     * Optional. The email address of the assignee of the comment. Leave empty for a non-assigned comment. May not exceed 2048 UTF-8 code units.
+     */
+    assigneeEmailAddress?: string | null;
+    /**
+     * The text of the comment, as plain text. This text content will be handled similarly to comments created in the Docs editor. It will have similar behaviors for formatting, notifications, etc. This field cannot be empty, and must not exceed 2048 UTF-8 code units.
+     */
+    content?: string | null;
+    /**
+     * The Range in the document that is tied to this comment.
+     */
+    range?: Schema$Range;
+  }
+  /**
+   * Response message for inserting a comment. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$InsertCommentResponse {
+    /**
+     * The newly-inserted comment thread.
+     */
+    commentThread?: Schema$CommentThread;
+  }
+  /**
    * Inserts a date at the specified location.
    */
   export interface Schema$InsertDateRequest {
@@ -1404,6 +1738,36 @@ export namespace docs_v1 {
      * Inserts the date at a specific index in the document. The date must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table's start index (i.e. between an existing table and its preceding paragraph).
      */
     location?: Schema$Location;
+  }
+  /**
+   * Inserts a Dropdown at the specified location.
+   */
+  export interface Schema$InsertDropdownRequest {
+    /**
+     * Required. The DropdownDefinition ID.
+     */
+    dropdownDefinitionId?: string | null;
+    /**
+     * The EndOfSegmentLocation in the document to insert the dropdown at.
+     */
+    endOfSegmentLocation?: Schema$EndOfSegmentLocation;
+    /**
+     * The Location in the document to insert the dropdown at.
+     */
+    location?: Schema$Location;
+    /**
+     * Optional initial value for the dropdown. If this field is not specified, the new dropdown will default to selecting the first option defined in the dropdown definition. If this field is specified but does not reference a valid option in the dropdown definition, a 400 bad request error is returned.
+     */
+    selectedOptionId?: string | null;
+  }
+  /**
+   * The result of inserting a Dropdown.
+   */
+  export interface Schema$InsertDropdownResponse {
+    /**
+     * The newly-inserted Dropdown.
+     */
+    dropdown?: Schema$Dropdown;
   }
   /**
    * Inserts an InlineObject containing an image at the given location.
@@ -1958,6 +2322,10 @@ export namespace docs_v1 {
      */
     dateElement?: Schema$DateElement;
     /**
+     * A paragraph element that represents a dropdown menu.
+     */
+    dropdown?: Schema$Dropdown;
+    /**
      * The zero-base end index of this paragraph element, exclusive, in UTF-16 code units.
      */
     endIndex?: number | null;
@@ -2325,6 +2693,84 @@ export namespace docs_v1 {
     positioningSuggestionState?: Schema$PositionedObjectPositioningSuggestionState;
   }
   /**
+   * Represents a single post in a comment or suggestion thread. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$Post {
+    /**
+     * Optional. The email of the user who is being newly assigned to the thread as part of this post. Returns a 400 bad request error if: - The parent thread is a CommentThread whose headPost does not have an assignee. - The parent thread is a SuggestionThread. - commentAction is specified as `RESOLVE` or `REOPEN`. - `assigneeEmail` exceeds 2048 UTF-8 code units.
+     */
+    assigneeEmail?: string | null;
+    /**
+     * Output only. The user who created the post.
+     */
+    author?: Schema$PostAuthor;
+    /**
+     * Optional. The action type for comment posts.
+     */
+    commentAction?: string | null;
+    /**
+     * The content of the post. Required to be non-empty if commentAction is not `RESOLVE` or `REOPEN`. This text content will be handled similarly to comments created in the Docs editor. It will have similar behaviors for formatting, notifications, etc. May not exceed 2048 UTF-8 code units.
+     */
+    content?: string | null;
+    /**
+     * Output only. The content of the post as HTML.
+     */
+    contentHtml?: string | null;
+    /**
+     * Output only. The time the post was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Whether the post is deleted. If `true`, content and author fields will be empty.
+     */
+    deleted?: boolean | null;
+    /**
+     * Output only. Whether the post is from a copied document. This field cannot be set directly by callers.
+     */
+    fromCopiedDocument?: boolean | null;
+    /**
+     * Output only. Whether the post is from a document comparison. This field cannot be set directly by callers.
+     */
+    fromDocumentComparison?: boolean | null;
+    /**
+     * Output only. Whether the post is from an imported document. This field cannot be set directly by callers.
+     */
+    fromImportedDocument?: boolean | null;
+    /**
+     * Output only. The unique ID of the post.
+     */
+    postId?: string | null;
+    /**
+     * Output only. The action type for suggestion posts.
+     */
+    suggestionAction?: string | null;
+    /**
+     * Output only. The time the post was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Represents a user who authored a comment or suggestion post. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$PostAuthor {
+    /**
+     * Whether the user is anonymous.
+     */
+    anonymous?: boolean | null;
+    /**
+     * The display name of the user. May be absent if the author is anonymous.
+     */
+    displayName?: string | null;
+    /**
+     * Whether the user is the authenticated user making the request.
+     */
+    me?: boolean | null;
+    /**
+     * The resource name of the post author user, which can also be used to identify the user in the [Google People API](https://developers.google.com/people/api/rest/v1/people). Format: `users/{user\}`. Will not be populated if the anonymous field is `true` or if the post is from an imported document.
+     */
+    user?: string | null;
+  }
+  /**
    * Specifies a contiguous range of text.
    */
   export interface Schema$Range {
@@ -2344,6 +2790,15 @@ export namespace docs_v1 {
      * The tab that contains this range. When omitted, the request applies to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.
      */
     tabId?: string | null;
+  }
+  /**
+   * Rejects a suggestion. Returns a 403 forbidden error if the requesting user does not have edit access to the document and is not the author of the suggestion. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$RejectSuggestionRequest {
+    /**
+     * The ID of the suggestion.
+     */
+    suggestionId?: string | null;
   }
   /**
    * Replaces all instances of text matching a criteria with replace text.
@@ -2418,9 +2873,21 @@ export namespace docs_v1 {
    */
   export interface Schema$Request {
     /**
+     * Accepts a suggestion. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    acceptSuggestion?: Schema$AcceptSuggestionRequest;
+    /**
+     * Adds a reply to a CommentThread or SuggestionThread. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    addCommentReply?: Schema$AddCommentReplyRequest;
+    /**
      * Adds a document tab.
      */
     addDocumentTab?: Schema$AddDocumentTabRequest;
+    /**
+     * Creates a DropdownDefinition.
+     */
+    createDropdownDefinition?: Schema$CreateDropdownDefinitionRequest;
     /**
      * Creates a footer.
      */
@@ -2442,9 +2909,21 @@ export namespace docs_v1 {
      */
     createParagraphBullets?: Schema$CreateParagraphBulletsRequest;
     /**
+     * Deletes a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    deleteComment?: Schema$DeleteCommentRequest;
+    /**
+     * Deletes a reply Post from a CommentThread or SuggestionThread. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    deleteCommentReply?: Schema$DeleteCommentReplyRequest;
+    /**
      * Deletes content from the document.
      */
     deleteContentRange?: Schema$DeleteContentRangeRequest;
+    /**
+     * Deletes a DropdownDefinition.
+     */
+    deleteDropdownDefinition?: Schema$DeleteDropdownDefinitionRequest;
     /**
      * Deletes a footer from the document.
      */
@@ -2466,6 +2945,10 @@ export namespace docs_v1 {
      */
     deletePositionedObject?: Schema$DeletePositionedObjectRequest;
     /**
+     * Deletes a suggestion. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    deleteSuggestion?: Schema$DeleteSuggestionRequest;
+    /**
      * Deletes a document tab.
      */
     deleteTab?: Schema$DeleteTabRequest;
@@ -2478,9 +2961,17 @@ export namespace docs_v1 {
      */
     deleteTableRow?: Schema$DeleteTableRowRequest;
     /**
+     * Inserts a CommentThread into the document. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    insertComment?: Schema$InsertCommentRequest;
+    /**
      * Inserts a date.
      */
     insertDate?: Schema$InsertDateRequest;
+    /**
+     * Inserts a Dropdown at the specified location.
+     */
+    insertDropdown?: Schema$InsertDropdownRequest;
     /**
      * Inserts an inline image at the specified location.
      */
@@ -2526,6 +3017,10 @@ export namespace docs_v1 {
      */
     pinTableHeaderRows?: Schema$PinTableHeaderRowsRequest;
     /**
+     * Rejects a suggestion. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    rejectSuggestion?: Schema$RejectSuggestionRequest;
+    /**
      * Replaces all instances of the specified text.
      */
     replaceAllText?: Schema$ReplaceAllTextRequest;
@@ -2542,6 +3037,10 @@ export namespace docs_v1 {
      */
     unmergeTableCells?: Schema$UnmergeTableCellsRequest;
     /**
+     * Updates an existing post (head post or reply) of a CommentThread or SuggestionThread. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    updateCommentPost?: Schema$UpdateCommentPostRequest;
+    /**
      * Updates the style of the document.
      */
     updateDocumentStyle?: Schema$UpdateDocumentStyleRequest;
@@ -2549,6 +3048,14 @@ export namespace docs_v1 {
      * Updates the properties of a document tab.
      */
     updateDocumentTabProperties?: Schema$UpdateDocumentTabPropertiesRequest;
+    /**
+     * Updates the properties of a DropdownDefinition.
+     */
+    updateDropdownDefinitionProperties?: Schema$UpdateDropdownDefinitionPropertiesRequest;
+    /**
+     * Updates the properties of a Dropdown.
+     */
+    updateDropdownProperties?: Schema$UpdateDropdownPropertiesRequest;
     /**
      * Updates a named style.
      */
@@ -2583,9 +3090,17 @@ export namespace docs_v1 {
    */
   export interface Schema$Response {
     /**
+     * The result of adding a reply to a comment or suggestion. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    addCommentReply?: Schema$AddCommentReplyResponse;
+    /**
      * The result of adding a document tab.
      */
     addDocumentTab?: Schema$AddDocumentTabResponse;
+    /**
+     * The result of creating a dropdown definition.
+     */
+    createDropdownDefinition?: Schema$CreateDropdownDefinitionResponse;
     /**
      * The result of creating a footer.
      */
@@ -2602,6 +3117,14 @@ export namespace docs_v1 {
      * The result of creating a named range.
      */
     createNamedRange?: Schema$CreateNamedRangeResponse;
+    /**
+     * The result of inserting a comment. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    insertComment?: Schema$InsertCommentResponse;
+    /**
+     * The result of inserting a dropdown.
+     */
+    insertDropdown?: Schema$InsertDropdownResponse;
     /**
      * The result of inserting an inline image.
      */
@@ -2947,6 +3470,32 @@ export namespace docs_v1 {
     documentStyleSuggestionState?: Schema$DocumentStyleSuggestionState;
   }
   /**
+   * A suggested change to dropdown definition properties.
+   */
+  export interface Schema$SuggestedDropdownDefinitionProperties {
+    /**
+     * A DropdownDefinitionProperties that only includes the changes made in this suggestion. This can be used along with the dropdown_definition_properties_suggestion_state to see which fields have changed and their new values.
+     */
+    dropdownDefinitionProperties?: Schema$DropdownDefinitionProperties;
+    /**
+     * A mask that indicates which of the fields on the base DropdownDefinitionProperties have been changed in this suggestion.
+     */
+    dropdownDefinitionPropertiesSuggestionState?: Schema$DropdownDefinitionPropertiesSuggestionState;
+  }
+  /**
+   * A suggested change to dropdown properties.
+   */
+  export interface Schema$SuggestedDropdownProperties {
+    /**
+     * A DropdownProperties that only includes the changes made in this suggestion. This can be used along with the dropdown_properties_suggestion_state to see which fields have changed and their new values.
+     */
+    dropdownProperties?: Schema$DropdownProperties;
+    /**
+     * A mask that indicates which of the fields on the base DropdownProperties have been changed in this suggestion.
+     */
+    dropdownPropertiesSuggestionState?: Schema$DropdownPropertiesSuggestionState;
+  }
+  /**
    * A suggested change to InlineObjectProperties.
    */
   export interface Schema$SuggestedInlineObjectProperties {
@@ -3049,6 +3598,60 @@ export namespace docs_v1 {
      * A mask that indicates which of the fields on the base TextStyle have been changed in this suggestion.
      */
     textStyleSuggestionState?: Schema$TextStyleSuggestionState;
+  }
+  /**
+   * The suggestions which were affected by a given update. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$SuggestionResponse {
+    /**
+     * The IDs of suggestions which were accepted during the update.
+     */
+    acceptedSuggestionIds?: string[] | null;
+    /**
+     * The IDs of suggestions which were created during the update.
+     */
+    createdSuggestionIds?: string[] | null;
+    /**
+     * The IDs of suggestions which were deleted during the update.
+     */
+    deletedSuggestionIds?: string[] | null;
+    /**
+     * The IDs of suggestions which were rejected during the update.
+     */
+    rejectedSuggestionIds?: string[] | null;
+    /**
+     * The IDs of suggestions whose summaries were updated during the update.
+     */
+    updatedSummarySuggestionIds?: string[] | null;
+  }
+  /**
+   * Represents a single suggestion thread. Suggestion threads are created as a byproduct of saving changes to the document while in suggestion mode, and cannot be created directly. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$SuggestionThread {
+    /**
+     * The first post in the thread.
+     */
+    headPost?: Schema$Post;
+    /**
+     * Replies to the head post.
+     */
+    replies?: Schema$Post[];
+    /**
+     * Whether the thread is open, accepted, or rejected.
+     */
+    status?: string | null;
+    /**
+     * The unique ID of the suggestion.
+     */
+    suggestionId?: string | null;
+    /**
+     * Summary of the suggested differences in the document, in HTML. May be empty.
+     */
+    summaryHtml?: string | null;
+    /**
+     * Summary of the suggested differences in the document, in plain text. May be empty.
+     */
+    summaryText?: string | null;
   }
   /**
    * A tab in a document.
@@ -3574,6 +4177,27 @@ export namespace docs_v1 {
     tableRange?: Schema$TableRange;
   }
   /**
+   * Updates a Post in a CommentThread or SuggestionThread. Returns a 400 bad request error if: - The post is the headPost of a SuggestionThread. - The requesting user is not the author of the post. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$UpdateCommentPostRequest {
+    /**
+     * The ID of the CommentThread which the post belongs to.
+     */
+    commentId?: string | null;
+    /**
+     * The new text of the comment, as plain text. This text content will be handled similarly to comments created in the Docs editor. It will have similar behaviors for formatting, notifications, etc. This field cannot be empty, and must not exceed 2048 UTF-8 code units.
+     */
+    content?: string | null;
+    /**
+     * The ID of the post being updated.
+     */
+    postId?: string | null;
+    /**
+     * The ID of the SuggestionThread which the post belongs to.
+     */
+    suggestionId?: string | null;
+  }
+  /**
    * Updates the DocumentStyle.
    */
   export interface Schema$UpdateDocumentStyleRequest {
@@ -3602,6 +4226,52 @@ export namespace docs_v1 {
      * The tab properties to update.
      */
     tabProperties?: Schema$TabProperties;
+  }
+  /**
+   * Updates the properties of a DropdownDefinition.
+   */
+  export interface Schema$UpdateDropdownDefinitionPropertiesRequest {
+    /**
+     * The ID of the DropdownDefinition to update.
+     */
+    dropdownDefinitionId?: string | null;
+    /**
+     * The properties to update.
+     */
+    dropdownDefinitionProperties?: Schema$DropdownDefinitionProperties;
+    /**
+     * The fields that should be updated. At least one field must be specified. The root `dropdown_definition_properties` is implied and should not be specified. A single `"*"` can be used as short-hand for listing every field. When `dropdown_definition_properties.options` is included in the field mask, the full, complete list of desired options must be provided in `dropdown_definition_properties.options`.
+     */
+    fields?: string | null;
+    /**
+     * A map of option IDs to their replacements, used to automatically reassign orphaned Dropdown chips when an option is deleted. The keys are the IDs of the options being deleted, and the values are the IDs of their replacement options. If an option being deleted is selected in one or more Dropdown chips in the document, a replacement entry for that option must be provided in this map, and the replacement option ID must exist in the updated DropdownDefinition. If a replacement is required but not provided, a 400 bad request error is returned. Options being deleted that are not selected in any Dropdown chips do not require a replacement. For example, if option A is being replaced by option B, the map should be `{"A": "B"\}`.
+     */
+    selectedOptionIdReplacements?: {[key: string]: string} | null;
+    /**
+     * The ID of the tab that contains the dropdown definition to update. When omitted, the request is applied to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.
+     */
+    tabId?: string | null;
+  }
+  /**
+   * Updates the properties of a Dropdown.
+   */
+  export interface Schema$UpdateDropdownPropertiesRequest {
+    /**
+     * Required. The Dropdown ID.
+     */
+    dropdownId?: string | null;
+    /**
+     * The properties to update.
+     */
+    dropdownProperties?: Schema$DropdownProperties;
+    /**
+     * The fields that should be updated. At least one field must be specified. The root `dropdown_properties` is implied and should not be specified. A single `"*"` can be used as short-hand for listing every field.
+     */
+    fields?: string | null;
+    /**
+     * The ID of the tab that contains the dropdown to update. When omitted, the request is applied to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.
+     */
+    tabId?: string | null;
   }
   /**
    * Updates a named style.
@@ -3759,6 +4429,10 @@ export namespace docs_v1 {
      * The optional target revision ID of the document the write request is applied to. If collaborator changes have occurred after the document was read using the API, the changes produced by this write request are applied against the collaborator changes. This results in a new revision of the document that incorporates both the collaborator changes and the changes in the request, with the Docs server resolving conflicting changes. When using target revision ID, the API client can be thought of as another collaborator of the document. The target revision ID can only be used to write to recent versions of a document. If the target revision is too far behind the latest revision, the request is not processed and returns a 400 bad request error. The request should be tried again after retrieving the latest version of the document. Usually a revision ID remains valid for use as a target revision for several minutes after it's read, but for frequently edited documents this window might be shorter.
      */
     targetRevisionId?: string | null;
+    /**
+     * How the request updates should be applied to the document. If unspecified, the request updates will be applied as normal edits. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    writeMode?: string | null;
   }
 
   export class Resource$Documents {
@@ -3818,8 +4492,10 @@ export namespace docs_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "commentUpdateState": "my_commentUpdateState",
      *   //   "documentId": "my_documentId",
      *   //   "replies": [],
+     *   //   "suggestionResponses": [],
      *   //   "writeControl": {}
      *   // }
      * }
@@ -3963,6 +4639,8 @@ export namespace docs_v1 {
      *       // request body parameters
      *       // {
      *       //   "body": {},
+     *       //   "comments": [],
+     *       //   "commentsViewMode": "my_commentsViewMode",
      *       //   "documentId": "my_documentId",
      *       //   "documentStyle": {},
      *       //   "footers": {},
@@ -3976,6 +4654,7 @@ export namespace docs_v1 {
      *       //   "revisionId": "my_revisionId",
      *       //   "suggestedDocumentStyleChanges": {},
      *       //   "suggestedNamedStylesChanges": {},
+     *       //   "suggestions": [],
      *       //   "suggestionsViewMode": "my_suggestionsViewMode",
      *       //   "tabs": [],
      *       //   "title": "my_title"
@@ -3987,6 +4666,8 @@ export namespace docs_v1 {
      *   // Example response
      *   // {
      *   //   "body": {},
+     *   //   "comments": [],
+     *   //   "commentsViewMode": "my_commentsViewMode",
      *   //   "documentId": "my_documentId",
      *   //   "documentStyle": {},
      *   //   "footers": {},
@@ -4000,6 +4681,7 @@ export namespace docs_v1 {
      *   //   "revisionId": "my_revisionId",
      *   //   "suggestedDocumentStyleChanges": {},
      *   //   "suggestedNamedStylesChanges": {},
+     *   //   "suggestions": [],
      *   //   "suggestionsViewMode": "my_suggestionsViewMode",
      *   //   "tabs": [],
      *   //   "title": "my_title"
@@ -4133,6 +4815,8 @@ export namespace docs_v1 {
      *
      *   // Do the magic
      *   const res = await docs.documents.get({
+     *     // The comments view mode to apply to the document. This allows viewing the document with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. If you set comments_view_mode to any value, you must also set include_tabs_content to `true` or use a field mask that references the Document.tabs field (or any subfield). If you set comments_view_mode to COMMENTS_VIEW_MODE_INCLUDED, you must also explicitly set suggestions_view_mode to SUGGESTIONS_INLINE. If you set comments_view_mode to COMMENTS_VIEW_MODE_INCLUDED or COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS, you may not set suggestions_view_mode to PREVIEW_WITHOUT_SUGGESTIONS or PREVIEW_SUGGESTIONS_ACCEPTED. [Developer Preview](https://developers.google.com/workspace/preview).
+     *     commentsViewMode: 'placeholder-value',
      *     // The ID of the document to retrieve.
      *     documentId: 'placeholder-value',
      *     // Whether to populate the `Document.tabs` field instead of the text content fields like `body` and `documentStyle` on `Document`. - When `true`: Document content populates in the `Document.tabs` field instead of the text content fields in `Document`. - When `false`: The content of the document's first tab populates the content fields in `Document` excluding `Document.tabs`. If a document has only one tab, then that tab is used to populate the document content. `Document.tabs` will be empty. If you use a field mask that references the `Document.tabs` field (or any subfield), the API implicitly treats the request as if you set `include_tabs_content` to `true`.
@@ -4145,6 +4829,8 @@ export namespace docs_v1 {
      *   // Example response
      *   // {
      *   //   "body": {},
+     *   //   "comments": [],
+     *   //   "commentsViewMode": "my_commentsViewMode",
      *   //   "documentId": "my_documentId",
      *   //   "documentStyle": {},
      *   //   "footers": {},
@@ -4158,6 +4844,7 @@ export namespace docs_v1 {
      *   //   "revisionId": "my_revisionId",
      *   //   "suggestedDocumentStyleChanges": {},
      *   //   "suggestedNamedStylesChanges": {},
+     *   //   "suggestions": [],
      *   //   "suggestionsViewMode": "my_suggestionsViewMode",
      *   //   "tabs": [],
      *   //   "title": "my_title"
@@ -4276,6 +4963,10 @@ export namespace docs_v1 {
     requestBody?: Schema$Document;
   }
   export interface Params$Resource$Documents$Get extends StandardParameters {
+    /**
+     * The comments view mode to apply to the document. This allows viewing the document with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. If you set comments_view_mode to any value, you must also set include_tabs_content to `true` or use a field mask that references the Document.tabs field (or any subfield). If you set comments_view_mode to COMMENTS_VIEW_MODE_INCLUDED, you must also explicitly set suggestions_view_mode to SUGGESTIONS_INLINE. If you set comments_view_mode to COMMENTS_VIEW_MODE_INCLUDED or COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS, you may not set suggestions_view_mode to PREVIEW_WITHOUT_SUGGESTIONS or PREVIEW_SUGGESTIONS_ACCEPTED. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commentsViewMode?: string;
     /**
      * The ID of the document to retrieve.
      */
