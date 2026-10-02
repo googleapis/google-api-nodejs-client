@@ -644,6 +644,40 @@ export namespace firebasedataconnect_v1 {
     name?: string | null;
   }
   /**
+   * Request message for `MigrateSchema`. Next tag: 7
+   */
+  export interface Schema$MigrateSchemaRequest {
+    /**
+     * Optional. Execution mode controlling DDL execution and ledger recording. Defaults to EXECUTE_AND_RECORD.
+     */
+    executionMode?: string | null;
+    /**
+     * Required. Ordered migration steps from `./sql/migrations/` (or a single ad-hoc step). Backend compares submitted versions against `firebasesql.schema_migrations`: already-applied steps are verified for SQL immutability and skipped, while unapplied steps (`version \> MAX(applied_version)`) are executed. All unapplied transactional steps in a single request execute atomically within one database transaction (BEGIN ... COMMIT): either every unapplied step commits and is recorded in the ledger, or the entire request rolls back. An unapplied step containing CREATE INDEX CONCURRENTLY or DROP INDEX CONCURRENTLY cannot be mixed with other unapplied steps and must be the sole unapplied step executed in the request.
+     */
+    migrationSteps?: Schema$MigrationStep[];
+    /**
+     * Optional. When true, runs preflight validation (syntax, applied-step immutability, sequence ordering, CONCURRENTLY isolation, and SAVEPOINT catalog checks) without committing mutations to the database.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
+   * An individual unit of migration work. Next tag: 4
+   */
+  export interface Schema$MigrationStep {
+    /**
+     * Optional. Descriptive migration label (e.g. "create_accounts_table"). If omitted, defaults to "adhoc".
+     */
+    name?: string | null;
+    /**
+     * Required. Raw multi-statement SQL script. The backend splits it into individual statements before execution; callers do not pre-split. Required whenever the request executes or records DDL, which is every publicly available execution mode; omitting it returns INVALID_ARGUMENT.
+     */
+    sql?: string | null;
+    /**
+     * Optional. Monotonic 14-digit UTC timestamp (YYYYMMDDHHMMSS), matching the timestamp prefix of the developer's migration filename. Constrained to `^[0-9]{14\}$`. - When specified (file migrations): If `version` is already recorded in `firebasesql.schema_migrations`, the backend verifies that `sql` matches the recorded statements and skips execution. If `version` is unapplied, the backend validates `version \> MAX(applied_version)` and records the value unchanged, so the ledger row and the on-disk filename stay identical. - When omitted (Console/ad-hoc): Backend auto-generates a 14-digit UTC timestamp.
+     */
+    version?: string | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -5759,6 +5793,159 @@ export namespace firebasedataconnect_v1 {
     }
 
     /**
+     * Executes SQL migration steps against the active database schema. This operation compares submitted migration steps against the schema migration ledger (`firebasesql.schema_migrations`), executes unapplied DDL, and records applied steps. It does NOT persist the GraphQL schema to the control plane.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedataconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasedataconnect = google.firebasedataconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebasedataconnect.projects.locations.services.schemas.migrate({
+     *       // Required. Resource name of the target schema: projects/{project\}/locations/{location\}/services/{service\}/schemas/{schema\} Note: Only `schemas/main` is supported (singleton schema per service).
+     *       name: 'projects/my-project/locations/my-location/services/my-service/schemas/my-schema',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "executionMode": "my_executionMode",
+     *         //   "migrationSteps": [],
+     *         //   "validateOnly": false
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    migrate(
+      params: Params$Resource$Projects$Locations$Services$Schemas$Migrate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    migrate(
+      params?: Params$Resource$Projects$Locations$Services$Schemas$Migrate,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    migrate(
+      params: Params$Resource$Projects$Locations$Services$Schemas$Migrate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    migrate(
+      params: Params$Resource$Projects$Locations$Services$Schemas$Migrate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    migrate(
+      params: Params$Resource$Projects$Locations$Services$Schemas$Migrate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    migrate(callback: BodyResponseCallback<Schema$Operation>): void;
+    migrate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Schemas$Migrate
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Schemas$Migrate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Schemas$Migrate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasedataconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:migrate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Updates the parameters of a single Schema, and creates a new SchemaRevision with the updated Schema.
      * @example
      * ```js
@@ -6001,6 +6188,17 @@ export namespace firebasedataconnect_v1 {
      * Required. Value of parent.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Schemas$Migrate extends StandardParameters {
+    /**
+     * Required. Resource name of the target schema: projects/{project\}/locations/{location\}/services/{service\}/schemas/{schema\} Note: Only `schemas/main` is supported (singleton schema per service).
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MigrateSchemaRequest;
   }
   export interface Params$Resource$Projects$Locations$Services$Schemas$Patch extends StandardParameters {
     /**
