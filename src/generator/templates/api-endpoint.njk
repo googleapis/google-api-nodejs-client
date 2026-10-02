@@ -134,12 +134,17 @@ export interface Schema${{ schema.id }} {
         {% endfor %}
       {% endif %}
 
-      {% if m.request %}
+      {% if m.request.$ref %}
         /**
           * Request body metadata
           */
           requestBody?: Schema${{ m.request.$ref }};
-      {% elif m.supportsMediaUpload and m.mediaUpload.protocols.simple.multipart %}
+      {% elif m.request.type %}
+        /**
+          * Request body metadata
+          */
+          requestBody?: {{ m.request|getType|safe }};
+      {% elif m.request or (m.supportsMediaUpload and m.mediaUpload.protocols.simple.multipart) %}
         /**
           * Request body metadata
           */

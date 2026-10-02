@@ -79,4 +79,188 @@ describe(__filename, () => {
     assert.strictEqual(pkgData.name, 'fake-api');
     assert.strictEqual(pkgData.desc, 'look I am fake');
   });
+
+  it('should handle method request with and without $ref in resource and top-level methods', async () => {
+    let writtenContent = '';
+    const baseSchema = require('../../test/fixtures/discovery/webfonts-v1.json');
+    const customSchema = {
+      ...baseSchema,
+      methods: {
+        topWithRef: {
+          id: 'webfonts.topWithRef',
+          path: 'topWithRef',
+          httpMethod: 'POST',
+          request: {$ref: 'Webfont'},
+          response: {$ref: 'WebfontList'},
+        },
+        topWithInlineObject: {
+          id: 'webfonts.topWithInlineObject',
+          path: 'topWithInlineObject',
+          httpMethod: 'POST',
+          request: {
+            type: 'object',
+            additionalProperties: {
+              description: 'Properties of the object.',
+              type: 'any',
+            },
+          },
+          response: {$ref: 'WebfontList'},
+        },
+        topWithInlineProperties: {
+          id: 'webfonts.topWithInlineProperties',
+          path: 'topWithInlineProperties',
+          httpMethod: 'POST',
+          request: {
+            type: 'object',
+            properties: {
+              title: {type: 'string'},
+              count: {type: 'integer'},
+            },
+          },
+          response: {$ref: 'WebfontList'},
+        },
+        topWithEmptyRequest: {
+          id: 'webfonts.topWithEmptyRequest',
+          path: 'topWithEmptyRequest',
+          httpMethod: 'POST',
+          request: {},
+        },
+        topWithMultipartOnly: {
+          id: 'webfonts.topWithMultipartOnly',
+          path: 'topWithMultipartOnly',
+          httpMethod: 'POST',
+          supportsMediaUpload: true,
+          mediaUpload: {
+            protocols: {
+              simple: {
+                multipart: true,
+                path: '/upload/webfonts/v1/multipart',
+              },
+            },
+          },
+        },
+      },
+      resources: {
+        ...baseSchema.resources,
+        integrations: {
+          methods: {
+            execute: {
+              id: 'webfonts.integrations.execute',
+              path: 'v2/{+parent}:execute',
+              httpMethod: 'POST',
+              request: {
+                type: 'object',
+                additionalProperties: {
+                  description: 'Properties of the object.',
+                  type: 'any',
+                },
+              },
+              response: {$ref: 'WebfontList'},
+            },
+            inlineProps: {
+              id: 'webfonts.integrations.inlineProps',
+              path: 'v2/{+parent}:inlineProps',
+              httpMethod: 'POST',
+              request: {
+                type: 'object',
+                properties: {
+                  title: {type: 'string'},
+                  count: {type: 'integer'},
+                },
+              },
+              response: {$ref: 'WebfontList'},
+            },
+            emptyReq: {
+              id: 'webfonts.integrations.emptyReq',
+              path: 'v2/{+parent}:emptyReq',
+              httpMethod: 'POST',
+              request: {},
+            },
+            multipartOnly: {
+              id: 'webfonts.integrations.multipartOnly',
+              path: 'v2/{+parent}:multipartOnly',
+              httpMethod: 'POST',
+              supportsMediaUpload: true,
+              mediaUpload: {
+                protocols: {
+                  simple: {
+                    multipart: true,
+                    path: '/upload/webfonts/v1/multipart',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+
+    const {Generator} = proxyquire('../src/generator/generator', {
+      fs: {
+        readFile: (
+          _path: string,
+          _enc: string,
+          cb: (err: Error | null, data: string) => void,
+        ) => {
+          cb(null, JSON.stringify(customSchema));
+        },
+        writeFile: (
+          _path: string,
+          data: string,
+          _opts: unknown,
+          cb: (err: Error | null) => void,
+        ) => {
+          writtenContent = data;
+          cb(null);
+        },
+        promises: {
+          mkdir: async () => {},
+        },
+      },
+    });
+
+    const generator = new Generator();
+    await generator.generateAPI('/fake/webfonts-v1.json');
+
+    assert.ok(!writtenContent.includes('Schema$;'));
+    assert.ok(writtenContent.includes('requestBody?: Schema$Webfont;'));
+    assert.strictEqual(
+      writtenContent.split('requestBody?: {[key: string]: any};').length - 1,
+      2,
+    );
+    assert.strictEqual(
+      writtenContent.split('requestBody?: {title?: string; count?: number};')
+        .length - 1,
+      2,
+    );
+    assert.strictEqual(writtenContent.split('requestBody?: {};').length - 1, 4);
+  });
+
+  it('should render tsconfig.json.njk with a single trailing newline', async () => {
+    let renderedTsconfig = '';
+    const {Generator} = proxyquire('../src/generator/generator', {
+      fs: {
+        writeFile: (
+          filePath: string,
+          data: string,
+          _opts: unknown,
+          cb: (err: Error | null) => void,
+        ) => {
+          if (filePath.endsWith('tsconfig.json')) {
+            renderedTsconfig = data;
+          }
+          cb(null);
+        },
+      },
+    });
+    const generator = new Generator();
+    await (
+      generator as unknown as {
+        render: (t: string, d: {}, o: string) => Promise<void>;
+      }
+    ).render('tsconfig.json.njk', {name: 'bigquery'}, 'tsconfig.json');
+    const normalizedTsconfig = renderedTsconfig.replace(/\r\n/g, '\n');
+    assert.ok(normalizedTsconfig.endsWith('}\n'));
+    assert.ok(!normalizedTsconfig.endsWith('}\n\n'));
+  });
 });
