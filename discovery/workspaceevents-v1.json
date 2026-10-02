@@ -39,7 +39,7 @@
           "description": "View members in Google Chat conversations."
         },
         "https://www.googleapis.com/auth/chat.messages": {
-          "description": "See, compose, send, update, and delete messages as well as their message content; add, see, and delete reactions to messages."
+          "description": "See, compose, send, update, and delete messages, their content, and attached cards; add, see, and delete reactions to messages."
         },
         "https://www.googleapis.com/auth/chat.messages.reactions": {
           "description": "See, add, and delete reactions as well as their reaction content to messages in Google Chat"
@@ -809,7 +809,7 @@
       }
     }
   },
-  "revision": "20260818",
+  "revision": "20260929",
   "rootUrl": "https://workspaceevents.googleapis.com/",
   "schemas": {
     "Artifact": {
