@@ -1798,7 +1798,7 @@
       }
     }
   },
-  "revision": "20260825",
+  "revision": "20260924",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AIInference": {
@@ -2079,12 +2079,16 @@
       "type": "object"
     },
     "BigtableConfig": {
-      "description": "Configuration for a Bigtable subscription. The Pub/Sub message will be written to a Bigtable row as follows: - row key: subscription name, message ID hash, and message ID delimited by `#`. - columns: message bytes written to a single column family `data` with an empty-string column qualifier. - cell timestamp: the message publish timestamp.",
+      "description": "Configuration for a Bigtable subscription, which will write a Pub/Sub message to a Bigtable row. See the ColumnFamilyMapping documentation below for details on how the row keys and columns will be written.",
       "id": "BigtableConfig",
       "properties": {
         "appProfileId": {
           "description": "Optional. The app profile to use for the Bigtable writes. If not specified, the \"default\" application profile will be used. The app profile must use single-cluster routing.",
           "type": "string"
+        },
+        "columnFamilyMapping": {
+          "$ref": "ColumnFamilyMapping",
+          "description": "Optional. Configuration that allows writing row keys and/or columns based on fields in the input message. The input message format must be JSON if this field is set."
         },
         "serviceAccountEmail": {
           "description": "Optional. The service account to use to write to Bigtable. The subscription creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent](https://cloud.google.com/iam/docs/service-agents), service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.",
@@ -2276,6 +2280,21 @@
       },
       "type": "object"
     },
+    "ColumnFamilyMapping": {
+      "description": "Configuration for writing a Pub/Sub message to a Bigtable row with a user-defined key and writing to column families. If this field is set: - The subscription messages must be formatted as JSON. - The row key mapping is configured in the `key_definition` section. - The top-level fields will be written either: - By default, they will be written to the `data` column family with the field name as the column qualifier. - But if the field name matches an existing column family (except for the default `data` column), then that field will be written to that column family, either as a scalar or its next level nested fields if it's a JSON object. - The cell timestamp will be the message publish timestamp. If the field is not set, the default behavior is to write: - row key: subscription name, message ID hash, and message ID delimited by `#`. - columns: message bytes written to a single column family `data` with an empty-string column qualifier. - cell timestamp: the message publish timestamp.",
+      "id": "ColumnFamilyMapping",
+      "properties": {
+        "delimitedKey": {
+          "$ref": "DelimitedKey",
+          "description": "Optional. If set, the row key is constructed from the given key fields and delimiter. All key fields must be present in the message; otherwise, the message remains in the subscription backlog."
+        },
+        "rowKeySchema": {
+          "$ref": "RowKeySchema",
+          "description": "Optional. If set, the row key is constructed from the field names of the table's structured row key ({$universe.dns_names.final_documentation_domain}/bigtable/docs/manage-row-key-schemas). Note that if the field is nullable in the structured row key, then it need not be present in the message; null will be used instead."
+        }
+      },
+      "type": "object"
+    },
     "CommitSchemaRequest": {
       "description": "Request for CommitSchema method.",
       "id": "CommitSchemaRequest",
@@ -2425,6 +2444,25 @@
           "description": "Optional. The maximum number of delivery attempts for any message. The value must be between 5 and 100. The number of delivery attempts is defined as 1 + (the sum of number of NACKs and number of times the acknowledgment deadline has been exceeded for the message). A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that client libraries may automatically extend ack_deadlines. This field will be honored on a best effort basis. If this parameter is 0, a default value of 5 is used.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DelimitedKey": {
+      "description": "Row key definition based on fields from the message.",
+      "id": "DelimitedKey",
+      "properties": {
+        "delimiter": {
+          "description": "Optional. Byte sequence used to delimit concatenated fields. Must be specified if multiple key fields are used. The delimiter must contain at least 1 character and at most 50 characters.",
+          "format": "byte",
+          "type": "string"
+        },
+        "keyFields": {
+          "description": "Optional. The key fields to construct from the row key. The fields must be present in the message as a top-level field, i.e. JSON path expressions will not traverse into nested objects.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2807,6 +2845,23 @@
       "properties": {},
       "type": "object"
     },
+    "PublishOperation": {
+      "description": "Telemetry about a `Publish` operation which may or may not be common across individual RPCs.",
+      "id": "PublishOperation",
+      "properties": {
+        "hedgedAttemptCount": {
+          "description": "Optional. If the publisher client is using publish hedging, provides the attempt count for the hedge (starting at 1). A value of 0 indicates that the request was not hedged.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "publishStartTime": {
+          "description": "Optional. Time at which the `publish()` call was initiated in the client library, meaning across all RPC retry attempts, see [grpc retries](https://grpc.io/docs/guides/retry/). Provides a sense of the end-to-end publish duration from the client perspective, across retries.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PublishRequest": {
       "description": "Request for the Publish method.",
       "id": "PublishRequest",
@@ -2831,6 +2886,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PubsubClientTelemetry": {
+      "description": "Client-side telemetry about Pub/Sub requests, useful for debugging purposes. If the client opts to provide this information, it will be passed as a serialized proto in the `x-goog-pubsub-client-telemetry` header.",
+      "id": "PubsubClientTelemetry",
+      "properties": {
+        "publishOperation": {
+          "$ref": "PublishOperation",
+          "description": "Optional. Telemetry about a `Publish` operation."
         }
       },
       "type": "object"
@@ -2980,6 +3046,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "RowKeySchema": {
+      "description": "Row key definition that reads the input message fields based on the field names of the table's structured row key ({$universe.dns_names.final_documentation_domain}/bigtable/docs/manage-row-key-schemas). Note that if the field is nullable in the structured row key, then it need not be present in the message; null will be used instead.",
+      "id": "RowKeySchema",
+      "properties": {},
       "type": "object"
     },
     "Schema": {
