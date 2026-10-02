@@ -462,6 +462,15 @@ export namespace solar_v1 {
     units?: string | null;
   }
   /**
+   * Details of a single detected obstacle.
+   */
+  export interface Schema$Obstacle {
+    /**
+     * Output only. A GeoJSON representation of the obstacle. An obstacle is defined as any non-buildable area where solar panels cannot be placed due to physical barriers (vents, chimneys, dormers, etc.). The GeoJSON data must be in RFC 7946 format and represent a Polygon for a single contiguous area. The Polygon will be represented by several loops when it contains holes. Example: { "type": "Polygon", "coordinates": [ [ [-1, -1, 0], [-1, 0, 0], [0, 0, 0], [-1, -1, 0] ] ] \}
+     */
+    polygonGeojson?: {[key: string]: any} | null;
+  }
+  /**
    * Information about the size and sunniness quantiles of a roof segment.
    */
   export interface Schema$RoofSegmentSizeAndSunshineStats {
@@ -485,6 +494,10 @@ export namespace solar_v1 {
      * The height of the roof segment plane, in meters above sea level, at the point designated by `center`. Together with the pitch, azimuth, and center location, this fully defines the roof segment plane.
      */
     planeHeightAtCenterMeters?: number | null;
+    /**
+     * Output only. A GeoJSON representation of the detailed geometry for the roof segment plane. The polygon represents the physical roof facet, excluding overlapping vegetation and internal cutouts (e.g., courtyards). This field is only populated if ROOF_GEOMETRY is included in the request's FindClosestBuildingInsightsRequest.additional_insights parameter. The GeoJSON data must be in RFC 7946 format and represent a Polygon for a single contiguous area. The Polygon will be represented by several loops when it contains holes. Example: { "type": "Polygon", "coordinates": [ [ [-1, -1, 0], [-1, 0, 0], [0, 0, 0], [-1, -1, 0] ] ] \}
+     */
+    polygonGeojson?: {[key: string]: any} | null;
     /**
      * Total size and sunlight quantiles for the roof segment.
      */
@@ -627,6 +640,10 @@ export namespace solar_v1 {
      * Maximum number of sunshine hours received per year, by any point on the roof. Sunshine hours are a measure of the total amount of insolation (energy) received per year. 1 sunshine hour = 1 kWh per kW (where kW refers to kW of capacity under Standard Testing Conditions).
      */
     maxSunshineHoursPerYear?: number | null;
+    /**
+     * Details for each obstacle detected on the rooftop. An obstacle is defined as any non-buildable area where solar panels cannot be placed due to physical barriers (vents, chimneys, etc.). This field is only populated if ROOF_GEOMETRY is included in the request's FindClosestBuildingInsightsRequest.additional_insights.
+     */
+    obstacles?: Schema$Obstacle[];
     /**
      * Capacity, in watts, of the panel used in the calculations.
      */

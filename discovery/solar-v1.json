@@ -118,10 +118,12 @@
               "description": "Optional. A list of additional_insights to be included in the response.",
               "enum": [
                 "ADDITIONAL_INSIGHTS_UNSPECIFIED",
+                "ROOF_GEOMETRY",
                 "DETECTED_ARRAYS"
               ],
               "enumDescriptions": [
                 "The default value. The default BuildingInsights will be returned.",
+                "Determines whether to include the roof segment polygons and obstacles in the response. If specified, the response will contain a polygon_geojson field in each RoofSegmentSizeAndSunshineStats and the obstacles field in SolarPotential.",
                 "Determines whether the response will include the detected arrays. If specified, the `detected_arrays` field will be populated in the response."
               ],
               "location": "query",
@@ -137,11 +139,13 @@
               "description": "Optional. Specifies the pre-GA experiments to enable. Requests using this field are classified as a pre-GA offering under the [Google Maps Platform Service Specific Terms](https://cloud.google.com/maps-platform/terms/maps-service-terms). See [launch stage descriptions](https://cloud.google.com/maps-platform/terms/launch-stages) for more details.",
               "enum": [
                 "EXPERIMENT_UNSPECIFIED",
-                "EXPANDED_COVERAGE"
+                "EXPANDED_COVERAGE",
+                "ROOF_GEOMETRY_INSIGHTS"
               ],
               "enumDescriptions": [
                 "No experiments are specified.",
-                "Expands the geographic region available for querying solar data. For more information, see [Expanded Coverage](https://developers.google.com/maps/documentation/solar/expanded-coverage)."
+                "Expands the geographic region available for querying solar data. For more information, see [Expanded Coverage](https://developers.google.com/maps/documentation/solar/expanded-coverage).",
+                "Enables experimental roof geometry data via FindClosestBuildingInsights. Requires `ROOF_GEOMETRY` to be included in the `additional_insights` field. Returns an error if passed to GetDataLayers."
               ],
               "location": "query",
               "repeated": true,
@@ -207,11 +211,13 @@
               "description": "Optional. Specifies the pre-GA experiments to enable. Requests using this field are classified as a pre-GA offering under the [Google Maps Platform Service Specific Terms](https://cloud.google.com/maps-platform/terms/maps-service-terms). See [launch stage descriptions]( https://cloud.google.com/maps-platform/terms/launch-stages) for more details.",
               "enum": [
                 "EXPERIMENT_UNSPECIFIED",
-                "EXPANDED_COVERAGE"
+                "EXPANDED_COVERAGE",
+                "ROOF_GEOMETRY_INSIGHTS"
               ],
               "enumDescriptions": [
                 "No experiments are specified.",
-                "Expands the geographic region available for querying solar data. For more information, see [Expanded Coverage](https://developers.google.com/maps/documentation/solar/expanded-coverage)."
+                "Expands the geographic region available for querying solar data. For more information, see [Expanded Coverage](https://developers.google.com/maps/documentation/solar/expanded-coverage).",
+                "Enables experimental roof geometry data via FindClosestBuildingInsights. Requires `ROOF_GEOMETRY` to be included in the `additional_insights` field. Returns an error if passed to GetDataLayers."
               ],
               "location": "query",
               "repeated": true,
@@ -318,7 +324,7 @@
       }
     }
   },
-  "revision": "20260506",
+  "revision": "20261001",
   "rootUrl": "https://solar.googleapis.com/",
   "schemas": {
     "BuildingInsights": {
@@ -745,6 +751,22 @@
       },
       "type": "object"
     },
+    "Obstacle": {
+      "description": "Details of a single detected obstacle.",
+      "id": "Obstacle",
+      "properties": {
+        "polygonGeojson": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output only. A GeoJSON representation of the obstacle. An obstacle is defined as any non-buildable area where solar panels cannot be placed due to physical barriers (vents, chimneys, dormers, etc.). The GeoJSON data must be in RFC 7946 format and represent a Polygon for a single contiguous area. The Polygon will be represented by several loops when it contains holes. Example: { \"type\": \"Polygon\", \"coordinates\": [ [ [-1, -1, 0], [-1, 0, 0], [0, 0, 0], [-1, -1, 0] ] ] }",
+          "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "RoofSegmentSizeAndSunshineStats": {
       "description": "Information about the size and sunniness quantiles of a roof segment.",
       "id": "RoofSegmentSizeAndSunshineStats",
@@ -771,6 +793,15 @@
           "description": "The height of the roof segment plane, in meters above sea level, at the point designated by `center`. Together with the pitch, azimuth, and center location, this fully defines the roof segment plane.",
           "format": "float",
           "type": "number"
+        },
+        "polygonGeojson": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output only. A GeoJSON representation of the detailed geometry for the roof segment plane. The polygon represents the physical roof facet, excluding overlapping vegetation and internal cutouts (e.g., courtyards). This field is only populated if ROOF_GEOMETRY is included in the request's FindClosestBuildingInsightsRequest.additional_insights parameter. The GeoJSON data must be in RFC 7946 format and represent a Polygon for a single contiguous area. The Polygon will be represented by several loops when it contains holes. Example: { \"type\": \"Polygon\", \"coordinates\": [ [ [-1, -1, 0], [-1, 0, 0], [0, 0, 0], [-1, -1, 0] ] ] }",
+          "readOnly": true,
+          "type": "object"
         },
         "stats": {
           "$ref": "SizeAndSunshineStats",
@@ -960,6 +991,13 @@
           "description": "Maximum number of sunshine hours received per year, by any point on the roof. Sunshine hours are a measure of the total amount of insolation (energy) received per year. 1 sunshine hour = 1 kWh per kW (where kW refers to kW of capacity under Standard Testing Conditions).",
           "format": "float",
           "type": "number"
+        },
+        "obstacles": {
+          "description": "Details for each obstacle detected on the rooftop. An obstacle is defined as any non-buildable area where solar panels cannot be placed due to physical barriers (vents, chimneys, etc.). This field is only populated if ROOF_GEOMETRY is included in the request's FindClosestBuildingInsightsRequest.additional_insights.",
+          "items": {
+            "$ref": "Obstacle"
+          },
+          "type": "array"
         },
         "panelCapacityWatts": {
           "description": "Capacity, in watts, of the panel used in the calculations.",
