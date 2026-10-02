@@ -1031,6 +1031,140 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "fetchEntitiesStatusView": {
+                  "description": "An internal, RPC only method that returns a list of the (filtered) entities with minimal information required for the entities tree view.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversionWorkspaces/{conversionWorkspacesId}:fetchEntitiesStatusView",
+                  "httpMethod": "GET",
+                  "id": "datamigration.projects.locations.conversionWorkspaces.fetchEntitiesStatusView",
+                  "parameterOrder": [
+                    "conversionWorkspace"
+                  ],
+                  "parameters": {
+                    "conversionWorkspace": {
+                      "description": "Required. Name of the conversion workspace resource whose database entities are described. Must be in the form of: projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/conversionWorkspaces/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "fetchView": {
+                      "description": "Optional. The view to fetch. If not specified, FULL is used.",
+                      "enum": [
+                        "FETCH_VIEW_UNSPECIFIED",
+                        "FULL",
+                        "SUMMARY",
+                        "FULL_WITH_DEPENDENCIES"
+                      ],
+                      "enumDescriptions": [
+                        "Unspecified view. Defaults to FULL.",
+                        "Get all entities matching the filter.",
+                        "Each schema will have one entity per (non sub) type with a dummy name that will contain the aggregated information for all entities of that type. Counters like number of statements and issues will be aggregated accordingly.",
+                        "Same as FULL plus dependency information."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "filter": {
+                      "description": "Optional. Filter the returned entities based on AIP-160 standard.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of entities to return. The service may return fewer entities than the value specifies. Default is 100000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The nextPageToken value received in the previous call to conversionWorkspace.FetchEntitiesStatusView, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspace.FetchEntitiesStatusView must match the call that provided the page token, except for the page_size parameter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "tree": {
+                      "description": "Required. The tree to fetch.",
+                      "enum": [
+                        "DB_TREE_TYPE_UNSPECIFIED",
+                        "SOURCE_TREE",
+                        "DRAFT_TREE"
+                      ],
+                      "enumDescriptions": [
+                        "Unspecified tree type.",
+                        "The source database tree.",
+                        "The draft database tree."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+conversionWorkspace}:fetchEntitiesStatusView",
+                  "response": {
+                    "$ref": "FetchEntitiesStatusViewResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "fetchIssues": {
+                  "description": "List issues of conversion workspace operations e.g. conversion.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversionWorkspaces/{conversionWorkspacesId}:fetchIssues",
+                  "httpMethod": "GET",
+                  "id": "datamigration.projects.locations.conversionWorkspaces.fetchIssues",
+                  "parameterOrder": [
+                    "conversionWorkspace"
+                  ],
+                  "parameters": {
+                    "allIssues": {
+                      "description": "Optional. If 'true', gets all issues matching the filter. Otherwise, for each entity only the issues matching the DdlKind chosen for application on the destination are returned.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "conversionWorkspace": {
+                      "description": "Required. Conversion workspace with issues to fetch. Must be in the form of: projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/conversionWorkspaces/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "filter": {
+                      "description": "Optional. AIP-160 standard filter. Supporting both entity and issue fields. Supported fields: - `name` / `fullname`: The entity full name. - `type`: The entity type (e.g. `TABLE`, `VIEW`, `INDEX`, `TRIGGER`). - `ddlkind`: The kind of DDL (e.g. `DDL_KIND_SOURCE`, `DDL_KIND_AI`, `DDL_KIND_DETERMINISTIC`). - `issue.severity`: The severity of the issue (e.g. `INFO`, `WARNING`, `ERROR`). - `issue.state`: The state of the issue (e.g. `OPEN`, `RESOLVED`). - `issue.origin`: The origin of the issue (e.g. `DETERMINISTIC`, `AI`). - `issue.category_id`: The category ID of the issue. - `issue.group_id`: The group ID of the issue.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of issues to return. The service may return fewer issues than the value specifies.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The FetchIssuesResponse.next_page_token value received in the previous call to FetchIssues, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to FetchIssues must match the call that provided the page token, except for the page_size parameter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "tree": {
+                      "description": "Optional. The tree to fetch issues from. If not specified, source tree is assumed.",
+                      "enum": [
+                        "DB_TREE_TYPE_UNSPECIFIED",
+                        "SOURCE",
+                        "DRAFT"
+                      ],
+                      "enumDescriptions": [
+                        "Unspecified tree type.",
+                        "Returns seed and conversion issues",
+                        "Returns apply issues."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+conversionWorkspace}:fetchIssues",
+                  "response": {
+                    "$ref": "FetchIssuesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets details of a single conversion workspace.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversionWorkspaces/{conversionWorkspacesId}",
@@ -1260,6 +1394,34 @@
                   },
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setDraftEntityDdl": {
+                  "description": "Updates the draft DDL of an entity.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversionWorkspaces/{conversionWorkspacesId}:setDraftEntityDdl",
+                  "httpMethod": "POST",
+                  "id": "datamigration.projects.locations.conversionWorkspaces.setDraftEntityDdl",
+                  "parameterOrder": [
+                    "conversionWorkspace"
+                  ],
+                  "parameters": {
+                    "conversionWorkspace": {
+                      "description": "Required. Name of the conversion workspace resource in the form of: projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/conversionWorkspaces/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+conversionWorkspace}:setDraftEntityDdl",
+                  "request": {
+                    "$ref": "SetDraftEntityDdlRequest"
+                  },
+                  "response": {
+                    "$ref": "SetDraftEntityDdlResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2592,7 +2754,7 @@
       }
     }
   },
-  "revision": "20260904",
+  "revision": "20260917",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -3519,6 +3681,12 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "latestApplyTime": {
+          "description": "Optional. Output only. The timestamp when the workspace was last applied.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "latestCommitId": {
           "description": "Output only. The latest commit ID.",
           "readOnly": true,
@@ -3526,6 +3694,12 @@
         },
         "latestCommitTime": {
           "description": "Output only. The timestamp when the workspace was committed.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "latestConvertTime": {
+          "description": "Optional. Output only. The timestamp when the workspace was last converted.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -4094,6 +4268,101 @@
       },
       "type": "object"
     },
+    "EntityId": {
+      "description": "An entity identifier.",
+      "id": "EntityId",
+      "properties": {
+        "parentName": {
+          "description": "The parent entity full name.",
+          "type": "string"
+        },
+        "parentType": {
+          "description": "The type of the database entity (schema, table, view, ...).",
+          "enum": [
+            "DATABASE_ENTITY_TYPE_UNSPECIFIED",
+            "DATABASE_ENTITY_TYPE_SCHEMA",
+            "DATABASE_ENTITY_TYPE_TABLE",
+            "DATABASE_ENTITY_TYPE_COLUMN",
+            "DATABASE_ENTITY_TYPE_CONSTRAINT",
+            "DATABASE_ENTITY_TYPE_INDEX",
+            "DATABASE_ENTITY_TYPE_TRIGGER",
+            "DATABASE_ENTITY_TYPE_VIEW",
+            "DATABASE_ENTITY_TYPE_SEQUENCE",
+            "DATABASE_ENTITY_TYPE_STORED_PROCEDURE",
+            "DATABASE_ENTITY_TYPE_FUNCTION",
+            "DATABASE_ENTITY_TYPE_SYNONYM",
+            "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
+            "DATABASE_ENTITY_TYPE_UDT",
+            "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
+            "DATABASE_ENTITY_TYPE_DATABASE"
+          ],
+          "enumDescriptions": [
+            "Unspecified database entity type.",
+            "Schema.",
+            "Table.",
+            "Column.",
+            "Constraint.",
+            "Index.",
+            "Trigger.",
+            "View.",
+            "Sequence.",
+            "Stored Procedure.",
+            "Function.",
+            "Synonym.",
+            "Package.",
+            "UDT.",
+            "Materialized View.",
+            "Database."
+          ],
+          "type": "string"
+        },
+        "shortName": {
+          "description": "The short name (e.g. table name) of the entity.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the database entity (schema, table, view, index, ...).",
+          "enum": [
+            "DATABASE_ENTITY_TYPE_UNSPECIFIED",
+            "DATABASE_ENTITY_TYPE_SCHEMA",
+            "DATABASE_ENTITY_TYPE_TABLE",
+            "DATABASE_ENTITY_TYPE_COLUMN",
+            "DATABASE_ENTITY_TYPE_CONSTRAINT",
+            "DATABASE_ENTITY_TYPE_INDEX",
+            "DATABASE_ENTITY_TYPE_TRIGGER",
+            "DATABASE_ENTITY_TYPE_VIEW",
+            "DATABASE_ENTITY_TYPE_SEQUENCE",
+            "DATABASE_ENTITY_TYPE_STORED_PROCEDURE",
+            "DATABASE_ENTITY_TYPE_FUNCTION",
+            "DATABASE_ENTITY_TYPE_SYNONYM",
+            "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
+            "DATABASE_ENTITY_TYPE_UDT",
+            "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
+            "DATABASE_ENTITY_TYPE_DATABASE"
+          ],
+          "enumDescriptions": [
+            "Unspecified database entity type.",
+            "Schema.",
+            "Table.",
+            "Column.",
+            "Constraint.",
+            "Index.",
+            "Trigger.",
+            "View.",
+            "Sequence.",
+            "Stored Procedure.",
+            "Function.",
+            "Synonym.",
+            "Package.",
+            "UDT.",
+            "Materialized View.",
+            "Database."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EntityIssue": {
       "description": "Issue related to the entity.",
       "id": "EntityIssue",
@@ -4327,6 +4596,80 @@
       },
       "type": "object"
     },
+    "EntityStatusView": {
+      "description": "A single entity for the UI view.",
+      "id": "EntityStatusView",
+      "properties": {
+        "dependencies": {
+          "description": "Optional. The set of entities that this entity directly depends on, i.e., it does not include transitive dependencies. Provided only for FULL_WITH_DEPENDENCIES view. Dependencies are provided according to the request tree type.",
+          "items": {
+            "$ref": "EntityId"
+          },
+          "type": "array"
+        },
+        "draftDdlKind": {
+          "description": "The DDL Kind selected for apply. If UNSPECIFIED, the entity wasn't converted yet. For SUMMARY view, this rolls up from descendants with the logic of UNSPECIFIED < DETERMINISTIC < AI. USER_EDIT is not propagated.",
+          "enum": [
+            "DDL_KIND_UNSPECIFIED",
+            "SOURCE",
+            "DETERMINISTIC",
+            "AI",
+            "USER_EDIT"
+          ],
+          "enumDescriptions": [
+            "The kind of the DDL is unknown.",
+            "DDL of the source entity",
+            "Deterministic converted DDL",
+            "Gemini AI converted DDL",
+            "User edited DDL"
+          ],
+          "type": "string"
+        },
+        "draftEntity": {
+          "$ref": "EntityId",
+          "description": "The entity short name and type from the DRAFT tree."
+        },
+        "editedDdlKind": {
+          "description": "If ddl_kind is USER_EDIT, this holds the DDL kind of the original content - DETERMINISTIC or AI. Otherwise, this is DDL_KIND_UNSPECIFIED. Relevant only for FULL view.",
+          "enum": [
+            "DDL_KIND_UNSPECIFIED",
+            "SOURCE",
+            "DETERMINISTIC",
+            "AI",
+            "USER_EDIT"
+          ],
+          "enumDescriptions": [
+            "The kind of the DDL is unknown.",
+            "DDL of the source entity",
+            "Deterministic converted DDL",
+            "Gemini AI converted DDL",
+            "User edited DDL"
+          ],
+          "type": "string"
+        },
+        "issues": {
+          "$ref": "IssueAggregateData",
+          "description": "Unresolved issues information according to the current Draft DdlKind."
+        },
+        "resolvedIssues": {
+          "$ref": "IssueAggregateData",
+          "description": "Resolved issues information according to the current Draft DdlKind."
+        },
+        "sourceEntity": {
+          "$ref": "EntityId",
+          "description": "The entity short name and type from the SOURCE tree."
+        },
+        "testedEntity": {
+          "description": "Optional. Whether the entity has successfully generated and executed validation tests.",
+          "type": "boolean"
+        },
+        "wasApplied": {
+          "description": "Was the entity applied on the destination. Relevant only for FULL view.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "ErrorInfo": {
       "description": "Describes the cause of the error with structured details. Example of an error when contacting the \"pubsub.googleapis.com\" API when it is not enabled: { \"reason\": \"API_DISABLED\" \"domain\": \"googleapis.com\" \"metadata\": { \"resource\": \"projects/123\", \"service\": \"pubsub.googleapis.com\" } } This response indicates that the pubsub.googleapis.com API is not enabled. Example of an error that is returned when attempting to create a Spanner instance in a region that is out of stock: { \"reason\": \"STOCKOUT\" \"domain\": \"spanner.googleapis.com\", \"metadata\": { \"availableRegions\": \"us-central1,us-east2\" } }",
       "id": "ErrorInfo",
@@ -4368,6 +4711,69 @@
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FetchEntitiesStatusViewResponse": {
+      "description": "Response message for DataMigrationService.FetchEntitiesStatusView.",
+      "id": "FetchEntitiesStatusViewResponse",
+      "properties": {
+        "entities": {
+          "description": "A list of the entities matching the request, sorted by their full name (source name if requested the SOURCE tree, draft name if requested the DRAFT tree). Sub-entities (such as indexes) always appear immediately after their parent element.",
+          "items": {
+            "$ref": "EntityStatusView"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FetchIssuesResponse": {
+      "description": "Response for fetching issues of a conversion workspace.",
+      "id": "FetchIssuesResponse",
+      "properties": {
+        "issues": {
+          "description": "The list of issues for the conversion workspace.",
+          "items": {
+            "$ref": "Issue"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FetchIssuesResponseIssuePosition": {
+      "description": "Issue position.",
+      "id": "FetchIssuesResponseIssuePosition",
+      "properties": {
+        "column": {
+          "description": "Issue column number.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "length": {
+          "description": "Issue length.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "line": {
+          "description": "Issue line number.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "offset": {
+          "description": "Issue offset.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -4757,6 +5163,396 @@
             "Value is larger or equal than the Compare value."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Issue": {
+      "description": "Issue related to the entity.",
+      "id": "Issue",
+      "properties": {
+        "categoryId": {
+          "description": "The category ID.",
+          "enum": [
+            "ISSUE_CATEGORY_ID_UNSPECIFIED",
+            "ISSUE_CATEGORY_ID_CW00",
+            "ISSUE_CATEGORY_ID_CW01",
+            "ISSUE_CATEGORY_ID_CW02",
+            "ISSUE_CATEGORY_ID_CW03",
+            "ISSUE_CATEGORY_ID_CW04",
+            "ISSUE_CATEGORY_ID_CW05",
+            "ISSUE_CATEGORY_ID_CW06",
+            "ISSUE_CATEGORY_ID_CW07",
+            "ISSUE_CATEGORY_ID_CW08",
+            "ISSUE_CATEGORY_ID_CW99",
+            "ISSUE_CATEGORY_ID_QA00",
+            "ISSUE_CATEGORY_ID_AP00"
+          ],
+          "enumDescriptions": [
+            "Unspecified issue category ID.",
+            "General conversion issues.",
+            "Input issues.",
+            "Source functionality not supported.",
+            "Source feature not supported.",
+            "Unsupported syntax.",
+            "Data types and conversion.",
+            "Potential functional nuances.",
+            "Functional review recommended.",
+            "Refactoring required.",
+            "Gemini review recommendations.",
+            "Quality assessment findings.",
+            "General apply issues."
+          ],
+          "type": "string"
+        },
+        "entityFullName": {
+          "description": "Entity full name.",
+          "type": "string"
+        },
+        "entityType": {
+          "description": "The entity type (if the DDL is for a sub entity).",
+          "enum": [
+            "DATABASE_ENTITY_TYPE_UNSPECIFIED",
+            "DATABASE_ENTITY_TYPE_SCHEMA",
+            "DATABASE_ENTITY_TYPE_TABLE",
+            "DATABASE_ENTITY_TYPE_COLUMN",
+            "DATABASE_ENTITY_TYPE_CONSTRAINT",
+            "DATABASE_ENTITY_TYPE_INDEX",
+            "DATABASE_ENTITY_TYPE_TRIGGER",
+            "DATABASE_ENTITY_TYPE_VIEW",
+            "DATABASE_ENTITY_TYPE_SEQUENCE",
+            "DATABASE_ENTITY_TYPE_STORED_PROCEDURE",
+            "DATABASE_ENTITY_TYPE_FUNCTION",
+            "DATABASE_ENTITY_TYPE_SYNONYM",
+            "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
+            "DATABASE_ENTITY_TYPE_UDT",
+            "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
+            "DATABASE_ENTITY_TYPE_DATABASE"
+          ],
+          "enumDescriptions": [
+            "Unspecified database entity type.",
+            "Schema.",
+            "Table.",
+            "Column.",
+            "Constraint.",
+            "Index.",
+            "Trigger.",
+            "View.",
+            "Sequence.",
+            "Stored Procedure.",
+            "Function.",
+            "Synonym.",
+            "Package.",
+            "UDT.",
+            "Materialized View.",
+            "Database."
+          ],
+          "type": "string"
+        },
+        "groupId": {
+          "description": "The group ID.",
+          "enum": [
+            "ISSUE_GROUP_ID_UNSPECIFIED",
+            "ISSUE_GROUP_ID_CW_OP0000",
+            "ISSUE_GROUP_ID_CW_OP0001",
+            "ISSUE_GROUP_ID_CW_OP0002",
+            "ISSUE_GROUP_ID_CW_OP0101",
+            "ISSUE_GROUP_ID_CW_OP0102",
+            "ISSUE_GROUP_ID_CW_OP0103",
+            "ISSUE_GROUP_ID_CW_OP0200",
+            "ISSUE_GROUP_ID_CW_OP0201",
+            "ISSUE_GROUP_ID_CW_OP0202",
+            "ISSUE_GROUP_ID_CW_OP0203",
+            "ISSUE_GROUP_ID_CW_OP0204",
+            "ISSUE_GROUP_ID_CW_OP0205",
+            "ISSUE_GROUP_ID_CW_OP0206",
+            "ISSUE_GROUP_ID_CW_OP0300",
+            "ISSUE_GROUP_ID_CW_OP0301",
+            "ISSUE_GROUP_ID_CW_OP0315",
+            "ISSUE_GROUP_ID_CW_OP0303",
+            "ISSUE_GROUP_ID_CW_OP0304",
+            "ISSUE_GROUP_ID_CW_OP0305",
+            "ISSUE_GROUP_ID_CW_OP0306",
+            "ISSUE_GROUP_ID_CW_OP0307",
+            "ISSUE_GROUP_ID_CW_OP0308",
+            "ISSUE_GROUP_ID_CW_OP0309",
+            "ISSUE_GROUP_ID_CW_OP0310",
+            "ISSUE_GROUP_ID_CW_OP0311",
+            "ISSUE_GROUP_ID_CW_OP0312",
+            "ISSUE_GROUP_ID_CW_OP0313",
+            "ISSUE_GROUP_ID_CW_OP0314",
+            "ISSUE_GROUP_ID_CW_OP0302",
+            "ISSUE_GROUP_ID_CW_OP0400",
+            "ISSUE_GROUP_ID_CW_OP0401",
+            "ISSUE_GROUP_ID_CW_OP0402",
+            "ISSUE_GROUP_ID_CW_OP0403",
+            "ISSUE_GROUP_ID_CW_OP0404",
+            "ISSUE_GROUP_ID_CW_OP0500",
+            "ISSUE_GROUP_ID_CW_OP0501",
+            "ISSUE_GROUP_ID_CW_OP0502",
+            "ISSUE_GROUP_ID_CW_OP0503",
+            "ISSUE_GROUP_ID_CW_OP0504",
+            "ISSUE_GROUP_ID_CW_OP0601",
+            "ISSUE_GROUP_ID_CW_OP0602",
+            "ISSUE_GROUP_ID_CW_OP0603",
+            "ISSUE_GROUP_ID_CW_OP0604",
+            "ISSUE_GROUP_ID_CW_OP0605",
+            "ISSUE_GROUP_ID_CW_OP0606",
+            "ISSUE_GROUP_ID_CW_OP0701",
+            "ISSUE_GROUP_ID_CW_OP0702",
+            "ISSUE_GROUP_ID_CW_OP0801",
+            "ISSUE_GROUP_ID_CW_OP0802",
+            "ISSUE_GROUP_ID_CW_OP0803",
+            "ISSUE_GROUP_ID_CW_OP0804",
+            "ISSUE_GROUP_ID_CW_OP0805",
+            "ISSUE_GROUP_ID_CW_OP0806",
+            "ISSUE_GROUP_ID_CW_OP0807",
+            "ISSUE_GROUP_ID_CW_OP0808",
+            "ISSUE_GROUP_ID_QA_OP0000",
+            "ISSUE_GROUP_ID_CW_SP0000",
+            "ISSUE_GROUP_ID_CW_SP0001",
+            "ISSUE_GROUP_ID_CW_SP0002",
+            "ISSUE_GROUP_ID_CW_SP0101",
+            "ISSUE_GROUP_ID_CW_SP0102",
+            "ISSUE_GROUP_ID_CW_SP0103",
+            "ISSUE_GROUP_ID_CW_SP0200",
+            "ISSUE_GROUP_ID_CW_SP0201",
+            "ISSUE_GROUP_ID_CW_SP0202",
+            "ISSUE_GROUP_ID_CW_SP0203",
+            "ISSUE_GROUP_ID_CW_SP0204",
+            "ISSUE_GROUP_ID_CW_SP0205",
+            "ISSUE_GROUP_ID_CW_SP0300",
+            "ISSUE_GROUP_ID_CW_SP0302",
+            "ISSUE_GROUP_ID_CW_SP0306",
+            "ISSUE_GROUP_ID_CW_SP0308",
+            "ISSUE_GROUP_ID_CW_SP0309",
+            "ISSUE_GROUP_ID_CW_SP0310",
+            "ISSUE_GROUP_ID_CW_SP0311",
+            "ISSUE_GROUP_ID_CW_SP0312",
+            "ISSUE_GROUP_ID_CW_SP0313",
+            "ISSUE_GROUP_ID_CW_SP0314",
+            "ISSUE_GROUP_ID_CW_SP0400",
+            "ISSUE_GROUP_ID_CW_SP0401",
+            "ISSUE_GROUP_ID_CW_SP0402",
+            "ISSUE_GROUP_ID_CW_SP0403",
+            "ISSUE_GROUP_ID_CW_SP0404",
+            "ISSUE_GROUP_ID_CW_SP0500",
+            "ISSUE_GROUP_ID_CW_SP0501",
+            "ISSUE_GROUP_ID_CW_SP0502",
+            "ISSUE_GROUP_ID_CW_SP0503",
+            "ISSUE_GROUP_ID_CW_SP0504",
+            "ISSUE_GROUP_ID_CW_SP0601",
+            "ISSUE_GROUP_ID_CW_SP0602",
+            "ISSUE_GROUP_ID_CW_SP0604",
+            "ISSUE_GROUP_ID_CW_SP0701",
+            "ISSUE_GROUP_ID_CW_SP0802",
+            "ISSUE_GROUP_ID_CW_SP0807",
+            "ISSUE_GROUP_ID_QA_SP0000",
+            "ISSUE_GROUP_ID_CW_AI9900",
+            "ISSUE_GROUP_ID_CW_AI9901",
+            "ISSUE_GROUP_ID_CW_AI9902",
+            "ISSUE_GROUP_ID_CW_AP0000"
+          ],
+          "enumDescriptions": [
+            "Unspecified issue group ID.",
+            "General conversion issues.",
+            "Metadata conversion issues.",
+            "Contact your support team.",
+            "Invalid source code.",
+            "Missing referenced objects.",
+            "Missing primary key.",
+            "Source functionality not supported.",
+            "SQLCODE not supported.",
+            "Oracle data dictionary object not supported.",
+            "Oracle SQL function not supported.",
+            "Oracle PL/SQL package not supported.",
+            "Data type not supported.",
+            "Naming conflict.",
+            "Source feature not supported.",
+            "Schema objects or attributes not supported.",
+            "Synonyms not supported.",
+            "Bulk binding not supported.",
+            "Collections not supported.",
+            "Pipelined functions not supported.",
+            "Dynamic SQL not supported.",
+            "CONNECT BY option not supported.",
+            "Locking and transactions issues.",
+            "JSON not supported.",
+            "XML not supported.",
+            "MERGE not supported.",
+            "PIVOT not supported.",
+            "ALTER statement option not supported.",
+            "SQL feature not supported.",
+            "PL/SQL feature not supported.",
+            "Unsupported syntax.",
+            "Unsupported SQL syntax.",
+            "Unsupported PL/SQL syntax.",
+            "Unsupported date and timestamp syntax.",
+            "Unsupported exceptions syntax.",
+            "Data types and conversion issues.",
+            "Date format model issues.",
+            "Numeric format model issues.",
+            "Casting issues.",
+            "Comparison issues.",
+            "Review date format model.",
+            "Review numeric format model.",
+            "Review exception code.",
+            "Review exception message.",
+            "Review Oracle built-in function emulation.",
+            "Review foreign key column data type.",
+            "Functional review recommended.",
+            "Review Oracle built-in function emulation.",
+            "Autonomous transactions refactoring required.",
+            "Database links refactoring required.",
+            "Advanced queuing refactoring required.",
+            "Database email refactoring required.",
+            "Jobs and scheduling refactoring required.",
+            "File I/O refactoring required.",
+            "Synonyms refactoring required.",
+            "Global temporary tables refactoring required.",
+            "Functional equivalence assessment findings.",
+            "General conversion issues.",
+            "Metadata conversion issues.",
+            "Contact your support team.",
+            "Invalid source code.",
+            "Missing referenced objects.",
+            "Missing primary key.",
+            "Source functionality not supported.",
+            "SQL Server system view not supported.",
+            "SQL Server SQL function not supported.",
+            "SQL Server T-SQL object not supported.",
+            "Missing SQL Server system View",
+            "Naming conflict.",
+            "Source feature not supported.",
+            "T-SQL feature not supported.",
+            "Dynamic SQL not supported.",
+            "JSON not supported.",
+            "Locking and transactions issues.",
+            "XML not supported.",
+            "MERGE not supported.",
+            "PIVOT not supported.",
+            "ALTER statement option not supported.",
+            "SQL feature not supported.",
+            "Unsupported syntax.",
+            "Unsupported SQL syntax.",
+            "Unsupported T-SQL syntax.",
+            "Unsupported date and timestamp syntax.",
+            "Unsupported exceptions syntax.",
+            "Data types and conversion issues.",
+            "Date format model issues.",
+            "Numeric format model issues.",
+            "Casting issues.",
+            "Comparison issues.",
+            "Review date format model.",
+            "Review numeric format model.",
+            "Review exception message.",
+            "Functional review recommended.",
+            "Database links refactoring required.",
+            "Synonyms refactoring required.",
+            "Functional equivalence assessment findings.",
+            "Review Gemini suggestions.",
+            "Review AI-augmented code.",
+            "Citations for AI-augmented code.",
+            "General apply issues."
+          ],
+          "type": "string"
+        },
+        "id": {
+          "description": "Unique Issue ID. Use this ID when referencing a specific issue in other API calls, such as DataMigrationService.SetIssuesState.",
+          "type": "string"
+        },
+        "issueOrigin": {
+          "description": "The source of the issue (deterministic, gemini, etc).",
+          "enum": [
+            "ISSUE_ORIGIN_UNSPECIFIED",
+            "ISSUE_ORIGIN_DETERMINISTIC",
+            "ISSUE_ORIGIN_AI",
+            "ISSUE_ORIGIN_AI_FROM_DETERMINISTIC"
+          ],
+          "enumDescriptions": [
+            "Unspecified issue origin.",
+            "Issue originated from the deterministic conversion engine.",
+            "Issue originated from the AI conversion engine.",
+            "CODE_CONVERSION/CST issues that were carried over to the Gemini conversion,"
+          ],
+          "type": "string"
+        },
+        "issueState": {
+          "description": "Output only. The state of the issue (open, resolved, etc).",
+          "enum": [
+            "ISSUE_STATE_UNSPECIFIED",
+            "ISSUE_STATE_OPEN",
+            "ISSUE_STATE_RESOLVED"
+          ],
+          "enumDescriptions": [
+            "Unspecified issue state.",
+            "Issue is open.",
+            "Issue is resolved."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "message": {
+          "description": "Issue detailed message.",
+          "type": "string"
+        },
+        "position": {
+          "$ref": "FetchIssuesResponseIssuePosition",
+          "description": "The position of the issue found, if relevant."
+        },
+        "severity": {
+          "description": "Severity of the issue.",
+          "enum": [
+            "ISSUE_SEVERITY_UNSPECIFIED",
+            "ISSUE_SEVERITY_INFO",
+            "ISSUE_SEVERITY_WARNING",
+            "ISSUE_SEVERITY_ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified issue severity.",
+            "Info.",
+            "Warning.",
+            "Error."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the issue.",
+          "enum": [
+            "ISSUE_TYPE_UNSPECIFIED",
+            "ISSUE_TYPE_CONVERSION",
+            "ISSUE_TYPE_PULL_SCHEMA",
+            "ISSUE_TYPE_APPLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified issue type.",
+            "Issue originated from the conversion process.",
+            "Issue originated from the pull schema process.",
+            "Issue originated from the apply process."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IssueAggregateData": {
+      "description": "Aggregate issue information.",
+      "id": "IssueAggregateData",
+      "properties": {
+        "errorCount": {
+          "description": "Number of error issues.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "infoCount": {
+          "description": "Number of info issues.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "warningCount": {
+          "description": "Number of warning issues.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -5357,7 +6153,8 @@
             "PROMOTE_IN_PROGRESS",
             "WAITING_FOR_SOURCE_WRITES_TO_STOP",
             "PREPARING_THE_DUMP",
-            "READY_FOR_PROMOTE"
+            "READY_FOR_PROMOTE",
+            "PHASE_FAILBACK"
           ],
           "enumDescriptions": [
             "The phase of the migration job is unknown.",
@@ -5366,7 +6163,8 @@
             "The migration job is running the promote phase.",
             "Only RDS flow - waiting for source writes to stop",
             "Only RDS flow - the sources writes stopped, waiting for dump to begin",
-            "The migration job is ready to be promoted."
+            "The migration job is ready to be promoted.",
+            "The migration job is in the failback phase. This phase is currently used only for SQL Server Distributed Availability Group (DAG) migrations."
           ],
           "readOnly": true,
           "type": "string"
@@ -6787,6 +7585,107 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "SetDraftEntityDdlRequest": {
+      "description": "Request message for DataMigrationService.SetDraftEntityDdl.",
+      "id": "SetDraftEntityDdlRequest",
+      "properties": {
+        "basedOnDdlKind": {
+          "description": "Optional. Which DDL (Deterministic/AI) the updated DDL is based on. Defaults to DETERMINISTIC if not specified.",
+          "enum": [
+            "DDL_KIND_UNSPECIFIED",
+            "SOURCE",
+            "DETERMINISTIC",
+            "AI",
+            "USER_EDIT"
+          ],
+          "enumDescriptions": [
+            "The kind of the DDL is unknown.",
+            "DDL of the source entity",
+            "Deterministic converted DDL",
+            "Gemini AI converted DDL",
+            "User edited DDL"
+          ],
+          "type": "string"
+        },
+        "ddl": {
+          "description": "Required. The DDL to set.",
+          "type": "string"
+        },
+        "ddlKind": {
+          "description": "Optional. The updated DDL Kind. Can be either USER_EDIT (default) or AI.",
+          "enum": [
+            "DDL_KIND_UNSPECIFIED",
+            "SOURCE",
+            "DETERMINISTIC",
+            "AI",
+            "USER_EDIT"
+          ],
+          "enumDescriptions": [
+            "The kind of the DDL is unknown.",
+            "DDL of the source entity",
+            "Deterministic converted DDL",
+            "Gemini AI converted DDL",
+            "User edited DDL"
+          ],
+          "type": "string"
+        },
+        "entityName": {
+          "description": "Required. The draft entity full name from the tree. .",
+          "type": "string"
+        },
+        "entityType": {
+          "description": "Required. The type of the database entity (table, view, index, ...).",
+          "enum": [
+            "DATABASE_ENTITY_TYPE_UNSPECIFIED",
+            "DATABASE_ENTITY_TYPE_SCHEMA",
+            "DATABASE_ENTITY_TYPE_TABLE",
+            "DATABASE_ENTITY_TYPE_COLUMN",
+            "DATABASE_ENTITY_TYPE_CONSTRAINT",
+            "DATABASE_ENTITY_TYPE_INDEX",
+            "DATABASE_ENTITY_TYPE_TRIGGER",
+            "DATABASE_ENTITY_TYPE_VIEW",
+            "DATABASE_ENTITY_TYPE_SEQUENCE",
+            "DATABASE_ENTITY_TYPE_STORED_PROCEDURE",
+            "DATABASE_ENTITY_TYPE_FUNCTION",
+            "DATABASE_ENTITY_TYPE_SYNONYM",
+            "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
+            "DATABASE_ENTITY_TYPE_UDT",
+            "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
+            "DATABASE_ENTITY_TYPE_DATABASE"
+          ],
+          "enumDescriptions": [
+            "Unspecified database entity type.",
+            "Schema.",
+            "Table.",
+            "Column.",
+            "Constraint.",
+            "Index.",
+            "Trigger.",
+            "View.",
+            "Sequence.",
+            "Stored Procedure.",
+            "Function.",
+            "Synonym.",
+            "Package.",
+            "UDT.",
+            "Materialized View.",
+            "Database."
+          ],
+          "type": "string"
+        },
+        "explanation": {
+          "description": "Optional. An optional explanation of the generated DDL if ddl_kind is AI.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SetDraftEntityDdlResponse": {
+      "description": "Response message for DataMigrationService.SetDraftEntityDdl.",
+      "id": "SetDraftEntityDdlResponse",
+      "properties": {},
       "type": "object"
     },
     "SetIamPolicyRequest": {
