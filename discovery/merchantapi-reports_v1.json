@@ -142,7 +142,7 @@
       }
     }
   },
-  "revision": "20260901",
+  "revision": "20260921",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "BestSellersBrandView": {
@@ -476,7 +476,7 @@
           "description": "Date of this row. A condition on `date` is required in the `WHERE` clause."
         },
         "domain": {
-          "description": "Domain of your competitor or your domain, if 'is_your_domain' is true. Required in the `SELECT` clause. Cannot be filtered on in the 'WHERE' clause.",
+          "description": "Domain of your competitor or your domain, if `is_your_domain` is true. Required in the `SELECT` clause. Cannot be filtered on in the 'WHERE' clause.",
           "type": "string"
         },
         "higherPositionRate": {
@@ -545,7 +545,7 @@
           "description": "Date of this row. Cannot be selected in the `SELECT` clause. A condition on `date` is required in the `WHERE` clause."
         },
         "domain": {
-          "description": "Domain of your competitor or your domain, if 'is_your_domain' is true. Required in the `SELECT` clause. Cannot be filtered on in the 'WHERE' clause.",
+          "description": "Domain of your competitor or your domain, if `is_your_domain` is true. Required in the `SELECT` clause. Cannot be filtered on in the 'WHERE' clause.",
           "type": "string"
         },
         "higherPositionRate": {
