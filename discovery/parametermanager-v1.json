@@ -566,7 +566,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Identifier. [Output only] The resource name of the Parameter in the format `projects/*/locations/*/parameters/*`.",
+                      "description": "Identifier. The resource name of the Parameter in the format `projects/*/locations/*/parameters/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/parameters/[^/]+$",
                       "required": true,
@@ -763,7 +763,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Identifier. [Output only] The resource name of the ParameterVersion in the format `projects/*/locations/*/parameters/*/versions/*`.",
+                          "description": "Identifier. The resource name of the ParameterVersion in the format `projects/*/locations/*/parameters/*/versions/*`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/parameters/[^/]+/versions/[^/]+$",
                           "required": true,
@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20260831",
+  "revision": "20260923",
   "rootUrl": "https://parametermanager.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -1403,7 +1403,7 @@
       "id": "Parameter",
       "properties": {
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. Create time stamp",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1436,12 +1436,12 @@
           "type": "object"
         },
         "name": {
-          "description": "Identifier. [Output only] The resource name of the Parameter in the format `projects/*/locations/*/parameters/*`.",
+          "description": "Identifier. The resource name of the Parameter in the format `projects/*/locations/*/parameters/*`.",
           "type": "string"
         },
         "policyMember": {
           "$ref": "ResourcePolicyMember",
-          "description": "Output only. [Output-only] policy member strings of a Google Cloud resource.",
+          "description": "Output only. Policy member strings of a Google Cloud resource.",
           "readOnly": true
         },
         "tags": {
@@ -1452,7 +1452,7 @@
           "type": "object"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. Update time stamp",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1465,7 +1465,7 @@
       "id": "ParameterVersion",
       "properties": {
         "checksumSource": {
-          "description": "Optional. Output only. [Output only] The source of the checksum.",
+          "description": "Optional. Output only. The source of the checksum.",
           "enum": [
             "CHECKSUM_SOURCE_UNSPECIFIED",
             "SERVER_GENERATED",
@@ -1480,7 +1480,7 @@
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. Create time stamp",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1490,12 +1490,12 @@
           "type": "boolean"
         },
         "kmsKeyVersion": {
-          "description": "Optional. Output only. [Output only] The resource name of the KMS key version used to encrypt the ParameterVersion payload. This field is populated only if the Parameter resource has customer managed encryption key (CMEK) configured.",
+          "description": "Optional. Output only. The resource name of the KMS key version used to encrypt the ParameterVersion payload. This field is populated only if the Parameter resource has customer managed encryption key (CMEK) configured.",
           "readOnly": true,
           "type": "string"
         },
         "name": {
-          "description": "Identifier. [Output only] The resource name of the ParameterVersion in the format `projects/*/locations/*/parameters/*/versions/*`.",
+          "description": "Identifier. The resource name of the ParameterVersion in the format `projects/*/locations/*/parameters/*/versions/*`.",
           "type": "string"
         },
         "payload": {
@@ -1503,7 +1503,7 @@
           "description": "Required. Immutable. Payload content of a ParameterVersion resource. This is only returned when the request provides the View value of FULL (default for GET request)."
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. Update time stamp",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1521,7 +1521,7 @@
           "type": "string"
         },
         "dataCrc32c": {
-          "description": "Optional. [Optional] The integrity checksum of the payload. If provided, the server will verify that the checksum matches the payload. If not provided, the server will generate the checksum.",
+          "description": "Optional. The integrity checksum of the payload. If provided, the server will verify that the checksum matches the payload. If not provided, the server will generate the checksum.",
           "format": "int64",
           "type": "string"
         }
@@ -1529,12 +1529,11 @@
       "type": "object"
     },
     "RenderParameterVersionResponse": {
-      "description": "Message describing RenderParameterVersionResponse resource",
+      "description": "Message describing response of the `RenderParameterVersion` method",
       "id": "RenderParameterVersionResponse",
       "properties": {
         "parameterVersion": {
-          "description": "Output only. Resource identifier of a ParameterVersion in the format `projects/*/locations/*/parameters/*/versions/*`.",
-          "readOnly": true,
+          "description": "Resource identifier of a ParameterVersion in the format `projects/*/locations/*/parameters/*/versions/*`.",
           "type": "string"
         },
         "payload": {
@@ -1542,21 +1541,19 @@
           "description": "Payload content of a ParameterVersion resource."
         },
         "renderedPayload": {
-          "description": "Output only. Server generated rendered version of the user provided payload data (ParameterVersionPayload) which has substitutions of all (if any) references to a SecretManager SecretVersion resources. This substitution only works for a Parameter which is in JSON or YAML format.",
+          "description": "Server generated rendered version of the user provided payload data (ParameterVersionPayload) which has substitutions of all (if any) references to a SecretManager SecretVersion resources. This substitution only works for a Parameter which is in JSON or YAML format.",
           "format": "byte",
-          "readOnly": true,
           "type": "string"
         }
       },
       "type": "object"
     },
     "RenderTemplateVersionResponse": {
-      "description": "Message describing RenderTemplateVersionResponse resource",
+      "description": "Message describing response for `RenderTemplateVersion` method",
       "id": "RenderTemplateVersionResponse",
       "properties": {
         "parameterVersion": {
-          "description": "Output only. The resource name of the ParameterVersion used to render the template version in the format `projects/*/locations/*/parameters/*/versions/*`.",
-          "readOnly": true,
+          "description": "The resource name of the ParameterVersion used to render the template version in the format `projects/*/locations/*/parameters/*/versions/*`.",
           "type": "string"
         },
         "payload": {
@@ -1564,13 +1561,12 @@
           "description": "Payload content of a TemplateVersion resource."
         },
         "renderedPayload": {
-          "description": "Output only. Server generated rendered version of the user provided payload data (TemplateVersionPayload) which has all the variables resolved using the provided parameter version.",
+          "description": "Server generated rendered version of the user provided payload data (TemplateVersionPayload) which has all the variables resolved using the provided parameter version.",
           "format": "byte",
-          "readOnly": true,
           "type": "string"
         },
         "templateFormat": {
-          "description": "Output only. Format of the template version.",
+          "description": "Format of the template version.",
           "enum": [
             "TEMPLATE_FORMAT_UNSPECIFIED",
             "TEMPLATE_FORMAT_YAML",
@@ -1581,7 +1577,6 @@
             "YAML format.",
             "JSON format."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "templateVersion": {

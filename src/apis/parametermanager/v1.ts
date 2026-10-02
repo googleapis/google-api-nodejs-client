@@ -239,7 +239,7 @@ export namespace parametermanager_v1 {
    */
   export interface Schema$Parameter {
     /**
-     * Output only. [Output only] Create time stamp
+     * Output only. Create time stamp
      */
     createTime?: string | null;
     /**
@@ -255,11 +255,11 @@ export namespace parametermanager_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Identifier. [Output only] The resource name of the Parameter in the format `projects/x/locations/x/parameters/x`.
+     * Identifier. The resource name of the Parameter in the format `projects/x/locations/x/parameters/x`.
      */
     name?: string | null;
     /**
-     * Output only. [Output-only] policy member strings of a Google Cloud resource.
+     * Output only. Policy member strings of a Google Cloud resource.
      */
     policyMember?: Schema$ResourcePolicyMember;
     /**
@@ -267,7 +267,7 @@ export namespace parametermanager_v1 {
      */
     tags?: {[key: string]: string} | null;
     /**
-     * Output only. [Output only] Update time stamp
+     * Output only. Update time stamp
      */
     updateTime?: string | null;
   }
@@ -276,11 +276,11 @@ export namespace parametermanager_v1 {
    */
   export interface Schema$ParameterVersion {
     /**
-     * Optional. Output only. [Output only] The source of the checksum.
+     * Optional. Output only. The source of the checksum.
      */
     checksumSource?: string | null;
     /**
-     * Output only. [Output only] Create time stamp
+     * Output only. Create time stamp
      */
     createTime?: string | null;
     /**
@@ -288,11 +288,11 @@ export namespace parametermanager_v1 {
      */
     disabled?: boolean | null;
     /**
-     * Optional. Output only. [Output only] The resource name of the KMS key version used to encrypt the ParameterVersion payload. This field is populated only if the Parameter resource has customer managed encryption key (CMEK) configured.
+     * Optional. Output only. The resource name of the KMS key version used to encrypt the ParameterVersion payload. This field is populated only if the Parameter resource has customer managed encryption key (CMEK) configured.
      */
     kmsKeyVersion?: string | null;
     /**
-     * Identifier. [Output only] The resource name of the ParameterVersion in the format `projects/x/locations/x/parameters/x/versions/x`.
+     * Identifier. The resource name of the ParameterVersion in the format `projects/x/locations/x/parameters/x/versions/x`.
      */
     name?: string | null;
     /**
@@ -300,7 +300,7 @@ export namespace parametermanager_v1 {
      */
     payload?: Schema$ParameterVersionPayload;
     /**
-     * Output only. [Output only] Update time stamp
+     * Output only. Update time stamp
      */
     updateTime?: string | null;
   }
@@ -313,16 +313,16 @@ export namespace parametermanager_v1 {
      */
     data?: string | null;
     /**
-     * Optional. [Optional] The integrity checksum of the payload. If provided, the server will verify that the checksum matches the payload. If not provided, the server will generate the checksum.
+     * Optional. The integrity checksum of the payload. If provided, the server will verify that the checksum matches the payload. If not provided, the server will generate the checksum.
      */
     dataCrc32c?: string | null;
   }
   /**
-   * Message describing RenderParameterVersionResponse resource
+   * Message describing response of the `RenderParameterVersion` method
    */
   export interface Schema$RenderParameterVersionResponse {
     /**
-     * Output only. Resource identifier of a ParameterVersion in the format `projects/x/locations/x/parameters/x/versions/x`.
+     * Resource identifier of a ParameterVersion in the format `projects/x/locations/x/parameters/x/versions/x`.
      */
     parameterVersion?: string | null;
     /**
@@ -330,16 +330,16 @@ export namespace parametermanager_v1 {
      */
     payload?: Schema$ParameterVersionPayload;
     /**
-     * Output only. Server generated rendered version of the user provided payload data (ParameterVersionPayload) which has substitutions of all (if any) references to a SecretManager SecretVersion resources. This substitution only works for a Parameter which is in JSON or YAML format.
+     * Server generated rendered version of the user provided payload data (ParameterVersionPayload) which has substitutions of all (if any) references to a SecretManager SecretVersion resources. This substitution only works for a Parameter which is in JSON or YAML format.
      */
     renderedPayload?: string | null;
   }
   /**
-   * Message describing RenderTemplateVersionResponse resource
+   * Message describing response for `RenderTemplateVersion` method
    */
   export interface Schema$RenderTemplateVersionResponse {
     /**
-     * Output only. The resource name of the ParameterVersion used to render the template version in the format `projects/x/locations/x/parameters/x/versions/x`.
+     * The resource name of the ParameterVersion used to render the template version in the format `projects/x/locations/x/parameters/x/versions/x`.
      */
     parameterVersion?: string | null;
     /**
@@ -347,11 +347,11 @@ export namespace parametermanager_v1 {
      */
     payload?: Schema$TemplateVersionPayload;
     /**
-     * Output only. Server generated rendered version of the user provided payload data (TemplateVersionPayload) which has all the variables resolved using the provided parameter version.
+     * Server generated rendered version of the user provided payload data (TemplateVersionPayload) which has all the variables resolved using the provided parameter version.
      */
     renderedPayload?: string | null;
     /**
-     * Output only. Format of the template version.
+     * Format of the template version.
      */
     templateFormat?: string | null;
     /**
@@ -1397,7 +1397,7 @@ export namespace parametermanager_v1 {
      *
      *   // Do the magic
      *   const res = await parametermanager.projects.locations.parameters.patch({
-     *     // Identifier. [Output only] The resource name of the Parameter in the format `projects/x/locations/x/parameters/x`.
+     *     // Identifier. The resource name of the Parameter in the format `projects/x/locations/x/parameters/x`.
      *     name: 'projects/my-project/locations/my-location/parameters/my-parameter',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
@@ -1586,7 +1586,7 @@ export namespace parametermanager_v1 {
   }
   export interface Params$Resource$Projects$Locations$Parameters$Patch extends StandardParameters {
     /**
-     * Identifier. [Output only] The resource name of the Parameter in the format `projects/x/locations/x/parameters/x`.
+     * Identifier. The resource name of the Parameter in the format `projects/x/locations/x/parameters/x`.
      */
     name?: string;
     /**
@@ -2246,7 +2246,7 @@ export namespace parametermanager_v1 {
      *   // Do the magic
      *   const res =
      *     await parametermanager.projects.locations.parameters.versions.patch({
-     *       // Identifier. [Output only] The resource name of the ParameterVersion in the format `projects/x/locations/x/parameters/x/versions/x`.
+     *       // Identifier. The resource name of the ParameterVersion in the format `projects/x/locations/x/parameters/x/versions/x`.
      *       name: 'projects/my-project/locations/my-location/parameters/my-parameter/versions/my-version',
      *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
@@ -2584,7 +2584,7 @@ export namespace parametermanager_v1 {
   }
   export interface Params$Resource$Projects$Locations$Parameters$Versions$Patch extends StandardParameters {
     /**
-     * Identifier. [Output only] The resource name of the ParameterVersion in the format `projects/x/locations/x/parameters/x/versions/x`.
+     * Identifier. The resource name of the ParameterVersion in the format `projects/x/locations/x/parameters/x/versions/x`.
      */
     name?: string;
     /**
