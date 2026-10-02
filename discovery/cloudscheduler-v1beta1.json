@@ -15,6 +15,28 @@
   "description": "Creates and manages jobs run on a regular recurring schedule.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/scheduler/",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudscheduler.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudscheduler.us-west1.rep.googleapis.com/",
+      "location": "us-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudscheduler.us-west2.rep.googleapis.com/",
+      "location": "us-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudscheduler.us-west3.rep.googleapis.com/",
+      "location": "us-west3"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -567,7 +589,7 @@
       }
     }
   },
-  "revision": "20260522",
+  "revision": "20260922",
   "rootUrl": "https://cloudscheduler.googleapis.com/",
   "schemas": {
     "AppEngineHttpTarget": {
