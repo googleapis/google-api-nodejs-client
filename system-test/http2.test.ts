@@ -13,16 +13,23 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
+import {describe, it, beforeEach, afterEach} from 'mocha';
 import {google} from '../src';
 
 describe('http2', () => {
   const auth = new google.auth.GoogleAuth({
     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
   });
-  google.options({
-    auth,
-    http2: true,
+
+  beforeEach(() => {
+    google.options({
+      auth,
+      http2: true,
+    });
+  });
+
+  afterEach(() => {
+    google.options({});
   });
 
   it('should create a valid HTTP/2 API request', async () => {
@@ -30,6 +37,7 @@ describe('http2', () => {
     const storage = google.storage('v1');
     const res = await storage.buckets.list({
       project: projectId,
+      maxResults: 1,
     });
     assert.ok(res.data);
   }).timeout('30s');
