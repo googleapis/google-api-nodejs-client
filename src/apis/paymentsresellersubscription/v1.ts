@@ -788,6 +788,10 @@ export namespace paymentsresellersubscription_v1 {
      */
     oneTimeRecurrenceDetails?: Schema$SubscriptionLineItemOneTimeRecurrenceDetails;
     /**
+     * Optional. Output only. The plan type of the line item.
+     */
+    planType?: string | null;
+    /**
      * Required. Product resource name that identifies the product associated with this line item. The format is 'partners/{partner_id\}/products/{product_id\}'.
      */
     product?: string | null;
@@ -3073,6 +3077,8 @@ export namespace paymentsresellersubscription_v1 {
      *     await paymentsresellersubscription.partners.subscriptions.lineItems.patch({
      *       // Identifier. Resource name of the line item. Format: partners/{partner\}/subscriptions/{subscription\}/lineItems/{lineItem\}
      *       name: 'partners/my-partner/subscriptions/my-subscription/lineItems/my-lineItem',
+     *       // Optional. An idempotency ID for the request. A random UUID is recommended. Restricted to 36 ASCII characters.
+     *       requestId: 'placeholder-value',
      *       // Required. The list of fields to update. Only a limited set of fields can be updated. The allowed fields are the following: - `product_payload.googleHomePayload.googleStructureId`
      *       updateMask: 'placeholder-value',
      *
@@ -3089,6 +3095,7 @@ export namespace paymentsresellersubscription_v1 {
      *         //   "lineItemPromotionSpecs": [],
      *         //   "name": "my_name",
      *         //   "oneTimeRecurrenceDetails": {},
+     *         //   "planType": "my_planType",
      *         //   "product": "my_product",
      *         //   "productPayload": {},
      *         //   "recurrenceType": "my_recurrenceType",
@@ -3109,6 +3116,7 @@ export namespace paymentsresellersubscription_v1 {
      *   //   "lineItemPromotionSpecs": [],
      *   //   "name": "my_name",
      *   //   "oneTimeRecurrenceDetails": {},
+     *   //   "planType": "my_planType",
      *   //   "product": "my_product",
      *   //   "productPayload": {},
      *   //   "recurrenceType": "my_recurrenceType",
@@ -3217,6 +3225,10 @@ export namespace paymentsresellersubscription_v1 {
      * Identifier. Resource name of the line item. Format: partners/{partner\}/subscriptions/{subscription\}/lineItems/{lineItem\}
      */
     name?: string;
+    /**
+     * Optional. An idempotency ID for the request. A random UUID is recommended. Restricted to 36 ASCII characters.
+     */
+    requestId?: string;
     /**
      * Required. The list of fields to update. Only a limited set of fields can be updated. The allowed fields are the following: - `product_payload.googleHomePayload.googleStructureId`
      */
