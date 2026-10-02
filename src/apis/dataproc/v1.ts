@@ -364,6 +364,10 @@ export namespace dataproc_v1 {
     completed?: boolean | null;
     durationMillis?: string | null;
     endTime?: string | null;
+    /**
+     * Output only. The event log path for the application attempt.
+     */
+    eventLogPath?: string | null;
     lastUpdated?: string | null;
     sparkUser?: string | null;
     startTime?: string | null;
@@ -1420,6 +1424,10 @@ export namespace dataproc_v1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
+     * Optional. Controls how instances within this Cluster are allowed to exist in multiple Zones within the Region. Only one of zone_uri or multi_zone_config must be set.
+     */
+    multiZoneConfig?: Schema$MultiZoneConfig;
+    /**
      * Optional. The Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither network_uri nor subnetwork_uri is specified, the "default" network of the project is used, if it exists. Cannot be a Custom Subnet Network (see Using Subnetworks (https://cloud.google.com/compute/docs/subnetworks) for more information).A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/global/networks/default projects/[project_id]/global/networks/default default
      */
     networkUri?: string | null;
@@ -2457,6 +2465,15 @@ export namespace dataproc_v1 {
      * Required. A standard set of metrics is collected unless metricOverrides are specified for the metric source (see Custom metrics (https://cloud.google.com/dataproc/docs/guides/dataproc-metrics#custom_metrics) for more information).
      */
     metricSource?: string | null;
+  }
+  /**
+   * Configuration for multi-zonal clusters that can create instances across multiple Zones within the Region.
+   */
+  export interface Schema$MultiZoneConfig {
+    /**
+     * Optional. The distribution shape of the nodes in the multi-zonal cluster.
+     */
+    targetShape?: string | null;
   }
   /**
    * Deprecated. Used only for the deprecated beta. A full, namespace-isolated deployment target for an existing GKE cluster.
@@ -3514,7 +3531,7 @@ export namespace dataproc_v1 {
      */
     runtimeInfo?: Schema$RuntimeInfo;
     /**
-     * Optional. The session template used by the session.Only resource names, including project ID and location, are valid.Example: * https://www.googleapis.com/compute/v1/projects/[project_id]/locations/[dataproc_region]/sessionTemplates/[template_id] * projects/[project_id]/locations/[dataproc_region]/sessionTemplates/[template_id]The template must be in the same project and Dataproc region as the session.
+     * Optional. The session template used by the session.Resource names and short template IDs are valid. Examples: * projects/[project_id]/locations/[dataproc_region]/sessionTemplates/[template_id] * [template_id]The template must be in the same project and Dataproc region as the session.
      */
     sessionTemplate?: string | null;
     /**
@@ -4849,6 +4866,43 @@ export namespace dataproc_v1 {
      * Optional. A Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, the service will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
      */
     stagingBucket?: string | null;
+  }
+  /**
+   * Metadata describing the VirtualCluster operation.
+   */
+  export interface Schema$VirtualClusterOperationMetadata {
+    /**
+     * Output only. The time when the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Short description of the operation.
+     */
+    description?: string | null;
+    /**
+     * Output only. The time when the operation finished.
+     */
+    doneTime?: string | null;
+    /**
+     * Output only. Labels associated with the operation.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The operation type.
+     */
+    operationType?: string | null;
+    /**
+     * Output only. Name of the virtual cluster for the operation.
+     */
+    virtualCluster?: string | null;
+    /**
+     * Output only. VirtualCluster UUID for the operation.
+     */
+    virtualClusterUuid?: string | null;
+    /**
+     * Output only. Warnings encountered during operation execution.
+     */
+    warnings?: string[] | null;
   }
   /**
    * The workflow graph.
