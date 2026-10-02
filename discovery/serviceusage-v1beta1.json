@@ -969,7 +969,7 @@
       }
     }
   },
-  "revision": "20260819",
+  "revision": "20260921",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AddEnableRulesMetadata": {
@@ -2152,25 +2152,15 @@
       "type": "object"
     },
     "EnableRule": {
-      "description": "The consumer policy rule that defines enabled services and groups.",
+      "description": "The consumer policy rule that defines enabled services and catalogs.",
       "id": "EnableRule",
       "properties": {
-        "enableType": {
-          "deprecated": true,
-          "description": "Deprecated: EnableType is not supported.",
-          "enum": [
-            "ENABLE_TYPE_UNSPECIFIED",
-            "CLIENT",
-            "RESOURCE",
-            "V1_COMPATIBLE"
-          ],
-          "enumDescriptions": [
-            "Unspecified enable type, which means enabled as both client and resource project.",
-            "Enable all clients under the CRM node specified by `ConsumerPolicy.name` to use the listed services. A client can be an API key, an OAuth client, or a service account.",
-            "Enable resources in the list services to be created and used under the CRM node specified by the `ConsumerPolicy.name`.",
-            "Activation made by Service Usage v1 API. This will be how consumers differentiate between policy changes made by v1 and v2 clients and understand what is actually possible based on those different policies."
-          ],
-          "type": "string"
+        "catalogs": {
+          "description": "The names of the catalogs that are enabled. Example: `catalogs/default-cloud-services`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "services": {
           "description": "The names of the services that are enabled. Example: `services/storage.googleapis.com`.",
@@ -3075,6 +3065,13 @@
       "description": "The consumer policy rule that defines enabled services, groups, and categories.",
       "id": "GoogleApiServiceusageV2betaEnableRule",
       "properties": {
+        "catalogs": {
+          "description": "The names of the catalogs that are enabled. Example: `catalogs/default-cloud-services`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "services": {
           "description": "The names of the services that are enabled. Example: `services/storage.googleapis.com`.",
           "items": {
