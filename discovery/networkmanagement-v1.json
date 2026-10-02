@@ -1797,7 +1797,7 @@
       }
     }
   },
-  "revision": "20260909",
+  "revision": "20260923",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -2169,6 +2169,10 @@
           "description": "Name of a Cloud Run revision.",
           "type": "string"
         },
+        "ipAddress": {
+          "description": "IP address of a Cloud Run revision. If the Cloud Run revision is in dual-stack subnetwork, this is the IP address relevant to the trace. Populated for `ARRIVE_AT_CLOUD_RUN_REVISION` steps.",
+          "type": "string"
+        },
         "location": {
           "description": "Location in which this revision is deployed.",
           "type": "string"
@@ -2182,7 +2186,7 @@
           "type": "string"
         },
         "workerPoolUri": {
-          "description": "URI of Cloud Run worker pool this revision belongs to. Format: `projects/{project_id}/locations/{location}/workerPools/{worker_pool_id}`. Mutually exclusive with `service_uri`.",
+          "description": "URI of Cloud Run worker pool this revision belongs to. Format: `projects/{project_id}/locations/{location}/workerPools/{worker_pool_id}` Mutually exclusive with `service_uri`.",
           "type": "string"
         }
       },
@@ -2417,33 +2421,6 @@
         },
         "subnetworkUri": {
           "description": "URI of the subnetwork for direct egress. Format: `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "DirectVpcIngressConnectionInfo": {
-      "description": "For display only. Metadata associated with a serverless direct VPC ingress connection.",
-      "id": "DirectVpcIngressConnectionInfo",
-      "properties": {
-        "networkUri": {
-          "description": "URI of the VPC network for direct ingress. Format: `projects/{project_id}/global/networks/{network_id}`",
-          "type": "string"
-        },
-        "region": {
-          "description": "Region in which the Direct VPC ingress is deployed.",
-          "type": "string"
-        },
-        "selectedIpAddress": {
-          "description": "Selected destination IP address, from the selected IP range.",
-          "type": "string"
-        },
-        "selectedIpRange": {
-          "description": "Selected IP range.",
-          "type": "string"
-        },
-        "subnetworkUri": {
-          "description": "URI of the subnetwork for direct ingress. Format: `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`",
           "type": "string"
         }
       },
@@ -5440,10 +5417,6 @@
           "$ref": "DirectVpcEgressConnectionInfo",
           "description": "Display information of a serverless direct VPC egress connection."
         },
-        "directVpcIngressConnection": {
-          "$ref": "DirectVpcIngressConnectionInfo",
-          "description": "Display information of a serverless direct VPC ingress connection for Cloud Run."
-        },
         "dmsPrivateConnection": {
           "$ref": "PrivateConnectionInfo",
           "description": "Display information of a DMS Private Connection."
@@ -5591,7 +5564,6 @@
             "ARRIVE_AT_VPC_CONNECTOR",
             "ARRIVE_AT_GKE_POD",
             "DIRECT_VPC_EGRESS_CONNECTION",
-            "ARRIVE_AT_DIRECT_VPC_INGRESS_CONNECTION",
             "SERVERLESS_EXTERNAL_CONNECTION",
             "NGFW_PACKET_INSPECTION",
             "NAT",
@@ -5656,7 +5628,6 @@
             false,
             false,
             false,
-            false,
             false
           ],
           "enumDescriptions": [
@@ -5695,7 +5666,6 @@
             "Forwarding state: arriving at a VPC connector.",
             "Forwarding state: arriving at a GKE Pod.",
             "Forwarding state: for packets originating from a serverless endpoint forwarded through Direct VPC egress.",
-            "Forwarding state: arriving at a direct VPC ingress connection.",
             "Forwarding state: for packets originating from a serverless endpoint forwarded through public (external) connectivity.",
             "Forwarding state: Layer 7 packet inspection by the firewall endpoint based on the configured security profile group.",
             "Transition state: packet header translated. The `nat` field is populated with the translation information.",
