@@ -50,6 +50,9 @@
         "https://www.googleapis.com/auth/calendar.readonly": {
           "description": "See and download any calendar you can access using your Google Calendar"
         },
+        "https://www.googleapis.com/auth/calendar.settings": {
+          "description": "View and edit your Calendar settings"
+        },
         "https://www.googleapis.com/auth/calendar.settings.readonly": {
           "description": "View your Calendar settings"
         }
@@ -884,6 +887,7 @@
             "https://www.googleapis.com/auth/calendar.events.public.readonly",
             "https://www.googleapis.com/auth/calendar.events.readonly",
             "https://www.googleapis.com/auth/calendar.readonly",
+            "https://www.googleapis.com/auth/calendar.settings",
             "https://www.googleapis.com/auth/calendar.settings.readonly"
           ]
         }
@@ -1893,6 +1897,7 @@
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
             "https://www.googleapis.com/auth/calendar.readonly",
+            "https://www.googleapis.com/auth/calendar.settings",
             "https://www.googleapis.com/auth/calendar.settings.readonly"
           ]
         },
@@ -1926,6 +1931,7 @@
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
             "https://www.googleapis.com/auth/calendar.readonly",
+            "https://www.googleapis.com/auth/calendar.settings",
             "https://www.googleapis.com/auth/calendar.settings.readonly"
           ],
           "supportsSubscription": true
@@ -1964,6 +1970,7 @@
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
             "https://www.googleapis.com/auth/calendar.readonly",
+            "https://www.googleapis.com/auth/calendar.settings",
             "https://www.googleapis.com/auth/calendar.settings.readonly"
           ],
           "supportsSubscription": true
@@ -1971,7 +1978,7 @@
       }
     }
   },
-  "revision": "20260708",
+  "revision": "20260925",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
