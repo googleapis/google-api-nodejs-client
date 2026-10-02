@@ -1073,6 +1073,10 @@ export namespace alloydb_v1 {
      */
     observabilityConfig?: Schema$ObservabilityInstanceConfig;
     /**
+     * Output only. Instance level observability information, contains the effective values of observability settings for this instance, by merging customer's provided `ObservabilityInstanceConfig` with the Observability defaults.
+     */
+    observabilityInstanceInfo?: Schema$ObservabilityInstanceInfo;
+    /**
      * Output only. All outbound public IP addresses configured for the instance.
      */
     outboundPublicIpAddresses?: string[] | null;
@@ -1092,6 +1096,10 @@ export namespace alloydb_v1 {
      * Configuration for query insights.
      */
     queryInsightsConfig?: Schema$QueryInsightsInstanceConfig;
+    /**
+     * Output only. Instance level Query Insights information, which is read-only and available in the output only. Contains the effective query insights settings for this instance, by merging customer's provided `QueryInsightsInstanceConfig` with the Query Insights defaults.
+     */
+    queryInsightsInfo?: Schema$QueryInsightsInstanceInfo;
     /**
      * Read pool instance configuration. This is required if the value of instanceType is READ_POOL.
      */
@@ -1414,6 +1422,40 @@ export namespace alloydb_v1 {
      */
     trackWaitEventTypes?: boolean | null;
   }
+  export interface Schema$ObservabilityInstanceInfo {
+    /**
+     * Output only. Observability feature status for an instance.
+     */
+    enabled?: boolean | null;
+    /**
+     * Output only. Query string length. The default value is 10k.
+     */
+    maxQueryStringLength?: number | null;
+    /**
+     * Output only. Preserve comments in query string for an instance.
+     */
+    preserveComments?: boolean | null;
+    /**
+     * Output only. Number of query execution plans captured by Insights per minute for all queries combined.
+     */
+    queryPlansPerMinute?: number | null;
+    /**
+     * Output only. Record application tags for an instance.
+     */
+    recordApplicationTags?: boolean | null;
+    /**
+     * Output only. Track actively running queries on the instance.
+     */
+    trackActiveQueries?: boolean | null;
+    /**
+     * Output only. Track wait events during query execution for an instance.
+     */
+    trackWaitEvents?: boolean | null;
+    /**
+     * Output only. Track wait event types during query execution for an instance.
+     */
+    trackWaitEventTypes?: boolean | null;
+  }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
@@ -1655,6 +1697,31 @@ export namespace alloydb_v1 {
     recordApplicationTags?: boolean | null;
     /**
      * Record client address for an instance. Client address is PII information. This flag is turned "on" by default.
+     */
+    recordClientAddress?: boolean | null;
+  }
+  /**
+   * Instance level Query Insights information, which is read-only and available in the output only.
+   */
+  export interface Schema$QueryInsightsInstanceInfo {
+    /**
+     * Output only. Whether Query Insights is enabled.
+     */
+    enabled?: boolean | null;
+    /**
+     * Output only. Number of query execution plans captured per minute.
+     */
+    queryPlansPerMinute?: number | null;
+    /**
+     * Output only. Maximum query string length.
+     */
+    queryStringLength?: number | null;
+    /**
+     * Output only. Whether to record application tags.
+     */
+    recordApplicationTags?: boolean | null;
+    /**
+     * Output only. Whether to record client address.
      */
     recordClientAddress?: boolean | null;
   }
@@ -6552,11 +6619,13 @@ export namespace alloydb_v1 {
      *       //   "networkConfig": {},
      *       //   "nodes": [],
      *       //   "observabilityConfig": {},
+     *       //   "observabilityInstanceInfo": {},
      *       //   "outboundPublicIpAddresses": [],
      *       //   "pscInstanceConfig": {},
      *       //   "pscInstanceInfo": {},
      *       //   "publicIpAddress": "my_publicIpAddress",
      *       //   "queryInsightsConfig": {},
+     *       //   "queryInsightsInfo": {},
      *       //   "readPoolConfig": {},
      *       //   "reconciling": false,
      *       //   "satisfiesPzs": false,
@@ -6740,11 +6809,13 @@ export namespace alloydb_v1 {
      *         //   "networkConfig": {},
      *         //   "nodes": [],
      *         //   "observabilityConfig": {},
+     *         //   "observabilityInstanceInfo": {},
      *         //   "outboundPublicIpAddresses": [],
      *         //   "pscInstanceConfig": {},
      *         //   "pscInstanceInfo": {},
      *         //   "publicIpAddress": "my_publicIpAddress",
      *         //   "queryInsightsConfig": {},
+     *         //   "queryInsightsInfo": {},
      *         //   "readPoolConfig": {},
      *         //   "reconciling": false,
      *         //   "satisfiesPzs": false,
@@ -7217,11 +7288,13 @@ export namespace alloydb_v1 {
      *   //   "networkConfig": {},
      *   //   "nodes": [],
      *   //   "observabilityConfig": {},
+     *   //   "observabilityInstanceInfo": {},
      *   //   "outboundPublicIpAddresses": [],
      *   //   "pscInstanceConfig": {},
      *   //   "pscInstanceInfo": {},
      *   //   "publicIpAddress": "my_publicIpAddress",
      *   //   "queryInsightsConfig": {},
+     *   //   "queryInsightsInfo": {},
      *   //   "readPoolConfig": {},
      *   //   "reconciling": false,
      *   //   "satisfiesPzs": false,
@@ -7838,11 +7911,13 @@ export namespace alloydb_v1 {
      *       //   "networkConfig": {},
      *       //   "nodes": [],
      *       //   "observabilityConfig": {},
+     *       //   "observabilityInstanceInfo": {},
      *       //   "outboundPublicIpAddresses": [],
      *       //   "pscInstanceConfig": {},
      *       //   "pscInstanceInfo": {},
      *       //   "publicIpAddress": "my_publicIpAddress",
      *       //   "queryInsightsConfig": {},
+     *       //   "queryInsightsInfo": {},
      *       //   "readPoolConfig": {},
      *       //   "reconciling": false,
      *       //   "satisfiesPzs": false,

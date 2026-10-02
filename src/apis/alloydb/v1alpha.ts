@@ -509,6 +509,10 @@ export namespace alloydb_v1alpha {
      */
     etag?: string | null;
     /**
+     * Optional. Configuration that allows the customer to create an AlloyDB Express cluster.
+     */
+    expressConfig?: Schema$ExpressConfig;
+    /**
      * Optional. Deprecated and unused. This field will be removed in the near future.
      */
     geminiConfig?: Schema$GeminiClusterConfig;
@@ -963,6 +967,15 @@ export namespace alloydb_v1alpha {
     sqlExportOptions?: Schema$SqlExportOptions;
   }
   /**
+   * Configuration that allows the user to create an AlloyDB Express cluster.
+   */
+  export interface Schema$ExpressConfig {
+    /**
+     * Optional. Whether Express configuration is enabled for the cluster.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * Message for triggering failover on an Instance
    */
   export interface Schema$FailoverInstanceRequest {
@@ -1226,6 +1239,10 @@ export namespace alloydb_v1alpha {
      */
     observabilityConfig?: Schema$ObservabilityInstanceConfig;
     /**
+     * Output only. Instance level observability information, contains the effective values of observability settings for this instance, by merging customer's provided `ObservabilityInstanceConfig` with the Observability defaults.
+     */
+    observabilityInstanceInfo?: Schema$ObservabilityInstanceInfo;
+    /**
      * Output only. All outbound public IP addresses configured for the instance.
      */
     outboundPublicIpAddresses?: string[] | null;
@@ -1245,6 +1262,10 @@ export namespace alloydb_v1alpha {
      * Configuration for query insights.
      */
     queryInsightsConfig?: Schema$QueryInsightsInstanceConfig;
+    /**
+     * Output only. Instance level Query Insights information, which is read-only and available in the output only. Contains the effective query insights settings for this instance, by merging customer's provided `QueryInsightsInstanceConfig` with the Query Insights defaults.
+     */
+    queryInsightsInfo?: Schema$QueryInsightsInstanceInfo;
     /**
      * Read pool instance configuration. This is required if the value of instanceType is READ_POOL.
      */
@@ -1588,7 +1609,7 @@ export namespace alloydb_v1alpha {
      */
     trackActiveQueries?: boolean | null;
     /**
-     * Indicates whether to track active query plans for an instance. If not set, the default value is "off". Can only be enabled if track_active_queries is enabled.
+     * Indicates whether to track active query plans for an instance. If not set, the default value is "off". Can only be enabled if track_active_queries is enabled. Deprecated: Use track_active_queries instead.
      */
     trackActiveQueryPlan?: boolean | null;
     /**
@@ -1601,6 +1622,52 @@ export namespace alloydb_v1alpha {
     trackWaitEvents?: boolean | null;
     /**
      * Output only. Track wait event types during query execution for an instance. This flag is turned "on" by default but tracking is enabled only after observability enabled flag is also turned on. This is read-only flag and only modifiable by internal API.
+     */
+    trackWaitEventTypes?: boolean | null;
+  }
+  export interface Schema$ObservabilityInstanceInfo {
+    /**
+     * Output only. Whether assistive experiences are enabled for this AlloyDB instance.
+     */
+    assistiveExperiencesEnabled?: boolean | null;
+    /**
+     * Output only. Observability feature status for an instance.
+     */
+    enabled?: boolean | null;
+    /**
+     * Output only. Query string length. The default value is 10k.
+     */
+    maxQueryStringLength?: number | null;
+    /**
+     * Output only. Preserve comments in query string for an instance.
+     */
+    preserveComments?: boolean | null;
+    /**
+     * Output only. Number of query execution plans captured by Insights per minute for all queries combined.
+     */
+    queryPlansPerMinute?: number | null;
+    /**
+     * Output only. Record application tags for an instance.
+     */
+    recordApplicationTags?: boolean | null;
+    /**
+     * Output only. Track actively running queries on the instance.
+     */
+    trackActiveQueries?: boolean | null;
+    /**
+     * Output only. Indicates whether to track active query plans for an instance. Deprecated: Use track_active_queries instead.
+     */
+    trackActiveQueryPlan?: boolean | null;
+    /**
+     * Output only. Track client address for an instance.
+     */
+    trackClientAddress?: boolean | null;
+    /**
+     * Output only. Track wait events during query execution for an instance.
+     */
+    trackWaitEvents?: boolean | null;
+    /**
+     * Output only. Track wait event types during query execution for an instance.
      */
     trackWaitEventTypes?: boolean | null;
   }
@@ -1870,6 +1937,31 @@ export namespace alloydb_v1alpha {
     recordApplicationTags?: boolean | null;
     /**
      * Record client address for an instance. Client address is PII information. This flag is turned "on" by default.
+     */
+    recordClientAddress?: boolean | null;
+  }
+  /**
+   * Instance level Query Insights information, which is read-only and available in the output only.
+   */
+  export interface Schema$QueryInsightsInstanceInfo {
+    /**
+     * Output only. Whether Query Insights is enabled.
+     */
+    enabled?: boolean | null;
+    /**
+     * Output only. Number of query execution plans captured per minute.
+     */
+    queryPlansPerMinute?: number | null;
+    /**
+     * Output only. Maximum query string length.
+     */
+    queryStringLength?: number | null;
+    /**
+     * Output only. Whether to record application tags.
+     */
+    recordApplicationTags?: boolean | null;
+    /**
+     * Output only. Whether to record client address.
      */
     recordClientAddress?: boolean | null;
   }
@@ -4519,6 +4611,7 @@ export namespace alloydb_v1alpha {
      *       //   "encryptionConfig": {},
      *       //   "encryptionInfo": {},
      *       //   "etag": "my_etag",
+     *       //   "expressConfig": {},
      *       //   "geminiConfig": {},
      *       //   "initialUser": {},
      *       //   "labels": {},
@@ -4714,6 +4807,7 @@ export namespace alloydb_v1alpha {
      *       //   "encryptionConfig": {},
      *       //   "encryptionInfo": {},
      *       //   "etag": "my_etag",
+     *       //   "expressConfig": {},
      *       //   "geminiConfig": {},
      *       //   "initialUser": {},
      *       //   "labels": {},
@@ -5201,6 +5295,7 @@ export namespace alloydb_v1alpha {
      *   //   "encryptionConfig": {},
      *   //   "encryptionInfo": {},
      *   //   "etag": "my_etag",
+     *   //   "expressConfig": {},
      *   //   "geminiConfig": {},
      *   //   "initialUser": {},
      *   //   "labels": {},
@@ -5683,6 +5778,7 @@ export namespace alloydb_v1alpha {
      *       //   "encryptionConfig": {},
      *       //   "encryptionInfo": {},
      *       //   "etag": "my_etag",
+     *       //   "expressConfig": {},
      *       //   "geminiConfig": {},
      *       //   "initialUser": {},
      *       //   "labels": {},
@@ -6848,11 +6944,13 @@ export namespace alloydb_v1alpha {
      *       //   "networkConfig": {},
      *       //   "nodes": [],
      *       //   "observabilityConfig": {},
+     *       //   "observabilityInstanceInfo": {},
      *       //   "outboundPublicIpAddresses": [],
      *       //   "pscInstanceConfig": {},
      *       //   "pscInstanceInfo": {},
      *       //   "publicIpAddress": "my_publicIpAddress",
      *       //   "queryInsightsConfig": {},
+     *       //   "queryInsightsInfo": {},
      *       //   "readPoolConfig": {},
      *       //   "reconciling": false,
      *       //   "satisfiesPzi": false,
@@ -7040,11 +7138,13 @@ export namespace alloydb_v1alpha {
      *         //   "networkConfig": {},
      *         //   "nodes": [],
      *         //   "observabilityConfig": {},
+     *         //   "observabilityInstanceInfo": {},
      *         //   "outboundPublicIpAddresses": [],
      *         //   "pscInstanceConfig": {},
      *         //   "pscInstanceInfo": {},
      *         //   "publicIpAddress": "my_publicIpAddress",
      *         //   "queryInsightsConfig": {},
+     *         //   "queryInsightsInfo": {},
      *         //   "readPoolConfig": {},
      *         //   "reconciling": false,
      *         //   "satisfiesPzi": false,
@@ -7520,11 +7620,13 @@ export namespace alloydb_v1alpha {
      *   //   "networkConfig": {},
      *   //   "nodes": [],
      *   //   "observabilityConfig": {},
+     *   //   "observabilityInstanceInfo": {},
      *   //   "outboundPublicIpAddresses": [],
      *   //   "pscInstanceConfig": {},
      *   //   "pscInstanceInfo": {},
      *   //   "publicIpAddress": "my_publicIpAddress",
      *   //   "queryInsightsConfig": {},
+     *   //   "queryInsightsInfo": {},
      *   //   "readPoolConfig": {},
      *   //   "reconciling": false,
      *   //   "satisfiesPzi": false,
@@ -8148,11 +8250,13 @@ export namespace alloydb_v1alpha {
      *       //   "networkConfig": {},
      *       //   "nodes": [],
      *       //   "observabilityConfig": {},
+     *       //   "observabilityInstanceInfo": {},
      *       //   "outboundPublicIpAddresses": [],
      *       //   "pscInstanceConfig": {},
      *       //   "pscInstanceInfo": {},
      *       //   "publicIpAddress": "my_publicIpAddress",
      *       //   "queryInsightsConfig": {},
+     *       //   "queryInsightsInfo": {},
      *       //   "readPoolConfig": {},
      *       //   "reconciling": false,
      *       //   "satisfiesPzi": false,
