@@ -5158,6 +5158,188 @@
                 }
               }
             },
+            "rateLimitPolicies": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new `RateLimitPolicy` in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/rateLimitPolicies",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.rateLimitPolicies.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Specifies the value for parent.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "rateLimitPolicyId": {
+                      "description": "Required. Specifies the ID of the requesting object. If auto-generating Id server-side, remove this field and rate_limit_policy_id from the method_signature of Create RPC",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. Specifies an optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/rateLimitPolicies",
+                  "request": {
+                    "$ref": "RateLimitPolicy"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single `RateLimitPolicy`.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/rateLimitPolicies/{rateLimitPoliciesId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.rateLimitPolicies.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Specifies the name of the resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/rateLimitPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. Specifies an optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single `RateLimitPolicy`.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/rateLimitPolicies/{rateLimitPoliciesId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.rateLimitPolicies.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Specifies the name of the resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/rateLimitPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "RateLimitPolicy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists `RateLimitPolicy` resources in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/rateLimitPolicies",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.rateLimitPolicies.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filters results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Provides a hint for how to order the results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Specifies the requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Identifies a token for a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Specifies the parent value for `ListRateLimitPoliciesRequest`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/rateLimitPolicies",
+                  "response": {
+                    "$ref": "ListRateLimitPoliciesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single `RateLimitPolicy`.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/rateLimitPolicies/{rateLimitPoliciesId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.rateLimitPolicies.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Specifies the name of the `RateLimitPolicy` resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/rateLimitPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. Specifies an optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Specifies the fields to be overwritten in the `RateLimitPolicy` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "RateLimitPolicy"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "sacAttachments": {
               "methods": {
                 "create": {
@@ -6346,7 +6528,7 @@
       }
     }
   },
-  "revision": "20260910",
+  "revision": "20260924",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -8882,6 +9064,31 @@
       },
       "type": "object"
     },
+    "ListRateLimitPoliciesResponse": {
+      "description": "Contains a response to listing `RateLimitPolicy` resources.",
+      "id": "ListRateLimitPoliciesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Identifies a token for a page of results the server should return.",
+          "type": "string"
+        },
+        "rateLimitPolicies": {
+          "description": "Contains a list of `RateLimitPolicy` resources.",
+          "items": {
+            "$ref": "RateLimitPolicy"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Lists locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListSACAttachmentsResponse": {
       "description": "Response for `ListSACAttachments` method.",
       "id": "ListSACAttachmentsResponse",
@@ -9705,6 +9912,524 @@
         "verb": {
           "description": "Output only. Name of the verb executed by the operation.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicy": {
+      "description": "Describes a `RateLimitPolicy` object.",
+      "id": "RateLimitPolicy",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Represents the create timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Provides a human-readable description of the resource.",
+          "type": "string"
+        },
+        "httpRules": {
+          "description": "Optional. Specifies a list of rate limit HTTP rules to match against the incoming request.",
+          "items": {
+            "$ref": "RateLimitPolicyRateLimitRule"
+          },
+          "type": "array"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Stores labels as key value pairs.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. Specifies the name of the `RateLimitPolicy` resource.",
+          "type": "string"
+        },
+        "rateLimitBuckets": {
+          "description": "Optional. Specifies a list of rate limit buckets to be used for rate limiting. Rate limit buckets will be referenced by the rate limit actions by name.",
+          "items": {
+            "$ref": "RateLimitPolicyRateLimitBucket"
+          },
+          "type": "array"
+        },
+        "targets": {
+          "description": "Required. Specifies a list of targets to which this policy applies.",
+          "items": {
+            "$ref": "RateLimitPolicyTarget"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. Represents the update timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitBucket": {
+      "description": "Describes properties of a rate limit bucket.",
+      "id": "RateLimitPolicyRateLimitBucket",
+      "properties": {
+        "defaultLimit": {
+          "$ref": "RateLimitPolicyRateLimitBucketLimit",
+          "description": "Required. Specifies the default limit to apply for this rate limit bucket."
+        },
+        "dryRun": {
+          "description": "Optional. Specifies whether the rate limit bucket is in dry-run mode.",
+          "type": "boolean"
+        },
+        "keys": {
+          "description": "Required. Specifies the keys to use for rate limiting. At least one key is required. If multiple keys are specified, the keys will be combined and used as a single key.",
+          "items": {
+            "$ref": "RateLimitPolicyRateLimitBucketKey"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. Specifies the name of the rate limit bucket. Name will be used to reference the bucket in the RateLimitAction.",
+          "type": "string"
+        },
+        "userOverrides": {
+          "description": "Optional. Specifies a list of user overrides to apply to the rate limit bucket.",
+          "items": {
+            "$ref": "RateLimitPolicyRateLimitBucketUserOverride"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitBucketCountLimit": {
+      "description": "Describes the count limit for enforcement.",
+      "id": "RateLimitPolicyRateLimitBucketCountLimit",
+      "properties": {
+        "count": {
+          "description": "Required. Specifies the maximum number of costs allowed in the specified interval. Must be non-negative.",
+          "format": "int64",
+          "type": "string"
+        },
+        "interval": {
+          "description": "Required. Specifies the interval in units for which the count limit is enforced. Must be positive.",
+          "format": "int64",
+          "type": "string"
+        },
+        "intervalUnit": {
+          "description": "Required. Specifies the unit of the interval. Defaults to MINUTES.",
+          "enum": [
+            "INTERVAL_UNIT_UNSPECIFIED",
+            "SECONDS",
+            "MINUTES",
+            "HOURS",
+            "DAYS"
+          ],
+          "enumDescriptions": [
+            "Represents an unspecified interval unit. Defaults to MINUTES.",
+            "Indicates the interval is in seconds.",
+            "Indicates the interval is in minutes.",
+            "Indicates the interval is in hours.",
+            "Indicates the interval is in days."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitBucketKey": {
+      "description": "Describes properties of a key to use for rate limiting.",
+      "id": "RateLimitPolicyRateLimitBucketKey",
+      "properties": {
+        "header": {
+          "description": "Optional. Specifies the header name if key_type is HTTP_HEADER.",
+          "type": "string"
+        },
+        "keyType": {
+          "description": "Required. Specifies the type of key to use for rate limiting.",
+          "enum": [
+            "KEY_TYPE_UNSPECIFIED",
+            "ALL",
+            "SOURCE_IP",
+            "HTTP_HEADER",
+            "HTTP_PATH",
+            "PRINCIPAL",
+            "MCP_TOOL"
+          ],
+          "enumDescriptions": [
+            "Represents an unspecified key type. Defaults to ALL.",
+            "Represents the default key type. Uses a single key for all requests. Used for tracking all requests for a single service.",
+            "Uses the client source IP address of the request as the key.",
+            "Uses an HTTP header as the key. The header name must be specified below.",
+            "Uses the HTTP path of the request as the key.",
+            "Uses the principal of the request as the key. The principal type must be specified below.",
+            "Uses MCP tool as the key."
+          ],
+          "type": "string"
+        },
+        "principalType": {
+          "description": "Optional. Specifies the principal type if key_type is PRINCIPAL.",
+          "enum": [
+            "PRINCIPAL_TYPE_UNSPECIFIED",
+            "CLIENT_CERT_COMMON_NAME"
+          ],
+          "enumDescriptions": [
+            "Represents an unspecified principal type. Defaults to CLIENT_CERT_COMMON_NAME.",
+            "Uses the common name in the client's certificate. Using common name as key while multiple common names are present in the client certificate is not supported."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitBucketLimit": {
+      "description": "Describes a limit for enforcement.",
+      "id": "RateLimitPolicyRateLimitBucketLimit",
+      "properties": {
+        "countLimit": {
+          "$ref": "RateLimitPolicyRateLimitBucketCountLimit",
+          "description": "Required. Defines the count limit to enforce."
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitBucketUserOverride": {
+      "description": "Describes properties of a user override for the rate limit bucket.",
+      "id": "RateLimitPolicyRateLimitBucketUserOverride",
+      "properties": {
+        "limit": {
+          "$ref": "RateLimitPolicyRateLimitBucketLimit",
+          "description": "Required. Specifies the limit to apply for this specific key."
+        },
+        "overrideKey": {
+          "$ref": "RateLimitPolicyRateLimitBucketUserOverrideOverrideKey",
+          "description": "Required. Specifies the key to override."
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitBucketUserOverrideOverrideKey": {
+      "description": "Specifies the key to override. Key fields must match the key types specified in the rate limit bucket. Key type ALL does not support overrides.",
+      "id": "RateLimitPolicyRateLimitBucketUserOverrideOverrideKey",
+      "properties": {
+        "httpHeaders": {
+          "description": "Optional. Specifies the HTTP headers if the rate limit bucket keys contain keys of type HTTP_HEADER. Number of headers and header names must match the rate limit bucket key.",
+          "items": {
+            "$ref": "RateLimitPolicyRateLimitBucketUserOverrideOverrideKeyHttpHeader"
+          },
+          "type": "array"
+        },
+        "httpPath": {
+          "description": "Optional. Specifies the HTTP path if the rate limit bucket keys contain a key of type HTTP_PATH.",
+          "type": "string"
+        },
+        "mcpTool": {
+          "description": "Optional. Specifies the MCP tool if the rate limit bucket keys contain a key of type MCP_TOOL.",
+          "type": "string"
+        },
+        "principals": {
+          "description": "Optional. Specifies the principals if the rate limit bucket keys contain keys of PRINCIPAL. Number of principals and principal types must match the rate limit bucket key.",
+          "items": {
+            "$ref": "RateLimitPolicyRateLimitBucketUserOverrideOverrideKeyPrincipal"
+          },
+          "type": "array"
+        },
+        "sourceIp": {
+          "description": "Optional. Specifies the source IP if the rate limit bucket keys contain a key of type SOURCE_IP.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitBucketUserOverrideOverrideKeyHttpHeader": {
+      "description": "Specifies the key in the type HTTP header to override.",
+      "id": "RateLimitPolicyRateLimitBucketUserOverrideOverrideKeyHttpHeader",
+      "properties": {
+        "header": {
+          "description": "Required. Specifies the header name of the key.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. Specifies the header value of the key.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitBucketUserOverrideOverrideKeyPrincipal": {
+      "description": "Specifies the key in the type PRINCIPAL to override.",
+      "id": "RateLimitPolicyRateLimitBucketUserOverrideOverrideKeyPrincipal",
+      "properties": {
+        "principal": {
+          "description": "Required. Specifies the principal value of the key.",
+          "type": "string"
+        },
+        "principalType": {
+          "description": "Required. Specifies the principal type of the key.",
+          "enum": [
+            "PRINCIPAL_TYPE_UNSPECIFIED",
+            "CLIENT_CERT_COMMON_NAME"
+          ],
+          "enumDescriptions": [
+            "Represents an unspecified principal type. Defaults to CLIENT_CERT_COMMON_NAME.",
+            "Uses the common name in the client's certificate. Using common name as key while multiple common names are present in the client certificate is not supported."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitRule": {
+      "description": "Specifies conditions to match against the incoming request.",
+      "id": "RateLimitPolicyRateLimitRule",
+      "properties": {
+        "from": {
+          "$ref": "RateLimitPolicyRateLimitRuleFrom",
+          "description": "Optional. Describes properties of a source of a request."
+        },
+        "rateLimitActions": {
+          "description": "Optional. Specifies the actions to take when this rule is matched.",
+          "items": {
+            "$ref": "RateLimitPolicyRateLimitRuleRateLimitAction"
+          },
+          "type": "array"
+        },
+        "to": {
+          "$ref": "RateLimitPolicyRateLimitRuleTo",
+          "description": "Optional. Describes properties of a target of a request."
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitRuleFrom": {
+      "description": "Describes properties of the sources of a request.",
+      "id": "RateLimitPolicyRateLimitRuleFrom",
+      "properties": {
+        "notSource": {
+          "$ref": "RateLimitPolicyRateLimitRuleFromSource",
+          "description": "Optional. Describes the negated properties of request source. Matches requests from source that does not match the criteria specified in this field. At least one of source or not_source must be specified."
+        },
+        "source": {
+          "$ref": "RateLimitPolicyRateLimitRuleFromSource",
+          "description": "Optional. Describes the properties of a request's source. At least one of source or not_source must be specified. A match occurs when ANY fields in either source or not_source matches the request. Within a single source, the match follows OR semantics across fields and AND semantics within a single field."
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitRuleFromSource": {
+      "description": "Describes the properties of a request source.",
+      "id": "RateLimitPolicyRateLimitRuleFromSource",
+      "properties": {
+        "principals": {
+          "description": "Required. Contains a list of identities derived from the client's certificate. This field does not match on a request unless frontend mutual TLS is enabled for the Gateway and the client certificate is successfully validated by mTLS. Each identity is a string whose value is matched against a list of URI SANs, DNS Name SANs, or the common name in the client's certificate. A match happens when any principal matches with the rule.",
+          "items": {
+            "$ref": "RateLimitPolicyRateLimitRulePrincipal"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitRuleHeaderMatch": {
+      "description": "Determines how an HTTP header is matched.",
+      "id": "RateLimitPolicyRateLimitRuleHeaderMatch",
+      "properties": {
+        "name": {
+          "description": "Optional. Specifies the name of the header in the request.",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "RateLimitPolicyRateLimitRuleStringMatch",
+          "description": "Optional. Specifies how the header match is performed."
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitRulePrincipal": {
+      "description": "Describes the properties of a principal for matching.",
+      "id": "RateLimitPolicyRateLimitRulePrincipal",
+      "properties": {
+        "principal": {
+          "$ref": "RateLimitPolicyRateLimitRuleStringMatch",
+          "description": "Required. Matches a non-empty string against the principal value based on the principal_selector."
+        },
+        "principalSelector": {
+          "description": "Optional. Decides what principal value the principal rule will match against. If not specified, defaults to CLIENT_CERT_URI_SAN.",
+          "enum": [
+            "PRINCIPAL_SELECTOR_UNSPECIFIED",
+            "CLIENT_CERT_URI_SAN",
+            "CLIENT_CERT_DNS_NAME_SAN",
+            "CLIENT_CERT_COMMON_NAME"
+          ],
+          "enumDescriptions": [
+            "Represents an unspecified principal selector. Defaults to CLIENT_CERT_URI_SAN by default.",
+            "Matches the principal rule against a list of URI SANs in the validated client's certificate. A match happens when there is any exact URI SAN value match. This is the default principal selector.",
+            "Matches the principal rule against a list of DNS Name SANs in the validated client's certificate. A match happens when there is any exact DNS Name SAN value match.",
+            "Matches the principal rule against the common name in the client's certificate. A match happens when there is an exact common name value match."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitRuleRateLimitAction": {
+      "description": "Describes the action to take when the rate limit rule is matched.",
+      "id": "RateLimitPolicyRateLimitRuleRateLimitAction",
+      "properties": {
+        "rateLimitBucket": {
+          "description": "Required. Specifies the name of the rate limit bucket to apply when this rule is matched.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitRuleStringMatch": {
+      "description": "Determines how a string value is matched.",
+      "id": "RateLimitPolicyRateLimitRuleStringMatch",
+      "properties": {
+        "contains": {
+          "description": "Checks if the input string contains the substring specified here. Note: empty contains match is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``xyz.abc.def``",
+          "type": "string"
+        },
+        "exact": {
+          "description": "Matches the input string exactly to the string specified here. Examples: * ``abc`` only matches the value ``abc``.",
+          "type": "string"
+        },
+        "ignoreCase": {
+          "description": "Optional. Indicates if the exact/prefix/suffix/contains matching should be case insensitive. For example, when true, the matcher ``data`` matches both input strings ``Data`` and ``data``.",
+          "type": "boolean"
+        },
+        "prefix": {
+          "description": "Checks if the input string has the prefix specified here. Note: empty prefix is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``abc.xyz``",
+          "type": "string"
+        },
+        "suffix": {
+          "description": "Checks if the input string has the suffix specified here. Note: empty suffix is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``xyz.abc``",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitRuleTo": {
+      "description": "Describes properties of the targets of a request.",
+      "id": "RateLimitPolicyRateLimitRuleTo",
+      "properties": {
+        "destination": {
+          "$ref": "RateLimitPolicyRateLimitRuleToDestination",
+          "description": "Optional. Describes properties of a request's destination. At least one of destination or not_destination must be specified. A match occurs when ANY fields in either destination or not_destination matches the request. Within a destination, the match follows OR semantics across fields and AND semantics within a single field."
+        },
+        "notDestination": {
+          "$ref": "RateLimitPolicyRateLimitRuleToDestination",
+          "description": "Optional. Describes the negated properties of a request's destination. Matches requests for destination that does not match the criteria specified in this field. At least one of destination or not_destination must be specified."
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitRuleToDestination": {
+      "description": "Describes properties of a request target.",
+      "id": "RateLimitPolicyRateLimitRuleToDestination",
+      "properties": {
+        "headerSet": {
+          "$ref": "RateLimitPolicyRateLimitRuleToDestinationHeaderSet",
+          "description": "Optional. Specifies a list of headers to match against in http header."
+        },
+        "hosts": {
+          "description": "Optional. Specifies a list of HTTP Hosts to match against. The match can be one of exact, prefix, suffix, or contains (substring match). Matches are always case sensitive unless the ignoreCase is set. The match follows OR semantics which means that if any of the hosts match, the operation is considered to be matched.",
+          "items": {
+            "$ref": "RateLimitPolicyRateLimitRuleStringMatch"
+          },
+          "type": "array"
+        },
+        "mcp": {
+          "$ref": "RateLimitPolicyRateLimitRuleToDestinationMCP",
+          "description": "Optional. Specifies the MCP protocol attributes to match against. This field is only valid if the targeted Gateway or Forwarding Rule has an Agent Gateway attached to it."
+        },
+        "methods": {
+          "description": "Optional. Specifies a list of HTTP methods to match against. Each entry must be a valid HTTP method name (GET, PUT, POST, HEAD, PATCH, DELETE, OPTIONS). It only allows exact match and is always case sensitive. The match follows OR semantics which means that if any of the methods match, the operation is considered to be matched.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "paths": {
+          "description": "Optional. Specifies a list of paths to match against. The match can be one of exact, prefix, suffix, or contains (substring match). Matches are always case sensitive unless the ignoreCase is set. The match follows OR semantics which means that if any of the paths match, the operation is considered to be matched. Note that this path match includes the query parameters. For gRPC services, this should be a fully-qualified name of the form /package.service/method.",
+          "items": {
+            "$ref": "RateLimitPolicyRateLimitRuleStringMatch"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitRuleToDestinationHeaderSet": {
+      "description": "Describes a set of HTTP headers to match against.",
+      "id": "RateLimitPolicyRateLimitRuleToDestinationHeaderSet",
+      "properties": {
+        "headers": {
+          "description": "Required. Contains a list of headers to match against in http header. The match can be one of exact, prefix, suffix, or contains (substring match). The match follows AND semantics which means all the headers must match. Matches are always case sensitive unless the ignoreCase is set.",
+          "items": {
+            "$ref": "RateLimitPolicyRateLimitRuleHeaderMatch"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitRuleToDestinationMCP": {
+      "description": "Describes a set of MCP protocol attributes to match against for a given MCP request. This field is only valid if the targeted Gateway or Forwarding Rule has an Agent Gateway attached to it.",
+      "id": "RateLimitPolicyRateLimitRuleToDestinationMCP",
+      "properties": {
+        "baseProtocolMethodsOption": {
+          "description": "Optional. If specified, matches on the MCP protocol’s non-access specific methods namely: * initialize * completion/ * logging/ * notifications/ * ping Defaults to SKIP_BASE_PROTOCOL_METHODS if not specified.",
+          "enum": [
+            "BASE_PROTOCOL_METHODS_OPTION_UNSPECIFIED",
+            "SKIP_BASE_PROTOCOL_METHODS",
+            "MATCH_BASE_PROTOCOL_METHODS"
+          ],
+          "enumDescriptions": [
+            "Unspecified option. Defaults to SKIP_BASE_PROTOCOL_METHODS.",
+            "Skip matching on the base MCP protocol methods.",
+            "Match on the base MCP protocol methods."
+          ],
+          "type": "string"
+        },
+        "methods": {
+          "description": "Optional. A list of MCP methods and associated parameter names to match on. It is recommended to use this field to match on tools, prompts and resource accesses while setting the baseProtocolMethodsOption to MATCH_BASE_PROTOCOL_METHODS to match on all the other MCP protocol methods. Limited to 10 MCP methods per Rate Limit Policy.",
+          "items": {
+            "$ref": "RateLimitPolicyRateLimitRuleToDestinationMCPMethod"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyRateLimitRuleToDestinationMCPMethod": {
+      "description": "Describes a set of MCP methods to match against. This field is only valid if the targeted Gateway or Forwarding Rule has an Agent Gateway attached to it.",
+      "id": "RateLimitPolicyRateLimitRuleToDestinationMCPMethod",
+      "properties": {
+        "name": {
+          "description": "Required. Specifies the MCP method to match against. Allowed values are as follows: 1. `tools`, `prompts`, `resources` - these will match against all sub methods under the respective methods. 2. `prompts/list`, `tools/list`, `resources/list`, `resources/templates/list` 3. `prompts/get`, `tools/call`, `resources/subscribe`, `resources/unsubscribe`, `resources/read` Params cannot be specified for categories 1 and 2.",
+          "type": "string"
+        },
+        "params": {
+          "description": "Optional. Specifies a list of MCP method parameter names to match against. The match can be one of exact, prefix, suffix, or contains (substring match). Matches are always case sensitive unless the ignoreCase is set.",
+          "items": {
+            "$ref": "RateLimitPolicyRateLimitRuleStringMatch"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RateLimitPolicyTarget": {
+      "description": "Specifies the target to which this policy applies.",
+      "id": "RateLimitPolicyTarget",
+      "properties": {
+        "resource": {
+          "description": "Required. Reference to a Gateway or Forwarding Rule resource on which this policy will be applied.",
           "type": "string"
         }
       },
