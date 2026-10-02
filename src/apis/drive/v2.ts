@@ -11380,7 +11380,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Deletes a permission from a file or shared drive. **Warning:** Concurrent permissions operations on the same file are not supported; only the last update is applied.
+     * Deletes a permission from a file or shared drive. **Warning:** Concurrent permission modifications (such as update or delete) on the same file, folder, or shared drive aren't supported across any users or clients; only the last update is applied.
      * @example
      * ```js
      * // Before running the sample:
@@ -11839,7 +11839,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Inserts a permission for a file or shared drive. **Warning:** Concurrent permissions operations on the same file are not supported; only the last update is applied.
+     * Inserts a permission for a file or shared drive. **Warning:** Concurrent permission modifications (such as update or delete) on the same file, folder, or shared drive aren't supported across any users or clients; only the last update is applied.
      * @example
      * ```js
      * // Before running the sample:
@@ -12202,7 +12202,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Updates a permission using patch semantics. **Warning:** Concurrent permissions operations on the same file are not supported; only the last update is applied.
+     * Updates a permission using patch semantics. **Warning:** Concurrent permission modifications (such as update or delete) on the same file, folder, or shared drive aren't supported across any users or clients; only the last update is applied.
      * @example
      * ```js
      * // Before running the sample:
@@ -12402,7 +12402,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Updates a permission. **Warning:** Concurrent permissions operations on the same file are not supported; only the last update is applied.
+     * Updates a permission. **Warning:** Concurrent permission modifications (such as update or delete) on the same file, folder, or shared drive aren't supported across any users or clients; only the last update is applied.
      * @example
      * ```js
      * // Before running the sample:
