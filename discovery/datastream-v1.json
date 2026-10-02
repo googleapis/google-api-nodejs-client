@@ -1493,7 +1493,7 @@
       }
     }
   },
-  "revision": "20260719",
+  "revision": "20260923",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -4714,7 +4714,12 @@
     "SqlServerChangeTables": {
       "description": "Configuration to use Change Tables CDC read method.",
       "id": "SqlServerChangeTables",
-      "properties": {},
+      "properties": {
+        "ddlConfig": {
+          "$ref": "SqlServerDdlConfig",
+          "description": "Optional. DDL configuration for change tables."
+        }
+      },
       "type": "object"
     },
     "SqlServerColumn": {
@@ -4756,6 +4761,21 @@
           "description": "Column scale.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerDdlConfig": {
+      "description": "DDL configuration for change tables.",
+      "id": "SqlServerDdlConfig",
+      "properties": {
+        "autoCreateNewCaptureInstanceOnDdl": {
+          "description": "Optional. If set to true, Datastream will automatically create a new capture instance when DDL is detected on a table.The customer will be responsible for deleting it so that the next set of DDLs can be handled. The default is false and it means that DDL's will not be handled .",
+          "type": "boolean"
+        },
+        "autoDeleteOldCaptureInstance": {
+          "description": "Optional. If set to true, Datastream will automatically delete the old capture instance after creating a new one to support a DDL change. The default is false and means that the customer has to delete the old capture instance manually.",
+          "type": "boolean"
         }
       },
       "type": "object"
