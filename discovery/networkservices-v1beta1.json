@@ -685,7 +685,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Used to specify the fields to be overwritten in the `AuthzExtension` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not specify a mask, then all fields are overwritten.",
+                      "description": "Optional. Used to specify the fields to be overwritten in the `AuthzExtension` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not specify a mask, then all fields are overwritten.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -2999,6 +2999,11 @@
                       "required": true,
                       "type": "string"
                     },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees this for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID version 4 with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "serviceBindingId": {
                       "description": "Required. Short name of the ServiceBinding resource to be created.",
                       "location": "query",
@@ -3030,6 +3035,11 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/serviceBindings/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees this for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID version 4 with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
                       "type": "string"
                     }
                   },
@@ -3116,6 +3126,11 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/serviceBindings/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees this for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID version 4 with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
                       "type": "string"
                     },
                     "updateMask": {
@@ -3921,7 +3936,7 @@
       }
     }
   },
-  "revision": "20260901",
+  "revision": "20260921",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AgentConnectivityTemplate": {
@@ -4392,8 +4407,16 @@
       "id": "DnsPeeringConfig",
       "properties": {
         "domain": {
-          "description": "Optional. The domain to peer.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use `domains` instead. The domain to peer.",
           "type": "string"
+        },
+        "domains": {
+          "description": "Optional. The domains to peer.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "targetNetwork": {
           "description": "Optional. The target network resource name for DNS peering. Format: projects/{project}/global/networks/{network_id}",
@@ -4403,6 +4426,7 @@
       "type": "object"
     },
     "EgressNetworkConfig": {
+      "description": "Egress network config",
       "id": "EgressNetworkConfig",
       "properties": {
         "dnsPeeringConfig": {
@@ -4412,6 +4436,10 @@
         "networkAttachment": {
           "description": "Optional. The network attachment resource name. Format: projects/{project}/regions/{region}/networkAttachments/{network_attachment_id}",
           "type": "string"
+        },
+        "tlsConfig": {
+          "$ref": "EgressNetworkConfigTlsConfig",
+          "description": "Optional. The TLS configuration for the egress traffic."
         },
         "trustConfig": {
           "deprecated": true,
@@ -4430,6 +4458,31 @@
             "All outbound traffic is routed through the VPC connector.",
             "Only private IP ranges are routed through the VPC connector."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EgressNetworkConfigTlsConfig": {
+      "description": "Configuration for TLS connections.",
+      "id": "EgressNetworkConfigTlsConfig",
+      "properties": {
+        "additionalRoots": {
+          "description": "Optional. The additional roots to trust.",
+          "enum": [
+            "ADDITIONAL_ROOTS_UNSPECIFIED",
+            "NO_ADDITIONAL_ROOTS",
+            "PUBLICLY_TRUSTED_ROOTS"
+          ],
+          "enumDescriptions": [
+            "Unspecified additional roots.",
+            "Trust only the certificates provided in `trust_config`.",
+            "Trust certificates provided in `trust_config` and publicly trusted roots."
+          ],
+          "type": "string"
+        },
+        "trustConfig": {
+          "description": "Optional. The trust config resource name. Format: projects/{project}/locations/{location}/trustConfigs/{trust_config}",
           "type": "string"
         }
       },
@@ -4759,7 +4812,7 @@
       "id": "ExtensionChain",
       "properties": {
         "extensions": {
-          "description": "Required. A set of extensions to execute for the matching request. At least one extension is required. Up to 3 extensions can be defined for each extension chain for `LbTrafficExtension` resource. `LbRouteExtension` and `LbEdgeExtension` chains are limited to 1 extension per extension chain.",
+          "description": "Required. A set of extensions to execute for the matching request. At least one extension is required. Up to 3 extensions can be defined for each extension chain for `LbTrafficExtension` resource. `LbRouteExtension`, `LbEdgeExtension`, and `LbTcpExtension` chains are limited to 1 extension per extension chain.",
           "items": {
             "$ref": "ExtensionChainExtension"
           },
@@ -4855,7 +4908,7 @@
           "type": "string"
         },
         "supportedEvents": {
-          "description": "Optional. A set of events during request or response processing for which this extension is called. For the `LbTrafficExtension` resource, this field is required. For the `LbRouteExtension` resource, this field is optional. If unspecified, `REQUEST_HEADERS` event is assumed as supported. For the `LbEdgeExtension` resource, this field is required and must only contain `REQUEST_HEADERS` event. For the `AuthzExtension` resource, this field is optional. `REQUEST_HEADERS` is the only supported event. If unspecified, `REQUEST_HEADERS` event is assumed as supported.",
+          "description": "Optional. A set of events during request or response processing for which this extension is called. For the `LbTrafficExtension` resource, this field is required. For the `LbRouteExtension` resource, this field is optional. If unspecified, `REQUEST_HEADERS` event is assumed as supported. For the `LbEdgeExtension` resource, this field is required and must only contain `REQUEST_HEADERS` event. For the `AuthzExtension` resource, this field is optional. `REQUEST_HEADERS` is the only supported event. If unspecified, `REQUEST_HEADERS` event is assumed as supported. For the `CdnEdgeExtension` resource, this field is optional. Eligible values are `REQUEST_HEADERS` and `RESPONSE_HEADERS`. If unspecified, both are assumed as supported.",
           "items": {
             "enum": [
               "EVENT_TYPE_UNSPECIFIED",
@@ -6078,7 +6131,7 @@
           "type": "string"
         },
         "extensionChains": {
-          "description": "Required. A set of ordered extension chains that contain the match conditions and extensions to execute. Match conditions for each extension chain are evaluated in sequence for a given request. The first extension chain that has a condition that matches the request is executed. Any subsequent extension chains do not execute. Limited to 5 extension chains per resource.",
+          "description": "Required. A set of ordered extension chains that contain the match conditions and extensions to execute. Match conditions for each extension chain are evaluated in sequence for a given request. The first extension chain that has a condition that matches the request is executed. Any subsequent extension chains do not execute. Limited to 1 extension chain per resource.",
           "items": {
             "$ref": "ExtensionChain"
           },
