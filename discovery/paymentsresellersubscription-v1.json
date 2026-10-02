@@ -529,6 +529,11 @@
                       "required": true,
                       "type": "string"
                     },
+                    "requestId": {
+                      "description": "Optional. An idempotency ID for the request. A random UUID is recommended. Restricted to 36 ASCII characters.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "updateMask": {
                       "description": "Required. The list of fields to update. Only a limited set of fields can be updated. The allowed fields are the following: - `product_payload.googleHomePayload.googleStructureId`",
                       "format": "google-fieldmask",
@@ -586,7 +591,7 @@
       }
     }
   },
-  "revision": "20260816",
+  "revision": "20260929",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "Amount": {
@@ -1617,6 +1622,21 @@
           "$ref": "SubscriptionLineItemOneTimeRecurrenceDetails",
           "description": "Output only. Details only set for a ONE_TIME recurrence line item.",
           "readOnly": true
+        },
+        "planType": {
+          "description": "Optional. Output only. The plan type of the line item.",
+          "enum": [
+            "LINE_ITEM_PLAN_TYPE_UNSPECIFIED",
+            "LINE_ITEM_PLAN_TYPE_BASE",
+            "LINE_ITEM_PLAN_TYPE_ADDON"
+          ],
+          "enumDescriptions": [
+            "The line item plan type is unspecified.",
+            "The line item is the base plan in the subscription.",
+            "The line item is an add-on to the subscription."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "product": {
           "description": "Required. Product resource name that identifies the product associated with this line item. The format is 'partners/{partner_id}/products/{product_id}'.",
