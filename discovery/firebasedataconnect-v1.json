@@ -1163,6 +1163,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "migrate": {
+                      "description": "Executes SQL migration steps against the active database schema. This operation compares submitted migration steps against the schema migration ledger (`firebasesql.schema_migrations`), executes unapplied DDL, and records applied steps. It does NOT persist the GraphQL schema to the control plane.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/schemas/{schemasId}:migrate",
+                      "httpMethod": "POST",
+                      "id": "firebasedataconnect.projects.locations.services.schemas.migrate",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the target schema: projects/{project}/locations/{location}/services/{service}/schemas/{schema} Note: Only `schemas/main` is supported (singleton schema per service).",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+/schemas/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:migrate",
+                      "request": {
+                        "$ref": "MigrateSchemaRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "patch": {
                       "description": "Updates the parameters of a single Schema, and creates a new SchemaRevision with the updated Schema.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/schemas/{schemasId}",
@@ -1221,7 +1249,7 @@
       }
     }
   },
-  "revision": "20260726",
+  "revision": "20260927",
   "rootUrl": "https://firebasedataconnect.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -1994,6 +2022,59 @@
         },
         "name": {
           "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MigrateSchemaRequest": {
+      "description": "Request message for `MigrateSchema`. Next tag: 7",
+      "id": "MigrateSchemaRequest",
+      "properties": {
+        "executionMode": {
+          "description": "Optional. Execution mode controlling DDL execution and ledger recording. Defaults to EXECUTE_AND_RECORD.",
+          "enum": [
+            "EXECUTION_MODE_UNSPECIFIED",
+            "EXECUTE_AND_RECORD",
+            "EXECUTE_ONLY",
+            "RECORD_ONLY"
+          ],
+          "enumDescriptions": [
+            "Default behavior. Evaluates to EXECUTE_AND_RECORD.",
+            "Standard execution: executes DDL statements against the database catalog and records completed steps in `firebasesql.schema_migrations`.",
+            "Applies DDL statements against the database catalog without writing to the ledger. Used for maintenance scripts, temporary schema objects, and the internal declarative flow.",
+            "Records steps into `firebasesql.schema_migrations` without executing their DDL statements. Used for baselining pre-existing schemas or manual out-of-band changes (e.g. ledger-only)."
+          ],
+          "type": "string"
+        },
+        "migrationSteps": {
+          "description": "Required. Ordered migration steps from `./sql/migrations/` (or a single ad-hoc step). Backend compares submitted versions against `firebasesql.schema_migrations`: already-applied steps are verified for SQL immutability and skipped, while unapplied steps (`version > MAX(applied_version)`) are executed. All unapplied transactional steps in a single request execute atomically within one database transaction (BEGIN ... COMMIT): either every unapplied step commits and is recorded in the ledger, or the entire request rolls back. An unapplied step containing CREATE INDEX CONCURRENTLY or DROP INDEX CONCURRENTLY cannot be mixed with other unapplied steps and must be the sole unapplied step executed in the request.",
+          "items": {
+            "$ref": "MigrationStep"
+          },
+          "type": "array"
+        },
+        "validateOnly": {
+          "description": "Optional. When true, runs preflight validation (syntax, applied-step immutability, sequence ordering, CONCURRENTLY isolation, and SAVEPOINT catalog checks) without committing mutations to the database.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "MigrationStep": {
+      "description": "An individual unit of migration work. Next tag: 4",
+      "id": "MigrationStep",
+      "properties": {
+        "name": {
+          "description": "Optional. Descriptive migration label (e.g. \"create_accounts_table\"). If omitted, defaults to \"adhoc\".",
+          "type": "string"
+        },
+        "sql": {
+          "description": "Required. Raw multi-statement SQL script. The backend splits it into individual statements before execution; callers do not pre-split. Required whenever the request executes or records DDL, which is every publicly available execution mode; omitting it returns INVALID_ARGUMENT.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. Monotonic 14-digit UTC timestamp (YYYYMMDDHHMMSS), matching the timestamp prefix of the developer's migration filename. Constrained to `^[0-9]{14}$`. - When specified (file migrations): If `version` is already recorded in `firebasesql.schema_migrations`, the backend verifies that `sql` matches the recorded statements and skips execution. If `version` is unapplied, the backend validates `version > MAX(applied_version)` and records the value unchanged, so the ledger row and the on-disk filename stay identical. - When omitted (Console/ad-hoc): Backend auto-generates a 14-digit UTC timestamp.",
           "type": "string"
         }
       },
