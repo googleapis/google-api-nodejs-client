@@ -2672,7 +2672,12 @@ export namespace datastream_v1 {
   /**
    * Configuration to use Change Tables CDC read method.
    */
-  export interface Schema$SqlServerChangeTables {}
+  export interface Schema$SqlServerChangeTables {
+    /**
+     * Optional. DDL configuration for change tables.
+     */
+    ddlConfig?: Schema$SqlServerDdlConfig;
+  }
   /**
    * SQLServer Column.
    */
@@ -2709,6 +2714,19 @@ export namespace datastream_v1 {
      * Column scale.
      */
     scale?: number | null;
+  }
+  /**
+   * DDL configuration for change tables.
+   */
+  export interface Schema$SqlServerDdlConfig {
+    /**
+     * Optional. If set to true, Datastream will automatically create a new capture instance when DDL is detected on a table.The customer will be responsible for deleting it so that the next set of DDLs can be handled. The default is false and it means that DDL's will not be handled .
+     */
+    autoCreateNewCaptureInstanceOnDdl?: boolean | null;
+    /**
+     * Optional. If set to true, Datastream will automatically delete the old capture instance after creating a new one to support a DDL change. The default is false and means that the customer has to delete the old capture instance manually.
+     */
+    autoDeleteOldCaptureInstance?: boolean | null;
   }
   /**
    * SQL Server LSN position
