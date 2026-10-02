@@ -1078,6 +1078,10 @@ export namespace containeranalysis_v1 {
      */
     requestedVerifyOption?: string | null;
     /**
+     * Output only. Worker release resolved from the release channel.
+     */
+    resolvedWorkerRelease?: string | null;
+    /**
      * A list of global environment variables, which are encrypted using a Cloud Key Management Service crypto key. These values must be specified in the build's `Secret`. These variables will be available to all build steps in this build.
      */
     secretEnv?: string[] | null;
@@ -1097,6 +1101,10 @@ export namespace containeranalysis_v1 {
      * This field deprecated; please use `pool.name` instead.
      */
     workerPool?: string | null;
+    /**
+     * Optional. Option to specify which release or release channel (rapid|regular|stable) to use to run this build.
+     */
+    workerRelease?: string | null;
   }
   /**
    * Details about how a build should be executed on a `WorkerPool`. See [running builds in a private pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool) for more information.
@@ -1106,6 +1114,39 @@ export namespace containeranalysis_v1 {
      * The `WorkerPool` resource to execute the build on. You must have `cloudbuild.workerpools.use` on the project hosting the WorkerPool. Format projects/{project\}/locations/{location\}/workerPools/{workerPoolId\}
      */
     name?: string | null;
+    /**
+     * Output only. OUTPUT_ONLY. Worker release resolved from the release channel.
+     */
+    resolvedWorkerRelease?: string | null;
+    /**
+     * Output only. OUTPUT_ONLY. The release or release channel used to run the Build. This is set to the same value as `PrivatePoolV1Config.WorkerConfig.worker_release` for the UI to easily access.
+     */
+    workerRelease?: string | null;
+  }
+  /**
+   * Aggregated/summary metrics over the entire build lifecycle.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1BuildResourceUsage {
+    /**
+     * Output only. The average CPU utilization ratio across all vCPUs over the duration of the build, expressed as a fraction in the range [0.0, 1.0].
+     */
+    averageCpuUtilization?: number | null;
+    /**
+     * Output only. The average memory utilization ratio over the duration of the build, expressed as a fraction in the range [0.0, 1.0].
+     */
+    averageMemoryUtilization?: number | null;
+    /**
+     * Output only. The highest CPU utilization ratio across all vCPUs observed over the duration of the build, expressed as a fraction in the range [0.0, 1.0].
+     */
+    peakCpuUtilization?: number | null;
+    /**
+     * Output only. The highest memory utilization ratio observed over the duration of the build, expressed as a fraction in the range [0.0, 1.0].
+     */
+    peakMemoryUtilization?: number | null;
+    /**
+     * Output only. Total CPU execution time consumed across all cores during build execution.
+     */
+    totalCpuDuration?: string | null;
   }
   /**
    * A step in the build pipeline.
@@ -1504,6 +1545,10 @@ export namespace containeranalysis_v1 {
      * Python artifacts uploaded to Artifact Registry at the end of the build.
      */
     pythonPackages?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedPythonPackage[];
+    /**
+     * Output only. Aggregated metrics for the build.
+     */
+    resourceUsage?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1BuildResourceUsage;
   }
   /**
    * Pairs a set of secret environment variables containing encrypted values with the Cloud KMS key to use to decrypt the value. Note: Use `kmsKeyName` with `available_secrets` instead of using `kmsKeyName` with `secret`. For instructions see: https://cloud.google.com/cloud-build/docs/securing-builds/use-encrypted-credentials.
