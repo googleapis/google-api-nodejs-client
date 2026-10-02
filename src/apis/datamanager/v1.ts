@@ -117,6 +117,7 @@ export namespace datamanager_v1 {
     audienceMembers: Resource$Audiencemembers;
     events: Resource$Events;
     requestStatus: Resource$Requeststatus;
+    users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -129,6 +130,7 @@ export namespace datamanager_v1 {
       this.audienceMembers = new Resource$Audiencemembers(this.context);
       this.events = new Resource$Events(this.context);
       this.requestStatus = new Resource$Requeststatus(this.context);
+      this.users = new Resource$Users(this.context);
     }
   }
 
@@ -427,6 +429,16 @@ export namespace datamanager_v1 {
     recordCount?: string | null;
     userIdCount?: string | null;
   }
+  export interface Schema$IngestUsersRequest {
+    destinations?: Schema$Destination[];
+    encoding?: string | null;
+    encryptionInfo?: Schema$EncryptionInfo;
+    users?: Schema$User[];
+    validateOnly?: boolean | null;
+  }
+  export interface Schema$IngestUsersResponse {
+    requestId?: string | null;
+  }
   export interface Schema$IpData {
     ipAddress?: string | null;
     observeEndTime?: string | null;
@@ -597,6 +609,16 @@ export namespace datamanager_v1 {
     recordCount?: string | null;
     userIdCount?: string | null;
   }
+  export interface Schema$RemoveUsersRequest {
+    destinations?: Schema$Destination[];
+    encoding?: string | null;
+    encryptionInfo?: Schema$EncryptionInfo;
+    userData?: Schema$UserData[];
+    validateOnly?: boolean | null;
+  }
+  export interface Schema$RemoveUsersResponse {
+    requestId?: string | null;
+  }
   export interface Schema$RequestStatusPerDestination {
     audienceMembersIngestionStatus?: Schema$IngestAudienceMembersStatus;
     audienceMembersRemovalStatus?: Schema$RemoveAudienceMembersStatus;
@@ -638,6 +660,10 @@ export namespace datamanager_v1 {
   }
   export interface Schema$TermsOfService {
     customerMatchTermsOfServiceStatus?: string | null;
+  }
+  export interface Schema$User {
+    mobileData?: Schema$MobileData;
+    userData?: Schema$UserData;
   }
   export interface Schema$UserData {
     userIdentifiers?: Schema$UserIdentifier[];
@@ -4757,5 +4783,307 @@ export namespace datamanager_v1 {
      *
      */
     requestId?: string;
+  }
+
+  export class Resource$Users {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamanager.users.ingest({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destinations": [],
+     *       //   "encoding": "my_encoding",
+     *       //   "encryptionInfo": {},
+     *       //   "users": [],
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "requestId": "my_requestId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    ingest(
+      params: Params$Resource$Users$Ingest,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    ingest(
+      params?: Params$Resource$Users$Ingest,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$IngestUsersResponse>>;
+    ingest(
+      params: Params$Resource$Users$Ingest,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    ingest(
+      params: Params$Resource$Users$Ingest,
+      options: MethodOptions | BodyResponseCallback<Schema$IngestUsersResponse>,
+      callback: BodyResponseCallback<Schema$IngestUsersResponse>
+    ): void;
+    ingest(
+      params: Params$Resource$Users$Ingest,
+      callback: BodyResponseCallback<Schema$IngestUsersResponse>
+    ): void;
+    ingest(callback: BodyResponseCallback<Schema$IngestUsersResponse>): void;
+    ingest(
+      paramsOrCallback?:
+        | Params$Resource$Users$Ingest
+        | BodyResponseCallback<Schema$IngestUsersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IngestUsersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IngestUsersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$IngestUsersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Ingest;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Ingest;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/users:ingest').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$IngestUsersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$IngestUsersResponse>(parameters);
+      }
+    }
+
+    /**
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamanager.users.remove({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destinations": [],
+     *       //   "encoding": "my_encoding",
+     *       //   "encryptionInfo": {},
+     *       //   "userData": [],
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "requestId": "my_requestId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    remove(
+      params: Params$Resource$Users$Remove,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    remove(
+      params?: Params$Resource$Users$Remove,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RemoveUsersResponse>>;
+    remove(
+      params: Params$Resource$Users$Remove,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    remove(
+      params: Params$Resource$Users$Remove,
+      options: MethodOptions | BodyResponseCallback<Schema$RemoveUsersResponse>,
+      callback: BodyResponseCallback<Schema$RemoveUsersResponse>
+    ): void;
+    remove(
+      params: Params$Resource$Users$Remove,
+      callback: BodyResponseCallback<Schema$RemoveUsersResponse>
+    ): void;
+    remove(callback: BodyResponseCallback<Schema$RemoveUsersResponse>): void;
+    remove(
+      paramsOrCallback?:
+        | Params$Resource$Users$Remove
+        | BodyResponseCallback<Schema$RemoveUsersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RemoveUsersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RemoveUsersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RemoveUsersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Remove;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Remove;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/users:remove').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RemoveUsersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RemoveUsersResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Users$Ingest extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IngestUsersRequest;
+  }
+  export interface Params$Resource$Users$Remove extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemoveUsersRequest;
   }
 }

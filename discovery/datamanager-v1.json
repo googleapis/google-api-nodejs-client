@@ -818,9 +818,49 @@
           ]
         }
       }
+    },
+    "users": {
+      "methods": {
+        "ingest": {
+          "description": "",
+          "flatPath": "v1/users:ingest",
+          "httpMethod": "POST",
+          "id": "datamanager.users.ingest",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/users:ingest",
+          "request": {
+            "$ref": "IngestUsersRequest"
+          },
+          "response": {
+            "$ref": "IngestUsersResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/datamanager"
+          ]
+        },
+        "remove": {
+          "description": "",
+          "flatPath": "v1/users:remove",
+          "httpMethod": "POST",
+          "id": "datamanager.users.remove",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/users:remove",
+          "request": {
+            "$ref": "RemoveUsersRequest"
+          },
+          "response": {
+            "$ref": "RemoveUsersResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/datamanager"
+          ]
+        }
+      }
     }
   },
-  "revision": "20260904",
+  "revision": "20260924",
   "rootUrl": "https://datamanager.googleapis.com/",
   "schemas": {
     "AdEvent": {
@@ -2257,6 +2297,52 @@
       },
       "type": "object"
     },
+    "IngestUsersRequest": {
+      "id": "IngestUsersRequest",
+      "properties": {
+        "destinations": {
+          "items": {
+            "$ref": "Destination"
+          },
+          "type": "array"
+        },
+        "encoding": {
+          "enum": [
+            "ENCODING_UNSPECIFIED",
+            "HEX",
+            "BASE64"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "encryptionInfo": {
+          "$ref": "EncryptionInfo"
+        },
+        "users": {
+          "items": {
+            "$ref": "User"
+          },
+          "type": "array"
+        },
+        "validateOnly": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "IngestUsersResponse": {
+      "id": "IngestUsersResponse",
+      "properties": {
+        "requestId": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "IngestedUserListInfo": {
       "id": "IngestedUserListInfo",
       "properties": {
@@ -3051,6 +3137,52 @@
       },
       "type": "object"
     },
+    "RemoveUsersRequest": {
+      "id": "RemoveUsersRequest",
+      "properties": {
+        "destinations": {
+          "items": {
+            "$ref": "Destination"
+          },
+          "type": "array"
+        },
+        "encoding": {
+          "enum": [
+            "ENCODING_UNSPECIFIED",
+            "HEX",
+            "BASE64"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "encryptionInfo": {
+          "$ref": "EncryptionInfo"
+        },
+        "userData": {
+          "items": {
+            "$ref": "UserData"
+          },
+          "type": "array"
+        },
+        "validateOnly": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "RemoveUsersResponse": {
+      "id": "RemoveUsersResponse",
+      "properties": {
+        "requestId": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RequestStatusPerDestination": {
       "id": "RequestStatusPerDestination",
       "properties": {
@@ -3223,6 +3355,18 @@
             ""
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "User": {
+      "id": "User",
+      "properties": {
+        "mobileData": {
+          "$ref": "MobileData"
+        },
+        "userData": {
+          "$ref": "UserData"
         }
       },
       "type": "object"
