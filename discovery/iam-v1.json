@@ -1333,6 +1333,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "revokeSessions": {
+                  "description": "Revokes all sessions for a given WorkforcePoolSubject.",
+                  "flatPath": "v1/locations/{locationsId}/workforcePools/{workforcePoolsId}/subjects/{subjectsId}:revokeSessions",
+                  "httpMethod": "POST",
+                  "id": "iam.locations.workforcePools.subjects.revokeSessions",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the WorkforcePoolSubject. Special characters, like `/` and `:`, must be escaped, because all URLs need to conform to the \"When to Escape and Unescape\" section of [RFC3986](https://www.ietf.org/rfc/rfc2396.txt). Format: `locations/{location}/workforcePools/{workforce_pool_id}/subjects/{subject_id}`",
+                      "location": "path",
+                      "pattern": "^locations/[^/]+/workforcePools/[^/]+/subjects/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:revokeSessions",
+                  "request": {
+                    "$ref": "RevokeWorkforcePoolSubjectSessionsRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "undelete": {
                   "description": "Undeletes a WorkforcePoolSubject, as long as it was deleted fewer than 30 days ago.",
                   "flatPath": "v1/locations/{locationsId}/workforcePools/{workforcePoolsId}/subjects/{subjectsId}:undelete",
@@ -4341,7 +4369,7 @@
       }
     }
   },
-  "revision": "20260918",
+  "revision": "20260925",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AccessRestrictions": {
@@ -5870,6 +5898,12 @@
           "description": "Required. The attestation rule to be removed."
         }
       },
+      "type": "object"
+    },
+    "RevokeWorkforcePoolSubjectSessionsRequest": {
+      "description": "Request message for RevokeWorkforcePoolSubjectSessions.",
+      "id": "RevokeWorkforcePoolSubjectSessionsRequest",
+      "properties": {},
       "type": "object"
     },
     "Role": {
