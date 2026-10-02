@@ -773,7 +773,7 @@ export namespace webcontentpublisher_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous `ListPublications` call, to retrieve the next page.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent organization whose publications to list. Format: `organizations/{organization\}`.
+     *     // Required. The parent organization whose publications to list, or "organizations/-" for all organizations a user has access to. Format: `organizations/{organization\}`.
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -1097,7 +1097,7 @@ export namespace webcontentpublisher_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent organization whose publications to list. Format: `organizations/{organization\}`.
+     * Required. The parent organization whose publications to list, or "organizations/-" for all organizations a user has access to. Format: `organizations/{organization\}`.
      */
     parent?: string;
   }
