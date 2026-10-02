@@ -16,11 +16,13 @@
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {compute_alpha} from './alpha';
 import {compute_beta} from './beta';
+import {compute_preview} from './preview';
 import {compute_v1} from './v1';
 
 export const VERSIONS = {
   alpha: compute_alpha.Compute,
   beta: compute_beta.Compute,
+  preview: compute_preview.Compute,
   v1: compute_v1.Compute,
 };
 
@@ -28,10 +30,18 @@ export function compute(version: 'alpha'): compute_alpha.Compute;
 export function compute(options: compute_alpha.Options): compute_alpha.Compute;
 export function compute(version: 'beta'): compute_beta.Compute;
 export function compute(options: compute_beta.Options): compute_beta.Compute;
+export function compute(version: 'preview'): compute_preview.Compute;
+export function compute(
+  options: compute_preview.Options
+): compute_preview.Compute;
 export function compute(version: 'v1'): compute_v1.Compute;
 export function compute(options: compute_v1.Options): compute_v1.Compute;
 export function compute<
-  T = compute_alpha.Compute | compute_beta.Compute | compute_v1.Compute,
+  T =
+    | compute_alpha.Compute
+    | compute_beta.Compute
+    | compute_preview.Compute
+    | compute_v1.Compute,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
@@ -39,6 +49,8 @@ export function compute<
     | compute_alpha.Options
     | 'beta'
     | compute_beta.Options
+    | 'preview'
+    | compute_preview.Options
     | 'v1'
     | compute_v1.Options
 ) {
@@ -49,6 +61,7 @@ const auth = new AuthPlus();
 export {auth};
 export {compute_alpha};
 export {compute_beta};
+export {compute_preview};
 export {compute_v1};
 export {
   AuthPlus,
