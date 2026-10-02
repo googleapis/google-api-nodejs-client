@@ -2954,7 +2954,7 @@ export namespace chromemanagement_v1 {
      */
     details?: Schema$GoogleChromeManagementVersionsV1ConnectorConfigDetails;
     /**
-     * Required. The display name of the config.
+     * Required. The display name of the config. Must be at most 100 characters.
      */
     displayName?: string | null;
     /**
@@ -3075,11 +3075,11 @@ export namespace chromemanagement_v1 {
    */
   export interface Schema$GoogleChromeManagementVersionsV1CrowdStrikeConfig {
     /**
-     * Required. Input only. API key to use on the ingestion API.
+     * Required. Input only. API key to use on the ingestion API. Must be at most 50 characters.
      */
     apiKey?: string | null;
     /**
-     * Required. Host to identify the customer specific server to receive the events.
+     * Required. Host to identify the customer specific server to receive the events. Must be at most 256 characters.
      */
     host?: string | null;
     /**
@@ -3092,11 +3092,11 @@ export namespace chromemanagement_v1 {
    */
   export interface Schema$GoogleChromeManagementVersionsV1CrowdStrikeFalconNextGenConfig {
     /**
-     * Required. Input only. API key to use on the ingestion API.
+     * Required. Input only. API key to use on the ingestion API. Must be at most 50 characters.
      */
     apiKey?: string | null;
     /**
-     * Required. Host to identify the customer specific server to receive the events.
+     * Required. Host to identify the customer specific server to receive the events. Must be at most 256 characters.
      */
     host?: string | null;
     /**
@@ -3109,11 +3109,11 @@ export namespace chromemanagement_v1 {
    */
   export interface Schema$GoogleChromeManagementVersionsV1CrowdStrikeXdrConfig {
     /**
-     * Required. Input only. API key to use on the ingestion API.
+     * Required. Input only. API key to use on the ingestion API. Must be at most 256 characters.
      */
     apiKey?: string | null;
     /**
-     * Required. Host to identify the customer specific server to receive the events.
+     * Required. Host to identify the customer specific server to receive the events. Must be at most 256 characters.
      */
     host?: string | null;
     /**
@@ -3217,11 +3217,11 @@ export namespace chromemanagement_v1 {
    */
   export interface Schema$GoogleChromeManagementVersionsV1GoogleSecOpsConfig {
     /**
-     * Required. Input only. API key to use on the ingestion API.
+     * Required. Input only. API key to use on the ingestion API. Must be 39 characters.
      */
     apiKey?: string | null;
     /**
-     * Required. Host of ingestion API endpoint. Allows customer to upload events to servers in specific geographical regions. Existing configs that don't have this setting default to US.
+     * Required. Host of ingestion API endpoint. Allows customer to upload events to servers in specific geographical regions. Existing configs that don't have this setting default to US. Must be at most 256 characters.
      */
     host?: string | null;
     /**
@@ -3312,11 +3312,11 @@ export namespace chromemanagement_v1 {
    */
   export interface Schema$GoogleChromeManagementVersionsV1PaloAltoNetworksConfig {
     /**
-     * Required. Input only. API key to use on the ingestion API.
+     * Required. Input only. API key to use on the ingestion API. Must be at most 256 characters.
      */
     apiKey?: string | null;
     /**
-     * Required. Host to identify the customer specific server to receive the events.
+     * Required. Host to identify the customer specific server to receive the events. Must be at most 256 characters.
      */
     host?: string | null;
     /**
@@ -3333,7 +3333,7 @@ export namespace chromemanagement_v1 {
      */
     reportingSettings?: Schema$GoogleChromeManagementVersionsV1ReportingSettings;
     /**
-     * Required. The full path to the topic to send the event to.
+     * Required. The full path to the topic to send the event to. Must be at most 1000 characters.
      */
     topicFullPath?: string | null;
   }
@@ -3342,7 +3342,7 @@ export namespace chromemanagement_v1 {
    */
   export interface Schema$GoogleChromeManagementVersionsV1PubSubXdrConfig {
     /**
-     * Required. The full path to the topic to send the event to.
+     * Required. The full path to the topic to send the event to. Must be at most 1000 characters.
      */
     topicFullPath?: string | null;
     /**
@@ -3599,7 +3599,7 @@ export namespace chromemanagement_v1 {
      */
     enabledPlatforms?: string[] | null;
     /**
-     * Required. The resource ID of the secure gateway connector config.
+     * Required. The resource ID of the secure gateway connector config. Must be at most 256 characters.
      */
     resourceId?: string | null;
   }
@@ -3652,11 +3652,11 @@ export namespace chromemanagement_v1 {
    */
   export interface Schema$GoogleChromeManagementVersionsV1SplunkConfig {
     /**
-     * Required. Input only. The data input's HTTP Event Collector token to use as an Authorization header.
+     * Required. Input only. The data input's HTTP Event Collector token to use as an Authorization header. Must be at most 50 characters.
      */
     hecToken?: string | null;
     /**
-     * Required. Host to identify the customer specific server to receive the events.
+     * Required. Host to identify the customer specific server to receive the events. Must be at most 256 characters.
      */
     host?: string | null;
     /**
@@ -3668,7 +3668,7 @@ export namespace chromemanagement_v1 {
      */
     reportingSettings?: Schema$GoogleChromeManagementVersionsV1ReportingSettings;
     /**
-     * Optional. Optional source name to override the default one set in the Splunk admin console.
+     * Optional. Optional source name to override the default one set in the Splunk admin console. Must be at most 100 characters.
      */
     source?: string | null;
     /**

@@ -2557,7 +2557,7 @@
       }
     }
   },
-  "revision": "20260917",
+  "revision": "20260924",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -7386,7 +7386,7 @@
           "description": "Required. The details of the connector config."
         },
         "displayName": {
-          "description": "Required. The display name of the config.",
+          "description": "Required. The display name of the config. Must be at most 100 characters.",
           "type": "string"
         },
         "name": {
@@ -7578,11 +7578,11 @@
       "id": "GoogleChromeManagementVersionsV1CrowdStrikeConfig",
       "properties": {
         "apiKey": {
-          "description": "Required. Input only. API key to use on the ingestion API.",
+          "description": "Required. Input only. API key to use on the ingestion API. Must be at most 50 characters.",
           "type": "string"
         },
         "host": {
-          "description": "Required. Host to identify the customer specific server to receive the events.",
+          "description": "Required. Host to identify the customer specific server to receive the events. Must be at most 256 characters.",
           "type": "string"
         },
         "reportingSettings": {
@@ -7597,11 +7597,11 @@
       "id": "GoogleChromeManagementVersionsV1CrowdStrikeFalconNextGenConfig",
       "properties": {
         "apiKey": {
-          "description": "Required. Input only. API key to use on the ingestion API.",
+          "description": "Required. Input only. API key to use on the ingestion API. Must be at most 50 characters.",
           "type": "string"
         },
         "host": {
-          "description": "Required. Host to identify the customer specific server to receive the events.",
+          "description": "Required. Host to identify the customer specific server to receive the events. Must be at most 256 characters.",
           "type": "string"
         },
         "reportingSettings": {
@@ -7616,11 +7616,11 @@
       "id": "GoogleChromeManagementVersionsV1CrowdStrikeXdrConfig",
       "properties": {
         "apiKey": {
-          "description": "Required. Input only. API key to use on the ingestion API.",
+          "description": "Required. Input only. API key to use on the ingestion API. Must be at most 256 characters.",
           "type": "string"
         },
         "host": {
-          "description": "Required. Host to identify the customer specific server to receive the events.",
+          "description": "Required. Host to identify the customer specific server to receive the events. Must be at most 256 characters.",
           "type": "string"
         },
         "xdrSettings": {
@@ -7819,11 +7819,11 @@
       "id": "GoogleChromeManagementVersionsV1GoogleSecOpsConfig",
       "properties": {
         "apiKey": {
-          "description": "Required. Input only. API key to use on the ingestion API.",
+          "description": "Required. Input only. API key to use on the ingestion API. Must be 39 characters.",
           "type": "string"
         },
         "host": {
-          "description": "Required. Host of ingestion API endpoint. Allows customer to upload events to servers in specific geographical regions. Existing configs that don't have this setting default to US.",
+          "description": "Required. Host of ingestion API endpoint. Allows customer to upload events to servers in specific geographical regions. Existing configs that don't have this setting default to US. Must be at most 256 characters.",
           "type": "string"
         },
         "reportingSettings": {
@@ -7943,11 +7943,11 @@
       "id": "GoogleChromeManagementVersionsV1PaloAltoNetworksConfig",
       "properties": {
         "apiKey": {
-          "description": "Required. Input only. API key to use on the ingestion API.",
+          "description": "Required. Input only. API key to use on the ingestion API. Must be at most 256 characters.",
           "type": "string"
         },
         "host": {
-          "description": "Required. Host to identify the customer specific server to receive the events.",
+          "description": "Required. Host to identify the customer specific server to receive the events. Must be at most 256 characters.",
           "type": "string"
         },
         "reportingSettings": {
@@ -7966,7 +7966,7 @@
           "description": "Required. The reporting settings for the Pub/Sub config."
         },
         "topicFullPath": {
-          "description": "Required. The full path to the topic to send the event to.",
+          "description": "Required. The full path to the topic to send the event to. Must be at most 1000 characters.",
           "type": "string"
         }
       },
@@ -7977,7 +7977,7 @@
       "id": "GoogleChromeManagementVersionsV1PubSubXdrConfig",
       "properties": {
         "topicFullPath": {
-          "description": "Required. The full path to the topic to send the event to.",
+          "description": "Required. The full path to the topic to send the event to. Must be at most 1000 characters.",
           "type": "string"
         },
         "xdrSettings": {
@@ -8496,7 +8496,7 @@
           "type": "array"
         },
         "resourceId": {
-          "description": "Required. The resource ID of the secure gateway connector config.",
+          "description": "Required. The resource ID of the secure gateway connector config. Must be at most 256 characters.",
           "type": "string"
         }
       },
@@ -8575,11 +8575,11 @@
       "id": "GoogleChromeManagementVersionsV1SplunkConfig",
       "properties": {
         "hecToken": {
-          "description": "Required. Input only. The data input's HTTP Event Collector token to use as an Authorization header.",
+          "description": "Required. Input only. The data input's HTTP Event Collector token to use as an Authorization header. Must be at most 50 characters.",
           "type": "string"
         },
         "host": {
-          "description": "Required. Host to identify the customer specific server to receive the events.",
+          "description": "Required. Host to identify the customer specific server to receive the events. Must be at most 256 characters.",
           "type": "string"
         },
         "portNumber": {
@@ -8592,7 +8592,7 @@
           "description": "Required. The reporting settings for the Splunk config."
         },
         "source": {
-          "description": "Optional. Optional source name to override the default one set in the Splunk admin console.",
+          "description": "Optional. Optional source name to override the default one set in the Splunk admin console. Must be at most 100 characters.",
           "type": "string"
         },
         "unsecureScheme": {
