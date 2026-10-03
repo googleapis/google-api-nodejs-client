@@ -1,5 +1,16 @@
 # Changelog
 
+## [45.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v44.1.0...displayvideo-v45.0.0) (2026-10-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **displayvideo:** This release has breaking changes.
+
+### Features
+
+* **displayvideo:** update the API ([a839468](https://github.com/googleapis/google-api-nodejs-client/commit/a8394688e8f5b8032fd213eab9b41ad5f6b6f834))
+
 ## [44.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v44.0.0...displayvideo-v44.1.0) (2026-09-23)
 
 

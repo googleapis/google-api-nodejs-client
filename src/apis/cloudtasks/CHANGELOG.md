@@ -1,5 +1,12 @@
 # Changelog
 
+## [26.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v26.0.1...cloudtasks-v26.1.0) (2026-10-03)
+
+
+### Features
+
+* **cloudtasks:** update the API ([4fdc0b8](https://github.com/googleapis/google-api-nodejs-client/commit/4fdc0b8f802174cf43263866417dea11b876a8e8))
+
 ## [26.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v26.0.0...cloudtasks-v26.0.1) (2026-09-23)
 
 
