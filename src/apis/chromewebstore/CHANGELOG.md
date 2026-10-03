@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromewebstore-v6.1.0...chromewebstore-v7.0.0) (2026-10-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **chromewebstore:** This release has breaking changes.
+
+### Features
+
+* **chromewebstore:** update the API ([0830f89](https://github.com/googleapis/google-api-nodejs-client/commit/0830f8994cb611f8768f96b852f791cb9101287b))
+
 ## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromewebstore-v6.0.0...chromewebstore-v6.1.0) (2026-09-23)
 
 
