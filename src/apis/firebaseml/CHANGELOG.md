@@ -1,5 +1,12 @@
 # Changelog
 
+## [31.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v31.1.0...firebaseml-v31.2.0) (2026-10-03)
+
+
+### Features
+
+* **firebaseml:** update the API ([94f9e15](https://github.com/googleapis/google-api-nodejs-client/commit/94f9e15bed82b5cec9538fc5248d483516affcc2))
+
 ## [31.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v31.0.0...firebaseml-v31.1.0) (2026-09-23)
 
 

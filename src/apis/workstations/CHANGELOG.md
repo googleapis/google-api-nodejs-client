@@ -1,5 +1,12 @@
 # Changelog
 
+## [25.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v25.0.1...workstations-v25.0.2) (2026-10-03)
+
+
+### Bug Fixes
+
+* **workstations:** update the API ([608bebf](https://github.com/googleapis/google-api-nodejs-client/commit/608bebfbd1d8533516fd8e8383c50b52d25113b3))
+
 ## [25.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v25.0.0...workstations-v25.0.1) (2026-09-23)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappcheck-v15.0.1...firebaseappcheck-v15.0.2) (2026-10-03)
+
+
+### Bug Fixes
+
+* **firebaseappcheck:** update the API ([8d12b94](https://github.com/googleapis/google-api-nodejs-client/commit/8d12b9425684ac96478d6f826829e2dfa4461e11))
+
 ## [15.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappcheck-v15.0.0...firebaseappcheck-v15.0.1) (2026-09-23)
 
 

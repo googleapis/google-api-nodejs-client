@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/agentidentity-v3.0.1...agentidentity-v3.1.0) (2026-10-03)
+
+
+### Features
+
+* **agentidentity:** update the API ([93dcf3f](https://github.com/googleapis/google-api-nodejs-client/commit/93dcf3f9d22d149035ddb4f47f5c8f1e6c373d6b))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/agentidentity-v3.0.0...agentidentity-v3.0.1) (2026-09-23)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [22.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v22.0.1...cloudsupport-v22.0.2) (2026-10-03)
+
+
+### Bug Fixes
+
+* **cloudsupport:** update the API ([acc9335](https://github.com/googleapis/google-api-nodejs-client/commit/acc9335ede3303fd1a65b7d97a22d853646a14ef))
+
 ## [22.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v22.0.0...cloudsupport-v22.0.1) (2026-09-23)
 
 

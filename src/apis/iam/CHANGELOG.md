@@ -1,5 +1,12 @@
 # Changelog
 
+## [42.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v42.0.1...iam-v42.1.0) (2026-10-03)
+
+
+### Features
+
+* **iam:** update the API ([873669e](https://github.com/googleapis/google-api-nodejs-client/commit/873669ecef4cc32d27597b777f759aab028d2da9))
+
 ## [42.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v42.0.0...iam-v42.0.1) (2026-09-23)
 
 

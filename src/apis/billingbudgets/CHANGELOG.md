@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/billingbudgets-v9.0.1...billingbudgets-v9.1.0) (2026-10-03)
+
+
+### Features
+
+* **billingbudgets:** update the API ([cf05597](https://github.com/googleapis/google-api-nodejs-client/commit/cf055970852389c0faa683a473559a042195b679))
+
 ## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/billingbudgets-v9.0.0...billingbudgets-v9.0.1) (2026-09-23)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [37.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v37.0.1...admin-v37.0.2) (2026-10-03)
+
+
+### Bug Fixes
+
+* **admin:** update the API ([7bd8744](https://github.com/googleapis/google-api-nodejs-client/commit/7bd8744d2f0e361843d49b80799c0a7d27b1e54c))
+
 ## [37.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v37.0.0...admin-v37.0.1) (2026-09-23)
 
 

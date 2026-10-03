@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/databasecenter-v3.0.1...databasecenter-v3.0.2) (2026-10-03)
+
+
+### Bug Fixes
+
+* **databasecenter:** update the API ([c6d4820](https://github.com/googleapis/google-api-nodejs-client/commit/c6d48209766ee1ea56ade0d1b9dcd4ae1b6a1820))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/databasecenter-v3.0.0...databasecenter-v3.0.1) (2026-09-23)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [29.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v29.0.1...ondemandscanning-v29.1.0) (2026-10-03)
+
+
+### Features
+
+* **ondemandscanning:** update the API ([fb6abdf](https://github.com/googleapis/google-api-nodejs-client/commit/fb6abdf40b4bf95aa2ccfd89a6fe2ddee3f6ed9d))
+
 ## [29.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v29.0.0...ondemandscanning-v29.0.1) (2026-09-23)
 
 
