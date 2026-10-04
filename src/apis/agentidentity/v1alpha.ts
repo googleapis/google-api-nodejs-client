@@ -174,6 +174,10 @@ export namespace agentidentity_v1alpha {
     workloadId?: string | null;
   }
   /**
+   * Marker message to indicate the managed Agent Identity Pool is used.
+   */
+  export interface Schema$AgentIdentityPool {}
+  /**
    * Configuration for API key authentication.
    */
   export interface Schema$ApiKeyParams {
@@ -299,6 +303,10 @@ export namespace agentidentity_v1alpha {
      */
     apiKey?: Schema$ApiKeyParams;
     /**
+     * Parameters for Connector Reference authentication.
+     */
+    connectorReferenceAuthProvider?: Schema$ConnectorReferenceAuthProvider;
+    /**
      * Parameters for Gemini Enterprise authentication.
      */
     geAuthProvider?: Schema$GeminiEnterpriseAuthProviderParams;
@@ -310,6 +318,10 @@ export namespace agentidentity_v1alpha {
      * Parameters for 2-legged OAuth (2LO) authentication.
      */
     twoLeggedOauth?: Schema$TwoLeggedOAuth;
+    /**
+     * Parameters for Cross-App Access authentication.
+     */
+    xaaAuthProvider?: Schema$CrossAppAccessAuthProvider;
   }
   /**
    * Associates `members`, or principals, with a `role`.
@@ -328,6 +340,95 @@ export namespace agentidentity_v1alpha {
      */
     role?: string | null;
   }
+  /**
+   * Configuration for client ID and client assertion JWT authentication.
+   */
+  export interface Schema$ClientAssertionJwtAuth {
+    /**
+     * Required. The client identifier.
+     */
+    clientId?: string | null;
+  }
+  /**
+   * Configuration for client ID and client secret authentication.
+   */
+  export interface Schema$ClientSecretAuth {
+    /**
+     * Required. The client identifier.
+     */
+    clientId?: string | null;
+    /**
+     * Required. Input only. The client secret.
+     */
+    clientSecret?: string | null;
+  }
+  /**
+   * Configuration parameters for the Connector Reference auth provider.
+   */
+  export interface Schema$ConnectorReferenceAuthProvider {
+    /**
+     * Optional. Rich Authorization Requests (RFC 9396) detailing targeted OAuth resources/scopes, formatted as a JSON array of JSON objects.
+     */
+    authorizationDetails?: Array<{[key: string]: any}> | null;
+    /**
+     * Required. The name of the referenced connector.
+     */
+    connector?: string | null;
+  }
+  /**
+   * Configuration parameters for the Cross-App Access auth provider.
+   */
+  export interface Schema$CrossAppAccessAuthProvider {
+    /**
+     * Optional. Additional parameters to be passed to the token endpoint.
+     */
+    additionalParameters?: {[key: string]: string} | null;
+    /**
+     * Option 2: Authenticate using a standard `client_id` and a Client Assertion JWT.
+     */
+    clientAssertionJwtAuth?: Schema$ClientAssertionJwtAuth;
+    /**
+     * Option 1: Authenticate using a standard `client_id` and `client_secret`.
+     */
+    clientSecretAuth?: Schema$ClientSecretAuth;
+    /**
+     * Configuration when using a custom or third-party authorization server as the issuer.
+     */
+    customIssuer?: Schema$CustomIssuer;
+    /**
+     * Configuration when using Google Accounts as the issuer.
+     */
+    googleAccount?: Schema$GoogleAccount;
+    /**
+     * Configuration for when the input is already an ID-JAG.
+     */
+    idJagInput?: Schema$DirectIdJagInput;
+    /**
+     * Configuration for when the input is an ID token.
+     */
+    idTokenInput?: Schema$IdTokenProcessingConfig;
+    /**
+     * Configuration when using Workforce Identity Federation as the issuer.
+     */
+    workforceIdentityFederation?: Schema$WorkforceIdentityFederation;
+  }
+  /**
+   * Configuration for a custom or third-party authorization server issuer.
+   */
+  export interface Schema$CustomIssuer {
+    /**
+     * Optional. The issuer identifier of the target Authorization Server.
+     */
+    issuer?: string | null;
+    /**
+     * Required. The token endpoint of the target OAuth authorization server to retrieve resource tokens.
+     */
+    tokenUrl?: string | null;
+  }
+  /**
+   * Marker message indicating the input is already an ID-JAG, so no fetching is required.
+   */
+  export interface Schema$DirectIdJagInput {}
   /**
    * Request message for `DisableAuthProvider`.
    */
@@ -375,6 +476,27 @@ export namespace agentidentity_v1alpha {
    * Configuration for Gemini Enterprise authentication.
    */
   export interface Schema$GeminiEnterpriseAuthProviderParams {}
+  /**
+   * Configuration for Google Account usage as the issuer.
+   */
+  export interface Schema$GoogleAccount {}
+  /**
+   * Defines how to process an input ID token to obtain an ID-JAG.
+   */
+  export interface Schema$IdTokenProcessingConfig {
+    /**
+     * Indicates the managed Agent Identity pool should be used to fetch the ID-JAG.
+     */
+    agentIdentityPool?: Schema$AgentIdentityPool;
+    /**
+     * Optional. Optional additional claims to include when fetching an ID-JAG.
+     */
+    idJagAdditionalClaims?: {[key: string]: any} | null;
+    /**
+     * The resource name of the ID-JAG auth provider. Format: "projects/{project\}/locations/{location\}/authProviders/{auth_provider\}"
+     */
+    idJagAuthProvider?: string | null;
+  }
   /**
    * Response message for `ListAccessSummaries`.
    */
@@ -512,6 +634,24 @@ export namespace agentidentity_v1alpha {
     workloadIds?: string[] | null;
   }
   /**
+   * Request message for `ResolveAuthorization`.
+   */
+  export interface Schema$ResolveAuthorizationRequest {
+    /**
+     * Required. The user ID of the client for whom the authorization is resolved.
+     */
+    clientUserId?: string | null;
+  }
+  /**
+   * Response message for `ResolveAuthorization`.
+   */
+  export interface Schema$ResolveAuthorizationResponse {
+    /**
+     * The resource name of the resolved authorization. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}/authorizations/{authorization\}
+     */
+    authorization?: string | null;
+  }
+  /**
    * Request message for `RevokeAuthorization`.
    */
   export interface Schema$RevokeAuthorizationRequest {
@@ -614,6 +754,10 @@ export namespace agentidentity_v1alpha {
      */
     requestId?: string | null;
   }
+  /**
+   * Configuration for Workforce Identity Federation usage as the issuer.
+   */
+  export interface Schema$WorkforceIdentityFederation {}
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -2829,6 +2973,160 @@ export namespace agentidentity_v1alpha {
     }
 
     /**
+     * Resolves an authorization for a user on an auth provider, creating one if it does not exist or returning an existing one.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/agentidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const agentidentity = google.agentidentity('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await agentidentity.projects.locations.authProviders.resolveAuthorization({
+     *       // Required. The name of the auth provider to resolve authorization for. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
+     *       name: 'projects/my-project/locations/my-location/authProviders/my-authProvider',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "clientUserId": "my_clientUserId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authorization": "my_authorization"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resolveAuthorization(
+      params: Params$Resource$Projects$Locations$Authproviders$Resolveauthorization,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    resolveAuthorization(
+      params?: Params$Resource$Projects$Locations$Authproviders$Resolveauthorization,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ResolveAuthorizationResponse>>;
+    resolveAuthorization(
+      params: Params$Resource$Projects$Locations$Authproviders$Resolveauthorization,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resolveAuthorization(
+      params: Params$Resource$Projects$Locations$Authproviders$Resolveauthorization,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResolveAuthorizationResponse>,
+      callback: BodyResponseCallback<Schema$ResolveAuthorizationResponse>
+    ): void;
+    resolveAuthorization(
+      params: Params$Resource$Projects$Locations$Authproviders$Resolveauthorization,
+      callback: BodyResponseCallback<Schema$ResolveAuthorizationResponse>
+    ): void;
+    resolveAuthorization(
+      callback: BodyResponseCallback<Schema$ResolveAuthorizationResponse>
+    ): void;
+    resolveAuthorization(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authproviders$Resolveauthorization
+        | BodyResponseCallback<Schema$ResolveAuthorizationResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResolveAuthorizationResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResolveAuthorizationResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ResolveAuthorizationResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authproviders$Resolveauthorization;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Authproviders$Resolveauthorization;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://agentidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:resolveAuthorization').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResolveAuthorizationResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResolveAuthorizationResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Revokes all authorizations for a specific user on an auth provider. This deletes all authorization records associated with the user and auth provider, effectively revoking access across all agents.
      * @example
      * ```js
@@ -3585,6 +3883,17 @@ export namespace agentidentity_v1alpha {
      * Optional. A token, which can be sent as `page_token` to retrieve the next page. When paginating, all other parameters provided to `QueryWorkloads` must match the call that provided the page token. If this field is omitted, the first page is returned.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Authproviders$Resolveauthorization extends StandardParameters {
+    /**
+     * Required. The name of the auth provider to resolve authorization for. Format: projects/{project\}/locations/{location\}/authProviders/{auth_provider\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResolveAuthorizationRequest;
   }
   export interface Params$Resource$Projects$Locations$Authproviders$Revokeauthorization extends StandardParameters {
     /**

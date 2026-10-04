@@ -956,6 +956,14 @@ export namespace networkconnectivity_v1 {
      */
     prefixLength?: number | null;
     /**
+     * Optional. The purpose of this internal range. Defines the intended use of the range and any restrictions associated with it. If not specified, it defaults to VPC_SUBNET.
+     */
+    purpose?: string | null;
+    /**
+     * Output only. Status of the Internal Range.
+     */
+    rangeStatus?: string | null;
+    /**
      * Optional. Can be set to narrow down or pick a different address space while searching for a free range. If not set, defaults to the ["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"] address space (for auto-mode networks, the "10.0.0.0/9" range is used instead of "10.0.0.0/8"). This can be used to target the search in other rfc-1918 address spaces like "172.16.0.0/12" and "192.168.0.0/16" or non-rfc-1918 address spaces used in the VPC.
      */
     targetCidrRange?: string[] | null;
@@ -2490,7 +2498,7 @@ export namespace networkconnectivity_v1 {
      */
     etag?: string | null;
     /**
-     * Optional. The list of fields waiting for hub administrator's approval.
+     * Output only. The list of fields waiting for hub administrator's approval.
      */
     fieldPathsPendingUpdate?: string[] | null;
     /**
@@ -9346,6 +9354,8 @@ export namespace networkconnectivity_v1 {
      *         //   "overlaps": [],
      *         //   "peering": "my_peering",
      *         //   "prefixLength": 0,
+     *         //   "purpose": "my_purpose",
+     *         //   "rangeStatus": "my_rangeStatus",
      *         //   "targetCidrRange": [],
      *         //   "updateTime": "my_updateTime",
      *         //   "usage": "my_usage",
@@ -9660,6 +9670,8 @@ export namespace networkconnectivity_v1 {
      *   //   "overlaps": [],
      *   //   "peering": "my_peering",
      *   //   "prefixLength": 0,
+     *   //   "purpose": "my_purpose",
+     *   //   "rangeStatus": "my_rangeStatus",
      *   //   "targetCidrRange": [],
      *   //   "updateTime": "my_updateTime",
      *   //   "usage": "my_usage",
@@ -10112,6 +10124,8 @@ export namespace networkconnectivity_v1 {
      *         //   "overlaps": [],
      *         //   "peering": "my_peering",
      *         //   "prefixLength": 0,
+     *         //   "purpose": "my_purpose",
+     *         //   "rangeStatus": "my_rangeStatus",
      *         //   "targetCidrRange": [],
      *         //   "updateTime": "my_updateTime",
      *         //   "usage": "my_usage",
