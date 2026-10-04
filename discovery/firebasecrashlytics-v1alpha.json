@@ -716,6 +716,21 @@
                       "location": "query",
                       "type": "string"
                     },
+                    "metricsMode": {
+                      "description": "Optional. Controls whether metrics are raw observed values (mobile and web) or extrapolated values (web only). If omitted, defaults to OBSERVED.",
+                      "enum": [
+                        "METRICS_MODE_UNSPECIFIED",
+                        "METRICS_MODE_OBSERVED",
+                        "METRICS_MODE_EXTRAPOLATED"
+                      ],
+                      "enumDescriptions": [
+                        "Unknown.",
+                        "Raw counts of the events, sessions, and users that were actually collected.",
+                        "Web only. Estimated event counts based on the per-session sampling rate recorded on each event."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    },
                     "name": {
                       "description": "Required. The report name. Format: \"projects/{project}/apps/{app_id}/reports/{report}\".",
                       "location": "path",
@@ -807,7 +822,7 @@
       }
     }
   },
-  "revision": "20260929",
+  "revision": "20261002",
   "rootUrl": "https://firebasecrashlytics.googleapis.com/",
   "schemas": {
     "BatchGetEventsResponse": {

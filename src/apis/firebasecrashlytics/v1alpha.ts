@@ -2491,6 +2491,8 @@ export namespace firebasecrashlytics_v1alpha {
      *     'filter.version.displayNames': 'placeholder-value',
      *     // Optional. The report response will contain one data point per time grain. If omitted, the report will contain a single data point for the complete interval.
      *     granularity: 'placeholder-value',
+     *     // Optional. Controls whether metrics are raw observed values (mobile and web) or extrapolated values (web only). If omitted, defaults to OBSERVED.
+     *     metricsMode: 'placeholder-value',
      *     // Required. The report name. Format: "projects/{project\}/apps/{app_id\}/reports/{report\}".
      *     name: 'projects/my-project/apps/my-app/reports/my-report',
      *     // Optional. The maximum number of result groups to return. If omitted, defaults to 25.
@@ -2806,6 +2808,10 @@ export namespace firebasecrashlytics_v1alpha {
      * Optional. The report response will contain one data point per time grain. If omitted, the report will contain a single data point for the complete interval.
      */
     granularity?: string;
+    /**
+     * Optional. Controls whether metrics are raw observed values (mobile and web) or extrapolated values (web only). If omitted, defaults to OBSERVED.
+     */
+    metricsMode?: string;
     /**
      * Required. The report name. Format: "projects/{project\}/apps/{app_id\}/reports/{report\}".
      */
