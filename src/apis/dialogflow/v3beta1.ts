@@ -2574,6 +2574,24 @@ export namespace dialogflow_v3beta1 {
     participantRole?: string | null;
     suggestionFeatureType?: string | null;
   }
+  export interface Schema$GoogleCloudDialogflowV2beta1CompanionSuggestion {
+    guidances?: Schema$GoogleCloudDialogflowV2beta1CompanionSuggestionGuidance[];
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1CompanionSuggestionGuidance {
+    explanation?: string | null;
+    groundingMetadata?: Schema$GoogleCloudDialogflowV2beta1GroundingMetadata;
+    instructionSource?: Schema$GoogleCloudDialogflowV2beta1GuidanceInstruction;
+    knowledgeSources?: Schema$GoogleCloudDialogflowV2beta1CompanionSuggestionGuidanceKnowledgeSource[];
+    suggestedAction?: string | null;
+    suggestedReply?: string | null;
+    toolCalls?: Schema$GoogleCloudDialogflowV2beta1ToolCallSuggestion[];
+    triggeringToolCallAnswerRecords?: string[] | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1CompanionSuggestionGuidanceKnowledgeSource {
+    knowledgeArticleTitle?: string | null;
+    knowledgeArticleUrl?: string | null;
+    knowledgeSnippet?: string | null;
+  }
   export interface Schema$GoogleCloudDialogflowV2beta1Context {
     lifespanCount?: number | null;
     name?: string | null;
@@ -2633,6 +2651,12 @@ export namespace dialogflow_v3beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1GcsDestination {
     uri?: string | null;
   }
+  export interface Schema$GoogleCloudDialogflowV2beta1GenerateCompanionSuggestionsResponse {
+    answerRecord?: string | null;
+    companionSuggestion?: Schema$GoogleCloudDialogflowV2beta1CompanionSuggestion;
+    latestMessage?: string | null;
+    suggestionIndex?: number | null;
+  }
   export interface Schema$GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse {
     generatorSuggestionAnswers?: Schema$GoogleCloudDialogflowV2beta1GenerateSuggestionsResponseGeneratorSuggestionAnswer[];
     latestMessage?: string | null;
@@ -2651,6 +2675,41 @@ export namespace dialogflow_v3beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo {
     toolCall?: Schema$GoogleCloudDialogflowV2beta1ToolCall;
     toolCallResult?: Schema$GoogleCloudDialogflowV2beta1ToolCallResult;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1GroundingChunk {
+    retrievedContext?: Schema$GoogleCloudDialogflowV2beta1GroundingChunkRetrievedContext;
+    web?: Schema$GoogleCloudDialogflowV2beta1GroundingChunkWeb;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1GroundingChunkRetrievedContext {
+    text?: string | null;
+    title?: string | null;
+    uri?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1GroundingChunkWeb {
+    domain?: string | null;
+    title?: string | null;
+    uri?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1GroundingMetadata {
+    groundingChunks?: Schema$GoogleCloudDialogflowV2beta1GroundingChunk[];
+    groundingSupports?: Schema$GoogleCloudDialogflowV2beta1GroundingSupport[];
+    searchEntryPoint?: Schema$GoogleCloudDialogflowV2beta1SearchEntryPoint;
+    webSearchQueries?: string[] | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1GroundingSupport {
+    groundingChunkIndices?: number[] | null;
+    segment?: Schema$GoogleCloudDialogflowV2beta1Segment;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1GuidanceInstruction {
+    actions?: Schema$GoogleCloudDialogflowV2beta1GuidanceInstructionAction[];
+    condition?: string | null;
+    disableSuggestedReply?: boolean | null;
+    displayDetails?: string | null;
+    displayName?: string | null;
+    triggerEvent?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1GuidanceInstructionAction {
+    description?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantEvent {
     conversation?: string | null;
@@ -3092,6 +3151,14 @@ export namespace dialogflow_v3beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageText {
     text?: string[] | null;
   }
+  export interface Schema$GoogleCloudDialogflowV2beta1SearchEntryPoint {
+    renderedContent?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1Segment {
+    endIndex?: number | null;
+    startIndex?: number | null;
+    text?: string | null;
+  }
   export interface Schema$GoogleCloudDialogflowV2beta1Sentiment {
     magnitude?: number | null;
     score?: number | null;
@@ -3158,6 +3225,7 @@ export namespace dialogflow_v3beta1 {
   }
   export interface Schema$GoogleCloudDialogflowV2beta1SuggestionResult {
     error?: Schema$GoogleRpcStatus;
+    generateCompanionSuggestionsResponse?: Schema$GoogleCloudDialogflowV2beta1GenerateCompanionSuggestionsResponse;
     generateSuggestionsResponse?: Schema$GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse;
     suggestArticlesResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse;
     suggestDialogflowAssistsResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse;
@@ -3216,6 +3284,10 @@ export namespace dialogflow_v3beta1 {
     message?: string | null;
     retryable?: boolean | null;
   }
+  export interface Schema$GoogleCloudDialogflowV2beta1ToolCallSuggestion {
+    textUpdate?: string | null;
+    toolCallInfo?: Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo;
+  }
   export interface Schema$GoogleCloudDialogflowV2beta1WebhookRequest {
     alternativeQueryResults?: Schema$GoogleCloudDialogflowV2beta1QueryResult[];
     originalDetectIntentRequest?: Schema$GoogleCloudDialogflowV2beta1OriginalDetectIntentRequest;
@@ -3239,6 +3311,24 @@ export namespace dialogflow_v3beta1 {
     createTime?: string | null;
     participantRole?: string | null;
     suggestionFeatureType?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2CompanionSuggestion {
+    guidances?: Schema$GoogleCloudDialogflowV2CompanionSuggestionGuidance[];
+  }
+  export interface Schema$GoogleCloudDialogflowV2CompanionSuggestionGuidance {
+    explanation?: string | null;
+    groundingMetadata?: Schema$GoogleCloudDialogflowV2GroundingMetadata;
+    instructionSource?: Schema$GoogleCloudDialogflowV2GuidanceInstruction;
+    knowledgeSources?: Schema$GoogleCloudDialogflowV2CompanionSuggestionGuidanceKnowledgeSource[];
+    suggestedAction?: string | null;
+    suggestedReply?: string | null;
+    toolCalls?: Schema$GoogleCloudDialogflowV2ToolCallSuggestion[];
+    triggeringToolCallAnswerRecords?: string[] | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2CompanionSuggestionGuidanceKnowledgeSource {
+    knowledgeArticleTitle?: string | null;
+    knowledgeArticleUrl?: string | null;
+    knowledgeSnippet?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2Context {
     lifespanCount?: number | null;
@@ -3332,6 +3422,12 @@ export namespace dialogflow_v3beta1 {
   export interface Schema$GoogleCloudDialogflowV2GcsDestination {
     uri?: string | null;
   }
+  export interface Schema$GoogleCloudDialogflowV2GenerateCompanionSuggestionsResponse {
+    answerRecord?: string | null;
+    companionSuggestion?: Schema$GoogleCloudDialogflowV2CompanionSuggestion;
+    latestMessage?: string | null;
+    suggestionIndex?: number | null;
+  }
   export interface Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse {
     generatorSuggestionAnswers?: Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponseGeneratorSuggestionAnswer[];
     latestMessage?: string | null;
@@ -3350,6 +3446,41 @@ export namespace dialogflow_v3beta1 {
   export interface Schema$GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo {
     toolCall?: Schema$GoogleCloudDialogflowV2ToolCall;
     toolCallResult?: Schema$GoogleCloudDialogflowV2ToolCallResult;
+  }
+  export interface Schema$GoogleCloudDialogflowV2GroundingChunk {
+    retrievedContext?: Schema$GoogleCloudDialogflowV2GroundingChunkRetrievedContext;
+    web?: Schema$GoogleCloudDialogflowV2GroundingChunkWeb;
+  }
+  export interface Schema$GoogleCloudDialogflowV2GroundingChunkRetrievedContext {
+    text?: string | null;
+    title?: string | null;
+    uri?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2GroundingChunkWeb {
+    domain?: string | null;
+    title?: string | null;
+    uri?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2GroundingMetadata {
+    groundingChunks?: Schema$GoogleCloudDialogflowV2GroundingChunk[];
+    groundingSupports?: Schema$GoogleCloudDialogflowV2GroundingSupport[];
+    searchEntryPoint?: Schema$GoogleCloudDialogflowV2SearchEntryPoint;
+    webSearchQueries?: string[] | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2GroundingSupport {
+    groundingChunkIndices?: number[] | null;
+    segment?: Schema$GoogleCloudDialogflowV2Segment;
+  }
+  export interface Schema$GoogleCloudDialogflowV2GuidanceInstruction {
+    actions?: Schema$GoogleCloudDialogflowV2GuidanceInstructionAction[];
+    condition?: string | null;
+    disableSuggestedReply?: boolean | null;
+    displayDetails?: string | null;
+    displayName?: string | null;
+    triggerEvent?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2GuidanceInstructionAction {
+    description?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2HumanAgentAssistantEvent {
     conversation?: string | null;
@@ -3696,6 +3827,14 @@ export namespace dialogflow_v3beta1 {
     webhookPayload?: {[key: string]: any} | null;
     webhookSource?: string | null;
   }
+  export interface Schema$GoogleCloudDialogflowV2SearchEntryPoint {
+    renderedContent?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2Segment {
+    endIndex?: number | null;
+    startIndex?: number | null;
+    text?: string | null;
+  }
   export interface Schema$GoogleCloudDialogflowV2Sentiment {
     magnitude?: number | null;
     score?: number | null;
@@ -3758,6 +3897,7 @@ export namespace dialogflow_v3beta1 {
   }
   export interface Schema$GoogleCloudDialogflowV2SuggestionResult {
     error?: Schema$GoogleRpcStatus;
+    generateCompanionSuggestionsResponse?: Schema$GoogleCloudDialogflowV2GenerateCompanionSuggestionsResponse;
     generateSuggestionsResponse?: Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse;
     suggestArticlesResponse?: Schema$GoogleCloudDialogflowV2SuggestArticlesResponse;
     suggestFaqAnswersResponse?: Schema$GoogleCloudDialogflowV2SuggestFaqAnswersResponse;
@@ -3810,6 +3950,10 @@ export namespace dialogflow_v3beta1 {
   export interface Schema$GoogleCloudDialogflowV2ToolCallResultError {
     message?: string | null;
     retryable?: boolean | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2ToolCallSuggestion {
+    textUpdate?: string | null;
+    toolCallInfo?: Schema$GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo;
   }
   export interface Schema$GoogleCloudDialogflowV2UndeployConversationModelOperationMetadata {
     conversationModel?: string | null;
