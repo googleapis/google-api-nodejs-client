@@ -716,6 +716,21 @@
                       "location": "query",
                       "type": "string"
                     },
+                    "metricsMode": {
+                      "description": "Optional. Controls whether metrics are raw observed values (mobile and web) or extrapolated values (web only). If omitted, defaults to OBSERVED.",
+                      "enum": [
+                        "METRICS_MODE_UNSPECIFIED",
+                        "METRICS_MODE_OBSERVED",
+                        "METRICS_MODE_EXTRAPOLATED"
+                      ],
+                      "enumDescriptions": [
+                        "Unknown.",
+                        "Raw counts of the events, sessions, and users that were actually collected.",
+                        "Web only. Estimated event counts based on the per-session sampling rate recorded on each event."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    },
                     "name": {
                       "description": "Required. The report name. Format: \"projects/{project}/apps/{app_id}/reports/{report}\".",
                       "location": "path",
@@ -731,6 +746,21 @@
                     },
                     "pageToken": {
                       "description": "Optional. A page token, received from a previous call. The page token is only valid for the exact same set of filters, which must also be sent in subsequent requests. This token is valid for 10 minutes after the first request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. Response view. If not set, defaults to `REPORT_VIEW_FULL`.",
+                      "enum": [
+                        "REPORT_VIEW_UNSPECIFIED",
+                        "REPORT_VIEW_BASIC",
+                        "REPORT_VIEW_FULL"
+                      ],
+                      "enumDescriptions": [
+                        "The default / unset value. The API will default to `REPORT_VIEW_BASIC` view for `ListReports` and `REPORT_VIEW_FULL` for `GetReport`.",
+                        "Only includes the report `display_name` and optional `usage`. This is the default view for `ListReports`.",
+                        "Includes all fields on report. This is the default view for `GetReport`."
+                      ],
                       "location": "query",
                       "type": "string"
                     }
@@ -758,6 +788,21 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/apps/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. Response view. If not set, defaults to `REPORT_VIEW_BASIC`. `REPORT_VIEW_FULL` is not supported for list operations.",
+                      "enum": [
+                        "REPORT_VIEW_UNSPECIFIED",
+                        "REPORT_VIEW_BASIC",
+                        "REPORT_VIEW_FULL"
+                      ],
+                      "enumDescriptions": [
+                        "The default / unset value. The API will default to `REPORT_VIEW_BASIC` view for `ListReports` and `REPORT_VIEW_FULL` for `GetReport`.",
+                        "Only includes the report `display_name` and optional `usage`. This is the default view for `ListReports`.",
+                        "Includes all fields on report. This is the default view for `GetReport`."
+                      ],
+                      "location": "query",
                       "type": "string"
                     }
                   },
@@ -807,7 +852,7 @@
       }
     }
   },
-  "revision": "20260929",
+  "revision": "20261005",
   "rootUrl": "https://firebasecrashlytics.googleapis.com/",
   "schemas": {
     "BatchGetEventsResponse": {
