@@ -2491,12 +2491,16 @@ export namespace firebasecrashlytics_v1alpha {
      *     'filter.version.displayNames': 'placeholder-value',
      *     // Optional. The report response will contain one data point per time grain. If omitted, the report will contain a single data point for the complete interval.
      *     granularity: 'placeholder-value',
+     *     // Optional. Controls whether metrics are raw observed values (mobile and web) or extrapolated values (web only). If omitted, defaults to OBSERVED.
+     *     metricsMode: 'placeholder-value',
      *     // Required. The report name. Format: "projects/{project\}/apps/{app_id\}/reports/{report\}".
      *     name: 'projects/my-project/apps/my-app/reports/my-report',
      *     // Optional. The maximum number of result groups to return. If omitted, defaults to 25.
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous call. The page token is only valid for the exact same set of filters, which must also be sent in subsequent requests. This token is valid for 10 minutes after the first request.
      *     pageToken: 'placeholder-value',
+     *     // Optional. Response view. If not set, defaults to `REPORT_VIEW_FULL`.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -2639,6 +2643,8 @@ export namespace firebasecrashlytics_v1alpha {
      *   const res = await firebasecrashlytics.projects.apps.reports.list({
      *     // Required. The firebase application. Format: "projects/{project\}/apps/{app_id\}".
      *     parent: 'projects/my-project/apps/my-app',
+     *     // Optional. Response view. If not set, defaults to `REPORT_VIEW_BASIC`. `REPORT_VIEW_FULL` is not supported for list operations.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -2807,6 +2813,10 @@ export namespace firebasecrashlytics_v1alpha {
      */
     granularity?: string;
     /**
+     * Optional. Controls whether metrics are raw observed values (mobile and web) or extrapolated values (web only). If omitted, defaults to OBSERVED.
+     */
+    metricsMode?: string;
+    /**
      * Required. The report name. Format: "projects/{project\}/apps/{app_id\}/reports/{report\}".
      */
     name?: string;
@@ -2818,12 +2828,20 @@ export namespace firebasecrashlytics_v1alpha {
      * Optional. A page token, received from a previous call. The page token is only valid for the exact same set of filters, which must also be sent in subsequent requests. This token is valid for 10 minutes after the first request.
      */
     pageToken?: string;
+    /**
+     * Optional. Response view. If not set, defaults to `REPORT_VIEW_FULL`.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Apps$Reports$List extends StandardParameters {
     /**
      * Required. The firebase application. Format: "projects/{project\}/apps/{app_id\}".
      */
     parent?: string;
+    /**
+     * Optional. Response view. If not set, defaults to `REPORT_VIEW_BASIC`. `REPORT_VIEW_FULL` is not supported for list operations.
+     */
+    view?: string;
   }
 
   export class Resource$Projects$Apps$Users {
