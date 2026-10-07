@@ -765,7 +765,7 @@ export namespace health_v4 {
      */
     pageSize?: number | null;
     /**
-     * Optional. The `next_page_token` from a previous request, if any. All other request fields need to be the same as in the initial request when the page token is specified.
+     * Optional. The next_page_token from a previous request, if any. All other request fields need to be the same as in the initial request when the page token is specified.
      */
     pageToken?: string | null;
     /**
@@ -781,6 +781,10 @@ export namespace health_v4 {
    * Response containing the list of rolled up data points.
    */
   export interface Schema$DailyRollUpDataPointsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
     /**
      * Values for each aggregation time window.
      */
@@ -6316,6 +6320,7 @@ export namespace health_v4 {
      *
      *   // Example response
      *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
      *   //   "rollupDataPoints": []
      *   // }
      * }
