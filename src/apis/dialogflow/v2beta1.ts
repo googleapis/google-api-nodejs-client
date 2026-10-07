@@ -1283,12 +1283,14 @@ export namespace dialogflow_v2beta1 {
   }
   export interface Schema$GoogleCloudDialogflowV2beta1AgentAssistantFeedback {
     answerRelevance?: string | null;
+    companionFeedback?: Schema$GoogleCloudDialogflowV2beta1AgentAssistantFeedbackCompanionFeedback;
     documentCorrectness?: string | null;
     documentEfficiency?: string | null;
     knowledgeAssistFeedback?: Schema$GoogleCloudDialogflowV2beta1AgentAssistantFeedbackKnowledgeAssistFeedback;
     knowledgeSearchFeedback?: Schema$GoogleCloudDialogflowV2beta1AgentAssistantFeedbackKnowledgeSearchFeedback;
     summarizationFeedback?: Schema$GoogleCloudDialogflowV2beta1AgentAssistantFeedbackSummarizationFeedback;
   }
+  export interface Schema$GoogleCloudDialogflowV2beta1AgentAssistantFeedbackCompanionFeedback {}
   export interface Schema$GoogleCloudDialogflowV2beta1AgentAssistantFeedbackKnowledgeAssistFeedback {
     answerCopied?: boolean | null;
     clickedUris?: string[] | null;
@@ -1305,9 +1307,11 @@ export namespace dialogflow_v2beta1 {
   }
   export interface Schema$GoogleCloudDialogflowV2beta1AgentAssistantRecord {
     articleSuggestionAnswer?: Schema$GoogleCloudDialogflowV2beta1ArticleAnswer;
+    companionSuggestion?: Schema$GoogleCloudDialogflowV2beta1CompanionSuggestion;
     dialogflowAssistAnswer?: Schema$GoogleCloudDialogflowV2beta1DialogflowAssistAnswer;
     faqAnswer?: Schema$GoogleCloudDialogflowV2beta1FaqAnswer;
     generatorSuggestion?: Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestion;
+    reactiveCompanionSuggestion?: Schema$GoogleCloudDialogflowV2beta1StreamingReactiveCompanionSuggestionsResponseReactiveModeResponse;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1AgentCoachingContext {
     instructions?: Schema$GoogleCloudDialogflowV2beta1AgentCoachingInstruction[];
@@ -1498,6 +1502,44 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigRequest {
     participantRole?: string | null;
     suggestionFeatureType?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1CompanionAgent {
+    cesToolSpecs?: Schema$GoogleCloudDialogflowV2beta1CesToolSpec[];
+    createTime?: string | null;
+    description?: string | null;
+    displayName?: string | null;
+    name?: string | null;
+    skillConfigs?: Schema$GoogleCloudDialogflowV2beta1CompanionAgentSkillConfig[];
+    toolsetTools?: Schema$GoogleCloudDialogflowV2beta1ToolsetTool[];
+    updateTime?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1CompanionAgentGuidanceSkillConfig {
+    guidanceInstructions?: Schema$GoogleCloudDialogflowV2beta1GuidanceInstruction[];
+    knowledgeSource?: Schema$GoogleCloudDialogflowV2beta1CompanionAgentKnowledgeSource;
+    overarchingGuidance?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1CompanionAgentKnowledgeSource {}
+  export interface Schema$GoogleCloudDialogflowV2beta1CompanionAgentSkillConfig {
+    guidanceSkillConfig?: Schema$GoogleCloudDialogflowV2beta1CompanionAgentGuidanceSkillConfig;
+    skillTriggeringEvent?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1CompanionSuggestion {
+    guidances?: Schema$GoogleCloudDialogflowV2beta1CompanionSuggestionGuidance[];
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1CompanionSuggestionGuidance {
+    explanation?: string | null;
+    groundingMetadata?: Schema$GoogleCloudDialogflowV2beta1GroundingMetadata;
+    instructionSource?: Schema$GoogleCloudDialogflowV2beta1GuidanceInstruction;
+    knowledgeSources?: Schema$GoogleCloudDialogflowV2beta1CompanionSuggestionGuidanceKnowledgeSource[];
+    suggestedAction?: string | null;
+    suggestedReply?: string | null;
+    toolCalls?: Schema$GoogleCloudDialogflowV2beta1ToolCallSuggestion[];
+    triggeringToolCallAnswerRecords?: string[] | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1CompanionSuggestionGuidanceKnowledgeSource {
+    knowledgeArticleTitle?: string | null;
+    knowledgeArticleUrl?: string | null;
+    knowledgeSnippet?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1CompileSuggestionRequest {
     contextSize?: number | null;
@@ -1760,6 +1802,12 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1GcsSources {
     uris?: string[] | null;
   }
+  export interface Schema$GoogleCloudDialogflowV2beta1GenerateCompanionSuggestionsResponse {
+    answerRecord?: string | null;
+    companionSuggestion?: Schema$GoogleCloudDialogflowV2beta1CompanionSuggestion;
+    latestMessage?: string | null;
+    suggestionIndex?: number | null;
+  }
   export interface Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSuggestionRequest {
     contextReferences?: {
       [
@@ -1875,6 +1923,41 @@ export namespace dialogflow_v2beta1 {
     toolCall?: Schema$GoogleCloudDialogflowV2beta1ToolCall;
     toolCallResult?: Schema$GoogleCloudDialogflowV2beta1ToolCallResult;
   }
+  export interface Schema$GoogleCloudDialogflowV2beta1GroundingChunk {
+    retrievedContext?: Schema$GoogleCloudDialogflowV2beta1GroundingChunkRetrievedContext;
+    web?: Schema$GoogleCloudDialogflowV2beta1GroundingChunkWeb;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1GroundingChunkRetrievedContext {
+    text?: string | null;
+    title?: string | null;
+    uri?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1GroundingChunkWeb {
+    domain?: string | null;
+    title?: string | null;
+    uri?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1GroundingMetadata {
+    groundingChunks?: Schema$GoogleCloudDialogflowV2beta1GroundingChunk[];
+    groundingSupports?: Schema$GoogleCloudDialogflowV2beta1GroundingSupport[];
+    searchEntryPoint?: Schema$GoogleCloudDialogflowV2beta1SearchEntryPoint;
+    webSearchQueries?: string[] | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1GroundingSupport {
+    groundingChunkIndices?: number[] | null;
+    segment?: Schema$GoogleCloudDialogflowV2beta1Segment;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1GuidanceInstruction {
+    actions?: Schema$GoogleCloudDialogflowV2beta1GuidanceInstructionAction[];
+    condition?: string | null;
+    disableSuggestedReply?: boolean | null;
+    displayDetails?: string | null;
+    displayName?: string | null;
+    triggerEvent?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1GuidanceInstructionAction {
+    description?: string | null;
+  }
   export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfig {
     endUserSuggestionConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionConfig;
     humanAgentSuggestionConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionConfig;
@@ -1890,6 +1973,7 @@ export namespace dialogflow_v2beta1 {
     enableSentimentAnalysisV3?: boolean | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionConfig {
+    companionAgent?: string | null;
     disableHighLatencyFeaturesSyncDelivery?: boolean | null;
     enableAsyncToolCall?: boolean | null;
     featureConfigs?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig[];
@@ -2404,6 +2488,10 @@ export namespace dialogflow_v2beta1 {
     answerRecords?: Schema$GoogleCloudDialogflowV2beta1AnswerRecord[];
     nextPageToken?: string | null;
   }
+  export interface Schema$GoogleCloudDialogflowV2beta1ListCompanionAgentsResponse {
+    companionAgents?: Schema$GoogleCloudDialogflowV2beta1CompanionAgent[];
+    nextPageToken?: string | null;
+  }
   export interface Schema$GoogleCloudDialogflowV2beta1ListContextsResponse {
     contexts?: Schema$GoogleCloudDialogflowV2beta1Context[];
     nextPageToken?: string | null;
@@ -2627,6 +2715,9 @@ export namespace dialogflow_v2beta1 {
     agents?: Schema$GoogleCloudDialogflowV2beta1Agent[];
     nextPageToken?: string | null;
   }
+  export interface Schema$GoogleCloudDialogflowV2beta1SearchEntryPoint {
+    renderedContent?: string | null;
+  }
   export interface Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeAnswer {
     answer?: string | null;
     answerRecord?: string | null;
@@ -2697,6 +2788,11 @@ export namespace dialogflow_v2beta1 {
     answers?: Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeAnswer[];
     rewrittenQuery?: string | null;
     searchKnowledgeDebugInfo?: Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeDebugInfo;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1Segment {
+    endIndex?: number | null;
+    startIndex?: number | null;
+    text?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1Sentiment {
     magnitude?: number | null;
@@ -2795,6 +2891,11 @@ export namespace dialogflow_v2beta1 {
     endOffset?: string | null;
     startOffset?: string | null;
     word?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1StreamingReactiveCompanionSuggestionsResponseReactiveModeResponse {
+    groundingMetadata?: Schema$GoogleCloudDialogflowV2beta1GroundingMetadata;
+    response?: string | null;
+    toolCalls?: Schema$GoogleCloudDialogflowV2beta1ToolCallSuggestion[];
   }
   export interface Schema$GoogleCloudDialogflowV2beta1StreamingRecognitionResult {
     confidence?: number | null;
@@ -2896,6 +2997,7 @@ export namespace dialogflow_v2beta1 {
   }
   export interface Schema$GoogleCloudDialogflowV2beta1SuggestionResult {
     error?: Schema$GoogleRpcStatus;
+    generateCompanionSuggestionsResponse?: Schema$GoogleCloudDialogflowV2beta1GenerateCompanionSuggestionsResponse;
     generateSuggestionsResponse?: Schema$GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse;
     suggestArticlesResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse;
     suggestDialogflowAssistsResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse;
@@ -3108,6 +3210,10 @@ export namespace dialogflow_v2beta1 {
     message?: string | null;
     retryable?: boolean | null;
   }
+  export interface Schema$GoogleCloudDialogflowV2beta1ToolCallSuggestion {
+    textUpdate?: string | null;
+    toolCallInfo?: Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo;
+  }
   export interface Schema$GoogleCloudDialogflowV2beta1ToolConnectorTool {
     actions?: Schema$GoogleCloudDialogflowV2beta1ToolConnectorToolAction[];
     name?: string | null;
@@ -3195,6 +3301,24 @@ export namespace dialogflow_v2beta1 {
     createTime?: string | null;
     participantRole?: string | null;
     suggestionFeatureType?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2CompanionSuggestion {
+    guidances?: Schema$GoogleCloudDialogflowV2CompanionSuggestionGuidance[];
+  }
+  export interface Schema$GoogleCloudDialogflowV2CompanionSuggestionGuidance {
+    explanation?: string | null;
+    groundingMetadata?: Schema$GoogleCloudDialogflowV2GroundingMetadata;
+    instructionSource?: Schema$GoogleCloudDialogflowV2GuidanceInstruction;
+    knowledgeSources?: Schema$GoogleCloudDialogflowV2CompanionSuggestionGuidanceKnowledgeSource[];
+    suggestedAction?: string | null;
+    suggestedReply?: string | null;
+    toolCalls?: Schema$GoogleCloudDialogflowV2ToolCallSuggestion[];
+    triggeringToolCallAnswerRecords?: string[] | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2CompanionSuggestionGuidanceKnowledgeSource {
+    knowledgeArticleTitle?: string | null;
+    knowledgeArticleUrl?: string | null;
+    knowledgeSnippet?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2Context {
     lifespanCount?: number | null;
@@ -3288,6 +3412,12 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2GcsDestination {
     uri?: string | null;
   }
+  export interface Schema$GoogleCloudDialogflowV2GenerateCompanionSuggestionsResponse {
+    answerRecord?: string | null;
+    companionSuggestion?: Schema$GoogleCloudDialogflowV2CompanionSuggestion;
+    latestMessage?: string | null;
+    suggestionIndex?: number | null;
+  }
   export interface Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse {
     generatorSuggestionAnswers?: Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponseGeneratorSuggestionAnswer[];
     latestMessage?: string | null;
@@ -3306,6 +3436,41 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo {
     toolCall?: Schema$GoogleCloudDialogflowV2ToolCall;
     toolCallResult?: Schema$GoogleCloudDialogflowV2ToolCallResult;
+  }
+  export interface Schema$GoogleCloudDialogflowV2GroundingChunk {
+    retrievedContext?: Schema$GoogleCloudDialogflowV2GroundingChunkRetrievedContext;
+    web?: Schema$GoogleCloudDialogflowV2GroundingChunkWeb;
+  }
+  export interface Schema$GoogleCloudDialogflowV2GroundingChunkRetrievedContext {
+    text?: string | null;
+    title?: string | null;
+    uri?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2GroundingChunkWeb {
+    domain?: string | null;
+    title?: string | null;
+    uri?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2GroundingMetadata {
+    groundingChunks?: Schema$GoogleCloudDialogflowV2GroundingChunk[];
+    groundingSupports?: Schema$GoogleCloudDialogflowV2GroundingSupport[];
+    searchEntryPoint?: Schema$GoogleCloudDialogflowV2SearchEntryPoint;
+    webSearchQueries?: string[] | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2GroundingSupport {
+    groundingChunkIndices?: number[] | null;
+    segment?: Schema$GoogleCloudDialogflowV2Segment;
+  }
+  export interface Schema$GoogleCloudDialogflowV2GuidanceInstruction {
+    actions?: Schema$GoogleCloudDialogflowV2GuidanceInstructionAction[];
+    condition?: string | null;
+    disableSuggestedReply?: boolean | null;
+    displayDetails?: string | null;
+    displayName?: string | null;
+    triggerEvent?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2GuidanceInstructionAction {
+    description?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2HumanAgentAssistantEvent {
     conversation?: string | null;
@@ -3652,6 +3817,14 @@ export namespace dialogflow_v2beta1 {
     webhookPayload?: {[key: string]: any} | null;
     webhookSource?: string | null;
   }
+  export interface Schema$GoogleCloudDialogflowV2SearchEntryPoint {
+    renderedContent?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2Segment {
+    endIndex?: number | null;
+    startIndex?: number | null;
+    text?: string | null;
+  }
   export interface Schema$GoogleCloudDialogflowV2Sentiment {
     magnitude?: number | null;
     score?: number | null;
@@ -3714,6 +3887,7 @@ export namespace dialogflow_v2beta1 {
   }
   export interface Schema$GoogleCloudDialogflowV2SuggestionResult {
     error?: Schema$GoogleRpcStatus;
+    generateCompanionSuggestionsResponse?: Schema$GoogleCloudDialogflowV2GenerateCompanionSuggestionsResponse;
     generateSuggestionsResponse?: Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse;
     suggestArticlesResponse?: Schema$GoogleCloudDialogflowV2SuggestArticlesResponse;
     suggestFaqAnswersResponse?: Schema$GoogleCloudDialogflowV2SuggestFaqAnswersResponse;
@@ -3766,6 +3940,10 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2ToolCallResultError {
     message?: string | null;
     retryable?: boolean | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2ToolCallSuggestion {
+    textUpdate?: string | null;
+    toolCallInfo?: Schema$GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo;
   }
   export interface Schema$GoogleCloudDialogflowV2UndeployConversationModelOperationMetadata {
     conversationModel?: string | null;
@@ -24192,6 +24370,7 @@ export namespace dialogflow_v2beta1 {
     context: APIRequestContext;
     agent: Resource$Projects$Locations$Agent;
     answerRecords: Resource$Projects$Locations$Answerrecords;
+    companionAgents: Resource$Projects$Locations$Companionagents;
     conversationProfiles: Resource$Projects$Locations$Conversationprofiles;
     conversations: Resource$Projects$Locations$Conversations;
     encryptionSpec: Resource$Projects$Locations$Encryptionspec;
@@ -24207,6 +24386,9 @@ export namespace dialogflow_v2beta1 {
       this.context = context;
       this.agent = new Resource$Projects$Locations$Agent(this.context);
       this.answerRecords = new Resource$Projects$Locations$Answerrecords(
+        this.context
+      );
+      this.companionAgents = new Resource$Projects$Locations$Companionagents(
         this.context
       );
       this.conversationProfiles =
@@ -36126,6 +36308,851 @@ export namespace dialogflow_v2beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowV2beta1AnswerRecord;
+  }
+
+  export class Resource$Projects$Locations$Companionagents {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.companionAgents.create({
+     *     companionAgentId: 'placeholder-value',
+     *
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cesToolSpecs": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "skillConfigs": [],
+     *       //   "toolsetTools": [],
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cesToolSpecs": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "skillConfigs": [],
+     *   //   "toolsetTools": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Companionagents$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Companionagents$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+    >;
+    create(
+      params: Params$Resource$Projects$Locations$Companionagents$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Companionagents$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Companionagents$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Companionagents$Create
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Companionagents$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Companionagents$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/companionAgents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.companionAgents.delete({
+     *     name: 'projects/my-project/locations/my-location/companionAgents/my-companionAgent',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Companionagents$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Companionagents$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Companionagents$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Companionagents$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Companionagents$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Companionagents$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Companionagents$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Companionagents$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.companionAgents.get({
+     *     name: 'projects/my-project/locations/my-location/companionAgents/my-companionAgent',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cesToolSpecs": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "skillConfigs": [],
+     *   //   "toolsetTools": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Companionagents$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Companionagents$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Companionagents$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Companionagents$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Companionagents$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Companionagents$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Companionagents$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Companionagents$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.companionAgents.list({
+     *     pageSize: 'placeholder-value',
+     *
+     *     pageToken: 'placeholder-value',
+     *
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "companionAgents": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Companionagents$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Companionagents$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowV2beta1ListCompanionAgentsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Companionagents$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Companionagents$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListCompanionAgentsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListCompanionAgentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Companionagents$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListCompanionAgentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListCompanionAgentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Companionagents$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListCompanionAgentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListCompanionAgentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListCompanionAgentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowV2beta1ListCompanionAgentsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Companionagents$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Companionagents$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/companionAgents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListCompanionAgentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListCompanionAgentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.companionAgents.patch({
+     *     name: 'projects/my-project/locations/my-location/companionAgents/my-companionAgent',
+     *
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cesToolSpecs": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "skillConfigs": [],
+     *       //   "toolsetTools": [],
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cesToolSpecs": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "skillConfigs": [],
+     *   //   "toolsetTools": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Companionagents$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Companionagents$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Companionagents$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Companionagents$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Companionagents$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Companionagents$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Companionagents$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Companionagents$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1CompanionAgent>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Companionagents$Create extends StandardParameters {
+    /**
+     *
+     */
+    companionAgentId?: string;
+    /**
+     *
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1CompanionAgent;
+  }
+  export interface Params$Resource$Projects$Locations$Companionagents$Delete extends StandardParameters {
+    /**
+     *
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Companionagents$Get extends StandardParameters {
+    /**
+     *
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Companionagents$List extends StandardParameters {
+    /**
+     *
+     */
+    pageSize?: number;
+    /**
+     *
+     */
+    pageToken?: string;
+    /**
+     *
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Companionagents$Patch extends StandardParameters {
+    /**
+     *
+     */
+    name?: string;
+    /**
+     *
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1CompanionAgent;
   }
 
   export class Resource$Projects$Locations$Conversationprofiles {

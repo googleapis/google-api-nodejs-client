@@ -5151,7 +5151,7 @@
       }
     }
   },
-  "revision": "20260815",
+  "revision": "20260929",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -14678,6 +14678,72 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2CompanionSuggestion": {
+      "id": "GoogleCloudDialogflowV2CompanionSuggestion",
+      "properties": {
+        "guidances": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2CompanionSuggestionGuidance"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2CompanionSuggestionGuidance": {
+      "id": "GoogleCloudDialogflowV2CompanionSuggestionGuidance",
+      "properties": {
+        "explanation": {
+          "type": "string"
+        },
+        "groundingMetadata": {
+          "$ref": "GoogleCloudDialogflowV2GroundingMetadata"
+        },
+        "instructionSource": {
+          "$ref": "GoogleCloudDialogflowV2GuidanceInstruction"
+        },
+        "knowledgeSources": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2CompanionSuggestionGuidanceKnowledgeSource"
+          },
+          "type": "array"
+        },
+        "suggestedAction": {
+          "type": "string"
+        },
+        "suggestedReply": {
+          "type": "string"
+        },
+        "toolCalls": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2ToolCallSuggestion"
+          },
+          "type": "array"
+        },
+        "triggeringToolCallAnswerRecords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2CompanionSuggestionGuidanceKnowledgeSource": {
+      "id": "GoogleCloudDialogflowV2CompanionSuggestionGuidanceKnowledgeSource",
+      "properties": {
+        "knowledgeArticleTitle": {
+          "type": "string"
+        },
+        "knowledgeArticleUrl": {
+          "type": "string"
+        },
+        "knowledgeSnippet": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2Context": {
       "id": "GoogleCloudDialogflowV2Context",
       "properties": {
@@ -15085,6 +15151,26 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2GenerateCompanionSuggestionsResponse": {
+      "id": "GoogleCloudDialogflowV2GenerateCompanionSuggestionsResponse",
+      "properties": {
+        "answerRecord": {
+          "type": "string"
+        },
+        "companionSuggestion": {
+          "$ref": "GoogleCloudDialogflowV2CompanionSuggestion"
+        },
+        "latestMessage": {
+          "type": "string"
+        },
+        "suggestionIndex": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2GenerateSuggestionsResponse": {
       "id": "GoogleCloudDialogflowV2GenerateSuggestionsResponse",
       "properties": {
@@ -15144,6 +15230,145 @@
         },
         "toolCallResult": {
           "$ref": "GoogleCloudDialogflowV2ToolCallResult"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GroundingChunk": {
+      "id": "GoogleCloudDialogflowV2GroundingChunk",
+      "properties": {
+        "retrievedContext": {
+          "$ref": "GoogleCloudDialogflowV2GroundingChunkRetrievedContext"
+        },
+        "web": {
+          "$ref": "GoogleCloudDialogflowV2GroundingChunkWeb"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GroundingChunkRetrievedContext": {
+      "id": "GoogleCloudDialogflowV2GroundingChunkRetrievedContext",
+      "properties": {
+        "text": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "title": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GroundingChunkWeb": {
+      "id": "GoogleCloudDialogflowV2GroundingChunkWeb",
+      "properties": {
+        "domain": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "title": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GroundingMetadata": {
+      "id": "GoogleCloudDialogflowV2GroundingMetadata",
+      "properties": {
+        "groundingChunks": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2GroundingChunk"
+          },
+          "type": "array"
+        },
+        "groundingSupports": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2GroundingSupport"
+          },
+          "type": "array"
+        },
+        "searchEntryPoint": {
+          "$ref": "GoogleCloudDialogflowV2SearchEntryPoint"
+        },
+        "webSearchQueries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GroundingSupport": {
+      "id": "GoogleCloudDialogflowV2GroundingSupport",
+      "properties": {
+        "groundingChunkIndices": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "segment": {
+          "$ref": "GoogleCloudDialogflowV2Segment"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GuidanceInstruction": {
+      "id": "GoogleCloudDialogflowV2GuidanceInstruction",
+      "properties": {
+        "actions": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2GuidanceInstructionAction"
+          },
+          "type": "array"
+        },
+        "condition": {
+          "type": "string"
+        },
+        "disableSuggestedReply": {
+          "type": "boolean"
+        },
+        "displayDetails": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "triggerEvent": {
+          "enum": [
+            "TRIGGER_EVENT_UNSPECIFIED",
+            "END_OF_UTTERANCE",
+            "CUSTOMER_MESSAGE",
+            "AGENT_MESSAGE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GuidanceInstructionAction": {
+      "id": "GoogleCloudDialogflowV2GuidanceInstructionAction",
+      "properties": {
+        "description": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -16562,6 +16787,35 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2SearchEntryPoint": {
+      "id": "GoogleCloudDialogflowV2SearchEntryPoint",
+      "properties": {
+        "renderedContent": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2Segment": {
+      "id": "GoogleCloudDialogflowV2Segment",
+      "properties": {
+        "endIndex": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "startIndex": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "text": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2Sentiment": {
       "id": "GoogleCloudDialogflowV2Sentiment",
       "properties": {
@@ -16888,6 +17142,9 @@
         "error": {
           "$ref": "GoogleRpcStatus"
         },
+        "generateCompanionSuggestionsResponse": {
+          "$ref": "GoogleCloudDialogflowV2GenerateCompanionSuggestionsResponse"
+        },
         "generateSuggestionsResponse": {
           "$ref": "GoogleCloudDialogflowV2GenerateSuggestionsResponse"
         },
@@ -17033,6 +17290,18 @@
         },
         "retryable": {
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ToolCallSuggestion": {
+      "id": "GoogleCloudDialogflowV2ToolCallSuggestion",
+      "properties": {
+        "textUpdate": {
+          "type": "string"
+        },
+        "toolCallInfo": {
+          "$ref": "GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo"
         }
       },
       "type": "object"
@@ -17415,6 +17684,72 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1CompanionSuggestion": {
+      "id": "GoogleCloudDialogflowV2beta1CompanionSuggestion",
+      "properties": {
+        "guidances": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1CompanionSuggestionGuidance"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1CompanionSuggestionGuidance": {
+      "id": "GoogleCloudDialogflowV2beta1CompanionSuggestionGuidance",
+      "properties": {
+        "explanation": {
+          "type": "string"
+        },
+        "groundingMetadata": {
+          "$ref": "GoogleCloudDialogflowV2beta1GroundingMetadata"
+        },
+        "instructionSource": {
+          "$ref": "GoogleCloudDialogflowV2beta1GuidanceInstruction"
+        },
+        "knowledgeSources": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1CompanionSuggestionGuidanceKnowledgeSource"
+          },
+          "type": "array"
+        },
+        "suggestedAction": {
+          "type": "string"
+        },
+        "suggestedReply": {
+          "type": "string"
+        },
+        "toolCalls": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1ToolCallSuggestion"
+          },
+          "type": "array"
+        },
+        "triggeringToolCallAnswerRecords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1CompanionSuggestionGuidanceKnowledgeSource": {
+      "id": "GoogleCloudDialogflowV2beta1CompanionSuggestionGuidanceKnowledgeSource",
+      "properties": {
+        "knowledgeArticleTitle": {
+          "type": "string"
+        },
+        "knowledgeArticleUrl": {
+          "type": "string"
+        },
+        "knowledgeSnippet": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1Context": {
       "id": "GoogleCloudDialogflowV2beta1Context",
       "properties": {
@@ -17650,6 +17985,26 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1GenerateCompanionSuggestionsResponse": {
+      "id": "GoogleCloudDialogflowV2beta1GenerateCompanionSuggestionsResponse",
+      "properties": {
+        "answerRecord": {
+          "type": "string"
+        },
+        "companionSuggestion": {
+          "$ref": "GoogleCloudDialogflowV2beta1CompanionSuggestion"
+        },
+        "latestMessage": {
+          "type": "string"
+        },
+        "suggestionIndex": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse": {
       "id": "GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse",
       "properties": {
@@ -17709,6 +18064,145 @@
         },
         "toolCallResult": {
           "$ref": "GoogleCloudDialogflowV2beta1ToolCallResult"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1GroundingChunk": {
+      "id": "GoogleCloudDialogflowV2beta1GroundingChunk",
+      "properties": {
+        "retrievedContext": {
+          "$ref": "GoogleCloudDialogflowV2beta1GroundingChunkRetrievedContext"
+        },
+        "web": {
+          "$ref": "GoogleCloudDialogflowV2beta1GroundingChunkWeb"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1GroundingChunkRetrievedContext": {
+      "id": "GoogleCloudDialogflowV2beta1GroundingChunkRetrievedContext",
+      "properties": {
+        "text": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "title": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1GroundingChunkWeb": {
+      "id": "GoogleCloudDialogflowV2beta1GroundingChunkWeb",
+      "properties": {
+        "domain": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "title": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1GroundingMetadata": {
+      "id": "GoogleCloudDialogflowV2beta1GroundingMetadata",
+      "properties": {
+        "groundingChunks": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1GroundingChunk"
+          },
+          "type": "array"
+        },
+        "groundingSupports": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1GroundingSupport"
+          },
+          "type": "array"
+        },
+        "searchEntryPoint": {
+          "$ref": "GoogleCloudDialogflowV2beta1SearchEntryPoint"
+        },
+        "webSearchQueries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1GroundingSupport": {
+      "id": "GoogleCloudDialogflowV2beta1GroundingSupport",
+      "properties": {
+        "groundingChunkIndices": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "segment": {
+          "$ref": "GoogleCloudDialogflowV2beta1Segment"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1GuidanceInstruction": {
+      "id": "GoogleCloudDialogflowV2beta1GuidanceInstruction",
+      "properties": {
+        "actions": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1GuidanceInstructionAction"
+          },
+          "type": "array"
+        },
+        "condition": {
+          "type": "string"
+        },
+        "disableSuggestedReply": {
+          "type": "boolean"
+        },
+        "displayDetails": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "triggerEvent": {
+          "enum": [
+            "TRIGGER_EVENT_UNSPECIFIED",
+            "END_OF_UTTERANCE",
+            "CUSTOMER_MESSAGE",
+            "AGENT_MESSAGE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1GuidanceInstructionAction": {
+      "id": "GoogleCloudDialogflowV2beta1GuidanceInstructionAction",
+      "properties": {
+        "description": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -19501,6 +19995,35 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1SearchEntryPoint": {
+      "id": "GoogleCloudDialogflowV2beta1SearchEntryPoint",
+      "properties": {
+        "renderedContent": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1Segment": {
+      "id": "GoogleCloudDialogflowV2beta1Segment",
+      "properties": {
+        "endIndex": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "startIndex": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "text": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1Sentiment": {
       "id": "GoogleCloudDialogflowV2beta1Sentiment",
       "properties": {
@@ -19835,6 +20358,9 @@
         "error": {
           "$ref": "GoogleRpcStatus"
         },
+        "generateCompanionSuggestionsResponse": {
+          "$ref": "GoogleCloudDialogflowV2beta1GenerateCompanionSuggestionsResponse"
+        },
         "generateSuggestionsResponse": {
           "$ref": "GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse"
         },
@@ -20036,6 +20562,18 @@
         },
         "retryable": {
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ToolCallSuggestion": {
+      "id": "GoogleCloudDialogflowV2beta1ToolCallSuggestion",
+      "properties": {
+        "textUpdate": {
+          "type": "string"
+        },
+        "toolCallInfo": {
+          "$ref": "GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo"
         }
       },
       "type": "object"
