@@ -1265,7 +1265,7 @@
       }
     }
   },
-  "revision": "20261001",
+  "revision": "20261006",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -5506,6 +5506,7 @@
             "PENDING",
             "APP_INCOMPATIBLE",
             "APP_NOT_UPDATED",
+            "OS_NOT_PERMITTED",
             "DEVICE_INCOMPATIBLE",
             "APP_SIGNING_CERT_MISMATCH",
             "PROJECT_NOT_PERMITTED"
@@ -5522,6 +5523,7 @@
             "The setting hasn't been applied at the time of the report, but is expected to be applied shortly.",
             "The setting can't be applied to the app because the app doesn't support it, for example because its target SDK version is not high enough.",
             "The app is installed, but it hasn't been updated to the minimum version code specified by policy.",
+            "This OS version is not permitted by the policy",
             "The device is incompatible with the policy requirements.",
             "The app's signing certificate does not match the setting value.",
             "The Google Cloud Platform project used to manage the device is not permitted to use this policy."
@@ -5600,6 +5602,7 @@
             "PENDING",
             "APP_INCOMPATIBLE",
             "APP_NOT_UPDATED",
+            "OS_NOT_PERMITTED",
             "DEVICE_INCOMPATIBLE",
             "APP_SIGNING_CERT_MISMATCH",
             "PROJECT_NOT_PERMITTED"
@@ -5616,6 +5619,7 @@
             "The setting hasn't been applied at the time of the report, but is expected to be applied shortly.",
             "The setting can't be applied to the app because the app doesn't support it, for example because its target SDK version is not high enough.",
             "The app is installed, but it hasn't been updated to the minimum version code specified by policy.",
+            "This OS version is not permitted by the policy",
             "The device is incompatible with the policy requirements.",
             "The app's signing certificate does not match the setting value.",
             "The Google Cloud Platform project used to manage the device is not permitted to use this policy."
@@ -6563,7 +6567,7 @@
           "type": "string"
         },
         "minimumApiLevel": {
-          "description": "The minimum allowed Android API level.",
+          "description": "The minimum allowed Android API level. A NonComplianceDetail with OS_NOT_PERMITTED is reported if the Android API level of the device is lower than this value.",
           "format": "int32",
           "type": "integer"
         },
