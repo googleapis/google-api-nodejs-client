@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20260921",
+  "revision": "20261002",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AutomatedDiscounts": {
@@ -2590,14 +2590,16 @@
             "ADEME",
             "BMWK",
             "EPA",
-            "EC"
+            "EC",
+            "DESNZ"
           ],
           "enumDescriptions": [
             "Certification authority is not specified.",
             "For the French CO2 emissions class for vehicles.",
             "For the German CO2 emissions classes for vehicles.",
             "Environment Protection Agency.",
-            "European Commission for energy labels in the EU."
+            "European Commission for energy labels in the EU.",
+            "Department for Energy Security and Net Zero."
           ],
           "type": "string"
         },
@@ -2622,7 +2624,8 @@
             "EPREL",
             "EU_ECOLABEL",
             "VEHICLE_ENERGY_EFFICIENCY",
-            "VEHICLE_ENERGY_EFFICIENCY_DISCHARGED_BATTERY"
+            "VEHICLE_ENERGY_EFFICIENCY_DISCHARGED_BATTERY",
+            "GB_ENERGY_INFO"
           ],
           "enumDescriptions": [
             "Certification name is not specified.",
@@ -2631,7 +2634,8 @@
             "Represents energy efficiency certifications in the EU European Registry for Energy Labeling (EPREL) database.",
             "EU Ecolabel.",
             "The overall CO2 class of a vehicle",
-            "For the CO2 class of a vehicle with a discharged battery."
+            "For the CO2 class of a vehicle with a discharged battery.",
+            "Great Britain Energy Information."
           ],
           "type": "string"
         },
