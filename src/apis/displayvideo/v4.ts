@@ -2539,7 +2539,7 @@ export namespace displayvideo_v4 {
      */
     trackingUrl?: string | null;
     /**
-     * Required. The YouTube video of the ad.
+     * Required. Immutable. The YouTube video of the ad.
      */
     video?: Schema$YoutubeVideoDetails;
   }
@@ -3679,7 +3679,7 @@ export namespace displayvideo_v4 {
    */
   export interface Schema$DigitalContentLabelAssignedTargetingOptionDetails {
     /**
-     * Required. The display name of the digital content label rating tier to be EXCLUDED. **Starting on *October 1, 2026*, this field will only accept the value `CONTENT_RATING_TIER_UNRATED`. All other values will be deprecated and no longer be accepted.**
+     * Required. The display name of the digital content label rating tier to be EXCLUDED. This field only accepts the value `CONTENT_RATING_TIER_UNRATED`.
      */
     excludedContentRatingTier?: string | null;
   }
@@ -5209,7 +5209,7 @@ export namespace displayvideo_v4 {
      */
     warningMessages?: string[] | null;
     /**
-     * Output only. Settings specific to YouTube and Partners line items.
+     * Optional. Settings specific to YouTube and Partners line items.
      */
     youtubeAndPartnersSettings?: Schema$YoutubeAndPartnersSettings;
   }
@@ -6939,7 +6939,7 @@ export namespace displayvideo_v4 {
    */
   export interface Schema$SensitiveCategoryAssignedTargetingOptionDetails {
     /**
-     * Required. An enum for the DV360 Sensitive category content classified to be EXCLUDED. **Starting on *October 1, 2026*, this field will only accept `SENSITIVE_CATEGORY_EMBEDDED_VIDEO` or `SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO`. All other values will be deprecated and no longer be accepted.**
+     * Required. An enum for the Display & Video 360 Sensitive category content classified to be EXCLUDED. This field only accepts the following values: * `SENSITIVE_CATEGORY_EMBEDDED_VIDEO` * `SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO`
      */
     excludedSensitiveCategory?: string | null;
   }
@@ -6948,7 +6948,7 @@ export namespace displayvideo_v4 {
    */
   export interface Schema$SensitiveCategoryTargetingOptionDetails {
     /**
-     * Output only. An enum for the DV360 Sensitive category content classifier.
+     * Output only. An enum for the Display & Video 360 Sensitive category content classifier.
      */
     sensitiveCategory?: string | null;
   }
@@ -7053,11 +7053,11 @@ export namespace displayvideo_v4 {
      */
     targetCount?: string | null;
     /**
-     * The unit of time in which the target frequency will be applied. The following time unit is applicable: * `TIME_UNIT_WEEKS`
+     * The unit of time in which the target frequency will be applied. The following time unit is applicable: * `TIME_UNIT_WEEKS` * `TIME_UNIT_MONTHS`
      */
     timeUnit?: string | null;
     /**
-     * The number of time_unit the target frequency will last. The following restrictions apply based on the value of time_unit: * `TIME_UNIT_WEEKS` - must be 1
+     * The number of time_unit the target frequency will last. The following restrictions apply based on the value of time_unit: * `TIME_UNIT_WEEKS` - must be 1 * `TIME_UNIT_MONTHS` - must be 1
      */
     timeUnitCount?: number | null;
   }

@@ -2419,7 +2419,7 @@ export namespace displayvideo_v3 {
      */
     trackingUrl?: string | null;
     /**
-     * Required. The YouTube video of the ad.
+     * Required. Immutable. The YouTube video of the ad.
      */
     video?: Schema$YoutubeVideoDetails;
   }
@@ -3474,7 +3474,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$DigitalContentLabelAssignedTargetingOptionDetails {
     /**
-     * Required. The display name of the digital content label rating tier to be EXCLUDED. **Starting on *October 1, 2026*, this field will only accept the value `CONTENT_RATING_TIER_UNRATED`. All other values will be deprecated and no longer be accepted.**
+     * Required. The display name of the digital content label rating tier to be EXCLUDED. This field only accepts the value `CONTENT_RATING_TIER_UNRATED`.
      */
     excludedContentRatingTier?: string | null;
   }
@@ -4670,7 +4670,7 @@ export namespace displayvideo_v3 {
      */
     warningMessages?: string[] | null;
     /**
-     * Output only. Settings specific to YouTube and Partners line items.
+     * Optional. Settings specific to YouTube and Partners line items.
      */
     youtubeAndPartnersSettings?: Schema$YoutubeAndPartnersSettings;
   }
@@ -6016,7 +6016,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$SensitiveCategoryAssignedTargetingOptionDetails {
     /**
-     * Required. An enum for the DV360 Sensitive category content classified to be EXCLUDED. **Starting on *October 1, 2026*, this field will only accept `SENSITIVE_CATEGORY_EMBEDDED_VIDEO` or `SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO`. All other values will be deprecated and no longer be accepted.**
+     * Required. An enum for the Display & Video 360 Sensitive category content classified to be EXCLUDED. This field only accepts the following values: * `SENSITIVE_CATEGORY_EMBEDDED_VIDEO` * `SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO`
      */
     excludedSensitiveCategory?: string | null;
   }
@@ -6025,7 +6025,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$SensitiveCategoryTargetingOptionDetails {
     /**
-     * Output only. An enum for the DV360 Sensitive category content classifier.
+     * Output only. An enum for the Display & Video 360 Sensitive category content classifier.
      */
     sensitiveCategory?: string | null;
   }
@@ -6095,11 +6095,11 @@ export namespace displayvideo_v3 {
      */
     targetCount?: string | null;
     /**
-     * The unit of time in which the target frequency will be applied. The following time unit is applicable: * `TIME_UNIT_WEEKS`
+     * The unit of time in which the target frequency will be applied. The following time unit is applicable: * `TIME_UNIT_WEEKS` * `TIME_UNIT_MONTHS`
      */
     timeUnit?: string | null;
     /**
-     * The number of time_unit the target frequency will last. The following restrictions apply based on the value of time_unit: * `TIME_UNIT_WEEKS` - must be 1
+     * The number of time_unit the target frequency will last. The following restrictions apply based on the value of time_unit: * `TIME_UNIT_WEEKS` - must be 1 * `TIME_UNIT_MONTHS` - must be 1
      */
     timeUnitCount?: number | null;
   }
@@ -6107,14 +6107,6 @@ export namespace displayvideo_v3 {
    * Settings that control the [optimized targeting](//support.google.com/displayvideo/answer/12060859) settings of the line item.
    */
   export interface Schema$TargetingExpansionConfig {
-    /**
-     * Output only. Magnitude of expansion for eligible first-party user lists under this ad group. This field only applies to YouTube and Partners line item and ad group resources.
-     */
-    audienceExpansionLevel?: string | null;
-    /**
-     * Output only. Whether to exclude seed list for audience expansion. This field only applies to YouTube and Partners line item and ad group resources.
-     */
-    audienceExpansionSeedListExcluded?: boolean | null;
     /**
      * Required. Whether to enable Optimized Targeting for the line item. Optimized targeting is not compatible with all bid strategies. Attempting to set this field to `true` for a line item using the BiddingStrategy field fixed_bid or one of the following combinations of BiddingStrategy fields and BiddingStrategyPerformanceGoalType will result in an error: maximize_auto_spend_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` performance_goal_auto_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM` This also applies if the line item inherits one of the above bid strategies from the parent insertion order. Bid strategies set at the insertion order-level will be inherited by their line items if the `InsertionOrder` budget field automationType is set to `INSERTION_ORDER_AUTOMATION_TYPE_BUDGET` or `INSERTION_ORDER_AUTOMATION_TYPE_BID_BUDGET`.
      */
