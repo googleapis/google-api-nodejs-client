@@ -516,6 +516,10 @@ export namespace networkmanagement_v1 {
      */
     aggregationInterval?: string | null;
     /**
+     * Optional. Configures whether connection logging is enabled for VPC Flow Logs.
+     */
+    connectionLogging?: string | null;
+    /**
      * Determines whether to include cross project annotations in the logs. This field is available only for organization configurations. If not specified in org configs will be set to CROSS_PROJECT_METADATA_ENABLED.
      */
     crossProjectMetadata?: string | null;
@@ -2451,6 +2455,10 @@ export namespace networkmanagement_v1 {
      */
     aggregationInterval?: string | null;
     /**
+     * Optional. Configures whether connection logging is enabled for VPC Flow Logs.
+     */
+    connectionLogging?: string | null;
+    /**
      * Output only. The time the config was created.
      */
     createTime?: string | null;
@@ -3668,6 +3676,7 @@ export namespace networkmanagement_v1 {
      *         // request body parameters
      *         // {
      *         //   "aggregationInterval": "my_aggregationInterval",
+     *         //   "connectionLogging": "my_connectionLogging",
      *         //   "createTime": "my_createTime",
      *         //   "crossProjectMetadata": "my_crossProjectMetadata",
      *         //   "description": "my_description",
@@ -3975,6 +3984,7 @@ export namespace networkmanagement_v1 {
      *   // Example response
      *   // {
      *   //   "aggregationInterval": "my_aggregationInterval",
+     *   //   "connectionLogging": "my_connectionLogging",
      *   //   "createTime": "my_createTime",
      *   //   "crossProjectMetadata": "my_crossProjectMetadata",
      *   //   "description": "my_description",
@@ -4286,6 +4296,7 @@ export namespace networkmanagement_v1 {
      *         // request body parameters
      *         // {
      *         //   "aggregationInterval": "my_aggregationInterval",
+     *         //   "connectionLogging": "my_connectionLogging",
      *         //   "createTime": "my_createTime",
      *         //   "crossProjectMetadata": "my_crossProjectMetadata",
      *         //   "description": "my_description",
@@ -9538,6 +9549,7 @@ export namespace networkmanagement_v1 {
      *         // request body parameters
      *         // {
      *         //   "aggregationInterval": "my_aggregationInterval",
+     *         //   "connectionLogging": "my_connectionLogging",
      *         //   "createTime": "my_createTime",
      *         //   "crossProjectMetadata": "my_crossProjectMetadata",
      *         //   "description": "my_description",
@@ -9846,6 +9858,7 @@ export namespace networkmanagement_v1 {
      *   // Example response
      *   // {
      *   //   "aggregationInterval": "my_aggregationInterval",
+     *   //   "connectionLogging": "my_connectionLogging",
      *   //   "createTime": "my_createTime",
      *   //   "crossProjectMetadata": "my_crossProjectMetadata",
      *   //   "description": "my_description",
@@ -10157,6 +10170,7 @@ export namespace networkmanagement_v1 {
      *         // request body parameters
      *         // {
      *         //   "aggregationInterval": "my_aggregationInterval",
+     *         //   "connectionLogging": "my_connectionLogging",
      *         //   "createTime": "my_createTime",
      *         //   "crossProjectMetadata": "my_crossProjectMetadata",
      *         //   "description": "my_description",

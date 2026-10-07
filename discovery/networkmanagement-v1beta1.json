@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20260923",
+  "revision": "20260930",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -2163,6 +2163,20 @@
             "Aggregate logs in 5m intervals.",
             "Aggregate logs in 10m intervals.",
             "Aggregate logs in 15m intervals."
+          ],
+          "type": "string"
+        },
+        "connectionLogging": {
+          "description": "Optional. Configures whether connection logging is enabled for VPC Flow Logs.",
+          "enum": [
+            "CONNECTION_LOGGING_UNSPECIFIED",
+            "CONNECTION_LOGGING_ENABLED",
+            "CONNECTION_LOGGING_DISABLED"
+          ],
+          "enumDescriptions": [
+            "If not specified, will default to CONNECTION_LOGGING_DISABLED.",
+            "Include connection logs.",
+            "Do not include connection logs."
           ],
           "type": "string"
         },
@@ -4660,6 +4674,20 @@
             "Aggregate logs in 5m intervals.",
             "Aggregate logs in 10m intervals.",
             "Aggregate logs in 15m intervals."
+          ],
+          "type": "string"
+        },
+        "connectionLogging": {
+          "description": "Optional. Configures whether connection logging is enabled for VPC Flow Logs.",
+          "enum": [
+            "CONNECTION_LOGGING_UNSPECIFIED",
+            "CONNECTION_LOGGING_ENABLED",
+            "CONNECTION_LOGGING_DISABLED"
+          ],
+          "enumDescriptions": [
+            "If not specified, will default to CONNECTION_LOGGING_DISABLED.",
+            "Include connection logs.",
+            "Do not include connection logs."
           ],
           "type": "string"
         },
