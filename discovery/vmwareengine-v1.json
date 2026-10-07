@@ -1608,7 +1608,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Modifies a `PrivateCloud` resource. Only the following fields can be updated: `description`. Only fields specified in `updateMask` are applied. During operation processing, the resource is temporarily in the `ACTIVE` state before the operation fully completes. For that period of time, you can't update the resource. Use the operation status to determine when the processing fully completes.",
+                  "description": "Modifies a `PrivateCloud` resource. Only the following fields can be updated: `description`, `encryption_config`. If `updateMask` is provided, only fields specified in it are applied. If `updateMask` is not provided, the default behavior is to update the `description`. It is advised to provide an `updateMask` to avoid confusion. During operation processing, the resource is temporarily in the `ACTIVE` state before the operation fully completes. For that period of time, you can't update the resource. Use the operation status to determine when the processing fully completes.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateClouds/{privateCloudsId}",
                   "httpMethod": "PATCH",
                   "id": "vmwareengine.projects.locations.privateClouds.patch",
@@ -1629,7 +1629,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Field mask is used to specify the fields to be overwritten in the `PrivateCloud` resource by the update. The fields specified in `updateMask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Required. Field mask is used to specify the fields to be overwritten in the `PrivateCloud` resource by the update. The fields specified in `updateMask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the description field will be overwritten.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -3742,7 +3742,7 @@
       }
     }
   },
-  "revision": "20260608",
+  "revision": "20260922",
   "rootUrl": "https://vmwareengine.googleapis.com/",
   "schemas": {
     "AcceleratePrivateCloudDeletionRequest": {
@@ -4575,7 +4575,7 @@
       "properties": {
         "principal": {
           "$ref": "Principal",
-          "description": "Required. The consumer provided user/service account which needs to be granted permission to bind with the intranet VPC corresponding to the consumer project."
+          "description": "Required. The consumer provided user/service account which needs to be granted permission to bind with the intranet VPC corresponding to the consumer project. Principal can be a user or a service account. For example, to specify the user `user@example.com`, use `\"principal\": {\"user\": \"user@example.com\"}` and to specify the service account `service-account@gserviceaccount.com`, use `\"principal\": {\"serviceAccount\": \"service-account@gserviceaccount.com\"}`."
         },
         "requestId": {
           "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
@@ -6074,7 +6074,7 @@
       "type": "object"
     },
     "Principal": {
-      "description": "Users/Service accounts which have access for DNS binding on the intranet VPC corresponding to the consumer project.",
+      "description": "Users/Service accounts which have access for DNS binding on the intranet VPC corresponding to the consumer project. Principal can be a user or a service account. For example: For specifying user `user@example.com` use `{\"user\": \"user@example.com\"}` and for specifying service account `service-account@gserviceaccount.com` use `{\"serviceAccount\": \"service-account@gserviceaccount.com\"}`.",
       "id": "Principal",
       "properties": {
         "serviceAccount": {
@@ -6361,7 +6361,7 @@
       "properties": {
         "principal": {
           "$ref": "Principal",
-          "description": "Required. The consumer provided user/service account which needs to be granted permission to bind with the intranet VPC corresponding to the consumer project."
+          "description": "Required. The consumer provided user/service account which needs to be granted permission to bind with the intranet VPC corresponding to the consumer project. Principal can be a user or a service account. For example, to specify the user `user@example.com`, use `\"principal\": {\"user\": \"user@example.com\"}` and to specify the service account `service-account@gserviceaccount.com`, use `\"principal\": {\"serviceAccount\": \"service-account@gserviceaccount.com\"}`."
         },
         "requestId": {
           "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
@@ -6462,11 +6462,11 @@
       "id": "StretchedClusterConfig",
       "properties": {
         "preferredLocation": {
-          "description": "Required. Zone that will remain operational when connection between the two zones is lost. Specify the resource name of a zone that belongs to the region of the private cloud. For example: `projects/{project}/locations/europe-west3-a` where `{project}` can either be a project number or a project ID.",
+          "description": "Required. Zone that will remain operational when connection between the two zones is lost. Specify the resource name or ID of a zone that belongs to the region of the private cloud. For example: `projects/{project}/locations/europe-west3-a` or `europe-west3-a`, where `{project}` can either be a project number or a project ID.",
           "type": "string"
         },
         "secondaryLocation": {
-          "description": "Required. Additional zone for a higher level of availability and load balancing. Specify the resource name of a zone that belongs to the region of the private cloud. For example: `projects/{project}/locations/europe-west3-b` where `{project}` can either be a project number or a project ID.",
+          "description": "Required. Additional zone for a higher level of availability and load balancing. Specify the resource name or ID of a zone that belongs to the region of the private cloud. For example: `projects/{project}/locations/europe-west3-b` or `europe-west3-b`, where `{project}` can either be a project number or a project ID.",
           "type": "string"
         }
       },
