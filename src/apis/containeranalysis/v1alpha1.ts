@@ -1107,6 +1107,31 @@ export namespace containeranalysis_v1alpha1 {
     workerRelease?: string | null;
   }
   /**
+   * Aggregated/summary metrics over the entire build lifecycle.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1BuildResourceUsage {
+    /**
+     * Output only. The average CPU utilization ratio across all vCPUs over the duration of the build, expressed as a fraction in the range [0.0, 1.0].
+     */
+    averageCpuUtilization?: number | null;
+    /**
+     * Output only. The average memory utilization ratio over the duration of the build, expressed as a fraction in the range [0.0, 1.0].
+     */
+    averageMemoryUtilization?: number | null;
+    /**
+     * Output only. The highest CPU utilization ratio across all vCPUs observed over the duration of the build, expressed as a fraction in the range [0.0, 1.0].
+     */
+    peakCpuUtilization?: number | null;
+    /**
+     * Output only. The highest memory utilization ratio observed over the duration of the build, expressed as a fraction in the range [0.0, 1.0].
+     */
+    peakMemoryUtilization?: number | null;
+    /**
+     * Output only. Total CPU execution time consumed across all cores during build execution.
+     */
+    totalCpuDuration?: string | null;
+  }
+  /**
    * A step in the build pipeline.
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStep {
@@ -1503,6 +1528,10 @@ export namespace containeranalysis_v1alpha1 {
      * Python artifacts uploaded to Artifact Registry at the end of the build.
      */
     pythonPackages?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedPythonPackage[];
+    /**
+     * Output only. Aggregated metrics for the build.
+     */
+    resourceUsage?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1BuildResourceUsage;
   }
   /**
    * Pairs a set of secret environment variables containing encrypted values with the Cloud KMS key to use to decrypt the value. Note: Use `kmsKeyName` with `available_secrets` instead of using `kmsKeyName` with `secret`. For instructions see: https://cloud.google.com/cloud-build/docs/securing-builds/use-encrypted-credentials.
