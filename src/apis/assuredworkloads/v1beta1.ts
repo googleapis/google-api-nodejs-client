@@ -146,6 +146,10 @@ export namespace assuredworkloads_v1beta1 {
      * Optional. This field is deprecated and will be removed in future version of the API. Name of the OrgPolicy which was modified with non-compliant change and resulted in this violation. Format: projects/{project_number\}/policies/{constraint_name\} folders/{folder_id\}/policies/{constraint_name\} organizations/{organization_id\}/policies/{constraint_name\}
      */
     nonCompliantOrgPolicy?: string | null;
+    /**
+     * Optional. Specifies the violation view (`AssuredWorkloads` or `DataBoundary`) for acknowledging violations.
+     */
+    view?: string | null;
   }
   /**
    * Response for violation acknowledgement
@@ -1013,6 +1017,10 @@ export namespace assuredworkloads_v1beta1 {
      */
     acknowledgementTime?: string | null;
     /**
+     * Output only. List of compliance frameworks that are affected by this violation. This field is only populated when using `VIOLATION_VIEW_DATA_BOUNDARY`. e.g. "FedRAMP High", "NIST 800-53".
+     */
+    affectedFrameworks?: string[] | null;
+    /**
      * Optional. Output only. Violation Id of the org-policy violation due to which the resource violation is caused. Empty for org-policy violations.
      */
     associatedOrgPolicyViolationId?: string | null;
@@ -1028,6 +1036,10 @@ export namespace assuredworkloads_v1beta1 {
      * Output only. Category under which this violation is mapped. e.g. Location, Service Usage, Access, Encryption, etc.
      */
     category?: string | null;
+    /**
+     * Optional. Output only. The number of resource violations for particular org policy violation. This will be 0 in case of resource violation.
+     */
+    childResourceViolationCount?: number | null;
     /**
      * Output only. Description for the Violation. e.g. OrgPolicy gcp.resourceLocations has non compliant value.
      */
@@ -1060,6 +1072,10 @@ export namespace assuredworkloads_v1beta1 {
      * Output only. Compliance violation remediation
      */
     remediation?: Schema$GoogleCloudAssuredworkloadsV1beta1ViolationRemediation;
+    /**
+     * Output only. Contains the remediation instructions for the violation in markdown format.
+     */
+    remediationMarkdown?: string | null;
     /**
      * Output only. Time of the event which fixed the Violation. If the violation is ACTIVE this will be empty.
      */
@@ -6120,7 +6136,8 @@ export namespace assuredworkloads_v1beta1 {
      *           // {
      *           //   "acknowledgeType": "my_acknowledgeType",
      *           //   "comment": "my_comment",
-     *           //   "nonCompliantOrgPolicy": "my_nonCompliantOrgPolicy"
+     *           //   "nonCompliantOrgPolicy": "my_nonCompliantOrgPolicy",
+     *           //   "view": "my_view"
      *           // }
      *         },
      *       },
@@ -6272,6 +6289,8 @@ export namespace assuredworkloads_v1beta1 {
      *     await assuredworkloads.organizations.locations.workloads.violations.get({
      *       // Required. The resource name of the Violation to fetch (ie. Violation.name). Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}/violations/{violation\}
      *       name: 'organizations/my-organization/locations/my-location/workloads/my-workload/violations/my-violation',
+     *       // Optional. Specifies the violation view (`AssuredWorkloads` or `DataBoundary`) for fetching violations.
+     *       view: 'placeholder-value',
      *     });
      *   console.log(res.data);
      *
@@ -6279,10 +6298,12 @@ export namespace assuredworkloads_v1beta1 {
      *   // {
      *   //   "acknowledged": false,
      *   //   "acknowledgementTime": "my_acknowledgementTime",
+     *   //   "affectedFrameworks": [],
      *   //   "associatedOrgPolicyViolationId": "my_associatedOrgPolicyViolationId",
      *   //   "auditLogLink": "my_auditLogLink",
      *   //   "beginTime": "my_beginTime",
      *   //   "category": "my_category",
+     *   //   "childResourceViolationCount": 0,
      *   //   "description": "my_description",
      *   //   "exceptionAuditLogLink": "my_exceptionAuditLogLink",
      *   //   "exceptionContexts": [],
@@ -6291,6 +6312,7 @@ export namespace assuredworkloads_v1beta1 {
      *   //   "orgPolicyConstraint": "my_orgPolicyConstraint",
      *   //   "parentProjectNumber": "my_parentProjectNumber",
      *   //   "remediation": {},
+     *   //   "remediationMarkdown": "my_remediationMarkdown",
      *   //   "resolveTime": "my_resolveTime",
      *   //   "resourceName": "my_resourceName",
      *   //   "resourceType": "my_resourceType",
@@ -6451,6 +6473,8 @@ export namespace assuredworkloads_v1beta1 {
      *       // Required. The Workload name. Format `organizations/{org_id\}/locations/{location\}/workloads/{workload\}`.
      *       parent:
      *         'organizations/my-organization/locations/my-location/workloads/my-workload',
+     *       // Optional. Specifies the violation view(AssuredWorkloads or DataBoundary) for fetching violations.
+     *       view: 'placeholder-value',
      *     });
      *   console.log(res.data);
      *
@@ -6586,6 +6610,10 @@ export namespace assuredworkloads_v1beta1 {
      * Required. The resource name of the Violation to fetch (ie. Violation.name). Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}/violations/{violation\}
      */
     name?: string;
+    /**
+     * Optional. Specifies the violation view (`AssuredWorkloads` or `DataBoundary`) for fetching violations.
+     */
+    view?: string;
   }
   export interface Params$Resource$Organizations$Locations$Workloads$Violations$List extends StandardParameters {
     /**
@@ -6616,6 +6644,10 @@ export namespace assuredworkloads_v1beta1 {
      * Required. The Workload name. Format `organizations/{org_id\}/locations/{location\}/workloads/{workload\}`.
      */
     parent?: string;
+    /**
+     * Optional. Specifies the violation view(AssuredWorkloads or DataBoundary) for fetching violations.
+     */
+    view?: string;
   }
 
   export class Resource$Projects {
