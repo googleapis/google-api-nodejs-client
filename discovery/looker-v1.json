@@ -800,7 +800,7 @@
       }
     }
   },
-  "revision": "20260916",
+  "revision": "20260927",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {
@@ -813,6 +813,21 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AuthType": {
+      "description": "Auth type for the Looker instance.",
+      "id": "AuthType",
+      "properties": {
+        "googleAuthEnabled": {
+          "description": "Optional. Whether google auth is enabled on the Looker instance.",
+          "type": "boolean"
+        },
+        "workforceAuthEnabled": {
+          "description": "Optional. Whether Workforce auth is enabled on the Looker instance.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1186,6 +1201,10 @@
         "adminSettings": {
           "$ref": "AdminSettings",
           "description": "Looker Instance Admin settings."
+        },
+        "authType": {
+          "$ref": "AuthType",
+          "description": "Optional. Auth type for the Looker instance."
         },
         "catalogIntegrationOptOut": {
           "description": "Optional. Indicates whether catalog integration is disabled for the Looker instance.",

@@ -134,6 +134,19 @@ export namespace looker_v1 {
     allowedEmailDomains?: string[] | null;
   }
   /**
+   * Auth type for the Looker instance.
+   */
+  export interface Schema$AuthType {
+    /**
+     * Optional. Whether google auth is enabled on the Looker instance.
+     */
+    googleAuthEnabled?: boolean | null;
+    /**
+     * Optional. Whether Workforce auth is enabled on the Looker instance.
+     */
+    workforceAuthEnabled?: boolean | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -391,6 +404,10 @@ export namespace looker_v1 {
      * Looker Instance Admin settings.
      */
     adminSettings?: Schema$AdminSettings;
+    /**
+     * Optional. Auth type for the Looker instance.
+     */
+    authType?: Schema$AuthType;
     /**
      * Optional. Indicates whether catalog integration is disabled for the Looker instance.
      */
@@ -1278,6 +1295,7 @@ export namespace looker_v1 {
      *       // {
      *       //   "acceleratedSecurityPatchEnabled": false,
      *       //   "adminSettings": {},
+     *       //   "authType": {},
      *       //   "catalogIntegrationOptOut": false,
      *       //   "classType": "my_classType",
      *       //   "consumerNetwork": "my_consumerNetwork",
@@ -1750,6 +1768,7 @@ export namespace looker_v1 {
      *   // {
      *   //   "acceleratedSecurityPatchEnabled": false,
      *   //   "adminSettings": {},
+     *   //   "authType": {},
      *   //   "catalogIntegrationOptOut": false,
      *   //   "classType": "my_classType",
      *   //   "consumerNetwork": "my_consumerNetwork",
@@ -2215,6 +2234,7 @@ export namespace looker_v1 {
      *       // {
      *       //   "acceleratedSecurityPatchEnabled": false,
      *       //   "adminSettings": {},
+     *       //   "authType": {},
      *       //   "catalogIntegrationOptOut": false,
      *       //   "classType": "my_classType",
      *       //   "consumerNetwork": "my_consumerNetwork",
