@@ -161,7 +161,7 @@ export namespace sheets_v4 {
     chart?: Schema$EmbeddedChart;
   }
   /**
-   * Inserts a reply Post into a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview).
+   * Inserts a reply Post into a CommentThread.
    */
   export interface Schema$AddCommentReplyRequest {
     /**
@@ -174,7 +174,7 @@ export namespace sheets_v4 {
     post?: Schema$Post;
   }
   /**
-   * The result of creating a reply. [Developer Preview](https://developers.google.com/workspace/preview).
+   * The result of creating a reply.
    */
   export interface Schema$AddCommentReplyResponse {
     /**
@@ -801,7 +801,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchUpdateSpreadsheetRequest {
     /**
-     * The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. Meaningful only if include_spreadsheet_in_response is 'true'. [Developer Preview](https://developers.google.com/workspace/preview).
+     * The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. Meaningful only if include_spreadsheet_in_response is 'true'.
      */
     commentsViewMode?: string | null;
     /**
@@ -826,7 +826,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchUpdateSpreadsheetResponse {
     /**
-     * Whether comment updates were applied in the batch request. [Developer Preview](https://developers.google.com/workspace/preview).
+     * Whether comment updates were applied in the batch request.
      */
     commentUpdateState?: string | null;
     /**
@@ -1606,7 +1606,7 @@ export namespace sheets_v4 {
     themeColor?: string | null;
   }
   /**
-   * A location in the spreadsheet that is tied to a CommentThread with the same anchorId. Note: Multiple anchors may refer to the same location. [Developer Preview](https://developers.google.com/workspace/preview).
+   * A location in the spreadsheet that is tied to a CommentThread with the same anchorId. Note: Multiple anchors may refer to the same location.
    */
   export interface Schema$CommentAnchor {
     /**
@@ -1619,7 +1619,7 @@ export namespace sheets_v4 {
     range?: Schema$GridRange;
   }
   /**
-   * Represents a single comment thread inside a spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview).
+   * Represents a single comment thread inside a spreadsheet.
    */
   export interface Schema$CommentThread {
     /**
@@ -2122,7 +2122,7 @@ export namespace sheets_v4 {
     bandedRangeId?: number | null;
   }
   /**
-   * Deletes a reply Post from a CommentThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. - The reply post contains a comment action. - The reply post contains an assignee. [Developer Preview](https://developers.google.com/workspace/preview).
+   * Deletes a reply Post from a CommentThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. - The reply post contains a comment action. - The reply post contains an assignee.
    */
   export interface Schema$DeleteCommentReplyRequest {
     /**
@@ -2135,7 +2135,7 @@ export namespace sheets_v4 {
     postId?: string | null;
   }
   /**
-   * Deletes a CommentThread. Returns a 400 bad request error if the requesting user is not the author of the headPost. [Developer Preview](https://developers.google.com/workspace/preview).
+   * Deletes a CommentThread. Returns a 400 bad request error if the requesting user is not the author of the headPost.
    */
   export interface Schema$DeleteCommentRequest {
     /**
@@ -2758,7 +2758,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$GetSpreadsheetByDataFilterRequest {
     /**
-     * The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. [Developer Preview](https://developers.google.com/workspace/preview).
+     * The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used.
      */
     commentsViewMode?: string | null;
     /**
@@ -2951,7 +2951,7 @@ export namespace sheets_v4 {
     data?: Schema$ChartData;
   }
   /**
-   * Inserts a CommentThread into the spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview).
+   * Inserts a CommentThread into the spreadsheet.
    */
   export interface Schema$InsertCommentRequest {
     /**
@@ -2968,7 +2968,7 @@ export namespace sheets_v4 {
     coordinate?: Schema$GridCoordinate;
   }
   /**
-   * The result of creating a comment. [Developer Preview](https://developers.google.com/workspace/preview).
+   * The result of creating a comment.
    */
   export interface Schema$InsertCommentResponse {
     /**
@@ -3570,7 +3570,7 @@ export namespace sheets_v4 {
     size?: number | null;
   }
   /**
-   * Represents a single post in a comment thread. [Developer Preview](https://developers.google.com/workspace/preview).
+   * Represents a single post in a comment thread.
    */
   export interface Schema$Post {
     /**
@@ -3619,7 +3619,7 @@ export namespace sheets_v4 {
     updateTime?: string | null;
   }
   /**
-   * Represents a user who authored a comment post. [Developer Preview](https://developers.google.com/workspace/preview).
+   * Represents a user who authored a comment post.
    */
   export interface Schema$PostAuthor {
     /**
@@ -3775,7 +3775,7 @@ export namespace sheets_v4 {
      */
     addChart?: Schema$AddChartRequest;
     /**
-     * Adds a reply to a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview).
+     * Adds a reply to a CommentThread.
      */
     addCommentReply?: Schema$AddCommentReplyRequest;
     /**
@@ -3855,11 +3855,11 @@ export namespace sheets_v4 {
      */
     deleteBanding?: Schema$DeleteBandingRequest;
     /**
-     * Deletes a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview).
+     * Deletes a CommentThread.
      */
     deleteComment?: Schema$DeleteCommentRequest;
     /**
-     * Deletes a reply Post from a CommentThread [Developer Preview](https://developers.google.com/workspace/preview).
+     * Deletes a reply Post from a CommentThread
      */
     deleteCommentReply?: Schema$DeleteCommentReplyRequest;
     /**
@@ -3927,7 +3927,7 @@ export namespace sheets_v4 {
      */
     findReplace?: Schema$FindReplaceRequest;
     /**
-     * Inserts a CommentThread into the spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview).
+     * Inserts a CommentThread into the spreadsheet.
      */
     insertComment?: Schema$InsertCommentRequest;
     /**
@@ -4003,7 +4003,7 @@ export namespace sheets_v4 {
      */
     updateChartSpec?: Schema$UpdateChartSpecRequest;
     /**
-     * Updates an existing post (head post or reply) of a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview).
+     * Updates an existing post (head post or reply) of a CommentThread.
      */
     updateCommentPost?: Schema$UpdateCommentPostRequest;
     /**
@@ -4076,7 +4076,7 @@ export namespace sheets_v4 {
      */
     addChart?: Schema$AddChartResponse;
     /**
-     * The result of creating a reply. [Developer Preview](https://developers.google.com/workspace/preview).
+     * The result of creating a reply.
      */
     addCommentReply?: Schema$AddCommentReplyResponse;
     /**
@@ -4148,7 +4148,7 @@ export namespace sheets_v4 {
      */
     findReplace?: Schema$FindReplaceResponse;
     /**
-     * The result of creating a comment. [Developer Preview](https://developers.google.com/workspace/preview).
+     * The result of creating a comment.
      */
     insertComment?: Schema$InsertCommentResponse;
     /**
@@ -4300,7 +4300,7 @@ export namespace sheets_v4 {
      */
     columnGroups?: Schema$DimensionGroup[];
     /**
-     * The comment anchors on this sheet. [Developer Preview](https://developers.google.com/workspace/preview).
+     * The comment anchors on this sheet.
      */
     commentAnchors?: Schema$CommentAnchor[];
     /**
@@ -4515,11 +4515,11 @@ export namespace sheets_v4 {
    */
   export interface Schema$Spreadsheet {
     /**
-     * The comment threads associated with the spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview).
+     * The comment threads associated with the spreadsheet.
      */
     comments?: Schema$CommentThread[];
     /**
-     * Output only. The comments view mode applied to the spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview).
+     * Output only. The comments view mode applied to the spreadsheet.
      */
     commentsViewMode?: string | null;
     /**
@@ -5010,7 +5010,7 @@ export namespace sheets_v4 {
     spec?: Schema$ChartSpec;
   }
   /**
-   * Updates a Post in a CommentThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. [Developer Preview](https://developers.google.com/workspace/preview).
+   * Updates a Post in a CommentThread. Returns a 400 bad request error if: - The requesting user is not the author of the post.
    */
   export interface Schema$UpdateCommentPostRequest {
     /**
@@ -5854,7 +5854,7 @@ export namespace sheets_v4 {
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.get({
-     *     // The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. [Developer Preview](https://developers.google.com/workspace/preview).
+     *     // The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used.
      *     commentsViewMode: 'placeholder-value',
      *     // True if tables should be excluded in the banded ranges. False if not set.
      *     excludeTablesInBandedRanges: 'placeholder-value',
@@ -6156,7 +6156,7 @@ export namespace sheets_v4 {
   }
   export interface Params$Resource$Spreadsheets$Get extends StandardParameters {
     /**
-     * The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. [Developer Preview](https://developers.google.com/workspace/preview).
+     * The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used.
      */
     commentsViewMode?: string;
     /**
