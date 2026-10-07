@@ -1454,7 +1454,7 @@
       }
     }
   },
-  "revision": "20260918",
+  "revision": "20260929",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AISkillAnalysisNote": {
@@ -3308,6 +3308,43 @@
       },
       "type": "object"
     },
+    "ContaineranalysisGoogleDevtoolsCloudbuildV1BuildResourceUsage": {
+      "description": "Aggregated/summary metrics over the entire build lifecycle.",
+      "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1BuildResourceUsage",
+      "properties": {
+        "averageCpuUtilization": {
+          "description": "Output only. The average CPU utilization ratio across all vCPUs over the duration of the build, expressed as a fraction in the range [0.0, 1.0].",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "averageMemoryUtilization": {
+          "description": "Output only. The average memory utilization ratio over the duration of the build, expressed as a fraction in the range [0.0, 1.0].",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "peakCpuUtilization": {
+          "description": "Output only. The highest CPU utilization ratio across all vCPUs observed over the duration of the build, expressed as a fraction in the range [0.0, 1.0].",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "peakMemoryUtilization": {
+          "description": "Output only. The highest memory utilization ratio observed over the duration of the build, expressed as a fraction in the range [0.0, 1.0].",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "totalCpuDuration": {
+          "description": "Output only. Total CPU execution time consumed across all cores during build execution.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStep": {
       "description": "A step in the build pipeline.",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStep",
@@ -3872,6 +3909,11 @@
             "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedPythonPackage"
           },
           "type": "array"
+        },
+        "resourceUsage": {
+          "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1BuildResourceUsage",
+          "description": "Output only. Aggregated metrics for the build.",
+          "readOnly": true
         }
       },
       "type": "object"
