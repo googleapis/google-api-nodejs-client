@@ -1127,7 +1127,7 @@
       }
     }
   },
-  "revision": "20260701",
+  "revision": "20260929",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AllocationOptions": {
@@ -1508,6 +1508,20 @@
           "description": "Optional. An alternative to ip_cidr_range. Can be set when trying to create an IPv4 reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, there is an error if the range sizes do not match. Can also be used during updates to change the range size. NOTE: For IPv6 this field only works if ip_cidr_range is set as well, and both fields must match. In other words, with IPv6 this field only works as a redundant parameter.",
           "format": "int32",
           "type": "integer"
+        },
+        "purpose": {
+          "description": "Optional. The purpose of this internal range. Defines the intended use of the range and any restrictions associated with it. If not specified, it defaults to VPC_SUBNET.",
+          "enum": [
+            "PURPOSE_UNSPECIFIED",
+            "VPC_SUBNET",
+            "INTERNAL_ADDRESS"
+          ],
+          "enumDescriptions": [
+            "If purpose is left unspecified in CreateInternalRange or UpdateInternalRange, it will be defaulted to VPC_SUBNET.",
+            "The internal range is used for VPC subnetworks.",
+            "The internal range is used exclusively for allocating individual IP addresses (e.g., for global PSC endpoints). Child ranges or subnetworks cannot be created from a range with this purpose."
+          ],
+          "type": "string"
         },
         "rangeStatus": {
           "description": "Output only. Status of the Internal Range.",

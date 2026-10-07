@@ -362,6 +362,10 @@ export namespace networkconnectivity_v1alpha1 {
      */
     prefixLength?: number | null;
     /**
+     * Optional. The purpose of this internal range. Defines the intended use of the range and any restrictions associated with it. If not specified, it defaults to VPC_SUBNET.
+     */
+    purpose?: string | null;
+    /**
      * Output only. Status of the Internal Range.
      */
     rangeStatus?: string | null;
@@ -2369,6 +2373,7 @@ export namespace networkconnectivity_v1alpha1 {
      *         //   "overlaps": [],
      *         //   "peering": "my_peering",
      *         //   "prefixLength": 0,
+     *         //   "purpose": "my_purpose",
      *         //   "rangeStatus": "my_rangeStatus",
      *         //   "targetCidrRange": [],
      *         //   "updateTime": "my_updateTime",
@@ -2684,6 +2689,7 @@ export namespace networkconnectivity_v1alpha1 {
      *   //   "overlaps": [],
      *   //   "peering": "my_peering",
      *   //   "prefixLength": 0,
+     *   //   "purpose": "my_purpose",
      *   //   "rangeStatus": "my_rangeStatus",
      *   //   "targetCidrRange": [],
      *   //   "updateTime": "my_updateTime",
@@ -3137,6 +3143,7 @@ export namespace networkconnectivity_v1alpha1 {
      *         //   "overlaps": [],
      *         //   "peering": "my_peering",
      *         //   "prefixLength": 0,
+     *         //   "purpose": "my_purpose",
      *         //   "rangeStatus": "my_rangeStatus",
      *         //   "targetCidrRange": [],
      *         //   "updateTime": "my_updateTime",
