@@ -597,7 +597,7 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryCustomRepository {
     /**
-     * An http/https uri reference to the upstream remote repository, for ex: "https://my.apt.registry/".
+     * An https uri reference to the upstream remote repository, for ex: "https://my.apt.registry/".
      */
     uri?: string | null;
   }
@@ -619,7 +619,7 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigDockerRepositoryCustomRepository {
     /**
-     * An http/https uri reference to the custom remote repository, for ex: "https://registry-1.docker.io".
+     * An https uri reference to the custom remote repository, for ex: "https://registry-1.docker.io".
      */
     uri?: string | null;
   }
@@ -628,7 +628,7 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigMavenRepositoryCustomRepository {
     /**
-     * An http/https uri reference to the upstream remote repository, for ex: "https://my.maven.registry/".
+     * An https uri reference to the upstream remote repository, for ex: "https://my.maven.registry/".
      */
     uri?: string | null;
   }
@@ -637,7 +637,7 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigNpmRepositoryCustomRepository {
     /**
-     * An http/https uri reference to the upstream remote repository, for ex: "https://my.npm.registry/".
+     * An https uri reference to the upstream remote repository, for ex: "https://my.npm.registry/".
      */
     uri?: string | null;
   }
@@ -646,7 +646,7 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigPythonRepositoryCustomRepository {
     /**
-     * An http/https uri reference to the upstream remote repository, for ex: "https://my.python.registry/".
+     * An https uri reference to the upstream remote repository, for ex: "https://my.python.registry/".
      */
     uri?: string | null;
   }
@@ -655,7 +655,7 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryCustomRepository {
     /**
-     * An http/https uri reference to the upstream remote repository, for ex: "https://my.yum.registry/".
+     * An https uri reference to the upstream remote repository, for ex: "https://my.yum.registry/".
      */
     uri?: string | null;
   }
