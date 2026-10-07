@@ -129,7 +129,7 @@
                 false,
                 false,
                 false,
-                false,
+                true,
                 false,
                 false,
                 false,
@@ -235,7 +235,7 @@
                 false,
                 false,
                 false,
-                false,
+                true,
                 false,
                 false,
                 false,
@@ -445,7 +445,7 @@
       }
     }
   },
-  "revision": "20260415",
+  "revision": "20261004",
   "rootUrl": "https://businessprofileperformance.googleapis.com/",
   "schemas": {
     "DailyMetricTimeSeries": {
@@ -474,7 +474,7 @@
             false,
             false,
             false,
-            false,
+            true,
             false,
             false,
             false,

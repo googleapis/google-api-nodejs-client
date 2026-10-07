@@ -33,11 +33,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://hypercomputecluster.us-east7.rep.googleapis.com/",
-      "location": "us-east7"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://hypercomputecluster.us-south1.rep.googleapis.com/",
       "location": "us-south1"
     },
@@ -545,7 +540,7 @@
       }
     }
   },
-  "revision": "20260918",
+  "revision": "20260928",
   "rootUrl": "https://hypercomputecluster.googleapis.com/",
   "schemas": {
     "BootDisk": {
