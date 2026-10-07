@@ -8360,7 +8360,7 @@
       }
     }
   },
-  "revision": "20260924",
+  "revision": "20261005",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -12138,28 +12138,7 @@
             "GEO_REGION_TYPE_COMMUNE",
             "GEO_REGION_TYPE_COLLOQUIAL_AREA",
             "GEO_REGION_TYPE_POST_TOWN",
-            "GEO_REGION_TYPE_WARD",
-            "GEO_REGION_TYPE_TOWN",
-            "GEO_REGION_TYPE_VILLAGE",
-            "GEO_REGION_TYPE_CITY_DISTRICT",
-            "GEO_REGION_TYPE_SUBURB",
-            "GEO_REGION_TYPE_HAMLET",
-            "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
-            "GEO_REGION_TYPE_COMMUNITY",
-            "GEO_REGION_TYPE_TOWNSHIP",
-            "GEO_REGION_TYPE_URBAN_DISTRICT",
-            "GEO_REGION_TYPE_RESIDENTIAL_AREA",
-            "GEO_REGION_TYPE_INDEPENDENT_CITY",
-            "GEO_REGION_TYPE_SECTOR",
-            "GEO_REGION_TYPE_AREA",
-            "GEO_REGION_TYPE_ESTATE",
-            "GEO_REGION_TYPE_PARISH",
-            "GEO_REGION_TYPE_SETTLEMENT",
-            "GEO_REGION_TYPE_ZONE",
-            "GEO_REGION_TYPE_COLONY",
-            "GEO_REGION_TYPE_INDUSTRIAL_AREA",
-            "GEO_REGION_TYPE_PROVINCIAL_CITY",
-            "GEO_REGION_TYPE_RURAL_DISTRICT"
+            "GEO_REGION_TYPE_WARD"
           ],
           "enumDescriptions": [
             "The geographic region type is unknown.",
@@ -12201,28 +12180,7 @@
             "The geographic region is a commune.",
             "The geographic region is a colloquial area.",
             "The geographic region is a post town.",
-            "The geographic region is a ward.",
-            "The geographic region is a town.",
-            "The geographic region is a village.",
-            "The geographic region is a city district.",
-            "The geographic region is a suburb.",
-            "The geographic region is a hamlet.",
-            "The geographic region is a municipal district.",
-            "The geographic region is a community.",
-            "The geographic region is a township.",
-            "The geographic region is an urban district.",
-            "The geographic region is a residential area.",
-            "The geographic region is an independent city.",
-            "The geographic region is a sector.",
-            "The geographic region is an area.",
-            "The geographic region is an estate.",
-            "The geographic region is a parish.",
-            "The geographic region is a settlement.",
-            "The geographic region is a zone.",
-            "The geographic region is a colony.",
-            "The geographic region is an industrial area.",
-            "The geographic region is a provincial city.",
-            "The geographic region is a rural district."
+            "The geographic region is a ward."
           ],
           "readOnly": true,
           "type": "string"
@@ -12735,7 +12693,7 @@
         },
         "video": {
           "$ref": "YoutubeVideoDetails",
-          "description": "Required. The YouTube video of the ad."
+          "description": "Required. Immutable. The YouTube video of the ad."
         }
       },
       "type": "object"
@@ -15012,7 +14970,7 @@
       "id": "DigitalContentLabelAssignedTargetingOptionDetails",
       "properties": {
         "excludedContentRatingTier": {
-          "description": "Required. The display name of the digital content label rating tier to be EXCLUDED. **Starting on *October 1, 2026*, this field will only accept the value `CONTENT_RATING_TIER_UNRATED`. All other values will be deprecated and no longer be accepted.**",
+          "description": "Required. The display name of the digital content label rating tier to be EXCLUDED. This field only accepts the value `CONTENT_RATING_TIER_UNRATED`.",
           "enum": [
             "CONTENT_RATING_TIER_UNSPECIFIED",
             "CONTENT_RATING_TIER_UNRATED",
@@ -15022,14 +14980,23 @@
             "CONTENT_RATING_TIER_MATURE",
             "CONTENT_RATING_TIER_FAMILIES"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
           "enumDescriptions": [
-            "Content label is not specified in this version. This enum is a place holder for a default value and does not represent a real content rating. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content label is not specified in this version. This enum is a place holder for a default value and does not represent a real content rating.",
             "Content that has not been labeled.",
-            "Content suitable for general audiences. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content suitable for most audiences with parental guidance. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content suitable for teen and older audiences. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content suitable only for mature audiences. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content suitable for family audiences. It is a subset of CONTENT_RATING_TIER_GENERAL. Only applicable to YouTube and Partners line items. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**"
+            "Deprecated: This content rating tier is no longer supported. Content suitable for general audiences.",
+            "Deprecated: This content rating tier is no longer supported. Content suitable for most audiences with parental guidance.",
+            "Deprecated: This content rating tier is no longer supported. Content suitable for teen and older audiences.",
+            "Deprecated: This content rating tier is no longer supported. Content suitable only for mature audiences.",
+            "Deprecated: This content rating tier is no longer supported. Content suitable for family audiences. It is a subset of CONTENT_RATING_TIER_GENERAL. Only applicable to YouTube and Partners line items."
           ],
           "type": "string"
         }
@@ -15051,14 +15018,23 @@
             "CONTENT_RATING_TIER_MATURE",
             "CONTENT_RATING_TIER_FAMILIES"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
           "enumDescriptions": [
-            "Content label is not specified in this version. This enum is a place holder for a default value and does not represent a real content rating. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Content label is not specified in this version. This enum is a place holder for a default value and does not represent a real content rating.",
             "Content that has not been labeled.",
-            "Content suitable for general audiences. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content suitable for most audiences with parental guidance. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content suitable for teen and older audiences. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content suitable only for mature audiences. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content suitable for family audiences. It is a subset of CONTENT_RATING_TIER_GENERAL. Only applicable to YouTube and Partners line items. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**"
+            "Deprecated: This content rating tier is no longer supported. Content suitable for general audiences.",
+            "Deprecated: This content rating tier is no longer supported. Content suitable for most audiences with parental guidance.",
+            "Deprecated: This content rating tier is no longer supported. Content suitable for teen and older audiences.",
+            "Deprecated: This content rating tier is no longer supported. Content suitable only for mature audiences.",
+            "Deprecated: This content rating tier is no longer supported. Content suitable for family audiences. It is a subset of CONTENT_RATING_TIER_GENERAL. Only applicable to YouTube and Partners line items."
           ],
           "readOnly": true,
           "type": "string"
@@ -16817,28 +16793,7 @@
             "GEO_REGION_TYPE_COMMUNE",
             "GEO_REGION_TYPE_COLLOQUIAL_AREA",
             "GEO_REGION_TYPE_POST_TOWN",
-            "GEO_REGION_TYPE_WARD",
-            "GEO_REGION_TYPE_TOWN",
-            "GEO_REGION_TYPE_VILLAGE",
-            "GEO_REGION_TYPE_CITY_DISTRICT",
-            "GEO_REGION_TYPE_SUBURB",
-            "GEO_REGION_TYPE_HAMLET",
-            "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
-            "GEO_REGION_TYPE_COMMUNITY",
-            "GEO_REGION_TYPE_TOWNSHIP",
-            "GEO_REGION_TYPE_URBAN_DISTRICT",
-            "GEO_REGION_TYPE_RESIDENTIAL_AREA",
-            "GEO_REGION_TYPE_INDEPENDENT_CITY",
-            "GEO_REGION_TYPE_SECTOR",
-            "GEO_REGION_TYPE_AREA",
-            "GEO_REGION_TYPE_ESTATE",
-            "GEO_REGION_TYPE_PARISH",
-            "GEO_REGION_TYPE_SETTLEMENT",
-            "GEO_REGION_TYPE_ZONE",
-            "GEO_REGION_TYPE_COLONY",
-            "GEO_REGION_TYPE_INDUSTRIAL_AREA",
-            "GEO_REGION_TYPE_PROVINCIAL_CITY",
-            "GEO_REGION_TYPE_RURAL_DISTRICT"
+            "GEO_REGION_TYPE_WARD"
           ],
           "enumDescriptions": [
             "The geographic region type is unknown.",
@@ -16880,28 +16835,7 @@
             "The geographic region is a commune.",
             "The geographic region is a colloquial area.",
             "The geographic region is a post town.",
-            "The geographic region is a ward.",
-            "The geographic region is a town.",
-            "The geographic region is a village.",
-            "The geographic region is a city district.",
-            "The geographic region is a suburb.",
-            "The geographic region is a hamlet.",
-            "The geographic region is a municipal district.",
-            "The geographic region is a community.",
-            "The geographic region is a township.",
-            "The geographic region is an urban district.",
-            "The geographic region is a residential area.",
-            "The geographic region is an independent city.",
-            "The geographic region is a sector.",
-            "The geographic region is an area.",
-            "The geographic region is an estate.",
-            "The geographic region is a parish.",
-            "The geographic region is a settlement.",
-            "The geographic region is a zone.",
-            "The geographic region is a colony.",
-            "The geographic region is an industrial area.",
-            "The geographic region is a provincial city.",
-            "The geographic region is a rural district."
+            "The geographic region is a ward."
           ],
           "readOnly": true,
           "type": "string"
@@ -16979,28 +16913,7 @@
             "GEO_REGION_TYPE_COMMUNE",
             "GEO_REGION_TYPE_COLLOQUIAL_AREA",
             "GEO_REGION_TYPE_POST_TOWN",
-            "GEO_REGION_TYPE_WARD",
-            "GEO_REGION_TYPE_TOWN",
-            "GEO_REGION_TYPE_VILLAGE",
-            "GEO_REGION_TYPE_CITY_DISTRICT",
-            "GEO_REGION_TYPE_SUBURB",
-            "GEO_REGION_TYPE_HAMLET",
-            "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
-            "GEO_REGION_TYPE_COMMUNITY",
-            "GEO_REGION_TYPE_TOWNSHIP",
-            "GEO_REGION_TYPE_URBAN_DISTRICT",
-            "GEO_REGION_TYPE_RESIDENTIAL_AREA",
-            "GEO_REGION_TYPE_INDEPENDENT_CITY",
-            "GEO_REGION_TYPE_SECTOR",
-            "GEO_REGION_TYPE_AREA",
-            "GEO_REGION_TYPE_ESTATE",
-            "GEO_REGION_TYPE_PARISH",
-            "GEO_REGION_TYPE_SETTLEMENT",
-            "GEO_REGION_TYPE_ZONE",
-            "GEO_REGION_TYPE_COLONY",
-            "GEO_REGION_TYPE_INDUSTRIAL_AREA",
-            "GEO_REGION_TYPE_PROVINCIAL_CITY",
-            "GEO_REGION_TYPE_RURAL_DISTRICT"
+            "GEO_REGION_TYPE_WARD"
           ],
           "enumDescriptions": [
             "The geographic region type is unknown.",
@@ -17042,28 +16955,7 @@
             "The geographic region is a commune.",
             "The geographic region is a colloquial area.",
             "The geographic region is a post town.",
-            "The geographic region is a ward.",
-            "The geographic region is a town.",
-            "The geographic region is a village.",
-            "The geographic region is a city district.",
-            "The geographic region is a suburb.",
-            "The geographic region is a hamlet.",
-            "The geographic region is a municipal district.",
-            "The geographic region is a community.",
-            "The geographic region is a township.",
-            "The geographic region is an urban district.",
-            "The geographic region is a residential area.",
-            "The geographic region is an independent city.",
-            "The geographic region is a sector.",
-            "The geographic region is an area.",
-            "The geographic region is an estate.",
-            "The geographic region is a parish.",
-            "The geographic region is a settlement.",
-            "The geographic region is a zone.",
-            "The geographic region is a colony.",
-            "The geographic region is an industrial area.",
-            "The geographic region is a provincial city.",
-            "The geographic region is a rural district."
+            "The geographic region is a ward."
           ],
           "readOnly": true,
           "type": "string"
@@ -18646,8 +18538,7 @@
         },
         "youtubeAndPartnersSettings": {
           "$ref": "YoutubeAndPartnersSettings",
-          "description": "Output only. Settings specific to YouTube and Partners line items.",
-          "readOnly": true
+          "description": "Optional. Settings specific to YouTube and Partners line items."
         }
       },
       "type": "object"
@@ -21159,7 +21050,7 @@
       "id": "SensitiveCategoryAssignedTargetingOptionDetails",
       "properties": {
         "excludedSensitiveCategory": {
-          "description": "Required. An enum for the DV360 Sensitive category content classified to be EXCLUDED. **Starting on *October 1, 2026*, this field will only accept `SENSITIVE_CATEGORY_EMBEDDED_VIDEO` or `SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO`. All other values will be deprecated and no longer be accepted.**",
+          "description": "Required. An enum for the Display & Video 360 Sensitive category content classified to be EXCLUDED. This field only accepts the following values: * `SENSITIVE_CATEGORY_EMBEDDED_VIDEO` * `SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO`",
           "enum": [
             "SENSITIVE_CATEGORY_UNSPECIFIED",
             "SENSITIVE_CATEGORY_ADULT",
@@ -21182,25 +21073,47 @@
             "SENSITIVE_CATEGORY_EMBEDDED_VIDEO",
             "SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            false
+          ],
           "enumDescriptions": [
-            "This enum is only a placeholder and doesn't specify a DV360 sensitive category.",
-            "Adult or pornographic text, image, or video content. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content that may be construed as biased against individuals, groups, or organizations based on criteria such as race, religion, disability, sex, age, veteran status, sexual orientation, gender identity, or political affiliation. May also indicate discussion of such content, for instance, in an academic or journalistic context. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content related to audio, video, or software downloads. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Contains content related to personal weapons, including knives, guns, small firearms, and ammunition. Selecting either \"weapons\" or \"sensitive social issues\" will result in selecting both. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Contains content related to betting or wagering in a real-world or online setting. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content which may be considered graphically violent, gory, gruesome, or shocking, such as street fighting videos, accident photos, descriptions of torture, etc. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Adult content, as well as suggestive content that's not explicitly pornographic. This category includes all pages categorized as adult. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Prominent use of words considered indecent, such as curse words and sexual slang. Pages with only very occasional usage, such as news sites that might include such words in a quotation, are not included. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Contains content related to alcoholic beverages, alcohol brands, recipes, etc. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Contains content related to the recreational use of legal or illegal drugs, as well as to drug paraphernalia or cultivation. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Contains content related to tobacco and tobacco accessories, including lighters, humidors, ashtrays, etc. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Political news and media, including discussions of social, governmental, and public policy. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content related to religious thought or beliefs. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content related to death, disasters, accidents, war, etc. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content related to motor vehicle, aviation or other transportation accidents. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Issues that evoke strong, opposing views and spark debate. These include issues that are controversial in most countries and markets (such as abortion), as well as those that are controversial in specific countries and markets (such as immigration reform in the United States). **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content which may be considered shocking or disturbing, such as violent news stories, stunts, or toilet humor. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Serves as a placeholder and doesn't specify a Display & Video 360 sensitive category.",
+            "Deprecated: This sensitive category is no longer supported. Adult or pornographic text, image, or video content.",
+            "Deprecated: This sensitive category is no longer supported. Content that may be construed as biased against individuals, groups, or organizations based on criteria such as race, religion, disability, sex, age, veteran status, sexual orientation, gender identity, or political affiliation. May also indicate discussion of such content, for instance, in an academic or journalistic context.",
+            "Deprecated: This sensitive category is no longer supported. Content related to audio, video, or software downloads.",
+            "Deprecated: This sensitive category is no longer supported. Contains content related to personal weapons, including knives, guns, small firearms, and ammunition. Selecting either \"weapons\" or \"sensitive social issues\" will result in selecting both.",
+            "Deprecated: This sensitive category is no longer supported. Contains content related to betting or wagering in a real-world or online setting.",
+            "Deprecated: This sensitive category is no longer supported. Content which may be considered graphically violent, gory, gruesome, or shocking, such as street fighting videos, accident photos, descriptions of torture, etc.",
+            "Deprecated: This sensitive category is no longer supported. Adult content, as well as suggestive content that's not explicitly pornographic. This category includes all pages categorized as adult.",
+            "Deprecated: This sensitive category is no longer supported. Prominent use of words considered indecent, such as curse words and sexual slang. Pages with only very occasional usage, such as news sites that might include such words in a quotation, are not included.",
+            "Deprecated: This sensitive category is no longer supported. Contains content related to alcoholic beverages, alcohol brands, recipes, etc.",
+            "Deprecated: This sensitive category is no longer supported. Contains content related to the recreational use of legal or illegal drugs, as well as to drug paraphernalia or cultivation.",
+            "Deprecated: This sensitive category is no longer supported. Contains content related to tobacco and tobacco accessories, including lighters, humidors, ashtrays, etc.",
+            "Deprecated: This sensitive category is no longer supported. Political news and media, including discussions of social, governmental, and public policy.",
+            "Deprecated: This sensitive category is no longer supported. Content related to religious thought or beliefs.",
+            "Deprecated: This sensitive category is no longer supported. Content related to death, disasters, accidents, war, etc.",
+            "Deprecated: This sensitive category is no longer supported. Content related to motor vehicle, aviation or other transportation accidents.",
+            "Deprecated: This sensitive category is no longer supported. Issues that evoke strong, opposing views and spark debate. These include issues that are controversial in most countries and markets (such as abortion), as well as those that are controversial in specific countries and markets (such as immigration reform in the United States).",
+            "Deprecated: This sensitive category is no longer supported. Content which may be considered shocking or disturbing, such as violent news stories, stunts, or toilet humor.",
             "YouTube videos embedded on websites outside of YouTube.com.",
             "Video of live events streamed over the internet."
           ],
@@ -21214,7 +21127,7 @@
       "id": "SensitiveCategoryTargetingOptionDetails",
       "properties": {
         "sensitiveCategory": {
-          "description": "Output only. An enum for the DV360 Sensitive category content classifier.",
+          "description": "Output only. An enum for the Display & Video 360 Sensitive category content classifier.",
           "enum": [
             "SENSITIVE_CATEGORY_UNSPECIFIED",
             "SENSITIVE_CATEGORY_ADULT",
@@ -21237,25 +21150,47 @@
             "SENSITIVE_CATEGORY_EMBEDDED_VIDEO",
             "SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            false
+          ],
           "enumDescriptions": [
-            "This enum is only a placeholder and doesn't specify a DV360 sensitive category.",
-            "Adult or pornographic text, image, or video content. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content that may be construed as biased against individuals, groups, or organizations based on criteria such as race, religion, disability, sex, age, veteran status, sexual orientation, gender identity, or political affiliation. May also indicate discussion of such content, for instance, in an academic or journalistic context. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content related to audio, video, or software downloads. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Contains content related to personal weapons, including knives, guns, small firearms, and ammunition. Selecting either \"weapons\" or \"sensitive social issues\" will result in selecting both. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Contains content related to betting or wagering in a real-world or online setting. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content which may be considered graphically violent, gory, gruesome, or shocking, such as street fighting videos, accident photos, descriptions of torture, etc. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Adult content, as well as suggestive content that's not explicitly pornographic. This category includes all pages categorized as adult. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Prominent use of words considered indecent, such as curse words and sexual slang. Pages with only very occasional usage, such as news sites that might include such words in a quotation, are not included. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Contains content related to alcoholic beverages, alcohol brands, recipes, etc. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Contains content related to the recreational use of legal or illegal drugs, as well as to drug paraphernalia or cultivation. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Contains content related to tobacco and tobacco accessories, including lighters, humidors, ashtrays, etc. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Political news and media, including discussions of social, governmental, and public policy. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content related to religious thought or beliefs. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content related to death, disasters, accidents, war, etc. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content related to motor vehicle, aviation or other transportation accidents. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Issues that evoke strong, opposing views and spark debate. These include issues that are controversial in most countries and markets (such as abortion), as well as those that are controversial in specific countries and markets (such as immigration reform in the United States). **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
-            "Content which may be considered shocking or disturbing, such as violent news stories, stunts, or toilet humor. **Starting on *October 1, 2026*, this value will be deprecated and no longer be accepted as a valid value when assigning targeting.**",
+            "Serves as a placeholder and doesn't specify a Display & Video 360 sensitive category.",
+            "Deprecated: This sensitive category is no longer supported. Adult or pornographic text, image, or video content.",
+            "Deprecated: This sensitive category is no longer supported. Content that may be construed as biased against individuals, groups, or organizations based on criteria such as race, religion, disability, sex, age, veteran status, sexual orientation, gender identity, or political affiliation. May also indicate discussion of such content, for instance, in an academic or journalistic context.",
+            "Deprecated: This sensitive category is no longer supported. Content related to audio, video, or software downloads.",
+            "Deprecated: This sensitive category is no longer supported. Contains content related to personal weapons, including knives, guns, small firearms, and ammunition. Selecting either \"weapons\" or \"sensitive social issues\" will result in selecting both.",
+            "Deprecated: This sensitive category is no longer supported. Contains content related to betting or wagering in a real-world or online setting.",
+            "Deprecated: This sensitive category is no longer supported. Content which may be considered graphically violent, gory, gruesome, or shocking, such as street fighting videos, accident photos, descriptions of torture, etc.",
+            "Deprecated: This sensitive category is no longer supported. Adult content, as well as suggestive content that's not explicitly pornographic. This category includes all pages categorized as adult.",
+            "Deprecated: This sensitive category is no longer supported. Prominent use of words considered indecent, such as curse words and sexual slang. Pages with only very occasional usage, such as news sites that might include such words in a quotation, are not included.",
+            "Deprecated: This sensitive category is no longer supported. Contains content related to alcoholic beverages, alcohol brands, recipes, etc.",
+            "Deprecated: This sensitive category is no longer supported. Contains content related to the recreational use of legal or illegal drugs, as well as to drug paraphernalia or cultivation.",
+            "Deprecated: This sensitive category is no longer supported. Contains content related to tobacco and tobacco accessories, including lighters, humidors, ashtrays, etc.",
+            "Deprecated: This sensitive category is no longer supported. Political news and media, including discussions of social, governmental, and public policy.",
+            "Deprecated: This sensitive category is no longer supported. Content related to religious thought or beliefs.",
+            "Deprecated: This sensitive category is no longer supported. Content related to death, disasters, accidents, war, etc.",
+            "Deprecated: This sensitive category is no longer supported. Content related to motor vehicle, aviation or other transportation accidents.",
+            "Deprecated: This sensitive category is no longer supported. Issues that evoke strong, opposing views and spark debate. These include issues that are controversial in most countries and markets (such as abortion), as well as those that are controversial in specific countries and markets (such as immigration reform in the United States).",
+            "Deprecated: This sensitive category is no longer supported. Content which may be considered shocking or disturbing, such as violent news stories, stunts, or toilet humor.",
             "YouTube videos embedded on websites outside of YouTube.com.",
             "Video of live events streamed over the internet."
           ],
@@ -21360,7 +21295,7 @@
           "type": "string"
         },
         "timeUnit": {
-          "description": "The unit of time in which the target frequency will be applied. The following time unit is applicable: * `TIME_UNIT_WEEKS`",
+          "description": "The unit of time in which the target frequency will be applied. The following time unit is applicable: * `TIME_UNIT_WEEKS` * `TIME_UNIT_MONTHS`",
           "enum": [
             "TIME_UNIT_UNSPECIFIED",
             "TIME_UNIT_LIFETIME",
@@ -21391,7 +21326,7 @@
           "type": "string"
         },
         "timeUnitCount": {
-          "description": "The number of time_unit the target frequency will last. The following restrictions apply based on the value of time_unit: * `TIME_UNIT_WEEKS` - must be 1",
+          "description": "The number of time_unit the target frequency will last. The following restrictions apply based on the value of time_unit: * `TIME_UNIT_WEEKS` - must be 1 * `TIME_UNIT_MONTHS` - must be 1",
           "format": "int32",
           "type": "integer"
         }
@@ -21402,30 +21337,6 @@
       "description": "Settings that control the [optimized targeting](//support.google.com/displayvideo/answer/12060859) settings of the line item.",
       "id": "TargetingExpansionConfig",
       "properties": {
-        "audienceExpansionLevel": {
-          "description": "Output only. Magnitude of expansion for eligible first-party user lists under this ad group. This field only applies to YouTube and Partners line item and ad group resources.",
-          "enum": [
-            "UNKNOWN",
-            "NO_REACH",
-            "LEAST_REACH",
-            "MID_REACH",
-            "MOST_REACH"
-          ],
-          "enumDescriptions": [
-            "Audience expansion level is not specified or is unknown in this version.",
-            "Audience expansion off.",
-            "Conservative audience expansion.",
-            "Moderate audience expansion.",
-            "Aggressive audience expansion."
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
-        "audienceExpansionSeedListExcluded": {
-          "description": "Output only. Whether to exclude seed list for audience expansion. This field only applies to YouTube and Partners line item and ad group resources.",
-          "readOnly": true,
-          "type": "boolean"
-        },
         "enableOptimizedTargeting": {
           "description": "Required. Whether to enable Optimized Targeting for the line item. Optimized targeting is not compatible with all bid strategies. Attempting to set this field to `true` for a line item using the BiddingStrategy field fixed_bid or one of the following combinations of BiddingStrategy fields and BiddingStrategyPerformanceGoalType will result in an error: maximize_auto_spend_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` performance_goal_auto_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM` This also applies if the line item inherits one of the above bid strategies from the parent insertion order. Bid strategies set at the insertion order-level will be inherited by their line items if the `InsertionOrder` budget field automationType is set to `INSERTION_ORDER_AUTOMATION_TYPE_BUDGET` or `INSERTION_ORDER_AUTOMATION_TYPE_BID_BUDGET`.",
           "type": "boolean"
