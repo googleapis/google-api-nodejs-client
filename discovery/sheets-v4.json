@@ -178,7 +178,7 @@
           ],
           "parameters": {
             "commentsViewMode": {
-              "description": "The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. [Developer Preview](https://developers.google.com/workspace/preview).",
+              "description": "The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used.",
               "enum": [
                 "COMMENTS_VIEW_MODE_UNSPECIFIED",
                 "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
@@ -892,7 +892,7 @@
       }
     }
   },
-  "revision": "20260921",
+  "revision": "20260930",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -940,7 +940,7 @@
       "type": "object"
     },
     "AddCommentReplyRequest": {
-      "description": "Inserts a reply Post into a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Inserts a reply Post into a CommentThread.",
       "id": "AddCommentReplyRequest",
       "properties": {
         "commentId": {
@@ -955,7 +955,7 @@
       "type": "object"
     },
     "AddCommentReplyResponse": {
-      "description": "The result of creating a reply. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "The result of creating a reply.",
       "id": "AddCommentReplyResponse",
       "properties": {
         "post": {
@@ -1877,7 +1877,7 @@
       "id": "BatchUpdateSpreadsheetRequest",
       "properties": {
         "commentsViewMode": {
-          "description": "The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. Meaningful only if include_spreadsheet_in_response is 'true'. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. Meaningful only if include_spreadsheet_in_response is 'true'.",
           "enum": [
             "COMMENTS_VIEW_MODE_UNSPECIFIED",
             "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
@@ -1922,7 +1922,7 @@
       "id": "BatchUpdateSpreadsheetResponse",
       "properties": {
         "commentUpdateState": {
-          "description": "Whether comment updates were applied in the batch request. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "Whether comment updates were applied in the batch request.",
           "enum": [
             "COMMENT_UPDATE_STATE_UNSPECIFIED",
             "NO_UPDATES_REQUESTED",
@@ -3182,7 +3182,7 @@
       "type": "object"
     },
     "CommentAnchor": {
-      "description": "A location in the spreadsheet that is tied to a CommentThread with the same anchorId. Note: Multiple anchors may refer to the same location. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "A location in the spreadsheet that is tied to a CommentThread with the same anchorId. Note: Multiple anchors may refer to the same location.",
       "id": "CommentAnchor",
       "properties": {
         "anchorId": {
@@ -3197,7 +3197,7 @@
       "type": "object"
     },
     "CommentThread": {
-      "description": "Represents a single comment thread inside a spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Represents a single comment thread inside a spreadsheet.",
       "id": "CommentThread",
       "properties": {
         "anchorId": {
@@ -4065,7 +4065,7 @@
       "type": "object"
     },
     "DeleteCommentReplyRequest": {
-      "description": "Deletes a reply Post from a CommentThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. - The reply post contains a comment action. - The reply post contains an assignee. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Deletes a reply Post from a CommentThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. - The reply post contains a comment action. - The reply post contains an assignee.",
       "id": "DeleteCommentReplyRequest",
       "properties": {
         "commentId": {
@@ -4080,7 +4080,7 @@
       "type": "object"
     },
     "DeleteCommentRequest": {
-      "description": "Deletes a CommentThread. Returns a 400 bad request error if the requesting user is not the author of the headPost. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Deletes a CommentThread. Returns a 400 bad request error if the requesting user is not the author of the headPost.",
       "id": "DeleteCommentRequest",
       "properties": {
         "commentId": {
@@ -4948,7 +4948,7 @@
       "id": "GetSpreadsheetByDataFilterRequest",
       "properties": {
         "commentsViewMode": {
-          "description": "The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "The comments view mode to apply to the spreadsheet. This allows viewing the spreadsheet with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used.",
           "enum": [
             "COMMENTS_VIEW_MODE_UNSPECIFIED",
             "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
@@ -5224,7 +5224,7 @@
       "type": "object"
     },
     "InsertCommentRequest": {
-      "description": "Inserts a CommentThread into the spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Inserts a CommentThread into the spreadsheet.",
       "id": "InsertCommentRequest",
       "properties": {
         "assigneeEmailAddress": {
@@ -5243,7 +5243,7 @@
       "type": "object"
     },
     "InsertCommentResponse": {
-      "description": "The result of creating a comment. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "The result of creating a comment.",
       "id": "InsertCommentResponse",
       "properties": {
         "commentThread": {
@@ -6204,7 +6204,7 @@
       "type": "object"
     },
     "Post": {
-      "description": "Represents a single post in a comment thread. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Represents a single post in a comment thread.",
       "id": "Post",
       "properties": {
         "assigneeEmail": {
@@ -6269,7 +6269,7 @@
       "type": "object"
     },
     "PostAuthor": {
-      "description": "Represents a user who authored a comment post. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Represents a user who authored a comment post.",
       "id": "PostAuthor",
       "properties": {
         "anonymous": {
@@ -6476,7 +6476,7 @@
         },
         "addCommentReply": {
           "$ref": "AddCommentReplyRequest",
-          "description": "Adds a reply to a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Adds a reply to a CommentThread."
         },
         "addConditionalFormatRule": {
           "$ref": "AddConditionalFormatRuleRequest",
@@ -6556,11 +6556,11 @@
         },
         "deleteComment": {
           "$ref": "DeleteCommentRequest",
-          "description": "Deletes a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Deletes a CommentThread."
         },
         "deleteCommentReply": {
           "$ref": "DeleteCommentReplyRequest",
-          "description": "Deletes a reply Post from a CommentThread [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Deletes a reply Post from a CommentThread"
         },
         "deleteConditionalFormatRule": {
           "$ref": "DeleteConditionalFormatRuleRequest",
@@ -6628,7 +6628,7 @@
         },
         "insertComment": {
           "$ref": "InsertCommentRequest",
-          "description": "Inserts a CommentThread into the spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Inserts a CommentThread into the spreadsheet."
         },
         "insertDimension": {
           "$ref": "InsertDimensionRequest",
@@ -6704,7 +6704,7 @@
         },
         "updateCommentPost": {
           "$ref": "UpdateCommentPostRequest",
-          "description": "Updates an existing post (head post or reply) of a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Updates an existing post (head post or reply) of a CommentThread."
         },
         "updateConditionalFormatRule": {
           "$ref": "UpdateConditionalFormatRuleRequest",
@@ -6779,7 +6779,7 @@
         },
         "addCommentReply": {
           "$ref": "AddCommentReplyResponse",
-          "description": "The result of creating a reply. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "The result of creating a reply."
         },
         "addDataSource": {
           "$ref": "AddDataSourceResponse",
@@ -6851,7 +6851,7 @@
         },
         "insertComment": {
           "$ref": "InsertCommentResponse",
-          "description": "The result of creating a comment. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "The result of creating a comment."
         },
         "refreshDataSource": {
           "$ref": "RefreshDataSourceResponse",
@@ -7066,7 +7066,7 @@
           "type": "array"
         },
         "commentAnchors": {
-          "description": "The comment anchors on this sheet. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "The comment anchors on this sheet.",
           "items": {
             "$ref": "CommentAnchor"
           },
@@ -7383,14 +7383,14 @@
       "id": "Spreadsheet",
       "properties": {
         "comments": {
-          "description": "The comment threads associated with the spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "The comment threads associated with the spreadsheet.",
           "items": {
             "$ref": "CommentThread"
           },
           "type": "array"
         },
         "commentsViewMode": {
-          "description": "Output only. The comments view mode applied to the spreadsheet. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "Output only. The comments view mode applied to the spreadsheet.",
           "enum": [
             "COMMENTS_VIEW_MODE_UNSPECIFIED",
             "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
@@ -8086,7 +8086,7 @@
       "type": "object"
     },
     "UpdateCommentPostRequest": {
-      "description": "Updates a Post in a CommentThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Updates a Post in a CommentThread. Returns a 400 bad request error if: - The requesting user is not the author of the post.",
       "id": "UpdateCommentPostRequest",
       "properties": {
         "commentId": {
