@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/health-v6.1.0...health-v6.2.0) (2026-10-07)
+
+
+### Features
+
+* **health:** update the API ([c9bf921](https://github.com/googleapis/google-api-nodejs-client/commit/c9bf9216c5b63347b5f70f37c08aac1e165acc50))
+
 ## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/health-v6.0.1...health-v6.1.0) (2026-10-03)
 
 

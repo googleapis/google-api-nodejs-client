@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/recaptchaenterprise",
-  "version": "19.0.1",
+  "version": "19.1.0",
   "description": "recaptchaenterprise",
   "main": "build/index.js",
   "types": "build/index.d.ts",

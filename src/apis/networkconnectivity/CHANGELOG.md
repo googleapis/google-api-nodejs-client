@@ -1,5 +1,12 @@
 # Changelog
 
+## [23.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkconnectivity-v23.1.0...networkconnectivity-v23.2.0) (2026-10-07)
+
+
+### Features
+
+* **networkconnectivity:** update the API ([4122860](https://github.com/googleapis/google-api-nodejs-client/commit/4122860350a6608e1e1191b21df9fa0e9357f129))
+
 ## [23.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkconnectivity-v23.0.0...networkconnectivity-v23.1.0) (2026-09-23)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [26.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v26.0.1...firestore-v26.0.2) (2026-10-07)
+
+
+### Bug Fixes
+
+* **firestore:** update the API ([ab6fd3e](https://github.com/googleapis/google-api-nodejs-client/commit/ab6fd3e80d7b97c0656a4db42b88d2603c98f74c))
+
 ## [26.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v26.0.0...firestore-v26.0.1) (2026-09-23)
 
 

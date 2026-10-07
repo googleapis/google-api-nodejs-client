@@ -1,5 +1,12 @@
 # Changelog
 
+## [41.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v41.0.0...sqladmin-v41.0.1) (2026-10-07)
+
+
+### Bug Fixes
+
+* **sqladmin:** update the API ([be586e3](https://github.com/googleapis/google-api-nodejs-client/commit/be586e37029074e3cd7b07dcbaa66a7d27bf4e0d))
+
 ## [41.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v40.0.0...sqladmin-v41.0.0) (2026-09-23)
 
 
