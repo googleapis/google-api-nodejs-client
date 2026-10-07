@@ -225,7 +225,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. The maximum number of cloud locations to return per page. The service might return fewer cloud locations than this value. If unspecified, server will pick an appropriate default.",
+                      "description": "Optional. The maximum number of cloud locations to return per page. The service might return fewer cloud locations than this value. If unspecified, at most 500 cloud locations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -261,7 +261,7 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "Optional. The maximum number of cloud locations to return. The service might return fewer cloud locations than this value. If unspecified, server will pick an appropriate default.",
+                      "description": "Optional. The maximum number of cloud locations to return. The service might return fewer cloud locations than this value. If unspecified, at most 500 cloud locations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -304,7 +304,7 @@
       }
     }
   },
-  "revision": "20260916",
+  "revision": "20260930",
   "rootUrl": "https://cloudlocationfinder.googleapis.com/",
   "schemas": {
     "CloudLocation": {

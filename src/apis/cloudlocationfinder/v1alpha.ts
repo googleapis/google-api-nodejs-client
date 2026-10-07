@@ -751,7 +751,7 @@ export namespace cloudlocationfinder_v1alpha {
      *   const res = await cloudlocationfinder.projects.locations.cloudLocations.list({
      *     // Optional. A filter expression that filters resources listed in the response. The expression is in the form of field=value. For example, 'cloud_location_type=CLOUD_LOCATION_TYPE_REGION'. Multiple filter queries are space-separated. For example, 'cloud_location_type=CLOUD_LOCATION_TYPE_REGION territory_code="US"' By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly.
      *     filter: 'placeholder-value',
-     *     // Optional. The maximum number of cloud locations to return per page. The service might return fewer cloud locations than this value. If unspecified, server will pick an appropriate default.
+     *     // Optional. The maximum number of cloud locations to return per page. The service might return fewer cloud locations than this value. If unspecified, at most 500 cloud locations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // Optional. A token identifying a page of results the server should return. Provide page token returned by a previous 'ListCloudLocations' call to retrieve the next page of results. When paginating, all other parameters provided to 'ListCloudLocations' must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
@@ -898,7 +898,7 @@ export namespace cloudlocationfinder_v1alpha {
      *   // Do the magic
      *   const res =
      *     await cloudlocationfinder.projects.locations.cloudLocations.search({
-     *       // Optional. The maximum number of cloud locations to return. The service might return fewer cloud locations than this value. If unspecified, server will pick an appropriate default.
+     *       // Optional. The maximum number of cloud locations to return. The service might return fewer cloud locations than this value. If unspecified, at most 500 cloud locations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *       pageSize: 'placeholder-value',
      *       // Optional. A token identifying a page of results the server should return. Provide Page token returned by a previous 'ListCloudLocations' call to retrieve the next page of results. When paginating, all other parameters provided to 'ListCloudLocations' must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
@@ -1033,7 +1033,7 @@ export namespace cloudlocationfinder_v1alpha {
      */
     filter?: string;
     /**
-     * Optional. The maximum number of cloud locations to return per page. The service might return fewer cloud locations than this value. If unspecified, server will pick an appropriate default.
+     * Optional. The maximum number of cloud locations to return per page. The service might return fewer cloud locations than this value. If unspecified, at most 500 cloud locations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
@@ -1047,7 +1047,7 @@ export namespace cloudlocationfinder_v1alpha {
   }
   export interface Params$Resource$Projects$Locations$Cloudlocations$Search extends StandardParameters {
     /**
-     * Optional. The maximum number of cloud locations to return. The service might return fewer cloud locations than this value. If unspecified, server will pick an appropriate default.
+     * Optional. The maximum number of cloud locations to return. The service might return fewer cloud locations than this value. If unspecified, at most 500 cloud locations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
