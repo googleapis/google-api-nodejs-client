@@ -1149,7 +1149,7 @@
       }
     }
   },
-  "revision": "20261001",
+  "revision": "20261002",
   "rootUrl": "https://health.googleapis.com/",
   "schemas": {
     "ActiveEnergyBurned": {
@@ -2013,7 +2013,7 @@
           "type": "integer"
         },
         "pageToken": {
-          "description": "Optional. The `next_page_token` from a previous request, if any. All other request fields need to be the same as in the initial request when the page token is specified.",
+          "description": "Optional. The next_page_token from a previous request, if any. All other request fields need to be the same as in the initial request when the page token is specified.",
           "type": "string"
         },
         "range": {
@@ -2032,6 +2032,10 @@
       "description": "Response containing the list of rolled up data points.",
       "id": "DailyRollUpDataPointsResponse",
       "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
         "rollupDataPoints": {
           "description": "Values for each aggregation time window.",
           "items": {
