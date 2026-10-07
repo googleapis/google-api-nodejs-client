@@ -574,6 +574,10 @@ export namespace tpu_v2 {
      */
     networkEndpoints?: Schema$NetworkEndpoint[];
     /**
+     * Output only. Protection tier for the workload which specifies the workload expectations in the event of infrastructure failures at data center (e.g. power and/or cooling failures).
+     */
+    protectionTier?: string | null;
+    /**
      * Output only. The qualified name of the QueuedResource that requested this Node.
      */
     queuedResource?: string | null;
@@ -1283,7 +1287,7 @@ export namespace tpu_v2 {
     }
 
     /**
-     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
+     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
      * @example
      * ```js
      * // Before running the sample:
@@ -1313,7 +1317,7 @@ export namespace tpu_v2 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1449,7 +1453,7 @@ export namespace tpu_v2 {
   }
   export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -1859,6 +1863,7 @@ export namespace tpu_v2 {
      *       //   "networkConfig": {},
      *       //   "networkConfigs": [],
      *       //   "networkEndpoints": [],
+     *       //   "protectionTier": "my_protectionTier",
      *       //   "queuedResource": "my_queuedResource",
      *       //   "runtimeVersion": "my_runtimeVersion",
      *       //   "schedulingConfig": {},
@@ -2170,6 +2175,7 @@ export namespace tpu_v2 {
      *   //   "networkConfig": {},
      *   //   "networkConfigs": [],
      *   //   "networkEndpoints": [],
+     *   //   "protectionTier": "my_protectionTier",
      *   //   "queuedResource": "my_queuedResource",
      *   //   "runtimeVersion": "my_runtimeVersion",
      *   //   "schedulingConfig": {},
@@ -2624,6 +2630,7 @@ export namespace tpu_v2 {
      *       //   "networkConfig": {},
      *       //   "networkConfigs": [],
      *       //   "networkEndpoints": [],
+     *       //   "protectionTier": "my_protectionTier",
      *       //   "queuedResource": "my_queuedResource",
      *       //   "runtimeVersion": "my_runtimeVersion",
      *       //   "schedulingConfig": {},
