@@ -2714,7 +2714,7 @@
       }
     }
   },
-  "revision": "20260822",
+  "revision": "20260925",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -3367,7 +3367,7 @@
       "id": "GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryCustomRepository",
       "properties": {
         "uri": {
-          "description": "An http/https uri reference to the upstream remote repository, for ex: \"https://my.apt.registry/\".",
+          "description": "An https uri reference to the upstream remote repository, for ex: \"https://my.apt.registry/\".",
           "type": "string"
         }
       },
@@ -3405,7 +3405,7 @@
       "id": "GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigDockerRepositoryCustomRepository",
       "properties": {
         "uri": {
-          "description": "An http/https uri reference to the custom remote repository, for ex: \"https://registry-1.docker.io\".",
+          "description": "An https uri reference to the custom remote repository, for ex: \"https://registry-1.docker.io\".",
           "type": "string"
         }
       },
@@ -3416,7 +3416,7 @@
       "id": "GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigMavenRepositoryCustomRepository",
       "properties": {
         "uri": {
-          "description": "An http/https uri reference to the upstream remote repository, for ex: \"https://my.maven.registry/\".",
+          "description": "An https uri reference to the upstream remote repository, for ex: \"https://my.maven.registry/\".",
           "type": "string"
         }
       },
@@ -3427,7 +3427,7 @@
       "id": "GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigNpmRepositoryCustomRepository",
       "properties": {
         "uri": {
-          "description": "An http/https uri reference to the upstream remote repository, for ex: \"https://my.npm.registry/\".",
+          "description": "An https uri reference to the upstream remote repository, for ex: \"https://my.npm.registry/\".",
           "type": "string"
         }
       },
@@ -3438,7 +3438,7 @@
       "id": "GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigPythonRepositoryCustomRepository",
       "properties": {
         "uri": {
-          "description": "An http/https uri reference to the upstream remote repository, for ex: \"https://my.python.registry/\".",
+          "description": "An https uri reference to the upstream remote repository, for ex: \"https://my.python.registry/\".",
           "type": "string"
         }
       },
@@ -3449,7 +3449,7 @@
       "id": "GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryCustomRepository",
       "properties": {
         "uri": {
-          "description": "An http/https uri reference to the upstream remote repository, for ex: \"https://my.yum.registry/\".",
+          "description": "An https uri reference to the upstream remote repository, for ex: \"https://my.yum.registry/\".",
           "type": "string"
         }
       },
