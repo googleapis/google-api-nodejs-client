@@ -336,7 +336,7 @@ export namespace analyticshub_v1 {
      */
     delimitedKey?: Schema$DelimitedKey;
     /**
-     * Optional. If set, the row key is constructed from the field names of the table's structured row key (https://docs.cloud.google.com/bigtable/docs/manage-row-key-schemas). Note that if the field is nullable in the structured row key, then it need not be present in the message; null will be used instead.
+     * Optional. If set, the row key is constructed from the field names of the table's [structured row key](https://cloud.google.com/bigtable/docs/manage-row-key-schemas). Note that if the field is nullable in the structured row key, then it need not be present in the message; `null` will be used instead.
      */
     rowKeySchema?: Schema$RowKeySchema;
   }
@@ -676,7 +676,7 @@ export namespace analyticshub_v1 {
      */
     retryPolicy?: Schema$RetryPolicy;
     /**
-     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing" See https://{$universe.dns_names.final_documentation_domain\}/pubsub/docs/tags for more information on using tags with Pub/Sub resources.
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing" See [Create and manage tags](https://cloud.google.com/pubsub/docs/tags) for more information on using tags with Pub/Sub resources.
      */
     tags?: {[key: string]: string} | null;
   }
@@ -1207,7 +1207,7 @@ export namespace analyticshub_v1 {
     routineType?: string | null;
   }
   /**
-   * Row key definition that reads the input message fields based on the field names of the table's structured row key (https://docs.cloud.google.com/bigtable/docs/manage-row-key-schemas). Note that if the field is nullable in the structured row key, then it need not be present in the message; null will be used instead.
+   * Row key definition that reads the input message fields based on the field names of the table's [structured row key](https://cloud.google.com/bigtable/docs/manage-row-key-schemas). Note that if the field is nullable in the structured row key, then it need not be present in the message; `null` will be used instead.
    */
   export interface Schema$RowKeySchema {}
   /**

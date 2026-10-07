@@ -1247,7 +1247,7 @@
       }
     }
   },
-  "revision": "20260921",
+  "revision": "20260926",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AIInference": {
@@ -1515,7 +1515,7 @@
         },
         "rowKeySchema": {
           "$ref": "RowKeySchema",
-          "description": "Optional. If set, the row key is constructed from the field names of the table's structured row key (https://docs.cloud.google.com/bigtable/docs/manage-row-key-schemas). Note that if the field is nullable in the structured row key, then it need not be present in the message; null will be used instead."
+          "description": "Optional. If set, the row key is constructed from the field names of the table's [structured row key](https://cloud.google.com/bigtable/docs/manage-row-key-schemas). Note that if the field is nullable in the structured row key, then it need not be present in the message; `null` will be used instead."
         }
       },
       "type": "object"
@@ -1970,7 +1970,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\" See https://{$universe.dns_names.final_documentation_domain}/pubsub/docs/tags for more information on using tags with Pub/Sub resources.",
+          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\" See [Create and manage tags](https://cloud.google.com/pubsub/docs/tags) for more information on using tags with Pub/Sub resources.",
           "type": "object"
         }
       },
@@ -2749,7 +2749,7 @@
       "type": "object"
     },
     "RowKeySchema": {
-      "description": "Row key definition that reads the input message fields based on the field names of the table's structured row key (https://docs.cloud.google.com/bigtable/docs/manage-row-key-schemas). Note that if the field is nullable in the structured row key, then it need not be present in the message; null will be used instead.",
+      "description": "Row key definition that reads the input message fields based on the field names of the table's [structured row key](https://cloud.google.com/bigtable/docs/manage-row-key-schemas). Note that if the field is nullable in the structured row key, then it need not be present in the message; `null` will be used instead.",
       "id": "RowKeySchema",
       "properties": {},
       "type": "object"
