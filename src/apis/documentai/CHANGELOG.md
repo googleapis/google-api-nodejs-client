@@ -1,5 +1,12 @@
 # Changelog
 
+## [26.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/documentai-v26.0.1...documentai-v26.1.0) (2026-10-07)
+
+
+### Features
+
+* **documentai:** update the API ([af4866d](https://github.com/googleapis/google-api-nodejs-client/commit/af4866d7aaccd1a849792c77f79d8cfe123cabbc))
+
 ## [26.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/documentai-v26.0.0...documentai-v26.0.1) (2026-09-23)
 
 

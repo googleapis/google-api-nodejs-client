@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v18.1.0...sheets-v18.1.1) (2026-10-07)
+
+
+### Bug Fixes
+
+* **sheets:** update the API ([dd9e4b3](https://github.com/googleapis/google-api-nodejs-client/commit/dd9e4b3943ce848a0cd787acfe4a67b0c228a736))
+
 ## [18.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v18.0.1...sheets-v18.1.0) (2026-10-03)
 
 

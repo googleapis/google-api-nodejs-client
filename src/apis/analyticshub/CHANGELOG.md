@@ -1,5 +1,12 @@
 # Changelog
 
+## [24.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v24.1.0...analyticshub-v24.1.1) (2026-10-07)
+
+
+### Bug Fixes
+
+* **analyticshub:** update the API ([25a6e09](https://github.com/googleapis/google-api-nodejs-client/commit/25a6e09d5e53fbfbda439152c910748ee556268b))
+
 ## [24.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v24.0.0...analyticshub-v24.1.0) (2026-10-03)
 
 

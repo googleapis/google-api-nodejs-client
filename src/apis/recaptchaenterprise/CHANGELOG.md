@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/recaptchaenterprise-v19.0.1...recaptchaenterprise-v19.1.0) (2026-10-07)
+
+
+### Features
+
+* **recaptchaenterprise:** update the API ([dd46434](https://github.com/googleapis/google-api-nodejs-client/commit/dd4643497457478f59fa71b3efe17f1461781735))
+
 ## [19.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/recaptchaenterprise-v19.0.0...recaptchaenterprise-v19.0.1) (2026-09-23)
 
 
