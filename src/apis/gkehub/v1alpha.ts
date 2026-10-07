@@ -3239,6 +3239,10 @@ export namespace gkehub_v1alpha {
      */
     name?: string | null;
     /**
+     * Optional. If set to true, conflicting rollouts will be paused, to allow this rollout to progress through the sequence. Conflicting rollouts running on the first stage will be canceled, to allow this rollout to be created.
+     */
+    prioritized?: boolean | null;
+    /**
      * Optional. Immutable. The full, unique resource name of the rollout sequence that initiatied this Rollout. In the format of `projects/{project\}/locations/global/rolloutSequences/{rollout_sequence\}`.
      */
     rolloutSequence?: string | null;
@@ -3823,6 +3827,10 @@ export namespace gkehub_v1alpha {
      * Optional. If set to true, the rollout will only upgrade clusters that match the minor version of the `version` field, but are on an earlier patch version.
      */
     patchOnly?: boolean | null;
+    /**
+     * Optional. If set to true, conflicting rollouts will be paused, to allow this rollout to progress through the sequence. Conflicting rollouts running on the first stage will be canceled, to allow this rollout to be created.
+     */
+    prioritized?: boolean | null;
     /**
      * Optional. Overrides the soak duration for all stages of the rollout.
      */
@@ -11766,6 +11774,7 @@ export namespace gkehub_v1alpha {
      *   //   "labels": {},
      *   //   "membershipStates": {},
      *   //   "name": "my_name",
+     *   //   "prioritized": false,
      *   //   "rolloutSequence": "my_rolloutSequence",
      *   //   "stageSoakDurationOverrides": {},
      *   //   "stages": [],
@@ -13210,6 +13219,7 @@ export namespace gkehub_v1alpha {
      *       //   "ignoreClusterDisruptionBudgets": false,
      *       //   "ignoreMaintenancePolicies": false,
      *       //   "patchOnly": false,
+     *       //   "prioritized": false,
      *       //   "soakDurationOverrideAllStages": "my_soakDurationOverrideAllStages",
      *       //   "soakDurationOverridePerStage": {},
      *       //   "upgradeType": "my_upgradeType",
