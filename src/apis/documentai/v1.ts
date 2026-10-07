@@ -860,6 +860,15 @@ export namespace documentai_v1 {
     tierLevel?: number | null;
   }
   /**
+   * Settings for grounding extractions.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3GroundingSettings {
+    /**
+     * The type of grounding to apply.
+     */
+    groundingType?: string | null;
+  }
+  /**
    * Metadata for human review labeling config.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3HumanReviewLabelingMetadata {
@@ -1043,6 +1052,10 @@ export namespace documentai_v1 {
      * Output only. Denotes that this `ProcessorVersion` is managed by Google.
      */
     googleManaged?: boolean | null;
+    /**
+     * Output only. The grounding settings of the processor version. This can only be set using TrainProcessorVersionRequest to override the default grounding settings.
+     */
+    groundingSettings?: Schema$GoogleCloudDocumentaiUiv1beta3GroundingSettings;
     /**
      * Output only. The KMS key name used for encryption.
      */
@@ -2085,6 +2098,15 @@ export namespace documentai_v1 {
     gcsUriPrefix?: string | null;
   }
   /**
+   * Settings for grounding extractions.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3GroundingSettings {
+    /**
+     * The type of grounding to apply.
+     */
+    groundingType?: string | null;
+  }
+  /**
    * The status of human review on a processed document.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3HumanReviewStatus {
@@ -2255,6 +2277,10 @@ export namespace documentai_v1 {
      * Output only. Denotes that this `ProcessorVersion` is managed by Google.
      */
     googleManaged?: boolean | null;
+    /**
+     * Output only. The grounding settings of the processor version. This can only be set using TrainProcessorVersionRequest to override the default grounding settings.
+     */
+    groundingSettings?: Schema$GoogleCloudDocumentaiV1beta3GroundingSettings;
     /**
      * Output only. The KMS key name used for encryption.
      */

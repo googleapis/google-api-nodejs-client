@@ -858,6 +858,15 @@ export namespace documentai_v1beta3 {
     tierLevel?: number | null;
   }
   /**
+   * Settings for grounding extractions.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3GroundingSettings {
+    /**
+     * The type of grounding to apply.
+     */
+    groundingType?: string | null;
+  }
+  /**
    * Metadata for human review labeling config.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3HumanReviewLabelingMetadata {
@@ -1041,6 +1050,10 @@ export namespace documentai_v1beta3 {
      * Output only. Denotes that this `ProcessorVersion` is managed by Google.
      */
     googleManaged?: boolean | null;
+    /**
+     * Output only. The grounding settings of the processor version. This can only be set using TrainProcessorVersionRequest to override the default grounding settings.
+     */
+    groundingSettings?: Schema$GoogleCloudDocumentaiUiv1beta3GroundingSettings;
     /**
      * Output only. The KMS key name used for encryption.
      */
@@ -3771,6 +3784,15 @@ export namespace documentai_v1beta3 {
     document?: Schema$GoogleCloudDocumentaiV1beta3Document;
   }
   /**
+   * Settings for grounding extractions.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3GroundingSettings {
+    /**
+     * The type of grounding to apply.
+     */
+    groundingType?: string | null;
+  }
+  /**
    * The status of human review on a processed document.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3HumanReviewStatus {
@@ -4357,6 +4379,10 @@ export namespace documentai_v1beta3 {
      */
     googleManaged?: boolean | null;
     /**
+     * Output only. The grounding settings of the processor version. This can only be set using TrainProcessorVersionRequest to override the default grounding settings.
+     */
+    groundingSettings?: Schema$GoogleCloudDocumentaiV1beta3GroundingSettings;
+    /**
      * Output only. The KMS key name used for encryption.
      */
     kmsKeyName?: string | null;
@@ -4453,6 +4479,15 @@ export namespace documentai_v1beta3 {
      * The minimum number of labeled documents in the training dataset required for fine tuning.
      */
     minTrainLabeledDocuments?: number | null;
+  }
+  /**
+   * Overrides to apply when creating a new processor version.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionOverrides {
+    /**
+     * Optional. Grounding settings to override the default values.
+     */
+    groundingSettings?: Schema$GoogleCloudDocumentaiV1beta3GroundingSettings;
   }
   /**
    * Request message for the ProcessDocument method.
@@ -4791,6 +4826,10 @@ export namespace documentai_v1beta3 {
      * Required. The processor version to be created.
      */
     processorVersion?: Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion;
+    /**
+     * Optional. Options to override structures in the base processor version.
+     */
+    processorVersionOverrides?: Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionOverrides;
   }
   /**
    * Options to control the training of the Custom Document Extraction (CDE) Processor.
@@ -9950,6 +9989,7 @@ export namespace documentai_v1beta3 {
      *   //   "documentSchema": {},
      *   //   "genAiModelInfo": {},
      *   //   "googleManaged": false,
+     *   //   "groundingSettings": {},
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *   //   "latestEvaluation": {},
@@ -10589,7 +10629,8 @@ export namespace documentai_v1beta3 {
      *         //   "documentSchema": {},
      *         //   "foundationModelTuningOptions": {},
      *         //   "inputData": {},
-     *         //   "processorVersion": {}
+     *         //   "processorVersion": {},
+     *         //   "processorVersionOverrides": {}
      *         // }
      *       },
      *     });

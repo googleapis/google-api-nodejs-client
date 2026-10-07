@@ -1678,7 +1678,7 @@
       }
     }
   },
-  "revision": "20260706",
+  "revision": "20260929",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
@@ -2770,6 +2770,29 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiUiv1beta3GroundingSettings": {
+      "description": "Settings for grounding extractions.",
+      "id": "GoogleCloudDocumentaiUiv1beta3GroundingSettings",
+      "properties": {
+        "groundingType": {
+          "description": "The type of grounding to apply.",
+          "enum": [
+            "GROUNDING_TYPE_UNSPECIFIED",
+            "HARD",
+            "OCR_RELAXED",
+            "NO_GROUNDING"
+          ],
+          "enumDescriptions": [
+            "The default value. Behaves like HARD.",
+            "Requires exact match with OCR text for extractions.",
+            "Allows for minor discrepancies between LLM output and OCR text.",
+            "LLM extractions are used without strict OCR matching. Bounding boxes may be approximated or absent."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiUiv1beta3HumanReviewLabelingMetadata": {
       "description": "Metadata for human review labeling config.",
       "id": "GoogleCloudDocumentaiUiv1beta3HumanReviewLabelingMetadata",
@@ -3017,6 +3040,11 @@
           "description": "Output only. Denotes that this `ProcessorVersion` is managed by Google.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "groundingSettings": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3GroundingSettings",
+          "description": "Output only. The grounding settings of the processor version. This can only be set using TrainProcessorVersionRequest to override the default grounding settings.",
+          "readOnly": true
         },
         "kmsKeyName": {
           "description": "Output only. The KMS key name used for encryption.",
@@ -7111,6 +7139,29 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3GroundingSettings": {
+      "description": "Settings for grounding extractions.",
+      "id": "GoogleCloudDocumentaiV1beta3GroundingSettings",
+      "properties": {
+        "groundingType": {
+          "description": "The type of grounding to apply.",
+          "enum": [
+            "GROUNDING_TYPE_UNSPECIFIED",
+            "HARD",
+            "OCR_RELAXED",
+            "NO_GROUNDING"
+          ],
+          "enumDescriptions": [
+            "The default value. Behaves like HARD.",
+            "Requires exact match with OCR text for extractions.",
+            "Allows for minor discrepancies between LLM output and OCR text.",
+            "LLM extractions are used without strict OCR matching. Bounding boxes may be approximated or absent."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3HumanReviewStatus": {
       "description": "The status of human review on a processed document.",
       "id": "GoogleCloudDocumentaiV1beta3HumanReviewStatus",
@@ -7984,6 +8035,11 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "groundingSettings": {
+          "$ref": "GoogleCloudDocumentaiV1beta3GroundingSettings",
+          "description": "Output only. The grounding settings of the processor version. This can only be set using TrainProcessorVersionRequest to override the default grounding settings.",
+          "readOnly": true
+        },
         "kmsKeyName": {
           "description": "Output only. The KMS key name used for encryption.",
           "readOnly": true,
@@ -8141,6 +8197,17 @@
           "description": "The minimum number of labeled documents in the training dataset required for fine tuning.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ProcessorVersionOverrides": {
+      "description": "Overrides to apply when creating a new processor version.",
+      "id": "GoogleCloudDocumentaiV1beta3ProcessorVersionOverrides",
+      "properties": {
+        "groundingSettings": {
+          "$ref": "GoogleCloudDocumentaiV1beta3GroundingSettings",
+          "description": "Optional. Grounding settings to override the default values."
         }
       },
       "type": "object"
@@ -8546,6 +8613,10 @@
         "processorVersion": {
           "$ref": "GoogleCloudDocumentaiV1beta3ProcessorVersion",
           "description": "Required. The processor version to be created."
+        },
+        "processorVersionOverrides": {
+          "$ref": "GoogleCloudDocumentaiV1beta3ProcessorVersionOverrides",
+          "description": "Optional. Options to override structures in the base processor version."
         }
       },
       "type": "object"
