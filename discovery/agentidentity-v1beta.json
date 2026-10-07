@@ -607,6 +607,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "resolveAuthorization": {
+                  "description": "Resolves an authorization for a user on an auth provider, creating one if it does not exist or returning an existing one.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/authProviders/{authProvidersId}:resolveAuthorization",
+                  "httpMethod": "POST",
+                  "id": "agentidentity.projects.locations.authProviders.resolveAuthorization",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the auth provider to resolve authorization for. Format: projects/{project}/locations/{location}/authProviders/{auth_provider}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/authProviders/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}:resolveAuthorization",
+                  "request": {
+                    "$ref": "ResolveAuthorizationRequest"
+                  },
+                  "response": {
+                    "$ref": "ResolveAuthorizationResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "revokeAuthorization": {
                   "description": "Revokes all authorizations for a specific user on an auth provider. This deletes all authorization records associated with the user and auth provider, effectively revoking access across all agents.",
                   "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/authProviders/{authProvidersId}:revokeAuthorization",
@@ -920,7 +948,7 @@
       }
     }
   },
-  "revision": "20260924",
+  "revision": "20261001",
   "rootUrl": "https://agentidentity.googleapis.com/",
   "schemas": {
     "AccessSummary": {
@@ -939,14 +967,18 @@
             "AUTH_PROVIDER_TYPE_THREE_LEGGED_OAUTH",
             "AUTH_PROVIDER_TYPE_TWO_LEGGED_OAUTH",
             "AUTH_PROVIDER_TYPE_API_KEY",
-            "AUTH_PROVIDER_TYPE_GEMINI_ENTERPRISE"
+            "AUTH_PROVIDER_TYPE_GEMINI_ENTERPRISE",
+            "AUTH_PROVIDER_TYPE_CROSS_APP_ACCESS",
+            "AUTH_PROVIDER_TYPE_CONNECTOR_REFERENCE"
           ],
           "enumDescriptions": [
             "Unspecified auth provider type.",
             "3-legged OAuth (3LO) auth provider type.",
             "2-legged OAuth (2LO) auth provider type.",
             "API key auth provider type.",
-            "Gemini Enterprise auth provider type."
+            "Gemini Enterprise auth provider type.",
+            "Cross-App Access auth provider type.",
+            "Connector Reference auth provider type."
           ],
           "readOnly": true,
           "type": "string"
@@ -1005,6 +1037,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "AgentIdentityPool": {
+      "description": "Marker message to indicate the managed Agent Identity Pool is used.",
+      "id": "AgentIdentityPool",
+      "properties": {},
       "type": "object"
     },
     "ApiKeyParams": {
@@ -1159,6 +1197,10 @@
           "$ref": "ApiKeyParams",
           "description": "Parameters for API key authentication."
         },
+        "connectorReferenceAuthProvider": {
+          "$ref": "ConnectorReferenceAuthProvider",
+          "description": "Parameters for Connector Reference authentication."
+        },
         "geAuthProvider": {
           "$ref": "GeminiEnterpriseAuthProviderParams",
           "description": "Parameters for Gemini Enterprise authentication."
@@ -1170,6 +1212,10 @@
         "twoLeggedOauth": {
           "$ref": "TwoLeggedOAuth",
           "description": "Parameters for 2-legged OAuth (2LO) authentication."
+        },
+        "xaaAuthProvider": {
+          "$ref": "CrossAppAccessAuthProvider",
+          "description": "Parameters for Cross-App Access authentication."
         }
       },
       "type": "object"
@@ -1247,6 +1293,117 @@
       },
       "type": "object"
     },
+    "ClientAssertionJwtAuth": {
+      "description": "Configuration for client ID and client assertion JWT authentication.",
+      "id": "ClientAssertionJwtAuth",
+      "properties": {
+        "clientId": {
+          "description": "Required. The client identifier.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ClientSecretAuth": {
+      "description": "Configuration for client ID and client secret authentication.",
+      "id": "ClientSecretAuth",
+      "properties": {
+        "clientId": {
+          "description": "Required. The client identifier.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "Required. Input only. The client secret.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConnectorReferenceAuthProvider": {
+      "description": "Configuration parameters for the Connector Reference auth provider.",
+      "id": "ConnectorReferenceAuthProvider",
+      "properties": {
+        "authorizationDetails": {
+          "description": "Optional. Rich Authorization Requests (RFC 9396) detailing targeted OAuth resources/scopes, formatted as a JSON array of JSON objects.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "connector": {
+          "description": "Required. The name of the referenced connector.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CrossAppAccessAuthProvider": {
+      "description": "Configuration parameters for the Cross-App Access auth provider.",
+      "id": "CrossAppAccessAuthProvider",
+      "properties": {
+        "additionalParameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Additional parameters to be passed to the token endpoint.",
+          "type": "object"
+        },
+        "clientAssertionJwtAuth": {
+          "$ref": "ClientAssertionJwtAuth",
+          "description": "Option 2: Authenticate using a standard `client_id` and a Client Assertion JWT."
+        },
+        "clientSecretAuth": {
+          "$ref": "ClientSecretAuth",
+          "description": "Option 1: Authenticate using a standard `client_id` and `client_secret`."
+        },
+        "customIssuer": {
+          "$ref": "CustomIssuer",
+          "description": "Configuration when using a custom or third-party authorization server as the issuer."
+        },
+        "googleAccount": {
+          "$ref": "GoogleAccount",
+          "description": "Configuration when using Google Accounts as the issuer."
+        },
+        "idJagInput": {
+          "$ref": "DirectIdJagInput",
+          "description": "Configuration for when the input is already an ID-JAG."
+        },
+        "idTokenInput": {
+          "$ref": "IdTokenProcessingConfig",
+          "description": "Configuration for when the input is an ID token."
+        },
+        "workforceIdentityFederation": {
+          "$ref": "WorkforceIdentityFederation",
+          "description": "Configuration when using Workforce Identity Federation as the issuer."
+        }
+      },
+      "type": "object"
+    },
+    "CustomIssuer": {
+      "description": "Configuration for a custom or third-party authorization server issuer.",
+      "id": "CustomIssuer",
+      "properties": {
+        "issuer": {
+          "description": "Optional. The issuer identifier of the target Authorization Server.",
+          "type": "string"
+        },
+        "tokenUrl": {
+          "description": "Required. The token endpoint of the target OAuth authorization server to retrieve resource tokens.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DirectIdJagInput": {
+      "description": "Marker message indicating the input is already an ID-JAG, so no fetching is required.",
+      "id": "DirectIdJagInput",
+      "properties": {},
+      "type": "object"
+    },
     "DisableAuthProviderRequest": {
       "description": "Request message for `DisableAuthProvider`.",
       "id": "DisableAuthProviderRequest",
@@ -1302,6 +1459,35 @@
       "description": "Configuration for Gemini Enterprise authentication.",
       "id": "GeminiEnterpriseAuthProviderParams",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleAccount": {
+      "description": "Configuration for Google Account usage as the issuer.",
+      "id": "GoogleAccount",
+      "properties": {},
+      "type": "object"
+    },
+    "IdTokenProcessingConfig": {
+      "description": "Defines how to process an input ID token to obtain an ID-JAG.",
+      "id": "IdTokenProcessingConfig",
+      "properties": {
+        "agentIdentityPool": {
+          "$ref": "AgentIdentityPool",
+          "description": "Indicates the managed Agent Identity pool should be used to fetch the ID-JAG."
+        },
+        "idJagAdditionalClaims": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Optional additional claims to include when fetching an ID-JAG.",
+          "type": "object"
+        },
+        "idJagAuthProvider": {
+          "description": "The resource name of the ID-JAG auth provider. Format: \"projects/{project}/locations/{location}/authProviders/{auth_provider}\"",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ListAccessSummariesResponse": {
@@ -1498,6 +1684,28 @@
       },
       "type": "object"
     },
+    "ResolveAuthorizationRequest": {
+      "description": "Request message for `ResolveAuthorization`.",
+      "id": "ResolveAuthorizationRequest",
+      "properties": {
+        "clientUserId": {
+          "description": "Required. The user ID of the client for whom the authorization is resolved.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResolveAuthorizationResponse": {
+      "description": "Response message for `ResolveAuthorization`.",
+      "id": "ResolveAuthorizationResponse",
+      "properties": {
+        "authorization": {
+          "description": "The resource name of the resolved authorization. Format: projects/{project}/locations/{location}/authProviders/{auth_provider}/authorizations/{authorization}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RevokeAuthorizationRequest": {
       "description": "Request message for `RevokeAuthorization`.",
       "id": "RevokeAuthorizationRequest",
@@ -1623,6 +1831,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "WorkforceIdentityFederation": {
+      "description": "Configuration for Workforce Identity Federation usage as the issuer.",
+      "id": "WorkforceIdentityFederation",
+      "properties": {},
       "type": "object"
     }
   },
