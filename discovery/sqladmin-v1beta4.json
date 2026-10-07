@@ -3721,7 +3721,7 @@
       }
     }
   },
-  "revision": "20260908",
+  "revision": "20260920",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -10141,7 +10141,7 @@
       "properties": {
         "startWorkloadReplayContext": {
           "$ref": "StartWorkloadReplayContext",
-          "description": "Optional. Contains details about the start workload replay operation."
+          "description": "Required. Contains details about the start workload replay operation."
         }
       },
       "type": "object"
@@ -10163,7 +10163,7 @@
       "properties": {
         "stopWorkloadReplayContext": {
           "$ref": "StopWorkloadReplayContext",
-          "description": "Optional. Contains details about the stop workload replay operation."
+          "description": "Required. Contains details about the stop workload replay operation."
         }
       },
       "type": "object"

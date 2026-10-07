@@ -3432,7 +3432,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$SqlWorkloadCapturesStartReplayRequest {
     /**
-     * Optional. Contains details about the start workload replay operation.
+     * Required. Contains details about the start workload replay operation.
      */
     startWorkloadReplayContext?: Schema$StartWorkloadReplayContext;
   }
@@ -3450,7 +3450,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$SqlWorkloadCapturesStopReplayRequest {
     /**
-     * Optional. Contains details about the stop workload replay operation.
+     * Required. Contains details about the stop workload replay operation.
      */
     stopWorkloadReplayContext?: Schema$StopWorkloadReplayContext;
   }
