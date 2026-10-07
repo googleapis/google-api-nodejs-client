@@ -352,7 +352,7 @@ export namespace recaptchaenterprise_v1 {
      */
     botType?: string | null;
     /**
-     * Optional. Enumerated string value that indicates the identity of the bot, formatted in kebab-case. Current example values include the following: * google-agent - AI_AGENT * browser-base - AI_AGENT * chat-gpt - AI_AGENT * aws-bedrock - AI_AGENT * cybaa-bot - AI_AGENT * cloudflare - AI_AGENT * payhawk - AI_AGENT * duck-duck-go - SEARCH_INDEXER * mediaboard - CONTENT_SCRAPER * marker-io - AI_AGENT * broadcom - AI_AGENT * anchor-browser - AI_AGENT * shopify - AI_AGENT * stackscope - CONTENT_SCRAPER * manus - AI_AGENT * kernel-sh - AI_AGENT * zvelo - SEARCH_INDEXER Ensure that your applications can handle identifier values not explicitly listed here. Deprecated values might take some time to stop showing up in responses. New values can be pushed so this list should be taken as non exhaustive.
+     * Optional. Enumerated string value that indicates the identity of the bot, formatted in kebab-case. Current example values include the following: * google-agent - AI_AGENT * browser-base - AI_AGENT * chat-gpt - AI_AGENT * aws-bedrock - AI_AGENT * cybaa-bot - AI_AGENT * cloudflare - AI_AGENT * payhawk - AI_AGENT * duck-duck-go - SEARCH_INDEXER * mediaboard - CONTENT_SCRAPER * marker-io - AI_AGENT * anchor-browser - AI_AGENT * shopify - AI_AGENT * stackscope - CONTENT_SCRAPER * manus - AI_AGENT * kernel-sh - AI_AGENT * zvelo - SEARCH_INDEXER Ensure that your applications can handle identifier values not explicitly listed here. Deprecated values might take some time to stop showing up in responses. New values can be pushed so this list should be taken as non exhaustive.
      */
     name?: string | null;
   }
@@ -1188,7 +1188,11 @@ export namespace recaptchaenterprise_v1 {
      */
     androidPackageName?: string | null;
     /**
-     * Output only. Indicates a failure collecting reCAPTCHA signals at token generation. This might be a transient condition, or persistent for a user’s environment.
+     * Output only. Information collected by the reCAPTCHA Enterprise client-side integration when the token is generated.
+     */
+    clientProperties?: Schema$GoogleCloudRecaptchaenterpriseV1TokenPropertiesClientProperties;
+    /**
+     * Output only. Indicates a failure collecting reCAPTCHA signals at token generation. This might be a transient condition, or persistent for a user's environment.
      */
     clientSignalsFailed?: boolean | null;
     /**
@@ -1211,6 +1215,19 @@ export namespace recaptchaenterprise_v1 {
      * Output only. Indicates whether the provided user response token is valid. If `false`, the token is invalid, either because the user failed the challenge or for a reason provided in the `invalid_reason` field.
      */
     valid?: boolean | null;
+  }
+  /**
+   * Information collected by the reCAPTCHA Enterprise client-side integration when the token is generated.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1TokenPropertiesClientProperties {
+    /**
+     * Output only. The `User-Agent` header string observed by reCAPTCHA during token generation. This string is truncated to a maximum length of 1000 characters.
+     */
+    userAgent?: string | null;
+    /**
+     * Output only. The user's IP address at token generation. This can be either an IPv4 address (e.g., `192.0.2.1`) or an IPv6 address in canonical format per RFC 5952 section 4 (e.g., `2001:db8::1`). IPv4-mapped IPv6 addresses are canonicalized to standard IPv4.
+     */
+    userIpAddress?: string | null;
   }
   /**
    * Transaction data associated with a payment protected by reCAPTCHA Enterprise.
