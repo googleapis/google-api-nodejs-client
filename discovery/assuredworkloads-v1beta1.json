@@ -1105,6 +1105,21 @@
                           "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+/violations/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. Specifies the violation view (`AssuredWorkloads` or `DataBoundary`) for fetching violations.",
+                          "enum": [
+                            "VIOLATION_VIEW_UNSPECIFIED",
+                            "VIOLATION_VIEW_ASSURED_WORKLOADS",
+                            "VIOLATION_VIEW_DATA_BOUNDARY"
+                          ],
+                          "enumDescriptions": [
+                            "Defaults to the ASSURED_WORKLOADS view.",
+                            "Includes the basic metadata about the violation.",
+                            "Includes all information about the violation, including details about the data boundary."
+                          ],
+                          "location": "query",
+                          "type": "string"
                         }
                       },
                       "path": "v1beta1/{+name}",
@@ -1162,6 +1177,21 @@
                           "location": "path",
                           "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+$",
                           "required": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. Specifies the violation view(AssuredWorkloads or DataBoundary) for fetching violations.",
+                          "enum": [
+                            "VIOLATION_VIEW_UNSPECIFIED",
+                            "VIOLATION_VIEW_ASSURED_WORKLOADS",
+                            "VIOLATION_VIEW_DATA_BOUNDARY"
+                          ],
+                          "enumDescriptions": [
+                            "Defaults to the ASSURED_WORKLOADS view.",
+                            "Includes the basic metadata about the violation.",
+                            "Includes all information about the violation, including details about the data boundary."
+                          ],
+                          "location": "query",
                           "type": "string"
                         }
                       },
@@ -1424,7 +1454,7 @@
       }
     }
   },
-  "revision": "20260914",
+  "revision": "20260928",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -1452,6 +1482,20 @@
         "nonCompliantOrgPolicy": {
           "deprecated": true,
           "description": "Optional. This field is deprecated and will be removed in future version of the API. Name of the OrgPolicy which was modified with non-compliant change and resulted in this violation. Format: projects/{project_number}/policies/{constraint_name} folders/{folder_id}/policies/{constraint_name} organizations/{organization_id}/policies/{constraint_name}",
+          "type": "string"
+        },
+        "view": {
+          "description": "Optional. Specifies the violation view (`AssuredWorkloads` or `DataBoundary`) for acknowledging violations.",
+          "enum": [
+            "VIOLATION_VIEW_UNSPECIFIED",
+            "VIOLATION_VIEW_ASSURED_WORKLOADS",
+            "VIOLATION_VIEW_DATA_BOUNDARY"
+          ],
+          "enumDescriptions": [
+            "Defaults to the ASSURED_WORKLOADS view.",
+            "Includes the basic metadata about the violation.",
+            "Includes all information about the violation, including details about the data boundary."
+          ],
           "type": "string"
         }
       },
@@ -2955,6 +2999,14 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "affectedFrameworks": {
+          "description": "Output only. List of compliance frameworks that are affected by this violation. This field is only populated when using `VIOLATION_VIEW_DATA_BOUNDARY`. e.g. \"FedRAMP High\", \"NIST 800-53\".",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "associatedOrgPolicyViolationId": {
           "description": "Optional. Output only. Violation Id of the org-policy violation due to which the resource violation is caused. Empty for org-policy violations.",
           "readOnly": true,
@@ -2975,6 +3027,12 @@
           "description": "Output only. Category under which this violation is mapped. e.g. Location, Service Usage, Access, Encryption, etc.",
           "readOnly": true,
           "type": "string"
+        },
+        "childResourceViolationCount": {
+          "description": "Optional. Output only. The number of resource violations for particular org policy violation. This will be 0 in case of resource violation.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "description": {
           "description": "Output only. Description for the Violation. e.g. OrgPolicy gcp.resourceLocations has non compliant value.",
@@ -3019,6 +3077,11 @@
           "$ref": "GoogleCloudAssuredworkloadsV1beta1ViolationRemediation",
           "description": "Output only. Compliance violation remediation",
           "readOnly": true
+        },
+        "remediationMarkdown": {
+          "description": "Output only. Contains the remediation instructions for the violation in markdown format.",
+          "readOnly": true,
+          "type": "string"
         },
         "resolveTime": {
           "description": "Output only. Time of the event which fixed the Violation. If the violation is ACTIVE this will be empty.",
