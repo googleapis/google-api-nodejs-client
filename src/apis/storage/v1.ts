@@ -422,6 +422,7 @@ export namespace storage_v1 {
      */
     softDeletePolicy?: {
       effectiveTime?: string;
+      hardDeletePause?: {effectiveTime?: string; enabled?: boolean};
       retentionDurationSeconds?: string;
     } | null;
     /**
