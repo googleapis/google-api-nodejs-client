@@ -360,7 +360,7 @@ export namespace osconfig_v2 {
    */
   export interface Schema$GoogleCloudOsconfigV2__OrchestrationScope {
     /**
-     * Optional. Selectors of the orchestration scope. There is a logical AND between each selector defined. When there is no explicit `ResourceHierarchySelector` selector specified, the scope is by default bounded to the parent of the policy orchestrator resource.
+     * Optional. Selectors of the orchestration scope. Each `Selector` entry can specify either a `ResourceHierarchySelector` or a `LocationSelector`, but not both. To filter by both resource hierarchy and location, specify separate `Selector` entries for each selector type. There is a logical AND between each selector defined. When there is no explicit `ResourceHierarchySelector` selector specified, the scope is by default bounded to the parent of the policy orchestrator resource.
      */
     selectors?: Schema$GoogleCloudOsconfigV2_OrchestrationScope_Selector[];
   }
