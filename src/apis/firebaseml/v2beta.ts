@@ -396,6 +396,10 @@ export namespace firebaseml_v2beta {
      */
     content?: Schema$GoogleCloudAiplatformV1beta1Content;
     /**
+     * Output only. An optional opaque continuation token returned when `finish_reason` is `CONTINUATION`. Clients can pass this token in a subsequent `GenerateContentRequest` to continue generation.
+     */
+    continuationToken?: string | null;
+    /**
      * Output only. Describes the reason the model stopped generating tokens in more detail. This field is returned only when `finish_reason` is set.
      */
     finishMessage?: string | null;
@@ -807,6 +811,10 @@ export namespace firebaseml_v2beta {
      * Required. The content of the current conversation with the model. For single-turn queries, this is a single instance. For multi-turn queries, this is a repeated field that contains conversation history + latest request.
      */
     contents?: Schema$GoogleCloudAiplatformV1beta1Content[];
+    /**
+     * Optional. An opaque continuation token used to resume generation from a previous `GenerateContent` or `StreamGenerateContent` response that stopped with `finish_reason` set to `CONTINUATION`.
+     */
+    continuationToken?: string | null;
     /**
      * Optional. Generation config.
      */
@@ -2102,23 +2110,23 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ToolCodeExecution {}
   /**
-   * Tool to support computer use.
+   * A tool that enables the model to interact directly with a computer environment.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ToolComputerUse {
     /**
-     * Optional. Disabled safety policies for computer use.
+     * Optional. A list of safety policies to disable for the computer use tool.
      */
     disabledSafetyPolicies?: string[] | null;
     /**
-     * Optional. Enables the prompt injection detection check on computer-use request.
+     * Optional. Whether to enable the prompt injection detection check on the computer use request.
      */
     enablePromptInjectionDetection?: boolean | null;
     /**
-     * Required. The environment being operated.
+     * Required. The target environment where the computer use tool operates.
      */
     environment?: string | null;
     /**
-     * Optional. By default, [predefined functions](https://cloud.google.com/vertex-ai/generative-ai/docs/computer-use#supported-actions) are included in the final model call. Some of them can be explicitly excluded from being automatically included. This can serve two purposes: 1. Using a more restricted / different action space. 2. Improving the definitions / instructions of predefined functions.
+     * Optional. A list of predefined functions to explicitly exclude from the model call. By default, [predefined functions](https://cloud.google.com/vertex-ai/generative-ai/docs/computer-use#supported-actions) are included. Excluding functions allows for a more restricted action space or custom definitions for predefined functions.
      */
     excludedPredefinedFunctions?: string[] | null;
   }
@@ -2654,6 +2662,7 @@ export namespace firebaseml_v2beta {
      *         // {
      *         //   "cachedContent": "my_cachedContent",
      *         //   "contents": [],
+     *         //   "continuationToken": "my_continuationToken",
      *         //   "generationConfig": {},
      *         //   "labels": {},
      *         //   "modelArmorConfig": {},
@@ -2826,6 +2835,7 @@ export namespace firebaseml_v2beta {
      *           // {
      *           //   "cachedContent": "my_cachedContent",
      *           //   "contents": [],
+     *           //   "continuationToken": "my_continuationToken",
      *           //   "generationConfig": {},
      *           //   "labels": {},
      *           //   "modelArmorConfig": {},
