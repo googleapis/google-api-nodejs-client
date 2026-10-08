@@ -82,7 +82,7 @@
     "jsdoc": "^4.0.4",
     "jsdoc-fresh": "^6.0.0",
     "jsdoc-region-tag": "^5.0.0",
-    "linkinator": "^6.1.2",
+    "linkinator": "^8.0.0",
     "mocha": "^11.2.2",
     "mv": "^2.1.1",
     "ncp": "^2.0.0",
