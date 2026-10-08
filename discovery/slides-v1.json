@@ -187,7 +187,7 @@
           ],
           "parameters": {
             "commentsViewMode": {
-              "description": "The comments view mode to apply to the presentation. This allows viewing the presentation with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. [Developer Preview](https://developers.google.com/workspace/preview).",
+              "description": "The comments view mode to apply to the presentation. This allows viewing the presentation with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used.",
               "enum": [
                 "COMMENTS_VIEW_MODE_UNSPECIFIED",
                 "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
@@ -238,7 +238,7 @@
               ],
               "parameters": {
                 "commentsViewMode": {
-                  "description": "The comments view mode to apply to the page. This allows viewing the page with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. [Developer Preview](https://developers.google.com/workspace/preview).",
+                  "description": "The comments view mode to apply to the page. This allows viewing the page with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used.",
                   "enum": [
                     "COMMENTS_VIEW_MODE_UNSPECIFIED",
                     "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
@@ -349,11 +349,11 @@
       }
     }
   },
-  "revision": "20260921",
+  "revision": "20260930",
   "rootUrl": "https://slides.googleapis.com/",
   "schemas": {
     "AddCommentReplyRequest": {
-      "description": "Inserts a reply Post into a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Inserts a reply Post into a CommentThread.",
       "id": "AddCommentReplyRequest",
       "properties": {
         "commentId": {
@@ -368,7 +368,7 @@
       "type": "object"
     },
     "AddCommentReplyResponse": {
-      "description": "The result of creating a reply. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "The result of creating a reply.",
       "id": "AddCommentReplyResponse",
       "properties": {
         "post": {
@@ -512,7 +512,7 @@
       "id": "BatchUpdatePresentationResponse",
       "properties": {
         "commentUpdateState": {
-          "description": "Whether comment updates were applied in the batch request. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "Whether comment updates were applied in the batch request.",
           "enum": [
             "COMMENT_UPDATE_STATE_UNSPECIFIED",
             "NO_UPDATES_REQUESTED",
@@ -605,7 +605,7 @@
       "type": "object"
     },
     "CommentAnchor": {
-      "description": "Contains a list of all locations in a `Page` that are anchored to a CommentThread via the same anchorId. Multiple separate anchors may refer to the same location, either within a `Page` or across different pages, [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Contains a list of all locations in a `Page` that are anchored to a CommentThread via the same anchorId. Multiple separate anchors may refer to the same location, either within a `Page` or across different pages,",
       "id": "CommentAnchor",
       "properties": {
         "anchorId": {
@@ -623,7 +623,7 @@
       "type": "object"
     },
     "CommentThread": {
-      "description": "Represents a single comment thread inside a presentation. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Represents a single comment thread inside a presentation.",
       "id": "CommentThread",
       "properties": {
         "anchorId": {
@@ -1328,7 +1328,7 @@
       "type": "object"
     },
     "DeleteCommentReplyRequest": {
-      "description": "Deletes a reply Post from a CommentThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. - The reply post contains a comment action. - The reply post contains an assignee. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Deletes a reply Post from a CommentThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. - The reply post contains a comment action. - The reply post contains an assignee.",
       "id": "DeleteCommentReplyRequest",
       "properties": {
         "commentId": {
@@ -1343,7 +1343,7 @@
       "type": "object"
     },
     "DeleteCommentRequest": {
-      "description": "Deletes a CommentThread. Returns a 400 bad request error if the requesting user is not the author of the headPost. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Deletes a CommentThread. Returns a 400 bad request error if the requesting user is not the author of the headPost.",
       "id": "DeleteCommentRequest",
       "properties": {
         "commentId": {
@@ -1596,7 +1596,7 @@
       "type": "object"
     },
     "InsertCommentRequest": {
-      "description": "Inserts a CommentThread into the presentation. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Inserts a CommentThread into the presentation.",
       "id": "InsertCommentRequest",
       "properties": {
         "assigneeEmailAddress": {
@@ -1627,7 +1627,7 @@
       "type": "object"
     },
     "InsertCommentResponse": {
-      "description": "The result of creating a comment. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "The result of creating a comment.",
       "id": "InsertCommentResponse",
       "properties": {
         "commentThread": {
@@ -2088,7 +2088,7 @@
       "type": "object"
     },
     "ObjectAnchor": {
-      "description": "Represents comment anchor data tied to a Slides object, for example a `Page` or PageElement. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Represents comment anchor data tied to a Slides object, for example a `Page` or PageElement.",
       "id": "ObjectAnchor",
       "properties": {
         "objectId": {
@@ -2237,21 +2237,21 @@
       "id": "Page",
       "properties": {
         "commentAnchors": {
-          "description": "Output only. The comment anchors present on the page. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "Output only. The comment anchors present on the page.",
           "items": {
             "$ref": "CommentAnchor"
           },
           "type": "array"
         },
         "comments": {
-          "description": "Output only. The comment threads associated with the page. Only populated if the page was fetched via a GetPageRequest with a populated comments_view_mode. Otherwise, comments are returned in the Presentation via the GetPresentationRequest. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "Output only. The comment threads associated with the page. Only populated if the page was fetched via a GetPageRequest with a populated comments_view_mode. Otherwise, comments are returned in the Presentation via the GetPresentationRequest.",
           "items": {
             "$ref": "CommentThread"
           },
           "type": "array"
         },
         "commentsViewMode": {
-          "description": "Output only. The comments view mode applied to the page. Only populated if the page was fetched via a GetPageRequest with a populated comments_view_mode. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "Output only. The comments view mode applied to the page. Only populated if the page was fetched via a GetPageRequest with a populated comments_view_mode.",
           "enum": [
             "COMMENTS_VIEW_MODE_UNSPECIFIED",
             "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
@@ -2600,7 +2600,7 @@
       "type": "object"
     },
     "Post": {
-      "description": "Represents a single post in a comment thread. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Represents a single post in a comment thread.",
       "id": "Post",
       "properties": {
         "assigneeEmail": {
@@ -2665,7 +2665,7 @@
       "type": "object"
     },
     "PostAuthor": {
-      "description": "Represents a user who authored a comment post. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Represents a user who authored a comment post.",
       "id": "PostAuthor",
       "properties": {
         "anonymous": {
@@ -2692,14 +2692,14 @@
       "id": "Presentation",
       "properties": {
         "comments": {
-          "description": "Output only. The comment threads associated with the presentation. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "Output only. The comment threads associated with the presentation.",
           "items": {
             "$ref": "CommentThread"
           },
           "type": "array"
         },
         "commentsViewMode": {
-          "description": "Output only. The comments view mode applied to the presentation. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "Output only. The comments view mode applied to the presentation.",
           "enum": [
             "COMMENTS_VIEW_MODE_UNSPECIFIED",
             "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
@@ -3059,7 +3059,7 @@
       "properties": {
         "addCommentReply": {
           "$ref": "AddCommentReplyRequest",
-          "description": "Adds a reply to a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Adds a reply to a CommentThread."
         },
         "createImage": {
           "$ref": "CreateImageRequest",
@@ -3095,11 +3095,11 @@
         },
         "deleteComment": {
           "$ref": "DeleteCommentRequest",
-          "description": "Deletes a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Deletes a CommentThread."
         },
         "deleteCommentReply": {
           "$ref": "DeleteCommentReplyRequest",
-          "description": "Deletes a reply Post from a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Deletes a reply Post from a CommentThread."
         },
         "deleteObject": {
           "$ref": "DeleteObjectRequest",
@@ -3131,7 +3131,7 @@
         },
         "insertComment": {
           "$ref": "InsertCommentRequest",
-          "description": "Inserts a CommentThread into the presentation. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Inserts a CommentThread into the presentation."
         },
         "insertTableColumns": {
           "$ref": "InsertTableColumnsRequest",
@@ -3183,7 +3183,7 @@
         },
         "updateCommentPost": {
           "$ref": "UpdateCommentPostRequest",
-          "description": "Updates an existing post (head post or reply) of a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Updates an existing post (head post or reply) of a CommentThread."
         },
         "updateImageProperties": {
           "$ref": "UpdateImagePropertiesRequest",
@@ -3273,7 +3273,7 @@
       "properties": {
         "addCommentReply": {
           "$ref": "AddCommentReplyResponse",
-          "description": "The result of creating a reply. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "The result of creating a reply."
         },
         "createImage": {
           "$ref": "CreateImageResponse",
@@ -3313,7 +3313,7 @@
         },
         "insertComment": {
           "$ref": "InsertCommentResponse",
-          "description": "The result of creating a comment. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "The result of creating a comment."
         },
         "replaceAllShapesWithImage": {
           "$ref": "ReplaceAllShapesWithImageResponse",
@@ -3818,7 +3818,7 @@
       "type": "object"
     },
     "ShapeTextAnchor": {
-      "description": "An anchor to a specific range of text within a Shape's text. [Developer Preview](https://developers.google.com/workspace/preview). To insert comments in speaker notes, use the ShapeTextAnchor with the speaker notes object ID.",
+      "description": "An anchor to a specific range of text within a Shape's text. To insert comments in speaker notes, use the ShapeTextAnchor with the speaker notes object ID.",
       "id": "ShapeTextAnchor",
       "properties": {
         "objectId": {
@@ -3833,7 +3833,7 @@
       "type": "object"
     },
     "ShapeTextAnchors": {
-      "description": "Represents text ranges within a shape covered by a comment anchor. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Represents text ranges within a shape covered by a comment anchor.",
       "id": "ShapeTextAnchors",
       "properties": {
         "ranges": {
@@ -4041,7 +4041,7 @@
       "type": "object"
     },
     "TableAnchor": {
-      "description": "An anchor to a specific range of cells within a Table. Used to anchor a comment to all of the text in each cell in a range within a table. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "An anchor to a specific range of cells within a Table. Used to anchor a comment to all of the text in each cell in a range within a table.",
       "id": "TableAnchor",
       "properties": {
         "objectId": {
@@ -4162,7 +4162,7 @@
       "type": "object"
     },
     "TableCellAnchors": {
-      "description": "Represents table cell ranges within a table covered by a comment anchor. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Represents table cell ranges within a table covered by a comment anchor.",
       "id": "TableCellAnchors",
       "properties": {
         "cellRanges": {
@@ -4247,7 +4247,7 @@
       "type": "object"
     },
     "TableCellTextAnchor": {
-      "description": "An anchor to a specific range of text within a TableCell's TextElement. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "An anchor to a specific range of text within a TableCell's TextElement.",
       "id": "TableCellTextAnchor",
       "properties": {
         "cellLocation": {
@@ -4266,7 +4266,7 @@
       "type": "object"
     },
     "TableCellTextRanges": {
-      "description": "Represents text ranges within a table cell covered by a comment anchor. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Represents text ranges within a table cell covered by a comment anchor.",
       "id": "TableCellTextRanges",
       "properties": {
         "cellLocation": {
@@ -4399,7 +4399,7 @@
       "type": "object"
     },
     "TextRange": {
-      "description": "Specifies a contiguous range of text within a shape or table cell's text. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Specifies a contiguous range of text within a shape or table cell's text.",
       "id": "TextRange",
       "properties": {
         "endIndex": {
@@ -4601,7 +4601,7 @@
       "type": "object"
     },
     "UpdateCommentPostRequest": {
-      "description": "Updates a Post in a CommentThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Updates a Post in a CommentThread. Returns a 400 bad request error if: - The requesting user is not the author of the post.",
       "id": "UpdateCommentPostRequest",
       "properties": {
         "commentId": {
