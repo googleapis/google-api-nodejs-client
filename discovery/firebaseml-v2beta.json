@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20260927",
+  "revision": "20261004",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -617,6 +617,12 @@
           "description": "Output only. The content of the candidate.",
           "readOnly": true
         },
+        "continuationToken": {
+          "description": "Output only. An optional opaque continuation token returned when `finish_reason` is `CONTINUATION`. Clients can pass this token in a subsequent `GenerateContentRequest` to continue generation.",
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
+        },
         "finishMessage": {
           "description": "Output only. Describes the reason the model stopped generating tokens in more detail. This field is returned only when `finish_reason` is set.",
           "readOnly": true,
@@ -641,7 +647,8 @@
             "IMAGE_RECITATION",
             "IMAGE_OTHER",
             "UNEXPECTED_TOOL_CALL",
-            "NO_IMAGE"
+            "NO_IMAGE",
+            "CONTINUATION"
           ],
           "enumDescriptions": [
             "The finish reason is unspecified.",
@@ -660,7 +667,8 @@
             "The generated image may be a recitation from a source.",
             "The image generation stopped for a reason not otherwise specified.",
             "The model generated a function call that is semantically invalid. This can happen, for example, if function calling is not enabled or the generated function is not in the function declaration.",
-            "The model was expected to generate an image, but didn't."
+            "The model was expected to generate an image, but didn't.",
+            "Token generation was stopped because the response reached the per-request token limit, but generation is not yet complete. The model response can be continued via a subsequent request using the returned `continuation_token`."
           ],
           "readOnly": true,
           "type": "string"
@@ -1268,6 +1276,11 @@
             "$ref": "GoogleCloudAiplatformV1beta1Content"
           },
           "type": "array"
+        },
+        "continuationToken": {
+          "description": "Optional. An opaque continuation token used to resume generation from a previous `GenerateContent` or `StreamGenerateContent` response that stopped with `finish_reason` set to `CONTINUATION`.",
+          "format": "byte",
+          "type": "string"
         },
         "generationConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1GenerationConfig",
@@ -3290,11 +3303,11 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1ToolComputerUse": {
-      "description": "Tool to support computer use.",
+      "description": "A tool that enables the model to interact directly with a computer environment.",
       "id": "GoogleCloudAiplatformV1beta1ToolComputerUse",
       "properties": {
         "disabledSafetyPolicies": {
-          "description": "Optional. Disabled safety policies for computer use.",
+          "description": "Optional. A list of safety policies to disable for the computer use tool.",
           "items": {
             "enum": [
               "SAFETY_POLICY_UNSPECIFIED",
@@ -3307,25 +3320,25 @@
               "LEGAL_TERMS_AND_AGREEMENTS"
             ],
             "enumDescriptions": [
-              "Unspecified safety policy. This value should not be used.",
-              "Financial transactions safety policy.",
-              "Sensitive data modification safety policy.",
-              "Communication tool safety policy.",
-              "Account creation safety policy.",
-              "Data modification safety policy.",
-              "User consent management safety policy.",
-              "Legal terms and agreements safety policy."
+              "The safety policy is unspecified.",
+              "Policy that restricts financial transactions.",
+              "Policy that restricts modification of sensitive data.",
+              "Policy that restricts the use of communication tools.",
+              "Policy that restricts the creation of accounts.",
+              "Policy that restricts general data modification.",
+              "Policy that restricts user consent management.",
+              "Policy that restricts interaction with legal terms and agreements."
             ],
             "type": "string"
           },
           "type": "array"
         },
         "enablePromptInjectionDetection": {
-          "description": "Optional. Enables the prompt injection detection check on computer-use request.",
+          "description": "Optional. Whether to enable the prompt injection detection check on the computer use request.",
           "type": "boolean"
         },
         "environment": {
-          "description": "Required. The environment being operated.",
+          "description": "Required. The target environment where the computer use tool operates.",
           "enum": [
             "ENVIRONMENT_UNSPECIFIED",
             "ENVIRONMENT_BROWSER",
@@ -3333,15 +3346,15 @@
             "ENVIRONMENT_DESKTOP"
           ],
           "enumDescriptions": [
-            "Defaults to browser.",
-            "Operates in a web browser.",
-            "Operates in a mobile environment.",
-            "Operates in a desktop environment."
+            "The environment is unspecified.",
+            "The tool operates in a web browser.",
+            "The tool operates in a mobile environment.",
+            "The tool operates in a desktop environment."
           ],
           "type": "string"
         },
         "excludedPredefinedFunctions": {
-          "description": "Optional. By default, [predefined functions](https://cloud.google.com/vertex-ai/generative-ai/docs/computer-use#supported-actions) are included in the final model call. Some of them can be explicitly excluded from being automatically included. This can serve two purposes: 1. Using a more restricted / different action space. 2. Improving the definitions / instructions of predefined functions.",
+          "description": "Optional. A list of predefined functions to explicitly exclude from the model call. By default, [predefined functions](https://cloud.google.com/vertex-ai/generative-ai/docs/computer-use#supported-actions) are included. Excluding functions allows for a more restricted action space or custom definitions for predefined functions.",
           "items": {
             "type": "string"
           },
