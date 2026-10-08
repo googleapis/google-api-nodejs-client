@@ -138,11 +138,6 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://biglake.us-west4.rep.googleapis.com/",
       "location": "us-west4"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://biglake.us-west8.rep.googleapis.com/",
-      "location": "us-west8"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1029,7 +1024,7 @@
       }
     }
   },
-  "revision": "20260923",
+  "revision": "20261002",
   "rootUrl": "https://biglake.googleapis.com/",
   "schemas": {
     "AuditConfig": {
