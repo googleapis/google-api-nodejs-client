@@ -9618,7 +9618,7 @@
       }
     }
   },
-  "revision": "20261005",
+  "revision": "20261006",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -12438,7 +12438,7 @@
         },
         "inventorySourceDetails": {
           "$ref": "InventorySourceAssignedTargetingOptionDetails",
-          "description": "Inventory source details. This field will be populated when the targeting_type is `TARGETING_TYPE_INVENTORY_SOURCE`."
+          "description": "Inventory source details. This field will be populated when the targeting_type is `TARGETING_TYPE_INVENTORY_SOURCE` or `TARGETING_TYPE_INVENTORY_SOURCE_DEAL`."
         },
         "inventorySourceGroupDetails": {
           "$ref": "InventorySourceGroupAssignedTargetingOptionDetails",
@@ -20379,7 +20379,7 @@
       "type": "object"
     },
     "InventorySourceAssignedTargetingOptionDetails": {
-      "description": "Targeting details for inventory source. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_INVENTORY_SOURCE`.",
+      "description": "Targeting details for inventory source. This will be populated in the details field of an AssignedTargetingOption when targeting_type is one of `TARGETING_TYPE_INVENTORY_SOURCE` or `TARGETING_TYPE_INVENTORY_SOURCE_DEAL`.",
       "id": "InventorySourceAssignedTargetingOptionDetails",
       "properties": {
         "inventorySourceId": {
@@ -25285,7 +25285,8 @@
             "THIRD_PARTY_VENDOR_ISPOT_TV",
             "THIRD_PARTY_VENDOR_INTAGE",
             "THIRD_PARTY_VENDOR_MACROMILL",
-            "THIRD_PARTY_VENDOR_VIDEO_RESEARCH"
+            "THIRD_PARTY_VENDOR_VIDEO_RESEARCH",
+            "THIRD_PARTY_VENDOR_AQUILA"
           ],
           "enumDescriptions": [
             "Unknown third-party vendor.",
@@ -25308,7 +25309,8 @@
             "Ispot TV.",
             "Intage.",
             "Macromill.",
-            "Video Research."
+            "Video Research.",
+            "Aquila."
           ],
           "type": "string"
         }
