@@ -1,5 +1,16 @@
 # Changelog
 
+## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workspaceevents-v16.0.1...workspaceevents-v17.0.0) (2026-10-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **workspaceevents:** This release has breaking changes.
+
+### Features
+
+* **workspaceevents:** update the API ([5d229f0](https://github.com/googleapis/google-api-nodejs-client/commit/5d229f062ed7ee5739182231e276f7c8548bad56))
+
 ## [16.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/workspaceevents-v16.0.0...workspaceevents-v16.0.1) (2026-09-23)
 
 
