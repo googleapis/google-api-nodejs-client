@@ -1366,7 +1366,7 @@ export namespace displayvideo_v3 {
      */
     inheritance?: string | null;
     /**
-     * Inventory source details. This field will be populated when the targeting_type is `TARGETING_TYPE_INVENTORY_SOURCE`.
+     * Inventory source details. This field will be populated when the targeting_type is `TARGETING_TYPE_INVENTORY_SOURCE` or `TARGETING_TYPE_INVENTORY_SOURCE_DEAL`.
      */
     inventorySourceDetails?: Schema$InventorySourceAssignedTargetingOptionDetails;
     /**
@@ -4361,7 +4361,7 @@ export namespace displayvideo_v3 {
     integrationCode?: string | null;
   }
   /**
-   * Targeting details for inventory source. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_INVENTORY_SOURCE`.
+   * Targeting details for inventory source. This will be populated in the details field of an AssignedTargetingOption when targeting_type is one of `TARGETING_TYPE_INVENTORY_SOURCE` or `TARGETING_TYPE_INVENTORY_SOURCE_DEAL`.
    */
   export interface Schema$InventorySourceAssignedTargetingOptionDetails {
     /**
