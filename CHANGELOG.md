@@ -4,6 +4,27 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [185.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v184.0.0...googleapis-v185.0.0) (2026-10-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **workspaceevents:** This release has breaking changes.
+
+### Features
+
+* **dns:** update the API ([aa030aa](https://github.com/googleapis/google-api-nodejs-client/commit/aa030aa340717d528aa190c4e601ef938e51531a))
+* **firebaseml:** update the API ([ee01b61](https://github.com/googleapis/google-api-nodejs-client/commit/ee01b6132d79ca0bcb6603714f847dac03725e0f))
+* regenerate index files ([a9e9e0e](https://github.com/googleapis/google-api-nodejs-client/commit/a9e9e0ea1dcc453b16a030c92b3152dd2c55dc73))
+* **workspaceevents:** update the API ([5d229f0](https://github.com/googleapis/google-api-nodejs-client/commit/5d229f062ed7ee5739182231e276f7c8548bad56))
+
+
+### Bug Fixes
+
+* **displayvideo:** update the API ([733c389](https://github.com/googleapis/google-api-nodejs-client/commit/733c389066820985f2e2c2d22131d21b445fb886))
+* **osconfig:** update the API ([2a2651b](https://github.com/googleapis/google-api-nodejs-client/commit/2a2651be48557781ab29afb272a52617787bcefa))
+* **slides:** update the API ([f029e9a](https://github.com/googleapis/google-api-nodejs-client/commit/f029e9ac86dea5a5fdf7ebb3f76a404598040644))
+
 ## [184.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v183.0.0...googleapis-v184.0.0) (2026-10-07)
 
 
