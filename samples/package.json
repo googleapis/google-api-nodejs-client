@@ -20,7 +20,7 @@
     "googleapis": "^185.0.0",
     "googleapis-common": "^9.0.0",
     "nconf": "^0.13.0",
-    "open": "^8.0.0",
+    "open": "^11.0.0",
     "server-destroy": "^1.0.1"
   },
   "devDependencies": {
