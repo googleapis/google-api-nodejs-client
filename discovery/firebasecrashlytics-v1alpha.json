@@ -739,7 +739,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. The maximum number of result groups to return. If omitted, defaults to 25.",
+                      "description": "Optional. The maximum number of result groups to return. The maximum value is 100; values above 100 will be coerced to 100. If omitted, defaults to 25.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -852,7 +852,7 @@
       }
     }
   },
-  "revision": "20261005",
+  "revision": "20261008",
   "rootUrl": "https://firebasecrashlytics.googleapis.com/",
   "schemas": {
     "BatchGetEventsResponse": {
