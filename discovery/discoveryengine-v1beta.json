@@ -30,43 +30,8 @@
   "endpoints": [
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://discoveryengine.asia-northeast1.rep.googleapis.com/",
-      "location": "asia-northeast1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://discoveryengine.europe-west2.rep.googleapis.com/",
-      "location": "europe-west2"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://discoveryengine.us.rep.googleapis.com/",
       "location": "us"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://discoveryengine.eu.rep.googleapis.com/",
-      "location": "eu"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://discoveryengine.in.rep.googleapis.com/",
-      "location": "in"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://discoveryengine.asia-southeast1.rep.googleapis.com/",
-      "location": "asia-southeast1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://discoveryengine.europe-west3.rep.googleapis.com/",
-      "location": "europe-west3"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://discoveryengine.ca.rep.googleapis.com/",
-      "location": "ca"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -9680,7 +9645,7 @@
       }
     }
   },
-  "revision": "20260924",
+  "revision": "20261004",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -28896,6 +28861,10 @@
         },
         "session": {
           "description": "Name of the newly generated or continued session.",
+          "type": "string"
+        },
+        "taskName": {
+          "description": "Optional. The full resource name of the Sobi task if the conversation was handled by a long-running agent task. Format: projects/{project}/locations/{location}/tasks/{task_id}",
           "type": "string"
         }
       },
