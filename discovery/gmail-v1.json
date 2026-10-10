@@ -3091,7 +3091,7 @@
       }
     }
   },
-  "revision": "20260727",
+  "revision": "20261005",
   "rootUrl": "https://gmail.googleapis.com/",
   "schemas": {
     "AutoForwarding": {
@@ -3300,7 +3300,7 @@
         },
         "kaclsKeyMetadata": {
           "$ref": "KaclsKeyMetadata",
-          "description": "Metadata for a private key instance managed by an external key access control list service."
+          "description": "Metadata for a private key instance managed by an external key access control list service. The maximum size of the KACLS data field is 8 KiB."
         },
         "privateKeyMetadataId": {
           "description": "Output only. The immutable ID for the private key metadata instance.",
@@ -3639,15 +3639,15 @@
       "type": "object"
     },
     "KaclsKeyMetadata": {
-      "description": "Metadata for private keys managed by an external key access control list service. For details about managing key access, see [Google Workspace CSE API Reference](https://developers.google.com/workspace/cse/reference).",
+      "description": "Metadata for a cryptographic key managed by an external key access control list service. For details about managing key access, see [Google Workspace CSE API Reference](https://developers.google.com/workspace/cse/reference).",
       "id": "KaclsKeyMetadata",
       "properties": {
         "kaclsData": {
-          "description": "Opaque data generated and used by the key access control list service. Maximum size: 8 KiB.",
+          "description": "Opaque data generated and used by the key access control list service.",
           "type": "string"
         },
         "kaclsUri": {
-          "description": "The URI of the key access control list service that manages the private key.",
+          "description": "The URI of the key access control list service that manages the key.",
           "type": "string"
         }
       },
