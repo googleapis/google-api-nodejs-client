@@ -627,6 +627,7 @@ export namespace securitycenter_v1beta2 {
   export interface Schema$GoogleCloudSecuritycenterV1BigQueryExport {
     createTime?: string | null;
     dataset?: string | null;
+    deletionNotificationsEnabled?: boolean | null;
     description?: string | null;
     filter?: string | null;
     mostRecentEditor?: string | null;
@@ -691,6 +692,7 @@ export namespace securitycenter_v1beta2 {
     updateTime?: string | null;
   }
   export interface Schema$GoogleCloudSecuritycenterV1NotificationMessage {
+    deletedFinding?: boolean | null;
     finding?: Schema$Finding;
     notificationConfigName?: string | null;
     resource?: Schema$GoogleCloudSecuritycenterV1Resource;
@@ -967,6 +969,7 @@ export namespace securitycenter_v1beta2 {
     createTime?: string | null;
     cryptoKeyName?: string | null;
     dataset?: string | null;
+    deletionNotificationsEnabled?: boolean | null;
     description?: string | null;
     filter?: string | null;
     mostRecentEditor?: string | null;
@@ -1533,6 +1536,7 @@ export namespace securitycenter_v1beta2 {
     service?: string | null;
   }
   export interface Schema$GoogleCloudSecuritycenterV2NotificationMessage {
+    deletedFinding?: boolean | null;
     finding?: Schema$GoogleCloudSecuritycenterV2Finding;
     notificationConfigName?: string | null;
     resource?: Schema$GoogleCloudSecuritycenterV2Resource;
