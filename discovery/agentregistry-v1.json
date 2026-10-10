@@ -312,6 +312,34 @@
             },
             "aiApplications": {
               "methods": {
+                "get": {
+                  "description": "Gets details of a single AI Application.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aiApplications/{aiApplicationsId}",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.aiApplications.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Target AI Application resource name. Format: `projects/{project}/locations/{location}/aiApplications/{ai_application}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/aiApplications/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "AiApplication"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aiApplications/{aiApplicationsId}:getIamPolicy",
@@ -338,6 +366,55 @@
                   "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "list": {
+                  "description": "Lists AI Applications in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aiApplications",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.aiApplications.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent project and location to query. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/aiApplications",
+                  "response": {
+                    "$ref": "ListAiApplicationsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/agentregistry.read-only",
@@ -405,6 +482,221 @@
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/cloud-platform.read-only"
                   ]
+                }
+              },
+              "resources": {
+                "agents": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets details of a single Agent under an AI Application.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aiApplications/{aiApplicationsId}/agents/{agentsId}",
+                      "httpMethod": "GET",
+                      "id": "agentregistry.projects.locations.aiApplications.agents.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the resource. Format: `projects/{project}/locations/{location}/aiApplications/{ai_application}/agents/{agent}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/aiApplications/[^/]+/agents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Agent"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/agentregistry.read-only",
+                        "https://www.googleapis.com/auth/agentregistry.read-write",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists Agents under an AI Application.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aiApplications/{aiApplicationsId}/agents",
+                      "httpMethod": "GET",
+                      "id": "agentregistry.projects.locations.aiApplications.agents.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A token identifying a page of results the server should return.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Parent value (AI Application) for ListAiApplicationAgentsRequest. Format: `projects/{project}/locations/{location}/aiApplications/{ai_application}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/aiApplications/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/agents",
+                      "response": {
+                        "$ref": "ListAiApplicationAgentsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/agentregistry.read-only",
+                        "https://www.googleapis.com/auth/agentregistry.read-write",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    }
+                  }
+                },
+                "endpoints": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets details of a single Endpoint under an AI Application.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aiApplications/{aiApplicationsId}/endpoints/{endpointsId}",
+                      "httpMethod": "GET",
+                      "id": "agentregistry.projects.locations.aiApplications.endpoints.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the resource. Format: `projects/{project}/locations/{location}/aiApplications/{ai_application}/endpoints/{endpoint}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/aiApplications/[^/]+/endpoints/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Endpoint"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/agentregistry.read-only",
+                        "https://www.googleapis.com/auth/agentregistry.read-write",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists Endpoints under an AI Application.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aiApplications/{aiApplicationsId}/endpoints",
+                      "httpMethod": "GET",
+                      "id": "agentregistry.projects.locations.aiApplications.endpoints.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A token identifying a page of results the server should return.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Parent value (AI Application) for ListAiApplicationEndpointsRequest. Format: `projects/{project}/locations/{location}/aiApplications/{ai_application}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/aiApplications/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/endpoints",
+                      "response": {
+                        "$ref": "ListAiApplicationEndpointsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/agentregistry.read-only",
+                        "https://www.googleapis.com/auth/agentregistry.read-write",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    }
+                  }
+                },
+                "mcpServers": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets details of a single McpServer under an AI Application.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aiApplications/{aiApplicationsId}/mcpServers/{mcpServersId}",
+                      "httpMethod": "GET",
+                      "id": "agentregistry.projects.locations.aiApplications.mcpServers.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the resource. Format: `projects/{project}/locations/{location}/aiApplications/{ai_application}/mcpServers/{mcp_server}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/aiApplications/[^/]+/mcpServers/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "McpServer"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/agentregistry.read-only",
+                        "https://www.googleapis.com/auth/agentregistry.read-write",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists McpServers under an AI Application.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aiApplications/{aiApplicationsId}/mcpServers",
+                      "httpMethod": "GET",
+                      "id": "agentregistry.projects.locations.aiApplications.mcpServers.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A token identifying a page of results the server should return.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Parent value (AI Application) for ListAiApplicationMcpServersRequest. Format: `projects/{project}/locations/{location}/aiApplications/{ai_application}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/aiApplications/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/mcpServers",
+                      "response": {
+                        "$ref": "ListAiApplicationMcpServersResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/agentregistry.read-only",
+                        "https://www.googleapis.com/auth/agentregistry.read-write",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -1175,7 +1467,7 @@
       }
     }
   },
-  "revision": "20260904",
+  "revision": "20261003",
   "rootUrl": "https://agentregistry.googleapis.com/",
   "schemas": {
     "A2ASkill": {
@@ -1315,7 +1607,7 @@
           "type": "object"
         },
         "type": {
-          "description": "Required. The type of the agent spec content.",
+          "description": "Required. Immutable. The type of the agent spec content.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "NO_SPEC",
@@ -1326,6 +1618,68 @@
             "There is no spec for the Agent. The `content` field must be empty.",
             "The content is an A2A Agent Card following the A2A specification. The `interfaces` field must be empty."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AiApplication": {
+      "description": "Represents an AI Application.",
+      "id": "AiApplication",
+      "properties": {
+        "applicationProperties": {
+          "$ref": "ApplicationProperties",
+          "description": "Output only. Properties of an underlying cloud resource that can comprise an AI Application.",
+          "readOnly": true
+        },
+        "attributes": {
+          "$ref": "Attributes",
+          "description": "Optional. Consumer provided attributes."
+        },
+        "createTime": {
+          "description": "Output only. Creation time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-defined description of the AI Application.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. User-defined name for the AI Application.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Resource name of the AI Application. Format: `projects/{project}/locations/{location}/aiApplications/{ai_application}`",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the AI Application.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The resource is being provisioned or created.",
+            "The resource is active and ready for use.",
+            "The resource is in the process of being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. Universally unique identifier (UUID4) for the AI Application.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Last update time.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1359,6 +1713,57 @@
           "description": "Output only. A human-readable title for the tool.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApplicationProperties": {
+      "description": "Additional system properties of an Application.",
+      "id": "ApplicationProperties",
+      "properties": {
+        "extendedMetadata": {
+          "additionalProperties": {
+            "$ref": "ExtendedMetadata"
+          },
+          "description": "Output only. Additional metadata specific to the App Hub application. The key is a string that identifies the type of metadata and the value is the metadata contents specific to that type. Key format: `apphub.googleapis.com/{metadataType}`",
+          "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "Attributes": {
+      "description": "Consumer provided attributes.",
+      "id": "Attributes",
+      "properties": {
+        "businessOwners": {
+          "description": "Optional. Business team that ensures user needs are met and value is delivered",
+          "items": {
+            "$ref": "ContactInfo"
+          },
+          "type": "array"
+        },
+        "criticality": {
+          "$ref": "Criticality",
+          "description": "Optional. User-defined criticality information."
+        },
+        "developerOwners": {
+          "description": "Optional. Developer team that owns development and coding.",
+          "items": {
+            "$ref": "ContactInfo"
+          },
+          "type": "array"
+        },
+        "environment": {
+          "$ref": "Environment",
+          "description": "Optional. User-defined environment information."
+        },
+        "operatorOwners": {
+          "description": "Optional. Operator team that ensures runtime and operations.",
+          "items": {
+            "$ref": "ContactInfo"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1413,7 +1818,7 @@
         },
         "source": {
           "$ref": "Source",
-          "description": "Required. The target Agent of the Binding."
+          "description": "Optional. The source Agent of the Binding."
         },
         "target": {
           "$ref": "Target",
@@ -1458,6 +1863,46 @@
             "Indicates that the card is an A2A Agent Card."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ContactInfo": {
+      "description": "Contact information of stakeholders.",
+      "id": "ContactInfo",
+      "properties": {
+        "displayName": {
+          "description": "Optional. Contact's name. Can have a maximum length of 63 characters.",
+          "type": "string"
+        },
+        "email": {
+          "description": "Required. Email address of the contacts.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Criticality": {
+      "description": "Criticality of the Application, Service, or Workload",
+      "id": "Criticality",
+      "properties": {
+        "type": {
+          "description": "Required. Criticality Type.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "MISSION_CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Mission critical service, application or workload.",
+            "High impact.",
+            "Medium impact.",
+            "Low impact."
+          ],
           "type": "string"
         }
       },
@@ -1539,7 +1984,7 @@
           "type": "object"
         },
         "type": {
-          "description": "Required. The type of the endpoint spec content.",
+          "description": "Required. Immutable. The type of the endpoint spec content.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "NO_SPEC"
@@ -1547,6 +1992,31 @@
           "enumDescriptions": [
             "Unspecified type.",
             "There is no spec for the Endpoint. The `content` field must be empty."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Environment": {
+      "description": "Environment of the Application, Service, or Workload",
+      "id": "Environment",
+      "properties": {
+        "type": {
+          "description": "Required. Environment Type.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "PRODUCTION",
+            "STAGING",
+            "TEST",
+            "DEVELOPMENT"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Production environment.",
+            "Staging environment.",
+            "Test environment.",
+            "Development environment."
           ],
           "type": "string"
         }
@@ -1572,6 +2042,22 @@
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExtendedMetadata": {
+      "description": "Additional metadata for a Service or Workload.",
+      "id": "ExtendedMetadata",
+      "properties": {
+        "metadataStruct": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output only. The metadata contents.",
+          "readOnly": true,
+          "type": "object"
         }
       },
       "type": "object"
@@ -1780,6 +2266,85 @@
         "nextPageToken": {
           "description": "A token identifying a page of results the server should return.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAiApplicationAgentsResponse": {
+      "description": "Message for response to listing Agents under an AI Application.",
+      "id": "ListAiApplicationAgentsResponse",
+      "properties": {
+        "agents": {
+          "description": "The list of Agents.",
+          "items": {
+            "$ref": "Agent"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAiApplicationEndpointsResponse": {
+      "description": "Message for response to listing Endpoints under an AI Application.",
+      "id": "ListAiApplicationEndpointsResponse",
+      "properties": {
+        "endpoints": {
+          "description": "The list of Endpoints.",
+          "items": {
+            "$ref": "Endpoint"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAiApplicationMcpServersResponse": {
+      "description": "Message for response to listing McpServers under an AI Application.",
+      "id": "ListAiApplicationMcpServersResponse",
+      "properties": {
+        "mcpServers": {
+          "description": "The list of McpServers.",
+          "items": {
+            "$ref": "McpServer"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAiApplicationsResponse": {
+      "description": "Message for response to listing AiApplications.",
+      "id": "ListAiApplicationsResponse",
+      "properties": {
+        "aiApplications": {
+          "description": "The list of AiApplications.",
+          "items": {
+            "$ref": "AiApplication"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2012,7 +2577,7 @@
           "type": "object"
         },
         "type": {
-          "description": "Required. The type of the MCP Server spec content.",
+          "description": "Required. Immutable. The type of the MCP Server spec content.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "NO_SPEC",
@@ -2156,7 +2721,7 @@
           "type": "string"
         },
         "searchString": {
-          "description": "Optional. Search criteria used to select the Agents to return. If no search criteria is specified then all accessible Agents will be returned. Search expressions can be used to restrict results based upon searchable fields, where the operators can be used along with the suffix wildcard symbol `*`. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `:`, `NOT`, `AND`, `OR`, and `()`. Searchable fields: | Field | `=` | `:` | `*` | Keyword Search | |--------------------|-----|-----|-----|----------------| | agentId | Yes | Yes | Yes | Included | | name | No | Yes | Yes | Included | | displayName | No | Yes | Yes | Included | | description | No | Yes | No | Included | | skills | No | Yes | No | Included | | skills.id | No | Yes | No | Included | | skills.name | No | Yes | No | Included | | skills.description | No | Yes | No | Included | | skills.tags | No | Yes | No | Included | | skills.examples | No | Yes | No | Included | Examples: * `agentId=\"urn:agent:projects-123:projects:123:locations:us-central1:reasoningEngines:1234\"` to find the agent with the specified agent ID. * `name:important` to find agents whose name contains `important` as a word. * `displayName:works*` to find agents whose display name contains words that start with `works`. * `skills.tags:test` to find agents whose skills tags contain `test`. * `planner OR booking` to find agents whose metadata contains the words `planner` or `booking`.",
+          "description": "Optional. Search criteria used to select the Agents to return. If no search criteria is specified then all accessible Agents will be returned. Search expressions can be used to restrict results based upon searchable fields, where the operators can be used along with the suffix wildcard symbol `*`. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `:`, `NOT`, `AND`, `OR`, and `()`. Searchable fields: | Field | `=` | `:` | `*` | Keyword Search | |--------------------|-----|-----|-----|----------------| | agentId | Yes | Yes | Yes | Included | | name | No | Yes | Yes | Included | | displayName | No | Yes | Yes | Included | | description | No | Yes | No | Included | | skills | No | Yes | No | Included | | skills.id | No | Yes | No | Included | | skills.name | No | Yes | No | Included | | skills.description | No | Yes | No | Included | | skills.tags | No | Yes | No | Included | | skills.examples | No | Yes | No | Included | Examples: * `agentId=\"urn:agent:projects-123:projects:123:locations:us-central1:aiplatform:reasoningEngines:1234\"` to find the agent with the specified agent ID. * `name:important` to find agents whose name contains `important` as a word. * `displayName:works*` to find agents whose display name contains words that start with `works`. * `skills.tags:test` to find agents whose skills tags contain `test`. * `planner OR booking` to find agents whose metadata contains the words `planner` or `booking`.",
           "type": "string"
         }
       },
