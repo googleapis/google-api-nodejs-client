@@ -440,7 +440,7 @@
       }
     }
   },
-  "revision": "20260909",
+  "revision": "20261006",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "ActiveMetricRestriction": {
@@ -1075,7 +1075,7 @@
       "type": "object"
     },
     "EmptyFilter": {
-      "description": "Filter for empty values.",
+      "description": "Filter for empty values. Matches dimension values that are `\"\"` or `(not set)` values. Use this filter to match rows with missing or unpopulated dimension values, or combine it with `not_expression` to exclude them from a report without filtering for both `\"\"` and `(not set)` separately.",
       "id": "EmptyFilter",
       "properties": {},
       "type": "object"
@@ -1090,7 +1090,7 @@
         },
         "emptyFilter": {
           "$ref": "EmptyFilter",
-          "description": "A filter for empty values such as \"(not set)\" and \"\" values."
+          "description": "A filter for empty values such as `(not set)` and `\"\"` values."
         },
         "fieldName": {
           "description": "The dimension name or metric name. In most methods, dimensions & metrics can be used for the first time in this field. However in a RunPivotReportRequest, this field must be additionally specified by name in the RunPivotReportRequest's dimensions or metrics.",
