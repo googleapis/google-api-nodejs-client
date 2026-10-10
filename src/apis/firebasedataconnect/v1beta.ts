@@ -491,6 +491,23 @@ export namespace firebasedataconnect_v1beta {
     dataConnect?: Schema$DataConnectProperties[];
   }
   /**
+   * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; \} service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); \} Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); \} Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
+   */
+  export interface Schema$HttpBody {
+    /**
+     * The HTTP Content-Type header value specifying the content type of the body.
+     */
+    contentType?: string | null;
+    /**
+     * The HTTP request/response body as raw binary.
+     */
+    data?: string | null;
+    /**
+     * Application specific response metadata. Must be set in the first response for streaming APIs.
+     */
+    extensions?: Array<{[key: string]: any}> | null;
+  }
+  /**
    * Settings for HTTP GraphQL server webhook.
    */
   export interface Schema$HttpGraphql {
@@ -1902,10 +1919,14 @@ export namespace firebasedataconnect_v1beta {
   export class Resource$Projects$Locations$Services {
     context: APIRequestContext;
     connectors: Resource$Projects$Locations$Services$Connectors;
+    postgrest: Resource$Projects$Locations$Services$Postgrest;
     schemas: Resource$Projects$Locations$Services$Schemas;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.connectors = new Resource$Projects$Locations$Services$Connectors(
+        this.context
+      );
+      this.postgrest = new Resource$Projects$Locations$Services$Postgrest(
         this.context
       );
       this.schemas = new Resource$Projects$Locations$Services$Schemas(
@@ -5175,6 +5196,1209 @@ export namespace firebasedataconnect_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$Connector;
+  }
+
+  export class Resource$Projects$Locations$Services$Postgrest {
+    context: APIRequestContext;
+    rpc: Resource$Projects$Locations$Services$Postgrest$Rpc;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.rpc = new Resource$Projects$Locations$Services$Postgrest$Rpc(
+        this.context
+      );
+    }
+
+    /**
+     * Executes a dynamic DELETE mutation on rows matching the URL filters.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedataconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasedataconnect = google.firebasedataconnect('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebasedataconnect.projects.locations.services.postgrest.postgrestDelete(
+     *       {
+     *         // Required. The resource name of the service, in the format: `projects/{project\}/locations/{location\}/services/{service\}`
+     *         firebasedataconnectService:
+     *           'projects/my-project/locations/my-location/services/my-service',
+     *         // Required. The name of the table to delete from.
+     *         firebasedataconnectTable: '.*',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    postgrestDelete(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestdelete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    postgrestDelete(
+      params?: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestdelete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
+    postgrestDelete(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    postgrestDelete(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestdelete,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    postgrestDelete(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestdelete,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    postgrestDelete(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    postgrestDelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Postgrest$Postgrestdelete
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Postgrest$Postgrestdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Postgrest$Postgrestdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasedataconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta/{+firebasedataconnectService}/postgrest/{+firebasedataconnectTable}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'firebasedataconnectService',
+          'firebasedataconnectTable',
+        ],
+        pathParams: ['firebasedataconnectService', 'firebasedataconnectTable'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * Executes a dynamic INSERT (create) or UPSERT mutation on a target table.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedataconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasedataconnect = google.firebasedataconnect('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebasedataconnect.projects.locations.services.postgrest.postgrestInsert(
+     *       {
+     *         // Required. The resource name of the service, in the format: `projects/{project\}/locations/{location\}/services/{service\}`
+     *         firebasedataconnectService:
+     *           'projects/my-project/locations/my-location/services/my-service',
+     *         // Required. The name of the table to insert into.
+     *         firebasedataconnectTable: '.*',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "contentType": "my_contentType",
+     *           //   "data": "my_data",
+     *           //   "extensions": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    postgrestInsert(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestinsert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    postgrestInsert(
+      params?: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestinsert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
+    postgrestInsert(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestinsert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    postgrestInsert(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestinsert,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    postgrestInsert(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestinsert,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    postgrestInsert(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    postgrestInsert(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Postgrest$Postgrestinsert
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Postgrest$Postgrestinsert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Postgrest$Postgrestinsert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasedataconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta/{+firebasedataconnectService}/postgrest/{+firebasedataconnectTable}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'firebasedataconnectService',
+          'firebasedataconnectTable',
+        ],
+        pathParams: ['firebasedataconnectService', 'firebasedataconnectTable'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * Executes a dynamic SELECT (read) query on a target PostgreSQL table. Projections, filters, sorting, and embeddings are mapped from the HTTP URL query parameters.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedataconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasedataconnect = google.firebasedataconnect('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebasedataconnect.projects.locations.services.postgrest.postgrestSelect(
+     *       {
+     *         // Required. The resource name of the service, in the format: `projects/{project\}/locations/{location\}/services/{service\}`
+     *         firebasedataconnectService:
+     *           'projects/my-project/locations/my-location/services/my-service',
+     *         // Required. The name of the table to select from.
+     *         firebasedataconnectTable: '.*',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    postgrestSelect(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestselect,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    postgrestSelect(
+      params?: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestselect,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
+    postgrestSelect(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestselect,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    postgrestSelect(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestselect,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    postgrestSelect(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestselect,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    postgrestSelect(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    postgrestSelect(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Postgrest$Postgrestselect
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Postgrest$Postgrestselect;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Postgrest$Postgrestselect;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasedataconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta/{+firebasedataconnectService}/postgrest/{+firebasedataconnectTable}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'firebasedataconnectService',
+          'firebasedataconnectTable',
+        ],
+        pathParams: ['firebasedataconnectService', 'firebasedataconnectTable'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * Executes a dynamic UPDATE (modify) mutation on rows matching the URL filters.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedataconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasedataconnect = google.firebasedataconnect('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebasedataconnect.projects.locations.services.postgrest.postgrestUpdate(
+     *       {
+     *         // Required. The resource name of the service, in the format: `projects/{project\}/locations/{location\}/services/{service\}`
+     *         firebasedataconnectService:
+     *           'projects/my-project/locations/my-location/services/my-service',
+     *         // Required. The name of the table to update.
+     *         firebasedataconnectTable: '.*',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "contentType": "my_contentType",
+     *           //   "data": "my_data",
+     *           //   "extensions": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    postgrestUpdate(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestupdate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    postgrestUpdate(
+      params?: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestupdate,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
+    postgrestUpdate(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    postgrestUpdate(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestupdate,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    postgrestUpdate(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestupdate,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    postgrestUpdate(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    postgrestUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Postgrest$Postgrestupdate
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Postgrest$Postgrestupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Postgrest$Postgrestupdate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasedataconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta/{+firebasedataconnectService}/postgrest/{+firebasedataconnectTable}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'firebasedataconnectService',
+          'firebasedataconnectTable',
+        ],
+        pathParams: ['firebasedataconnectService', 'firebasedataconnectTable'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * Executes a dynamic UPSERT (replace or create) mutation on a target table identified by primary key filters.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedataconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasedataconnect = google.firebasedataconnect('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebasedataconnect.projects.locations.services.postgrest.postgrestUpsert(
+     *       {
+     *         // Required. The resource name of the service, in the format: `projects/{project\}/locations/{location\}/services/{service\}`
+     *         firebasedataconnectService:
+     *           'projects/my-project/locations/my-location/services/my-service',
+     *         // Required. The name of the table to upsert into.
+     *         firebasedataconnectTable: '.*',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "contentType": "my_contentType",
+     *           //   "data": "my_data",
+     *           //   "extensions": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    postgrestUpsert(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestupsert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    postgrestUpsert(
+      params?: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestupsert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
+    postgrestUpsert(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestupsert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    postgrestUpsert(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestupsert,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    postgrestUpsert(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Postgrestupsert,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    postgrestUpsert(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    postgrestUpsert(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Postgrest$Postgrestupsert
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Postgrest$Postgrestupsert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Postgrest$Postgrestupsert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasedataconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta/{+firebasedataconnectService}/postgrest/{+firebasedataconnectTable}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'firebasedataconnectService',
+          'firebasedataconnectTable',
+        ],
+        pathParams: ['firebasedataconnectService', 'firebasedataconnectTable'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Services$Postgrest$Postgrestdelete extends StandardParameters {
+    /**
+     * Required. The resource name of the service, in the format: `projects/{project\}/locations/{location\}/services/{service\}`
+     */
+    firebasedataconnectService?: string;
+    /**
+     * Required. The name of the table to delete from.
+     */
+    firebasedataconnectTable?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Postgrest$Postgrestinsert extends StandardParameters {
+    /**
+     * Required. The resource name of the service, in the format: `projects/{project\}/locations/{location\}/services/{service\}`
+     */
+    firebasedataconnectService?: string;
+    /**
+     * Required. The name of the table to insert into.
+     */
+    firebasedataconnectTable?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HttpBody;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Postgrest$Postgrestselect extends StandardParameters {
+    /**
+     * Required. The resource name of the service, in the format: `projects/{project\}/locations/{location\}/services/{service\}`
+     */
+    firebasedataconnectService?: string;
+    /**
+     * Required. The name of the table to select from.
+     */
+    firebasedataconnectTable?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Postgrest$Postgrestupdate extends StandardParameters {
+    /**
+     * Required. The resource name of the service, in the format: `projects/{project\}/locations/{location\}/services/{service\}`
+     */
+    firebasedataconnectService?: string;
+    /**
+     * Required. The name of the table to update.
+     */
+    firebasedataconnectTable?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HttpBody;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Postgrest$Postgrestupsert extends StandardParameters {
+    /**
+     * Required. The resource name of the service, in the format: `projects/{project\}/locations/{location\}/services/{service\}`
+     */
+    firebasedataconnectService?: string;
+    /**
+     * Required. The name of the table to upsert into.
+     */
+    firebasedataconnectTable?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HttpBody;
+  }
+
+  export class Resource$Projects$Locations$Services$Postgrest$Rpc {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Executes a PostgreSQL database function.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedataconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasedataconnect = google.firebasedataconnect('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebasedataconnect.projects.locations.services.postgrest.rpc.postgrestCallFunction(
+     *       {
+     *         // Required. The name of the database function.
+     *         firebasedataconnectFunction: '.*',
+     *         // Required. The resource name of the service, in the format: `projects/{project\}/locations/{location\}/services/{service\}`
+     *         firebasedataconnectService:
+     *           'projects/my-project/locations/my-location/services/my-service',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "contentType": "my_contentType",
+     *           //   "data": "my_data",
+     *           //   "extensions": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    postgrestCallFunction(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Rpc$Postgrestcallfunction,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    postgrestCallFunction(
+      params?: Params$Resource$Projects$Locations$Services$Postgrest$Rpc$Postgrestcallfunction,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
+    postgrestCallFunction(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Rpc$Postgrestcallfunction,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    postgrestCallFunction(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Rpc$Postgrestcallfunction,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    postgrestCallFunction(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Rpc$Postgrestcallfunction,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    postgrestCallFunction(
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    postgrestCallFunction(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Postgrest$Rpc$Postgrestcallfunction
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Postgrest$Rpc$Postgrestcallfunction;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Postgrest$Rpc$Postgrestcallfunction;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasedataconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta/{+firebasedataconnectService}/postgrest/rpc/{+firebasedataconnectFunction}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'firebasedataconnectService',
+          'firebasedataconnectFunction',
+        ],
+        pathParams: [
+          'firebasedataconnectFunction',
+          'firebasedataconnectService',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * Executes a read-only PostgreSQL database function.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedataconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasedataconnect = google.firebasedataconnect('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebasedataconnect.projects.locations.services.postgrest.rpc.postgrestQueryFunction(
+     *       {
+     *         // Required. The name of the database function.
+     *         firebasedataconnectFunction: '.*',
+     *         // Required. The resource name of the service, in the format: `projects/{project\}/locations/{location\}/services/{service\}`
+     *         firebasedataconnectService:
+     *           'projects/my-project/locations/my-location/services/my-service',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    postgrestQueryFunction(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Rpc$Postgrestqueryfunction,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    postgrestQueryFunction(
+      params?: Params$Resource$Projects$Locations$Services$Postgrest$Rpc$Postgrestqueryfunction,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
+    postgrestQueryFunction(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Rpc$Postgrestqueryfunction,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    postgrestQueryFunction(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Rpc$Postgrestqueryfunction,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    postgrestQueryFunction(
+      params: Params$Resource$Projects$Locations$Services$Postgrest$Rpc$Postgrestqueryfunction,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    postgrestQueryFunction(
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    postgrestQueryFunction(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Postgrest$Rpc$Postgrestqueryfunction
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Postgrest$Rpc$Postgrestqueryfunction;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Postgrest$Rpc$Postgrestqueryfunction;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasedataconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta/{+firebasedataconnectService}/postgrest/rpc/{+firebasedataconnectFunction}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'firebasedataconnectService',
+          'firebasedataconnectFunction',
+        ],
+        pathParams: [
+          'firebasedataconnectFunction',
+          'firebasedataconnectService',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Services$Postgrest$Rpc$Postgrestcallfunction extends StandardParameters {
+    /**
+     * Required. The name of the database function.
+     */
+    firebasedataconnectFunction?: string;
+    /**
+     * Required. The resource name of the service, in the format: `projects/{project\}/locations/{location\}/services/{service\}`
+     */
+    firebasedataconnectService?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HttpBody;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Postgrest$Rpc$Postgrestqueryfunction extends StandardParameters {
+    /**
+     * Required. The name of the database function.
+     */
+    firebasedataconnectFunction?: string;
+    /**
+     * Required. The resource name of the service, in the format: `projects/{project\}/locations/{location\}/services/{service\}`
+     */
+    firebasedataconnectService?: string;
   }
 
   export class Resource$Projects$Locations$Services$Schemas {

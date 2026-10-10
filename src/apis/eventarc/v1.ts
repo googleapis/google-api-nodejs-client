@@ -1283,7 +1283,7 @@ export namespace eventarc_v1 {
      */
     eventDataContentType?: string | null;
     /**
-     * Required. Unordered list. The list of filters that applies to event attributes. Only events that match all the provided filters are sent to the destination.
+     * Optional. Unordered list. The list of filters that applies to event attributes. Only events that match all the provided filters are sent to the destination.
      */
     eventFilters?: Schema$EventFilter[];
     /**

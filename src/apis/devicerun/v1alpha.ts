@@ -341,6 +341,15 @@ export namespace devicerun_v1alpha {
     localeCode?: string | null;
   }
   /**
+   * Response including the requested sessions.
+   */
+  export interface Schema$BatchGetSessionsResponse {
+    /**
+     * The requested sessions, in the same order as the `names` in the request.
+     */
+    sessions?: Schema$Session[];
+  }
+  /**
    * Request to cancel a session.
    */
   export interface Schema$CancelSessionRequest {}
@@ -2613,6 +2622,148 @@ export namespace devicerun_v1alpha {
     }
 
     /**
+     * Retrieves multiple automation sessions in a single batch request. Sessions are returned in the same order as the `names` in the request. If any of the requested sessions does not exist, the whole request fails with `NOT_FOUND` and no sessions are returned. When calling this method over HTTP/REST with a large number of `names`, the request URL may exceed the maximum URL length (about 16 KB) and be rejected. In that case, send a `POST` request to the same URL with the `X-HTTP-Method-Override: GET` header and pass the request parameters in a JSON (`application/json`) or form-encoded (`application/x-www-form-urlencoded`) body. See https://cloud.google.com/apis/docs/http#long_request_urls.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/devicerun.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const devicerun = google.devicerun('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await devicerun.projects.locations.sessions.batchGet({
+     *     // Required. The names of the sessions to retrieve. A maximum of 500 sessions can be retrieved in a batch. Format: `projects/{project\}/locations/{location\}/sessions/{session\}`.
+     *     names: 'placeholder-value',
+     *     // Required. The parent resource shared by all sessions being retrieved. Format: `projects/{project\}/locations/{location\}`. The `parent` field in the `BatchGetSessionsRequest` message must match the `parent` of all `Session` resource names in `names`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sessions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchGet(
+      params: Params$Resource$Projects$Locations$Sessions$Batchget,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchGet(
+      params?: Params$Resource$Projects$Locations$Sessions$Batchget,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchGetSessionsResponse>>;
+    batchGet(
+      params: Params$Resource$Projects$Locations$Sessions$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchGet(
+      params: Params$Resource$Projects$Locations$Sessions$Batchget,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$BatchGetSessionsResponse>,
+      callback: BodyResponseCallback<Schema$BatchGetSessionsResponse>
+    ): void;
+    batchGet(
+      params: Params$Resource$Projects$Locations$Sessions$Batchget,
+      callback: BodyResponseCallback<Schema$BatchGetSessionsResponse>
+    ): void;
+    batchGet(
+      callback: BodyResponseCallback<Schema$BatchGetSessionsResponse>
+    ): void;
+    batchGet(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Batchget
+        | BodyResponseCallback<Schema$BatchGetSessionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetSessionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetSessionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchGetSessionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Batchget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Sessions$Batchget;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://devicerun.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/sessions:batchGet').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchGetSessionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchGetSessionsResponse>(parameters);
+      }
+    }
+
+    /**
      * Cancels an in-progress automation session. This RPC returns immediately and cancellation proceeds asynchronously. If the session is already finished, this RPC will have no effect.
      * @example
      * ```js
@@ -3345,6 +3496,16 @@ export namespace devicerun_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Sessions$Batchget extends StandardParameters {
+    /**
+     * Required. The names of the sessions to retrieve. A maximum of 500 sessions can be retrieved in a batch. Format: `projects/{project\}/locations/{location\}/sessions/{session\}`.
+     */
+    names?: string[];
+    /**
+     * Required. The parent resource shared by all sessions being retrieved. Format: `projects/{project\}/locations/{location\}`. The `parent` field in the `BatchGetSessionsRequest` message must match the `parent` of all `Session` resource names in `names`.
+     */
+    parent?: string;
+  }
   export interface Params$Resource$Projects$Locations$Sessions$Cancel extends StandardParameters {
     /**
      * Required. The name of the session. Format: "projects/{project\}/locations/{location\}/sessions/{session\}"

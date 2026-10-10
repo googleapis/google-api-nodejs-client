@@ -30,43 +30,8 @@
   "endpoints": [
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://discoveryengine.asia-northeast1.rep.googleapis.com/",
-      "location": "asia-northeast1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://discoveryengine.europe-west2.rep.googleapis.com/",
-      "location": "europe-west2"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://discoveryengine.us.rep.googleapis.com/",
       "location": "us"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://discoveryengine.eu.rep.googleapis.com/",
-      "location": "eu"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://discoveryengine.in.rep.googleapis.com/",
-      "location": "in"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://discoveryengine.asia-southeast1.rep.googleapis.com/",
-      "location": "asia-southeast1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://discoveryengine.europe-west3.rep.googleapis.com/",
-      "location": "europe-west3"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://discoveryengine.ca.rep.googleapis.com/",
-      "location": "ca"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -6435,6 +6400,41 @@
                                     "https://www.googleapis.com/auth/discoveryengine.readwrite",
                                     "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
                                   ]
+                                }
+                              }
+                            },
+                            "toolCalls": {
+                              "resources": {
+                                "operations": {
+                                  "methods": {
+                                    "get": {
+                                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}/toolCalls/{toolCallsId}/operations/{operationsId}",
+                                      "httpMethod": "GET",
+                                      "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.toolCalls.operations.get",
+                                      "parameterOrder": [
+                                        "name"
+                                      ],
+                                      "parameters": {
+                                        "name": {
+                                          "description": "The name of the operation resource.",
+                                          "location": "path",
+                                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+/toolCalls/[^/]+/operations/[^/]+$",
+                                          "required": true,
+                                          "type": "string"
+                                        }
+                                      },
+                                      "path": "v1alpha/{+name}",
+                                      "response": {
+                                        "$ref": "GoogleLongrunningOperation"
+                                      },
+                                      "scopes": [
+                                        "https://www.googleapis.com/auth/cloud-platform",
+                                        "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                                        "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                                      ]
+                                    }
+                                  }
                                 }
                               }
                             }
@@ -13692,7 +13692,7 @@
       }
     }
   },
-  "revision": "20260924",
+  "revision": "20261004",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -27223,6 +27223,10 @@
         "session": {
           "description": "Name of the newly generated or continued session.",
           "type": "string"
+        },
+        "taskName": {
+          "description": "Optional. The full resource name of the Sobi task if the conversation was handled by a long-running agent task. Format: projects/{project}/locations/{location}/tasks/{task_id}",
+          "type": "string"
         }
       },
       "type": "object"
@@ -35993,6 +35997,11 @@
       "description": "The resolved, server-side view of model selector configuration for the end-user. The backend computes this per-request by applying, in order: Mendel flag evaluation, regional availability rules based on the engine's location, and admin-panel overrides from `model_configs`. The backend is the single source of truth for this configuration; clients should render `resolved_models` directly in the model selector dropdown, in the order provided, without applying their own filtering, ordering, or localization.",
       "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsModelConfigInfo",
       "properties": {
+        "autoModelId": {
+          "description": "Output only. The `model_id` a client must send when the end-user picks the \"Auto\" entry (the empty `model_id`). Populated only for surfaces known to have no true \"Auto\" mode, where leaving the model unset would fall back to a platform default rather than a backend-chosen model. Empty on every other surface, where \"Auto\" is resolved server-side, and when none of the surface's ranked models is available. When set, it is always one of the non-empty `model_id`s present in `resolved_models`.",
+          "readOnly": true,
+          "type": "string"
+        },
         "defaultModelId": {
           "description": "Output only. The `model_id` of the model that should be selected by default in the model selector when the end-user has not made an explicit choice. The value is always one of the `model_id`s present in `resolved_models`.",
           "readOnly": true,

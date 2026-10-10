@@ -552,7 +552,7 @@ export namespace analyticsdata_v1beta {
     value?: string | null;
   }
   /**
-   * Filter for empty values.
+   * Filter for empty values. Matches dimension values that are `""` or `(not set)` values. Use this filter to match rows with missing or unpopulated dimension values, or combine it with `not_expression` to exclude them from a report without filtering for both `""` and `(not set)` separately.
    */
   export interface Schema$EmptyFilter {}
   /**
@@ -564,7 +564,7 @@ export namespace analyticsdata_v1beta {
      */
     betweenFilter?: Schema$BetweenFilter;
     /**
-     * A filter for empty values such as "(not set)" and "" values.
+     * A filter for empty values such as `(not set)` and `""` values.
      */
     emptyFilter?: Schema$EmptyFilter;
     /**

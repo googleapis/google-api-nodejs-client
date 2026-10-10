@@ -6344,6 +6344,10 @@ export namespace discoveryengine_v1alpha {
      * Name of the newly generated or continued session.
      */
     session?: string | null;
+    /**
+     * Optional. The full resource name of the Sobi task if the conversation was handled by a long-running agent task. Format: projects/{project\}/locations/{location\}/tasks/{task_id\}
+     */
+    taskName?: string | null;
   }
   /**
    * Response message for SiteSearchEngineService.FetchDomainVerificationStatus method.
@@ -12478,6 +12482,10 @@ export namespace discoveryengine_v1alpha {
    * The resolved, server-side view of model selector configuration for the end-user. The backend computes this per-request by applying, in order: Mendel flag evaluation, regional availability rules based on the engine's location, and admin-panel overrides from `model_configs`. The backend is the single source of truth for this configuration; clients should render `resolved_models` directly in the model selector dropdown, in the order provided, without applying their own filtering, ordering, or localization.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsModelConfigInfo {
+    /**
+     * Output only. The `model_id` a client must send when the end-user picks the "Auto" entry (the empty `model_id`). Populated only for surfaces known to have no true "Auto" mode, where leaving the model unset would fall back to a platform default rather than a backend-chosen model. Empty on every other surface, where "Auto" is resolved server-side, and when none of the surface's ranked models is available. When set, it is always one of the non-empty `model_id`s present in `resolved_models`.
+     */
+    autoModelId?: string | null;
     /**
      * Output only. The `model_id` of the model that should be selected by default in the model selector when the end-user has not made an explicit choice. The value is always one of the `model_id`s present in `resolved_models`.
      */
@@ -51026,6 +51034,7 @@ export namespace discoveryengine_v1alpha {
     context: APIRequestContext;
     files: Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Files;
     operations: Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations;
+    toolCalls: Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.files =
@@ -51034,6 +51043,10 @@ export namespace discoveryengine_v1alpha {
         );
       this.operations =
         new Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations(
+          this.context
+        );
+      this.toolCalls =
+        new Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls(
           this.context
         );
     }
@@ -52346,6 +52359,182 @@ export namespace discoveryengine_v1alpha {
   }
 
   export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations$Get extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+
+  export class Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls {
+    context: APIRequestContext;
+    operations: Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations =
+        new Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.toolCalls.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent/toolCalls/my-toolCall/operations/my-operation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations$Get,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */

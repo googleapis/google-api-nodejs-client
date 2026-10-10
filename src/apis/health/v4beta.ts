@@ -761,7 +761,7 @@ export namespace health_v4beta {
    */
   export interface Schema$DailyRollUpDataPointsRequest {
     /**
-     * Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.
+     * Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/{user\}/dataSourceFamilies/{data_source_family\}` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID, retrieved via GetIdentity (e.g. `users/me/dataSourceFamilies/...` or `users/1234567890/dataSourceFamilies/...`). The supported values are: - `users/{user\}/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/{user\}/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/{user\}/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/{user\}/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.
      */
     dataSourceFamily?: string | null;
     /**
@@ -965,7 +965,7 @@ export namespace health_v4beta {
      */
     moods?: Schema$Moods;
     /**
-     * Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type\}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The `{data_point\}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
+     * Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` ## Examples: ## `users/me/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` `users/1234567890/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID, which can be retrieved by calling GetIdentity (see Identity.health_user_id). The `{data_type\}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The `{data_point\}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
      */
     name?: string | null;
     /**
@@ -1449,7 +1449,7 @@ export namespace health_v4beta {
    */
   export interface Schema$GoogleDevicesandservicesHealthV4betaDataType {
     /**
-     * Identifier. The resource name of the data type. Format: `users/{user\}/dataTypes/{data_type\}` See DataPoint.name for examples and possible values.
+     * Identifier. The resource name of the data type. Format: `users/{user\}/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). See DataPoint.name for examples and possible values.
      */
     name?: string | null;
   }
@@ -1476,7 +1476,7 @@ export namespace health_v4beta {
    */
   export interface Schema$GoogleDevicesandservicesHealthV4DataType {
     /**
-     * Identifier. The resource name of the data type. Format: `users/{user\}/dataTypes/{data_type\}` See DataPoint.name for examples and possible values.
+     * Identifier. The resource name of the data type. Format: `users/{user\}/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). See DataPoint.name for examples and possible values.
      */
     name?: string | null;
   }
@@ -2356,7 +2356,7 @@ export namespace health_v4beta {
      */
     dailyVo2Max?: Schema$DailyVO2Max;
     /**
-     * Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type\}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The `{data_point\}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
+     * Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` ## Examples: ## `users/me/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` `users/1234567890/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID, which can be retrieved by calling GetIdentity (see Identity.health_user_id). The `{data_type\}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The `{data_point\}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
      */
     dataPointName?: string | null;
     /**
@@ -2601,7 +2601,7 @@ export namespace health_v4beta {
    */
   export interface Schema$RollUpDataPointsRequest {
     /**
-     * Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.
+     * Optional. The data source family name to roll up. If empty, data points from all available data sources will be rolled up. Format: `users/{user\}/dataSourceFamilies/{data_source_family\}` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID, retrieved via GetIdentity (e.g. `users/me/dataSourceFamilies/...` or `users/1234567890/dataSourceFamilies/...`). The supported values are: - `users/{user\}/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/{user\}/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/{user\}/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/{user\}/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.
      */
     dataSourceFamily?: string | null;
     /**
@@ -2824,7 +2824,7 @@ export namespace health_v4beta {
     weightUnit?: string | null;
   }
   /**
-   * ////////////////////////////////////////////////////////////////////////// SkinTemperature ////////////////////////////////////////////////////////////////////////// Skin temperature measurement.
+   * Skin temperature measurement.
    */
   export interface Schema$SkinTemperature {
     /**
@@ -6055,7 +6055,7 @@ export namespace health_v4beta {
      *
      *   // Do the magic
      *   const res = await health.users.dataTypes.dataPoints.batchDelete({
-     *     // Optional. Parent (data type) for the Data Point collection Format: `users/me/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/me/dataTypes/-` For a list of the supported data types see the DataPoint data union field. Deleting data points across multiple data type collections is supported following https://aip.dev/159. If this is set, the parent of all of the data points specified in `names` must match this field.
+     *     // Optional. Parent (data type) for the Data Point collection Format: `users/{user\}/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` - `users/me/dataTypes/-` - `users/1234567890/dataTypes/-` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the supported data types see the DataPoint data union field. Deleting data points across multiple data type collections is supported following https://aip.dev/159. If this is set, the parent of all of the data points specified in `names` must match this field.
      *     parent: 'users/my-user/dataTypes/my-dataType',
      *
      *     // Request body metadata
@@ -6211,7 +6211,7 @@ export namespace health_v4beta {
      *
      *   // Do the magic
      *   const res = await health.users.dataTypes.dataPoints.create({
-     *     // Required. The parent resource name where the data point will be created. Format: `users/{user\}/dataTypes/{data_type\}`
+     *     // Required. The parent resource name where the data point will be created. Format: `users/{user\}/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity).
      *     parent: 'users/my-user/dataTypes/my-dataType',
      *
      *     // Request body metadata
@@ -6421,7 +6421,7 @@ export namespace health_v4beta {
      *
      *   // Do the magic
      *   const res = await health.users.dataTypes.dataPoints.dailyRollUp({
-     *     // Required. Parent data type of the Data Point collection. Format: `users/{user\}/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/me/dataTypes/distance` For a list of the supported data types see the DailyRollupDataPoint value union field.
+     *     // Required. Parent data type of the Data Point collection. Format: `users/{user\}/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` - `users/me/dataTypes/distance` - `users/1234567890/dataTypes/distance` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the supported data types see the DailyRollupDataPoint value union field.
      *     parent: 'users/my-user/dataTypes/my-dataType',
      *
      *     // Request body metadata
@@ -6547,7 +6547,7 @@ export namespace health_v4beta {
     }
 
     /**
-     * Exports exercise data in TCX format. **IMPORTANT:** HTTP clients must append `?alt=media` to the request URL to download the raw TCX file. Example: `https://health.googleapis.com/v4/users/me/dataTypes/exercise/dataPoints/EXERCISE_ID:exportExerciseTcx?alt=media` Without `alt=media`, the server returns a JSON response (`ExportExerciseTcxResponse`) which is intended primarily for gRPC clients. **Note:** While the Authorization section below states that any one of the listed scopes is accepted, this specific method requires the user to provide both one of the `activity_and_fitness` scopes (`normal` or `readonly`) AND one of the `location` scopes (`normal` or `readonly`) in their access token to succeed.
+     * Exports exercise data in TCX format. **IMPORTANT:** HTTP clients must append `?alt=media` to the request URL to download the raw TCX file. ## Examples: ## `https://health.googleapis.com/v4/users/me/dataTypes/exercise/dataPoints/EXERCISE_ID:exportExerciseTcx?alt=media` `https://health.googleapis.com/v4/users/1234567890/dataTypes/exercise/dataPoints/EXERCISE_ID:exportExerciseTcx?alt=media` Without `alt=media`, the server returns a JSON response (`ExportExerciseTcxResponse`) which is intended primarily for gRPC clients. **Note:** While the Authorization section below states that any one of the listed scopes is accepted, this specific method requires the user to provide both one of the `activity_and_fitness` scopes (`normal` or `readonly`) AND one of the `location` scopes (`normal` or `readonly`) in their access token to succeed.
      * @example
      * ```js
      * // Before running the sample:
@@ -6580,7 +6580,7 @@ export namespace health_v4beta {
      *
      *   // Do the magic
      *   const res = await health.users.dataTypes.dataPoints.exportExerciseTcx({
-     *     // Required. The resource name of the exercise data point to export. Format: `users/{user\}/dataTypes/exercise/dataPoints/{data_point\}` Example: `users/me/dataTypes/exercise/dataPoints/2026443605080188808` The `{user\}` is the alias `"me"` currently. Future versions may support user IDs. The `{data_point\}` ID maps to the exercise ID, which is a long integer.
+     *     // Required. The resource name of the exercise data point to export. Format: `users/{user\}/dataTypes/exercise/dataPoints/{data_point\}` Examples: - `users/me/dataTypes/exercise/dataPoints/2026443605080188808` - `users/1234567890/dataTypes/exercise/dataPoints/2026443605080188808` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). The `{data_point\}` ID maps to the exercise ID, which is a long integer.
      *     name: 'users/my-user/dataTypes/my-dataType/dataPoints/my-dataPoint',
      *     // Optional. Indicates whether to include the TCX data points when the GPS data is not available. If not specified, defaults to `false` and partial data will not be included.
      *     partialData: 'placeholder-value',
@@ -6740,7 +6740,7 @@ export namespace health_v4beta {
      *
      *   // Do the magic
      *   const res = await health.users.dataTypes.dataPoints.get({
-     *     // Required. The name of the data point to retrieve. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` See DataPoint.name for examples and possible values.
+     *     // Required. The name of the data point to retrieve. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` ## Examples: ## `users/me/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` `users/1234567890/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). See DataPoint.name for examples and possible values.
      *     name: 'users/my-user/dataTypes/my-dataType/dataPoints/my-dataPoint',
      *   });
      *   console.log(res.data);
@@ -6935,7 +6935,7 @@ export namespace health_v4beta {
      *
      *   // Do the magic
      *   const res = await health.users.dataTypes.dataPoints.list({
-     *     // Optional. The data source family name to filter by. If empty, data points from all available data sources will be returned. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data types may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error. Filtering by data source family is not supported for the `sleep`, `food` and `food-measurement-unit` data types, because the underlying listing implementation cannot restrict results by data source. Such requests fail with `INVALID_ARGUMENT` when the data source family is set explicitly, and with `PERMISSION_DENIED` when the restriction is only implied by the caller's scopes. For `sleep`, use ReconcileDataPoints instead.
+     *     // Optional. The data source family name to filter by. If empty, data points from all available data sources will be returned. Format: `users/{user\}/dataSourceFamilies/{data_source_family\}` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID, retrieved via GetIdentity (e.g. `users/me/dataSourceFamilies/...` or `users/1234567890/dataSourceFamilies/...`). The supported values are: - `users/{user\}/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/{user\}/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/{user\}/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/{user\}/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data types may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error. Filtering by data source family is not supported for the `sleep`, `food` and `food-measurement-unit` data types, because the underlying listing implementation cannot restrict results by data source. Such requests fail with `INVALID_ARGUMENT` when the data source family is set explicitly, and with `PERMISSION_DENIED` when the restriction is only implied by the caller's scopes. For `sleep`, use ReconcileDataPoints instead.
      *     dataSourceFamily: 'placeholder-value',
      *     // Optional. Filter expression following https://google.aip.dev/160. A time range (either physical or civil) can be specified. The supported filter fields are: - Interval start time: - Pattern: `{interval_data_type\}.interval.start_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `steps.interval.start_time \>= "2023-11-24T00:00:00Z" AND steps.interval.start_time < "2023-11-25T00:00:00Z"` - `distance.interval.start_time \>= "2024-08-14T12:34:56Z"` - Interval civil start time: - Pattern: `{interval_data_type\}.interval.civil_start_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `steps.interval.civil_start_time \>= "2023-11-24" AND steps.interval.civil_start_time < "2023-11-25"` - `distance.interval.civil_start_time \>= "2024-08-14T12:34:56"` - Sample observation physical time: - Pattern: `{sample_data_type\}.sample_time.physical_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `weight.sample_time.physical_time \>= "2023-11-24T00:00:00Z" AND weight.sample_time.physical_time < "2023-11-25T00:00:00Z"` - `weight.sample_time.physical_time \>= "2024-08-14T12:34:56Z"` - Sample observation civil time: - Pattern: `{sample_data_type\}.sample_time.civil_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `weight.sample_time.civil_time \>= "2023-11-24" AND weight.sample_time.civil_time < "2023-11-25"` - `weight.sample_time.civil_time \>= "2024-08-14T12:34:56"` - Daily summary date: - Pattern: `{daily_summary_data_type\}.date` - Supported comparison operators: `\>=`, `<` - Date literal expected in ISO 8601 `YYYY-MM-DD` format - Supported logical operators: `AND` - Example: - `daily_heart_rate_variability.date < "2024-08-15"` - Session civil start time (**Excluding Sleep and ECG**): - Pattern: `{session_data_type\}.interval.civil_start_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `exercise.interval.civil_start_time \>= "2023-11-24" AND exercise.interval.civil_start_time < "2023-11-25"` - `exercise.interval.civil_start_time \>= "2024-08-14T12:34:56"` - Session start time (**ECG specific**): - Pattern: `electrocardiogram.interval.start_time` - Supported comparison operators: `\>=` - Timestamp literal expected in RFC-3339 format - Example: - `electrocardiogram.interval.start_time \>= "2024-08-14T12:34:56Z"` - Note: Only filtering by start time is supported for ECG. Filtering by end time (e.g., `electrocardiogram.interval.end_time`) is not supported. - Session end time (**Sleep specific**): - Pattern: `sleep.interval.end_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.end_time \>= "2023-11-24T00:00:00Z" AND sleep.interval.end_time < "2023-11-25T00:00:00Z"` - Session civil end time (**Sleep specific**): - Pattern: `sleep.interval.civil_end_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.civil_end_time \>= "2023-11-24" AND sleep.interval.civil_end_time < "2023-11-25"` Data points in the response will be ordered by the interval start time in descending order.
      *     filter: 'placeholder-value',
@@ -6943,7 +6943,7 @@ export namespace health_v4beta {
      *     pageSize: 'placeholder-value',
      *     // Optional. The `next_page_token` from a previous request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent data type of the Data Point collection. Format: `users/me/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/me/dataTypes/weight` For a list of the supported data types see the DataPoint data union field.
+     *     // Required. Parent data type of the Data Point collection. Format: `users/{user\}/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` - `users/me/dataTypes/weight` - `users/1234567890/dataTypes/weight` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the supported data types see the DataPoint data union field.
      *     parent: 'users/my-user/dataTypes/my-dataType',
      *   });
      *   console.log(res.data);
@@ -7090,7 +7090,7 @@ export namespace health_v4beta {
      *
      *   // Do the magic
      *   const res = await health.users.dataTypes.dataPoints.patch({
-     *     // Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type\}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The `{data_point\}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
+     *     // Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` ## Examples: ## `users/me/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` `users/1234567890/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID, which can be retrieved by calling GetIdentity (see Identity.health_user_id). The `{data_type\}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The `{data_point\}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
      *     name: 'users/my-user/dataTypes/my-dataType/dataPoints/my-dataPoint',
      *
      *     // Request body metadata
@@ -7297,7 +7297,7 @@ export namespace health_v4beta {
      *
      *   // Do the magic
      *   const res = await health.users.dataTypes.dataPoints.reconcile({
-     *     // Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family\}` - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.
+     *     // Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/{user\}/dataSourceFamilies/{data_source_family\}` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID, retrieved via GetIdentity (e.g. `users/me/dataSourceFamilies/...` or `users/1234567890/dataSourceFamilies/...`). The supported values are: - `users/{user\}/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/{user\}/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/{user\}/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/{user\}/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.
      *     dataSourceFamily: 'placeholder-value',
      *     // Optional. Filter expression based on https://aip.dev/160. A time range, either physical or civil, can be specified. See the ListDataPointsRequest.filter for the supported fields and syntax.
      *     filter: 'placeholder-value',
@@ -7305,7 +7305,7 @@ export namespace health_v4beta {
      *     pageSize: 'placeholder-value',
      *     // Optional. The `next_page_token` from a previous request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent data type of the Data Point collection. Format: `users/me/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/me/dataTypes/heart-rate` For a list of the supported data types see the DataPoint data union field.
+     *     // Required. Parent data type of the Data Point collection. Format: `users/{user\}/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` - `users/me/dataTypes/heart-rate` - `users/1234567890/dataTypes/heart-rate` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the supported data types see the DataPoint data union field.
      *     parent: 'users/my-user/dataTypes/my-dataType',
      *   });
      *   console.log(res.data);
@@ -7464,7 +7464,7 @@ export namespace health_v4beta {
      *
      *   // Do the magic
      *   const res = await health.users.dataTypes.dataPoints.rollUp({
-     *     // Required. Parent data type of the Data Point collection. Format: `users/{user\}/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/me/dataTypes/distance` For a list of the supported data types see the RollupDataPoint value union field.
+     *     // Required. Parent data type of the Data Point collection. Format: `users/{user\}/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` - `users/me/dataTypes/distance` - `users/1234567890/dataTypes/distance` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the supported data types see the RollupDataPoint value union field.
      *     parent: 'users/my-user/dataTypes/my-dataType',
      *
      *     // Request body metadata
@@ -7589,7 +7589,7 @@ export namespace health_v4beta {
 
   export interface Params$Resource$Users$Datatypes$Datapoints$Batchdelete extends StandardParameters {
     /**
-     * Optional. Parent (data type) for the Data Point collection Format: `users/me/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/me/dataTypes/-` For a list of the supported data types see the DataPoint data union field. Deleting data points across multiple data type collections is supported following https://aip.dev/159. If this is set, the parent of all of the data points specified in `names` must match this field.
+     * Optional. Parent (data type) for the Data Point collection Format: `users/{user\}/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` - `users/me/dataTypes/-` - `users/1234567890/dataTypes/-` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the supported data types see the DataPoint data union field. Deleting data points across multiple data type collections is supported following https://aip.dev/159. If this is set, the parent of all of the data points specified in `names` must match this field.
      */
     parent?: string;
 
@@ -7600,7 +7600,7 @@ export namespace health_v4beta {
   }
   export interface Params$Resource$Users$Datatypes$Datapoints$Create extends StandardParameters {
     /**
-     * Required. The parent resource name where the data point will be created. Format: `users/{user\}/dataTypes/{data_type\}`
+     * Required. The parent resource name where the data point will be created. Format: `users/{user\}/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity).
      */
     parent?: string;
 
@@ -7611,7 +7611,7 @@ export namespace health_v4beta {
   }
   export interface Params$Resource$Users$Datatypes$Datapoints$Dailyrollup extends StandardParameters {
     /**
-     * Required. Parent data type of the Data Point collection. Format: `users/{user\}/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/me/dataTypes/distance` For a list of the supported data types see the DailyRollupDataPoint value union field.
+     * Required. Parent data type of the Data Point collection. Format: `users/{user\}/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` - `users/me/dataTypes/distance` - `users/1234567890/dataTypes/distance` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the supported data types see the DailyRollupDataPoint value union field.
      */
     parent?: string;
 
@@ -7622,7 +7622,7 @@ export namespace health_v4beta {
   }
   export interface Params$Resource$Users$Datatypes$Datapoints$Exportexercisetcx extends StandardParameters {
     /**
-     * Required. The resource name of the exercise data point to export. Format: `users/{user\}/dataTypes/exercise/dataPoints/{data_point\}` Example: `users/me/dataTypes/exercise/dataPoints/2026443605080188808` The `{user\}` is the alias `"me"` currently. Future versions may support user IDs. The `{data_point\}` ID maps to the exercise ID, which is a long integer.
+     * Required. The resource name of the exercise data point to export. Format: `users/{user\}/dataTypes/exercise/dataPoints/{data_point\}` Examples: - `users/me/dataTypes/exercise/dataPoints/2026443605080188808` - `users/1234567890/dataTypes/exercise/dataPoints/2026443605080188808` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). The `{data_point\}` ID maps to the exercise ID, which is a long integer.
      */
     name?: string;
     /**
@@ -7632,13 +7632,13 @@ export namespace health_v4beta {
   }
   export interface Params$Resource$Users$Datatypes$Datapoints$Get extends StandardParameters {
     /**
-     * Required. The name of the data point to retrieve. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` See DataPoint.name for examples and possible values.
+     * Required. The name of the data point to retrieve. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` ## Examples: ## `users/me/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` `users/1234567890/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). See DataPoint.name for examples and possible values.
      */
     name?: string;
   }
   export interface Params$Resource$Users$Datatypes$Datapoints$List extends StandardParameters {
     /**
-     * Optional. The data source family name to filter by. If empty, data points from all available data sources will be returned. Format: `users/me/dataSourceFamilies/{data_source_family\}` The supported values are: - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data types may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error. Filtering by data source family is not supported for the `sleep`, `food` and `food-measurement-unit` data types, because the underlying listing implementation cannot restrict results by data source. Such requests fail with `INVALID_ARGUMENT` when the data source family is set explicitly, and with `PERMISSION_DENIED` when the restriction is only implied by the caller's scopes. For `sleep`, use ReconcileDataPoints instead.
+     * Optional. The data source family name to filter by. If empty, data points from all available data sources will be returned. Format: `users/{user\}/dataSourceFamilies/{data_source_family\}` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID, retrieved via GetIdentity (e.g. `users/me/dataSourceFamilies/...` or `users/1234567890/dataSourceFamilies/...`). The supported values are: - `users/{user\}/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/{user\}/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/{user\}/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/{user\}/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data types may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error. Filtering by data source family is not supported for the `sleep`, `food` and `food-measurement-unit` data types, because the underlying listing implementation cannot restrict results by data source. Such requests fail with `INVALID_ARGUMENT` when the data source family is set explicitly, and with `PERMISSION_DENIED` when the restriction is only implied by the caller's scopes. For `sleep`, use ReconcileDataPoints instead.
      */
     dataSourceFamily?: string;
     /**
@@ -7654,13 +7654,13 @@ export namespace health_v4beta {
      */
     pageToken?: string;
     /**
-     * Required. Parent data type of the Data Point collection. Format: `users/me/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/me/dataTypes/weight` For a list of the supported data types see the DataPoint data union field.
+     * Required. Parent data type of the Data Point collection. Format: `users/{user\}/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` - `users/me/dataTypes/weight` - `users/1234567890/dataTypes/weight` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the supported data types see the DataPoint data union field.
      */
     parent?: string;
   }
   export interface Params$Resource$Users$Datatypes$Datapoints$Patch extends StandardParameters {
     /**
-     * Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type\}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The `{data_point\}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
+     * Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` ## Examples: ## `users/me/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` `users/1234567890/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID, which can be retrieved by calling GetIdentity (see Identity.health_user_id). The `{data_type\}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The `{data_point\}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
      */
     name?: string;
 
@@ -7671,7 +7671,7 @@ export namespace health_v4beta {
   }
   export interface Params$Resource$Users$Datatypes$Datapoints$Reconcile extends StandardParameters {
     /**
-     * Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family\}` - `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/me/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.
+     * Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/{user\}/dataSourceFamilies/{data_source_family\}` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID, retrieved via GetIdentity (e.g. `users/me/dataSourceFamilies/...` or `users/1234567890/dataSourceFamilies/...`). The supported values are: - `users/{user\}/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/{user\}/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/{user\}/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/{user\}/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error.
      */
     dataSourceFamily?: string;
     /**
@@ -7687,13 +7687,13 @@ export namespace health_v4beta {
      */
     pageToken?: string;
     /**
-     * Required. Parent data type of the Data Point collection. Format: `users/me/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/me/dataTypes/heart-rate` For a list of the supported data types see the DataPoint data union field.
+     * Required. Parent data type of the Data Point collection. Format: `users/{user\}/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` - `users/me/dataTypes/heart-rate` - `users/1234567890/dataTypes/heart-rate` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the supported data types see the DataPoint data union field.
      */
     parent?: string;
   }
   export interface Params$Resource$Users$Datatypes$Datapoints$Rollup extends StandardParameters {
     /**
-     * Required. Parent data type of the Data Point collection. Format: `users/{user\}/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/me/dataTypes/distance` For a list of the supported data types see the RollupDataPoint value union field.
+     * Required. Parent data type of the Data Point collection. Format: `users/{user\}/dataTypes/{data_type\}`, e.g.: - `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` - `users/me/dataTypes/distance` - `users/1234567890/dataTypes/distance` The `{user\}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the supported data types see the RollupDataPoint value union field.
      */
     parent?: string;
 

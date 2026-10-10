@@ -54393,7 +54393,7 @@
       }
     }
   },
-  "revision": "20260922",
+  "revision": "20260929",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -74418,11 +74418,13 @@
         "localSsdEncryptionMode": {
           "description": "Specifies which method should be used for encrypting the\nLocal SSDs attached to the VM.",
           "enum": [
+            "CMEK_ENCRYPTION",
             "EPHEMERAL_KEY_ENCRYPTION",
             "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED",
             "STANDARD_ENCRYPTION"
           ],
           "enumDescriptions": [
+            "The given VM will use customer-managed encryption keys for\nencryption of Local SSDs.",
             "The given VM will opt-in for using ephemeral key for\nencryption of Local SSDs.\nThe Local SSDs will not be able to recover data in case of VM\ncrash.",
             "The given VM will be encrypted using keys managed by the cloud\ninfrastructure and the keys will be deleted when the VM is\ndeleted.",
             "The given VM will be encrypted using keys managed by the cloud\ninfrastructure and the keys will be deleted when the VM is\ndeleted."
@@ -78752,11 +78754,13 @@
         "localSsdEncryptionMode": {
           "description": "Specifies which method should be used for encrypting the\nLocal SSDs attached to the VM.",
           "enum": [
+            "CMEK_ENCRYPTION",
             "EPHEMERAL_KEY_ENCRYPTION",
             "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED",
             "STANDARD_ENCRYPTION"
           ],
           "enumDescriptions": [
+            "The given VM will use customer-managed encryption keys for\nencryption of Local SSDs.",
             "The given VM will opt-in for using ephemeral key for\nencryption of Local SSDs.\nThe Local SSDs will not be able to recover data in case of VM\ncrash.",
             "The given VM will be encrypted using keys managed by the cloud\ninfrastructure and the keys will be deleted when the VM is\ndeleted.",
             "The given VM will be encrypted using keys managed by the cloud\ninfrastructure and the keys will be deleted when the VM is\ndeleted."

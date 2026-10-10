@@ -14068,6 +14068,10 @@ export namespace discoveryengine_v1 {
      * Name of the newly generated or continued session.
      */
     session?: string | null;
+    /**
+     * Optional. The full resource name of the Sobi task if the conversation was handled by a long-running agent task. Format: projects/{project\}/locations/{location\}/tasks/{task_id\}
+     */
+    taskName?: string | null;
   }
   /**
    * Response message for SiteSearchEngineService.FetchDomainVerificationStatus method.
@@ -18328,6 +18332,10 @@ export namespace discoveryengine_v1 {
    * The resolved, server-side view of model selector configuration for the end-user. The backend computes this per-request by applying, in order: Mendel flag evaluation, regional availability rules based on the engine's location, and admin-panel overrides from `model_configs`. The backend is the single source of truth for this configuration; clients should render `resolved_models` directly in the model selector dropdown, in the order provided, without applying their own filtering, ordering, or localization.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsModelConfigInfo {
+    /**
+     * Output only. The `model_id` a client must send when the end-user picks the "Auto" entry (the empty `model_id`). Populated only for surfaces known to have no true "Auto" mode, where leaving the model unset would fall back to a platform default rather than a backend-chosen model. Empty on every other surface, where "Auto" is resolved server-side, and when none of the surface's ranked models is available. When set, it is always one of the non-empty `model_id`s present in `resolved_models`.
+     */
+    autoModelId?: string | null;
     /**
      * Output only. The `model_id` of the model that should be selected by default in the model selector when the end-user has not made an explicit choice. The value is always one of the `model_id`s present in `resolved_models`.
      */

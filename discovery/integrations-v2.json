@@ -459,7 +459,7 @@
       }
     }
   },
-  "revision": "20260927",
+  "revision": "20261004",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "EnterpriseCrmEventbusAuthconfigAuthConfigTaskParam": {
@@ -3508,7 +3508,7 @@
       "type": "object"
     },
     "GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest": {
-      "description": "LINT.IfChange Use this request to post all workflows associated with a given trigger id. Next available id: 13",
+      "description": "LINT.IfChange Use this request to post all workflows associated with a given trigger id. Next available id: 14",
       "id": "GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest",
       "properties": {
         "clientId": {
@@ -3569,6 +3569,10 @@
         },
         "userGeneratedExecutionId": {
           "description": "This is a unique id provided by the method caller. If provided this will be used as the execution_id when a new execution info is created. This is a string representation of a UUID. Must have no more than 36 characters and contain only alphanumeric characters and hyphens.",
+          "type": "string"
+        },
+        "workflowId": {
+          "description": "Optional. Pins the enqueue to this exact version rather than the ACTIVE one on the trigger, so an unpublished draft can be tested. Requires client_id, and the version is validated before it is enqueued; see integrationplatform/api/executionsservice/README.md.",
           "type": "string"
         },
         "workflowName": {

@@ -2495,7 +2495,7 @@ export namespace firebasecrashlytics_v1alpha {
      *     metricsMode: 'placeholder-value',
      *     // Required. The report name. Format: "projects/{project\}/apps/{app_id\}/reports/{report\}".
      *     name: 'projects/my-project/apps/my-app/reports/my-report',
-     *     // Optional. The maximum number of result groups to return. If omitted, defaults to 25.
+     *     // Optional. The maximum number of result groups to return. The maximum value is 100; values above 100 will be coerced to 100. If omitted, defaults to 25.
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous call. The page token is only valid for the exact same set of filters, which must also be sent in subsequent requests. This token is valid for 10 minutes after the first request.
      *     pageToken: 'placeholder-value',
@@ -2821,7 +2821,7 @@ export namespace firebasecrashlytics_v1alpha {
      */
     name?: string;
     /**
-     * Optional. The maximum number of result groups to return. If omitted, defaults to 25.
+     * Optional. The maximum number of result groups to return. The maximum value is 100; values above 100 will be coerced to 100. If omitted, defaults to 25.
      */
     pageSize?: number;
     /**
