@@ -215,6 +215,10 @@ export namespace servicecontrol_v1 {
      */
     authorizationInfo?: Schema$AuthorizationInfo[];
     /**
+     * Information set when the caller is an agent.
+     */
+    callerAgent?: Schema$CallerAgent;
+    /**
      * Other service-specific data about the request, response, and other information associated with the current audited event.
      */
     metadata?: {[key: string]: any} | null;
@@ -382,6 +386,15 @@ export namespace servicecontrol_v1 {
      * Resource attributes used in IAM condition evaluation. This field contains resource attributes like resource type and resource name. To get the whole view of the attributes used in IAM condition evaluation, the user must also look into `AuditLog.request_metadata.request_attributes`.
      */
     resourceAttributes?: Schema$Resource;
+  }
+  /**
+   * Information set when the caller is an agent.
+   */
+  export interface Schema$CallerAgent {
+    /**
+     * The type of authority for the caller agent.
+     */
+    authority?: string | null;
   }
   /**
    * Defines the errors to be returned in google.api.servicecontrol.v1.CheckResponse.check_errors.
