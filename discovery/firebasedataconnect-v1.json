@@ -997,6 +997,259 @@
                     }
                   }
                 },
+                "postgrest": {
+                  "methods": {
+                    "postgrestDelete": {
+                      "description": "Executes a dynamic DELETE mutation on rows matching the URL filters.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/postgrest/{postgrestId}",
+                      "httpMethod": "DELETE",
+                      "id": "firebasedataconnect.projects.locations.services.postgrest.postgrestDelete",
+                      "parameterOrder": [
+                        "firebasedataconnectService",
+                        "firebasedataconnectTable"
+                      ],
+                      "parameters": {
+                        "firebasedataconnectService": {
+                          "description": "Required. The resource name of the service, in the format: `projects/{project}/locations/{location}/services/{service}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "firebasedataconnectTable": {
+                          "description": "Required. The name of the table to delete from.",
+                          "location": "path",
+                          "pattern": "^.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+firebasedataconnectService}/postgrest/{+firebasedataconnectTable}",
+                      "response": {
+                        "$ref": "HttpBody"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "postgrestInsert": {
+                      "description": "Executes a dynamic INSERT (create) or UPSERT mutation on a target table.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/postgrest/{postgrestId}",
+                      "httpMethod": "POST",
+                      "id": "firebasedataconnect.projects.locations.services.postgrest.postgrestInsert",
+                      "parameterOrder": [
+                        "firebasedataconnectService",
+                        "firebasedataconnectTable"
+                      ],
+                      "parameters": {
+                        "firebasedataconnectService": {
+                          "description": "Required. The resource name of the service, in the format: `projects/{project}/locations/{location}/services/{service}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "firebasedataconnectTable": {
+                          "description": "Required. The name of the table to insert into.",
+                          "location": "path",
+                          "pattern": "^.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+firebasedataconnectService}/postgrest/{+firebasedataconnectTable}",
+                      "request": {
+                        "$ref": "HttpBody"
+                      },
+                      "response": {
+                        "$ref": "HttpBody"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "postgrestSelect": {
+                      "description": "Executes a dynamic SELECT (read) query on a target PostgreSQL table. Projections, filters, sorting, and embeddings are mapped from the HTTP URL query parameters.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/postgrest/{postgrestId}",
+                      "httpMethod": "GET",
+                      "id": "firebasedataconnect.projects.locations.services.postgrest.postgrestSelect",
+                      "parameterOrder": [
+                        "firebasedataconnectService",
+                        "firebasedataconnectTable"
+                      ],
+                      "parameters": {
+                        "firebasedataconnectService": {
+                          "description": "Required. The resource name of the service, in the format: `projects/{project}/locations/{location}/services/{service}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "firebasedataconnectTable": {
+                          "description": "Required. The name of the table to select from.",
+                          "location": "path",
+                          "pattern": "^.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+firebasedataconnectService}/postgrest/{+firebasedataconnectTable}",
+                      "response": {
+                        "$ref": "HttpBody"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "postgrestUpdate": {
+                      "description": "Executes a dynamic UPDATE (modify) mutation on rows matching the URL filters.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/postgrest/{postgrestId}",
+                      "httpMethod": "PATCH",
+                      "id": "firebasedataconnect.projects.locations.services.postgrest.postgrestUpdate",
+                      "parameterOrder": [
+                        "firebasedataconnectService",
+                        "firebasedataconnectTable"
+                      ],
+                      "parameters": {
+                        "firebasedataconnectService": {
+                          "description": "Required. The resource name of the service, in the format: `projects/{project}/locations/{location}/services/{service}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "firebasedataconnectTable": {
+                          "description": "Required. The name of the table to update.",
+                          "location": "path",
+                          "pattern": "^.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+firebasedataconnectService}/postgrest/{+firebasedataconnectTable}",
+                      "request": {
+                        "$ref": "HttpBody"
+                      },
+                      "response": {
+                        "$ref": "HttpBody"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "postgrestUpsert": {
+                      "description": "Executes a dynamic UPSERT (replace or create) mutation on a target table identified by primary key filters.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/postgrest/{postgrestId}",
+                      "httpMethod": "PUT",
+                      "id": "firebasedataconnect.projects.locations.services.postgrest.postgrestUpsert",
+                      "parameterOrder": [
+                        "firebasedataconnectService",
+                        "firebasedataconnectTable"
+                      ],
+                      "parameters": {
+                        "firebasedataconnectService": {
+                          "description": "Required. The resource name of the service, in the format: `projects/{project}/locations/{location}/services/{service}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "firebasedataconnectTable": {
+                          "description": "Required. The name of the table to upsert into.",
+                          "location": "path",
+                          "pattern": "^.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+firebasedataconnectService}/postgrest/{+firebasedataconnectTable}",
+                      "request": {
+                        "$ref": "HttpBody"
+                      },
+                      "response": {
+                        "$ref": "HttpBody"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
+                  "resources": {
+                    "rpc": {
+                      "methods": {
+                        "postgrestCallFunction": {
+                          "description": "Executes a PostgreSQL database function.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/postgrest/rpc/{rpcId}",
+                          "httpMethod": "POST",
+                          "id": "firebasedataconnect.projects.locations.services.postgrest.rpc.postgrestCallFunction",
+                          "parameterOrder": [
+                            "firebasedataconnectService",
+                            "firebasedataconnectFunction"
+                          ],
+                          "parameters": {
+                            "firebasedataconnectFunction": {
+                              "description": "Required. The name of the database function.",
+                              "location": "path",
+                              "pattern": "^.*$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "firebasedataconnectService": {
+                              "description": "Required. The resource name of the service, in the format: `projects/{project}/locations/{location}/services/{service}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+firebasedataconnectService}/postgrest/rpc/{+firebasedataconnectFunction}",
+                          "request": {
+                            "$ref": "HttpBody"
+                          },
+                          "response": {
+                            "$ref": "HttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "postgrestQueryFunction": {
+                          "description": "Executes a read-only PostgreSQL database function.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/postgrest/rpc/{rpcId}",
+                          "httpMethod": "GET",
+                          "id": "firebasedataconnect.projects.locations.services.postgrest.rpc.postgrestQueryFunction",
+                          "parameterOrder": [
+                            "firebasedataconnectService",
+                            "firebasedataconnectFunction"
+                          ],
+                          "parameters": {
+                            "firebasedataconnectFunction": {
+                              "description": "Required. The name of the database function.",
+                              "location": "path",
+                              "pattern": "^.*$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "firebasedataconnectService": {
+                              "description": "Required. The resource name of the service, in the format: `projects/{project}/locations/{location}/services/{service}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+firebasedataconnectService}/postgrest/rpc/{+firebasedataconnectFunction}",
+                          "response": {
+                            "$ref": "HttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
                 "schemas": {
                   "methods": {
                     "create": {
@@ -1249,7 +1502,7 @@
       }
     }
   },
-  "revision": "20260927",
+  "revision": "20261004",
   "rootUrl": "https://firebasedataconnect.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -1807,6 +2060,33 @@
           "description": "SQL Connect specific GraphQL extension, a list of paths and properties.",
           "items": {
             "$ref": "DataConnectProperties"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "HttpBody": {
+      "description": "Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.",
+      "id": "HttpBody",
+      "properties": {
+        "contentType": {
+          "description": "The HTTP Content-Type header value specifying the content type of the body.",
+          "type": "string"
+        },
+        "data": {
+          "description": "The HTTP request/response body as raw binary.",
+          "format": "byte",
+          "type": "string"
+        },
+        "extensions": {
+          "description": "Application specific response metadata. Must be set in the first response for streaming APIs.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
           },
           "type": "array"
         }
