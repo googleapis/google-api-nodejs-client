@@ -105,46 +105,6 @@
   },
   "protocol": "rest",
   "resources": {
-    "assuredworkloads": {
-      "methods": {
-        "archiveResourceEvents": {
-          "description": "Finds orphan ResourceEvents matching the criteria and moves them to the ArchivedResourceEvents table.",
-          "flatPath": "v1/assuredworkloads:archiveResourceEvents",
-          "httpMethod": "POST",
-          "id": "assuredworkloads.assuredworkloads.archiveResourceEvents",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1/assuredworkloads:archiveResourceEvents",
-          "request": {
-            "$ref": "GoogleCloudAssuredworkloadsV1ArchiveResourceEventsRequest"
-          },
-          "response": {
-            "$ref": "GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "revertArchivedResourceEvents": {
-          "description": "Finds matching ArchivedResourceEvents and moves them back to the ResourceEvents table.",
-          "flatPath": "v1/assuredworkloads:revertArchivedResourceEvents",
-          "httpMethod": "POST",
-          "id": "assuredworkloads.assuredworkloads.revertArchivedResourceEvents",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1/assuredworkloads:revertArchivedResourceEvents",
-          "request": {
-            "$ref": "GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsRequest"
-          },
-          "response": {
-            "$ref": "GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        }
-      }
-    },
     "folders": {
       "resources": {
         "locations": {
@@ -1482,7 +1442,7 @@
       }
     }
   },
-  "revision": "20260928",
+  "revision": "20261006",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest": {
@@ -1638,54 +1598,6 @@
         "appliedUpdate": {
           "$ref": "GoogleCloudAssuredworkloadsV1WorkloadUpdate",
           "description": "The update that was applied."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudAssuredworkloadsV1ArchiveResourceEventsRequest": {
-      "description": "Request for archiving resource events.",
-      "id": "GoogleCloudAssuredworkloadsV1ArchiveResourceEventsRequest",
-      "properties": {
-        "archiveTime": {
-          "description": "Optional. Time to set as ArchiveTime in the archive table. If not provided, the current time is used.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "batchSize": {
-          "description": "Required. The number of events to process in a single transaction batch.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "eventCutoffTime": {
-          "description": "Required. Only events with EventTime earlier than this cutoff will be archived.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "maxEventsMove": {
-          "description": "Required. The maximum total number of events to move in this request.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "organizationId": {
-          "description": "Required. The organization ID for which to archive events.",
-          "format": "int64",
-          "type": "string"
-        },
-        "region": {
-          "description": "Required. The region of the workload(s) whose events should be archived. This is used to filter workloads based on AssurantWorkloadData.region.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse": {
-      "description": "Response for archiving resource events.",
-      "id": "GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse",
-      "properties": {
-        "movedEventsCount": {
-          "description": "The total number of events successfully moved to the archive table.",
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"
@@ -2845,54 +2757,6 @@
       "description": "Response for restricting the list of allowed resources.",
       "id": "GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse",
       "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsRequest": {
-      "description": "Request for reverting archived resource events.",
-      "id": "GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsRequest",
-      "properties": {
-        "archiveEndTime": {
-          "description": "Required. Only events within this time range will be reverted. This helps prevent reverting everything when something goes wrong.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "archiveStartTime": {
-          "description": "Required. Only events within this time range will be reverted. This helps prevent reverting everything when something goes wrong.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "batchSize": {
-          "description": "Required. The number of events to process in a single transaction batch.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "maxEventsMove": {
-          "description": "Required. The maximum total number of events to move in this request.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "organizationId": {
-          "description": "Required. The organization ID for which to revert events.",
-          "format": "int64",
-          "type": "string"
-        },
-        "region": {
-          "description": "Required. The region of the workload(s) whose events should be reverted. This is used to filter workloads based on AssurantWorkloadData.region.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse": {
-      "description": "Response for reverting archived resource events.",
-      "id": "GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse",
-      "properties": {
-        "movedEventsCount": {
-          "description": "The total number of events successfully moved to the original table.",
-          "format": "int32",
-          "type": "integer"
-        }
-      },
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1Rule": {
