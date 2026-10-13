@@ -2086,7 +2086,7 @@
       }
     }
   },
-  "revision": "20260924",
+  "revision": "20261006",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -2248,16 +2248,22 @@
           "type": "string"
         },
         "edition": {
-          "description": "Output only. The edition of the cluster this backup was created from. Any restored cluster created from this backup will have the same edition.",
+          "deprecated": true,
+          "description": "Output only. Deprecated: Use `express_config` instead. Output only. The edition of the cluster this backup was created from. Any restored cluster created from this backup will have the same edition.",
           "enum": [
             "EDITION_UNSPECIFIED",
             "EDITION_ALLOYDB",
             "EDITION_ALLOYDB_DEVELOPER"
           ],
+          "enumDeprecated": [
+            true,
+            true,
+            true
+          ],
           "enumDescriptions": [
-            "An unknown Edition type.",
-            "Standard AlloyDB cluster.",
-            "Developer edition cluster."
+            "Deprecated: Use `ExpressConfig` instead. An unknown Edition type.",
+            "Deprecated: Use `ExpressConfig` instead. Standard AlloyDB cluster.",
+            "Deprecated: Use `ExpressConfig` instead. Developer edition cluster."
           ],
           "readOnly": true,
           "type": "string"
@@ -2285,6 +2291,11 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "expressConfig": {
+          "$ref": "ExpressConfig",
+          "description": "Output only. The Express configuration of the cluster this backup was created from. Any restored cluster created from this backup will have the same Express configuration.",
+          "readOnly": true
         },
         "labels": {
           "additionalProperties": {
@@ -2670,16 +2681,22 @@
           "type": "string"
         },
         "edition": {
-          "description": "Optional. Edition of the cluster. If left unspecified, the cluster behaves as `EDITION_ALLOYDB`.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use `express_config` instead. Edition of the cluster. If left unspecified, the cluster behaves as `EDITION_ALLOYDB`.",
           "enum": [
             "EDITION_UNSPECIFIED",
             "EDITION_ALLOYDB",
             "EDITION_ALLOYDB_DEVELOPER"
           ],
+          "enumDeprecated": [
+            true,
+            true,
+            true
+          ],
           "enumDescriptions": [
-            "An unknown Edition type.",
-            "Standard AlloyDB cluster.",
-            "Developer edition cluster."
+            "Deprecated: Use `ExpressConfig` instead. An unknown Edition type.",
+            "Deprecated: Use `ExpressConfig` instead. Standard AlloyDB cluster.",
+            "Deprecated: Use `ExpressConfig` instead. Developer edition cluster."
           ],
           "type": "string"
         },
@@ -3903,7 +3920,7 @@
           "readOnly": true
         },
         "publicIpAddress": {
-          "description": "Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.",
+          "description": "Output only. The public IP address for the Instance. This is available ONLY when `enable_public_ip` is set or when you have upgraded from an Express Instance that has public DNS enabled. This field is not available for Express Instances. This is the connection endpoint for an end-user application.",
           "readOnly": true,
           "type": "string"
         },
@@ -4954,7 +4971,7 @@
       "properties": {
         "autoScalingConfig": {
           "$ref": "AutoScalingConfig",
-          "description": "Autoscaling configuration for the read pool instance. If not set, the read pool instance will not be autoscaled."
+          "description": "Optional. Autoscaling configuration for the read pool instance. If not set, the read pool instance will not be autoscaled."
         },
         "nodeCount": {
           "description": "Read capacity, i.e. number of nodes in a read pool instance.",
