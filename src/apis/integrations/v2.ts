@@ -1567,7 +1567,7 @@ export namespace integrations_v2 {
     taskNumber?: string | null;
   }
   /**
-   * LINT.IfChange Use this request to post all workflows associated with a given trigger id. Next available id: 13
+   * LINT.IfChange Use this request to post all workflows associated with a given trigger id. Next available id: 14
    */
   export interface Schema$GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest {
     /**
@@ -1614,6 +1614,10 @@ export namespace integrations_v2 {
      * This is a unique id provided by the method caller. If provided this will be used as the execution_id when a new execution info is created. This is a string representation of a UUID. Must have no more than 36 characters and contain only alphanumeric characters and hyphens.
      */
     userGeneratedExecutionId?: string | null;
+    /**
+     * Optional. Pins the enqueue to this exact version rather than the ACTIVE one on the trigger, so an unpublished draft can be tested. Requires client_id, and the version is validated before it is enqueued; see integrationplatform/api/executionsservice/README.md.
+     */
+    workflowId?: string | null;
     /**
      * Optional. If provided, the workflow_name is used to filter all the matched workflows having same trigger_id+client_id. A combination of trigger_id, client_id and workflow_name identifies a unique workflow.
      */

@@ -2666,6 +2666,56 @@ export namespace chromemanagement_v1 {
     publicKey?: string | null;
   }
   /**
+   * A specific installation of Chrome on a device with managed Chrome browsers.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1Browser {
+    /**
+     * Output only. Browser version installed.
+     */
+    browserVersion?: string | null;
+    /**
+     * Output only. The channel of the browser installed.
+     */
+    channel?: string | null;
+    /**
+     * Output only. The path to the Chrome.exe executable for this browser.
+     */
+    executablePath?: string | null;
+    /**
+     * Output only. The time when the last request to fetch policies succeeded on this Chrome browser.
+     */
+    lastPolicyFetchTime?: string | null;
+    /**
+     * Output only. The time when the last report was received from this Chrome browser.
+     */
+    lastStatusReportTime?: string | null;
+    /**
+     * Output only. Pending version of a browser is installed. This field is only set when the current active browser has a different version as in "browser_version".
+     */
+    pendingInstallVersion?: string | null;
+    /**
+     * Output only. List of all plugins installed on this Chrome browser.
+     */
+    plugins?: Schema$GoogleChromeManagementVersionsV1Plugin[];
+    /**
+     * Output only. The list of profiles for this browser.
+     */
+    profiles?: Schema$GoogleChromeManagementVersionsV1Profile[];
+  }
+  /**
+   * A Chrome browser user.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1BrowserUser {
+    /**
+     * Output only. The time when this user info last reported a status.
+     */
+    lastStatusReportTime?: string | null;
+    /**
+     * Output only. The user name of the user that signed into chrome.
+     */
+    userName?: string | null;
+  }
+  /**
    * A certificate provisioning process.
    */
   export interface Schema$GoogleChromeManagementVersionsV1CertificateProvisioningProcess {
@@ -2738,6 +2788,127 @@ export namespace chromemanagement_v1 {
      * The state of the insights feature.
      */
     insightsState?: string | null;
+  }
+  /**
+   * A device with managed Chrome Browsers.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ChromeBrowser {
+    /**
+     * Optional. Asset identifier as annotated by the administrator or specified during enrollment.
+     */
+    annotatedAssetId?: string | null;
+    /**
+     * Optional. Address or location of the device as annotated by the administrator.
+     */
+    annotatedLocation?: string | null;
+    /**
+     * Optional. Notes about this device as annotated by the administrator.
+     */
+    annotatedNotes?: string | null;
+    /**
+     * Optional. User of the device as annotated by the administrator.
+     */
+    annotatedUser?: string | null;
+    /**
+     * Output only. The attestation credential used for Device Trust Connector.
+     */
+    attestationCredential?: Schema$GoogleChromeManagementVersionsV1AttestationCredential;
+    /**
+     * Output only. Unique identifier of Chrome Browser.
+     */
+    browserPermanentId?: string | null;
+    /**
+     * Output only. List of Chrome browsers installed on this device.
+     */
+    browsers?: Schema$GoogleChromeManagementVersionsV1Browser[];
+    /**
+     * Output only. List of all browser versions installed on this device.
+     */
+    browserVersions?: string[] | null;
+    /**
+     * Output only. The history of identifiers reported to this device.
+     */
+    deviceIdentifiersHistory?: Schema$GoogleChromeManagementVersionsV1DeviceIdentifiersHistory;
+    /**
+     * Output only. The number of distinct extensions installed on all the Chrome browsers of this device.
+     */
+    extensionCount?: string | null;
+    /**
+     * Output only. The time of the last activity on the device device either from reporting, policy fetching or registration.
+     */
+    lastActivityTime?: string | null;
+    /**
+     * Output only. The last user who logged into a Chrome browser on this device.
+     */
+    lastDeviceUser?: string | null;
+    /**
+     * Output only. List of recent browser users, in descending order by last report time.
+     */
+    lastDeviceUsers?: Schema$GoogleChromeManagementVersionsV1BrowserUser[];
+    /**
+     * Output only. The time the last policy fetch succeeded on this device.
+     */
+    lastPolicyFetchTime?: string | null;
+    /**
+     * Output only. The time the device last tried to register.
+     */
+    lastRegistrationTime?: string | null;
+    /**
+     * Output only. The time the device last sent a status report.
+     */
+    lastStatusReportTime?: string | null;
+    /**
+     * Output only. The list of all device level policies set for extensions installed in Chrome on this device.
+     */
+    machineExtensionPolicies?: Schema$GoogleChromeManagementVersionsV1ExtensionPolicy[];
+    /**
+     * Output only. Machine name.
+     */
+    machineName?: string | null;
+    /**
+     * Output only. The list of all device level policies set for Chrome browsers on this device.
+     */
+    machinePolicies?: Schema$GoogleChromeManagementVersionsV1Policy[];
+    /**
+     * Identifier. Format: customers/{customer_id\}/chromeBrowsers/{browser_permanent_id\}
+     */
+    name?: string | null;
+    /**
+     * Output only. Recent policy fetch activity by Omaha. Not necessarily the last fetch since this field is only updated daily.
+     */
+    omahaRecentFetchTime?: string | null;
+    /**
+     * Output only. The obfuscated organizational unit ID of the browser.
+     */
+    orgUnitId?: string | null;
+    /**
+     * Output only. Device CPU architecture.
+     */
+    osArchitecture?: string | null;
+    /**
+     * Output only. Device Os platform.
+     */
+    osPlatform?: string | null;
+    /**
+     * Output only. Device Os platform and version combined.
+     */
+    osPlatformVersion?: string | null;
+    /**
+     * Output only. Device Os Version.
+     */
+    osVersion?: string | null;
+    /**
+     * Output only. The number of distinct policies set on all the Chrome browsers of this device.
+     */
+    policyCount?: string | null;
+    /**
+     * Output only. The device's serial number.
+     */
+    serialNumber?: string | null;
+    /**
+     * Output only. The initial device id sent by the first Chrome browser that enrolled this device.
+     */
+    virtualDeviceId?: string | null;
   }
   /**
    * A representation of a Chrome browser profile.
@@ -3122,6 +3293,57 @@ export namespace chromemanagement_v1 {
     xdrSettings?: Schema$GoogleChromeManagementVersionsV1XdrSettings;
   }
   /**
+   * Collection of device identifiers.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1DeviceIdentifiers {
+    /**
+     * Output only. The device's host name.
+     */
+    hostName?: string | null;
+    /**
+     * Output only. The name of the machine associated with the device.
+     */
+    machineName?: string | null;
+    /**
+     * Output only. The device's serial number.
+     */
+    serialNumber?: string | null;
+  }
+  /**
+   * History of device identifiers reported from a device.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1DeviceIdentifiersHistory {
+    /**
+     * Output only. The device id is potentially being used by multiple devices.
+     */
+    deviceIdCollision?: boolean | null;
+    /**
+     * Output only. The last time we detected the device id collision.
+     */
+    lastDeviceIdCollisionDetectionTime?: string | null;
+    /**
+     * Output only. List of device identifiers sent by this device. In descending order by last_activity_time.
+     */
+    records?: Schema$GoogleChromeManagementVersionsV1DeviceIdentifiersRecord[];
+  }
+  /**
+   * Record of the device identifiers and when they were reported.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1DeviceIdentifiersRecord {
+    /**
+     * Output only. The first time these identifiers were reported.
+     */
+    firstRecordTime?: string | null;
+    /**
+     * Output only. Device identifiers.
+     */
+    identifiers?: Schema$GoogleChromeManagementVersionsV1DeviceIdentifiers;
+    /**
+     * Output only. The time of the last activity of these identifiers either from reporting, policy fetching or registration.
+     */
+    lastActivityTime?: string | null;
+  }
+  /**
    * Information of a device that runs a Chrome browser profile.
    */
   export interface Schema$GoogleChromeManagementVersionsV1DeviceInfo {
@@ -3195,6 +3417,138 @@ export namespace chromemanagement_v1 {
     insightsState?: string | null;
   }
   /**
+   * Enrollment token for a chrome device.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1EnrollmentToken {
+    /**
+     * Output only. The creation time of the token.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The id of the user who created the token.
+     */
+    creatorId?: string | null;
+    /**
+     * Output only. The obfuscated ID of the customer to whom this token is associated.
+     */
+    customerId?: string | null;
+    /**
+     * Identifier. The resource name of the enrollment token. Format: customers/{customer\}/enrollmentTokens/{token_permanent_id\}
+     */
+    name?: string | null;
+    /**
+     * Optional. Obfuscated ID of the organization unit this token is associated with. If not set, the token is created for the root organization unit.
+     */
+    orgUnitId?: string | null;
+    /**
+     * Output only. The id of the user who revoked the token, null if the token is not revoked.
+     */
+    revokerId?: string | null;
+    /**
+     * Output only. The revocation time of the token, null if the token is not revoked.
+     */
+    revokeTime?: string | null;
+    /**
+     * Output only. The state of the token.
+     */
+    state?: string | null;
+    /**
+     * Output only. The value of the token stored on the device and used to identify it to the management service handling the enrollment request.
+     */
+    token?: string | null;
+    /**
+     * Output only. Unique identifier of the enrollment token used to access information on tokens.
+     */
+    tokenPermanentId?: string | null;
+    /**
+     * Optional. The device type this token is used for. If not set, defaults to `ENROLLMENT_TOKEN_TYPE_CHROME_BROWSER`.
+     */
+    tokenType?: string | null;
+  }
+  /**
+   * Information about extensions installed on profile reported on an installed Chrome on a device with managed chrome browsers.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1Extension {
+    /**
+     * Output only. The type of the extension.
+     */
+    appType?: string | null;
+    /**
+     * Output only. If the extension is controlled by a browser policy.
+     */
+    configuredAppPolicy?: string | null;
+    /**
+     * Output only. The localized description of this extension.
+     */
+    description?: string | null;
+    /**
+     * Output only. Whether the extension is disabled.
+     */
+    disabled?: boolean | null;
+    /**
+     * Output only. The id of the extension.
+     */
+    extensionId?: string | null;
+    /**
+     * Output only. The localized name of this extension as reported by Chrome.
+     */
+    extensionName?: string | null;
+    /**
+     * Output only. The URL of the homepage for this extension.
+     */
+    homepageUri?: string | null;
+    /**
+     * Output only. The list of icons available for this extension.
+     */
+    icons?: Schema$GoogleChromeManagementVersionsV1ExtensionIcon[];
+    /**
+     * Output only. The way the extension was installed.
+     */
+    installType?: string | null;
+    /**
+     * Output only. The manifest version of this extension.
+     */
+    manifestVersion?: number | null;
+    /**
+     * Output only. The list of permissions required for this extension.
+     */
+    permissions?: string[] | null;
+    /**
+     * Output only. The version of the extension.
+     */
+    version?: string | null;
+  }
+  /**
+   * An icon of a Chrome browser extension.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ExtensionIcon {
+    /**
+     * Output only. The size of the extension icon.
+     */
+    size?: number | null;
+    /**
+     * Output only. The URL to the extension icon.
+     */
+    uri?: string | null;
+  }
+  /**
+   * The reported policies applied to an extension installed on a Chrome profile.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ExtensionPolicy {
+    /**
+     * Output only. The id of the extension the policies are applied to.
+     */
+    extensionId?: string | null;
+    /**
+     * Output only. The name of the extension the policies are applied to.
+     */
+    extensionName?: string | null;
+    /**
+     * Output only. List of policies applied to this extension.
+     */
+    policies?: Schema$GoogleChromeManagementVersionsV1Policy[];
+  }
+  /**
    * Describes a generic Certificate Authority Connection.
    */
   export interface Schema$GoogleChromeManagementVersionsV1GenericCaConnection {
@@ -3264,6 +3618,19 @@ export namespace chromemanagement_v1 {
     totalSize?: string | null;
   }
   /**
+   * Response to ListChromeBrowsers method.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ListChromeBrowsersResponse {
+    /**
+     * List of Chrome Browser device objects.
+     */
+    chromeBrowsers?: Schema$GoogleChromeManagementVersionsV1ChromeBrowser[];
+    /**
+     * Token used to access next page of this result.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response to ListConnectorConfigs method.
    */
   export interface Schema$GoogleChromeManagementVersionsV1ListConnectorConfigsResponse {
@@ -3273,6 +3640,19 @@ export namespace chromemanagement_v1 {
     connectorConfigs?: Schema$GoogleChromeManagementVersionsV1ConnectorConfig[];
     /**
      * The page token used to retrieve the next page of the listing request. If the token is empty, there are no more pages to retrieve.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response that contains a list of tokens.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ListEnrollmentTokensResponse {
+    /**
+     * List of Chrome device enrollment tokens.
+     */
+    enrollmentTokens?: Schema$GoogleChromeManagementVersionsV1EnrollmentToken[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string | null;
   }
@@ -3289,6 +3669,23 @@ export namespace chromemanagement_v1 {
      */
     microsoftTenantId?: string | null;
   }
+  /**
+   * Request to MoveChromeBrowsers method.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1MoveChromeBrowsersRequest {
+    /**
+     * Required. ID of the destination organizational unit.
+     */
+    destinationOrgUnitId?: string | null;
+    /**
+     * Required. List of resource IDs of Chrome Browser Devices to move. A maximum of 600 browsers may be moved per request.
+     */
+    resourceIds?: string[] | null;
+  }
+  /**
+   * Response to MoveChromeBrowsers method.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1MoveChromeBrowsersResponse {}
   /**
    * Request to MoveThirdPartyProfileUser method.
    */
@@ -3323,6 +3720,93 @@ export namespace chromemanagement_v1 {
      * Required. The reporting settings for the Palo Alto Networks config.
      */
     reportingSettings?: Schema$GoogleChromeManagementVersionsV1ReportingSettings;
+  }
+  /**
+   * Information about a Chrome browser plugin installed on a reported Chrome installation on a device with managed Chrome browsers.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1Plugin {
+    /**
+     * Output only. The description of the installed plugin.
+     */
+    description?: string | null;
+    /**
+     * Output only. The filename of the installed plugin.
+     */
+    filename?: string | null;
+    /**
+     * Output only. The name of the installed plugin.
+     */
+    pluginName?: string | null;
+  }
+  /**
+   * The applied policy reported by a managed Chrome browser. The policy can be applied at various scopes (machine, profile, extension).
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1Policy {
+    /**
+     * Output only. A localized string with all the errors reported when trying to apply this policy, if any.
+     */
+    error?: string | null;
+    /**
+     * Output only. The name of the policy.
+     */
+    policyName?: string | null;
+    /**
+     * Output only. The source of the policy.
+     */
+    source?: string | null;
+    /**
+     * Output only. The value of the policy.
+     */
+    value?: string | null;
+  }
+  /**
+   * A profile reported on an installation of Chrome on a device with managed chrome browsers.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1Profile {
+    /**
+     * Output only. The email of the user signed in to this profile, if any.
+     */
+    chromeSignedInUserEmail?: string | null;
+    /**
+     * Output only. The list of extensions with applied extension policies.
+     */
+    extensionPolicies?: Schema$GoogleChromeManagementVersionsV1ExtensionPolicy[];
+    /**
+     * Output only. The list of extensions installed for this profile.
+     */
+    extensions?: Schema$GoogleChromeManagementVersionsV1Extension[];
+    /**
+     * Output only. A unique ID for this profile.
+     */
+    id?: string | null;
+    /**
+     * Output only. The time when the last request to fetch policies succeeded for this profile.
+     */
+    lastPolicyFetchTime?: string | null;
+    /**
+     * Output only. The time when the last report was received from this profile.
+     */
+    lastStatusReportTime?: string | null;
+    /**
+     * Output only. The name given to this profile.
+     */
+    profileName?: string | null;
+    /**
+     * Output only. The number of safe browsing warnings that were shown on this profile.
+     */
+    safeBrowsingWarnings?: string | null;
+    /**
+     * Output only. The number of safe browsing warnings that were clicked through on this profile.
+     */
+    safeBrowsingWarningsClickThroughs?: string | null;
+    /**
+     * Output only. The last time the safe browsing warning info was reset to 0.
+     */
+    safeBrowsingWarningsResetTime?: string | null;
+    /**
+     * Output only. The list of Chrome browser policies applied to this profile.
+     */
+    userPolicies?: Schema$GoogleChromeManagementVersionsV1Policy[];
   }
   /**
    * Pub/Sub connector config.
@@ -3540,6 +4024,10 @@ export namespace chromemanagement_v1 {
      */
     enabledOptInEvents?: string[] | null;
   }
+  /**
+   * Request to revoke a token.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1RevokeEnrollmentTokenRequest {}
   /**
    * Describes a SCEP Certificate Authority Connection.
    */
@@ -3843,7 +4331,9 @@ export namespace chromemanagement_v1 {
     context: APIRequestContext;
     apps: Resource$Customers$Apps;
     certificateProvisioningProcesses: Resource$Customers$Certificateprovisioningprocesses;
+    chromeBrowsers: Resource$Customers$Chromebrowsers;
     connectorConfigs: Resource$Customers$Connectorconfigs;
+    enrollmentTokens: Resource$Customers$Enrollmenttokens;
     enterprise: Resource$Customers$Enterprise;
     profiles: Resource$Customers$Profiles;
     reports: Resource$Customers$Reports;
@@ -3854,7 +4344,11 @@ export namespace chromemanagement_v1 {
       this.apps = new Resource$Customers$Apps(this.context);
       this.certificateProvisioningProcesses =
         new Resource$Customers$Certificateprovisioningprocesses(this.context);
+      this.chromeBrowsers = new Resource$Customers$Chromebrowsers(this.context);
       this.connectorConfigs = new Resource$Customers$Connectorconfigs(
+        this.context
+      );
+      this.enrollmentTokens = new Resource$Customers$Enrollmenttokens(
         this.context
       );
       this.enterprise = new Resource$Customers$Enterprise(this.context);
@@ -5976,6 +6470,903 @@ export namespace chromemanagement_v1 {
     name?: string;
   }
 
+  export class Resource$Customers$Chromebrowsers {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes the data collected from a Chrome browser profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.chromeBrowsers.delete({
+     *     // Required. Format: customers/{customer_id\}/chromeBrowsers/{browser_permanent_id\}
+     *     name: 'customers/my-customer/chromeBrowsers/my-chromeBrowser',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Customers$Chromebrowsers$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Customers$Chromebrowsers$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    delete(
+      params: Params$Resource$Customers$Chromebrowsers$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Customers$Chromebrowsers$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Customers$Chromebrowsers$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Chromebrowsers$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Chromebrowsers$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Chromebrowsers$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a single Chrome Browser identified by its customer ID and resource ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.chromeBrowsers.get({
+     *     // Required. Format: customers/{customer_id\}/chromeBrowsers/{browser_permanent_id\}
+     *     name: 'customers/my-customer/chromeBrowsers/my-chromeBrowser',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotatedAssetId": "my_annotatedAssetId",
+     *   //   "annotatedLocation": "my_annotatedLocation",
+     *   //   "annotatedNotes": "my_annotatedNotes",
+     *   //   "annotatedUser": "my_annotatedUser",
+     *   //   "attestationCredential": {},
+     *   //   "browserPermanentId": "my_browserPermanentId",
+     *   //   "browserVersions": [],
+     *   //   "browsers": [],
+     *   //   "deviceIdentifiersHistory": {},
+     *   //   "extensionCount": "my_extensionCount",
+     *   //   "lastActivityTime": "my_lastActivityTime",
+     *   //   "lastDeviceUser": "my_lastDeviceUser",
+     *   //   "lastDeviceUsers": [],
+     *   //   "lastPolicyFetchTime": "my_lastPolicyFetchTime",
+     *   //   "lastRegistrationTime": "my_lastRegistrationTime",
+     *   //   "lastStatusReportTime": "my_lastStatusReportTime",
+     *   //   "machineExtensionPolicies": [],
+     *   //   "machineName": "my_machineName",
+     *   //   "machinePolicies": [],
+     *   //   "name": "my_name",
+     *   //   "omahaRecentFetchTime": "my_omahaRecentFetchTime",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "osArchitecture": "my_osArchitecture",
+     *   //   "osPlatform": "my_osPlatform",
+     *   //   "osPlatformVersion": "my_osPlatformVersion",
+     *   //   "osVersion": "my_osVersion",
+     *   //   "policyCount": "my_policyCount",
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "virtualDeviceId": "my_virtualDeviceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Customers$Chromebrowsers$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Customers$Chromebrowsers$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>
+    >;
+    get(
+      params: Params$Resource$Customers$Chromebrowsers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Chromebrowsers$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Chromebrowsers$Get,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Chromebrowsers$Get
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Chromebrowsers$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Chromebrowsers$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Retrieves all Chrome Browsers of a customer (paginated).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.chromeBrowsers.list({
+     *     // Optional. The filter used to filter browsers. The following fields can be used in the filter: * `browser_permanent_id` * `last_policy_fetch_time` * `os_platform` * `os_architecture` * `os_version` * `machine_name` * `annotated_location` * `annotated_user` * `annotated_asset_id` * `annotated_note` * `org_unit_path` * `org_unit_id` * `last_registration_time` * `os_platform_version` * `browser_version` * `last_status_report_time` * `extension_count` * `policy_count` * `last_device_user` * `last_activity_time` * `device_id_collision` The following functions can be used in the filter: * `in_group(string)`: Filters browsers that belong to the specified Cloud Identity group resource name (e.g. `in_group("groups/{group_id\}")`). Any of the above fields or functions can be used to specify a filter, and filtering by multiple fields or functions is supported with AND operator. String type, Integer type fields and enum type fields support `=` and `:` operators. The timestamp type fields support `=`, `<=` and `\>=` operators. Timestamps expect an RFC-3339 formatted string (e.g. 2012-04-21T11:30:00-04:00). Wildcard `*` is only supported for `machine_name`, `annotated_asset_id`, and `browser_version`. In addition, global string literal filtering without a field name is supported: a single term (e.g., `ABC`) matches if any indexed string field contains `ABC`, and multiple terms joined by `AND` or whitespace (e.g., `machine AND 73` or `machine 73`) match browsers where every term appears in at least one indexed string field (whereas a single quoted phrase like `"machine 73"` matches the contiguous phrase within a single field).
+     *     filter: 'placeholder-value',
+     *     // Optional. The fields used to specify the ordering of the results. The supported fields are: * `browser_permanent_id` * `last_sync` * `annotated_user` * `annotated_location` * `annotated_asset_id` * `annotated_notes` * `org_unit_path` * `os_version` * `enrollment_date` * `extension_count` * `policy_count` * `last_signed_in_user` * `machine_name` * `browser_version_channel` * `os_platform_version` * `last_activity_time` * `browser_version` By default, sorting is in ascending order, to specify descending order for a field, a suffix ` desc` should be added to the field name. The default ordering is the descending order of `last_status_report_time`.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of results to return. Maximum and default are 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Token to specify next page in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Format: customers/{customer_id\}
+     *     parent: 'customers/my-customer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chromeBrowsers": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Customers$Chromebrowsers$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Customers$Chromebrowsers$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1ListChromeBrowsersResponse>
+    >;
+    list(
+      params: Params$Resource$Customers$Chromebrowsers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Chromebrowsers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowsersResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowsersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Chromebrowsers$List,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowsersResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowsersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Chromebrowsers$List
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowsersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowsersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowsersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1ListChromeBrowsersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Chromebrowsers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Chromebrowsers$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/chromeBrowsers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1ListChromeBrowsersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1ListChromeBrowsersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Moves managed Chrome Browsers to a new Organizational Unit (OU). If there is an error while moving any of the browsers, none of the browsers will be moved.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.chromeBrowsers.move({
+     *     // Required. Format: customers/{customer_id\}
+     *     parent: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destinationOrgUnitId": "my_destinationOrgUnitId",
+     *       //   "resourceIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    move(
+      params: Params$Resource$Customers$Chromebrowsers$Move,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    move(
+      params?: Params$Resource$Customers$Chromebrowsers$Move,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1MoveChromeBrowsersResponse>
+    >;
+    move(
+      params: Params$Resource$Customers$Chromebrowsers$Move,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    move(
+      params: Params$Resource$Customers$Chromebrowsers$Move,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1MoveChromeBrowsersResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1MoveChromeBrowsersResponse>
+    ): void;
+    move(
+      params: Params$Resource$Customers$Chromebrowsers$Move,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1MoveChromeBrowsersResponse>
+    ): void;
+    move(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1MoveChromeBrowsersResponse>
+    ): void;
+    move(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Chromebrowsers$Move
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1MoveChromeBrowsersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1MoveChromeBrowsersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1MoveChromeBrowsersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1MoveChromeBrowsersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Chromebrowsers$Move;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Chromebrowsers$Move;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/chromeBrowsers:move').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1MoveChromeBrowsersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1MoveChromeBrowsersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates annotation information for a Chrome Browser.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.chromeBrowsers.patch({
+     *     // Identifier. Format: customers/{customer_id\}/chromeBrowsers/{browser_permanent_id\}
+     *     name: 'customers/my-customer/chromeBrowsers/my-chromeBrowser',
+     *     // Optional. The update mask that can be used to specify which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotatedAssetId": "my_annotatedAssetId",
+     *       //   "annotatedLocation": "my_annotatedLocation",
+     *       //   "annotatedNotes": "my_annotatedNotes",
+     *       //   "annotatedUser": "my_annotatedUser",
+     *       //   "attestationCredential": {},
+     *       //   "browserPermanentId": "my_browserPermanentId",
+     *       //   "browserVersions": [],
+     *       //   "browsers": [],
+     *       //   "deviceIdentifiersHistory": {},
+     *       //   "extensionCount": "my_extensionCount",
+     *       //   "lastActivityTime": "my_lastActivityTime",
+     *       //   "lastDeviceUser": "my_lastDeviceUser",
+     *       //   "lastDeviceUsers": [],
+     *       //   "lastPolicyFetchTime": "my_lastPolicyFetchTime",
+     *       //   "lastRegistrationTime": "my_lastRegistrationTime",
+     *       //   "lastStatusReportTime": "my_lastStatusReportTime",
+     *       //   "machineExtensionPolicies": [],
+     *       //   "machineName": "my_machineName",
+     *       //   "machinePolicies": [],
+     *       //   "name": "my_name",
+     *       //   "omahaRecentFetchTime": "my_omahaRecentFetchTime",
+     *       //   "orgUnitId": "my_orgUnitId",
+     *       //   "osArchitecture": "my_osArchitecture",
+     *       //   "osPlatform": "my_osPlatform",
+     *       //   "osPlatformVersion": "my_osPlatformVersion",
+     *       //   "osVersion": "my_osVersion",
+     *       //   "policyCount": "my_policyCount",
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "virtualDeviceId": "my_virtualDeviceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotatedAssetId": "my_annotatedAssetId",
+     *   //   "annotatedLocation": "my_annotatedLocation",
+     *   //   "annotatedNotes": "my_annotatedNotes",
+     *   //   "annotatedUser": "my_annotatedUser",
+     *   //   "attestationCredential": {},
+     *   //   "browserPermanentId": "my_browserPermanentId",
+     *   //   "browserVersions": [],
+     *   //   "browsers": [],
+     *   //   "deviceIdentifiersHistory": {},
+     *   //   "extensionCount": "my_extensionCount",
+     *   //   "lastActivityTime": "my_lastActivityTime",
+     *   //   "lastDeviceUser": "my_lastDeviceUser",
+     *   //   "lastDeviceUsers": [],
+     *   //   "lastPolicyFetchTime": "my_lastPolicyFetchTime",
+     *   //   "lastRegistrationTime": "my_lastRegistrationTime",
+     *   //   "lastStatusReportTime": "my_lastStatusReportTime",
+     *   //   "machineExtensionPolicies": [],
+     *   //   "machineName": "my_machineName",
+     *   //   "machinePolicies": [],
+     *   //   "name": "my_name",
+     *   //   "omahaRecentFetchTime": "my_omahaRecentFetchTime",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "osArchitecture": "my_osArchitecture",
+     *   //   "osPlatform": "my_osPlatform",
+     *   //   "osPlatformVersion": "my_osPlatformVersion",
+     *   //   "osVersion": "my_osVersion",
+     *   //   "policyCount": "my_policyCount",
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "virtualDeviceId": "my_virtualDeviceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Customers$Chromebrowsers$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Customers$Chromebrowsers$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>
+    >;
+    patch(
+      params: Params$Resource$Customers$Chromebrowsers$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Customers$Chromebrowsers$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>
+    ): void;
+    patch(
+      params: Params$Resource$Customers$Chromebrowsers$Patch,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Chromebrowsers$Patch
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Chromebrowsers$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Chromebrowsers$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1ChromeBrowser>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Chromebrowsers$Delete extends StandardParameters {
+    /**
+     * Required. Format: customers/{customer_id\}/chromeBrowsers/{browser_permanent_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Customers$Chromebrowsers$Get extends StandardParameters {
+    /**
+     * Required. Format: customers/{customer_id\}/chromeBrowsers/{browser_permanent_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Customers$Chromebrowsers$List extends StandardParameters {
+    /**
+     * Optional. The filter used to filter browsers. The following fields can be used in the filter: * `browser_permanent_id` * `last_policy_fetch_time` * `os_platform` * `os_architecture` * `os_version` * `machine_name` * `annotated_location` * `annotated_user` * `annotated_asset_id` * `annotated_note` * `org_unit_path` * `org_unit_id` * `last_registration_time` * `os_platform_version` * `browser_version` * `last_status_report_time` * `extension_count` * `policy_count` * `last_device_user` * `last_activity_time` * `device_id_collision` The following functions can be used in the filter: * `in_group(string)`: Filters browsers that belong to the specified Cloud Identity group resource name (e.g. `in_group("groups/{group_id\}")`). Any of the above fields or functions can be used to specify a filter, and filtering by multiple fields or functions is supported with AND operator. String type, Integer type fields and enum type fields support `=` and `:` operators. The timestamp type fields support `=`, `<=` and `\>=` operators. Timestamps expect an RFC-3339 formatted string (e.g. 2012-04-21T11:30:00-04:00). Wildcard `*` is only supported for `machine_name`, `annotated_asset_id`, and `browser_version`. In addition, global string literal filtering without a field name is supported: a single term (e.g., `ABC`) matches if any indexed string field contains `ABC`, and multiple terms joined by `AND` or whitespace (e.g., `machine AND 73` or `machine 73`) match browsers where every term appears in at least one indexed string field (whereas a single quoted phrase like `"machine 73"` matches the contiguous phrase within a single field).
+     */
+    filter?: string;
+    /**
+     * Optional. The fields used to specify the ordering of the results. The supported fields are: * `browser_permanent_id` * `last_sync` * `annotated_user` * `annotated_location` * `annotated_asset_id` * `annotated_notes` * `org_unit_path` * `os_version` * `enrollment_date` * `extension_count` * `policy_count` * `last_signed_in_user` * `machine_name` * `browser_version_channel` * `os_platform_version` * `last_activity_time` * `browser_version` By default, sorting is in ascending order, to specify descending order for a field, a suffix ` desc` should be added to the field name. The default ordering is the descending order of `last_status_report_time`.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Maximum number of results to return. Maximum and default are 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token to specify next page in the list.
+     */
+    pageToken?: string;
+    /**
+     * Required. Format: customers/{customer_id\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Customers$Chromebrowsers$Move extends StandardParameters {
+    /**
+     * Required. Format: customers/{customer_id\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChromeManagementVersionsV1MoveChromeBrowsersRequest;
+  }
+  export interface Params$Resource$Customers$Chromebrowsers$Patch extends StandardParameters {
+    /**
+     * Identifier. Format: customers/{customer_id\}/chromeBrowsers/{browser_permanent_id\}
+     */
+    name?: string;
+    /**
+     * Optional. The update mask that can be used to specify which fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChromeManagementVersionsV1ChromeBrowser;
+  }
+
   export class Resource$Customers$Connectorconfigs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -6802,6 +8193,713 @@ export namespace chromemanagement_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleChromeManagementVersionsV1ConnectorConfig;
+  }
+
+  export class Resource$Customers$Enrollmenttokens {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new enrollment token for a browser device. Creation fails if there is already an active token for this customer under the same org unit.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.enrollmentTokens.create({
+     *     // Optional. The ID to use for the enrollment token, which will become the final component of the enrollment token's resource name. This value must be local-unique under the customer and is optional. If not provided, it will be auto-generated. If provided, it must be 1-63 characters long and match the regular expression `[a-zA-Z0-9._-]+`.
+     *     enrollmentTokenId: 'placeholder-value',
+     *     // Required. The parent resource where this enrollment token will be created. Format: customers/{customer\}
+     *     parent: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "creatorId": "my_creatorId",
+     *       //   "customerId": "my_customerId",
+     *       //   "name": "my_name",
+     *       //   "orgUnitId": "my_orgUnitId",
+     *       //   "revokeTime": "my_revokeTime",
+     *       //   "revokerId": "my_revokerId",
+     *       //   "state": "my_state",
+     *       //   "token": "my_token",
+     *       //   "tokenPermanentId": "my_tokenPermanentId",
+     *       //   "tokenType": "my_tokenType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creatorId": "my_creatorId",
+     *   //   "customerId": "my_customerId",
+     *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "revokeTime": "my_revokeTime",
+     *   //   "revokerId": "my_revokerId",
+     *   //   "state": "my_state",
+     *   //   "token": "my_token",
+     *   //   "tokenPermanentId": "my_tokenPermanentId",
+     *   //   "tokenType": "my_tokenType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Customers$Enrollmenttokens$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Customers$Enrollmenttokens$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+    >;
+    create(
+      params: Params$Resource$Customers$Enrollmenttokens$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Customers$Enrollmenttokens$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+    ): void;
+    create(
+      params: Params$Resource$Customers$Enrollmenttokens$Create,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Enrollmenttokens$Create
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Enrollmenttokens$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Enrollmenttokens$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/enrollmentTokens').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets a browser device enrollment token.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.enrollmentTokens.get({
+     *     // Required. The name of the enrollment token to retrieve. Format: customers/{customer\}/enrollmentTokens/{token_permanent_id\}
+     *     name: 'customers/my-customer/enrollmentTokens/my-enrollmentToken',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creatorId": "my_creatorId",
+     *   //   "customerId": "my_customerId",
+     *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "revokeTime": "my_revokeTime",
+     *   //   "revokerId": "my_revokerId",
+     *   //   "state": "my_state",
+     *   //   "token": "my_token",
+     *   //   "tokenPermanentId": "my_tokenPermanentId",
+     *   //   "tokenType": "my_tokenType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Customers$Enrollmenttokens$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Customers$Enrollmenttokens$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+    >;
+    get(
+      params: Params$Resource$Customers$Enrollmenttokens$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Enrollmenttokens$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Enrollmenttokens$Get,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Enrollmenttokens$Get
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Enrollmenttokens$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Enrollmenttokens$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all browser device enrollment tokens.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.enrollmentTokens.list({
+     *     // Optional. Filter to apply to list results. The following fields can be used in the filter: * device_type (currently only 'CHROME_BROWSER' is supported) * token_state (supported values: 'ACTIVE', 'EXPIRED', 'REVOKED') * org_unit_path The full path of the org unit, such as /Montreal/Sales. * org_unit_id The obfuscated id of the org unit, not the full path.
+     *     filter: 'placeholder-value',
+     *     // Optional. Maximum number of results to return. Maximum and default are 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Token to specify next page in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource where this enrollment token will be created. Format: customers/{customer\}
+     *     parent: 'customers/my-customer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrollmentTokens": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Customers$Enrollmenttokens$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Customers$Enrollmenttokens$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1ListEnrollmentTokensResponse>
+    >;
+    list(
+      params: Params$Resource$Customers$Enrollmenttokens$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Enrollmenttokens$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListEnrollmentTokensResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListEnrollmentTokensResponse>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Enrollmenttokens$List,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListEnrollmentTokensResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListEnrollmentTokensResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Enrollmenttokens$List
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListEnrollmentTokensResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListEnrollmentTokensResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListEnrollmentTokensResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1ListEnrollmentTokensResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Enrollmenttokens$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Enrollmenttokens$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/enrollmentTokens').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1ListEnrollmentTokensResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1ListEnrollmentTokensResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Revokes a browser device enrollment token.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.enrollmentTokens.revoke({
+     *     // Required. The name of the enrollment token to revoke. Format: customers/{customer\}/enrollmentTokens/{token_permanent_id\}
+     *     name: 'customers/my-customer/enrollmentTokens/my-enrollmentToken',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creatorId": "my_creatorId",
+     *   //   "customerId": "my_customerId",
+     *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "revokeTime": "my_revokeTime",
+     *   //   "revokerId": "my_revokerId",
+     *   //   "state": "my_state",
+     *   //   "token": "my_token",
+     *   //   "tokenPermanentId": "my_tokenPermanentId",
+     *   //   "tokenType": "my_tokenType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    revoke(
+      params: Params$Resource$Customers$Enrollmenttokens$Revoke,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    revoke(
+      params?: Params$Resource$Customers$Enrollmenttokens$Revoke,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+    >;
+    revoke(
+      params: Params$Resource$Customers$Enrollmenttokens$Revoke,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    revoke(
+      params: Params$Resource$Customers$Enrollmenttokens$Revoke,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+    ): void;
+    revoke(
+      params: Params$Resource$Customers$Enrollmenttokens$Revoke,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+    ): void;
+    revoke(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+    ): void;
+    revoke(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Enrollmenttokens$Revoke
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Enrollmenttokens$Revoke;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Enrollmenttokens$Revoke;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:revoke').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1EnrollmentToken>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Enrollmenttokens$Create extends StandardParameters {
+    /**
+     * Optional. The ID to use for the enrollment token, which will become the final component of the enrollment token's resource name. This value must be local-unique under the customer and is optional. If not provided, it will be auto-generated. If provided, it must be 1-63 characters long and match the regular expression `[a-zA-Z0-9._-]+`.
+     */
+    enrollmentTokenId?: string;
+    /**
+     * Required. The parent resource where this enrollment token will be created. Format: customers/{customer\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChromeManagementVersionsV1EnrollmentToken;
+  }
+  export interface Params$Resource$Customers$Enrollmenttokens$Get extends StandardParameters {
+    /**
+     * Required. The name of the enrollment token to retrieve. Format: customers/{customer\}/enrollmentTokens/{token_permanent_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Customers$Enrollmenttokens$List extends StandardParameters {
+    /**
+     * Optional. Filter to apply to list results. The following fields can be used in the filter: * device_type (currently only 'CHROME_BROWSER' is supported) * token_state (supported values: 'ACTIVE', 'EXPIRED', 'REVOKED') * org_unit_path The full path of the org unit, such as /Montreal/Sales. * org_unit_id The obfuscated id of the org unit, not the full path.
+     */
+    filter?: string;
+    /**
+     * Optional. Maximum number of results to return. Maximum and default are 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token to specify next page in the list.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource where this enrollment token will be created. Format: customers/{customer\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Customers$Enrollmenttokens$Revoke extends StandardParameters {
+    /**
+     * Required. The name of the enrollment token to revoke. Format: customers/{customer\}/enrollmentTokens/{token_permanent_id\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChromeManagementVersionsV1RevokeEnrollmentTokenRequest;
   }
 
   export class Resource$Customers$Enterprise {

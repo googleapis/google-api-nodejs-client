@@ -186,7 +186,6 @@ export namespace compute_alpha {
     organizationSecurityPolicies: Resource$Organizationsecuritypolicies;
     organizationSnapshotRecycleBinPolicy: Resource$Organizationsnapshotrecyclebinpolicy;
     organizationZoneVmExtensionPolicies: Resource$Organizationzonevmextensionpolicies;
-    orgVmExtensionPolicies: Resource$Orgvmextensionpolicies;
     packetMirrorings: Resource$Packetmirrorings;
     previewFeatures: Resource$Previewfeatures;
     projects: Resource$Projects;
@@ -388,9 +387,6 @@ export namespace compute_alpha {
         new Resource$Organizationsnapshotrecyclebinpolicy(this.context);
       this.organizationZoneVmExtensionPolicies =
         new Resource$Organizationzonevmextensionpolicies(this.context);
-      this.orgVmExtensionPolicies = new Resource$Orgvmextensionpolicies(
-        this.context
-      );
       this.packetMirrorings = new Resource$Packetmirrorings(this.context);
       this.previewFeatures = new Resource$Previewfeatures(this.context);
       this.projects = new Resource$Projects(this.context);
@@ -183579,6 +183575,193 @@ export namespace compute_alpha {
     }
 
     /**
+     * Deletes a specified zone VM extension policy within an organization.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.organizationZoneVmExtensionPolicies.delete({
+     *     // Organization ID for this request.
+     *     organization: 'organizations/[0-9]{0,20}',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Name of the zone VM extension policy to delete.
+     *     vmExtensionPolicy: 'placeholder-value',
+     *     // Name of the zone for this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getHealthOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizationzonevmextensionpolicies$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Organizationzonevmextensionpolicies$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Organizationzonevmextensionpolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizationzonevmextensionpolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Organizationzonevmextensionpolicies$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizationzonevmextensionpolicies$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizationzonevmextensionpolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizationzonevmextensionpolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/{+organization}/zones/{zone}/vmExtensionPolicies/{vmExtensionPolicy}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['organization', 'zone', 'vmExtensionPolicy'],
+        pathParams: ['organization', 'vmExtensionPolicy', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Retrieves details of a specific zone VM extension policy within an
      * organization.
      * @example
@@ -184782,6 +184965,36 @@ export namespace compute_alpha {
     }
   }
 
+  export interface Params$Resource$Organizationzonevmextensionpolicies$Delete extends StandardParameters {
+    /**
+     * Organization ID for this request.
+     */
+    organization?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the zone VM extension policy to delete.
+     */
+    vmExtensionPolicy?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+  }
   export interface Params$Resource$Organizationzonevmextensionpolicies$Get extends StandardParameters {
     /**
      * Organization ID for this request.
@@ -185091,230 +185304,6 @@ export namespace compute_alpha {
      * Request body metadata
      */
     requestBody?: Schema$VmExtensionPolicy;
-  }
-
-  export class Resource$Orgvmextensionpolicies {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Deletes a specified zone VM extension policy within an organization.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const compute = google.compute('alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await compute.orgVmExtensionPolicies.delete({
-     *     // Organization ID for this request.
-     *     organization: 'organizations/[0-9]{0,20}',
-     *     // An optional request ID to identify requests. Specify a unique request ID so
-     *     // that if you must retry your request, the server will know to ignore the
-     *     // request if it has already been completed.
-     *     //
-     *     // For example, consider a situation where you make an initial request and
-     *     // the request times out. If you make the request again with the same
-     *     // request ID, the server can check if original operation with the same
-     *     // request ID was received, and if so, will ignore the second request. This
-     *     // prevents clients from accidentally creating duplicate commitments.
-     *     //
-     *     // The request ID must be
-     *     // a valid UUID with the exception that zero UUID is not supported
-     *     // (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *     // Name of the zone VM extension policy to delete.
-     *     vmExtensionPolicy: 'placeholder-value',
-     *     // Name of the zone for this request.
-     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientOperationId": "my_clientOperationId",
-     *   //   "creationTimestamp": "my_creationTimestamp",
-     *   //   "description": "my_description",
-     *   //   "endTime": "my_endTime",
-     *   //   "error": {},
-     *   //   "firewallPolicyRuleOperationMetadata": {},
-     *   //   "getHealthOperationMetadata": {},
-     *   //   "getVersionOperationMetadata": {},
-     *   //   "httpErrorMessage": "my_httpErrorMessage",
-     *   //   "httpErrorStatusCode": 0,
-     *   //   "id": "my_id",
-     *   //   "insertTime": "my_insertTime",
-     *   //   "instancesBulkInsertOperationMetadata": {},
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "operationGroupId": "my_operationGroupId",
-     *   //   "operationType": "my_operationType",
-     *   //   "progress": 0,
-     *   //   "region": "my_region",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "selfLinkWithId": "my_selfLinkWithId",
-     *   //   "setCommonInstanceMetadataOperationMetadata": {},
-     *   //   "startTime": "my_startTime",
-     *   //   "status": "my_status",
-     *   //   "statusMessage": "my_statusMessage",
-     *   //   "targetId": "my_targetId",
-     *   //   "targetLink": "my_targetLink",
-     *   //   "user": "my_user",
-     *   //   "warnings": [],
-     *   //   "zone": "my_zone"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Orgvmextensionpolicies$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Orgvmextensionpolicies$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
-    delete(
-      params: Params$Resource$Orgvmextensionpolicies$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Orgvmextensionpolicies$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    delete(
-      params: Params$Resource$Orgvmextensionpolicies$Delete,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$Operation>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Orgvmextensionpolicies$Delete
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Orgvmextensionpolicies$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Orgvmextensionpolicies$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/compute/alpha/{+organization}/zones/{zone}/vmExtensionPolicies/{vmExtensionPolicy}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['organization', 'zone', 'vmExtensionPolicy'],
-        pathParams: ['organization', 'vmExtensionPolicy', 'zone'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Orgvmextensionpolicies$Delete extends StandardParameters {
-    /**
-     * Organization ID for this request.
-     */
-    organization?: string;
-    /**
-     * An optional request ID to identify requests. Specify a unique request ID so
-     * that if you must retry your request, the server will know to ignore the
-     * request if it has already been completed.
-     *
-     * For example, consider a situation where you make an initial request and
-     * the request times out. If you make the request again with the same
-     * request ID, the server can check if original operation with the same
-     * request ID was received, and if so, will ignore the second request. This
-     * prevents clients from accidentally creating duplicate commitments.
-     *
-     * The request ID must be
-     * a valid UUID with the exception that zero UUID is not supported
-     * (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string;
-    /**
-     * Name of the zone VM extension policy to delete.
-     */
-    vmExtensionPolicy?: string;
-    /**
-     * Name of the zone for this request.
-     */
-    zone?: string;
   }
 
   export class Resource$Packetmirrorings {

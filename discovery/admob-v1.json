@@ -321,7 +321,7 @@
       }
     }
   },
-  "revision": "20260610",
+  "revision": "20261008",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "AdUnit": {
@@ -674,7 +674,8 @@
               "IMPRESSION_CTR",
               "MATCHED_REQUESTS",
               "MATCH_RATE",
-              "OBSERVED_ECPM"
+              "OBSERVED_ECPM",
+              "AD_LOAD_LATENCY"
             ],
             "enumDescriptions": [
               "Default value for an unset field. Do not use.",
@@ -685,7 +686,8 @@
               "The ratio of clicks over impressions. The value is a double precision (approximate) decimal value.",
               "The number of times ads are returned in response to a request. The value is an integer.",
               "The ratio of matched ad requests over the total ad requests. The value is a double precision (approximate) decimal value.",
-              "The third-party ad network's estimated average eCPM. The currency unit (USD, EUR, or other) of the earning metrics are determined by the localization setting for currency. The amount is in micros. For example, $2.30 would be represented as 2300000. The estimated average eCPM per mediation group and per ad source instance level is supported dating back to October 20, 2019. Third-party estimated average eCPM will show 0 for dates prior to October 20, 2019."
+              "The third-party ad network's estimated average eCPM. The currency unit (USD, EUR, or other) of the earning metrics are determined by the localization setting for currency. The amount is in micros. For example, $2.30 would be represented as 2300000. The estimated average eCPM per mediation group and per ad source instance level is supported dating back to October 20, 2019. Third-party estimated average eCPM will show 0 for dates prior to October 20, 2019.",
+              "The ad load latency is the total time it takes for an ad to load measured in seconds. It starts when the ad is requested and ends when a response is received. See https://support.google.com/admob/answer/12571120 for additional information."
             ],
             "type": "string"
           },
@@ -811,7 +813,8 @@
             "IMPRESSION_CTR",
             "MATCHED_REQUESTS",
             "MATCH_RATE",
-            "OBSERVED_ECPM"
+            "OBSERVED_ECPM",
+            "AD_LOAD_LATENCY"
           ],
           "enumDescriptions": [
             "Default value for an unset field. Do not use.",
@@ -822,7 +825,8 @@
             "The ratio of clicks over impressions. The value is a double precision (approximate) decimal value.",
             "The number of times ads are returned in response to a request. The value is an integer.",
             "The ratio of matched ad requests over the total ad requests. The value is a double precision (approximate) decimal value.",
-            "The third-party ad network's estimated average eCPM. The currency unit (USD, EUR, or other) of the earning metrics are determined by the localization setting for currency. The amount is in micros. For example, $2.30 would be represented as 2300000. The estimated average eCPM per mediation group and per ad source instance level is supported dating back to October 20, 2019. Third-party estimated average eCPM will show 0 for dates prior to October 20, 2019."
+            "The third-party ad network's estimated average eCPM. The currency unit (USD, EUR, or other) of the earning metrics are determined by the localization setting for currency. The amount is in micros. For example, $2.30 would be represented as 2300000. The estimated average eCPM per mediation group and per ad source instance level is supported dating back to October 20, 2019. Third-party estimated average eCPM will show 0 for dates prior to October 20, 2019.",
+            "The ad load latency is the total time it takes for an ad to load measured in seconds. It starts when the ad is requested and ends when a response is received. See https://support.google.com/admob/answer/12571120 for additional information."
           ],
           "type": "string"
         },

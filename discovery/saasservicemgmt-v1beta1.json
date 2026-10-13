@@ -3323,7 +3323,7 @@
       }
     }
   },
-  "revision": "20260914",
+  "revision": "20260928",
   "rootUrl": "https://saasservicemgmt.googleapis.com/",
   "schemas": {
     "Aggregate": {
@@ -3400,11 +3400,11 @@
       "type": "object"
     },
     "Blueprint": {
-      "description": "Blueprints are OCI Images that contain all of the artifacts needed to provision a unit. Metadata such as, type of the engine used to actuate the blueprint (e.g. terraform, helm etc) and version will come from the image manifest. If the hostname is omitted, it will be assumed to be the regional path to Artifact Registry (eg. us-east1-docker.pkg.dev).",
+      "description": "Blueprints are OCI Images that contain all of the artifacts needed to provision a unit. Metadata such as, type of the engine used to actuate the blueprint (Terraform, for example) and version will come from the image manifest. If the hostname is omitted, it will be assumed to be the regional path to Artifact Registry (eg. us-east1-docker.pkg.dev).",
       "id": "Blueprint",
       "properties": {
         "engine": {
-          "description": "Output only. Type of the engine used to actuate the blueprint. e.g. terraform, helm etc.",
+          "description": "Output only. Type of the engine used to actuate the blueprint. (Terraform, for example)",
           "readOnly": true,
           "type": "string"
         },
@@ -4540,7 +4540,7 @@
       "type": "object"
     },
     "Release": {
-      "description": "A new version to be propagated and deployed to units. This includes pointers to packaged blueprints for actuation (e.g Helm or Terraform configuration packages) via artifact registry.",
+      "description": "A new version to be propagated and deployed to units. This includes pointers to packaged blueprints for actuation via Artifact Registry.",
       "id": "Release",
       "properties": {
         "annotations": {
@@ -4738,7 +4738,8 @@
             "ROLLOUT_STATE_WAITING",
             "ROLLOUT_STATE_CANCELLING",
             "ROLLOUT_STATE_RESUMING",
-            "ROLLOUT_STATE_PAUSING"
+            "ROLLOUT_STATE_PAUSING",
+            "ROLLOUT_STATE_AWAITING_APPROVAL"
           ],
           "enumDescriptions": [
             "Unspecified state.",
@@ -4750,7 +4751,8 @@
             "Rollout is waiting for some condition to be met before starting.",
             "Rollout is being canceled.",
             "Rollout is being resumed.",
-            "Rollout is being paused."
+            "Rollout is being paused.",
+            "Rollout is awaiting manual approval."
           ],
           "readOnly": true,
           "type": "string"
@@ -4863,7 +4865,7 @@
           "type": "string"
         },
         "unitFilter": {
-          "description": "Optional. CEL(https://github.com/google/cel-spec) formatted filter string against Unit. The filter will be applied to determine the eligible unit population. This filter can only reduce, but not expand the scope of the rollout.",
+          "description": "Optional. [CEL](https://github.com/google/cel-spec) formatted filter string against Unit. The filter will be applied to determine the eligible unit population. This filter can only reduce, but not expand the scope of the rollout.",
           "type": "string"
         },
         "unitKind": {
@@ -5263,7 +5265,7 @@
       "type": "object"
     },
     "Unit": {
-      "description": "A unit of deployment that has its lifecycle via a CRUD API using an actuation engine under the hood (e.g. based on Terraform, Helm or a custom implementation provided by a service producer). A building block of a SaaS Tenant.",
+      "description": "A unit of deployment that has its lifecycle via a CRUD API using an actuation engine under the hood (e.g. based on Terraform, or a custom implementation provided by a service producer). A building block of a SaaS Tenant.",
       "id": "Unit",
       "properties": {
         "annotations": {
@@ -5371,7 +5373,7 @@
           "type": "array"
         },
         "outputVariables": {
-          "description": "Optional. Output only. Set of key/value pairs corresponding to output variables from execution of actuation templates. The variables are declared in actuation configs (e.g in helm chart or terraform) and the values are fetched and returned by the actuation engine upon completion of execution.",
+          "description": "Optional. Output only. Set of key/value pairs corresponding to output variables from execution of actuation templates. The variables are declared in actuation configs (in Terraform for example) and the values are fetched and returned by the actuation engine upon completion of execution.",
           "items": {
             "$ref": "UnitVariable"
           },
@@ -5708,6 +5710,12 @@
         },
         "defaultRelease": {
           "description": "Optional. A reference to the Release object to use as default for creating new units of this UnitKind (optional). If not specified, a new unit must explicitly reference which release to use for its creation.",
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. The timestamp when the resource was marked for deletion (deletion is an asynchronous operation).",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "dependencies": {

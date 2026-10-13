@@ -1184,10 +1184,6 @@ export namespace dataplex_v1 {
      * Optional. Configuration for JSON data.
      */
     jsonOptions?: Schema$GoogleCloudDataplexV1DataDiscoverySpecStorageConfigJsonOptions;
-    /**
-     * Optional. Specifies configuration for unstructured data discovery.
-     */
-    unstructuredDataOptions?: Schema$GoogleCloudDataplexV1DataDiscoverySpecStorageConfigUnstructuredDataOptions;
   }
   /**
    * Describes CSV and similar semi-structured data formats.
@@ -1226,19 +1222,6 @@ export namespace dataplex_v1 {
      * Optional. Whether to disable the inference of data types for JSON data. If true, all columns are registered as their primitive types (strings, number, or boolean).
      */
     typeInferenceDisabled?: boolean | null;
-  }
-  /**
-   * Describes options for unstructured data discovery.
-   */
-  export interface Schema$GoogleCloudDataplexV1DataDiscoverySpecStorageConfigUnstructuredDataOptions {
-    /**
-     * Optional. Whether to use the global model endpoint.
-     */
-    globalEndpointEnabled?: boolean | null;
-    /**
-     * Optional. Specifies whether deeper semantic inference over the objects' contents using GenAI is enabled.
-     */
-    semanticInferenceEnabled?: boolean | null;
   }
   /**
    * The output of a DataDocumentation scan.
@@ -2617,14 +2600,6 @@ export namespace dataplex_v1 {
      */
     uid?: string | null;
     /**
-     * Output only. The result of an unstructured data profile scan.
-     */
-    unstructuredDataProfileResult?: Schema$GoogleCloudDataplexV1UnstructuredDataProfileResult;
-    /**
-     * Optional. Settings for an unstructured data profile scan.
-     */
-    unstructuredDataProfileSpec?: Schema$GoogleCloudDataplexV1UnstructuredDataProfileSpec;
-    /**
      * Output only. The time when the scan was last updated.
      */
     updateTime?: string | null;
@@ -2957,14 +2932,6 @@ export namespace dataplex_v1 {
      * Output only. System generated globally unique ID for the DataScanJob.
      */
     uid?: string | null;
-    /**
-     * Output only. The result of an unstructured data profile scan.
-     */
-    unstructuredDataProfileResult?: Schema$GoogleCloudDataplexV1UnstructuredDataProfileResult;
-    /**
-     * Output only. Settings for an unstructured data profile scan.
-     */
-    unstructuredDataProfileSpec?: Schema$GoogleCloudDataplexV1UnstructuredDataProfileSpec;
   }
   /**
    * The data source for DataScan.
@@ -3786,175 +3753,6 @@ export namespace dataplex_v1 {
      * Type of entity.
      */
     entityType?: string | null;
-  }
-  /**
-   * Contains the strict structure for graph-profile for semantic inference scan result.
-   */
-  export interface Schema$GoogleCloudDataplexV1GraphProfile {
-    /**
-     * Output only. Edge types.
-     */
-    edgeTypes?: Schema$GoogleCloudDataplexV1GraphProfileEdgeType[];
-    /**
-     * Output only. Node types.
-     */
-    nodeTypes?: Schema$GoogleCloudDataplexV1GraphProfileNodeType[];
-  }
-  /**
-   * Represents a type of edge (relationship) in the graph.
-   */
-  export interface Schema$GoogleCloudDataplexV1GraphProfileEdgeType {
-    /**
-     * Output only. Description of the edge type.
-     */
-    description?: string | null;
-    /**
-     * Output only. Extraction hints for the edge.
-     */
-    extractionHints?: Schema$GoogleCloudDataplexV1GraphProfileEdgeTypeExtractionHints;
-    /**
-     * Output only. Fields of the edge type.
-     */
-    fields?: Schema$GoogleCloudDataplexV1GraphProfileField[];
-    /**
-     * Output only. Defines the Foreign Key constraints for the edge.
-     */
-    foreignKeys?: Schema$GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKey[];
-    /**
-     * Output only. Name of the edge type.
-     */
-    name?: string | null;
-    /**
-     * Output only. Source node type.
-     */
-    sourceNodeType?: string | null;
-    /**
-     * Output only. Target node type.
-     */
-    targetNodeType?: string | null;
-  }
-  /**
-   * Extraction hints (edge-level).
-   */
-  export interface Schema$GoogleCloudDataplexV1GraphProfileEdgeTypeExtractionHints {
-    /**
-     * Output only. Expected connectivity topology and bounds of this relationship. Format: "Topology - Description" Example: "1:N - One company can have multiple financial reports."
-     */
-    cardinality?: string | null;
-  }
-  /**
-   * Represents a foreign key constraint.
-   */
-  export interface Schema$GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKey {
-    /**
-     * Output only. Description of the foreign key.
-     */
-    description?: string | null;
-    /**
-     * Output only. Field Mappings. Mappings between local fields and the fields they reference in the referenced node type.
-     */
-    fieldMappings?: Schema$GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKeyFieldMapping[];
-    /**
-     * Output only. Name of the foreign key constraint.
-     */
-    name?: string | null;
-    /**
-     * Output only. The node type this constraint references.
-     */
-    referencedNodeType?: string | null;
-  }
-  /**
-   * Maps a local field to a referenced field.
-   */
-  export interface Schema$GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKeyFieldMapping {
-    /**
-     * Output only. Local field name forming part of the foreign key.
-     */
-    field?: string | null;
-    /**
-     * Output only. Field name in the referenced node type.
-     */
-    referencedField?: string | null;
-  }
-  /**
-   * Represents a field in a node or edge type.
-   */
-  export interface Schema$GoogleCloudDataplexV1GraphProfileField {
-    /**
-     * Output only. The data type of the field, e.g., STRING, INTEGER, DATE.
-     */
-    dataType?: string | null;
-    /**
-     * Output only. Description of the field.
-     */
-    description?: string | null;
-    /**
-     * Output only. Extraction hints for the field.
-     */
-    extractionHints?: Schema$GoogleCloudDataplexV1GraphProfileFieldExtractionHints;
-    /**
-     * Output only. Sub-fields of this field (for STRUCT types).
-     */
-    fields?: Schema$GoogleCloudDataplexV1GraphProfileField[];
-    /**
-     * Output only. The mapped metadata type.
-     */
-    metadataType?: string | null;
-    /**
-     * Output only. The mode of the field.
-     */
-    mode?: string | null;
-    /**
-     * Output only. Name of the field.
-     */
-    name?: string | null;
-  }
-  /**
-   * Extraction hints (field-level).
-   */
-  export interface Schema$GoogleCloudDataplexV1GraphProfileFieldExtractionHints {
-    /**
-     * Output only. Standardizes extracted data (e.g., to ISO 3166-1 alpha-2).
-     */
-    normalization?: string | null;
-    /**
-     * Output only. Generates value from other data instead of direct extraction (e.g., hashing).
-     */
-    synthesis?: string | null;
-  }
-  /**
-   * Represents a type of node in the graph.
-   */
-  export interface Schema$GoogleCloudDataplexV1GraphProfileNodeType {
-    /**
-     * Output only. Description of the node type.
-     */
-    description?: string | null;
-    /**
-     * Output only. Extraction hints for the node.
-     */
-    extractionHints?: Schema$GoogleCloudDataplexV1GraphProfileNodeTypeExtractionHints;
-    /**
-     * Output only. Fields of the node type.
-     */
-    fields?: Schema$GoogleCloudDataplexV1GraphProfileField[];
-    /**
-     * Output only. Name of the node type.
-     */
-    name?: string | null;
-    /**
-     * Output only. Field names forming the primary keys. The order in this array defines the key's ordinal positions for composite keys.
-     */
-    primaryKeys?: string[] | null;
-  }
-  /**
-   * Extraction hints (node-level).
-   */
-  export interface Schema$GoogleCloudDataplexV1GraphProfileNodeTypeExtractionHints {
-    /**
-     * Output only. Expected occurrence frequency of this node type within a document. Format: "Bounds - Description" Example: "0:N - A document may contain multiple people names."
-     */
-    cardinality?: string | null;
   }
   /**
    * An object that describes the values that you want to set for an entry and its attached aspects when you import metadata. Used when you run a metadata import job. See CreateMetadataJob.You provide a collection of import items in a metadata import file. For more information about how to create a metadata import file, see Metadata import file (https://cloud.google.com/dataplex/docs/import-metadata#metadata-import-file).
@@ -5557,40 +5355,6 @@ export namespace dataplex_v1 {
      * Required. Cron (https://en.wikipedia.org/wiki/Cron) schedule for running scans periodically.To explicitly set a timezone in the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or "TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database (wikipedia (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List)). For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.This field is required for Schedule scans.
      */
     cron?: string | null;
-  }
-  /**
-   * Contains the result of an unstructured data profile scan.
-   */
-  export interface Schema$GoogleCloudDataplexV1UnstructuredDataProfileResult {
-    /**
-     * Output only. The inferred description.
-     */
-    description?: string | null;
-    /**
-     * Output only. The inferred graph profile.
-     */
-    graphProfile?: Schema$GoogleCloudDataplexV1GraphProfile;
-    /**
-     * Output only. Optional message for partial failures (e.g. node type extraction failed).
-     */
-    partialFailureMessage?: string | null;
-  }
-  /**
-   * Contains the specification for an unstructured data profile scan.
-   */
-  export interface Schema$GoogleCloudDataplexV1UnstructuredDataProfileSpec {
-    /**
-     * Optional. Customized prompt for unstructured data profile. The field will be used as part of the prompt, could be some instruction, specifying skill, or specific area to focus.
-     */
-    customizedPrompt?: string | null;
-    /**
-     * Optional. Whether to use the global model.
-     */
-    globalEndpointEnabled?: boolean | null;
-    /**
-     * Optional. Whether to publish graph-profile as aspect on the catalog entry.
-     */
-    graphProfilePublishingEnabled?: boolean | null;
   }
   /**
    * Update Entry request.
@@ -17982,8 +17746,6 @@ export namespace dataplex_v1 {
      *       //   "state": "my_state",
      *       //   "type": "my_type",
      *       //   "uid": "my_uid",
-     *       //   "unstructuredDataProfileResult": {},
-     *       //   "unstructuredDataProfileSpec": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -18467,8 +18229,6 @@ export namespace dataplex_v1 {
      *   //   "state": "my_state",
      *   //   "type": "my_type",
      *   //   "uid": "my_uid",
-     *   //   "unstructuredDataProfileResult": {},
-     *   //   "unstructuredDataProfileSpec": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -18946,8 +18706,6 @@ export namespace dataplex_v1 {
      *       //   "state": "my_state",
      *       //   "type": "my_type",
      *       //   "uid": "my_uid",
-     *       //   "unstructuredDataProfileResult": {},
-     *       //   "unstructuredDataProfileSpec": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -20038,9 +19796,7 @@ export namespace dataplex_v1 {
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "type": "my_type",
-     *   //   "uid": "my_uid",
-     *   //   "unstructuredDataProfileResult": {},
-     *   //   "unstructuredDataProfileSpec": {}
+     *   //   "uid": "my_uid"
      *   // }
      * }
      *

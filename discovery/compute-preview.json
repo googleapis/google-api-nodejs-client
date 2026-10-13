@@ -1357,6 +1357,204 @@
         }
       }
     },
+    "aliasNetworkEndpoints": {
+      "methods": {
+        "delete": {
+          "apiVersion": "2026-10-01-preview",
+          "description": "Deletes the specified AliasNetworkEndpoint.",
+          "flatPath": "projects/{project}/zones/{zone}/aliasNetworkEndpoints/{aliasNetworkEndpoint}",
+          "httpMethod": "DELETE",
+          "id": "compute.aliasNetworkEndpoints.delete",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "aliasNetworkEndpoint"
+          ],
+          "parameters": {
+            "aliasNetworkEndpoint": {
+              "description": "Required. Name of the AliasNetworkEndpoint resource to delete.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.",
+              "location": "query",
+              "type": "string"
+            },
+            "zone": {
+              "description": "Required. Name of the zone scoping this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/aliasNetworkEndpoints/{aliasNetworkEndpoint}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "get": {
+          "apiVersion": "2026-10-01-preview",
+          "description": "Returns the specified AliasNetworkEndpoint resource.",
+          "flatPath": "projects/{project}/zones/{zone}/aliasNetworkEndpoints/{aliasNetworkEndpoint}",
+          "httpMethod": "GET",
+          "id": "compute.aliasNetworkEndpoints.get",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "aliasNetworkEndpoint"
+          ],
+          "parameters": {
+            "aliasNetworkEndpoint": {
+              "description": "Required. Name of the AliasNetworkEndpoint resource to return.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "Required. Name of the zone scoping this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/aliasNetworkEndpoints/{aliasNetworkEndpoint}",
+          "response": {
+            "$ref": "AliasNetworkEndpoint"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "insert": {
+          "apiVersion": "2026-10-01-preview",
+          "description": "Creates an AliasNetworkEndpoint in the specified project and zone\nusing the data included in the request.",
+          "flatPath": "projects/{project}/zones/{zone}/aliasNetworkEndpoints",
+          "httpMethod": "POST",
+          "id": "compute.aliasNetworkEndpoints.insert",
+          "parameterOrder": [
+            "project",
+            "zone"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Required. Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.",
+              "location": "query",
+              "type": "string"
+            },
+            "zone": {
+              "description": "Required. Name of the zone scoping this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/aliasNetworkEndpoints",
+          "request": {
+            "$ref": "AliasNetworkEndpoint"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "list": {
+          "apiVersion": "2026-10-01-preview",
+          "description": "Retrieves a list of AliasNetworkEndpoints available to the specified\nproject.",
+          "flatPath": "projects/{project}/zones/{zone}/aliasNetworkEndpoints",
+          "httpMethod": "GET",
+          "id": "compute.aliasNetworkEndpoints.list",
+          "parameterOrder": [
+            "project",
+            "zone"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "A filter expression that filters resources listed in the response. Most\nCompute resources support two types of filter expressions:\nexpressions that support regular expressions and expressions that follow\nAPI improvement proposal AIP-160.\nThese two types of filter expressions cannot be mixed in one request.\n\nIf you want to use AIP-160, your expression must specify the field name, an\noperator, and the value that you want to use for filtering. The value\nmust be a string, a number, or a boolean. The operator\nmust be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`.\n\nFor example, if you are filtering Compute Engine instances, you can\nexclude instances named `example-instance` by specifying\n`name != example-instance`.\n\nThe `:*` comparison can be used to test whether a key has been defined.\nFor example, to find all objects with `owner` label use:\n```\nlabels.owner:*\n```\n\nYou can also filter nested fields. For example, you could specify\n`scheduling.automaticRestart = false` to include instances only\nif they are not scheduled for automatic restarts. You can use filtering\non nested fields to filter based onresource labels.\n\nTo filter on multiple expressions, provide each separate expression within\nparentheses. For example:\n```\n(scheduling.automaticRestart = true)\n(cpuPlatform = \"Intel Skylake\")\n```\nBy default, each expression is an `AND` expression. However, you\ncan include `AND` and `OR` expressions explicitly.\nFor example:\n```\n(cpuPlatform = \"Intel Skylake\") OR\n(cpuPlatform = \"Intel Broadwell\") AND\n(scheduling.automaticRestart = true)\n```\n\nIf you want to use a regular expression, use the `eq` (equal) or `ne`\n(not equal) operator against a single un-parenthesized expression with or\nwithout quotes or against multiple parenthesized expressions. Examples:\n\n`fieldname eq unquoted literal`\n`fieldname eq 'single quoted literal'`\n`fieldname eq \"double quoted literal\"`\n`(fieldname1 eq literal) (fieldname2 ne \"literal\")`\n\nThe literal value is interpreted as a regular expression using GoogleRE2 library syntax.\nThe literal value must match the entire field.\n\nFor example, to filter for instances that do not end with name \"instance\",\nyou would use `name ne .*instance`.\n\nYou cannot combine constraints on multiple fields using regular\nexpressions.",
+              "location": "query",
+              "type": "string"
+            },
+            "maxResults": {
+              "default": "500",
+              "description": "The maximum number of results per page that should be returned.\nIf the number of available results is larger than `maxResults`,\nCompute Engine returns a `nextPageToken` that can be used to get\nthe next page of results in subsequent list requests. Acceptable values are\n`0` to `500`, inclusive. (Default: `500`)",
+              "format": "uint32",
+              "location": "query",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "orderBy": {
+              "description": "Sorts list results by a certain order. By default, results\nare returned in alphanumerical order based on the resource name.\n\nYou can also sort results in descending order based on the creation\ntimestamp using `orderBy=\"creationTimestamp desc\"`. This sorts\nresults based on the `creationTimestamp` field in\nreverse chronological order (newest result first). Use this to sort\nresources like operations so that the newest operation is returned first.\n\nCurrently, only sorting by `name` or\n`creationTimestamp desc` is supported.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "Specifies a page token to use. Set `pageToken` to the\n`nextPageToken` returned by a previous list request to get\nthe next page of results.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "Required. Name of the zone of this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/aliasNetworkEndpoints",
+          "response": {
+            "$ref": "AliasNetworkEndpointList"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        }
+      }
+    },
     "autoscalers": {
       "methods": {
         "aggregatedList": {
@@ -50023,7 +50221,7 @@
       }
     }
   },
-  "revision": "20260922",
+  "revision": "20261007",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -50923,6 +51121,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "ipCollection": {
+          "description": "Reference to the source of external IPv4 addresses,\nlike a PublicDelegatedPrefix (PDP) for BYOIP.\nThe PDP must support enhanced IPv4 allocations.\n\nUse one of the following formats to specify a PDP when allocating an\nexternal IPv4 address using BYOIP.\n   \n   - \n   Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name\n   - \n   Partial URL, as in\n     \n      \n          - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name\n          - regions/region/publicDelegatedPrefixes/pdp-name",
+          "type": "string"
+        },
         "kind": {
           "default": "compute#accessConfig",
           "description": "Output only. [Output Only] Type of the resource. Alwayscompute#accessConfig for access configs.",
@@ -51079,6 +51281,10 @@
           "description": "The URL of the network in which to reserve the address. This field can\nonly be used with INTERNAL type with theVPC_PEERING purpose.",
           "type": "string"
         },
+        "networkAttachment": {
+          "description": "Optional. The URL of the network attachment that this address comes from in the\nfollowing format:\nprojects/{project}/regions/{region_name}/networkAttachments/{network_attachment_name}.",
+          "type": "string"
+        },
         "networkTier": {
           "description": "This signifies the networking tier used for configuring this address and\ncan only take the following values: PREMIUM orSTANDARD. Internal IP addresses are always Premium Tier;\nglobal external IP addresses are always Premium Tier; regional external IP\naddresses can be either Standard or Premium Tier.\n\nIf this field is not specified, it is assumed to be PREMIUM.",
           "enum": [
@@ -51131,6 +51337,10 @@
         },
         "selfLink": {
           "description": "[Output Only] Server-defined URL for the resource.",
+          "type": "string"
+        },
+        "serviceClassId": {
+          "description": "Optional. Producer Service's Service class ID for the region of this address. Can\nonly be used with network_attachment. It is not possible to use on its own;\nhowever, network_attachment can be used without service_class_id.",
           "type": "string"
         },
         "status": {
@@ -51676,6 +51886,334 @@
         },
         "subnetworkRangeName": {
           "description": "The name of a subnetwork secondary IP range from which to allocate an IP\nalias range. If not specified, the primary range of the subnetwork is used.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AliasNetworkEndpoint": {
+      "description": "Represents an Alias Network Endpoint resource.\nTo be used for GKE pod-native endpoints in Andromeda.",
+      "id": "AliasNetworkEndpoint",
+      "properties": {
+        "aliases": {
+          "additionalProperties": {
+            "$ref": "AliasNetworkEndpointAlias"
+          },
+          "description": "Required. The map of network aliases allocated for the AliasNetworkEndpoint.\nThis map is keyed with user-provided alias names.",
+          "type": "object"
+        },
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The annotations map for the AliasNetworkEndpoint.\nKeys and values must follow Kubernetes limits.\nKeys must be a maximum of 253 characters. Keys should be dot-namespaced,\nfollowing the Kubernetes annotation key format:\n`([DNS subdomain]/)?[RFC 1123 name]`.\nValues must be a maximum of 256 characters.",
+          "type": "object"
+        },
+        "creationTimestamp": {
+          "description": "Output only. [Output Only] Creation timestamp in RFC3339 text format.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. An optional description of this resource. Provide this field when you\ncreate the resource.",
+          "type": "string"
+        },
+        "host": {
+          "$ref": "AliasNetworkEndpointHost",
+          "description": "Required. The host that the alias network endpoint is bound to."
+        },
+        "id": {
+          "description": "Output only. [Output Only] The unique identifier for the resource. This identifier is\ndefined by the server.",
+          "format": "uint64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels map for the AliasNetworkEndpoint.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. Name of the resource. Provided by the client when the resource is created.\nThe name must be 1-63 characters long, and comply with RFC1035.",
+          "type": "string"
+        },
+        "securityTagInheritance": {
+          "description": "Optional. The security tag inheritance setting for the AliasNetworkEndpoint.",
+          "enum": [
+            "INHERITED",
+            "NOT_INHERITED",
+            "SECURITY_TAG_INHERITANCE_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "Security tags are inherited directly from the host instance.",
+            "Security tags are not inherited from the host instance. Firewall rules\ntargeting the host instance's tags will not apply to this resource.",
+            "Unspecified inheritance."
+          ],
+          "type": "string"
+        },
+        "selfLink": {
+          "description": "Output only. [Output Only] Server-defined URL for the resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "$ref": "AliasNetworkEndpointStatus",
+          "description": "Output only. [Output Only] Current status of the alias network endpoint.",
+          "readOnly": true
+        },
+        "subnetwork": {
+          "description": "Required. The URL of the subnetwork that this alias network endpoint belongs to.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. [Output Only] Update timestamp in RFC3339 text format.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AliasNetworkEndpointAlias": {
+      "description": "Configuration for an IP alias.",
+      "id": "AliasNetworkEndpointAlias",
+      "properties": {
+        "effectiveIpAddress": {
+          "description": "Output only. [Output Only] The actual IP address allocated by the system.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "effectiveSubnetworkRangeName": {
+          "description": "Output only. [Output Only] The actual secondary range used for allocation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ipAddress": {
+          "description": "Input only. The IP address of the network endpoint. If specified, the server performs\na validation check for uniqueness. If the field is omitted, the system\nautomatically allocates an IP and populates the effective_ip_address\nfield.",
+          "type": "string"
+        },
+        "ipVersion": {
+          "description": "Required. The IP version of the IP. It is IPv4 or IPv6.",
+          "enum": [
+            "IPV4",
+            "IPV6",
+            "IP_VERSION_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "IPv4 address.",
+            "IPv6 address.",
+            "Unspecified IP version."
+          ],
+          "type": "string"
+        },
+        "subnetworkRangeNames": {
+          "description": "Input only. Defines candidate secondary ranges for allocating the alias IPs. If it is\nempty, the IP would be allocated from the primary range of the\nsubnetwork.\nThis field is INPUT_ONLY and used only during resource creation,\nhence a repeated field is acceptable as per AIP-2825. It is not mutable.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AliasNetworkEndpointHost": {
+      "description": "Information about the host instance.",
+      "id": "AliasNetworkEndpointHost",
+      "properties": {
+        "instance": {
+          "description": "Required. The URL to the instance that this alias network endpoint is bound to.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AliasNetworkEndpointList": {
+      "description": "Response message for AliasNetworkEndpoints.List.",
+      "id": "AliasNetworkEndpointList",
+      "properties": {
+        "etag": {
+          "description": "ETag of the resource list.",
+          "type": "string"
+        },
+        "id": {
+          "description": "[Output Only] Unique identifier for the resource; defined by the server.",
+          "type": "string"
+        },
+        "items": {
+          "description": "A list of AliasNetworkEndpoint resources.",
+          "items": {
+            "$ref": "AliasNetworkEndpoint"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "[Output Only] This token allows you to get the next page of results for\nlist requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for\nthe query parameter pageToken in the next list request.\nSubsequent list requests will have their own nextPageToken to\ncontinue paging through the results.",
+          "type": "string"
+        },
+        "selfLink": {
+          "description": "[Output Only] Server-defined URL for this resource.",
+          "type": "string"
+        },
+        "unreachables": {
+          "description": "Output only. [Output Only] Unreachable resources.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "warning": {
+          "description": "[Output Only] Informational warning message.",
+          "properties": {
+            "code": {
+              "description": "[Output Only] A warning code, if applicable. For example, Compute\nEngine returns NO_RESULTS_ON_PAGE if there\nare no results in the response.",
+              "enum": [
+                "CLEANUP_FAILED",
+                "DEPRECATED_RESOURCE_USED",
+                "DEPRECATED_TYPE_USED",
+                "DISK_SIZE_LARGER_THAN_IMAGE_SIZE",
+                "EXPERIMENTAL_TYPE_USED",
+                "EXTERNAL_API_WARNING",
+                "FIELD_VALUE_OVERRIDEN",
+                "INJECTED_KERNELS_DEPRECATED",
+                "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB",
+                "LARGE_DEPLOYMENT_WARNING",
+                "LIST_OVERHEAD_QUOTA_EXCEED",
+                "MISSING_TYPE_DEPENDENCY",
+                "NEXT_HOP_ADDRESS_NOT_ASSIGNED",
+                "NEXT_HOP_CANNOT_IP_FORWARD",
+                "NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE",
+                "NEXT_HOP_INSTANCE_NOT_FOUND",
+                "NEXT_HOP_INSTANCE_NOT_ON_NETWORK",
+                "NEXT_HOP_NOT_RUNNING",
+                "NOT_CRITICAL_ERROR",
+                "NO_RESULTS_ON_PAGE",
+                "PARTIAL_SUCCESS",
+                "QUOTA_INFO_UNAVAILABLE",
+                "REQUIRED_TOS_AGREEMENT",
+                "RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING",
+                "RESOURCE_NOT_DELETED",
+                "SCHEMA_VALIDATION_IGNORED",
+                "SINGLE_INSTANCE_PROPERTY_TEMPLATE",
+                "UNDECLARED_PROPERTIES",
+                "UNREACHABLE"
+              ],
+              "enumDeprecated": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "enumDescriptions": [
+                "Warning about failed cleanup of transient changes made by a failed\noperation.",
+                "A link to a deprecated resource was created.",
+                "When deploying and at least one of the resources has a type marked as\ndeprecated",
+                "The user created a boot disk that is larger than image size.",
+                "When deploying and at least one of the resources has a type marked as\nexperimental",
+                "Warning that is present in an external api call",
+                "Warning that value of a field has been overridden.\nDeprecated unused field.",
+                "The operation involved use of an injected kernel, which is deprecated.",
+                "A WEIGHTED_MAGLEV backend service is associated with a health check that is\nnot of type HTTP/HTTPS/HTTP2.",
+                "When deploying a deployment with a exceedingly large number of resources",
+                "Resource can't be retrieved due to list overhead quota exceed\nwhich captures the amount of resources filtered out by\nuser-defined list filter.",
+                "A resource depends on a missing type",
+                "The route's nextHopIp address is not assigned to an instance on the\nnetwork.",
+                "The route's next hop instance cannot ip forward.",
+                "The route's nextHopInstance URL refers to an instance that does not have an\nipv6 interface on the same network as the route.",
+                "The route's nextHopInstance URL refers to an instance that does not exist.",
+                "The route's nextHopInstance URL refers to an instance that is not on the\nsame network as the route.",
+                "The route's next hop instance does not have a status of RUNNING.",
+                "Error which is not critical. We decided to continue the process despite\nthe mentioned error.",
+                "No results are present on a particular list page.",
+                "Success is reported, but some results may be missing due to errors",
+                "Quota information is not available to client requests (e.g:\nregions.list).",
+                "The user attempted to use a resource that requires a TOS they have not\naccepted.",
+                "Warning that a resource is in use.",
+                "One or more of the resources set to auto-delete could not be deleted\nbecause they were in use.",
+                "When a resource schema validation is ignored.",
+                "Instance template used in instance group manager is valid as such, but\nits application does not make a lot of sense, because it allows only\nsingle instance in instance group.",
+                "When undeclared properties in the schema are present",
+                "A given scope cannot be reached."
+              ],
+              "type": "string"
+            },
+            "data": {
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
+              "items": {
+                "properties": {
+                  "key": {
+                    "description": "[Output Only] A key that provides more detail on the warning being\nreturned. For example, for warnings where there are no results in a list\nrequest for a particular zone, this key might be scope and\nthe key value might be the zone name. Other examples might be a key\nindicating a deprecated resource and a suggested replacement, or a\nwarning about invalid network settings (for example, if an instance\nattempts to perform IP forwarding but is not enabled for IP forwarding).",
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "[Output Only] A warning data value corresponding to the key.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "message": {
+              "description": "[Output Only] A human-readable description of the warning code.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "AliasNetworkEndpointStatus": {
+      "description": "Represents the current status of the AliasNetworkEndpoint.",
+      "id": "AliasNetworkEndpointStatus",
+      "properties": {
+        "network": {
+          "description": "Output only. [Output Only] The URL of the network that this alias network endpoint\nbelongs to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. [Output Only] The state of the alias network endpoint.",
+          "enum": [
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "STATE_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "The endpoint is active and ready to process traffic.",
+            "The endpoint is being created.",
+            "The endpoint is being deleted.",
+            "Unspecified state."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -57074,6 +57612,12 @@
             "MEMORY_OPTIMIZED_X4_480_8T",
             "MEMORY_OPTIMIZED_X4_960_12T",
             "MEMORY_OPTIMIZED_X4_960_16T",
+            "MEMORY_OPTIMIZED_X5_1376_24T",
+            "MEMORY_OPTIMIZED_X5_1376_32T",
+            "MEMORY_OPTIMIZED_X5_2064_48T",
+            "MEMORY_OPTIMIZED_X5_2752_64T",
+            "MEMORY_OPTIMIZED_X5_688_12T",
+            "MEMORY_OPTIMIZED_X5_688_16T",
             "NETWORK_OPTIMIZED_C4N",
             "NETWORK_OPTIMIZED_U4C",
             "NETWORK_OPTIMIZED_U4P",
@@ -57125,6 +57669,12 @@
             "CUD bucket for X4 machine with 480 vCPUs and 8TB of memory.",
             "CUD bucket for X4 machine with 960 vCPUs and 12TB of memory.",
             "CUD bucket for X4 machine with 960 vCPUs and 16TB of memory.",
+            "CUD bucket for X5 machine with 1376 vCPUs and 24TB of memory.",
+            "CUD bucket for X5 machine with 1376 vCPUs and 32TB of memory.",
+            "CUD bucket for X5 machine with 2064 vCPUs and 48TB of memory.",
+            "CUD bucket for X5 machine with 2752 vCPUs and 64TB of memory.",
+            "CUD bucket for X5 machine with 688 vCPUs and 12TB of memory.",
+            "CUD bucket for X5 machine with 688 vCPUs and 16TB of memory.",
             "CUD bucket for C4N (dual Diorite) machines.",
             "CUD bucket for NETWORK_OPTIMIZED_U4C machines.",
             "CUD bucket for NETWORK_OPTIMIZED_U4P machines.",
@@ -65207,6 +65757,10 @@
           "$ref": "HaControllerNetworkingAutoConfiguration",
           "description": "Basic networking configuration. Required backend services and forwarding\nrules will be automatically created with default parameters."
         },
+        "params": {
+          "$ref": "HaControllerParams",
+          "description": "Input only. Additional parameters passed with the request, but not persisted as part\nof the resource. Both `params: null` and `params: {}` are treated\nidentically as a no-op."
+        },
         "region": {
           "description": "Output only. [Output Only] URL of the region where the resource resides.\nYou must specify this field as part of the HTTP request URL.\nIt is not settable as a field in the request body.",
           "readOnly": true,
@@ -65270,6 +65824,21 @@
       },
       "type": "object"
     },
+    "HaControllerInstanceNetworkInterface": {
+      "description": "The network interface configuration of the VM instance.",
+      "id": "HaControllerInstanceNetworkInterface",
+      "properties": {
+        "ipv6Address": {
+          "description": "Optional. Optional IPv6 address to assign to the instance's network interface.\nIf omitted, an ephemeral IP may be assigned depending on the instance's\nnetwork interface stack type.",
+          "type": "string"
+        },
+        "networkIP": {
+          "description": "Optional. Optional IPv4 address to assign to the instance's network interface.\nIf omitted, an ephemeral IP may be assigned depending on the instance's\nnetwork interface stack type.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "HaControllerNetworkingAutoConfiguration": {
       "description": "Basic networking configuration. Required backend services and forwarding\nrules will be automatically created with default parameters.",
       "id": "HaControllerNetworkingAutoConfiguration",
@@ -65305,6 +65874,17 @@
             "The HA Controller Networking Endpoint will only be assigned with IPv6\naddress."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "HaControllerParams": {
+      "description": "Additional HA Controller params.",
+      "id": "HaControllerParams",
+      "properties": {
+        "migrateDisksToRegional": {
+          "description": "Specifies whether to automatically migrate all disks of an instance from\nzonal to regional before attempting to create the HaController.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -65560,6 +66140,13 @@
       "description": "Config for a zone that the HaController may use for running the VM\ninstance.",
       "id": "HaControllerZoneConfiguration",
       "properties": {
+        "instanceNetworkInterfaces": {
+          "additionalProperties": {
+            "$ref": "HaControllerInstanceNetworkInterface"
+          },
+          "description": "Optional. The network interface configuration of a VM instance in this zone,\nkeyed by the name of the network interface. A VM network interface\nuses the nicN naming format, where N is a\nvalue between 0 and 7. The default interface\nis nic0. Use this field to choose the internal IP\naddresses of the VM instance in this zone instead of letting Compute\nEngine assign them automatically.\n   \n   \n      - Each key must be a name of a network interface that exists on\n      the VM instance. Otherwise, the request fails.\n      - Network interfaces that are omitted are assigned an ephemeral\n      internal IP address.\n      - Every zone must configure the same network interfaces and the\n      same IP address families.\n      - For the zone that currently holds the VM instance, this field\n      is populated automatically, and any addresses you specify must\n      match the instance's current addresses.\n      - Only internal IP addresses are supported, and this field can\n      only be set when the HA Controller is created.",
+          "type": "object"
+        },
         "nodeAffinities": {
           "description": "A set of node affinity configurations. Refer toConfiguring node\naffinity for more information.\nOverrides reservationAffinity.",
           "items": {
@@ -83794,6 +84381,10 @@
           "description": "The URL of the network to which all network endpoints in the NEG belong.\nFor networkEndpointType GCE_VM_IP_PORT,GCE_VM_IP_PORTMAP or NON_GCP_PRIVATE_IP_PORT,\nif this field is not specified, a default network will be used.\nThis field cannot be set for NEGs with networkEndpointType set toSERVERLESS or PRIVATE_SERVICE_CONNECT and for\nglobal NEGs.\nFor all other network endpoint types, this field is required.",
           "type": "string"
         },
+        "networkAttachment": {
+          "description": "Optional. The URL of the network attachment that this resource\nbelongs to.projects/{project}/regions/{region_name}/networkAttachments/{network_attachment_name}.",
+          "type": "string"
+        },
         "networkEndpointType": {
           "description": "Type of network endpoints in this network endpoint group. Can be one ofGCE_VM_IP, GCE_VM_IP_PORT,NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT,INTERNET_IP_PORT, SERVERLESS,PRIVATE_SERVICE_CONNECT, GCE_VM_IP_PORTMAP.",
           "enum": [
@@ -83836,6 +84427,10 @@
         "selfLink": {
           "description": "Output only. [Output Only] Server-defined URL for the resource.",
           "readOnly": true,
+          "type": "string"
+        },
+        "serviceClassId": {
+          "description": "Optional. The service class ID associated with this resource.\nCan only be used with network_attachment. It is not possible to\nuse on its own; however, network_attachment can be used without\nservice_class_id.",
           "type": "string"
         },
         "size": {
@@ -98024,6 +98619,21 @@
           "readOnly": true,
           "type": "string"
         },
+        "protectionTier": {
+          "description": "Output only. Protection tier for the workload which specifies the workload\nexpectations in the event of infrastructure failures at data center\n(e.g. power and/or cooling failures).",
+          "enum": [
+            "PROTECTION_TIER_CAPACITY_OPTIMIZED",
+            "PROTECTION_TIER_STANDARD",
+            "PROTECTION_TIER_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "CAPACITY_OPTIMIZED capacity leverages redundancies (e.g. power,\ncooling) at the data center during normal operating conditions. In the\nevent of infrastructure failures at data center (e.g. power and/or\ncooling failures), this workload may be disrupted. As a consequence, it\nhas a weaker availability SLO than STANDARD.",
+            "STANDARD protection for workload that should be protected by\nredundancies (e.g. power, cooling) at the data center level. In the\nevent of infrastructure failures at data center (e.g. power and/or\ncooling failures), this workload is expected to continue as normal\nusing the redundancies.",
+            "Unspecified protection tier."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "terminationTimestamp": {
           "description": "Time in future when the instance will be terminated inRFC3339 text format.",
           "type": "string"
@@ -101987,6 +102597,20 @@
         "preemptionNoticeDuration": {
           "$ref": "Duration",
           "description": "Specifies the Metadata Service preemption notice duration before the GCE ACPI G2\nSoft Off signal is triggered for Spot VMs only. If not specified,\nthere will be no wait before the G2 Soft Off signal is triggered."
+        },
+        "protectionTier": {
+          "description": "Protection tier for the workload which specifies the workload\nexpectations in the event of infrastructure failures at data center\n(e.g. power and/or cooling failures).",
+          "enum": [
+            "PROTECTION_TIER_CAPACITY_OPTIMIZED",
+            "PROTECTION_TIER_STANDARD",
+            "PROTECTION_TIER_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "CAPACITY_OPTIMIZED capacity leverages redundancies (e.g. power,\ncooling) at the data center during normal operating conditions. In the\nevent of infrastructure failures at data center (e.g. power and/or\ncooling failures), this workload may be disrupted. As a consequence, it\nhas a weaker availability SLO than STANDARD.",
+            "STANDARD protection for workload that should be protected by\nredundancies (e.g. power, cooling) at the data center level. In the\nevent of infrastructure failures at data center (e.g. power and/or\ncooling failures), this workload is expected to continue as normal\nusing the redundancies.",
+            "Unspecified protection tier."
+          ],
+          "type": "string"
         },
         "provisioningModel": {
           "description": "Specifies the provisioning model of the instance.",
@@ -113183,6 +113807,7 @@
           "description": "The reasons for the maintenance. Only valid for vms.",
           "items": {
             "enum": [
+              "FAILURE_CUSTOMER_REPORTED",
               "FAILURE_DISK",
               "FAILURE_GPU",
               "FAILURE_GPU_MULTIPLE_FAULTY_HOSTS_CUSTOMER_REPORTED",
@@ -113202,6 +113827,7 @@
               "PLANNED_UPDATE"
             ],
             "enumDescriptions": [
+              "Maintenance due to a fault reported by the customer via the R&R\n(Report-and-Replace) API.",
               "Maintenance due to disk errors.",
               "Maintenance due to GPU errors.",
               "Maintenance due to customer reported multiple faulty hosts via R&R\nSubblock API.",
@@ -117000,13 +117626,11 @@
           "description": "The flow management configuration for the wire.",
           "enum": [
             "DYNAMIC_PATH",
-            "FIXED_PATH",
-            "FLOW_MANAGEMENT_UNSPECIFIED"
+            "FIXED_PATH"
           ],
           "enumDescriptions": [
             "The wire uses dynamic paths.",
-            "The wire uses fixed paths.",
-            ""
+            "The wire uses fixed paths."
           ],
           "type": "string"
         }

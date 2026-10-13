@@ -26182,56 +26182,6 @@
         }
       }
     },
-    "orgVmExtensionPolicies": {
-      "methods": {
-        "delete": {
-          "description": "Deletes a specified zone VM extension policy within an organization.",
-          "flatPath": "organizations/{organizationsId}/zones/{zone}/vmExtensionPolicies/{vmExtensionPolicy}",
-          "httpMethod": "DELETE",
-          "id": "compute.orgVmExtensionPolicies.delete",
-          "parameterOrder": [
-            "organization",
-            "zone",
-            "vmExtensionPolicy"
-          ],
-          "parameters": {
-            "organization": {
-              "description": "Organization ID for this request.",
-              "location": "path",
-              "pattern": "organizations/[0-9]{0,20}",
-              "required": true,
-              "type": "string"
-            },
-            "requestId": {
-              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
-              "location": "query",
-              "type": "string"
-            },
-            "vmExtensionPolicy": {
-              "description": "Name of the zone VM extension policy to delete.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "zone": {
-              "description": "Name of the zone for this request.",
-              "location": "path",
-              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "{+organization}/zones/{zone}/vmExtensionPolicies/{vmExtensionPolicy}",
-          "response": {
-            "$ref": "Operation"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/compute"
-          ]
-        }
-      }
-    },
     "organizationGlobalVmExtensionPolicies": {
       "methods": {
         "aggregatedList": {
@@ -27723,6 +27673,52 @@
     },
     "organizationZoneVmExtensionPolicies": {
       "methods": {
+        "delete": {
+          "description": "Deletes a specified zone VM extension policy within an organization.",
+          "flatPath": "organizations/{organizationsId}/zones/{zone}/vmExtensionPolicies/{vmExtensionPolicy}",
+          "httpMethod": "DELETE",
+          "id": "compute.organizationZoneVmExtensionPolicies.delete",
+          "parameterOrder": [
+            "organization",
+            "zone",
+            "vmExtensionPolicy"
+          ],
+          "parameters": {
+            "organization": {
+              "description": "Organization ID for this request.",
+              "location": "path",
+              "pattern": "organizations/[0-9]{0,20}",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "vmExtensionPolicy": {
+              "description": "Name of the zone VM extension policy to delete.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "Name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{+organization}/zones/{zone}/vmExtensionPolicies/{vmExtensionPolicy}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
         "get": {
           "description": "Retrieves details of a specific zone VM extension policy within an\norganization.",
           "flatPath": "organizations/{organizationsId}/zones/{zone}/vmExtensionPolicies/{vmExtensionPolicy}",
@@ -58444,7 +58440,7 @@
       }
     }
   },
-  "revision": "20260922",
+  "revision": "20261007",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -81104,11 +81100,13 @@
         "localSsdEncryptionMode": {
           "description": "Specifies which method should be used for encrypting the\nLocal SSDs attached to the VM.",
           "enum": [
+            "CMEK_ENCRYPTION",
             "EPHEMERAL_KEY_ENCRYPTION",
             "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED",
             "STANDARD_ENCRYPTION"
           ],
           "enumDescriptions": [
+            "The given VM will use customer-managed encryption keys for\nencryption of Local SSDs.",
             "The given VM will opt-in for using ephemeral key for\nencryption of Local SSDs.\nThe Local SSDs will not be able to recover data in case of VM\ncrash.",
             "The given VM will be encrypted using keys managed by the cloud\ninfrastructure and the keys will be deleted when the VM is\ndeleted.",
             "The given VM will be encrypted using keys managed by the cloud\ninfrastructure and the keys will be deleted when the VM is\ndeleted."
@@ -85687,11 +85685,13 @@
         "localSsdEncryptionMode": {
           "description": "Specifies which method should be used for encrypting the\nLocal SSDs attached to the VM.",
           "enum": [
+            "CMEK_ENCRYPTION",
             "EPHEMERAL_KEY_ENCRYPTION",
             "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED",
             "STANDARD_ENCRYPTION"
           ],
           "enumDescriptions": [
+            "The given VM will use customer-managed encryption keys for\nencryption of Local SSDs.",
             "The given VM will opt-in for using ephemeral key for\nencryption of Local SSDs.\nThe Local SSDs will not be able to recover data in case of VM\ncrash.",
             "The given VM will be encrypted using keys managed by the cloud\ninfrastructure and the keys will be deleted when the VM is\ndeleted.",
             "The given VM will be encrypted using keys managed by the cloud\ninfrastructure and the keys will be deleted when the VM is\ndeleted."
