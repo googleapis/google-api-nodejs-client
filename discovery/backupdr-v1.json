@@ -2725,7 +2725,7 @@
       }
     }
   },
-  "revision": "20260918",
+  "revision": "20261002",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -3906,7 +3906,8 @@
             "ACTIVE",
             "DELETING",
             "INACTIVE",
-            "UPDATING"
+            "UPDATING",
+            "PAUSED"
           ],
           "enumDescriptions": [
             "State not set.",
@@ -3914,7 +3915,8 @@
             "The resource has been created and is fully usable.",
             "The resource is being deleted.",
             "The resource has been created but is not usable.",
-            "The resource is being updated."
+            "The resource is being updated.",
+            "The resource has been created but backups are paused."
           ],
           "readOnly": true,
           "type": "string"
@@ -4686,12 +4688,14 @@
           "enum": [
             "BACKUP_CONFIG_STATE_UNSPECIFIED",
             "ACTIVE",
-            "PASSIVE"
+            "PASSIVE",
+            "PAUSED"
           ],
           "enumDescriptions": [
             "The possible states of backup configuration. Status not set.",
             "The data source is actively protected (i.e. there is a BackupPlanAssociation or Appliance SLA pointing to it)",
-            "The data source is no longer protected (but may have backups under it)"
+            "The data source is no longer protected (but may have backups under it)",
+            "The data source has been created but backups are paused"
           ],
           "readOnly": true,
           "type": "string"
@@ -4934,12 +4938,14 @@
           "enum": [
             "BACKUP_CONFIG_STATE_UNSPECIFIED",
             "ACTIVE",
-            "PASSIVE"
+            "PASSIVE",
+            "PAUSED"
           ],
           "enumDescriptions": [
             "The possible states of backup configuration. Status not set.",
             "The data source is actively protected (i.e. there is a BackupPlanAssociation or Appliance SLA pointing to it)",
-            "The data source is no longer protected (but may have backups under it)"
+            "The data source is no longer protected (but may have backups under it)",
+            "The data source has been created but backups are paused"
           ],
           "readOnly": true,
           "type": "string"
@@ -6995,12 +7001,14 @@
           "enum": [
             "BACKUP_CONFIG_STATE_UNSPECIFIED",
             "ACTIVE",
-            "PASSIVE"
+            "PASSIVE",
+            "PAUSED"
           ],
           "enumDescriptions": [
             "The possible states of backup configuration. Status not set.",
             "The data source is actively protected (i.e. there is a BackupPlanAssociation or Appliance SLA pointing to it)",
-            "The data source is no longer protected (but may have backups under it)"
+            "The data source is no longer protected (but may have backups under it)",
+            "The data source has been created but backups are paused"
           ],
           "readOnly": true,
           "type": "string"
