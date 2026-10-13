@@ -215,9 +215,50 @@ export namespace agentregistry_v1alpha {
      */
     content?: {[key: string]: any} | null;
     /**
-     * Required. The type of the agent spec content.
+     * Required. Immutable. The type of the agent spec content.
      */
     type?: string | null;
+  }
+  /**
+   * Represents an AI Application.
+   */
+  export interface Schema$AiApplication {
+    /**
+     * Output only. Properties of an underlying cloud resource that can comprise an AI Application.
+     */
+    applicationProperties?: Schema$ApplicationProperties;
+    /**
+     * Optional. Consumer provided attributes.
+     */
+    attributes?: Schema$Attributes;
+    /**
+     * Output only. Creation time.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. User-defined description of the AI Application.
+     */
+    description?: string | null;
+    /**
+     * Optional. User-defined name for the AI Application.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. Resource name of the AI Application. Format: `projects/{project\}/locations/{location\}/aiApplications/{ai_application\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The current state of the AI Application.
+     */
+    state?: string | null;
+    /**
+     * Output only. Universally unique identifier (UUID4) for the AI Application.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Last update time.
+     */
+    updateTime?: string | null;
   }
   /**
    * Annotations describing the characteristics and behavior of a tool or operation.
@@ -245,6 +286,15 @@ export namespace agentregistry_v1alpha {
     title?: string | null;
   }
   /**
+   * Additional system properties of an Application.
+   */
+  export interface Schema$ApplicationProperties {
+    /**
+     * Output only. Additional metadata specific to the App Hub application. The key is a string that identifies the type of metadata and the value is the metadata contents specific to that type. Key format: `apphub.googleapis.com/{metadataType\}`
+     */
+    extendedMetadata?: {[key: string]: Schema$ExtendedMetadata} | null;
+  }
+  /**
    * Direct write-only raw archive payload upload.
    */
   export interface Schema$ArchiveUploadSource {
@@ -252,6 +302,31 @@ export namespace agentregistry_v1alpha {
      * Required. Input only. Write-only raw ZIP/TAR archive payload bytes containing the skill package.
      */
     archiveContent?: string | null;
+  }
+  /**
+   * Consumer provided attributes.
+   */
+  export interface Schema$Attributes {
+    /**
+     * Optional. Business team that ensures user needs are met and value is delivered
+     */
+    businessOwners?: Schema$ContactInfo[];
+    /**
+     * Optional. User-defined criticality information.
+     */
+    criticality?: Schema$Criticality;
+    /**
+     * Optional. Developer team that owns development and coding.
+     */
+    developerOwners?: Schema$ContactInfo[];
+    /**
+     * Optional. User-defined environment information.
+     */
+    environment?: Schema$Environment;
+    /**
+     * Optional. Operator team that ensures runtime and operations.
+     */
+    operatorOwners?: Schema$ContactInfo[];
   }
   /**
    * The AuthProvider of the Binding.
@@ -295,7 +370,7 @@ export namespace agentregistry_v1alpha {
      */
     name?: string | null;
     /**
-     * Required. The target Agent of the Binding.
+     * Optional. The source Agent of the Binding.
      */
     source?: Schema$Source;
     /**
@@ -321,6 +396,49 @@ export namespace agentregistry_v1alpha {
     content?: {[key: string]: any} | null;
     /**
      * Output only. The type of agent card.
+     */
+    type?: string | null;
+  }
+  /**
+   * Separate message to accommodate custom formats across IRC and Slack.
+   */
+  export interface Schema$Channel {
+    /**
+     * Required. URI of the channel.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Contact information of stakeholders.
+   */
+  export interface Schema$ContactInfo {
+    /**
+     * Optional. Communication channel of the contacts.
+     */
+    channel?: Schema$Channel;
+    /**
+     * Optional. Contact's name. Can have a maximum length of 63 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Required. Email address of the contacts.
+     */
+    email?: string | null;
+  }
+  /**
+   * Criticality of the Application, Service, or Workload
+   */
+  export interface Schema$Criticality {
+    /**
+     * Optional. Criticality level. Can contain only lowercase letters, numeric characters, underscores, and dashes. Can have a maximum length of 63 characters. Deprecated: Please refer to type instead.
+     */
+    level?: string | null;
+    /**
+     * Optional. Indicates mission-critical Application, Service, or Workload. Deprecated: Please refer to type instead.
+     */
+    missionCritical?: boolean | null;
+    /**
+     * Required. Criticality Type.
      */
     type?: string | null;
   }
@@ -374,7 +492,20 @@ export namespace agentregistry_v1alpha {
      */
     content?: {[key: string]: any} | null;
     /**
-     * Required. The type of the endpoint spec content.
+     * Required. Immutable. The type of the endpoint spec content.
+     */
+    type?: string | null;
+  }
+  /**
+   * Environment of the Application, Service, or Workload
+   */
+  export interface Schema$Environment {
+    /**
+     * Optional. Environment name. Can contain only lowercase letters, numeric characters, underscores, and dashes. Can have a maximum length of 63 characters. Deprecated: Please refer to type instead.
+     */
+    environment?: string | null;
+    /**
+     * Required. Environment Type.
      */
     type?: string | null;
   }
@@ -398,6 +529,15 @@ export namespace agentregistry_v1alpha {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * Additional metadata for a Service or Workload.
+   */
+  export interface Schema$ExtendedMetadata {
+    /**
+     * Output only. The metadata contents.
+     */
+    metadataStruct?: {[key: string]: any} | null;
   }
   /**
    * Message for response to fetching available Bindings.
@@ -570,6 +710,62 @@ export namespace agentregistry_v1alpha {
      * A token identifying a page of results the server should return.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Message for response to listing Agents under an AI Application.
+   */
+  export interface Schema$ListAiApplicationAgentsResponse {
+    /**
+     * The list of Agents.
+     */
+    agents?: Schema$Agent[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Message for response to listing Endpoints under an AI Application.
+   */
+  export interface Schema$ListAiApplicationEndpointsResponse {
+    /**
+     * The list of Endpoints.
+     */
+    endpoints?: Schema$Endpoint[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Message for response to listing McpServers under an AI Application.
+   */
+  export interface Schema$ListAiApplicationMcpServersResponse {
+    /**
+     * The list of McpServers.
+     */
+    mcpServers?: Schema$McpServer[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Message for response to listing AiApplications.
+   */
+  export interface Schema$ListAiApplicationsResponse {
+    /**
+     * The list of AiApplications.
+     */
+    aiApplications?: Schema$AiApplication[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unordered list. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Message for response to listing Bindings
@@ -771,7 +967,7 @@ export namespace agentregistry_v1alpha {
      */
     content?: {[key: string]: any} | null;
     /**
-     * Required. The type of the MCP Server spec content.
+     * Required. Immutable. The type of the MCP Server spec content.
      */
     type?: string | null;
   }
@@ -892,7 +1088,7 @@ export namespace agentregistry_v1alpha {
      */
     pageToken?: string | null;
     /**
-     * Optional. Search criteria used to select the Agents to return. If no search criteria is specified then all accessible Agents will be returned. Search expressions can be used to restrict results based upon searchable fields, where the operators can be used along with the suffix wildcard symbol `*`. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `:`, `NOT`, `AND`, `OR`, and `()`. Searchable fields: | Field | `=` | `:` | `*` | Keyword Search | |--------------------|-----|-----|-----|----------------| | agentId | Yes | Yes | Yes | Included | | name | No | Yes | Yes | Included | | displayName | No | Yes | Yes | Included | | description | No | Yes | No | Included | | skills | No | Yes | No | Included | | skills.id | No | Yes | No | Included | | skills.name | No | Yes | No | Included | | skills.description | No | Yes | No | Included | | skills.tags | No | Yes | No | Included | | skills.examples | No | Yes | No | Included | Examples: * `agentId="urn:agent:projects-123:projects:123:locations:us-central1:reasoningEngines:1234"` to find the agent with the specified agent ID. * `name:important` to find agents whose name contains `important` as a word. * `displayName:works*` to find agents whose display name contains words that start with `works`. * `skills.tags:test` to find agents whose skills tags contain `test`. * `planner OR booking` to find agents whose metadata contains the words `planner` or `booking`.
+     * Optional. Search criteria used to select the Agents to return. If no search criteria is specified then all accessible Agents will be returned. Search expressions can be used to restrict results based upon searchable fields, where the operators can be used along with the suffix wildcard symbol `*`. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `:`, `NOT`, `AND`, `OR`, and `()`. Searchable fields: | Field | `=` | `:` | `*` | Keyword Search | |--------------------|-----|-----|-----|----------------| | agentId | Yes | Yes | Yes | Included | | name | No | Yes | Yes | Included | | displayName | No | Yes | Yes | Included | | description | No | Yes | No | Included | | skills | No | Yes | No | Included | | skills.id | No | Yes | No | Included | | skills.name | No | Yes | No | Included | | skills.description | No | Yes | No | Included | | skills.tags | No | Yes | No | Included | | skills.examples | No | Yes | No | Included | Examples: * `agentId="urn:agent:projects-123:projects:123:locations:us-central1:aiplatform:reasoningEngines:1234"` to find the agent with the specified agent ID. * `name:important` to find agents whose name contains `important` as a word. * `displayName:works*` to find agents whose display name contains words that start with `works`. * `skills.tags:test` to find agents whose skills tags contain `test`. * `planner OR booking` to find agents whose metadata contains the words `planner` or `booking`.
      */
     searchString?: string | null;
   }
@@ -2026,8 +2222,167 @@ export namespace agentregistry_v1alpha {
 
   export class Resource$Projects$Locations$Aiapplications {
     context: APIRequestContext;
+    agents: Resource$Projects$Locations$Aiapplications$Agents;
+    endpoints: Resource$Projects$Locations$Aiapplications$Endpoints;
+    mcpServers: Resource$Projects$Locations$Aiapplications$Mcpservers;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.agents = new Resource$Projects$Locations$Aiapplications$Agents(
+        this.context
+      );
+      this.endpoints = new Resource$Projects$Locations$Aiapplications$Endpoints(
+        this.context
+      );
+      this.mcpServers =
+        new Resource$Projects$Locations$Aiapplications$Mcpservers(this.context);
+    }
+
+    /**
+     * Gets details of a single AI Application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/agentregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const agentregistry = google.agentregistry('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/agentregistry.read-only',
+     *       'https://www.googleapis.com/auth/agentregistry.read-write',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await agentregistry.projects.locations.aiApplications.get({
+     *     // Required. Target AI Application resource name. Format: `projects/{project\}/locations/{location\}/aiApplications/{ai_application\}`
+     *     name: 'projects/my-project/locations/my-location/aiApplications/my-aiApplication',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationProperties": {},
+     *   //   "attributes": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Aiapplications$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Aiapplications$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AiApplication>>;
+    get(
+      params: Params$Resource$Projects$Locations$Aiapplications$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Aiapplications$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AiApplication>,
+      callback: BodyResponseCallback<Schema$AiApplication>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Aiapplications$Get,
+      callback: BodyResponseCallback<Schema$AiApplication>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AiApplication>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aiapplications$Get
+        | BodyResponseCallback<Schema$AiApplication>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AiApplication>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AiApplication>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AiApplication>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aiapplications$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Aiapplications$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://agentregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AiApplication>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AiApplication>(parameters);
+      }
     }
 
     /**
@@ -2180,6 +2535,162 @@ export namespace agentregistry_v1alpha {
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists AI Applications in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/agentregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const agentregistry = google.agentregistry('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/agentregistry.read-only',
+     *       'https://www.googleapis.com/auth/agentregistry.read-write',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await agentregistry.projects.locations.aiApplications.list({
+     *     // Optional. Filtering results.
+     *     filter: 'placeholder-value',
+     *     // Optional. Hint for how to order the results.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Parent project and location to query. Format: `projects/{project\}/locations/{location\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aiApplications": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Aiapplications$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Aiapplications$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAiApplicationsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Aiapplications$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Aiapplications$List,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$ListAiApplicationsResponse>,
+      callback: BodyResponseCallback<Schema$ListAiApplicationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Aiapplications$List,
+      callback: BodyResponseCallback<Schema$ListAiApplicationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAiApplicationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aiapplications$List
+        | BodyResponseCallback<Schema$ListAiApplicationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAiApplicationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAiApplicationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAiApplicationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aiapplications$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Aiapplications$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://agentregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/aiApplications').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAiApplicationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAiApplicationsResponse>(parameters);
       }
     }
 
@@ -2506,6 +3017,12 @@ export namespace agentregistry_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Aiapplications$Get extends StandardParameters {
+    /**
+     * Required. Target AI Application resource name. Format: `projects/{project\}/locations/{location\}/aiApplications/{ai_application\}`
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Aiapplications$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
@@ -2515,6 +3032,28 @@ export namespace agentregistry_v1alpha {
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Aiapplications$List extends StandardParameters {
+    /**
+     * Optional. Filtering results.
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent project and location to query. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Aiapplications$Setiampolicy extends StandardParameters {
     /**
@@ -2537,6 +3076,1019 @@ export namespace agentregistry_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleIamV1TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Aiapplications$Agents {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details of a single Agent under an AI Application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/agentregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const agentregistry = google.agentregistry('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/agentregistry.read-only',
+     *       'https://www.googleapis.com/auth/agentregistry.read-write',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await agentregistry.projects.locations.aiApplications.agents.get({
+     *     // Required. Name of the resource. Format: `projects/{project\}/locations/{location\}/aiApplications/{ai_application\}/agents/{agent\}`
+     *     name: 'projects/my-project/locations/my-location/aiApplications/my-aiApplication/agents/my-agent',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "agentId": "my_agentId",
+     *   //   "attributes": {},
+     *   //   "card": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "protocols": [],
+     *   //   "skills": [],
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Aiapplications$Agents$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Aiapplications$Agents$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Agent>>;
+    get(
+      params: Params$Resource$Projects$Locations$Aiapplications$Agents$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Aiapplications$Agents$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Agent>,
+      callback: BodyResponseCallback<Schema$Agent>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Aiapplications$Agents$Get,
+      callback: BodyResponseCallback<Schema$Agent>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Agent>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aiapplications$Agents$Get
+        | BodyResponseCallback<Schema$Agent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Agent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Agent> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Agent>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aiapplications$Agents$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Aiapplications$Agents$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://agentregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Agent>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Agent>(parameters);
+      }
+    }
+
+    /**
+     * Lists Agents under an AI Application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/agentregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const agentregistry = google.agentregistry('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/agentregistry.read-only',
+     *       'https://www.googleapis.com/auth/agentregistry.read-write',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await agentregistry.projects.locations.aiApplications.agents.list(
+     *     {
+     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A token identifying a page of results the server should return.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Parent value (AI Application) for ListAiApplicationAgentsRequest. Format: `projects/{project\}/locations/{location\}/aiApplications/{ai_application\}`
+     *       parent:
+     *         'projects/my-project/locations/my-location/aiApplications/my-aiApplication',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "agents": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Aiapplications$Agents$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Aiapplications$Agents$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAiApplicationAgentsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Aiapplications$Agents$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Aiapplications$Agents$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAiApplicationAgentsResponse>,
+      callback: BodyResponseCallback<Schema$ListAiApplicationAgentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Aiapplications$Agents$List,
+      callback: BodyResponseCallback<Schema$ListAiApplicationAgentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAiApplicationAgentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aiapplications$Agents$List
+        | BodyResponseCallback<Schema$ListAiApplicationAgentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAiApplicationAgentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAiApplicationAgentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAiApplicationAgentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aiapplications$Agents$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Aiapplications$Agents$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://agentregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/agents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAiApplicationAgentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAiApplicationAgentsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Aiapplications$Agents$Get extends StandardParameters {
+    /**
+     * Required. Name of the resource. Format: `projects/{project\}/locations/{location\}/aiApplications/{ai_application\}/agents/{agent\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Aiapplications$Agents$List extends StandardParameters {
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value (AI Application) for ListAiApplicationAgentsRequest. Format: `projects/{project\}/locations/{location\}/aiApplications/{ai_application\}`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Aiapplications$Endpoints {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details of a single Endpoint under an AI Application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/agentregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const agentregistry = google.agentregistry('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/agentregistry.read-only',
+     *       'https://www.googleapis.com/auth/agentregistry.read-write',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await agentregistry.projects.locations.aiApplications.endpoints.get({
+     *       // Required. Name of the resource. Format: `projects/{project\}/locations/{location\}/aiApplications/{ai_application\}/endpoints/{endpoint\}`
+     *       name: 'projects/my-project/locations/my-location/aiApplications/my-aiApplication/endpoints/my-endpoint',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "endpointId": "my_endpointId",
+     *   //   "interfaces": [],
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Aiapplications$Endpoints$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Aiapplications$Endpoints$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Endpoint>>;
+    get(
+      params: Params$Resource$Projects$Locations$Aiapplications$Endpoints$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Aiapplications$Endpoints$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Endpoint>,
+      callback: BodyResponseCallback<Schema$Endpoint>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Aiapplications$Endpoints$Get,
+      callback: BodyResponseCallback<Schema$Endpoint>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Endpoint>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aiapplications$Endpoints$Get
+        | BodyResponseCallback<Schema$Endpoint>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Endpoint>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Endpoint> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Endpoint>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aiapplications$Endpoints$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Aiapplications$Endpoints$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://agentregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Endpoint>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Endpoint>(parameters);
+      }
+    }
+
+    /**
+     * Lists Endpoints under an AI Application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/agentregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const agentregistry = google.agentregistry('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/agentregistry.read-only',
+     *       'https://www.googleapis.com/auth/agentregistry.read-write',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await agentregistry.projects.locations.aiApplications.endpoints.list({
+     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A token identifying a page of results the server should return.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Parent value (AI Application) for ListAiApplicationEndpointsRequest. Format: `projects/{project\}/locations/{location\}/aiApplications/{ai_application\}`
+     *       parent:
+     *         'projects/my-project/locations/my-location/aiApplications/my-aiApplication',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endpoints": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Aiapplications$Endpoints$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Aiapplications$Endpoints$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListAiApplicationEndpointsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Aiapplications$Endpoints$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Aiapplications$Endpoints$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAiApplicationEndpointsResponse>,
+      callback: BodyResponseCallback<Schema$ListAiApplicationEndpointsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Aiapplications$Endpoints$List,
+      callback: BodyResponseCallback<Schema$ListAiApplicationEndpointsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAiApplicationEndpointsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aiapplications$Endpoints$List
+        | BodyResponseCallback<Schema$ListAiApplicationEndpointsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAiApplicationEndpointsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAiApplicationEndpointsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListAiApplicationEndpointsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aiapplications$Endpoints$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Aiapplications$Endpoints$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://agentregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/endpoints').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAiApplicationEndpointsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAiApplicationEndpointsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Aiapplications$Endpoints$Get extends StandardParameters {
+    /**
+     * Required. Name of the resource. Format: `projects/{project\}/locations/{location\}/aiApplications/{ai_application\}/endpoints/{endpoint\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Aiapplications$Endpoints$List extends StandardParameters {
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value (AI Application) for ListAiApplicationEndpointsRequest. Format: `projects/{project\}/locations/{location\}/aiApplications/{ai_application\}`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Aiapplications$Mcpservers {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details of a single McpServer under an AI Application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/agentregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const agentregistry = google.agentregistry('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/agentregistry.read-only',
+     *       'https://www.googleapis.com/auth/agentregistry.read-write',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await agentregistry.projects.locations.aiApplications.mcpServers.get({
+     *       // Required. Name of the resource. Format: `projects/{project\}/locations/{location\}/aiApplications/{ai_application\}/mcpServers/{mcp_server\}`
+     *       name: 'projects/my-project/locations/my-location/aiApplications/my-aiApplication/mcpServers/my-mcpServer',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "interfaces": [],
+     *   //   "mcpServerId": "my_mcpServerId",
+     *   //   "name": "my_name",
+     *   //   "tools": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Aiapplications$Mcpservers$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Aiapplications$Mcpservers$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$McpServer>>;
+    get(
+      params: Params$Resource$Projects$Locations$Aiapplications$Mcpservers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Aiapplications$Mcpservers$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$McpServer>,
+      callback: BodyResponseCallback<Schema$McpServer>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Aiapplications$Mcpservers$Get,
+      callback: BodyResponseCallback<Schema$McpServer>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$McpServer>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aiapplications$Mcpservers$Get
+        | BodyResponseCallback<Schema$McpServer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$McpServer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$McpServer> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$McpServer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aiapplications$Mcpservers$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Aiapplications$Mcpservers$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://agentregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$McpServer>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$McpServer>(parameters);
+      }
+    }
+
+    /**
+     * Lists McpServers under an AI Application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/agentregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const agentregistry = google.agentregistry('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/agentregistry.read-only',
+     *       'https://www.googleapis.com/auth/agentregistry.read-write',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await agentregistry.projects.locations.aiApplications.mcpServers.list({
+     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A token identifying a page of results the server should return.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Parent value (AI Application) for ListAiApplicationMcpServersRequest. Format: `projects/{project\}/locations/{location\}/aiApplications/{ai_application\}`
+     *       parent:
+     *         'projects/my-project/locations/my-location/aiApplications/my-aiApplication',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "mcpServers": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Aiapplications$Mcpservers$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Aiapplications$Mcpservers$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListAiApplicationMcpServersResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Aiapplications$Mcpservers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Aiapplications$Mcpservers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAiApplicationMcpServersResponse>,
+      callback: BodyResponseCallback<Schema$ListAiApplicationMcpServersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Aiapplications$Mcpservers$List,
+      callback: BodyResponseCallback<Schema$ListAiApplicationMcpServersResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAiApplicationMcpServersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aiapplications$Mcpservers$List
+        | BodyResponseCallback<Schema$ListAiApplicationMcpServersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAiApplicationMcpServersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAiApplicationMcpServersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListAiApplicationMcpServersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aiapplications$Mcpservers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Aiapplications$Mcpservers$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://agentregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/mcpServers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAiApplicationMcpServersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAiApplicationMcpServersResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Aiapplications$Mcpservers$Get extends StandardParameters {
+    /**
+     * Required. Name of the resource. Format: `projects/{project\}/locations/{location\}/aiApplications/{ai_application\}/mcpServers/{mcp_server\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Aiapplications$Mcpservers$List extends StandardParameters {
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value (AI Application) for ListAiApplicationMcpServersRequest. Format: `projects/{project\}/locations/{location\}/aiApplications/{ai_application\}`
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Bindings {
