@@ -510,6 +510,153 @@
             }
           }
         },
+        "chromeBrowsers": {
+          "methods": {
+            "delete": {
+              "description": "Deletes the data collected from a Chrome browser profile.",
+              "flatPath": "v1/customers/{customersId}/chromeBrowsers/{chromeBrowsersId}",
+              "httpMethod": "DELETE",
+              "id": "chromemanagement.customers.chromeBrowsers.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Format: customers/{customer_id}/chromeBrowsers/{browser_permanent_id}",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/chromeBrowsers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              }
+            },
+            "get": {
+              "description": "Retrieves a single Chrome Browser identified by its customer ID and resource ID.",
+              "flatPath": "v1/customers/{customersId}/chromeBrowsers/{chromeBrowsersId}",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.chromeBrowsers.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Format: customers/{customer_id}/chromeBrowsers/{browser_permanent_id}",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/chromeBrowsers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleChromeManagementVersionsV1ChromeBrowser"
+              }
+            },
+            "list": {
+              "description": "Retrieves all Chrome Browsers of a customer (paginated).",
+              "flatPath": "v1/customers/{customersId}/chromeBrowsers",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.chromeBrowsers.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. The filter used to filter browsers. The following fields can be used in the filter: * `browser_permanent_id` * `last_policy_fetch_time` * `os_platform` * `os_architecture` * `os_version` * `machine_name` * `annotated_location` * `annotated_user` * `annotated_asset_id` * `annotated_note` * `org_unit_path` * `org_unit_id` * `last_registration_time` * `os_platform_version` * `browser_version` * `last_status_report_time` * `extension_count` * `policy_count` * `last_device_user` * `last_activity_time` * `device_id_collision` The following functions can be used in the filter: * `in_group(string)`: Filters browsers that belong to the specified Cloud Identity group resource name (e.g. `in_group(\"groups/{group_id}\")`). Any of the above fields or functions can be used to specify a filter, and filtering by multiple fields or functions is supported with AND operator. String type, Integer type fields and enum type fields support `=` and `:` operators. The timestamp type fields support `=`, `<=` and `>=` operators. Timestamps expect an RFC-3339 formatted string (e.g. 2012-04-21T11:30:00-04:00). Wildcard `*` is only supported for `machine_name`, `annotated_asset_id`, and `browser_version`. In addition, global string literal filtering without a field name is supported: a single term (e.g., `ABC`) matches if any indexed string field contains `ABC`, and multiple terms joined by `AND` or whitespace (e.g., `machine AND 73` or `machine 73`) match browsers where every term appears in at least one indexed string field (whereas a single quoted phrase like `\"machine 73\"` matches the contiguous phrase within a single field).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. The fields used to specify the ordering of the results. The supported fields are: * `browser_permanent_id` * `last_sync` * `annotated_user` * `annotated_location` * `annotated_asset_id` * `annotated_notes` * `org_unit_path` * `os_version` * `enrollment_date` * `extension_count` * `policy_count` * `last_signed_in_user` * `machine_name` * `browser_version_channel` * `os_platform_version` * `last_activity_time` * `browser_version` By default, sorting is in ascending order, to specify descending order for a field, a suffix ` desc` should be added to the field name. The default ordering is the descending order of `last_status_report_time`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Maximum number of results to return. Maximum and default are 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Token to specify next page in the list.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Format: customers/{customer_id}",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/chromeBrowsers",
+              "response": {
+                "$ref": "GoogleChromeManagementVersionsV1ListChromeBrowsersResponse"
+              }
+            },
+            "move": {
+              "description": "Moves managed Chrome Browsers to a new Organizational Unit (OU). If there is an error while moving any of the browsers, none of the browsers will be moved.",
+              "flatPath": "v1/customers/{customersId}/chromeBrowsers:move",
+              "httpMethod": "POST",
+              "id": "chromemanagement.customers.chromeBrowsers.move",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Format: customers/{customer_id}",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/chromeBrowsers:move",
+              "request": {
+                "$ref": "GoogleChromeManagementVersionsV1MoveChromeBrowsersRequest"
+              },
+              "response": {
+                "$ref": "GoogleChromeManagementVersionsV1MoveChromeBrowsersResponse"
+              }
+            },
+            "patch": {
+              "description": "Updates annotation information for a Chrome Browser.",
+              "flatPath": "v1/customers/{customersId}/chromeBrowsers/{chromeBrowsersId}",
+              "httpMethod": "PATCH",
+              "id": "chromemanagement.customers.chromeBrowsers.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. Format: customers/{customer_id}/chromeBrowsers/{browser_permanent_id}",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/chromeBrowsers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The update mask that can be used to specify which fields to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleChromeManagementVersionsV1ChromeBrowser"
+              },
+              "response": {
+                "$ref": "GoogleChromeManagementVersionsV1ChromeBrowser"
+              }
+            }
+          }
+        },
         "connectorConfigs": {
           "methods": {
             "create": {
@@ -648,6 +795,125 @@
               },
               "response": {
                 "$ref": "GoogleChromeManagementVersionsV1ConnectorConfig"
+              }
+            }
+          }
+        },
+        "enrollmentTokens": {
+          "methods": {
+            "create": {
+              "description": "Creates a new enrollment token for a browser device. Creation fails if there is already an active token for this customer under the same org unit.",
+              "flatPath": "v1/customers/{customersId}/enrollmentTokens",
+              "httpMethod": "POST",
+              "id": "chromemanagement.customers.enrollmentTokens.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "enrollmentTokenId": {
+                  "description": "Optional. The ID to use for the enrollment token, which will become the final component of the enrollment token's resource name. This value must be local-unique under the customer and is optional. If not provided, it will be auto-generated. If provided, it must be 1-63 characters long and match the regular expression `[a-zA-Z0-9._-]+`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent resource where this enrollment token will be created. Format: customers/{customer}",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/enrollmentTokens",
+              "request": {
+                "$ref": "GoogleChromeManagementVersionsV1EnrollmentToken"
+              },
+              "response": {
+                "$ref": "GoogleChromeManagementVersionsV1EnrollmentToken"
+              }
+            },
+            "get": {
+              "description": "Gets a browser device enrollment token.",
+              "flatPath": "v1/customers/{customersId}/enrollmentTokens/{enrollmentTokensId}",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.enrollmentTokens.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the enrollment token to retrieve. Format: customers/{customer}/enrollmentTokens/{token_permanent_id}",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/enrollmentTokens/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleChromeManagementVersionsV1EnrollmentToken"
+              }
+            },
+            "list": {
+              "description": "Lists all browser device enrollment tokens.",
+              "flatPath": "v1/customers/{customersId}/enrollmentTokens",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.enrollmentTokens.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. Filter to apply to list results. The following fields can be used in the filter: * device_type (currently only 'CHROME_BROWSER' is supported) * token_state (supported values: 'ACTIVE', 'EXPIRED', 'REVOKED') * org_unit_path The full path of the org unit, such as /Montreal/Sales. * org_unit_id The obfuscated id of the org unit, not the full path.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Maximum number of results to return. Maximum and default are 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Token to specify next page in the list.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent resource where this enrollment token will be created. Format: customers/{customer}",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/enrollmentTokens",
+              "response": {
+                "$ref": "GoogleChromeManagementVersionsV1ListEnrollmentTokensResponse"
+              }
+            },
+            "revoke": {
+              "description": "Revokes a browser device enrollment token.",
+              "flatPath": "v1/customers/{customersId}/enrollmentTokens/{enrollmentTokensId}:revoke",
+              "httpMethod": "POST",
+              "id": "chromemanagement.customers.enrollmentTokens.revoke",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the enrollment token to revoke. Format: customers/{customer}/enrollmentTokens/{token_permanent_id}",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/enrollmentTokens/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:revoke",
+              "request": {
+                "$ref": "GoogleChromeManagementVersionsV1RevokeEnrollmentTokenRequest"
+              },
+              "response": {
+                "$ref": "GoogleChromeManagementVersionsV1EnrollmentToken"
               }
             }
           }
@@ -2557,7 +2823,7 @@
       }
     }
   },
-  "revision": "20260930",
+  "revision": "20261008",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -6941,6 +7207,93 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementVersionsV1Browser": {
+      "description": "A specific installation of Chrome on a device with managed Chrome browsers.",
+      "id": "GoogleChromeManagementVersionsV1Browser",
+      "properties": {
+        "browserVersion": {
+          "description": "Output only. Browser version installed.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "channel": {
+          "description": "Output only. The channel of the browser installed.",
+          "enum": [
+            "CHANNEL_UNSPECIFIED",
+            "CHANNEL_STABLE",
+            "CHANNEL_BETA",
+            "CHANNEL_DEV",
+            "CHANNEL_CANARY"
+          ],
+          "enumDescriptions": [
+            "Represents an unspecified channel.",
+            "Represents a stable channel.",
+            "Represents a beta channel.",
+            "Represents a dev channel.",
+            "Represents a canary channel."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "executablePath": {
+          "description": "Output only. The path to the Chrome.exe executable for this browser.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastPolicyFetchTime": {
+          "description": "Output only. The time when the last request to fetch policies succeeded on this Chrome browser.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastStatusReportTime": {
+          "description": "Output only. The time when the last report was received from this Chrome browser.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pendingInstallVersion": {
+          "description": "Output only. Pending version of a browser is installed. This field is only set when the current active browser has a different version as in \"browser_version\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "plugins": {
+          "description": "Output only. List of all plugins installed on this Chrome browser.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1Plugin"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "profiles": {
+          "description": "Output only. The list of profiles for this browser.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1Profile"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1BrowserUser": {
+      "description": "A Chrome browser user.",
+      "id": "GoogleChromeManagementVersionsV1BrowserUser",
+      "properties": {
+        "lastStatusReportTime": {
+          "description": "Output only. The time when this user info last reported a status.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "userName": {
+          "description": "Output only. The user name of the user that signed into chrome.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementVersionsV1CertificateProvisioningProcess": {
       "description": "A certificate provisioning process.",
       "id": "GoogleChromeManagementVersionsV1CertificateProvisioningProcess",
@@ -7052,6 +7405,175 @@
             "The insights feature is enabled for the customer.",
             "The insights feature is disabled for the customer."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1ChromeBrowser": {
+      "description": "A device with managed Chrome Browsers.",
+      "id": "GoogleChromeManagementVersionsV1ChromeBrowser",
+      "properties": {
+        "annotatedAssetId": {
+          "description": "Optional. Asset identifier as annotated by the administrator or specified during enrollment.",
+          "type": "string"
+        },
+        "annotatedLocation": {
+          "description": "Optional. Address or location of the device as annotated by the administrator.",
+          "type": "string"
+        },
+        "annotatedNotes": {
+          "description": "Optional. Notes about this device as annotated by the administrator.",
+          "type": "string"
+        },
+        "annotatedUser": {
+          "description": "Optional. User of the device as annotated by the administrator.",
+          "type": "string"
+        },
+        "attestationCredential": {
+          "$ref": "GoogleChromeManagementVersionsV1AttestationCredential",
+          "description": "Output only. The attestation credential used for Device Trust Connector.",
+          "readOnly": true
+        },
+        "browserPermanentId": {
+          "description": "Output only. Unique identifier of Chrome Browser.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "browserVersions": {
+          "description": "Output only. List of all browser versions installed on this device.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "browsers": {
+          "description": "Output only. List of Chrome browsers installed on this device.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1Browser"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "deviceIdentifiersHistory": {
+          "$ref": "GoogleChromeManagementVersionsV1DeviceIdentifiersHistory",
+          "description": "Output only. The history of identifiers reported to this device.",
+          "readOnly": true
+        },
+        "extensionCount": {
+          "description": "Output only. The number of distinct extensions installed on all the Chrome browsers of this device.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastActivityTime": {
+          "description": "Output only. The time of the last activity on the device device either from reporting, policy fetching or registration.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastDeviceUser": {
+          "description": "Output only. The last user who logged into a Chrome browser on this device.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastDeviceUsers": {
+          "description": "Output only. List of recent browser users, in descending order by last report time.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1BrowserUser"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "lastPolicyFetchTime": {
+          "description": "Output only. The time the last policy fetch succeeded on this device.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastRegistrationTime": {
+          "description": "Output only. The time the device last tried to register.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastStatusReportTime": {
+          "description": "Output only. The time the device last sent a status report.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "machineExtensionPolicies": {
+          "description": "Output only. The list of all device level policies set for extensions installed in Chrome on this device.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1ExtensionPolicy"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "machineName": {
+          "description": "Output only. Machine name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "machinePolicies": {
+          "description": "Output only. The list of all device level policies set for Chrome browsers on this device.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1Policy"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Identifier. Format: customers/{customer_id}/chromeBrowsers/{browser_permanent_id}",
+          "type": "string"
+        },
+        "omahaRecentFetchTime": {
+          "description": "Output only. Recent policy fetch activity by Omaha. Not necessarily the last fetch since this field is only updated daily.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "orgUnitId": {
+          "description": "Output only. The obfuscated organizational unit ID of the browser.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "osArchitecture": {
+          "description": "Output only. Device CPU architecture.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "osPlatform": {
+          "description": "Output only. Device Os platform.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "osPlatformVersion": {
+          "description": "Output only. Device Os platform and version combined.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "osVersion": {
+          "description": "Output only. Device Os Version.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "policyCount": {
+          "description": "Output only. The number of distinct policies set on all the Chrome browsers of this device.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serialNumber": {
+          "description": "Output only. The device's serial number.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "virtualDeviceId": {
+          "description": "Output only. The initial device id sent by the first Chrome browser that enrolled this device.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -7630,6 +8152,78 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementVersionsV1DeviceIdentifiers": {
+      "description": "Collection of device identifiers.",
+      "id": "GoogleChromeManagementVersionsV1DeviceIdentifiers",
+      "properties": {
+        "hostName": {
+          "description": "Output only. The device's host name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "machineName": {
+          "description": "Output only. The name of the machine associated with the device.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serialNumber": {
+          "description": "Output only. The device's serial number.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1DeviceIdentifiersHistory": {
+      "description": "History of device identifiers reported from a device.",
+      "id": "GoogleChromeManagementVersionsV1DeviceIdentifiersHistory",
+      "properties": {
+        "deviceIdCollision": {
+          "description": "Output only. The device id is potentially being used by multiple devices.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "lastDeviceIdCollisionDetectionTime": {
+          "description": "Output only. The last time we detected the device id collision.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "records": {
+          "description": "Output only. List of device identifiers sent by this device. In descending order by last_activity_time.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1DeviceIdentifiersRecord"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1DeviceIdentifiersRecord": {
+      "description": "Record of the device identifiers and when they were reported.",
+      "id": "GoogleChromeManagementVersionsV1DeviceIdentifiersRecord",
+      "properties": {
+        "firstRecordTime": {
+          "description": "Output only. The first time these identifiers were reported.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "identifiers": {
+          "$ref": "GoogleChromeManagementVersionsV1DeviceIdentifiers",
+          "description": "Output only. Device identifiers.",
+          "readOnly": true
+        },
+        "lastActivityTime": {
+          "description": "Output only. The time of the last activity of these identifiers either from reporting, policy fetching or registration.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementVersionsV1DeviceInfo": {
       "description": "Information of a device that runs a Chrome browser profile.",
       "id": "GoogleChromeManagementVersionsV1DeviceInfo",
@@ -7790,6 +8384,248 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementVersionsV1EnrollmentToken": {
+      "description": "Enrollment token for a chrome device.",
+      "id": "GoogleChromeManagementVersionsV1EnrollmentToken",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The creation time of the token.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creatorId": {
+          "description": "Output only. The id of the user who created the token.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "customerId": {
+          "description": "Output only. The obfuscated ID of the customer to whom this token is associated.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the enrollment token. Format: customers/{customer}/enrollmentTokens/{token_permanent_id}",
+          "type": "string"
+        },
+        "orgUnitId": {
+          "description": "Optional. Obfuscated ID of the organization unit this token is associated with. If not set, the token is created for the root organization unit.",
+          "type": "string"
+        },
+        "revokeTime": {
+          "description": "Output only. The revocation time of the token, null if the token is not revoked.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "revokerId": {
+          "description": "Output only. The id of the user who revoked the token, null if the token is not revoked.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the token.",
+          "enum": [
+            "ENROLLMENT_TOKEN_STATE_UNSPECIFIED",
+            "ENROLLMENT_TOKEN_STATE_ACTIVE",
+            "ENROLLMENT_TOKEN_STATE_EXPIRED",
+            "ENROLLMENT_TOKEN_STATE_REVOKED"
+          ],
+          "enumDescriptions": [
+            "Unknown token state.",
+            "The token is still active and valid.",
+            "The token has expired.",
+            "The token has been revoked by user."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "token": {
+          "description": "Output only. The value of the token stored on the device and used to identify it to the management service handling the enrollment request.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tokenPermanentId": {
+          "description": "Output only. Unique identifier of the enrollment token used to access information on tokens.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tokenType": {
+          "description": "Optional. The device type this token is used for. If not set, defaults to `ENROLLMENT_TOKEN_TYPE_CHROME_BROWSER`.",
+          "enum": [
+            "ENROLLMENT_TOKEN_TYPE_UNSPECIFIED",
+            "ENROLLMENT_TOKEN_TYPE_CHROME_BROWSER"
+          ],
+          "enumDescriptions": [
+            "Unknown token device type.",
+            "The token is used to enroll a Chrome Browser device."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1Extension": {
+      "description": "Information about extensions installed on profile reported on an installed Chrome on a device with managed chrome browsers.",
+      "id": "GoogleChromeManagementVersionsV1Extension",
+      "properties": {
+        "appType": {
+          "description": "Output only. The type of the extension.",
+          "enum": [
+            "EXTENSION_TYPE_UNSPECIFIED",
+            "EXTENSION",
+            "APP",
+            "THEME",
+            "HOSTED_APP"
+          ],
+          "enumDescriptions": [
+            "Represents an unspecified extension type.",
+            "Represents an extension.",
+            "Represents an app.",
+            "Represents a theme.",
+            "Represents a hosted app."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "configuredAppPolicy": {
+          "description": "Output only. If the extension is controlled by a browser policy.",
+          "enum": [
+            "CONFIGURED_APP_POLICY_UNSPECIFIED",
+            "CONFIGURED_APP_POLICY_NONE",
+            "CONFIGURED_APP_POLICY_SHOULD_FORCE",
+            "CONFIGURED_APP_POLICY_SHOULD_BLOCK"
+          ],
+          "enumDescriptions": [
+            "Represents an unspecified configured app policy.",
+            "Represents no configured app policy.",
+            "Represents an extension that should be forced.",
+            "Represents an extension that should be blocked."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Output only. The localized description of this extension.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "disabled": {
+          "description": "Output only. Whether the extension is disabled.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "extensionId": {
+          "description": "Output only. The id of the extension.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "extensionName": {
+          "description": "Output only. The localized name of this extension as reported by Chrome.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "homepageUri": {
+          "description": "Output only. The URL of the homepage for this extension.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "icons": {
+          "description": "Output only. The list of icons available for this extension.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1ExtensionIcon"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "installType": {
+          "description": "Output only. The way the extension was installed.",
+          "enum": [
+            "INSTALLATION_TYPE_UNSPECIFIED",
+            "MULTIPLE",
+            "NORMAL",
+            "ADMIN",
+            "DEVELOPMENT",
+            "SIDELOAD",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Represents an unspecified installation type.",
+            "Represents instances of the extension having mixed installation types.",
+            "Represents a normal installation type.",
+            "Represents an installation by admin.",
+            "Represents a development installation type.",
+            "Represents a sideload installation type.",
+            "Represents an installation type that is not covered in the other options."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "manifestVersion": {
+          "description": "Output only. The manifest version of this extension.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "permissions": {
+          "description": "Output only. The list of permissions required for this extension.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "version": {
+          "description": "Output only. The version of the extension.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1ExtensionIcon": {
+      "description": "An icon of a Chrome browser extension.",
+      "id": "GoogleChromeManagementVersionsV1ExtensionIcon",
+      "properties": {
+        "size": {
+          "description": "Output only. The size of the extension icon.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "uri": {
+          "description": "Output only. The URL to the extension icon.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1ExtensionPolicy": {
+      "description": "The reported policies applied to an extension installed on a Chrome profile.",
+      "id": "GoogleChromeManagementVersionsV1ExtensionPolicy",
+      "properties": {
+        "extensionId": {
+          "description": "Output only. The id of the extension the policies are applied to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "extensionName": {
+          "description": "Output only. The name of the extension the policies are applied to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "policies": {
+          "description": "Output only. List of policies applied to this extension.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1Policy"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementVersionsV1GenericCaConnection": {
       "description": "Describes a generic Certificate Authority Connection.",
       "id": "GoogleChromeManagementVersionsV1GenericCaConnection",
@@ -7879,6 +8715,24 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementVersionsV1ListChromeBrowsersResponse": {
+      "description": "Response to ListChromeBrowsers method.",
+      "id": "GoogleChromeManagementVersionsV1ListChromeBrowsersResponse",
+      "properties": {
+        "chromeBrowsers": {
+          "description": "List of Chrome Browser device objects.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1ChromeBrowser"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token used to access next page of this result.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementVersionsV1ListConnectorConfigsResponse": {
       "description": "Response to ListConnectorConfigs method.",
       "id": "GoogleChromeManagementVersionsV1ListConnectorConfigsResponse",
@@ -7892,6 +8746,24 @@
         },
         "nextPageToken": {
           "description": "The page token used to retrieve the next page of the listing request. If the token is empty, there are no more pages to retrieve.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1ListEnrollmentTokensResponse": {
+      "description": "Response that contains a list of tokens.",
+      "id": "GoogleChromeManagementVersionsV1ListEnrollmentTokensResponse",
+      "properties": {
+        "enrollmentTokens": {
+          "description": "List of Chrome device enrollment tokens.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1EnrollmentToken"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         }
       },
@@ -7913,6 +8785,30 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1MoveChromeBrowsersRequest": {
+      "description": "Request to MoveChromeBrowsers method.",
+      "id": "GoogleChromeManagementVersionsV1MoveChromeBrowsersRequest",
+      "properties": {
+        "destinationOrgUnitId": {
+          "description": "Required. ID of the destination organizational unit.",
+          "type": "string"
+        },
+        "resourceIds": {
+          "description": "Required. List of resource IDs of Chrome Browser Devices to move. A maximum of 600 browsers may be moved per request.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1MoveChromeBrowsersResponse": {
+      "description": "Response to MoveChromeBrowsers method.",
+      "id": "GoogleChromeManagementVersionsV1MoveChromeBrowsersResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserRequest": {
@@ -7953,6 +8849,147 @@
         "reportingSettings": {
           "$ref": "GoogleChromeManagementVersionsV1ReportingSettings",
           "description": "Required. The reporting settings for the Palo Alto Networks config."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1Plugin": {
+      "description": "Information about a Chrome browser plugin installed on a reported Chrome installation on a device with managed Chrome browsers.",
+      "id": "GoogleChromeManagementVersionsV1Plugin",
+      "properties": {
+        "description": {
+          "description": "Output only. The description of the installed plugin.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "filename": {
+          "description": "Output only. The filename of the installed plugin.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pluginName": {
+          "description": "Output only. The name of the installed plugin.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1Policy": {
+      "description": "The applied policy reported by a managed Chrome browser. The policy can be applied at various scopes (machine, profile, extension).",
+      "id": "GoogleChromeManagementVersionsV1Policy",
+      "properties": {
+        "error": {
+          "description": "Output only. A localized string with all the errors reported when trying to apply this policy, if any.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "policyName": {
+          "description": "Output only. The name of the policy.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "source": {
+          "description": "Output only. The source of the policy.",
+          "enum": [
+            "POLICY_SOURCE_UNSPECIFIED",
+            "MACHINE_PLATFORM",
+            "USER_PLATFORM",
+            "MACHINE_LEVEL_USER_CLOUD",
+            "USER_CLOUD",
+            "MACHINE_MERGED"
+          ],
+          "enumDescriptions": [
+            "Represents an unspecified policy source.",
+            "Represents a machine level platform policy.",
+            "Represents a user level platform policy.",
+            "Represents a machine level user cloud policy.",
+            "Represents a user level cloud policy.",
+            "Represents a machine level merged policy."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "value": {
+          "description": "Output only. The value of the policy.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1Profile": {
+      "description": "A profile reported on an installation of Chrome on a device with managed chrome browsers.",
+      "id": "GoogleChromeManagementVersionsV1Profile",
+      "properties": {
+        "chromeSignedInUserEmail": {
+          "description": "Output only. The email of the user signed in to this profile, if any.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "extensionPolicies": {
+          "description": "Output only. The list of extensions with applied extension policies.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1ExtensionPolicy"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "extensions": {
+          "description": "Output only. The list of extensions installed for this profile.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1Extension"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "id": {
+          "description": "Output only. A unique ID for this profile.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastPolicyFetchTime": {
+          "description": "Output only. The time when the last request to fetch policies succeeded for this profile.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastStatusReportTime": {
+          "description": "Output only. The time when the last report was received from this profile.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "profileName": {
+          "description": "Output only. The name given to this profile.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "safeBrowsingWarnings": {
+          "description": "Output only. The number of safe browsing warnings that were shown on this profile.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "safeBrowsingWarningsClickThroughs": {
+          "description": "Output only. The number of safe browsing warnings that were clicked through on this profile.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "safeBrowsingWarningsResetTime": {
+          "description": "Output only. The last time the safe browsing warning info was reset to 0.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "userPolicies": {
+          "description": "Output only. The list of Chrome browser policies applied to this profile.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1Policy"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -8389,6 +9426,12 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1RevokeEnrollmentTokenRequest": {
+      "description": "Request to revoke a token.",
+      "id": "GoogleChromeManagementVersionsV1RevokeEnrollmentTokenRequest",
+      "properties": {},
       "type": "object"
     },
     "GoogleChromeManagementVersionsV1ScepCaConnection": {
