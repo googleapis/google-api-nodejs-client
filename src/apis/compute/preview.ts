@@ -121,6 +121,7 @@ export namespace compute_preview {
     acceleratorTypes: Resource$Acceleratortypes;
     addresses: Resource$Addresses;
     advice: Resource$Advice;
+    aliasNetworkEndpoints: Resource$Aliasnetworkendpoints;
     autoscalers: Resource$Autoscalers;
     backendBuckets: Resource$Backendbuckets;
     backendServices: Resource$Backendservices;
@@ -265,6 +266,9 @@ export namespace compute_preview {
       this.acceleratorTypes = new Resource$Acceleratortypes(this.context);
       this.addresses = new Resource$Addresses(this.context);
       this.advice = new Resource$Advice(this.context);
+      this.aliasNetworkEndpoints = new Resource$Aliasnetworkendpoints(
+        this.context
+      );
       this.autoscalers = new Resource$Autoscalers(this.context);
       this.backendBuckets = new Resource$Backendbuckets(this.context);
       this.backendServices = new Resource$Backendservices(this.context);
@@ -852,6 +856,24 @@ export namespace compute_preview {
      */
     externalIpv6PrefixLength?: number | null;
     /**
+     * Reference to the source of external IPv4 addresses,
+     * like a PublicDelegatedPrefix (PDP) for BYOIP.
+     * The PDP must support enhanced IPv4 allocations.
+     *
+     * Use one of the following formats to specify a PDP when allocating an
+     * external IPv4 address using BYOIP.
+     *
+     *    -
+     *    Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *    -
+     *    Partial URL, as in
+     *
+     *
+     *           - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *           - regions/region/publicDelegatedPrefixes/pdp-name
+     */
+    ipCollection?: string | null;
+    /**
      * Output only. [Output Only] Type of the resource. Alwayscompute#accessConfig for access configs.
      */
     kind?: string | null;
@@ -1027,6 +1049,12 @@ export namespace compute_preview {
      */
     network?: string | null;
     /**
+     * Optional. The URL of the network attachment that this address comes from in the
+     * following format:
+     * projects/{project\}/regions/{region_name\}/networkAttachments/{network_attachment_name\}.
+     */
+    networkAttachment?: string | null;
+    /**
      * This signifies the networking tier used for configuring this address and
      * can only take the following values: PREMIUM orSTANDARD. Internal IP addresses are always Premium Tier;
      * global external IP addresses are always Premium Tier; regional external IP
@@ -1084,6 +1112,12 @@ export namespace compute_preview {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string | null;
+    /**
+     * Optional. Producer Service's Service class ID for the region of this address. Can
+     * only be used with network_attachment. It is not possible to use on its own;
+     * however, network_attachment can be used without service_class_id.
+     */
+    serviceClassId?: string | null;
     /**
      * Output only. [Output Only] The status of the address, which can be one ofRESERVING, RESERVED, or IN_USE.
      * An address that is RESERVING is currently in the process of
@@ -1256,6 +1290,169 @@ export namespace compute_preview {
      * alias range. If not specified, the primary range of the subnetwork is used.
      */
     subnetworkRangeName?: string | null;
+  }
+  /**
+   * Represents an Alias Network Endpoint resource.
+   * To be used for GKE pod-native endpoints in Andromeda.
+   */
+  export interface Schema$AliasNetworkEndpoint {
+    /**
+     * Required. The map of network aliases allocated for the AliasNetworkEndpoint.
+     * This map is keyed with user-provided alias names.
+     */
+    aliases?: {[key: string]: Schema$AliasNetworkEndpointAlias} | null;
+    /**
+     * Optional. The annotations map for the AliasNetworkEndpoint.
+     * Keys and values must follow Kubernetes limits.
+     * Keys must be a maximum of 253 characters. Keys should be dot-namespaced,
+     * following the Kubernetes annotation key format:
+     * `([DNS subdomain]/)?[RFC 1123 name]`.
+     * Values must be a maximum of 256 characters.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Output only. [Output Only] Creation timestamp in RFC3339 text format.
+     */
+    creationTimestamp?: string | null;
+    /**
+     * Optional. An optional description of this resource. Provide this field when you
+     * create the resource.
+     */
+    description?: string | null;
+    /**
+     * Required. The host that the alias network endpoint is bound to.
+     */
+    host?: Schema$AliasNetworkEndpointHost;
+    /**
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string | null;
+    /**
+     * Optional. The labels map for the AliasNetworkEndpoint.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply with RFC1035.
+     */
+    name?: string | null;
+    /**
+     * Optional. The security tag inheritance setting for the AliasNetworkEndpoint.
+     */
+    securityTagInheritance?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Current status of the alias network endpoint.
+     */
+    status?: Schema$AliasNetworkEndpointStatus;
+    /**
+     * Required. The URL of the subnetwork that this alias network endpoint belongs to.
+     */
+    subnetwork?: string | null;
+    /**
+     * Output only. [Output Only] Update timestamp in RFC3339 text format.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Configuration for an IP alias.
+   */
+  export interface Schema$AliasNetworkEndpointAlias {
+    /**
+     * Output only. [Output Only] The actual IP address allocated by the system.
+     */
+    effectiveIpAddress?: string | null;
+    /**
+     * Output only. [Output Only] The actual secondary range used for allocation.
+     */
+    effectiveSubnetworkRangeName?: string | null;
+    /**
+     * Input only. The IP address of the network endpoint. If specified, the server performs
+     * a validation check for uniqueness. If the field is omitted, the system
+     * automatically allocates an IP and populates the effective_ip_address
+     * field.
+     */
+    ipAddress?: string | null;
+    /**
+     * Required. The IP version of the IP. It is IPv4 or IPv6.
+     */
+    ipVersion?: string | null;
+    /**
+     * Input only. Defines candidate secondary ranges for allocating the alias IPs. If it is
+     * empty, the IP would be allocated from the primary range of the
+     * subnetwork.
+     * This field is INPUT_ONLY and used only during resource creation,
+     * hence a repeated field is acceptable as per AIP-2825. It is not mutable.
+     */
+    subnetworkRangeNames?: string[] | null;
+  }
+  /**
+   * Information about the host instance.
+   */
+  export interface Schema$AliasNetworkEndpointHost {
+    /**
+     * Required. The URL to the instance that this alias network endpoint is bound to.
+     */
+    instance?: string | null;
+  }
+  /**
+   * Response message for AliasNetworkEndpoints.List.
+   */
+  export interface Schema$AliasNetworkEndpointList {
+    /**
+     * ETag of the resource list.
+     */
+    etag?: string | null;
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of AliasNetworkEndpoint resources.
+     */
+    items?: Schema$AliasNetworkEndpoint[];
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Unreachable resources.
+     */
+    unreachables?: string[] | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  /**
+   * Represents the current status of the AliasNetworkEndpoint.
+   */
+  export interface Schema$AliasNetworkEndpointStatus {
+    /**
+     * Output only. [Output Only] The URL of the network that this alias network endpoint
+     * belongs to.
+     */
+    network?: string | null;
+    /**
+     * Output only. [Output Only] The state of the alias network endpoint.
+     */
+    state?: string | null;
   }
   /**
    * This reservation type is specified by total resource amounts (e.g. total
@@ -10794,6 +10991,12 @@ export namespace compute_preview {
      */
     networkingAutoConfiguration?: Schema$HaControllerNetworkingAutoConfiguration;
     /**
+     * Input only. Additional parameters passed with the request, but not persisted as part
+     * of the resource. Both `params: null` and `params: {\}` are treated
+     * identically as a no-op.
+     */
+    params?: Schema$HaControllerParams;
+    /**
      * Output only. [Output Only] URL of the region where the resource resides.
      * You must specify this field as part of the HTTP request URL.
      * It is not settable as a field in the request body.
@@ -10825,6 +11028,23 @@ export namespace compute_preview {
     } | null;
   }
   /**
+   * The network interface configuration of the VM instance.
+   */
+  export interface Schema$HaControllerInstanceNetworkInterface {
+    /**
+     * Optional. Optional IPv6 address to assign to the instance's network interface.
+     * If omitted, an ephemeral IP may be assigned depending on the instance's
+     * network interface stack type.
+     */
+    ipv6Address?: string | null;
+    /**
+     * Optional. Optional IPv4 address to assign to the instance's network interface.
+     * If omitted, an ephemeral IP may be assigned depending on the instance's
+     * network interface stack type.
+     */
+    networkIP?: string | null;
+  }
+  /**
    * Basic networking configuration. Required backend services and forwarding
    * rules will be automatically created with default parameters.
    */
@@ -10849,6 +11069,16 @@ export namespace compute_preview {
      * naming consistent with NetworkInterface configuration on Instances.
      */
     stackType?: string | null;
+  }
+  /**
+   * Additional HA Controller params.
+   */
+  export interface Schema$HaControllerParams {
+    /**
+     * Specifies whether to automatically migrate all disks of an instance from
+     * zonal to regional before attempting to create the HaController.
+     */
+    migrateDisksToRegional?: boolean | null;
   }
   export interface Schema$HaControllersAggregatedList {
     etag?: string | null;
@@ -11088,6 +11318,31 @@ export namespace compute_preview {
    * instance.
    */
   export interface Schema$HaControllerZoneConfiguration {
+    /**
+     * Optional. The network interface configuration of a VM instance in this zone,
+     * keyed by the name of the network interface. A VM network interface
+     * uses the nicN naming format, where N is a
+     * value between 0 and 7. The default interface
+     * is nic0. Use this field to choose the internal IP
+     * addresses of the VM instance in this zone instead of letting Compute
+     * Engine assign them automatically.
+     *
+     *
+     *       - Each key must be a name of a network interface that exists on
+     *       the VM instance. Otherwise, the request fails.
+     *       - Network interfaces that are omitted are assigned an ephemeral
+     *       internal IP address.
+     *       - Every zone must configure the same network interfaces and the
+     *       same IP address families.
+     *       - For the zone that currently holds the VM instance, this field
+     *       is populated automatically, and any addresses you specify must
+     *       match the instance's current addresses.
+     *       - Only internal IP addresses are supported, and this field can
+     *       only be set when the HA Controller is created.
+     */
+    instanceNetworkInterfaces?: {
+      [key: string]: Schema$HaControllerInstanceNetworkInterface;
+    } | null;
     /**
      * A set of node affinity configurations. Refer toConfiguring node
      * affinity for more information.
@@ -21206,6 +21461,11 @@ export namespace compute_preview {
      */
     network?: string | null;
     /**
+     * Optional. The URL of the network attachment that this resource
+     * belongs to.projects/{project\}/regions/{region_name\}/networkAttachments/{network_attachment_name\}.
+     */
+    networkAttachment?: string | null;
+    /**
      * Type of network endpoints in this network endpoint group. Can be one ofGCE_VM_IP, GCE_VM_IP_PORT,NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT,INTERNET_IP_PORT, SERVERLESS,PRIVATE_SERVICE_CONNECT, GCE_VM_IP_PORTMAP.
      */
     networkEndpointType?: string | null;
@@ -21230,6 +21490,13 @@ export namespace compute_preview {
      * Output only. [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string | null;
+    /**
+     * Optional. The service class ID associated with this resource.
+     * Can only be used with network_attachment. It is not possible to
+     * use on its own; however, network_attachment can be used without
+     * service_class_id.
+     */
+    serviceClassId?: string | null;
     /**
      * Output only. [Output only] Number of network endpoints in the network endpoint group.
      */
@@ -27751,6 +28018,12 @@ export namespace compute_preview {
      */
     gracefulShutdownTimestamp?: string | null;
     /**
+     * Output only. Protection tier for the workload which specifies the workload
+     * expectations in the event of infrastructure failures at data center
+     * (e.g. power and/or cooling failures).
+     */
+    protectionTier?: string | null;
+    /**
      * Time in future when the instance will be terminated inRFC3339 text format.
      */
     terminationTimestamp?: string | null;
@@ -30102,6 +30375,12 @@ export namespace compute_preview {
      * there will be no wait before the G2 Soft Off signal is triggered.
      */
     preemptionNoticeDuration?: Schema$Duration;
+    /**
+     * Protection tier for the workload which specifies the workload
+     * expectations in the event of infrastructure failures at data center
+     * (e.g. power and/or cooling failures).
+     */
+    protectionTier?: string | null;
     /**
      * Specifies the provisioning model of the instance.
      */
@@ -40860,11 +41139,13 @@ export namespace compute_preview {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
+     *   //   "networkAttachment": "my_networkAttachment",
      *   //   "networkTier": "my_networkTier",
      *   //   "prefixLength": 0,
      *   //   "purpose": "my_purpose",
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
+     *   //   "serviceClassId": "my_serviceClassId",
      *   //   "status": "my_status",
      *   //   "subnetwork": "my_subnetwork",
      *   //   "users": []
@@ -41036,11 +41317,13 @@ export namespace compute_preview {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "networkAttachment": "my_networkAttachment",
      *       //   "networkTier": "my_networkTier",
      *       //   "prefixLength": 0,
      *       //   "purpose": "my_purpose",
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
+     *       //   "serviceClassId": "my_serviceClassId",
      *       //   "status": "my_status",
      *       //   "subnetwork": "my_subnetwork",
      *       //   "users": []
@@ -42853,6 +43136,931 @@ export namespace compute_preview {
      * Request body metadata
      */
     requestBody?: Schema$CapacityHistoryRequest;
+  }
+
+  export class Resource$Aliasnetworkendpoints {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes the specified AliasNetworkEndpoint.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('preview');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.aliasNetworkEndpoints.delete({
+     *     // Required. Name of the AliasNetworkEndpoint resource to delete.
+     *     aliasNetworkEndpoint: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Required. Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     requestId: 'placeholder-value',
+     *     // Required. Name of the zone scoping this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getHealthOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "instancesTroubleshootOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Aliasnetworkendpoints$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Aliasnetworkendpoints$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Aliasnetworkendpoints$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Aliasnetworkendpoints$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Aliasnetworkendpoints$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Aliasnetworkendpoints$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Aliasnetworkendpoints$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Aliasnetworkendpoints$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/zones/{zone}/aliasNetworkEndpoints/{aliasNetworkEndpoint}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '2026-10-01-preview',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'aliasNetworkEndpoint'],
+        pathParams: ['aliasNetworkEndpoint', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns the specified AliasNetworkEndpoint resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('preview');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.aliasNetworkEndpoints.get({
+     *     // Required. Name of the AliasNetworkEndpoint resource to return.
+     *     aliasNetworkEndpoint: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Required. Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Required. Name of the zone scoping this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aliases": {},
+     *   //   "annotations": {},
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "host": {},
+     *   //   "id": "my_id",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "securityTagInheritance": "my_securityTagInheritance",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": {},
+     *   //   "subnetwork": "my_subnetwork",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Aliasnetworkendpoints$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Aliasnetworkendpoints$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AliasNetworkEndpoint>>;
+    get(
+      params: Params$Resource$Aliasnetworkendpoints$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Aliasnetworkendpoints$Get,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$AliasNetworkEndpoint>,
+      callback: BodyResponseCallback<Schema$AliasNetworkEndpoint>
+    ): void;
+    get(
+      params: Params$Resource$Aliasnetworkendpoints$Get,
+      callback: BodyResponseCallback<Schema$AliasNetworkEndpoint>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AliasNetworkEndpoint>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Aliasnetworkendpoints$Get
+        | BodyResponseCallback<Schema$AliasNetworkEndpoint>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AliasNetworkEndpoint>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AliasNetworkEndpoint>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AliasNetworkEndpoint>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Aliasnetworkendpoints$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Aliasnetworkendpoints$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/zones/{zone}/aliasNetworkEndpoints/{aliasNetworkEndpoint}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '2026-10-01-preview',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'aliasNetworkEndpoint'],
+        pathParams: ['aliasNetworkEndpoint', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AliasNetworkEndpoint>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AliasNetworkEndpoint>(parameters);
+      }
+    }
+
+    /**
+     * Creates an AliasNetworkEndpoint in the specified project and zone
+     * using the data included in the request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('preview');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.aliasNetworkEndpoints.insert({
+     *     // Required. Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     requestId: 'placeholder-value',
+     *     // Required. Name of the zone scoping this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "aliases": {},
+     *       //   "annotations": {},
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "description": "my_description",
+     *       //   "host": {},
+     *       //   "id": "my_id",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "securityTagInheritance": "my_securityTagInheritance",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": {},
+     *       //   "subnetwork": "my_subnetwork",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getHealthOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "instancesTroubleshootOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Aliasnetworkendpoints$Insert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    insert(
+      params?: Params$Resource$Aliasnetworkendpoints$Insert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    insert(
+      params: Params$Resource$Aliasnetworkendpoints$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Aliasnetworkendpoints$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Aliasnetworkendpoints$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Aliasnetworkendpoints$Insert
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Aliasnetworkendpoints$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Aliasnetworkendpoints$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/zones/{zone}/aliasNetworkEndpoints'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '2026-10-01-preview',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a list of AliasNetworkEndpoints available to the specified
+     * project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('preview');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.aliasNetworkEndpoints.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Required. Name of the zone of this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Aliasnetworkendpoints$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Aliasnetworkendpoints$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AliasNetworkEndpointList>>;
+    list(
+      params: Params$Resource$Aliasnetworkendpoints$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Aliasnetworkendpoints$List,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$AliasNetworkEndpointList>,
+      callback: BodyResponseCallback<Schema$AliasNetworkEndpointList>
+    ): void;
+    list(
+      params: Params$Resource$Aliasnetworkendpoints$List,
+      callback: BodyResponseCallback<Schema$AliasNetworkEndpointList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$AliasNetworkEndpointList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Aliasnetworkendpoints$List
+        | BodyResponseCallback<Schema$AliasNetworkEndpointList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AliasNetworkEndpointList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AliasNetworkEndpointList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AliasNetworkEndpointList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Aliasnetworkendpoints$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Aliasnetworkendpoints$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/zones/{zone}/aliasNetworkEndpoints'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '2026-10-01-preview',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AliasNetworkEndpointList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AliasNetworkEndpointList>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Aliasnetworkendpoints$Delete extends StandardParameters {
+    /**
+     * Required. Name of the AliasNetworkEndpoint resource to delete.
+     */
+    aliasNetworkEndpoint?: string;
+    /**
+     * Required. Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     */
+    requestId?: string;
+    /**
+     * Required. Name of the zone scoping this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Aliasnetworkendpoints$Get extends StandardParameters {
+    /**
+     * Required. Name of the AliasNetworkEndpoint resource to return.
+     */
+    aliasNetworkEndpoint?: string;
+    /**
+     * Required. Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Required. Name of the zone scoping this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Aliasnetworkendpoints$Insert extends StandardParameters {
+    /**
+     * Required. Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     */
+    requestId?: string;
+    /**
+     * Required. Name of the zone scoping this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AliasNetworkEndpoint;
+  }
+  export interface Params$Resource$Aliasnetworkendpoints$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Required. Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Required. Name of the zone of this request.
+     */
+    zone?: string;
   }
 
   export class Resource$Autoscalers {
@@ -69725,11 +70933,13 @@ export namespace compute_preview {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
+     *   //   "networkAttachment": "my_networkAttachment",
      *   //   "networkTier": "my_networkTier",
      *   //   "prefixLength": 0,
      *   //   "purpose": "my_purpose",
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
+     *   //   "serviceClassId": "my_serviceClassId",
      *   //   "status": "my_status",
      *   //   "subnetwork": "my_subnetwork",
      *   //   "users": []
@@ -69900,11 +71110,13 @@ export namespace compute_preview {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "networkAttachment": "my_networkAttachment",
      *       //   "networkTier": "my_networkTier",
      *       //   "prefixLength": 0,
      *       //   "purpose": "my_purpose",
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
+     *       //   "serviceClassId": "my_serviceClassId",
      *       //   "status": "my_status",
      *       //   "subnetwork": "my_subnetwork",
      *       //   "users": []
@@ -73685,11 +74897,13 @@ export namespace compute_preview {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "network": "my_network",
+     *   //   "networkAttachment": "my_networkAttachment",
      *   //   "networkEndpointType": "my_networkEndpointType",
      *   //   "pscData": {},
      *   //   "pscTargetService": "my_pscTargetService",
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
+     *   //   "serviceClassId": "my_serviceClassId",
      *   //   "size": 0,
      *   //   "subnetwork": "my_subnetwork",
      *   //   "zone": "my_zone"
@@ -73874,11 +75088,13 @@ export namespace compute_preview {
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "networkAttachment": "my_networkAttachment",
      *       //   "networkEndpointType": "my_networkEndpointType",
      *       //   "pscData": {},
      *       //   "pscTargetService": "my_pscTargetService",
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
+     *       //   "serviceClassId": "my_serviceClassId",
      *       //   "size": 0,
      *       //   "subnetwork": "my_subnetwork",
      *       //   "zone": "my_zone"
@@ -80117,6 +81333,7 @@ export namespace compute_preview {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "networkingAutoConfiguration": {},
+     *   //   "params": {},
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
      *   //   "selfLinkWithId": "my_selfLinkWithId",
@@ -80278,6 +81495,7 @@ export namespace compute_preview {
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
      *       //   "networkingAutoConfiguration": {},
+     *       //   "params": {},
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
      *       //   "selfLinkWithId": "my_selfLinkWithId",
@@ -80709,6 +81927,7 @@ export namespace compute_preview {
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
      *       //   "networkingAutoConfiguration": {},
+     *       //   "params": {},
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
      *       //   "selfLinkWithId": "my_selfLinkWithId",
@@ -100370,6 +101589,7 @@ export namespace compute_preview {
      *       // {
      *       //   "externalIpv6": "my_externalIpv6",
      *       //   "externalIpv6PrefixLength": 0,
+     *       //   "ipCollection": "my_ipCollection",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
      *       //   "natIP": "my_natIP",
@@ -107104,6 +108324,7 @@ export namespace compute_preview {
      *       //   "onInstanceStopAction": {},
      *       //   "preemptible": false,
      *       //   "preemptionNoticeDuration": {},
+     *       //   "protectionTier": "my_protectionTier",
      *       //   "provisioningModel": "my_provisioningModel",
      *       //   "skipGuestOsShutdown": false,
      *       //   "terminationTime": "my_terminationTime"
@@ -109677,6 +110898,7 @@ export namespace compute_preview {
      *       // {
      *       //   "externalIpv6": "my_externalIpv6",
      *       //   "externalIpv6PrefixLength": 0,
+     *       //   "ipCollection": "my_ipCollection",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
      *       //   "natIP": "my_natIP",
@@ -136749,11 +137971,13 @@ export namespace compute_preview {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "network": "my_network",
+     *   //   "networkAttachment": "my_networkAttachment",
      *   //   "networkEndpointType": "my_networkEndpointType",
      *   //   "pscData": {},
      *   //   "pscTargetService": "my_pscTargetService",
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
+     *   //   "serviceClassId": "my_serviceClassId",
      *   //   "size": 0,
      *   //   "subnetwork": "my_subnetwork",
      *   //   "zone": "my_zone"
@@ -136942,11 +138166,13 @@ export namespace compute_preview {
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "networkAttachment": "my_networkAttachment",
      *       //   "networkEndpointType": "my_networkEndpointType",
      *       //   "pscData": {},
      *       //   "pscTargetService": "my_pscTargetService",
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
+     *       //   "serviceClassId": "my_serviceClassId",
      *       //   "size": 0,
      *       //   "subnetwork": "my_subnetwork",
      *       //   "zone": "my_zone"
@@ -200974,11 +202200,13 @@ export namespace compute_preview {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "network": "my_network",
+     *   //   "networkAttachment": "my_networkAttachment",
      *   //   "networkEndpointType": "my_networkEndpointType",
      *   //   "pscData": {},
      *   //   "pscTargetService": "my_pscTargetService",
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
+     *   //   "serviceClassId": "my_serviceClassId",
      *   //   "size": 0,
      *   //   "subnetwork": "my_subnetwork",
      *   //   "zone": "my_zone"
@@ -201167,11 +202395,13 @@ export namespace compute_preview {
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "networkAttachment": "my_networkAttachment",
      *       //   "networkEndpointType": "my_networkEndpointType",
      *       //   "pscData": {},
      *       //   "pscTargetService": "my_pscTargetService",
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
+     *       //   "serviceClassId": "my_serviceClassId",
      *       //   "size": 0,
      *       //   "subnetwork": "my_subnetwork",
      *       //   "zone": "my_zone"
