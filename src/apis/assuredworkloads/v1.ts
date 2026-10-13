@@ -112,6 +112,7 @@ export namespace assuredworkloads_v1 {
    */
   export class Assuredworkloads {
     context: APIRequestContext;
+    assuredworkloads: Resource$Assuredworkloads;
     folders: Resource$Folders;
     organizations: Resource$Organizations;
     projects: Resource$Projects;
@@ -122,6 +123,7 @@ export namespace assuredworkloads_v1 {
         google,
       };
 
+      this.assuredworkloads = new Resource$Assuredworkloads(this.context);
       this.folders = new Resource$Folders(this.context);
       this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
@@ -222,6 +224,44 @@ export namespace assuredworkloads_v1 {
      * The update that was applied.
      */
     appliedUpdate?: Schema$GoogleCloudAssuredworkloadsV1WorkloadUpdate;
+  }
+  /**
+   * Request for archiving resource events.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1ArchiveResourceEventsRequest {
+    /**
+     * Optional. Time to set as ArchiveTime in the archive table. If not provided, the current time is used.
+     */
+    archiveTime?: string | null;
+    /**
+     * Required. The number of events to process in a single transaction batch.
+     */
+    batchSize?: number | null;
+    /**
+     * Required. Only events with EventTime earlier than this cutoff will be archived.
+     */
+    eventCutoffTime?: string | null;
+    /**
+     * Required. The maximum total number of events to move in this request.
+     */
+    maxEventsMove?: number | null;
+    /**
+     * Required. The organization ID for which to archive events.
+     */
+    organizationId?: string | null;
+    /**
+     * Required. The region of the workload(s) whose events should be archived. This is used to filter workloads based on AssurantWorkloadData.region.
+     */
+    region?: string | null;
+  }
+  /**
+   * Response for archiving resource events.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse {
+    /**
+     * The total number of events successfully moved to the archive table.
+     */
+    movedEventsCount?: number | null;
   }
   /**
    * Represents move analysis results for an asset.
@@ -846,6 +886,44 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse {}
   /**
+   * Request for reverting archived resource events.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsRequest {
+    /**
+     * Required. Only events within this time range will be reverted. This helps prevent reverting everything when something goes wrong.
+     */
+    archiveEndTime?: string | null;
+    /**
+     * Required. Only events within this time range will be reverted. This helps prevent reverting everything when something goes wrong.
+     */
+    archiveStartTime?: string | null;
+    /**
+     * Required. The number of events to process in a single transaction batch.
+     */
+    batchSize?: number | null;
+    /**
+     * Required. The maximum total number of events to move in this request.
+     */
+    maxEventsMove?: number | null;
+    /**
+     * Required. The organization ID for which to revert events.
+     */
+    organizationId?: string | null;
+    /**
+     * Required. The region of the workload(s) whose events should be reverted. This is used to filter workloads based on AssurantWorkloadData.region.
+     */
+    region?: string | null;
+  }
+  /**
+   * Response for reverting archived resource events.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse {
+    /**
+     * The total number of events successfully moved to the original table.
+     */
+    movedEventsCount?: number | null;
+  }
+  /**
    * A rule in the cloud control.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1Rule {
@@ -1425,6 +1503,342 @@ export namespace assuredworkloads_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+
+  export class Resource$Assuredworkloads {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Finds orphan ResourceEvents matching the criteria and moves them to the ArchivedResourceEvents table.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const assuredworkloads = google.assuredworkloads('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await assuredworkloads.assuredworkloads.archiveResourceEvents({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "archiveTime": "my_archiveTime",
+     *       //   "batchSize": 0,
+     *       //   "eventCutoffTime": "my_eventCutoffTime",
+     *       //   "maxEventsMove": 0,
+     *       //   "organizationId": "my_organizationId",
+     *       //   "region": "my_region"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "movedEventsCount": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    archiveResourceEvents(
+      params: Params$Resource$Assuredworkloads$Archiveresourceevents,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    archiveResourceEvents(
+      params?: Params$Resource$Assuredworkloads$Archiveresourceevents,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse>
+    >;
+    archiveResourceEvents(
+      params: Params$Resource$Assuredworkloads$Archiveresourceevents,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    archiveResourceEvents(
+      params: Params$Resource$Assuredworkloads$Archiveresourceevents,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse>
+    ): void;
+    archiveResourceEvents(
+      params: Params$Resource$Assuredworkloads$Archiveresourceevents,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse>
+    ): void;
+    archiveResourceEvents(
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse>
+    ): void;
+    archiveResourceEvents(
+      paramsOrCallback?:
+        | Params$Resource$Assuredworkloads$Archiveresourceevents
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Assuredworkloads$Archiveresourceevents;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Assuredworkloads$Archiveresourceevents;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/assuredworkloads:archiveResourceEvents'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Finds matching ArchivedResourceEvents and moves them back to the ResourceEvents table.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const assuredworkloads = google.assuredworkloads('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await assuredworkloads.assuredworkloads.revertArchivedResourceEvents({
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "archiveEndTime": "my_archiveEndTime",
+     *         //   "archiveStartTime": "my_archiveStartTime",
+     *         //   "batchSize": 0,
+     *         //   "maxEventsMove": 0,
+     *         //   "organizationId": "my_organizationId",
+     *         //   "region": "my_region"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "movedEventsCount": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    revertArchivedResourceEvents(
+      params: Params$Resource$Assuredworkloads$Revertarchivedresourceevents,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    revertArchivedResourceEvents(
+      params?: Params$Resource$Assuredworkloads$Revertarchivedresourceevents,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse>
+    >;
+    revertArchivedResourceEvents(
+      params: Params$Resource$Assuredworkloads$Revertarchivedresourceevents,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    revertArchivedResourceEvents(
+      params: Params$Resource$Assuredworkloads$Revertarchivedresourceevents,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse>
+    ): void;
+    revertArchivedResourceEvents(
+      params: Params$Resource$Assuredworkloads$Revertarchivedresourceevents,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse>
+    ): void;
+    revertArchivedResourceEvents(
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse>
+    ): void;
+    revertArchivedResourceEvents(
+      paramsOrCallback?:
+        | Params$Resource$Assuredworkloads$Revertarchivedresourceevents
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Assuredworkloads$Revertarchivedresourceevents;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Assuredworkloads$Revertarchivedresourceevents;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/assuredworkloads:revertArchivedResourceEvents'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Assuredworkloads$Archiveresourceevents extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAssuredworkloadsV1ArchiveResourceEventsRequest;
+  }
+  export interface Params$Resource$Assuredworkloads$Revertarchivedresourceevents extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsRequest;
   }
 
   export class Resource$Folders {

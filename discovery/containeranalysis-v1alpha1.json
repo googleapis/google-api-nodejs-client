@@ -1454,7 +1454,7 @@
       }
     }
   },
-  "revision": "20261002",
+  "revision": "20260929",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AISkillAnalysisNote": {
@@ -3213,13 +3213,11 @@
           "description": "Requested verifiability options.",
           "enum": [
             "NOT_VERIFIED",
-            "VERIFIED",
-            "BEST_EFFORT"
+            "VERIFIED"
           ],
           "enumDescriptions": [
             "Not a verifiable build (the default).",
-            "Build must be verified.",
-            "Build verification is best effort. If provenance generation fails, the build will still succeed."
+            "Build must be verified."
           ],
           "type": "string"
         },

@@ -228,7 +228,7 @@ export namespace alloydb_v1beta {
      */
     displayName?: string | null;
     /**
-     * Output only. Deprecated: Use `express_config` instead. Output only. The edition of the cluster this backup was created from. Any restored cluster created from this backup will have the same edition.
+     * Output only. The edition of the cluster this backup was created from. Any restored cluster created from this backup will have the same edition.
      */
     edition?: string | null;
     /**
@@ -251,10 +251,6 @@ export namespace alloydb_v1beta {
      * Output only. The time at which after the backup is eligible to be garbage collected. It is the duration specified by the backup's retention policy, added to the backup's create_time.
      */
     expiryTime?: string | null;
-    /**
-     * Output only. The Express configuration of the cluster this backup was created from. Any restored cluster created from this backup will have the same Express configuration.
-     */
-    expressConfig?: Schema$ExpressConfig;
     /**
      * Labels as key value pairs
      */
@@ -489,7 +485,7 @@ export namespace alloydb_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Deprecated: Use `express_config` instead. Edition of the cluster. If left unspecified, the cluster behaves as `EDITION_ALLOYDB`.
+     * Optional. Edition of the cluster. If left unspecified, the cluster behaves as `EDITION_ALLOYDB`.
      */
     edition?: string | null;
     /**
@@ -1247,7 +1243,7 @@ export namespace alloydb_v1beta {
      */
     pscInstanceInfo?: Schema$PscInstanceInfo;
     /**
-     * Output only. The public IP address for the Instance. This is available ONLY when `enable_public_ip` is set or when you have upgraded from an Express Instance that has public DNS enabled. This field is not available for Express Instances. This is the connection endpoint for an end-user application.
+     * Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.
      */
     publicIpAddress?: string | null;
     /**
@@ -1958,7 +1954,7 @@ export namespace alloydb_v1beta {
    */
   export interface Schema$ReadPoolConfig {
     /**
-     * Optional. Autoscaling configuration for the read pool instance. If not set, the read pool instance will not be autoscaled.
+     * Autoscaling configuration for the read pool instance. If not set, the read pool instance will not be autoscaled.
      */
     autoScalingConfig?: Schema$AutoScalingConfig;
     /**
@@ -3667,7 +3663,6 @@ export namespace alloydb_v1beta {
      *       //   "etag": "my_etag",
      *       //   "expiryQuantity": {},
      *       //   "expiryTime": "my_expiryTime",
-     *       //   "expressConfig": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "reconciling": false,
@@ -3986,7 +3981,6 @@ export namespace alloydb_v1beta {
      *   //   "etag": "my_etag",
      *   //   "expiryQuantity": {},
      *   //   "expiryTime": "my_expiryTime",
-     *   //   "expressConfig": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "reconciling": false,
@@ -4302,7 +4296,6 @@ export namespace alloydb_v1beta {
      *       //   "etag": "my_etag",
      *       //   "expiryQuantity": {},
      *       //   "expiryTime": "my_expiryTime",
-     *       //   "expressConfig": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "reconciling": false,

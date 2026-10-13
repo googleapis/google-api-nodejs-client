@@ -2036,7 +2036,7 @@ export namespace androidmanagement_v1 {
     keyAlias?: string | null;
   }
   /**
-   * Settings controlling the behavior of a device in kiosk mode. To enable kiosk mode, set kioskCustomLauncherEnabled to true or specify an app in the policy with the KIOSK role.
+   * Settings controlling the behavior of a device in kiosk mode. To enable kiosk mode, set kioskCustomLauncherEnabled to true or specify an app in the policy with installType KIOSK.
    */
   export interface Schema$KioskCustomization {
     /**
@@ -2901,7 +2901,7 @@ export namespace androidmanagement_v1 {
      */
     keyguardDisabledFeatures?: string[] | null;
     /**
-     * Optional. Settings controlling the behavior of a device in kiosk mode. To enable kiosk mode, set kioskCustomLauncherEnabled to true or specify an app in the policy with the KIOSK role.
+     * Optional. Settings controlling the behavior of a device in kiosk mode. To enable kiosk mode, set kioskCustomLauncherEnabled to true or specify an app in the policy with installType KIOSK.
      */
     kioskCustomization?: Schema$KioskCustomization;
     /**

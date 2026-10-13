@@ -709,7 +709,6 @@ export namespace securitycenter_v1 {
   export interface Schema$GoogleCloudSecuritycenterV1BigQueryExport {
     createTime?: string | null;
     dataset?: string | null;
-    deletionNotificationsEnabled?: boolean | null;
     description?: string | null;
     filter?: string | null;
     mostRecentEditor?: string | null;
@@ -774,7 +773,6 @@ export namespace securitycenter_v1 {
     updateTime?: string | null;
   }
   export interface Schema$GoogleCloudSecuritycenterV1NotificationMessage {
-    deletedFinding?: boolean | null;
     finding?: Schema$Finding;
     notificationConfigName?: string | null;
     resource?: Schema$GoogleCloudSecuritycenterV1Resource;
@@ -1051,7 +1049,6 @@ export namespace securitycenter_v1 {
     createTime?: string | null;
     cryptoKeyName?: string | null;
     dataset?: string | null;
-    deletionNotificationsEnabled?: boolean | null;
     description?: string | null;
     filter?: string | null;
     mostRecentEditor?: string | null;
@@ -1618,7 +1615,6 @@ export namespace securitycenter_v1 {
     service?: string | null;
   }
   export interface Schema$GoogleCloudSecuritycenterV2NotificationMessage {
-    deletedFinding?: boolean | null;
     finding?: Schema$GoogleCloudSecuritycenterV2Finding;
     notificationConfigName?: string | null;
     resource?: Schema$GoogleCloudSecuritycenterV2Resource;
@@ -2065,7 +2061,6 @@ export namespace securitycenter_v1 {
     service?: string | null;
   }
   export interface Schema$NotificationConfig {
-    deletionNotificationsEnabled?: boolean | null;
     description?: string | null;
     name?: string | null;
     pubsubTopic?: string | null;
@@ -2998,7 +2993,6 @@ export namespace securitycenter_v1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "dataset": "my_dataset",
-     *       //   "deletionNotificationsEnabled": false,
      *       //   "description": "my_description",
      *       //   "filter": "my_filter",
      *       //   "mostRecentEditor": "my_mostRecentEditor",
@@ -3014,7 +3008,6 @@ export namespace securitycenter_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "dataset": "my_dataset",
-     *   //   "deletionNotificationsEnabled": false,
      *   //   "description": "my_description",
      *   //   "filter": "my_filter",
      *   //   "mostRecentEditor": "my_mostRecentEditor",
@@ -3304,7 +3297,6 @@ export namespace securitycenter_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "dataset": "my_dataset",
-     *   //   "deletionNotificationsEnabled": false,
      *   //   "description": "my_description",
      *   //   "filter": "my_filter",
      *   //   "mostRecentEditor": "my_mostRecentEditor",
@@ -3608,7 +3600,6 @@ export namespace securitycenter_v1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "dataset": "my_dataset",
-     *       //   "deletionNotificationsEnabled": false,
      *       //   "description": "my_description",
      *       //   "filter": "my_filter",
      *       //   "mostRecentEditor": "my_mostRecentEditor",
@@ -3624,7 +3615,6 @@ export namespace securitycenter_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "dataset": "my_dataset",
-     *   //   "deletionNotificationsEnabled": false,
      *   //   "description": "my_description",
      *   //   "filter": "my_filter",
      *   //   "mostRecentEditor": "my_mostRecentEditor",
@@ -6936,7 +6926,6 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "deletionNotificationsEnabled": false,
      *       //   "description": "my_description",
      *       //   "name": "my_name",
      *       //   "pubsubTopic": "my_pubsubTopic",
@@ -6949,7 +6938,6 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "deletionNotificationsEnabled": false,
      *   //   "description": "my_description",
      *   //   "name": "my_name",
      *   //   "pubsubTopic": "my_pubsubTopic",
@@ -7226,7 +7214,6 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "deletionNotificationsEnabled": false,
      *   //   "description": "my_description",
      *   //   "name": "my_name",
      *   //   "pubsubTopic": "my_pubsubTopic",
@@ -7519,7 +7506,6 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "deletionNotificationsEnabled": false,
      *       //   "description": "my_description",
      *       //   "name": "my_name",
      *       //   "pubsubTopic": "my_pubsubTopic",
@@ -7532,7 +7518,6 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "deletionNotificationsEnabled": false,
      *   //   "description": "my_description",
      *   //   "name": "my_name",
      *   //   "pubsubTopic": "my_pubsubTopic",
@@ -12207,7 +12192,6 @@ export namespace securitycenter_v1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "dataset": "my_dataset",
-     *       //   "deletionNotificationsEnabled": false,
      *       //   "description": "my_description",
      *       //   "filter": "my_filter",
      *       //   "mostRecentEditor": "my_mostRecentEditor",
@@ -12223,7 +12207,6 @@ export namespace securitycenter_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "dataset": "my_dataset",
-     *   //   "deletionNotificationsEnabled": false,
      *   //   "description": "my_description",
      *   //   "filter": "my_filter",
      *   //   "mostRecentEditor": "my_mostRecentEditor",
@@ -12513,7 +12496,6 @@ export namespace securitycenter_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "dataset": "my_dataset",
-     *   //   "deletionNotificationsEnabled": false,
      *   //   "description": "my_description",
      *   //   "filter": "my_filter",
      *   //   "mostRecentEditor": "my_mostRecentEditor",
@@ -12817,7 +12799,6 @@ export namespace securitycenter_v1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "dataset": "my_dataset",
-     *       //   "deletionNotificationsEnabled": false,
      *       //   "description": "my_description",
      *       //   "filter": "my_filter",
      *       //   "mostRecentEditor": "my_mostRecentEditor",
@@ -12833,7 +12814,6 @@ export namespace securitycenter_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "dataset": "my_dataset",
-     *   //   "deletionNotificationsEnabled": false,
      *   //   "description": "my_description",
      *   //   "filter": "my_filter",
      *   //   "mostRecentEditor": "my_mostRecentEditor",
@@ -16147,7 +16127,6 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "deletionNotificationsEnabled": false,
      *       //   "description": "my_description",
      *       //   "name": "my_name",
      *       //   "pubsubTopic": "my_pubsubTopic",
@@ -16160,7 +16139,6 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "deletionNotificationsEnabled": false,
      *   //   "description": "my_description",
      *   //   "name": "my_name",
      *   //   "pubsubTopic": "my_pubsubTopic",
@@ -16437,7 +16415,6 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "deletionNotificationsEnabled": false,
      *   //   "description": "my_description",
      *   //   "name": "my_name",
      *   //   "pubsubTopic": "my_pubsubTopic",
@@ -16730,7 +16707,6 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "deletionNotificationsEnabled": false,
      *       //   "description": "my_description",
      *       //   "name": "my_name",
      *       //   "pubsubTopic": "my_pubsubTopic",
@@ -16743,7 +16719,6 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "deletionNotificationsEnabled": false,
      *   //   "description": "my_description",
      *   //   "name": "my_name",
      *   //   "pubsubTopic": "my_pubsubTopic",
@@ -24876,7 +24851,6 @@ export namespace securitycenter_v1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "dataset": "my_dataset",
-     *       //   "deletionNotificationsEnabled": false,
      *       //   "description": "my_description",
      *       //   "filter": "my_filter",
      *       //   "mostRecentEditor": "my_mostRecentEditor",
@@ -24892,7 +24866,6 @@ export namespace securitycenter_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "dataset": "my_dataset",
-     *   //   "deletionNotificationsEnabled": false,
      *   //   "description": "my_description",
      *   //   "filter": "my_filter",
      *   //   "mostRecentEditor": "my_mostRecentEditor",
@@ -25182,7 +25155,6 @@ export namespace securitycenter_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "dataset": "my_dataset",
-     *   //   "deletionNotificationsEnabled": false,
      *   //   "description": "my_description",
      *   //   "filter": "my_filter",
      *   //   "mostRecentEditor": "my_mostRecentEditor",
@@ -25486,7 +25458,6 @@ export namespace securitycenter_v1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "dataset": "my_dataset",
-     *       //   "deletionNotificationsEnabled": false,
      *       //   "description": "my_description",
      *       //   "filter": "my_filter",
      *       //   "mostRecentEditor": "my_mostRecentEditor",
@@ -25502,7 +25473,6 @@ export namespace securitycenter_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "dataset": "my_dataset",
-     *   //   "deletionNotificationsEnabled": false,
      *   //   "description": "my_description",
      *   //   "filter": "my_filter",
      *   //   "mostRecentEditor": "my_mostRecentEditor",
@@ -28814,7 +28784,6 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "deletionNotificationsEnabled": false,
      *       //   "description": "my_description",
      *       //   "name": "my_name",
      *       //   "pubsubTopic": "my_pubsubTopic",
@@ -28827,7 +28796,6 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "deletionNotificationsEnabled": false,
      *   //   "description": "my_description",
      *   //   "name": "my_name",
      *   //   "pubsubTopic": "my_pubsubTopic",
@@ -29104,7 +29072,6 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "deletionNotificationsEnabled": false,
      *   //   "description": "my_description",
      *   //   "name": "my_name",
      *   //   "pubsubTopic": "my_pubsubTopic",
@@ -29397,7 +29364,6 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "deletionNotificationsEnabled": false,
      *       //   "description": "my_description",
      *       //   "name": "my_name",
      *       //   "pubsubTopic": "my_pubsubTopic",
@@ -29410,7 +29376,6 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "deletionNotificationsEnabled": false,
      *   //   "description": "my_description",
      *   //   "name": "my_name",
      *   //   "pubsubTopic": "my_pubsubTopic",
