@@ -1971,7 +1971,7 @@
       }
     }
   },
-  "revision": "20261005",
+  "revision": "20260724",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -4122,9 +4122,6 @@
         "dataset": {
           "type": "string"
         },
-        "deletionNotificationsEnabled": {
-          "type": "boolean"
-        },
         "description": {
           "type": "string"
         },
@@ -4396,9 +4393,6 @@
     "GoogleCloudSecuritycenterV1NotificationMessage": {
       "id": "GoogleCloudSecuritycenterV1NotificationMessage",
       "properties": {
-        "deletedFinding": {
-          "type": "boolean"
-        },
         "finding": {
           "$ref": "Finding"
         },
@@ -5556,9 +5550,6 @@
         },
         "dataset": {
           "type": "string"
-        },
-        "deletionNotificationsEnabled": {
-          "type": "boolean"
         },
         "description": {
           "type": "string"
@@ -8666,9 +8657,6 @@
     "GoogleCloudSecuritycenterV2NotificationMessage": {
       "id": "GoogleCloudSecuritycenterV2NotificationMessage",
       "properties": {
-        "deletedFinding": {
-          "type": "boolean"
-        },
         "finding": {
           "$ref": "GoogleCloudSecuritycenterV2Finding"
         },

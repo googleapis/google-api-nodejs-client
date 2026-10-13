@@ -254,7 +254,7 @@ export namespace gmail_v1 {
      */
     hardwareKeyMetadata?: Schema$HardwareKeyMetadata;
     /**
-     * Metadata for a private key instance managed by an external key access control list service. The maximum size of the KACLS data field is 8 KiB.
+     * Metadata for a private key instance managed by an external key access control list service.
      */
     kaclsKeyMetadata?: Schema$KaclsKeyMetadata;
     /**
@@ -464,15 +464,15 @@ export namespace gmail_v1 {
     maxFolderSize?: number | null;
   }
   /**
-   * Metadata for a cryptographic key managed by an external key access control list service. For details about managing key access, see [Google Workspace CSE API Reference](https://developers.google.com/workspace/cse/reference).
+   * Metadata for private keys managed by an external key access control list service. For details about managing key access, see [Google Workspace CSE API Reference](https://developers.google.com/workspace/cse/reference).
    */
   export interface Schema$KaclsKeyMetadata {
     /**
-     * Opaque data generated and used by the key access control list service.
+     * Opaque data generated and used by the key access control list service. Maximum size: 8 KiB.
      */
     kaclsData?: string | null;
     /**
-     * The URI of the key access control list service that manages the key.
+     * The URI of the key access control list service that manages the private key.
      */
     kaclsUri?: string | null;
   }

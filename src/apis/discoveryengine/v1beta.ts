@@ -10376,10 +10376,6 @@ export namespace discoveryengine_v1beta {
      * Name of the newly generated or continued session.
      */
     session?: string | null;
-    /**
-     * Optional. The full resource name of the Sobi task if the conversation was handled by a long-running agent task. Format: projects/{project\}/locations/{location\}/tasks/{task_id\}
-     */
-    taskName?: string | null;
   }
   /**
    * Response message for SiteSearchEngineService.FetchDomainVerificationStatus method.

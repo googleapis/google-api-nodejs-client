@@ -63,11 +63,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.asia-southeast3.rep.googleapis.com/",
-      "location": "asia-southeast3"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://developerconnect.australia-southeast1.rep.googleapis.com/",
       "location": "australia-southeast1"
     },
@@ -85,11 +80,6 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://developerconnect.europe-north1.rep.googleapis.com/",
       "location": "europe-north1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://developerconnect.europe-north2.rep.googleapis.com/",
-      "location": "europe-north2"
     },
     {
       "description": "Regional Endpoint",
@@ -1965,7 +1955,7 @@
       }
     }
   },
-  "revision": "20261002",
+  "revision": "20260914",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "AccountConnector": {

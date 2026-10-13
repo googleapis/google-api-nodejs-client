@@ -33,11 +33,6 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://auditmanager.asia-south1.rep.googleapis.com/",
       "location": "asia-south1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://auditmanager.me-central2.rep.googleapis.com/",
-      "location": "me-central2"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1890,7 +1885,7 @@
       }
     }
   },
-  "revision": "20261007",
+  "revision": "20260908",
   "rootUrl": "https://auditmanager.googleapis.com/",
   "schemas": {
     "AuditReport": {
