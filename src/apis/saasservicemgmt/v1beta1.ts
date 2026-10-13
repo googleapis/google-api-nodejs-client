@@ -185,11 +185,11 @@ export namespace saasservicemgmt_v1beta1 {
     scope?: Schema$Scope;
   }
   /**
-   * Blueprints are OCI Images that contain all of the artifacts needed to provision a unit. Metadata such as, type of the engine used to actuate the blueprint (e.g. terraform, helm etc) and version will come from the image manifest. If the hostname is omitted, it will be assumed to be the regional path to Artifact Registry (eg. us-east1-docker.pkg.dev).
+   * Blueprints are OCI Images that contain all of the artifacts needed to provision a unit. Metadata such as, type of the engine used to actuate the blueprint (Terraform, for example) and version will come from the image manifest. If the hostname is omitted, it will be assumed to be the regional path to Artifact Registry (eg. us-east1-docker.pkg.dev).
    */
   export interface Schema$Blueprint {
     /**
-     * Output only. Type of the engine used to actuate the blueprint. e.g. terraform, helm etc.
+     * Output only. Type of the engine used to actuate the blueprint. (Terraform, for example)
      */
     engine?: string | null;
     /**
@@ -967,7 +967,7 @@ export namespace saasservicemgmt_v1beta1 {
     release?: string | null;
   }
   /**
-   * A new version to be propagated and deployed to units. This includes pointers to packaged blueprints for actuation (e.g Helm or Terraform configuration packages) via artifact registry.
+   * A new version to be propagated and deployed to units. This includes pointers to packaged blueprints for actuation via Artifact Registry.
    */
   export interface Schema$Release {
     /**
@@ -1183,7 +1183,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     uid?: string | null;
     /**
-     * Optional. CEL(https://github.com/google/cel-spec) formatted filter string against Unit. The filter will be applied to determine the eligible unit population. This filter can only reduce, but not expand the scope of the rollout.
+     * Optional. [CEL](https://github.com/google/cel-spec) formatted filter string against Unit. The filter will be applied to determine the eligible unit population. This filter can only reduce, but not expand the scope of the rollout.
      */
     unitFilter?: string | null;
     /**
@@ -1434,7 +1434,7 @@ export namespace saasservicemgmt_v1beta1 {
     inputVariable?: string | null;
   }
   /**
-   * A unit of deployment that has its lifecycle via a CRUD API using an actuation engine under the hood (e.g. based on Terraform, Helm or a custom implementation provided by a service producer). A building block of a SaaS Tenant.
+   * A unit of deployment that has its lifecycle via a CRUD API using an actuation engine under the hood (e.g. based on Terraform, or a custom implementation provided by a service producer). A building block of a SaaS Tenant.
    */
   export interface Schema$Unit {
     /**
@@ -1498,7 +1498,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     ongoingOperations?: string[] | null;
     /**
-     * Optional. Output only. Set of key/value pairs corresponding to output variables from execution of actuation templates. The variables are declared in actuation configs (e.g in helm chart or terraform) and the values are fetched and returned by the actuation engine upon completion of execution.
+     * Optional. Output only. Set of key/value pairs corresponding to output variables from execution of actuation templates. The variables are declared in actuation configs (in Terraform for example) and the values are fetched and returned by the actuation engine upon completion of execution.
      */
     outputVariables?: Schema$UnitVariable[];
     /**
@@ -1694,6 +1694,10 @@ export namespace saasservicemgmt_v1beta1 {
      * Optional. A reference to the Release object to use as default for creating new units of this UnitKind (optional). If not specified, a new unit must explicitly reference which release to use for its creation.
      */
     defaultRelease?: string | null;
+    /**
+     * Output only. The timestamp when the resource was marked for deletion (deletion is an asynchronous operation).
+     */
+    deleteTime?: string | null;
     /**
      * Optional. Immutable. List of other unit kinds that this release will depend on. Dependencies will be automatically provisioned if not found. Maximum 10.
      */
@@ -13119,6 +13123,7 @@ export namespace saasservicemgmt_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "defaultFlagRevisions": [],
      *       //   "defaultRelease": "my_defaultRelease",
+     *       //   "deleteTime": "my_deleteTime",
      *       //   "dependencies": [],
      *       //   "etag": "my_etag",
      *       //   "inputVariableMappings": [],
@@ -13142,6 +13147,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "defaultFlagRevisions": [],
      *   //   "defaultRelease": "my_defaultRelease",
+     *   //   "deleteTime": "my_deleteTime",
      *   //   "dependencies": [],
      *   //   "etag": "my_etag",
      *   //   "inputVariableMappings": [],
@@ -13439,6 +13445,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "defaultFlagRevisions": [],
      *   //   "defaultRelease": "my_defaultRelease",
+     *   //   "deleteTime": "my_deleteTime",
      *   //   "dependencies": [],
      *   //   "etag": "my_etag",
      *   //   "inputVariableMappings": [],
@@ -13750,6 +13757,7 @@ export namespace saasservicemgmt_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "defaultFlagRevisions": [],
      *       //   "defaultRelease": "my_defaultRelease",
+     *       //   "deleteTime": "my_deleteTime",
      *       //   "dependencies": [],
      *       //   "etag": "my_etag",
      *       //   "inputVariableMappings": [],
@@ -13773,6 +13781,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "defaultFlagRevisions": [],
      *   //   "defaultRelease": "my_defaultRelease",
+     *   //   "deleteTime": "my_deleteTime",
      *   //   "dependencies": [],
      *   //   "etag": "my_etag",
      *   //   "inputVariableMappings": [],
