@@ -3721,7 +3721,7 @@
       }
     }
   },
-  "revision": "20260920",
+  "revision": "20260929",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -5379,6 +5379,20 @@
           "format": "int64",
           "type": "string"
         },
+        "databaseCenterIntegration": {
+          "description": "Optional. State of the Database Center integration for this instance. When unspecified, Database Center integration is enabled by default.",
+          "enum": [
+            "DATABASE_CENTER_INTEGRATION_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Default value. The integration state is unspecified. When unspecified, Database Center integration is enabled by default.",
+            "Database Center integration is enabled.",
+            "Database Center integration is disabled."
+          ],
+          "type": "string"
+        },
         "databaseCenterIntegrationEnabled": {
           "description": "Optional. If true, instance metadata is sent to the Database Center. If false, instance metadata is not sent to the Database Center.",
           "type": "boolean"
@@ -5767,6 +5781,10 @@
         "settings": {
           "$ref": "Settings",
           "description": "The user settings."
+        },
+        "skipPrecheck": {
+          "description": "Optional. Input only. Determines whether the precheck step is skipped during a major version upgrade.",
+          "type": "boolean"
         },
         "sqlNetworkArchitecture": {
           "enum": [
@@ -6188,7 +6206,7 @@
           "type": "boolean"
         },
         "database": {
-          "description": "Optional. Name of the database on which the statement will be executed.",
+          "description": "Optional. Name of the database on which the statement will be executed. For Postgres and SQL Server it's required, for MySQL it's optional.",
           "type": "string"
         },
         "partialResultMode": {
@@ -8499,6 +8517,11 @@
           "description": "Optional. This is always `sql#preCheckMajorVersionUpgradeContext`.",
           "type": "string"
         },
+        "maxRuntime": {
+          "description": "Optional. The maximum allowed runtime for the precheck operation.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "preCheckResponse": {
           "description": "Output only. The responses from the precheck operation.",
           "items": {
@@ -10651,6 +10674,11 @@
       "description": "Captured workload for an instance.",
       "id": "WorkloadCapture",
       "properties": {
+        "backupId": {
+          "description": "Output only. The base backup ID associated with the workload capture.",
+          "readOnly": true,
+          "type": "string"
+        },
         "endTime": {
           "description": "Output only. The end time of the workload capture.",
           "format": "google-datetime",
@@ -10685,13 +10713,15 @@
             "STATE_UNSPECIFIED",
             "RUNNING",
             "COMPLETED",
-            "FAILED"
+            "FAILED",
+            "TERMINATED"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
             "Workload capture is currently running.",
-            "Workload capture completed successfully.",
-            "Workload capture failed."
+            "Workload capture completed successfully. This state is set when the user explicitly stops the capture.",
+            "Workload capture failed.",
+            "Workload capture was terminated automatically. This state is set when Cloud SQL automatically stops the capture due to a conflicting operation or when the maximum duration is reached."
           ],
           "readOnly": true,
           "type": "string"
