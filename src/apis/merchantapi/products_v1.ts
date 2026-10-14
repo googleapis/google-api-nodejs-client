@@ -1195,7 +1195,7 @@ export namespace merchantapi_products_v1 {
      */
     virtualModelLink?: string | null;
     /**
-     * The [warranty](https://support.google.com/merchants/answer/15957626) of the product.
+     * The [`warranty`](https://support.google.com/merchants/answer/18562485) of the product.
      */
     warranty?: Schema$Warranty;
     /**
@@ -1774,7 +1774,7 @@ export namespace merchantapi_products_v1 {
     value?: string | null;
   }
   /**
-   * The warranty of the vehicle.
+   * The warranty of the product.
    */
   export interface Schema$Warranty {
     /**
