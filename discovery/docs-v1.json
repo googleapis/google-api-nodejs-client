@@ -178,7 +178,7 @@
           ],
           "parameters": {
             "commentsViewMode": {
-              "description": "The comments view mode to apply to the document. This allows viewing the document with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. If you set comments_view_mode to any value, you must also set include_tabs_content to `true` or use a field mask that references the Document.tabs field (or any subfield). If you set comments_view_mode to COMMENTS_VIEW_MODE_INCLUDED, you must also explicitly set suggestions_view_mode to SUGGESTIONS_INLINE. If you set comments_view_mode to COMMENTS_VIEW_MODE_INCLUDED or COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS, you may not set suggestions_view_mode to PREVIEW_WITHOUT_SUGGESTIONS or PREVIEW_SUGGESTIONS_ACCEPTED. [Developer Preview](https://developers.google.com/workspace/preview).",
+              "description": "The comments view mode to apply to the document. This allows viewing the document with comments omitted or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. If you set comments_view_mode to any value, you must also set include_tabs_content to `true` or use a field mask that references the Document.tabs field (or any subfield). If you set comments_view_mode to COMMENTS_VIEW_MODE_INCLUDED, you must also explicitly set suggestions_view_mode to SUGGESTIONS_INLINE. If you set comments_view_mode to COMMENTS_VIEW_MODE_INCLUDED or COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS, you may not set suggestions_view_mode to PREVIEW_WITHOUT_SUGGESTIONS or PREVIEW_SUGGESTIONS_ACCEPTED.",
               "enum": [
                 "COMMENTS_VIEW_MODE_UNSPECIFIED",
                 "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
@@ -238,11 +238,11 @@
       }
     }
   },
-  "revision": "20260928",
+  "revision": "20261006",
   "rootUrl": "https://docs.googleapis.com/",
   "schemas": {
     "AcceptSuggestionRequest": {
-      "description": "Accepts a suggestion. Returns a 403 forbidden error if the requesting user does not have edit access to the document. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Accepts a suggestion. Returns a 403 forbidden error if the requesting user does not have edit access to the document.",
       "id": "AcceptSuggestionRequest",
       "properties": {
         "suggestionId": {
@@ -253,7 +253,7 @@
       "type": "object"
     },
     "AddCommentReplyRequest": {
-      "description": "Inserts a reply Post into a CommentThread or SuggestionThread. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Inserts a reply Post into a CommentThread or SuggestionThread.",
       "id": "AddCommentReplyRequest",
       "properties": {
         "commentId": {
@@ -272,7 +272,7 @@
       "type": "object"
     },
     "AddCommentReplyResponse": {
-      "description": "Response message for adding a reply. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Response message for adding a reply.",
       "id": "AddCommentReplyResponse",
       "properties": {
         "post": {
@@ -395,7 +395,7 @@
       "id": "BatchUpdateDocumentResponse",
       "properties": {
         "commentUpdateState": {
-          "description": "Whether comment updates were applied in the batch request. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "Whether comment updates were applied in the batch request.",
           "enum": [
             "COMMENT_UPDATE_STATE_UNSPECIFIED",
             "NO_UPDATES_REQUESTED",
@@ -422,7 +422,7 @@
           "type": "array"
         },
         "suggestionResponses": {
-          "description": "The suggestions which were affected by each update. This maps 1:1 with the updates. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "The suggestions which were affected by each update. This maps 1:1 with the updates.",
           "items": {
             "$ref": "SuggestionResponse"
           },
@@ -547,7 +547,7 @@
       "type": "object"
     },
     "CommentAnchor": {
-      "description": "One or more locations in the document that are tied to CommentThreads with the same anchorId. Note: Multiple anchors may refer to the same location. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "One or more locations in the document that are tied to CommentThreads with the same anchorId. Note: Multiple anchors may refer to the same location.",
       "id": "CommentAnchor",
       "properties": {
         "anchorId": {
@@ -565,7 +565,7 @@
       "type": "object"
     },
     "CommentThread": {
-      "description": "Represents a single comment thread. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Represents a single comment thread.",
       "id": "CommentThread",
       "properties": {
         "anchorId": {
@@ -1000,7 +1000,7 @@
       "type": "object"
     },
     "DeleteCommentReplyRequest": {
-      "description": "Deletes a reply Post from a CommentThread or SuggestionThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. - The reply post contains an action. - The reply post contains an assignee. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Deletes a reply Post from a CommentThread or SuggestionThread. Returns a 400 bad request error if: - The requesting user is not the author of the post. - The reply post contains an action. - The reply post contains an assignee.",
       "id": "DeleteCommentReplyRequest",
       "properties": {
         "commentId": {
@@ -1019,7 +1019,7 @@
       "type": "object"
     },
     "DeleteCommentRequest": {
-      "description": "Deletes a CommentThread. Returns a 400 bad request error if the requesting user is not the author of the headPost. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Deletes a CommentThread. Returns a 400 bad request error if the requesting user is not the author of the headPost.",
       "id": "DeleteCommentRequest",
       "properties": {
         "commentId": {
@@ -1131,7 +1131,7 @@
       "type": "object"
     },
     "DeleteSuggestionRequest": {
-      "description": "Deletes a suggestion. Returns a 403 forbidden error if the requesting user is not the author of the suggestion. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Deletes a suggestion. Returns a 403 forbidden error if the requesting user is not the author of the suggestion.",
       "id": "DeleteSuggestionRequest",
       "properties": {
         "suggestionId": {
@@ -1207,14 +1207,14 @@
           "description": "Output only. The main body of the document. Legacy field: Instead, use Document.tabs.documentTab.body, which exposes the actual document content from all tabs when the includeTabsContent parameter is set to `true`. If `false` or unset, this field contains information about the first tab in the document."
         },
         "comments": {
-          "description": "Output only. The comments associated with the document. Only populated if the commentsViewMode parameter is set to require comments (such as `COMMENTS_VIEW_MODE_INCLUDED`). [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "Output only. The comments associated with the document. Only populated if the commentsViewMode parameter is set to require comments (such as `COMMENTS_VIEW_MODE_INCLUDED`).",
           "items": {
             "$ref": "CommentThread"
           },
           "type": "array"
         },
         "commentsViewMode": {
-          "description": "Output only. The comments view mode applied to the document. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "Output only. The comments view mode applied to the document.",
           "enum": [
             "COMMENTS_VIEW_MODE_UNSPECIFIED",
             "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
@@ -1309,7 +1309,7 @@
           "type": "object"
         },
         "suggestions": {
-          "description": "Output only. The suggestions associated with the document. Only populated if the commentsViewMode parameter is set to require comments (such as `COMMENTS_VIEW_MODE_INCLUDED`). [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "Output only. The suggestions associated with the document. Only populated if the commentsViewMode parameter is set to require comments (such as `COMMENTS_VIEW_MODE_INCLUDED`).",
           "items": {
             "$ref": "SuggestionThread"
           },
@@ -1549,7 +1549,7 @@
           "additionalProperties": {
             "$ref": "CommentAnchor"
           },
-          "description": "The comment anchors in a document tab, keyed by anchor ID. Only populated if the commentsViewMode parameter is set to require comments (such as `COMMENTS_VIEW_MODE_INCLUDED`). [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "The comment anchors in a document tab, keyed by anchor ID. Only populated if the commentsViewMode parameter is set to require comments (such as `COMMENTS_VIEW_MODE_INCLUDED`).",
           "type": "object"
         },
         "documentStyle": {
@@ -2315,7 +2315,7 @@
       "type": "object"
     },
     "InsertCommentRequest": {
-      "description": "Inserts a CommentThread into the document. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Inserts a CommentThread into the document.",
       "id": "InsertCommentRequest",
       "properties": {
         "assigneeEmailAddress": {
@@ -2334,7 +2334,7 @@
       "type": "object"
     },
     "InsertCommentResponse": {
-      "description": "Response message for inserting a comment. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Response message for inserting a comment.",
       "id": "InsertCommentResponse",
       "properties": {
         "commentThread": {
@@ -3652,7 +3652,7 @@
       "type": "object"
     },
     "Post": {
-      "description": "Represents a single post in a comment or suggestion thread. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Represents a single post in a comment or suggestion thread.",
       "id": "Post",
       "properties": {
         "assigneeEmail": {
@@ -3737,7 +3737,7 @@
       "type": "object"
     },
     "PostAuthor": {
-      "description": "Represents a user who authored a comment or suggestion post. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Represents a user who authored a comment or suggestion post.",
       "id": "PostAuthor",
       "properties": {
         "anonymous": {
@@ -3785,7 +3785,7 @@
       "type": "object"
     },
     "RejectSuggestionRequest": {
-      "description": "Rejects a suggestion. Returns a 403 forbidden error if the requesting user does not have edit access to the document and is not the author of the suggestion. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Rejects a suggestion. Returns a 403 forbidden error if the requesting user does not have edit access to the document and is not the author of the suggestion.",
       "id": "RejectSuggestionRequest",
       "properties": {
         "suggestionId": {
@@ -3886,11 +3886,11 @@
       "properties": {
         "acceptSuggestion": {
           "$ref": "AcceptSuggestionRequest",
-          "description": "Accepts a suggestion. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Accepts a suggestion."
         },
         "addCommentReply": {
           "$ref": "AddCommentReplyRequest",
-          "description": "Adds a reply to a CommentThread or SuggestionThread. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Adds a reply to a CommentThread or SuggestionThread."
         },
         "addDocumentTab": {
           "$ref": "AddDocumentTabRequest",
@@ -3922,11 +3922,11 @@
         },
         "deleteComment": {
           "$ref": "DeleteCommentRequest",
-          "description": "Deletes a CommentThread. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Deletes a CommentThread."
         },
         "deleteCommentReply": {
           "$ref": "DeleteCommentReplyRequest",
-          "description": "Deletes a reply Post from a CommentThread or SuggestionThread. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Deletes a reply Post from a CommentThread or SuggestionThread."
         },
         "deleteContentRange": {
           "$ref": "DeleteContentRangeRequest",
@@ -3958,7 +3958,7 @@
         },
         "deleteSuggestion": {
           "$ref": "DeleteSuggestionRequest",
-          "description": "Deletes a suggestion. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Deletes a suggestion."
         },
         "deleteTab": {
           "$ref": "DeleteTabRequest",
@@ -3974,7 +3974,7 @@
         },
         "insertComment": {
           "$ref": "InsertCommentRequest",
-          "description": "Inserts a CommentThread into the document. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Inserts a CommentThread into the document."
         },
         "insertDate": {
           "$ref": "InsertDateRequest",
@@ -4030,7 +4030,7 @@
         },
         "rejectSuggestion": {
           "$ref": "RejectSuggestionRequest",
-          "description": "Rejects a suggestion. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Rejects a suggestion."
         },
         "replaceAllText": {
           "$ref": "ReplaceAllTextRequest",
@@ -4050,7 +4050,7 @@
         },
         "updateCommentPost": {
           "$ref": "UpdateCommentPostRequest",
-          "description": "Updates an existing post (head post or reply) of a CommentThread or SuggestionThread. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "Updates an existing post (head post or reply) of a CommentThread or SuggestionThread."
         },
         "updateDocumentStyle": {
           "$ref": "UpdateDocumentStyleRequest",
@@ -4105,7 +4105,7 @@
       "properties": {
         "addCommentReply": {
           "$ref": "AddCommentReplyResponse",
-          "description": "The result of adding a reply to a comment or suggestion. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "The result of adding a reply to a comment or suggestion."
         },
         "addDocumentTab": {
           "$ref": "AddDocumentTabResponse",
@@ -4133,7 +4133,7 @@
         },
         "insertComment": {
           "$ref": "InsertCommentResponse",
-          "description": "The result of inserting a comment. [Developer Preview](https://developers.google.com/workspace/preview)."
+          "description": "The result of inserting a comment."
         },
         "insertDropdown": {
           "$ref": "InsertDropdownResponse",
@@ -4725,7 +4725,7 @@
       "type": "object"
     },
     "SuggestionResponse": {
-      "description": "The suggestions which were affected by a given update. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "The suggestions which were affected by a given update.",
       "id": "SuggestionResponse",
       "properties": {
         "acceptedSuggestionIds": {
@@ -4767,7 +4767,7 @@
       "type": "object"
     },
     "SuggestionThread": {
-      "description": "Represents a single suggestion thread. Suggestion threads are created as a byproduct of saving changes to the document while in suggestion mode, and cannot be created directly. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Represents a single suggestion thread. Suggestion threads are created as a byproduct of saving changes to the document while in suggestion mode, and cannot be created directly.",
       "id": "SuggestionThread",
       "properties": {
         "headPost": {
@@ -5506,7 +5506,7 @@
       "type": "object"
     },
     "UpdateCommentPostRequest": {
-      "description": "Updates a Post in a CommentThread or SuggestionThread. Returns a 400 bad request error if: - The post is the headPost of a SuggestionThread. - The requesting user is not the author of the post. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "description": "Updates a Post in a CommentThread or SuggestionThread. Returns a 400 bad request error if: - The post is the headPost of a SuggestionThread. - The requesting user is not the author of the post.",
       "id": "UpdateCommentPostRequest",
       "properties": {
         "commentId": {
@@ -5808,7 +5808,7 @@
           "type": "string"
         },
         "writeMode": {
-          "description": "How the request updates should be applied to the document. If unspecified, the request updates will be applied as normal edits. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "description": "How the request updates should be applied to the document. If unspecified, the request updates will be applied as normal edits.",
           "enum": [
             "WRITE_MODE_UNSPECIFIED",
             "EDIT",
@@ -5817,7 +5817,7 @@
           "enumDescriptions": [
             "The write mode is unspecified. Defaults to EDIT behavior.",
             "Apply all updates as normal edits.",
-            "Apply all updates as suggestions. [Developer Preview](https://developers.google.com/workspace/preview)."
+            "Apply all updates as suggestions."
           ],
           "type": "string"
         }
