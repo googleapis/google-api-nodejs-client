@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20261002",
+  "revision": "20261012",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AutomatedDiscounts": {
@@ -2569,7 +2569,7 @@
         },
         "warranty": {
           "$ref": "Warranty",
-          "description": "The [warranty](https://support.google.com/merchants/answer/15957626) of the product."
+          "description": "The [`warranty`](https://support.google.com/merchants/answer/18562485) of the product."
         },
         "year": {
           "description": "The [Year](https://support.google.com/google-ads/answer/14152816) of the vehicle model.",
@@ -3552,7 +3552,7 @@
       "type": "object"
     },
     "Warranty": {
-      "description": "The warranty of the vehicle.",
+      "description": "The warranty of the product.",
       "id": "Warranty",
       "properties": {
         "duration": {
