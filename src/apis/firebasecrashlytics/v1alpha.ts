@@ -190,6 +190,19 @@ export namespace firebasecrashlytics_v1alpha {
     displayVersion?: string | null;
   }
   /**
+   * Developer-provided custom key-value pair metadata.
+   */
+  export interface Schema$CustomAttribute {
+    /**
+     * Output only. Custom attribute key name.
+     */
+    key?: string | null;
+    /**
+     * Output only. Custom attribute value.
+     */
+    value?: string | null;
+  }
+  /**
    * Response message for the DeleteUserCrashReports method. All crash reports associated with the specified user will be deleted typically within 24 hours of receiving the crash report.
    */
   export interface Schema$DeleteUserCrashReportsResponse {
@@ -817,6 +830,10 @@ export namespace firebasecrashlytics_v1alpha {
      * Browser metrics group.
      */
     browser?: Schema$Browser;
+    /**
+     * Custom attribute metrics group.
+     */
+    customAttribute?: Schema$CustomAttribute;
     /**
      * Device metrics group.
      */
@@ -2495,7 +2512,7 @@ export namespace firebasecrashlytics_v1alpha {
      *     metricsMode: 'placeholder-value',
      *     // Required. The report name. Format: "projects/{project\}/apps/{app_id\}/reports/{report\}".
      *     name: 'projects/my-project/apps/my-app/reports/my-report',
-     *     // Optional. The maximum number of result groups to return. If omitted, defaults to 25.
+     *     // Optional. The maximum number of result groups to return. The maximum value is 100; values above 100 will be coerced to 100. If omitted, defaults to 25.
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous call. The page token is only valid for the exact same set of filters, which must also be sent in subsequent requests. This token is valid for 10 minutes after the first request.
      *     pageToken: 'placeholder-value',
@@ -2821,7 +2838,7 @@ export namespace firebasecrashlytics_v1alpha {
      */
     name?: string;
     /**
-     * Optional. The maximum number of result groups to return. If omitted, defaults to 25.
+     * Optional. The maximum number of result groups to return. The maximum value is 100; values above 100 will be coerced to 100. If omitted, defaults to 25.
      */
     pageSize?: number;
     /**
