@@ -75,7 +75,7 @@
     "codecov": "^3.8.3",
     "cross-env": "^10.0.0",
     "eslint": "^8.57.1",
-    "execa": "^5.0.0",
+    "execa": "^10.0.0",
     "gaxios": "^7.1.0",
     "gts": "^6.0.2",
     "js-green-licenses": "^4.0.0",
