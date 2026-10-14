@@ -2438,7 +2438,7 @@ export namespace youtube_v3 {
     userComment?: string | null;
   }
   /**
-   * Details about the gift event, this is only set if the type is 'giftEvent'.
+   * Details about the gift event, this is only set if the type is `giftEvent`.
    */
   export interface Schema$LiveChatGiftDetails {
     /**
@@ -2476,7 +2476,7 @@ export namespace youtube_v3 {
   }
   export interface Schema$LiveChatGiftMembershipReceivedDetails {
     /**
-     * The ID of the membership gifting message that is related to this gift membership. This ID will always refer to a message whose type is 'membershipGiftingEvent'.
+     * The ID of the membership gifting message that is related to this gift membership. This ID will always refer to a message whose type is `membershipGiftingEvent`.
      */
     associatedMembershipGiftingMessageId?: string | null;
     /**
@@ -2589,7 +2589,7 @@ export namespace youtube_v3 {
     eventId?: string | null;
     items?: Schema$LiveChatMessage[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "youtube#liveChatMessageListResponse".
+     * Identifies what kind of resource this is. Value: the fixed string `"youtube#liveChatMessageListResponse"`.
      */
     kind?: string | null;
     nextPageToken?: string | null;
@@ -2607,7 +2607,7 @@ export namespace youtube_v3 {
     pollingIntervalMillis?: number | null;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The visitorId identifies the visitor.
+     * Identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -2627,15 +2627,15 @@ export namespace youtube_v3 {
      */
     displayMessage?: string | null;
     /**
-     * Details about the funding event, this is only set if the type is 'fanFundingEvent'.
+     * Details about the funding event, this is only set if the type is `fanFundingEvent`.
      */
     fanFundingEventDetails?: Schema$LiveChatFanFundingEventDetails;
     /**
-     * Details about the gift event, this is only set if the type is 'giftEvent'.
+     * Details about the gift event, this is only set if the type is `giftEvent`.
      */
     giftDetails?: Schema$LiveChatGiftDetails;
     /**
-     * Details about the Gift Membership Received event, this is only set if the type is 'giftMembershipReceivedEvent'.
+     * Details about the Gift Membership Received event, this is only set if the type is `giftMembershipReceivedEvent`.
      */
     giftMembershipReceivedDetails?: Schema$LiveChatGiftMembershipReceivedDetails;
     /**
@@ -2644,21 +2644,21 @@ export namespace youtube_v3 {
     hasDisplayContent?: boolean | null;
     liveChatId?: string | null;
     /**
-     * Details about the Member Milestone Chat event, this is only set if the type is 'memberMilestoneChatEvent'.
+     * Details about the Member Milestone Chat event, this is only set if the type is `memberMilestoneChatEvent`.
      */
     memberMilestoneChatDetails?: Schema$LiveChatMemberMilestoneChatDetails;
     /**
-     * Details about the Membership Gifting event, this is only set if the type is 'membershipGiftingEvent'.
+     * Details about the Membership Gifting event, this is only set if the type is `membershipGiftingEvent`.
      */
     membershipGiftingDetails?: Schema$LiveChatMembershipGiftingDetails;
     messageDeletedDetails?: Schema$LiveChatMessageDeletedDetails;
     messageRetractedDetails?: Schema$LiveChatMessageRetractedDetails;
     /**
-     * Details about the New Member Announcement event, this is only set if the type is 'newSponsorEvent'. Please note that "member" is the new term for "sponsor".
+     * Details about the New Member Announcement event, this is only set if the type is `newSponsorEvent`. The term "member" replaces "sponsor".
      */
     newSponsorDetails?: Schema$LiveChatNewSponsorDetails;
     /**
-     * Details about the poll event, this is only set if the type is 'pollEvent'.
+     * Details about the poll event, this is only set if the type is `pollEvent`.
      */
     pollDetails?: Schema$LiveChatPollDetails;
     /**
@@ -2666,15 +2666,15 @@ export namespace youtube_v3 {
      */
     publishedAt?: string | null;
     /**
-     * Details about the Super Chat event, this is only set if the type is 'superChatEvent'.
+     * Details about the Super Chat event, this is only set if the type is `superChatEvent`.
      */
     superChatDetails?: Schema$LiveChatSuperChatDetails;
     /**
-     * Details about the Super Sticker event, this is only set if the type is 'superStickerEvent'.
+     * Details about the Super Sticker event, this is only set if the type is `superStickerEvent`.
      */
     superStickerDetails?: Schema$LiveChatSuperStickerDetails;
     /**
-     * Details about the text message, this is only set if the type is 'textMessageEvent'.
+     * Details about the text message, this is only set if the type is `textMessageEvent`.
      */
     textMessageDetails?: Schema$LiveChatTextMessageDetails;
     /**
@@ -2788,7 +2788,7 @@ export namespace youtube_v3 {
      */
     currency?: string | null;
     /**
-     * The tier in which the amount belongs. Lower amounts belong to lower tiers. The lowest tier is 1.
+     * The tier in which the amount belongs. Lower amounts belong to lower tiers. The lowest tier is `1`.
      */
     tier?: number | null;
     /**
@@ -2814,7 +2814,7 @@ export namespace youtube_v3 {
      */
     superStickerMetadata?: Schema$SuperStickerMetadata;
     /**
-     * The tier in which the amount belongs. Lower amounts belong to lower tiers. The lowest tier is 1.
+     * The tier in which the amount belongs. Lower amounts belong to lower tiers. The lowest tier is `1`.
      */
     tier?: number | null;
   }
@@ -2826,7 +2826,7 @@ export namespace youtube_v3 {
   }
   export interface Schema$LiveChatUserBannedMessageDetails {
     /**
-     * The duration of the ban. This property is only present if the banType is temporary.
+     * The duration of the ban. This property is only present if the `banType` is `temporary`.
      */
     banDurationSeconds?: string | null;
     /**
@@ -4810,7 +4810,7 @@ export namespace youtube_v3 {
      */
     embeddable?: boolean | null;
     /**
-     * This value explains why a video failed to upload. This property is only present if the uploadStatus property indicates that the upload failed.
+     * This value explains why a video failed to upload. This property is only present if the `uploadStatus` property indicates that the upload failed.
      */
     failureReason?: string | null;
     /**
@@ -4819,7 +4819,7 @@ export namespace youtube_v3 {
     license?: string | null;
     madeForKids?: boolean | null;
     /**
-     * The video's privacy status.
+     * The video's privacy status. In a `videos.insert` request, if you don't specify a value for this property, the uploaded video's privacy status defaults to `public`. Certain uploads might default to `private` based on creator account settings, as explained in the [YouTube Help Center](https://support.google.com/youtube/answer/157177). Videos uploaded from unverified API projects are not restricted to private viewing mode.
      */
     privacyStatus?: string | null;
     /**
@@ -4831,7 +4831,7 @@ export namespace youtube_v3 {
      */
     publishAt?: string | null;
     /**
-     * This value explains why YouTube rejected an uploaded video. This property is only present if the uploadStatus property indicates that the upload was rejected.
+     * This value explains why YouTube rejected an uploaded video. This property is only present if the `uploadStatus` property indicates that the upload was rejected.
      */
     rejectionReason?: string | null;
     selfDeclaredMadeForKids?: boolean | null;
@@ -10778,7 +10778,7 @@ export namespace youtube_v3 {
     }
 
     /**
-     * Deletes a chat message.
+     * Deletes a chat message. A call to this method has a quota cost of 20 units.
      * @example
      * ```js
      * // Before running the sample:
@@ -10910,7 +10910,7 @@ export namespace youtube_v3 {
     }
 
     /**
-     * Inserts a new resource into this collection.
+     * Inserts a new resource into this collection. A call to this method has a quota cost of 20 units.
      * @example
      * ```js
      * // Before running the sample:
@@ -10943,7 +10943,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveChatMessages.insert({
-     *     // The *part* parameter serves two purposes. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the parameter value to snippet.
+     *     // The `part` parameter serves two purposes. It identifies the properties that the write operation sets as well as the properties that the API response includes. Set the parameter value to `snippet`.
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -11066,7 +11066,7 @@ export namespace youtube_v3 {
     }
 
     /**
-     * Retrieves a list of resources, possibly filtered.
+     * Retrieves a list of resources, possibly filtered. A call to this method has a quota cost of 5 units.
      * @example
      * ```js
      * // Before running the sample:
@@ -11102,13 +11102,13 @@ export namespace youtube_v3 {
      *   const res = await youtube.liveChatMessages.list({
      *     // Specifies the localization language in which the system messages should be returned.
      *     hl: 'placeholder-value',
-     *     // The id of the live chat for which comments should be returned.
+     *     // The ID of the live chat for which messages should be returned.
      *     liveChatId: 'placeholder-value',
-     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.
+     *     // The `maxResults` parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.
      *     maxResults: 'placeholder-value',
-     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identify other pages that could be retrieved.
+     *     // The `pageToken` parameter identifies a specific page in the result set that should be returned. In an API response, the `nextPageToken` property identifies other pages that could be retrieved.
      *     pageToken: 'placeholder-value',
-     *     // The *part* parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id, snippet, and authorDetails.
+     *     // The `part` parameter specifies the `liveChatMessage` resource parts that the API response includes. Supported values are `id`, `snippet`, and `authorDetails`.
      *     part: 'placeholder-value',
      *     // Specifies the size of the profile image that should be returned for each user.
      *     profileImageSize: 'placeholder-value',
@@ -11231,7 +11231,7 @@ export namespace youtube_v3 {
     }
 
     /**
-     * Transition a durable chat event.
+     * Transitions a durable chat event. A call to this method has a quota cost of 20 units.
      * @example
      * ```js
      * // Before running the sample:
@@ -11264,7 +11264,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.liveChatMessages.transition({
-     *     // The ID that uniquely identify the chat message event to transition.
+     *     // The ID that uniquely identifies the chat message event to transition.
      *     id: 'placeholder-value',
      *     // The status to which the chat event is going to transition.
      *     status: 'placeholder-value',
@@ -11385,7 +11385,7 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Livechatmessages$Insert extends StandardParameters {
     /**
-     * The *part* parameter serves two purposes. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the parameter value to snippet.
+     * The `part` parameter serves two purposes. It identifies the properties that the write operation sets as well as the properties that the API response includes. Set the parameter value to `snippet`.
      */
     part?: string[];
 
@@ -11400,19 +11400,19 @@ export namespace youtube_v3 {
      */
     hl?: string;
     /**
-     * The id of the live chat for which comments should be returned.
+     * The ID of the live chat for which messages should be returned.
      */
     liveChatId?: string;
     /**
-     * The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.
+     * The `maxResults` parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.
      */
     maxResults?: number;
     /**
-     * The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identify other pages that could be retrieved.
+     * The `pageToken` parameter identifies a specific page in the result set that should be returned. In an API response, the `nextPageToken` property identifies other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The *part* parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id, snippet, and authorDetails.
+     * The `part` parameter specifies the `liveChatMessage` resource parts that the API response includes. Supported values are `id`, `snippet`, and `authorDetails`.
      */
     part?: string[];
     /**
@@ -11422,7 +11422,7 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Livechatmessages$Transition extends StandardParameters {
     /**
-     * The ID that uniquely identify the chat message event to transition.
+     * The ID that uniquely identifies the chat message event to transition.
      */
     id?: string;
     /**
@@ -19572,7 +19572,7 @@ export namespace youtube_v3 {
     }
 
     /**
-     * Allows a user to load live chat through a server-streamed RPC.
+     * Allows a user to load live chat through a server-streamed RPC. A call to this method has a quota cost of 5 units.
      * @example
      * ```js
      * // Before running the sample:
@@ -19608,13 +19608,13 @@ export namespace youtube_v3 {
      *   const res = await youtube.youtube.v3.liveChat.messages.stream({
      *     // Specifies the localization language in which the system messages should be returned.
      *     hl: 'placeholder-value',
-     *     // The id of the live chat for which comments should be returned.
+     *     // The ID of the live chat for which messages should be returned.
      *     liveChatId: 'placeholder-value',
-     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.
+     *     // The `maxResults` parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.
      *     maxResults: 'placeholder-value',
-     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identify other pages that could be retrieved.
+     *     // The `pageToken` parameter identifies a specific page in the result set that should be returned. In an API response, the `nextPageToken` property identifies other pages that could be retrieved.
      *     pageToken: 'placeholder-value',
-     *     // The *part* parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id, snippet, and authorDetails.
+     *     // The `part` parameter specifies the `liveChatMessage` resource parts that the API response includes. Supported values are `id`, `snippet`, and `authorDetails`.
      *     part: 'placeholder-value',
      *     // Specifies the size of the profile image that should be returned for each user.
      *     profileImageSize: 'placeholder-value',
@@ -19743,19 +19743,19 @@ export namespace youtube_v3 {
      */
     hl?: string;
     /**
-     * The id of the live chat for which comments should be returned.
+     * The ID of the live chat for which messages should be returned.
      */
     liveChatId?: string;
     /**
-     * The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.
+     * The `maxResults` parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.
      */
     maxResults?: number;
     /**
-     * The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identify other pages that could be retrieved.
+     * The `pageToken` parameter identifies a specific page in the result set that should be returned. In an API response, the `nextPageToken` property identifies other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The *part* parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id, snippet, and authorDetails.
+     * The `part` parameter specifies the `liveChatMessage` resource parts that the API response includes. Supported values are `id`, `snippet`, and `authorDetails`.
      */
     part?: string[];
     /**
