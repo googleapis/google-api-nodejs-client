@@ -1265,7 +1265,7 @@
       }
     }
   },
-  "revision": "20261006",
+  "revision": "20261008",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -4859,7 +4859,7 @@
       "type": "object"
     },
     "KioskCustomization": {
-      "description": "Settings controlling the behavior of a device in kiosk mode. To enable kiosk mode, set kioskCustomLauncherEnabled to true or specify an app in the policy with installType KIOSK.",
+      "description": "Settings controlling the behavior of a device in kiosk mode. To enable kiosk mode, set kioskCustomLauncherEnabled to true or specify an app in the policy with the KIOSK role.",
       "id": "KioskCustomization",
       "properties": {
         "deviceSettings": {
@@ -6505,7 +6505,7 @@
         },
         "kioskCustomization": {
           "$ref": "KioskCustomization",
-          "description": "Optional. Settings controlling the behavior of a device in kiosk mode. To enable kiosk mode, set kioskCustomLauncherEnabled to true or specify an app in the policy with installType KIOSK."
+          "description": "Optional. Settings controlling the behavior of a device in kiosk mode. To enable kiosk mode, set kioskCustomLauncherEnabled to true or specify an app in the policy with the KIOSK role."
         },
         "locationMode": {
           "description": "The degree of location detection enabled.",
