@@ -1630,6 +1630,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "createFromSource": {
+                      "description": "Creates a volume in a volume pool from an existing data source (such as a Filestore backup).",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumePools/{volumePoolsId}/volumes:createFromSource",
+                      "httpMethod": "POST",
+                      "id": "file.projects.locations.volumePools.volumes.createFromSource",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent resource where this volume will be created. Format: projects/{project}/locations/{location}/volumePools/{volume_pool}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/volumePools/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/volumes:createFromSource",
+                      "request": {
+                        "$ref": "CreateFromSourceRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "delete": {
                       "description": "Deletes a volume.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumePools/{volumePoolsId}/volumes/{volumesId}",
@@ -1648,6 +1676,67 @@
                         }
                       },
                       "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "directCreate": {
+                      "description": "Creates a volume directly on the CLH, bypassing CCFE. This is a temporary PoC that will be used for testing and removed.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumePools/{volumePoolsId}/volumes:directCreate",
+                      "httpMethod": "POST",
+                      "id": "file.projects.locations.volumePools.volumes.directCreate",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent volume pool path, in the format `projects/{project}/locations/{location}/volumePools/{volume_pool}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/volumePools/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "volumeId": {
+                          "description": "Required. The ID to use for the volume. The ID must be unique within the specified volume pool.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/volumes:directCreate",
+                      "request": {
+                        "$ref": "Volume"
+                      },
+                      "response": {
+                        "$ref": "Volume"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "directDelete": {
+                      "description": "Deletes a volume directly on the CLH, bypassing CCFE. This is a temporary PoC that will be used for testing and removed.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumePools/{volumePoolsId}/volumes/{volumesId}:directDelete",
+                      "httpMethod": "POST",
+                      "id": "file.projects.locations.volumePools.volumes.directDelete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The volume resource name, in the format `projects/{project}/locations/{location}/volumePools/{volume_pool}/volumes/{volume}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/volumePools/[^/]+/volumes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:directDelete",
+                      "request": {
+                        "$ref": "DeleteVolumeRequest"
+                      },
                       "response": {
                         "$ref": "Empty"
                       },
@@ -1725,6 +1814,68 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    },
+                    "patch": {
+                      "description": "Updates the settings of a specific volume.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumePools/{volumePoolsId}/volumes/{volumesId}",
+                      "httpMethod": "PATCH",
+                      "id": "file.projects.locations.volumePools.volumes.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Identifier. The resource name of the volume, in the format `projects/{project}/locations/{location}/volumePools/{volume_pool}/volumes/{volume}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/volumePools/[^/]+/volumes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. Mask of fields to update. At least one path must be supplied in this field.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "request": {
+                        "$ref": "Volume"
+                      },
+                      "response": {
+                        "$ref": "Volume"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "unfreeze": {
+                      "description": "Unfreezes a volume.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumePools/{volumePoolsId}/volumes/{volumesId}:unfreeze",
+                      "httpMethod": "POST",
+                      "id": "file.projects.locations.volumePools.volumes.unfreeze",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the volume to unfreeze. Format: `projects/{project}/locations/{location}/volumePools/{volume_pool}/volumes/{volume}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/volumePools/[^/]+/volumes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:unfreeze",
+                      "request": {
+                        "$ref": "UnfreezeVolumeRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   }
                 }
@@ -1735,7 +1886,7 @@
       }
     }
   },
-  "revision": "20260827",
+  "revision": "20260927",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "AcquireShareRequest": {
@@ -1918,6 +2069,33 @@
       "properties": {},
       "type": "object"
     },
+    "CreateFromSourceRequest": {
+      "description": "Request for creating a volume from an existing data source (such as a backup).",
+      "id": "CreateFromSourceRequest",
+      "properties": {
+        "backup": {
+          "description": "The resource name of the backup to create from. Format: projects/{project}/locations/{location}/backups/{backup}",
+          "type": "string"
+        },
+        "ipAcls": {
+          "description": "Optional. IP ACLs defining permissions/ACLs to apply to the newly created volume.",
+          "items": {
+            "$ref": "NfsExportOptions"
+          },
+          "type": "array"
+        },
+        "quota": {
+          "description": "Optional. The limit for how much data can be written to this volume, in MiB.",
+          "format": "int64",
+          "type": "string"
+        },
+        "volumeId": {
+          "description": "Required. Unique identifier for the volume which also appears in the volumes resource name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DailyCycle": {
       "description": "Time window specified for daily operations.",
       "id": "DailyCycle",
@@ -1954,6 +2132,12 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "DeleteVolumeRequest": {
+      "description": "DeleteVolumeRequest deletes a volume.",
+      "id": "DeleteVolumeRequest",
+      "properties": {},
       "type": "object"
     },
     "DenyMaintenancePeriod": {
@@ -3615,6 +3799,25 @@
       },
       "type": "object"
     },
+    "UnfreezeVolumeRequest": {
+      "description": "Request for unfreezing a volume.",
+      "id": "UnfreezeVolumeRequest",
+      "properties": {
+        "ipAcls": {
+          "description": "Optional. IP ACLs defining permissions/ACLs to apply to the unfrozen volume",
+          "items": {
+            "$ref": "NfsExportOptions"
+          },
+          "type": "array"
+        },
+        "quota": {
+          "description": "Optional. The limit for how much data can be written to this volume, in MiB.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "UpdatePolicy": {
       "description": "Maintenance policy applicable to instance updates.",
       "id": "UpdatePolicy",
@@ -3667,6 +3870,13 @@
           "description": "Optional. A description of the volume with 2048 characters or less. Requests with longer descriptions will be rejected.",
           "type": "string"
         },
+        "ipAcls": {
+          "description": "Optional. User-defined permissions protecting mount points.",
+          "items": {
+            "$ref": "NfsExportOptions"
+          },
+          "type": "array"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -3682,6 +3892,29 @@
         "name": {
           "description": "Identifier. The resource name of the volume, in the format `projects/{project}/locations/{location}/volumePools/{volume_pool}/volumes/{volume}`.",
           "type": "string"
+        },
+        "quotaMib": {
+          "description": "Optional. The maximum size of the volume in mebibytes (MiB).",
+          "format": "int64",
+          "type": "string"
+        },
+        "state": {
+          "description": "Optional. The state of the volume. This field is caller-settable via `UpdateVolume` to transition a volume from `HOT` to `COLD` (freezing the volume). In `CreateVolume`, this field is output-only and initialized to `HOT`.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "HOT",
+            "WARM",
+            "COLD"
+          ],
+          "enumDescriptions": [
+            "The state of the volume is unknown.",
+            "The volume is being created.",
+            "The volume is hot and bound to a physical share.",
+            "The volume is warm - volume is unmountable and doesn't count as an active share, but is on hot storage.",
+            "The volume is cold and released from its physical share."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3690,6 +3923,11 @@
       "description": "VolumePool representation of a Cloud Filestore volume pool.",
       "id": "VolumePool",
       "properties": {
+        "activeVolumeCount": {
+          "description": "Optional. The number of active volumes. Default: 100.",
+          "format": "int32",
+          "type": "integer"
+        },
         "activeVolumeIops": {
           "description": "Optional. The number of IOPs provisioned per active volume.",
           "format": "int32",
@@ -3702,7 +3940,7 @@
           "type": "string"
         },
         "defaultVolumeQuotaMib": {
-          "description": "Optional. The default quota per volume in MiB. Default: 1024 MiB.",
+          "description": "Optional. The default quota per volume in MiB. Must be between 100 MiB and 102400 MiB (100 GiB). Default: 1024 MiB.",
           "format": "int32",
           "type": "integer"
         },
@@ -3723,6 +3961,23 @@
         },
         "network": {
           "description": "Required. The VPC network to which the VolumePool should be attached. Only Private Service Connect (PSC) is supported.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the volume pool.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "READY",
+            "DELETING",
+            "INVALID"
+          ],
+          "enumDescriptions": [
+            "State is not specified.",
+            "Volume pool is available for use.",
+            "Volume pool is being deleted.",
+            "Volume pool is in an invalid state."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "uid": {
