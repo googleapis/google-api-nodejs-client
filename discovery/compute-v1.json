@@ -49255,7 +49255,7 @@
       }
     }
   },
-  "revision": "20260922",
+  "revision": "20261007",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -55977,6 +55977,7 @@
             "COMPUTE_OPTIMIZED_C3D",
             "COMPUTE_OPTIMIZED_H3",
             "COMPUTE_OPTIMIZED_H4D",
+            "COMPUTE_OPTIMIZED_H4D_3TB",
             "GENERAL_PURPOSE",
             "GENERAL_PURPOSE_C4",
             "GENERAL_PURPOSE_C4A",
@@ -56027,6 +56028,7 @@
             "",
             "",
             "",
+            "CUD bucket for COMPUTE_OPTIMIZED_H4D_3TB machines.",
             "",
             "",
             "",
