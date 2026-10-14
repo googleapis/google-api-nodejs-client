@@ -1686,7 +1686,7 @@
     "liveChatMessages": {
       "methods": {
         "delete": {
-          "description": "Deletes a chat message.",
+          "description": "Deletes a chat message. A call to this method has a quota cost of 20 units.",
           "flatPath": "youtube/v3/liveChat/messages",
           "httpMethod": "DELETE",
           "id": "youtube.liveChatMessages.delete",
@@ -1707,7 +1707,7 @@
           ]
         },
         "insert": {
-          "description": "Inserts a new resource into this collection.",
+          "description": "Inserts a new resource into this collection. A call to this method has a quota cost of 20 units.",
           "flatPath": "youtube/v3/liveChat/messages",
           "httpMethod": "POST",
           "id": "youtube.liveChatMessages.insert",
@@ -1716,7 +1716,7 @@
           ],
           "parameters": {
             "part": {
-              "description": "The *part* parameter serves two purposes. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the parameter value to snippet.",
+              "description": "The `part` parameter serves two purposes. It identifies the properties that the write operation sets as well as the properties that the API response includes. Set the parameter value to `snippet`.",
               "location": "query",
               "repeated": true,
               "required": true,
@@ -1736,7 +1736,7 @@
           ]
         },
         "list": {
-          "description": "Retrieves a list of resources, possibly filtered.",
+          "description": "Retrieves a list of resources, possibly filtered. A call to this method has a quota cost of 5 units.",
           "flatPath": "youtube/v3/liveChat/messages",
           "httpMethod": "GET",
           "id": "youtube.liveChatMessages.list",
@@ -1751,14 +1751,14 @@
               "type": "string"
             },
             "liveChatId": {
-              "description": "The id of the live chat for which comments should be returned.",
+              "description": "The ID of the live chat for which messages should be returned.",
               "location": "query",
               "required": true,
               "type": "string"
             },
             "maxResults": {
               "default": "500",
-              "description": "The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.",
+              "description": "The `maxResults` parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.",
               "format": "uint32",
               "location": "query",
               "maximum": "2000",
@@ -1766,12 +1766,12 @@
               "type": "integer"
             },
             "pageToken": {
-              "description": "The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identify other pages that could be retrieved.",
+              "description": "The `pageToken` parameter identifies a specific page in the result set that should be returned. In an API response, the `nextPageToken` property identifies other pages that could be retrieved.",
               "location": "query",
               "type": "string"
             },
             "part": {
-              "description": "The *part* parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id, snippet, and authorDetails.",
+              "description": "The `part` parameter specifies the `liveChatMessage` resource parts that the API response includes. Supported values are `id`, `snippet`, and `authorDetails`.",
               "location": "query",
               "repeated": true,
               "required": true,
@@ -1797,14 +1797,14 @@
           ]
         },
         "transition": {
-          "description": "Transition a durable chat event.",
+          "description": "Transitions a durable chat event. A call to this method has a quota cost of 20 units.",
           "flatPath": "youtube/v3/liveChat/messages/transition",
           "httpMethod": "POST",
           "id": "youtube.liveChatMessages.transition",
           "parameterOrder": [],
           "parameters": {
             "id": {
-              "description": "The ID that uniquely identify the chat message event to transition.",
+              "description": "The ID that uniquely identifies the chat message event to transition.",
               "location": "query",
               "type": "string"
             },
@@ -4124,7 +4124,7 @@
                 "messages": {
                   "methods": {
                     "stream": {
-                      "description": "Allows a user to load live chat through a server-streamed RPC.",
+                      "description": "Allows a user to load live chat through a server-streamed RPC. A call to this method has a quota cost of 5 units.",
                       "flatPath": "youtube/v3/liveChat/messages/stream",
                       "httpMethod": "GET",
                       "id": "youtube.youtube.v3.liveChat.messages.stream",
@@ -4136,13 +4136,13 @@
                           "type": "string"
                         },
                         "liveChatId": {
-                          "description": "The id of the live chat for which comments should be returned.",
+                          "description": "The ID of the live chat for which messages should be returned.",
                           "location": "query",
                           "type": "string"
                         },
                         "maxResults": {
                           "default": "500",
-                          "description": "The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.",
+                          "description": "The `maxResults` parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.",
                           "format": "uint32",
                           "location": "query",
                           "maximum": "2000",
@@ -4150,12 +4150,12 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identify other pages that could be retrieved.",
+                          "description": "The `pageToken` parameter identifies a specific page in the result set that should be returned. In an API response, the `nextPageToken` property identifies other pages that could be retrieved.",
                           "location": "query",
                           "type": "string"
                         },
                         "part": {
-                          "description": "The *part* parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id, snippet, and authorDetails.",
+                          "description": "The `part` parameter specifies the `liveChatMessage` resource parts that the API response includes. Supported values are `id`, `snippet`, and `authorDetails`.",
                           "location": "query",
                           "repeated": true,
                           "type": "string"
@@ -4188,7 +4188,7 @@
       }
     }
   },
-  "revision": "20261001",
+  "revision": "20261012",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -8938,7 +8938,7 @@
       "type": "object"
     },
     "LiveChatGiftDetails": {
-      "description": "Details about the gift event, this is only set if the type is 'giftEvent'.",
+      "description": "Details about the gift event, this is only set if the type is `giftEvent`.",
       "id": "LiveChatGiftDetails",
       "properties": {
         "altText": {
@@ -8983,7 +8983,7 @@
       "id": "LiveChatGiftMembershipReceivedDetails",
       "properties": {
         "associatedMembershipGiftingMessageId": {
-          "description": "The ID of the membership gifting message that is related to this gift membership. This ID will always refer to a message whose type is 'membershipGiftingEvent'.",
+          "description": "The ID of the membership gifting message that is related to this gift membership. This ID will always refer to a message whose type is `membershipGiftingEvent`.",
           "type": "string"
         },
         "gifterChannelId": {
@@ -9131,7 +9131,7 @@
         },
         "kind": {
           "default": "youtube#liveChatMessageListResponse",
-          "description": "Identifies what kind of resource this is. Value: the fixed string \"youtube#liveChatMessageListResponse\".",
+          "description": "Identifies what kind of resource this is. Value: the fixed string `\"youtube#liveChatMessageListResponse\"`.",
           "type": "string"
         },
         "nextPageToken": {
@@ -9157,7 +9157,7 @@
         },
         "visitorId": {
           "deprecated": true,
-          "description": "The visitorId identifies the visitor.",
+          "description": "Identifies the visitor.",
           "type": "string"
         }
       },
@@ -9188,15 +9188,15 @@
         "fanFundingEventDetails": {
           "$ref": "LiveChatFanFundingEventDetails",
           "deprecated": true,
-          "description": "Details about the funding event, this is only set if the type is 'fanFundingEvent'."
+          "description": "Details about the funding event, this is only set if the type is `fanFundingEvent`."
         },
         "giftDetails": {
           "$ref": "LiveChatGiftDetails",
-          "description": "Details about the gift event, this is only set if the type is 'giftEvent'."
+          "description": "Details about the gift event, this is only set if the type is `giftEvent`."
         },
         "giftMembershipReceivedDetails": {
           "$ref": "LiveChatGiftMembershipReceivedDetails",
-          "description": "Details about the Gift Membership Received event, this is only set if the type is 'giftMembershipReceivedEvent'."
+          "description": "Details about the Gift Membership Received event, this is only set if the type is `giftMembershipReceivedEvent`."
         },
         "hasDisplayContent": {
           "description": "Whether the message has display content that should be displayed to users.",
@@ -9207,11 +9207,11 @@
         },
         "memberMilestoneChatDetails": {
           "$ref": "LiveChatMemberMilestoneChatDetails",
-          "description": "Details about the Member Milestone Chat event, this is only set if the type is 'memberMilestoneChatEvent'."
+          "description": "Details about the Member Milestone Chat event, this is only set if the type is `memberMilestoneChatEvent`."
         },
         "membershipGiftingDetails": {
           "$ref": "LiveChatMembershipGiftingDetails",
-          "description": "Details about the Membership Gifting event, this is only set if the type is 'membershipGiftingEvent'."
+          "description": "Details about the Membership Gifting event, this is only set if the type is `membershipGiftingEvent`."
         },
         "messageDeletedDetails": {
           "$ref": "LiveChatMessageDeletedDetails",
@@ -9223,11 +9223,11 @@
         },
         "newSponsorDetails": {
           "$ref": "LiveChatNewSponsorDetails",
-          "description": "Details about the New Member Announcement event, this is only set if the type is 'newSponsorEvent'. Please note that \"member\" is the new term for \"sponsor\"."
+          "description": "Details about the New Member Announcement event, this is only set if the type is `newSponsorEvent`. The term \"member\" replaces \"sponsor\"."
         },
         "pollDetails": {
           "$ref": "LiveChatPollDetails",
-          "description": "Details about the poll event, this is only set if the type is 'pollEvent'."
+          "description": "Details about the poll event, this is only set if the type is `pollEvent`."
         },
         "publishedAt": {
           "description": "The date and time when the message was orignally published.",
@@ -9236,15 +9236,15 @@
         },
         "superChatDetails": {
           "$ref": "LiveChatSuperChatDetails",
-          "description": "Details about the Super Chat event, this is only set if the type is 'superChatEvent'."
+          "description": "Details about the Super Chat event, this is only set if the type is `superChatEvent`."
         },
         "superStickerDetails": {
           "$ref": "LiveChatSuperStickerDetails",
-          "description": "Details about the Super Sticker event, this is only set if the type is 'superStickerEvent'."
+          "description": "Details about the Super Sticker event, this is only set if the type is `superStickerEvent`."
         },
         "textMessageDetails": {
           "$ref": "LiveChatTextMessageDetails",
-          "description": "Details about the text message, this is only set if the type is 'textMessageEvent'."
+          "description": "Details about the text message, this is only set if the type is `textMessageEvent`."
         },
         "type": {
           "description": "The type of message, this will always be present, it determines the contents of the message as well as which fields will be present.",
@@ -9484,7 +9484,7 @@
           "type": "string"
         },
         "tier": {
-          "description": "The tier in which the amount belongs. Lower amounts belong to lower tiers. The lowest tier is 1.",
+          "description": "The tier in which the amount belongs. Lower amounts belong to lower tiers. The lowest tier is `1`.",
           "format": "uint32",
           "type": "integer"
         },
@@ -9516,7 +9516,7 @@
           "description": "Information about the Super Sticker."
         },
         "tier": {
-          "description": "The tier in which the amount belongs. Lower amounts belong to lower tiers. The lowest tier is 1.",
+          "description": "The tier in which the amount belongs. Lower amounts belong to lower tiers. The lowest tier is `1`.",
           "format": "uint32",
           "type": "integer"
         }
@@ -9537,7 +9537,7 @@
       "id": "LiveChatUserBannedMessageDetails",
       "properties": {
         "banDurationSeconds": {
-          "description": "The duration of the ban. This property is only present if the banType is temporary.",
+          "description": "The duration of the ban. This property is only present if the `banType` is `temporary`.",
           "format": "uint64",
           "type": "string"
         },
@@ -12430,7 +12430,7 @@
           "type": "boolean"
         },
         "failureReason": {
-          "description": "This value explains why a video failed to upload. This property is only present if the uploadStatus property indicates that the upload failed.",
+          "description": "This value explains why a video failed to upload. This property is only present if the `uploadStatus` property indicates that the upload failed.",
           "enum": [
             "conversion",
             "invalidFile",
@@ -12465,7 +12465,7 @@
           "type": "boolean"
         },
         "privacyStatus": {
-          "description": "The video's privacy status.",
+          "description": "The video's privacy status. In a `videos.insert` request, if you don't specify a value for this property, the uploaded video's privacy status defaults to `public`. Certain uploads might default to `private` based on creator account settings, as explained in the [YouTube Help Center](https://support.google.com/youtube/answer/157177). Videos uploaded from unverified API projects are not restricted to private viewing mode.",
           "enum": [
             "public",
             "unlisted",
@@ -12488,7 +12488,7 @@
           "type": "string"
         },
         "rejectionReason": {
-          "description": "This value explains why YouTube rejected an uploaded video. This property is only present if the uploadStatus property indicates that the upload was rejected.",
+          "description": "This value explains why YouTube rejected an uploaded video. This property is only present if the `uploadStatus` property indicates that the upload was rejected.",
           "enum": [
             "copyright",
             "inappropriate",
