@@ -1081,7 +1081,7 @@ export namespace dataform_v1 {
    */
   export interface Schema$InvocationConfig {
     /**
-     * Optional. Configuration for end user authentication. Note that this should not be set when `service_account` is used.
+     * Optional. Configuration for end user authentication. Do not set if `service_account` is used.
      */
     endUserAuthConfig?: Schema$EndUserAuthenticationConfig;
     /**

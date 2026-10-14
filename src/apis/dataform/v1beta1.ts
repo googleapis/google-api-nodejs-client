@@ -934,6 +934,23 @@ export namespace dataform_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
+   * `FetchWorkspaceHistory` response message.
+   */
+  export interface Schema$FetchWorkspaceHistoryResponse {
+    /**
+     * A list of commit logs, ordered by 'git log' default order.
+     */
+    commits?: Schema$CommitLogEntry[];
+    /**
+     * Optional. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Whether this response reaches the shallow boundary of the repository.
+     */
+    reachesShallowBoundary?: boolean | null;
+  }
+  /**
    * Represents a single file operation to the repository.
    */
   export interface Schema$FileOperation {
@@ -1049,6 +1066,10 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$GitRemoteSettings {
     /**
+     * Optional. Resource name for the Account Connector used for personal authentication. Must be in the format `projects/x/locations/x/accountConnectors/x`
+     */
+    accountConnector?: string | null;
+    /**
      * Optional. The name of the Secret Manager secret version to use as an authentication token for Git operations. Must be in the format `projects/x/secrets/x/versions/x`.
      */
     authenticationTokenSecretVersion?: string | null;
@@ -1159,7 +1180,7 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$InvocationConfig {
     /**
-     * Optional. Configuration for end user authentication. Note that this should not be set when `service_account` is used.
+     * Optional. Configuration for end user authentication. Do not set if `service_account` is used.
      */
     endUserAuthConfig?: Schema$EndUserAuthenticationConfig;
     /**
@@ -13266,6 +13287,160 @@ export namespace dataform_v1beta1 {
     }
 
     /**
+     * Fetches a Workspace's history of commits.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataform.projects.locations.repositories.workspaces.fetchHistory({
+     *       // Required. The workspace's name.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
+     *       // Optional. Maximum number of commits to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Page token received from a previous `FetchWorkspaceHistory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchWorkspaceHistory`, with the exception of `page_size`, must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commits": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reachesShallowBoundary": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchHistory(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchhistory,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchHistory(
+      params?: Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchhistory,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FetchWorkspaceHistoryResponse>>;
+    fetchHistory(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchhistory,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchHistory(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchhistory,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchWorkspaceHistoryResponse>,
+      callback: BodyResponseCallback<Schema$FetchWorkspaceHistoryResponse>
+    ): void;
+    fetchHistory(
+      params: Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchhistory,
+      callback: BodyResponseCallback<Schema$FetchWorkspaceHistoryResponse>
+    ): void;
+    fetchHistory(
+      callback: BodyResponseCallback<Schema$FetchWorkspaceHistoryResponse>
+    ): void;
+    fetchHistory(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchhistory
+        | BodyResponseCallback<Schema$FetchWorkspaceHistoryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchWorkspaceHistoryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchWorkspaceHistoryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FetchWorkspaceHistoryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchhistory;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchhistory;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:fetchHistory').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchWorkspaceHistoryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchWorkspaceHistoryResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Fetches a single Workspace.
      * @example
      * ```js
@@ -16245,6 +16420,20 @@ export namespace dataform_v1beta1 {
      * Optional. The name of the branch in the Git remote against which this workspace should be compared. If left unset, the repository's default branch name will be used.
      */
     remoteBranch?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchhistory extends StandardParameters {
+    /**
+     * Required. The workspace's name.
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of commits to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous `FetchWorkspaceHistory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchWorkspaceHistory`, with the exception of `page_size`, must match the call that provided the page token.
+     */
+    pageToken?: string;
   }
   export interface Params$Resource$Projects$Locations$Repositories$Workspaces$Get extends StandardParameters {
     /**
