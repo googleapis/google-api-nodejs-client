@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/dns-v17.1.0...dns-v17.2.0) (2026-10-14)
+
+
+### Features
+
+* **dns:** update the API ([417094f](https://github.com/googleapis/google-api-nodejs-client/commit/417094f243de045132d7cd2e887e5096589e8e30))
+
 ## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dns-v17.0.0...dns-v17.1.0) (2026-10-08)
 
 

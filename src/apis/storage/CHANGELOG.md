@@ -1,5 +1,16 @@
 # Changelog
 
+## [27.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v26.3.0...storage-v27.0.0) (2026-10-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **storage:** This release has breaking changes.
+
+### Features
+
+* **storage:** update the API ([c28ef8e](https://github.com/googleapis/google-api-nodejs-client/commit/c28ef8ed1c227b1dc2c420de5174c5c1a56eb461))
+
 ## [26.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v26.2.0...storage-v26.3.0) (2026-10-07)
 
 
