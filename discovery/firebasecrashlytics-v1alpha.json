@@ -739,7 +739,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. The maximum number of result groups to return. If omitted, defaults to 25.",
+                      "description": "Optional. The maximum number of result groups to return. The maximum value is 100; values above 100 will be coerced to 100. If omitted, defaults to 25.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -852,7 +852,7 @@
       }
     }
   },
-  "revision": "20261005",
+  "revision": "20261012",
   "rootUrl": "https://firebasecrashlytics.googleapis.com/",
   "schemas": {
     "BatchGetEventsResponse": {
@@ -939,6 +939,23 @@
         },
         "displayVersion": {
           "description": "Browser display version number.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomAttribute": {
+      "description": "Developer-provided custom key-value pair metadata.",
+      "id": "CustomAttribute",
+      "properties": {
+        "key": {
+          "description": "Output only. Custom attribute key name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "value": {
+          "description": "Output only. Custom attribute value.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1793,6 +1810,10 @@
         "browser": {
           "$ref": "Browser",
           "description": "Browser metrics group."
+        },
+        "customAttribute": {
+          "$ref": "CustomAttribute",
+          "description": "Custom attribute metrics group."
         },
         "device": {
           "$ref": "Device",
