@@ -29,6 +29,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://spanner.europe-southwest1.rep.googleapis.com/",
+      "location": "europe-southwest1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://spanner.me-central2.rep.googleapis.com/",
       "location": "me-central2"
     },
@@ -91,6 +96,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://spanner.us-east7.rep.googleapis.com/",
       "location": "us-east7"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://spanner.us.rep.googleapis.com/",
+      "location": "us"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -3436,7 +3446,7 @@
       }
     }
   },
-  "revision": "20260622",
+  "revision": "20260928",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "Ack": {
