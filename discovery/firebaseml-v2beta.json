@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20261004",
+  "revision": "20261011",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -648,6 +648,7 @@
             "IMAGE_OTHER",
             "UNEXPECTED_TOOL_CALL",
             "NO_IMAGE",
+            "MALFORMED_RESPONSE",
             "CONTINUATION"
           ],
           "enumDescriptions": [
@@ -668,6 +669,7 @@
             "The image generation stopped for a reason not otherwise specified.",
             "The model generated a function call that is semantically invalid. This can happen, for example, if function calling is not enabled or the generated function is not in the function declaration.",
             "The model was expected to generate an image, but didn't.",
+            "Finishes due to malformed response.",
             "Token generation was stopped because the response reached the per-request token limit, but generation is not yet complete. The model response can be continued via a subsequent request using the returned `continuation_token`."
           ],
           "readOnly": true,
@@ -2386,7 +2388,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1Part": {
-      "description": "A datatype containing media that is part of a multi-part Content message. A `Part` consists of data which has an associated datatype. A `Part` can only contain one of the accepted types in `Part.data`. For media types that are not text, `Part` must have a fixed IANA MIME type identifying the type and subtype of the media if `inline_data` or `file_data` field is filled with raw bytes.",
+      "description": "A datatype containing media that is part of a multi-part Content message. A `Part` consists of data which has an associated datatype. A `Part` must contain one of the accepted types in `Part.data`. For media types that are not text, `Part` must have a fixed IANA MIME type identifying the type and subtype of the media if `inline_data` or `file_data` field is filled with raw bytes.",
       "id": "GoogleCloudAiplatformV1beta1Part",
       "properties": {
         "audioTranscription": {
