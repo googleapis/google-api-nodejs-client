@@ -169,7 +169,7 @@
       }
     }
   },
-  "revision": "20260914",
+  "revision": "20261002",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "Api": {
@@ -259,6 +259,10 @@
             "$ref": "AuthorizationInfo"
           },
           "type": "array"
+        },
+        "callerAgent": {
+          "$ref": "CallerAgent",
+          "description": "Information set when the caller is an agent."
         },
         "metadata": {
           "additionalProperties": {
@@ -495,6 +499,27 @@
         "resourceAttributes": {
           "$ref": "Resource",
           "description": "Resource attributes used in IAM condition evaluation. This field contains resource attributes like resource type and resource name. To get the whole view of the attributes used in IAM condition evaluation, the user must also look into `AuditLog.request_metadata.request_attributes`."
+        }
+      },
+      "type": "object"
+    },
+    "CallerAgent": {
+      "description": "Information set when the caller is an agent.",
+      "id": "CallerAgent",
+      "properties": {
+        "authority": {
+          "description": "The type of authority for the caller agent.",
+          "enum": [
+            "AUTHORITY_TYPE_UNSPECIFIED",
+            "SELF",
+            "ON_BEHALF_OF"
+          ],
+          "enumDescriptions": [
+            "Default value. Should not be used.",
+            "Acts under its own authority.",
+            "Acts on behalf of another authority."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
