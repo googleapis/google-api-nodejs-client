@@ -344,7 +344,7 @@
       }
     }
   },
-  "revision": "20260925",
+  "revision": "20261009",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AISkillAnalysisOccurrence": {
@@ -2006,10 +2006,32 @@
       },
       "type": "object"
     },
+    "LayerAttribute": {
+      "description": "An attribute attached to a layer by a plugin.",
+      "id": "LayerAttribute",
+      "properties": {
+        "plugin": {
+          "description": "The name of the plugin that generated this attribute.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value of the attribute, with a meaning defined by the plugin.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "LayerDetails": {
       "description": "Details about the layer a package was found in.",
       "id": "LayerDetails",
       "properties": {
+        "attributes": {
+          "description": "Attributes attached to this layer by plugins.",
+          "items": {
+            "$ref": "LayerAttribute"
+          },
+          "type": "array"
+        },
         "baseImages": {
           "description": "The base images the layer is found within.",
           "items": {

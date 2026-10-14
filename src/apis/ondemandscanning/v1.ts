@@ -1058,9 +1058,26 @@ export namespace ondemandscanning_v1 {
     directive?: string | null;
   }
   /**
+   * An attribute attached to a layer by a plugin.
+   */
+  export interface Schema$LayerAttribute {
+    /**
+     * The name of the plugin that generated this attribute.
+     */
+    plugin?: string | null;
+    /**
+     * The value of the attribute, with a meaning defined by the plugin.
+     */
+    value?: string | null;
+  }
+  /**
    * Details about the layer a package was found in.
    */
   export interface Schema$LayerDetails {
+    /**
+     * Attributes attached to this layer by plugins.
+     */
+    attributes?: Schema$LayerAttribute[];
     /**
      * The base images the layer is found within.
      */
