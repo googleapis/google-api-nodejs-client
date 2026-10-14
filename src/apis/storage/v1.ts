@@ -103,7 +103,6 @@ export namespace storage_v1 {
     anywhereCaches: Resource$Anywherecaches;
     bucketAccessControls: Resource$Bucketaccesscontrols;
     buckets: Resource$Buckets;
-    channels: Resource$Channels;
     defaultObjectAccessControls: Resource$Defaultobjectaccesscontrols;
     folders: Resource$Folders;
     managedFolders: Resource$Managedfolders;
@@ -125,7 +124,6 @@ export namespace storage_v1 {
         this.context
       );
       this.buckets = new Resource$Buckets(this.context);
-      this.channels = new Resource$Channels(this.context);
       this.defaultObjectAccessControls =
         new Resource$Defaultobjectaccesscontrols(this.context);
       this.folders = new Resource$Folders(this.context);
@@ -605,51 +603,6 @@ export namespace storage_v1 {
      * Restores only the objects that were soft-deleted before this time.
      */
     softDeletedBeforeTime?: string | null;
-  }
-  /**
-   * An notification channel used to watch for resource changes.
-   */
-  export interface Schema$Channel {
-    /**
-     * The address where notifications are delivered for this channel.
-     */
-    address?: string | null;
-    /**
-     * Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.
-     */
-    expiration?: string | null;
-    /**
-     * A UUID or similar unique string that identifies this channel.
-     */
-    id?: string | null;
-    /**
-     * Identifies this as a notification channel used to watch for changes to a resource, which is "api#channel".
-     */
-    kind?: string | null;
-    /**
-     * Additional parameters controlling delivery channel behavior. Optional.
-     */
-    params?: {[key: string]: string} | null;
-    /**
-     * A Boolean value to indicate whether payload is wanted. Optional.
-     */
-    payload?: boolean | null;
-    /**
-     * An opaque ID that identifies the resource being watched on this channel. Stable across different API versions.
-     */
-    resourceId?: string | null;
-    /**
-     * A version-specific identifier for the watched resource.
-     */
-    resourceUri?: string | null;
-    /**
-     * An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
-     */
-    token?: string | null;
-    /**
-     * The type of delivery mechanism used for this channel.
-     */
-    type?: string | null;
   }
   /**
    * A Compose request.
@@ -6395,169 +6348,6 @@ export namespace storage_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Bucket;
-  }
-
-  export class Resource$Channels {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Stop watching resources through this channel
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_only',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.channels.stop({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "address": "my_address",
-     *       //   "expiration": "my_expiration",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "params": {},
-     *       //   "payload": false,
-     *       //   "resourceId": "my_resourceId",
-     *       //   "resourceUri": "my_resourceUri",
-     *       //   "token": "my_token",
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    stop(
-      params: Params$Resource$Channels$Stop,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    stop(
-      params?: Params$Resource$Channels$Stop,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<void>>;
-    stop(
-      params: Params$Resource$Channels$Stop,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    stop(
-      params: Params$Resource$Channels$Stop,
-      options: MethodOptions | BodyResponseCallback<void>,
-      callback: BodyResponseCallback<void>
-    ): void;
-    stop(
-      params: Params$Resource$Channels$Stop,
-      callback: BodyResponseCallback<void>
-    ): void;
-    stop(callback: BodyResponseCallback<void>): void;
-    stop(
-      paramsOrCallback?:
-        | Params$Resource$Channels$Stop
-        | BodyResponseCallback<void>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<void>
-        | BodyResponseCallback<Readable>,
-      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<void>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Channels$Stop;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/storage/v1/channels/stop').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<void>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<void>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Channels$Stop extends StandardParameters {
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Channel;
   }
 
   export class Resource$Defaultobjectaccesscontrols {
