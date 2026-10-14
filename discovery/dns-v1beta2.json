@@ -371,6 +371,88 @@
         }
       }
     },
+    "locations": {
+      "methods": {
+        "get": {
+          "description": "Gets information about a location.",
+          "flatPath": "dns/v1beta2/projects/{projectsId}/locations/{locationsId}",
+          "httpMethod": "GET",
+          "id": "dns.locations.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Resource name for the location.",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "dns/v1beta2/{+name}",
+          "response": {
+            "$ref": "Location"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only",
+            "https://www.googleapis.com/auth/ndev.clouddns.readonly",
+            "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
+          ]
+        },
+        "list": {
+          "description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+          "flatPath": "dns/v1beta2/projects/{projectsId}/locations",
+          "httpMethod": "GET",
+          "id": "dns.locations.list",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "extraLocationTypes": {
+              "description": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
+            "filter": {
+              "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+              "location": "query",
+              "type": "string"
+            },
+            "name": {
+              "description": "The resource that owns the locations collection, if applicable.",
+              "location": "path",
+              "pattern": "^projects/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "The maximum number of results to return. If not set, the service selects a default.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "dns/v1beta2/{+name}/locations",
+          "response": {
+            "$ref": "ListLocationsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only",
+            "https://www.googleapis.com/auth/ndev.clouddns.readonly",
+            "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
+          ]
+        }
+      }
+    },
     "managedZoneOperations": {
       "methods": {
         "get": {
@@ -796,6 +878,340 @@
           },
           "response": {
             "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
+          ]
+        }
+      }
+    },
+    "operations": {
+      "methods": {
+        "cancel": {
+          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+          "flatPath": "dns/v1beta2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+          "httpMethod": "POST",
+          "id": "dns.operations.cancel",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "The name of the operation resource to be cancelled.",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "dns/v1beta2/{+name}:cancel",
+          "response": {
+            "$ref": "Empty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
+          ]
+        },
+        "delete": {
+          "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+          "flatPath": "dns/v1beta2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+          "httpMethod": "DELETE",
+          "id": "dns.operations.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "The name of the operation resource to be deleted.",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "dns/v1beta2/{+name}",
+          "response": {
+            "$ref": "Empty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
+          ]
+        },
+        "get": {
+          "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+          "flatPath": "dns/v1beta2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+          "httpMethod": "GET",
+          "id": "dns.operations.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "The name of the operation resource.",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "dns/v1beta2/{+name}",
+          "response": {
+            "$ref": "GoogleLongrunningOperation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
+          ]
+        },
+        "list": {
+          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+          "flatPath": "dns/v1beta2/projects/{projectsId}/locations/{locationsId}/operations",
+          "httpMethod": "GET",
+          "id": "dns.operations.list",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "The standard list filter.",
+              "location": "query",
+              "type": "string"
+            },
+            "name": {
+              "description": "The name of the operation's parent resource.",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "The standard list page size.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "The standard list page token.",
+              "location": "query",
+              "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "dns/v1beta2/{+name}/operations",
+          "response": {
+            "$ref": "GoogleLongrunningListOperationsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
+          ]
+        }
+      }
+    },
+    "outboundEndpoints": {
+      "methods": {
+        "create": {
+          "description": "Creates a new Outbound Endpoint.",
+          "flatPath": "dns/v1beta2/projects/{projectsId}/locations/{locationsId}/outboundEndpoints",
+          "httpMethod": "POST",
+          "id": "dns.outboundEndpoints.create",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "clientOperationId": {
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
+              "location": "query",
+              "type": "string"
+            },
+            "outboundEndpointId": {
+              "description": "Required. The ID to use for the OutboundEndpoint, which will become the final component of the OutboundEndpoint's resource name.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Required. The parent project and location where this OutboundEndpoint will be created. Format: projects/{project}/locations/{location}",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "Optional. An optional request ID to identify requests.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "dns/v1beta2/{+parent}/outboundEndpoints",
+          "request": {
+            "$ref": "OutboundEndpoint"
+          },
+          "response": {
+            "$ref": "GoogleLongrunningOperation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
+          ]
+        },
+        "delete": {
+          "description": "Deletes a previously created Outbound Endpoint.",
+          "flatPath": "dns/v1beta2/projects/{projectsId}/locations/{locationsId}/outboundEndpoints/{outboundEndpointsId}",
+          "httpMethod": "DELETE",
+          "id": "dns.outboundEndpoints.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "clientOperationId": {
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
+              "location": "query",
+              "type": "string"
+            },
+            "name": {
+              "description": "Required. The name of the OutboundEndpoint to delete. Format: projects/{project}/locations/{location}/outboundEndpoints/{outboundEndpoint}",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+/outboundEndpoints/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "Optional. An optional request ID to identify requests.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "dns/v1beta2/{+name}",
+          "response": {
+            "$ref": "GoogleLongrunningOperation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
+          ]
+        },
+        "get": {
+          "description": "Fetches the representation of an existing Outbound Endpoint.",
+          "flatPath": "dns/v1beta2/projects/{projectsId}/locations/{locationsId}/outboundEndpoints/{outboundEndpointsId}",
+          "httpMethod": "GET",
+          "id": "dns.outboundEndpoints.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "clientOperationId": {
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
+              "location": "query",
+              "type": "string"
+            },
+            "name": {
+              "description": "Required. The name of the OutboundEndpoint to retrieve. Format: projects/{project}/locations/{location}/outboundEndpoints/{outboundEndpoint}",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+/outboundEndpoints/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "dns/v1beta2/{+name}",
+          "response": {
+            "$ref": "OutboundEndpoint"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only",
+            "https://www.googleapis.com/auth/ndev.clouddns.readonly",
+            "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
+          ]
+        },
+        "list": {
+          "description": "Enumerates all Outbound Endpoints associated with a project.",
+          "flatPath": "dns/v1beta2/projects/{projectsId}/locations/{locationsId}/outboundEndpoints",
+          "httpMethod": "GET",
+          "id": "dns.outboundEndpoints.list",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "clientOperationId": {
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "Optional. The maximum number of results to return.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. A page token received from a previous List call.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Required. The parent project and location from which to list resources. Format: projects/{project}/locations/{location}",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "dns/v1beta2/{+parent}/outboundEndpoints",
+          "response": {
+            "$ref": "ListOutboundEndpointsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only",
+            "https://www.googleapis.com/auth/ndev.clouddns.readonly",
+            "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
+          ]
+        },
+        "patch": {
+          "description": "Updates an existing Outbound Endpoint.",
+          "flatPath": "dns/v1beta2/projects/{projectsId}/locations/{locationsId}/outboundEndpoints/{outboundEndpointsId}",
+          "httpMethod": "PATCH",
+          "id": "dns.outboundEndpoints.patch",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "clientOperationId": {
+              "description": "For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.",
+              "location": "query",
+              "type": "string"
+            },
+            "name": {
+              "description": "Identifier. The resource name of the OutboundEndpoint. Format: `projects/{project}/locations/{location}/outboundEndpoints/{outboundEndpoint}`",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+/outboundEndpoints/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "Optional. An optional request ID to identify requests.",
+              "location": "query",
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Required. The list of fields to be updated.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "dns/v1beta2/{+name}",
+          "request": {
+            "$ref": "OutboundEndpoint"
+          },
+          "response": {
+            "$ref": "GoogleLongrunningOperation"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -1821,7 +2237,7 @@
       }
     }
   },
-  "revision": "20260915",
+  "revision": "20261002",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {
@@ -2072,6 +2488,12 @@
       },
       "type": "object"
     },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
+      "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
     "Expr": {
       "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
@@ -2263,6 +2685,31 @@
       },
       "type": "object"
     },
+    "GoogleLongrunningListOperationsResponse": {
+      "description": "The response message for Operations.ListOperations.",
+      "id": "GoogleLongrunningListOperationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The standard List next-page token.",
+          "type": "string"
+        },
+        "operations": {
+          "description": "A list of operations that matches the specified filter in the request.",
+          "items": {
+            "$ref": "GoogleLongrunningOperation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleLongrunningOperation": {
       "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "GoogleLongrunningOperation",
@@ -2296,6 +2743,84 @@
           "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "format": "google.protobuf.Any",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ListLocationsResponse": {
+      "description": "The response message for Locations.ListLocations.",
+      "id": "ListLocationsResponse",
+      "properties": {
+        "locations": {
+          "description": "A list of locations that matches the specified filter in the request.",
+          "items": {
+            "$ref": "Location"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The standard List next-page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListOutboundEndpointsResponse": {
+      "description": "Response message for OutboundEndpointsService.ListOutboundEndpoints",
+      "id": "ListOutboundEndpointsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Set to empty if there are no remaining results.",
+          "type": "string"
+        },
+        "outboundEndpoints": {
+          "description": "The list of OutboundEndpoints.",
+          "items": {
+            "$ref": "OutboundEndpoint"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. The resource names of the unreachable locations. Format: `projects/{project}/locations/{location}`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Location": {
+      "description": "A resource that represents a Google Cloud location.",
+      "id": "Location",
+      "properties": {
+        "displayName": {
+          "description": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\".",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}",
+          "type": "object"
+        },
+        "locationId": {
+          "description": "The canonical id for this location. For example: `\"us-east1\"`.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Service-specific metadata. For example the available capacity at the given location.",
+          "format": "google.protobuf.Any",
+          "type": "object"
+        },
+        "name": {
+          "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2458,6 +2983,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "outboundEndpoints": {
+          "description": "The list of outbound endpoints to use for queries.",
+          "items": {
+            "$ref": "ManagedZoneForwardingConfigOutboundEndpoint"
+          },
+          "type": "array"
+        },
         "targetNameServers": {
           "description": "List of target name servers to forward to. Cloud DNS selects the best available name server if more than one target is given.",
           "items": {
@@ -2498,6 +3030,21 @@
         "kind": {
           "default": "dns#managedZoneForwardingConfigNameServerTarget",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ManagedZoneForwardingConfigOutboundEndpoint": {
+      "id": "ManagedZoneForwardingConfigOutboundEndpoint",
+      "properties": {
+        "kind": {
+          "default": "dns#managedZoneForwardingConfigOutboundEndpoint",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Specified as a resource path including project and region. This should be formatted like projects/{project}/locations/{location}/outboundEndpoints/{endpoint}",
           "type": "string"
         }
       },
@@ -2760,6 +3307,110 @@
       },
       "type": "object"
     },
+    "OperationMetadata": {
+      "description": "Represents the metadata of the long-running operation.",
+      "id": "OperationMetadata",
+      "properties": {
+        "apiVersion": {
+          "description": "Output only. API version used to start the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "requestedCancellation": {
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "statusMessage": {
+          "description": "Output only. Human-readable status of the operation, if any.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "target": {
+          "description": "Output only. Server-defined resource path for the target of the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "verb": {
+          "description": "Output only. Name of the verb executed by the operation.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OutboundEndpoint": {
+      "description": "An OutboundEndpoint is a regional resource to enable outbound forwarding from a private IP range in VPCs to on-premise or other networks.",
+      "id": "OutboundEndpoint",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Annotations as key value pairs",
+          "type": "object"
+        },
+        "createTime": {
+          "description": "Output only. [Output only] Create time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User provided description.",
+          "type": "string"
+        },
+        "endpointIp": {
+          "description": "Required. Immutable. User provided IP address to use for outbound DNS forwarding. This address must be a free address on the subnetwork.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the OutboundEndpoint. Format: `projects/{project}/locations/{location}/outboundEndpoints/{outboundEndpoint}`",
+          "type": "string"
+        },
+        "network": {
+          "description": "Required. Immutable. The VPC network containing the outbound endpoint, specified as full path.",
+          "type": "string"
+        },
+        "subnetwork": {
+          "description": "Required. Immutable. The subnetwork holding the endpoint_ip, specified as full path.",
+          "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Tag bindings as key value pairs",
+          "type": "object"
+        },
+        "updateTime": {
+          "description": "Output only. [Output only] Update time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PoliciesListResponse": {
       "id": "PoliciesListResponse",
       "properties": {
@@ -2857,12 +3508,34 @@
           "readOnly": true,
           "type": "string"
         },
+        "outboundEndpoints": {
+          "description": "The list of outbound endpoints to use for queries.",
+          "items": {
+            "$ref": "PolicyAlternativeNameServerConfigOutboundEndpoint"
+          },
+          "type": "array"
+        },
         "targetNameServers": {
           "description": "Sets an alternative name server for the associated networks. When specified, all DNS queries are forwarded to a name server that you choose. Names such as .internal are not available when an alternative name server is specified.",
           "items": {
             "$ref": "PolicyAlternativeNameServerConfigTargetNameServer"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PolicyAlternativeNameServerConfigOutboundEndpoint": {
+      "id": "PolicyAlternativeNameServerConfigOutboundEndpoint",
+      "properties": {
+        "kind": {
+          "default": "dns#policyAlternativeNameServerConfigOutboundEndpoint",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Specified as a resource path including project and region. This should be formatted like projects/{project}/locations/{location}/outboundEndpoints/{endpoint}",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3039,6 +3712,16 @@
         },
         "networksPerResponsePolicy": {
           "description": "Maximum allowed number of networks per response policy.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "outboundEndpointsPerManagedZone": {
+          "description": "Maximum allowed number of outbound endpoints per managed zone.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "outboundEndpointsPerPolicy": {
+          "description": "Maximum allowed number of outbound endpoints per policy.",
           "format": "int32",
           "type": "integer"
         },
