@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/saasservicemgmt-v14.1.0...saasservicemgmt-v14.2.0) (2026-10-14)
+
+
+### Features
+
+* **saasservicemgmt:** update the API ([629d9b2](https://github.com/googleapis/google-api-nodejs-client/commit/629d9b2d55191c6d5785ba4f6ddccac7243f1943))
+
 ## [14.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/saasservicemgmt-v14.0.1...saasservicemgmt-v14.1.0) (2026-10-03)
 
 

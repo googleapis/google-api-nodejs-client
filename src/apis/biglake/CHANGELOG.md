@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/biglake-v9.0.1...biglake-v9.1.0) (2026-10-14)
+
+
+### Features
+
+* **biglake:** update the API ([63ed63b](https://github.com/googleapis/google-api-nodejs-client/commit/63ed63b1bd66b50b517c3ce69c94d9fdad9b1842))
+
 ## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/biglake-v9.0.0...biglake-v9.0.1) (2026-09-23)
 
 

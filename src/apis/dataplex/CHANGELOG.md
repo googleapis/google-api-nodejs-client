@@ -1,5 +1,16 @@
 # Changelog
 
+## [34.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v33.0.0...dataplex-v34.0.0) (2026-10-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dataplex:** This release has breaking changes.
+
+### Features
+
+* **dataplex:** update the API ([8234318](https://github.com/googleapis/google-api-nodejs-client/commit/82343181d182ec9d554dadb75dc6fa1512645fc9))
+
 ## [33.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v32.1.0...dataplex-v33.0.0) (2026-10-03)
 
 
