@@ -3220,7 +3220,7 @@
       }
     }
   },
-  "revision": "20260920",
+  "revision": "20261011",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -4439,7 +4439,7 @@
       "properties": {
         "endUserAuthConfig": {
           "$ref": "EndUserAuthenticationConfig",
-          "description": "Optional. Configuration for end user authentication. Note that this should not be set when `service_account` is used."
+          "description": "Optional. Configuration for end user authentication. Do not set if `service_account` is used."
         },
         "executionMode": {
           "description": "Optional. Specifies the execution mode for the workflow invocation.",

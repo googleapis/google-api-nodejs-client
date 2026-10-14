@@ -2463,6 +2463,43 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "fetchHistory": {
+                      "description": "Fetches a Workspace's history of commits.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/workspaces/{workspacesId}:fetchHistory",
+                      "httpMethod": "GET",
+                      "id": "dataform.projects.locations.repositories.workspaces.fetchHistory",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The workspace's name.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/workspaces/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Maximum number of commits to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. Page token received from a previous `FetchWorkspaceHistory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchWorkspaceHistory`, with the exception of `page_size`, must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:fetchHistory",
+                      "response": {
+                        "$ref": "FetchWorkspaceHistoryResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "get": {
                       "description": "Fetches a single Workspace.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/workspaces/{workspacesId}",
@@ -3428,7 +3465,7 @@
       }
     }
   },
-  "revision": "20260920",
+  "revision": "20261011",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -4446,6 +4483,28 @@
       },
       "type": "object"
     },
+    "FetchWorkspaceHistoryResponse": {
+      "description": "`FetchWorkspaceHistory` response message.",
+      "id": "FetchWorkspaceHistoryResponse",
+      "properties": {
+        "commits": {
+          "description": "A list of commit logs, ordered by 'git log' default order.",
+          "items": {
+            "$ref": "CommitLogEntry"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Optional. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "reachesShallowBoundary": {
+          "description": "Whether this response reaches the shallow boundary of the repository.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "FileOperation": {
       "description": "Represents a single file operation to the repository.",
       "id": "FileOperation",
@@ -4590,6 +4649,10 @@
       "description": "Controls Git remote configuration for a repository.",
       "id": "GitRemoteSettings",
       "properties": {
+        "accountConnector": {
+          "description": "Optional. Resource name for the Account Connector used for personal authentication. Must be in the format `projects/*/locations/*/accountConnectors/*`",
+          "type": "string"
+        },
         "authenticationTokenSecretVersion": {
           "description": "Optional. The name of the Secret Manager secret version to use as an authentication token for Git operations. Must be in the format `projects/*/secrets/*/versions/*`.",
           "type": "string"
@@ -4742,7 +4805,7 @@
       "properties": {
         "endUserAuthConfig": {
           "$ref": "EndUserAuthenticationConfig",
-          "description": "Optional. Configuration for end user authentication. Note that this should not be set when `service_account` is used."
+          "description": "Optional. Configuration for end user authentication. Do not set if `service_account` is used."
         },
         "executionMode": {
           "description": "Optional. Specifies the execution mode for the workflow invocation.",
