@@ -228,6 +228,27 @@ export namespace file_v1beta1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Request for creating a volume from an existing data source (such as a backup).
+   */
+  export interface Schema$CreateFromSourceRequest {
+    /**
+     * The resource name of the backup to create from. Format: projects/{project\}/locations/{location\}/backups/{backup\}
+     */
+    backup?: string | null;
+    /**
+     * Optional. IP ACLs defining permissions/ACLs to apply to the newly created volume.
+     */
+    ipAcls?: Schema$NfsExportOptions[];
+    /**
+     * Optional. The limit for how much data can be written to this volume, in MiB.
+     */
+    quota?: string | null;
+    /**
+     * Required. Unique identifier for the volume which also appears in the volumes resource name.
+     */
+    volumeId?: string | null;
+  }
+  /**
    * Time window specified for daily operations.
    */
   export interface Schema$DailyCycle {
@@ -257,6 +278,10 @@ export namespace file_v1beta1 {
      */
     year?: number | null;
   }
+  /**
+   * DeleteVolumeRequest deletes a volume.
+   */
+  export interface Schema$DeleteVolumeRequest {}
   /**
    * DenyMaintenancePeriod definition. Maintenance is forbidden within the deny period. The start_date must be less than the end_date.
    */
@@ -1334,6 +1359,19 @@ export namespace file_v1beta1 {
     seconds?: number | null;
   }
   /**
+   * Request for unfreezing a volume.
+   */
+  export interface Schema$UnfreezeVolumeRequest {
+    /**
+     * Optional. IP ACLs defining permissions/ACLs to apply to the unfrozen volume
+     */
+    ipAcls?: Schema$NfsExportOptions[];
+    /**
+     * Optional. The limit for how much data can be written to this volume, in MiB.
+     */
+    quota?: string | null;
+  }
+  /**
    * Maintenance policy applicable to instance updates.
    */
   export interface Schema$UpdatePolicy {
@@ -1363,6 +1401,10 @@ export namespace file_v1beta1 {
      */
     description?: string | null;
     /**
+     * Optional. User-defined permissions protecting mount points.
+     */
+    ipAcls?: Schema$NfsExportOptions[];
+    /**
      * Optional. Resource labels to represent user provided metadata.
      */
     labels?: {[key: string]: string} | null;
@@ -1374,11 +1416,23 @@ export namespace file_v1beta1 {
      * Identifier. The resource name of the volume, in the format `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}/volumes/{volume\}`.
      */
     name?: string | null;
+    /**
+     * Optional. The maximum size of the volume in mebibytes (MiB).
+     */
+    quotaMib?: string | null;
+    /**
+     * Optional. The state of the volume. This field is caller-settable via `UpdateVolume` to transition a volume from `HOT` to `COLD` (freezing the volume). In `CreateVolume`, this field is output-only and initialized to `HOT`.
+     */
+    state?: string | null;
   }
   /**
    * VolumePool representation of a Cloud Filestore volume pool.
    */
   export interface Schema$VolumePool {
+    /**
+     * Optional. The number of active volumes. Default: 100.
+     */
+    activeVolumeCount?: number | null;
     /**
      * Optional. The number of IOPs provisioned per active volume.
      */
@@ -1388,7 +1442,7 @@ export namespace file_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * Optional. The default quota per volume in MiB. Default: 1024 MiB.
+     * Optional. The default quota per volume in MiB. Must be between 100 MiB and 102400 MiB (100 GiB). Default: 1024 MiB.
      */
     defaultVolumeQuotaMib?: number | null;
     /**
@@ -1407,6 +1461,10 @@ export namespace file_v1beta1 {
      * Required. The VPC network to which the VolumePool should be attached. Only Private Service Connect (PSC) is supported.
      */
     network?: string | null;
+    /**
+     * Output only. The state of the volume pool.
+     */
+    state?: string | null;
     /**
      * Output only. System-assigned unique identifier for the volume pool.
      */
@@ -6905,6 +6963,7 @@ export namespace file_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "activeVolumeCount": 0,
      *       //   "activeVolumeIops": 0,
      *       //   "createTime": "my_createTime",
      *       //   "defaultVolumeQuotaMib": 0,
@@ -6912,6 +6971,7 @@ export namespace file_v1beta1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "state": "my_state",
      *       //   "uid": "my_uid"
      *       // }
      *     },
@@ -7197,6 +7257,7 @@ export namespace file_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "activeVolumeCount": 0,
      *   //   "activeVolumeIops": 0,
      *   //   "createTime": "my_createTime",
      *   //   "defaultVolumeQuotaMib": 0,
@@ -7204,6 +7265,7 @@ export namespace file_v1beta1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
+     *   //   "state": "my_state",
      *   //   "uid": "my_uid"
      *   // }
      * }
@@ -7487,6 +7549,7 @@ export namespace file_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "activeVolumeCount": 0,
      *       //   "activeVolumeIops": 0,
      *       //   "createTime": "my_createTime",
      *       //   "defaultVolumeQuotaMib": 0,
@@ -7494,6 +7557,7 @@ export namespace file_v1beta1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "state": "my_state",
      *       //   "uid": "my_uid"
      *       // }
      *     },
@@ -7716,9 +7780,12 @@ export namespace file_v1beta1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "ipAcls": [],
      *       //   "labels": {},
      *       //   "mountPoint": {},
-     *       //   "name": "my_name"
+     *       //   "name": "my_name",
+     *       //   "quotaMib": "my_quotaMib",
+     *       //   "state": "my_state"
      *       // }
      *     },
      *   });
@@ -7728,9 +7795,12 @@ export namespace file_v1beta1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "ipAcls": [],
      *   //   "labels": {},
      *   //   "mountPoint": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "quotaMib": "my_quotaMib",
+     *   //   "state": "my_state"
      *   // }
      * }
      *
@@ -7826,6 +7896,159 @@ export namespace file_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$Volume>(parameters);
+      }
+    }
+
+    /**
+     * Creates a volume in a volume pool from an existing data source (such as a Filestore backup).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await file.projects.locations.volumePools.volumes.createFromSource({
+     *       // Required. The parent resource where this volume will be created. Format: projects/{project\}/locations/{location\}/volumePools/{volume_pool\}
+     *       parent:
+     *         'projects/my-project/locations/my-location/volumePools/my-volumePool',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "backup": "my_backup",
+     *         //   "ipAcls": [],
+     *         //   "quota": "my_quota",
+     *         //   "volumeId": "my_volumeId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    createFromSource(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Createfromsource,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    createFromSource(
+      params?: Params$Resource$Projects$Locations$Volumepools$Volumes$Createfromsource,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    createFromSource(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Createfromsource,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createFromSource(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Createfromsource,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    createFromSource(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Createfromsource,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    createFromSource(callback: BodyResponseCallback<Schema$Operation>): void;
+    createFromSource(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Volumepools$Volumes$Createfromsource
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Volumepools$Volumes$Createfromsource;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Volumepools$Volumes$Createfromsource;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/volumes:createFromSource'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -7962,6 +8185,309 @@ export namespace file_v1beta1 {
     }
 
     /**
+     * Creates a volume directly on the CLH, bypassing CCFE. This is a temporary PoC that will be used for testing and removed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.volumePools.volumes.directCreate({
+     *     // Required. The parent volume pool path, in the format `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}`.
+     *     parent:
+     *       'projects/my-project/locations/my-location/volumePools/my-volumePool',
+     *     // Required. The ID to use for the volume. The ID must be unique within the specified volume pool.
+     *     volumeId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "ipAcls": [],
+     *       //   "labels": {},
+     *       //   "mountPoint": {},
+     *       //   "name": "my_name",
+     *       //   "quotaMib": "my_quotaMib",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "ipAcls": [],
+     *   //   "labels": {},
+     *   //   "mountPoint": {},
+     *   //   "name": "my_name",
+     *   //   "quotaMib": "my_quotaMib",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    directCreate(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Directcreate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    directCreate(
+      params?: Params$Resource$Projects$Locations$Volumepools$Volumes$Directcreate,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Volume>>;
+    directCreate(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Directcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    directCreate(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Directcreate,
+      options: MethodOptions | BodyResponseCallback<Schema$Volume>,
+      callback: BodyResponseCallback<Schema$Volume>
+    ): void;
+    directCreate(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Directcreate,
+      callback: BodyResponseCallback<Schema$Volume>
+    ): void;
+    directCreate(callback: BodyResponseCallback<Schema$Volume>): void;
+    directCreate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Volumepools$Volumes$Directcreate
+        | BodyResponseCallback<Schema$Volume>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Volume>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Volume> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Volume>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Volumepools$Volumes$Directcreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Volumepools$Volumes$Directcreate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/volumes:directCreate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Volume>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Volume>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a volume directly on the CLH, bypassing CCFE. This is a temporary PoC that will be used for testing and removed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.volumePools.volumes.directDelete({
+     *     // Required. The volume resource name, in the format `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}/volumes/{volume\}`.
+     *     name: 'projects/my-project/locations/my-location/volumePools/my-volumePool/volumes/my-volume',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    directDelete(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Directdelete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    directDelete(
+      params?: Params$Resource$Projects$Locations$Volumepools$Volumes$Directdelete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    directDelete(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Directdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    directDelete(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Directdelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    directDelete(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Directdelete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    directDelete(callback: BodyResponseCallback<Schema$Empty>): void;
+    directDelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Volumepools$Volumes$Directdelete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Volumepools$Volumes$Directdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Volumepools$Volumes$Directdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:directDelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * Gets the details of a specific volume.
      * @example
      * ```js
@@ -8001,9 +8527,12 @@ export namespace file_v1beta1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "ipAcls": [],
      *   //   "labels": {},
      *   //   "mountPoint": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "quotaMib": "my_quotaMib",
+     *   //   "state": "my_state"
      *   // }
      * }
      *
@@ -8247,6 +8776,314 @@ export namespace file_v1beta1 {
         return createAPIRequest<Schema$ListVolumesResponse>(parameters);
       }
     }
+
+    /**
+     * Updates the settings of a specific volume.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.volumePools.volumes.patch({
+     *     // Identifier. The resource name of the volume, in the format `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}/volumes/{volume\}`.
+     *     name: 'projects/my-project/locations/my-location/volumePools/my-volumePool/volumes/my-volume',
+     *     // Required. Mask of fields to update. At least one path must be supplied in this field.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "ipAcls": [],
+     *       //   "labels": {},
+     *       //   "mountPoint": {},
+     *       //   "name": "my_name",
+     *       //   "quotaMib": "my_quotaMib",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "ipAcls": [],
+     *   //   "labels": {},
+     *   //   "mountPoint": {},
+     *   //   "name": "my_name",
+     *   //   "quotaMib": "my_quotaMib",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Volumepools$Volumes$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Volume>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Volume>,
+      callback: BodyResponseCallback<Schema$Volume>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Patch,
+      callback: BodyResponseCallback<Schema$Volume>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Volume>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Volumepools$Volumes$Patch
+        | BodyResponseCallback<Schema$Volume>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Volume>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Volume> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Volume>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Volumepools$Volumes$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Volumepools$Volumes$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Volume>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Volume>(parameters);
+      }
+    }
+
+    /**
+     * Unfreezes a volume.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.volumePools.volumes.unfreeze({
+     *     // Required. The name of the volume to unfreeze. Format: `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}/volumes/{volume\}`.
+     *     name: 'projects/my-project/locations/my-location/volumePools/my-volumePool/volumes/my-volume',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ipAcls": [],
+     *       //   "quota": "my_quota"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    unfreeze(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Unfreeze,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    unfreeze(
+      params?: Params$Resource$Projects$Locations$Volumepools$Volumes$Unfreeze,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    unfreeze(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Unfreeze,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    unfreeze(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Unfreeze,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    unfreeze(
+      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Unfreeze,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    unfreeze(callback: BodyResponseCallback<Schema$Operation>): void;
+    unfreeze(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Volumepools$Volumes$Unfreeze
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Volumepools$Volumes$Unfreeze;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Volumepools$Volumes$Unfreeze;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:unfreeze').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Volumepools$Volumes$Create extends StandardParameters {
@@ -8264,11 +9101,48 @@ export namespace file_v1beta1 {
      */
     requestBody?: Schema$Volume;
   }
+  export interface Params$Resource$Projects$Locations$Volumepools$Volumes$Createfromsource extends StandardParameters {
+    /**
+     * Required. The parent resource where this volume will be created. Format: projects/{project\}/locations/{location\}/volumePools/{volume_pool\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CreateFromSourceRequest;
+  }
   export interface Params$Resource$Projects$Locations$Volumepools$Volumes$Delete extends StandardParameters {
     /**
      * Required. The volume resource name, in the format `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}/volumes/{volume\}`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Volumepools$Volumes$Directcreate extends StandardParameters {
+    /**
+     * Required. The parent volume pool path, in the format `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}`.
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the volume. The ID must be unique within the specified volume pool.
+     */
+    volumeId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Volume;
+  }
+  export interface Params$Resource$Projects$Locations$Volumepools$Volumes$Directdelete extends StandardParameters {
+    /**
+     * Required. The volume resource name, in the format `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}/volumes/{volume\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeleteVolumeRequest;
   }
   export interface Params$Resource$Projects$Locations$Volumepools$Volumes$Get extends StandardParameters {
     /**
@@ -8297,5 +9171,31 @@ export namespace file_v1beta1 {
      * Required. The volume pool for which to retrieve volume information, in the format `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Volumepools$Volumes$Patch extends StandardParameters {
+    /**
+     * Identifier. The resource name of the volume, in the format `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}/volumes/{volume\}`.
+     */
+    name?: string;
+    /**
+     * Required. Mask of fields to update. At least one path must be supplied in this field.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Volume;
+  }
+  export interface Params$Resource$Projects$Locations$Volumepools$Volumes$Unfreeze extends StandardParameters {
+    /**
+     * Required. The name of the volume to unfreeze. Format: `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}/volumes/{volume\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UnfreezeVolumeRequest;
   }
 }
