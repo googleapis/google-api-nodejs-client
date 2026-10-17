@@ -657,7 +657,7 @@ export namespace cloudasset_v1p5beta1 {
      */
     pscEndpoint?: Schema$GoogleIdentityAccesscontextmanagerV1PrivateServiceConnectEndpoint;
     /**
-     * A Google Cloud resource from the service perimeter that you want to allow to access data outside the perimeter. This field supports only projects. The project format is `projects/{project_number\}`. You can't use `*` in this field to allow all Google Cloud resources.
+     * A Google Cloud resource from the service perimeter that you want to allow to access data outside the perimeter. This field supports projects, folders, and organizations in the form `projects/`, `folders/`, and `organizations/`. You can't use `*` in this field to allow all Google Cloud resources.
      */
     resource?: string | null;
   }
@@ -674,7 +674,7 @@ export namespace cloudasset_v1p5beta1 {
      */
     operations?: Schema$GoogleIdentityAccesscontextmanagerV1ApiOperation[];
     /**
-     * A list of resources, currently only projects in the form `projects/`, that are allowed to be accessed by sources defined in the corresponding EgressFrom. A request matches if it contains a resource in this list. If `*` is specified for `resources`, then this EgressTo rule will authorize access to all resources outside the perimeter.
+     * A list of resources, currently projects, folders, and organizations in the form `projects/`, `folders/`, and `organizations/`, that are allowed to be accessed by sources defined in the corresponding EgressFrom. A request matches if it contains a resource in this list. If `*` is specified for `resources`, then this EgressTo rule will authorize access to all resources outside the perimeter.
      */
     resources?: string[] | null;
     /**
@@ -729,7 +729,7 @@ export namespace cloudasset_v1p5beta1 {
      */
     pscEndpoint?: Schema$GoogleIdentityAccesscontextmanagerV1PrivateServiceConnectEndpoint;
     /**
-     * A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be allowed to access perimeter data. Currently only projects and VPCs are allowed. Project format: `projects/{project_number\}` VPC network format: `//compute.googleapis.com/projects/{PROJECT_ID\}/global/networks/{NAME\}`. The project may be in any Google Cloud organization, not just the organization that the perimeter is defined in. `*` is not allowed, the case of allowing all Google Cloud resources only is not supported.
+     * A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be allowed to access perimeter data. Currently projects, folders, organizations, and VPCs are allowed. Project format: `projects/{project_number\}` Folder format: `folders/{folder_id\}` Organization format: `organizations/{organization_id\}` VPC network format: `//compute.googleapis.com/projects/{PROJECT_ID\}/global/networks/{NAME\}`. The project may be in any Google Cloud organization, not just the organization that the perimeter is defined in. `*` is not allowed, the case of allowing all Google Cloud resources only is not supported.
      */
     resource?: string | null;
   }
@@ -742,7 +742,7 @@ export namespace cloudasset_v1p5beta1 {
      */
     operations?: Schema$GoogleIdentityAccesscontextmanagerV1ApiOperation[];
     /**
-     * A list of resources, currently only projects in the form `projects/`, protected by this ServicePerimeter that are allowed to be accessed by sources defined in the corresponding IngressFrom. If a single `*` is specified, then access to all resources inside the perimeter are allowed.
+     * A list of resources, currently projects, folders, and organizations in the form `projects/{project_number\}`, `folders/{folder_id\}`, and `organizations/{organization_id\}`, protected by this ServicePerimeter that are allowed to be accessed by sources defined in the corresponding IngressFrom. If a single `*` is specified, then access to all resources inside the perimeter are allowed.
      */
     resources?: string[] | null;
     /**
@@ -869,7 +869,7 @@ export namespace cloudasset_v1p5beta1 {
      */
     ingressPolicies?: Schema$GoogleIdentityAccesscontextmanagerV1IngressPolicy[];
     /**
-     * A list of Google Cloud resources that are inside of the service perimeter. Currently only projects and VPCs are allowed. Project format: `projects/{project_number\}` VPC network format: `//compute.googleapis.com/projects/{PROJECT_ID\}/global/networks/{NAME\}`.
+     * A list of Google Cloud resources that are inside of the service perimeter. Currently projects, folders, and VPCs are allowed. Project format: `projects/{project_number\}` Folder format: `folders/{folder_id\}` VPC network format: `//compute.googleapis.com/projects/{PROJECT_ID\}/global/networks/{NAME\}`.
      */
     resources?: string[] | null;
     /**

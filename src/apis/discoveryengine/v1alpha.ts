@@ -2923,6 +2923,10 @@ export namespace discoveryengine_v1alpha {
      */
     pkceVerificationEnabled?: boolean | null;
     /**
+     * Optional. Set only when the OAuth provider publishes no public endpoint, in which case a token exchange has to be routed over the private network the instance is on instead of over public egress. Leaving it unset keeps the exchange on public egress.
+     */
+    privateNetworkConfig?: Schema$GoogleCloudDiscoveryengineV1alphaAuthorizationServerSideOAuth2PrivateNetworkConfig;
+    /**
      * Optional. The scopes to request. Example: `https://www.googleapis.com/auth/calendar.events` If omitted, no additional scopes are requested beyond those required by the authorization uri. If set, it will overwrite the scopes in the authorization uri when acquiring user authorization.
      */
     scopes?: string[] | null;
@@ -2930,6 +2934,15 @@ export namespace discoveryengine_v1alpha {
      * Required. The HTTP endpoint that exchanges a client authorization for an access token.
      */
     tokenUri?: string | null;
+  }
+  /**
+   * Identifies the instance hosting an OAuth provider that is reachable only over a private network.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAuthorizationServerSideOAuth2PrivateNetworkConfig {
+    /**
+     * Required. Resource name of the instance hosting the OAuth provider. For Looker, the Looker instance, in the form `projects/{project\}/locations/{location\}/instances/{instance\}`.
+     */
+    instanceResource?: string | null;
   }
   /**
    * The configuration for the BAP connector.
@@ -5085,6 +5098,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDataStoreFederatedSearchConfigNotebooklmConfig {
     /**
+     * Optional. Restricts this data store to the given notebooks. When empty, the data store covers every notebook the querying user can access, which is the existing behaviour. Each entry is a full notebook resource name, such as `projects/x/locations/x/notebooks/x`. Scoping is enforced on results as well as requested upstream, so a notebook outside this list cannot appear in a search response through this data store even if the backend returns one.
+     */
+    notebooks?: string[] | null;
+    /**
      * Required. Search config name. Format: projects/x/locations/global/notebookLmSearchConfigs/x
      */
     searchConfig?: string | null;
@@ -5751,7 +5768,7 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -6345,9 +6362,17 @@ export namespace discoveryengine_v1alpha {
      */
     session?: string | null;
     /**
-     * Optional. The full resource name of the Sobi task if the conversation was handled by a long-running agent task. Format: projects/{project\}/locations/{location\}/tasks/{task_id\}
+     * Optional. The `TaskServerEvent.seq_num` of the step that opened the rated agent task reply.
+     */
+    stepSeqNum?: string | null;
+    /**
+     * Optional. The full resource name of the Sobi task if the conversation was handled by a long-running agent task. Format (canonical, or the short alias the Task API also accepts): projects/{project\}/locations/{location\}/agents/{agent\}/tasks/{task\} projects/{project\}/locations/{location\}/tasks/{task\}
      */
     taskName?: string | null;
+    /**
+     * Optional. The runtime trajectory id of the rated agent task turn, as set on `TaskServerEvent.trajectory_id`. Shared by all steps of the turn.
+     */
+    trajectoryId?: string | null;
   }
   /**
    * Response message for SiteSearchEngineService.FetchDomainVerificationStatus method.
@@ -6441,6 +6466,14 @@ export namespace discoveryengine_v1alpha {
      * Optional. The metatag name found in the HTML page. If user defines this field, the value of this metatag name will be used to extract metatag. If the user does not define this field, the FieldConfig.field_path will be used to extract metatag.
      */
     metatagName?: string | null;
+    /**
+     * Optional. If partial_matchable_option is PARTIAL_MATCHABLE_OPTION_ENABLED, field values are partial matchable. If partial_matchable_option is unset, the server behavior defaults to PARTIAL_MATCHABLE_OPTION_DISABLED for fields that support setting partial matchable options. For those fields that do not support setting partial matchable options, the server will skip partial matchable option setting, and setting partial_matchable_option for those fields will throw `INVALID_ARGUMENT` error.
+     */
+    partialMatchableOption?: string | null;
+    /**
+     * Optional. If prefix_matchable_option is PREFIX_MATCHABLE_OPTION_ENABLED, field values are prefix matchable. If prefix_matchable_option is unset, the server behavior defaults to PREFIX_MATCHABLE_OPTION_DISABLED for fields that support setting prefix matchable options. For those fields that do not support setting prefix matchable options, the server will skip prefix matchable option setting, and setting prefix_matchable_option for those fields will throw `INVALID_ARGUMENT` error.
+     */
+    prefixMatchableOption?: string | null;
     /**
      * If recs_filterable_option is FILTERABLE_ENABLED, field values are filterable by filter expression in RecommendationService.Recommend. If FILTERABLE_ENABLED but the field type is numerical, field values are not filterable by text queries in RecommendationService.Recommend. Only textual fields are supported. If recs_filterable_option is unset, the default setting is FILTERABLE_DISABLED for fields that support setting filterable options. When a field set to [FILTERABLE_DISABLED] is filtered, a warning is generated and an empty result is returned.
      */
@@ -9468,7 +9501,7 @@ export namespace discoveryengine_v1alpha {
      */
     customRankingParams?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestCustomRankingParams;
     /**
-     * Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.
+     * Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used. On an engine with multiple data stores, this field is optional. If it's empty, all of the engine's data stores are searched (blended search). Unless it specifies exactly one data store, some request fields, such as `order_by` and `query_expansion_spec`, aren't supported and return an `INVALID_ARGUMENT` error.
      */
     dataStoreSpecs?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec[];
     /**
@@ -12393,7 +12426,7 @@ export namespace discoveryengine_v1alpha {
      */
     enableVisualContentSummary?: boolean | null;
     /**
-     * Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -13529,6 +13562,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDataStoreFederatedSearchConfigNotebooklmConfig {
     /**
+     * Optional. Restricts this data store to the given notebooks. When empty, the data store covers every notebook the querying user can access, which is the existing behaviour. Each entry is a full notebook resource name, such as `projects/x/locations/x/notebooks/x`. Scoping is enforced on results as well as requested upstream, so a notebook outside this list cannot appear in a search response through this data store even if the backend returns one.
+     */
+    notebooks?: string[] | null;
+    /**
      * Required. Search config name. Format: projects/x/locations/global/notebookLmSearchConfigs/x
      */
     searchConfig?: string | null;
@@ -13863,7 +13900,7 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -14984,7 +15021,7 @@ export namespace discoveryengine_v1alpha {
      */
     customRankingParams?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestCustomRankingParams;
     /**
-     * Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.
+     * Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used. On an engine with multiple data stores, this field is optional. If it's empty, all of the engine's data stores are searched (blended search). Unless it specifies exactly one data store, some request fields, such as `order_by` and `query_expansion_spec`, aren't supported and return an `INVALID_ARGUMENT` error.
      */
     dataStoreSpecs?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec[];
     /**
@@ -16847,6 +16884,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfigNotebooklmConfig {
     /**
+     * Optional. Restricts this data store to the given notebooks. When empty, the data store covers every notebook the querying user can access, which is the existing behaviour. Each entry is a full notebook resource name, such as `projects/x/locations/x/notebooks/x`. Scoping is enforced on results as well as requested upstream, so a notebook outside this list cannot appear in a search response through this data store even if the backend returns one.
+     */
+    notebooks?: string[] | null;
+    /**
      * Required. Search config name. Format: projects/x/locations/global/notebookLmSearchConfigs/x
      */
     searchConfig?: string | null;
@@ -17241,7 +17282,7 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -21004,6 +21045,7 @@ export namespace discoveryengine_v1alpha {
     evaluations: Resource$Projects$Locations$Evaluations;
     groundingConfigs: Resource$Projects$Locations$Groundingconfigs;
     identityMappingStores: Resource$Projects$Locations$Identitymappingstores;
+    knowledgeSpaces: Resource$Projects$Locations$Knowledgespaces;
     licenseConfigs: Resource$Projects$Locations$Licenseconfigs;
     notebooks: Resource$Projects$Locations$Notebooks;
     operations: Resource$Projects$Locations$Operations;
@@ -21035,6 +21077,9 @@ export namespace discoveryengine_v1alpha {
       );
       this.identityMappingStores =
         new Resource$Projects$Locations$Identitymappingstores(this.context);
+      this.knowledgeSpaces = new Resource$Projects$Locations$Knowledgespaces(
+        this.context
+      );
       this.licenseConfigs = new Resource$Projects$Locations$Licenseconfigs(
         this.context
       );
@@ -46974,7 +47019,6 @@ export namespace discoveryengine_v1alpha {
     context: APIRequestContext;
     analytics: Resource$Projects$Locations$Collections$Engines$Analytics;
     assistants: Resource$Projects$Locations$Collections$Engines$Assistants;
-    collaborativeProjects: Resource$Projects$Locations$Collections$Engines$Collaborativeprojects;
     completionConfig: Resource$Projects$Locations$Collections$Engines$Completionconfig;
     controls: Resource$Projects$Locations$Collections$Engines$Controls;
     conversations: Resource$Projects$Locations$Collections$Engines$Conversations;
@@ -46990,10 +47034,6 @@ export namespace discoveryengine_v1alpha {
         );
       this.assistants =
         new Resource$Projects$Locations$Collections$Engines$Assistants(
-          this.context
-        );
-      this.collaborativeProjects =
-        new Resource$Projects$Locations$Collections$Engines$Collaborativeprojects(
           this.context
         );
       this.completionConfig =
@@ -51034,7 +51074,6 @@ export namespace discoveryengine_v1alpha {
     context: APIRequestContext;
     files: Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Files;
     operations: Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations;
-    toolCalls: Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.files =
@@ -51043,10 +51082,6 @@ export namespace discoveryengine_v1alpha {
         );
       this.operations =
         new Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations(
-          this.context
-        );
-      this.toolCalls =
-        new Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls(
           this.context
         );
     }
@@ -52365,182 +52400,6 @@ export namespace discoveryengine_v1alpha {
     name?: string;
   }
 
-  export class Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls {
-    context: APIRequestContext;
-    operations: Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.operations =
-        new Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations(
-          this.context
-        );
-    }
-  }
-
-  export class Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const discoveryengine = google.discoveryengine('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
-     *       'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.toolCalls.operations.get(
-     *       {
-     *         // The name of the operation resource.
-     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent/toolCalls/my-toolCall/operations/my-operation',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    get(
-      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations$Get,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations$Get,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://discoveryengine.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Toolcalls$Operations$Get extends StandardParameters {
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
-  }
-
   export class Resource$Projects$Locations$Collections$Engines$Assistants$Cannedqueries {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -53430,194 +53289,6 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaCannedQuery;
-  }
-
-  export class Resource$Projects$Locations$Collections$Engines$Collaborativeprojects {
-    context: APIRequestContext;
-    knowledgeSpaces: Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.knowledgeSpaces =
-        new Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces(
-          this.context
-        );
-    }
-  }
-
-  export class Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces {
-    context: APIRequestContext;
-    operations: Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.operations =
-        new Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations(
-          this.context
-        );
-    }
-  }
-
-  export class Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const discoveryengine = google.discoveryengine('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
-     *       'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await discoveryengine.projects.locations.collections.engines.collaborativeProjects.knowledgeSpaces.operations.get(
-     *       {
-     *         // The name of the operation resource.
-     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/collaborativeProjects/my-collaborativeProject/knowledgeSpaces/my-knowledgeSpace/operations/my-operation',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    get(
-      params: Params$Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations$Get,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations$Get,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://discoveryengine.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Collections$Engines$Collaborativeprojects$Knowledgespaces$Operations$Get extends StandardParameters {
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
   }
 
   export class Resource$Projects$Locations$Collections$Engines$Completionconfig {
@@ -82086,6 +81757,180 @@ export namespace discoveryengine_v1alpha {
      * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
+  }
+
+  export class Resource$Projects$Locations$Knowledgespaces {
+    context: APIRequestContext;
+    operations: Resource$Projects$Locations$Knowledgespaces$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations =
+        new Resource$Projects$Locations$Knowledgespaces$Operations(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Projects$Locations$Knowledgespaces$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.knowledgeSpaces.operations.get({
+     *       // The name of the operation resource.
+     *       name: 'projects/my-project/locations/my-location/knowledgeSpaces/my-knowledgeSpace/operations/my-operation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Knowledgespaces$Operations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Knowledgespaces$Operations$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    get(
+      params: Params$Resource$Projects$Locations$Knowledgespaces$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Knowledgespaces$Operations$Get,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Knowledgespaces$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Knowledgespaces$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Knowledgespaces$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Knowledgespaces$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Knowledgespaces$Operations$Get extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
   }
 
   export class Resource$Projects$Locations$Licenseconfigs {

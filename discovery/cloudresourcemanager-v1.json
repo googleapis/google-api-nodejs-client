@@ -1171,7 +1171,7 @@
       }
     }
   },
-  "revision": "20260820",
+  "revision": "20261011",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "Ancestor": {
@@ -1447,6 +1447,18 @@
       },
       "type": "object"
     },
+    "CreateSemanticTagBindingMetadata": {
+      "description": "Metadata for the `CreateSemanticTagBinding` long-running operation.",
+      "id": "CreateSemanticTagBindingMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "CreateSemanticTagValueMetadata": {
+      "description": "Runtime operation information for creating a `SemanticTagValue`.",
+      "id": "CreateSemanticTagValueMetadata",
+      "properties": {},
+      "type": "object"
+    },
     "CreateTagBindingMetadata": {
       "description": "Runtime operation information for creating a TagValue.",
       "id": "CreateTagBindingMetadata",
@@ -1492,6 +1504,18 @@
     "DeleteProjectMetadata": {
       "description": "A status object which is used as the `metadata` field for the Operation returned by `DeleteProject`.",
       "id": "DeleteProjectMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "DeleteSemanticTagBindingMetadata": {
+      "description": "Metadata for the `DeleteSemanticTagBinding` long-running operation.",
+      "id": "DeleteSemanticTagBindingMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "DeleteSemanticTagValueMetadata": {
+      "description": "Runtime operation information for deleting a `SemanticTagValue`.",
+      "id": "DeleteSemanticTagValueMetadata",
       "properties": {},
       "type": "object"
     },

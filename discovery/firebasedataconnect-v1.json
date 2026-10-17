@@ -1502,7 +1502,7 @@
       }
     }
   },
-  "revision": "20261004",
+  "revision": "20261011",
   "rootUrl": "https://firebasedataconnect.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -2612,6 +2612,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "graphqlSource": {
+          "$ref": "Source",
+          "description": "Optional. Input only. The GraphQL source files like `dataconnect.yaml` and `*.gql`."
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -2629,16 +2633,20 @@
           "type": "boolean"
         },
         "schemas": {
-          "description": "Output only. The list of schemas in this service.",
+          "description": "Optional. The list of schemas in this service.",
           "items": {
             "$ref": "Schema"
           },
-          "readOnly": true,
           "type": "array"
         },
         "source": {
           "$ref": "Source",
-          "description": "Optional. Input only. The source files for service, schemas, and connectors."
+          "deprecated": true,
+          "description": "Optional. Input only. Deprecated: Use `sql_source` or `graphql_source` instead. The source files for service, schemas, and connectors."
+        },
+        "sqlSource": {
+          "$ref": "Source",
+          "description": "Optional. Input only. The SQL source files like `*.sql` for deploying a PostgREST service."
         },
         "uid": {
           "description": "Output only. System-assigned, unique identifier.",

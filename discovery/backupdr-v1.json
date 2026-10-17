@@ -2725,7 +2725,7 @@
       }
     }
   },
-  "revision": "20261002",
+  "revision": "20261006",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -3312,6 +3312,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "netappVolumeBackupProperties": {
+          "$ref": "NetAppVolumeBackupProperties",
+          "description": "Output only. NetApp Volume specific backup properties.",
+          "readOnly": true
+        },
         "resourceSizeBytes": {
           "description": "Output only. source resource size in bytes at the time of the backup.",
           "format": "int64",
@@ -3881,6 +3886,11 @@
           "description": "Output only. Identifier. The resource name of BackupPlanAssociation in below format Format : projects/{project}/locations/{location}/backupPlanAssociations/{backupPlanAssociationId}",
           "readOnly": true,
           "type": "string"
+        },
+        "netappVolumeBackupPlanAssociationProperties": {
+          "$ref": "NetAppVolumeBackupPlanAssociationProperties",
+          "description": "Output only. NetApp volume backup plan association properties.",
+          "readOnly": true
         },
         "resource": {
           "description": "Required. Immutable. Resource name of workload on which the backup plan is applied. The format can either be the resource name (e.g., \"projects/my-project/zones/us-central1-a/instances/my-instance\") or the full resource URI (e.g., \"https://www.googleapis.com/compute/v1/projects/my-project/zones/us-central1-a/instances/my-instance\").",
@@ -4869,6 +4879,11 @@
           "description": "Location of the resource: //\"global\"/\"unspecified\".",
           "type": "string"
         },
+        "netappVolumeDatasourceProperties": {
+          "$ref": "NetAppVolumeDataSourceProperties",
+          "description": "Output only. NetAppVolumeDataSourceProperties has a subset of NetApp Volume properties that are useful at the Datasource level.",
+          "readOnly": true
+        },
         "type": {
           "description": "The type of the Google Cloud resource. Use the Unified Resource Type, eg. compute.googleapis.com/Instance.",
           "type": "string"
@@ -4904,6 +4919,11 @@
           "description": "Output only. The location of the Google Cloud resource. Ex: //\"global\"/\"unspecified\"",
           "readOnly": true,
           "type": "string"
+        },
+        "netappVolumeProperties": {
+          "$ref": "NetAppVolumeDataSourceReferenceProperties",
+          "description": "Output only. The NetApp Volume properties.",
+          "readOnly": true
         },
         "type": {
           "description": "Output only. The type of the Google Cloud resource. Ex: compute.googleapis.com/Instance",
@@ -6380,6 +6400,67 @@
             "$ref": "Entry"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "NetAppVolumeBackupPlanAssociationProperties": {
+      "description": "NetAppVolumeBackupPlanAssociationProperties represents NetApp Volume backup plan association properties in BackupPlanAssociation. .",
+      "id": "NetAppVolumeBackupPlanAssociationProperties",
+      "properties": {
+        "sourceResourceCreateTime": {
+          "description": "Output only. The creation timestamp of the source resource.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NetAppVolumeBackupProperties": {
+      "description": "NetAppVolumeBackupProperties represents NetApp Volume backup properties in Backup. .",
+      "id": "NetAppVolumeBackupProperties",
+      "properties": {
+        "sourceResource": {
+          "description": "Output only. The source volume of the Backup.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NetAppVolumeDataSourceProperties": {
+      "description": "NetAppVolumeDataSourceProperties represents NetApp Volume properties stored in DataSource. .",
+      "id": "NetAppVolumeDataSourceProperties",
+      "properties": {
+        "sourceResource": {
+          "description": "Output only. The source volume represented by this DataSource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceResourceCreateTime": {
+          "description": "Output only. The volume creation timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NetAppVolumeDataSourceReferenceProperties": {
+      "description": "NetAppVolumeDataSourceReferenceProperties represents NetApp Volume properties stored in DataSourceReference. .",
+      "id": "NetAppVolumeDataSourceReferenceProperties",
+      "properties": {
+        "sourceResource": {
+          "description": "Output only. The source volume represented by this DataSourceReference.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceResourceCreateTime": {
+          "description": "Output only. The volume creation timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

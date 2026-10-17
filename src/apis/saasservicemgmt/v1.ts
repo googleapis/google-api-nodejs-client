@@ -138,6 +138,19 @@ export namespace saasservicemgmt_v1 {
     group?: string | null;
   }
   /**
+   * AppParams contains the parameters for creating an AppHub Application.
+   */
+  export interface Schema$AppParams {
+    /**
+     * Optional. Grouping used to construct the name of the AppHub Application. Multiple UnitKinds can specify the same group to use the same Application across their respective units. Corresponds to the app_boundary_id in the ADC composite ApplicationTemplate. Defaults to UnitKind.name
+     */
+    group?: string | null;
+    /**
+     * Optional. Corresponds to the scope in the ADC composite ApplicationTemplate. Defaults to TYPE_REGIONAL.
+     */
+    scope?: Schema$Scope;
+  }
+  /**
    * Blueprints are OCI Images that contain all of the artifacts needed to provision a unit. Metadata such as, type of the engine used to actuate the blueprint (Terraform, for example) and version will come from the image manifest. If the hostname is omitted, it will be assumed to be the regional path to Artifact Registry (eg. us-east1-docker.pkg.dev).
    */
   export interface Schema$Blueprint {
@@ -153,6 +166,40 @@ export namespace saasservicemgmt_v1 {
      * Output only. Version metadata if present on the blueprint.
      */
     version?: string | null;
+  }
+  /**
+   * ComponentRef represents a reference to a component resource.
+   */
+  export interface Schema$ComponentRef {
+    /**
+     * Optional. Name of the component in composite.Components
+     */
+    component?: string | null;
+    /**
+     * Optional. Reference to the Composite ApplicationTemplate.
+     */
+    compositeRef?: Schema$CompositeRef;
+    /**
+     * Optional. Revision of the component. If the component does not have a revision, this field will be explicitly set to the revision of the composite ApplicationTemplate.
+     */
+    revision?: string | null;
+  }
+  /**
+   * CompositeRef represents a reference to a composite resource.
+   */
+  export interface Schema$CompositeRef {
+    /**
+     * Required. Reference to the ApplicationTemplate resource.
+     */
+    applicationTemplate?: string | null;
+    /**
+     * Optional. Revision of the ApplicationTemplate to use. Changes to revision will trigger manual resynchronization. If empty, ApplicationTemplate will be ignored.
+     */
+    revision?: string | null;
+    /**
+     * Output only. Reference to on-going AppTemplate import and replication operation (i.e. the operation_id for the long-running operation). This field is opaque for external usage.
+     */
+    syncOperation?: string | null;
   }
   /**
    * A representation of a decimal value, such as 2.5. Clients may convert values into language-native decimal formats, such as Java's [BigDecimal](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/BigDecimal.html) or Python's [decimal.Decimal](https://docs.python.org/3/library/decimal.html).
@@ -196,15 +243,6 @@ export namespace saasservicemgmt_v1 {
      * Optional. The maximum percentage of units allowed to fail (0, 100] within a location without pausing the rollout.
      */
     allowedPercentage?: number | null;
-  }
-  /**
-   * FlagUpdate is a UnitOperation that pushes new flag values to Units.
-   */
-  export interface Schema$FlagUpdate {
-    /**
-     * Required. Flag release being applied by UnitOperation.
-     */
-    flagRelease?: string | null;
   }
   /**
    * Output variables whose values will be passed on to dependencies
@@ -433,6 +471,10 @@ export namespace saasservicemgmt_v1 {
      */
     annotations?: {[key: string]: string} | null;
     /**
+     * Output only. Reference to component and revision in a composite ApplicationTemplate.
+     */
+    applicationTemplateComponent?: Schema$ComponentRef;
+    /**
      * Optional. Blueprints are OCI Images that contain all of the artifacts needed to provision a unit.
      */
     blueprint?: Schema$Blueprint;
@@ -522,10 +564,6 @@ export namespace saasservicemgmt_v1 {
      * Output only. An opaque value that uniquely identifies a version or generation of a resource. It can be used to confirm that the client and server agree on the ordering of a resource being written.
      */
     etag?: string | null;
-    /**
-     * Optional. Immutable. Name of the FlagRelease to be rolled out to the target Units. Release and FlagRelease are mutually exclusive. Note: `release` comment needs to be adjusted to mention that "Release and FlagRelease are mutually exclusive" when visibility restriction will be lifted.
-     */
-    flagRelease?: string | null;
     /**
      * Optional. The labels on the resource, which can be used for categorization. similar to Kubernetes resource labels.
      */
@@ -688,6 +726,14 @@ export namespace saasservicemgmt_v1 {
      */
     annotations?: {[key: string]: string} | null;
     /**
+     * Optional. Reference to composite ApplicationTemplate. When specified, the template components will be imported into their equivalent UnitKind, Release and Blueprint resources. Deleted references will not delete imported resources. Should only be specified on source regions, and be unspecified on replica regions.
+     */
+    applicationTemplate?: Schema$CompositeRef;
+    /**
+     * Output only. Name of repository in Artifact Registry for system-generated Blueprints, eg. Blueprints of imported ApplicationTemplates.
+     */
+    blueprintRepo?: string | null;
+    /**
      * Output only. A set of conditions which indicate the various conditions this resource can have.
      */
     conditions?: Schema$SaasCondition[];
@@ -761,6 +807,15 @@ export namespace saasservicemgmt_v1 {
      * Optional. Start of operation. If not set, will be set to the start of the next window. (optional)
      */
     startTime?: string | null;
+  }
+  /**
+   * Scope of an application.
+   */
+  export interface Schema$Scope {
+    /**
+     * Required. Scope Type.
+     */
+    type?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -846,6 +901,10 @@ export namespace saasservicemgmt_v1 {
      */
     annotations?: {[key: string]: string} | null;
     /**
+     * Optional. Reference to the AppHub Application this unit belongs to. All resources deployed in this Unit will be associated with the specified Application.
+     */
+    application?: string | null;
+    /**
      * Optional. Output only. A set of conditions which indicate the various conditions this resource can have.
      */
     conditions?: Schema$UnitCondition[];
@@ -865,10 +924,6 @@ export namespace saasservicemgmt_v1 {
      * Output only. An opaque value that uniquely identifies a version or generation of a resource. It can be used to confirm that the client and server agree on the ordering of a resource being written.
      */
     etag?: string | null;
-    /**
-     * Optional. Output only. Flag revisions used by this Unit.
-     */
-    flagRevisions?: string[] | null;
     /**
      * Optional. Output only. Indicates the current input variables deployed by the unit
      */
@@ -993,6 +1048,14 @@ export namespace saasservicemgmt_v1 {
      */
     annotations?: {[key: string]: string} | null;
     /**
+     * Optional. Reference to component and revision in a composite ApplicationTemplate.
+     */
+    applicationTemplateComponent?: Schema$ComponentRef;
+    /**
+     * Optional. AppParams contains the parameters for creating an AppHub Application.
+     */
+    appParams?: Schema$AppParams;
+    /**
      * Optional. Output only. BoundaryType describes the type of boundary the Unit Kind represents.
      */
     boundaryType?: string | null;
@@ -1000,10 +1063,6 @@ export namespace saasservicemgmt_v1 {
      * Output only. The timestamp when the resource was created.
      */
     createTime?: string | null;
-    /**
-     * Optional. Default revisions of flags for this UnitKind. Newly created units will use the flag default_flag_revisions present at the time of creation.
-     */
-    defaultFlagRevisions?: string[] | null;
     /**
      * Optional. A reference to the Release object to use as default for creating new units of this UnitKind (optional). If not specified, a new unit must explicitly reference which release to use for its creation.
      */
@@ -1089,10 +1148,6 @@ export namespace saasservicemgmt_v1 {
      * Output only. An opaque value that uniquely identifies a version or generation of a resource. It can be used to confirm that the client and server agree on the ordering of a resource being written.
      */
     etag?: string | null;
-    /**
-     * Optional. Flag update operation.
-     */
-    flagUpdate?: Schema$FlagUpdate;
     /**
      * Optional. The labels on the resource, which can be used for categorization. similar to Kubernetes resource labels.
      */
@@ -1634,6 +1689,7 @@ export namespace saasservicemgmt_v1 {
      *       // request body parameters
      *       // {
      *       //   "annotations": {},
+     *       //   "applicationTemplateComponent": {},
      *       //   "blueprint": {},
      *       //   "createTime": "my_createTime",
      *       //   "etag": "my_etag",
@@ -1654,6 +1710,7 @@ export namespace saasservicemgmt_v1 {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "applicationTemplateComponent": {},
      *   //   "blueprint": {},
      *   //   "createTime": "my_createTime",
      *   //   "etag": "my_etag",
@@ -1948,6 +2005,7 @@ export namespace saasservicemgmt_v1 {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "applicationTemplateComponent": {},
      *   //   "blueprint": {},
      *   //   "createTime": "my_createTime",
      *   //   "etag": "my_etag",
@@ -2256,6 +2314,7 @@ export namespace saasservicemgmt_v1 {
      *       // request body parameters
      *       // {
      *       //   "annotations": {},
+     *       //   "applicationTemplateComponent": {},
      *       //   "blueprint": {},
      *       //   "createTime": "my_createTime",
      *       //   "etag": "my_etag",
@@ -2276,6 +2335,7 @@ export namespace saasservicemgmt_v1 {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "applicationTemplateComponent": {},
      *   //   "blueprint": {},
      *   //   "createTime": "my_createTime",
      *   //   "etag": "my_etag",
@@ -3437,7 +3497,6 @@ export namespace saasservicemgmt_v1 {
      *       //   "effectiveUnitFilter": "my_effectiveUnitFilter",
      *       //   "endTime": "my_endTime",
      *       //   "etag": "my_etag",
-     *       //   "flagRelease": "my_flagRelease",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "parentRollout": "my_parentRollout",
@@ -3467,7 +3526,6 @@ export namespace saasservicemgmt_v1 {
      *   //   "effectiveUnitFilter": "my_effectiveUnitFilter",
      *   //   "endTime": "my_endTime",
      *   //   "etag": "my_etag",
-     *   //   "flagRelease": "my_flagRelease",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "parentRollout": "my_parentRollout",
@@ -3771,7 +3829,6 @@ export namespace saasservicemgmt_v1 {
      *   //   "effectiveUnitFilter": "my_effectiveUnitFilter",
      *   //   "endTime": "my_endTime",
      *   //   "etag": "my_etag",
-     *   //   "flagRelease": "my_flagRelease",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "parentRollout": "my_parentRollout",
@@ -4089,7 +4146,6 @@ export namespace saasservicemgmt_v1 {
      *       //   "effectiveUnitFilter": "my_effectiveUnitFilter",
      *       //   "endTime": "my_endTime",
      *       //   "etag": "my_etag",
-     *       //   "flagRelease": "my_flagRelease",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "parentRollout": "my_parentRollout",
@@ -4119,7 +4175,6 @@ export namespace saasservicemgmt_v1 {
      *   //   "effectiveUnitFilter": "my_effectiveUnitFilter",
      *   //   "endTime": "my_endTime",
      *   //   "etag": "my_etag",
-     *   //   "flagRelease": "my_flagRelease",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "parentRollout": "my_parentRollout",
@@ -4378,6 +4433,8 @@ export namespace saasservicemgmt_v1 {
      *       // request body parameters
      *       // {
      *       //   "annotations": {},
+     *       //   "applicationTemplate": {},
+     *       //   "blueprintRepo": "my_blueprintRepo",
      *       //   "conditions": [],
      *       //   "createTime": "my_createTime",
      *       //   "error": {},
@@ -4396,6 +4453,8 @@ export namespace saasservicemgmt_v1 {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "applicationTemplate": {},
+     *   //   "blueprintRepo": "my_blueprintRepo",
      *   //   "conditions": [],
      *   //   "createTime": "my_createTime",
      *   //   "error": {},
@@ -4685,6 +4744,8 @@ export namespace saasservicemgmt_v1 {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "applicationTemplate": {},
+     *   //   "blueprintRepo": "my_blueprintRepo",
      *   //   "conditions": [],
      *   //   "createTime": "my_createTime",
      *   //   "error": {},
@@ -4987,6 +5048,8 @@ export namespace saasservicemgmt_v1 {
      *       // request body parameters
      *       // {
      *       //   "annotations": {},
+     *       //   "applicationTemplate": {},
+     *       //   "blueprintRepo": "my_blueprintRepo",
      *       //   "conditions": [],
      *       //   "createTime": "my_createTime",
      *       //   "error": {},
@@ -5005,6 +5068,8 @@ export namespace saasservicemgmt_v1 {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "applicationTemplate": {},
+     *   //   "blueprintRepo": "my_blueprintRepo",
      *   //   "conditions": [],
      *   //   "createTime": "my_createTime",
      *   //   "error": {},
@@ -6134,9 +6199,10 @@ export namespace saasservicemgmt_v1 {
      *       // request body parameters
      *       // {
      *       //   "annotations": {},
+     *       //   "appParams": {},
+     *       //   "applicationTemplateComponent": {},
      *       //   "boundaryType": "my_boundaryType",
      *       //   "createTime": "my_createTime",
-     *       //   "defaultFlagRevisions": [],
      *       //   "defaultRelease": "my_defaultRelease",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "dependencies": [],
@@ -6156,9 +6222,10 @@ export namespace saasservicemgmt_v1 {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "appParams": {},
+     *   //   "applicationTemplateComponent": {},
      *   //   "boundaryType": "my_boundaryType",
      *   //   "createTime": "my_createTime",
-     *   //   "defaultFlagRevisions": [],
      *   //   "defaultRelease": "my_defaultRelease",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "dependencies": [],
@@ -6452,9 +6519,10 @@ export namespace saasservicemgmt_v1 {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "appParams": {},
+     *   //   "applicationTemplateComponent": {},
      *   //   "boundaryType": "my_boundaryType",
      *   //   "createTime": "my_createTime",
-     *   //   "defaultFlagRevisions": [],
      *   //   "defaultRelease": "my_defaultRelease",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "dependencies": [],
@@ -6762,9 +6830,10 @@ export namespace saasservicemgmt_v1 {
      *       // request body parameters
      *       // {
      *       //   "annotations": {},
+     *       //   "appParams": {},
+     *       //   "applicationTemplateComponent": {},
      *       //   "boundaryType": "my_boundaryType",
      *       //   "createTime": "my_createTime",
-     *       //   "defaultFlagRevisions": [],
      *       //   "defaultRelease": "my_defaultRelease",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "dependencies": [],
@@ -6784,9 +6853,10 @@ export namespace saasservicemgmt_v1 {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "appParams": {},
+     *   //   "applicationTemplateComponent": {},
      *   //   "boundaryType": "my_boundaryType",
      *   //   "createTime": "my_createTime",
-     *   //   "defaultFlagRevisions": [],
      *   //   "defaultRelease": "my_defaultRelease",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "dependencies": [],
@@ -7049,7 +7119,6 @@ export namespace saasservicemgmt_v1 {
      *       //   "engineState": "my_engineState",
      *       //   "errorCategory": "my_errorCategory",
      *       //   "etag": "my_etag",
-     *       //   "flagUpdate": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "parentUnitOperation": "my_parentUnitOperation",
@@ -7077,7 +7146,6 @@ export namespace saasservicemgmt_v1 {
      *   //   "engineState": "my_engineState",
      *   //   "errorCategory": "my_errorCategory",
      *   //   "etag": "my_etag",
-     *   //   "flagUpdate": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "parentUnitOperation": "my_parentUnitOperation",
@@ -7380,7 +7448,6 @@ export namespace saasservicemgmt_v1 {
      *   //   "engineState": "my_engineState",
      *   //   "errorCategory": "my_errorCategory",
      *   //   "etag": "my_etag",
-     *   //   "flagUpdate": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "parentUnitOperation": "my_parentUnitOperation",
@@ -7699,7 +7766,6 @@ export namespace saasservicemgmt_v1 {
      *       //   "engineState": "my_engineState",
      *       //   "errorCategory": "my_errorCategory",
      *       //   "etag": "my_etag",
-     *       //   "flagUpdate": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "parentUnitOperation": "my_parentUnitOperation",
@@ -7727,7 +7793,6 @@ export namespace saasservicemgmt_v1 {
      *   //   "engineState": "my_engineState",
      *   //   "errorCategory": "my_errorCategory",
      *   //   "etag": "my_etag",
-     *   //   "flagUpdate": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "parentUnitOperation": "my_parentUnitOperation",
@@ -7983,12 +8048,12 @@ export namespace saasservicemgmt_v1 {
      *       // request body parameters
      *       // {
      *       //   "annotations": {},
+     *       //   "application": "my_application",
      *       //   "conditions": [],
      *       //   "createTime": "my_createTime",
      *       //   "dependencies": [],
      *       //   "dependents": [],
      *       //   "etag": "my_etag",
-     *       //   "flagRevisions": [],
      *       //   "inputVariables": [],
      *       //   "labels": {},
      *       //   "maintenance": {},
@@ -8016,12 +8081,12 @@ export namespace saasservicemgmt_v1 {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "application": "my_application",
      *   //   "conditions": [],
      *   //   "createTime": "my_createTime",
      *   //   "dependencies": [],
      *   //   "dependents": [],
      *   //   "etag": "my_etag",
-     *   //   "flagRevisions": [],
      *   //   "inputVariables": [],
      *   //   "labels": {},
      *   //   "maintenance": {},
@@ -8323,12 +8388,12 @@ export namespace saasservicemgmt_v1 {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "application": "my_application",
      *   //   "conditions": [],
      *   //   "createTime": "my_createTime",
      *   //   "dependencies": [],
      *   //   "dependents": [],
      *   //   "etag": "my_etag",
-     *   //   "flagRevisions": [],
      *   //   "inputVariables": [],
      *   //   "labels": {},
      *   //   "maintenance": {},
@@ -8643,12 +8708,12 @@ export namespace saasservicemgmt_v1 {
      *       // request body parameters
      *       // {
      *       //   "annotations": {},
+     *       //   "application": "my_application",
      *       //   "conditions": [],
      *       //   "createTime": "my_createTime",
      *       //   "dependencies": [],
      *       //   "dependents": [],
      *       //   "etag": "my_etag",
-     *       //   "flagRevisions": [],
      *       //   "inputVariables": [],
      *       //   "labels": {},
      *       //   "maintenance": {},
@@ -8676,12 +8741,12 @@ export namespace saasservicemgmt_v1 {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "application": "my_application",
      *   //   "conditions": [],
      *   //   "createTime": "my_createTime",
      *   //   "dependencies": [],
      *   //   "dependents": [],
      *   //   "etag": "my_etag",
-     *   //   "flagRevisions": [],
      *   //   "inputVariables": [],
      *   //   "labels": {},
      *   //   "maintenance": {},

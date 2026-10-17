@@ -2106,6 +2106,7 @@ export namespace dialogflow_v2beta1 {
     audioEncoding?: string | null;
     bargeInConfig?: Schema$GoogleCloudDialogflowV2beta1BargeInConfig;
     defaultNoSpeechTimeout?: string | null;
+    disableInterimInputTranscripts?: boolean | null;
     disableNoSpeechRecognizedEvent?: boolean | null;
     enableAutomaticPunctuation?: boolean | null;
     enableVoiceActivityEvents?: boolean | null;
@@ -2869,6 +2870,7 @@ export namespace dialogflow_v2beta1 {
   }
   export interface Schema$GoogleCloudDialogflowV2beta1SpeechToTextConfig {
     audioEncoding?: string | null;
+    disableInterimInputTranscripts?: boolean | null;
     enableWordInfo?: boolean | null;
     geminiAsrConfig?: Schema$GoogleCloudDialogflowV2beta1SpeechToTextConfigGeminiAsrConfig;
     languageCode?: string | null;
@@ -2881,7 +2883,6 @@ export namespace dialogflow_v2beta1 {
   }
   export interface Schema$GoogleCloudDialogflowV2beta1SpeechToTextConfigGeminiAsrConfig {
     endOfSpeechSensitivity?: string | null;
-    modelId?: string | null;
     prefixPaddingMs?: number | null;
     silenceDurationMs?: number | null;
     startOfSpeechSensitivity?: string | null;

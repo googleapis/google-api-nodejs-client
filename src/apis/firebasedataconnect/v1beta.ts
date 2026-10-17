@@ -872,6 +872,10 @@ export namespace firebasedataconnect_v1beta {
      */
     etag?: string | null;
     /**
+     * Optional. Input only. The GraphQL source files like `dataconnect.yaml` and `*.gql`.
+     */
+    graphqlSource?: Schema$Source;
+    /**
      * Optional. Labels as key value pairs.
      */
     labels?: {[key: string]: string} | null;
@@ -884,13 +888,17 @@ export namespace firebasedataconnect_v1beta {
      */
     reconciling?: boolean | null;
     /**
-     * Output only. The list of schemas in this service.
+     * Optional. The list of schemas in this service.
      */
     schemas?: Schema$Schema[];
     /**
-     * Optional. Input only. The source files for service, schemas, and connectors.
+     * Optional. Input only. Deprecated: Use `sql_source` or `graphql_source` instead. The source files for service, schemas, and connectors.
      */
     source?: Schema$Source;
+    /**
+     * Optional. Input only. The SQL source files like `*.sql` for deploying a PostgREST service.
+     */
+    sqlSource?: Schema$Source;
     /**
      * Output only. System-assigned, unique identifier.
      */
@@ -1983,11 +1991,13 @@ export namespace firebasedataconnect_v1beta {
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
+     *       //   "graphqlSource": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "reconciling": false,
      *       //   "schemas": [],
      *       //   "source": {},
+     *       //   "sqlSource": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -2906,11 +2916,13 @@ export namespace firebasedataconnect_v1beta {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
+     *   //   "graphqlSource": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "reconciling": false,
      *   //   "schemas": [],
      *   //   "source": {},
+     *   //   "sqlSource": {},
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -3363,11 +3375,13 @@ export namespace firebasedataconnect_v1beta {
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
+     *       //   "graphqlSource": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "reconciling": false,
      *       //   "schemas": [],
      *       //   "source": {},
+     *       //   "sqlSource": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }

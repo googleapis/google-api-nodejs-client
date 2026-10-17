@@ -606,7 +606,7 @@
         "adGroupAds": {
           "methods": {
             "create": {
-              "description": "Creates an ad group ad. This method is only supported for Demand Gen ads.",
+              "description": "Creates an ad group ad.",
               "flatPath": "v4/advertisers/{advertisersId}/adGroupAds",
               "httpMethod": "POST",
               "id": "displayvideo.advertisers.adGroupAds.create",
@@ -635,7 +635,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes an ad group ad. This method is only supported for Demand Gen ads.",
+              "description": "Deletes an ad group ad.",
               "flatPath": "v4/advertisers/{advertisersId}/adGroupAds/{adGroupAdsId}",
               "httpMethod": "DELETE",
               "id": "displayvideo.advertisers.adGroupAds.delete",
@@ -645,7 +645,7 @@
               ],
               "parameters": {
                 "adGroupAdId": {
-                  "description": "Required. The ID of the ad to delete. Only Demand Gen ads are supported.",
+                  "description": "Required. The ID of the ad to delete.",
                   "format": "int64",
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -752,7 +752,7 @@
               ]
             },
             "patch": {
-              "description": "Updates an ad group ad. This method is only supported for Demand Gen ads.",
+              "description": "Updates an ad group ad.",
               "flatPath": "v4/advertisers/{advertisersId}/adGroupAds/{adGroupAdsId}",
               "httpMethod": "PATCH",
               "id": "displayvideo.advertisers.adGroupAds.patch",
@@ -9618,7 +9618,7 @@
       }
     }
   },
-  "revision": "20261006",
+  "revision": "20261012",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -9807,7 +9807,7 @@
       "type": "object"
     },
     "AdGroup": {
-      "description": "A single ad group associated with a line item.",
+      "description": "LINT: LEGACY_NAMES A single ad group associated with a line item.",
       "id": "AdGroup",
       "properties": {
         "adGroupFormat": {
@@ -9904,7 +9904,7 @@
       "type": "object"
     },
     "AdGroupAd": {
-      "description": "LINT: LEGACY_NAMES A single ad associated with an ad group.",
+      "description": "A single ad associated with an ad group.",
       "id": "AdGroupAd",
       "properties": {
         "adGroupAdId": {
@@ -9948,7 +9948,7 @@
         },
         "dcmTrackingInfo": {
           "$ref": "DcmTrackingInfo",
-          "description": "Optional. The DCM tracking ad info. Only valid for Demand Gen ads. To remove the DCM tracking ad info, please leave this field empty."
+          "description": "Optional. The DCM tracking ad info. To remove the DCM tracking ad info, please leave this field empty."
         },
         "demandGenCarouselAd": {
           "$ref": "DemandGenCarouselAd",
@@ -12752,7 +12752,7 @@
           "type": "string"
         },
         "trackingUrl": {
-          "description": "The URL address loaded in the background for tracking purposes.",
+          "description": "The URL address loaded in the background for tracking purposes. In v4 and earlier, this field represents the tracking URL specified by the user manually. This can be found at userSpecifiedTrackingUrl in v5.",
           "type": "string"
         },
         "video": {
@@ -14218,7 +14218,7 @@
       "id": "CommonInStreamAttribute",
       "properties": {
         "actionButtonLabel": {
-          "description": "Optional. The text on the call-to-action button.",
+          "description": "Optional. The text on the call-to-action button. Must be set if actionHeadline is set.",
           "type": "string"
         },
         "actionHeadline": {
@@ -14238,7 +14238,7 @@
           "type": "string"
         },
         "trackingUrl": {
-          "description": "Output only. The URL address loaded in the background for tracking purposes.",
+          "description": "Output only. The URL address loaded in the background for tracking purposes. In v4 and earlier, this field represents the tracking URL specified by the user manually. This can be found at userSpecifiedTrackingUrl in v5.",
           "readOnly": true,
           "type": "string"
         },
@@ -25775,7 +25775,7 @@
       "id": "VideoPerformanceAd",
       "properties": {
         "actionButtonLabels": {
-          "description": "Optional. The list of text assets shown on the call-to-action button.",
+          "description": "Optional. The list of text assets shown on the call-to-action button. Must be set if headlines is set.",
           "items": {
             "type": "string"
           },
@@ -25796,7 +25796,7 @@
           "type": "object"
         },
         "descriptions": {
-          "description": "Optional. The list of descriptions shown on the call-to-action banner.",
+          "description": "Optional. The list of descriptions shown on the call-to-action banner. Must be set unless the parent line item's lineItemType is `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE`, in which case this field cannot be set.",
           "items": {
             "type": "string"
           },
@@ -25807,7 +25807,7 @@
           "type": "string"
         },
         "displayUrlBreadcrumb2": {
-          "description": "Optional. The second piece after the domain in the display URL.",
+          "description": "Optional. The second piece after the domain in the display URL. Can only be set if displayUrlBreadcrumb1 is also set.",
           "type": "string"
         },
         "domain": {
@@ -25827,14 +25827,14 @@
           "type": "array"
         },
         "longHeadlines": {
-          "description": "Optional. The list of long headlines shown on the call-to-action banner.",
+          "description": "Optional. The list of long headlines shown on the call-to-action banner. Must be set unless the parent line item's lineItemType is `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE`, in which case this field cannot be set.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "trackingUrl": {
-          "description": "Output only. The URL address loaded in the background for tracking purposes.",
+          "description": "Output only. The URL address loaded in the background for tracking purposes. In v4 and earlier, this field represents the tracking URL specified by the user manually. This can be found at userSpecifiedTrackingUrl in v5.",
           "readOnly": true,
           "type": "string"
         },

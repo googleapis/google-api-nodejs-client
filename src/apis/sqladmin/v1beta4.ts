@@ -888,6 +888,10 @@ export namespace sqladmin_v1beta4 {
      */
     currentDiskSize?: string | null;
     /**
+     * Optional. State of the Database Center integration for this instance. When unspecified, Database Center integration is enabled by default.
+     */
+    databaseCenterIntegration?: string | null;
+    /**
      * Optional. If true, instance metadata is sent to the Database Center. If false, instance metadata is not sent to the Database Center.
      */
     databaseCenterIntegrationEnabled?: boolean | null;
@@ -1051,6 +1055,10 @@ export namespace sqladmin_v1beta4 {
      * The user settings.
      */
     settings?: Schema$Settings;
+    /**
+     * Optional. Input only. Determines whether the precheck step is skipped during a major version upgrade.
+     */
+    skipPrecheck?: boolean | null;
     /**
      * The SQL network architecture for the instance.
      */
@@ -1305,7 +1313,7 @@ export namespace sqladmin_v1beta4 {
      */
     autoIamAuthn?: boolean | null;
     /**
-     * Optional. Name of the database on which the statement will be executed.
+     * Optional. Name of the database on which the statement will be executed. For Postgres and SQL Server it's required, for MySQL it's optional.
      */
     database?: string | null;
     /**
@@ -2589,6 +2597,10 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string | null;
     /**
+     * Optional. The maximum allowed runtime for the precheck operation.
+     */
+    maxRuntime?: string | null;
+    /**
      * Output only. The responses from the precheck operation.
      */
     preCheckResponse?: Schema$PreCheckResponse[];
@@ -3858,6 +3870,10 @@ export namespace sqladmin_v1beta4 {
    * Captured workload for an instance.
    */
   export interface Schema$WorkloadCapture {
+    /**
+     * Output only. The base backup ID associated with the workload capture.
+     */
+    backupId?: string | null;
     /**
      * Output only. The end time of the workload capture.
      */
@@ -10191,6 +10207,7 @@ export namespace sqladmin_v1beta4 {
      *   //   "connectionName": "my_connectionName",
      *   //   "createTime": "my_createTime",
      *   //   "currentDiskSize": "my_currentDiskSize",
+     *   //   "databaseCenterIntegration": "my_databaseCenterIntegration",
      *   //   "databaseCenterIntegrationEnabled": false,
      *   //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *   //   "databaseVersion": "my_databaseVersion",
@@ -10232,6 +10249,7 @@ export namespace sqladmin_v1beta4 {
      *   //   "serverCaCert": {},
      *   //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
      *   //   "settings": {},
+     *   //   "skipPrecheck": false,
      *   //   "sqlNetworkArchitecture": "my_sqlNetworkArchitecture",
      *   //   "state": "my_state",
      *   //   "suspensionReason": [],
@@ -10553,6 +10571,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "connectionName": "my_connectionName",
      *       //   "createTime": "my_createTime",
      *       //   "currentDiskSize": "my_currentDiskSize",
+     *       //   "databaseCenterIntegration": "my_databaseCenterIntegration",
      *       //   "databaseCenterIntegrationEnabled": false,
      *       //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *       //   "databaseVersion": "my_databaseVersion",
@@ -10594,6 +10613,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "serverCaCert": {},
      *       //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
      *       //   "settings": {},
+     *       //   "skipPrecheck": false,
      *       //   "sqlNetworkArchitecture": "my_sqlNetworkArchitecture",
      *       //   "state": "my_state",
      *       //   "suspensionReason": [],
@@ -11396,6 +11416,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "connectionName": "my_connectionName",
      *       //   "createTime": "my_createTime",
      *       //   "currentDiskSize": "my_currentDiskSize",
+     *       //   "databaseCenterIntegration": "my_databaseCenterIntegration",
      *       //   "databaseCenterIntegrationEnabled": false,
      *       //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *       //   "databaseVersion": "my_databaseVersion",
@@ -11437,6 +11458,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "serverCaCert": {},
      *       //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
      *       //   "settings": {},
+     *       //   "skipPrecheck": false,
      *       //   "sqlNetworkArchitecture": "my_sqlNetworkArchitecture",
      *       //   "state": "my_state",
      *       //   "suspensionReason": [],
@@ -14183,6 +14205,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "connectionName": "my_connectionName",
      *       //   "createTime": "my_createTime",
      *       //   "currentDiskSize": "my_currentDiskSize",
+     *       //   "databaseCenterIntegration": "my_databaseCenterIntegration",
      *       //   "databaseCenterIntegrationEnabled": false,
      *       //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *       //   "databaseVersion": "my_databaseVersion",
@@ -14224,6 +14247,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "serverCaCert": {},
      *       //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
      *       //   "settings": {},
+     *       //   "skipPrecheck": false,
      *       //   "sqlNetworkArchitecture": "my_sqlNetworkArchitecture",
      *       //   "state": "my_state",
      *       //   "suspensionReason": [],
