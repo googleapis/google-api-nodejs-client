@@ -5503,7 +5503,7 @@
       }
     }
   },
-  "revision": "20260926",
+  "revision": "20261008",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -6656,6 +6656,10 @@
           "$ref": "InstanceGroupConfig",
           "description": "Optional. The Compute Engine config settings for the cluster's master instance."
         },
+        "masterFlexibleConfig": {
+          "$ref": "FlexibleInstanceGroupConfig",
+          "description": "Optional. The High Obtainability (HO) config settings for the cluster's master instances.In High Obtainability (HO) mode, flexible configs are the single source of truth for desired cluster configuration across node groups: * For single-node clusters: master_flexible_config must be specified, and no worker configs should be set. * For multi-node (standard) clusters: both master_flexible_config and worker_flexible_config must be specified. Mixing standard and flexible configs across node groups is not allowed.Only one of master_config or master_flexible_config can be set."
+        },
         "metastoreConfig": {
           "$ref": "MetastoreConfig",
           "description": "Optional. Metastore configuration."
@@ -6663,6 +6667,10 @@
         "secondaryWorkerConfig": {
           "$ref": "InstanceGroupConfig",
           "description": "Optional. The Compute Engine config settings for a cluster's secondary worker instances"
+        },
+        "secondaryWorkerFlexibleConfig": {
+          "$ref": "FlexibleInstanceGroupConfig",
+          "description": "Optional. The High Obtainability (HO) config settings for a cluster's secondary worker instances.In High Obtainability (HO) mode, flexible configs are the single source of truth for desired cluster configuration. num_instances represents the desired capacity of the secondary worker group and is mutable via cluster updates and autoscaling.Only one of secondary_worker_config or secondary_worker_flexible_config can be set.In High Obtainability (HO) mode, secondary workers are optional. If secondary workers are used in an HO cluster, they must be configured using secondary_worker_flexible_config (not secondary_worker_config)."
         },
         "securityConfig": {
           "$ref": "SecurityConfig",
@@ -6679,6 +6687,10 @@
         "workerConfig": {
           "$ref": "InstanceGroupConfig",
           "description": "Optional. The Compute Engine config settings for the cluster's worker instances."
+        },
+        "workerFlexibleConfig": {
+          "$ref": "FlexibleInstanceGroupConfig",
+          "description": "Optional. The High Obtainability (HO) config settings for the cluster's worker instances.In High Obtainability (HO) mode, flexible configs are the single source of truth for desired cluster configuration. num_instances represents the desired capacity of the worker group and is mutable via cluster updates and autoscaling.Only one of worker_config or worker_flexible_config can be set.In High Obtainability (HO) mode, for multi-node (standard) clusters, both master_flexible_config and worker_flexible_config must be specified. Mixing standard and flexible configs across node groups is not allowed. Single-node clusters do not specify worker configs."
         }
       },
       "type": "object"
@@ -7730,6 +7742,42 @@
         "fallbackReason": {
           "description": "Optional. Fallback to Spark reason.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FlexibleInstanceGroupConfig": {
+      "description": "The configuration for High Obtainability (HO) flexible instance groups. Flexible instance group configs serve as the single source of truth for desired state.",
+      "id": "FlexibleInstanceGroupConfig",
+      "properties": {
+        "bootDiskSizeGb": {
+          "description": "Optional. The boot disk size in GB. This is a create-time specification and is not currently mutable via update masks.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "coreCount": {
+          "description": "Optional. The number of vCPUs per instance. Must be a power of 2 (2, 4, 8, 16, 32). This is a create-time specification and is not currently mutable via update masks.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "hardwareClass": {
+          "description": "Optional. The hardware class of the instances. This is a create-time specification and is not currently mutable via update masks.",
+          "enum": [
+            "HARDWARE_CLASS_UNSPECIFIED",
+            "STANDARD",
+            "PERFORMANCE"
+          ],
+          "enumDescriptions": [
+            "Unspecified hardware class.",
+            "Standard hardware class. Provides a balanced compute configuration with approximately 4GB of memory per vCPU and standard disk storage tiers.Candidate machine types include n4-standard, n4d-standard, n2-standard, and n2d-standard (Rank 0), and c4-standard and c4d-standard (Rank 1) (for requested core counts 2, 4, 8, 16, 32).Warning: The specific machine families and types selected for this hardware class are subject to change. Users should not take a dependency on the underlying machine type selection.",
+            "Performance hardware class. Provides a high-performance configuration with approximately 8GB of memory per vCPU (e.g. high-memory machine types) and higher-tier disk configurations (e.g. higher IOPS and throughput).Candidate machine types include n4-highmem, n4d-highmem, n2-highmem, and n2d-highmem (Rank 0), and c4-highmem and c4d-highmem (Rank 1) (for requested core counts 2, 4, 8, 16, 32). n4, n4d, c4, and c4d use Hyperdisk Balanced with provisioned storage, whereas n2 and n2d use SSD persistent disks.Warning: The specific machine families and types selected for this hardware class are subject to change. Users should not take a dependency on the underlying machine type selection."
+          ],
+          "type": "string"
+        },
+        "numInstances": {
+          "description": "Optional. The number of VM instances requested.For master instances, this must be 1. For worker and secondary worker instances, this represents the desired capacity of the group and is mutable via cluster update operations and autoscaling.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -11280,6 +11328,10 @@
         },
         "description": {
           "description": "Optional. Brief description of the template.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. User-friendly display name for the session template. Can be up to 63 characters.",
           "type": "string"
         },
         "environmentConfig": {
