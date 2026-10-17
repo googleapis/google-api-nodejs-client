@@ -420,11 +420,11 @@ export namespace drive_v3 {
      */
     approvalId?: string | null;
     /**
-     * Output only. The time the approval was completed.
+     * The time the approval was completed.
      */
     completeTime?: string | null;
     /**
-     * Output only. The time the approval was created.
+     * The time the approval was created.
      */
     createTime?: string | null;
     /**
@@ -432,7 +432,7 @@ export namespace drive_v3 {
      */
     dueTime?: string | null;
     /**
-     * Output only. The behavior of the approval when the file content changes.
+     * The behavior of the approval when the file content changes.
      */
     fileContentChangeBehavior?: string | null;
     /**
@@ -444,7 +444,7 @@ export namespace drive_v3 {
      */
     kind?: string | null;
     /**
-     * Output only. The most recent time the approval was modified.
+     * The most recent time the approval was modified.
      */
     modifyTime?: string | null;
     /**
@@ -452,7 +452,7 @@ export namespace drive_v3 {
      */
     reviewerResponses?: Schema$ReviewerResponse[];
     /**
-     * Output only. The status of the approval at the time this resource was requested.
+     * The status of the approval at the time this resource was requested.
      */
     status?: string | null;
     /**

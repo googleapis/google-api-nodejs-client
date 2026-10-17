@@ -3044,7 +3044,7 @@
       }
     }
   },
-  "revision": "20260916",
+  "revision": "20261011",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3430,15 +3430,13 @@
           "type": "string"
         },
         "completeTime": {
-          "description": "Output only. The time the approval was completed.",
+          "description": "The time the approval was completed.",
           "format": "google-datetime",
-          "readOnly": true,
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. The time the approval was created.",
+          "description": "The time the approval was created.",
           "format": "google-datetime",
-          "readOnly": true,
           "type": "string"
         },
         "dueTime": {
@@ -3447,7 +3445,7 @@
           "type": "string"
         },
         "fileContentChangeBehavior": {
-          "description": "Output only. The behavior of the approval when the file content changes.",
+          "description": "The behavior of the approval when the file content changes.",
           "enum": [
             "FILE_CONTENT_CHANGE_BEHAVIOR_UNSPECIFIED",
             "RESET_APPROVAL",
@@ -3458,7 +3456,6 @@
             "Any ReviewerResponse with a Response of APPROVED will be reset to NO_DECISION when the file content changes while the approval has a Status of IN_PROGRESS. When the approval has a Status of APPROVED and RESET_APPROVAL is selected, the file is locked.",
             "No action is taken when the file content changes."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "initiator": {
@@ -3470,9 +3467,8 @@
           "type": "string"
         },
         "modifyTime": {
-          "description": "Output only. The most recent time the approval was modified.",
+          "description": "The most recent time the approval was modified.",
           "format": "google-datetime",
-          "readOnly": true,
           "type": "string"
         },
         "reviewerResponses": {
@@ -3483,7 +3479,7 @@
           "type": "array"
         },
         "status": {
-          "description": "Output only. The status of the approval at the time this resource was requested.",
+          "description": "The status of the approval at the time this resource was requested.",
           "enum": [
             "STATUS_UNSPECIFIED",
             "IN_PROGRESS",
@@ -3498,7 +3494,6 @@
             "The approval process was cancelled before it finished.",
             "The approval process is finished and the target was declined."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "targetFileId": {
