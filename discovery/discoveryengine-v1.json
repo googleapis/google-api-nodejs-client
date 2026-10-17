@@ -9902,7 +9902,7 @@
       }
     }
   },
-  "revision": "20261004",
+  "revision": "20261013",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "A2aV1APIKeySecurityScheme": {
@@ -16203,6 +16203,13 @@
       "description": "Config for connecting to NotebookLM Enterprise.",
       "id": "GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfigNotebooklmConfig",
       "properties": {
+        "notebooks": {
+          "description": "Optional. Restricts this data store to the given notebooks. When empty, the data store covers every notebook the querying user can access, which is the existing behaviour. Each entry is a full notebook resource name, such as `projects/*/locations/*/notebooks/*`. Scoping is enforced on results as well as requested upstream, so a notebook outside this list cannot appear in a search response through this data store even if the backend returns one.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "searchConfig": {
           "description": "Required. Search config name. Format: projects/*/locations/global/notebookLmSearchConfigs/*",
           "type": "string"
@@ -16974,7 +16981,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`",
           "type": "object"
         },
         "industryVertical": {
@@ -17441,14 +17448,16 @@
             "GOOGLE_CONSOLE",
             "GOOGLE_WIDGET",
             "GOOGLE_WEBAPP",
-            "GOOGLE_AGENTSPACE_MOBILE"
+            "GOOGLE_AGENTSPACE_MOBILE",
+            "GOOGLE_AGENTSPACE_DESKTOP"
           ],
           "enumDescriptions": [
             "Unspecified feedback source.",
             "Feedback source is Google Console.",
             "Feedback source is Google Widget.",
             "Feedback source is Google Webapp.",
-            "Feedback source is Google AgentSpace Mobile app."
+            "Feedback source is Google AgentSpace Mobile app.",
+            "Feedback source is Google AgentSpace Desktop app."
           ],
           "type": "string"
         },
@@ -17529,8 +17538,17 @@
           "description": "Name of the newly generated or continued session.",
           "type": "string"
         },
+        "stepSeqNum": {
+          "description": "Optional. The `TaskServerEvent.seq_num` of the step that opened the rated agent task reply.",
+          "format": "int64",
+          "type": "string"
+        },
         "taskName": {
-          "description": "Optional. The full resource name of the Sobi task if the conversation was handled by a long-running agent task. Format: projects/{project}/locations/{location}/tasks/{task_id}",
+          "description": "Optional. The full resource name of the Sobi task if the conversation was handled by a long-running agent task. Format (canonical, or the short alias the Task API also accepts): projects/{project}/locations/{location}/agents/{agent}/tasks/{task} projects/{project}/locations/{location}/tasks/{task}",
+          "type": "string"
+        },
+        "trajectoryId": {
+          "description": "Optional. The runtime trajectory id of the rated agent task turn, as set on `TaskServerEvent.trajectory_id`. Shared by all steps of the turn.",
           "type": "string"
         }
       },
@@ -18337,7 +18355,7 @@
             "The license config has expired.",
             "The license config has not started yet, and its start date is in the future.",
             "This is when a sub license config has returned all its seats back to BillingAccountLicenseConfig that it belongs to. Similar to EXPIRED.",
-            "The license config is terminated earlier than the expiration date and it is deactivating. The customer will still have access in this state. It will be converted to EXPIRED after the deactivating period ends (14 days) or when the end date is reached, whichever comes first."
+            "The license config is in a grace period. Its subscription has ended, either through early termination or by reaching its end date, but the customer keeps access for a limited time. It becomes EXPIRED when the grace period ends."
           ],
           "readOnly": true,
           "type": "string"
@@ -19839,7 +19857,7 @@
           "description": "Optional. Optional configuration for the Custom Ranking feature."
         },
         "dataStoreSpecs": {
-          "description": "Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.",
+          "description": "Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used. On an engine with multiple data stores, this field is optional. If it's empty, all of the engine's data stores are searched (blended search). Unless it specifies exactly one data store, some request fields, such as `order_by` and `query_expansion_spec`, aren't supported and return an `INVALID_ARGUMENT` error.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1SearchRequestDataStoreSpec"
           },
@@ -23409,7 +23427,7 @@
             ],
             "type": "string"
           },
-          "description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
+          "description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`",
           "readOnly": true,
           "type": "object"
         },
@@ -27292,6 +27310,13 @@
       "description": "Config for connecting to NotebookLM Enterprise.",
       "id": "GoogleCloudDiscoveryengineV1alphaDataStoreFederatedSearchConfigNotebooklmConfig",
       "properties": {
+        "notebooks": {
+          "description": "Optional. Restricts this data store to the given notebooks. When empty, the data store covers every notebook the querying user can access, which is the existing behaviour. Each entry is a full notebook resource name, such as `projects/*/locations/*/notebooks/*`. Scoping is enforced on results as well as requested upstream, so a notebook outside this list cannot appear in a search response through this data store even if the backend returns one.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "searchConfig": {
           "description": "Required. Search config name. Format: projects/*/locations/global/notebookLmSearchConfigs/*",
           "type": "string"
@@ -27905,7 +27930,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`",
           "type": "object"
         },
         "industryVertical": {
@@ -28624,6 +28649,34 @@
           "description": "Optional. The metatag name found in the HTML page. If user defines this field, the value of this metatag name will be used to extract metatag. If the user does not define this field, the FieldConfig.field_path will be used to extract metatag.",
           "type": "string"
         },
+        "partialMatchableOption": {
+          "description": "Optional. If partial_matchable_option is PARTIAL_MATCHABLE_OPTION_ENABLED, field values are partial matchable. If partial_matchable_option is unset, the server behavior defaults to PARTIAL_MATCHABLE_OPTION_DISABLED for fields that support setting partial matchable options. For those fields that do not support setting partial matchable options, the server will skip partial matchable option setting, and setting partial_matchable_option for those fields will throw `INVALID_ARGUMENT` error.",
+          "enum": [
+            "PARTIAL_MATCHABLE_OPTION_UNSPECIFIED",
+            "PARTIAL_MATCHABLE_OPTION_ENABLED",
+            "PARTIAL_MATCHABLE_OPTION_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Value used when unset.",
+            "Partial Matchable option enabled.",
+            "Partial Matchable option disabled."
+          ],
+          "type": "string"
+        },
+        "prefixMatchableOption": {
+          "description": "Optional. If prefix_matchable_option is PREFIX_MATCHABLE_OPTION_ENABLED, field values are prefix matchable. If prefix_matchable_option is unset, the server behavior defaults to PREFIX_MATCHABLE_OPTION_DISABLED for fields that support setting prefix matchable options. For those fields that do not support setting prefix matchable options, the server will skip prefix matchable option setting, and setting prefix_matchable_option for those fields will throw `INVALID_ARGUMENT` error.",
+          "enum": [
+            "PREFIX_MATCHABLE_OPTION_UNSPECIFIED",
+            "PREFIX_MATCHABLE_OPTION_ENABLED",
+            "PREFIX_MATCHABLE_OPTION_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Value used when unset.",
+            "Prefix Matchable option enabled.",
+            "Prefix Matchable option disabled."
+          ],
+          "type": "string"
+        },
         "recsFilterableOption": {
           "description": "If recs_filterable_option is FILTERABLE_ENABLED, field values are filterable by filter expression in RecommendationService.Recommend. If FILTERABLE_ENABLED but the field type is numerical, field values are not filterable by text queries in RecommendationService.Recommend. Only textual fields are supported. If recs_filterable_option is unset, the default setting is FILTERABLE_DISABLED for fields that support setting filterable options. When a field set to [FILTERABLE_DISABLED] is filtered, a warning is generated and an empty result is returned.",
           "enum": [
@@ -29219,7 +29272,7 @@
             "The license config has expired.",
             "The license config has not started yet, and its start date is in the future.",
             "This is when a sub license config has returned all its seats back to BillingAccountLicenseConfig that it belongs to. Similar to EXPIRED.",
-            "The license config is terminated earlier than the expiration date and it is deactivating. The customer will still have access in this state. It will be converted to EXPIRED after the deactivating period ends (14 days) or when the end date is reached, whichever comes first."
+            "The license config is in a grace period. Its subscription has ended, either through early termination or by reaching its end date, but the customer keeps access for a limited time. It becomes EXPIRED when the grace period ends."
           ],
           "readOnly": true,
           "type": "string"
@@ -30549,7 +30602,7 @@
           "description": "Optional. Optional configuration for the Custom Ranking feature."
         },
         "dataStoreSpecs": {
-          "description": "Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.",
+          "description": "Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used. On an engine with multiple data stores, this field is optional. If it's empty, all of the engine's data stores are searched (blended search). Unless it specifies exactly one data store, some request fields, such as `order_by` and `query_expansion_spec`, aren't supported and return an `INVALID_ARGUMENT` error.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec"
           },
@@ -33174,6 +33227,13 @@
       "description": "Config for connecting to NotebookLM Enterprise.",
       "id": "GoogleCloudDiscoveryengineV1betaDataStoreFederatedSearchConfigNotebooklmConfig",
       "properties": {
+        "notebooks": {
+          "description": "Optional. Restricts this data store to the given notebooks. When empty, the data store covers every notebook the querying user can access, which is the existing behaviour. Each entry is a full notebook resource name, such as `projects/*/locations/*/notebooks/*`. Scoping is enforced on results as well as requested upstream, so a notebook outside this list cannot appear in a search response through this data store even if the backend returns one.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "searchConfig": {
           "description": "Required. Search config name. Format: projects/*/locations/global/notebookLmSearchConfigs/*",
           "type": "string"
@@ -33623,7 +33683,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`",
           "type": "object"
         },
         "industryVertical": {
@@ -34579,7 +34639,7 @@
             "The license config has expired.",
             "The license config has not started yet, and its start date is in the future.",
             "This is when a sub license config has returned all its seats back to BillingAccountLicenseConfig that it belongs to. Similar to EXPIRED.",
-            "The license config is terminated earlier than the expiration date and it is deactivating. The customer will still have access in this state. It will be converted to EXPIRED after the deactivating period ends (14 days) or when the end date is reached, whichever comes first."
+            "The license config is in a grace period. Its subscription has ended, either through early termination or by reaching its end date, but the customer keeps access for a limited time. It becomes EXPIRED when the grace period ends."
           ],
           "readOnly": true,
           "type": "string"
@@ -35296,7 +35356,7 @@
           "description": "Optional. Optional configuration for the Custom Ranking feature."
         },
         "dataStoreSpecs": {
-          "description": "Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.",
+          "description": "Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used. On an engine with multiple data stores, this field is optional. If it's empty, all of the engine's data stores are searched (blended search). Unless it specifies exactly one data store, some request fields, such as `order_by` and `query_expansion_spec`, aren't supported and return an `INVALID_ARGUMENT` error.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec"
           },
