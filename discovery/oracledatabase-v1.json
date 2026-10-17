@@ -949,6 +949,45 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single Exadata Infrastructure.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/cloudExadataInfrastructures/{cloudExadataInfrastructuresId}",
+                  "httpMethod": "PATCH",
+                  "id": "oracledatabase.projects.locations.cloudExadataInfrastructures.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The name of the Exadata Infrastructure resource with the format: projects/{project}/locations/{region}/cloudExadataInfrastructures/{cloud_exadata_infrastructure}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/cloudExadataInfrastructures/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the Exadata resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "CloudExadataInfrastructure"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               },
               "resources": {
@@ -1130,6 +1169,45 @@
                   "path": "v1/{+parent}/cloudVmClusters",
                   "response": {
                     "$ref": "ListCloudVmClustersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single Vm Cluster.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/cloudVmClusters/{cloudVmClustersId}",
+                  "httpMethod": "PATCH",
+                  "id": "oracledatabase.projects.locations.cloudVmClusters.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The name of the VM Cluster resource with the format: projects/{project}/locations/{region}/cloudVmClusters/{cloud_vm_cluster}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/cloudVmClusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. A mask specifying which fields in the VM Cluster should be updated. A field specified in the mask is overwritten. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "CloudVmCluster"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1515,6 +1593,45 @@
                   "path": "v1/{+parent}/dbSystems",
                   "response": {
                     "$ref": "ListDbSystemsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the `labels` of a single DbSystem.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dbSystems/{dbSystemsId}",
+                  "httpMethod": "PATCH",
+                  "id": "oracledatabase.projects.locations.dbSystems.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The name of the DbSystem resource in the following format: projects/{project}/locations/{region}/dbSystems/{db_system}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dbSystems/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. A mask specifying which fields in the DbSystem should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value).",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "DbSystem"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1999,6 +2116,45 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "patch": {
+                  "description": "Updates the `labels` of a single ExascaleDbStorageVault.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/exascaleDbStorageVaults/{exascaleDbStorageVaultsId}",
+                  "httpMethod": "PATCH",
+                  "id": "oracledatabase.projects.locations.exascaleDbStorageVaults.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the ExascaleDbStorageVault. Format: projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/exascaleDbStorageVaults/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. A mask specifying which fields in the ExascaleDbStorageVault should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "ExascaleDbStorageVault"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
@@ -2235,6 +2391,45 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "patch": {
+                  "description": "Updates the `labels` of a single GoldengateConnectionAssignment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateConnectionAssignments/{goldengateConnectionAssignmentsId}",
+                  "httpMethod": "PATCH",
+                  "id": "oracledatabase.projects.locations.goldengateConnectionAssignments.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The name of the GoldengateConnectionAssignment resource in the following format: projects/{project}/locations/{region}/goldengateConnectionAssignments/{goldengate_connection_assignment}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateConnectionAssignments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. A mask specifying which fields in the GoldengateConnectionAssignment should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoldengateConnectionAssignment"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "test": {
                   "description": "Tests a single GoldengateConnectionAssignment.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateConnectionAssignments/{goldengateConnectionAssignmentsId}:test",
@@ -2446,6 +2641,45 @@
                   "path": "v1/{+parent}/goldengateConnections",
                   "response": {
                     "$ref": "ListGoldengateConnectionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the `labels` of a single GoldengateConnection.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateConnections/{goldengateConnectionsId}",
+                  "httpMethod": "PATCH",
+                  "id": "oracledatabase.projects.locations.goldengateConnections.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The name of the GoldengateConnection resource in the following format: projects/{project}/locations/{region}/goldengateConnections/{goldengate_connection}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateConnections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. A mask specifying which fields in the GoldengateConnection should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoldengateConnection"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2724,6 +2958,45 @@
                   "path": "v1/{+parent}/goldengateDeployments",
                   "response": {
                     "$ref": "ListGoldengateDeploymentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the `labels` of a single GoldengateDeployment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeployments/{goldengateDeploymentsId}",
+                  "httpMethod": "PATCH",
+                  "id": "oracledatabase.projects.locations.goldengateDeployments.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The name of the GoldengateDeployment resource in the following format: projects/{project}/locations/{region}/goldengateDeployments/{goldengate_deployment}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateDeployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. A mask specifying which fields in the GoldengateDeployment should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoldengateDeployment"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -3070,6 +3343,45 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    },
+                    "patch": {
+                      "description": "Updates the `labels` of a single ODB Subnet.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/odbNetworks/{odbNetworksId}/odbSubnets/{odbSubnetsId}",
+                      "httpMethod": "PATCH",
+                      "id": "oracledatabase.projects.locations.odbNetworks.odbSubnets.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Identifier. The name of the OdbSubnet resource in the following format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/odbNetworks/[^/]+/odbSubnets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Optional. A mask specifying which fields in the OdbSubnet should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "OdbSubnet"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   }
                 }
@@ -3278,7 +3590,7 @@
       }
     }
   },
-  "revision": "20260910",
+  "revision": "20261011",
   "rootUrl": "https://oracledatabase.googleapis.com/",
   "schemas": {
     "AllConnectionStrings": {
@@ -3349,11 +3661,11 @@
       "id": "AutonomousDatabase",
       "properties": {
         "adminPassword": {
-          "description": "Optional. Immutable. The password for the default ADMIN user. Note: Only one of `admin_password_secret_version` or `admin_password` can be populated.",
+          "description": "Optional. Input only. Immutable. The password for the default ADMIN user. Note: Only one of `admin_password_secret_version` or `admin_password` can be populated.",
           "type": "string"
         },
         "adminPasswordSecretVersion": {
-          "description": "Optional. Immutable. The resource name of a secret version in Secret Manager which contains the database admin user's password. Format: projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of `admin_password_secret_version` or `admin_password` can be populated.",
+          "description": "Optional. Input only. Immutable. The resource name of a secret version in Secret Manager which contains the database admin user's password. Format: projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of `admin_password_secret_version` or `admin_password` can be populated.",
           "type": "string"
         },
         "cidr": {
@@ -4545,7 +4857,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. User friendly name for this resource.",
+          "description": "Optional. Immutable. User friendly name for this resource.",
           "type": "string"
         },
         "entitlementId": {
@@ -4554,7 +4866,7 @@
           "type": "string"
         },
         "gcpOracleZone": {
-          "description": "Optional. The GCP Oracle zone where Oracle Exadata Infrastructure is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.",
+          "description": "Optional. Immutable. The GCP Oracle zone where Oracle Exadata Infrastructure is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.",
           "type": "string"
         },
         "labels": {
@@ -4570,7 +4882,7 @@
         },
         "properties": {
           "$ref": "CloudExadataInfrastructureProperties",
-          "description": "Optional. Various properties of the infra."
+          "description": "Optional. Immutable. Various properties of the infra."
         }
       },
       "type": "object"
@@ -4783,15 +5095,15 @@
       "id": "CloudVmCluster",
       "properties": {
         "backupOdbSubnet": {
-          "description": "Optional. The name of the backup OdbSubnet associated with the VM Cluster. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
+          "description": "Optional. Immutable. The name of the backup OdbSubnet associated with the VM Cluster. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
           "type": "string"
         },
         "backupSubnetCidr": {
-          "description": "Optional. CIDR range of the backup subnet.",
+          "description": "Optional. Immutable. CIDR range of the backup subnet.",
           "type": "string"
         },
         "cidr": {
-          "description": "Optional. Network settings. CIDR to use for cluster IP allocation.",
+          "description": "Optional. Immutable. Network settings. CIDR to use for cluster IP allocation.",
           "type": "string"
         },
         "createTime": {
@@ -4801,15 +5113,15 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. User friendly name for this resource.",
+          "description": "Optional. Immutable. User friendly name for this resource.",
           "type": "string"
         },
         "exadataInfrastructure": {
-          "description": "Required. The name of the Exadata Infrastructure resource on which VM cluster resource is created, in the following format: projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}",
+          "description": "Required. Immutable. The name of the Exadata Infrastructure resource on which VM cluster resource is created, in the following format: projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}",
           "type": "string"
         },
         "exascaleDbStorageVault": {
-          "description": "Optional. The name of ExascaleDbStorageVault associated with the VM Cluster. Format: projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}",
+          "description": "Optional. Immutable. The name of ExascaleDbStorageVault associated with the VM Cluster. Format: projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}",
           "type": "string"
         },
         "gcpOracleZone": {
@@ -4834,20 +5146,20 @@
           "type": "string"
         },
         "network": {
-          "description": "Optional. The name of the VPC network. Format: projects/{project}/global/networks/{network}",
+          "description": "Optional. Immutable. The name of the VPC network. Format: projects/{project}/global/networks/{network}",
           "type": "string"
         },
         "odbNetwork": {
-          "description": "Optional. The name of the OdbNetwork associated with the VM Cluster. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network} It is optional but if specified, this should match the parent ODBNetwork of the odb_subnet and backup_odb_subnet.",
+          "description": "Optional. Immutable. The name of the OdbNetwork associated with the VM Cluster. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network} It is optional but if specified, this should match the parent ODBNetwork of the odb_subnet and backup_odb_subnet.",
           "type": "string"
         },
         "odbSubnet": {
-          "description": "Optional. The name of the OdbSubnet associated with the VM Cluster for IP allocation. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
+          "description": "Optional. Immutable. The name of the OdbSubnet associated with the VM Cluster for IP allocation. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
           "type": "string"
         },
         "properties": {
           "$ref": "CloudVmClusterProperties",
-          "description": "Optional. Various properties of the VM Cluster."
+          "description": "Optional. Immutable. Various properties of the VM Cluster."
         }
       },
       "type": "object"
@@ -5205,11 +5517,11 @@
       "id": "Database",
       "properties": {
         "adminPassword": {
-          "description": "Optional. The password for the default ADMIN user. Note: Only one of `admin_password_secret_version` or `admin_password` can be populated.",
+          "description": "Optional. Input only. The password for the default ADMIN user. Note: Only one of `admin_password_secret_version` or `admin_password` can be populated.",
           "type": "string"
         },
         "adminPasswordSecretVersion": {
-          "description": "Optional. The resource name of a secret version in Secret Manager which contains the database admin user's password. Format: projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of `admin_password_secret_version` or `admin_password` can be populated.",
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the database admin user's password. Format: projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of `admin_password_secret_version` or `admin_password` can be populated.",
           "type": "string"
         },
         "characterSet": {
@@ -5292,11 +5604,11 @@
           "description": "Optional. The properties of the Database."
         },
         "tdeWalletPassword": {
-          "description": "Optional. The TDE wallet password for the database. Note: Only one of `tde_wallet_password_secret_version` or `tde_wallet_password` can be populated.",
+          "description": "Optional. Input only. The TDE wallet password for the database. Note: Only one of `tde_wallet_password_secret_version` or `tde_wallet_password` can be populated.",
           "type": "string"
         },
         "tdeWalletPasswordSecretVersion": {
-          "description": "Optional. The resource name of a secret version in Secret Manager which contains the TDE wallet password for the database. Format: projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of `tde_wallet_password_secret_version` or `tde_wallet_password` can be populated.",
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the TDE wallet password for the database. Format: projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of `tde_wallet_password_secret_version` or `tde_wallet_password` can be populated.",
           "type": "string"
         }
       },
@@ -5901,7 +6213,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Required. The display name for the System db. The name does not have to be unique within your project.",
+          "description": "Required. Immutable. The display name for the System db. The name does not have to be unique within your project.",
           "type": "string"
         },
         "entitlementId": {
@@ -5910,7 +6222,7 @@
           "type": "string"
         },
         "gcpOracleZone": {
-          "description": "Optional. The GCP Oracle zone where Oracle DbSystem is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.",
+          "description": "Optional. Immutable. The GCP Oracle zone where Oracle DbSystem is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.",
           "type": "string"
         },
         "labels": {
@@ -5930,16 +6242,16 @@
           "type": "string"
         },
         "odbNetwork": {
-          "description": "Optional. The name of the OdbNetwork associated with the DbSystem. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network} It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.",
+          "description": "Optional. Immutable. The name of the OdbNetwork associated with the DbSystem. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network} It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.",
           "type": "string"
         },
         "odbSubnet": {
-          "description": "Required. The name of the OdbSubnet associated with the DbSystem for IP allocation. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
+          "description": "Required. Immutable. The name of the OdbSubnet associated with the DbSystem for IP allocation. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
           "type": "string"
         },
         "properties": {
           "$ref": "DbSystemProperties",
-          "description": "Optional. The properties of the DbSystem."
+          "description": "Optional. Immutable. The properties of the DbSystem."
         }
       },
       "type": "object"
@@ -6750,7 +7062,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Required. The display name for the ExascaleDbStorageVault. The name does not have to be unique within your project. The name must be 1-255 characters long and can only contain alphanumeric characters.",
+          "description": "Required. Immutable. The display name for the ExascaleDbStorageVault. The name does not have to be unique within your project. The name must be 1-255 characters long and can only contain alphanumeric characters.",
           "type": "string"
         },
         "entitlementId": {
@@ -6759,11 +7071,11 @@
           "type": "string"
         },
         "exadataInfrastructure": {
-          "description": "Optional. The Exadata Infrastructure resource on which ExascaleDbStorageVault resource is created, in the following format: projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}",
+          "description": "Optional. Immutable. The Exadata Infrastructure resource on which ExascaleDbStorageVault resource is created, in the following format: projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}",
           "type": "string"
         },
         "gcpOracleZone": {
-          "description": "Optional. The GCP Oracle zone where Oracle ExascaleDbStorageVault is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.",
+          "description": "Optional. Immutable. The GCP Oracle zone where Oracle ExascaleDbStorageVault is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.",
           "type": "string"
         },
         "labels": {
@@ -6779,7 +7091,7 @@
         },
         "properties": {
           "$ref": "ExascaleDbStorageVaultProperties",
-          "description": "Required. The properties of the ExascaleDbStorageVault."
+          "description": "Required. Immutable. The properties of the ExascaleDbStorageVault."
         }
       },
       "type": "object"
@@ -7204,7 +7516,7 @@
           "type": "string"
         },
         "gcpOracleZone": {
-          "description": "Optional. The GCP Oracle zone where Oracle GoldengateConnection is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.",
+          "description": "Optional. Immutable. The GCP Oracle zone where Oracle GoldengateConnection is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.",
           "type": "string"
         },
         "labels": {
@@ -7224,16 +7536,16 @@
           "type": "string"
         },
         "odbNetwork": {
-          "description": "Optional. The name of the OdbNetwork associated with the GoldengateConnection. The format is projects/{project}/locations/{location}/odbNetworks/{odb_network}. It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.",
+          "description": "Optional. Immutable. The name of the OdbNetwork associated with the GoldengateConnection. The format is projects/{project}/locations/{location}/odbNetworks/{odb_network}. It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.",
           "type": "string"
         },
         "odbSubnet": {
-          "description": "Optional. The name of the OdbSubnet associated with the GoldengateConnection for IP allocation. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
+          "description": "Optional. Immutable. The name of the OdbSubnet associated with the GoldengateConnection for IP allocation. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
           "type": "string"
         },
         "properties": {
           "$ref": "GoldengateConnectionProperties",
-          "description": "Required. The properties of the GoldengateConnection."
+          "description": "Required. Immutable. The properties of the GoldengateConnection."
         }
       },
       "type": "object"
@@ -7249,7 +7561,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. The display name for the GoldengateConnectionAssignment.",
+          "description": "Optional. Immutable. The display name for the GoldengateConnectionAssignment.",
           "type": "string"
         },
         "entitlementId": {
@@ -7270,7 +7582,7 @@
         },
         "properties": {
           "$ref": "GoldengateConnectionAssignmentProperties",
-          "description": "Required. The properties of the GoldengateConnectionAssignment."
+          "description": "Required. Immutable. The properties of the GoldengateConnectionAssignment."
         }
       },
       "type": "object"
@@ -7798,7 +8110,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Required. The display name for the GoldengateDeployment.",
+          "description": "Required. Immutable. The display name for the GoldengateDeployment.",
           "type": "string"
         },
         "entitlementId": {
@@ -7807,7 +8119,7 @@
           "type": "string"
         },
         "gcpOracleZone": {
-          "description": "Optional. The GCP Oracle zone where Oracle GoldengateDeployment is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.",
+          "description": "Optional. Immutable. The GCP Oracle zone where Oracle GoldengateDeployment is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.",
           "type": "string"
         },
         "labels": {
@@ -7827,16 +8139,16 @@
           "type": "string"
         },
         "odbNetwork": {
-          "description": "Optional. The name of the OdbNetwork associated with the GoldengateDeployment.",
+          "description": "Optional. Immutable. The name of the OdbNetwork associated with the GoldengateDeployment.",
           "type": "string"
         },
         "odbSubnet": {
-          "description": "Required. The name of the OdbSubnet associated with the GoldengateDeployment for IP allocation.",
+          "description": "Required. Immutable. The name of the OdbSubnet associated with the GoldengateDeployment for IP allocation.",
           "type": "string"
         },
         "properties": {
           "$ref": "GoldengateDeploymentProperties",
-          "description": "Required. The properties of the GoldengateDeployment."
+          "description": "Required. Immutable. The properties of the GoldengateDeployment."
         }
       },
       "type": "object"
@@ -9370,7 +9682,7 @@
       "id": "GoldengateOggDeployment",
       "properties": {
         "adminPassword": {
-          "description": "Optional. The Goldengate deployment console password in plain text.",
+          "description": "Optional. Input only. The Goldengate deployment console password in plain text.",
           "type": "string"
         },
         "adminPasswordSecretVersion": {
@@ -10938,7 +11250,7 @@
       "id": "OdbSubnet",
       "properties": {
         "cidrRange": {
-          "description": "Required. The CIDR range of the subnet.",
+          "description": "Required. Immutable. The CIDR range of the subnet.",
           "type": "string"
         },
         "createTime": {
@@ -10959,7 +11271,7 @@
           "type": "string"
         },
         "purpose": {
-          "description": "Required. Purpose of the subnet.",
+          "description": "Required. Immutable. Purpose of the subnet.",
           "enum": [
             "PURPOSE_UNSPECIFIED",
             "CLIENT_SUBNET",
