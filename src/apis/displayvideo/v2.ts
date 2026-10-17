@@ -755,7 +755,7 @@ export namespace displayvideo_v2 {
      */
     finalUrl?: string | null;
     /**
-     * The URL address loaded in the background for tracking purposes.
+     * The URL address loaded in the background for tracking purposes. In v4 and earlier, this field represents the tracking URL specified by the user manually. This can be found at userSpecifiedTrackingUrl in v5.
      */
     trackingUrl?: string | null;
     /**
@@ -1550,7 +1550,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$CommonInStreamAttribute {
     /**
-     * Optional. The text on the call-to-action button.
+     * Optional. The text on the call-to-action button. Must be set if actionHeadline is set.
      */
     actionButtonLabel?: string | null;
     /**
@@ -1570,7 +1570,7 @@ export namespace displayvideo_v2 {
      */
     finalUrl?: string | null;
     /**
-     * Output only. The URL address loaded in the background for tracking purposes.
+     * Output only. The URL address loaded in the background for tracking purposes. In v4 and earlier, this field represents the tracking URL specified by the user manually. This can be found at userSpecifiedTrackingUrl in v5.
      */
     trackingUrl?: string | null;
     /**
@@ -5323,7 +5323,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$VideoPerformanceAd {
     /**
-     * Optional. The list of text assets shown on the call-to-action button.
+     * Optional. The list of text assets shown on the call-to-action button. Must be set if headlines is set.
      */
     actionButtonLabels?: string[] | null;
     /**
@@ -5335,7 +5335,7 @@ export namespace displayvideo_v2 {
      */
     customParameters?: {[key: string]: string} | null;
     /**
-     * Optional. The list of descriptions shown on the call-to-action banner.
+     * Optional. The list of descriptions shown on the call-to-action banner. Must be set unless the parent line item's lineItemType is `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE`, in which case this field cannot be set.
      */
     descriptions?: string[] | null;
     /**
@@ -5343,7 +5343,7 @@ export namespace displayvideo_v2 {
      */
     displayUrlBreadcrumb1?: string | null;
     /**
-     * Optional. The second piece after the domain in the display URL.
+     * Optional. The second piece after the domain in the display URL. Can only be set if displayUrlBreadcrumb1 is also set.
      */
     displayUrlBreadcrumb2?: string | null;
     /**
@@ -5359,11 +5359,11 @@ export namespace displayvideo_v2 {
      */
     headlines?: string[] | null;
     /**
-     * Optional. The list of long headlines shown on the call-to-action banner.
+     * Optional. The list of long headlines shown on the call-to-action banner. Must be set unless the parent line item's lineItemType is `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE`, in which case this field cannot be set.
      */
     longHeadlines?: string[] | null;
     /**
-     * Output only. The URL address loaded in the background for tracking purposes.
+     * Output only. The URL address loaded in the background for tracking purposes. In v4 and earlier, this field represents the tracking URL specified by the user manually. This can be found at userSpecifiedTrackingUrl in v5.
      */
     trackingUrl?: string | null;
     /**
