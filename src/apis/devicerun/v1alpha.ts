@@ -138,7 +138,7 @@ export namespace devicerun_v1alpha {
    */
   export interface Schema$AndroidBugreportDeviceAction {
     /**
-     * Optional. Whether to deliver the bugreport when the test passes. If false, the bugreport is skipped on pass to save time (default behavior). If true, the bugreport is always delivered.
+     * Optional. Whether to deliver the bugreport when the test passes. If `false`, the bugreport is skipped on pass to save time (default behavior). If `true`, the bugreport is always delivered.
      */
     collectOnPass?: boolean | null;
   }
@@ -147,7 +147,7 @@ export namespace devicerun_v1alpha {
    */
   export interface Schema$AndroidDumpsysDeviceAction {
     /**
-     * Optional. Whether to deliver the dumpsys when the test passes. If false, the dumpsys is skipped on pass to save time (default behavior). If true, the dumpsys is always delivered.
+     * Optional. Whether to deliver the dumpsys when the test passes. If `false`, the dumpsys is skipped on pass to save time (default behavior). If `true`, the dumpsys is always delivered.
      */
     collectOnPass?: boolean | null;
   }
@@ -327,7 +327,7 @@ export namespace devicerun_v1alpha {
    */
   export interface Schema$AndroidRecordVideoDeviceAction {
     /**
-     * Optional. Whether to discard and not upload the recording when the test passes. Default is false.
+     * Optional. Whether to discard and not upload the recording when the test passes. Default is `false`.
      */
     discardOnPass?: boolean | null;
   }
@@ -688,7 +688,7 @@ export namespace devicerun_v1alpha {
      */
     iosPushFiles?: Schema$IosPushFilesDeviceAction;
     /**
-     * Records a video of the iOS device screen during the run.
+     * Records videos of the iOS device screen, one per UI test case.
      */
     iosRecordVideo?: Schema$IosRecordVideoDeviceAction;
     /**
@@ -902,11 +902,11 @@ export namespace devicerun_v1alpha {
     sourceFile?: Schema$InputFile;
   }
   /**
-   * Records a video of the iOS device screen during the run. The video will be written to a file named `video.mp4` in the execution output directory.
+   * Records videos of the iOS device screen, one per UI test case. Each video covers only the execution of its test case, and will be written to `testcases/{test_class\}/{test_method\}/video.mp4` in the execution output directory. No video is recorded for unit tests, or on devices running a version earlier than iOS 17.
    */
   export interface Schema$IosRecordVideoDeviceAction {
     /**
-     * Optional. Whether to discard the video if the test passes. If not specified, the default is false (always keep the video).
+     * Optional. Whether to discard the video of a test case when it passes. If not specified, the default is `false` (videos of all test cases are kept).
      */
     discardOnPass?: boolean | null;
   }
@@ -948,6 +948,10 @@ export namespace devicerun_v1alpha {
      * Output only. Human-readable explanation of the issue in English.
      */
     message?: string | null;
+    /**
+     * Output only. Additional metadata about the issue.
+     */
+    metadata?: {[key: string]: string} | null;
     /**
      * Output only. The reason of the issue. This is a constant value that identifies the proximate cause of the issue. This should be at most 63 characters and match a regular expression of `A-Z*[A-Z0-9]`, which represents UPPER_SNAKE_CASE.
      */
@@ -1215,6 +1219,10 @@ export namespace devicerun_v1alpha {
    * A session resource in the AutomationSession API. At a high level, `Session` describes the configuration of one or multiple jobs, the state transitions it goes through, and the results.
    */
   export interface Schema$Session {
+    /**
+     * Output only. The time when the session was created.
+     */
+    createTime?: string | null;
     /**
      * Identifier. The resource name of the session. Format: `projects/{project\}/locations/{location\}/sessions/{session\}`.
      */
@@ -2949,6 +2957,7 @@ export namespace devicerun_v1alpha {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "createTime": "my_createTime",
      *       //   "name": "my_name",
      *       //   "sessionConfig": {},
      *       //   "sessionReport": {}
@@ -3241,13 +3250,14 @@ export namespace devicerun_v1alpha {
      *   const res = await devicerun.projects.locations.sessions.get({
      *     // Required. The name of the session. Format: `projects/{project\}/locations/{location\}/sessions/{session\}`.
      *     name: 'projects/my-project/locations/my-location/sessions/my-session',
-     *     // Optional. The view of the session to return. If not set, the default BASIC view will be returned.
+     *     // Optional. The view of the session to return. If not set, the `FULL` view will be returned.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
+     *   //   "createTime": "my_createTime",
      *   //   "name": "my_name",
      *   //   "sessionConfig": {},
      *   //   "sessionReport": {}
@@ -3386,7 +3396,7 @@ export namespace devicerun_v1alpha {
      *     pageToken: 'placeholder-value',
      *     // Required. Parent value for ListSessionsRequest The parent of the collection of sessions. Format: `projects/{project\}/locations/{location\}`.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Optional. The view of the sessions to return. If not set, the `BASIC` view will be returned.
+     *     // Optional. The view of the sessions to return. If not set, the `FULL` view will be returned.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3552,7 +3562,7 @@ export namespace devicerun_v1alpha {
      */
     name?: string;
     /**
-     * Optional. The view of the session to return. If not set, the default BASIC view will be returned.
+     * Optional. The view of the session to return. If not set, the `FULL` view will be returned.
      */
     view?: string;
   }
@@ -3578,7 +3588,7 @@ export namespace devicerun_v1alpha {
      */
     parent?: string;
     /**
-     * Optional. The view of the sessions to return. If not set, the `BASIC` view will be returned.
+     * Optional. The view of the sessions to return. If not set, the `FULL` view will be returned.
      */
     view?: string;
   }

@@ -527,16 +527,16 @@
                       "type": "string"
                     },
                     "view": {
-                      "description": "Optional. The view of the session to return. If not set, the default BASIC view will be returned.",
+                      "description": "Optional. The view of the session to return. If not set, the `FULL` view will be returned.",
                       "enum": [
                         "SESSION_VIEW_UNSPECIFIED",
                         "SESSION_VIEW_BASIC",
                         "SESSION_VIEW_FULL"
                       ],
                       "enumDescriptions": [
-                        "The default / unset value. The API will default to the BASIC view.",
-                        "Include basic view of the session but not the full contents. Only the uid/display_name/status/result of the session and its jobs/executions will be included. This is the default value (for GetSession).",
-                        "Include everything."
+                        "The default / unset value. The API will default to the FULL view.",
+                        "Include basic view of the session but not the full contents. Only the uid/display_name/status/result of the session and its jobs/executions will be included.",
+                        "Include everything. This is the default value."
                       ],
                       "location": "query",
                       "type": "string"
@@ -588,16 +588,16 @@
                       "type": "string"
                     },
                     "view": {
-                      "description": "Optional. The view of the sessions to return. If not set, the `BASIC` view will be returned.",
+                      "description": "Optional. The view of the sessions to return. If not set, the `FULL` view will be returned.",
                       "enum": [
                         "SESSION_VIEW_UNSPECIFIED",
                         "SESSION_VIEW_BASIC",
                         "SESSION_VIEW_FULL"
                       ],
                       "enumDescriptions": [
-                        "The default / unset value. The API will default to the BASIC view.",
-                        "Include basic view of the session but not the full contents. Only the uid/display_name/status/result of the session and its jobs/executions will be included. This is the default value (for GetSession).",
-                        "Include everything."
+                        "The default / unset value. The API will default to the FULL view.",
+                        "Include basic view of the session but not the full contents. Only the uid/display_name/status/result of the session and its jobs/executions will be included.",
+                        "Include everything. This is the default value."
                       ],
                       "location": "query",
                       "type": "string"
@@ -688,7 +688,7 @@
       }
     }
   },
-  "revision": "20261006",
+  "revision": "20261013",
   "rootUrl": "https://devicerun.googleapis.com/",
   "schemas": {
     "AllocationConfig": {
@@ -710,7 +710,7 @@
       "id": "AndroidBugreportDeviceAction",
       "properties": {
         "collectOnPass": {
-          "description": "Optional. Whether to deliver the bugreport when the test passes. If false, the bugreport is skipped on pass to save time (default behavior). If true, the bugreport is always delivered.",
+          "description": "Optional. Whether to deliver the bugreport when the test passes. If `false`, the bugreport is skipped on pass to save time (default behavior). If `true`, the bugreport is always delivered.",
           "type": "boolean"
         }
       },
@@ -721,7 +721,7 @@
       "id": "AndroidDumpsysDeviceAction",
       "properties": {
         "collectOnPass": {
-          "description": "Optional. Whether to deliver the dumpsys when the test passes. If false, the dumpsys is skipped on pass to save time (default behavior). If true, the dumpsys is always delivered.",
+          "description": "Optional. Whether to deliver the dumpsys when the test passes. If `false`, the dumpsys is skipped on pass to save time (default behavior). If `true`, the dumpsys is always delivered.",
           "type": "boolean"
         }
       },
@@ -963,7 +963,7 @@
       "id": "AndroidRecordVideoDeviceAction",
       "properties": {
         "discardOnPass": {
-          "description": "Optional. Whether to discard and not upload the recording when the test passes. Default is false.",
+          "description": "Optional. Whether to discard and not upload the recording when the test passes. Default is `false`.",
           "type": "boolean"
         }
       },
@@ -1537,7 +1537,7 @@
         },
         "iosRecordVideo": {
           "$ref": "IosRecordVideoDeviceAction",
-          "description": "Records a video of the iOS device screen during the run."
+          "description": "Records videos of the iOS device screen, one per UI test case."
         },
         "iosSwitchLocale": {
           "$ref": "IosSwitchLocaleDeviceAction",
@@ -1834,11 +1834,11 @@
       "type": "object"
     },
     "IosRecordVideoDeviceAction": {
-      "description": "Records a video of the iOS device screen during the run. The video will be written to a file named `video.mp4` in the execution output directory.",
+      "description": "Records videos of the iOS device screen, one per UI test case. Each video covers only the execution of its test case, and will be written to `testcases/{test_class}/{test_method}/video.mp4` in the execution output directory. No video is recorded for unit tests, or on devices running a version earlier than iOS 17.",
       "id": "IosRecordVideoDeviceAction",
       "properties": {
         "discardOnPass": {
-          "description": "Optional. Whether to discard the video if the test passes. If not specified, the default is false (always keep the video).",
+          "description": "Optional. Whether to discard the video of a test case when it passes. If not specified, the default is `false` (videos of all test cases are kept).",
           "type": "boolean"
         }
       },
@@ -1887,6 +1887,14 @@
           "description": "Output only. Human-readable explanation of the issue in English.",
           "readOnly": true,
           "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. Additional metadata about the issue.",
+          "readOnly": true,
+          "type": "object"
         },
         "reason": {
           "description": "Output only. The reason of the issue. This is a constant value that identifies the proximate cause of the issue. This should be at most 63 characters and match a regular expression of `A-Z*[A-Z0-9]`, which represents UPPER_SNAKE_CASE.",
@@ -2281,6 +2289,12 @@
       "description": "A session resource in the AutomationSession API. At a high level, `Session` describes the configuration of one or multiple jobs, the state transitions it goes through, and the results.",
       "id": "Session",
       "properties": {
+        "createTime": {
+          "description": "Output only. The time when the session was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "name": {
           "description": "Identifier. The resource name of the session. Format: `projects/{project}/locations/{location}/sessions/{session}`.",
           "type": "string"
