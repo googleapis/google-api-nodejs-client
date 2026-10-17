@@ -703,6 +703,10 @@ export namespace notebooks_v2 {
      */
     accessConfigs?: Schema$AccessConfig[];
     /**
+     * Optional. An internal IP address associated with this instance. Specify an unused static internal IP address available to the subnet this instance is in, or leave this field undefined to use an IP from the subnet's ephemeral range.
+     */
+    internalIp?: string | null;
+    /**
      * Optional. The name of the VPC that this VM instance is in. Format: `projects/{project_id\}/global/networks/{network_id\}`
      */
     network?: string | null;
@@ -1042,6 +1046,10 @@ export namespace notebooks_v2 {
      * Output only. A human-readable description of the image running on the instance (for example, "Debian 11, Python 3.10"), derived at read time from the image release configuration (the source of truth). Set to "Custom" for unrecognized boot-disk images.
      */
     imageDescription?: string | null;
+    /**
+     * Output only. The ID of the specific Compute Engine VM image the instance is currently running (for example, "workbench-instances-2603-20260918-2130-rc0").
+     */
+    imageId?: string | null;
     /**
      * Optional. Use VM image name to find the image.
      */
