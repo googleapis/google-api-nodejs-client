@@ -4046,7 +4046,7 @@
       }
     }
   },
-  "revision": "20260929",
+  "revision": "20261008",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -8338,7 +8338,8 @@
             "PENDING_KEY",
             "ACTIVE",
             "DELETING",
-            "DEPROVISIONED"
+            "DEPROVISIONED",
+            "SUSPENDED"
           ],
           "enumDescriptions": [
             "Unspecified state.",
@@ -8347,7 +8348,8 @@
             "The Transport was created in GCP. Depending on the profile’s key provisioning flow, this is either waiting for an activation key to be input (the key will be validated that it uses remote resources that match the Transport), or for the generated key to be input to the provider for finalizing. The configured bandwidth is not yet guaranteed.",
             "The Transport is configured and the underlying connectivity is considered operational.",
             "The Transport is being deleted from GCP. The underlying connectivity is no longer operational.",
-            "The Transport was deleted on the remote provider's end and is no longer operational. GCP has insufficient information to move the resource back to PENDING_KEY state."
+            "The Transport was deleted on the remote provider's end and is no longer operational. GCP has insufficient information to move the resource back to PENDING_KEY state.",
+            "The Transport is suspended due to an Abuse suspension or Wipeout Hide event. Underlying connectivity is administratively disabled."
           ],
           "readOnly": true,
           "type": "string"

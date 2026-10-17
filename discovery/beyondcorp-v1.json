@@ -322,6 +322,7 @@
             "appConnections": {
               "methods": {
                 "create": {
+                  "deprecated": true,
                   "description": "Creates a new AppConnection in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appConnections",
                   "httpMethod": "POST",
@@ -365,6 +366,7 @@
                   ]
                 },
                 "delete": {
+                  "deprecated": true,
                   "description": "Deletes a single AppConnection.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appConnections/{appConnectionsId}",
                   "httpMethod": "DELETE",
@@ -400,6 +402,7 @@
                   ]
                 },
                 "get": {
+                  "deprecated": true,
                   "description": "Gets details of a single AppConnection.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appConnections/{appConnectionsId}",
                   "httpMethod": "GET",
@@ -456,6 +459,7 @@
                   ]
                 },
                 "list": {
+                  "deprecated": true,
                   "description": "Lists AppConnections in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appConnections",
                   "httpMethod": "GET",
@@ -502,6 +506,7 @@
                   ]
                 },
                 "patch": {
+                  "deprecated": true,
                   "description": "Updates the parameters of a single AppConnection.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appConnections/{appConnectionsId}",
                   "httpMethod": "PATCH",
@@ -551,6 +556,7 @@
                   ]
                 },
                 "resolve": {
+                  "deprecated": true,
                   "description": "Resolves AppConnections details for a given AppConnector. An internal method called by a connector to find AppConnections to connect to.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appConnections:resolve",
                   "httpMethod": "GET",
@@ -652,6 +658,7 @@
             "appConnectors": {
               "methods": {
                 "create": {
+                  "deprecated": true,
                   "description": "Creates a new AppConnector in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appConnectors",
                   "httpMethod": "POST",
@@ -695,6 +702,7 @@
                   ]
                 },
                 "delete": {
+                  "deprecated": true,
                   "description": "Deletes a single AppConnector.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appConnectors/{appConnectorsId}",
                   "httpMethod": "DELETE",
@@ -730,6 +738,7 @@
                   ]
                 },
                 "get": {
+                  "deprecated": true,
                   "description": "Gets details of a single AppConnector.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appConnectors/{appConnectorsId}",
                   "httpMethod": "GET",
@@ -786,6 +795,7 @@
                   ]
                 },
                 "list": {
+                  "deprecated": true,
                   "description": "Lists AppConnectors in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appConnectors",
                   "httpMethod": "GET",
@@ -832,6 +842,7 @@
                   ]
                 },
                 "patch": {
+                  "deprecated": true,
                   "description": "Updates the parameters of a single AppConnector.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appConnectors/{appConnectorsId}",
                   "httpMethod": "PATCH",
@@ -876,6 +887,7 @@
                   ]
                 },
                 "reportStatus": {
+                  "deprecated": true,
                   "description": "Report status for a given connector.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appConnectors/{appConnectorsId}:reportStatus",
                   "httpMethod": "POST",
@@ -904,6 +916,7 @@
                   ]
                 },
                 "resolveInstanceConfig": {
+                  "deprecated": true,
                   "description": "Gets instance configuration for a given AppConnector. An internal method called by a AppConnector to get its container config.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appConnectors/{appConnectorsId}:resolveInstanceConfig",
                   "httpMethod": "GET",
@@ -989,6 +1002,7 @@
             "appGateways": {
               "methods": {
                 "create": {
+                  "deprecated": true,
                   "description": "Creates a new AppGateway in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appGateways",
                   "httpMethod": "POST",
@@ -1032,6 +1046,7 @@
                   ]
                 },
                 "delete": {
+                  "deprecated": true,
                   "description": "Deletes a single AppGateway.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appGateways/{appGatewaysId}",
                   "httpMethod": "DELETE",
@@ -1067,6 +1082,7 @@
                   ]
                 },
                 "get": {
+                  "deprecated": true,
                   "description": "Gets details of a single AppGateway.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appGateways/{appGatewaysId}",
                   "httpMethod": "GET",
@@ -1123,6 +1139,7 @@
                   ]
                 },
                 "list": {
+                  "deprecated": true,
                   "description": "Lists AppGateways in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appGateways",
                   "httpMethod": "GET",
@@ -1909,7 +1926,7 @@
       }
     }
   },
-  "revision": "20260722",
+  "revision": "20261007",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
