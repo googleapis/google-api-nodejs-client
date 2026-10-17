@@ -3486,6 +3486,35 @@
             },
             "entryGroups": {
               "methods": {
+                "batchChangeMetadata": {
+                  "description": "Batch changes metadata within an EntryGroup.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}:batchChangeMetadata",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.entryGroups.batchChangeMetadata",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the EntryGroup on which the batch change applies. Format: projects/{project_number_or_id}/locations/{location_id}/entryGroups/{entry_group_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:batchChangeMetadata",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1BatchChangeMetadataRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dataplex.read-write"
+                  ]
+                },
                 "create": {
                   "description": "Creates an EntryGroup.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups",
@@ -3699,6 +3728,35 @@
                   },
                   "response": {
                     "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dataplex.read-write"
+                  ]
+                },
+                "requestBatchMetadataChange": {
+                  "description": "Submits a catalog change request for multiple resources within an EntryGroup. This method creates a ChangeRequest resource that must be reviewed and approved before the proposed changes are applied.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}:requestBatchMetadataChange",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.entryGroups.requestBatchMetadataChange",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the Entry Group on which the change applies. Format: projects/{project}/locations/{location}/entryGroups/{entry_group}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:requestBatchMetadataChange",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1RequestBatchMetadataChangeRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1RequestBatchMetadataChangeResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -7576,7 +7634,7 @@
       }
     }
   },
-  "revision": "20261005",
+  "revision": "20261012",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -8045,7 +8103,7 @@
           "type": "integer"
         },
         "stringType": {
-          "description": "Optional. You can use String Type annotations to specify special meaning to string fields. The following values are supported: richText: The field must be interpreted as a rich text field. url: A fully qualified URL link. resource: A service qualified resource reference.",
+          "description": "Optional. You can use String Type annotations to specify special meaning to string fields. The following values are supported: richText: The field must be interpreted as a rich text field. markdown: The field must be interpreted as a markdown field. url: A fully qualified URL link. resource: A service qualified resource reference.",
           "type": "string"
         },
         "stringValues": {
@@ -8454,6 +8512,104 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1BatchChangeMetadataRequest": {
+      "description": "Request message for batch changing metadata. Requires permission to perform the underlying change, depending on the type and content of the change. Per operation, required permissions are: - for CreateEntry: dataplex.entries.create - for UpdateEntry: dataplex.entries.update - for DeleteEntry: dataplex.entries.delete - for CreateEntryLink: dataplex.entryLinks.create - for UpdateEntryLink: dataplex.entryLinks.update - for DeleteEntryLink: dataplex.entryLinks.deleteAnd per used type permissions are: - for EntryType: dataplex.entryTypes.use or dataplex.entryGroups.useEntry for reusable built-in types, - for AspectType: dataplex.aspectTypes.use or dataplex.entryGroups.useAspect for reusable built-in types and - for EntryLinkType: dataplex.entryLinkTypes.use or dataplex.entryGroups.useEntryLink for reusable built-in types.",
+      "id": "GoogleCloudDataplexV1BatchChangeMetadataRequest",
+      "properties": {
+        "changes": {
+          "description": "Required. The list of changes to apply. Only a single change per resource is supported. Maximum number of changes supported is 250.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1BatchChangeMetadataRequestChange"
+          },
+          "type": "array"
+        },
+        "description": {
+          "$ref": "GoogleCloudDataplexV1BatchChangeMetadataRequestDescription",
+          "description": "Optional. Text description of the batch change."
+        },
+        "name": {
+          "description": "Required. The resource name of the EntryGroup on which the batch change applies. Format: projects/{project_number_or_id}/locations/{location_id}/entryGroups/{entry_group_id}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1BatchChangeMetadataRequestChange": {
+      "description": "Detailed description of an individual change.",
+      "id": "GoogleCloudDataplexV1BatchChangeMetadataRequestChange",
+      "properties": {
+        "createEntryLinkRequest": {
+          "$ref": "GoogleCloudDataplexV1CreateEntryLinkRequest",
+          "description": "Payload for creating an EntryLink."
+        },
+        "createEntryRequest": {
+          "$ref": "GoogleCloudDataplexV1CreateEntryRequest",
+          "description": "Payload for creating an Entry."
+        },
+        "deleteEntryLinkRequest": {
+          "$ref": "GoogleCloudDataplexV1DeleteEntryLinkRequest",
+          "description": "Payload for deleting an EntryLink."
+        },
+        "deleteEntryRequest": {
+          "$ref": "GoogleCloudDataplexV1DeleteEntryRequest",
+          "description": "Payload for deleting an Entry."
+        },
+        "updateEntryLinkRequest": {
+          "$ref": "GoogleCloudDataplexV1UpdateEntryLinkRequest",
+          "description": "Payload for updating an EntryLink."
+        },
+        "updateEntryRequest": {
+          "$ref": "GoogleCloudDataplexV1UpdateEntryRequest",
+          "description": "Payload for updating an Entry."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1BatchChangeMetadataRequestDescription": {
+      "description": "Description of the batch change.",
+      "id": "GoogleCloudDataplexV1BatchChangeMetadataRequestDescription",
+      "properties": {
+        "content": {
+          "description": "Optional. The text description content.",
+          "type": "string"
+        },
+        "job": {
+          "$ref": "GoogleCloudDataplexV1BatchChangeMetadataRequestDescriptionJob",
+          "description": "Optional. The job that created the batch change."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1BatchChangeMetadataRequestDescriptionJob": {
+      "description": "Description of the job that created the batch change.",
+      "id": "GoogleCloudDataplexV1BatchChangeMetadataRequestDescriptionJob",
+      "properties": {
+        "name": {
+          "description": "Optional. The name of the job that created the batch change. For example: projects/{project_number}/locations/{location_id}/enrichmentTasks/{enrichment_task_id}/runs/{enrichment_run_id}",
+          "type": "string"
+        },
+        "runTime": {
+          "description": "Optional. The start time of the job run that created the batch change.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1BatchChangeMetadataResponse": {
+      "description": "Response message for BatchChangeMetadata.",
+      "id": "GoogleCloudDataplexV1BatchChangeMetadataResponse",
+      "properties": {
+        "failedRequests": {
+          "additionalProperties": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "description": "A map of failed requests for a batch change, where the key is the 0-based index of the failed request in the batch and the value is the error status. If all operations succeeded, this map is empty.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1BusinessGlossaryEvent": {
       "description": "Payload associated with Business Glossary related log events.",
       "id": "GoogleCloudDataplexV1BusinessGlossaryEvent",
@@ -8535,6 +8691,15 @@
           "readOnly": true,
           "type": "string"
         },
+        "batchChangeMetadataRequest": {
+          "$ref": "GoogleCloudDataplexV1BatchChangeMetadataRequest",
+          "description": "Payload for executing a batch of catalog changes."
+        },
+        "batchChangeMetadataResponse": {
+          "$ref": "GoogleCloudDataplexV1BatchChangeMetadataResponse",
+          "description": "Output only. Result of applying a batch change metadata request.",
+          "readOnly": true
+        },
         "changeType": {
           "description": "Output only. The type of change represented by the change_payload. This field is derived from the populated field in the change_payload oneof.",
           "enum": [
@@ -8553,7 +8718,8 @@
             "CREATE_GLOSSARY_TERM",
             "UPDATE_GLOSSARY_TERM",
             "DELETE_GLOSSARY_TERM",
-            "REQUEST_DATA_PRODUCT_ACCESS"
+            "REQUEST_DATA_PRODUCT_ACCESS",
+            "BATCH_CHANGE_METADATA"
           ],
           "enumDescriptions": [
             "State unspecified.",
@@ -8571,7 +8737,8 @@
             "Request to create a GlossaryTerm.",
             "Request to update a GlossaryTerm.",
             "Request to delete a GlossaryTerm.",
-            "Request to request Data Product access."
+            "Request to request Data Product access.",
+            "Request to execute a batch of catalog changes."
           ],
           "readOnly": true,
           "type": "string"
@@ -8668,7 +8835,9 @@
             "APPROVED",
             "REJECTED",
             "EXPIRED",
-            "REVOKED"
+            "REVOKED",
+            "APPLYING",
+            "FAILED"
           ],
           "enumDescriptions": [
             "State unspecified.",
@@ -8676,7 +8845,9 @@
             "The change has been approved.",
             "The change has been rejected.",
             "The change request has expired.",
-            "The approved change has been revoked."
+            "The approved change has been revoked.",
+            "The change request has been approved and changes are currently being applied.",
+            "The change request execution failed."
           ],
           "readOnly": true,
           "type": "string"
@@ -12164,6 +12335,10 @@
       "description": "An Entry Group represents a logical grouping of one or more Entries.",
       "id": "GoogleCloudDataplexV1EntryGroup",
       "properties": {
+        "changeRequestConfig": {
+          "$ref": "GoogleCloudDataplexV1EntryGroupChangeRequestConfig",
+          "description": "Optional. Specifies the configuration for requesting changes in the metadata belonging to the Entry Group."
+        },
         "createTime": {
           "description": "Output only. The time when the EntryGroup was created.",
           "format": "google-datetime",
@@ -12219,6 +12394,20 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1EntryGroupChangeRequestConfig": {
+      "description": "Specifies the configuration for requesting changes in the metadata belonging to the Entry Group.",
+      "id": "GoogleCloudDataplexV1EntryGroupChangeRequestConfig",
+      "properties": {
+        "approverEmails": {
+          "description": "Optional. Specifies the email addresses of users who are potential approvers and are notified when a change request is created for the metadata belonging to the Entry Group. The maximum number of emails allowed is 10.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -14373,6 +14562,39 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1RequestBatchMetadataChangeRequest": {
+      "description": "Request message for submitting a set of catalog changes proposals.",
+      "id": "GoogleCloudDataplexV1RequestBatchMetadataChangeRequest",
+      "properties": {
+        "changePayload": {
+          "$ref": "GoogleCloudDataplexV1BatchChangeMetadataRequest",
+          "description": "Required. The detailed specification of the proposed changes. This payload is intended to be embedded as the change_payload in the resulting ChangeRequest."
+        },
+        "justification": {
+          "description": "Optional. Justification for the metadata change request.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-defined labels for the metadata change request.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1RequestBatchMetadataChangeResponse": {
+      "description": "Response message containing the reference to the created change request.",
+      "id": "GoogleCloudDataplexV1RequestBatchMetadataChangeResponse",
+      "properties": {
+        "changeRequest": {
+          "description": "The resource name of the created ChangeRequest. Format: projects/{project}/locations/{location}/changeRequests/{change_request}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1RequestDataProductAccessRequest": {
       "description": "Message for requesting access to a Data Product.",
       "id": "GoogleCloudDataplexV1RequestDataProductAccessRequest",
@@ -15325,6 +15547,28 @@
         "cron": {
           "description": "Required. Cron (https://en.wikipedia.org/wiki/Cron) schedule for running scans periodically.To explicitly set a timezone in the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or \"TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database (wikipedia (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List)). For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.This field is required for Schedule scans.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1UpdateEntryLinkRequest": {
+      "description": "Request message for UpdateEntryLink method.",
+      "id": "GoogleCloudDataplexV1UpdateEntryLinkRequest",
+      "properties": {
+        "allowMissing": {
+          "description": "Optional. If set to true and the entry link doesn't exist, the service will create it.",
+          "type": "boolean"
+        },
+        "aspectKeys": {
+          "description": "Optional. The map keys of the Aspects which the service should modify. It should be the aspect type reference in the format {project_id_or_number}.{location_id}.{aspect_type_id}.If this field is left empty, the service treats it as specifying exactly those Aspects present in the request.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "entryLink": {
+          "$ref": "GoogleCloudDataplexV1EntryLink",
+          "description": "Required. Entry Link resource."
         }
       },
       "type": "object"

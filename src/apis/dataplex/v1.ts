@@ -466,7 +466,7 @@ export namespace dataplex_v1 {
      */
     displayOrder?: number | null;
     /**
-     * Optional. You can use String Type annotations to specify special meaning to string fields. The following values are supported: richText: The field must be interpreted as a rich text field. url: A fully qualified URL link. resource: A service qualified resource reference.
+     * Optional. You can use String Type annotations to specify special meaning to string fields. The following values are supported: richText: The field must be interpreted as a rich text field. markdown: The field must be interpreted as a markdown field. url: A fully qualified URL link. resource: A service qualified resource reference.
      */
     stringType?: string | null;
     /**
@@ -743,6 +743,87 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
+   * Request message for batch changing metadata. Requires permission to perform the underlying change, depending on the type and content of the change. Per operation, required permissions are: - for CreateEntry: dataplex.entries.create - for UpdateEntry: dataplex.entries.update - for DeleteEntry: dataplex.entries.delete - for CreateEntryLink: dataplex.entryLinks.create - for UpdateEntryLink: dataplex.entryLinks.update - for DeleteEntryLink: dataplex.entryLinks.deleteAnd per used type permissions are: - for EntryType: dataplex.entryTypes.use or dataplex.entryGroups.useEntry for reusable built-in types, - for AspectType: dataplex.aspectTypes.use or dataplex.entryGroups.useAspect for reusable built-in types and - for EntryLinkType: dataplex.entryLinkTypes.use or dataplex.entryGroups.useEntryLink for reusable built-in types.
+   */
+  export interface Schema$GoogleCloudDataplexV1BatchChangeMetadataRequest {
+    /**
+     * Required. The list of changes to apply. Only a single change per resource is supported. Maximum number of changes supported is 250.
+     */
+    changes?: Schema$GoogleCloudDataplexV1BatchChangeMetadataRequestChange[];
+    /**
+     * Optional. Text description of the batch change.
+     */
+    description?: Schema$GoogleCloudDataplexV1BatchChangeMetadataRequestDescription;
+    /**
+     * Required. The resource name of the EntryGroup on which the batch change applies. Format: projects/{project_number_or_id\}/locations/{location_id\}/entryGroups/{entry_group_id\}
+     */
+    name?: string | null;
+  }
+  /**
+   * Detailed description of an individual change.
+   */
+  export interface Schema$GoogleCloudDataplexV1BatchChangeMetadataRequestChange {
+    /**
+     * Payload for creating an EntryLink.
+     */
+    createEntryLinkRequest?: Schema$GoogleCloudDataplexV1CreateEntryLinkRequest;
+    /**
+     * Payload for creating an Entry.
+     */
+    createEntryRequest?: Schema$GoogleCloudDataplexV1CreateEntryRequest;
+    /**
+     * Payload for deleting an EntryLink.
+     */
+    deleteEntryLinkRequest?: Schema$GoogleCloudDataplexV1DeleteEntryLinkRequest;
+    /**
+     * Payload for deleting an Entry.
+     */
+    deleteEntryRequest?: Schema$GoogleCloudDataplexV1DeleteEntryRequest;
+    /**
+     * Payload for updating an EntryLink.
+     */
+    updateEntryLinkRequest?: Schema$GoogleCloudDataplexV1UpdateEntryLinkRequest;
+    /**
+     * Payload for updating an Entry.
+     */
+    updateEntryRequest?: Schema$GoogleCloudDataplexV1UpdateEntryRequest;
+  }
+  /**
+   * Description of the batch change.
+   */
+  export interface Schema$GoogleCloudDataplexV1BatchChangeMetadataRequestDescription {
+    /**
+     * Optional. The text description content.
+     */
+    content?: string | null;
+    /**
+     * Optional. The job that created the batch change.
+     */
+    job?: Schema$GoogleCloudDataplexV1BatchChangeMetadataRequestDescriptionJob;
+  }
+  /**
+   * Description of the job that created the batch change.
+   */
+  export interface Schema$GoogleCloudDataplexV1BatchChangeMetadataRequestDescriptionJob {
+    /**
+     * Optional. The name of the job that created the batch change. For example: projects/{project_number\}/locations/{location_id\}/enrichmentTasks/{enrichment_task_id\}/runs/{enrichment_run_id\}
+     */
+    name?: string | null;
+    /**
+     * Optional. The start time of the job run that created the batch change.
+     */
+    runTime?: string | null;
+  }
+  /**
+   * Response message for BatchChangeMetadata.
+   */
+  export interface Schema$GoogleCloudDataplexV1BatchChangeMetadataResponse {
+    /**
+     * A map of failed requests for a batch change, where the key is the 0-based index of the failed request in the batch and the value is the error status. If all operations succeeded, this map is empty.
+     */
+    failedRequests?: {[key: string]: Schema$GoogleRpcStatus} | null;
+  }
+  /**
    * Payload associated with Business Glossary related log events.
    */
   export interface Schema$GoogleCloudDataplexV1BusinessGlossaryEvent {
@@ -787,6 +868,14 @@ export namespace dataplex_v1 {
      * Output only. The email address of the user who created the ChangeRequest.
      */
     author?: string | null;
+    /**
+     * Payload for executing a batch of catalog changes.
+     */
+    batchChangeMetadataRequest?: Schema$GoogleCloudDataplexV1BatchChangeMetadataRequest;
+    /**
+     * Output only. Result of applying a batch change metadata request.
+     */
+    batchChangeMetadataResponse?: Schema$GoogleCloudDataplexV1BatchChangeMetadataResponse;
     /**
      * Output only. The type of change represented by the change_payload. This field is derived from the populated field in the change_payload oneof.
      */
@@ -3312,6 +3401,10 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1EntryGroup {
     /**
+     * Optional. Specifies the configuration for requesting changes in the metadata belonging to the Entry Group.
+     */
+    changeRequestConfig?: Schema$GoogleCloudDataplexV1EntryGroupChangeRequestConfig;
+    /**
      * Output only. The time when the EntryGroup was created.
      */
     createTime?: string | null;
@@ -3347,6 +3440,15 @@ export namespace dataplex_v1 {
      * Output only. The time when the EntryGroup was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Specifies the configuration for requesting changes in the metadata belonging to the Entry Group.
+   */
+  export interface Schema$GoogleCloudDataplexV1EntryGroupChangeRequestConfig {
+    /**
+     * Optional. Specifies the email addresses of users who are potential approvers and are notified when a change request is created for the metadata belonging to the Entry Group. The maximum number of emails allowed is 10.
+     */
+    approverEmails?: string[] | null;
   }
   /**
    * EntryLink represents a link between two Entries.
@@ -4752,6 +4854,32 @@ export namespace dataplex_v1 {
     etag?: string | null;
   }
   /**
+   * Request message for submitting a set of catalog changes proposals.
+   */
+  export interface Schema$GoogleCloudDataplexV1RequestBatchMetadataChangeRequest {
+    /**
+     * Required. The detailed specification of the proposed changes. This payload is intended to be embedded as the change_payload in the resulting ChangeRequest.
+     */
+    changePayload?: Schema$GoogleCloudDataplexV1BatchChangeMetadataRequest;
+    /**
+     * Optional. Justification for the metadata change request.
+     */
+    justification?: string | null;
+    /**
+     * Optional. User-defined labels for the metadata change request.
+     */
+    labels?: {[key: string]: string} | null;
+  }
+  /**
+   * Response message containing the reference to the created change request.
+   */
+  export interface Schema$GoogleCloudDataplexV1RequestBatchMetadataChangeResponse {
+    /**
+     * The resource name of the created ChangeRequest. Format: projects/{project\}/locations/{location\}/changeRequests/{change_request\}
+     */
+    changeRequest?: string | null;
+  }
+  /**
    * Message for requesting access to a Data Product.
    */
   export interface Schema$GoogleCloudDataplexV1RequestDataProductAccessRequest {
@@ -5355,6 +5483,23 @@ export namespace dataplex_v1 {
      * Required. Cron (https://en.wikipedia.org/wiki/Cron) schedule for running scans periodically.To explicitly set a timezone in the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or "TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database (wikipedia (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List)). For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.This field is required for Schedule scans.
      */
     cron?: string | null;
+  }
+  /**
+   * Request message for UpdateEntryLink method.
+   */
+  export interface Schema$GoogleCloudDataplexV1UpdateEntryLinkRequest {
+    /**
+     * Optional. If set to true and the entry link doesn't exist, the service will create it.
+     */
+    allowMissing?: boolean | null;
+    /**
+     * Optional. The map keys of the Aspects which the service should modify. It should be the aspect type reference in the format {project_id_or_number\}.{location_id\}.{aspect_type_id\}.If this field is left empty, the service treats it as specifying exactly those Aspects present in the request.
+     */
+    aspectKeys?: string[] | null;
+    /**
+     * Required. Entry Link resource.
+     */
+    entryLink?: Schema$GoogleCloudDataplexV1EntryLink;
   }
   /**
    * Update Entry request.
@@ -11077,6 +11222,8 @@ export namespace dataplex_v1 {
      *   // {
      *   //   "approver": "my_approver",
      *   //   "author": "my_author",
+     *   //   "batchChangeMetadataRequest": {},
+     *   //   "batchChangeMetadataResponse": {},
      *   //   "changeType": "my_changeType",
      *   //   "createEntry": {},
      *   //   "createEntryLink": {},
@@ -11392,6 +11539,8 @@ export namespace dataplex_v1 {
      *   // {
      *   //   "approver": "my_approver",
      *   //   "author": "my_author",
+     *   //   "batchChangeMetadataRequest": {},
+     *   //   "batchChangeMetadataResponse": {},
      *   //   "changeType": "my_changeType",
      *   //   "createEntry": {},
      *   //   "createEntryLink": {},
@@ -11878,6 +12027,8 @@ export namespace dataplex_v1 {
      *       // {
      *       //   "approver": "my_approver",
      *       //   "author": "my_author",
+     *       //   "batchChangeMetadataRequest": {},
+     *       //   "batchChangeMetadataResponse": {},
      *       //   "changeType": "my_changeType",
      *       //   "createEntry": {},
      *       //   "createEntryLink": {},
@@ -11914,6 +12065,8 @@ export namespace dataplex_v1 {
      *   // {
      *   //   "approver": "my_approver",
      *   //   "author": "my_author",
+     *   //   "batchChangeMetadataRequest": {},
+     *   //   "batchChangeMetadataResponse": {},
      *   //   "changeType": "my_changeType",
      *   //   "createEntry": {},
      *   //   "createEntryLink": {},
@@ -12098,6 +12251,8 @@ export namespace dataplex_v1 {
      *   // {
      *   //   "approver": "my_approver",
      *   //   "author": "my_author",
+     *   //   "batchChangeMetadataRequest": {},
+     *   //   "batchChangeMetadataResponse": {},
      *   //   "changeType": "my_changeType",
      *   //   "createEntry": {},
      *   //   "createEntryLink": {},
@@ -21144,6 +21299,166 @@ export namespace dataplex_v1 {
     }
 
     /**
+     * Batch changes metadata within an EntryGroup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryGroups.batchChangeMetadata(
+     *     {
+     *       // Required. The resource name of the EntryGroup on which the batch change applies. Format: projects/{project_number_or_id\}/locations/{location_id\}/entryGroups/{entry_group_id\}
+     *       name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "changes": [],
+     *         //   "description": {},
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchChangeMetadata(
+      params: Params$Resource$Projects$Locations$Entrygroups$Batchchangemetadata,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchChangeMetadata(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Batchchangemetadata,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    batchChangeMetadata(
+      params: Params$Resource$Projects$Locations$Entrygroups$Batchchangemetadata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchChangeMetadata(
+      params: Params$Resource$Projects$Locations$Entrygroups$Batchchangemetadata,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchChangeMetadata(
+      params: Params$Resource$Projects$Locations$Entrygroups$Batchchangemetadata,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchChangeMetadata(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchChangeMetadata(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Batchchangemetadata
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Batchchangemetadata;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Batchchangemetadata;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:batchChangeMetadata').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Creates an EntryGroup.
      * @example
      * ```js
@@ -21188,6 +21503,7 @@ export namespace dataplex_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "changeRequestConfig": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
@@ -21499,6 +21815,7 @@ export namespace dataplex_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "changeRequestConfig": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
@@ -21965,6 +22282,7 @@ export namespace dataplex_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "changeRequestConfig": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
@@ -22081,6 +22399,168 @@ export namespace dataplex_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Submits a catalog change request for multiple resources within an EntryGroup. This method creates a ChangeRequest resource that must be reviewed and approved before the proposed changes are applied.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.entryGroups.requestBatchMetadataChange({
+     *       // Required. The resource name of the Entry Group on which the change applies. Format: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}
+     *       name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "changePayload": {},
+     *         //   "justification": "my_justification",
+     *         //   "labels": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "changeRequest": "my_changeRequest"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    requestBatchMetadataChange(
+      params: Params$Resource$Projects$Locations$Entrygroups$Requestbatchmetadatachange,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    requestBatchMetadataChange(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Requestbatchmetadatachange,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1RequestBatchMetadataChangeResponse>
+    >;
+    requestBatchMetadataChange(
+      params: Params$Resource$Projects$Locations$Entrygroups$Requestbatchmetadatachange,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    requestBatchMetadataChange(
+      params: Params$Resource$Projects$Locations$Entrygroups$Requestbatchmetadatachange,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1RequestBatchMetadataChangeResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1RequestBatchMetadataChangeResponse>
+    ): void;
+    requestBatchMetadataChange(
+      params: Params$Resource$Projects$Locations$Entrygroups$Requestbatchmetadatachange,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1RequestBatchMetadataChangeResponse>
+    ): void;
+    requestBatchMetadataChange(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1RequestBatchMetadataChangeResponse>
+    ): void;
+    requestBatchMetadataChange(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Requestbatchmetadatachange
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1RequestBatchMetadataChangeResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1RequestBatchMetadataChangeResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1RequestBatchMetadataChangeResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1RequestBatchMetadataChangeResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Requestbatchmetadatachange;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Requestbatchmetadatachange;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:requestBatchMetadataChange').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1RequestBatchMetadataChangeResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1RequestBatchMetadataChangeResponse>(
+          parameters
+        );
       }
     }
 
@@ -22401,6 +22881,17 @@ export namespace dataplex_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Entrygroups$Batchchangemetadata extends StandardParameters {
+    /**
+     * Required. The resource name of the EntryGroup on which the batch change applies. Format: projects/{project_number_or_id\}/locations/{location_id\}/entryGroups/{entry_group_id\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1BatchChangeMetadataRequest;
+  }
   export interface Params$Resource$Projects$Locations$Entrygroups$Create extends StandardParameters {
     /**
      * Required. EntryGroup identifier.
@@ -22486,6 +22977,17 @@ export namespace dataplex_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDataplexV1EntryGroup;
+  }
+  export interface Params$Resource$Projects$Locations$Entrygroups$Requestbatchmetadatachange extends StandardParameters {
+    /**
+     * Required. The resource name of the Entry Group on which the change applies. Format: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1RequestBatchMetadataChangeRequest;
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Setiampolicy extends StandardParameters {
     /**
