@@ -125,6 +125,10 @@ export namespace fcm_v1 {
   }
 
   /**
+   * A Background Sync message that is sent to an Android device.
+   */
+  export interface Schema$AndroidBackgroundSyncMessage {}
+  /**
    * Android specific options for messages sent through [FCM connection server](https://goo.gl/4GLdUl).
    */
   export interface Schema$AndroidConfig {
@@ -156,6 +160,51 @@ export namespace fcm_v1 {
      * Message priority. Can take "normal" and "high" values. For more information, see [Setting the priority of a message](https://firebase.google.com/docs/cloud-messaging/customize-messages/setting-message-priority).
      */
     priority?: string | null;
+    /**
+     * Package name of the application where the registration token must match in order to receive the message.
+     */
+    restrictedPackageName?: string | null;
+    /**
+     * Optional. If set to true, messages will be allowed to be delivered to the app while the device is connected over a restricted satellite network. This should only be enabled for messages that can be handled over a restricted satellite network and only for apps that are enabled to work over a restricted satellite network. Note that the ability of the app to connect to a restricted satellite network is dependent on the carrier's settings and the device model.
+     */
+    restrictedSatelliteOk?: boolean | null;
+    /**
+     * How long (in seconds) the message should be kept in FCM storage if the device is offline. The maximum time to live supported is 4 weeks, and the default value is 4 weeks if not set. Set it to 0 if want to send the message immediately. In JSON format, the Duration type is encoded as a string rather than an object, where the string ends in the suffix "s" (indicating seconds) and is preceded by the number of seconds, with nanoseconds expressed as fractional seconds. For example, 3 seconds with 0 nanoseconds should be encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should be expressed in JSON format as "3.000000001s". The ttl will be rounded down to the nearest second.
+     */
+    ttl?: string | null;
+  }
+  /**
+   * Android specific V2 options for messages sent through [FCM connection server](https://goo.gl/4GLdUl). This is a v2 version of the AndroidConfig message and will replace it in the v2 API.
+   */
+  export interface Schema$AndroidConfigV2 {
+    /**
+     * Optional. Non-urgent background sync message to send to android devices.
+     */
+    backgroundSync?: Schema$AndroidBackgroundSyncMessage;
+    /**
+     * Optional. If set to true, messages will be allowed to be delivered to the app while the device is in bandwidth constrained mode. This should only be enabled when the app has been tested to properly handle messages in bandwidth constrained mode.
+     */
+    bandwidthConstrainedOk?: boolean | null;
+    /**
+     * An identifier of a group of messages that can be collapsed, so that only the last message gets sent when delivery can be resumed. A maximum of 4 different collapse keys is allowed at any given time.
+     */
+    collapseKey?: string | null;
+    /**
+     * Arbitrary key/value payload. If present, it will override google.firebase.fcm.v1.Message.data.
+     */
+    data?: {[key: string]: string} | null;
+    /**
+     * Optional. If set to true, messages will be allowed to be delivered to the app while the device is in direct boot mode. See [Support Direct Boot mode](https://developer.android.com/training/articles/direct-boot).
+     */
+    directBootOk?: boolean | null;
+    /**
+     * Options for features provided by the FCM SDK for Android. If present, it will override google.firebase.fcm.v1.Message.fcm_options.
+     */
+    fcmOptions?: Schema$AndroidFcmOptions;
+    /**
+     * Optional. User-facing notification to send to android devices.
+     */
+    remoteNotification?: Schema$AndroidRemoteNotification;
     /**
      * Package name of the application where the registration token must match in order to receive the message.
      */
@@ -292,6 +341,132 @@ export namespace fcm_v1 {
     visibility?: string | null;
   }
   /**
+   * Notification v2 to send to android devices. This is a v2 version of the AndroidNotification message and will replace it in the v2 API.
+   */
+  export interface Schema$AndroidNotificationV2 {
+    /**
+     * The notification's body text. If present, it will override google.firebase.fcm.v1.Notification.body.
+     */
+    body?: string | null;
+    /**
+     * Variable string values to be used in place of the format specifiers in body_loc_key to use to localize the body text to the user's current localization. See [Formatting and Styling](https://goo.gl/MalYE3) for more information.
+     */
+    bodyLocArgs?: string[] | null;
+    /**
+     * The key to the body string in the app's string resources to use to localize the body text to the user's current localization. See [String Resources](https://goo.gl/NdFZGI) for more information.
+     */
+    bodyLocKey?: string | null;
+    /**
+     * The [notification's channel id](https://developer.android.com/guide/topics/ui/notifiers/notifications#ManageChannels) (new in Android O). The app must create a channel with this channel ID before any notification with this channel ID is received. If you don't send this channel ID in the request, or if the channel ID provided has not yet been created by the app, FCM uses the channel ID specified in the app manifest.
+     */
+    channelId?: string | null;
+    /**
+     * The action associated with a user click on the notification. If specified, an activity with a matching intent filter is launched when a user clicks on the notification.
+     */
+    clickAction?: string | null;
+    /**
+     * The notification's icon color, expressed in #rrggbb format.
+     */
+    color?: string | null;
+    /**
+     * If set to true, use the Android framework's default LED light settings for the notification. Default values are specified in [config.xml](https://android.googlesource.com/platform/frameworks/base/+/master/core/res/res/values/config.xml). If `default_light_settings` is set to true and `light_settings` is also set, the user-specified `light_settings` is used instead of the default value.
+     */
+    defaultLightSettings?: boolean | null;
+    /**
+     * If set to true, use the Android framework's default sound for the notification. Default values are specified in [config.xml](https://android.googlesource.com/platform/frameworks/base/+/master/core/res/res/values/config.xml).
+     */
+    defaultSound?: boolean | null;
+    /**
+     * If set to true, use the Android framework's default vibrate pattern for the notification. Default values are specified in [config.xml](https://android.googlesource.com/platform/frameworks/base/+/master/core/res/res/values/config.xml). If `default_vibrate_timings` is set to true and `vibrate_timings` is also set, the default value is used instead of the user-specified `vibrate_timings`.
+     */
+    defaultVibrateTimings?: boolean | null;
+    /**
+     * Set the time that the event in the notification occurred. Notifications in the panel are sorted by this time. A point in time is represented using [protobuf.Timestamp](https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/Timestamp).
+     */
+    eventTime?: string | null;
+    /**
+     * The notification's icon. Sets the notification icon to myicon for drawable resource myicon. If you don't send this key in the request, FCM displays the launcher icon specified in your app manifest.
+     */
+    icon?: string | null;
+    /**
+     * Optional. Identifier used to replace existing notifications in the notification drawer. It is used in conjunction with `tag` to form a unique identifier `(tag, id`)` within the app. If not specified, each request creates a new notification. If specified and a notification with the same `(tag, id)` is already being shown, the new notification replaces the existing one in the notification drawer.
+     */
+    id?: number | null;
+    /**
+     * Contains the URL of an image that is going to be displayed in a notification. If present, it will override google.firebase.fcm.v1.Notification.image.
+     */
+    image?: string | null;
+    /**
+     * Settings to control the notification's LED blinking rate and color if LED is available on the device. The total blinking time is controlled by the OS.
+     */
+    lightSettings?: Schema$GoogleFirebaseFcmV1AndroidNotificationV2LightSettings;
+    /**
+     * Set whether or not this notification is relevant only to the current device. Some notifications can be bridged to other devices for remote display, such as a Wear OS watch. This hint can be set to recommend this notification not be bridged. See [Wear OS guides](https://developer.android.com/training/wearables/notifications/bridger#existing-method-of-preventing-bridging)
+     */
+    localOnly?: boolean | null;
+    /**
+     * Sets the number of items this notification represents. May be displayed as a badge count for launchers that support badging.See [Notification Badge](https://developer.android.com/training/notify-user/badges). For example, this might be useful if you're using just one notification to represent multiple new messages but you want the count here to represent the number of total new messages. If non-positive or unspecified, systems that support badging use the default, which is to increment a number displayed on the long-press menu each time a new notification arrives.
+     */
+    notificationCount?: number | null;
+    /**
+     * Set the relative priority for this notification. Priority is an indication of how much of the user's attention should be consumed by this notification. Low-priority notifications may be hidden from the user in certain situations, while the user might be interrupted for a higher-priority notification. This parameter affects notification priority only on devices running Android 7.1 (API level 25) and lower. On Android 8.0 (API level 26) and higher, priority is ignored in favor of channel [importance](https://developer.android.com/develop/ui/views/notifications/channels#importance). Note this priority differs from `AndroidMessagePriority`. This priority is processed by the client after the message has been delivered, whereas [AndroidMessagePriority](https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages#androidmessagepriority) is an FCM concept that controls when the message is delivered.
+     */
+    notificationPriority?: string | null;
+    /**
+     * The sound to play when the device receives the notification. Supports "default" or the filename of a sound resource bundled in the app. Sound files must reside in /res/raw/.
+     */
+    sound?: string | null;
+    /**
+     * When set to false or unset, the notification is automatically dismissed when the user clicks it in the panel. When set to true, the notification persists even when the user clicks it.
+     */
+    sticky?: boolean | null;
+    /**
+     * Identifier used to replace existing notifications in the notification drawer. It is used in conjunction with `id` to form a unique identifier `(tag, id`)` within the app. If not specified, each request creates a new notification. If specified and a notification with the same `(tag, id)` is already being shown, the new notification replaces the existing one in the notification drawer.
+     */
+    tag?: string | null;
+    /**
+     * Sets the "ticker" text, which is sent to accessibility services. Prior to API level 21 (`Lollipop`), sets the text that is displayed in the status bar when the notification first arrives.
+     */
+    ticker?: string | null;
+    /**
+     * The notification's title. If present, it will override google.firebase.fcm.v1.Notification.title.
+     */
+    title?: string | null;
+    /**
+     * Variable string values to be used in place of the format specifiers in title_loc_key to use to localize the title text to the user's current localization. See [Formatting and Styling](https://goo.gl/MalYE3) for more information.
+     */
+    titleLocArgs?: string[] | null;
+    /**
+     * The key to the title string in the app's string resources to use to localize the title text to the user's current localization. See [String Resources](https://goo.gl/NdFZGI) for more information.
+     */
+    titleLocKey?: string | null;
+    /**
+     * Set the vibration pattern to use. Pass in an array of [protobuf.Duration](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Duration) to turn on or off the vibrator. The first value indicates the `Duration` to wait before turning the vibrator on. The next value indicates the `Duration` to keep the vibrator on. Subsequent values alternate between `Duration` to turn the vibrator off and to turn the vibrator on. If `vibrate_timings` is set and `default_vibrate_timings` is set to `true`, the default value is used instead of the user-specified `vibrate_timings`.
+     */
+    vibrateTimings?: string[] | null;
+    /**
+     * Set the [Notification.visibility](https://developer.android.com/reference/android/app/Notification.html#visibility) of the notification.
+     */
+    visibility?: string | null;
+  }
+  /**
+   * A Remote Notification message that is sent to an Android device.
+   */
+  export interface Schema$AndroidRemoteNotification {
+    /**
+     * Optional. If set to true, the notification content can be updated by the app after the notification is received on the device.
+     */
+    mutableContent?: boolean | null;
+    /**
+     * Optional. Notification to send to android devices.
+     */
+    notification?: Schema$AndroidNotificationV2;
+    /**
+     * Optional. If set to true, this RemoteNotification message will be delivered to legacy V1 clients as data messages by omitting the google.firebase.fcm.v1.Message.android_v2.remote_notification.notification. This should only be enabled when migration from legacy V1 data messages. Note that by default (when set to false), RemoteNotification messages are automatically translated to V1 notification message for legacy clients;
+     */
+    useAsV1DataMessage?: boolean | null;
+  }
+  /**
    * [Apple Push Notification Service](https://goo.gl/MXRTPa) specific options.
    */
   export interface Schema$ApnsConfig {
@@ -362,6 +537,23 @@ export namespace fcm_v1 {
   /**
    * Settings to control notification LED.
    */
+  export interface Schema$GoogleFirebaseFcmV1AndroidNotificationV2LightSettings {
+    /**
+     * Required. Set `color` of the LED with [google.type.Color](https://github.com/googleapis/googleapis/blob/master/google/type/color.proto).
+     */
+    color?: Schema$Color;
+    /**
+     * Required. Along with `light_on_duration`, define the blink rate of LED flashes. Resolution defined by [proto.Duration](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Duration)
+     */
+    lightOffDuration?: string | null;
+    /**
+     * Required. Along with `light_off_duration`, define the blink rate of LED flashes. Resolution defined by [proto.Duration](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Duration)
+     */
+    lightOnDuration?: string | null;
+  }
+  /**
+   * Settings to control notification LED.
+   */
   export interface Schema$LightSettings {
     /**
      * Required. Set `color` of the LED with [google.type.Color](https://github.com/googleapis/googleapis/blob/master/google/type/color.proto).
@@ -397,6 +589,10 @@ export namespace fcm_v1 {
      * Input only. Android specific options for messages sent through [FCM connection server](https://goo.gl/4GLdUl).
      */
     android?: Schema$AndroidConfig;
+    /**
+     * Optional. Input only. Android specific V2 options for messages sent through FCM connection server. Mutually exclusive with `android`. Requests with both `AndroidConfig` and `AndroidConfigV2` will be rejected.
+     */
+    androidV2?: Schema$AndroidConfigV2;
     /**
      * Input only. [Apple Push Notification Service](https://goo.gl/MXRTPa) specific options.
      */
@@ -588,6 +784,7 @@ export namespace fcm_v1 {
      *   // Example response
      *   // {
      *   //   "android": {},
+     *   //   "androidV2": {},
      *   //   "apns": {},
      *   //   "condition": "my_condition",
      *   //   "data": {},
