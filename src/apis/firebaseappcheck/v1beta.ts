@@ -172,6 +172,39 @@ export namespace firebaseappcheck_v1beta {
     ttl?: string | null;
   }
   /**
+   * An **enforcement automation** is useful for automatically enforcing a service or a resource policy within a service when a certain condition is met. For example, you may create an automation that automatically turns on enforcement for your Cloud Firestore service at a specified timestamp in the future. For your security, an automation object may be created by the system in order to protect sensitive services by default. These *system-created* automations can be opted out, if you so choose, by calling the SuspendAutomation method on them. Suspending a system-created automation is not recommended, but is supported for advanced use cases. The system will not execute nor modify any suspended automations. Also, system-created automations **cannot** be deleted, but can be freely modified, which is also not recommended, as the system may later overwrite your changes with its own default settings without notice (assuming it has not been suspended). An automation's condition is evaluated periodically; the frequency of this periodic evaluation depends on the exact condition. While the details are unspecified, evaluations will be conducted reasonably frequently so that a satisfied condition will be detected in a timely fashion. Once a condition has been detected to be satisfied, the enforcement action will be executed immediately. Currently, the only enforcement action supported is to **enforce** App Check protections on the associated parent service or parent resource policy. Once executed, the automation becomes immutable, and serves as a historical record of that execution. Its `update_time` field will be populated with the timestamp at which the execution occurred, and its `state` field will be set to `SUCCEEDED`. Successful automations not created by the system can still be deleted. If, during the evaluation or execution of an automation, App Check discovers that it is no longer possible for the service or resource to receive App Check protection, App Check may suspend your automation without warning. For example, if you have disabled a service, or have deleted all resources within a service, and that service does not support storing your App Check preferences while it is in such a state, then an automation created for this service may be suspended. Please ensure that the service or resource is correctly configured and operating normally throughout the lifetime of the automation to avoid suspension.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaAutomation {
+    /**
+     * Output only. Timestamp at which this automation object was created.
+     */
+    createTime?: string | null;
+    /**
+     * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. This etag is strongly validated as defined by RFC 7232.
+     */
+    etag?: string | null;
+    /**
+     * Identifier. The relative resource name of the automation object, in one of the following supported formats: ``` projects/{project_number\}/services/{service_id\}/automations/{automation_id\} projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\}/automations/{automation_id\} ```
+     */
+    name?: string | null;
+    /**
+     * Output only. The original creator of this automation object.
+     */
+    origin?: string | null;
+    /**
+     * Output only. The state that this automation object is currently in.
+     */
+    state?: string | null;
+    /**
+     * A condition that is satisfied if the current time is greater than or equal to the specified timestamp.
+     */
+    triggerTime?: string | null;
+    /**
+     * Output only. Timestamp at which this automation object was most recently updated, either by the system or by the user. If this automation has already been executed, this field indicates the exact timestamp at which it was executed.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Response message for the BatchGetAppAttestConfigs method.
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaBatchGetAppAttestConfigsResponse {
@@ -511,6 +544,19 @@ export namespace firebaseappcheck_v1beta {
      * Optional. Specifies the desired `jti` claim (Section 4.1.7 of RFC 7519) in the returned App Check token. Limited-use App Check tokens with the same `jti` will be counted as the same token for the purposes of replay protection. The size of this field is limited to 250 bytes. If specified, its length must be at least 16 bytes. If this field is omitted or is empty, a randomly generated `jti` claim with length between 16 and 250 bytes (inclusive) will be used in the returned App Check token. Leaving this field empty is only recommended if your custom attestation provider itself is not vulnerable to replay attacks.
      */
     jti?: string | null;
+  }
+  /**
+   * Response message for the ListAutomations method.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse {
+    /**
+     * The Automations retrieved.
+     */
+    automations?: Schema$GoogleFirebaseAppcheckV1betaAutomation[];
+    /**
+     * If the result list is too large to fit in a single response, then a token is returned. If the string is empty or omitted, then this response is the last page of results. This token can be used in a subsequent call to ListAutomations to find the next group of Automations. Page tokens are short-lived and should not be persisted.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Response message for the ListDebugTokens method.
@@ -7889,9 +7935,13 @@ export namespace firebaseappcheck_v1beta {
 
   export class Resource$Projects$Services {
     context: APIRequestContext;
+    automations: Resource$Projects$Services$Automations;
     resourcePolicies: Resource$Projects$Services$Resourcepolicies;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.automations = new Resource$Projects$Services$Automations(
+        this.context
+      );
       this.resourcePolicies = new Resource$Projects$Services$Resourcepolicies(
         this.context
       );
@@ -8579,10 +8629,538 @@ export namespace firebaseappcheck_v1beta {
     requestBody?: Schema$GoogleFirebaseAppcheckV1betaService;
   }
 
-  export class Resource$Projects$Services$Resourcepolicies {
+  export class Resource$Projects$Services$Automations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Gets the specified Automation configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappcheck = google.firebaseappcheck('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappcheck.projects.services.automations.get({
+     *     // Required. The relative resource name of the Automation to retrieve, in one of the following supported formats: ``` projects/{project_number\}/services/{service_id\}/automations/{automation_id\} projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\}/automations/{automation_id\} ```
+     *     name: 'projects/my-project/services/my-service/automations/my-automation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "origin": "my_origin",
+     *   //   "state": "my_state",
+     *   //   "triggerTime": "my_triggerTime",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Services$Automations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Services$Automations$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+    >;
+    get(
+      params: Params$Resource$Projects$Services$Automations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Services$Automations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Services$Automations$Get,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Services$Automations$Get
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Services$Automations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Services$Automations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAutomation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAutomation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all Automations for the specified service or resource policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappcheck = google.firebaseappcheck('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappcheck.projects.services.automations.list({
+     *     // The maximum number of Automations to return in the response. Note that a service or resource policy can have at most 10 automations. The server may return fewer than this at its own discretion. If no value is specified (or too large a value is specified), the server will impose its own limit.
+     *     pageSize: 'placeholder-value',
+     *     // Token returned from a previous call to ListAutomations indicating where in the set of Automations to resume listing. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAutomations must match the call that provided the page token; if they do not match, the result is undefined.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The relative resource name of the parent service or resource policy for which to list each associated Automation, in one of the following formats: ``` projects/{project_number\}/services/{service_id\} projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ```
+     *     parent: 'projects/my-project/services/my-service',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "automations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Services$Automations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Services$Automations$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Services$Automations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Services$Automations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Services$Automations$List,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Services$Automations$List
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Services$Automations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Services$Automations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/automations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the specified Automation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappcheck = google.firebaseappcheck('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappcheck.projects.services.automations.patch({
+     *     // Identifier. The relative resource name of the automation object, in one of the following supported formats: ``` projects/{project_number\}/services/{service_id\}/automations/{automation_id\} projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\}/automations/{automation_id\} ```
+     *     name: 'projects/my-project/services/my-service/automations/my-automation',
+     *     // Required. A comma-separated list of names of fields in the Automation to update. Example: `timestamp_condition.enforce_time`.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "origin": "my_origin",
+     *       //   "state": "my_state",
+     *       //   "triggerTime": "my_triggerTime",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "origin": "my_origin",
+     *   //   "state": "my_state",
+     *   //   "triggerTime": "my_triggerTime",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Services$Automations$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Services$Automations$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+    >;
+    patch(
+      params: Params$Resource$Projects$Services$Automations$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Services$Automations$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Services$Automations$Patch,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Services$Automations$Patch
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Services$Automations$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Services$Automations$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAutomation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAutomation>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Services$Automations$Get extends StandardParameters {
+    /**
+     * Required. The relative resource name of the Automation to retrieve, in one of the following supported formats: ``` projects/{project_number\}/services/{service_id\}/automations/{automation_id\} projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\}/automations/{automation_id\} ```
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Services$Automations$List extends StandardParameters {
+    /**
+     * The maximum number of Automations to return in the response. Note that a service or resource policy can have at most 10 automations. The server may return fewer than this at its own discretion. If no value is specified (or too large a value is specified), the server will impose its own limit.
+     */
+    pageSize?: number;
+    /**
+     * Token returned from a previous call to ListAutomations indicating where in the set of Automations to resume listing. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAutomations must match the call that provided the page token; if they do not match, the result is undefined.
+     */
+    pageToken?: string;
+    /**
+     * Required. The relative resource name of the parent service or resource policy for which to list each associated Automation, in one of the following formats: ``` projects/{project_number\}/services/{service_id\} projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ```
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Services$Automations$Patch extends StandardParameters {
+    /**
+     * Identifier. The relative resource name of the automation object, in one of the following supported formats: ``` projects/{project_number\}/services/{service_id\}/automations/{automation_id\} projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\}/automations/{automation_id\} ```
+     */
+    name?: string;
+    /**
+     * Required. A comma-separated list of names of fields in the Automation to update. Example: `timestamp_condition.enforce_time`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirebaseAppcheckV1betaAutomation;
+  }
+
+  export class Resource$Projects$Services$Resourcepolicies {
+    context: APIRequestContext;
+    automations: Resource$Projects$Services$Resourcepolicies$Automations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.automations =
+        new Resource$Projects$Services$Resourcepolicies$Automations(
+          this.context
+        );
     }
 
     /**
@@ -9600,5 +10178,537 @@ export namespace firebaseappcheck_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1betaResourcePolicy;
+  }
+
+  export class Resource$Projects$Services$Resourcepolicies$Automations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the specified Automation configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappcheck = google.firebaseappcheck('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebaseappcheck.projects.services.resourcePolicies.automations.get({
+     *       // Required. The relative resource name of the Automation to retrieve, in one of the following supported formats: ``` projects/{project_number\}/services/{service_id\}/automations/{automation_id\} projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\}/automations/{automation_id\} ```
+     *       name: 'projects/my-project/services/my-service/resourcePolicies/my-resourcePolicie/automations/my-automation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "origin": "my_origin",
+     *   //   "state": "my_state",
+     *   //   "triggerTime": "my_triggerTime",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Automations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Services$Resourcepolicies$Automations$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+    >;
+    get(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Automations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Automations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Automations$Get,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Services$Resourcepolicies$Automations$Get
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Services$Resourcepolicies$Automations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Services$Resourcepolicies$Automations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAutomation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAutomation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all Automations for the specified service or resource policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappcheck = google.firebaseappcheck('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebaseappcheck.projects.services.resourcePolicies.automations.list({
+     *       // The maximum number of Automations to return in the response. Note that a service or resource policy can have at most 10 automations. The server may return fewer than this at its own discretion. If no value is specified (or too large a value is specified), the server will impose its own limit.
+     *       pageSize: 'placeholder-value',
+     *       // Token returned from a previous call to ListAutomations indicating where in the set of Automations to resume listing. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAutomations must match the call that provided the page token; if they do not match, the result is undefined.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The relative resource name of the parent service or resource policy for which to list each associated Automation, in one of the following formats: ``` projects/{project_number\}/services/{service_id\} projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ```
+     *       parent:
+     *         'projects/my-project/services/my-service/resourcePolicies/my-resourcePolicie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "automations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Automations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Services$Resourcepolicies$Automations$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Automations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Automations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Automations$List,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Services$Resourcepolicies$Automations$List
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Services$Resourcepolicies$Automations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Services$Resourcepolicies$Automations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/automations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaListAutomationsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the specified Automation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappcheck = google.firebaseappcheck('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebaseappcheck.projects.services.resourcePolicies.automations.patch(
+     *       {
+     *         // Identifier. The relative resource name of the automation object, in one of the following supported formats: ``` projects/{project_number\}/services/{service_id\}/automations/{automation_id\} projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\}/automations/{automation_id\} ```
+     *         name: 'projects/my-project/services/my-service/resourcePolicies/my-resourcePolicie/automations/my-automation',
+     *         // Required. A comma-separated list of names of fields in the Automation to update. Example: `timestamp_condition.enforce_time`.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "createTime": "my_createTime",
+     *           //   "etag": "my_etag",
+     *           //   "name": "my_name",
+     *           //   "origin": "my_origin",
+     *           //   "state": "my_state",
+     *           //   "triggerTime": "my_triggerTime",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "origin": "my_origin",
+     *   //   "state": "my_state",
+     *   //   "triggerTime": "my_triggerTime",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Automations$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Services$Resourcepolicies$Automations$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+    >;
+    patch(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Automations$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Automations$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Services$Resourcepolicies$Automations$Patch,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Services$Resourcepolicies$Automations$Patch
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1betaAutomation>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Services$Resourcepolicies$Automations$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Services$Resourcepolicies$Automations$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAutomation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAutomation>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Services$Resourcepolicies$Automations$Get extends StandardParameters {
+    /**
+     * Required. The relative resource name of the Automation to retrieve, in one of the following supported formats: ``` projects/{project_number\}/services/{service_id\}/automations/{automation_id\} projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\}/automations/{automation_id\} ```
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Services$Resourcepolicies$Automations$List extends StandardParameters {
+    /**
+     * The maximum number of Automations to return in the response. Note that a service or resource policy can have at most 10 automations. The server may return fewer than this at its own discretion. If no value is specified (or too large a value is specified), the server will impose its own limit.
+     */
+    pageSize?: number;
+    /**
+     * Token returned from a previous call to ListAutomations indicating where in the set of Automations to resume listing. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAutomations must match the call that provided the page token; if they do not match, the result is undefined.
+     */
+    pageToken?: string;
+    /**
+     * Required. The relative resource name of the parent service or resource policy for which to list each associated Automation, in one of the following formats: ``` projects/{project_number\}/services/{service_id\} projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ```
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Services$Resourcepolicies$Automations$Patch extends StandardParameters {
+    /**
+     * Identifier. The relative resource name of the automation object, in one of the following supported formats: ``` projects/{project_number\}/services/{service_id\}/automations/{automation_id\} projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\}/automations/{automation_id\} ```
+     */
+    name?: string;
+    /**
+     * Required. A comma-separated list of names of fields in the Automation to update. Example: `timestamp_condition.enforce_time`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirebaseAppcheckV1betaAutomation;
   }
 }
