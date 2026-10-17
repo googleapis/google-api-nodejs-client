@@ -2152,6 +2152,10 @@ export namespace networksecurity_v1beta1 {
      */
     clientValidationMode?: string | null;
     /**
+     * A list of validation relaxations to apply when `client_validation_mode` is set to ALLOW_VALIDATION_RELAXATIONS.
+     */
+    clientValidationRelaxations?: string[] | null;
+    /**
      * Reference to the TrustConfig from certificatemanager.googleapis.com namespace. If specified, the chain validation will be performed against certificates configured in the given TrustConfig. Allowed only if the policy is to be used with Application Load Balancers.
      */
     clientValidationTrustConfig?: string | null;
