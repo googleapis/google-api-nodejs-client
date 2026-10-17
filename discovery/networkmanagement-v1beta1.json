@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20260930",
+  "revision": "20261007",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1591,11 +1591,6 @@
         },
         "uri": {
           "description": "A [Cloud Run](https://cloud.google.com/run) [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get) URI. The format is: projects/{project}/locations/{location}/revisions/{revision}",
-          "type": "string"
-        },
-        "workerPoolUri": {
-          "description": "Output only. The URI of the worker pool that the revision belongs to. The format is: projects/{project}/locations/{location}/workerPools/{workerPool}. Mutually exclusive with service_uri.",
-          "readOnly": true,
           "type": "string"
         }
       },

@@ -283,10 +283,6 @@ export namespace networkmanagement_v1 {
      * A [Cloud Run](https://cloud.google.com/run) [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get) URI. The format is: projects/{project\}/locations/{location\}/revisions/{revision\}
      */
     uri?: string | null;
-    /**
-     * Output only. The URI of the worker pool that the revision belongs to. The format is: projects/{project\}/locations/{location\}/workerPools/{workerPool\}. Mutually exclusive with service_uri.
-     */
-    workerPoolUri?: string | null;
   }
   /**
    * For display only. Metadata associated with a Cloud Run revision.
