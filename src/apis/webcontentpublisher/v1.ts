@@ -129,6 +129,27 @@ export namespace webcontentpublisher_v1 {
   }
 
   /**
+   * A predefined answer choice template for a catalog question.
+   */
+  export interface Schema$AnswerChoiceTemplate {
+    /**
+     * Output only. Category of the answer based on the IAB Audience Taxonomy.
+     */
+    category?: string | null;
+    /**
+     * Output only. Text label used for aggregating responses by category in analytics.
+     */
+    categoryLabel?: string | null;
+    /**
+     * Output only. Localized answer choice text displayed to readers.
+     */
+    displayText?: string | null;
+    /**
+     * Output only. Unique identifier of the answer choice within the question.
+     */
+    id?: number | null;
+  }
+  /**
    * Response message for CheckFreeAccess
    */
   export interface Schema$CheckFreeAccessResponse {
@@ -171,9 +192,43 @@ export namespace webcontentpublisher_v1 {
      */
     state?: string | null;
     /**
+     * Optional. Configuration specific to survey CTAs. Only populated if type is `SURVEY`.
+     */
+    surveyConfig?: Schema$SurveyConfig;
+    /**
      * Required. The type of this CTA.
      */
     type?: string | null;
+  }
+  /**
+   * An answer choice for a custom survey question.
+   */
+  export interface Schema$CustomAnswerChoice {
+    /**
+     * Required. The display text of the answer choice shown to readers.
+     */
+    displayText?: string | null;
+  }
+  /**
+   * A custom question defined by the publisher.
+   */
+  export interface Schema$CustomQuestion {
+    /**
+     * Required. Ordered list of answer choices for the custom question (2-5 items).
+     */
+    answerChoices?: Schema$CustomAnswerChoice[];
+    /**
+     * Optional. Reporting category label sent to Google Analytics (up to 100 characters).
+     */
+    categoryLabel?: string | null;
+    /**
+     * Required. The question prompt displayed to readers.
+     */
+    displayText?: string | null;
+    /**
+     * Output only. Server-assigned unique identifier for the custom question.
+     */
+    id?: string | null;
   }
   /**
    * Represents a domain property associated with a publication, typically used to verify ownership and scope access.
@@ -253,6 +308,19 @@ export namespace webcontentpublisher_v1 {
     title?: string | null;
   }
   /**
+   * A preset question referencing a template in the survey question catalog.
+   */
+  export interface Schema$PresetQuestion {
+    /**
+     * Optional. Selected answer choice IDs from the question template. Required (2-5 unique IDs) when the catalog question is `CONFIGURABLE_CHOICES`, and must be omitted for `FIXED_CHOICES`.
+     */
+    answerIds?: number[] | null;
+    /**
+     * Required. ID of the question template from `SurveyQuestionCatalog`.
+     */
+    questionId?: number | null;
+  }
+  /**
    * Represents a publisher's publication in Reader Revenue Manager.
    */
   export interface Schema$Publication {
@@ -326,6 +394,35 @@ export namespace webcontentpublisher_v1 {
     slProduct?: Schema$SlProduct;
   }
   /**
+   * A predefined question template in the survey question catalog.
+   */
+  export interface Schema$QuestionTemplate {
+    /**
+     * Output only. Possible answer choices for this question.
+     */
+    answerChoices?: Schema$AnswerChoiceTemplate[];
+    /**
+     * Output only. Category of the question based on the IAB Audience Taxonomy.
+     */
+    category?: string | null;
+    /**
+     * Output only. Text label used for aggregating responses by category in analytics.
+     */
+    categoryLabel?: string | null;
+    /**
+     * Output only. The type of answer choice configuration for this question.
+     */
+    configurationType?: string | null;
+    /**
+     * Output only. Localized question text displayed to readers.
+     */
+    displayText?: string | null;
+    /**
+     * Output only. Unique identifier of the question template.
+     */
+    id?: number | null;
+  }
+  /**
    * Configuration and status of the Reader Revenue Manager (RRM) product for a publication.
    */
   export interface Schema$RrmProduct {
@@ -367,6 +464,45 @@ export namespace webcontentpublisher_v1 {
      * Optional. The Google Cloud Project number associated with the publication.
      */
     gcpProjectNumber?: string | null;
+  }
+  /**
+   * Configuration for survey calls-to-action (CTAs).
+   */
+  export interface Schema$SurveyConfig {
+    /**
+     * Optional. Header prompt shown to readers. If omitted, the server populates the default prompt localized to the parent publication's configured primary language.
+     */
+    customMessage?: string | null;
+    /**
+     * Optional. Ordered list of questions presented in the survey (1-3 items when `ACTIVE`; 0-3 when `DRAFT`).
+     */
+    questions?: Schema$SurveyQuestion[];
+  }
+  /**
+   * A single question within a survey, which can be either a preset question from the catalog or a custom publisher-defined question.
+   */
+  export interface Schema$SurveyQuestion {
+    /**
+     * Optional. A custom question defined by the publisher.
+     */
+    customQuestion?: Schema$CustomQuestion;
+    /**
+     * Optional. A question selected from the preset question catalog.
+     */
+    presetQuestion?: Schema$PresetQuestion;
+  }
+  /**
+   * Represents the catalog of predefined survey questions and localized answer choices available for a publication.
+   */
+  export interface Schema$SurveyQuestionCatalog {
+    /**
+     * Identifier. The resource name of the survey question catalog. Format: `organizations/{organization\}/publications/{publication\}/surveyQuestionCatalog`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The list of available predefined question templates.
+     */
+    questions?: Schema$QuestionTemplate[];
   }
   /**
    * Details about the acceptance of the Terms of Service (TOS).
@@ -735,6 +871,153 @@ export namespace webcontentpublisher_v1 {
     }
 
     /**
+     * Retrieves the catalog of predefined survey questions and answer choices available for a publication.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/webcontentpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const webcontentpublisher = google.webcontentpublisher('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await webcontentpublisher.organizations.publications.getSurveyQuestionCatalog(
+     *       {
+     *         // Optional. The BCP-47 language code (e.g., "en-US", "es-419") to override the publication's configured primary language.
+     *         languageCode: 'placeholder-value',
+     *         // Required. The resource name of the survey question catalog to retrieve. Format: `organizations/{organization\}/publications/{publication\}/surveyQuestionCatalog`.
+     *         name: 'organizations/my-organization/publications/my-publication/surveyQuestionCatalog',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "questions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getSurveyQuestionCatalog(
+      params: Params$Resource$Organizations$Publications$Getsurveyquestioncatalog,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getSurveyQuestionCatalog(
+      params?: Params$Resource$Organizations$Publications$Getsurveyquestioncatalog,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SurveyQuestionCatalog>>;
+    getSurveyQuestionCatalog(
+      params: Params$Resource$Organizations$Publications$Getsurveyquestioncatalog,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getSurveyQuestionCatalog(
+      params: Params$Resource$Organizations$Publications$Getsurveyquestioncatalog,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$SurveyQuestionCatalog>,
+      callback: BodyResponseCallback<Schema$SurveyQuestionCatalog>
+    ): void;
+    getSurveyQuestionCatalog(
+      params: Params$Resource$Organizations$Publications$Getsurveyquestioncatalog,
+      callback: BodyResponseCallback<Schema$SurveyQuestionCatalog>
+    ): void;
+    getSurveyQuestionCatalog(
+      callback: BodyResponseCallback<Schema$SurveyQuestionCatalog>
+    ): void;
+    getSurveyQuestionCatalog(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Publications$Getsurveyquestioncatalog
+        | BodyResponseCallback<Schema$SurveyQuestionCatalog>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SurveyQuestionCatalog>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SurveyQuestionCatalog>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SurveyQuestionCatalog>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Publications$Getsurveyquestioncatalog;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Publications$Getsurveyquestioncatalog;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://webcontentpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SurveyQuestionCatalog>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SurveyQuestionCatalog>(parameters);
+      }
+    }
+
+    /**
      * Lists publications.
      * @example
      * ```js
@@ -1083,6 +1366,16 @@ export namespace webcontentpublisher_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Organizations$Publications$Getsurveyquestioncatalog extends StandardParameters {
+    /**
+     * Optional. The BCP-47 language code (e.g., "en-US", "es-419") to override the publication's configured primary language.
+     */
+    languageCode?: string;
+    /**
+     * Required. The resource name of the survey question catalog to retrieve. Format: `organizations/{organization\}/publications/{publication\}/surveyQuestionCatalog`.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Organizations$Publications$List extends StandardParameters {
     /**
      * Optional. A filter expression to filter the publications returned.
@@ -1169,6 +1462,7 @@ export namespace webcontentpublisher_v1 {
      *       //   "name": "my_name",
      *       //   "newsletterConfig": {},
      *       //   "state": "my_state",
+     *       //   "surveyConfig": {},
      *       //   "type": "my_type"
      *       // }
      *     },
@@ -1181,6 +1475,7 @@ export namespace webcontentpublisher_v1 {
      *   //   "name": "my_name",
      *   //   "newsletterConfig": {},
      *   //   "state": "my_state",
+     *   //   "surveyConfig": {},
      *   //   "type": "my_type"
      *   // }
      * }
@@ -1321,6 +1616,7 @@ export namespace webcontentpublisher_v1 {
      *   //   "name": "my_name",
      *   //   "newsletterConfig": {},
      *   //   "state": "my_state",
+     *   //   "surveyConfig": {},
      *   //   "type": "my_type"
      *   // }
      * }
@@ -1605,6 +1901,7 @@ export namespace webcontentpublisher_v1 {
      *       //   "name": "my_name",
      *       //   "newsletterConfig": {},
      *       //   "state": "my_state",
+     *       //   "surveyConfig": {},
      *       //   "type": "my_type"
      *       // }
      *     },
@@ -1617,6 +1914,7 @@ export namespace webcontentpublisher_v1 {
      *   //   "name": "my_name",
      *   //   "newsletterConfig": {},
      *   //   "state": "my_state",
+     *   //   "surveyConfig": {},
      *   //   "type": "my_type"
      *   // }
      * }
