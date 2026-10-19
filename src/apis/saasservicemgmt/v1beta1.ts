@@ -210,7 +210,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     component?: string | null;
     /**
-     * Reference to the Composite ApplicationTemplate.
+     * Optional. Reference to the Composite ApplicationTemplate.
      */
     compositeRef?: Schema$CompositeRef;
     /**
@@ -316,9 +316,17 @@ export namespace saasservicemgmt_v1beta1 {
      */
     attributes?: string[] | null;
     /**
+     * Optional. The ID of an allocation to use as the default.
+     */
+    defaultAllocation?: string | null;
+    /**
      * Optional. Deprecated: Use `base_target` instead. Default variant or allocation of the flag.
      */
     defaultTarget?: string | null;
+    /**
+     * Optional. The name of a variant to use as the default.
+     */
+    defaultVariant?: string | null;
     /**
      * Optional. Evaluation rules define the logic for evaluating the flag against a given context. The rules are evaluated sequentially in their specified order.
      */
@@ -349,7 +357,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     etag?: string | null;
     /**
-     * Optional. Specification of how the flag value should be evaluated. If a bool flag is created without an evaluation_spec specified, two default variants, "Enabled" (with bool_value = true) and "Disabled" (with bool_value = false), are created by default, and "Disabled" is set as the default_target.
+     * Optional. Specification of how the flag value should be evaluated. If a bool flag is created without an evaluation_spec specified, two default variants, "Enabled" (with boolean_value = true) and "Disabled" (with boolean_value = false), are created by default, and "Disabled" is set as the default_variant.
      */
     evaluationSpec?: Schema$EvaluationSpec;
     /**
@@ -1069,7 +1077,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     etag?: string | null;
     /**
-     * Optional. Immutable. Name of the FlagRelease to be rolled out to the target Units. Release and FlagRelease are mutually exclusive. Note: `release` comment needs to be adjusted to mention that "Release and FlagRelease are mutually exclusive" when visibility restriction will be lifted.
+     * Optional. Immutable. Name of the FlagRelease to be rolled out to the target Units. Release and FlagRelease are mutually exclusive.
      */
     flagRelease?: string | null;
     /**
@@ -1234,7 +1242,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * Reference to composite ApplicationTemplate. When specified, the template components will be imported into their equivalent UnitKind, Release and Blueprint resources. Deleted references will not delete imported resources. Should only be specified on source regions, and be unspecified on replica regions.
+     * Optional. Reference to composite ApplicationTemplate. When specified, the template components will be imported into their equivalent UnitKind, Release and Blueprint resources. Deleted references will not delete imported resources. Should only be specified on source regions, and be unspecified on replica regions.
      */
     applicationTemplate?: Schema$CompositeRef;
     /**
