@@ -215,9 +215,17 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$AutomatedBackupPolicy {
     /**
+     * Optional. If `true`, automated backups are explicitly disabled on this table. This allows users to opt out of default enablement.
+     */
+    disabled?: boolean | null;
+    /**
      * How frequently automated backups should occur. The only supported value at this time is 24 hours. An undefined frequency is treated as 24 hours.
      */
     frequency?: string | null;
+    /**
+     * Optional. The amount of time that the automated backups remain hot. If specified, the backups created by this policy are `HOT` backups. If not specified, the backups are `STANDARD` backups. The value must be at least 24 hours and at most 10 days, and can't exceed the policy's `retention_period`. Only SSD instances support `HOT` automated backups.
+     */
+    keepHotDuration?: string | null;
     /**
      * Optional. A list of Cloud Bigtable zones where automated backups are allowed to be created. If empty, automated backups will be created in all zones of the instance. Locations are in the format `projects/{project\}/locations/{zone\}`. You can set this field only for tables in Enterprise Plus instances.
      */
@@ -1900,9 +1908,17 @@ export namespace bigtableadmin_v2 {
      */
     backup?: string | null;
     /**
+     * Optional. Properties of the table to be restored. Only the fields specified in update_mask will be used to set the restored table's properties.
+     */
+    table?: Schema$Table;
+    /**
      * Required. The id of the table to create and restore to. This table must not already exist. The `table_id` appended to `parent` forms the full table name of the form `projects//instances//tables/`.
      */
     tableId?: string | null;
+    /**
+     * Optional. The list of fields to set on the new table. A mask specifying which fields (e.g. `deletion_protection`) in the `table` field should be set. This mask is relative to the `table` field, not to the request message. The wildcard (*) path is currently not supported. Currently RestoreTable only supports the following fields for modification: * `deletion_protection`: Defaults to `false` if not set. * `automated_backup_policy`: Defaults to no automated backup policy if not set. Output-only fields in the mask will be ignored. If any other field not listed above is included in `update_mask`, it will result in an INVALID_ARGUMENT error.
+     */
+    updateMask?: string | null;
   }
   /**
    * If enabled, Bigtable will route the request based on the row key of the request, rather than randomly. Instead, each row key will be assigned to a cluster, and will stick to that cluster. If clusters are added or removed, then this may affect which row keys stick to which clusters. To avoid this, users can use a cluster group to specify which clusters are to be used. In this case, new clusters that are not a part of the cluster group will not be routed to, and routing will be unaffected by the new cluster. Moreover, clusters specified in the cluster group cannot be deleted unless removed from the cluster group.
@@ -2022,6 +2038,10 @@ export namespace bigtableadmin_v2 {
      * Set to true to make the table protected against data loss. i.e. deleting the following resources through Admin APIs are prohibited: * The table. * The column families in the table. * The instance containing the table. Note one can still delete the data stored in the table through Data APIs.
      */
     deletionProtection?: boolean | null;
+    /**
+     * Output only. The effective automated backup policy applied to the table. This represents the policy actually in effect, which may be a system-default policy if the user has not explicitly configured one. Views: `SCHEMA_VIEW`, `FULL`.
+     */
+    effectiveAutomatedBackupPolicy?: Schema$AutomatedBackupPolicy;
     /**
      * Immutable. The granularity at which timestamps are stored in this table. Timestamps not matching the granularity will be rejected. If unspecified at creation time, the value will be set to `MILLIS`. Views: `SCHEMA_VIEW`, `FULL`.
      */
@@ -11307,6 +11327,7 @@ export namespace bigtableadmin_v2 {
      *   //   "clusterStates": {},
      *   //   "columnFamilies": {},
      *   //   "deletionProtection": false,
+     *   //   "effectiveAutomatedBackupPolicy": {},
      *   //   "granularity": "my_granularity",
      *   //   "name": "my_name",
      *   //   "restoreInfo": {},
@@ -11913,6 +11934,7 @@ export namespace bigtableadmin_v2 {
      *   //   "clusterStates": {},
      *   //   "columnFamilies": {},
      *   //   "deletionProtection": false,
+     *   //   "effectiveAutomatedBackupPolicy": {},
      *   //   "granularity": "my_granularity",
      *   //   "name": "my_name",
      *   //   "restoreInfo": {},
@@ -12379,6 +12401,7 @@ export namespace bigtableadmin_v2 {
      *   //   "clusterStates": {},
      *   //   "columnFamilies": {},
      *   //   "deletionProtection": false,
+     *   //   "effectiveAutomatedBackupPolicy": {},
      *   //   "granularity": "my_granularity",
      *   //   "name": "my_name",
      *   //   "restoreInfo": {},
@@ -12537,6 +12560,7 @@ export namespace bigtableadmin_v2 {
      *       //   "clusterStates": {},
      *       //   "columnFamilies": {},
      *       //   "deletionProtection": false,
+     *       //   "effectiveAutomatedBackupPolicy": {},
      *       //   "granularity": "my_granularity",
      *       //   "name": "my_name",
      *       //   "restoreInfo": {},
@@ -12695,7 +12719,9 @@ export namespace bigtableadmin_v2 {
      *       // request body parameters
      *       // {
      *       //   "backup": "my_backup",
-     *       //   "tableId": "my_tableId"
+     *       //   "table": {},
+     *       //   "tableId": "my_tableId",
+     *       //   "updateMask": "my_updateMask"
      *       // }
      *     },
      *   });

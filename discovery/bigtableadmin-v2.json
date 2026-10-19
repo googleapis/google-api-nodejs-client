@@ -3238,7 +3238,7 @@
       }
     }
   },
-  "revision": "20260913",
+  "revision": "20261007",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -3368,8 +3368,17 @@
       "description": "Defines an automated backup policy for a table",
       "id": "AutomatedBackupPolicy",
       "properties": {
+        "disabled": {
+          "description": "Optional. If `true`, automated backups are explicitly disabled on this table. This allows users to opt out of default enablement.",
+          "type": "boolean"
+        },
         "frequency": {
           "description": "How frequently automated backups should occur. The only supported value at this time is 24 hours. An undefined frequency is treated as 24 hours.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "keepHotDuration": {
+          "description": "Optional. The amount of time that the automated backups remain hot. If specified, the backups created by this policy are `HOT` backups. If not specified, the backups are `STANDARD` backups. The value must be at least 24 hours and at most 10 days, and can't exceed the policy's `retention_period`. Only SSD instances support `HOT` automated backups.",
           "format": "google-duration",
           "type": "string"
         },
@@ -5685,8 +5694,17 @@
           "description": "Name of the backup from which to restore. Values are of the form `projects//instances//clusters//backups/`.",
           "type": "string"
         },
+        "table": {
+          "$ref": "Table",
+          "description": "Optional. Properties of the table to be restored. Only the fields specified in update_mask will be used to set the restored table's properties."
+        },
         "tableId": {
           "description": "Required. The id of the table to create and restore to. This table must not already exist. The `table_id` appended to `parent` forms the full table name of the form `projects//instances//tables/`.",
+          "type": "string"
+        },
+        "updateMask": {
+          "description": "Optional. The list of fields to set on the new table. A mask specifying which fields (e.g. `deletion_protection`) in the `table` field should be set. This mask is relative to the `table` field, not to the request message. The wildcard (*) path is currently not supported. Currently RestoreTable only supports the following fields for modification: * `deletion_protection`: Defaults to `false` if not set. * `automated_backup_policy`: Defaults to no automated backup policy if not set. Output-only fields in the mask will be ignored. If any other field not listed above is included in `update_mask`, it will result in an INVALID_ARGUMENT error.",
+          "format": "google-fieldmask",
           "type": "string"
         }
       },
@@ -5854,6 +5872,11 @@
         "deletionProtection": {
           "description": "Set to true to make the table protected against data loss. i.e. deleting the following resources through Admin APIs are prohibited: * The table. * The column families in the table. * The instance containing the table. Note one can still delete the data stored in the table through Data APIs.",
           "type": "boolean"
+        },
+        "effectiveAutomatedBackupPolicy": {
+          "$ref": "AutomatedBackupPolicy",
+          "description": "Output only. The effective automated backup policy applied to the table. This represents the policy actually in effect, which may be a system-default policy if the user has not explicitly configured one. Views: `SCHEMA_VIEW`, `FULL`.",
+          "readOnly": true
         },
         "granularity": {
           "description": "Immutable. The granularity at which timestamps are stored in this table. Timestamps not matching the granularity will be rejected. If unspecified at creation time, the value will be set to `MILLIS`. Views: `SCHEMA_VIEW`, `FULL`.",
