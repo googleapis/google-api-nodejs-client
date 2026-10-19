@@ -8584,7 +8584,7 @@
       }
     }
   },
-  "revision": "20260929",
+  "revision": "20261015",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -19123,6 +19123,9 @@
           "format": "google-duration",
           "type": "string"
         },
+        "disableInterimInputTranscripts": {
+          "type": "boolean"
+        },
         "disableNoSpeechRecognizedEvent": {
           "type": "boolean"
         },
@@ -22385,6 +22388,9 @@
           ],
           "type": "string"
         },
+        "disableInterimInputTranscripts": {
+          "type": "boolean"
+        },
         "enableWordInfo": {
           "type": "boolean"
         },
@@ -22445,9 +22451,6 @@
             "",
             ""
           ],
-          "type": "string"
-        },
-        "modelId": {
           "type": "string"
         },
         "prefixPaddingMs": {
