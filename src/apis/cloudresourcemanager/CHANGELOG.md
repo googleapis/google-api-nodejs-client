@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudresourcemanager-v11.1.0...cloudresourcemanager-v11.2.0) (2026-10-19)
+
+
+### Features
+
+* **cloudresourcemanager:** update the API ([4daa55f](https://github.com/googleapis/google-api-nodejs-client/commit/4daa55f76eb17d33341cdfa92f7670d826f00f67))
+
 ## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudresourcemanager-v11.0.0...cloudresourcemanager-v11.1.0) (2026-09-23)
 
 
