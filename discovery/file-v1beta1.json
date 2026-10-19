@@ -1886,7 +1886,7 @@
       }
     }
   },
-  "revision": "20260927",
+  "revision": "20261006",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "AcquireShareRequest": {
@@ -2087,6 +2087,10 @@
         "quota": {
           "description": "Optional. The limit for how much data can be written to this volume, in MiB.",
           "format": "int64",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Optional. A unique ID used to identify the request, so retries are idempotent. Must be a valid UUID4; the zero UUID (`00000000-0000-0000-0000-000000000000`) is not supported.",
           "type": "string"
         },
         "volumeId": {
@@ -3529,7 +3533,7 @@
       "id": "RestoreConfig",
       "properties": {
         "pathPatterns": {
-          "description": "Optional. Example: If you want to restore `/mnt/share/dir1/file.txt`, the path pattern must be `/dir1/file.txt`. If you want to restore `/mnt/share/dir1/`, the path pattern must be `/dir1`. Currently only single path is supported, Glob patterns are not supported.",
+          "description": "Optional. A collection of paths/patterns to restore from the backup. If empty, a full restore is performed. A valid path is relative to the file share's mount point and must not include a trailing slash. The path must start with a leading `/`. Example: If you want to restore `/mnt/share/dir1/file.txt`, the path pattern must be `/dir1/file.txt`. If you want to restore `/mnt/share/dir1/`, the path pattern must be `/dir1`. Currently only single path is supported, Glob patterns are not supported.",
           "items": {
             "type": "string"
           },
@@ -3813,6 +3817,10 @@
         "quota": {
           "description": "Optional. The limit for how much data can be written to this volume, in MiB.",
           "format": "int64",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Optional. A unique ID used to identify the request, so retries are idempotent. Must be a valid UUID4; the zero UUID (`00000000-0000-0000-0000-000000000000`) is not supported.",
           "type": "string"
         }
       },
