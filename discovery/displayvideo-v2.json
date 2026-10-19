@@ -1915,7 +1915,6 @@
                             "TARGETING_TYPE_ON_SCREEN_POSITION",
                             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                             "TARGETING_TYPE_ENVIRONMENT",
                             "TARGETING_TYPE_CARRIER_AND_ISP",
                             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -1966,7 +1965,6 @@
                             "Target ads in a specific on screen position.",
                             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-                            "Filter website content by sensitive categories (for example, adult).",
                             "Target ads to a specific environment (for example, web or app).",
                             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                             "Target ads to a specific operating system (for example, macOS).",
@@ -2071,7 +2069,6 @@
                             "TARGETING_TYPE_ON_SCREEN_POSITION",
                             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                             "TARGETING_TYPE_ENVIRONMENT",
                             "TARGETING_TYPE_CARRIER_AND_ISP",
                             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -2122,7 +2119,6 @@
                             "Target ads in a specific on screen position.",
                             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-                            "Filter website content by sensitive categories (for example, adult).",
                             "Target ads to a specific environment (for example, web or app).",
                             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                             "Target ads to a specific operating system (for example, macOS).",
@@ -2224,7 +2220,6 @@
                             "TARGETING_TYPE_ON_SCREEN_POSITION",
                             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                             "TARGETING_TYPE_ENVIRONMENT",
                             "TARGETING_TYPE_CARRIER_AND_ISP",
                             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -2275,7 +2270,6 @@
                             "Target ads in a specific on screen position.",
                             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-                            "Filter website content by sensitive categories (for example, adult).",
                             "Target ads to a specific environment (for example, web or app).",
                             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                             "Target ads to a specific operating system (for example, macOS).",
@@ -2390,7 +2384,6 @@
                             "TARGETING_TYPE_ON_SCREEN_POSITION",
                             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                             "TARGETING_TYPE_ENVIRONMENT",
                             "TARGETING_TYPE_CARRIER_AND_ISP",
                             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -2441,7 +2434,6 @@
                             "Target ads in a specific on screen position.",
                             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-                            "Filter website content by sensitive categories (for example, adult).",
                             "Target ads to a specific environment (for example, web or app).",
                             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                             "Target ads to a specific operating system (for example, macOS).",
@@ -3502,7 +3494,6 @@
                         "TARGETING_TYPE_ON_SCREEN_POSITION",
                         "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                         "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                         "TARGETING_TYPE_ENVIRONMENT",
                         "TARGETING_TYPE_CARRIER_AND_ISP",
                         "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -3553,7 +3544,6 @@
                         "Target ads in a specific on screen position.",
                         "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                         "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-                        "Filter website content by sensitive categories (for example, adult).",
                         "Target ads to a specific environment (for example, web or app).",
                         "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                         "Target ads to a specific operating system (for example, macOS).",
@@ -3649,7 +3639,6 @@
                         "TARGETING_TYPE_ON_SCREEN_POSITION",
                         "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                         "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                         "TARGETING_TYPE_ENVIRONMENT",
                         "TARGETING_TYPE_CARRIER_AND_ISP",
                         "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -3700,7 +3689,6 @@
                         "Target ads in a specific on screen position.",
                         "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                         "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-                        "Filter website content by sensitive categories (for example, adult).",
                         "Target ads to a specific environment (for example, web or app).",
                         "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                         "Target ads to a specific operating system (for example, macOS).",
@@ -3793,7 +3781,6 @@
                         "TARGETING_TYPE_ON_SCREEN_POSITION",
                         "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                         "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                         "TARGETING_TYPE_ENVIRONMENT",
                         "TARGETING_TYPE_CARRIER_AND_ISP",
                         "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -3844,7 +3831,6 @@
                         "Target ads in a specific on screen position.",
                         "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                         "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-                        "Filter website content by sensitive categories (for example, adult).",
                         "Target ads to a specific environment (for example, web or app).",
                         "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                         "Target ads to a specific operating system (for example, macOS).",
@@ -3950,7 +3936,6 @@
                         "TARGETING_TYPE_ON_SCREEN_POSITION",
                         "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                         "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                         "TARGETING_TYPE_ENVIRONMENT",
                         "TARGETING_TYPE_CARRIER_AND_ISP",
                         "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -4001,7 +3986,6 @@
                         "Target ads in a specific on screen position.",
                         "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                         "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-                        "Filter website content by sensitive categories (for example, adult).",
                         "Target ads to a specific environment (for example, web or app).",
                         "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                         "Target ads to a specific operating system (for example, macOS).",
@@ -4329,7 +4313,6 @@
                             "TARGETING_TYPE_ON_SCREEN_POSITION",
                             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                             "TARGETING_TYPE_ENVIRONMENT",
                             "TARGETING_TYPE_CARRIER_AND_ISP",
                             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -4380,7 +4363,6 @@
                             "Target ads in a specific on screen position.",
                             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-                            "Filter website content by sensitive categories (for example, adult).",
                             "Target ads to a specific environment (for example, web or app).",
                             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                             "Target ads to a specific operating system (for example, macOS).",
@@ -4495,7 +4477,6 @@
                             "TARGETING_TYPE_ON_SCREEN_POSITION",
                             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                             "TARGETING_TYPE_ENVIRONMENT",
                             "TARGETING_TYPE_CARRIER_AND_ISP",
                             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -4546,7 +4527,6 @@
                             "Target ads in a specific on screen position.",
                             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-                            "Filter website content by sensitive categories (for example, adult).",
                             "Target ads to a specific environment (for example, web or app).",
                             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                             "Target ads to a specific operating system (for example, macOS).",
@@ -6579,7 +6559,6 @@
                         "TARGETING_TYPE_ON_SCREEN_POSITION",
                         "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                         "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                         "TARGETING_TYPE_ENVIRONMENT",
                         "TARGETING_TYPE_CARRIER_AND_ISP",
                         "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -6630,7 +6609,6 @@
                         "Target ads in a specific on screen position.",
                         "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                         "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-                        "Filter website content by sensitive categories (for example, adult).",
                         "Target ads to a specific environment (for example, web or app).",
                         "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                         "Target ads to a specific operating system (for example, macOS).",
@@ -6726,7 +6704,6 @@
                         "TARGETING_TYPE_ON_SCREEN_POSITION",
                         "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                         "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                         "TARGETING_TYPE_ENVIRONMENT",
                         "TARGETING_TYPE_CARRIER_AND_ISP",
                         "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -6777,7 +6754,6 @@
                         "Target ads in a specific on screen position.",
                         "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                         "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-                        "Filter website content by sensitive categories (for example, adult).",
                         "Target ads to a specific environment (for example, web or app).",
                         "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                         "Target ads to a specific operating system (for example, macOS).",
@@ -6870,7 +6846,6 @@
                         "TARGETING_TYPE_ON_SCREEN_POSITION",
                         "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                         "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                         "TARGETING_TYPE_ENVIRONMENT",
                         "TARGETING_TYPE_CARRIER_AND_ISP",
                         "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -6921,7 +6896,6 @@
                         "Target ads in a specific on screen position.",
                         "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                         "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-                        "Filter website content by sensitive categories (for example, adult).",
                         "Target ads to a specific environment (for example, web or app).",
                         "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                         "Target ads to a specific operating system (for example, macOS).",
@@ -7027,7 +7001,6 @@
                         "TARGETING_TYPE_ON_SCREEN_POSITION",
                         "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                         "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                         "TARGETING_TYPE_ENVIRONMENT",
                         "TARGETING_TYPE_CARRIER_AND_ISP",
                         "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -7078,7 +7051,6 @@
                         "Target ads in a specific on screen position.",
                         "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                         "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-                        "Filter website content by sensitive categories (for example, adult).",
                         "Target ads to a specific environment (for example, web or app).",
                         "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                         "Target ads to a specific operating system (for example, macOS).",
@@ -7232,7 +7204,6 @@
                     "TARGETING_TYPE_ON_SCREEN_POSITION",
                     "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                     "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                    "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                     "TARGETING_TYPE_ENVIRONMENT",
                     "TARGETING_TYPE_CARRIER_AND_ISP",
                     "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -7283,7 +7254,6 @@
                     "Target ads in a specific on screen position.",
                     "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                     "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-                    "Filter website content by sensitive categories (for example, adult).",
                     "Target ads to a specific environment (for example, web or app).",
                     "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                     "Target ads to a specific operating system (for example, macOS).",
@@ -7386,7 +7356,6 @@
                     "TARGETING_TYPE_ON_SCREEN_POSITION",
                     "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                     "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                    "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                     "TARGETING_TYPE_ENVIRONMENT",
                     "TARGETING_TYPE_CARRIER_AND_ISP",
                     "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -7437,7 +7406,6 @@
                     "Target ads in a specific on screen position.",
                     "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                     "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-                    "Filter website content by sensitive categories (for example, adult).",
                     "Target ads to a specific environment (for example, web or app).",
                     "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                     "Target ads to a specific operating system (for example, macOS).",
@@ -7513,7 +7481,6 @@
                     "TARGETING_TYPE_ON_SCREEN_POSITION",
                     "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                     "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-                    "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                     "TARGETING_TYPE_ENVIRONMENT",
                     "TARGETING_TYPE_CARRIER_AND_ISP",
                     "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -7564,7 +7531,6 @@
                     "Target ads in a specific on screen position.",
                     "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                     "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-                    "Filter website content by sensitive categories (for example, adult).",
                     "Target ads to a specific environment (for example, web or app).",
                     "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                     "Target ads to a specific operating system (for example, macOS).",
@@ -7789,7 +7755,7 @@
       }
     }
   },
-  "revision": "20261006",
+  "revision": "20261012",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -8717,7 +8683,6 @@
             "TARGETING_TYPE_ON_SCREEN_POSITION",
             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
             "TARGETING_TYPE_ENVIRONMENT",
             "TARGETING_TYPE_CARRIER_AND_ISP",
             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -8768,7 +8733,6 @@
             "Target ads in a specific on screen position.",
             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-            "Filter website content by sensitive categories (for example, adult).",
             "Target ads to a specific environment (for example, web or app).",
             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
             "Target ads to a specific operating system (for example, macOS).",
@@ -8924,7 +8888,7 @@
           "type": "string"
         },
         "trackingUrl": {
-          "description": "The URL address loaded in the background for tracking purposes.",
+          "description": "The URL address loaded in the background for tracking purposes. In v4 and earlier, this field represents the tracking URL specified by the user manually. This can be found at userSpecifiedTrackingUrl in v5.",
           "type": "string"
         },
         "video": {
@@ -10249,7 +10213,7 @@
       "id": "CommonInStreamAttribute",
       "properties": {
         "actionButtonLabel": {
-          "description": "Optional. The text on the call-to-action button.",
+          "description": "Optional. The text on the call-to-action button. Must be set if actionHeadline is set.",
           "type": "string"
         },
         "actionHeadline": {
@@ -10269,7 +10233,7 @@
           "type": "string"
         },
         "trackingUrl": {
-          "description": "Output only. The URL address loaded in the background for tracking purposes.",
+          "description": "Output only. The URL address loaded in the background for tracking purposes. In v4 and earlier, this field represents the tracking URL specified by the user manually. This can be found at userSpecifiedTrackingUrl in v5.",
           "readOnly": true,
           "type": "string"
         },
@@ -10665,7 +10629,6 @@
             "TARGETING_TYPE_ON_SCREEN_POSITION",
             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
             "TARGETING_TYPE_ENVIRONMENT",
             "TARGETING_TYPE_CARRIER_AND_ISP",
             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -10716,7 +10679,6 @@
             "Target ads in a specific on screen position.",
             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-            "Filter website content by sensitive categories (for example, adult).",
             "Target ads to a specific environment (for example, web or app).",
             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
             "Target ads to a specific operating system (for example, macOS).",
@@ -11641,7 +11603,6 @@
             "TARGETING_TYPE_ON_SCREEN_POSITION",
             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
             "TARGETING_TYPE_ENVIRONMENT",
             "TARGETING_TYPE_CARRIER_AND_ISP",
             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -11692,7 +11653,6 @@
             "Target ads in a specific on screen position.",
             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-            "Filter website content by sensitive categories (for example, adult).",
             "Target ads to a specific environment (for example, web or app).",
             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
             "Target ads to a specific operating system (for example, macOS).",
@@ -18243,7 +18203,6 @@
             "TARGETING_TYPE_ON_SCREEN_POSITION",
             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
-            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
             "TARGETING_TYPE_ENVIRONMENT",
             "TARGETING_TYPE_CARRIER_AND_ISP",
             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -18294,7 +18253,6 @@
             "Target ads in a specific on screen position.",
             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
-            "Filter website content by sensitive categories (for example, adult).",
             "Target ads to a specific environment (for example, web or app).",
             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
             "Target ads to a specific operating system (for example, macOS).",
@@ -18874,7 +18832,7 @@
       "id": "VideoPerformanceAd",
       "properties": {
         "actionButtonLabels": {
-          "description": "Optional. The list of text assets shown on the call-to-action button.",
+          "description": "Optional. The list of text assets shown on the call-to-action button. Must be set if headlines is set.",
           "items": {
             "type": "string"
           },
@@ -18895,7 +18853,7 @@
           "type": "object"
         },
         "descriptions": {
-          "description": "Optional. The list of descriptions shown on the call-to-action banner.",
+          "description": "Optional. The list of descriptions shown on the call-to-action banner. Must be set unless the parent line item's lineItemType is `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE`, in which case this field cannot be set.",
           "items": {
             "type": "string"
           },
@@ -18906,7 +18864,7 @@
           "type": "string"
         },
         "displayUrlBreadcrumb2": {
-          "description": "Optional. The second piece after the domain in the display URL.",
+          "description": "Optional. The second piece after the domain in the display URL. Can only be set if displayUrlBreadcrumb1 is also set.",
           "type": "string"
         },
         "domain": {
@@ -18926,14 +18884,14 @@
           "type": "array"
         },
         "longHeadlines": {
-          "description": "Optional. The list of long headlines shown on the call-to-action banner.",
+          "description": "Optional. The list of long headlines shown on the call-to-action banner. Must be set unless the parent line item's lineItemType is `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE`, in which case this field cannot be set.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "trackingUrl": {
-          "description": "Output only. The URL address loaded in the background for tracking purposes.",
+          "description": "Output only. The URL address loaded in the background for tracking purposes. In v4 and earlier, this field represents the tracking URL specified by the user manually. This can be found at userSpecifiedTrackingUrl in v5.",
           "readOnly": true,
           "type": "string"
         },
