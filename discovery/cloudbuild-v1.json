@@ -2324,7 +2324,7 @@
       }
     }
   },
-  "revision": "20260918",
+  "revision": "20261010",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -3089,11 +3089,13 @@
           "description": "Requested verifiability options.",
           "enum": [
             "NOT_VERIFIED",
-            "VERIFIED"
+            "VERIFIED",
+            "BEST_EFFORT"
           ],
           "enumDescriptions": [
             "Not a verifiable build (the default).",
-            "Build must be verified."
+            "Build must be verified.",
+            "Build verification is best effort. If provenance generation fails, the build will still succeed."
           ],
           "type": "string"
         },
@@ -3158,6 +3160,43 @@
         },
         "workerRelease": {
           "description": "Optional. Option to specify which release or release channel (rapid|regular|stable) to use to run this build.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BuildResourceUsage": {
+      "description": "Aggregated/summary metrics over the entire build lifecycle.",
+      "id": "BuildResourceUsage",
+      "properties": {
+        "averageCpuUtilization": {
+          "description": "Output only. The average CPU utilization ratio across all vCPUs over the duration of the build, expressed as a fraction in the range [0.0, 1.0].",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "averageMemoryUtilization": {
+          "description": "Output only. The average memory utilization ratio over the duration of the build, expressed as a fraction in the range [0.0, 1.0].",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "peakCpuUtilization": {
+          "description": "Output only. The highest CPU utilization ratio across all vCPUs observed over the duration of the build, expressed as a fraction in the range [0.0, 1.0].",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "peakMemoryUtilization": {
+          "description": "Output only. The highest memory utilization ratio observed over the duration of the build, expressed as a fraction in the range [0.0, 1.0].",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "totalCpuDuration": {
+          "description": "Output only. Total CPU execution time consumed across all cores during build execution.",
+          "format": "google-duration",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3858,7 +3897,7 @@
       "id": "GenericArtifactDependency",
       "properties": {
         "destPath": {
-          "description": "Required. Where the artifact files should be placed on the worker.",
+          "description": "Optional. Where the artifact files should be placed on the worker. Required when specified in `Build.dependencies`.",
           "type": "string"
         },
         "resource": {
@@ -4929,6 +4968,11 @@
             "$ref": "UploadedPythonPackage"
           },
           "type": "array"
+        },
+        "resourceUsage": {
+          "$ref": "BuildResourceUsage",
+          "description": "Output only. Aggregated metrics for the build.",
+          "readOnly": true
         }
       },
       "type": "object"
