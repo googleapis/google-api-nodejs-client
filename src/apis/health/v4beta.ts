@@ -732,10 +732,6 @@ export namespace health_v4beta {
      */
     sedentaryPeriod?: Schema$SedentaryPeriodRollupValue;
     /**
-     * Returned by default when rolling up data points from the `skin-temperature` data type.
-     */
-    skinTemperature?: Schema$SkinTemperatureRollupValue;
-    /**
      * Returned by default when rolling up data points from the `steps` data type, or when requested explicitly using the `steps` rollup type identifier.
      */
     steps?: Schema$StepsRollupValue;
@@ -992,10 +988,6 @@ export namespace health_v4beta {
      * Optional. Data for points in the `sedentary-period` interval data type collection.
      */
     sedentaryPeriod?: Schema$SedentaryPeriod;
-    /**
-     * Optional. Data for points in the `skin-temperature` sample data type collection.
-     */
-    skinTemperature?: Schema$SkinTemperature;
     /**
      * Optional. Data for points in the `skin-temperature-sensors` sample data type collection.
      */
@@ -2408,10 +2400,6 @@ export namespace health_v4beta {
      */
     sedentaryPeriod?: Schema$SedentaryPeriod;
     /**
-     * Data for points in the `skin-temperature` sample data type collection.
-     */
-    skinTemperature?: Schema$SkinTemperature;
-    /**
      * Data for points in the `skin-temperature-sensors` sample data type collection.
      */
     skinTemperatureSensors?: Schema$SkinTemperatureSensors;
@@ -2567,10 +2555,6 @@ export namespace health_v4beta {
      * Returned by default when rolling up data points from the `sedentary-period` data type, or when requested explicitly using the `sedentary-period` rollup type identifier.
      */
     sedentaryPeriod?: Schema$SedentaryPeriodRollupValue;
-    /**
-     * Returned by default when rolling up data points from the `skin-temperature` data type.
-     */
-    skinTemperature?: Schema$SkinTemperatureRollupValue;
     /**
      * Start time of the window this value aggregates over
      */
@@ -2822,57 +2806,6 @@ export namespace health_v4beta {
      * Optional. The measurement unit defined in the user's account settings.
      */
     weightUnit?: string | null;
-  }
-  /**
-   * Skin temperature measurement.
-   */
-  export interface Schema$SkinTemperature {
-    /**
-     * Required. The baseline skin temperature in Celsius. Must be in the range `[0, 100]`.
-     */
-    baselineTemperatureCelsius?: number | null;
-    /**
-     * Optional. Metadata for the skin temperature measurement.
-     */
-    metadata?: Schema$SkinTemperatureMetadata;
-    /**
-     * Required. The time at which skin temperature was measured.
-     */
-    sampleTime?: Schema$ObservationSampleTime;
-    /**
-     * Required. The skin temperature in Celsius. Must be in the range `[0, 100]`.
-     */
-    temperatureCelsius?: number | null;
-  }
-  /**
-   * Metadata for the skin temperature measurement.
-   */
-  export interface Schema$SkinTemperatureMetadata {
-    /**
-     * Optional. The location of the skin temperature measurement.
-     */
-    measurementLocation?: string | null;
-    /**
-     * Optional. The motion state of the skin temperature measurement.
-     */
-    measurementState?: string | null;
-  }
-  /**
-   * Represents the result of the rollup of the skin temperature data type.
-   */
-  export interface Schema$SkinTemperatureRollupValue {
-    /**
-     * Average skin temperature in Celsius.
-     */
-    temperatureCelsiusAvg?: number | null;
-    /**
-     * Maximum skin temperature in Celsius.
-     */
-    temperatureCelsiusMax?: number | null;
-    /**
-     * Minimum skin temperature in Celsius.
-     */
-    temperatureCelsiusMin?: number | null;
   }
   /**
    * Skin temperature sensor data containing multi-sensor readings.
@@ -6255,7 +6188,6 @@ export namespace health_v4beta {
      *       //   "respiratoryRateSleepSummary": {},
      *       //   "runVo2Max": {},
      *       //   "sedentaryPeriod": {},
-     *       //   "skinTemperature": {},
      *       //   "skinTemperatureSensors": {},
      *       //   "sleep": {},
      *       //   "steps": {},
@@ -6784,7 +6716,6 @@ export namespace health_v4beta {
      *   //   "respiratoryRateSleepSummary": {},
      *   //   "runVo2Max": {},
      *   //   "sedentaryPeriod": {},
-     *   //   "skinTemperature": {},
      *   //   "skinTemperatureSensors": {},
      *   //   "sleep": {},
      *   //   "steps": {},
@@ -7134,7 +7065,6 @@ export namespace health_v4beta {
      *       //   "respiratoryRateSleepSummary": {},
      *       //   "runVo2Max": {},
      *       //   "sedentaryPeriod": {},
-     *       //   "skinTemperature": {},
      *       //   "skinTemperatureSensors": {},
      *       //   "sleep": {},
      *       //   "steps": {},
