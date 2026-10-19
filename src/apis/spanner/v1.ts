@@ -1592,6 +1592,10 @@ export namespace spanner_v1 {
      */
     state?: string | null;
     /**
+     * Optional. Tag keys/values directly bound to this resource. For example: "123/environment": "prod", "123/costCenter": "marketing"
+     */
+    tags?: {[key: string]: string} | null;
+    /**
      * Output only. The time at which the instance was most recently updated.
      */
     updateTime?: string | null;
@@ -6087,6 +6091,7 @@ export namespace spanner_v1 {
      *   //   "processingUnits": 0,
      *   //   "replicaComputeCapacity": [],
      *   //   "state": "my_state",
+     *   //   "tags": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
