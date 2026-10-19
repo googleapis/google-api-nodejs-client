@@ -1002,7 +1002,7 @@
       }
     }
   },
-  "revision": "20260909",
+  "revision": "20261006",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1034,9 +1034,27 @@
             "NVIDIA_B200",
             "NVIDIA_RTX6000"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "Accelerator type is not specified.",
-            "Accelerator type is Nvidia Tesla P100.",
+            "Deprecated: Use `NVIDIA_TESLA_T4` (N1) or `NVIDIA_L4` (G2) instead. The NVIDIA Tesla P100 GPU is being decommissioned fleet-wide by Compute Engine and is no longer available for new instances.",
             "Accelerator type is Nvidia Tesla V100.",
             "Accelerator type is Nvidia Tesla P4.",
             "Accelerator type is Nvidia Tesla T4.",
@@ -1047,7 +1065,7 @@
             "Accelerator type is Nvidia Tesla H100 - MEGA 80GB.",
             "Accelerator type is Nvidia Tesla H200 - 141GB.",
             "Accelerator type is NVIDIA Tesla T4 Virtual Workstations.",
-            "Accelerator type is NVIDIA Tesla P100 Virtual Workstations.",
+            "Deprecated: Use `NVIDIA_TESLA_T4_VWS` instead. The NVIDIA Tesla P100 GPU (Virtual Workstations) is being decommissioned fleet-wide by Compute Engine and is no longer available for new instances.",
             "Accelerator type is NVIDIA Tesla P4 Virtual Workstations.",
             "Accelerator type is NVIDIA B200.",
             "NVIDIA RTX 6000."
@@ -1761,7 +1779,8 @@
             "UPGRADING",
             "INITIALIZING",
             "SUSPENDING",
-            "SUSPENDED"
+            "SUSPENDED",
+            "ORPHANED"
           ],
           "enumDescriptions": [
             "State is not specified.",
@@ -1774,7 +1793,8 @@
             "The instance is upgrading.",
             "The instance is being created.",
             "The instance is suspending.",
-            "The instance is suspended."
+            "The instance is suspended.",
+            "The instance has no VM. An upgrade removed the original and could not create its replacement; the data disk and any snapshots are intact. Retry the upgrade to finish it, or roll the instance back to the snapshot taken before it started."
           ],
           "readOnly": true,
           "type": "string"
@@ -1913,6 +1933,10 @@
             "$ref": "AccessConfig"
           },
           "type": "array"
+        },
+        "internalIp": {
+          "description": "Optional. An internal IP address associated with this instance. Specify an unused static internal IP address available to the subnet this instance is in, or leave this field undefined to use an IP from the subnet's ephemeral range.",
+          "type": "string"
         },
         "network": {
           "description": "Optional. The name of the VPC that this VM instance is in. Format: `projects/{project_id}/global/networks/{network_id}`",
@@ -2389,6 +2413,11 @@
         },
         "imageDescription": {
           "description": "Output only. A human-readable description of the image running on the instance (for example, \"Debian 11, Python 3.10\"), derived at read time from the image release configuration (the source of truth). Set to \"Custom\" for unrecognized boot-disk images.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "imageId": {
+          "description": "Output only. The ID of the specific Compute Engine VM image the instance is currently running (for example, \"workbench-instances-2603-20260918-2130-rc0\").",
           "readOnly": true,
           "type": "string"
         },
