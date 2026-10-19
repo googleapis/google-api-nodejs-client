@@ -3742,6 +3742,10 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDataStoreFederatedSearchConfigNotebooklmConfig {
     /**
+     * Optional. Restricts this data store to the given notebooks. When empty, the data store covers every notebook the querying user can access, which is the existing behaviour. Each entry is a full notebook resource name, such as `projects/x/locations/x/notebooks/x`. Scoping is enforced on results as well as requested upstream, so a notebook outside this list cannot appear in a search response through this data store even if the backend returns one.
+     */
+    notebooks?: string[] | null;
+    /**
      * Required. Search config name. Format: projects/x/locations/global/notebookLmSearchConfigs/x
      */
     searchConfig?: string | null;
@@ -4205,7 +4209,7 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -4616,6 +4620,14 @@ export namespace discoveryengine_v1 {
      * Optional. The metatag name found in the HTML page. If user defines this field, the value of this metatag name will be used to extract metatag. If the user does not define this field, the FieldConfig.field_path will be used to extract metatag.
      */
     metatagName?: string | null;
+    /**
+     * Optional. If partial_matchable_option is PARTIAL_MATCHABLE_OPTION_ENABLED, field values are partial matchable. If partial_matchable_option is unset, the server behavior defaults to PARTIAL_MATCHABLE_OPTION_DISABLED for fields that support setting partial matchable options. For those fields that do not support setting partial matchable options, the server will skip partial matchable option setting, and setting partial_matchable_option for those fields will throw `INVALID_ARGUMENT` error.
+     */
+    partialMatchableOption?: string | null;
+    /**
+     * Optional. If prefix_matchable_option is PREFIX_MATCHABLE_OPTION_ENABLED, field values are prefix matchable. If prefix_matchable_option is unset, the server behavior defaults to PREFIX_MATCHABLE_OPTION_DISABLED for fields that support setting prefix matchable options. For those fields that do not support setting prefix matchable options, the server will skip prefix matchable option setting, and setting prefix_matchable_option for those fields will throw `INVALID_ARGUMENT` error.
+     */
+    prefixMatchableOption?: string | null;
     /**
      * If recs_filterable_option is FILTERABLE_ENABLED, field values are filterable by filter expression in RecommendationService.Recommend. If FILTERABLE_ENABLED but the field type is numerical, field values are not filterable by text queries in RecommendationService.Recommend. Only textual fields are supported. If recs_filterable_option is unset, the default setting is FILTERABLE_DISABLED for fields that support setting filterable options. When a field set to [FILTERABLE_DISABLED] is filtered, a warning is generated and an empty result is returned.
      */
@@ -5945,7 +5957,7 @@ export namespace discoveryengine_v1 {
      */
     customRankingParams?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestCustomRankingParams;
     /**
-     * Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.
+     * Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used. On an engine with multiple data stores, this field is optional. If it's empty, all of the engine's data stores are searched (blended search). Unless it specifies exactly one data store, some request fields, such as `order_by` and `query_expansion_spec`, aren't supported and return an `INVALID_ARGUMENT` error.
      */
     dataStoreSpecs?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec[];
     /**
@@ -9198,6 +9210,10 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDataStoreFederatedSearchConfigNotebooklmConfig {
     /**
+     * Optional. Restricts this data store to the given notebooks. When empty, the data store covers every notebook the querying user can access, which is the existing behaviour. Each entry is a full notebook resource name, such as `projects/x/locations/x/notebooks/x`. Scoping is enforced on results as well as requested upstream, so a notebook outside this list cannot appear in a search response through this data store even if the backend returns one.
+     */
+    notebooks?: string[] | null;
+    /**
      * Required. Search config name. Format: projects/x/locations/global/notebookLmSearchConfigs/x
      */
     searchConfig?: string | null;
@@ -9532,7 +9548,7 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -10653,7 +10669,7 @@ export namespace discoveryengine_v1 {
      */
     customRankingParams?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestCustomRankingParams;
     /**
-     * Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.
+     * Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used. On an engine with multiple data stores, this field is optional. If it's empty, all of the engine's data stores are searched (blended search). Unless it specifies exactly one data store, some request fields, such as `order_by` and `query_expansion_spec`, aren't supported and return an `INVALID_ARGUMENT` error.
      */
     dataStoreSpecs?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec[];
     /**
@@ -13155,6 +13171,10 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfigNotebooklmConfig {
     /**
+     * Optional. Restricts this data store to the given notebooks. When empty, the data store covers every notebook the querying user can access, which is the existing behaviour. Each entry is a full notebook resource name, such as `projects/x/locations/x/notebooks/x`. Scoping is enforced on results as well as requested upstream, so a notebook outside this list cannot appear in a search response through this data store even if the backend returns one.
+     */
+    notebooks?: string[] | null;
+    /**
      * Required. Search config name. Format: projects/x/locations/global/notebookLmSearchConfigs/x
      */
     searchConfig?: string | null;
@@ -13734,7 +13754,7 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -14069,9 +14089,17 @@ export namespace discoveryengine_v1 {
      */
     session?: string | null;
     /**
-     * Optional. The full resource name of the Sobi task if the conversation was handled by a long-running agent task. Format: projects/{project\}/locations/{location\}/tasks/{task_id\}
+     * Optional. The `TaskServerEvent.seq_num` of the step that opened the rated agent task reply.
+     */
+    stepSeqNum?: string | null;
+    /**
+     * Optional. The full resource name of the Sobi task if the conversation was handled by a long-running agent task. Format (canonical, or the short alias the Task API also accepts): projects/{project\}/locations/{location\}/agents/{agent\}/tasks/{task\} projects/{project\}/locations/{location\}/tasks/{task\}
      */
     taskName?: string | null;
+    /**
+     * Optional. The runtime trajectory id of the rated agent task turn, as set on `TaskServerEvent.trajectory_id`. Shared by all steps of the turn.
+     */
+    trajectoryId?: string | null;
   }
   /**
    * Response message for SiteSearchEngineService.FetchDomainVerificationStatus method.
@@ -15739,7 +15767,7 @@ export namespace discoveryengine_v1 {
      */
     customRankingParams?: Schema$GoogleCloudDiscoveryengineV1SearchRequestCustomRankingParams;
     /**
-     * Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.
+     * Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used. On an engine with multiple data stores, this field is optional. If it's empty, all of the engine's data stores are searched (blended search). Unless it specifies exactly one data store, some request fields, such as `order_by` and `query_expansion_spec`, aren't supported and return an `INVALID_ARGUMENT` error.
      */
     dataStoreSpecs?: Schema$GoogleCloudDiscoveryengineV1SearchRequestDataStoreSpec[];
     /**
@@ -18243,7 +18271,7 @@ export namespace discoveryengine_v1 {
      */
     enableVisualContentSummary?: boolean | null;
     /**
-     * Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
+     * Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`
      */
     features?: {[key: string]: string} | null;
     /**
