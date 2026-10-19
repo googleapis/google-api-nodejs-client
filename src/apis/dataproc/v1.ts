@@ -843,6 +843,10 @@ export namespace dataproc_v1 {
      */
     masterConfig?: Schema$InstanceGroupConfig;
     /**
+     * Optional. The High Obtainability (HO) config settings for the cluster's master instances.In High Obtainability (HO) mode, flexible configs are the single source of truth for desired cluster configuration across node groups: * For single-node clusters: master_flexible_config must be specified, and no worker configs should be set. * For multi-node (standard) clusters: both master_flexible_config and worker_flexible_config must be specified. Mixing standard and flexible configs across node groups is not allowed.Only one of master_config or master_flexible_config can be set.
+     */
+    masterFlexibleConfig?: Schema$FlexibleInstanceGroupConfig;
+    /**
      * Optional. Metastore configuration.
      */
     metastoreConfig?: Schema$MetastoreConfig;
@@ -850,6 +854,10 @@ export namespace dataproc_v1 {
      * Optional. The Compute Engine config settings for a cluster's secondary worker instances
      */
     secondaryWorkerConfig?: Schema$InstanceGroupConfig;
+    /**
+     * Optional. The High Obtainability (HO) config settings for a cluster's secondary worker instances.In High Obtainability (HO) mode, flexible configs are the single source of truth for desired cluster configuration. num_instances represents the desired capacity of the secondary worker group and is mutable via cluster updates and autoscaling.Only one of secondary_worker_config or secondary_worker_flexible_config can be set.In High Obtainability (HO) mode, secondary workers are optional. If secondary workers are used in an HO cluster, they must be configured using secondary_worker_flexible_config (not secondary_worker_config).
+     */
+    secondaryWorkerFlexibleConfig?: Schema$FlexibleInstanceGroupConfig;
     /**
      * Optional. Security settings for the cluster.
      */
@@ -866,6 +874,10 @@ export namespace dataproc_v1 {
      * Optional. The Compute Engine config settings for the cluster's worker instances.
      */
     workerConfig?: Schema$InstanceGroupConfig;
+    /**
+     * Optional. The High Obtainability (HO) config settings for the cluster's worker instances.In High Obtainability (HO) mode, flexible configs are the single source of truth for desired cluster configuration. num_instances represents the desired capacity of the worker group and is mutable via cluster updates and autoscaling.Only one of worker_config or worker_flexible_config can be set.In High Obtainability (HO) mode, for multi-node (standard) clusters, both master_flexible_config and worker_flexible_config must be specified. Mixing standard and flexible configs across node groups is not allowed. Single-node clusters do not specify worker configs.
+     */
+    workerFlexibleConfig?: Schema$FlexibleInstanceGroupConfig;
   }
   /**
    * Contains cluster daemon metrics, such as HDFS and YARN stats.Beta Feature: This report is available for testing purposes only. It may be changed before final release.
@@ -1369,6 +1381,27 @@ export namespace dataproc_v1 {
      * Optional. Fallback to Spark reason.
      */
     fallbackReason?: string | null;
+  }
+  /**
+   * The configuration for High Obtainability (HO) flexible instance groups. Flexible instance group configs serve as the single source of truth for desired state.
+   */
+  export interface Schema$FlexibleInstanceGroupConfig {
+    /**
+     * Optional. The boot disk size in GB. This is a create-time specification and is not currently mutable via update masks.
+     */
+    bootDiskSizeGb?: number | null;
+    /**
+     * Optional. The number of vCPUs per instance. Must be a power of 2 (2, 4, 8, 16, 32). This is a create-time specification and is not currently mutable via update masks.
+     */
+    coreCount?: number | null;
+    /**
+     * Optional. The hardware class of the instances. This is a create-time specification and is not currently mutable via update masks.
+     */
+    hardwareClass?: string | null;
+    /**
+     * Optional. The number of VM instances requested.For master instances, this must be 1. For worker and secondary worker instances, this represents the desired capacity of the group and is mutable via cluster update operations and autoscaling.
+     */
+    numInstances?: number | null;
   }
   /**
    * A Dataproc job for running Apache Flink applications on YARN.
@@ -3633,6 +3666,10 @@ export namespace dataproc_v1 {
      * Optional. Brief description of the template.
      */
     description?: string | null;
+    /**
+     * Optional. User-friendly display name for the session template. Can be up to 63 characters.
+     */
+    displayName?: string | null;
     /**
      * Optional. Environment configuration for session execution.
      */
@@ -17245,6 +17282,7 @@ export namespace dataproc_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "creator": "my_creator",
      *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
      *       //   "environmentConfig": {},
      *       //   "jupyterSession": {},
      *       //   "labels": {},
@@ -17263,6 +17301,7 @@ export namespace dataproc_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "creator": "my_creator",
      *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
      *   //   "environmentConfig": {},
      *   //   "jupyterSession": {},
      *   //   "labels": {},
@@ -17550,6 +17589,7 @@ export namespace dataproc_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "creator": "my_creator",
      *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
      *   //   "environmentConfig": {},
      *   //   "jupyterSession": {},
      *   //   "labels": {},
@@ -17851,6 +17891,7 @@ export namespace dataproc_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "creator": "my_creator",
      *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
      *       //   "environmentConfig": {},
      *       //   "jupyterSession": {},
      *       //   "labels": {},
@@ -17869,6 +17910,7 @@ export namespace dataproc_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "creator": "my_creator",
      *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
      *   //   "environmentConfig": {},
      *   //   "jupyterSession": {},
      *   //   "labels": {},
