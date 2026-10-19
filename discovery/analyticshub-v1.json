@@ -1247,7 +1247,7 @@
       }
     }
   },
-  "revision": "20260926",
+  "revision": "20261011",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AIInference": {
@@ -1678,7 +1678,7 @@
           "type": "string"
         },
         "keyFields": {
-          "description": "Optional. The key fields to construct from the row key. The fields must be present in the message as a top-level field, i.e. JSON path expressions will not traverse into nested objects.",
+          "description": "Required. The key fields to construct from the row key. The fields must be present in the message as a top-level field, i.e. JSON path expressions will not traverse into nested objects.",
           "items": {
             "type": "string"
           },
