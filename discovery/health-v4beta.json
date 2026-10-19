@@ -1149,7 +1149,7 @@
       }
     }
   },
-  "revision": "20261007",
+  "revision": "20261013",
   "rootUrl": "https://health.googleapis.com/",
   "schemas": {
     "ActiveEnergyBurned": {
@@ -2130,10 +2130,6 @@
           "$ref": "SedentaryPeriodRollupValue",
           "description": "Returned by default when rolling up data points from the `sedentary-period` data type, or when requested explicitly using the `sedentary-period` rollup type identifier."
         },
-        "skinTemperature": {
-          "$ref": "SkinTemperatureRollupValue",
-          "description": "Returned by default when rolling up data points from the `skin-temperature` data type."
-        },
         "steps": {
           "$ref": "StepsRollupValue",
           "description": "Returned by default when rolling up data points from the `steps` data type, or when requested explicitly using the `steps` rollup type identifier."
@@ -2381,10 +2377,6 @@
         "sedentaryPeriod": {
           "$ref": "SedentaryPeriod",
           "description": "Optional. Data for points in the `sedentary-period` interval data type collection."
-        },
-        "skinTemperature": {
-          "$ref": "SkinTemperature",
-          "description": "Optional. Data for points in the `skin-temperature` sample data type collection."
         },
         "skinTemperatureSensors": {
           "$ref": "SkinTemperatureSensors",
@@ -5068,10 +5060,6 @@
           "$ref": "SedentaryPeriod",
           "description": "Data for points in the `sedentary-period` interval data type collection."
         },
-        "skinTemperature": {
-          "$ref": "SkinTemperature",
-          "description": "Data for points in the `skin-temperature` sample data type collection."
-        },
         "skinTemperatureSensors": {
           "$ref": "SkinTemperatureSensors",
           "description": "Data for points in the `skin-temperature-sensors` sample data type collection."
@@ -5288,10 +5276,6 @@
         "sedentaryPeriod": {
           "$ref": "SedentaryPeriodRollupValue",
           "description": "Returned by default when rolling up data points from the `sedentary-period` data type, or when requested explicitly using the `sedentary-period` rollup type identifier."
-        },
-        "skinTemperature": {
-          "$ref": "SkinTemperatureRollupValue",
-          "description": "Returned by default when rolling up data points from the `skin-temperature` data type."
         },
         "startTime": {
           "description": "Start time of the window this value aggregates over",
@@ -5674,94 +5658,6 @@
             "Weight unit is kilograms."
           ],
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "SkinTemperature": {
-      "description": "Skin temperature measurement.",
-      "id": "SkinTemperature",
-      "properties": {
-        "baselineTemperatureCelsius": {
-          "description": "Required. The baseline skin temperature in Celsius. Must be in the range `[0, 100]`.",
-          "format": "double",
-          "type": "number"
-        },
-        "metadata": {
-          "$ref": "SkinTemperatureMetadata",
-          "description": "Optional. Metadata for the skin temperature measurement."
-        },
-        "sampleTime": {
-          "$ref": "ObservationSampleTime",
-          "description": "Required. The time at which skin temperature was measured."
-        },
-        "temperatureCelsius": {
-          "description": "Required. The skin temperature in Celsius. Must be in the range `[0, 100]`.",
-          "format": "double",
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "SkinTemperatureMetadata": {
-      "description": "Metadata for the skin temperature measurement.",
-      "id": "SkinTemperatureMetadata",
-      "properties": {
-        "measurementLocation": {
-          "description": "Optional. The location of the skin temperature measurement.",
-          "enum": [
-            "MEASUREMENT_LOCATION_UNSPECIFIED",
-            "OTHER",
-            "FINGER",
-            "TOE",
-            "WRIST"
-          ],
-          "enumDescriptions": [
-            "Measurement location is unspecified.",
-            "Other measurement location.",
-            "Finger measurement location.",
-            "Toe measurement location.",
-            "Wrist measurement location."
-          ],
-          "type": "string"
-        },
-        "measurementState": {
-          "description": "Optional. The motion state of the skin temperature measurement.",
-          "enum": [
-            "MEASUREMENT_STATE_UNSPECIFIED",
-            "MEASUREMENT_STATE_OTHER",
-            "MEASUREMENT_STATE_AT_REST",
-            "MEASUREMENT_STATE_SLEEP"
-          ],
-          "enumDescriptions": [
-            "Measurement state is unspecified.",
-            "Other measurement state.",
-            "Measurement state at rest.",
-            "Measurement state during sleep."
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "SkinTemperatureRollupValue": {
-      "description": "Represents the result of the rollup of the skin temperature data type.",
-      "id": "SkinTemperatureRollupValue",
-      "properties": {
-        "temperatureCelsiusAvg": {
-          "description": "Average skin temperature in Celsius.",
-          "format": "double",
-          "type": "number"
-        },
-        "temperatureCelsiusMax": {
-          "description": "Maximum skin temperature in Celsius.",
-          "format": "double",
-          "type": "number"
-        },
-        "temperatureCelsiusMin": {
-          "description": "Minimum skin temperature in Celsius.",
-          "format": "double",
-          "type": "number"
         }
       },
       "type": "object"
