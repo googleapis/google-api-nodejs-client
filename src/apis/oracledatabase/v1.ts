@@ -175,11 +175,11 @@ export namespace oracledatabase_v1 {
    */
   export interface Schema$AutonomousDatabase {
     /**
-     * Optional. Immutable. The password for the default ADMIN user. Note: Only one of `admin_password_secret_version` or `admin_password` can be populated.
+     * Optional. Input only. Immutable. The password for the default ADMIN user. Note: Only one of `admin_password_secret_version` or `admin_password` can be populated.
      */
     adminPassword?: string | null;
     /**
-     * Optional. Immutable. The resource name of a secret version in Secret Manager which contains the database admin user's password. Format: projects/{project\}/secrets/{secret\}/versions/{version\}. Note: Only one of `admin_password_secret_version` or `admin_password` can be populated.
+     * Optional. Input only. Immutable. The resource name of a secret version in Secret Manager which contains the database admin user's password. Format: projects/{project\}/secrets/{secret\}/versions/{version\}. Note: Only one of `admin_password_secret_version` or `admin_password` can be populated.
      */
     adminPasswordSecretVersion?: string | null;
     /**
@@ -846,7 +846,7 @@ export namespace oracledatabase_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. User friendly name for this resource.
+     * Optional. Immutable. User friendly name for this resource.
      */
     displayName?: string | null;
     /**
@@ -854,7 +854,7 @@ export namespace oracledatabase_v1 {
      */
     entitlementId?: string | null;
     /**
-     * Optional. The GCP Oracle zone where Oracle Exadata Infrastructure is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
+     * Optional. Immutable. The GCP Oracle zone where Oracle Exadata Infrastructure is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
      */
     gcpOracleZone?: string | null;
     /**
@@ -866,7 +866,7 @@ export namespace oracledatabase_v1 {
      */
     name?: string | null;
     /**
-     * Optional. Various properties of the infra.
+     * Optional. Immutable. Various properties of the infra.
      */
     properties?: Schema$CloudExadataInfrastructureProperties;
   }
@@ -1004,15 +1004,15 @@ export namespace oracledatabase_v1 {
    */
   export interface Schema$CloudVmCluster {
     /**
-     * Optional. The name of the backup OdbSubnet associated with the VM Cluster. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbSubnets/{odb_subnet\}
+     * Optional. Immutable. The name of the backup OdbSubnet associated with the VM Cluster. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbSubnets/{odb_subnet\}
      */
     backupOdbSubnet?: string | null;
     /**
-     * Optional. CIDR range of the backup subnet.
+     * Optional. Immutable. CIDR range of the backup subnet.
      */
     backupSubnetCidr?: string | null;
     /**
-     * Optional. Network settings. CIDR to use for cluster IP allocation.
+     * Optional. Immutable. Network settings. CIDR to use for cluster IP allocation.
      */
     cidr?: string | null;
     /**
@@ -1020,15 +1020,15 @@ export namespace oracledatabase_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. User friendly name for this resource.
+     * Optional. Immutable. User friendly name for this resource.
      */
     displayName?: string | null;
     /**
-     * Required. The name of the Exadata Infrastructure resource on which VM cluster resource is created, in the following format: projects/{project\}/locations/{region\}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure\}
+     * Required. Immutable. The name of the Exadata Infrastructure resource on which VM cluster resource is created, in the following format: projects/{project\}/locations/{region\}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure\}
      */
     exadataInfrastructure?: string | null;
     /**
-     * Optional. The name of ExascaleDbStorageVault associated with the VM Cluster. Format: projects/{project\}/locations/{location\}/exascaleDbStorageVaults/{exascale_db_storage_vault\}
+     * Optional. Immutable. The name of ExascaleDbStorageVault associated with the VM Cluster. Format: projects/{project\}/locations/{location\}/exascaleDbStorageVaults/{exascale_db_storage_vault\}
      */
     exascaleDbStorageVault?: string | null;
     /**
@@ -1048,19 +1048,19 @@ export namespace oracledatabase_v1 {
      */
     name?: string | null;
     /**
-     * Optional. The name of the VPC network. Format: projects/{project\}/global/networks/{network\}
+     * Optional. Immutable. The name of the VPC network. Format: projects/{project\}/global/networks/{network\}
      */
     network?: string | null;
     /**
-     * Optional. The name of the OdbNetwork associated with the VM Cluster. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\} It is optional but if specified, this should match the parent ODBNetwork of the odb_subnet and backup_odb_subnet.
+     * Optional. Immutable. The name of the OdbNetwork associated with the VM Cluster. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\} It is optional but if specified, this should match the parent ODBNetwork of the odb_subnet and backup_odb_subnet.
      */
     odbNetwork?: string | null;
     /**
-     * Optional. The name of the OdbSubnet associated with the VM Cluster for IP allocation. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbSubnets/{odb_subnet\}
+     * Optional. Immutable. The name of the OdbSubnet associated with the VM Cluster for IP allocation. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbSubnets/{odb_subnet\}
      */
     odbSubnet?: string | null;
     /**
-     * Optional. Various properties of the VM Cluster.
+     * Optional. Immutable. Various properties of the VM Cluster.
      */
     properties?: Schema$CloudVmClusterProperties;
   }
@@ -1244,11 +1244,11 @@ export namespace oracledatabase_v1 {
    */
   export interface Schema$Database {
     /**
-     * Optional. The password for the default ADMIN user. Note: Only one of `admin_password_secret_version` or `admin_password` can be populated.
+     * Optional. Input only. The password for the default ADMIN user. Note: Only one of `admin_password_secret_version` or `admin_password` can be populated.
      */
     adminPassword?: string | null;
     /**
-     * Optional. The resource name of a secret version in Secret Manager which contains the database admin user's password. Format: projects/{project\}/secrets/{secret\}/versions/{version\}. Note: Only one of `admin_password_secret_version` or `admin_password` can be populated.
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the database admin user's password. Format: projects/{project\}/secrets/{secret\}/versions/{version\}. Note: Only one of `admin_password_secret_version` or `admin_password` can be populated.
      */
     adminPasswordSecretVersion?: string | null;
     /**
@@ -1308,11 +1308,11 @@ export namespace oracledatabase_v1 {
      */
     properties?: Schema$DatabaseProperties;
     /**
-     * Optional. The TDE wallet password for the database. Note: Only one of `tde_wallet_password_secret_version` or `tde_wallet_password` can be populated.
+     * Optional. Input only. The TDE wallet password for the database. Note: Only one of `tde_wallet_password_secret_version` or `tde_wallet_password` can be populated.
      */
     tdeWalletPassword?: string | null;
     /**
-     * Optional. The resource name of a secret version in Secret Manager which contains the TDE wallet password for the database. Format: projects/{project\}/secrets/{secret\}/versions/{version\}. Note: Only one of `tde_wallet_password_secret_version` or `tde_wallet_password` can be populated.
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the TDE wallet password for the database. Format: projects/{project\}/secrets/{secret\}/versions/{version\}. Note: Only one of `tde_wallet_password_secret_version` or `tde_wallet_password` can be populated.
      */
     tdeWalletPasswordSecretVersion?: string | null;
   }
@@ -1634,7 +1634,7 @@ export namespace oracledatabase_v1 {
      */
     createTime?: string | null;
     /**
-     * Required. The display name for the System db. The name does not have to be unique within your project.
+     * Required. Immutable. The display name for the System db. The name does not have to be unique within your project.
      */
     displayName?: string | null;
     /**
@@ -1642,7 +1642,7 @@ export namespace oracledatabase_v1 {
      */
     entitlementId?: string | null;
     /**
-     * Optional. The GCP Oracle zone where Oracle DbSystem is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
+     * Optional. Immutable. The GCP Oracle zone where Oracle DbSystem is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
      */
     gcpOracleZone?: string | null;
     /**
@@ -1658,15 +1658,15 @@ export namespace oracledatabase_v1 {
      */
     ociUrl?: string | null;
     /**
-     * Optional. The name of the OdbNetwork associated with the DbSystem. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\} It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.
+     * Optional. Immutable. The name of the OdbNetwork associated with the DbSystem. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\} It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.
      */
     odbNetwork?: string | null;
     /**
-     * Required. The name of the OdbSubnet associated with the DbSystem for IP allocation. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbSubnets/{odb_subnet\}
+     * Required. Immutable. The name of the OdbSubnet associated with the DbSystem for IP allocation. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbSubnets/{odb_subnet\}
      */
     odbSubnet?: string | null;
     /**
-     * Optional. The properties of the DbSystem.
+     * Optional. Immutable. The properties of the DbSystem.
      */
     properties?: Schema$DbSystemProperties;
   }
@@ -2176,7 +2176,7 @@ export namespace oracledatabase_v1 {
      */
     createTime?: string | null;
     /**
-     * Required. The display name for the ExascaleDbStorageVault. The name does not have to be unique within your project. The name must be 1-255 characters long and can only contain alphanumeric characters.
+     * Required. Immutable. The display name for the ExascaleDbStorageVault. The name does not have to be unique within your project. The name must be 1-255 characters long and can only contain alphanumeric characters.
      */
     displayName?: string | null;
     /**
@@ -2184,11 +2184,11 @@ export namespace oracledatabase_v1 {
      */
     entitlementId?: string | null;
     /**
-     * Optional. The Exadata Infrastructure resource on which ExascaleDbStorageVault resource is created, in the following format: projects/{project\}/locations/{region\}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure\}
+     * Optional. Immutable. The Exadata Infrastructure resource on which ExascaleDbStorageVault resource is created, in the following format: projects/{project\}/locations/{region\}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure\}
      */
     exadataInfrastructure?: string | null;
     /**
-     * Optional. The GCP Oracle zone where Oracle ExascaleDbStorageVault is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
+     * Optional. Immutable. The GCP Oracle zone where Oracle ExascaleDbStorageVault is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
      */
     gcpOracleZone?: string | null;
     /**
@@ -2200,7 +2200,7 @@ export namespace oracledatabase_v1 {
      */
     name?: string | null;
     /**
-     * Required. The properties of the ExascaleDbStorageVault.
+     * Required. Immutable. The properties of the ExascaleDbStorageVault.
      */
     properties?: Schema$ExascaleDbStorageVaultProperties;
   }
@@ -2497,7 +2497,7 @@ export namespace oracledatabase_v1 {
      */
     entitlementId?: string | null;
     /**
-     * Optional. The GCP Oracle zone where Oracle GoldengateConnection is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
+     * Optional. Immutable. The GCP Oracle zone where Oracle GoldengateConnection is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
      */
     gcpOracleZone?: string | null;
     /**
@@ -2513,15 +2513,15 @@ export namespace oracledatabase_v1 {
      */
     ociUrl?: string | null;
     /**
-     * Optional. The name of the OdbNetwork associated with the GoldengateConnection. The format is projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}. It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.
+     * Optional. Immutable. The name of the OdbNetwork associated with the GoldengateConnection. The format is projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}. It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.
      */
     odbNetwork?: string | null;
     /**
-     * Optional. The name of the OdbSubnet associated with the GoldengateConnection for IP allocation. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbSubnets/{odb_subnet\}
+     * Optional. Immutable. The name of the OdbSubnet associated with the GoldengateConnection for IP allocation. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbSubnets/{odb_subnet\}
      */
     odbSubnet?: string | null;
     /**
-     * Required. The properties of the GoldengateConnection.
+     * Required. Immutable. The properties of the GoldengateConnection.
      */
     properties?: Schema$GoldengateConnectionProperties;
   }
@@ -2534,7 +2534,7 @@ export namespace oracledatabase_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. The display name for the GoldengateConnectionAssignment.
+     * Optional. Immutable. The display name for the GoldengateConnectionAssignment.
      */
     displayName?: string | null;
     /**
@@ -2550,7 +2550,7 @@ export namespace oracledatabase_v1 {
      */
     name?: string | null;
     /**
-     * Required. The properties of the GoldengateConnectionAssignment.
+     * Required. Immutable. The properties of the GoldengateConnectionAssignment.
      */
     properties?: Schema$GoldengateConnectionAssignmentProperties;
   }
@@ -2852,7 +2852,7 @@ export namespace oracledatabase_v1 {
      */
     createTime?: string | null;
     /**
-     * Required. The display name for the GoldengateDeployment.
+     * Required. Immutable. The display name for the GoldengateDeployment.
      */
     displayName?: string | null;
     /**
@@ -2860,7 +2860,7 @@ export namespace oracledatabase_v1 {
      */
     entitlementId?: string | null;
     /**
-     * Optional. The GCP Oracle zone where Oracle GoldengateDeployment is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
+     * Optional. Immutable. The GCP Oracle zone where Oracle GoldengateDeployment is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
      */
     gcpOracleZone?: string | null;
     /**
@@ -2876,15 +2876,15 @@ export namespace oracledatabase_v1 {
      */
     ociUrl?: string | null;
     /**
-     * Optional. The name of the OdbNetwork associated with the GoldengateDeployment.
+     * Optional. Immutable. The name of the OdbNetwork associated with the GoldengateDeployment.
      */
     odbNetwork?: string | null;
     /**
-     * Required. The name of the OdbSubnet associated with the GoldengateDeployment for IP allocation.
+     * Required. Immutable. The name of the OdbSubnet associated with the GoldengateDeployment for IP allocation.
      */
     odbSubnet?: string | null;
     /**
-     * Required. The properties of the GoldengateDeployment.
+     * Required. Immutable. The properties of the GoldengateDeployment.
      */
     properties?: Schema$GoldengateDeploymentProperties;
   }
@@ -3906,7 +3906,7 @@ export namespace oracledatabase_v1 {
    */
   export interface Schema$GoldengateOggDeployment {
     /**
-     * Optional. The Goldengate deployment console password in plain text.
+     * Optional. Input only. The Goldengate deployment console password in plain text.
      */
     adminPassword?: string | null;
     /**
@@ -4966,7 +4966,7 @@ export namespace oracledatabase_v1 {
    */
   export interface Schema$OdbSubnet {
     /**
-     * Required. The CIDR range of the subnet.
+     * Required. Immutable. The CIDR range of the subnet.
      */
     cidrRange?: string | null;
     /**
@@ -4982,7 +4982,7 @@ export namespace oracledatabase_v1 {
      */
     name?: string | null;
     /**
-     * Required. Purpose of the subnet.
+     * Required. Immutable. Purpose of the subnet.
      */
     purpose?: string | null;
     /**
@@ -9507,6 +9507,164 @@ export namespace oracledatabase_v1 {
         );
       }
     }
+
+    /**
+     * Updates the parameters of a single Exadata Infrastructure.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.cloudExadataInfrastructures.patch({
+     *       // Identifier. The name of the Exadata Infrastructure resource with the format: projects/{project\}/locations/{region\}/cloudExadataInfrastructures/{cloud_exadata_infrastructure\}
+     *       name: 'projects/my-project/locations/my-location/cloudExadataInfrastructures/my-cloudExadataInfrastructure',
+     *       // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *       // Optional. Field mask is used to specify the fields to be overwritten in the Exadata resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "displayName": "my_displayName",
+     *         //   "entitlementId": "my_entitlementId",
+     *         //   "gcpOracleZone": "my_gcpOracleZone",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "properties": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Configureexascale extends StandardParameters {
@@ -9580,6 +9738,25 @@ export namespace oracledatabase_v1 {
      * Required. The parent value for CloudExadataInfrastructure in the following format: projects/{project\}/locations/{location\}.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Cloudexadatainfrastructures$Patch extends StandardParameters {
+    /**
+     * Identifier. The name of the Exadata Infrastructure resource with the format: projects/{project\}/locations/{region\}/cloudExadataInfrastructures/{cloud_exadata_infrastructure\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. Field mask is used to specify the fields to be overwritten in the Exadata resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CloudExadataInfrastructure;
   }
 
   export class Resource$Projects$Locations$Cloudexadatainfrastructures$Dbservers {
@@ -10372,6 +10549,170 @@ export namespace oracledatabase_v1 {
         return createAPIRequest<Schema$ListCloudVmClustersResponse>(parameters);
       }
     }
+
+    /**
+     * Updates the parameters of a single Vm Cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.cloudVmClusters.patch({
+     *     // Identifier. The name of the VM Cluster resource with the format: projects/{project\}/locations/{region\}/cloudVmClusters/{cloud_vm_cluster\}
+     *     name: 'projects/my-project/locations/my-location/cloudVmClusters/my-cloudVmCluster',
+     *     // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Optional. A mask specifying which fields in the VM Cluster should be updated. A field specified in the mask is overwritten. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backupOdbSubnet": "my_backupOdbSubnet",
+     *       //   "backupSubnetCidr": "my_backupSubnetCidr",
+     *       //   "cidr": "my_cidr",
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "exadataInfrastructure": "my_exadataInfrastructure",
+     *       //   "exascaleDbStorageVault": "my_exascaleDbStorageVault",
+     *       //   "gcpOracleZone": "my_gcpOracleZone",
+     *       //   "identityConnector": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "network": "my_network",
+     *       //   "odbNetwork": "my_odbNetwork",
+     *       //   "odbSubnet": "my_odbSubnet",
+     *       //   "properties": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Cloudvmclusters$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Cloudvmclusters$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Cloudvmclusters$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Cloudvmclusters$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Cloudvmclusters$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Cloudvmclusters$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Cloudvmclusters$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Cloudvmclusters$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Cloudvmclusters$Create extends StandardParameters {
@@ -10430,6 +10771,25 @@ export namespace oracledatabase_v1 {
      * Required. The name of the parent in the following format: projects/{project\}/locations/{location\}.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Cloudvmclusters$Patch extends StandardParameters {
+    /**
+     * Identifier. The name of the VM Cluster resource with the format: projects/{project\}/locations/{region\}/cloudVmClusters/{cloud_vm_cluster\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. A mask specifying which fields in the VM Cluster should be updated. A field specified in the mask is overwritten. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CloudVmCluster;
   }
 
   export class Resource$Projects$Locations$Cloudvmclusters$Dbnodes {
@@ -11887,6 +12247,165 @@ export namespace oracledatabase_v1 {
         return createAPIRequest<Schema$ListDbSystemsResponse>(parameters);
       }
     }
+
+    /**
+     * Updates the `labels` of a single DbSystem.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.dbSystems.patch({
+     *     // Identifier. The name of the DbSystem resource in the following format: projects/{project\}/locations/{region\}/dbSystems/{db_system\}
+     *     name: 'projects/my-project/locations/my-location/dbSystems/my-dbSystem',
+     *     // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Optional. A mask specifying which fields in the DbSystem should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value).
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "entitlementId": "my_entitlementId",
+     *       //   "gcpOracleZone": "my_gcpOracleZone",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "ociUrl": "my_ociUrl",
+     *       //   "odbNetwork": "my_odbNetwork",
+     *       //   "odbSubnet": "my_odbSubnet",
+     *       //   "properties": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Dbsystems$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Dbsystems$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Dbsystems$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Dbsystems$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Dbsystems$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dbsystems$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dbsystems$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Dbsystems$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Dbsystems$Create extends StandardParameters {
@@ -11945,6 +12464,25 @@ export namespace oracledatabase_v1 {
      * Required. The parent value for DbSystems in the following format: projects/{project\}/locations/{location\}.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Dbsystems$Patch extends StandardParameters {
+    /**
+     * Identifier. The name of the DbSystem resource in the following format: projects/{project\}/locations/{region\}/dbSystems/{db_system\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. A mask specifying which fields in the DbSystem should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value).
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DbSystem;
   }
 
   export class Resource$Projects$Locations$Dbsystemshapes {
@@ -14258,6 +14796,165 @@ export namespace oracledatabase_v1 {
         );
       }
     }
+
+    /**
+     * Updates the `labels` of a single ExascaleDbStorageVault.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.exascaleDbStorageVaults.patch({
+     *       // Identifier. The resource name of the ExascaleDbStorageVault. Format: projects/{project\}/locations/{location\}/exascaleDbStorageVaults/{exascale_db_storage_vault\}
+     *       name: 'projects/my-project/locations/my-location/exascaleDbStorageVaults/my-exascaleDbStorageVault',
+     *       // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *       // Optional. A mask specifying which fields in the ExascaleDbStorageVault should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "displayName": "my_displayName",
+     *         //   "entitlementId": "my_entitlementId",
+     *         //   "exadataInfrastructure": "my_exadataInfrastructure",
+     *         //   "gcpOracleZone": "my_gcpOracleZone",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "properties": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Exascaledbstoragevaults$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Exascaledbstoragevaults$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Exascaledbstoragevaults$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Exascaledbstoragevaults$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Exascaledbstoragevaults$Create extends StandardParameters {
@@ -14316,6 +15013,25 @@ export namespace oracledatabase_v1 {
      * Required. The parent value for ExascaleDbStorageVault in the following format: projects/{project\}/locations/{location\}.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Exascaledbstoragevaults$Patch extends StandardParameters {
+    /**
+     * Identifier. The resource name of the ExascaleDbStorageVault. Format: projects/{project\}/locations/{location\}/exascaleDbStorageVaults/{exascale_db_storage_vault\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. A mask specifying which fields in the ExascaleDbStorageVault should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExascaleDbStorageVault;
   }
 
   export class Resource$Projects$Locations$Giversions {
@@ -15293,6 +16009,165 @@ export namespace oracledatabase_v1 {
     }
 
     /**
+     * Updates the `labels` of a single GoldengateConnectionAssignment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateConnectionAssignments.patch(
+     *       {
+     *         // Identifier. The name of the GoldengateConnectionAssignment resource in the following format: projects/{project\}/locations/{region\}/goldengateConnectionAssignments/{goldengate_connection_assignment\}
+     *         name: 'projects/my-project/locations/my-location/goldengateConnectionAssignments/my-goldengateConnectionAssignment',
+     *         // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         requestId: 'placeholder-value',
+     *         // Optional. A mask specifying which fields in the GoldengateConnectionAssignment should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "createTime": "my_createTime",
+     *           //   "displayName": "my_displayName",
+     *           //   "entitlementId": "my_entitlementId",
+     *           //   "labels": {},
+     *           //   "name": "my_name",
+     *           //   "properties": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengateconnectionassignments$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengateconnectionassignments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengateconnectionassignments$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Tests a single GoldengateConnectionAssignment.
      * @example
      * ```js
@@ -15508,6 +16383,25 @@ export namespace oracledatabase_v1 {
      * Required. The parent value for the GoldengateConnectionAssignments. Format: projects/{project\}/locations/{location\}
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengateconnectionassignments$Patch extends StandardParameters {
+    /**
+     * Identifier. The name of the GoldengateConnectionAssignment resource in the following format: projects/{project\}/locations/{region\}/goldengateConnectionAssignments/{goldengate_connection_assignment\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. A mask specifying which fields in the GoldengateConnectionAssignment should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoldengateConnectionAssignment;
   }
   export interface Params$Resource$Projects$Locations$Goldengateconnectionassignments$Test extends StandardParameters {
     /**
@@ -16138,6 +17032,166 @@ export namespace oracledatabase_v1 {
         );
       }
     }
+
+    /**
+     * Updates the `labels` of a single GoldengateConnection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateConnections.patch({
+     *       // Identifier. The name of the GoldengateConnection resource in the following format: projects/{project\}/locations/{region\}/goldengateConnections/{goldengate_connection\}
+     *       name: 'projects/my-project/locations/my-location/goldengateConnections/my-goldengateConnection',
+     *       // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *       // Optional. A mask specifying which fields in the GoldengateConnection should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "entitlementId": "my_entitlementId",
+     *         //   "gcpOracleZone": "my_gcpOracleZone",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "ociUrl": "my_ociUrl",
+     *         //   "odbNetwork": "my_odbNetwork",
+     *         //   "odbSubnet": "my_odbSubnet",
+     *         //   "properties": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Goldengateconnections$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengateconnections$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengateconnections$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengateconnections$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Goldengateconnections$Create extends StandardParameters {
@@ -16196,6 +17250,25 @@ export namespace oracledatabase_v1 {
      * Required. The parent value for GoldengateConnections in the following format: projects/{project\}/locations/{location\}.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengateconnections$Patch extends StandardParameters {
+    /**
+     * Identifier. The name of the GoldengateConnection resource in the following format: projects/{project\}/locations/{region\}/goldengateConnections/{goldengate_connection\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. A mask specifying which fields in the GoldengateConnection should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoldengateConnection;
   }
 
   export class Resource$Projects$Locations$Goldengateconnectiontypes {
@@ -17182,6 +18255,167 @@ export namespace oracledatabase_v1 {
     }
 
     /**
+     * Updates the `labels` of a single GoldengateDeployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateDeployments.patch({
+     *       // Identifier. The name of the GoldengateDeployment resource in the following format: projects/{project\}/locations/{region\}/goldengateDeployments/{goldengate_deployment\}
+     *       name: 'projects/my-project/locations/my-location/goldengateDeployments/my-goldengateDeployment',
+     *       // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *       // Optional. A mask specifying which fields in the GoldengateDeployment should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "displayName": "my_displayName",
+     *         //   "entitlementId": "my_entitlementId",
+     *         //   "gcpOracleZone": "my_gcpOracleZone",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "ociUrl": "my_ociUrl",
+     *         //   "odbNetwork": "my_odbNetwork",
+     *         //   "odbSubnet": "my_odbSubnet",
+     *         //   "properties": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Goldengatedeployments$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengatedeployments$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengatedeployments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengatedeployments$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Starts a single GoldengateDeployment.
      * @example
      * ```js
@@ -17530,6 +18764,25 @@ export namespace oracledatabase_v1 {
      * Required. The parent value for GoldengateDeployments in the following format: projects/{project\}/locations/{location\}.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengatedeployments$Patch extends StandardParameters {
+    /**
+     * Identifier. The name of the GoldengateDeployment resource in the following format: projects/{project\}/locations/{region\}/goldengateDeployments/{goldengate_deployment\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. A mask specifying which fields in the GoldengateDeployment should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoldengateDeployment;
   }
   export interface Params$Resource$Projects$Locations$Goldengatedeployments$Start extends StandardParameters {
     /**
@@ -19185,6 +20438,163 @@ export namespace oracledatabase_v1 {
         return createAPIRequest<Schema$ListOdbSubnetsResponse>(parameters);
       }
     }
+
+    /**
+     * Updates the `labels` of a single ODB Subnet.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.odbNetworks.odbSubnets.patch({
+     *       // Identifier. The name of the OdbSubnet resource in the following format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbSubnets/{odb_subnet\}
+     *       name: 'projects/my-project/locations/my-location/odbNetworks/my-odbNetwork/odbSubnets/my-odbSubnet',
+     *       // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *       // Optional. A mask specifying which fields in the OdbSubnet should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "cidrRange": "my_cidrRange",
+     *         //   "createTime": "my_createTime",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "purpose": "my_purpose",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$Create extends StandardParameters {
@@ -19243,6 +20653,25 @@ export namespace oracledatabase_v1 {
      * Required. The parent value for the OdbSubnet in the following format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Odbnetworks$Odbsubnets$Patch extends StandardParameters {
+    /**
+     * Identifier. The name of the OdbSubnet resource in the following format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbSubnets/{odb_subnet\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. A mask specifying which fields in the OdbSubnet should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OdbSubnet;
   }
 
   export class Resource$Projects$Locations$Operations {
