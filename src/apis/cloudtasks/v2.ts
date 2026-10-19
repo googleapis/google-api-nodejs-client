@@ -200,7 +200,7 @@ export namespace cloudtasks_v2 {
      */
     requestId?: string | null;
     /**
-     * Required. The list of requests to create tasks. The queue specified in parent field of each CreateTaskRequest will be the same. This validation happens on the client side as well as in the handler. BatchCreateTasksRequest.parent will also be the same value as the individual CreateTaskRequest.parent . The maximum number of requests is 100.
+     * Required. The list of requests to create tasks. The queue specified in parent field of each CreateTaskRequest will be the same. This validation happens on the client side as well as in the handler. BatchCreateTasksRequest.parent will also be the same value as the individual `CreateTaskRequest.parent`. The maximum number of requests is 100.
      */
     requests?: Schema$CreateTaskRequest[];
   }
@@ -261,7 +261,7 @@ export namespace cloudtasks_v2 {
      */
     kmsKey?: string | null;
     /**
-     * Output only. The config resource name which includes the project and location and must end in 'cmekConfig', in the format projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig`
+     * Output only. The config resource name which includes the project and location and must end in 'cmekConfig', in the format `projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig`
      */
     name?: string | null;
   }
@@ -398,7 +398,7 @@ export namespace cloudtasks_v2 {
    */
   export interface Schema$HttpTarget {
     /**
-     * HTTP target headers. This map contains the header field names and values. Headers will be set when running the CreateTask and/or BufferTask. These headers represent a subset of the headers that will be configured for the task's HTTP request. Some HTTP request headers will be ignored or replaced. A partial list of headers that will be ignored or replaced is: * Several predefined headers, prefixed with "X-CloudTasks-", can be used to define properties of the task. * Host: This will be computed by Cloud Tasks and derived from HttpRequest.url. * Content-Length: This will be computed by Cloud Tasks. `Content-Type` won't be set by Cloud Tasks. You can explicitly set `Content-Type` to a media type when the task is created. For example,`Content-Type` can be set to `"application/octet-stream"` or `"application/json"`. The default value is set to "application/json"`. * User-Agent: This will be set to `"Google-Cloud-Tasks"`. Headers which can have multiple values (according to RFC2616) can be specified using comma-separated values. The size of the headers must be less than 80KB. Queue-level headers to override headers of all the tasks in the queue. Do not put business sensitive or personally identifying data in the HTTP Header Override Configuration or other similar fields in accordance with Section 12 (Resource Fields) of the [Service Specific Terms](https://cloud.google.com/terms/service-terms).
+     * HTTP target headers. This map contains the header field names and values. Headers will be set when running the CreateTask and/or BufferTask. These headers represent a subset of the headers that will be configured for the task's HTTP request. Some HTTP request headers will be ignored or replaced. A partial list of headers that will be ignored or replaced is: * Several predefined headers, prefixed with "X-CloudTasks-", can be used to define properties of the task. * Host: This will be computed by Cloud Tasks and derived from HttpRequest.url. * Content-Length: This will be computed by Cloud Tasks. `Content-Type` won't be set by Cloud Tasks. You can explicitly set `Content-Type` to a media type when the task is created. For example, `Content-Type` can be set to `"application/octet-stream"` or `"application/json"`. The default value is set to `"application/json"`. * User-Agent: This will be set to `"Google-Cloud-Tasks"`. Headers which can have multiple values (according to RFC2616) can be specified using comma-separated values. The size of the headers must be less than 80KB. Queue-level headers to override headers of all the tasks in the queue. Do not put business sensitive or personally identifying data in the HTTP Header Override Configuration or other similar fields in accordance with Section 12 (Resource Fields) of the [Service Specific Terms](https://cloud.google.com/terms/service-terms).
      */
     headerOverrides?: Schema$HeaderOverride[];
     /**
@@ -963,7 +963,7 @@ export namespace cloudtasks_v2 {
     }
 
     /**
-     * Gets the CMEK config. Gets the Customer Managed Encryption Key configured with the Cloud Tasks lcoation. By default there is no kms_key configured.
+     * Gets the CMEK config. Gets the Customer Managed Encryption Key configured with the Cloud Tasks location. By default there is no `kms_key` configured.
      * @example
      * ```js
      * // Before running the sample:
@@ -993,7 +993,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.getCmekConfig({
-     *     // Required. The config. For example: projects/PROJECT_ID/locations/LOCATION_ID/CmekConfig`
+     *     // Required. The config. For example: `projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig`
      *     name: 'projects/my-project/locations/my-location/cmekConfig',
      *   });
      *   console.log(res.data);
@@ -1274,7 +1274,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.updateCmekConfig({
-     *     // Output only. The config resource name which includes the project and location and must end in 'cmekConfig', in the format projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig`
+     *     // Output only. The config resource name which includes the project and location and must end in 'cmekConfig', in the format `projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig`
      *     name: 'projects/my-project/locations/my-location/cmekConfig',
      *     // List of fields to be updated in this request.
      *     updateMask: 'placeholder-value',
@@ -1397,7 +1397,7 @@ export namespace cloudtasks_v2 {
   }
   export interface Params$Resource$Projects$Locations$Getcmekconfig extends StandardParameters {
     /**
-     * Required. The config. For example: projects/PROJECT_ID/locations/LOCATION_ID/CmekConfig`
+     * Required. The config. For example: `projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig`
      */
     name?: string;
   }
@@ -1425,7 +1425,7 @@ export namespace cloudtasks_v2 {
   }
   export interface Params$Resource$Projects$Locations$Updatecmekconfig extends StandardParameters {
     /**
-     * Output only. The config resource name which includes the project and location and must end in 'cmekConfig', in the format projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig`
+     * Output only. The config resource name which includes the project and location and must end in 'cmekConfig', in the format `projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig`
      */
     name?: string;
     /**
