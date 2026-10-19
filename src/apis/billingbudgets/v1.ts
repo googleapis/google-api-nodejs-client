@@ -157,7 +157,7 @@ export namespace billingbudgets_v1 {
      */
     ownershipScope?: string | null;
     /**
-     * Optional. The spend cap configured for this budget. When `spend_cap` is set, strict field restrictions apply to the budget (see field-level comments on `ownership_scope`, `budget_filter`, `amount`, `threshold_rules`, and `notifications_rule`). When `spend_cap.output_state` is `ENFORCED`, only `spend_cap.input_state` can be modified in an `UpdateBudget` request (e.g., setting `input_state` to `AWAITING_NEXT_PERIOD` to lift the cap); modifying any other budget field while enforced will fail with `FAILED_PRECONDITION`.
+     * Optional. The spend cap configured for this budget. When `spend_cap` is set, strict field restrictions apply to the budget (see field-level comments on `ownership_scope`, `budget_filter`, `amount`, `threshold_rules`, and `notifications_rule`). When `spend_cap.output_state` is `ENFORCED`, only `spend_cap.input_state` can be modified in an `UpdateBudget` request (e.g., setting `input_state` to `AWAITING_NEXT_PERIOD` to lift the cap); modifying any other budget field while enforced will fail with `FAILED_PRECONDITION`. If the existing resource is a spend cap and an `update_mask` is supplied in an `UpdateBudget` request, `spend_cap` or `spend_cap.input_state` must be specified in the update mask. To convert a spend cap budget to a regular budget, specify `spend_cap` in the `update_mask` and omit `spend_cap` from the budget in the request.
      */
     spendCap?: Schema$GoogleCloudBillingBudgetsV1SpendCap;
     /**
@@ -279,7 +279,7 @@ export namespace billingbudgets_v1 {
    */
   export interface Schema$GoogleCloudBillingBudgetsV1SpendCap {
     /**
-     * Required. The desired state specified by the user. Valid values for mutation: - `CONFIGURED`: Must be set when creating a spend cap (`CreateBudget`). Also valid when updating (`UpdateBudget`) to activate the spend cap. - `AWAITING_NEXT_PERIOD`: Valid only when updating (`UpdateBudget`) to explicitly lift an enforced cap. Supplying any other value will result in an INVALID_ARGUMENT error.
+     * Required. The desired state specified by the user. Valid values for mutation: - `CONFIGURED`: Must be set when creating a spend cap (`CreateBudget`). Also valid when updating (`UpdateBudget`) to activate the spend cap. If the spend cap is in state `AWAITING_NEXT_PERIOD`, `input_state` must be set to `CONFIGURED`. - `AWAITING_NEXT_PERIOD`: Valid only when updating (`UpdateBudget`) to explicitly lift an enforced cap. Not allowed if the spend cap is in state `AWAITING_NEXT_PERIOD`. Supplying any other value will result in an INVALID_ARGUMENT error.
      */
     inputState?: string | null;
     /**
