@@ -635,6 +635,10 @@ export namespace backupdr_v1beta {
      */
     name?: string | null;
     /**
+     * Output only. NetApp Volume specific backup properties.
+     */
+    netappVolumeBackupProperties?: Schema$NetAppVolumeBackupProperties;
+    /**
      * Output only. source resource size in bytes at the time of the backup.
      */
     resourceSizeBytes?: string | null;
@@ -1019,6 +1023,10 @@ export namespace backupdr_v1beta {
      * Output only. Identifier. The resource name of BackupPlanAssociation in below format Format : projects/{project\}/locations/{location\}/backupPlanAssociations/{backupPlanAssociationId\}
      */
     name?: string | null;
+    /**
+     * Output only. NetApp volume backup plan association properties.
+     */
+    netappVolumeBackupPlanAssociationProperties?: Schema$NetAppVolumeBackupPlanAssociationProperties;
     /**
      * Required. Immutable. Resource name of workload on which the backup plan is applied. The format can either be the resource name (e.g., "projects/my-project/zones/us-central1-a/instances/my-instance") or the full resource URI (e.g., "https://www.googleapis.com/compute/v1/projects/my-project/zones/us-central1-a/instances/my-instance").
      */
@@ -1738,6 +1746,10 @@ export namespace backupdr_v1beta {
      */
     location?: string | null;
     /**
+     * Output only. NetAppVolumeDataSourceProperties has a subset of NetApp Volume properties that are useful at the Datasource level.
+     */
+    netappVolumeDatasourceProperties?: Schema$NetAppVolumeDataSourceProperties;
+    /**
      * The type of the Google Cloud resource. Use the Unified Resource Type, eg. compute.googleapis.com/Instance.
      */
     type?: string | null;
@@ -1766,6 +1778,10 @@ export namespace backupdr_v1beta {
      * Output only. The location of the Google Cloud resource. Ex: //"global"/"unspecified"
      */
     location?: string | null;
+    /**
+     * Output only. The properties of the NetApp volume.
+     */
+    netappVolumeProperties?: Schema$NetAppVolumeDataSourceReferenceProperties;
     /**
      * Output only. The type of the Google Cloud resource. Ex: compute.googleapis.com/Instance
      */
@@ -2835,6 +2851,50 @@ export namespace backupdr_v1beta {
      * Optional. Array of key/value pairs. The total size of all keys and values must be less than 512 KB.
      */
     items?: Schema$Entry[];
+  }
+  /**
+   * NetAppVolumeBackupPlanAssociationProperties represents NetApp Volume backup plan association properties in BackupPlanAssociation. .
+   */
+  export interface Schema$NetAppVolumeBackupPlanAssociationProperties {
+    /**
+     * Output only. The creation timestamp of the source resource.
+     */
+    sourceResourceCreateTime?: string | null;
+  }
+  /**
+   * NetAppVolumeBackupProperties represents NetApp Volume backup properties in Backup. .
+   */
+  export interface Schema$NetAppVolumeBackupProperties {
+    /**
+     * Output only. The source volume of the Backup.
+     */
+    sourceResource?: string | null;
+  }
+  /**
+   * NetAppVolumeDataSourceProperties represents NetApp Volume properties stored in DataSource. .
+   */
+  export interface Schema$NetAppVolumeDataSourceProperties {
+    /**
+     * Output only. The source volume represented by this DataSource.
+     */
+    sourceResource?: string | null;
+    /**
+     * Output only. The volume creation timestamp.
+     */
+    sourceResourceCreateTime?: string | null;
+  }
+  /**
+   * NetAppVolumeDataSourceReferenceProperties represents NetApp Volume properties stored in DataSourceReference. .
+   */
+  export interface Schema$NetAppVolumeDataSourceReferenceProperties {
+    /**
+     * Output only. The source volume represented by this DataSourceReference.
+     */
+    sourceResource?: string | null;
+    /**
+     * Output only. The volume creation timestamp.
+     */
+    sourceResourceCreateTime?: string | null;
   }
   /**
    * Network configuration for ManagementServer instance.
@@ -6519,6 +6579,7 @@ export namespace backupdr_v1beta {
      *       //   "dataSource": "my_dataSource",
      *       //   "filestoreInstanceBackupPlanAssociationProperties": {},
      *       //   "name": "my_name",
+     *       //   "netappVolumeBackupPlanAssociationProperties": {},
      *       //   "resource": "my_resource",
      *       //   "resourceType": "my_resourceType",
      *       //   "rulesConfigInfo": [],
@@ -6995,6 +7056,7 @@ export namespace backupdr_v1beta {
      *   //   "dataSource": "my_dataSource",
      *   //   "filestoreInstanceBackupPlanAssociationProperties": {},
      *   //   "name": "my_name",
+     *   //   "netappVolumeBackupPlanAssociationProperties": {},
      *   //   "resource": "my_resource",
      *   //   "resourceType": "my_resourceType",
      *   //   "rulesConfigInfo": [],
@@ -7311,6 +7373,7 @@ export namespace backupdr_v1beta {
      *       //   "dataSource": "my_dataSource",
      *       //   "filestoreInstanceBackupPlanAssociationProperties": {},
      *       //   "name": "my_name",
+     *       //   "netappVolumeBackupPlanAssociationProperties": {},
      *       //   "resource": "my_resource",
      *       //   "resourceType": "my_resourceType",
      *       //   "rulesConfigInfo": [],
@@ -12099,6 +12162,7 @@ export namespace backupdr_v1beta {
      *   //   "kmsKeyVersions": [],
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "netappVolumeBackupProperties": {},
      *   //   "resourceSizeBytes": "my_resourceSizeBytes",
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
@@ -12421,6 +12485,7 @@ export namespace backupdr_v1beta {
      *         //   "kmsKeyVersions": [],
      *         //   "labels": {},
      *         //   "name": "my_name",
+     *         //   "netappVolumeBackupProperties": {},
      *         //   "resourceSizeBytes": "my_resourceSizeBytes",
      *         //   "satisfiesPzi": false,
      *         //   "satisfiesPzs": false,
