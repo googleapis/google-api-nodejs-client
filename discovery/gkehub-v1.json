@@ -2596,7 +2596,7 @@
       }
     }
   },
-  "revision": "20260927",
+  "revision": "20261008",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -3220,7 +3220,7 @@
           "type": "boolean"
         },
         "sourceFormat": {
-          "description": "Optional. Specifies whether the Config Sync repo is in `hierarchical` or `unstructured` mode. Defaults to `hierarchical`. See https://docs.cloud.google.com/kubernetes-engine/config-sync/docs/concepts/configs#organize-configs for an explanation.",
+          "description": "Optional. Specifies whether the Config Sync repo is in `hierarchy` or `unstructured` mode. Defaults to `hierarchy`. See https://docs.cloud.google.com/kubernetes-engine/config-sync/docs/concepts/configs#organize-configs for an explanation.",
           "type": "string"
         },
         "stopSyncing": {
@@ -3701,11 +3701,11 @@
       "id": "ConfigManagementGitConfig",
       "properties": {
         "gcpServiceAccountEmail": {
-          "description": "Optional. The Google Cloud Service Account Email used for auth when secret_type is `gcpserviceaccount`.",
+          "description": "Optional. The Google Cloud Service Account Email used for auth when secret_type is `gcpserviceaccount`. Annotates the `RootSync` or `RepoSync` controller's Kubernetes Service Account.",
           "type": "string"
         },
         "httpsProxy": {
-          "description": "Optional. URL for the HTTPS proxy to be used when communicating with the Git repo. Only specify when secret_type is `cookiefile`, `token`, or `none`.",
+          "description": "Optional. URL for the HTTPS proxy to be used when communicating with the Git repo. Defines an HTTPS_PROXY environment variable and only accepts `https` or unadorned URLs. For example, `https://proxy.internal.business.co:443` or `proxy.internal.business.co:443`. If using an unadorned URL, make sure the communication between your proxy server and Git host is secure. Rejects `http://` URLs. Only specify when secret_type is `cookiefile`, `token`, or `none`.",
           "type": "string"
         },
         "policyDir": {
@@ -3725,7 +3725,7 @@
           "type": "string"
         },
         "syncRev": {
-          "description": "Optional. Git revision (tag or hash) to check out. Default HEAD.",
+          "description": "Optional. Git revision (tag or hash) or branch to sync from. Default `HEAD`. If not `HEAD`, takes precedence over `sync_branch` field. When using a hash, must be a full hash, and not an abbreviated form.",
           "type": "string"
         },
         "syncWaitSecs": {
@@ -3949,7 +3949,7 @@
       "id": "ConfigManagementOciConfig",
       "properties": {
         "gcpServiceAccountEmail": {
-          "description": "Optional. The Google Cloud Service Account Email used for auth when secret_type is `gcpserviceaccount`.",
+          "description": "Optional. The Google Cloud Service Account Email used for auth when secret_type is `gcpserviceaccount`. Annotates the `RootSync` or `RepoSync` controller's Kubernetes Service Account.",
           "type": "string"
         },
         "policyDir": {

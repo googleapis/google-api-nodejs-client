@@ -292,7 +292,7 @@ export namespace gkehub_v2beta {
      */
     preventDrift?: boolean | null;
     /**
-     * Optional. Specifies whether the Config Sync repo is in `hierarchical` or `unstructured` mode. Defaults to `hierarchical`. See https://docs.cloud.google.com/kubernetes-engine/config-sync/docs/concepts/configs#organize-configs for an explanation.
+     * Optional. Specifies whether the Config Sync repo is in `hierarchy` or `unstructured` mode. Defaults to `hierarchy`. See https://docs.cloud.google.com/kubernetes-engine/config-sync/docs/concepts/configs#organize-configs for an explanation.
      */
     sourceFormat?: string | null;
     /**
@@ -517,11 +517,11 @@ export namespace gkehub_v2beta {
    */
   export interface Schema$ConfigManagementGitConfig {
     /**
-     * Optional. The Google Cloud Service Account Email used for auth when secret_type is `gcpserviceaccount`.
+     * Optional. The Google Cloud Service Account Email used for auth when secret_type is `gcpserviceaccount`. Annotates the `RootSync` or `RepoSync` controller's Kubernetes Service Account.
      */
     gcpServiceAccountEmail?: string | null;
     /**
-     * Optional. URL for the HTTPS proxy to be used when communicating with the Git repo. Only specify when secret_type is `cookiefile`, `token`, or `none`.
+     * Optional. URL for the HTTPS proxy to be used when communicating with the Git repo. Defines an HTTPS_PROXY environment variable and only accepts `https` or unadorned URLs. For example, `https://proxy.internal.business.co:443` or `proxy.internal.business.co:443`. If using an unadorned URL, make sure the communication between your proxy server and Git host is secure. Rejects `http://` URLs. Only specify when secret_type is `cookiefile`, `token`, or `none`.
      */
     httpsProxy?: string | null;
     /**
@@ -541,7 +541,7 @@ export namespace gkehub_v2beta {
      */
     syncRepo?: string | null;
     /**
-     * Optional. Git revision (tag or hash) to check out. Default HEAD.
+     * Optional. Git revision (tag or hash) or branch to sync from. Default `HEAD`. If not `HEAD`, takes precedence over `sync_branch` field. When using a hash, must be a full hash, and not an abbreviated form.
      */
     syncRev?: string | null;
     /**
@@ -636,7 +636,7 @@ export namespace gkehub_v2beta {
    */
   export interface Schema$ConfigManagementOciConfig {
     /**
-     * Optional. The Google Cloud Service Account Email used for auth when secret_type is `gcpserviceaccount`.
+     * Optional. The Google Cloud Service Account Email used for auth when secret_type is `gcpserviceaccount`. Annotates the `RootSync` or `RepoSync` controller's Kubernetes Service Account.
      */
     gcpServiceAccountEmail?: string | null;
     /**
