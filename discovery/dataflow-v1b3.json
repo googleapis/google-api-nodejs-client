@@ -2899,7 +2899,7 @@
       }
     }
   },
-  "revision": "20260825",
+  "revision": "20261011",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -3041,7 +3041,7 @@
           "description": "Optional. The parameters to use for autoscaling when this schedule is active."
         },
         "priority": {
-          "description": "Optional. Specifies the priority of the schedule. If two schedules overlap, the one with the higher priority will be used. The higher the value, the higher the priority of the schedule.",
+          "description": "Optional. Specifies the priority of the schedule. If two schedules overlap, the one with the higher priority will be used. The higher the value, the higher the priority of the schedule. The value must be non-negative; the lowest priority is `0`, which is the default.",
           "format": "int64",
           "type": "string"
         },
