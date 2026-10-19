@@ -214,7 +214,7 @@ export namespace displayvideo_v4 {
     youtubeVideoAsset?: Schema$YoutubeVideoAsset;
   }
   /**
-   * A single ad group associated with a line item.
+   * LINT: LEGACY_NAMES A single ad group associated with a line item.
    */
   export interface Schema$AdGroup {
     /**
@@ -263,7 +263,7 @@ export namespace displayvideo_v4 {
     targetingExpansion?: Schema$TargetingExpansionConfig;
   }
   /**
-   * LINT: LEGACY_NAMES A single ad associated with an ad group.
+   * A single ad associated with an ad group.
    */
   export interface Schema$AdGroupAd {
     /**
@@ -295,7 +295,7 @@ export namespace displayvideo_v4 {
      */
     bumperAd?: Schema$BumperAd;
     /**
-     * Optional. The DCM tracking ad info. Only valid for Demand Gen ads. To remove the DCM tracking ad info, please leave this field empty.
+     * Optional. The DCM tracking ad info. To remove the DCM tracking ad info, please leave this field empty.
      */
     dcmTrackingInfo?: Schema$DcmTrackingInfo;
     /**
@@ -1622,7 +1622,7 @@ export namespace displayvideo_v4 {
      */
     finalUrl?: string | null;
     /**
-     * The URL address loaded in the background for tracking purposes.
+     * The URL address loaded in the background for tracking purposes. In v4 and earlier, this field represents the tracking URL specified by the user manually. This can be found at userSpecifiedTrackingUrl in v5.
      */
     trackingUrl?: string | null;
     /**
@@ -2515,7 +2515,7 @@ export namespace displayvideo_v4 {
    */
   export interface Schema$CommonInStreamAttribute {
     /**
-     * Optional. The text on the call-to-action button.
+     * Optional. The text on the call-to-action button. Must be set if actionHeadline is set.
      */
     actionButtonLabel?: string | null;
     /**
@@ -2535,7 +2535,7 @@ export namespace displayvideo_v4 {
      */
     finalUrl?: string | null;
     /**
-     * Output only. The URL address loaded in the background for tracking purposes.
+     * Output only. The URL address loaded in the background for tracking purposes. In v4 and earlier, this field represents the tracking URL specified by the user manually. This can be found at userSpecifiedTrackingUrl in v5.
      */
     trackingUrl?: string | null;
     /**
@@ -7614,7 +7614,7 @@ export namespace displayvideo_v4 {
    */
   export interface Schema$VideoPerformanceAd {
     /**
-     * Optional. The list of text assets shown on the call-to-action button.
+     * Optional. The list of text assets shown on the call-to-action button. Must be set if headlines is set.
      */
     actionButtonLabels?: string[] | null;
     /**
@@ -7626,7 +7626,7 @@ export namespace displayvideo_v4 {
      */
     customParameters?: {[key: string]: string} | null;
     /**
-     * Optional. The list of descriptions shown on the call-to-action banner.
+     * Optional. The list of descriptions shown on the call-to-action banner. Must be set unless the parent line item's lineItemType is `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE`, in which case this field cannot be set.
      */
     descriptions?: string[] | null;
     /**
@@ -7634,7 +7634,7 @@ export namespace displayvideo_v4 {
      */
     displayUrlBreadcrumb1?: string | null;
     /**
-     * Optional. The second piece after the domain in the display URL.
+     * Optional. The second piece after the domain in the display URL. Can only be set if displayUrlBreadcrumb1 is also set.
      */
     displayUrlBreadcrumb2?: string | null;
     /**
@@ -7650,11 +7650,11 @@ export namespace displayvideo_v4 {
      */
     headlines?: string[] | null;
     /**
-     * Optional. The list of long headlines shown on the call-to-action banner.
+     * Optional. The list of long headlines shown on the call-to-action banner. Must be set unless the parent line item's lineItemType is `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE`, in which case this field cannot be set.
      */
     longHeadlines?: string[] | null;
     /**
-     * Output only. The URL address loaded in the background for tracking purposes.
+     * Output only. The URL address loaded in the background for tracking purposes. In v4 and earlier, this field represents the tracking URL specified by the user manually. This can be found at userSpecifiedTrackingUrl in v5.
      */
     trackingUrl?: string | null;
     /**
@@ -10371,7 +10371,7 @@ export namespace displayvideo_v4 {
     }
 
     /**
-     * Creates an ad group ad. This method is only supported for Demand Gen ads.
+     * Creates an ad group ad.
      * @example
      * ```js
      * // Before running the sample:
@@ -10554,7 +10554,7 @@ export namespace displayvideo_v4 {
     }
 
     /**
-     * Deletes an ad group ad. This method is only supported for Demand Gen ads.
+     * Deletes an ad group ad.
      * @example
      * ```js
      * // Before running the sample:
@@ -10584,7 +10584,7 @@ export namespace displayvideo_v4 {
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.adGroupAds.delete({
-     *     // Required. The ID of the ad to delete. Only Demand Gen ads are supported.
+     *     // Required. The ID of the ad to delete.
      *     adGroupAdId: '[^/]+',
      *     // Required. The ID of the advertiser the ad belongs to.
      *     advertiserId: '[^/]+',
@@ -10994,7 +10994,7 @@ export namespace displayvideo_v4 {
     }
 
     /**
-     * Updates an ad group ad. This method is only supported for Demand Gen ads.
+     * Updates an ad group ad.
      * @example
      * ```js
      * // Before running the sample:
@@ -11195,7 +11195,7 @@ export namespace displayvideo_v4 {
   }
   export interface Params$Resource$Advertisers$Adgroupads$Delete extends StandardParameters {
     /**
-     * Required. The ID of the ad to delete. Only Demand Gen ads are supported.
+     * Required. The ID of the ad to delete.
      */
     adGroupAdId?: string;
     /**
