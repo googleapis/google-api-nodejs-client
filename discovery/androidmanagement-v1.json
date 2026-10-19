@@ -1265,7 +1265,7 @@
       }
     }
   },
-  "revision": "20261008",
+  "revision": "20261014",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -3722,7 +3722,7 @@
           "enumDescriptions": [
             "Unspecified. Defaults to USER_INITIATED_ADD_ESIM_ALLOWED.",
             "The user is allowed to add eSIM profiles.",
-            "Supported only on company-owned devices. A NonComplianceDetail with MANAGEMENT_MODE is reported for personally-owned devices."
+            "Prevents the user from adding any new eSIM profiles. Note the following behaviors: * Admin-provisioned eSIMs: This setting does not block adding or managing eSIMs programmatically using commands like ADD_ESIM. * Existing eSIMs: Any eSIM profiles already present on the device before this restriction is applied, will remain and are not removed. To view existing eSIMs, refer to the data reported in TelephonyInfo.Supported on Android 15 and higher. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 15.Supported only on company-owned devices. A NonComplianceDetail with MANAGEMENT_MODE is reported for personally-owned devices."
           ],
           "type": "string"
         },
