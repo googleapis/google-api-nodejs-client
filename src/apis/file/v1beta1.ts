@@ -244,6 +244,10 @@ export namespace file_v1beta1 {
      */
     quota?: string | null;
     /**
+     * Optional. A unique ID used to identify the request, so retries are idempotent. Must be a valid UUID4; the zero UUID (`00000000-0000-0000-0000-000000000000`) is not supported.
+     */
+    requestId?: string | null;
+    /**
      * Required. Unique identifier for the volume which also appears in the volumes resource name.
      */
     volumeId?: string | null;
@@ -1191,7 +1195,7 @@ export namespace file_v1beta1 {
    */
   export interface Schema$RestoreConfig {
     /**
-     * Optional. Example: If you want to restore `/mnt/share/dir1/file.txt`, the path pattern must be `/dir1/file.txt`. If you want to restore `/mnt/share/dir1/`, the path pattern must be `/dir1`. Currently only single path is supported, Glob patterns are not supported.
+     * Optional. A collection of paths/patterns to restore from the backup. If empty, a full restore is performed. A valid path is relative to the file share's mount point and must not include a trailing slash. The path must start with a leading `/`. Example: If you want to restore `/mnt/share/dir1/file.txt`, the path pattern must be `/dir1/file.txt`. If you want to restore `/mnt/share/dir1/`, the path pattern must be `/dir1`. Currently only single path is supported, Glob patterns are not supported.
      */
     pathPatterns?: string[] | null;
   }
@@ -1370,6 +1374,10 @@ export namespace file_v1beta1 {
      * Optional. The limit for how much data can be written to this volume, in MiB.
      */
     quota?: string | null;
+    /**
+     * Optional. A unique ID used to identify the request, so retries are idempotent. Must be a valid UUID4; the zero UUID (`00000000-0000-0000-0000-000000000000`) is not supported.
+     */
+    requestId?: string | null;
   }
   /**
    * Maintenance policy applicable to instance updates.
@@ -7942,6 +7950,7 @@ export namespace file_v1beta1 {
      *         //   "backup": "my_backup",
      *         //   "ipAcls": [],
      *         //   "quota": "my_quota",
+     *         //   "requestId": "my_requestId",
      *         //   "volumeId": "my_volumeId"
      *         // }
      *       },
@@ -8974,7 +8983,8 @@ export namespace file_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "ipAcls": [],
-     *       //   "quota": "my_quota"
+     *       //   "quota": "my_quota",
+     *       //   "requestId": "my_requestId"
      *       // }
      *     },
      *   });
