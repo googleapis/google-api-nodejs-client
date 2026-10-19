@@ -2237,7 +2237,7 @@
       }
     }
   },
-  "revision": "20261002",
+  "revision": "20261009",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {
@@ -3373,7 +3373,7 @@
           "type": "string"
         },
         "endpointIp": {
-          "description": "Required. Immutable. User provided IP address to use for outbound DNS forwarding. This address must be a free address on the subnetwork.",
+          "description": "Optional. Immutable. User provided IP address to use for outbound DNS forwarding. This address must be a free address on the subnetwork. If omitted, a free IP address from the subnetwork is automatically allocated.",
           "type": "string"
         },
         "labels": {
