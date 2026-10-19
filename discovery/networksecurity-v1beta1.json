@@ -6528,7 +6528,7 @@
       }
     }
   },
-  "revision": "20260924",
+  "revision": "20261011",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -9325,14 +9325,35 @@
           "enum": [
             "CLIENT_VALIDATION_MODE_UNSPECIFIED",
             "ALLOW_INVALID_OR_MISSING_CLIENT_CERT",
-            "REJECT_INVALID"
+            "REJECT_INVALID",
+            "ALLOW_VALIDATION_RELAXATIONS"
           ],
           "enumDescriptions": [
             "Not allowed.",
             "Allow connection even if certificate chain validation of the client certificate failed or no client certificate was presented. The proof of possession of the private key is always checked if client certificate was presented. This mode requires the backend to implement processing of data extracted from a client certificate to authenticate the peer, or to reject connections if the client certificate fingerprint is missing.",
-            "Require a client certificate and allow connection to the backend only if validation of the client certificate passed. If set, requires a reference to non-empty TrustConfig specified in `client_validation_trust_config`."
+            "Require a client certificate and allow connection to the backend only if validation of the client certificate passed. If set, requires a reference to non-empty TrustConfig specified in `client_validation_trust_config`.",
+            "Require a client certificate, but apply the specific validation relaxations requested in `client_validation_relaxations`. All selected relaxations are applied simultaneously."
           ],
           "type": "string"
+        },
+        "clientValidationRelaxations": {
+          "description": "A list of validation relaxations to apply when `client_validation_mode` is set to ALLOW_VALIDATION_RELAXATIONS.",
+          "items": {
+            "enum": [
+              "CLIENT_VALIDATION_RELAXATION_UNSPECIFIED",
+              "ALLOW_MISSING_EKU",
+              "ALLOW_SHA1_HASHING",
+              "ALLOW_EXPIRED_LEAF_CERTIFICATE"
+            ],
+            "enumDescriptions": [
+              "Not allowed.",
+              "Allows the client certificate to completely omit the Extended Key Usage (EKU) extension. If the EKU extension is present, it must permit the `clientAuth` key purpose (OID 1.3.6.1.5.5.7.3.2). Security Warning: Enabling this option is risky if the customer uses a Root CA that issues certificates for multiple different purposes. Without EKU enforcement, a certificate intended for a non-authentication purpose (like S/MIME or server-only auth) might be accepted for mTLS client authentication. Customers should only use this relaxation if they are using a dedicated Private CA solely for issuing client authentication certificates.",
+              "Allows validation of client certificate chains signed using legacy SHA-1 message digests. Enabling this is insecure and should only be used to support legacy clients during migration periods.",
+              "Allows validation of an expired client leaf certificate. The certificate will be validated as if the current time was one second before the end of its validity period (the `notAfter` timestamp). This relaxation applies strictly to the leaf certificate and not to the rest of the chain."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         },
         "clientValidationTrustConfig": {
           "description": "Reference to the TrustConfig from certificatemanager.googleapis.com namespace. If specified, the chain validation will be performed against certificates configured in the given TrustConfig. Allowed only if the policy is to be used with Application Load Balancers.",
