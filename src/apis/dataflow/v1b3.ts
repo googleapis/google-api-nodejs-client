@@ -233,7 +233,7 @@ export namespace dataflow_v1b3 {
      */
     parameters?: Schema$Parameters;
     /**
-     * Optional. Specifies the priority of the schedule. If two schedules overlap, the one with the higher priority will be used. The higher the value, the higher the priority of the schedule.
+     * Optional. Specifies the priority of the schedule. If two schedules overlap, the one with the higher priority will be used. The higher the value, the higher the priority of the schedule. The value must be non-negative; the lowest priority is `0`, which is the default.
      */
     priority?: string | null;
     /**
