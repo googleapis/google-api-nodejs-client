@@ -324,6 +324,14 @@ export namespace cloudresourcemanager_v1 {
     ready?: boolean | null;
   }
   /**
+   * Metadata for the `CreateSemanticTagBinding` long-running operation.
+   */
+  export interface Schema$CreateSemanticTagBindingMetadata {}
+  /**
+   * Runtime operation information for creating a `SemanticTagValue`.
+   */
+  export interface Schema$CreateSemanticTagValueMetadata {}
+  /**
    * Runtime operation information for creating a TagValue.
    */
   export interface Schema$CreateTagBindingMetadata {}
@@ -355,6 +363,14 @@ export namespace cloudresourcemanager_v1 {
    * A status object which is used as the `metadata` field for the Operation returned by `DeleteProject`.
    */
   export interface Schema$DeleteProjectMetadata {}
+  /**
+   * Metadata for the `DeleteSemanticTagBinding` long-running operation.
+   */
+  export interface Schema$DeleteSemanticTagBindingMetadata {}
+  /**
+   * Runtime operation information for deleting a `SemanticTagValue`.
+   */
+  export interface Schema$DeleteSemanticTagValueMetadata {}
   /**
    * Runtime operation information for deleting a TagBinding.
    */
