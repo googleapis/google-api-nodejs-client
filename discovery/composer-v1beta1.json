@@ -251,6 +251,231 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://composer.us-west8.rep.googleapis.com/",
       "location": "us-west8"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://africa-south1-composer.googleapis.com/",
+      "location": "africa-south1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-east1-composer.googleapis.com/",
+      "location": "asia-east1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-east2-composer.googleapis.com/",
+      "location": "asia-east2"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-northeast1-composer.googleapis.com/",
+      "location": "asia-northeast1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-northeast2-composer.googleapis.com/",
+      "location": "asia-northeast2"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-northeast3-composer.googleapis.com/",
+      "location": "asia-northeast3"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-south1-composer.googleapis.com/",
+      "location": "asia-south1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-south2-composer.googleapis.com/",
+      "location": "asia-south2"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-southeast1-composer.googleapis.com/",
+      "location": "asia-southeast1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-southeast2-composer.googleapis.com/",
+      "location": "asia-southeast2"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-southeast3-composer.googleapis.com/",
+      "location": "asia-southeast3"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://australia-southeast1-composer.googleapis.com/",
+      "location": "australia-southeast1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://australia-southeast2-composer.googleapis.com/",
+      "location": "australia-southeast2"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-central2-composer.googleapis.com/",
+      "location": "europe-central2"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-north1-composer.googleapis.com/",
+      "location": "europe-north1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-north2-composer.googleapis.com/",
+      "location": "europe-north2"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-southwest1-composer.googleapis.com/",
+      "location": "europe-southwest1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west1-composer.googleapis.com/",
+      "location": "europe-west1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west10-composer.googleapis.com/",
+      "location": "europe-west10"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west12-composer.googleapis.com/",
+      "location": "europe-west12"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west15-composer.googleapis.com/",
+      "location": "europe-west15"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west2-composer.googleapis.com/",
+      "location": "europe-west2"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west3-composer.googleapis.com/",
+      "location": "europe-west3"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west4-composer.googleapis.com/",
+      "location": "europe-west4"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west6-composer.googleapis.com/",
+      "location": "europe-west6"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west8-composer.googleapis.com/",
+      "location": "europe-west8"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west9-composer.googleapis.com/",
+      "location": "europe-west9"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://me-central1-composer.googleapis.com/",
+      "location": "me-central1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://me-central2-composer.googleapis.com/",
+      "location": "me-central2"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://me-west1-composer.googleapis.com/",
+      "location": "me-west1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://northamerica-northeast1-composer.googleapis.com/",
+      "location": "northamerica-northeast1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://northamerica-northeast2-composer.googleapis.com/",
+      "location": "northamerica-northeast2"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://northamerica-south1-composer.googleapis.com/",
+      "location": "northamerica-south1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://southamerica-east1-composer.googleapis.com/",
+      "location": "southamerica-east1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://southamerica-west1-composer.googleapis.com/",
+      "location": "southamerica-west1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-central1-composer.googleapis.com/",
+      "location": "us-central1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-east1-composer.googleapis.com/",
+      "location": "us-east1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-east4-composer.googleapis.com/",
+      "location": "us-east4"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-east5-composer.googleapis.com/",
+      "location": "us-east5"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-east7-composer.googleapis.com/",
+      "location": "us-east7"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-south1-composer.googleapis.com/",
+      "location": "us-south1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-west1-composer.googleapis.com/",
+      "location": "us-west1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-west2-composer.googleapis.com/",
+      "location": "us-west2"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-west3-composer.googleapis.com/",
+      "location": "us-west3"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-west4-composer.googleapis.com/",
+      "location": "us-west4"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1336,7 +1561,7 @@
       }
     }
   },
-  "revision": "20260825",
+  "revision": "20261011",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {
@@ -2033,6 +2258,24 @@
       },
       "type": "object"
     },
+    "ImageVersionRollbackTarget": {
+      "description": "The image version an environment can be rolled back to.",
+      "id": "ImageVersionRollbackTarget",
+      "properties": {
+        "imageVersion": {
+          "description": "Output only. The image version the environment can be rolled back to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastActiveTime": {
+          "description": "Output only. The last time when the environment was running this image version.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Line": {
       "description": "Contains information about a single line from logs.",
       "id": "Line",
@@ -2703,6 +2946,14 @@
         "imageVersion": {
           "description": "Optional. The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+(\\.[0-9]+\\.[0-9]+(-preview\\.[0-9]+)?)?|latest)-airflow-([0-9]+(\\.[0-9]+(\\.[0-9]+)?)?)`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version. The Cloud Composer portion of the image version is a full [semantic version](https://semver.org), or an alias in the form of major version number or `latest`. When an alias is provided, the server replaces it with the current Cloud Composer version that satisfies the alias. The Apache Airflow portion of the image version is a full semantic version that points to one of the supported Apache Airflow versions, or an alias in the form of only major or major.minor versions specified. When an alias is provided, the server replaces it with the latest Apache Airflow version that satisfies the alias and is supported in the given Cloud Composer version. In all cases, the resolved image version is stored in the same field. See also [version list](/composer/docs/concepts/versioning/composer-versions) and [versioning overview](/composer/docs/concepts/versioning/composer-versioning-overview).",
           "type": "string"
+        },
+        "imageVersionRollbackTargets": {
+          "description": "Output only. The list of image versions the environment can be rolled back to, sorted by last_active_time in descending order (most recent first). This field is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.",
+          "items": {
+            "$ref": "ImageVersionRollbackTarget"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "pypiPackages": {
           "additionalProperties": {
