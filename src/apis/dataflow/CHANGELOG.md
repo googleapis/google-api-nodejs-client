@@ -1,5 +1,12 @@
 # Changelog
 
+## [26.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v26.0.1...dataflow-v26.0.2) (2026-10-19)
+
+
+### Bug Fixes
+
+* **dataflow:** update the API ([704ff0a](https://github.com/googleapis/google-api-nodejs-client/commit/704ff0ae8cf9d923fdc3efd45321f8871d7cab68))
+
 ## [26.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v26.0.0...dataflow-v26.0.1) (2026-09-23)
 
 

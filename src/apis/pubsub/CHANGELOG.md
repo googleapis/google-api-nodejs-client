@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/pubsub-v15.1.0...pubsub-v15.1.1) (2026-10-19)
+
+
+### Bug Fixes
+
+* **pubsub:** update the API ([4ef3a18](https://github.com/googleapis/google-api-nodejs-client/commit/4ef3a18997017f83b05c357f199030df840b632d))
+
 ## [15.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/pubsub-v15.0.1...pubsub-v15.1.0) (2026-10-03)
 
 

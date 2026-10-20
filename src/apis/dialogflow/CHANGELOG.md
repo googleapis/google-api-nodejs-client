@@ -1,5 +1,16 @@
 # Changelog
 
+## [35.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v34.1.0...dialogflow-v35.0.0) (2026-10-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dialogflow:** This release has breaking changes.
+
+### Features
+
+* **dialogflow:** update the API ([abcc43b](https://github.com/googleapis/google-api-nodejs-client/commit/abcc43bb43dfbc210ee334d6039a153554d3e663))
+
 ## [34.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v34.0.1...dialogflow-v34.1.0) (2026-10-07)
 
 
