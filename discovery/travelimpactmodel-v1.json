@@ -161,7 +161,7 @@
       }
     }
   },
-  "revision": "20260819",
+  "revision": "20261019",
   "rootUrl": "https://travelimpactmodel.googleapis.com/",
   "schemas": {
     "ComputeDetailedFlightEmissionsRequest": {
@@ -816,6 +816,10 @@
         "flight": {
           "$ref": "Scope3FlightSegment",
           "description": "Identifier. Matches the flight identifiers in the request."
+        },
+        "modelVersion": {
+          "$ref": "ModelVersion",
+          "description": "Optional. The model version under which the emissions were computed."
         },
         "source": {
           "description": "Optional. The source of the emissions data.",
