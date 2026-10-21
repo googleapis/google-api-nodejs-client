@@ -3472,6 +3472,173 @@
                 }
               }
             },
+            "telemetryPolicies": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new TelemetryPolicy in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/telemetryPolicies",
+                  "httpMethod": "POST",
+                  "id": "networkservices.projects.locations.telemetryPolicies.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource where this policy will be created. Must be in the format `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "telemetryPolicyId": {
+                      "description": "Required. The ID to use for the telemetry policy, which will become the final component of the telemetry policy's resource name. This value must be 4-63 characters long, and match the regular expression `[a-z]([-a-z0-9]{2,61}[a-z0-9])`.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/telemetryPolicies",
+                  "request": {
+                    "$ref": "TelemetryPolicy"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single TelemetryPolicy.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/telemetryPolicies/{telemetryPoliciesId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkservices.projects.locations.telemetryPolicies.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. The etag of the TelemetryPolicy. If this is provided, it must match the server's etag.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. A name of the TelemetryPolicy to delete. Must be in the format `projects/{project}/locations/{location}/telemetryPolicies/{telemetry_policy}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/telemetryPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single TelemetryPolicy.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/telemetryPolicies/{telemetryPoliciesId}",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.telemetryPolicies.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the TelemetryPolicy to get. Must be in the format `projects/{project}/locations/{location}/telemetryPolicies/{telemetry_policy}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/telemetryPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "TelemetryPolicy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists TelemetryPolicies in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/telemetryPolicies",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.telemetryPolicies.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of policies to return. The service may return fewer than this value. If unspecified, at most 50 policies will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListTelemetryPolicies` call. Provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location from which the TelemetryPolicies should be listed, specified in the format `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/telemetryPolicies",
+                  "response": {
+                    "$ref": "ListTelemetryPoliciesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single TelemetryPolicy.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/telemetryPolicies/{telemetryPoliciesId}",
+                  "httpMethod": "PATCH",
+                  "id": "networkservices.projects.locations.telemetryPolicies.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "allowMissing": {
+                      "description": "Optional. If set to true, and the telemetry policy is not found, a new telemetry policy will be created. In this situation, `update_mask` is ignored.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Identifier. Represents the resource name of the policy. Format: `projects/{project}/locations/{location}/telemetryPolicies/{telemetry_policy}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/telemetryPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the TelemetryPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the `update_mask` is not provided, the service will treat it as an implied field mask equivalent to all fields provided in the request message. This means that only the fields populated in the `telemetry_policy` field will be updated. The special value `*` can be used to indicate full replacement.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "TelemetryPolicy"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "tlsRoutes": {
               "methods": {
                 "create": {
@@ -3936,7 +4103,7 @@
       }
     }
   },
-  "revision": "20261004",
+  "revision": "20261007",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AgentConnectivityTemplate": {
@@ -3944,7 +4111,7 @@
       "id": "AgentConnectivityTemplate",
       "properties": {
         "accessPath": {
-          "description": "Required. Immutable. The path of the access. Maps roughly to ingress/egress, though we keep CLIENT_TO_AGENT and AGENT_TO_ANYWHERE as carryovers from Agent Gateway's original resource model. The path is immutable once set. Exactly one path can be set.",
+          "description": "Optional. Immutable. The path of the access. Maps roughly to ingress/egress, though we keep CLIENT_TO_AGENT and AGENT_TO_ANYWHERE as carryovers from Agent Gateway's original resource model. The path is immutable once set. Exactly one path can be set.",
           "enum": [
             "ACCESS_PATH_UNSPECIFIED",
             "CLIENT_TO_AGENT",
@@ -3999,7 +4166,7 @@
           "type": "string"
         },
         "deploymentModel": {
-          "description": "Required. The deployment model for the gateway.",
+          "description": "Optional. The deployment model for the gateway.",
           "enum": [
             "DEPLOYMENT_MODEL_UNSPECIFIED",
             "CENTRALIZED",
@@ -6793,6 +6960,31 @@
       },
       "type": "object"
     },
+    "ListTelemetryPoliciesResponse": {
+      "description": "Response returned by the ListTelemetryPolicies method.",
+      "id": "ListTelemetryPoliciesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
+          "type": "string"
+        },
+        "telemetryPolicies": {
+          "description": "List of TelemetryPolicy resources.",
+          "items": {
+            "$ref": "TelemetryPolicy"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListTlsRoutesResponse": {
       "description": "Response returned by the ListTlsRoutes method.",
       "id": "ListTlsRoutesResponse",
@@ -7067,6 +7259,17 @@
         "labelValue": {
           "description": "Required. Label value presented as value corresponding to the above key, in xDS Node Metadata.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MetricsConfiguration": {
+      "description": "Configuration for metrics collection.",
+      "id": "MetricsConfiguration",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Indicates whether metrics are enabled or disabled. Set to true to explicitly enable, or false to explicitly disable.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -7584,6 +7787,93 @@
       },
       "type": "object"
     },
+    "TelemetryPolicy": {
+      "description": "Provides a configuration for telemetry.",
+      "id": "TelemetryPolicy",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-provided annotations.",
+          "type": "object"
+        },
+        "createTime": {
+          "description": "Output only. Indicates the timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. The time when this resource was soft-deleted. Only populated if the resource is in the process of being deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Provides a human-readable name for the policy.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Provides a mechanism for optimistic concurrency control. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Set of label tags associated with the TelemetryPolicy resource.",
+          "type": "object"
+        },
+        "metricsConfiguration": {
+          "$ref": "MetricsConfiguration",
+          "description": "Optional. Specifies the top-level configuration block within the telemetry policy that contains all the settings for how metrics will be applied to the target resources."
+        },
+        "name": {
+          "description": "Identifier. Represents the resource name of the policy. Format: `projects/{project}/locations/{location}/telemetryPolicies/{telemetry_policy}`",
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. If true, the service is currently reconciling the resource to the desired state.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "telemetryTarget": {
+          "$ref": "TelemetryTarget",
+          "description": "Required. Specifies the set of targets to which this telemetry policy applies."
+        },
+        "tracingConfiguration": {
+          "$ref": "TracingConfiguration",
+          "description": "Optional. Specifies the top-level configuration block within the telemetry policy that contains all the settings for how tracing will be applied to the target resources."
+        },
+        "uid": {
+          "description": "Output only. Specifies the server-assigned unique identifier for the policy.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Indicates the timestamp when the resource was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TelemetryTarget": {
+      "description": "Specifies the set of targets to which the TelemetryPolicy should be applied.",
+      "id": "TelemetryTarget",
+      "properties": {
+        "resources": {
+          "description": "Required. Lists references to the resources that are targeted by the policy. Types of resources supported: - `run.googleapis.com/` - `compute.googleapis.com/` - `networkservices.googleapis.com/` The format must be the full resource name of a supported resource. Examples: `//run.googleapis.com/projects/{project}/locations/{location}/services/{service}` `//compute.googleapis.com/projects/my-project/global/forwardingRules/my-fr-1` `//compute.googleapis.com/projects/my-project/regions/us-central1/forwardingRules/my-fr-1` `//networkservices.googleapis.com/projects/my-project/locations/us-central1/gateways/my-secure-web-proxy-gateway` `//networkservices.googleapis.com/projects/my-project/locations/us-east1/agentGateways/my-agent-gateway`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "TlsRoute": {
       "description": "TlsRoute defines how traffic should be routed based on SNI and other matching L3 attributes.",
       "id": "TlsRoute",
@@ -7721,6 +8011,64 @@
             "$ref": "TlsRouteRouteMatch"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TracingConfiguration": {
+      "description": "Configuration for tracing collection.",
+      "id": "TracingConfiguration",
+      "properties": {
+        "customSpanAttributes": {
+          "description": "Optional. Provides key-value pairs for adding context to spans. Supports literalValue (static) and fromHeaderValue (dynamic extraction).",
+          "items": {
+            "$ref": "TracingConfigurationCustomSpanAttribute"
+          },
+          "type": "array"
+        },
+        "parentBasedSampling": {
+          "$ref": "TracingConfigurationParentBasedSampling",
+          "description": "Optional. Configures honoring a sampled bit in downstream traceparentID headers."
+        },
+        "samplingRate": {
+          "description": "Optional. Specifies the tracing sampling rate. The sampling rate is a float number in the interval [0, 1]. The sampling rate is applied to all requests to the targeted resources. The default value is 0.0.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "TracingConfigurationCustomSpanAttribute": {
+      "description": "Key-value pairs for adding context to spans. Supports literal_value (static) and from_header_value (dynamic extraction). Note: literal_value and from_header_value are mutually exclusive, but at least one of them must be set.",
+      "id": "TracingConfigurationCustomSpanAttribute",
+      "properties": {
+        "attributeName": {
+          "description": "Required. Defines the key for a custom attribute that is added to the trace spans generated by the Google Cloud Load Balancer (GCLB).",
+          "type": "string"
+        },
+        "fromHeaderValue": {
+          "description": "Optional. Specifies an incoming request header name from which the value for the custom span attribute should be dynamically extracted. Note: the value of the header might be changed during the request processing; in this case the resulting value will be stored.",
+          "type": "string"
+        },
+        "literalValue": {
+          "description": "Optional. Assigns a static, constant value to the custom trace span attribute defined by the corresponding attribute_name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TracingConfigurationParentBasedSampling": {
+      "description": "Configures honoring a sampled bit in downstream traceparentID headers.",
+      "id": "TracingConfigurationParentBasedSampling",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Provides a master switch to respect a sampled bit in incoming traceparentID headers. Default is false.",
+          "type": "boolean"
+        },
+        "samplingRate": {
+          "description": "Optional. Specifies the sampling rate to use when the sampled bit is set in the incoming traceparentID header.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"

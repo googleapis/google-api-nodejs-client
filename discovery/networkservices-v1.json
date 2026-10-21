@@ -4209,7 +4209,7 @@
       }
     }
   },
-  "revision": "20261004",
+  "revision": "20261007",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AgentConnectivityTemplate": {
@@ -4217,7 +4217,7 @@
       "id": "AgentConnectivityTemplate",
       "properties": {
         "accessPath": {
-          "description": "Required. Immutable. The path of the access. Maps roughly to ingress/egress, though we keep CLIENT_TO_AGENT and AGENT_TO_ANYWHERE as carryovers from Agent Gateway's original resource model. The path is immutable once set. Exactly one path can be set.",
+          "description": "Optional. Immutable. The path of the access. Maps roughly to ingress/egress, though we keep CLIENT_TO_AGENT and AGENT_TO_ANYWHERE as carryovers from Agent Gateway's original resource model. The path is immutable once set. Exactly one path can be set.",
           "enum": [
             "ACCESS_PATH_UNSPECIFIED",
             "CLIENT_TO_AGENT",
@@ -4272,7 +4272,7 @@
           "type": "string"
         },
         "deploymentModel": {
-          "description": "Required. The deployment model for the gateway.",
+          "description": "Optional. The deployment model for the gateway.",
           "enum": [
             "DEPLOYMENT_MODEL_UNSPECIFIED",
             "CENTRALIZED",

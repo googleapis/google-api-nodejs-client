@@ -129,7 +129,7 @@ export namespace networkservices_v1 {
    */
   export interface Schema$AgentConnectivityTemplate {
     /**
-     * Required. Immutable. The path of the access. Maps roughly to ingress/egress, though we keep CLIENT_TO_AGENT and AGENT_TO_ANYWHERE as carryovers from Agent Gateway's original resource model. The path is immutable once set. Exactly one path can be set.
+     * Optional. Immutable. The path of the access. Maps roughly to ingress/egress, though we keep CLIENT_TO_AGENT and AGENT_TO_ANYWHERE as carryovers from Agent Gateway's original resource model. The path is immutable once set. Exactly one path can be set.
      */
     accessPath?: string | null;
     /**
@@ -145,7 +145,7 @@ export namespace networkservices_v1 {
      */
     createTime?: string | null;
     /**
-     * Required. The deployment model for the gateway.
+     * Optional. The deployment model for the gateway.
      */
     deploymentModel?: string | null;
     /**
