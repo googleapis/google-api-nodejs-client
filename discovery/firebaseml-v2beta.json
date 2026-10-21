@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20261011",
+  "revision": "20261018",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -1299,6 +1299,10 @@
           "$ref": "GoogleCloudAiplatformV1beta1ModelArmorConfig",
           "description": "Optional. Settings for prompt and response sanitization using the Model Armor service. If supplied, safety_settings must not be supplied."
         },
+        "outputConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenerateContentRequestOutputConfig",
+          "description": "Optional. Configuration for persisting output assets to external storage."
+        },
         "safetySettings": {
           "description": "Optional. Per request settings for blocking unsafe content. Enforced on GenerateContentResponse.candidates.",
           "items": {
@@ -1320,6 +1324,17 @@
             "$ref": "GoogleCloudAiplatformV1beta1Tool"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GenerateContentRequestOutputConfig": {
+      "description": "Configuration for persisting output assets to external storage.",
+      "id": "GoogleCloudAiplatformV1beta1GenerateContentRequestOutputConfig",
+      "properties": {
+        "outputUriPrefix": {
+          "description": "Optional. The Cloud Storage URI prefix or directory where generated media assets should be written (e.g. `gs://my-bucket/prefix/`). Supported URI schemes: `gs://`. When set, media bytes are written directly to this location and returned as `FileData` with a `file_uri` instead of raw inline bytes.",
+          "type": "string"
         }
       },
       "type": "object"
