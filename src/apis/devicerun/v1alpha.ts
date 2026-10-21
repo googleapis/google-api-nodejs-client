@@ -204,7 +204,7 @@ export namespace devicerun_v1alpha {
     /**
      * Optional. Smart sharding strategy to split the job into multiple shards based on the test methods and their execution time.
      */
-    smartSharding?: Schema$AndroidInstrumentationTestSmartSharding;
+    smartSharding?: Schema$SmartSharding;
     /**
      * Required. The test package to install and run the test.
      */
@@ -220,33 +220,7 @@ export namespace devicerun_v1alpha {
     /**
      * Optional. Uniform sharding strategy to split the job into multiple shards with equal number of test methods.
      */
-    uniformSharding?: Schema$AndroidInstrumentationTestUniformSharding;
-  }
-  /**
-   * The smart sharding strategy to split the job into multiple shards based on the test methods and their recorded execution time.
-   */
-  export interface Schema$AndroidInstrumentationTestSmartSharding {
-    /**
-     * Optional. The maximum number of shards to create. If unset or less than 1, system-defined max limits are used. This limit takes precedence if the targeted_shard_duration cannot be satisfied. Limits: - For physical devices, the number of shards must be <= 20. - For virtual devices, the number of shards must be <= 200.
-     */
-    maxShardCount?: number | null;
-    /**
-     * Required. The targeted duration of each shard. Limits: - Must be at least 2 minutes. - Must be at most 3 hours. Shard duration is not guaranteed because smart sharding uses test case history and default durations which may not be accurate. Durations are calculated based on the following inputs: - Timing records from previous runs of the same test case. - For new test cases, the average duration of other known test cases. - A system-chosen, default duration if there are no previous timing records available. Because the actual shard duration can exceed the targeted shard duration, we recommend that you set the targeted value at least 5 minutes less than the maximum allowed instrumentation timeout. This approach avoids cancelling the shard before all tests can finish.
-     */
-    targetedShardDuration?: string | null;
-    /**
-     * Required. The timing record file to use for smart sharding. If the file does not exist, smart sharding will use default test time (30s) for each test method to shard the job into multiple shards. This file will be overwritten with the latest timing record after the job is completed.
-     */
-    timingRecord?: Schema$InputFile;
-  }
-  /**
-   * Uniformly shards test cases given a total number of shards. It will be translated to `-e numShard` and `-e shardIndex` AndroidJUnitRunner arguments. With uniform sharding enabled, specifying either of these sharding arguments via `environment_variables` is invalid. Based on the sharding mechanism AndroidJUnitRunner uses, there is no guarantee that test cases will be distributed uniformly across all shards.
-   */
-  export interface Schema$AndroidInstrumentationTestUniformSharding {
-    /**
-     * Required. The total number of shards to create. This must always be a positive number that is no greater than the total number of test cases. Limits: - For physical devices, the number of shards must be <= 20. - For virtual devices, the number of shards must be <= 200.
-     */
-    shardCount?: number | null;
+    uniformSharding?: Schema$UniformSharding;
   }
   /**
    * Collects logcat output from the device. The output will be written to a file named `logcat.txt` in the execution output directory.
@@ -924,9 +898,17 @@ export namespace devicerun_v1alpha {
    */
   export interface Schema$IosXcTest {
     /**
+     * Optional. Smart sharding strategy to split the job into multiple shards based on the test methods and their execution time.
+     */
+    smartSharding?: Schema$SmartSharding;
+    /**
      * Required. The .zip containing the .xctestrun file and the contents of the DerivedData/Build/Products directory.
      */
     testsZip?: Schema$InputFile;
+    /**
+     * Optional. Uniform sharding strategy to split the job into multiple shards with equal number of test methods.
+     */
+    uniformSharding?: Schema$UniformSharding;
     /**
      * Optional. The Xcode version that should be used for the test. If not set, a system-default Xcode version is used. The available Xcode versions can be retrieved from the catalog service.
      */
@@ -1309,6 +1291,23 @@ export namespace devicerun_v1alpha {
     status?: Schema$Status;
   }
   /**
+   * The smart sharding strategy to split the job into multiple shards based on the test methods and their recorded execution time.
+   */
+  export interface Schema$SmartSharding {
+    /**
+     * Optional. The maximum number of shards to create. If unset or less than 1, system-defined max limits are used. This limit takes precedence if the targeted_shard_duration cannot be satisfied. Limits: - For physical devices, the number of shards must be <= 20. - For virtual devices, the number of shards must be <= 200.
+     */
+    maxShardCount?: number | null;
+    /**
+     * Required. The targeted duration of each shard. Limits: - Must be at least 2 minutes. - Must be at most 3 hours. Shard duration is not guaranteed because smart sharding uses test case history and default durations which may not be accurate. Durations are calculated based on the following inputs: - Timing records from previous runs of the same test case. - For new test cases, the average duration of other known test cases. - A system-chosen, default duration if there are no previous timing records available. Because the actual shard duration can exceed the targeted shard duration, we recommend that you set the targeted value at least 5 minutes less than the maximum allowed test timeout. This approach avoids cancelling the shard before all tests can finish.
+     */
+    targetedShardDuration?: string | null;
+    /**
+     * Required. The timing record file to use for smart sharding. If the file does not exist, smart sharding will use default test time (30s) for each test method to shard the job into multiple shards. This file will be overwritten with the latest timing record after the job is completed.
+     */
+    timingRecord?: Schema$InputFile;
+  }
+  /**
    * The status of a session/job/execution.
    */
   export interface Schema$Status {
@@ -1320,6 +1319,15 @@ export namespace devicerun_v1alpha {
      * Output only. The status type of the session/job/execution.
      */
     statusType?: string | null;
+  }
+  /**
+   * Uniformly shards test cases given a total number of shards. For Android instrumentation tests, it will be translated to `-e numShard` and `-e shardIndex` AndroidJUnitRunner arguments. With uniform sharding enabled, specifying either of these sharding arguments via `environment_variables` is invalid. There is no guarantee that test cases will be distributed uniformly across all shards.
+   */
+  export interface Schema$UniformSharding {
+    /**
+     * Required. The total number of shards to create. This must always be a positive number that is no greater than the total number of test cases. Limits: - For physical devices, the number of shards must be <= 20. - For virtual devices, the number of shards must be <= 200.
+     */
+    shardCount?: number | null;
   }
   /**
    * Non-fatal operational anomaly, lint observation, or execution insight.

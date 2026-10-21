@@ -688,7 +688,7 @@
       }
     }
   },
-  "revision": "20261013",
+  "revision": "20261019",
   "rootUrl": "https://devicerun.googleapis.com/",
   "schemas": {
     "AllocationConfig": {
@@ -799,7 +799,7 @@
           "type": "string"
         },
         "smartSharding": {
-          "$ref": "AndroidInstrumentationTestSmartSharding",
+          "$ref": "SmartSharding",
           "description": "Optional. Smart sharding strategy to split the job into multiple shards based on the test methods and their execution time."
         },
         "testInstallable": {
@@ -818,41 +818,8 @@
           "type": "array"
         },
         "uniformSharding": {
-          "$ref": "AndroidInstrumentationTestUniformSharding",
+          "$ref": "UniformSharding",
           "description": "Optional. Uniform sharding strategy to split the job into multiple shards with equal number of test methods."
-        }
-      },
-      "type": "object"
-    },
-    "AndroidInstrumentationTestSmartSharding": {
-      "description": "The smart sharding strategy to split the job into multiple shards based on the test methods and their recorded execution time.",
-      "id": "AndroidInstrumentationTestSmartSharding",
-      "properties": {
-        "maxShardCount": {
-          "description": "Optional. The maximum number of shards to create. If unset or less than 1, system-defined max limits are used. This limit takes precedence if the targeted_shard_duration cannot be satisfied. Limits: - For physical devices, the number of shards must be <= 20. - For virtual devices, the number of shards must be <= 200.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "targetedShardDuration": {
-          "description": "Required. The targeted duration of each shard. Limits: - Must be at least 2 minutes. - Must be at most 3 hours. Shard duration is not guaranteed because smart sharding uses test case history and default durations which may not be accurate. Durations are calculated based on the following inputs: - Timing records from previous runs of the same test case. - For new test cases, the average duration of other known test cases. - A system-chosen, default duration if there are no previous timing records available. Because the actual shard duration can exceed the targeted shard duration, we recommend that you set the targeted value at least 5 minutes less than the maximum allowed instrumentation timeout. This approach avoids cancelling the shard before all tests can finish.",
-          "format": "google-duration",
-          "type": "string"
-        },
-        "timingRecord": {
-          "$ref": "InputFile",
-          "description": "Required. The timing record file to use for smart sharding. If the file does not exist, smart sharding will use default test time (30s) for each test method to shard the job into multiple shards. This file will be overwritten with the latest timing record after the job is completed."
-        }
-      },
-      "type": "object"
-    },
-    "AndroidInstrumentationTestUniformSharding": {
-      "description": "Uniformly shards test cases given a total number of shards. It will be translated to `-e numShard` and `-e shardIndex` AndroidJUnitRunner arguments. With uniform sharding enabled, specifying either of these sharding arguments via `environment_variables` is invalid. Based on the sharding mechanism AndroidJUnitRunner uses, there is no guarantee that test cases will be distributed uniformly across all shards.",
-      "id": "AndroidInstrumentationTestUniformSharding",
-      "properties": {
-        "shardCount": {
-          "description": "Required. The total number of shards to create. This must always be a positive number that is no greater than the total number of test cases. Limits: - For physical devices, the number of shards must be <= 20. - For virtual devices, the number of shards must be <= 200.",
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"
@@ -1859,9 +1826,17 @@
       "description": "The configuration of an iOS XCTest.",
       "id": "IosXcTest",
       "properties": {
+        "smartSharding": {
+          "$ref": "SmartSharding",
+          "description": "Optional. Smart sharding strategy to split the job into multiple shards based on the test methods and their execution time."
+        },
         "testsZip": {
           "$ref": "InputFile",
           "description": "Required. The .zip containing the .xctestrun file and the contents of the DerivedData/Build/Products directory."
+        },
+        "uniformSharding": {
+          "$ref": "UniformSharding",
+          "description": "Optional. Uniform sharding strategy to split the job into multiple shards with equal number of test methods."
         },
         "xcTestTimeout": {
           "description": "Optional. The timeout of the test. Default value: 5 min. Range: [1 min, 3 hours].",
@@ -2408,6 +2383,27 @@
       },
       "type": "object"
     },
+    "SmartSharding": {
+      "description": "The smart sharding strategy to split the job into multiple shards based on the test methods and their recorded execution time.",
+      "id": "SmartSharding",
+      "properties": {
+        "maxShardCount": {
+          "description": "Optional. The maximum number of shards to create. If unset or less than 1, system-defined max limits are used. This limit takes precedence if the targeted_shard_duration cannot be satisfied. Limits: - For physical devices, the number of shards must be <= 20. - For virtual devices, the number of shards must be <= 200.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "targetedShardDuration": {
+          "description": "Required. The targeted duration of each shard. Limits: - Must be at least 2 minutes. - Must be at most 3 hours. Shard duration is not guaranteed because smart sharding uses test case history and default durations which may not be accurate. Durations are calculated based on the following inputs: - Timing records from previous runs of the same test case. - For new test cases, the average duration of other known test cases. - A system-chosen, default duration if there are no previous timing records available. Because the actual shard duration can exceed the targeted shard duration, we recommend that you set the targeted value at least 5 minutes less than the maximum allowed test timeout. This approach avoids cancelling the shard before all tests can finish.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "timingRecord": {
+          "$ref": "InputFile",
+          "description": "Required. The timing record file to use for smart sharding. If the file does not exist, smart sharding will use default test time (30s) for each test method to shard the job into multiple shards. This file will be overwritten with the latest timing record after the job is completed."
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "The status of a session/job/execution.",
       "id": "Status",
@@ -2438,6 +2434,18 @@
           ],
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UniformSharding": {
+      "description": "Uniformly shards test cases given a total number of shards. For Android instrumentation tests, it will be translated to `-e numShard` and `-e shardIndex` AndroidJUnitRunner arguments. With uniform sharding enabled, specifying either of these sharding arguments via `environment_variables` is invalid. There is no guarantee that test cases will be distributed uniformly across all shards.",
+      "id": "UniformSharding",
+      "properties": {
+        "shardCount": {
+          "description": "Required. The total number of shards to create. This must always be a positive number that is no greater than the total number of test cases. Limits: - For physical devices, the number of shards must be <= 20. - For virtual devices, the number of shards must be <= 200.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
