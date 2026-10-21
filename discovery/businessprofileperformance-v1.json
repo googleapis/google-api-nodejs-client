@@ -149,7 +149,7 @@
                 "The number of times a direction request was requested to the business location.",
                 "The number of times the business profile call button was clicked.",
                 "The number of times the business profile website was clicked.",
-                "The number of times the business profile messaging (e.g. Whatsapp) button was clicked.",
+                "The number of times the business profile messaging (e.g. WhatsApp) button was clicked.",
                 "The number of bookings made from the business profile via Reserve with Google.",
                 "The number of food orders received from the business profile.",
                 "The number of clicks to view or interact with the menu content on the business profile. Multiple clicks by a unique user within a single day are counted as 1."
@@ -258,7 +258,7 @@
                 "The number of times a direction request was requested to the business location.",
                 "The number of times the business profile call button was clicked.",
                 "The number of times the business profile website was clicked.",
-                "The number of times the business profile messaging (e.g. Whatsapp) button was clicked.",
+                "The number of times the business profile messaging (e.g. WhatsApp) button was clicked.",
                 "The number of bookings made from the business profile via Reserve with Google.",
                 "The number of food orders received from the business profile.",
                 "The number of clicks to view or interact with the menu content on the business profile. Multiple clicks by a unique user within a single day are counted as 1."
@@ -451,7 +451,7 @@
       }
     }
   },
-  "revision": "20261014",
+  "revision": "20261019",
   "rootUrl": "https://businessprofileperformance.googleapis.com/",
   "schemas": {
     "DailyMetricTimeSeries": {
@@ -500,7 +500,7 @@
             "The number of times a direction request was requested to the business location.",
             "The number of times the business profile call button was clicked.",
             "The number of times the business profile website was clicked.",
-            "The number of times the business profile messaging (e.g. Whatsapp) button was clicked.",
+            "The number of times the business profile messaging (e.g. WhatsApp) button was clicked.",
             "The number of bookings made from the business profile via Reserve with Google.",
             "The number of food orders received from the business profile.",
             "The number of clicks to view or interact with the menu content on the business profile. Multiple clicks by a unique user within a single day are counted as 1."

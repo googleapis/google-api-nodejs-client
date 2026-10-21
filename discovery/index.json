@@ -2823,6 +2823,21 @@
       "version": "v1"
     },
     {
+      "description": "Deep Review API for automated conference-quality scientific paper reviews.",
+      "discoveryRestUrl": "https://deepreview.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://research.google/",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "deepreview:v1",
+      "kind": "discovery#directoryItem",
+      "name": "deepreview",
+      "preferred": true,
+      "title": "Deep Review API",
+      "version": "v1"
+    },
+    {
       "description": "The Google Cloud Deployment Manager v2 API provides services for configuring, deploying, and viewing Google Cloud services and APIs via templates which specify deployments of Cloud resources.",
       "discoveryRestUrl": "https://deploymentmanager.googleapis.com/$discovery/rest?version=alpha",
       "documentationLink": "https://cloud.google.com/deployment-manager",

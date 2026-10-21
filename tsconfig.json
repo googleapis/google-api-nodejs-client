@@ -390,6 +390,9 @@
       "path": "./src/apis/datastream/tsconfig.build.json"
     },
     {
+      "path": "./src/apis/deepreview/tsconfig.build.json"
+    },
+    {
       "path": "./src/apis/deploymentmanager/tsconfig.build.json"
     },
     {

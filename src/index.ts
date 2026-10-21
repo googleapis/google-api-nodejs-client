@@ -236,6 +236,7 @@ export {datastore_v1beta1} from './apis/datastore/v1beta1';
 export {datastore_v1beta3} from './apis/datastore/v1beta3';
 export {datastream_v1} from './apis/datastream/v1';
 export {datastream_v1alpha1} from './apis/datastream/v1alpha1';
+export {deepreview_v1} from './apis/deepreview/v1';
 export {deploymentmanager_alpha} from './apis/deploymentmanager/alpha';
 export {deploymentmanager_v2} from './apis/deploymentmanager/v2';
 export {deploymentmanager_v2beta} from './apis/deploymentmanager/v2beta';

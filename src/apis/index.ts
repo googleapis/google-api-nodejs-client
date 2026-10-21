@@ -326,6 +326,7 @@ import {
 import {VERSIONS as dataprocVersions, dataproc} from './dataproc';
 import {VERSIONS as datastoreVersions, datastore} from './datastore';
 import {VERSIONS as datastreamVersions, datastream} from './datastream';
+import {VERSIONS as deepreviewVersions, deepreview} from './deepreview';
 import {
   VERSIONS as deploymentmanagerVersions,
   deploymentmanager,
@@ -964,6 +965,7 @@ export const APIS: APIList = {
   dataproc: dataprocVersions,
   datastore: datastoreVersions,
   datastream: datastreamVersions,
+  deepreview: deepreviewVersions,
   deploymentmanager: deploymentmanagerVersions,
   developerconnect: developerconnectVersions,
   developerknowledge: developerknowledgeVersions,
@@ -1304,6 +1306,7 @@ export class GeneratedAPIs {
   dataproc = dataproc;
   datastore = datastore;
   datastream = datastream;
+  deepreview = deepreview;
   deploymentmanager = deploymentmanager;
   developerconnect = developerconnect;
   developerknowledge = developerknowledge;
