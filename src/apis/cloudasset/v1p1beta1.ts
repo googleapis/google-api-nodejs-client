@@ -437,7 +437,7 @@ export namespace cloudasset_v1p1beta1 {
      */
     name?: string | null;
     /**
-     * Human readable title. Must be unique within the Policy.
+     * Human-readable title. Must be unique within the policy.
      */
     title?: string | null;
   }
@@ -446,7 +446,7 @@ export namespace cloudasset_v1p1beta1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1AccessPolicy {
     /**
-     * Output only. An opaque identifier for the current version of the `AccessPolicy`. This will always be a strongly validated etag, meaning that two Access Policies will be identical if and only if their etags are identical. Clients should not expect this to be in any specific format.
+     * Output only. An opaque identifier for the current version of the `AccessPolicy`. This will always be a strongly validated etag, meaning that two access policies will be identical if and only if their etags are identical. Clients should not expect this to be in any specific format.
      */
     etag?: string | null;
     /**
@@ -458,11 +458,11 @@ export namespace cloudasset_v1p1beta1 {
      */
     parent?: string | null;
     /**
-     * The scopes of the AccessPolicy. Scopes define which resources a policy can restrict and where its resources can be referenced. For example, policy A with `scopes=["folders/123"]` has the following behavior: - ServicePerimeter can only restrict projects within `folders/123`. - ServicePerimeter within policy A can only reference access levels defined within policy A. - Only one policy can include a given scope; thus, attempting to create a second policy which includes `folders/123` will result in an error. If no scopes are provided, then any resource within the organization can be restricted. Scopes cannot be modified after a policy is created. Policies can only have a single scope. Format: list of `folders/{folder_number\}` or `projects/{project_number\}`
+     * The scopes of the AccessPolicy. Scopes define which resources a policy can restrict and where its resources can be referenced. For example, policy A with `scopes=["folders/123"]` has the following behavior: - ServicePerimeter can only restrict projects within `folders/123`. - ServicePerimeter within policy A can only reference access levels defined within policy A. - Only one policy can include a given scope; thus, attempting to create a second policy that includes `folders/123` will result in an error. If no scopes are provided, then any resource within the organization can be restricted. Scopes cannot be modified after a policy is created. Policies can only have a single scope. Format: list of `folders/{folder_number\}` or `projects/{project_number\}`
      */
     scopes?: string[] | null;
     /**
-     * Required. Human readable title. Does not affect behavior.
+     * Required. Human-readable title. Does not affect behavior.
      */
     title?: string | null;
   }
@@ -497,7 +497,7 @@ export namespace cloudasset_v1p1beta1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1BasicLevel {
     /**
-     * How the `conditions` list should be combined to determine if a request is granted this `AccessLevel`. If AND is used, each `Condition` in `conditions` must be satisfied for the `AccessLevel` to be applied. If OR is used, at least one `Condition` in `conditions` must be satisfied for the `AccessLevel` to be applied. Default behavior is AND.
+     * How the `conditions` list should be combined to determine if a request is granted this `AccessLevel`. If `AND` is used, each `Condition` in `conditions` must be satisfied for the `AccessLevel` to be applied. If `OR` is used, at least one `Condition` in `conditions` must be satisfied for the `AccessLevel` to be applied. Default behavior is `AND`.
      */
     combiningFunction?: string | null;
     /**
@@ -506,15 +506,15 @@ export namespace cloudasset_v1p1beta1 {
     conditions?: Schema$GoogleIdentityAccesscontextmanagerV1Condition[];
   }
   /**
-   * A condition necessary for an `AccessLevel` to be granted. The Condition is an AND over its fields. So a Condition is true if: 1) the request IP is from one of the listed subnetworks AND 2) the originating device complies with the listed device policy AND 3) all listed access levels are granted AND 4) the request was sent at a time allowed by the DateTimeRestriction.
+   * A condition necessary for an `AccessLevel` to be granted. The `Condition` is an AND over its fields. A `Condition` is true if: 1) the request IP is from one of the listed subnetworks, AND 2) the originating device complies with the listed device policy, AND 3) all listed access levels are granted, AND 4) the request was sent at a time allowed by the `DateTimeRestriction`.
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1Condition {
     /**
-     * Device specific restrictions, all restrictions must hold for the Condition to be true. If not specified, all devices are allowed.
+     * Device-specific restrictions. All restrictions must hold for the `Condition` to be true. If not specified, all devices are allowed.
      */
     devicePolicy?: Schema$GoogleIdentityAccesscontextmanagerV1DevicePolicy;
     /**
-     * CIDR block IP subnetwork specification. May be IPv4 or IPv6. Note that for a CIDR IP address block, the specified IP address portion must be properly truncated (i.e. all the host bits must be zero) or the input is considered malformed. For example, "192.0.2.0/24" is accepted but "192.0.2.1/24" is not. Similarly, for IPv6, "2001:db8::/32" is accepted whereas "2001:db8::1/32" is not. The originating IP of a request must be in one of the listed subnets in order for this Condition to be true. If empty, all IP addresses are allowed.
+     * CIDR block IP subnetwork specification. May be IPv4 or IPv6. Note that for a CIDR IP address block, the specified IP address portion must be properly truncated (that is, all the host bits must be zero) or the input is considered malformed. For example, `"192.0.2.0/24"` is accepted, but `"192.0.2.1/24"` is not. Similarly, for IPv6, `"2001:db8::/32"` is accepted, whereas `"2001:db8::1/32"` is not. The originating IP of a request must be in one of the listed subnets in order for this `Condition` to be true. If empty, all IP addresses are allowed.
      */
     ipSubnetworks?: string[] | null;
     /**
@@ -522,7 +522,7 @@ export namespace cloudasset_v1p1beta1 {
      */
     members?: string[] | null;
     /**
-     * Whether to negate the Condition. If true, the Condition becomes a NAND over its non-empty fields. Any non-empty field criteria evaluating to false will result in the Condition to be satisfied. Defaults to false.
+     * Whether to negate the `Condition`. If `true`, the `Condition` becomes a NAND over its non-empty fields. Any non-empty field criteria evaluating to `false` will result in the `Condition` being satisfied. Defaults to `false`.
      */
     negate?: boolean | null;
     /**
@@ -530,7 +530,7 @@ export namespace cloudasset_v1p1beta1 {
      */
     regions?: string[] | null;
     /**
-     * A list of other access levels defined in the same `Policy`, referenced by resource name. Referencing an `AccessLevel` which does not exist is an error. All access levels listed must be granted for the Condition to be true. Example: "`accessPolicies/MY_POLICY/accessLevels/LEVEL_NAME"`
+     * A list of other access levels defined in the same `Policy`, referenced by resource name. Referencing an `AccessLevel` that does not exist is an error. All access levels listed must be granted for the `Condition` to be true. Example: `"accessPolicies/MY_POLICY/accessLevels/LEVEL_NAME"`
      */
     requiredAccessLevels?: string[] | null;
     /**
@@ -548,19 +548,19 @@ export namespace cloudasset_v1p1beta1 {
     expr?: Schema$Expr;
   }
   /**
-   * `DevicePolicy` specifies device specific restrictions necessary to acquire a given access level. A `DevicePolicy` specifies requirements for requests from devices to be granted access levels, it does not do any enforcement on the device. `DevicePolicy` acts as an AND over all specified fields, and each repeated field is an OR over its elements. Any unset fields are ignored. For example, if the proto is { os_type : DESKTOP_WINDOWS, os_type : DESKTOP_LINUX, encryption_status: ENCRYPTED\}, then the DevicePolicy will be true for requests originating from encrypted Linux desktops and encrypted Windows desktops.
+   * `DevicePolicy` specifies device-specific restrictions necessary to acquire a given access level. A `DevicePolicy` specifies requirements for requests from devices to be granted access levels; it does not do any enforcement on the device. `DevicePolicy` acts as an AND over all specified fields, and each repeated field is an OR over its elements. Any unset fields are ignored. For example, if the proto is `{ os_type : DESKTOP_WINDOWS, os_type : DESKTOP_LINUX, encryption_status: ENCRYPTED\}`, then the `DevicePolicy` will be true for requests originating from encrypted Linux desktops and encrypted Windows desktops.
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1DevicePolicy {
     /**
-     * Allowed device management levels, an empty list allows all management levels.
+     * Allowed device management levels. An empty list allows all management levels.
      */
     allowedDeviceManagementLevels?: string[] | null;
     /**
-     * Allowed encryptions statuses, an empty list allows all statuses.
+     * Allowed encryption statuses. An empty list allows all statuses.
      */
     allowedEncryptionStatuses?: string[] | null;
     /**
-     * Allowed OS versions, an empty list allows all types and all versions.
+     * Allowed OS versions. An empty list allows all types and all versions.
      */
     osConstraints?: Schema$GoogleIdentityAccesscontextmanagerV1OsConstraint[];
     /**
@@ -568,16 +568,16 @@ export namespace cloudasset_v1p1beta1 {
      */
     requireAdminApproval?: boolean | null;
     /**
-     * Whether the device needs to be corp owned.
+     * Whether the device needs to be corp-owned.
      */
     requireCorpOwned?: boolean | null;
     /**
-     * Whether or not screenlock is required for the DevicePolicy to be true. Defaults to `false`.
+     * Whether or not screenlock is required for the `DevicePolicy` to be true. Defaults to `false`.
      */
     requireScreenlock?: boolean | null;
   }
   /**
-   * Defines the conditions under which an EgressPolicy matches a request. Conditions based on information about the source of the request. Note that if the destination of the request is also protected by a ServicePerimeter, then that ServicePerimeter must have an IngressPolicy which allows access in order for this request to succeed.
+   * Defines the conditions under which an EgressPolicy matches a request. Conditions are based on information about the source of the request. Note that if the destination of the request is also protected by a ServicePerimeter, then that ServicePerimeter must have an IngressPolicy which allows access in order for this request to succeed.
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1EgressFrom {
     /**
@@ -589,7 +589,7 @@ export namespace cloudasset_v1p1beta1 {
      */
     identityType?: string | null;
     /**
-     * Whether to enforce traffic restrictions based on `sources` field. If the `sources` fields is non-empty, then this field must be set to `SOURCE_RESTRICTION_ENABLED`.
+     * Whether to enforce traffic restrictions based on `sources` field. If the `sources` field is not empty, then this field must be set to `SOURCE_RESTRICTION_ENABLED`.
      */
     sourceRestriction?: string | null;
     /**
@@ -598,7 +598,7 @@ export namespace cloudasset_v1p1beta1 {
     sources?: Schema$GoogleIdentityAccesscontextmanagerV1EgressSource[];
   }
   /**
-   * Policy for egress from perimeter. EgressPolicies match requests based on `egress_from` and `egress_to` stanzas. For an EgressPolicy to match, both `egress_from` and `egress_to` stanzas must be matched. If an EgressPolicy matches a request, the request is allowed to span the ServicePerimeter boundary. For example, an EgressPolicy can be used to allow VMs on networks within the ServicePerimeter to access a defined set of projects outside the perimeter in certain contexts (e.g. to read data from a Cloud Storage bucket or query against a BigQuery dataset). EgressPolicies are concerned with the *resources* that a request relates as well as the API services and API actions being used. They do not related to the direction of data movement. More detailed documentation for this concept can be found in the descriptions of EgressFrom and EgressTo.
+   * Policy for egress from perimeter. EgressPolicies match requests based on `egress_from` and `egress_to` stanzas. For an EgressPolicy to match, both `egress_from` and `egress_to` stanzas must be matched. If an EgressPolicy matches a request, the request is allowed to span the ServicePerimeter boundary. For example, an EgressPolicy can be used to allow VMs on networks within the ServicePerimeter to access a defined set of projects outside the perimeter in certain contexts (e.g. to read data from a Cloud Storage bucket or query against a BigQuery dataset). EgressPolicies are concerned with the *resources* that a request relates to, as well as the API services and API actions being used. They do not relate to the direction of data movement. More detailed documentation for this concept can be found in the descriptions of EgressFrom and EgressTo.
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1EgressPolicy {
     /**
@@ -610,7 +610,7 @@ export namespace cloudasset_v1p1beta1 {
      */
     egressTo?: Schema$GoogleIdentityAccesscontextmanagerV1EgressTo;
     /**
-     * Optional. Human-readable title for the egress rule. The title must be unique within the perimeter and can not exceed 100 characters. Within the access policy, the combined length of all rule titles must not exceed 240,000 characters.
+     * Optional. Human-readable title for the egress rule. The title must be unique within the perimeter and cannot exceed 100 characters. Within the access policy, the combined length of all rule titles must not exceed 240,000 characters.
      */
     title?: string | null;
   }
@@ -627,7 +627,7 @@ export namespace cloudasset_v1p1beta1 {
      */
     pscEndpoint?: Schema$GoogleIdentityAccesscontextmanagerV1PrivateServiceConnectEndpoint;
     /**
-     * A Google Cloud resource from the service perimeter that you want to allow to access data outside the perimeter. This field supports projects, folders, and organizations in the form `projects/`, `folders/`, and `organizations/`. You can't use `*` in this field to allow all Google Cloud resources.
+     * A Google Cloud resource from the service perimeter that you want to allow to access data outside the perimeter. This field supports projects, folders, and organizations in the form `projects/{project_number\}`, `folders/{folder_id\}`, and `organizations/{organization_id\}`. You can't use `*` in this field to allow all Google Cloud resources.
      */
     resource?: string | null;
   }
@@ -636,7 +636,7 @@ export namespace cloudasset_v1p1beta1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1EgressTo {
     /**
-     * A list of external resources that are allowed to be accessed. Only AWS and Azure resources are supported. For Amazon S3, the supported formats are s3://BUCKET_NAME, s3a://BUCKET_NAME, and s3n://BUCKET_NAME. For Azure Storage, the supported format is azure://myaccount.blob.core.windows.net/CONTAINER_NAME. A request matches if it contains an external resource in this list (Example: s3://bucket/path). Currently '*' is not allowed.
+     * A list of external resources that are allowed to be accessed. Only AWS and Azure resources are supported. For Amazon S3, the supported formats are `s3://BUCKET_NAME`, `s3a://BUCKET_NAME`, and `s3n://BUCKET_NAME`. For Azure Storage, the supported format is `azure://myaccount.blob.core.windows.net/CONTAINER_NAME`. A request matches if it contains an external resource in this list (Example: `s3://bucket/path`). Currently `'*'` is not allowed.
      */
     externalResources?: string[] | null;
     /**
@@ -644,11 +644,11 @@ export namespace cloudasset_v1p1beta1 {
      */
     operations?: Schema$GoogleIdentityAccesscontextmanagerV1ApiOperation[];
     /**
-     * A list of resources, currently projects, folders, and organizations in the form `projects/`, `folders/`, and `organizations/`, that are allowed to be accessed by sources defined in the corresponding EgressFrom. A request matches if it contains a resource in this list. If `*` is specified for `resources`, then this EgressTo rule will authorize access to all resources outside the perimeter.
+     * A list of resources, currently projects, folders, and organizations in the form `projects/{project_number\}`, `folders/{folder_id\}`, and `organizations/{organization_id\}`, that are allowed to be accessed by sources defined in the corresponding EgressFrom. A request matches if it contains a resource in this list. If `*` is specified for `resources`, then this EgressTo rule will authorize access to all resources outside the perimeter.
      */
     resources?: string[] | null;
     /**
-     * IAM roles that represent the set of operations that the sources specified in the corresponding EgressFrom. are allowed to perform in this ServicePerimeter.
+     * IAM roles that represent the set of operations that the sources specified in the corresponding EgressFrom are allowed to perform in this ServicePerimeter.
      */
     roles?: string[] | null;
   }
@@ -682,7 +682,7 @@ export namespace cloudasset_v1p1beta1 {
      */
     ingressTo?: Schema$GoogleIdentityAccesscontextmanagerV1IngressTo;
     /**
-     * Optional. Human-readable title for the ingress rule. The title must be unique within the perimeter and can not exceed 100 characters. Within the access policy, the combined length of all rule titles must not exceed 240,000 characters.
+     * Optional. Human-readable title for the ingress rule. The title must be unique within the perimeter and cannot exceed 100 characters. Within the access policy, the combined length of all rule titles must not exceed 240,000 characters.
      */
     title?: string | null;
   }
@@ -691,7 +691,7 @@ export namespace cloudasset_v1p1beta1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1IngressSource {
     /**
-     * An AccessLevel resource name that allow resources within the ServicePerimeters to be accessed from the internet. AccessLevels listed must be in the same policy as this ServicePerimeter. Referencing a nonexistent AccessLevel will cause an error. If no AccessLevel names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example: `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL`. If a single `*` is specified for `access_level`, then all IngressSources will be allowed.
+     * An AccessLevel resource name that allows resources within the ServicePerimeters to be accessed from the internet. AccessLevels listed must be in the same policy as this ServicePerimeter. Referencing a nonexistent AccessLevel will cause an error. If no AccessLevel names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example: `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL`. If a single `*` is specified for `access_level`, then all IngressSources will be allowed.
      */
     accessLevel?: string | null;
     /**
@@ -712,7 +712,7 @@ export namespace cloudasset_v1p1beta1 {
      */
     operations?: Schema$GoogleIdentityAccesscontextmanagerV1ApiOperation[];
     /**
-     * A list of resources, currently projects, folders, and organizations in the form `projects/{project_number\}`, `folders/{folder_id\}`, and `organizations/{organization_id\}`, protected by this ServicePerimeter that are allowed to be accessed by sources defined in the corresponding IngressFrom. If a single `*` is specified, then access to all resources inside the perimeter are allowed.
+     * A list of resources, currently projects, folders, and organizations in the form `projects/{project_number\}`, `folders/{folder_id\}`, and `organizations/{organization_id\}`, protected by this ServicePerimeter that are allowed to be accessed by sources defined in the corresponding IngressFrom. If a single `*` is specified, then access to all resources inside the perimeter is allowed.
      */
     resources?: string[] | null;
     /**
@@ -755,7 +755,7 @@ export namespace cloudasset_v1p1beta1 {
      */
     osType?: string | null;
     /**
-     * Only allows requests from devices with a verified Chrome OS. Verifications includes requirements that the device is enterprise-managed, conformant to domain policies, and the caller has permission to call the API targeted by the request.
+     * Only allows requests from devices with a verified Chrome OS. Verification includes requirements that the device is enterprise-managed, conforms to domain policies, and the caller has permission to call the API targeted by the request.
      */
     requireVerifiedChromeOs?: boolean | null;
   }
@@ -777,7 +777,7 @@ export namespace cloudasset_v1p1beta1 {
      */
     modifiers?: Schema$GoogleIdentityAccesscontextmanagerV1Modifier[];
     /**
-     * URL pattern to allow. Only patterns of ".googleapis.com/x", "www.googleapis.com//x" and "*.appspot.com/x forms are supported, where should be an alphanumeric name.
+     * URL pattern to allow. Only patterns of `".googleapis.com/x"`, `"www.googleapis.com//x"`, and `"*.appspot.com/x"` forms are supported, where `` should be an alphanumeric name.
      */
     pattern?: string | null;
     /**
@@ -802,15 +802,15 @@ export namespace cloudasset_v1p1beta1 {
      */
     name?: string | null;
     /**
-     * Perimeter type indicator. A single project or VPC network is allowed to be a member of single regular perimeter, but multiple service perimeter bridges. A project cannot be a included in a perimeter bridge without being included in regular perimeter. For perimeter bridges, the restricted service list as well as access level lists must be empty.
+     * Perimeter type indicator. A single project or VPC network is allowed to be a member of a single regular perimeter, but multiple service perimeter bridges. A project cannot be included in a perimeter bridge without being included in a regular perimeter. For perimeter bridges, the restricted service list as well as access level lists must be empty.
      */
     perimeterType?: string | null;
     /**
-     * Proposed (or dry run) ServicePerimeter configuration. This configuration allows to specify and test ServicePerimeter configuration without enforcing actual access restrictions. Only allowed to be set when the "use_explicit_dry_run_spec" flag is set.
+     * Proposed (or dry run) ServicePerimeter configuration. This configuration allows you to specify and test ServicePerimeter configuration without enforcing actual access restrictions. Only allowed to be set when the `use_explicit_dry_run_spec` flag is set.
      */
     spec?: Schema$GoogleIdentityAccesscontextmanagerV1ServicePerimeterConfig;
     /**
-     * Current ServicePerimeter configuration. Specifies sets of resources, restricted services and access levels that determine perimeter content and boundaries.
+     * Current ServicePerimeter configuration. Specifies sets of resources, restricted services, and access levels that determine perimeter content and boundaries.
      */
     status?: Schema$GoogleIdentityAccesscontextmanagerV1ServicePerimeterConfig;
     /**
@@ -818,7 +818,7 @@ export namespace cloudasset_v1p1beta1 {
      */
     title?: string | null;
     /**
-     * Use explicit dry run spec flag. Ordinarily, a dry-run spec implicitly exists for all Service Perimeters, and that spec is identical to the status for those Service Perimeters. When this flag is set, it inhibits the generation of the implicit spec, thereby allowing the user to explicitly provide a configuration ("spec") to use in a dry-run version of the Service Perimeter. This allows the user to test changes to the enforced config ("status") without actually enforcing them. This testing is done through analyzing the differences between currently enforced and suggested restrictions. use_explicit_dry_run_spec must bet set to True if any of the fields in the spec are set to non-default values.
+     * Use explicit dry run spec flag. Ordinarily, a dry-run spec implicitly exists for all Service Perimeters, and that spec is identical to the status for those Service Perimeters. When this flag is set, it inhibits the generation of the implicit spec, thereby allowing the user to explicitly provide a configuration ("spec") to use in a dry-run version of the Service Perimeter. This allows the user to test changes to the enforced config ("status") without actually enforcing them. This testing is done through analyzing the differences between currently enforced and suggested restrictions. `use_explicit_dry_run_spec` must be set to `true` if any of the fields in the spec are set to non-default values.
      */
     useExplicitDryRunSpec?: boolean | null;
   }
@@ -860,11 +860,11 @@ export namespace cloudasset_v1p1beta1 {
      */
     allowedServicePatterns?: Schema$GoogleIdentityAccesscontextmanagerV1ServicePattern[];
     /**
-     * The list of APIs usable within the Service Perimeter. Must be empty unless 'enable_restriction' is True. You can specify a list of individual services, as well as include the 'RESTRICTED-SERVICES' value, which automatically includes all of the services protected by the perimeter.
+     * The list of APIs usable within the Service Perimeter. Must be empty unless `enable_restriction` is `true`. You can specify a list of individual services, as well as include the `'RESTRICTED-SERVICES'` value, which automatically includes all of the services protected by the perimeter.
      */
     allowedServices?: string[] | null;
     /**
-     * Whether to restrict API calls within the Service Perimeter to the list of APIs specified in 'allowed_services'.
+     * Whether to restrict API calls within the Service Perimeter to the list of APIs specified in `allowed_services`.
      */
     enableRestriction?: boolean | null;
     /**
@@ -882,7 +882,7 @@ export namespace cloudasset_v1p1beta1 {
     vpcSubnetwork?: Schema$GoogleIdentityAccesscontextmanagerV1VpcSubNetwork;
   }
   /**
-   * Sub-segment ranges inside of a VPC Network.
+   * Sub-segment ranges inside of a VPC network.
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1VpcSubNetwork {
     /**
@@ -890,7 +890,7 @@ export namespace cloudasset_v1p1beta1 {
      */
     network?: string | null;
     /**
-     * CIDR block IP subnetwork specification. The IP address must be an IPv4 address and can be a public or private IP address. Note that for a CIDR IP address block, the specified IP address portion must be properly truncated (i.e. all the host bits must be zero) or the input is considered malformed. For example, "192.0.2.0/24" is accepted but "192.0.2.1/24" is not. If empty, all IP addresses are allowed.
+     * CIDR block IP subnetwork specification. The IP address must be an IPv4 address and can be a public or private IP address. Note that for a CIDR IP address block, the specified IP address portion must be properly truncated (that is, all the host bits must be zero) or the input is considered malformed. For example, `"192.0.2.0/24"` is accepted, but `"192.0.2.1/24"` is not. If empty, all IP addresses are allowed.
      */
     vpcIpSubnetworks?: string[] | null;
   }
