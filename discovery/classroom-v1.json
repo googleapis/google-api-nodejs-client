@@ -1659,6 +1659,62 @@
                         "https://www.googleapis.com/auth/classroom.student-submissions.students.readonly"
                       ]
                     },
+                    "list": {
+                      "description": "Returns a list of student submissions that the requester is permitted to view. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                      "flatPath": "v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}/studentSubmissions",
+                      "httpMethod": "GET",
+                      "id": "classroom.courses.courseWork.addOnAttachments.studentSubmissions.list",
+                      "parameterOrder": [
+                        "courseId",
+                        "itemId",
+                        "attachmentId"
+                      ],
+                      "parameters": {
+                        "attachmentId": {
+                          "description": "Required. Identifier of the add-on attachment.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "courseId": {
+                          "description": "Required. Identifier of the course.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "itemId": {
+                          "description": "Required. Identifier of the `CourseWork` under which the attachment is attached.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Maximum number of submissions to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListAddOnAttachmentStudentSubmissions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAddOnAttachmentStudentSubmissions` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}/studentSubmissions",
+                      "response": {
+                        "$ref": "ListAddOnAttachmentStudentSubmissionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/classroom.addons.student",
+                        "https://www.googleapis.com/auth/classroom.addons.teacher",
+                        "https://www.googleapis.com/auth/classroom.coursework.me",
+                        "https://www.googleapis.com/auth/classroom.coursework.me.readonly",
+                        "https://www.googleapis.com/auth/classroom.coursework.students",
+                        "https://www.googleapis.com/auth/classroom.coursework.students.readonly",
+                        "https://www.googleapis.com/auth/classroom.student-submissions.me.readonly",
+                        "https://www.googleapis.com/auth/classroom.student-submissions.students.readonly"
+                      ]
+                    },
                     "patch": {
                       "description": "Updates data associated with an add-on attachment submission. Requires the add-on to have been the original creator of the attachment and the attachment to have a positive `max_points` value set. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
                       "flatPath": "v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}/studentSubmissions/{submissionId}",
@@ -4376,7 +4432,7 @@
       }
     }
   },
-  "revision": "20260825",
+  "revision": "20261014",
   "rootUrl": "https://classroom.googleapis.com/",
   "schemas": {
     "AddOnAttachment": {
@@ -5616,6 +5672,24 @@
         },
         "url": {
           "description": "URL to link to. This must be a valid UTF-8 string containing between 1 and 2024 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAddOnAttachmentStudentSubmissionsResponse": {
+      "description": "Response when listing student submissions for an add-on attachment.",
+      "id": "ListAddOnAttachmentStudentSubmissionsResponse",
+      "properties": {
+        "addOnAttachmentStudentSubmissions": {
+          "description": "Add-on attachment student submissions that match the request.",
+          "items": {
+            "$ref": "AddOnAttachmentStudentSubmission"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `pageToken` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },

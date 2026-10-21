@@ -1049,6 +1049,19 @@ export namespace classroom_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response when listing student submissions for an add-on attachment.
+   */
+  export interface Schema$ListAddOnAttachmentStudentSubmissionsResponse {
+    /**
+     * Add-on attachment student submissions that match the request.
+     */
+    addOnAttachmentStudentSubmissions?: Schema$AddOnAttachmentStudentSubmission[];
+    /**
+     * A token, which can be sent as `pageToken` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response when listing course work.
    */
   export interface Schema$ListAnnouncementsResponse {
@@ -8317,6 +8330,175 @@ export namespace classroom_v1 {
     }
 
     /**
+     * Returns a list of student submissions that the requester is permitted to view. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const classroom = google.classroom('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/classroom.addons.student',
+     *       'https://www.googleapis.com/auth/classroom.addons.teacher',
+     *       'https://www.googleapis.com/auth/classroom.coursework.me',
+     *       'https://www.googleapis.com/auth/classroom.coursework.me.readonly',
+     *       'https://www.googleapis.com/auth/classroom.coursework.students',
+     *       'https://www.googleapis.com/auth/classroom.coursework.students.readonly',
+     *       'https://www.googleapis.com/auth/classroom.student-submissions.me.readonly',
+     *       'https://www.googleapis.com/auth/classroom.student-submissions.students.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await classroom.courses.courseWork.addOnAttachments.studentSubmissions.list(
+     *       {
+     *         // Required. Identifier of the add-on attachment.
+     *         attachmentId: 'placeholder-value',
+     *         // Required. Identifier of the course.
+     *         courseId: 'placeholder-value',
+     *         // Required. Identifier of the `CourseWork` under which the attachment is attached.
+     *         itemId: 'placeholder-value',
+     *         // Optional. Maximum number of submissions to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListAddOnAttachmentStudentSubmissions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAddOnAttachmentStudentSubmissions` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "addOnAttachmentStudentSubmissions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentStudentSubmissionsResponse>
+    >;
+    list(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAddOnAttachmentStudentSubmissionsResponse>,
+      callback: BodyResponseCallback<Schema$ListAddOnAttachmentStudentSubmissionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$List,
+      callback: BodyResponseCallback<Schema$ListAddOnAttachmentStudentSubmissionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAddOnAttachmentStudentSubmissionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$List
+        | BodyResponseCallback<Schema$ListAddOnAttachmentStudentSubmissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAddOnAttachmentStudentSubmissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAddOnAttachmentStudentSubmissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListAddOnAttachmentStudentSubmissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}/studentSubmissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId', 'attachmentId'],
+        pathParams: ['attachmentId', 'courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAddOnAttachmentStudentSubmissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAddOnAttachmentStudentSubmissionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates data associated with an add-on attachment submission. Requires the add-on to have been the original creator of the attachment and the attachment to have a positive `max_points` value set. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
      * @example
      * ```js
@@ -8515,6 +8697,28 @@ export namespace classroom_v1 {
      * Required. Identifier of the student’s submission.
      */
     submissionId?: string;
+  }
+  export interface Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$List extends StandardParameters {
+    /**
+     * Required. Identifier of the add-on attachment.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Required. Identifier of the `CourseWork` under which the attachment is attached.
+     */
+    itemId?: string;
+    /**
+     * Optional. Maximum number of submissions to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListAddOnAttachmentStudentSubmissions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAddOnAttachmentStudentSubmissions` must match the call that provided the page token.
+     */
+    pageToken?: string;
   }
   export interface Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch extends StandardParameters {
     /**
