@@ -828,6 +828,10 @@ export namespace firebaseml_v2beta {
      */
     modelArmorConfig?: Schema$GoogleCloudAiplatformV1beta1ModelArmorConfig;
     /**
+     * Optional. Configuration for persisting output assets to external storage.
+     */
+    outputConfig?: Schema$GoogleCloudAiplatformV1beta1GenerateContentRequestOutputConfig;
+    /**
      * Optional. Per request settings for blocking unsafe content. Enforced on GenerateContentResponse.candidates.
      */
     safetySettings?: Schema$GoogleCloudAiplatformV1beta1SafetySetting[];
@@ -843,6 +847,15 @@ export namespace firebaseml_v2beta {
      * Optional. A list of `Tools` the model may use to generate the next response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model.
      */
     tools?: Schema$GoogleCloudAiplatformV1beta1Tool[];
+  }
+  /**
+   * Configuration for persisting output assets to external storage.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GenerateContentRequestOutputConfig {
+    /**
+     * Optional. The Cloud Storage URI prefix or directory where generated media assets should be written (e.g. `gs://my-bucket/prefix/`). Supported URI schemes: `gs://`. When set, media bytes are written directly to this location and returned as `FileData` with a `file_uri` instead of raw inline bytes.
+     */
+    outputUriPrefix?: string | null;
   }
   /**
    * Response message for [PredictionService.GenerateContent].
@@ -2666,6 +2679,7 @@ export namespace firebaseml_v2beta {
      *         //   "generationConfig": {},
      *         //   "labels": {},
      *         //   "modelArmorConfig": {},
+     *         //   "outputConfig": {},
      *         //   "safetySettings": [],
      *         //   "systemInstruction": {},
      *         //   "toolConfig": {},
@@ -2839,6 +2853,7 @@ export namespace firebaseml_v2beta {
      *           //   "generationConfig": {},
      *           //   "labels": {},
      *           //   "modelArmorConfig": {},
+     *           //   "outputConfig": {},
      *           //   "safetySettings": [],
      *           //   "systemInstruction": {},
      *           //   "toolConfig": {},
