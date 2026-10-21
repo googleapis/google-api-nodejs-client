@@ -787,7 +787,7 @@ export namespace ces_v1 {
     confirmed?: boolean | null;
   }
   /**
-   * A single personalized onboarding suggestion chip for the AI assistant's zero state.
+   * A single personalized onboarding suggestion chip for Arc's zero state.
    */
   export interface Schema$AssistantSuggestion {
     /**
@@ -2475,6 +2475,10 @@ export namespace ces_v1 {
      * Required. Match type for the content filter.
      */
     matchType?: string | null;
+    /**
+     * Optional. Entries of the sensitive words list that this guardrail allows. Only valid when match_type is SENSITIVE_WORDS. Each value must equal a list entry (case-insensitive, surrounding whitespace ignored); other values have no effect. Applies to this guardrail only. At most 1000 entries of up to 256 characters each.
+     */
+    sensitiveWordsExemptions?: string[] | null;
   }
   /**
    * Guardrail that blocks the conversation if the LLM response is considered violating the policy based on the LLM classification.
@@ -2501,7 +2505,7 @@ export namespace ces_v1 {
      */
     policyScope?: string | null;
     /**
-     * Required. Policy prompt.
+     * Required. Policy prompt. Supports session variable placeholders (`{var\}`) as well as `{agent_system_instruction\}` to inject the agent's resolved system instructions.
      */
     prompt?: string | null;
   }
@@ -2685,7 +2689,7 @@ export namespace ces_v1 {
      */
     defaultLanguageCode?: string | null;
     /**
-     * Optional. Enables multilingual support. If true, agents in the app will use pre-built instructions to improve handling of multilingual input.
+     * Optional. Enables multilingual support. If `true`, agents in the app will use pre-built instructions to improve handling of multilingual input.
      */
     enableMultilingualSupport?: boolean | null;
     /**
@@ -3657,6 +3661,10 @@ export namespace ces_v1 {
      */
     redactionConfig?: Schema$RedactionConfig;
     /**
+     * Optional. Whether the app has to say what may be recorded before anything is kept. When true, a session starts with recording off and stays off until the client sends SessionInput.recording_control, which then decides every turn from that point on. This covers audio recording as well as conversation history, BigQuery export and Cloud Logging. When `false`, the default, the settings above decide on their own and the client does not have to send anything.
+     */
+    requiredRecordingConsent?: boolean | null;
+    /**
      * Optional. Configures an additional recording of unredacted audio. This can be used to maintain a raw audio copy when audio redaction is enabled, typically for auditing or monitoring purposes.
      */
     unredactedAudioRecordingConfig?: Schema$AudioRecordingConfig;
@@ -4123,7 +4131,7 @@ export namespace ces_v1 {
      */
     deidentifyTemplate?: string | null;
     /**
-     * Optional. If true, redaction will be applied in various logging scenarios, including conversation history, Cloud Logging and audio recording.
+     * Optional. If `true`, redaction will be applied in various logging scenarios, including conversation history, Cloud Logging and audio recording.
      */
     enableRedaction?: boolean | null;
     /**
@@ -4429,7 +4437,7 @@ export namespace ces_v1 {
      */
     deployment?: string | null;
     /**
-     * Optional. Whether to enable streaming text outputs from the model. By default, text outputs from the model are collected before sending to the client. NOTE: This is only supported for text (non-voice) sessions via StreamRunSession or BidiRunSession.
+     * Optional. Whether to stream text output from the model to the client incrementally as it is generated. Defaults to `false`. * When disabled, the model's text output is buffered, and each text output sent to the client is a complete sentence. Clients can render each text output on a new line. * When enabled, each text output may contain only part of a sentence. Clients should concatenate consecutive text outputs to render the complete response. NOTE: This is only supported for text (non-voice) sessions using StreamRunSession or BidiRunSession.
      */
     enableTextStreaming?: boolean | null;
     /**
@@ -4444,6 +4452,14 @@ export namespace ces_v1 {
      * Optional. The historical context of the session, including user inputs, agent responses, and other messages. Typically, CES agent would manage session automatically so client doesn't need to explicitly populate this field. However, client can optionally override the historical contexts to force the session start from certain state.
      */
     historicalContexts?: Schema$Message[];
+    /**
+     * Optional. Whether to include LLM thought summaries in the session outputs.
+     */
+    includeLlmThoughtSummary?: boolean | null;
+    /**
+     * Optional. Whether to include intermediate processing update to the client. If enabled, the update will be sent back in SessionOutput.progress.
+     */
+    includeProgressUpdate?: boolean | null;
     /**
      * Optional. Configuration for processing the input audio.
      */
@@ -4506,6 +4522,10 @@ export namespace ces_v1 {
      * Optional. Image data from the end user.
      */
     image?: Schema$Image;
+    /**
+     * Optional. Whether the conversation may be recorded and logged from here on. Use this when the app, rather than the agent, decides what may be kept: for example when the end user has to consent to being recorded before anything about the call can be stored. The value stays in effect until the client sends a different one, so it only needs to be sent when the answer changes. Whatever is in effect when a turn completes decides that turn, both whether its audio reaches the recording bucket and whether its transcript reaches conversation history, BigQuery and Cloud Logging. It covers the agent's side of the turn as well as the end user's. Turns that complete before the client first sends this are recorded according to the app's logging settings, as though the field did not exist. If more than one input in the same request sets it, the last one wins.
+     */
+    recordingControl?: string | null;
     /**
      * Optional. Text data from the end user.
      */
@@ -6404,7 +6424,7 @@ export namespace ces_v1 {
     }
 
     /**
-     * Generates personalized onboarding suggestions for the AI assistant zero state: classifies the requesting user (new / exploring / returning) from their assistant-session history in the app and returns suggestion chips (resume a session, continue work, or start something new) to render before any message is sent.
+     * Generates personalized onboarding suggestions for the Arc zero state: classifies the requesting user (new / exploring / returning) from their assistant-session history in the app and returns suggestion chips (resume a session, continue work, or start something new) to render before any message is sent.
      * @example
      * ```js
      * // Before running the sample:
@@ -8751,7 +8771,7 @@ export namespace ces_v1 {
     }
 
     /**
-     * Runs the Chat AI assistant agent for the specified assistant session in a streaming fashion.
+     * Runs Arc, the AI assistant, for the specified assistant session in a streaming fashion.
      * @example
      * ```js
      * // Before running the sample:
