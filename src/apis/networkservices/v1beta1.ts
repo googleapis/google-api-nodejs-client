@@ -129,7 +129,7 @@ export namespace networkservices_v1beta1 {
    */
   export interface Schema$AgentConnectivityTemplate {
     /**
-     * Required. Immutable. The path of the access. Maps roughly to ingress/egress, though we keep CLIENT_TO_AGENT and AGENT_TO_ANYWHERE as carryovers from Agent Gateway's original resource model. The path is immutable once set. Exactly one path can be set.
+     * Optional. Immutable. The path of the access. Maps roughly to ingress/egress, though we keep CLIENT_TO_AGENT and AGENT_TO_ANYWHERE as carryovers from Agent Gateway's original resource model. The path is immutable once set. Exactly one path can be set.
      */
     accessPath?: string | null;
     /**
@@ -145,7 +145,7 @@ export namespace networkservices_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * Required. The deployment model for the gateway.
+     * Optional. The deployment model for the gateway.
      */
     deploymentModel?: string | null;
     /**
@@ -2068,6 +2068,23 @@ export namespace networkservices_v1beta1 {
     unreachable?: string[] | null;
   }
   /**
+   * Response returned by the ListTelemetryPolicies method.
+   */
+  export interface Schema$ListTelemetryPoliciesResponse {
+    /**
+     * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of TelemetryPolicy resources.
+     */
+    telemetryPolicies?: Schema$TelemetryPolicy[];
+    /**
+     * Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response returned by the ListTlsRoutes method.
    */
   export interface Schema$ListTlsRoutesResponse {
@@ -2239,6 +2256,15 @@ export namespace networkservices_v1beta1 {
      * Required. Label value presented as value corresponding to the above key, in xDS Node Metadata.
      */
     labelValue?: string | null;
+  }
+  /**
+   * Configuration for metrics collection.
+   */
+  export interface Schema$MetricsConfiguration {
+    /**
+     * Optional. Indicates whether metrics are enabled or disabled. Set to true to explicitly enable, or false to explicitly disable.
+     */
+    enabled?: boolean | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -2582,6 +2608,72 @@ export namespace networkservices_v1beta1 {
     matches?: Schema$TcpRouteRouteMatch[];
   }
   /**
+   * Provides a configuration for telemetry.
+   */
+  export interface Schema$TelemetryPolicy {
+    /**
+     * Optional. User-provided annotations.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Output only. Indicates the timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time when this resource was soft-deleted. Only populated if the resource is in the process of being deleted.
+     */
+    deleteTime?: string | null;
+    /**
+     * Optional. Provides a human-readable name for the policy.
+     */
+    displayName?: string | null;
+    /**
+     * Provides a mechanism for optimistic concurrency control. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string | null;
+    /**
+     * Optional. Set of label tags associated with the TelemetryPolicy resource.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Specifies the top-level configuration block within the telemetry policy that contains all the settings for how metrics will be applied to the target resources.
+     */
+    metricsConfiguration?: Schema$MetricsConfiguration;
+    /**
+     * Identifier. Represents the resource name of the policy. Format: `projects/{project\}/locations/{location\}/telemetryPolicies/{telemetry_policy\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. If true, the service is currently reconciling the resource to the desired state.
+     */
+    reconciling?: boolean | null;
+    /**
+     * Required. Specifies the set of targets to which this telemetry policy applies.
+     */
+    telemetryTarget?: Schema$TelemetryTarget;
+    /**
+     * Optional. Specifies the top-level configuration block within the telemetry policy that contains all the settings for how tracing will be applied to the target resources.
+     */
+    tracingConfiguration?: Schema$TracingConfiguration;
+    /**
+     * Output only. Specifies the server-assigned unique identifier for the policy.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Indicates the timestamp when the resource was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Specifies the set of targets to which the TelemetryPolicy should be applied.
+   */
+  export interface Schema$TelemetryTarget {
+    /**
+     * Required. Lists references to the resources that are targeted by the policy. Types of resources supported: - `run.googleapis.com/` - `compute.googleapis.com/` - `networkservices.googleapis.com/` The format must be the full resource name of a supported resource. Examples: `//run.googleapis.com/projects/{project\}/locations/{location\}/services/{service\}` `//compute.googleapis.com/projects/my-project/global/forwardingRules/my-fr-1` `//compute.googleapis.com/projects/my-project/regions/us-central1/forwardingRules/my-fr-1` `//networkservices.googleapis.com/projects/my-project/locations/us-central1/gateways/my-secure-web-proxy-gateway` `//networkservices.googleapis.com/projects/my-project/locations/us-east1/agentGateways/my-agent-gateway`
+     */
+    resources?: string[] | null;
+  }
+  /**
    * TlsRoute defines how traffic should be routed based on SNI and other matching L3 attributes.
    */
   export interface Schema$TlsRoute {
@@ -2677,6 +2769,53 @@ export namespace networkservices_v1beta1 {
      * Required. RouteMatch defines the predicate used to match requests to a given action. Multiple match types are "OR"ed for evaluation. Atleast one RouteMatch must be supplied.
      */
     matches?: Schema$TlsRouteRouteMatch[];
+  }
+  /**
+   * Configuration for tracing collection.
+   */
+  export interface Schema$TracingConfiguration {
+    /**
+     * Optional. Provides key-value pairs for adding context to spans. Supports literalValue (static) and fromHeaderValue (dynamic extraction).
+     */
+    customSpanAttributes?: Schema$TracingConfigurationCustomSpanAttribute[];
+    /**
+     * Optional. Configures honoring a sampled bit in downstream traceparentID headers.
+     */
+    parentBasedSampling?: Schema$TracingConfigurationParentBasedSampling;
+    /**
+     * Optional. Specifies the tracing sampling rate. The sampling rate is a float number in the interval [0, 1]. The sampling rate is applied to all requests to the targeted resources. The default value is 0.0.
+     */
+    samplingRate?: number | null;
+  }
+  /**
+   * Key-value pairs for adding context to spans. Supports literal_value (static) and from_header_value (dynamic extraction). Note: literal_value and from_header_value are mutually exclusive, but at least one of them must be set.
+   */
+  export interface Schema$TracingConfigurationCustomSpanAttribute {
+    /**
+     * Required. Defines the key for a custom attribute that is added to the trace spans generated by the Google Cloud Load Balancer (GCLB).
+     */
+    attributeName?: string | null;
+    /**
+     * Optional. Specifies an incoming request header name from which the value for the custom span attribute should be dynamically extracted. Note: the value of the header might be changed during the request processing; in this case the resulting value will be stored.
+     */
+    fromHeaderValue?: string | null;
+    /**
+     * Optional. Assigns a static, constant value to the custom trace span attribute defined by the corresponding attribute_name.
+     */
+    literalValue?: string | null;
+  }
+  /**
+   * Configures honoring a sampled bit in downstream traceparentID headers.
+   */
+  export interface Schema$TracingConfigurationParentBasedSampling {
+    /**
+     * Optional. Provides a master switch to respect a sampled bit in incoming traceparentID headers. Default is false.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. Specifies the sampling rate to use when the sampled bit is set in the incoming traceparentID header.
+     */
+    samplingRate?: number | null;
   }
   /**
    * Specification of a port-based selector.
@@ -2879,6 +3018,7 @@ export namespace networkservices_v1beta1 {
     serviceBindings: Resource$Projects$Locations$Servicebindings;
     serviceLbPolicies: Resource$Projects$Locations$Servicelbpolicies;
     tcpRoutes: Resource$Projects$Locations$Tcproutes;
+    telemetryPolicies: Resource$Projects$Locations$Telemetrypolicies;
     tlsRoutes: Resource$Projects$Locations$Tlsroutes;
     wasmPlugins: Resource$Projects$Locations$Wasmplugins;
     constructor(context: APIRequestContext) {
@@ -2929,6 +3069,8 @@ export namespace networkservices_v1beta1 {
       this.serviceLbPolicies =
         new Resource$Projects$Locations$Servicelbpolicies(this.context);
       this.tcpRoutes = new Resource$Projects$Locations$Tcproutes(this.context);
+      this.telemetryPolicies =
+        new Resource$Projects$Locations$Telemetrypolicies(this.context);
       this.tlsRoutes = new Resource$Projects$Locations$Tlsroutes(this.context);
       this.wasmPlugins = new Resource$Projects$Locations$Wasmplugins(
         this.context
@@ -19297,6 +19439,848 @@ export namespace networkservices_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$TcpRoute;
+  }
+
+  export class Resource$Projects$Locations$Telemetrypolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new TelemetryPolicy in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.telemetryPolicies.create(
+     *     {
+     *       // Required. The parent resource where this policy will be created. Must be in the format `projects/{project\}/locations/{location\}`.
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Required. The ID to use for the telemetry policy, which will become the final component of the telemetry policy's resource name. This value must be 4-63 characters long, and match the regular expression `[a-z]([-a-z0-9]{2,61\}[a-z0-9])`.
+     *       telemetryPolicyId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "annotations": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "deleteTime": "my_deleteTime",
+     *         //   "displayName": "my_displayName",
+     *         //   "etag": "my_etag",
+     *         //   "labels": {},
+     *         //   "metricsConfiguration": {},
+     *         //   "name": "my_name",
+     *         //   "reconciling": false,
+     *         //   "telemetryTarget": {},
+     *         //   "tracingConfiguration": {},
+     *         //   "uid": "my_uid",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Telemetrypolicies$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Telemetrypolicies$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Telemetrypolicies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Telemetrypolicies$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/telemetryPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single TelemetryPolicy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.telemetryPolicies.delete(
+     *     {
+     *       // Optional. The etag of the TelemetryPolicy. If this is provided, it must match the server's etag.
+     *       etag: 'placeholder-value',
+     *       // Required. A name of the TelemetryPolicy to delete. Must be in the format `projects/{project\}/locations/{location\}/telemetryPolicies/{telemetry_policy\}`.
+     *       name: 'projects/my-project/locations/my-location/telemetryPolicies/my-telemetryPolicie',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Telemetrypolicies$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Telemetrypolicies$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Telemetrypolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Telemetrypolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single TelemetryPolicy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.telemetryPolicies.get({
+     *     // Required. A name of the TelemetryPolicy to get. Must be in the format `projects/{project\}/locations/{location\}/telemetryPolicies/{telemetry_policy\}`.
+     *     name: 'projects/my-project/locations/my-location/telemetryPolicies/my-telemetryPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "metricsConfiguration": {},
+     *   //   "name": "my_name",
+     *   //   "reconciling": false,
+     *   //   "telemetryTarget": {},
+     *   //   "tracingConfiguration": {},
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Telemetrypolicies$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TelemetryPolicy>>;
+    get(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TelemetryPolicy>,
+      callback: BodyResponseCallback<Schema$TelemetryPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$Get,
+      callback: BodyResponseCallback<Schema$TelemetryPolicy>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$TelemetryPolicy>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Telemetrypolicies$Get
+        | BodyResponseCallback<Schema$TelemetryPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TelemetryPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TelemetryPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TelemetryPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Telemetrypolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Telemetrypolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TelemetryPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TelemetryPolicy>(parameters);
+      }
+    }
+
+    /**
+     * Lists TelemetryPolicies in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.telemetryPolicies.list({
+     *     // Optional. The maximum number of policies to return. The service may return fewer than this value. If unspecified, at most 50 policies will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListTelemetryPolicies` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project and location from which the TelemetryPolicies should be listed, specified in the format `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "telemetryPolicies": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Telemetrypolicies$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTelemetryPoliciesResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTelemetryPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListTelemetryPoliciesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$List,
+      callback: BodyResponseCallback<Schema$ListTelemetryPoliciesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListTelemetryPoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Telemetrypolicies$List
+        | BodyResponseCallback<Schema$ListTelemetryPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTelemetryPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTelemetryPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTelemetryPoliciesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Telemetrypolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Telemetrypolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/telemetryPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListTelemetryPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListTelemetryPoliciesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of a single TelemetryPolicy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.telemetryPolicies.patch({
+     *     // Optional. If set to true, and the telemetry policy is not found, a new telemetry policy will be created. In this situation, `update_mask` is ignored.
+     *     allowMissing: 'placeholder-value',
+     *     // Identifier. Represents the resource name of the policy. Format: `projects/{project\}/locations/{location\}/telemetryPolicies/{telemetry_policy\}`
+     *     name: 'projects/my-project/locations/my-location/telemetryPolicies/my-telemetryPolicie',
+     *     // Optional. Field mask is used to specify the fields to be overwritten in the TelemetryPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the `update_mask` is not provided, the service will treat it as an implied field mask equivalent to all fields provided in the request message. This means that only the fields populated in the `telemetry_policy` field will be updated. The special value `*` can be used to indicate full replacement.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "metricsConfiguration": {},
+     *       //   "name": "my_name",
+     *       //   "reconciling": false,
+     *       //   "telemetryTarget": {},
+     *       //   "tracingConfiguration": {},
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Telemetrypolicies$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Telemetrypolicies$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Telemetrypolicies$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Telemetrypolicies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Telemetrypolicies$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Telemetrypolicies$Create extends StandardParameters {
+    /**
+     * Required. The parent resource where this policy will be created. Must be in the format `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the telemetry policy, which will become the final component of the telemetry policy's resource name. This value must be 4-63 characters long, and match the regular expression `[a-z]([-a-z0-9]{2,61\}[a-z0-9])`.
+     */
+    telemetryPolicyId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TelemetryPolicy;
+  }
+  export interface Params$Resource$Projects$Locations$Telemetrypolicies$Delete extends StandardParameters {
+    /**
+     * Optional. The etag of the TelemetryPolicy. If this is provided, it must match the server's etag.
+     */
+    etag?: string;
+    /**
+     * Required. A name of the TelemetryPolicy to delete. Must be in the format `projects/{project\}/locations/{location\}/telemetryPolicies/{telemetry_policy\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Telemetrypolicies$Get extends StandardParameters {
+    /**
+     * Required. A name of the TelemetryPolicy to get. Must be in the format `projects/{project\}/locations/{location\}/telemetryPolicies/{telemetry_policy\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Telemetrypolicies$List extends StandardParameters {
+    /**
+     * Optional. The maximum number of policies to return. The service may return fewer than this value. If unspecified, at most 50 policies will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListTelemetryPolicies` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location from which the TelemetryPolicies should be listed, specified in the format `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Telemetrypolicies$Patch extends StandardParameters {
+    /**
+     * Optional. If set to true, and the telemetry policy is not found, a new telemetry policy will be created. In this situation, `update_mask` is ignored.
+     */
+    allowMissing?: boolean;
+    /**
+     * Identifier. Represents the resource name of the policy. Format: `projects/{project\}/locations/{location\}/telemetryPolicies/{telemetry_policy\}`
+     */
+    name?: string;
+    /**
+     * Optional. Field mask is used to specify the fields to be overwritten in the TelemetryPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the `update_mask` is not provided, the service will treat it as an implied field mask equivalent to all fields provided in the request message. This means that only the fields populated in the `telemetry_policy` field will be updated. The special value `*` can be used to indicate full replacement.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TelemetryPolicy;
   }
 
   export class Resource$Projects$Locations$Tlsroutes {
