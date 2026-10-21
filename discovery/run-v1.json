@@ -3652,7 +3652,7 @@
       }
     }
   },
-  "revision": "20261002",
+  "revision": "20261016",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -4985,6 +4985,25 @@
         "pubsubTopic": {
           "description": "Optional. Option to specify the Pub/Sub topic to receive build status updates.",
           "type": "string"
+        },
+        "rankedMachineSeries": {
+          "description": "Optional. Ranked list (earlier items have higher priority) of Machine Series to consider when provisioning Worker VMs. A concrete machine type will be selected based on machine availability in the given region. This field must be empty for the Build to be eligible to be paired with a pre-provisioned worker VM.",
+          "items": {
+            "enum": [
+              "MACHINE_SERIES_UNSPECIFIED",
+              "MACHINE_SERIES_E",
+              "MACHINE_SERIES_N",
+              "MACHINE_SERIES_C"
+            ],
+            "enumDescriptions": [
+              "Should not be used.",
+              "Cost-optimized machines such as E2.",
+              "General-purpose machines such as N4.",
+              "Performance-optimized machines such as C4."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         },
         "requestedVerifyOption": {
           "description": "Requested verifiability options.",
