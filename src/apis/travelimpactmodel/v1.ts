@@ -502,6 +502,10 @@ export namespace travelimpactmodel_v1 {
      */
     flight?: Schema$Scope3FlightSegment;
     /**
+     * Optional. The model version under which the emissions were computed.
+     */
+    modelVersion?: Schema$ModelVersion;
+    /**
      * Optional. The source of the emissions data.
      */
     source?: string | null;
