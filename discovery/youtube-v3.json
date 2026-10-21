@@ -520,7 +520,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             }
@@ -585,7 +585,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             },
@@ -1289,7 +1289,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             },
@@ -1336,7 +1336,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             }
@@ -1362,7 +1362,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             },
@@ -1404,7 +1404,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             },
@@ -1499,7 +1499,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             },
@@ -1547,7 +1547,7 @@
               ],
               "enumDescriptions": [
                 "",
-                "Start testing the broadcast. YouTube transmits video to the broadcast's monitor stream. Note that you can only transition a broadcast to the testing state if its contentDetails.monitorStream.enableMonitorStream property is set to true.\",",
+                "Start testing the broadcast. YouTube transmits video to the broadcast's monitor stream. Note that you can only transition a broadcast to the testing state if its [`contentDetails.monitorStream.enableMonitorStream`](https://developers.google.com/youtube/data/live/reference/rest/v3/liveBroadcasts#contentDetails.monitorStream.enableMonitorStream) property is set to true.\",",
                 "Return only persistent broadcasts.",
                 "The broadcast is over. YouTube stops transmitting video."
               ],
@@ -1567,7 +1567,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             },
@@ -1603,7 +1603,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             },
@@ -1957,7 +1957,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             }
@@ -1983,7 +1983,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             },
@@ -2041,7 +2041,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             },
@@ -2083,7 +2083,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             },
@@ -2265,7 +2265,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             },
@@ -2312,7 +2312,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             },
@@ -2604,7 +2604,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             },
@@ -2674,7 +2674,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             },
@@ -3187,7 +3187,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             },
@@ -3787,7 +3787,7 @@
               "type": "string"
             },
             "onBehalfOfContentOwnerChannel": {
-              "description": "This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
+              "description": "This parameter can only be used in a properly [authorized request](https://developers.google.com/youtube/data/guides/authentication). *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.",
               "location": "query",
               "type": "string"
             },
@@ -3836,7 +3836,7 @@
               ],
               "enumDescriptions": [
                 "",
-                "Return the most popular videos for the specified content region and video category."
+                "Return the most popular videos for the specified [content region](https://developers.google.com/youtube/data/reference/rest/v3/videos/list#regionCode) and [video category](https://developers.google.com/youtube/data/reference/rest/v3/videos/list#videoCategoryId)."
               ],
               "location": "query",
               "type": "string"
@@ -3866,7 +3866,7 @@
             },
             "maxResults": {
               "default": "5",
-              "description": "The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. *Note:* This parameter is supported for use in conjunction with the myRating and chart parameters, but it is not supported for use in conjunction with the id parameter.",
+              "description": "The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. *Note:* This parameter is supported for use in conjunction with the [`myRating`](https://developers.google.com/youtube/data/reference/rest/v3/videos/list#myRating) and [`chart`](https://developers.google.com/youtube/data/reference/rest/v3/videos/list#chart) parameters, but it is not supported for use in conjunction with the [`id`](https://developers.google.com/youtube/data/reference/rest/v3/videos/list#id) parameter.",
               "format": "uint32",
               "location": "query",
               "maximum": "50",
@@ -3902,7 +3902,7 @@
               "type": "string"
             },
             "pageToken": {
-              "description": "The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved. *Note:* This parameter is supported for use in conjunction with the myRating and chart parameters, but it is not supported for use in conjunction with the id parameter.",
+              "description": "The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved. *Note:* This parameter is supported for use in conjunction with the [`myRating`](https://developers.google.com/youtube/data/reference/rest/v3/videos/list#myRating) and [`chart`](https://developers.google.com/youtube/data/reference/rest/v3/videos/list#chart) parameters, but it is not supported for use in conjunction with the [`id`](https://developers.google.com/youtube/data/reference/rest/v3/videos/list#id) parameter.",
               "location": "query",
               "type": "string"
             },
@@ -4188,7 +4188,7 @@
       }
     }
   },
-  "revision": "20261012",
+  "revision": "20261019",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -5123,25 +5123,25 @@
           "properties": {
             "favorites": {
               "deprecated": true,
-              "description": "The ID of the playlist that contains the channel\"s favorite videos. Use the playlistItems.insert and playlistItems.delete to add or remove items from that list.",
+              "description": "The ID of the playlist that contains the channel\"s favorite videos. Use the [`playlistItems.insert`](https://developers.google.com/youtube/data/reference/rest/v3/playlistItems/insert) and [`playlistItems.delete`](https://developers.google.com/youtube/data/reference/rest/v3/playlistItems/delete) to add or remove items from that list.",
               "type": "string"
             },
             "likes": {
-              "description": "The ID of the playlist that contains the channel\"s liked videos. Use the playlistItems.insert and playlistItems.delete to add or remove items from that list.",
+              "description": "The ID of the playlist that contains the channel\"s liked videos. Use the [`playlistItems.insert`](https://developers.google.com/youtube/data/reference/rest/v3/playlistItems/insert) and [`playlistItems.delete`](https://developers.google.com/youtube/data/reference/rest/v3/playlistItems/delete) to add or remove items from that list.",
               "type": "string"
             },
             "uploads": {
-              "description": "The ID of the playlist that contains the channel\"s uploaded videos. Use the videos.insert method to upload new videos and the videos.delete method to delete previously uploaded videos.",
+              "description": "The ID of the playlist that contains the channel\"s uploaded videos. Use the [`videos.insert`](https://developers.google.com/youtube/data/reference/rest/v3/videos/insert) method to upload new videos and the [`videos.delete`](https://developers.google.com/youtube/data/reference/rest/v3/videos/delete) method to delete previously uploaded videos.",
               "type": "string"
             },
             "watchHistory": {
               "deprecated": true,
-              "description": "The ID of the playlist that contains the channel\"s watch history. Use the playlistItems.insert and playlistItems.delete to add or remove items from that list.",
+              "description": "The ID of the playlist that contains the channel\"s watch history. Use the [`playlistItems.insert`](https://developers.google.com/youtube/data/reference/rest/v3/playlistItems/insert) and [`playlistItems.delete`](https://developers.google.com/youtube/data/reference/rest/v3/playlistItems/delete) to add or remove items from that list.",
               "type": "string"
             },
             "watchLater": {
               "deprecated": true,
-              "description": "The ID of the playlist that contains the channel\"s watch later playlist. Use the playlistItems.insert and playlistItems.delete to add or remove items from that list.",
+              "description": "The ID of the playlist that contains the channel\"s watch later playlist. Use the [`playlistItems.insert`](https://developers.google.com/youtube/data/reference/rest/v3/playlistItems/insert) and [`playlistItems.delete`](https://developers.google.com/youtube/data/reference/rest/v3/playlistItems/delete) to add or remove items from that list.",
               "type": "string"
             }
           },
@@ -8501,7 +8501,7 @@
           "description": "Optional. The broadcast's availability config. Used to set specific region availability or block specific regions It is optional - if not set, it is not enforced."
         },
         "boundStreamId": {
-          "description": "This value uniquely identifies the live stream bound to the broadcast.",
+          "description": "This value uniquely identifies the [`live stream`](https://developers.google.com/youtube/data/live/reference/rest/v3/liveStreams) bound to the broadcast.",
           "type": "string"
         },
         "boundStreamLastUpdateTimeMs": {
@@ -8571,7 +8571,7 @@
           "type": "string"
         },
         "mesh": {
-          "description": "The mesh for projecting the video if projection is mesh. The mesh value must be a UTF-8 string containing the base-64 encoding of 3D mesh data that follows the Spherical Video V2 RFC specification for an mshp box, excluding the box size and type but including the following four reserved zero bytes for the version and flags.",
+          "description": "The mesh for projecting the video if projection is mesh. The mesh value must be a UTF-8 string containing the base-64 encoding of 3D mesh data that follows the [Spherical Video V2 RFC specification](https://github.com/google/spatial-media/blob/master/docs/spherical-video-v2-rfc.md) for an mshp box, excluding the box size and type but including the following four reserved zero bytes for the version and flags.",
           "format": "byte",
           "type": "string"
         },
@@ -8601,7 +8601,7 @@
         },
         "startWithSlate": {
           "deprecated": true,
-          "description": "This setting indicates whether the broadcast should automatically begin with an in-stream slate when you update the broadcast's status to live. After updating the status, you then need to send a liveCuepoints.insert request that sets the cuepoint's eventState to end to remove the in-stream slate and make your broadcast stream visible to viewers.",
+          "description": "This setting indicates whether the broadcast should automatically begin with an [in-stream slate](https://developers.google.com/youtube/data/live/getting-started#Displaying_Slates) when you update the broadcast's status to live. After updating the status, you then need to send a [`liveCuepoints.insert`](https://developers.google.com/youtube/data/live/reference/rest/v3/liveCuepoints/insert) request that sets the cuepoint's eventState to end to remove the in-stream slate and make your broadcast stream visible to viewers.",
           "type": "boolean"
         },
         "stereoLayout": {
@@ -8696,7 +8696,7 @@
           "type": "string"
         },
         "categoryId": {
-          "description": "The YouTube video category associated with the video broadcast.",
+          "description": "The YouTube [video category](https://developers.google.com/youtube/data/reference/rest/v3/videoCategories/list) associated with the video broadcast.",
           "type": "string"
         },
         "channelId": {
@@ -8704,7 +8704,7 @@
           "type": "string"
         },
         "description": {
-          "description": "The broadcast's description. As with the title, you can set this field by modifying the broadcast resource or by setting the description field of the corresponding video resource.",
+          "description": "The broadcast's description. As with the title, you can set this field by modifying the broadcast resource or by setting the [`description`](https://developers.google.com/youtube/data/reference/rest/v3/videos#snippet.description) field of the corresponding video resource.",
           "type": "string"
         },
         "isDefaultBroadcast": {
@@ -8747,7 +8747,7 @@
               "youtube.liveBroadcasts.update"
             ]
           },
-          "description": "The broadcast's title. Note that the broadcast represents exactly one YouTube video. You can set this field by modifying the broadcast resource or by setting the title field of the corresponding video resource.",
+          "description": "The broadcast's title. Note that the broadcast represents exactly one YouTube video. You can set this field by modifying the broadcast resource or by setting the [`title`](https://developers.google.com/youtube/data/reference/rest/v3/videos#snippet.title) field of the corresponding video resource.",
           "type": "string"
         }
       },
@@ -8770,7 +8770,7 @@
       "id": "LiveBroadcastStatus",
       "properties": {
         "lifeCycleStatus": {
-          "description": "The broadcast's status. The status can be updated using the API's liveBroadcasts.transition method.",
+          "description": "The broadcast's status. The status can be updated using the API's [`liveBroadcasts.transition`](https://developers.google.com/youtube/data/live/reference/rest/v3/liveBroadcasts/transition) method.",
           "enum": [
             "lifeCycleStatusUnspecified",
             "created",
@@ -8822,7 +8822,7 @@
               "youtube.liveBroadcasts.update"
             ]
           },
-          "description": "The broadcast's privacy status. Note that the broadcast represents exactly one YouTube video, so the privacy settings are identical to those supported for videos. In addition, you can set this field by modifying the broadcast resource or by setting the privacyStatus field of the corresponding video resource.",
+          "description": "The broadcast's privacy status. Note that the broadcast represents exactly one YouTube video, so the privacy settings are identical to those supported for videos. In addition, you can set this field by modifying the broadcast resource or by setting the [`privacyStatus`](https://developers.google.com/youtube/data/reference/rest/v3/videos#status.privacyStatus) field of the corresponding video resource.",
           "enum": [
             "public",
             "unlisted",
@@ -9714,7 +9714,7 @@
           "type": "string"
         },
         "isReusable": {
-          "description": "Indicates whether the stream is reusable, which means that it can be bound to multiple broadcasts. It is common for broadcasters to reuse the same stream for many different broadcasts if those broadcasts occur at different times. If you set this value to false, then the stream will not be reusable, which means that it can only be bound to one broadcast. Non-reusable streams differ from reusable streams in the following ways: - A non-reusable stream can only be bound to one broadcast. - A non-reusable stream might be deleted by an automated process after the broadcast ends. - The liveStreams.list method does not list non-reusable streams if you call the method and set the mine parameter to true. The only way to use that method to retrieve the resource for a non-reusable stream is to use the id parameter to identify the stream. ",
+          "description": "Indicates whether the stream is reusable, which means that it can be bound to multiple broadcasts. It is common for broadcasters to reuse the same stream for many different broadcasts if those broadcasts occur at different times. If you set this value to false, then the stream will not be reusable, which means that it can only be bound to one broadcast. Non-reusable streams differ from reusable streams in the following ways: * A non-reusable stream can only be bound to one broadcast. * A non-reusable stream might be deleted by an automated process after the broadcast ends. * The [`liveStreams.list`](https://developers.google.com/youtube/data/live/reference/rest/v3/liveStreams/list) method does not list non-reusable streams if you call the method and set the mine parameter to true. The only way to use that method to retrieve the resource for a non-reusable stream is to use the id parameter to identify the stream.",
           "type": "boolean"
         }
       },
@@ -10121,7 +10121,7 @@
               "youtube.liveBroadcasts.update"
             ]
           },
-          "description": "If you have set the enableMonitorStream property to true, then this property determines the length of the live broadcast delay.",
+          "description": "If you have set the [`enableMonitorStream`](https://developers.google.com/youtube/data/live/reference/rest/v3/liveBroadcasts#contentDetails.monitorStream.enableMonitorStream) property to true, then this property determines the length of the live broadcast delay.",
           "format": "uint32",
           "type": "integer"
         },
@@ -10159,7 +10159,7 @@
       "type": "object"
     },
     "Playlist": {
-      "description": "A *playlist* resource represents a YouTube playlist. A playlist is a collection of videos that can be viewed sequentially and shared with other users. A playlist can contain up to 200 videos, and YouTube does not limit the number of playlists that each user creates. By default, playlists are publicly visible to other users, but playlists can be public or private. YouTube also uses playlists to identify special collections of videos for a channel, such as: - uploaded videos - favorite videos - positively rated (liked) videos - watch history - watch later To be more specific, these lists are associated with a channel, which is a collection of a person, group, or company's videos, playlists, and other YouTube information. You can retrieve the playlist IDs for each of these lists from the channel resource for a given channel. You can then use the playlistItems.list method to retrieve any of those lists. You can also add or remove items from those lists by calling the playlistItems.insert and playlistItems.delete methods.",
+      "description": "A *playlist* resource represents a YouTube playlist. A playlist is a collection of videos that can be viewed sequentially and shared with other users. A playlist can contain up to 200 videos, and YouTube does not limit the number of playlists that each user creates. By default, playlists are publicly visible to other users, but playlists can be public or private. YouTube also uses playlists to identify special collections of videos for a channel, such as: * uploaded videos * favorite videos * positively rated (liked) videos * watch history * watch later To be more specific, these lists are associated with a channel, which is a collection of a person, group, or company's videos, playlists, and other YouTube information. You can retrieve the playlist IDs for each of these lists from the [`channel resource`](https://developers.google.com/youtube/data/reference/rest/v3/channels) for a given channel. You can then use the [`playlistItems.list`](https://developers.google.com/youtube/data/reference/rest/v3/playlistItems/list) method to retrieve any of those lists. You can also add or remove items from those lists by calling the [`playlistItems.insert`](https://developers.google.com/youtube/data/reference/rest/v3/playlistItems/insert) and [`playlistItems.delete`](https://developers.google.com/youtube/data/reference/rest/v3/playlistItems/delete) methods.",
       "id": "Playlist",
       "properties": {
         "contentDetails": {
@@ -10260,7 +10260,7 @@
       "type": "object"
     },
     "PlaylistImageSnippet": {
-      "description": "A *playlistImage* resource identifies another resource, such as a image, that is associated with a playlist. In addition, the playlistImage resource contains details about the included resource that pertain specifically to how that resource is used in that playlist. YouTube uses playlists to identify special collections of videos for a channel, such as: - uploaded videos - favorite videos - positively rated (liked) videos - watch history To be more specific, these lists are associated with a channel, which is a collection of a person, group, or company's videos, playlists, and other YouTube information. You can retrieve the playlist IDs for each of these lists from the channel resource for a given channel. You can then use the playlistImages.list method to retrieve image data for any of those playlists. You can also add or remove images from those lists by calling the playlistImages.insert and playlistImages.delete methods.",
+      "description": "A *playlistImage* resource identifies another resource, such as a image, that is associated with a playlist. In addition, the playlistImage resource contains details about the included resource that pertain specifically to how that resource is used in that playlist. YouTube uses playlists to identify special collections of videos for a channel, such as: * uploaded videos * favorite videos * positively rated (liked) videos * watch history To be more specific, these lists are associated with a channel, which is a collection of a person, group, or company's videos, playlists, and other YouTube information. You can retrieve the playlist IDs for each of these lists from the [`channel resource`](https://developers.google.com/youtube/data/reference/rest/v3/channels) for a given channel. You can then use the [`playlistImages.list`](https://developers.google.com/youtube/data/reference/rest/v3/playlistImages/list) method to retrieve image data for any of those playlists. You can also add or remove images from those lists by calling the [`playlistImages.insert`](https://developers.google.com/youtube/data/reference/rest/v3/playlistImages/insert) and [`playlistImages.delete`](https://developers.google.com/youtube/data/reference/rest/v3/playlistImages/delete) methods.",
       "id": "PlaylistImageSnippet",
       "properties": {
         "height": {
@@ -10291,7 +10291,7 @@
       "type": "object"
     },
     "PlaylistItem": {
-      "description": "A *playlistItem* resource identifies another resource, such as a video, that is included in a playlist. In addition, the playlistItem resource contains details about the included resource that pertain specifically to how that resource is used in that playlist. YouTube uses playlists to identify special collections of videos for a channel, such as: - uploaded videos - favorite videos - positively rated (liked) videos - watch history - watch later To be more specific, these lists are associated with a channel, which is a collection of a person, group, or company's videos, playlists, and other YouTube information. You can retrieve the playlist IDs for each of these lists from the channel resource for a given channel. You can then use the playlistItems.list method to retrieve any of those lists. You can also add or remove items from those lists by calling the playlistItems.insert and playlistItems.delete methods. For example, if a user gives a positive rating to a video, you would insert that video into the liked videos playlist for that user's channel.",
+      "description": "A *playlistItem* resource identifies another resource, such as a video, that is included in a playlist. In addition, the playlistItem resource contains details about the included resource that pertain specifically to how that resource is used in that playlist. YouTube uses playlists to identify special collections of videos for a channel, such as: * uploaded videos * favorite videos * positively rated (liked) videos * watch history * watch later To be more specific, these lists are associated with a channel, which is a collection of a person, group, or company's videos, playlists, and other YouTube information. You can retrieve the playlist IDs for each of these lists from the [`channel resource`](https://developers.google.com/youtube/data/reference/rest/v3/channels) for a given channel. You can then use the [`playlistItems.list`](https://developers.google.com/youtube/data/reference/rest/v3/playlistItems/list) method to retrieve any of those lists. You can also add or remove items from those lists by calling the [`playlistItems.insert`](https://developers.google.com/youtube/data/reference/rest/v3/playlistItems/insert) and [`playlistItems.delete`](https://developers.google.com/youtube/data/reference/rest/v3/playlistItems/delete) methods. For example, if a user gives a positive rating to a video, you would insert that video into the liked videos playlist for that user's channel.",
       "id": "PlaylistItem",
       "properties": {
         "contentDetails": {
@@ -10340,7 +10340,7 @@
           "type": "string"
         },
         "videoId": {
-          "description": "The ID that YouTube uses to uniquely identify a video. To retrieve the video resource, set the id query parameter to this value in your API request.",
+          "description": "The ID that YouTube uses to uniquely identify a video. To [retrieve the `video` resource](https://developers.google.com/youtube/data/reference/rest/v3/videos/list), set the id query parameter to this value in your API request.",
           "type": "string"
         },
         "videoPublishedAt": {
@@ -11431,7 +11431,7 @@
         },
         "topicDetails": {
           "$ref": "VideoTopicDetails",
-          "description": "The topicDetails object encapsulates information about Freebase topics associated with the video."
+          "description": "The topicDetails object encapsulates information about [Freebase](http://www.freebase.com) topics associated with the video."
         }
       },
       "type": "object"
@@ -12230,7 +12230,7 @@
       "id": "VideoSnippet",
       "properties": {
         "categoryId": {
-          "description": "The YouTube video category associated with the video.",
+          "description": "The YouTube [video category](https://developers.google.com/youtube/data/reference/rest/v3/videoCategories/list) associated with the video.",
           "type": "string"
         },
         "channelId": {
