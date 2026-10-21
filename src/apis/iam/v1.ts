@@ -1594,6 +1594,10 @@ export namespace iam_v1 {
      * Output only. The state of the provider.
      */
     state?: string | null;
+    /**
+     * Optional. The vendor type of the third-party identity provider.
+     */
+    vendorType?: string | null;
   }
   /**
    * Represents a public key configuration for a Workforce Pool Provider. The key can be configured in your identity provider to encrypt SAML assertions. Google holds the corresponding private key, which it uses to decrypt encrypted tokens.
@@ -3872,7 +3876,8 @@ export namespace iam_v1 {
      *       //   "oidc": {},
      *       //   "saml": {},
      *       //   "scimUsage": "my_scimUsage",
-     *       //   "state": "my_state"
+     *       //   "state": "my_state",
+     *       //   "vendorType": "my_vendorType"
      *       // }
      *     },
      *   });
@@ -4172,7 +4177,8 @@ export namespace iam_v1 {
      *   //   "oidc": {},
      *   //   "saml": {},
      *   //   "scimUsage": "my_scimUsage",
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "vendorType": "my_vendorType"
      *   // }
      * }
      *
@@ -4476,7 +4482,8 @@ export namespace iam_v1 {
      *       //   "oidc": {},
      *       //   "saml": {},
      *       //   "scimUsage": "my_scimUsage",
-     *       //   "state": "my_state"
+     *       //   "state": "my_state",
+     *       //   "vendorType": "my_vendorType"
      *       // }
      *     },
      *   });
