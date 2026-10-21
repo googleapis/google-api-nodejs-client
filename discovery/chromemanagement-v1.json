@@ -863,7 +863,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "Optional. Filter to apply to list results. The following fields can be used in the filter: * device_type (currently only 'CHROME_BROWSER' is supported) * token_state (supported values: 'ACTIVE', 'EXPIRED', 'REVOKED') * org_unit_path The full path of the org unit, such as /Montreal/Sales. * org_unit_id The obfuscated id of the org unit, not the full path.",
+                  "description": "Optional. Filter to apply to list results. The following fields can be used in the filter: * `device_type` (currently only `\"CHROME_BROWSER\"` is supported) * `token_state` (supported values: `\"ACTIVE\"`, `\"EXPIRED\"`, `\"REVOKED\"`) * `org_unit_path` The full path of the org unit, such as `/Montreal/Sales`. * `org_unit_id` The obfuscated id of the org unit, not the full path.",
                   "location": "query",
                   "type": "string"
                 },
@@ -2823,7 +2823,7 @@
       }
     }
   },
-  "revision": "20261015",
+  "revision": "20261018",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {

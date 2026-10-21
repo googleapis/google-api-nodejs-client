@@ -8565,7 +8565,7 @@ export namespace chromemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await chromemanagement.customers.enrollmentTokens.list({
-     *     // Optional. Filter to apply to list results. The following fields can be used in the filter: * device_type (currently only 'CHROME_BROWSER' is supported) * token_state (supported values: 'ACTIVE', 'EXPIRED', 'REVOKED') * org_unit_path The full path of the org unit, such as /Montreal/Sales. * org_unit_id The obfuscated id of the org unit, not the full path.
+     *     // Optional. Filter to apply to list results. The following fields can be used in the filter: * `device_type` (currently only `"CHROME_BROWSER"` is supported) * `token_state` (supported values: `"ACTIVE"`, `"EXPIRED"`, `"REVOKED"`) * `org_unit_path` The full path of the org unit, such as `/Montreal/Sales`. * `org_unit_id` The obfuscated id of the org unit, not the full path.
      *     filter: 'placeholder-value',
      *     // Optional. Maximum number of results to return. Maximum and default are 100.
      *     pageSize: 'placeholder-value',
@@ -8874,7 +8874,7 @@ export namespace chromemanagement_v1 {
   }
   export interface Params$Resource$Customers$Enrollmenttokens$List extends StandardParameters {
     /**
-     * Optional. Filter to apply to list results. The following fields can be used in the filter: * device_type (currently only 'CHROME_BROWSER' is supported) * token_state (supported values: 'ACTIVE', 'EXPIRED', 'REVOKED') * org_unit_path The full path of the org unit, such as /Montreal/Sales. * org_unit_id The obfuscated id of the org unit, not the full path.
+     * Optional. Filter to apply to list results. The following fields can be used in the filter: * `device_type` (currently only `"CHROME_BROWSER"` is supported) * `token_state` (supported values: `"ACTIVE"`, `"EXPIRED"`, `"REVOKED"`) * `org_unit_path` The full path of the org unit, such as `/Montreal/Sales`. * `org_unit_id` The obfuscated id of the org unit, not the full path.
      */
     filter?: string;
     /**
