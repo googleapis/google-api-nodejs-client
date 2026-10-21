@@ -2736,6 +2736,10 @@ export namespace datamigration_v1 {
    */
   export interface Schema$PromoteMigrationJobRequest {
     /**
+     * Optional. If true, the promote operation will perform a failback promote from destination back to source (only supported when the migration job is in FAILBACK phase).
+     */
+    failback?: boolean | null;
+    /**
      * Optional. The object filter to apply to the migration job.
      */
     objectsFilter?: Schema$MigrationJobObjectsConfig;
@@ -3502,7 +3506,7 @@ export namespace datamigration_v1 {
      */
     clientKey?: string | null;
     /**
-     * Optional. SSL flags used for establishing SSL connection to the source database. Only source specific flags are supported. An object containing a list of "key": "value" pairs. Example: { "server_certificate_hostname": "server.com"\}.
+     * Optional. SSL flags used for establishing SSL connection to the source database. Only source specific flags are supported. An object containing a list of "key": "value" pairs. Examples: { "server_certificate_dn": "CN=server.com,OU=RDS,O=Amazon.com,C=US"\} or { "server_certificate_hostname": "server.com"\}.
      */
     sslFlags?: {[key: string]: string} | null;
     /**
@@ -11449,6 +11453,7 @@ export namespace datamigration_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "failback": false,
      *       //   "objectsFilter": {}
      *       // }
      *     },
