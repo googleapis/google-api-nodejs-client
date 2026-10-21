@@ -2049,7 +2049,7 @@
       }
     }
   },
-  "revision": "20261003",
+  "revision": "20261014",
   "rootUrl": "https://agentregistry.googleapis.com/",
   "schemas": {
     "A2ASkill": {
@@ -3553,6 +3553,44 @@
         },
         "nextPageToken": {
           "description": "If there are more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SearchSkillsRequest": {
+      "description": "Requesting a deep search of Skills.",
+      "id": "SearchSkillsRequest",
+      "properties": {
+        "filter": {
+          "description": "Optional. Use this field to specify additional filter criteria on search results. Filter expressions can be used to restrict results based upon filterable fields, where equality operators can be used. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `<`, `>`, `NOT`, `AND`, `OR`, and `()`. | Field | `=` | `<`, `>` | |--------------|-----|----------| | state | Yes | No | | targetState | Yes | No | | createTime | Yes | Yes | | updateTime | Yes | Yes | Examples: * `state=ACTIVE` to restrict results to skills in the `ACTIVE` state.",
+          "type": "string"
+        },
+        "pageSize": {
+          "description": "Optional. The maximum number of search results to return per page. The page size is capped at `100`, even if a larger value is specified. A negative value will result in an `INVALID_ARGUMENT` error. If unspecified or set to `0`, a default value of `20` will be used. The server may return fewer results than requested.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "Optional. If present, retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters, must be identical to those in the previous call.",
+          "type": "string"
+        },
+        "searchString": {
+          "description": "Optional. Search criteria used to select the Skills to return. If no search criteria is specified then all accessible Skills will be returned. Search expressions can be used to restrict results based upon searchable fields, where the operators can be used along with the suffix wildcard symbol `*`. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `:`, `NOT`, `AND`, `OR`, and `()`. Searchable fields: | Field | `=` | `:` | `*` | Keyword Search | |---------------------------|-----|-----|-----|----------------| | skillId | Yes | Yes | Yes | Included | | name | No | Yes | Yes | Included | | displayName | No | Yes | Yes | Included | | description | No | Yes | No | Included | | frontmatter.name | No | Yes | No | Included | | frontmatter.description | No | Yes | No | Included | | frontmatter.compatibility | No | Yes | No | Included | | frontmatter.license | No | Yes | No | Included | Examples: * `skillId=\"urn:skill:projects-1234:locations:global:private-important-skill\"` to find the skill with the specified skill ID. * `name:important` to find skills whose name contains `important` as a word. * `displayName:works*` to find skills whose display name contains words that start with `works`.",
+          "type": "string"
+        },
+        "searchType": {
+          "description": "Optional. The type of search.",
+          "enum": [
+            "SEARCH_TYPE_UNSPECIFIED",
+            "KEYWORD",
+            "SEMANTIC"
+          ],
+          "enumDescriptions": [
+            "Invalid search type.",
+            "Search for a keyword across all searchable fields.",
+            "Search based on the meaning and intent of a natural language query."
+          ],
           "type": "string"
         }
       },
