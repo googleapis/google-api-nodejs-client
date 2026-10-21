@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20251230",
+  "revision": "20261018",
   "rootUrl": "https://verifiedaccess.googleapis.com/",
   "schemas": {
     "Antivirus": {
@@ -317,7 +317,9 @@
             "CHROMIUM_OS",
             "WINDOWS",
             "MAC_OS_X",
-            "LINUX"
+            "LINUX",
+            "IOS",
+            "ANDROID"
           ],
           "enumDescriptions": [
             "UNSPECIFIED.",
@@ -325,7 +327,9 @@
             "ChromiumOS.",
             "Windows.",
             "Mac Os X.",
-            "Linux"
+            "Linux",
+            "iOS.",
+            "Android."
           ],
           "readOnly": true,
           "type": "string"
