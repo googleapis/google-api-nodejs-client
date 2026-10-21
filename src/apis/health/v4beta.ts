@@ -761,7 +761,7 @@ export namespace health_v4beta {
      */
     dataSourceFamily?: string | null;
     /**
-     * Optional. The maximum number of data points to return. If unspecified, at most 1440 data points will be returned. The maximum page size is 10000; values above that will be truncated accordingly.
+     * Optional. The maximum number of data points to return. If unspecified, at most 90 data points will be returned. The maximum page size is 10000; values above that will be truncated accordingly.
      */
     pageSize?: number | null;
     /**

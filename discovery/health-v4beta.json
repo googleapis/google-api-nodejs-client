@@ -1149,7 +1149,7 @@
       }
     }
   },
-  "revision": "20261013",
+  "revision": "20261019",
   "rootUrl": "https://health.googleapis.com/",
   "schemas": {
     "ActiveEnergyBurned": {
@@ -2008,7 +2008,7 @@
           "type": "string"
         },
         "pageSize": {
-          "description": "Optional. The maximum number of data points to return. If unspecified, at most 1440 data points will be returned. The maximum page size is 10000; values above that will be truncated accordingly.",
+          "description": "Optional. The maximum number of data points to return. If unspecified, at most 90 data points will be returned. The maximum page size is 10000; values above that will be truncated accordingly.",
           "format": "int32",
           "type": "integer"
         },
