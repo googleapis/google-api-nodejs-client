@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20260628",
+  "revision": "20261018",
   "rootUrl": "https://policytroubleshooter.googleapis.com/",
   "schemas": {
     "GoogleCloudPolicytroubleshooterIamV3betaAccessContext": {
@@ -1610,7 +1610,7 @@
         },
         "condition": {
           "$ref": "GoogleTypeExpr",
-          "description": "Optional. The condition to apply to the policy binding. When set, the `expression` field in the `Expr` must include from 1 to 10 subexpressions, joined by the \"||\"(Logical OR), \"&&\"(Logical AND) or \"!\"(Logical NOT) operators and cannot contain more than 250 characters. The condition is currently only supported when bound to policies of kind principal access boundary. When the bound policy is a principal access boundary policy, the only supported attributes in any subexpression are `principal.type` and `principal.subject`. An example expression is: \"principal.type == 'iam.googleapis.com/ServiceAccount'\" or \"principal.subject == 'bob@example.com'\". Allowed operations for `principal.subject`: - `principal.subject == ` - `principal.subject != ` - `principal.subject in []` - `principal.subject.startsWith()` - `principal.subject.endsWith()` Allowed operations for `principal.type`: - `principal.type == ` - `principal.type != ` - `principal.type in []` Supported principal types are workspace, workforce pool, workload pool, service account, and agent identity. Allowed string must be one of: - `iam.googleapis.com/WorkspaceIdentity` - `iam.googleapis.com/WorkforcePoolIdentity` - `iam.googleapis.com/WorkloadPoolIdentity` - `iam.googleapis.com/ServiceAccount` - `iam.googleapis.com/AgentPoolIdentity` (available in Preview)"
+          "description": "Optional. The condition to apply to the policy binding. When set, the `expression` field in the `Expr` must include from 1 to 10 subexpressions, joined by the \"||\"(Logical OR), \"&&\"(Logical AND) or \"!\"(Logical NOT) operators and cannot contain more than 250 characters. The condition is currently only supported when bound to policies of kind principal access boundary. When the bound policy is a principal access boundary policy, the only supported attributes in any subexpression are `principal.type` and `principal.subject`. An example expression is: \"principal.type == 'iam.googleapis.com/ServiceAccount'\" or \"principal.subject == 'bob@example.com'\". Allowed operations for `principal.subject`: - `principal.subject == ` - `principal.subject != ` - `principal.subject in []` - `principal.subject.startsWith()` - `principal.subject.endsWith()` Allowed operations for `principal.type`: - `principal.type == ` - `principal.type != ` - `principal.type in []` Supported principal types are workspace, workforce pool, workload pool, service account, and agent identity. Allowed string must be one of: - `iam.googleapis.com/WorkspaceIdentity` - `iam.googleapis.com/WorkforcePoolIdentity` - `iam.googleapis.com/WorkloadPoolIdentity` - `iam.googleapis.com/ServiceAccount` - `iam.googleapis.com/AgentPoolIdentity`"
         },
         "createTime": {
           "description": "Output only. The time when the policy binding was created.",
