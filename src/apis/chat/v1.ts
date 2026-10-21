@@ -454,6 +454,10 @@ export namespace chat_v1 {
      * Required if the message contains multiple cards. A unique identifier for a card in a message.
      */
     cardId?: string | null;
+    /**
+     * Output only. The app that owns the card.
+     */
+    ownerUser?: Schema$User;
   }
   /**
    * JSON payload of error messages. If the Cloud Logging API is enabled, these error messages are logged to [Google Cloud Logging](https://cloud.google.com/logging/docs).
@@ -2779,6 +2783,19 @@ export namespace chat_v1 {
      */
     reaction?: Schema$Reaction;
   }
+  /**
+   * Request message for ReplaceMessageCards API method.
+   */
+  export interface Schema$ReplaceMessageCardsRequest {
+    /**
+     * Optional. An array of [cards](https://developers.google.com/workspace/chat/api/reference/rest/v1/cards) to be included in the message. These cards will replace the existing cards of the message. If empty, the original cards included in the message will be cleared.
+     */
+    cardsV2?: Schema$CardWithId[];
+  }
+  /**
+   * Response message for ReplaceMessageCards API.
+   */
+  export interface Schema$ReplaceMessageCardsResponse {}
   /**
    * A rich link to a resource. Rich links can be associated with the plain-text body of the message or represent chips that link to Google Workspace resources like Google Docs or Sheets with `start_index` and `length` of 0.
    */
@@ -8341,6 +8358,153 @@ export namespace chat_v1 {
     }
 
     /**
+     * Replaces the cards included in a message. A Chat app can only replace cards on a human-created message if the message already contains cards, and the cards were created by the app. If the app replaces the cards with an empty list, the cards are removed. After removing the cards, the app cannot add cards back to the message. Requires [app authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) with the [authorization scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.bot`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chat.bot'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.messages.replaceCards({
+     *     // Required. The resource name of the message. Format: `spaces/{space\}/messages/{message\}`
+     *     name: 'spaces/my-space/messages/my-message',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cardsV2": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    replaceCards(
+      params: Params$Resource$Spaces$Messages$Replacecards,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    replaceCards(
+      params?: Params$Resource$Spaces$Messages$Replacecards,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReplaceMessageCardsResponse>>;
+    replaceCards(
+      params: Params$Resource$Spaces$Messages$Replacecards,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    replaceCards(
+      params: Params$Resource$Spaces$Messages$Replacecards,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReplaceMessageCardsResponse>,
+      callback: BodyResponseCallback<Schema$ReplaceMessageCardsResponse>
+    ): void;
+    replaceCards(
+      params: Params$Resource$Spaces$Messages$Replacecards,
+      callback: BodyResponseCallback<Schema$ReplaceMessageCardsResponse>
+    ): void;
+    replaceCards(
+      callback: BodyResponseCallback<Schema$ReplaceMessageCardsResponse>
+    ): void;
+    replaceCards(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Messages$Replacecards
+        | BodyResponseCallback<Schema$ReplaceMessageCardsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReplaceMessageCardsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReplaceMessageCardsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReplaceMessageCardsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Spaces$Messages$Replacecards;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Spaces$Messages$Replacecards;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:replaceCards').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReplaceMessageCardsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReplaceMessageCardsResponse>(parameters);
+      }
+    }
+
+    /**
      * Searches for messages in Google Chat that the calling user has access to. Returns a list of messages matching the search criteria. To search across all spaces the user has access to, set `parent` to `spaces/-`. Using any other value for `parent` results in an `INVALID_ARGUMENT` error. The returned messages have their `name` field populated with the full resource name, which includes the specific `space` in which the message resides. This API doesn't return all message types. The types of messages listed below aren't included in the response. Use ListMessages to list all messages. - Private Messages that are visible to the authenticated user. - Messages posted by Chat apps in spaces or group chats. - Messages in a Chat app DM. - Messages from blocked users. - Messages in spaces that the caller has muted. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.messages.readonly` - `https://www.googleapis.com/auth/chat.messages`
      * @example
      * ```js
@@ -8798,6 +8962,17 @@ export namespace chat_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Message;
+  }
+  export interface Params$Resource$Spaces$Messages$Replacecards extends StandardParameters {
+    /**
+     * Required. The resource name of the message. Format: `spaces/{space\}/messages/{message\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReplaceMessageCardsRequest;
   }
   export interface Params$Resource$Spaces$Messages$Search extends StandardParameters {
     /**

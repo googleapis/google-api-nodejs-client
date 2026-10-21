@@ -1326,6 +1326,34 @@
                 "https://www.googleapis.com/auth/chat.messages"
               ]
             },
+            "replaceCards": {
+              "description": "Replaces the cards included in a message. A Chat app can only replace cards on a human-created message if the message already contains cards, and the cards were created by the app. If the app replaces the cards with an empty list, the cards are removed. After removing the cards, the app cannot add cards back to the message. Requires [app authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) with the [authorization scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.bot`",
+              "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}:replaceCards",
+              "httpMethod": "POST",
+              "id": "chat.spaces.messages.replaceCards",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the message. Format: `spaces/{space}/messages/{message}`",
+                  "location": "path",
+                  "pattern": "^spaces/[^/]+/messages/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:replaceCards",
+              "request": {
+                "$ref": "ReplaceMessageCardsRequest"
+              },
+              "response": {
+                "$ref": "ReplaceMessageCardsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chat.bot"
+              ]
+            },
             "search": {
               "description": "Searches for messages in Google Chat that the calling user has access to. Returns a list of messages matching the search criteria. To search across all spaces the user has access to, set `parent` to `spaces/-`. Using any other value for `parent` results in an `INVALID_ARGUMENT` error. The returned messages have their `name` field populated with the full resource name, which includes the specific `space` in which the message resides. This API doesn't return all message types. The types of messages listed below aren't included in the response. Use ListMessages to list all messages. - Private Messages that are visible to the authenticated user. - Messages posted by Chat apps in spaces or group chats. - Messages in a Chat app DM. - Messages from blocked users. - Messages in spaces that the caller has muted. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following [authorization scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.messages.readonly` - `https://www.googleapis.com/auth/chat.messages`",
               "flatPath": "v1/spaces/{spacesId}/messages:search",
@@ -2181,7 +2209,7 @@
       }
     }
   },
-  "revision": "20260927",
+  "revision": "20261015",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessPermissionSetting": {
@@ -2695,6 +2723,11 @@
         "cardId": {
           "description": "Required if the message contains multiple cards. A unique identifier for a card in a message.",
           "type": "string"
+        },
+        "ownerUser": {
+          "$ref": "User",
+          "description": "Output only. The app that owns the card.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -6144,6 +6177,26 @@
           "description": "The deleted reaction."
         }
       },
+      "type": "object"
+    },
+    "ReplaceMessageCardsRequest": {
+      "description": "Request message for ReplaceMessageCards API method.",
+      "id": "ReplaceMessageCardsRequest",
+      "properties": {
+        "cardsV2": {
+          "description": "Optional. An array of [cards](https://developers.google.com/workspace/chat/api/reference/rest/v1/cards) to be included in the message. These cards will replace the existing cards of the message. If empty, the original cards included in the message will be cleared.",
+          "items": {
+            "$ref": "CardWithId"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ReplaceMessageCardsResponse": {
+      "description": "Response message for ReplaceMessageCards API.",
+      "id": "ReplaceMessageCardsResponse",
+      "properties": {},
       "type": "object"
     },
     "RichLinkMetadata": {
