@@ -4369,7 +4369,7 @@
       }
     }
   },
-  "revision": "20261012",
+  "revision": "20261016",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AccessRestrictions": {
@@ -6581,6 +6581,34 @@
             "The provider is soft-deleted. Soft-deleted providers are permanently deleted after approximately 30 days. You can restore a soft-deleted provider using UndeleteWorkforcePoolProvider."
           ],
           "readOnly": true,
+          "type": "string"
+        },
+        "vendorType": {
+          "description": "Optional. The vendor type of the third-party identity provider.",
+          "enum": [
+            "VENDOR_TYPE_UNSPECIFIED",
+            "ENTRA_ID",
+            "OKTA",
+            "PING_FEDERATE",
+            "ADFS",
+            "KEYCLOAK",
+            "FORGE_ROCK",
+            "JUMP_CLOUD",
+            "ONE_LOGIN",
+            "GENERIC"
+          ],
+          "enumDescriptions": [
+            "Default value, no vendor specified, backfilled to existing providers.",
+            "Microsoft Entra ID",
+            "Okta",
+            "Ping Federate",
+            "Microsoft Active Directory Federation Services",
+            "Keycloak",
+            "ForgeRock",
+            "JumpCloud",
+            "OneLogin",
+            "Other Generic Identity Providers"
+          ],
           "type": "string"
         }
       },
