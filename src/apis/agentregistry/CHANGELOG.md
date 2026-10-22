@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/agentregistry-v4.2.0...agentregistry-v4.3.0) (2026-10-22)
+
+
+### Features
+
+* **agentregistry:** update the API ([bfeebec](https://github.com/googleapis/google-api-nodejs-client/commit/bfeebec8d4d6e8e0b7e9f8033181d11ae5055538))
+
 ## [4.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/agentregistry-v4.1.0...agentregistry-v4.2.0) (2026-10-19)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/cloudasset-v19.0.2...cloudasset-v19.0.3) (2026-10-22)
+
+
+### Bug Fixes
+
+* **cloudasset:** update the API ([d616799](https://github.com/googleapis/google-api-nodejs-client/commit/d61679963c97b033fa697d6c9c30324e4f16f79c))
+
 ## [19.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/cloudasset-v19.0.1...cloudasset-v19.0.2) (2026-10-19)
 
 

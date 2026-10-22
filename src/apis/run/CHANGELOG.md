@@ -1,5 +1,12 @@
 # Changelog
 
+## [38.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v38.3.0...run-v38.4.0) (2026-10-22)
+
+
+### Features
+
+* **run:** update the API ([37e8fcf](https://github.com/googleapis/google-api-nodejs-client/commit/37e8fcfe80b9e6c1f22a9cdfebe1995a8fa8cf58))
+
 ## [38.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v38.2.0...run-v38.3.0) (2026-10-14)
 
 

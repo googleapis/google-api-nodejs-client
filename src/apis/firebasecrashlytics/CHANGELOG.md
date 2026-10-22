@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasecrashlytics-v3.3.0...firebasecrashlytics-v3.4.0) (2026-10-22)
+
+
+### Features
+
+* **firebasecrashlytics:** update the API ([cc49cb6](https://github.com/googleapis/google-api-nodejs-client/commit/cc49cb64bfcb7f51d6e33edbc25cac0bc71cd149))
+
 ## [3.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasecrashlytics-v3.2.0...firebasecrashlytics-v3.3.0) (2026-10-14)
 
 
