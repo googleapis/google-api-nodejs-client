@@ -8933,7 +8933,7 @@
       }
     }
   },
-  "revision": "20261015",
+  "revision": "20261018",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -13678,11 +13678,38 @@
           ],
           "type": "string"
         },
+        "callCompanionAuthCode": {
+          "format": "byte",
+          "type": "string"
+        },
         "cxCurrentPage": {
           "type": "string"
         },
         "detectIntentResponse": {
           "$ref": "GoogleCloudDialogflowV2DetectIntentResponse"
+        },
+        "event": {
+          "type": "string"
+        },
+        "intent": {
+          "type": "string"
+        },
+        "matchConfidence": {
+          "format": "float",
+          "type": "number"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "type": "object"
+        },
+        "responseMessages": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2ResponseMessage"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -13880,6 +13907,18 @@
             ""
           ],
           "type": "string"
+        },
+        "parameterOverrides": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2ParameterOverride"
+          },
+          "type": "array"
+        },
+        "proactiveEnabled": {
+          "type": "boolean"
+        },
+        "reactiveEnabled": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -18331,6 +18370,12 @@
           "readOnly": true,
           "type": "string"
         },
+        "responseMessages": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2ResponseMessage"
+          },
+          "type": "array"
+        },
         "sendTime": {
           "format": "google-datetime",
           "type": "string"
@@ -18481,6 +18526,21 @@
         },
         "synthesizeSpeechConfig": {
           "$ref": "GoogleCloudDialogflowV2SynthesizeSpeechConfig"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ParameterOverride": {
+      "id": "GoogleCloudDialogflowV2ParameterOverride",
+      "properties": {
+        "contextReferenceKey": {
+          "type": "string"
+        },
+        "fieldPath": {
+          "type": "string"
+        },
+        "parameterName": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -18768,6 +18828,104 @@
         },
         "smartMessagingPartialUpdate": {
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ResponseMessage": {
+      "id": "GoogleCloudDialogflowV2ResponseMessage",
+      "properties": {
+        "endInteraction": {
+          "$ref": "GoogleCloudDialogflowV2ResponseMessageEndInteraction"
+        },
+        "liveAgentHandoff": {
+          "$ref": "GoogleCloudDialogflowV2ResponseMessageLiveAgentHandoff"
+        },
+        "mixedAudio": {
+          "$ref": "GoogleCloudDialogflowV2ResponseMessageMixedAudio"
+        },
+        "payload": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "type": "object"
+        },
+        "telephonyTransferCall": {
+          "$ref": "GoogleCloudDialogflowV2ResponseMessageTelephonyTransferCall"
+        },
+        "text": {
+          "$ref": "GoogleCloudDialogflowV2ResponseMessageText"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ResponseMessageEndInteraction": {
+      "id": "GoogleCloudDialogflowV2ResponseMessageEndInteraction",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ResponseMessageLiveAgentHandoff": {
+      "id": "GoogleCloudDialogflowV2ResponseMessageLiveAgentHandoff",
+      "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ResponseMessageMixedAudio": {
+      "id": "GoogleCloudDialogflowV2ResponseMessageMixedAudio",
+      "properties": {
+        "segments": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2ResponseMessageMixedAudioSegment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ResponseMessageMixedAudioSegment": {
+      "id": "GoogleCloudDialogflowV2ResponseMessageMixedAudioSegment",
+      "properties": {
+        "allowPlaybackInterruption": {
+          "type": "boolean"
+        },
+        "audio": {
+          "format": "byte",
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ResponseMessageTelephonyTransferCall": {
+      "id": "GoogleCloudDialogflowV2ResponseMessageTelephonyTransferCall",
+      "properties": {
+        "phoneNumber": {
+          "type": "string"
+        },
+        "sipUri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ResponseMessageText": {
+      "id": "GoogleCloudDialogflowV2ResponseMessageText",
+      "properties": {
+        "text": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -19179,6 +19337,10 @@
       "properties": {
         "queryTextSentiment": {
           "$ref": "GoogleCloudDialogflowV2Sentiment"
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -21045,6 +21207,18 @@
         },
         "operationId": {
           "type": "string"
+        },
+        "parameterOverrides": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2ParameterOverride"
+          },
+          "type": "array"
+        },
+        "proactiveEnabled": {
+          "type": "boolean"
+        },
+        "reactiveEnabled": {
+          "type": "boolean"
         },
         "toolset": {
           "type": "string"
@@ -23906,6 +24080,10 @@
       "properties": {
         "queryTextSentiment": {
           "$ref": "GoogleCloudDialogflowV2beta1Sentiment"
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "readOnly": true
         }
       },
       "type": "object"
