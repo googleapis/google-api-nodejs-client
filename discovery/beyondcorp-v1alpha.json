@@ -723,50 +723,6 @@
           "resources": {
             "appConnections": {
               "methods": {
-                "create": {
-                  "deprecated": true,
-                  "description": "Creates a new AppConnection in a given project and location.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/appConnections",
-                  "httpMethod": "POST",
-                  "id": "beyondcorp.projects.locations.appConnections.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "appConnectionId": {
-                      "description": "Optional. User-settable AppConnection resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or a letter.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. The resource project name of the AppConnection location using the form: `projects/{project_id}/locations/{location_id}`",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "validateOnly": {
-                      "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
-                      "location": "query",
-                      "type": "boolean"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/appConnections",
-                  "request": {
-                    "$ref": "GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnection"
-                  },
-                  "response": {
-                    "$ref": "GoogleLongrunningOperation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "delete": {
                   "deprecated": true,
                   "description": "Deletes a single AppConnection.",
@@ -907,56 +863,6 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
-                "patch": {
-                  "deprecated": true,
-                  "description": "Updates the parameters of a single AppConnection.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/appConnections/{appConnectionsId}",
-                  "httpMethod": "PATCH",
-                  "id": "beyondcorp.projects.locations.appConnections.patch",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "allowMissing": {
-                      "description": "Optional. If set as true, will create the resource if it is not found.",
-                      "location": "query",
-                      "type": "boolean"
-                    },
-                    "name": {
-                      "description": "Required. Unique resource name of the AppConnection. The name is ignored when creating a AppConnection.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/appConnections/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "updateMask": {
-                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from [BeyondCorp.AppConnection]: * `labels` * `display_name` * `application_endpoint` * `connectors`",
-                      "format": "google-fieldmask",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "validateOnly": {
-                      "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
-                      "location": "query",
-                      "type": "boolean"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "request": {
-                    "$ref": "GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnection"
-                  },
-                  "response": {
-                    "$ref": "GoogleLongrunningOperation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "resolve": {
                   "deprecated": true,
                   "description": "Resolves AppConnections details for a given AppConnector. An internal method called by a connector to find AppConnections to connect to.",
@@ -1059,50 +965,6 @@
             },
             "appConnectors": {
               "methods": {
-                "create": {
-                  "deprecated": true,
-                  "description": "Creates a new AppConnector in a given project and location.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/appConnectors",
-                  "httpMethod": "POST",
-                  "id": "beyondcorp.projects.locations.appConnectors.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "appConnectorId": {
-                      "description": "Optional. User-settable AppConnector resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or a letter.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. The resource project name of the AppConnector location using the form: `projects/{project_id}/locations/{location_id}`",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "validateOnly": {
-                      "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
-                      "location": "query",
-                      "type": "boolean"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/appConnectors",
-                  "request": {
-                    "$ref": "GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnector"
-                  },
-                  "response": {
-                    "$ref": "GoogleLongrunningOperation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "delete": {
                   "deprecated": true,
                   "description": "Deletes a single AppConnector.",
@@ -1243,80 +1105,6 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
-                "patch": {
-                  "deprecated": true,
-                  "description": "Updates the parameters of a single AppConnector.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/appConnectors/{appConnectorsId}",
-                  "httpMethod": "PATCH",
-                  "id": "beyondcorp.projects.locations.appConnectors.patch",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. Unique resource name of the AppConnector. The name is ignored when creating a AppConnector.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/appConnectors/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "updateMask": {
-                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from [BeyondCorp.AppConnector]: * `labels` * `display_name`",
-                      "format": "google-fieldmask",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "validateOnly": {
-                      "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
-                      "location": "query",
-                      "type": "boolean"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "request": {
-                    "$ref": "GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnector"
-                  },
-                  "response": {
-                    "$ref": "GoogleLongrunningOperation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "reportStatus": {
-                  "deprecated": true,
-                  "description": "Report status for a given connector.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/appConnectors/{appConnectorsId}:reportStatus",
-                  "httpMethod": "POST",
-                  "id": "beyondcorp.projects.locations.appConnectors.reportStatus",
-                  "parameterOrder": [
-                    "appConnector"
-                  ],
-                  "parameters": {
-                    "appConnector": {
-                      "description": "Required. BeyondCorp Connector name using the form: `projects/{project_id}/locations/{location_id}/connectors/{connector}`",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/appConnectors/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+appConnector}:reportStatus",
-                  "request": {
-                    "$ref": "GoogleCloudBeyondcorpAppconnectorsV1alphaReportStatusRequest"
-                  },
-                  "response": {
-                    "$ref": "GoogleLongrunningOperation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "resolveInstanceConfig": {
                   "deprecated": true,
                   "description": "Gets instance configuration for a given AppConnector. An internal method called by a AppConnector to get its container config.",
@@ -1403,50 +1191,6 @@
             },
             "appGateways": {
               "methods": {
-                "create": {
-                  "deprecated": true,
-                  "description": "Creates a new AppGateway in a given project and location.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/appGateways",
-                  "httpMethod": "POST",
-                  "id": "beyondcorp.projects.locations.appGateways.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "appGatewayId": {
-                      "description": "Optional. User-settable AppGateway resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or a letter.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. The resource project name of the AppGateway location using the form: `projects/{project_id}/locations/{location_id}`",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "validateOnly": {
-                      "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
-                      "location": "query",
-                      "type": "boolean"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/appGateways",
-                  "request": {
-                    "$ref": "AppGateway"
-                  },
-                  "response": {
-                    "$ref": "GoogleLongrunningOperation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "delete": {
                   "deprecated": true,
                   "description": "Deletes a single AppGateway.",
@@ -1829,49 +1573,6 @@
             },
             "connections": {
               "methods": {
-                "create": {
-                  "description": "Creates a new Connection in a given project and location.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/connections",
-                  "httpMethod": "POST",
-                  "id": "beyondcorp.projects.locations.connections.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "connectionId": {
-                      "description": "Optional. User-settable connection resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or a letter.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. The resource project name of the connection location using the form: `projects/{project_id}/locations/{location_id}`",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "validateOnly": {
-                      "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
-                      "location": "query",
-                      "type": "boolean"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/connections",
-                  "request": {
-                    "$ref": "Connection"
-                  },
-                  "response": {
-                    "$ref": "GoogleLongrunningOperation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "delete": {
                   "description": "Deletes a single Connection.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}",
@@ -2009,55 +1710,6 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
-                "patch": {
-                  "description": "Updates the parameters of a single Connection.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}",
-                  "httpMethod": "PATCH",
-                  "id": "beyondcorp.projects.locations.connections.patch",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "allowMissing": {
-                      "description": "Optional. If set as true, will create the resource if it is not found.",
-                      "location": "query",
-                      "type": "boolean"
-                    },
-                    "name": {
-                      "description": "Required. Unique resource name of the connection. The name is ignored when creating a connection.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "updateMask": {
-                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from [BeyondCorp.Connection]: * `labels` * `display_name` * `application_endpoint` * `connectors`",
-                      "format": "google-fieldmask",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "validateOnly": {
-                      "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
-                      "location": "query",
-                      "type": "boolean"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "request": {
-                    "$ref": "Connection"
-                  },
-                  "response": {
-                    "$ref": "GoogleLongrunningOperation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "resolve": {
                   "description": "Resolves connections details for a given connector. An internal method called by a connector to find connections to connect to.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/connections:resolve",
@@ -2131,49 +1783,6 @@
             },
             "connectors": {
               "methods": {
-                "create": {
-                  "description": "Creates a new Connector in a given project and location.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/connectors",
-                  "httpMethod": "POST",
-                  "id": "beyondcorp.projects.locations.connectors.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "connectorId": {
-                      "description": "Optional. User-settable connector resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or a letter.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. The resource project name of the connector location using the form: `projects/{project_id}/locations/{location_id}`",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "validateOnly": {
-                      "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
-                      "location": "query",
-                      "type": "boolean"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/connectors",
-                  "request": {
-                    "$ref": "Connector"
-                  },
-                  "response": {
-                    "$ref": "GoogleLongrunningOperation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "delete": {
                   "description": "Deletes a single Connector.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/connectors/{connectorsId}",
@@ -2306,78 +1915,6 @@
                   "path": "v1alpha/{+parent}/connectors",
                   "response": {
                     "$ref": "ListConnectorsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "patch": {
-                  "description": "Updates the parameters of a single Connector.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/connectors/{connectorsId}",
-                  "httpMethod": "PATCH",
-                  "id": "beyondcorp.projects.locations.connectors.patch",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. Unique resource name of the connector. The name is ignored when creating a connector.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/connectors/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "updateMask": {
-                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from [BeyondCorp.Connector]: * `labels` * `display_name`",
-                      "format": "google-fieldmask",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "validateOnly": {
-                      "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
-                      "location": "query",
-                      "type": "boolean"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "request": {
-                    "$ref": "Connector"
-                  },
-                  "response": {
-                    "$ref": "GoogleLongrunningOperation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "reportStatus": {
-                  "description": "Report status for a given connector.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/connectors/{connectorsId}:reportStatus",
-                  "httpMethod": "POST",
-                  "id": "beyondcorp.projects.locations.connectors.reportStatus",
-                  "parameterOrder": [
-                    "connector"
-                  ],
-                  "parameters": {
-                    "connector": {
-                      "description": "Required. BeyondCorp Connector name using the form: `projects/{project_id}/locations/{location_id}/connectors/{connector}`",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/connectors/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+connector}:reportStatus",
-                  "request": {
-                    "$ref": "ReportStatusRequest"
-                  },
-                  "response": {
-                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -3349,7 +2886,7 @@
       }
     }
   },
-  "revision": "20261007",
+  "revision": "20261014",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -4619,25 +4156,6 @@
       "description": "RemoteAgentDetails reflects the details of a remote agent.",
       "id": "GoogleCloudBeyondcorpAppconnectorsV1alphaRemoteAgentDetails",
       "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudBeyondcorpAppconnectorsV1alphaReportStatusRequest": {
-      "description": "Request report the connector status.",
-      "id": "GoogleCloudBeyondcorpAppconnectorsV1alphaReportStatusRequest",
-      "properties": {
-        "requestId": {
-          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-          "type": "string"
-        },
-        "resourceInfo": {
-          "$ref": "GoogleCloudBeyondcorpAppconnectorsV1alphaResourceInfo",
-          "description": "Required. Resource info of the connector."
-        },
-        "validateOnly": {
-          "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
-          "type": "boolean"
-        }
-      },
       "type": "object"
     },
     "GoogleCloudBeyondcorpAppconnectorsV1alphaResolveInstanceConfigResponse": {
@@ -6313,25 +5831,6 @@
       "description": "RemoteAgentDetails reflects the details of a remote agent.",
       "id": "RemoteAgentDetails",
       "properties": {},
-      "type": "object"
-    },
-    "ReportStatusRequest": {
-      "description": "Request report the connector status.",
-      "id": "ReportStatusRequest",
-      "properties": {
-        "requestId": {
-          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-          "type": "string"
-        },
-        "resourceInfo": {
-          "$ref": "ResourceInfo",
-          "description": "Required. Resource info of the connector."
-        },
-        "validateOnly": {
-          "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
-          "type": "boolean"
-        }
-      },
       "type": "object"
     },
     "ResolveConnectionsResponse": {
