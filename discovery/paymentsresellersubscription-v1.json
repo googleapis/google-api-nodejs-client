@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20260929",
+  "revision": "20261020",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "Amount": {
@@ -743,7 +743,8 @@
       "id": "EntitleSubscriptionRequest",
       "properties": {
         "lineItemEntitlementDetails": {
-          "description": "Optional. The line items to be entitled. If unspecified, all line items will be entitled.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: This field is no longer supported. All line items are entitled automatically. Optional. The line items to be entitled. If unspecified, all line items will be entitled.",
           "items": {
             "$ref": "EntitleSubscriptionRequestLineItemEntitlementDetails"
           },
