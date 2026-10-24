@@ -2,7 +2,7 @@
 
 # deepreview
 
-> Deep Review API for automated conference-quality scientific paper reviews.
+> Deep Review API for automated, in-depth document reviews.
 
 ## Installation
 

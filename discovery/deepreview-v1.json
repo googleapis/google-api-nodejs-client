@@ -12,9 +12,9 @@
   "baseUrl": "https://deepreview.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "DeepReview",
-  "description": "Deep Review API for automated conference-quality scientific paper reviews.",
+  "description": "Deep Review API for automated, in-depth document reviews.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://research.google/",
+  "documentationLink": "https://research.google/deepreview",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -535,9 +535,38 @@
           }
         }
       }
+    },
+    "v1": {
+      "methods": {
+        "getUserQuota": {
+          "description": "Retrieves the review quota limits and sliding-window usage for the authenticated caller.",
+          "flatPath": "v1/userQuota",
+          "httpMethod": "GET",
+          "id": "deepreview.getUserQuota",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The resource name of the singleton user quota to retrieve. Format: `userQuota`",
+              "location": "path",
+              "pattern": "^userQuota$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "UserQuota"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/drive.file"
+          ]
+        }
+      }
     }
   },
-  "revision": "20261016",
+  "revision": "20261020",
   "rootUrl": "https://deepreview.googleapis.com/",
   "schemas": {
     "AnchoredReviewComment": {
@@ -1363,6 +1392,46 @@
           "description": "Output only. Characters immediately following `exact` for disambiguation.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserQuota": {
+      "description": "Singleton resource representing the authenticated caller's review quota limits and sliding-window usage.",
+      "id": "UserQuota",
+      "properties": {
+        "customLimitEnabled": {
+          "description": "Output only. Whether a custom per-user quota override is active for this user.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "maxReviewCountPerWeek": {
+          "description": "Output only. Maximum free-tier reviews allowed per rolling 7-day window.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "name": {
+          "description": "Identifier. Resource name of the singleton user quota (`userQuota`).",
+          "type": "string"
+        },
+        "nextAvailableTime": {
+          "description": "Output only. Timestamp when the next review quota slot becomes available if `remaining_review_count` is 0; unset when quota is currently available.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "remainingReviewCount": {
+          "description": "Output only. Remaining free-tier reviews available in the current rolling 7-day window (`max(0, max_review_count_per_week - used_review_count)`).",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "usedReviewCount": {
+          "description": "Output only. Number of free-tier reviews used in the past 7 days.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"

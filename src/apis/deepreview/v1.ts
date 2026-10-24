@@ -102,7 +102,7 @@ export namespace deepreview_v1 {
   /**
    * Deep Review API
    *
-   * Deep Review API for automated conference-quality scientific paper reviews.
+   * Deep Review API for automated, in-depth document reviews.
    *
    * @example
    * ```js
@@ -115,6 +115,7 @@ export namespace deepreview_v1 {
     documents: Resource$Documents;
     media: Resource$Media;
     operations: Resource$Operations;
+    v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -125,6 +126,7 @@ export namespace deepreview_v1 {
       this.documents = new Resource$Documents(this.context);
       this.media = new Resource$Media(this.context);
       this.operations = new Resource$Operations(this.context);
+      this.v1 = new Resource$V1(this.context);
     }
   }
 
@@ -658,6 +660,35 @@ export namespace deepreview_v1 {
      * Output only. Characters immediately following `exact` for disambiguation.
      */
     suffix?: string | null;
+  }
+  /**
+   * Singleton resource representing the authenticated caller's review quota limits and sliding-window usage.
+   */
+  export interface Schema$UserQuota {
+    /**
+     * Output only. Whether a custom per-user quota override is active for this user.
+     */
+    customLimitEnabled?: boolean | null;
+    /**
+     * Output only. Maximum free-tier reviews allowed per rolling 7-day window.
+     */
+    maxReviewCountPerWeek?: number | null;
+    /**
+     * Identifier. Resource name of the singleton user quota (`userQuota`).
+     */
+    name?: string | null;
+    /**
+     * Output only. Timestamp when the next review quota slot becomes available if `remaining_review_count` is 0; unset when quota is currently available.
+     */
+    nextAvailableTime?: string | null;
+    /**
+     * Output only. Remaining free-tier reviews available in the current rolling 7-day window (`max(0, max_review_count_per_week - used_review_count)`).
+     */
+    remainingReviewCount?: number | null;
+    /**
+     * Output only. Number of free-tier reviews used in the past 7 days.
+     */
+    usedReviewCount?: number | null;
   }
 
   export class Resource$Documents {
@@ -2575,6 +2606,157 @@ export namespace deepreview_v1 {
   export interface Params$Resource$Operations$Documents$Reviews$Get extends StandardParameters {
     /**
      * The name of the operation resource.
+     */
+    name?: string;
+  }
+
+  export class Resource$V1 {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves the review quota limits and sliding-window usage for the authenticated caller.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/deepreview.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const deepreview = google.deepreview('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive.file'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await deepreview.getUserQuota({
+     *     // Required. The resource name of the singleton user quota to retrieve. Format: `userQuota`
+     *     name: 'userQuota',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customLimitEnabled": false,
+     *   //   "maxReviewCountPerWeek": 0,
+     *   //   "name": "my_name",
+     *   //   "nextAvailableTime": "my_nextAvailableTime",
+     *   //   "remainingReviewCount": 0,
+     *   //   "usedReviewCount": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getUserQuota(
+      params: Params$Resource$V1$Getuserquota,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getUserQuota(
+      params?: Params$Resource$V1$Getuserquota,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserQuota>>;
+    getUserQuota(
+      params: Params$Resource$V1$Getuserquota,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getUserQuota(
+      params: Params$Resource$V1$Getuserquota,
+      options: MethodOptions | BodyResponseCallback<Schema$UserQuota>,
+      callback: BodyResponseCallback<Schema$UserQuota>
+    ): void;
+    getUserQuota(
+      params: Params$Resource$V1$Getuserquota,
+      callback: BodyResponseCallback<Schema$UserQuota>
+    ): void;
+    getUserQuota(callback: BodyResponseCallback<Schema$UserQuota>): void;
+    getUserQuota(
+      paramsOrCallback?:
+        | Params$Resource$V1$Getuserquota
+        | BodyResponseCallback<Schema$UserQuota>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserQuota>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$UserQuota> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserQuota>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$V1$Getuserquota;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Getuserquota;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://deepreview.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserQuota>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserQuota>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$V1$Getuserquota extends StandardParameters {
+    /**
+     * Required. The resource name of the singleton user quota to retrieve. Format: `userQuota`
      */
     name?: string;
   }
