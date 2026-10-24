@@ -311,6 +311,10 @@ export namespace workstations_v1beta {
    */
   export interface Schema$GatewayConfig {
     /**
+     * Optional. Specifies VM ports that can be accessed using the standard `$HOSTNAME:$PORT` format in addition to the service's default `$PORT-$HOSTNAME` format. See [Access HTTP Servers Running on Workstations] (https://docs.cloud.google.com/workstations/docs/access-http-servers-running-on-workstations). Note: This only controls the routing URL format. Network-level access is still controlled by `allowed_ports` on WorkstationConfig. All `allowed_ports` remain accessible via the default `$PORT-$HOSTNAME` format.
+     */
+    directAccessPorts?: number[] | null;
+    /**
      * Optional. Whether HTTP/2 is enabled for this workstation cluster. Defaults to false.
      */
     http2Enabled?: boolean | null;
