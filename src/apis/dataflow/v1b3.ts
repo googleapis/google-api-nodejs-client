@@ -6512,6 +6512,10 @@ export namespace dataflow_v1b3 {
      *
      *   // Do the magic
      *   const res = await dataflow.projects.jobs.aggregated({
+     *     // Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     *     'createTimeRange.endTime': 'placeholder-value',
+     *     // Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     *     'createTimeRange.startTime': 'placeholder-value',
      *     // The kind of filter to use.
      *     filter: 'placeholder-value',
      *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
@@ -6526,6 +6530,10 @@ export namespace dataflow_v1b3 {
      *     projectId: 'placeholder-value',
      *     // Optional.
      *     regionalFanoutRequested: 'placeholder-value',
+     *     // Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     *     'terminationTimeRange.endTime': 'placeholder-value',
+     *     // Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     *     'terminationTimeRange.startTime': 'placeholder-value',
      *     // Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
      *     view: 'placeholder-value',
      *   });
@@ -7194,6 +7202,10 @@ export namespace dataflow_v1b3 {
      *
      *   // Do the magic
      *   const res = await dataflow.projects.jobs.list({
+     *     // Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     *     'createTimeRange.endTime': 'placeholder-value',
+     *     // Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     *     'createTimeRange.startTime': 'placeholder-value',
      *     // The kind of filter to use.
      *     filter: 'placeholder-value',
      *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
@@ -7208,6 +7220,10 @@ export namespace dataflow_v1b3 {
      *     projectId: 'placeholder-value',
      *     // Optional.
      *     regionalFanoutRequested: 'placeholder-value',
+     *     // Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     *     'terminationTimeRange.endTime': 'placeholder-value',
+     *     // Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     *     'terminationTimeRange.startTime': 'placeholder-value',
      *     // Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
      *     view: 'placeholder-value',
      *   });
@@ -7688,6 +7704,14 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Jobs$Aggregated extends StandardParameters {
     /**
+     * Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     */
+    'createTimeRange.endTime'?: string;
+    /**
+     * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     */
+    'createTimeRange.startTime'?: string;
+    /**
      * The kind of filter to use.
      */
     filter?: string;
@@ -7715,6 +7739,14 @@ export namespace dataflow_v1b3 {
      * Optional.
      */
     regionalFanoutRequested?: boolean;
+    /**
+     * Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     */
+    'terminationTimeRange.endTime'?: string;
+    /**
+     * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     */
+    'terminationTimeRange.startTime'?: string;
     /**
      * Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
      */
@@ -7781,6 +7813,14 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Jobs$List extends StandardParameters {
     /**
+     * Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     */
+    'createTimeRange.endTime'?: string;
+    /**
+     * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     */
+    'createTimeRange.startTime'?: string;
+    /**
      * The kind of filter to use.
      */
     filter?: string;
@@ -7808,6 +7848,14 @@ export namespace dataflow_v1b3 {
      * Optional.
      */
     regionalFanoutRequested?: boolean;
+    /**
+     * Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     */
+    'terminationTimeRange.endTime'?: string;
+    /**
+     * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     */
+    'terminationTimeRange.startTime'?: string;
     /**
      * Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
      */
@@ -10656,6 +10704,10 @@ export namespace dataflow_v1b3 {
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.jobs.list({
+     *     // Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     *     'createTimeRange.endTime': 'placeholder-value',
+     *     // Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     *     'createTimeRange.startTime': 'placeholder-value',
      *     // The kind of filter to use.
      *     filter: 'placeholder-value',
      *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
@@ -10670,6 +10722,10 @@ export namespace dataflow_v1b3 {
      *     projectId: 'placeholder-value',
      *     // Optional.
      *     regionalFanoutRequested: 'placeholder-value',
+     *     // Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     *     'terminationTimeRange.endTime': 'placeholder-value',
+     *     // Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     *     'terminationTimeRange.startTime': 'placeholder-value',
      *     // Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
      *     view: 'placeholder-value',
      *   });
@@ -11233,6 +11289,14 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Locations$Jobs$List extends StandardParameters {
     /**
+     * Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     */
+    'createTimeRange.endTime'?: string;
+    /**
+     * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     */
+    'createTimeRange.startTime'?: string;
+    /**
      * The kind of filter to use.
      */
     filter?: string;
@@ -11260,6 +11324,14 @@ export namespace dataflow_v1b3 {
      * Optional.
      */
     regionalFanoutRequested?: boolean;
+    /**
+     * Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     */
+    'terminationTimeRange.endTime'?: string;
+    /**
+     * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     */
+    'terminationTimeRange.startTime'?: string;
     /**
      * Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
      */
