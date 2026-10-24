@@ -526,6 +526,28 @@ export namespace firebasecrashlytics_v1alpha {
     symbol?: string | null;
   }
   /**
+   * Request message for the GenerateAlertPolicy method.
+   */
+  export interface Schema$GenerateAlertPolicyRequest {
+    /**
+     * Required. The type of alert to create.
+     */
+    alertType?: string | null;
+    /**
+     * Optional. Language to use for the alert policy. Defaults to USER_PREFERENCE.
+     */
+    language?: string | null;
+  }
+  /**
+   * Response message for the GenerateAlertPolicy method.
+   */
+  export interface Schema$GenerateAlertPolicyResponse {
+    /**
+     * The created Cloud Monitoring AlertPolicy resource name. Format: "projects/{project\}/alertPolicies/{alert_policy_id\}".
+     */
+    alertPolicy?: string | null;
+  }
+  /**
    * A set of computed metric values for a time interval
    */
   export interface Schema$IntervalMetrics {
@@ -1012,6 +1034,172 @@ export namespace firebasecrashlytics_v1alpha {
       this.reports = new Resource$Projects$Apps$Reports(this.context);
       this.users = new Resource$Projects$Apps$Users(this.context);
     }
+
+    /**
+     * Creates a Cloud Monitoring AlertPolicy for the requested Crashlytics Web alert type and returns the created resource reference.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasecrashlytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasecrashlytics = google.firebasecrashlytics('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasecrashlytics.projects.apps.generateAlertPolicy({
+     *     // Required. The firebase application. Format: "projects/{project\}/apps/{app_id\}".
+     *     name: 'projects/my-project/apps/my-app',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alertType": "my_alertType",
+     *       //   "language": "my_language"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alertPolicy": "my_alertPolicy"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateAlertPolicy(
+      params: Params$Resource$Projects$Apps$Generatealertpolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generateAlertPolicy(
+      params?: Params$Resource$Projects$Apps$Generatealertpolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateAlertPolicyResponse>>;
+    generateAlertPolicy(
+      params: Params$Resource$Projects$Apps$Generatealertpolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateAlertPolicy(
+      params: Params$Resource$Projects$Apps$Generatealertpolicy,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateAlertPolicyResponse>,
+      callback: BodyResponseCallback<Schema$GenerateAlertPolicyResponse>
+    ): void;
+    generateAlertPolicy(
+      params: Params$Resource$Projects$Apps$Generatealertpolicy,
+      callback: BodyResponseCallback<Schema$GenerateAlertPolicyResponse>
+    ): void;
+    generateAlertPolicy(
+      callback: BodyResponseCallback<Schema$GenerateAlertPolicyResponse>
+    ): void;
+    generateAlertPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Generatealertpolicy
+        | BodyResponseCallback<Schema$GenerateAlertPolicyResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateAlertPolicyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateAlertPolicyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateAlertPolicyResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Generatealertpolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Generatealertpolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasecrashlytics.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:generateAlertPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateAlertPolicyResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateAlertPolicyResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Apps$Generatealertpolicy extends StandardParameters {
+    /**
+     * Required. The firebase application. Format: "projects/{project\}/apps/{app_id\}".
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GenerateAlertPolicyRequest;
   }
 
   export class Resource$Projects$Apps$Events {
