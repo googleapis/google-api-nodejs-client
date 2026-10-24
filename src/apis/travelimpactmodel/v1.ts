@@ -543,7 +543,7 @@ export namespace travelimpactmodel_v1 {
      */
     destination?: string | null;
     /**
-     * Optional. Distance in kilometers, e.g. `2423`, from [1, 2.5e16) km. This is used to match a flight to distance-based emissions when origin and destination are not provided or there are no matching typical flights.
+     * Optional. Distance in kilometers, e.g. `2423`, from [`1`, `1e12`) km. This is used to match a flight to distance-based emissions when origin and destination are not provided or there are no matching typical flights.
      */
     distanceKm?: string | null;
     /**
