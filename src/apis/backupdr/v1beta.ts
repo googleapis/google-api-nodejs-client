@@ -5283,7 +5283,7 @@ export namespace backupdr_v1beta {
      *   const res = await backupdr.projects.locations.autoProtectionPolicies.patch({
      *     // Identifier. The resource name of the AutoprotectionPolicy. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}`
      *     name: 'projects/my-project/locations/my-location/autoProtectionPolicies/my-autoProtectionPolicie',
-     *     // Required. Field mask is used to specify the fields to be overwritten in the AutoProtectionPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *     // Optional. Field mask is used to specify the fields to be overwritten in the AutoProtectionPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5467,7 +5467,7 @@ export namespace backupdr_v1beta {
      */
     name?: string;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the AutoProtectionPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     * Optional. Field mask is used to specify the fields to be overwritten in the AutoProtectionPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      */
     updateMask?: string;
 

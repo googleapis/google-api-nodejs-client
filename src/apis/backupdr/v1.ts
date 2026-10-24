@@ -312,6 +312,43 @@ export namespace backupdr_v1 {
     startTime?: string | null;
   }
   /**
+   * AppliedAutoProtectionPolicy is a read-only view of AutoProtectionPolicy and AutoProtectionPolicyBinding resources that apply to a given workload project.
+   */
+  export interface Schema$AppliedAutoProtectionPolicy {
+    /**
+     * Output only. The set of backup plan configurations, mirroring the backup_plan_details from the source AutoProtectionPolicy. Each element specifies a backup plan for a given resource type.
+     */
+    backupPlanDetails?: Schema$BackupPlanDetail[];
+    /**
+     * Output only. The summary of the last policy application when the job has run.
+     */
+    bindingEvaluationSummary?: Schema$BindingEvaluationSummary;
+    /**
+     * Output only. Timestamp indicating when the binding was last created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The criteria resources must meet for this rule to apply. From AutoProtectionPolicy.criteria.
+     */
+    criteria?: Schema$Criteria;
+    /**
+     * Identifier. Canonical resource name. Format: projects/{workload-project-number\}/locations/{location\}/appliedAutoProtectionPolicies/{id\}.
+     */
+    name?: string | null;
+    /**
+     * Output only. The full resource name of the AutoProtectionPolicyBinding that applies the source policy to a scope including this workload project. e.g., projects/{admin-project\}/locations/{location\}/autoProtectionPolicies/{policy_id\}/autoProtectionPolicyBindings/{binding_id\}.
+     */
+    sourceBinding?: string | null;
+    /**
+     * Output only. The status of the applied auto protection policy.
+     */
+    status?: string | null;
+    /**
+     * Output only. Timestamp indicating when the binding was last modified.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * An instance-attached disk resource.
    */
   export interface Schema$AttachedDisk {
@@ -409,6 +446,109 @@ export namespace backupdr_v1 {
      * The log type that this config enables.
      */
     logType?: string | null;
+  }
+  /**
+   * AutoProtectionDetails contains the protection details of a resource from the current binding's perspective.
+   */
+  export interface Schema$AutoProtectionDetails {
+    /**
+     * Output only. Resource name of backup plan association linked to the resource, if any. Format: projects/{project\}/locations/{location\}/backupPlanAssociations/{backupPlanAssociationId\}
+     */
+    backupPlanAssociation?: string | null;
+    /**
+     * Output only. Resource name of the datasource linked to the resource, if any. Format: projects/{project\}/locations/{location\}/backupVaults/{backupVaultId\}/dataSources/{dataSourceId\}
+     */
+    dataSource?: string | null;
+    /**
+     * Output only. Error during last sync for protection/unprotection, if any.
+     */
+    error?: Schema$Status;
+    /**
+     * Output only. Protection state of the resource from the current binding's perspective. Output only.
+     */
+    state?: string | null;
+  }
+  /**
+   * An AutoprotectionPolicy is a policy resource designed to automate backup management, moving from manual per-resource protection to a bulk approach. The policy dynamically discovers and applies a specified backup plan to all eligible resources that match its defined scope and criteria.
+   */
+  export interface Schema$AutoProtectionPolicy {
+    /**
+     * Required. The backup plan details for matching resources.
+     */
+    backupPlanDetails?: Schema$BackupPlanDetail[];
+    /**
+     * Output only. Summary of total count of different containers covered through this policy.
+     */
+    bindingSummary?: Schema$BindingSummary;
+    /**
+     * Output only. The timestamp when the policy was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The criteria for matching resources.
+     */
+    criteria?: Schema$Criteria;
+    /**
+     * Optional. A description of the policy.
+     */
+    description?: string | null;
+    /**
+     * Output only. The etag for the policy. If this is provided on update, it must match the server's etag.
+     */
+    etag?: string | null;
+    /**
+     * Identifier. The resource name of the AutoProtectionPolicy. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. Summary of last policy evaluation when job was run per workload type.
+     */
+    policyEvaluationSummary?: Schema$PolicyEvaluationSummary;
+    /**
+     * Output only. The current state of the AutoProtectionPolicy.
+     */
+    state?: string | null;
+    /**
+     * Output only. The timestamp when the policy was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * An AutoProtectionPolicyBinding (APPA) acts as the bridge between an AutoProtectionPolicy and the scope (Project) where the policy should be applied.
+   */
+  export interface Schema$AutoProtectionPolicyBinding {
+    /**
+     * Output only. Summaries of the last policy application when the job has run, with one entry per resource type specified in the AutoProtectionPolicy.
+     */
+    bindingEvaluationSummary?: Schema$BindingEvaluationSummary;
+    /**
+     * Output only. The timestamp when the binding was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A description of the binding.
+     */
+    description?: string | null;
+    /**
+     * Optional. Output only. The etag for the binding. If this is provided on update, it must match the server's etag.
+     */
+    etag?: string | null;
+    /**
+     * Identifier. The resource name of the AutoProtectionPolicyBinding. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}/bindings/{binding\}`
+     */
+    name?: string | null;
+    /**
+     * Required. Immutable. Resource Id of target container on which policy will be applied. Format: projects/{project_id\}
+     */
+    scope?: string | null;
+    /**
+     * Output only. The current state of the AutoProtectionPolicyBinding.
+     */
+    state?: string | null;
+    /**
+     * Output only. The timestamp when the binding was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Message describing a Backup object.
@@ -848,6 +988,10 @@ export namespace backupdr_v1 {
      */
     alloydbClusterBackupPlanAssociationProperties?: Schema$AlloyDBClusterBackupPlanAssociationProperties;
     /**
+     * Output only. The resource name of the `AutoProtectionPolicyBinding` that manages this association, if any. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{policy\}/bindings/{binding\}`.
+     */
+    autoProtectionPolicyBinding?: string | null;
+    /**
      * Required. Resource name of backup plan which needs to be applied on workload. Format: projects/{project\}/locations/{location\}/backupPlans/{backupPlanId\}
      */
     backupPlan?: string | null;
@@ -903,6 +1047,19 @@ export namespace backupdr_v1 {
      * Output only. The time when the instance was updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * BackupPlanDetail defines configuration of protection.
+   */
+  export interface Schema$BackupPlanDetail {
+    /**
+     * Required. The resource name of the BackupPlan to apply to resources that match the policy's criteria. This backup plan must be in the same location as AutoProtectionPolicy. Format: projects/{project\}/locations/{location\}/backupPlans/{backupPlanId\}
+     */
+    backupPlan?: string | null;
+    /**
+     * Required. The type of resource that this policy will automatically protect. Allowed values are, `compute.googleapis.com/Instance` and `compute.googleapis.com/Disk` are supported.
+     */
+    resourceType?: string | null;
   }
   /**
    * `BackupPlanRevision` represents a snapshot of a `BackupPlan` at a point in time.
@@ -1052,6 +1209,53 @@ export namespace backupdr_v1 {
      * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
+  }
+  /**
+   * BindingEvaluationSummary contains the summary of the last run of job that applies policy to matching resources for a given binding.
+   */
+  export interface Schema$BindingEvaluationSummary {
+    /**
+     * Output only. The number of matching resources whose protection failed during job run.
+     */
+    failedResourceCount?: string | null;
+    /**
+     * Output only. The number of resources that currently match the policy's criteria.
+     */
+    matchingResourceCount?: string | null;
+    /**
+     * Output only. The number of matching resources that are successfully protected.
+     */
+    protectedResourceCount?: string | null;
+  }
+  /**
+   * BindingMatchingResource contains the details of a resource that matches the criteria of a binding.
+   */
+  export interface Schema$BindingMatchingResource {
+    /**
+     * Output only. The auto protection details of the resource from the current binding's perspective.
+     */
+    autoProtectionDetails?: Schema$AutoProtectionDetails;
+    /**
+     * Output only. The timestamp when the resource was last evaluated for protection.
+     */
+    lastEvaluationTime?: string | null;
+    /**
+     * Identifier. The resource name of the `BindingMatchingResource`. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}/bindings/{binding\}/matchingResources/{matching_resource\}`
+     */
+    name?: string | null;
+    /**
+     * Required. Immutable. Resource name of the workload that matches the criteria of the binding. The format can be either a relative resource name (e.g., `projects/my-project/zones/us-central1-a/instances/my-instance`) or a schemeless full resource name (e.g., `//compute.googleapis.com/projects/my-project/zones/us-central1-a/instances/my-instance`).
+     */
+    resource?: string | null;
+  }
+  /**
+   * BindingSummary contains count of different containers covered through this policy.
+   */
+  export interface Schema$BindingSummary {
+    /**
+     * Output only. Total count of Projects protected with this policy.
+     */
+    projectCount?: string | null;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -1391,6 +1595,15 @@ export namespace backupdr_v1 {
      * Optional. Defines whether the instance should have confidential compute enabled.
      */
     enableConfidentialCompute?: boolean | null;
+  }
+  /**
+   * Criteria specifies a set of criteria for matching resources.
+   */
+  export interface Schema$Criteria {
+    /**
+     * Required. A list of matching conditions that a resource must meet to be protected by the policy.
+     */
+    matchingConditions?: Schema$MatchingCondition[];
   }
   /**
    * A customer-supplied encryption key.
@@ -2101,6 +2314,10 @@ export namespace backupdr_v1 {
    */
   export interface Schema$GcpBackupConfig {
     /**
+     * Output only. The resource name of the `AutoProtectionPolicyBinding` that manages this datasource, if any. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{policy\}/bindings/{binding\}`.
+     */
+    autoProtectionPolicyBinding?: string | null;
+    /**
      * The name of the backup plan.
      */
     backupPlan?: string | null;
@@ -2278,6 +2495,10 @@ export namespace backupdr_v1 {
     newBackupGenerationId?: number | null;
   }
   /**
+   * Request message for initiating delete of an AutoProtectionPolicyBinding.
+   */
+  export interface Schema$InitiateDeleteAutoProtectionPolicyBindingRequest {}
+  /**
    * Additional instance params.
    */
   export interface Schema$InstanceParams {
@@ -2285,6 +2506,19 @@ export namespace backupdr_v1 {
      * Optional. Resource manager tags to be bound to the instance.
      */
     resourceManagerTags?: {[key: string]: string} | null;
+  }
+  /**
+   * KeyValuePair defines a key-value pair for matching resource labels.
+   */
+  export interface Schema$KeyValuePair {
+    /**
+     * Required. The key of the label to match. This must be in the format `{label_key\}`. The key must match the regex Format:`\p{Ll\}\p{Lo\}{0,62\}`.
+     */
+    key?: string | null;
+    /**
+     * Required. The values of the label to match. There will be explicit “OR” between values of array. Each value must be in the format `{label_value\}`. The value must match the regex Format: `[\\p{Ll\}\\p{Lo\}\\p{N\}_-]{1,63\}`.
+     */
+    values?: string[] | null;
   }
   /**
    * Message for a label key-value pair.
@@ -2298,6 +2532,57 @@ export namespace backupdr_v1 {
      * Value of the label. The value must follow the format: `[\\p{Ll\}\\p{Lo\}\\p{N\}_-]{1,63\}`. This means the value must be one or more lowercase letters, lowercase international characters, numbers, underscores, or dashes. The value must be at most 63 characters long. International characters are allowed.
      */
     value?: string | null;
+  }
+  /**
+   * Response message for ListAppliedAutoProtectionPolicies.
+   */
+  export interface Schema$ListAppliedAutoProtectionPoliciesResponse {
+    /**
+     * A list of the AppliedAutoProtectionPolicy resources found.
+     */
+    appliedAutoProtectionPolicies?: Schema$AppliedAutoProtectionPolicy[];
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unordered list. Locations that could not be reached. For example, "projects/my-project/locations/us-east1"].
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for ListAutoProtectionPolicies.
+   */
+  export interface Schema$ListAutoProtectionPoliciesResponse {
+    /**
+     * A list of the AutoProtectionPolicy resources found.
+     */
+    autoProtectionPolicies?: Schema$AutoProtectionPolicy[];
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for ListAutoProtectionPolicyBindings.
+   */
+  export interface Schema$ListAutoProtectionPolicyBindingsResponse {
+    /**
+     * A list of the AutoProtectionPolicyBindings resources found.
+     */
+    autoProtectionPolicyBindings?: Schema$AutoProtectionPolicyBinding[];
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unordered list. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response message for List BackupPlanAssociation
@@ -2383,6 +2668,19 @@ export namespace backupdr_v1 {
      * Locations that could not be reached.
      */
     unreachable?: string[] | null;
+  }
+  /**
+   * The response message for getting a list of `BindingMatchingResources`.
+   */
+  export interface Schema$ListBindingMatchingResourcesResponse {
+    /**
+     * The list of `BindingMatchingResources` in the project,location for the specified binding.
+     */
+    matchingResources?: Schema$BindingMatchingResource[];
+    /**
+     * A token which may be sent as page_token in a subsequent `ListBindingMatchingResources` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Response for the ListDataSourceReferences method.
@@ -2592,6 +2890,15 @@ export namespace backupdr_v1 {
     webUi?: string | null;
   }
   /**
+   * MatchingCondition specifies a set of conditions for matching resources.
+   */
+  export interface Schema$MatchingCondition {
+    /**
+     * Optional. A condition that matches resources based on their labels. For MVP, this is limited to a single label match.
+     */
+    labelCondition?: Schema$KeyValuePair;
+  }
+  /**
    * A metadata key/value entry.
    */
   export interface Schema$Metadata {
@@ -2798,6 +3105,23 @@ export namespace backupdr_v1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * PolicyEvaluationSummary contains the summary of the last run of job that applies policy to matching resources.
+   */
+  export interface Schema$PolicyEvaluationSummary {
+    /**
+     * Output only. The number of matching resources whose protection failed during job run.
+     */
+    failedResourceCount?: string | null;
+    /**
+     * Output only. The number of resources that currently match the policy's criteria.
+     */
+    matchingResourceCount?: string | null;
+    /**
+     * Output only. The number of matching resources that are successfully protected.
+     */
+    protectedResourceCount?: string | null;
   }
   /**
    * RegionDiskTargetEnvironment represents the target environment for the disk.
@@ -3662,6 +3986,8 @@ export namespace backupdr_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    appliedAutoProtectionPolicies: Resource$Projects$Locations$Appliedautoprotectionpolicies;
+    autoProtectionPolicies: Resource$Projects$Locations$Autoprotectionpolicies;
     backupPlanAssociations: Resource$Projects$Locations$Backupplanassociations;
     backupPlans: Resource$Projects$Locations$Backupplans;
     backupVaults: Resource$Projects$Locations$Backupvaults;
@@ -3673,6 +3999,12 @@ export namespace backupdr_v1 {
     trial: Resource$Projects$Locations$Trial;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.appliedAutoProtectionPolicies =
+        new Resource$Projects$Locations$Appliedautoprotectionpolicies(
+          this.context
+        );
+      this.autoProtectionPolicies =
+        new Resource$Projects$Locations$Autoprotectionpolicies(this.context);
       this.backupPlanAssociations =
         new Resource$Projects$Locations$Backupplanassociations(this.context);
       this.backupPlans = new Resource$Projects$Locations$Backupplans(
@@ -4162,6 +4494,2094 @@ export namespace backupdr_v1 {
     pageToken?: string;
   }
 
+  export class Resource$Projects$Locations$Appliedautoprotectionpolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists AppliedAutoProtectionPolicies in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-backupdr',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await backupdr.projects.locations.appliedAutoProtectionPolicies.list({
+     *       // Optional. A filter expression that filters resources listed in the response.
+     *       filter: 'placeholder-value',
+     *       // Optional. An expression that sorts the results in the response.
+     *       orderBy: 'placeholder-value',
+     *       // Optional. The maximum number of applied policies to return in a single page. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified or set to 0, a default page size of 500 will be used.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListAppliedAutoProtectionPolicies` call.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The project and location for which to retrieve the list of applied policies. Format: projects/{project\}/locations/{location\}
+     *       parent: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedAutoProtectionPolicies": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Appliedautoprotectionpolicies$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Appliedautoprotectionpolicies$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListAppliedAutoProtectionPoliciesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Appliedautoprotectionpolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Appliedautoprotectionpolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAppliedAutoProtectionPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListAppliedAutoProtectionPoliciesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Appliedautoprotectionpolicies$List,
+      callback: BodyResponseCallback<Schema$ListAppliedAutoProtectionPoliciesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAppliedAutoProtectionPoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Appliedautoprotectionpolicies$List
+        | BodyResponseCallback<Schema$ListAppliedAutoProtectionPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAppliedAutoProtectionPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAppliedAutoProtectionPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListAppliedAutoProtectionPoliciesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Appliedautoprotectionpolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Appliedautoprotectionpolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/appliedAutoProtectionPolicies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAppliedAutoProtectionPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAppliedAutoProtectionPoliciesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Appliedautoprotectionpolicies$List extends StandardParameters {
+    /**
+     * Optional. A filter expression that filters resources listed in the response.
+     */
+    filter?: string;
+    /**
+     * Optional. An expression that sorts the results in the response.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of applied policies to return in a single page. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified or set to 0, a default page size of 500 will be used.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListAppliedAutoProtectionPolicies` call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location for which to retrieve the list of applied policies. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Autoprotectionpolicies {
+    context: APIRequestContext;
+    bindings: Resource$Projects$Locations$Autoprotectionpolicies$Bindings;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.bindings =
+        new Resource$Projects$Locations$Autoprotectionpolicies$Bindings(
+          this.context
+        );
+    }
+
+    /**
+     * Creates a new AutoProtectionPolicy in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-backupdr',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await backupdr.projects.locations.autoProtectionPolicies.create({
+     *     // Required. The ID to use for the policy. This will become the final component of the policy's resource name.
+     *     autoProtectionPolicyId: 'placeholder-value',
+     *     // Required. The parent resource where this policy will be created. Format: projects/{project\}/locations/{location\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backupPlanDetails": [],
+     *       //   "bindingSummary": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "criteria": {},
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "policyEvaluationSummary": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Autoprotectionpolicies$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoprotectionpolicies$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoprotectionpolicies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoprotectionpolicies$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/autoProtectionPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single AutoProtectionPolicy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-backupdr',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await backupdr.projects.locations.autoProtectionPolicies.delete({
+     *     // The current etag of the autoprotectionpolicy. If an etag is provided and does not match the current etag of the connection, deletion will be blocked.
+     *     etag: 'placeholder-value',
+     *     // Required. The name of the policy to delete. Format: projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}
+     *     name: 'projects/my-project/locations/my-location/autoProtectionPolicies/my-autoProtectionPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Autoprotectionpolicies$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoprotectionpolicies$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoprotectionpolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoprotectionpolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single AutoProtectionPolicy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-backupdr',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await backupdr.projects.locations.autoProtectionPolicies.get({
+     *     // Required. The name of the policy to retrieve. Format: projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}
+     *     name: 'projects/my-project/locations/my-location/autoProtectionPolicies/my-autoProtectionPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backupPlanDetails": [],
+     *   //   "bindingSummary": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "criteria": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "policyEvaluationSummary": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Autoprotectionpolicies$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AutoProtectionPolicy>>;
+    get(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Get,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$AutoProtectionPolicy>,
+      callback: BodyResponseCallback<Schema$AutoProtectionPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Get,
+      callback: BodyResponseCallback<Schema$AutoProtectionPolicy>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AutoProtectionPolicy>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoprotectionpolicies$Get
+        | BodyResponseCallback<Schema$AutoProtectionPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutoProtectionPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutoProtectionPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AutoProtectionPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoprotectionpolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoprotectionpolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutoProtectionPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AutoProtectionPolicy>(parameters);
+      }
+    }
+
+    /**
+     * Lists AutoProtectionPolicies for a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-backupdr',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await backupdr.projects.locations.autoProtectionPolicies.list({
+     *     // Optional. A filter expression that filters resources listed in the response. The following fields are filterable:
+     *     filter: 'placeholder-value',
+     *     // Optional. An expression that sorts the results in the response. The following fields are sortable:
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of policies to return in a single page. If unspecified, a server-default value will be used.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListAutoProtectionPolicies` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project and location for which to retrieve the list of policies. Format: projects/{project\}/locations/{location\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoProtectionPolicies": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Autoprotectionpolicies$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListAutoProtectionPoliciesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAutoProtectionPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListAutoProtectionPoliciesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$List,
+      callback: BodyResponseCallback<Schema$ListAutoProtectionPoliciesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAutoProtectionPoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoprotectionpolicies$List
+        | BodyResponseCallback<Schema$ListAutoProtectionPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAutoProtectionPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAutoProtectionPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListAutoProtectionPoliciesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoprotectionpolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoprotectionpolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/autoProtectionPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAutoProtectionPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAutoProtectionPoliciesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of a single AutoProtectionPolicy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-backupdr',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await backupdr.projects.locations.autoProtectionPolicies.patch({
+     *     // Identifier. The resource name of the AutoProtectionPolicy. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}`
+     *     name: 'projects/my-project/locations/my-location/autoProtectionPolicies/my-autoProtectionPolicie',
+     *     // Optional. Field mask is used to specify the fields to be overwritten in the AutoProtectionPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backupPlanDetails": [],
+     *       //   "bindingSummary": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "criteria": {},
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "policyEvaluationSummary": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Autoprotectionpolicies$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoprotectionpolicies$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoprotectionpolicies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoprotectionpolicies$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Autoprotectionpolicies$Create extends StandardParameters {
+    /**
+     * Required. The ID to use for the policy. This will become the final component of the policy's resource name.
+     */
+    autoProtectionPolicyId?: string;
+    /**
+     * Required. The parent resource where this policy will be created. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AutoProtectionPolicy;
+  }
+  export interface Params$Resource$Projects$Locations$Autoprotectionpolicies$Delete extends StandardParameters {
+    /**
+     * The current etag of the autoprotectionpolicy. If an etag is provided and does not match the current etag of the connection, deletion will be blocked.
+     */
+    etag?: string;
+    /**
+     * Required. The name of the policy to delete. Format: projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Autoprotectionpolicies$Get extends StandardParameters {
+    /**
+     * Required. The name of the policy to retrieve. Format: projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Autoprotectionpolicies$List extends StandardParameters {
+    /**
+     * Optional. A filter expression that filters resources listed in the response. The following fields are filterable:
+     */
+    filter?: string;
+    /**
+     * Optional. An expression that sorts the results in the response. The following fields are sortable:
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of policies to return in a single page. If unspecified, a server-default value will be used.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListAutoProtectionPolicies` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location for which to retrieve the list of policies. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Autoprotectionpolicies$Patch extends StandardParameters {
+    /**
+     * Identifier. The resource name of the AutoProtectionPolicy. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}`
+     */
+    name?: string;
+    /**
+     * Optional. Field mask is used to specify the fields to be overwritten in the AutoProtectionPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AutoProtectionPolicy;
+  }
+
+  export class Resource$Projects$Locations$Autoprotectionpolicies$Bindings {
+    context: APIRequestContext;
+    matchingResources: Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.matchingResources =
+        new Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources(
+          this.context
+        );
+    }
+
+    /**
+     * Creates a new AutoProtectionPolicyBinding in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-backupdr',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await backupdr.projects.locations.autoProtectionPolicies.bindings.create({
+     *       // Required. The ID to use for the binding. This will become the final component of the binding's resource name.
+     *       autoProtectionPolicyBindingId: 'placeholder-value',
+     *       // Required. The parent resource where this binding will be created. Format: projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}
+     *       parent:
+     *         'projects/my-project/locations/my-location/autoProtectionPolicies/my-autoProtectionPolicie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "bindingEvaluationSummary": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "description": "my_description",
+     *         //   "etag": "my_etag",
+     *         //   "name": "my_name",
+     *         //   "scope": "my_scope",
+     *         //   "state": "my_state",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/bindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns the auto protection policy binding read from the CCFE tables.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-backupdr',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await backupdr.projects.locations.autoProtectionPolicies.bindings.get({
+     *       // Required. The name of the binding to retrieve. Format: projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}/bindings/{binding\}
+     *       name: 'projects/my-project/locations/my-location/autoProtectionPolicies/my-autoProtectionPolicie/bindings/my-binding',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindingEvaluationSummary": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "scope": "my_scope",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AutoProtectionPolicyBinding>>;
+    get(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutoProtectionPolicyBinding>,
+      callback: BodyResponseCallback<Schema$AutoProtectionPolicyBinding>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Get,
+      callback: BodyResponseCallback<Schema$AutoProtectionPolicyBinding>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$AutoProtectionPolicyBinding>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Get
+        | BodyResponseCallback<Schema$AutoProtectionPolicyBinding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutoProtectionPolicyBinding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutoProtectionPolicyBinding>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AutoProtectionPolicyBinding>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutoProtectionPolicyBinding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AutoProtectionPolicyBinding>(parameters);
+      }
+    }
+
+    /**
+     * Initiates delete for AutoProtectionPolicy Binding
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-backupdr',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await backupdr.projects.locations.autoProtectionPolicies.bindings.initiateDelete(
+     *       {
+     *         // Required. The name of the binding to delete. Format: projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}/bindings/{binding\}
+     *         name: 'projects/my-project/locations/my-location/autoProtectionPolicies/my-autoProtectionPolicie/bindings/my-binding',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    initiateDelete(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Initiatedelete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    initiateDelete(
+      params?: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Initiatedelete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    initiateDelete(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Initiatedelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    initiateDelete(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Initiatedelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    initiateDelete(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Initiatedelete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    initiateDelete(callback: BodyResponseCallback<Schema$Operation>): void;
+    initiateDelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Initiatedelete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Initiatedelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Initiatedelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:initiateDelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns the auto protection policy bindings read from the CCFE tables.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-backupdr',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await backupdr.projects.locations.autoProtectionPolicies.bindings.list({
+     *       // Optional. A filter expression that filters resources listed in the response. The following fields are filterable:
+     *       filter: 'placeholder-value',
+     *       // Optional. An expression that sorts the results in the response. The following fields are sortable:
+     *       orderBy: 'placeholder-value',
+     *       // Optional. The maximum number of policies to return in a single page is 500. If unspecified, a server-default value will be used.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListAutoProtectionPolicies` call. Provide this to retrieve the subsequent page.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The project and location for which to retrieve the list of policies. Format: projects/{project\}/locations/{location\}
+     *       parent:
+     *         'projects/my-project/locations/my-location/autoProtectionPolicies/my-autoProtectionPolicie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoProtectionPolicyBindings": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListAutoProtectionPolicyBindingsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAutoProtectionPolicyBindingsResponse>,
+      callback: BodyResponseCallback<Schema$ListAutoProtectionPolicyBindingsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$List,
+      callback: BodyResponseCallback<Schema$ListAutoProtectionPolicyBindingsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAutoProtectionPolicyBindingsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$List
+        | BodyResponseCallback<Schema$ListAutoProtectionPolicyBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAutoProtectionPolicyBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAutoProtectionPolicyBindingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListAutoProtectionPolicyBindingsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/bindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAutoProtectionPolicyBindingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAutoProtectionPolicyBindingsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Create extends StandardParameters {
+    /**
+     * Required. The ID to use for the binding. This will become the final component of the binding's resource name.
+     */
+    autoProtectionPolicyBindingId?: string;
+    /**
+     * Required. The parent resource where this binding will be created. Format: projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AutoProtectionPolicyBinding;
+  }
+  export interface Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Get extends StandardParameters {
+    /**
+     * Required. The name of the binding to retrieve. Format: projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}/bindings/{binding\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Initiatedelete extends StandardParameters {
+    /**
+     * Required. The name of the binding to delete. Format: projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}/bindings/{binding\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InitiateDeleteAutoProtectionPolicyBindingRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$List extends StandardParameters {
+    /**
+     * Optional. A filter expression that filters resources listed in the response. The following fields are filterable:
+     */
+    filter?: string;
+    /**
+     * Optional. An expression that sorts the results in the response. The following fields are sortable:
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of policies to return in a single page is 500. If unspecified, a server-default value will be used.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListAutoProtectionPolicies` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location for which to retrieve the list of policies. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details of a single Binding Matching Resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-backupdr',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await backupdr.projects.locations.autoProtectionPolicies.bindings.matchingResources.get(
+     *       {
+     *         // Required. The name of the matching resource to retrieve. Format: projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}/bindings/{binding\}/matchingResources/{matching_resource\}
+     *         name: 'projects/my-project/locations/my-location/autoProtectionPolicies/my-autoProtectionPolicie/bindings/my-binding/matchingResources/my-matchingResource',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoProtectionDetails": {},
+     *   //   "lastEvaluationTime": "my_lastEvaluationTime",
+     *   //   "name": "my_name",
+     *   //   "resource": "my_resource"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BindingMatchingResource>>;
+    get(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources$Get,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$BindingMatchingResource>,
+      callback: BodyResponseCallback<Schema$BindingMatchingResource>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources$Get,
+      callback: BodyResponseCallback<Schema$BindingMatchingResource>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$BindingMatchingResource>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources$Get
+        | BodyResponseCallback<Schema$BindingMatchingResource>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BindingMatchingResource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BindingMatchingResource>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BindingMatchingResource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BindingMatchingResource>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BindingMatchingResource>(parameters);
+      }
+    }
+
+    /**
+     * Lists Binding Matching Resources for a given AutoProtectionPolicyBinding.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-backupdr',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await backupdr.projects.locations.autoProtectionPolicies.bindings.matchingResources.list(
+     *       {
+     *         // Optional. Field match expression used to filter the results.
+     *         filter: 'placeholder-value',
+     *         // Optional. Field by which to sort the results.
+     *         orderBy: 'placeholder-value',
+     *         // Optional. The maximum number of `BindingMatchingResources` to return in a single response. The default page size is 100 and maximum page size is 200. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. The value of next_page_token received from a previous `ListBindingMatchingResources` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBindingMatchingResources` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The project, location, auto protection policy and binding for which to retrieve `BindingMatchingResources` information. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}/bindings/{binding\}`. In Google Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**.
+     *         parent:
+     *           'projects/my-project/locations/my-location/autoProtectionPolicies/my-autoProtectionPolicie/bindings/my-binding',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "matchingResources": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListBindingMatchingResourcesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBindingMatchingResourcesResponse>,
+      callback: BodyResponseCallback<Schema$ListBindingMatchingResourcesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources$List,
+      callback: BodyResponseCallback<Schema$ListBindingMatchingResourcesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListBindingMatchingResourcesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources$List
+        | BodyResponseCallback<Schema$ListBindingMatchingResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBindingMatchingResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBindingMatchingResourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListBindingMatchingResourcesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/matchingResources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBindingMatchingResourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBindingMatchingResourcesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources$Get extends StandardParameters {
+    /**
+     * Required. The name of the matching resource to retrieve. Format: projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}/bindings/{binding\}/matchingResources/{matching_resource\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Matchingresources$List extends StandardParameters {
+    /**
+     * Optional. Field match expression used to filter the results.
+     */
+    filter?: string;
+    /**
+     * Optional. Field by which to sort the results.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of `BindingMatchingResources` to return in a single response. The default page size is 100 and maximum page size is 200. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The value of next_page_token received from a previous `ListBindingMatchingResources` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBindingMatchingResources` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project, location, auto protection policy and binding for which to retrieve `BindingMatchingResources` information. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}/bindings/{binding\}`. In Google Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**.
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Backupplanassociations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -4214,6 +6634,7 @@ export namespace backupdr_v1 {
      *       // request body parameters
      *       // {
      *       //   "alloydbClusterBackupPlanAssociationProperties": {},
+     *       //   "autoProtectionPolicyBinding": "my_autoProtectionPolicyBinding",
      *       //   "backupPlan": "my_backupPlan",
      *       //   "backupPlanRevisionId": "my_backupPlanRevisionId",
      *       //   "backupPlanRevisionName": "my_backupPlanRevisionName",
@@ -4372,6 +6793,8 @@ export namespace backupdr_v1 {
      *
      *   // Do the magic
      *   const res = await backupdr.projects.locations.backupPlanAssociations.delete({
+     *     // Optional. This field is exclusively used by Backup and DR's auto-protection feature. The resource name of the `AutoProtectionPolicyBinding` that triggered the deletion of this association. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{policy\}/bindings/{binding\}`.
+     *     autoProtectionPolicyBinding: 'placeholder-value',
      *     // Required. Name of the backup plan association resource, in the format `projects/{project\}/locations/{location\}/backupPlanAssociations/{backupPlanAssociationId\}`
      *     name: 'projects/my-project/locations/my-location/backupPlanAssociations/my-backupPlanAssociation',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -4688,6 +7111,7 @@ export namespace backupdr_v1 {
      *   // Example response
      *   // {
      *   //   "alloydbClusterBackupPlanAssociationProperties": {},
+     *   //   "autoProtectionPolicyBinding": "my_autoProtectionPolicyBinding",
      *   //   "backupPlan": "my_backupPlan",
      *   //   "backupPlanRevisionId": "my_backupPlanRevisionId",
      *   //   "backupPlanRevisionName": "my_backupPlanRevisionName",
@@ -5004,6 +7428,7 @@ export namespace backupdr_v1 {
      *       // request body parameters
      *       // {
      *       //   "alloydbClusterBackupPlanAssociationProperties": {},
+     *       //   "autoProtectionPolicyBinding": "my_autoProtectionPolicyBinding",
      *       //   "backupPlan": "my_backupPlan",
      *       //   "backupPlanRevisionId": "my_backupPlanRevisionId",
      *       //   "backupPlanRevisionName": "my_backupPlanRevisionName",
@@ -5302,6 +7727,10 @@ export namespace backupdr_v1 {
     requestBody?: Schema$BackupPlanAssociation;
   }
   export interface Params$Resource$Projects$Locations$Backupplanassociations$Delete extends StandardParameters {
+    /**
+     * Optional. This field is exclusively used by Backup and DR's auto-protection feature. The resource name of the `AutoProtectionPolicyBinding` that triggered the deletion of this association. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{policy\}/bindings/{binding\}`.
+     */
+    autoProtectionPolicyBinding?: string;
     /**
      * Required. Name of the backup plan association resource, in the format `projects/{project\}/locations/{location\}/backupPlanAssociations/{backupPlanAssociationId\}`
      */
