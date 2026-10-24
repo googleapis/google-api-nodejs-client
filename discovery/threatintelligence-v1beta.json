@@ -842,7 +842,7 @@
       }
     }
   },
-  "revision": "20260927",
+  "revision": "20261018",
   "rootUrl": "https://threatintelligence.googleapis.com/",
   "schemas": {
     "AVDetections": {
@@ -1066,6 +1066,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "communicationContext": {
+          "$ref": "CommunicationContext",
+          "description": "Output only. Platform identifiers of the message, thread and channel.",
+          "readOnly": true
+        },
         "content": {
           "description": "Output only. The content of the document.",
           "readOnly": true,
@@ -1238,6 +1243,10 @@
         },
         "channelUrl": {
           "description": "Optional. URL of the communication channel.",
+          "type": "string"
+        },
+        "messageId": {
+          "description": "Optional. Message or post identifier on the originating platform.",
           "type": "string"
         },
         "serviceName": {
