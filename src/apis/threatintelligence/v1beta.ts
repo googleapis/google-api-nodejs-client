@@ -243,6 +243,10 @@ export namespace threatintelligence_v1beta {
      */
     collectionTime?: string | null;
     /**
+     * Output only. Platform identifiers of the message, thread and channel.
+     */
+    communicationContext?: Schema$CommunicationContext;
+    /**
      * Output only. The content of the document.
      */
     content?: string | null;
@@ -376,6 +380,10 @@ export namespace threatintelligence_v1beta {
      * Optional. URL of the communication channel.
      */
     channelUrl?: string | null;
+    /**
+     * Optional. Message or post identifier on the originating platform.
+     */
+    messageId?: string | null;
     /**
      * Optional. Service from the collection event origin (e.g. forum or chat service name).
      */
@@ -4303,6 +4311,7 @@ export namespace threatintelligence_v1beta {
      *   //   "aiSummary": "my_aiSummary",
      *   //   "author": "my_author",
      *   //   "collectionTime": "my_collectionTime",
+     *   //   "communicationContext": {},
      *   //   "content": "my_content",
      *   //   "createTime": "my_createTime",
      *   //   "ingestTime": "my_ingestTime",

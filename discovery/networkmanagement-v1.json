@@ -569,7 +569,7 @@
                 "connectivityTests": {
                   "methods": {
                     "create": {
-                      "description": "Creates a new Connectivity Test. After you create a test, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. If the endpoint specifications in `ConnectivityTest` are invalid (for example, containing non-existent resources in the network, or you don't have read permissions to the network configurations of listed projects), then the reachability result returns a value of `UNKNOWN`. If the endpoint specifications in `ConnectivityTest` are incomplete, the reachability result returns a value of AMBIGUOUS. For more information, see the Connectivity Test documentation.",
+                      "description": "Creates a new Connectivity Test. After you create a test, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. If the endpoint specifications in `ConnectivityTest` are invalid (for example, containing non-existent resources in the network, or you don't have read permissions to the network configurations of listed projects), then the reachability result returns a value of `UNKNOWN`. If the endpoint specifications in `ConnectivityTest` are incomplete, the reachability result returns a value of `AMBIGUOUS`. For more information, see the Connectivity Test documentation.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/connectivityTests",
                       "httpMethod": "POST",
                       "id": "networkmanagement.projects.locations.global.connectivityTests.create",
@@ -692,23 +692,23 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Lists the `ConnectivityTests` that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form ` ` where operators: `<`, `>`, `<=`, `>=`, `!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is roughly synonymous with equality). can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = \"projects/proj-1/locations/global/connectivityTests/test-1 - Filter by labels: - Resources that have a key called `foo` labels.foo:* - Resources that have a key called `foo` whose value is `bar` labels.foo = bar",
+                          "description": "Optional. Lists the `ConnectivityTests` that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form ` ` where operators: `<`, `>`, `<=`, `>=`, `!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is roughly synonymous with equality). can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = \"projects/proj-1/locations/global/connectivityTests/test-1 - Filter by labels: - Resources that have a key called `foo` labels.foo:* - Resources that have a key called `foo` whose value is `bar` labels.foo = bar",
                           "location": "query",
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Field to use to sort the list.",
+                          "description": "Optional. Field to use to sort the list.",
                           "location": "query",
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Number of `ConnectivityTests` to return.",
+                          "description": "Optional. Number of `ConnectivityTests` to return.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Page token from an earlier query, as returned in `next_page_token`.",
+                          "description": "Optional. Page token from an earlier query, as returned in `next_page_token`.",
                           "location": "query",
                           "type": "string"
                         },
@@ -729,7 +729,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates the configuration of an existing `ConnectivityTest`. After you update a test, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. The Reachability state in the test resource is updated with the new result. If the endpoint specifications in `ConnectivityTest` are invalid (for example, they contain non-existent resources in the network, or the user does not have read permissions to the network configurations of listed projects), then the reachability result returns a value of UNKNOWN. If the endpoint specifications in `ConnectivityTest` are incomplete, the reachability result returns a value of `AMBIGUOUS`. See the documentation in `ConnectivityTest` for more details.",
+                      "description": "Updates the configuration of an existing `ConnectivityTest`. After you update a test, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. The Reachability state in the test resource is updated with the new result. If the endpoint specifications in `ConnectivityTest` are invalid (for example, they contain non-existent resources in the network, or the user does not have read permissions to the network configurations of listed projects), then the reachability result returns a value of `UNKNOWN`. If the endpoint specifications in `ConnectivityTest` are incomplete, the reachability result returns a value of `AMBIGUOUS`. See the documentation in `ConnectivityTest` for more details.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/connectivityTests/{connectivityTestsId}",
                       "httpMethod": "PATCH",
                       "id": "networkmanagement.projects.locations.global.connectivityTests.patch",
@@ -1797,7 +1797,7 @@
       }
     }
   },
-  "revision": "20261007",
+  "revision": "20261014",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -3401,7 +3401,7 @@
             "Ingress traffic to a Pod from a source on the same Node is always allowed.",
             "Egress traffic from a Pod that uses the Node's network namespace is not subject to Network Policy.",
             "Network Policy is not applied to response traffic. This is because GKE Network Policy evaluation is stateful in both GKE Dataplane V2 (eBPF) and legacy (iptables) implementations.",
-            "Network Policy evaluation is currently not supported for clusters with FQDN Network Policies enabled."
+            "Network Policy evaluation is currently not supported for Pods selected by an FQDN Network Policy."
           ],
           "type": "string"
         }
@@ -4336,7 +4336,7 @@
           "type": "string"
         },
         "ruleNumber": {
-          "description": "The number of the NAT rule that was matched.",
+          "description": "The number of the NAT rule that was matched. Only valid when `type` is CLOUD_NAT.",
           "format": "int32",
           "type": "integer"
         },

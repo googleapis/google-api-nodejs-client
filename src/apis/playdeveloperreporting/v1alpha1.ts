@@ -586,7 +586,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      */
     metrics?: string[] | null;
     /**
-     * Optional. * Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 100000; values above 100000 will be coerced to 100000.
+     * Optional. * Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
     pageSize?: number | null;
     /**
@@ -632,7 +632,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      */
     metrics?: string[] | null;
     /**
-     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 100,000; values above 100,000 will be coerced to 100,000.
+     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 10,000; values above 10,000 will be coerced to 10,000.
      */
     pageSize?: number | null;
     /**
@@ -678,7 +678,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      */
     metrics?: string[] | null;
     /**
-     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 100000; values above 100000 will be coerced to 100000.
+     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
     pageSize?: number | null;
     /**
@@ -724,7 +724,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      */
     metrics?: string[] | null;
     /**
-     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 100,000; values above 100,000 will be coerced to 100,000.
+     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 10,000; values above 10,000 will be coerced to 10,000.
      */
     pageSize?: number | null;
     /**
@@ -770,7 +770,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      */
     metrics?: string[] | null;
     /**
-     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 100000; values above 100000 will be coerced to 100000.
+     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
     pageSize?: number | null;
     /**
@@ -812,7 +812,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      */
     metrics?: string[] | null;
     /**
-     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 100000; values above 100000 will be coerced to 100000.
+     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
     pageSize?: number | null;
     /**
@@ -858,7 +858,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      */
     metrics?: string[] | null;
     /**
-     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 100,000; values above 100,000 will be coerced to 100,000.
+     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 10,000; values above 10,000 will be coerced to 10,000.
      */
     pageSize?: number | null;
     /**
@@ -904,7 +904,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      */
     metrics?: string[] | null;
     /**
-     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 100000; values above 100000 will be coerced to 100000.
+     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
     pageSize?: number | null;
     /**
@@ -950,7 +950,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      */
     metrics?: string[] | null;
     /**
-     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 100000; values above 100000 will be coerced to 100000.
+     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
     pageSize?: number | null;
     /**
@@ -996,7 +996,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      */
     metrics?: string[] | null;
     /**
-     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 100000; values above 100000 will be coerced to 100000.
+     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
     pageSize?: number | null;
     /**

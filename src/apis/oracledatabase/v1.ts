@@ -1052,6 +1052,10 @@ export namespace oracledatabase_v1 {
      */
     network?: string | null;
     /**
+     * Optional. Immutable. The name of the OdbDnsZone for using custom domain name for the VM Cluster. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbDnsZones/{odb_dns_zone\}
+     */
+    odbDnsZone?: string | null;
+    /**
      * Optional. Immutable. The name of the OdbNetwork associated with the VM Cluster. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\} It is optional but if specified, this should match the parent ODBNetwork of the odb_subnet and backup_odb_subnet.
      */
     odbNetwork?: string | null;
@@ -1214,6 +1218,19 @@ export namespace oracledatabase_v1 {
     vmFileSystemStorageType?: string | null;
   }
   /**
+   * Contains the name and datatype of a column in a SQL Result.
+   */
+  export interface Schema$Column {
+    /**
+     * Required. Name of the column.
+     */
+    name?: string | null;
+    /**
+     * Required. Database-specific type name (e.g., "VARCHAR2(255)", "NUMBER", "DATE", "CLOB")
+     */
+    type?: string | null;
+  }
+  /**
    * The request for `CloudExadataInfrastructure.ConfigureExascale`.
    */
   export interface Schema$ConfigureExascaleCloudExadataInfrastructureRequest {
@@ -1332,6 +1349,59 @@ export namespace oracledatabase_v1 {
      * Identifier. The name of the Database Character Set resource in the following format: projects/{project\}/locations/{region\}/databaseCharacterSets/{database_character_set\}
      */
     name?: string | null;
+  }
+  /**
+   * Represents DatabaseConnection resource.
+   */
+  export interface Schema$DatabaseConnection {
+    /**
+     * Required. Immutable. Oracle Easy Connect or TNS connection string. Example: "your-db-host.example.com:1521/YOUR_SERVICE_NAME"
+     */
+    connectionString?: string | null;
+    /**
+     * Output only. The create time of the resource.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Immutable. User-friendly display name for the connection.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. Optional: Labels as key-value pairs to organize the resource.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Additional information about the current state of the connection.
+     */
+    lifecycleDetails?: string | null;
+    /**
+     * Identifier. The resource name of the DatabaseConnection. Format: projects/{project\}/locations/{location\}/databaseConnections/{database_connection\}
+     */
+    name?: string | null;
+    /**
+     * Optional. Immutable. For Oracle Database@Google cloud resources. Format: projects/{project\}/locations/{location\}/odbNetworks/{odbNetwork\}
+     */
+    odbNetwork?: string | null;
+    /**
+     * Optional. The resource name of the GCP Secret Manager secret version containing the password for the specified username. Format: projects/{project\}/secrets/{secret_id\}/versions/{version_id\} The service's Per-Product Per-Project Service Account (P4SA) must have the 'secretmanager.secretAccessor' permission on this secret.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * Output only. The current state of the connection.
+     */
+    state?: string | null;
+    /**
+     * Output only. The update time of the resource.
+     */
+    updateTime?: string | null;
+    /**
+     * Optional. Immutable. The default database username to use for connections.
+     */
+    username?: string | null;
+    /**
+     * Optional. Optional: The resource name of the GCP Secret Manager secret version containing base64 encoded content of the Oracle Wallet ZIP file required for mTLS/TLS connections. Format: projects/{project\}/secrets/{secret_id\}/versions/{version_id\} The service's Per-Product Per-Project Service Account (P4SA) must have the 'secretmanager.secretAccessor' permission on this secret.
+     */
+    walletSecretVersion?: string | null;
   }
   /**
    * The connection string profile to allow clients to group. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/DatabaseConnectionStringProfile
@@ -2252,6 +2322,53 @@ export namespace oracledatabase_v1 {
      * Output only. The list of VM cluster OCIDs associated with the ExascaleDbStorageVault.
      */
     vmClusterIds?: string[] | null;
+  }
+  /**
+   * Any additional metadata information regarding the execution of the SQL
+   */
+  export interface Schema$ExecuteSqlMetadata {
+    /**
+     * The time duration taken to execute the sql statement.
+     */
+    executionDuration?: string | null;
+    /**
+     * Message related to SQL execution. This field can be used to convey size limit related message.
+     */
+    message?: string | null;
+    /**
+     * Set to true if SQL returned a result set larger than the acceptable response size limits and the result was truncated.
+     */
+    partialResult?: boolean | null;
+    /**
+     * Output only. Status of SQL execution.
+     */
+    status?: string | null;
+  }
+  /**
+   * The request for `DatabaseConnection.ExecuteSql`.
+   */
+  export interface Schema$ExecuteSqlRequest {
+    /**
+     * Optional. Optional: Bind variables (parameters) to be used with the SQL statement. Supports named bind variables (e.g., :dept_id, :status in Oracle SQL) or positional parameters (:1, :2).
+     */
+    params?: Schema$SqlParameter[];
+    /**
+     * Required. The SQL statement to execute.
+     */
+    sqlStatement?: string | null;
+  }
+  /**
+   * Execute a SQL statement response.
+   */
+  export interface Schema$ExecuteSqlResponse {
+    /**
+     * Any additional metadata information regarding the execution of the sql statement.
+     */
+    metadata?: Schema$ExecuteSqlMetadata;
+    /**
+     * SqlResult represents the results for the execution of sql statements.
+     */
+    sqlResults?: Schema$SqlResult[];
   }
   /**
    * The request for `OracleDatabase.FailoverAutonomousDatabase`.
@@ -4447,6 +4564,23 @@ export namespace oracledatabase_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * The response for `DatabaseConnection.List`.
+   */
+  export interface Schema$ListDatabaseConnectionsResponse {
+    /**
+     * The list of DatabaseConnections.
+     */
+    databaseConnections?: Schema$DatabaseConnection[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unreachable locations when listing resources across all locations using wildcard location '-'.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * The response for `Database.List`.
    */
   export interface Schema$ListDatabasesResponse {
@@ -4747,6 +4881,23 @@ export namespace oracledatabase_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * The response for `OdbDnsZone.List`.
+   */
+  export interface Schema$ListOdbDnsZonesResponse {
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of OdbDnsZones.
+     */
+    odbDnsZones?: Schema$OdbDnsZone[];
+    /**
+     * Unreachable locations when listing resources across all locations using wildcard location '-'.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * The response for `OdbNetwork.List`.
    */
   export interface Schema$ListOdbNetworksResponse {
@@ -4929,6 +5080,31 @@ export namespace oracledatabase_v1 {
     uri?: string | null;
   }
   /**
+   * Represents OdbDnsZone resource.
+   */
+  export interface Schema$OdbDnsZone {
+    /**
+     * Output only. The date and time that the OdbDnsZone was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The DNS suffix for the zone. Ex: abc.example.com.
+     */
+    domain?: string | null;
+    /**
+     * Optional. Labels or tags associated with the resource.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The name of the OdbDnsZone resource in the following format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbDnsZones/{odb_dns_zone\}
+     */
+    name?: string | null;
+    /**
+     * Output only. State of the OdbDnsZone.
+     */
+    state?: string | null;
+  }
+  /**
    * Represents OdbNetwork resource.
    */
   export interface Schema$OdbNetwork {
@@ -4956,6 +5132,14 @@ export namespace oracledatabase_v1 {
      * Required. The name of the VPC network in the following format: projects/{project\}/global/networks/{network\}
      */
     network?: string | null;
+    /**
+     * Output only. Indicates whether the OdbNetwork is currently reconciling changes.
+     */
+    reconciling?: boolean | null;
+    /**
+     * Optional. Configuration to enable the service (Oracledatabase@Google Cloud) to establish connectivity to the database. This should be specified if you intend to associate this OdbNetwork with a DatabaseConnection resource to `ExecuteSQL` on the database, or to create a ServiceIntegration with the Database. Please don't specify it otherwise to avoid complicating the network setup.
+     */
+    serviceConnectivityConfig?: Schema$ServiceConnectivityConfig;
     /**
      * Output only. State of the ODB Network.
      */
@@ -5190,6 +5374,15 @@ export namespace oracledatabase_v1 {
     uri?: string | null;
   }
   /**
+   * Configuration for a Private Service Connect (PSC) interface used by Oracledatabase@Google Cloud to establish private connectivity to the database.
+   */
+  export interface Schema$PscInterfaceConfig {
+    /**
+     * Optional. The resource name of the Network Attachment that Oracledatabase@Google Cloud will use to establish private connectivity to the database via a Private Service Connect Interface (PSC-I). Format: projects/{project\}/regions/{region\}/networkAttachments/{network_attachment\}
+     */
+    networkAttachment?: string | null;
+  }
+  /**
    * Request message for RefreshAutonomousDatabase method.
    */
   export interface Schema$RefreshAutonomousDatabaseRequest {
@@ -5238,6 +5431,15 @@ export namespace oracledatabase_v1 {
     restoreTime?: string | null;
   }
   /**
+   * A single row from a sql result.
+   */
+  export interface Schema$Row {
+    /**
+     * List of values in a row of sql result.
+     */
+    values?: Schema$Value[];
+  }
+  /**
    * Details of scheduled operation. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/ScheduledOperationDetails
    */
   export interface Schema$ScheduledOperationDetails {
@@ -5253,6 +5455,15 @@ export namespace oracledatabase_v1 {
      * Output only. Auto stop time.
      */
     stopTime?: Schema$TimeOfDay;
+  }
+  /**
+   * Configuration to enable the service (Oracledatabase@Google Cloud) to establish connectivity to the database. This should be specified if you intend to associate this OdbNetwork with a DatabaseConnection resource to `ExecuteSQL` on the database, or to create a ServiceIntegration with the Database. Please don't specify it otherwise to avoid complicating the network setup.
+   */
+  export interface Schema$ServiceConnectivityConfig {
+    /**
+     * Optional. Configuration for Private Service Connect (PSC) interface.
+     */
+    pscInterfaceConfig?: Schema$PscInterfaceConfig;
   }
   /**
    * The source configuration for the standby Autonomous Database.
@@ -5302,6 +5513,40 @@ export namespace oracledatabase_v1 {
      * Optional. Clone from latest available backup timestamp. This field is only applicable in case of BACKUP_FROM_TIMESTAMP source type.
      */
     useLatestAvailableBackup?: boolean | null;
+  }
+  /**
+   * Represents a bind variable (parameter) for SQL execution.
+   */
+  export interface Schema$SqlParameter {
+    /**
+     * Optional. The name of the SQL bind parameter (excluding the leading colon, e.g. "id"). If omitted, parameters bind positionally based on their order in the list.
+     */
+    name?: string | null;
+    /**
+     * Optional. Optional: Datatype hint for the parameter (e.g., "VARCHAR2", "NUMBER", "DATE", "TIMESTAMP"). If omitted, the Oracle driver will infer the type from the value string.
+     */
+    typeName?: string | null;
+    /**
+     * Required. Use protobuf.Value so clients can pass ints, bools, and strings natively.
+     */
+    value?: any | null;
+  }
+  /**
+   * SqlResult represents the result for the execution of a sql statement.
+   */
+  export interface Schema$SqlResult {
+    /**
+     * Optional. The number of rows affected by DML statements (e.g., INSERT, UPDATE, DELETE, MERGE). Unset or 0 for SELECT / DDL statements.
+     */
+    affectedRowCount?: string | null;
+    /**
+     * List of columns included in the result, including data type.
+     */
+    columns?: Schema$Column[];
+    /**
+     * Rows returned by the SQL statement.
+     */
+    rows?: Schema$Row[];
   }
   /**
    * The request for `AutonomousDatabase.Start`.
@@ -5380,6 +5625,23 @@ export namespace oracledatabase_v1 {
     message?: string | null;
   }
   /**
+   * Request message for `DatabaseConnection.TestDatabaseConnection`.
+   */
+  export interface Schema$TestDatabaseConnectionRequest {}
+  /**
+   * Response message for `DatabaseConnection.TestDatabaseConnection`.
+   */
+  export interface Schema$TestDatabaseConnectionResponse {
+    /**
+     * Error message if the test connection failed.
+     */
+    errorMessage?: string | null;
+    /**
+     * Whether the test connection was successful.
+     */
+    success?: boolean | null;
+  }
+  /**
    * Request message for TestGoldengateConnectionAssignment.
    */
   export interface Schema$TestGoldengateConnectionAssignmentRequest {
@@ -5439,6 +5701,19 @@ export namespace oracledatabase_v1 {
      */
     version?: string | null;
   }
+  /**
+   * A single value in a row from a sql result.
+   */
+  export interface Schema$Value {
+    /**
+     * Set to true if the cell value is NULL.
+     */
+    nullValue?: boolean | null;
+    /**
+     * The cell value represented in string format. Timestamps should be converted using RFC3339Nano format.
+     */
+    value?: string | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -5458,6 +5733,7 @@ export namespace oracledatabase_v1 {
     cloudExadataInfrastructures: Resource$Projects$Locations$Cloudexadatainfrastructures;
     cloudVmClusters: Resource$Projects$Locations$Cloudvmclusters;
     databaseCharacterSets: Resource$Projects$Locations$Databasecharactersets;
+    databaseConnections: Resource$Projects$Locations$Databaseconnections;
     databases: Resource$Projects$Locations$Databases;
     dbSystemInitialStorageSizes: Resource$Projects$Locations$Dbsysteminitialstoragesizes;
     dbSystems: Resource$Projects$Locations$Dbsystems;
@@ -5498,6 +5774,8 @@ export namespace oracledatabase_v1 {
       );
       this.databaseCharacterSets =
         new Resource$Projects$Locations$Databasecharactersets(this.context);
+      this.databaseConnections =
+        new Resource$Projects$Locations$Databaseconnections(this.context);
       this.databases = new Resource$Projects$Locations$Databases(this.context);
       this.dbSystemInitialStorageSizes =
         new Resource$Projects$Locations$Dbsysteminitialstoragesizes(
@@ -9994,6 +10272,7 @@ export namespace oracledatabase_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "odbDnsZone": "my_odbDnsZone",
      *       //   "odbNetwork": "my_odbNetwork",
      *       //   "odbSubnet": "my_odbSubnet",
      *       //   "properties": {}
@@ -10301,6 +10580,7 @@ export namespace oracledatabase_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
+     *   //   "odbDnsZone": "my_odbDnsZone",
      *   //   "odbNetwork": "my_odbNetwork",
      *   //   "odbSubnet": "my_odbSubnet",
      *   //   "properties": {}
@@ -10604,6 +10884,7 @@ export namespace oracledatabase_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "odbDnsZone": "my_odbDnsZone",
      *       //   "odbNetwork": "my_odbNetwork",
      *       //   "odbSubnet": "my_odbSubnet",
      *       //   "properties": {}
@@ -11141,6 +11422,1185 @@ export namespace oracledatabase_v1 {
      * Required. The parent value for DatabaseCharacterSets in the following format: projects/{project\}/locations/{location\}.
      */
     parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Databaseconnections {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new DatabaseConnection in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.databaseConnections.create({
+     *       // Required. The ID of the DatabaseConnection to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
+     *       databaseConnectionId: 'placeholder-value',
+     *       // Required. The parent value for the DatabaseConnection in the following format: projects/{project\}/locations/{location\}.
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "connectionString": "my_connectionString",
+     *         //   "createTime": "my_createTime",
+     *         //   "displayName": "my_displayName",
+     *         //   "labels": {},
+     *         //   "lifecycleDetails": "my_lifecycleDetails",
+     *         //   "name": "my_name",
+     *         //   "odbNetwork": "my_odbNetwork",
+     *         //   "passwordSecretVersion": "my_passwordSecretVersion",
+     *         //   "state": "my_state",
+     *         //   "updateTime": "my_updateTime",
+     *         //   "username": "my_username",
+     *         //   "walletSecretVersion": "my_walletSecretVersion"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Databaseconnections$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Databaseconnections$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Databaseconnections$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Databaseconnections$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/databaseConnections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single DatabaseConnection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.databaseConnections.delete({
+     *       // Required. The name of the resource in the following format: projects/{project\}/locations/{location\}/databaseConnections/{database_connection\}.
+     *       name: 'projects/my-project/locations/my-location/databaseConnections/my-databaseConnection',
+     *       // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Databaseconnections$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Databaseconnections$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Databaseconnections$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Databaseconnections$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Executes a SQL statement on a DatabaseConnection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.databaseConnections.executeSql({
+     *       // Required. The name of the DatabaseConnection in the following format: projects/{project\}/locations/{location\}/databaseConnections/{database_connection\}.
+     *       name: 'projects/my-project/locations/my-location/databaseConnections/my-databaseConnection',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "params": [],
+     *         //   "sqlStatement": "my_sqlStatement"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metadata": {},
+     *   //   "sqlResults": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    executeSql(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Executesql,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    executeSql(
+      params?: Params$Resource$Projects$Locations$Databaseconnections$Executesql,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ExecuteSqlResponse>>;
+    executeSql(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Executesql,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    executeSql(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Executesql,
+      options: MethodOptions | BodyResponseCallback<Schema$ExecuteSqlResponse>,
+      callback: BodyResponseCallback<Schema$ExecuteSqlResponse>
+    ): void;
+    executeSql(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Executesql,
+      callback: BodyResponseCallback<Schema$ExecuteSqlResponse>
+    ): void;
+    executeSql(callback: BodyResponseCallback<Schema$ExecuteSqlResponse>): void;
+    executeSql(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Databaseconnections$Executesql
+        | BodyResponseCallback<Schema$ExecuteSqlResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExecuteSqlResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExecuteSqlResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ExecuteSqlResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Databaseconnections$Executesql;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Databaseconnections$Executesql;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:executeSql').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExecuteSqlResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExecuteSqlResponse>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single DatabaseConnection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.databaseConnections.get({
+     *     // Required. The name of the DatabaseConnection in the following format: projects/{project\}/locations/{location\}/databaseConnections/{database_connection\}.
+     *     name: 'projects/my-project/locations/my-location/databaseConnections/my-databaseConnection',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "connectionString": "my_connectionString",
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "lifecycleDetails": "my_lifecycleDetails",
+     *   //   "name": "my_name",
+     *   //   "odbNetwork": "my_odbNetwork",
+     *   //   "passwordSecretVersion": "my_passwordSecretVersion",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "username": "my_username",
+     *   //   "walletSecretVersion": "my_walletSecretVersion"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Databaseconnections$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DatabaseConnection>>;
+    get(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DatabaseConnection>,
+      callback: BodyResponseCallback<Schema$DatabaseConnection>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Get,
+      callback: BodyResponseCallback<Schema$DatabaseConnection>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DatabaseConnection>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Databaseconnections$Get
+        | BodyResponseCallback<Schema$DatabaseConnection>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DatabaseConnection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DatabaseConnection>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DatabaseConnection>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Databaseconnections$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Databaseconnections$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DatabaseConnection>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DatabaseConnection>(parameters);
+      }
+    }
+
+    /**
+     * Lists DatabaseConnections in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.databaseConnections.list({
+     *     // Optional. An expression for filtering the results of the request.
+     *     filter: 'placeholder-value',
+     *     // Optional. An expression for ordering the results of the request.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of items to return. If unspecified, at most 50 DatabaseConnections will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent value for the DatabaseConnection in the following format: projects/{project\}/locations/{location\}.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "databaseConnections": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Databaseconnections$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Databaseconnections$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDatabaseConnectionsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Databaseconnections$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Databaseconnections$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDatabaseConnectionsResponse>,
+      callback: BodyResponseCallback<Schema$ListDatabaseConnectionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Databaseconnections$List,
+      callback: BodyResponseCallback<Schema$ListDatabaseConnectionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDatabaseConnectionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Databaseconnections$List
+        | BodyResponseCallback<Schema$ListDatabaseConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDatabaseConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDatabaseConnectionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDatabaseConnectionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Databaseconnections$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Databaseconnections$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/databaseConnections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDatabaseConnectionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDatabaseConnectionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of a single DatabaseConnection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.databaseConnections.patch(
+     *     {
+     *       // Identifier. The resource name of the DatabaseConnection. Format: projects/{project\}/locations/{location\}/databaseConnections/{database_connection\}
+     *       name: 'projects/my-project/locations/my-location/databaseConnections/my-databaseConnection',
+     *       // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *       // Optional. A mask specifying which fields in the DatabaseConnection should be updated. A field specified in the mask is overwritten. If a mask isn't provided then all the fields in the DatabaseConnection are overwritten.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "connectionString": "my_connectionString",
+     *         //   "createTime": "my_createTime",
+     *         //   "displayName": "my_displayName",
+     *         //   "labels": {},
+     *         //   "lifecycleDetails": "my_lifecycleDetails",
+     *         //   "name": "my_name",
+     *         //   "odbNetwork": "my_odbNetwork",
+     *         //   "passwordSecretVersion": "my_passwordSecretVersion",
+     *         //   "state": "my_state",
+     *         //   "updateTime": "my_updateTime",
+     *         //   "username": "my_username",
+     *         //   "walletSecretVersion": "my_walletSecretVersion"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Databaseconnections$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Databaseconnections$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Databaseconnections$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Databaseconnections$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Tests connectivity of a DatabaseConnection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.databaseConnections.test({
+     *     // Required. The name of the DatabaseConnection to test. Format: projects/{project\}/locations/{location\}/databaseConnections/{database_connection\}
+     *     name: 'projects/my-project/locations/my-location/databaseConnections/my-databaseConnection',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "success": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    test(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Test,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    test(
+      params?: Params$Resource$Projects$Locations$Databaseconnections$Test,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestDatabaseConnectionResponse>>;
+    test(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Test,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    test(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Test,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestDatabaseConnectionResponse>,
+      callback: BodyResponseCallback<Schema$TestDatabaseConnectionResponse>
+    ): void;
+    test(
+      params: Params$Resource$Projects$Locations$Databaseconnections$Test,
+      callback: BodyResponseCallback<Schema$TestDatabaseConnectionResponse>
+    ): void;
+    test(
+      callback: BodyResponseCallback<Schema$TestDatabaseConnectionResponse>
+    ): void;
+    test(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Databaseconnections$Test
+        | BodyResponseCallback<Schema$TestDatabaseConnectionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestDatabaseConnectionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestDatabaseConnectionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestDatabaseConnectionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Databaseconnections$Test;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Databaseconnections$Test;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:test').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestDatabaseConnectionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestDatabaseConnectionResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Databaseconnections$Create extends StandardParameters {
+    /**
+     * Required. The ID of the DatabaseConnection to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
+     */
+    databaseConnectionId?: string;
+    /**
+     * Required. The parent value for the DatabaseConnection in the following format: projects/{project\}/locations/{location\}.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DatabaseConnection;
+  }
+  export interface Params$Resource$Projects$Locations$Databaseconnections$Delete extends StandardParameters {
+    /**
+     * Required. The name of the resource in the following format: projects/{project\}/locations/{location\}/databaseConnections/{database_connection\}.
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Databaseconnections$Executesql extends StandardParameters {
+    /**
+     * Required. The name of the DatabaseConnection in the following format: projects/{project\}/locations/{location\}/databaseConnections/{database_connection\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExecuteSqlRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Databaseconnections$Get extends StandardParameters {
+    /**
+     * Required. The name of the DatabaseConnection in the following format: projects/{project\}/locations/{location\}/databaseConnections/{database_connection\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Databaseconnections$List extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request.
+     */
+    filter?: string;
+    /**
+     * Optional. An expression for ordering the results of the request.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of items to return. If unspecified, at most 50 DatabaseConnections will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent value for the DatabaseConnection in the following format: projects/{project\}/locations/{location\}.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Databaseconnections$Patch extends StandardParameters {
+    /**
+     * Identifier. The resource name of the DatabaseConnection. Format: projects/{project\}/locations/{location\}/databaseConnections/{database_connection\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. A mask specifying which fields in the DatabaseConnection should be updated. A field specified in the mask is overwritten. If a mask isn't provided then all the fields in the DatabaseConnection are overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DatabaseConnection;
+  }
+  export interface Params$Resource$Projects$Locations$Databaseconnections$Test extends StandardParameters {
+    /**
+     * Required. The name of the DatabaseConnection to test. Format: projects/{project\}/locations/{location\}/databaseConnections/{database_connection\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestDatabaseConnectionRequest;
   }
 
   export class Resource$Projects$Locations$Databases {
@@ -19182,9 +20642,12 @@ export namespace oracledatabase_v1 {
 
   export class Resource$Projects$Locations$Odbnetworks {
     context: APIRequestContext;
+    odbDnsZones: Resource$Projects$Locations$Odbnetworks$Odbdnszones;
     odbSubnets: Resource$Projects$Locations$Odbnetworks$Odbsubnets;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.odbDnsZones =
+        new Resource$Projects$Locations$Odbnetworks$Odbdnszones(this.context);
       this.odbSubnets = new Resource$Projects$Locations$Odbnetworks$Odbsubnets(
         this.context
       );
@@ -19238,6 +20701,8 @@ export namespace oracledatabase_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "reconciling": false,
+     *       //   "serviceConnectivityConfig": {},
      *       //   "state": "my_state"
      *       // }
      *     },
@@ -19533,6 +20998,8 @@ export namespace oracledatabase_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
+     *   //   "reconciling": false,
+     *   //   "serviceConnectivityConfig": {},
      *   //   "state": "my_state"
      *   // }
      * }
@@ -19777,6 +21244,164 @@ export namespace oracledatabase_v1 {
         return createAPIRequest<Schema$ListOdbNetworksResponse>(parameters);
       }
     }
+
+    /**
+     * Updates the `labels` and `service_connectivity_config` of a single OdbNetwork.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.odbNetworks.patch({
+     *     // Identifier. The name of the OdbNetwork resource in the following format: projects/{project\}/locations/{region\}/odbNetworks/{odb_network\}
+     *     name: 'projects/my-project/locations/my-location/odbNetworks/my-odbNetwork',
+     *     // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Optional. A mask specifying which fields in the OdbNetwork should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "entitlementId": "my_entitlementId",
+     *       //   "gcpOracleZone": "my_gcpOracleZone",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "network": "my_network",
+     *       //   "reconciling": false,
+     *       //   "serviceConnectivityConfig": {},
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Odbnetworks$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Odbnetworks$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Odbnetworks$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Odbnetworks$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Odbnetworks$Create extends StandardParameters {
@@ -19833,6 +21458,684 @@ export namespace oracledatabase_v1 {
     pageToken?: string;
     /**
      * Required. The parent value for the ODB Network in the following format: projects/{project\}/locations/{location\}.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Odbnetworks$Patch extends StandardParameters {
+    /**
+     * Identifier. The name of the OdbNetwork resource in the following format: projects/{project\}/locations/{region\}/odbNetworks/{odb_network\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. A mask specifying which fields in the OdbNetwork should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OdbNetwork;
+  }
+
+  export class Resource$Projects$Locations$Odbnetworks$Odbdnszones {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new ODB DNS Zone in a given ODB Network.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.odbNetworks.odbDnsZones.create({
+     *       // Required. The ID of the OdbDnsZone to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
+     *       odbDnsZoneId: 'placeholder-value',
+     *       // Required. The parent value for the OdbDnsZone in the following format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}.
+     *       parent:
+     *         'projects/my-project/locations/my-location/odbNetworks/my-odbNetwork',
+     *       // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "domain": "my_domain",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/odbDnsZones').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single ODB DNS Zone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.odbNetworks.odbDnsZones.delete({
+     *       // Required. The name of the resource in the following format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbDnsZones/{odb_dns_zone\}.
+     *       name: 'projects/my-project/locations/my-location/odbNetworks/my-odbNetwork/odbDnsZones/my-odbDnsZone',
+     *       // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single ODB DNS Zone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.odbNetworks.odbDnsZones.get({
+     *       // Required. The name of the OdbDnsZone in the following format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbDnsZones/{odb_dns_zone\}.
+     *       name: 'projects/my-project/locations/my-location/odbNetworks/my-odbNetwork/odbDnsZones/my-odbDnsZone',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "domain": "my_domain",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OdbDnsZone>>;
+    get(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$OdbDnsZone>,
+      callback: BodyResponseCallback<Schema$OdbDnsZone>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Get,
+      callback: BodyResponseCallback<Schema$OdbDnsZone>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$OdbDnsZone>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Get
+        | BodyResponseCallback<Schema$OdbDnsZone>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OdbDnsZone>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$OdbDnsZone> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OdbDnsZone>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OdbDnsZone>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$OdbDnsZone>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the ODB DNS Zones in a given ODB Network.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.odbNetworks.odbDnsZones.list({
+     *       // Optional. An expression for filtering the results of the request.
+     *       filter: 'placeholder-value',
+     *       // Optional. An expression for ordering the results of the request.
+     *       orderBy: 'placeholder-value',
+     *       // Optional. The maximum number of items to return. If unspecified, at most 50 OdbDnsZones will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A token identifying a page of results the server should return.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent value for the OdbDnsZone in the following format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}.
+     *       parent:
+     *         'projects/my-project/locations/my-location/odbNetworks/my-odbNetwork',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "odbDnsZones": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOdbDnsZonesResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$List,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$ListOdbDnsZonesResponse>,
+      callback: BodyResponseCallback<Schema$ListOdbDnsZonesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$List,
+      callback: BodyResponseCallback<Schema$ListOdbDnsZonesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListOdbDnsZonesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$List
+        | BodyResponseCallback<Schema$ListOdbDnsZonesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOdbDnsZonesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOdbDnsZonesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOdbDnsZonesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/odbDnsZones').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOdbDnsZonesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOdbDnsZonesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Create extends StandardParameters {
+    /**
+     * Required. The ID of the OdbDnsZone to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
+     */
+    odbDnsZoneId?: string;
+    /**
+     * Required. The parent value for the OdbDnsZone in the following format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OdbDnsZone;
+  }
+  export interface Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Delete extends StandardParameters {
+    /**
+     * Required. The name of the resource in the following format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbDnsZones/{odb_dns_zone\}.
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$Get extends StandardParameters {
+    /**
+     * Required. The name of the OdbDnsZone in the following format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbDnsZones/{odb_dns_zone\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Odbnetworks$Odbdnszones$List extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request.
+     */
+    filter?: string;
+    /**
+     * Optional. An expression for ordering the results of the request.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of items to return. If unspecified, at most 50 OdbDnsZones will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent value for the OdbDnsZone in the following format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}.
      */
     parent?: string;
   }

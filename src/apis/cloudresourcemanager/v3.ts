@@ -188,6 +188,64 @@ export namespace cloudresourcemanager_v3 {
     role?: string | null;
   }
   /**
+   * A Boundary is a collection of projects defined by a filtering criteria on an organization or a folder.
+   */
+  export interface Schema$Boundary {
+    /**
+     * Output only. The creation time of the Boundary.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Human-readable display name of the Boundary. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point. Example: `My Production Boundary`
+     */
+    displayName?: string | null;
+    /**
+     * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Output only. The Management Project of the CapabilityConfig this Boundary is associated with. Will be empty if the Boundary is not associated with any CapabilityConfig. Format: `projects/{project_number\}` Example: `projects/123456789012`
+     */
+    managementProject?: string | null;
+    /**
+     * Identifier. The unique resource name of the Boundary. Format: - `organizations/{organization_id\}/boundaries/{boundary_id\}` - `folders/{folder_id\}/boundaries/{boundary_id\}` Example: `folders/123456789/boundaries/my-boundary`
+     */
+    name?: string | null;
+    /**
+     * Optional. The filter defining the criteria for descendant projects to be included in the Boundary. Descendant projects are dynamically included in the Boundary based on this filter.
+     */
+    resourceFilter?: Schema$ResourceFilter;
+    /**
+     * Output only. The lifecycle state of the Boundary.
+     */
+    state?: string | null;
+    /**
+     * Output only. The most recent time this Boundary was modified.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * A BoundaryConfig defines the common configurations regarding Boundaries defined under a parent CRM node (Folder or Organization), such as the partitioning tag key.
+   */
+  export interface Schema$BoundaryConfig {
+    /**
+     * This checksum is computed by the server based on the value of other fields, and may be sent on update requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Identifier. The unique resource name of the BoundaryConfig. Format: - `organizations/{organization\}/boundaryConfig` - `folders/{folder\}/boundaryConfig` Example: `folders/123456789/boundaryConfig`
+     */
+    name?: string | null;
+    /**
+     * Optional. The namespaced name of the tag key. Format: `{parent_id\}/{tag_key_short_name\}` Example: `123456789012/env` (where 123456789012 is the organization ID).
+     */
+    tagKey?: string | null;
+    /**
+     * Output only. The most recent time this BoundaryConfig was modified.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Representation of a Capability.
    */
   export interface Schema$Capability {
@@ -592,6 +650,19 @@ export namespace cloudresourcemanager_v3 {
     restrictions?: string[] | null;
   }
   /**
+   * A page of the response received from the ListBoundaries method. A paginated response where more pages are available has `next_page_token` set. This token can be used in a subsequent request to retrieve the next page. NOTE: A response may contain fewer elements than the request `page_size` and still have a `next_page_token`.
+   */
+  export interface Schema$ListBoundariesResponse {
+    /**
+     * The list of Boundaries under the parent. This list can be paginated.
+     */
+    boundaries?: Schema$Boundary[];
+    /**
+     * Pagination token. If the result set is too large to fit in a single response, this token is returned. It encodes the position of the current result cursor. Feeding this value into a new list request with the `page_token` parameter gives the next page of the results. When `next_page_token` is not filled in, there is no next page and the list returned is the last page in the result set.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * A page of the response received from the ListCapabilityConfigs method. A paginated response where more pages are available has `next_page_token` set. This token can be used in a subsequent request to retrieve the next page. NOTE: A response may contain fewer elements than the request `page_size` and still have a `next_page_token`.
    */
   export interface Schema$ListCapabilityConfigsResponse {
@@ -905,6 +976,15 @@ export namespace cloudresourcemanager_v3 {
     ready?: boolean | null;
   }
   /**
+   * Filter to define the criteria for including projects in the Boundary.
+   */
+  export interface Schema$ResourceFilter {
+    /**
+     * A tag based filter. A project must match it to be included.
+     */
+    tagFilter?: Schema$TagFilter;
+  }
+  /**
    * The response message for searching folders.
    */
   export interface Schema$SearchFoldersResponse {
@@ -1014,6 +1094,19 @@ export namespace cloudresourcemanager_v3 {
      * Tag keys/values directly bound to this resource, specified in namespaced format. For example: "123/environment": "production"
      */
     tags?: {[key: string]: string} | null;
+  }
+  /**
+   * Matches projects based on a specific tag key and a specific tag value.
+   */
+  export interface Schema$TagFilter {
+    /**
+     * Required. Immutable. The namespaced name of the tag key. Format: `{parent_id\}/{tag_key_short_name\}` Example: `123456789012/env` (where 123456789012 is the organization ID).
+     */
+    tagKey?: string | null;
+    /**
+     * Required. The allowed value for the tag key. A project matches this tag filter if its effective tag value for the given `tag_key` matches this value. Format: short name of the tag value. Example: `production` or `staging`.
+     */
+    tagValue?: string | null;
   }
   /**
    * A TagHold represents the use of a TagValue that is not captured by TagBindings. If a TagValue has any TagHolds, deletion will be blocked. This resource is intended to be created in the same cloud location as the `holder`.
@@ -1363,10 +1456,12 @@ export namespace cloudresourcemanager_v3 {
 
   export class Resource$Folders {
     context: APIRequestContext;
+    boundaries: Resource$Folders$Boundaries;
     capabilities: Resource$Folders$Capabilities;
     capabilityConfigs: Resource$Folders$Capabilityconfigs;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.boundaries = new Resource$Folders$Boundaries(this.context);
       this.capabilities = new Resource$Folders$Capabilities(this.context);
       this.capabilityConfigs = new Resource$Folders$Capabilityconfigs(
         this.context
@@ -1805,6 +1900,149 @@ export namespace cloudresourcemanager_v3 {
         );
       } else {
         return createAPIRequest<Schema$Folder>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the BoundaryConfig identified by the specified `name` (for example, `folders/123456789/boundaryConfig`).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.folders.getBoundaryConfig({
+     *     // Required. The name of the BoundaryConfig to retrieve. Format: `organizations/{organization\}/boundaryConfig` or `folders/{folder\}/boundaryConfig` Example: `folders/123456789/boundaryConfig`
+     *     name: 'folders/my-folder/boundaryConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "tagKey": "my_tagKey",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getBoundaryConfig(
+      params: Params$Resource$Folders$Getboundaryconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getBoundaryConfig(
+      params?: Params$Resource$Folders$Getboundaryconfig,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BoundaryConfig>>;
+    getBoundaryConfig(
+      params: Params$Resource$Folders$Getboundaryconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getBoundaryConfig(
+      params: Params$Resource$Folders$Getboundaryconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$BoundaryConfig>,
+      callback: BodyResponseCallback<Schema$BoundaryConfig>
+    ): void;
+    getBoundaryConfig(
+      params: Params$Resource$Folders$Getboundaryconfig,
+      callback: BodyResponseCallback<Schema$BoundaryConfig>
+    ): void;
+    getBoundaryConfig(
+      callback: BodyResponseCallback<Schema$BoundaryConfig>
+    ): void;
+    getBoundaryConfig(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Getboundaryconfig
+        | BodyResponseCallback<Schema$BoundaryConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BoundaryConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BoundaryConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BoundaryConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Getboundaryconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Getboundaryconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BoundaryConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BoundaryConfig>(parameters);
       }
     }
 
@@ -2991,6 +3229,159 @@ export namespace cloudresourcemanager_v3 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Updates the BoundaryConfig identified by the specified `name` (for example, `folders/123456789/boundaryConfig`).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.folders.updateBoundaryConfig({
+     *     // Identifier. The unique resource name of the BoundaryConfig. Format: - `organizations/{organization\}/boundaryConfig` - `folders/{folder\}/boundaryConfig` Example: `folders/123456789/boundaryConfig`
+     *     name: 'folders/my-folder/boundaryConfig',
+     *     // Optional. The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "tagKey": "my_tagKey",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateBoundaryConfig(
+      params: Params$Resource$Folders$Updateboundaryconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    updateBoundaryConfig(
+      params?: Params$Resource$Folders$Updateboundaryconfig,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    updateBoundaryConfig(
+      params: Params$Resource$Folders$Updateboundaryconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateBoundaryConfig(
+      params: Params$Resource$Folders$Updateboundaryconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateBoundaryConfig(
+      params: Params$Resource$Folders$Updateboundaryconfig,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateBoundaryConfig(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateBoundaryConfig(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Updateboundaryconfig
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Updateboundaryconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Updateboundaryconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Folders$Create extends StandardParameters {
@@ -3008,6 +3399,12 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Folders$Get extends StandardParameters {
     /**
      * Required. The resource name of the folder to retrieve. Must be of the form `folders/{folder_id\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Getboundaryconfig extends StandardParameters {
+    /**
+     * Required. The name of the BoundaryConfig to retrieve. Format: `organizations/{organization\}/boundaryConfig` or `folders/{folder\}/boundaryConfig` Example: `folders/123456789/boundaryConfig`
      */
     name?: string;
   }
@@ -3112,6 +3509,827 @@ export namespace cloudresourcemanager_v3 {
      * Request body metadata
      */
     requestBody?: Schema$UndeleteFolderRequest;
+  }
+  export interface Params$Resource$Folders$Updateboundaryconfig extends StandardParameters {
+    /**
+     * Identifier. The unique resource name of the BoundaryConfig. Format: - `organizations/{organization\}/boundaryConfig` - `folders/{folder\}/boundaryConfig` Example: `folders/123456789/boundaryConfig`
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BoundaryConfig;
+  }
+
+  export class Resource$Folders$Boundaries {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a Boundary under a parent Folder or Organization. Creating a Boundary triggers the creation of a Management Project if one is not supplied.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.folders.boundaries.create({
+     *     // Required. The user-assigned ID for the Boundary, which will become the final component of the Boundary's resource name. Must be unique within the parent resource. It must be 6 to 30 lowercase ASCII letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. Example: `my-boundary-123`
+     *     boundaryId: 'placeholder-value',
+     *     // Required. The parent resource under which the Boundary will be created. Format: `organizations/{organization_id\}` or `folders/{folder_id\}`
+     *     parent: 'folders/my-folder',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "managementProject": "my_managementProject",
+     *       //   "name": "my_name",
+     *       //   "resourceFilter": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Folders$Boundaries$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Folders$Boundaries$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Folders$Boundaries$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Boundaries$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Boundaries$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Boundaries$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Boundaries$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Boundaries$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/boundaries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the Boundary identified by the specified `name` (for example, `folders/123456789/boundaries/my-boundary`).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.folders.boundaries.delete({
+     *     // Required. The name of the Boundary to delete. Format: `organizations/{organization_id\}/boundaries/{boundary_id\}` or `folders/{folder_id\}/boundaries/{boundary_id\}`
+     *     name: 'folders/my-folder/boundaries/my-boundarie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Folders$Boundaries$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Folders$Boundaries$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Folders$Boundaries$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Boundaries$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Boundaries$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Boundaries$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Boundaries$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Boundaries$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the Boundary identified by the specified `name` (for example, `folders/123456789/boundaries/my-boundary`).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.folders.boundaries.get({
+     *     // Required. The name of the Boundary to retrieve. Format: `organizations/{organization_id\}/boundaries/{boundary_id\}` or `folders/{folder_id\}/boundaries/{boundary_id\}` Example: `folders/123456789/boundaries/my-boundary`
+     *     name: 'folders/my-folder/boundaries/my-boundarie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "managementProject": "my_managementProject",
+     *   //   "name": "my_name",
+     *   //   "resourceFilter": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Folders$Boundaries$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Folders$Boundaries$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Boundary>>;
+    get(
+      params: Params$Resource$Folders$Boundaries$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Boundaries$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Boundary>,
+      callback: BodyResponseCallback<Schema$Boundary>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Boundaries$Get,
+      callback: BodyResponseCallback<Schema$Boundary>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Boundary>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Boundaries$Get
+        | BodyResponseCallback<Schema$Boundary>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Boundary>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Boundary> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Boundary>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Boundaries$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Boundaries$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Boundary>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Boundary>(parameters);
+      }
+    }
+
+    /**
+     * Lists Boundaries that are direct children of the specified organization or folder resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.folders.boundaries.list({
+     *     // Optional. The maximum number of Boundaries to return in the response. The service may return fewer Boundaries than requested. If unspecified, at most 100 Boundaries will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A pagination token received from a previous call to `ListBoundaries` that indicates from where listing should continue. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent resource whose Boundaries are being listed. Format: `organizations/{organization_id\}` or `folders/{folder_id\}`
+     *     parent: 'folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boundaries": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Folders$Boundaries$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Folders$Boundaries$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBoundariesResponse>>;
+    list(
+      params: Params$Resource$Folders$Boundaries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Boundaries$List,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$ListBoundariesResponse>,
+      callback: BodyResponseCallback<Schema$ListBoundariesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Boundaries$List,
+      callback: BodyResponseCallback<Schema$ListBoundariesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBoundariesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Boundaries$List
+        | BodyResponseCallback<Schema$ListBoundariesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBoundariesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBoundariesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBoundariesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Boundaries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Boundaries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/boundaries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBoundariesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBoundariesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the `display_name` and `resource_filter.tag_filter.tag_value` of the Boundary identified by the specified `name` (for example, `folders/123456789/boundaries/my-boundary`).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.folders.boundaries.patch({
+     *     // Identifier. The unique resource name of the Boundary. Format: - `organizations/{organization_id\}/boundaries/{boundary_id\}` - `folders/{folder_id\}/boundaries/{boundary_id\}` Example: `folders/123456789/boundaries/my-boundary`
+     *     name: 'folders/my-folder/boundaries/my-boundarie',
+     *     // Optional. The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "managementProject": "my_managementProject",
+     *       //   "name": "my_name",
+     *       //   "resourceFilter": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Folders$Boundaries$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Folders$Boundaries$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Folders$Boundaries$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Boundaries$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Boundaries$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Boundaries$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Boundaries$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Boundaries$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Boundaries$Create extends StandardParameters {
+    /**
+     * Required. The user-assigned ID for the Boundary, which will become the final component of the Boundary's resource name. Must be unique within the parent resource. It must be 6 to 30 lowercase ASCII letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. Example: `my-boundary-123`
+     */
+    boundaryId?: string;
+    /**
+     * Required. The parent resource under which the Boundary will be created. Format: `organizations/{organization_id\}` or `folders/{folder_id\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Boundary;
+  }
+  export interface Params$Resource$Folders$Boundaries$Delete extends StandardParameters {
+    /**
+     * Required. The name of the Boundary to delete. Format: `organizations/{organization_id\}/boundaries/{boundary_id\}` or `folders/{folder_id\}/boundaries/{boundary_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Boundaries$Get extends StandardParameters {
+    /**
+     * Required. The name of the Boundary to retrieve. Format: `organizations/{organization_id\}/boundaries/{boundary_id\}` or `folders/{folder_id\}/boundaries/{boundary_id\}` Example: `folders/123456789/boundaries/my-boundary`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Boundaries$List extends StandardParameters {
+    /**
+     * Optional. The maximum number of Boundaries to return in the response. The service may return fewer Boundaries than requested. If unspecified, at most 100 Boundaries will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A pagination token received from a previous call to `ListBoundaries` that indicates from where listing should continue. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the parent resource whose Boundaries are being listed. Format: `organizations/{organization_id\}` or `folders/{folder_id\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Folders$Boundaries$Patch extends StandardParameters {
+    /**
+     * Identifier. The unique resource name of the Boundary. Format: - `organizations/{organization_id\}/boundaries/{boundary_id\}` - `folders/{folder_id\}/boundaries/{boundary_id\}` Example: `folders/123456789/boundaries/my-boundary`
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Boundary;
   }
 
   export class Resource$Folders$Capabilities {
@@ -5504,9 +6722,11 @@ export namespace cloudresourcemanager_v3 {
 
   export class Resource$Organizations {
     context: APIRequestContext;
+    boundaries: Resource$Organizations$Boundaries;
     capabilityConfigs: Resource$Organizations$Capabilityconfigs;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.boundaries = new Resource$Organizations$Boundaries(this.context);
       this.capabilityConfigs = new Resource$Organizations$Capabilityconfigs(
         this.context
       );
@@ -5654,6 +6874,149 @@ export namespace cloudresourcemanager_v3 {
         );
       } else {
         return createAPIRequest<Schema$Organization>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the BoundaryConfig identified by the specified `name` (for example, `folders/123456789/boundaryConfig`).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.organizations.getBoundaryConfig({
+     *     // Required. The name of the BoundaryConfig to retrieve. Format: `organizations/{organization\}/boundaryConfig` or `folders/{folder\}/boundaryConfig` Example: `folders/123456789/boundaryConfig`
+     *     name: 'organizations/my-organization/boundaryConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "tagKey": "my_tagKey",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getBoundaryConfig(
+      params: Params$Resource$Organizations$Getboundaryconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getBoundaryConfig(
+      params?: Params$Resource$Organizations$Getboundaryconfig,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BoundaryConfig>>;
+    getBoundaryConfig(
+      params: Params$Resource$Organizations$Getboundaryconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getBoundaryConfig(
+      params: Params$Resource$Organizations$Getboundaryconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$BoundaryConfig>,
+      callback: BodyResponseCallback<Schema$BoundaryConfig>
+    ): void;
+    getBoundaryConfig(
+      params: Params$Resource$Organizations$Getboundaryconfig,
+      callback: BodyResponseCallback<Schema$BoundaryConfig>
+    ): void;
+    getBoundaryConfig(
+      callback: BodyResponseCallback<Schema$BoundaryConfig>
+    ): void;
+    getBoundaryConfig(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Getboundaryconfig
+        | BodyResponseCallback<Schema$BoundaryConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BoundaryConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BoundaryConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BoundaryConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Getboundaryconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Getboundaryconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BoundaryConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BoundaryConfig>(parameters);
       }
     }
 
@@ -6258,11 +7621,170 @@ export namespace cloudresourcemanager_v3 {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
+
+    /**
+     * Updates the BoundaryConfig identified by the specified `name` (for example, `folders/123456789/boundaryConfig`).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.organizations.updateBoundaryConfig({
+     *     // Identifier. The unique resource name of the BoundaryConfig. Format: - `organizations/{organization\}/boundaryConfig` - `folders/{folder\}/boundaryConfig` Example: `folders/123456789/boundaryConfig`
+     *     name: 'organizations/my-organization/boundaryConfig',
+     *     // Optional. The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "tagKey": "my_tagKey",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateBoundaryConfig(
+      params: Params$Resource$Organizations$Updateboundaryconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    updateBoundaryConfig(
+      params?: Params$Resource$Organizations$Updateboundaryconfig,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    updateBoundaryConfig(
+      params: Params$Resource$Organizations$Updateboundaryconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateBoundaryConfig(
+      params: Params$Resource$Organizations$Updateboundaryconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateBoundaryConfig(
+      params: Params$Resource$Organizations$Updateboundaryconfig,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateBoundaryConfig(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateBoundaryConfig(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Updateboundaryconfig
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Updateboundaryconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Updateboundaryconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Organizations$Get extends StandardParameters {
     /**
      * Required. The resource name of the Organization to fetch. This is the organization's relative path in the API, formatted as "organizations/[organizationId]". For example, "organizations/1234".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Getboundaryconfig extends StandardParameters {
+    /**
+     * Required. The name of the BoundaryConfig to retrieve. Format: `organizations/{organization\}/boundaryConfig` or `folders/{folder\}/boundaryConfig` Example: `folders/123456789/boundaryConfig`
      */
     name?: string;
   }
@@ -6312,6 +7834,827 @@ export namespace cloudresourcemanager_v3 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Organizations$Updateboundaryconfig extends StandardParameters {
+    /**
+     * Identifier. The unique resource name of the BoundaryConfig. Format: - `organizations/{organization\}/boundaryConfig` - `folders/{folder\}/boundaryConfig` Example: `folders/123456789/boundaryConfig`
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BoundaryConfig;
+  }
+
+  export class Resource$Organizations$Boundaries {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a Boundary under a parent Folder or Organization. Creating a Boundary triggers the creation of a Management Project if one is not supplied.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.organizations.boundaries.create({
+     *     // Required. The user-assigned ID for the Boundary, which will become the final component of the Boundary's resource name. Must be unique within the parent resource. It must be 6 to 30 lowercase ASCII letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. Example: `my-boundary-123`
+     *     boundaryId: 'placeholder-value',
+     *     // Required. The parent resource under which the Boundary will be created. Format: `organizations/{organization_id\}` or `folders/{folder_id\}`
+     *     parent: 'organizations/my-organization',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "managementProject": "my_managementProject",
+     *       //   "name": "my_name",
+     *       //   "resourceFilter": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Boundaries$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Organizations$Boundaries$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Organizations$Boundaries$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Boundaries$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Boundaries$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Boundaries$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Boundaries$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Boundaries$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/boundaries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the Boundary identified by the specified `name` (for example, `folders/123456789/boundaries/my-boundary`).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.organizations.boundaries.delete({
+     *     // Required. The name of the Boundary to delete. Format: `organizations/{organization_id\}/boundaries/{boundary_id\}` or `folders/{folder_id\}/boundaries/{boundary_id\}`
+     *     name: 'organizations/my-organization/boundaries/my-boundarie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Boundaries$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Organizations$Boundaries$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Organizations$Boundaries$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Boundaries$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Boundaries$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Boundaries$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Boundaries$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Boundaries$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the Boundary identified by the specified `name` (for example, `folders/123456789/boundaries/my-boundary`).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.organizations.boundaries.get({
+     *     // Required. The name of the Boundary to retrieve. Format: `organizations/{organization_id\}/boundaries/{boundary_id\}` or `folders/{folder_id\}/boundaries/{boundary_id\}` Example: `folders/123456789/boundaries/my-boundary`
+     *     name: 'organizations/my-organization/boundaries/my-boundarie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "managementProject": "my_managementProject",
+     *   //   "name": "my_name",
+     *   //   "resourceFilter": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Boundaries$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Organizations$Boundaries$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Boundary>>;
+    get(
+      params: Params$Resource$Organizations$Boundaries$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Boundaries$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Boundary>,
+      callback: BodyResponseCallback<Schema$Boundary>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Boundaries$Get,
+      callback: BodyResponseCallback<Schema$Boundary>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Boundary>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Boundaries$Get
+        | BodyResponseCallback<Schema$Boundary>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Boundary>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Boundary> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Boundary>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Boundaries$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Boundaries$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Boundary>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Boundary>(parameters);
+      }
+    }
+
+    /**
+     * Lists Boundaries that are direct children of the specified organization or folder resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.organizations.boundaries.list({
+     *     // Optional. The maximum number of Boundaries to return in the response. The service may return fewer Boundaries than requested. If unspecified, at most 100 Boundaries will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A pagination token received from a previous call to `ListBoundaries` that indicates from where listing should continue. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent resource whose Boundaries are being listed. Format: `organizations/{organization_id\}` or `folders/{folder_id\}`
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boundaries": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Boundaries$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Organizations$Boundaries$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBoundariesResponse>>;
+    list(
+      params: Params$Resource$Organizations$Boundaries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Boundaries$List,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$ListBoundariesResponse>,
+      callback: BodyResponseCallback<Schema$ListBoundariesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Boundaries$List,
+      callback: BodyResponseCallback<Schema$ListBoundariesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBoundariesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Boundaries$List
+        | BodyResponseCallback<Schema$ListBoundariesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBoundariesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBoundariesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBoundariesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Boundaries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Boundaries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/boundaries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBoundariesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBoundariesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the `display_name` and `resource_filter.tag_filter.tag_value` of the Boundary identified by the specified `name` (for example, `folders/123456789/boundaries/my-boundary`).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.organizations.boundaries.patch({
+     *     // Identifier. The unique resource name of the Boundary. Format: - `organizations/{organization_id\}/boundaries/{boundary_id\}` - `folders/{folder_id\}/boundaries/{boundary_id\}` Example: `folders/123456789/boundaries/my-boundary`
+     *     name: 'organizations/my-organization/boundaries/my-boundarie',
+     *     // Optional. The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "managementProject": "my_managementProject",
+     *       //   "name": "my_name",
+     *       //   "resourceFilter": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Boundaries$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Organizations$Boundaries$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Organizations$Boundaries$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Boundaries$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Boundaries$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Boundaries$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Boundaries$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Boundaries$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Boundaries$Create extends StandardParameters {
+    /**
+     * Required. The user-assigned ID for the Boundary, which will become the final component of the Boundary's resource name. Must be unique within the parent resource. It must be 6 to 30 lowercase ASCII letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. Example: `my-boundary-123`
+     */
+    boundaryId?: string;
+    /**
+     * Required. The parent resource under which the Boundary will be created. Format: `organizations/{organization_id\}` or `folders/{folder_id\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Boundary;
+  }
+  export interface Params$Resource$Organizations$Boundaries$Delete extends StandardParameters {
+    /**
+     * Required. The name of the Boundary to delete. Format: `organizations/{organization_id\}/boundaries/{boundary_id\}` or `folders/{folder_id\}/boundaries/{boundary_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Boundaries$Get extends StandardParameters {
+    /**
+     * Required. The name of the Boundary to retrieve. Format: `organizations/{organization_id\}/boundaries/{boundary_id\}` or `folders/{folder_id\}/boundaries/{boundary_id\}` Example: `folders/123456789/boundaries/my-boundary`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Boundaries$List extends StandardParameters {
+    /**
+     * Optional. The maximum number of Boundaries to return in the response. The service may return fewer Boundaries than requested. If unspecified, at most 100 Boundaries will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A pagination token received from a previous call to `ListBoundaries` that indicates from where listing should continue. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the parent resource whose Boundaries are being listed. Format: `organizations/{organization_id\}` or `folders/{folder_id\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Boundaries$Patch extends StandardParameters {
+    /**
+     * Identifier. The unique resource name of the Boundary. Format: - `organizations/{organization_id\}/boundaries/{boundary_id\}` - `folders/{folder_id\}/boundaries/{boundary_id\}` Example: `folders/123456789/boundaries/my-boundary`
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Boundary;
   }
 
   export class Resource$Organizations$Capabilityconfigs {

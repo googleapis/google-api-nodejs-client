@@ -386,6 +386,15 @@ export namespace alloydb_v1beta {
     backupUid?: string | null;
   }
   /**
+   * Certificate Authority (CA) information for the cluster.
+   */
+  export interface Schema$CertificateAuthorityInfo {
+    /**
+     * Output only. The PEM-encoded root CA certificate of the cluster. Save this to a file (conventionally `root.crt`) and point the PostgreSQL client at it to authenticate by connecting with `sslmode=verify-full` or `sslmode=verify-ca`.
+     */
+    rootCaCert?: string | null;
+  }
+  /**
    * Client connection configuration
    */
   export interface Schema$ClientConnectionConfig {
@@ -452,6 +461,10 @@ export namespace alloydb_v1beta {
      * Output only. Cluster created from backup.
      */
     backupSource?: Schema$BackupSource;
+    /**
+     * Output only. Certificate Authority (CA) information for the cluster.
+     */
+    certificateAuthorityInfo?: Schema$CertificateAuthorityInfo;
     /**
      * Output only. Cluster created from CloudSQL snapshot.
      */
@@ -1223,6 +1236,10 @@ export namespace alloydb_v1beta {
      */
     networkConfig?: Schema$InstanceNetworkConfig;
     /**
+     * Output only. Instance-level network information.
+     */
+    networkInfo?: Schema$InstanceNetworkInfo;
+    /**
      * Output only. List of available read-only VMs in this instance, including the standby for a PRIMARY instance.
      */
     nodes?: Schema$Node[];
@@ -1315,6 +1332,19 @@ export namespace alloydb_v1beta {
      * Output only. The resource link for the VPC network in which instance resources are created and from which they are accessible via Private IP. This will be the same value as the parent cluster's network. It is specified in the form: // `projects/{project_number\}/global/networks/{network_id\}`.
      */
     network?: string | null;
+    /**
+     * Optional. Whether Public DNS is enabled for the instance.
+     */
+    publicDnsEnabled?: boolean | null;
+  }
+  /**
+   * Output-only metadata related to instance-level network information.
+   */
+  export interface Schema$InstanceNetworkInfo {
+    /**
+     * Output only. The DNS name of the instance for public connectivity.
+     */
+    publicDnsName?: string | null;
   }
   /**
    * Details regarding the upgrade of instances associated with a cluster.
@@ -4586,6 +4616,7 @@ export namespace alloydb_v1beta {
      *       //   "backupSource": {},
      *       //   "backupdrBackupSource": {},
      *       //   "backupdrInfo": {},
+     *       //   "certificateAuthorityInfo": {},
      *       //   "cloudsqlBackupRunSource": {},
      *       //   "clusterType": "my_clusterType",
      *       //   "continuousBackupConfig": {},
@@ -4781,6 +4812,7 @@ export namespace alloydb_v1beta {
      *       //   "backupSource": {},
      *       //   "backupdrBackupSource": {},
      *       //   "backupdrInfo": {},
+     *       //   "certificateAuthorityInfo": {},
      *       //   "cloudsqlBackupRunSource": {},
      *       //   "clusterType": "my_clusterType",
      *       //   "continuousBackupConfig": {},
@@ -5268,6 +5300,7 @@ export namespace alloydb_v1beta {
      *   //   "backupSource": {},
      *   //   "backupdrBackupSource": {},
      *   //   "backupdrInfo": {},
+     *   //   "certificateAuthorityInfo": {},
      *   //   "cloudsqlBackupRunSource": {},
      *   //   "clusterType": "my_clusterType",
      *   //   "continuousBackupConfig": {},
@@ -5750,6 +5783,7 @@ export namespace alloydb_v1beta {
      *       //   "backupSource": {},
      *       //   "backupdrBackupSource": {},
      *       //   "backupdrInfo": {},
+     *       //   "certificateAuthorityInfo": {},
      *       //   "cloudsqlBackupRunSource": {},
      *       //   "clusterType": "my_clusterType",
      *       //   "continuousBackupConfig": {},
@@ -6926,6 +6960,7 @@ export namespace alloydb_v1beta {
      *       //   "maintenanceVersionName": "my_maintenanceVersionName",
      *       //   "name": "my_name",
      *       //   "networkConfig": {},
+     *       //   "networkInfo": {},
      *       //   "nodes": [],
      *       //   "observabilityConfig": {},
      *       //   "observabilityInstanceInfo": {},
@@ -7119,6 +7154,7 @@ export namespace alloydb_v1beta {
      *         //   "maintenanceVersionName": "my_maintenanceVersionName",
      *         //   "name": "my_name",
      *         //   "networkConfig": {},
+     *         //   "networkInfo": {},
      *         //   "nodes": [],
      *         //   "observabilityConfig": {},
      *         //   "observabilityInstanceInfo": {},
@@ -7600,6 +7636,7 @@ export namespace alloydb_v1beta {
      *   //   "maintenanceVersionName": "my_maintenanceVersionName",
      *   //   "name": "my_name",
      *   //   "networkConfig": {},
+     *   //   "networkInfo": {},
      *   //   "nodes": [],
      *   //   "observabilityConfig": {},
      *   //   "observabilityInstanceInfo": {},
@@ -8229,6 +8266,7 @@ export namespace alloydb_v1beta {
      *       //   "maintenanceVersionName": "my_maintenanceVersionName",
      *       //   "name": "my_name",
      *       //   "networkConfig": {},
+     *       //   "networkInfo": {},
      *       //   "nodes": [],
      *       //   "observabilityConfig": {},
      *       //   "observabilityInstanceInfo": {},

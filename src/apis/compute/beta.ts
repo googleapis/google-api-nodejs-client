@@ -4080,6 +4080,9 @@ export namespace compute_beta {
      *    Advertisement(RA) packet (IPv6).  Google Cloud immediately but
      *    temporarily associates the forwarding rule IP address with that VM, and
      *    both new and in-flight packets are quickly delivered to that VM.
+     *    - HA_CONTROLLER: The Backend Service is managed by a High Availability
+     *    Controller. Failover and leader election are exclusively managed by the
+     *    HA Controller service.
      *
      *
      *
@@ -4964,7 +4967,12 @@ export namespace compute_beta {
      */
     count?: string | null;
     /**
-     * A flexible specification of machine type of instances to create.
+     * A specification of alternative machine types to use when creating
+     * instances. A single bulkInsert request can create instances with multiple
+     * different machine types based on capacity and quota availability. This
+     * field is supported only for regional bulkInsert requests. For more
+     * information, see About
+     * instance flexibility for VMs created in bulk.
      */
     instanceFlexibilityPolicy?: Schema$InstanceFlexibilityPolicy;
     /**
@@ -5125,7 +5133,9 @@ export namespace compute_beta {
     contentType?: string | null;
     /**
      * If set, this invalidation rule will only apply to requests with a Host
-     * header matching host.
+     * header matching host. This field also accepts wildcards (*) to replace the
+     * leftmost (or first) label of a hostname. For example, *.example.com will
+     * match www.example.com, but not sub1.dev.example.com.
      */
     host?: string | null;
     /**
@@ -14364,15 +14374,8 @@ export namespace compute_beta {
    */
   export interface Schema$InstanceFlexibilityPolicy {
     /**
-     * Specification of alternative, flexible instance subsets.
-     * One of them will be selected to create the instances
-     * based on various criteria, like:
-     * - ranks,
-     * - location policy,
-     * - current capacity,
-     * - available reservations (you can specify affinity in
-     * InstanceProperties),
-     * - SWAN/GOOSE limitations.
+     * Specifies named instance selections that define properties for instances
+     * created in bulk.
      * Key is an arbitrary, unique RFC1035 string that identifies the instance
      * selection.
      */
@@ -30601,6 +30604,14 @@ export namespace compute_beta {
      */
     ipv6NexthopAddress?: string | null;
     /**
+     * The linked custom hardware resource.
+     * The URI of the custom hardware link attachment
+     * is where you will establish the BGP session from the Cloud Router.
+     * This link attachment must reside in the same subnetwork as the associated
+     * router interface.
+     */
+    linkedCustomHardware?: string | null;
+    /**
      * Output only. [Output Only] The resource that configures and manages this BGP peer.
      *
      *    -  MANAGED_BY_USER is the default value and can be managed by you
@@ -31397,6 +31408,12 @@ export namespace compute_beta {
      */
     ipv6NexthopAddress?: string | null;
     /**
+     * Output only. The URI of the linked custom hardware resource,
+     * CustomHardwareLinkAttachment. This CustomHardwareLinkAttachment resource
+     * is the one that will establish the BGP session from the Cloud Router.
+     */
+    linkedCustomHardware?: string | null;
+    /**
      * Output only. URL of the VPN tunnel that this BGP peer controls.
      */
     linkedVpnTunnel?: string | null;
@@ -31781,7 +31798,10 @@ export namespace compute_beta {
      */
     provisioningModel?: string | null;
     /**
-     * Default is false and there will be 120 seconds between GCE ACPI G2 Soft
+     * Defines whether GCE ACPI G2 Soft
+     * Off signal should be skipped during shutdown operation of VM.
+     *
+     * Default is false, meaning there will be 120 seconds between GCE ACPI G2 Soft
      * Off and ACPI G3 Mechanical
      * Off for Standard VMs and 30 seconds for Spot VMs.
      */
@@ -39383,7 +39403,13 @@ export namespace compute_beta {
     } | null;
   }
   export interface Schema$VpnTunnelCipherSuite {
+    /**
+     * Cipher algorithms for IKE phase 1.
+     */
     phase1?: Schema$VpnTunnelPhase1Algorithms;
+    /**
+     * Cipher algorithms for IKE phase 2.
+     */
     phase2?: Schema$VpnTunnelPhase2Algorithms;
   }
   /**
@@ -39444,14 +39470,35 @@ export namespace compute_beta {
     resourceManagerTags?: {[key: string]: string} | null;
   }
   export interface Schema$VpnTunnelPhase1Algorithms {
+    /**
+     * Diffie-Hellman groups for IKE phase 1.
+     */
     dh?: string[] | null;
+    /**
+     * Encryption algorithms for IKE phase 1.
+     */
     encryption?: string[] | null;
+    /**
+     * Integrity algorithms for IKE phase 1.
+     */
     integrity?: string[] | null;
+    /**
+     * Pseudo-random functions (PRF) for IKE phase 1.
+     */
     prf?: string[] | null;
   }
   export interface Schema$VpnTunnelPhase2Algorithms {
+    /**
+     * Encryption algorithms for IKE phase 2.
+     */
     encryption?: string[] | null;
+    /**
+     * Integrity algorithms for IKE phase 2.
+     */
     integrity?: string[] | null;
+    /**
+     * Perfect Forward Secrecy (PFS) groups for IKE phase 2.
+     */
     pfs?: string[] | null;
   }
   export interface Schema$VpnTunnelsScopedList {
@@ -39846,6 +39893,7 @@ export namespace compute_beta {
   export interface Schema$WorkloadIdentityConfig {
     identity?: string | null;
     identityCertificateEnabled?: boolean | null;
+    identityType?: string | null;
   }
   export interface Schema$XpnHostList {
     /**

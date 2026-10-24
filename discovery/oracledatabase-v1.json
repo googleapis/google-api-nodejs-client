@@ -1302,6 +1302,244 @@
                 }
               }
             },
+            "databaseConnections": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new DatabaseConnection in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/databaseConnections",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.databaseConnections.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "databaseConnectionId": {
+                      "description": "Required. The ID of the DatabaseConnection to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent value for the DatabaseConnection in the following format: projects/{project}/locations/{location}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/databaseConnections",
+                  "request": {
+                    "$ref": "DatabaseConnection"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single DatabaseConnection.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/databaseConnections/{databaseConnectionsId}",
+                  "httpMethod": "DELETE",
+                  "id": "oracledatabase.projects.locations.databaseConnections.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the resource in the following format: projects/{project}/locations/{location}/databaseConnections/{database_connection}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/databaseConnections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "executeSql": {
+                  "description": "Executes a SQL statement on a DatabaseConnection.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/databaseConnections/{databaseConnectionsId}:executeSql",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.databaseConnections.executeSql",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the DatabaseConnection in the following format: projects/{project}/locations/{location}/databaseConnections/{database_connection}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/databaseConnections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:executeSql",
+                  "request": {
+                    "$ref": "ExecuteSqlRequest"
+                  },
+                  "response": {
+                    "$ref": "ExecuteSqlResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single DatabaseConnection.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/databaseConnections/{databaseConnectionsId}",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.databaseConnections.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the DatabaseConnection in the following format: projects/{project}/locations/{location}/databaseConnections/{database_connection}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/databaseConnections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "DatabaseConnection"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists DatabaseConnections in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/databaseConnections",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.databaseConnections.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. An expression for ordering the results of the request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return. If unspecified, at most 50 DatabaseConnections will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent value for the DatabaseConnection in the following format: projects/{project}/locations/{location}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/databaseConnections",
+                  "response": {
+                    "$ref": "ListDatabaseConnectionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single DatabaseConnection.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/databaseConnections/{databaseConnectionsId}",
+                  "httpMethod": "PATCH",
+                  "id": "oracledatabase.projects.locations.databaseConnections.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the DatabaseConnection. Format: projects/{project}/locations/{location}/databaseConnections/{database_connection}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/databaseConnections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. A mask specifying which fields in the DatabaseConnection should be updated. A field specified in the mask is overwritten. If a mask isn't provided then all the fields in the DatabaseConnection are overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "DatabaseConnection"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "test": {
+                  "description": "Tests connectivity of a DatabaseConnection.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/databaseConnections/{databaseConnectionsId}:test",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.databaseConnections.test",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the DatabaseConnection to test. Format: projects/{project}/locations/{location}/databaseConnections/{database_connection}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/databaseConnections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:test",
+                  "request": {
+                    "$ref": "TestDatabaseConnectionRequest"
+                  },
+                  "response": {
+                    "$ref": "TestDatabaseConnectionResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "databases": {
               "methods": {
                 "get": {
@@ -3200,9 +3438,191 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "patch": {
+                  "description": "Updates the `labels` and `service_connectivity_config` of a single OdbNetwork.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/odbNetworks/{odbNetworksId}",
+                  "httpMethod": "PATCH",
+                  "id": "oracledatabase.projects.locations.odbNetworks.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The name of the OdbNetwork resource in the following format: projects/{project}/locations/{region}/odbNetworks/{odb_network}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/odbNetworks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. A mask specifying which fields in the OdbNetwork should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "OdbNetwork"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               },
               "resources": {
+                "odbDnsZones": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new ODB DNS Zone in a given ODB Network.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/odbNetworks/{odbNetworksId}/odbDnsZones",
+                      "httpMethod": "POST",
+                      "id": "oracledatabase.projects.locations.odbNetworks.odbDnsZones.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "odbDnsZoneId": {
+                          "description": "Required. The ID of the OdbDnsZone to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent value for the OdbDnsZone in the following format: projects/{project}/locations/{location}/odbNetworks/{odb_network}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/odbNetworks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/odbDnsZones",
+                      "request": {
+                        "$ref": "OdbDnsZone"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a single ODB DNS Zone.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/odbNetworks/{odbNetworksId}/odbDnsZones/{odbDnsZonesId}",
+                      "httpMethod": "DELETE",
+                      "id": "oracledatabase.projects.locations.odbNetworks.odbDnsZones.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the resource in the following format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbDnsZones/{odb_dns_zone}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/odbNetworks/[^/]+/odbDnsZones/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single ODB DNS Zone.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/odbNetworks/{odbNetworksId}/odbDnsZones/{odbDnsZonesId}",
+                      "httpMethod": "GET",
+                      "id": "oracledatabase.projects.locations.odbNetworks.odbDnsZones.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the OdbDnsZone in the following format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbDnsZones/{odb_dns_zone}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/odbNetworks/[^/]+/odbDnsZones/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "OdbDnsZone"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all the ODB DNS Zones in a given ODB Network.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/odbNetworks/{odbNetworksId}/odbDnsZones",
+                      "httpMethod": "GET",
+                      "id": "oracledatabase.projects.locations.odbNetworks.odbDnsZones.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. An expression for filtering the results of the request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. An expression for ordering the results of the request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of items to return. If unspecified, at most 50 OdbDnsZones will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A token identifying a page of results the server should return.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent value for the OdbDnsZone in the following format: projects/{project}/locations/{location}/odbNetworks/{odb_network}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/odbNetworks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/odbDnsZones",
+                      "response": {
+                        "$ref": "ListOdbDnsZonesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "odbSubnets": {
                   "methods": {
                     "create": {
@@ -3590,7 +4010,7 @@
       }
     }
   },
-  "revision": "20261012",
+  "revision": "20261019",
   "rootUrl": "https://oracledatabase.googleapis.com/",
   "schemas": {
     "AllConnectionStrings": {
@@ -5153,6 +5573,10 @@
           "description": "Optional. Immutable. The name of the VPC network. Format: projects/{project}/global/networks/{network}",
           "type": "string"
         },
+        "odbDnsZone": {
+          "description": "Optional. Immutable. The name of the OdbDnsZone for using custom domain name for the VM Cluster. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbDnsZones/{odb_dns_zone}",
+          "type": "string"
+        },
         "odbNetwork": {
           "description": "Optional. Immutable. The name of the OdbNetwork associated with the VM Cluster. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network} It is optional but if specified, this should match the parent ODBNetwork of the odb_subnet and backup_odb_subnet.",
           "type": "string"
@@ -5431,6 +5855,21 @@
       },
       "type": "object"
     },
+    "Column": {
+      "description": "Contains the name and datatype of a column in a SQL Result.",
+      "id": "Column",
+      "properties": {
+        "name": {
+          "description": "Required. Name of the column.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Database-specific type name (e.g., \"VARCHAR2(255)\", \"NUMBER\", \"DATE\", \"CLOB\")",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ConfigureExascaleCloudExadataInfrastructureRequest": {
       "description": "The request for `CloudExadataInfrastructure.ConfigureExascale`.",
       "id": "ConfigureExascaleCloudExadataInfrastructureRequest",
@@ -5644,6 +6083,84 @@
         },
         "name": {
           "description": "Identifier. The name of the Database Character Set resource in the following format: projects/{project}/locations/{region}/databaseCharacterSets/{database_character_set}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseConnection": {
+      "description": "Represents DatabaseConnection resource.",
+      "id": "DatabaseConnection",
+      "properties": {
+        "connectionString": {
+          "description": "Required. Immutable. Oracle Easy Connect or TNS connection string. Example: \"your-db-host.example.com:1521/YOUR_SERVICE_NAME\"",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The create time of the resource.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Immutable. User-friendly display name for the connection.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Optional: Labels as key-value pairs to organize the resource.",
+          "type": "object"
+        },
+        "lifecycleDetails": {
+          "description": "Output only. Additional information about the current state of the connection.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the DatabaseConnection. Format: projects/{project}/locations/{location}/databaseConnections/{database_connection}",
+          "type": "string"
+        },
+        "odbNetwork": {
+          "description": "Optional. Immutable. For Oracle Database@Google cloud resources. Format: projects/{project}/locations/{location}/odbNetworks/{odbNetwork}",
+          "type": "string"
+        },
+        "passwordSecretVersion": {
+          "description": "Optional. The resource name of the GCP Secret Manager secret version containing the password for the specified username. Format: projects/{project}/secrets/{secret_id}/versions/{version_id} The service's Per-Product Per-Project Service Account (P4SA) must have the 'secretmanager.secretAccessor' permission on this secret.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the connection.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "FAILED",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Indicates that the resource is in a creating state.",
+            "Indicates that the resource is in an active state.",
+            "Indicates that the resource is in a failed state.",
+            "Indicates that the resource is in a deleting state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The update time of the resource.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "username": {
+          "description": "Optional. Immutable. The default database username to use for connections.",
+          "type": "string"
+        },
+        "walletSecretVersion": {
+          "description": "Optional. Optional: The resource name of the GCP Secret Manager secret version containing base64 encoded content of the Oracle Wallet ZIP file required for mTLS/TLS connections. Format: projects/{project}/secrets/{secret_id}/versions/{version_id} The service's Per-Product Per-Project Service Account (P4SA) must have the 'secretmanager.secretAccessor' permission on this secret.",
           "type": "string"
         }
       },
@@ -7203,6 +7720,79 @@
             "type": "string"
           },
           "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ExecuteSqlMetadata": {
+      "description": "Any additional metadata information regarding the execution of the SQL",
+      "id": "ExecuteSqlMetadata",
+      "properties": {
+        "executionDuration": {
+          "description": "The time duration taken to execute the sql statement.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "message": {
+          "description": "Message related to SQL execution. This field can be used to convey size limit related message.",
+          "type": "string"
+        },
+        "partialResult": {
+          "description": "Set to true if SQL returned a result set larger than the acceptable response size limits and the result was truncated.",
+          "type": "boolean"
+        },
+        "status": {
+          "description": "Output only. Status of SQL execution.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "OK",
+            "PARTIAL",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Default value. Not returned by the service.",
+            "No error during SQL execution i.e. All SQL statements ran to completion. The \"message\" will be empty.",
+            "Same as OK, except indicates that only partial results were returned. The \"message\" field will contain details on why results were truncated. `partial_result` is true if and only if `status` is `PARTIAL`.",
+            "The database returned an error while executing the SQL statement. `message` contains the error text returned by Oracle. `sql_results` is empty. The statement runs in autocommit mode; which changes are committed or rolled back follows Oracle Database behavior. Authentication failures, database availability errors, network errors, and timeouts are returned as API errors (AIP-193), not as ERROR."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExecuteSqlRequest": {
+      "description": "The request for `DatabaseConnection.ExecuteSql`.",
+      "id": "ExecuteSqlRequest",
+      "properties": {
+        "params": {
+          "description": "Optional. Optional: Bind variables (parameters) to be used with the SQL statement. Supports named bind variables (e.g., :dept_id, :status in Oracle SQL) or positional parameters (:1, :2).",
+          "items": {
+            "$ref": "SqlParameter"
+          },
+          "type": "array"
+        },
+        "sqlStatement": {
+          "description": "Required. The SQL statement to execute.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExecuteSqlResponse": {
+      "description": "Execute a SQL statement response.",
+      "id": "ExecuteSqlResponse",
+      "properties": {
+        "metadata": {
+          "$ref": "ExecuteSqlMetadata",
+          "description": "Any additional metadata information regarding the execution of the sql statement."
+        },
+        "sqlResults": {
+          "description": "SqlResult represents the results for the execution of sql statements.",
+          "items": {
+            "$ref": "SqlResult"
+          },
           "type": "array"
         }
       },
@@ -10443,6 +11033,31 @@
       },
       "type": "object"
     },
+    "ListDatabaseConnectionsResponse": {
+      "description": "The response for `DatabaseConnection.List`.",
+      "id": "ListDatabaseConnectionsResponse",
+      "properties": {
+        "databaseConnections": {
+          "description": "The list of DatabaseConnections.",
+          "items": {
+            "$ref": "DatabaseConnection"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unreachable locations when listing resources across all locations using wildcard location '-'.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListDatabasesResponse": {
       "description": "The response for `Database.List`.",
       "id": "ListDatabasesResponse",
@@ -10873,6 +11488,31 @@
       },
       "type": "object"
     },
+    "ListOdbDnsZonesResponse": {
+      "description": "The response for `OdbDnsZone.List`.",
+      "id": "ListOdbDnsZonesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "odbDnsZones": {
+          "description": "The list of OdbDnsZones.",
+          "items": {
+            "$ref": "OdbDnsZone"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unreachable locations when listing resources across all locations using wildcard location '-'.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListOdbNetworksResponse": {
       "description": "The response for `OdbNetwork.List`.",
       "id": "ListOdbNetworksResponse",
@@ -11193,6 +11833,55 @@
       },
       "type": "object"
     },
+    "OdbDnsZone": {
+      "description": "Represents OdbDnsZone resource.",
+      "id": "OdbDnsZone",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The date and time that the OdbDnsZone was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "domain": {
+          "description": "Required. The DNS suffix for the zone. Ex: abc.example.com.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels or tags associated with the resource.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The name of the OdbDnsZone resource in the following format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbDnsZones/{odb_dns_zone}",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the OdbDnsZone.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "AVAILABLE",
+            "INACTIVE",
+            "TERMINATING",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Indicates that the resource is in a provisioning state.",
+            "Indicates that the resource is in an available state.",
+            "Indicates that the resource is available but inactive.",
+            "Indicates that the resource is in a terminating state.",
+            "Indicates that the resource is in a failed state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "OdbNetwork": {
       "description": "Represents OdbNetwork resource.",
       "id": "OdbNetwork",
@@ -11226,6 +11915,15 @@
         "network": {
           "description": "Required. The name of the VPC network in the following format: projects/{project}/global/networks/{network}",
           "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. Indicates whether the OdbNetwork is currently reconciling changes.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "serviceConnectivityConfig": {
+          "$ref": "ServiceConnectivityConfig",
+          "description": "Optional. Configuration to enable the service (Oracledatabase@Google Cloud) to establish connectivity to the database. This should be specified if you intend to associate this OdbNetwork with a DatabaseConnection resource to `ExecuteSQL` on the database, or to create a ServiceIntegration with the Database. Please don't specify it otherwise to avoid complicating the network setup."
         },
         "state": {
           "description": "Output only. State of the ODB Network.",
@@ -11626,6 +12324,17 @@
       },
       "type": "object"
     },
+    "PscInterfaceConfig": {
+      "description": "Configuration for a Private Service Connect (PSC) interface used by Oracledatabase@Google Cloud to establish private connectivity to the database.",
+      "id": "PscInterfaceConfig",
+      "properties": {
+        "networkAttachment": {
+          "description": "Optional. The resource name of the Network Attachment that Oracledatabase@Google Cloud will use to establish private connectivity to the database via a Private Service Connect Interface (PSC-I). Format: projects/{project}/regions/{region}/networkAttachments/{network_attachment}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RefreshAutonomousDatabaseRequest": {
       "description": "Request message for RefreshAutonomousDatabase method.",
       "id": "RefreshAutonomousDatabaseRequest",
@@ -11689,6 +12398,20 @@
       },
       "type": "object"
     },
+    "Row": {
+      "description": "A single row from a sql result.",
+      "id": "Row",
+      "properties": {
+        "values": {
+          "description": "List of values in a row of sql result.",
+          "items": {
+            "$ref": "Value"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ScheduledOperationDetails": {
       "description": "Details of scheduled operation. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/ScheduledOperationDetails",
       "id": "ScheduledOperationDetails",
@@ -11727,6 +12450,17 @@
           "$ref": "TimeOfDay",
           "description": "Output only. Auto stop time.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "ServiceConnectivityConfig": {
+      "description": "Configuration to enable the service (Oracledatabase@Google Cloud) to establish connectivity to the database. This should be specified if you intend to associate this OdbNetwork with a DatabaseConnection resource to `ExecuteSQL` on the database, or to create a ServiceIntegration with the Database. Please don't specify it otherwise to avoid complicating the network setup.",
+      "id": "ServiceConnectivityConfig",
+      "properties": {
+        "pscInterfaceConfig": {
+          "$ref": "PscInterfaceConfig",
+          "description": "Optional. Configuration for Private Service Connect (PSC) interface."
         }
       },
       "type": "object"
@@ -11818,6 +12552,51 @@
         "useLatestAvailableBackup": {
           "description": "Optional. Clone from latest available backup timestamp. This field is only applicable in case of BACKUP_FROM_TIMESTAMP source type.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SqlParameter": {
+      "description": "Represents a bind variable (parameter) for SQL execution.",
+      "id": "SqlParameter",
+      "properties": {
+        "name": {
+          "description": "Optional. The name of the SQL bind parameter (excluding the leading colon, e.g. \"id\"). If omitted, parameters bind positionally based on their order in the list.",
+          "type": "string"
+        },
+        "typeName": {
+          "description": "Optional. Optional: Datatype hint for the parameter (e.g., \"VARCHAR2\", \"NUMBER\", \"DATE\", \"TIMESTAMP\"). If omitted, the Oracle driver will infer the type from the value string.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. Use protobuf.Value so clients can pass ints, bools, and strings natively.",
+          "type": "any"
+        }
+      },
+      "type": "object"
+    },
+    "SqlResult": {
+      "description": "SqlResult represents the result for the execution of a sql statement.",
+      "id": "SqlResult",
+      "properties": {
+        "affectedRowCount": {
+          "description": "Optional. The number of rows affected by DML statements (e.g., INSERT, UPDATE, DELETE, MERGE). Unset or 0 for SELECT / DDL statements.",
+          "format": "int64",
+          "type": "string"
+        },
+        "columns": {
+          "description": "List of columns included in the result, including data type.",
+          "items": {
+            "$ref": "Column"
+          },
+          "type": "array"
+        },
+        "rows": {
+          "description": "Rows returned by the SQL statement.",
+          "items": {
+            "$ref": "Row"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -11926,6 +12705,27 @@
       },
       "type": "object"
     },
+    "TestDatabaseConnectionRequest": {
+      "description": "Request message for `DatabaseConnection.TestDatabaseConnection`.",
+      "id": "TestDatabaseConnectionRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "TestDatabaseConnectionResponse": {
+      "description": "Response message for `DatabaseConnection.TestDatabaseConnection`.",
+      "id": "TestDatabaseConnectionResponse",
+      "properties": {
+        "errorMessage": {
+          "description": "Error message if the test connection failed.",
+          "type": "string"
+        },
+        "success": {
+          "description": "Whether the test connection was successful.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "TestGoldengateConnectionAssignmentRequest": {
       "description": "Request message for TestGoldengateConnectionAssignment.",
       "id": "TestGoldengateConnectionAssignmentRequest",
@@ -12016,6 +12816,21 @@
         },
         "version": {
           "description": "Optional. IANA Time Zone Database version number. For example \"2019a\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Value": {
+      "description": "A single value in a row from a sql result.",
+      "id": "Value",
+      "properties": {
+        "nullValue": {
+          "description": "Set to true if the cell value is NULL.",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "The cell value represented in string format. Timestamps should be converted using RFC3339Nano format.",
           "type": "string"
         }
       },

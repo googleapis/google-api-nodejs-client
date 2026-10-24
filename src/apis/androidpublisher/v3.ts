@@ -1201,7 +1201,7 @@ export namespace androidpublisher_v3 {
      */
     appSubcategory?: string | null;
     /**
-     * The token used for delivery of the app with the Google Play Inline Install API.
+     * The token used for delivery of the app with the Google Play Inline Install API. The token is unique per Play app and per third-party app store combination and has a limited validity period of 7 days.
      */
     deliveryToken?: string | null;
     /**
@@ -2678,7 +2678,7 @@ export namespace androidpublisher_v3 {
      */
     defaultPrice?: Schema$Price;
     /**
-     * Grace period of the subscription, specified in ISO 8601 format. Allows developers to give their subscribers a grace period when the payment for the new recurrence period is declined. Acceptable values are P0D (zero days), P3D (three days), P7D (seven days), P14D (14 days), and P30D (30 days).
+     * Deprecated: Subscriptions are no longer supported in the InAppProducts API. Use the Subscriptions API instead.
      */
     gracePeriod?: string | null;
     /**
@@ -2710,15 +2710,15 @@ export namespace androidpublisher_v3 {
      */
     status?: string | null;
     /**
-     * Subscription period, specified in ISO 8601 format. Acceptable values are P1W (one week), P1M (one month), P3M (three months), P6M (six months), and P1Y (one year).
+     * Deprecated: Subscriptions are no longer supported in the InAppProducts API. Use the Subscriptions API instead.
      */
     subscriptionPeriod?: string | null;
     /**
-     * Details about taxes and legal compliance. Only applicable to subscription products.
+     * Deprecated: Subscriptions are no longer supported in the InAppProducts API. Use the Subscriptions API instead.
      */
     subscriptionTaxesAndComplianceSettings?: Schema$SubscriptionTaxAndComplianceSettings;
     /**
-     * Trial period, specified in ISO 8601 format. Acceptable values are anything between P7D (seven days) and P999D (999 days).
+     * Deprecated: Subscriptions are no longer supported in the InAppProducts API. Use the Subscriptions API instead.
      */
     trialPeriod?: string | null;
   }
@@ -2727,7 +2727,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$InAppProductListing {
     /**
-     * Localized entitlement benefits for a subscription.
+     * Deprecated: Subscriptions are no longer supported in the InAppProducts API. Use the Subscriptions API instead.
      */
     benefits?: string[] | null;
     /**
@@ -3660,7 +3660,7 @@ export namespace androidpublisher_v3 {
      */
     regionCode?: string | null;
     /**
-     * The fraction of the purchase option price that the user pays for this offer. For example, if the purchase option price for this region is $12, then a 50% discount would correspond to a price of $6. The discount must be specified as a fraction strictly larger than 0 and strictly smaller than 1. The resulting price will be rounded to the nearest billable unit (e.g. cents for USD). The relative discount is considered invalid if the discounted price ends up being smaller than the minimum price allowed in this region.
+     * The percentage discount subtracted from the purchase option price, specified as a fraction strictly larger than `0` and strictly smaller than `1`. For example, a value of `0.8` represents an 80% discount, meaning that if the purchase option price is $100, the offer price will be $20. The resulting price will be rounded to the nearest billable unit (e.g. cents for USD). The relative discount is considered invalid if the discounted price ends up being smaller than the minimum price allowed in this region.
      */
     relativeDiscount?: number | null;
   }
@@ -3975,7 +3975,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$OtherRegionsSubscriptionOfferPhaseConfig {
     /**
-     * The absolute amount of money subtracted from the base plan price prorated over the phase duration that the user pays for this offer phase. For example, if the base plan price for this region is $12 for a period of 1 year, then a $1 absolute discount for a phase of a duration of 3 months would correspond to a price of $2. The resulting price may not be smaller than the minimum price allowed for any new locations Play may launch in.
+     * The absolute amount of money subtracted from the base plan price prorated over the phase duration. For example, if the base plan price for this region is $12 for a period of 1 year, then a $1 absolute discount for a phase of a duration of 3 months would correspond to a price of $2. The resulting price may not be smaller than the minimum price allowed for any new locations Play may launch in.
      */
     absoluteDiscounts?: Schema$OtherRegionsSubscriptionOfferPhasePrices;
     /**
@@ -3987,7 +3987,7 @@ export namespace androidpublisher_v3 {
      */
     otherRegionsPrices?: Schema$OtherRegionsSubscriptionOfferPhasePrices;
     /**
-     * The fraction of the base plan price prorated over the phase duration that the user pays for this offer phase. For example, if the base plan price for this region is $12 for a period of 1 year, then a 50% discount for a phase of a duration of 3 months would correspond to a price of $1.50. The discount must be specified as a fraction strictly larger than 0 and strictly smaller than 1. The resulting price will be rounded to the nearest billable unit (e.g. cents for USD). The relative discount is considered invalid if the discounted price ends up being smaller than the minimum price allowed in any new locations Play may launch in.
+     * The percentage discount subtracted from the base plan price prorated over the phase duration, specified as a fraction strictly larger than `0` and strictly smaller than `1`. For example, a value of `0.8` represents an 80% discount, meaning that if the prorated base plan price is $100, the offer price will be $20. The resulting price will be rounded to the nearest billable unit (e.g. cents for USD). The relative discount is considered invalid if the discounted price ends up being smaller than the minimum price allowed in any new locations Play may launch in.
      */
     relativeDiscount?: number | null;
   }
@@ -4673,7 +4673,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$RegionalSubscriptionOfferPhaseConfig {
     /**
-     * The absolute amount of money subtracted from the base plan price prorated over the phase duration that the user pays for this offer phase. For example, if the base plan price for this region is $12 for a period of 1 year, then a $1 absolute discount for a phase of a duration of 3 months would correspond to a price of $2. The resulting price may not be smaller than the minimum price allowed for this region.
+     * The absolute amount of money subtracted from the base plan price prorated over the phase duration. For example, if the base plan price for this region is $12 for a period of 1 year, then a $1 absolute discount for a phase of a duration of 3 months would correspond to a price of $2. The resulting price may not be smaller than the minimum price allowed for this region.
      */
     absoluteDiscount?: Schema$Money;
     /**
@@ -4689,7 +4689,7 @@ export namespace androidpublisher_v3 {
      */
     regionCode?: string | null;
     /**
-     * The fraction of the base plan price prorated over the phase duration that the user pays for this offer phase. For example, if the base plan price for this region is $12 for a period of 1 year, then a 50% discount for a phase of a duration of 3 months would correspond to a price of $1.50. The discount must be specified as a fraction strictly larger than 0 and strictly smaller than 1. The resulting price will be rounded to the nearest billable unit (e.g. cents for USD). The relative discount is considered invalid if the discounted price ends up being smaller than the minimum price allowed in this region.
+     * The percentage discount subtracted from the base plan price prorated over the phase duration, specified as a fraction strictly larger than `0` and strictly smaller than `1`. For example, a value of `0.8` represents an 80% discount, meaning that if the prorated base plan price is $100, the offer price will be $20. The resulting price will be rounded to the nearest billable unit (e.g. cents for USD). The relative discount is considered invalid if the discounted price ends up being smaller than the minimum price allowed in this region.
      */
     relativeDiscount?: number | null;
   }

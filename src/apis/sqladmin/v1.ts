@@ -3445,11 +3445,11 @@ export namespace sqladmin_v1 {
     startWorkloadCaptureContext?: Schema$StartWorkloadCaptureContext;
   }
   /**
-   * Request to stop executing a captured workload on a replay instance.
+   * Request to stop an active workload replay on a target Cloud SQL replay instance.
    */
   export interface Schema$SqlWorkloadCapturesStopReplayRequest {
     /**
-     * Required. Contains details about the stop workload replay operation.
+     * Optional. Contains details about the stop workload replay operation. If omitted, default values are used.
      */
     stopWorkloadReplayContext?: Schema$StopWorkloadReplayContext;
   }
@@ -3625,18 +3625,9 @@ export namespace sqladmin_v1 {
     abortLiveReplay?: boolean | null;
   }
   /**
-   * The context for the `StopWorkloadReplay` operation, which contains details about stopping the execution of a captured workload (recorded read and write SQL queries) on a replay instance.
+   * The context for the `StopWorkloadReplay` operation, which represents an operation that stops an active workload replay on a target Cloud SQL replay instance.
    */
-  export interface Schema$StopWorkloadReplayContext {
-    /**
-     * Required. The name of the Cloud SQL instance where the captured workload (SQL queries) is being executed, excluding the project ID (for example, `my-replay-instance`). The instance name must start with a lowercase letter and contain only lowercase letters, numbers, and hyphens. The combined length of `project-ID:instance-name` must be 98 characters or less.
-     */
-    replayInstance?: string | null;
-    /**
-     * Output only. The ID of the workload to stop executing on the replay instance. Each workload capture generates a unique ID in the format `workload-` (for example, `workload-1786046400`). Use this ID to stop executing the recorded SQL queries.
-     */
-    workloadId?: string | null;
-  }
+  export interface Schema$StopWorkloadReplayContext {}
   /**
    * Request message for switching over a `BlueGreenDeployment` resource.
    */
@@ -19437,7 +19428,7 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * Stops executing a captured workload on the separate Cloud SQL instance.
+     * Stops an active workload replay on the target Cloud SQL replay instance.
      * @example
      * ```js
      * // Before running the sample:
@@ -19470,12 +19461,10 @@ export namespace sqladmin_v1 {
      *
      *   // Do the magic
      *   const res = await sql.workloadCaptures.stopReplay({
-     *     // Required. Cloud SQL instance ID. This does not include the project ID.
+     *     // Required. Cloud SQL instance ID of the target replay instance. This does not include the project ID.
      *     instance: 'placeholder-value',
-     *     // Required. Project ID of the project that contains the instance.
+     *     // Required. Project ID of the project that contains the target replay instance.
      *     project: 'placeholder-value',
-     *     // Required. The ID of the workload to replay.
-     *     workloadId: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -19588,7 +19577,7 @@ export namespace sqladmin_v1 {
           {
             url: (
               rootUrl +
-              '/v1/projects/{project}/instances/{instance}/workloadCaptures/{workloadId}:stopReplay'
+              '/v1/projects/{project}/instances/{instance}/workloadCaptures:stopReplay'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -19596,8 +19585,8 @@ export namespace sqladmin_v1 {
           options
         ),
         params,
-        requiredParams: ['project', 'instance', 'workloadId'],
-        pathParams: ['instance', 'project', 'workloadId'],
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
         context: this.context,
       };
       if (callback) {
@@ -19672,17 +19661,13 @@ export namespace sqladmin_v1 {
   }
   export interface Params$Resource$Workloadcaptures$Stopreplay extends StandardParameters {
     /**
-     * Required. Cloud SQL instance ID. This does not include the project ID.
+     * Required. Cloud SQL instance ID of the target replay instance. This does not include the project ID.
      */
     instance?: string;
     /**
-     * Required. Project ID of the project that contains the instance.
+     * Required. Project ID of the project that contains the target replay instance.
      */
     project?: string;
-    /**
-     * Required. The ID of the workload to replay.
-     */
-    workloadId?: string;
 
     /**
      * Request body metadata

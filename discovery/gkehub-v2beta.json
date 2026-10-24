@@ -554,7 +554,7 @@
       }
     }
   },
-  "revision": "20261008",
+  "revision": "20261017",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceState": {
@@ -3160,6 +3160,7 @@
             "MODERNIZATION_INCOMPATIBLE_POD_ANNOTATION",
             "MODERNIZATION_INCOMPATIBLE_CONFIG",
             "MODERNIZATION_INCOMPATIBLE_GATEWAY_POD_SCALE",
+            "MODERNIZATION_REQUIRES_MANUAL_WORKLOAD_RESTART",
             "MODERNIZATION_SCHEDULED",
             "MODERNIZATION_IN_PROGRESS",
             "MODERNIZATION_COMPLETED",
@@ -3169,6 +3170,7 @@
             "MODERNIZATION_PREPARED",
             "MODERNIZATION_MIGRATING_WORKLOADS",
             "MODERNIZATION_ROLLING_BACK_CLUSTER",
+            "MODERNIZATION_AWAITING_MANUAL_WORKLOAD_RESTART",
             "MODERNIZATION_WILL_BE_SCHEDULED",
             "MODERNIZATION_MANUAL",
             "MODERNIZATION_ELIGIBLE",
@@ -3177,6 +3179,7 @@
             "MODERNIZATION_FINALIZED",
             "MODERNIZATION_ROLLING_BACK_FLEET",
             "MODERNIZATION_MODERNIZED",
+            "MODERNIZATION_REQUIRES_CUSTOMER_TRIGGER",
             "MODERNIZATION_COMPATIBLE",
             "MODERNIZATION_INCOMPATIBLE",
             "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE",
@@ -3227,6 +3230,7 @@
             "One or more Pods have unsupported annotations.",
             "Incompatible config found in the cluster.",
             "Gateway pods per cluster limit exceeded.",
+            "Cluster contains workloads that will require manual restart during modernization.",
             "Modernization is scheduled for a cluster.",
             "Modernization is in progress for a cluster.",
             "Modernization is completed for a cluster.",
@@ -3236,6 +3240,7 @@
             "Cluster has been prepared for its workloads to be migrated.",
             "Migrating the cluster's workloads to the new implementation.",
             "Rollback is in progress for modernization of a cluster.",
+            "Modernization of a cluster is awaiting manual restart of workloads. The customer must restart these workloads to complete modernization.",
             "Modernization will be scheduled for a fleet.",
             "Fleet is opted out from automated modernization.",
             "Fleet is eligible for modernization.",
@@ -3244,6 +3249,7 @@
             "Modernization is finalized for all clusters in a fleet. Rollback is no longer allowed.",
             "Rollback is in progress for modernization of all clusters in a fleet.",
             "Modernization of all the fleet's clusters is complete. Soaking before finalizing the modernization.",
+            "Fleet modernization must be Customer-Triggered, and cannot be Google-driven. Specific details may be reported via another fleet/cluster condition.",
             "Fleet is compatible for modernization.",
             "Fleet is not yet compatible for modernization.",
             "Fleet exceeds service mesh fleet-level scalability limits.",

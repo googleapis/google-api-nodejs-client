@@ -125,7 +125,7 @@ export namespace fcm_v1 {
   }
 
   /**
-   * A Background Sync message that is sent to an Android device.
+   * A Background Sync message that is sent to Android devices.
    */
   export interface Schema$AndroidBackgroundSyncMessage {}
   /**
@@ -178,7 +178,7 @@ export namespace fcm_v1 {
    */
   export interface Schema$AndroidConfigV2 {
     /**
-     * Optional. Non-urgent background sync message to send to android devices.
+     * Optional. Non-urgent background sync message to send to Android devices. Delivery of these messages may be delayed or batched to optimize for battery.
      */
     backgroundSync?: Schema$AndroidBackgroundSyncMessage;
     /**
@@ -202,7 +202,7 @@ export namespace fcm_v1 {
      */
     fcmOptions?: Schema$AndroidFcmOptions;
     /**
-     * Optional. User-facing notification to send to android devices.
+     * Optional. User-facing notification to send to Android devices. These messages are delivered immediately and are not delayed by battery optimizations.
      */
     remoteNotification?: Schema$AndroidRemoteNotification;
     /**
@@ -393,7 +393,7 @@ export namespace fcm_v1 {
      */
     id?: number | null;
     /**
-     * Contains the URL of an image that is going to be displayed in a notification. If present, it will override google.firebase.fcm.v1.Notification.image.
+     * An HTTPS URL of an image to display in the notification. If present, it overrides google.firebase.fcm.v1.Notification.image.
      */
     image?: string | null;
     /**
@@ -450,7 +450,7 @@ export namespace fcm_v1 {
     visibility?: string | null;
   }
   /**
-   * A Remote Notification message that is sent to an Android device.
+   * A Remote Notification message that is sent to Android devices.
    */
   export interface Schema$AndroidRemoteNotification {
     /**

@@ -1318,7 +1318,7 @@ export namespace androidmanagement_v1 {
      */
     bluetoothSharing?: string | null;
     /**
-     * Controls Wi-Fi configuring privileges. Based on the option set, user will have either full or limited or no control in configuring Wi-Fi networks.
+     * Optional. Controls Wi-Fi configuring privileges. Based on the option set, user will have either full or limited or no control in configuring Wi-Fi networks.
      */
     configureWifi?: string | null;
     /**
@@ -1330,15 +1330,15 @@ export namespace androidmanagement_v1 {
      */
     privateDnsSettings?: Schema$PrivateDnsSettings;
     /**
-     * Controls tethering settings. Based on the value set, the user is partially or fully disallowed from using different forms of tethering.
+     * Optional. Controls tethering settings. Based on the value set, the user is partially or fully disallowed from using different forms of tethering.
      */
     tetheringSettings?: string | null;
     /**
-     * Controls what files and/or data can be transferred via USB. Supported only on company-owned devices.
+     * Optional. Controls what files and/or data can be transferred via USB. Supported only on company-owned devices.
      */
     usbDataAccess?: string | null;
     /**
-     * Controls configuring and using Wi-Fi direct settings. Supported on company-owned devices running Android 13 and above.
+     * Optional. Controls configuring and using Wi-Fi direct settings. Supported on company-owned devices running Android 13 and above.
      */
     wifiDirectSettings?: string | null;
     /**
@@ -1346,7 +1346,7 @@ export namespace androidmanagement_v1 {
      */
     wifiRoamingPolicy?: Schema$WifiRoamingPolicy;
     /**
-     * Restrictions on which Wi-Fi SSIDs the device can connect to. Note that this does not affect which networks can be configured on the device. Supported on company-owned devices running Android 13 and above.
+     * Optional. Restrictions on which Wi-Fi SSIDs the device can connect to. Note that this does not affect which networks can be configured on the device. Supported on company-owned devices running Android 13 and above.
      */
     wifiSsidPolicy?: Schema$WifiSsidPolicy;
   }
@@ -2845,11 +2845,11 @@ export namespace androidmanagement_v1 {
      */
     defaultPermissionPolicy?: string | null;
     /**
-     * Covers controls for device connectivity such as Wi-Fi, USB data access, keyboard/mouse connections, and more.
+     * Optional. Covers controls for device connectivity such as Wi-Fi, USB data access, keyboard/mouse connections, and more.
      */
     deviceConnectivityManagement?: Schema$DeviceConnectivityManagement;
     /**
-     * The device owner information to be shown on the lock screen.
+     * Optional. The device owner information to be shown on the lock screen.
      */
     deviceOwnerLockScreenInfo?: Schema$UserFacingMessage;
     /**
@@ -3073,7 +3073,7 @@ export namespace androidmanagement_v1 {
      */
     stayOnPluggedModes?: string[] | null;
     /**
-     * The system update policy, which controls how OS updates are applied. If the update type is WINDOWED, the update window will automatically apply to Play app updates as well.Note: Google Play system updates (https://source.android.com/docs/core/ota/modular-system) (also called Mainline updates) are automatically downloaded and require a device reboot to be installed. Refer to the mainline section in Manage system updates (https://developer.android.com/work/dpc/system-updates#mainline) for further details.
+     * The system update policy, which controls how OS updates are applied. If the update type is WINDOWED, the update window will automatically apply to Play app updates as well.Note: Google Play system updates (https://source.android.com/docs/core/ota/modular-system) (also called Mainline updates) are automatically downloaded and require a device reboot to be installed. Refer to the mainline section in Manage system updates (https://developer.android.com/work/dpc/system-updates#mainline) for further details.If this policy is set, it takes precedence over unifiedUpdatePolicy for OEM OS updates. For more information, see unifiedUpdatePolicy.
      */
     systemUpdate?: Schema$SystemUpdate;
     /**
@@ -4014,7 +4014,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$WifiSsidPolicy {
     /**
-     * Type of the Wi-Fi SSID policy to be applied.
+     * Optional. Type of the Wi-Fi SSID policy to be applied.
      */
     wifiSsidPolicyType?: string | null;
     /**

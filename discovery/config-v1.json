@@ -65,6 +65,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://config.us-east7.rep.googleapis.com/",
       "location": "us-east7"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://config.us.rep.googleapis.com/",
+      "location": "us"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1788,7 +1793,7 @@
       }
     }
   },
-  "revision": "20260722",
+  "revision": "20261016",
   "rootUrl": "https://config.googleapis.com/",
   "schemas": {
     "ApplyResults": {

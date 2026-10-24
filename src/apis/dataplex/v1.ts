@@ -1449,6 +1449,10 @@ export namespace dataplex_v1 {
      */
     catalogPublishingEnabled?: boolean | null;
     /**
+     * Optional. Custom instructions for generating data documentation. The maximum length is 2,048 characters.
+     */
+    customInstructions?: string | null;
+    /**
      * Optional. Specifies which components of the data documentation to generate. Any component that is required to generate the specified components will also be generated. If no generation scope is specified, all available documentation components will be generated.
      */
     generationScopes?: string[] | null;
