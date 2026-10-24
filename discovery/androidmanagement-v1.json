@@ -1265,7 +1265,7 @@
       }
     }
   },
-  "revision": "20261014",
+  "revision": "20261021",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -3568,7 +3568,7 @@
           "type": "string"
         },
         "configureWifi": {
-          "description": "Controls Wi-Fi configuring privileges. Based on the option set, user will have either full or limited or no control in configuring Wi-Fi networks.",
+          "description": "Optional. Controls Wi-Fi configuring privileges. Based on the option set, user will have either full or limited or no control in configuring Wi-Fi networks.",
           "enum": [
             "CONFIGURE_WIFI_UNSPECIFIED",
             "ALLOW_CONFIGURING_WIFI",
@@ -3592,7 +3592,7 @@
           "description": "Optional. The global private DNS settings."
         },
         "tetheringSettings": {
-          "description": "Controls tethering settings. Based on the value set, the user is partially or fully disallowed from using different forms of tethering.",
+          "description": "Optional. Controls tethering settings. Based on the value set, the user is partially or fully disallowed from using different forms of tethering.",
           "enum": [
             "TETHERING_SETTINGS_UNSPECIFIED",
             "ALLOW_ALL_TETHERING",
@@ -3608,7 +3608,7 @@
           "type": "string"
         },
         "usbDataAccess": {
-          "description": "Controls what files and/or data can be transferred via USB. Supported only on company-owned devices.",
+          "description": "Optional. Controls what files and/or data can be transferred via USB. Supported only on company-owned devices.",
           "enum": [
             "USB_DATA_ACCESS_UNSPECIFIED",
             "ALLOW_USB_DATA_TRANSFER",
@@ -3624,7 +3624,7 @@
           "type": "string"
         },
         "wifiDirectSettings": {
-          "description": "Controls configuring and using Wi-Fi direct settings. Supported on company-owned devices running Android 13 and above.",
+          "description": "Optional. Controls configuring and using Wi-Fi direct settings. Supported on company-owned devices running Android 13 and above.",
           "enum": [
             "WIFI_DIRECT_SETTINGS_UNSPECIFIED",
             "ALLOW_WIFI_DIRECT",
@@ -3643,7 +3643,7 @@
         },
         "wifiSsidPolicy": {
           "$ref": "WifiSsidPolicy",
-          "description": "Restrictions on which Wi-Fi SSIDs the device can connect to. Note that this does not affect which networks can be configured on the device. Supported on company-owned devices running Android 13 and above."
+          "description": "Optional. Restrictions on which Wi-Fi SSIDs the device can connect to. Note that this does not affect which networks can be configured on the device. Supported on company-owned devices running Android 13 and above."
         }
       },
       "type": "object"
@@ -5559,7 +5559,8 @@
             "NEW_ACCOUNT_NOT_IN_ENTERPRISE",
             "DEFAULT_APPLICATION_SETTING_UNSUPPORTED_SCOPES",
             "DEFAULT_APPLICATION_SETTING_FAILED_FOR_SCOPE",
-            "PRIVATE_DNS_HOST_NOT_SERVING"
+            "PRIVATE_DNS_HOST_NOT_SERVING",
+            "USER_NOT_UNLOCKED"
           ],
           "enumDescriptions": [
             "Specific non-compliance reason is not specified. Fields in specific_non_compliance_context are not set.",
@@ -5576,7 +5577,8 @@
             "Work account added by the user is not part of the enterprise. nonComplianceReason is set to USER_ACTION.",
             "The default application setting is applied to the scopes that are not supported by the management mode, even if the management mode itself is supported for the app type (e.g., a policy with DEFAULT_BROWSER app type and SCOPE_PERSONAL_PROFILE list sent to a fully managed device results in the scopes being inapplicable for the management mode). If the management mode is not supported for the app type, a NonComplianceDetail with MANAGEMENT_MODE is reported, without a specificNonComplianceReason.nonComplianceReason is set to MANAGEMENT_MODE.",
             "The default application setting failed to apply for a specific scope. defaultApplicationContext is set. nonComplianceReason is set to INVALID_VALUE or APP_NOT_INSTALLED.",
-            "The specified host for private DNS is a valid hostname but was found to not be a private DNS server. nonComplianceReason is set to INVALID_VALUE."
+            "The specified host for private DNS is a valid hostname but was found to not be a private DNS server. nonComplianceReason is set to INVALID_VALUE.",
+            "The user's device is not unlocked (in direct boot mode), preventing the application of the policy. nonComplianceReason is set to PENDING."
           ],
           "type": "string"
         }
@@ -6389,11 +6391,11 @@
         },
         "deviceConnectivityManagement": {
           "$ref": "DeviceConnectivityManagement",
-          "description": "Covers controls for device connectivity such as Wi-Fi, USB data access, keyboard/mouse connections, and more."
+          "description": "Optional. Covers controls for device connectivity such as Wi-Fi, USB data access, keyboard/mouse connections, and more."
         },
         "deviceOwnerLockScreenInfo": {
           "$ref": "UserFacingMessage",
-          "description": "The device owner information to be shown on the lock screen."
+          "description": "Optional. The device owner information to be shown on the lock screen."
         },
         "deviceRadioState": {
           "$ref": "DeviceRadioState",
@@ -6787,7 +6789,7 @@
         },
         "systemUpdate": {
           "$ref": "SystemUpdate",
-          "description": "The system update policy, which controls how OS updates are applied. If the update type is WINDOWED, the update window will automatically apply to Play app updates as well.Note: Google Play system updates (https://source.android.com/docs/core/ota/modular-system) (also called Mainline updates) are automatically downloaded and require a device reboot to be installed. Refer to the mainline section in Manage system updates (https://developer.android.com/work/dpc/system-updates#mainline) for further details."
+          "description": "The system update policy, which controls how OS updates are applied. If the update type is WINDOWED, the update window will automatically apply to Play app updates as well.Note: Google Play system updates (https://source.android.com/docs/core/ota/modular-system) (also called Mainline updates) are automatically downloaded and require a device reboot to be installed. Refer to the mainline section in Manage system updates (https://developer.android.com/work/dpc/system-updates#mainline) for further details.If this policy is set, it takes precedence over unifiedUpdatePolicy for OEM OS updates. For more information, see unifiedUpdatePolicy."
         },
         "tetheringConfigDisabled": {
           "deprecated": true,
@@ -8348,7 +8350,7 @@
       "id": "WifiSsidPolicy",
       "properties": {
         "wifiSsidPolicyType": {
-          "description": "Type of the Wi-Fi SSID policy to be applied.",
+          "description": "Optional. Type of the Wi-Fi SSID policy to be applied.",
           "enum": [
             "WIFI_SSID_POLICY_TYPE_UNSPECIFIED",
             "WIFI_SSID_DENYLIST",
