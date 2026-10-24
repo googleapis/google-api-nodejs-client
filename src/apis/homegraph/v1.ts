@@ -409,6 +409,19 @@ export namespace homegraph_v1 {
      */
     deviceId?: string | null;
   }
+  /**
+   * Dynamic JSON trait state payload conforming to `json_trait_schema.md`. Used for Category 2 (vendor Matter clusters) and Category 3 (non-Matter capabilities) traits across all wire and internal paths, and for Category 1 traits on external JSON-only wire paths (e.g., `Query` with `JSON_TRAIT_ONLY`).
+   */
+  export interface Schema$JsonTrait {
+    /**
+     * Optional. Trait attribute map conforming to the trait's registered JSON Schema.
+     */
+    data?: {[key: string]: any} | null;
+    /**
+     * Required. Canonical symbolic trait ID per `json_trait_schema.md`: - Standard Matter (Cat 1): `matter.` (e.g., `matter.thermostat`) - Google / vendor Matter (Cat 1/2): `matter..` (e.g., `matter.google.`, `matter.eve.utility`) - Non-Matter (Cat 3, any provider incl. Google): `ghp..` (e.g., `ghp.acme.warranty`, `ghp.google.`)
+     */
+    id?: string | null;
+  }
   export interface Schema$MediaUrlsStruct {
     /**
      * URL for a dash manifest for playback
@@ -707,6 +720,10 @@ export namespace homegraph_v1 {
      * Other metadata for the trait. The time the client update was committed in the server.
      */
     commitTime?: string | null;
+    /**
+     * Contains the dynamic JSON trait payload.
+     */
+    jsonTrait?: Schema$JsonTrait;
     /**
      * The custom timestamp supplied by the provider during a ReportStateAndNotification update (if provided). This field is returned as part of the `QueryResponse`.
      */
