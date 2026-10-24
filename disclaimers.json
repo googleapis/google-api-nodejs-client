@@ -804,10 +804,6 @@
     "package": "@google-cloud/redis-cluster"
   },
   {
-    "api": "merchantapi",
-    "package": "@google-shopping/loyaltycustomers"
-  },
-  {
     "api": "modelarmor",
     "package": "@google-cloud/modelarmor"
   },
@@ -906,6 +902,10 @@
   {
     "api": "merchantapi",
     "package": "@google-shopping/lfp"
+  },
+  {
+    "api": "merchantapi",
+    "package": "@google-shopping/loyaltycustomers"
   },
   {
     "api": "merchantapi",
