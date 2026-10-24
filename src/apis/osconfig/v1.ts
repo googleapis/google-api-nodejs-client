@@ -2532,7 +2532,7 @@ export namespace osconfig_v1 {
      *   const res = await osconfig.projects.locations.instances.inventories.get({
      *     // Required. API resource name for inventory resource. Format: `projects/{project\}/locations/{location\}/instances/{instance\}/inventory` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance\}`, either Compute Engine `instance-id` or `instance-name` can be provided.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance/inventory',
-     *     // Inventory view indicating what information should be included in the inventory resource. If unspecified, the default view is BASIC.
+     *     // Optional. Inventory view indicating what information should be included in the inventory resource. If unspecified, the default view is BASIC.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2669,15 +2669,15 @@ export namespace osconfig_v1 {
      *
      *   // Do the magic
      *   const res = await osconfig.projects.locations.instances.inventories.list({
-     *     // If provided, this field specifies the criteria that must be met by a `Inventory` API resource to be included in the response.
+     *     // Optional. If provided, this field specifies the criteria that must be met by a `Inventory` API resource to be included in the response.
      *     filter: 'placeholder-value',
-     *     // The maximum number of results to return.
+     *     // Optional. The maximum number of results to return.
      *     pageSize: 'placeholder-value',
-     *     // A pagination token returned from a previous call to `ListInventories` that indicates where this listing should continue from.
+     *     // Optional. A pagination token returned from a previous call to `ListInventories` that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/-` For `{project\}`, either `project-number` or `project-id` can be provided.
      *     parent: 'projects/my-project/locations/my-location/instances/my-instance',
-     *     // Inventory view indicating what information should be included in the inventory resource. If unspecified, the default view is BASIC.
+     *     // Optional. Inventory view indicating what information should be included in the inventory resource. If unspecified, the default view is BASIC.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2793,21 +2793,21 @@ export namespace osconfig_v1 {
      */
     name?: string;
     /**
-     * Inventory view indicating what information should be included in the inventory resource. If unspecified, the default view is BASIC.
+     * Optional. Inventory view indicating what information should be included in the inventory resource. If unspecified, the default view is BASIC.
      */
     view?: string;
   }
   export interface Params$Resource$Projects$Locations$Instances$Inventories$List extends StandardParameters {
     /**
-     * If provided, this field specifies the criteria that must be met by a `Inventory` API resource to be included in the response.
+     * Optional. If provided, this field specifies the criteria that must be met by a `Inventory` API resource to be included in the response.
      */
     filter?: string;
     /**
-     * The maximum number of results to return.
+     * Optional. The maximum number of results to return.
      */
     pageSize?: number;
     /**
-     * A pagination token returned from a previous call to `ListInventories` that indicates where this listing should continue from.
+     * Optional. A pagination token returned from a previous call to `ListInventories` that indicates where this listing should continue from.
      */
     pageToken?: string;
     /**
@@ -2815,7 +2815,7 @@ export namespace osconfig_v1 {
      */
     parent?: string;
     /**
-     * Inventory view indicating what information should be included in the inventory resource. If unspecified, the default view is BASIC.
+     * Optional. Inventory view indicating what information should be included in the inventory resource. If unspecified, the default view is BASIC.
      */
     view?: string;
   }
