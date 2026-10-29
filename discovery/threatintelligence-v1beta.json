@@ -842,7 +842,7 @@
       }
     }
   },
-  "revision": "20260927",
+  "revision": "20261025",
   "rootUrl": "https://threatintelligence.googleapis.com/",
   "schemas": {
     "AVDetections": {
@@ -1066,6 +1066,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "communicationContext": {
+          "$ref": "CommunicationContext",
+          "description": "Output only. Platform identifiers of the message, thread and channel.",
+          "readOnly": true
+        },
         "content": {
           "description": "Output only. The content of the document.",
           "readOnly": true,
@@ -1238,6 +1243,10 @@
         },
         "channelUrl": {
           "description": "Optional. URL of the communication channel.",
+          "type": "string"
+        },
+        "messageId": {
+          "description": "Optional. Message or post identifier on the originating platform.",
           "type": "string"
         },
         "serviceName": {
@@ -3300,7 +3309,7 @@
           "description": "Optional. Alert thresholds to effectively reduce noise."
         },
         "technologies": {
-          "description": "Optional. List of vendor, technology or cpe fingerprint. example: Microsoft office 360 Apache Server 3.5 cpe:2.3:a:microsoft:outlook:*:*:*:*:*:*:*:*",
+          "description": "Optional. List of technologies to watch, one per entry, in the form ` [version]`, using the vendor and product names from the Google Threat Intelligence products and fixes section. example: `microsoft outlook` `apache http_server 2.4.54` CPE strings such as `cpe:2.3:a:microsoft:outlook:*:*:*:*:*:*:*:*` are only parsed through the Google Threat Intelligence interface and are not available through the API. Send the vendor and product pair instead.",
           "items": {
             "type": "string"
           },
@@ -3492,7 +3501,7 @@
           "type": "array"
         },
         "matchedTechnologies": {
-          "description": "Optional. The specific technologies from the configured watchlist that triggered the match. Ex: \"Apache Struts\".",
+          "description": "Optional. The entries from the configured watchlist that triggered the match, exactly as written in `TechnologyWatchListConfig.technologies`. Ex: `apache http_server 2.4.54`.",
           "items": {
             "type": "string"
           },
@@ -3558,7 +3567,7 @@
           "type": "string"
         },
         "technologies": {
-          "description": "Required. All technologies affected by the vulnerability. Ex: \"Apache Struts\".",
+          "description": "Required. All technologies affected by the vulnerability, using the vendor and product names of its affected products, optionally followed by a version. Ex: `Apache Struts 2.2.3`.",
           "items": {
             "type": "string"
           },
