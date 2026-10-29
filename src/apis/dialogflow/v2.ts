@@ -1360,8 +1360,14 @@ export namespace dialogflow_v2 {
   export interface Schema$GoogleCloudDialogflowV2AutomatedAgentReply {
     allowCancellation?: boolean | null;
     automatedAgentReplyType?: string | null;
+    callCompanionAuthCode?: string | null;
     cxCurrentPage?: string | null;
     detectIntentResponse?: Schema$GoogleCloudDialogflowV2DetectIntentResponse;
+    event?: string | null;
+    intent?: string | null;
+    matchConfidence?: number | null;
+    parameters?: {[key: string]: any} | null;
+    responseMessages?: Schema$GoogleCloudDialogflowV2ResponseMessage[];
   }
   export interface Schema$GoogleCloudDialogflowV2BatchCreateEntitiesRequest {
     entities?: Schema$GoogleCloudDialogflowV2EntityTypeEntity[];
@@ -2060,6 +2066,7 @@ export namespace dialogflow_v2 {
   }
   export interface Schema$GoogleCloudDialogflowV2beta1SentimentAnalysisResult {
     queryTextSentiment?: Schema$GoogleCloudDialogflowV2beta1Sentiment;
+    status?: Schema$GoogleRpcStatus;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1ServiceLatency {
     internalServiceLatencies?: Schema$GoogleCloudDialogflowV2beta1ServiceLatencyInternalServiceLatency[];
@@ -2210,6 +2217,9 @@ export namespace dialogflow_v2 {
   export interface Schema$GoogleCloudDialogflowV2CesToolSpec {
     cesTool?: string | null;
     confirmationRequirement?: string | null;
+    parameterOverrides?: Schema$GoogleCloudDialogflowV2ParameterOverride[];
+    proactiveEnabled?: boolean | null;
+    reactiveEnabled?: boolean | null;
   }
   export interface Schema$GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata {
     conversationProfile?: string | null;
@@ -3300,6 +3310,7 @@ export namespace dialogflow_v2 {
     name?: string | null;
     participant?: string | null;
     participantRole?: string | null;
+    responseMessages?: Schema$GoogleCloudDialogflowV2ResponseMessage[];
     sendTime?: string | null;
     sentimentAnalysis?: Schema$GoogleCloudDialogflowV2SentimentAnalysisResult;
   }
@@ -3330,6 +3341,11 @@ export namespace dialogflow_v2 {
     audioEncoding?: string | null;
     sampleRateHertz?: number | null;
     synthesizeSpeechConfig?: Schema$GoogleCloudDialogflowV2SynthesizeSpeechConfig;
+  }
+  export interface Schema$GoogleCloudDialogflowV2ParameterOverride {
+    contextReferenceKey?: string | null;
+    fieldPath?: string | null;
+    parameterName?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2Participant {
     agentDesktopSource?: string | null;
@@ -3389,6 +3405,33 @@ export namespace dialogflow_v2 {
     contentUri?: string | null;
     importGcsCustomMetadata?: boolean | null;
     smartMessagingPartialUpdate?: boolean | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2ResponseMessage {
+    endInteraction?: Schema$GoogleCloudDialogflowV2ResponseMessageEndInteraction;
+    liveAgentHandoff?: Schema$GoogleCloudDialogflowV2ResponseMessageLiveAgentHandoff;
+    mixedAudio?: Schema$GoogleCloudDialogflowV2ResponseMessageMixedAudio;
+    payload?: {[key: string]: any} | null;
+    telephonyTransferCall?: Schema$GoogleCloudDialogflowV2ResponseMessageTelephonyTransferCall;
+    text?: Schema$GoogleCloudDialogflowV2ResponseMessageText;
+  }
+  export interface Schema$GoogleCloudDialogflowV2ResponseMessageEndInteraction {}
+  export interface Schema$GoogleCloudDialogflowV2ResponseMessageLiveAgentHandoff {
+    metadata?: {[key: string]: any} | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2ResponseMessageMixedAudio {
+    segments?: Schema$GoogleCloudDialogflowV2ResponseMessageMixedAudioSegment[];
+  }
+  export interface Schema$GoogleCloudDialogflowV2ResponseMessageMixedAudioSegment {
+    allowPlaybackInterruption?: boolean | null;
+    audio?: string | null;
+    uri?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2ResponseMessageTelephonyTransferCall {
+    phoneNumber?: string | null;
+    sipUri?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2ResponseMessageText {
+    text?: string[] | null;
   }
   export interface Schema$GoogleCloudDialogflowV2RestoreAgentRequest {
     agentContent?: string | null;
@@ -3486,6 +3529,7 @@ export namespace dialogflow_v2 {
   }
   export interface Schema$GoogleCloudDialogflowV2SentimentAnalysisResult {
     queryTextSentiment?: Schema$GoogleCloudDialogflowV2Sentiment;
+    status?: Schema$GoogleRpcStatus;
   }
   export interface Schema$GoogleCloudDialogflowV2ServiceLatency {
     internalServiceLatencies?: Schema$GoogleCloudDialogflowV2ServiceLatencyInternalServiceLatency[];
@@ -3903,6 +3947,9 @@ export namespace dialogflow_v2 {
   export interface Schema$GoogleCloudDialogflowV2ToolsetTool {
     confirmationRequirement?: string | null;
     operationId?: string | null;
+    parameterOverrides?: Schema$GoogleCloudDialogflowV2ParameterOverride[];
+    proactiveEnabled?: boolean | null;
+    reactiveEnabled?: boolean | null;
     toolset?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2ToolTLSConfig {

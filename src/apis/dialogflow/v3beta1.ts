@@ -3165,6 +3165,7 @@ export namespace dialogflow_v3beta1 {
   }
   export interface Schema$GoogleCloudDialogflowV2beta1SentimentAnalysisResult {
     queryTextSentiment?: Schema$GoogleCloudDialogflowV2beta1Sentiment;
+    status?: Schema$GoogleRpcStatus;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1ServiceLatency {
     internalServiceLatencies?: Schema$GoogleCloudDialogflowV2beta1ServiceLatencyInternalServiceLatency[];
@@ -3797,6 +3798,7 @@ export namespace dialogflow_v3beta1 {
     name?: string | null;
     participant?: string | null;
     participantRole?: string | null;
+    responseMessages?: Schema$GoogleCloudDialogflowV2ResponseMessage[];
     sendTime?: string | null;
     sentimentAnalysis?: Schema$GoogleCloudDialogflowV2SentimentAnalysisResult;
   }
@@ -3827,6 +3829,33 @@ export namespace dialogflow_v3beta1 {
     webhookPayload?: {[key: string]: any} | null;
     webhookSource?: string | null;
   }
+  export interface Schema$GoogleCloudDialogflowV2ResponseMessage {
+    endInteraction?: Schema$GoogleCloudDialogflowV2ResponseMessageEndInteraction;
+    liveAgentHandoff?: Schema$GoogleCloudDialogflowV2ResponseMessageLiveAgentHandoff;
+    mixedAudio?: Schema$GoogleCloudDialogflowV2ResponseMessageMixedAudio;
+    payload?: {[key: string]: any} | null;
+    telephonyTransferCall?: Schema$GoogleCloudDialogflowV2ResponseMessageTelephonyTransferCall;
+    text?: Schema$GoogleCloudDialogflowV2ResponseMessageText;
+  }
+  export interface Schema$GoogleCloudDialogflowV2ResponseMessageEndInteraction {}
+  export interface Schema$GoogleCloudDialogflowV2ResponseMessageLiveAgentHandoff {
+    metadata?: {[key: string]: any} | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2ResponseMessageMixedAudio {
+    segments?: Schema$GoogleCloudDialogflowV2ResponseMessageMixedAudioSegment[];
+  }
+  export interface Schema$GoogleCloudDialogflowV2ResponseMessageMixedAudioSegment {
+    allowPlaybackInterruption?: boolean | null;
+    audio?: string | null;
+    uri?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2ResponseMessageTelephonyTransferCall {
+    phoneNumber?: string | null;
+    sipUri?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2ResponseMessageText {
+    text?: string[] | null;
+  }
   export interface Schema$GoogleCloudDialogflowV2SearchEntryPoint {
     renderedContent?: string | null;
   }
@@ -3841,6 +3870,7 @@ export namespace dialogflow_v3beta1 {
   }
   export interface Schema$GoogleCloudDialogflowV2SentimentAnalysisResult {
     queryTextSentiment?: Schema$GoogleCloudDialogflowV2Sentiment;
+    status?: Schema$GoogleRpcStatus;
   }
   export interface Schema$GoogleCloudDialogflowV2ServiceLatency {
     internalServiceLatencies?: Schema$GoogleCloudDialogflowV2ServiceLatencyInternalServiceLatency[];
