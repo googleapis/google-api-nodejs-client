@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/observability-v14.0.1...observability-v14.0.2) (2026-10-29)
+
+
+### Bug Fixes
+
+* **observability:** update the API ([e6a4e41](https://github.com/googleapis/google-api-nodejs-client/commit/e6a4e410f7ba11f9842f77a46f32b88df136410f))
+
 ## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/observability-v14.0.0...observability-v14.0.1) (2026-09-23)
 
 

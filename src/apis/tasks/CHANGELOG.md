@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v17.0.1...tasks-v17.1.0) (2026-10-29)
+
+
+### Features
+
+* **tasks:** update the API ([e5530cc](https://github.com/googleapis/google-api-nodejs-client/commit/e5530ccf65d78f510efcc8cde33a43c0c9be3cd5))
+
 ## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v17.0.0...tasks-v17.0.1) (2026-09-23)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v17.0.2...osconfig-v17.0.3) (2026-10-29)
+
+
+### Bug Fixes
+
+* **osconfig:** update the API ([546b6c5](https://github.com/googleapis/google-api-nodejs-client/commit/546b6c5ff25e780250a623fc3711fa98cf837055))
+
 ## [17.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v17.0.1...osconfig-v17.0.2) (2026-10-08)
 
 

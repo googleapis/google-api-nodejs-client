@@ -1,5 +1,12 @@
 # Changelog
 
+## [27.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v27.3.0...alloydb-v27.4.0) (2026-10-29)
+
+
+### Features
+
+* **alloydb:** update the API ([5041a89](https://github.com/googleapis/google-api-nodejs-client/commit/5041a891e254e98b9fbe2306a6134e2f74ac09f3))
+
 ## [27.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v27.2.0...alloydb-v27.3.0) (2026-10-14)
 
 
