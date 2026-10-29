@@ -355,7 +355,7 @@ export namespace pubsub_v1 {
      */
     avroFormat?: Schema$AvroFormat;
     /**
-     * Optional. Cloud Storage bucket. The bucket name must be without any prefix like "gs://". See the [bucket naming requirements] (https://cloud.google.com/storage/docs/buckets#naming).
+     * Optional. Cloud Storage bucket. The bucket name must be without any prefix like "gs://". See the [bucket naming requirements]( https://cloud.google.com/storage/docs/buckets#naming).
      */
     bucket?: string | null;
     /**
@@ -872,7 +872,7 @@ export namespace pubsub_v1 {
     publishOperation?: Schema$PublishOperation;
   }
   /**
-   * A message that is published by publishers and consumed by subscribers. The message must contain either a non-empty data field or at least one attribute. Note that client libraries represent this object differently depending on the language. See the corresponding [client library documentation](https://cloud.google.com/pubsub/docs/reference/libraries) for more information. See [quotas and limits] (https://cloud.google.com/pubsub/quotas) for more information about message limits.
+   * A message that is published by publishers and consumed by subscribers. The message must contain either a non-empty data field or at least one attribute. Note that client libraries represent this object differently depending on the language. See the corresponding [client library documentation](https://cloud.google.com/pubsub/docs/reference/libraries) for more information. See [quotas and limits]( https://cloud.google.com/pubsub/quotas) for more information about message limits.
    */
   export interface Schema$PubsubMessage {
     /**
@@ -897,7 +897,7 @@ export namespace pubsub_v1 {
     publishTime?: string | null;
   }
   /**
-   * The payload to the push endpoint is in the form of the JSON representation of a PubsubMessage (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
+   * The payload to the push endpoint is in the form of the JSON representation of a [PubsubMessage](https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
    */
   export interface Schema$PubsubWrapper {}
   /**
@@ -939,7 +939,7 @@ export namespace pubsub_v1 {
      */
     oidcToken?: Schema$OidcToken;
     /**
-     * Optional. When set, the payload to the push endpoint is in the form of the JSON representation of a PubsubMessage (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
+     * Optional. When set, the payload to the push endpoint is in the form of the JSON representation of a [PubsubMessage]( https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
      */
     pubsubWrapper?: Schema$PubsubWrapper;
     /**
@@ -1075,7 +1075,7 @@ export namespace pubsub_v1 {
      */
     expireTime?: string | null;
     /**
-     * Optional. See [Creating and managing labels] (https://cloud.google.com/pubsub/docs/labels).
+     * Optional. See [Creating and managing labels]( https://cloud.google.com/pubsub/docs/labels).
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1156,7 +1156,7 @@ export namespace pubsub_v1 {
      */
     pushConfig?: Schema$PushConfig;
     /**
-     * Optional. Indicates whether to retain acknowledged messages. If true, then messages are not expunged from the subscription's backlog, even if they are acknowledged, until they fall out of the `message_retention_duration` window. This must be true if you would like to [`Seek` to a timestamp] (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) in the past to replay previously-acknowledged messages.
+     * Optional. Indicates whether to retain acknowledged messages. If true, then messages are not expunged from the subscription's backlog, even if they are acknowledged, until they fall out of the `message_retention_duration` window. This must be true if you would like to [`Seek` to a timestamp]( https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) in the past to replay previously-acknowledged messages.
      */
     retainAckedMessages?: boolean | null;
     /**
@@ -1224,7 +1224,7 @@ export namespace pubsub_v1 {
      */
     kmsKeyName?: string | null;
     /**
-     * Optional. See [Creating and managing labels] (https://cloud.google.com/pubsub/docs/labels).
+     * Optional. See [Creating and managing labels]( https://cloud.google.com/pubsub/docs/labels).
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -3455,7 +3455,7 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * Creates a snapshot from the requested subscription. Snapshots are used in [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot. If the snapshot already exists, returns `ALREADY_EXISTS`. If the requested subscription doesn't exist, returns `NOT_FOUND`. If the backlog in the subscription is too old -- and the resulting snapshot would expire in less than 1 hour -- then `FAILED_PRECONDITION` is returned. See also the `Snapshot.expire_time` field. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription, conforming to the [resource name format] (https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). The generated name is populated in the returned Snapshot object. Note that for REST API requests, you must specify a name in the request.
+     * Creates a snapshot from the requested subscription. Snapshots are used in [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot. If the snapshot already exists, returns `ALREADY_EXISTS`. If the requested subscription doesn't exist, returns `NOT_FOUND`. If the backlog in the subscription is too old -- and the resulting snapshot would expire in less than 1 hour -- then `FAILED_PRECONDITION` is returned. See also the `Snapshot.expire_time` field. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription, conforming to the [resource name format]( https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). The generated name is populated in the returned Snapshot object. Note that for REST API requests, you must specify a name in the request.
      * @example
      * ```js
      * // Before running the sample:
@@ -3604,7 +3604,7 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * Removes an existing snapshot. Snapshots are used in [Seek] (https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot. When the snapshot is deleted, all messages retained in the snapshot are immediately dropped. After a snapshot is deleted, a new one may be created with the same name, but the new one has no association with the old snapshot or its subscription, unless the same subscription is specified.
+     * Removes an existing snapshot. Snapshots are used in [Seek]( https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot. When the snapshot is deleted, all messages retained in the snapshot are immediately dropped. After a snapshot is deleted, a new one may be created with the same name, but the new one has no association with the old snapshot or its subscription, unless the same subscription is specified.
      * @example
      * ```js
      * // Before running the sample:
@@ -4847,7 +4847,7 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * Creates a subscription to a given topic. See the [resource name rules] (https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). If the subscription already exists, returns `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`. If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic, conforming to the [resource name format] (https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). The generated name is populated in the returned Subscription object. Note that for REST API requests, you must specify a name in the request.
+     * Creates a subscription to a given topic. See the [resource name rules]( https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). If the subscription already exists, returns `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`. If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic, conforming to the [resource name format]( https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). The generated name is populated in the returned Subscription object. Note that for REST API requests, you must specify a name in the request.
      * @example
      * ```js
      * // Before running the sample:
@@ -6371,7 +6371,7 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * Seeks an existing subscription to a point in time or to a given snapshot, whichever is provided in the request. Snapshots are used in [Seek] (https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot. Note that both the subscription and the snapshot must be on the same topic.
+     * Seeks an existing subscription to a point in time or to a given snapshot, whichever is provided in the request. Snapshots are used in [Seek]( https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot. Note that both the subscription and the snapshot must be on the same topic.
      * @example
      * ```js
      * // Before running the sample:
@@ -6974,7 +6974,7 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * Creates the given topic with the given name. See the [resource name rules] (https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
+     * Creates the given topic with the given name. See the [resource name rules]( https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
      * @example
      * ```js
      * // Before running the sample:
