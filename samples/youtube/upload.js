@@ -74,6 +74,10 @@ async function runSample(fileName) {
 
 if (module === require.main) {
   const fileName = process.argv[2];
+  if (!fileName) {
+    console.error('Usage: node upload.js <path-to-video-file>');
+    process.exit(1);
+  }
   runSample(fileName).catch(console.error);
 }
 module.exports = runSample;

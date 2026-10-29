@@ -46,11 +46,15 @@ async function getPlaylistData(etag) {
   if (etag) {
     headers['If-None-Match'] = etag;
   }
-  const res = await youtube.playlists.list({
-    part: 'id,snippet',
-    id: 'PLIivdWyY5sqIij_cgINUHZDMnGjVx3rxi',
-    headers: headers,
-  });
+  const res = await youtube.playlists.list(
+    {
+      part: 'id,snippet',
+      id: 'PLIivdWyY5sqIij_cgINUHZDMnGjVx3rxi',
+    },
+    {
+      headers,
+    },
+  );
   console.log('Status code: ' + res.status);
   console.log(res.data);
   return res;
