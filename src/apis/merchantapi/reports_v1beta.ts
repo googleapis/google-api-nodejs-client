@@ -752,6 +752,10 @@ export namespace merchantapi_reports_v1beta {
      */
     marketingMethod?: string | null;
     /**
+     * Network to which metrics apply. Segment.
+     */
+    network?: string | null;
+    /**
      * Merchant-provided id of the product. Segment.
      */
     offerId?: string | null;

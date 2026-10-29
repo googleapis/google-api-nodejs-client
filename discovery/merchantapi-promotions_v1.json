@@ -203,7 +203,7 @@
       }
     }
   },
-  "revision": "20260901",
+  "revision": "20261026",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -503,7 +503,8 @@
             "FIRST_ORDER",
             "SIGNUP_FOR_EMAIL",
             "SIGNUP_FOR_TEXT",
-            "CUSTOM"
+            "CUSTOM",
+            "FORMS_OF_PAYMENT"
           ],
           "enumDescriptions": [
             "Indicates that the redemption restriction is unspecified.",
@@ -511,7 +512,8 @@
             "The promotion can only be redeemed on the first order.",
             "The promotion can only be redeemed by signing up for email.",
             "The promotion can only be redeemed by signing up for text message alerts.",
-            "The promotion can only be redeemed with a custom redemption restriction. In this case, the `custom_redemption_restriction` field must be set."
+            "The promotion can only be redeemed with a custom redemption restriction. In this case, the `custom_redemption_restriction` field must be set.",
+            "The promotion is only available when the customer uses a specific form of payment, such as a specific credit card, bank card, or digital wallet."
           ],
           "type": "string"
         },
