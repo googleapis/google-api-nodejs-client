@@ -111,6 +111,37 @@
     "projects": {
       "resources": {
         "apps": {
+          "methods": {
+            "generateAlertPolicy": {
+              "description": "Creates a Cloud Monitoring AlertPolicy for the requested Crashlytics Web alert type and returns the created resource reference.",
+              "flatPath": "v1alpha/projects/{projectsId}/apps/{appsId}:generateAlertPolicy",
+              "httpMethod": "POST",
+              "id": "firebasecrashlytics.projects.apps.generateAlertPolicy",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The firebase application. Format: \"projects/{project}/apps/{app_id}\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/apps/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}:generateAlertPolicy",
+              "request": {
+                "$ref": "GenerateAlertPolicyRequest"
+              },
+              "response": {
+                "$ref": "GenerateAlertPolicyResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
+              ]
+            }
+          },
           "resources": {
             "events": {
               "methods": {
@@ -857,7 +888,7 @@
       }
     }
   },
-  "revision": "20261019",
+  "revision": "20261022",
   "rootUrl": "https://firebasecrashlytics.googleapis.com/",
   "schemas": {
     "BatchGetEventsResponse": {
@@ -1361,6 +1392,50 @@
         },
         "symbol": {
           "description": "The frame symbol after it has been deobfuscated or symbolicated. The raw symbol from the device if it could not be hydrated.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateAlertPolicyRequest": {
+      "description": "Request message for the GenerateAlertPolicy method.",
+      "id": "GenerateAlertPolicyRequest",
+      "properties": {
+        "alertType": {
+          "description": "Required. The type of alert to create.",
+          "enum": [
+            "ALERT_TYPE_UNSPECIFIED",
+            "ALERT_TYPE_NEW_ISSUE",
+            "ALERT_TYPE_REGRESSED_ISSUE"
+          ],
+          "enumDescriptions": [
+            "Unknown.",
+            "Alert for newly detected issues.",
+            "Alert for regressed (reopened) issues."
+          ],
+          "type": "string"
+        },
+        "language": {
+          "description": "Optional. Language to use for the alert policy. Defaults to USER_PREFERENCE.",
+          "enum": [
+            "USER_PREFERENCE",
+            "EN_US"
+          ],
+          "enumDescriptions": [
+            "Use the requester's language preference, falling back to en-US if unavailable or unsupported.",
+            "Force the alert policy to be created in en-US."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateAlertPolicyResponse": {
+      "description": "Response message for the GenerateAlertPolicy method.",
+      "id": "GenerateAlertPolicyResponse",
+      "properties": {
+        "alertPolicy": {
+          "description": "The created Cloud Monitoring AlertPolicy resource name. Format: \"projects/{project}/alertPolicies/{alert_policy_id}\".",
           "type": "string"
         }
       },
