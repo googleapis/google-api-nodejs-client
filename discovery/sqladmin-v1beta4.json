@@ -3677,36 +3677,29 @@
           ]
         },
         "stopReplay": {
-          "description": "Stops executing a captured workload on the separate Cloud SQL instance.",
-          "flatPath": "sql/v1beta4/projects/{project}/instances/{instance}/workloadCaptures/{workloadId}:stopReplay",
+          "description": "Stops an active workload replay on the target Cloud SQL replay instance.",
+          "flatPath": "sql/v1beta4/projects/{project}/instances/{instance}/workloadCaptures:stopReplay",
           "httpMethod": "POST",
           "id": "sql.workloadCaptures.stopReplay",
           "parameterOrder": [
             "project",
-            "instance",
-            "workloadId"
+            "instance"
           ],
           "parameters": {
             "instance": {
-              "description": "Required. Cloud SQL instance ID. This does not include the project ID.",
+              "description": "Required. Cloud SQL instance ID of the target replay instance. This does not include the project ID.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "project": {
-              "description": "Required. Project ID of the project that contains the instance.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "workloadId": {
-              "description": "Required. The ID of the workload to replay.",
+              "description": "Required. Project ID of the project that contains the target replay instance.",
               "location": "path",
               "required": true,
               "type": "string"
             }
           },
-          "path": "sql/v1beta4/projects/{project}/instances/{instance}/workloadCaptures/{workloadId}:stopReplay",
+          "path": "sql/v1beta4/projects/{project}/instances/{instance}/workloadCaptures:stopReplay",
           "request": {
             "$ref": "SqlWorkloadCapturesStopReplayRequest"
           },
@@ -3721,7 +3714,7 @@
       }
     }
   },
-  "revision": "20260929",
+  "revision": "20261006",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -10181,12 +10174,12 @@
       "type": "object"
     },
     "SqlWorkloadCapturesStopReplayRequest": {
-      "description": "Request to stop executing a captured workload on a replay instance.",
+      "description": "Request to stop an active workload replay on a target Cloud SQL replay instance.",
       "id": "SqlWorkloadCapturesStopReplayRequest",
       "properties": {
         "stopWorkloadReplayContext": {
           "$ref": "StopWorkloadReplayContext",
-          "description": "Required. Contains details about the stop workload replay operation."
+          "description": "Optional. Contains details about the stop workload replay operation."
         }
       },
       "type": "object"
@@ -10399,19 +10392,9 @@
       "type": "object"
     },
     "StopWorkloadReplayContext": {
-      "description": "The context for the `StopWorkloadReplay` operation, which contains details about stopping the execution of a captured workload (recorded read and write SQL queries) on a replay instance.",
+      "description": "The context for the `StopWorkloadReplay` operation, which represents an operation that stops an active workload replay on a target Cloud SQL replay instance.",
       "id": "StopWorkloadReplayContext",
-      "properties": {
-        "replayInstance": {
-          "description": "Required. The name of the Cloud SQL instance where the captured workload (SQL queries) is being executed, excluding the project ID (for example, `my-replay-instance`). The instance name must start with a lowercase letter and contain only lowercase letters, numbers, and hyphens. The combined length of `project-ID:instance-name` must be 98 characters or less.",
-          "type": "string"
-        },
-        "workloadId": {
-          "description": "Output only. The ID of the workload to stop executing on the replay instance. Each workload capture generates a unique ID in the format `workload-` (for example, `workload-1786046400`). Use this ID to stop executing the recorded SQL queries.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "SwitchoverBlueGreenDeploymentRequest": {
