@@ -569,6 +569,455 @@
             }
           },
           "resources": {
+            "appliedAutoProtectionPolicies": {
+              "methods": {
+                "list": {
+                  "description": "Lists AppliedAutoProtectionPolicies in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appliedAutoProtectionPolicies",
+                  "httpMethod": "GET",
+                  "id": "backupdr.projects.locations.appliedAutoProtectionPolicies.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A filter expression that filters resources listed in the response.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. An expression that sorts the results in the response.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of applied policies to return in a single page. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified or set to 0, a default page size of 500 will be used.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListAppliedAutoProtectionPolicies` call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location for which to retrieve the list of applied policies. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/appliedAutoProtectionPolicies",
+                  "response": {
+                    "$ref": "ListAppliedAutoProtectionPoliciesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-backupdr",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "autoProtectionPolicies": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new AutoProtectionPolicy in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoProtectionPolicies",
+                  "httpMethod": "POST",
+                  "id": "backupdr.projects.locations.autoProtectionPolicies.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "autoProtectionPolicyId": {
+                      "description": "Required. The ID to use for the policy. This will become the final component of the policy's resource name.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource where this policy will be created. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/autoProtectionPolicies",
+                  "request": {
+                    "$ref": "AutoProtectionPolicy"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-backupdr",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single AutoProtectionPolicy.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoProtectionPolicies/{autoProtectionPoliciesId}",
+                  "httpMethod": "DELETE",
+                  "id": "backupdr.projects.locations.autoProtectionPolicies.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "The current etag of the autoprotectionpolicy. If an etag is provided and does not match the current etag of the connection, deletion will be blocked.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the policy to delete. Format: projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/autoProtectionPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-backupdr",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single AutoProtectionPolicy.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoProtectionPolicies/{autoProtectionPoliciesId}",
+                  "httpMethod": "GET",
+                  "id": "backupdr.projects.locations.autoProtectionPolicies.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the policy to retrieve. Format: projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/autoProtectionPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "AutoProtectionPolicy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-backupdr",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists AutoProtectionPolicies for a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoProtectionPolicies",
+                  "httpMethod": "GET",
+                  "id": "backupdr.projects.locations.autoProtectionPolicies.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A filter expression that filters resources listed in the response. The following fields are filterable:",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. An expression that sorts the results in the response. The following fields are sortable:",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of policies to return in a single page. If unspecified, a server-default value will be used.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListAutoProtectionPolicies` call. Provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location for which to retrieve the list of policies. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/autoProtectionPolicies",
+                  "response": {
+                    "$ref": "ListAutoProtectionPoliciesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-backupdr",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single AutoProtectionPolicy.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoProtectionPolicies/{autoProtectionPoliciesId}",
+                  "httpMethod": "PATCH",
+                  "id": "backupdr.projects.locations.autoProtectionPolicies.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the AutoProtectionPolicy. Format: `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/autoProtectionPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the AutoProtectionPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "AutoProtectionPolicy"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-backupdr",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "bindings": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new AutoProtectionPolicyBinding in a given project and location.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoProtectionPolicies/{autoProtectionPoliciesId}/bindings",
+                      "httpMethod": "POST",
+                      "id": "backupdr.projects.locations.autoProtectionPolicies.bindings.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "autoProtectionPolicyBindingId": {
+                          "description": "Required. The ID to use for the binding. This will become the final component of the binding's resource name.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent resource where this binding will be created. Format: projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/autoProtectionPolicies/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/bindings",
+                      "request": {
+                        "$ref": "AutoProtectionPolicyBinding"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-backupdr",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Returns the auto protection policy binding read from the CCFE tables.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoProtectionPolicies/{autoProtectionPoliciesId}/bindings/{bindingsId}",
+                      "httpMethod": "GET",
+                      "id": "backupdr.projects.locations.autoProtectionPolicies.bindings.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the binding to retrieve. Format: projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/autoProtectionPolicies/[^/]+/bindings/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "AutoProtectionPolicyBinding"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-backupdr",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "initiateDelete": {
+                      "description": "Initiates delete for AutoProtectionPolicy Binding",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoProtectionPolicies/{autoProtectionPoliciesId}/bindings/{bindingsId}:initiateDelete",
+                      "httpMethod": "POST",
+                      "id": "backupdr.projects.locations.autoProtectionPolicies.bindings.initiateDelete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the binding to delete. Format: projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/autoProtectionPolicies/[^/]+/bindings/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:initiateDelete",
+                      "request": {
+                        "$ref": "InitiateDeleteAutoProtectionPolicyBindingRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-backupdr",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Returns the auto protection policy bindings read from the CCFE tables.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoProtectionPolicies/{autoProtectionPoliciesId}/bindings",
+                      "httpMethod": "GET",
+                      "id": "backupdr.projects.locations.autoProtectionPolicies.bindings.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. A filter expression that filters resources listed in the response. The following fields are filterable:",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. An expression that sorts the results in the response. The following fields are sortable:",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of policies to return in a single page is 500. If unspecified, a server-default value will be used.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListAutoProtectionPolicies` call. Provide this to retrieve the subsequent page.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The project and location for which to retrieve the list of policies. Format: projects/{project}/locations/{location}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/autoProtectionPolicies/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/bindings",
+                      "response": {
+                        "$ref": "ListAutoProtectionPolicyBindingsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-backupdr",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
+                  "resources": {
+                    "matchingResources": {
+                      "methods": {
+                        "get": {
+                          "description": "Gets details of a single Binding Matching Resource.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoProtectionPolicies/{autoProtectionPoliciesId}/bindings/{bindingsId}/matchingResources/{matchingResourcesId}",
+                          "httpMethod": "GET",
+                          "id": "backupdr.projects.locations.autoProtectionPolicies.bindings.matchingResources.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the matching resource to retrieve. Format: projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}/matchingResources/{matching_resource}",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/autoProtectionPolicies/[^/]+/bindings/[^/]+/matchingResources/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "BindingMatchingResource"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-backupdr",
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists Binding Matching Resources for a given AutoProtectionPolicyBinding.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoProtectionPolicies/{autoProtectionPoliciesId}/bindings/{bindingsId}/matchingResources",
+                          "httpMethod": "GET",
+                          "id": "backupdr.projects.locations.autoProtectionPolicies.bindings.matchingResources.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "Optional. Field match expression used to filter the results.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "orderBy": {
+                              "description": "Optional. Field by which to sort the results.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Optional. The maximum number of `BindingMatchingResources` to return in a single response. The default page size is 100 and maximum page size is 200. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. The value of next_page_token received from a previous `ListBindingMatchingResources` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBindingMatchingResources` must match the call that provided the page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The project, location, auto protection policy and binding for which to retrieve `BindingMatchingResources` information. Format: `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}`. In Google Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/autoProtectionPolicies/[^/]+/bindings/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/matchingResources",
+                          "response": {
+                            "$ref": "ListBindingMatchingResourcesResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-backupdr",
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
             "backupPlanAssociations": {
               "methods": {
                 "create": {
@@ -619,6 +1068,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "autoProtectionPolicyBinding": {
+                      "description": "Optional. This field is exclusively used by Backup and DR's auto-protection feature. The resource name of the `AutoProtectionPolicyBinding` that triggered the deletion of this association. Format: `projects/{project}/locations/{location}/autoProtectionPolicies/{policy}/bindings/{binding}`.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "name": {
                       "description": "Required. Name of the backup plan association resource, in the format `projects/{project}/locations/{location}/backupPlanAssociations/{backupPlanAssociationId}`",
                       "location": "path",
@@ -2725,7 +3179,7 @@
       }
     }
   },
-  "revision": "20261006",
+  "revision": "20261014",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -2990,6 +3444,69 @@
       },
       "type": "object"
     },
+    "AppliedAutoProtectionPolicy": {
+      "description": "AppliedAutoProtectionPolicy is a read-only view of AutoProtectionPolicy and AutoProtectionPolicyBinding resources that apply to a given workload project.",
+      "id": "AppliedAutoProtectionPolicy",
+      "properties": {
+        "backupPlanDetails": {
+          "description": "Output only. The set of backup plan configurations, mirroring the backup_plan_details from the source AutoProtectionPolicy. Each element specifies a backup plan for a given resource type.",
+          "items": {
+            "$ref": "BackupPlanDetail"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "bindingEvaluationSummary": {
+          "$ref": "BindingEvaluationSummary",
+          "description": "Output only. The summary of the last policy application when the job has run.",
+          "readOnly": true
+        },
+        "createTime": {
+          "description": "Output only. Timestamp indicating when the binding was last created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "criteria": {
+          "$ref": "Criteria",
+          "description": "Output only. The criteria resources must meet for this rule to apply. From AutoProtectionPolicy.criteria.",
+          "readOnly": true
+        },
+        "name": {
+          "description": "Identifier. Canonical resource name. Format: projects/{workload-project-number}/locations/{location}/appliedAutoProtectionPolicies/{id}.",
+          "type": "string"
+        },
+        "sourceBinding": {
+          "description": "Output only. The full resource name of the AutoProtectionPolicyBinding that applies the source policy to a scope including this workload project. e.g., projects/{admin-project}/locations/{location}/autoProtectionPolicies/{policy_id}/autoProtectionPolicyBindings/{binding_id}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. The status of the applied auto protection policy.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETION_INITIATED"
+          ],
+          "enumDescriptions": [
+            "State is not specified.",
+            "The policy is in the process of being applied.",
+            "The policy has been applied and is active.",
+            "The policy is in the process of being removed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp indicating when the binding was last modified.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AttachedDisk": {
       "description": "An instance-attached disk resource.",
       "id": "AttachedDisk",
@@ -3173,6 +3690,175 @@
             "Data writes. Example: CloudSQL Users create",
             "Data reads. Example: CloudSQL Users list"
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AutoProtectionDetails": {
+      "description": "AutoProtectionDetails contains the protection details of a resource from the current binding's perspective.",
+      "id": "AutoProtectionDetails",
+      "properties": {
+        "backupPlanAssociation": {
+          "description": "Output only. Resource name of backup plan association linked to the resource, if any. Format: projects/{project}/locations/{location}/backupPlanAssociations/{backupPlanAssociationId}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataSource": {
+          "description": "Output only. Resource name of the datasource linked to the resource, if any. Format: projects/{project}/locations/{location}/backupVaults/{backupVaultId}/dataSources/{dataSourceId}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "error": {
+          "$ref": "Status",
+          "description": "Output only. Error during last sync for protection/unprotection, if any.",
+          "readOnly": true
+        },
+        "state": {
+          "description": "Output only. Protection state of the resource from the current binding's perspective. Output only.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROTECTED",
+            "PROTECTION_FAILED",
+            "UNPROTECTING",
+            "UNPROTECTION_FAILED"
+          ],
+          "enumDescriptions": [
+            "State unspecified.",
+            "Resource is protected.",
+            "Resource protection failed.",
+            "Resource is being unprotected.",
+            "Resource unprotection failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AutoProtectionPolicy": {
+      "description": "An AutoprotectionPolicy is a policy resource designed to automate backup management, moving from manual per-resource protection to a bulk approach. The policy dynamically discovers and applies a specified backup plan to all eligible resources that match its defined scope and criteria.",
+      "id": "AutoProtectionPolicy",
+      "properties": {
+        "backupPlanDetails": {
+          "description": "Required. The backup plan details for matching resources.",
+          "items": {
+            "$ref": "BackupPlanDetail"
+          },
+          "type": "array"
+        },
+        "bindingSummary": {
+          "$ref": "BindingSummary",
+          "description": "Output only. Summary of total count of different containers covered through this policy.",
+          "readOnly": true
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the policy was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "criteria": {
+          "$ref": "Criteria",
+          "description": "Required. The criteria for matching resources."
+        },
+        "description": {
+          "description": "Optional. A description of the policy.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. The etag for the policy. If this is provided on update, it must match the server's etag.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the AutoProtectionPolicy. Format: `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}`",
+          "type": "string"
+        },
+        "policyEvaluationSummary": {
+          "$ref": "PolicyEvaluationSummary",
+          "description": "Output only. Summary of last policy evaluation when job was run per workload type.",
+          "readOnly": true
+        },
+        "state": {
+          "description": "Output only. The current state of the AutoProtectionPolicy.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "The state of the policy is unspecified.",
+            "The policy is being created.",
+            "The policy is active and protecting matching resources.",
+            "The policy is being updated.",
+            "The policy is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the policy was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AutoProtectionPolicyBinding": {
+      "description": "An AutoProtectionPolicyBinding (APPA) acts as the bridge between an AutoProtectionPolicy and the scope (Project) where the policy should be applied.",
+      "id": "AutoProtectionPolicyBinding",
+      "properties": {
+        "bindingEvaluationSummary": {
+          "$ref": "BindingEvaluationSummary",
+          "description": "Output only. Summaries of the last policy application when the job has run, with one entry per resource type specified in the AutoProtectionPolicy.",
+          "readOnly": true
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the binding was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. A description of the binding.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. Output only. The etag for the binding. If this is provided on update, it must match the server's etag.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the AutoProtectionPolicyBinding. Format: `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}`",
+          "type": "string"
+        },
+        "scope": {
+          "description": "Required. Immutable. Resource Id of target container on which policy will be applied. Format: projects/{project_id}",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the AutoProtectionPolicyBinding.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETION_INITIATED"
+          ],
+          "enumDescriptions": [
+            "The state of the binding is unspecified.",
+            "The binding is being created.",
+            "The binding is active.",
+            "The binding deletion is initiated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the binding was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3847,6 +4533,11 @@
           "description": "Output only. AlloyDB cluster's backup plan association properties.",
           "readOnly": true
         },
+        "autoProtectionPolicyBinding": {
+          "description": "Output only. The resource name of the `AutoProtectionPolicyBinding` that manages this association, if any. Format: `projects/{project}/locations/{location}/autoProtectionPolicies/{policy}/bindings/{binding}`.",
+          "readOnly": true,
+          "type": "string"
+        },
         "backupPlan": {
           "description": "Required. Resource name of backup plan which needs to be applied on workload. Format: projects/{project}/locations/{location}/backupPlans/{backupPlanId}",
           "type": "string"
@@ -3935,6 +4626,21 @@
           "description": "Output only. The time when the instance was updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BackupPlanDetail": {
+      "description": "BackupPlanDetail defines configuration of protection.",
+      "id": "BackupPlanDetail",
+      "properties": {
+        "backupPlan": {
+          "description": "Required. The resource name of the BackupPlan to apply to resources that match the policy's criteria. This backup plan must be in the same location as AutoProtectionPolicy. Format: projects/{project}/locations/{location}/backupPlans/{backupPlanId}",
+          "type": "string"
+        },
+        "resourceType": {
+          "description": "Required. The type of resource that this policy will automatically protect. Allowed values are, `compute.googleapis.com/Instance` and `compute.googleapis.com/Disk` are supported.",
           "type": "string"
         }
       },
@@ -4180,6 +4886,70 @@
         },
         "role": {
           "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BindingEvaluationSummary": {
+      "description": "BindingEvaluationSummary contains the summary of the last run of job that applies policy to matching resources for a given binding.",
+      "id": "BindingEvaluationSummary",
+      "properties": {
+        "failedResourceCount": {
+          "description": "Output only. The number of matching resources whose protection failed during job run.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "matchingResourceCount": {
+          "description": "Output only. The number of resources that currently match the policy's criteria.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "protectedResourceCount": {
+          "description": "Output only. The number of matching resources that are successfully protected.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BindingMatchingResource": {
+      "description": "BindingMatchingResource contains the details of a resource that matches the criteria of a binding.",
+      "id": "BindingMatchingResource",
+      "properties": {
+        "autoProtectionDetails": {
+          "$ref": "AutoProtectionDetails",
+          "description": "Output only. The auto protection details of the resource from the current binding's perspective.",
+          "readOnly": true
+        },
+        "lastEvaluationTime": {
+          "description": "Output only. The timestamp when the resource was last evaluated for protection.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the `BindingMatchingResource`. Format: `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}/matchingResources/{matching_resource}`",
+          "type": "string"
+        },
+        "resource": {
+          "description": "Required. Immutable. Resource name of the workload that matches the criteria of the binding. The format can be either a relative resource name (e.g., `projects/my-project/zones/us-central1-a/instances/my-instance`) or a schemeless full resource name (e.g., `//compute.googleapis.com/projects/my-project/zones/us-central1-a/instances/my-instance`).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BindingSummary": {
+      "description": "BindingSummary contains count of different containers covered through this policy.",
+      "id": "BindingSummary",
+      "properties": {
+        "projectCount": {
+          "description": "Output only. Total count of Projects protected with this policy.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -4647,6 +5417,20 @@
         "enableConfidentialCompute": {
           "description": "Optional. Defines whether the instance should have confidential compute enabled.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "Criteria": {
+      "description": "Criteria specifies a set of criteria for matching resources.",
+      "id": "Criteria",
+      "properties": {
+        "matchingConditions": {
+          "description": "Required. A list of matching conditions that a resource must meet to be protected by the policy.",
+          "items": {
+            "$ref": "MatchingCondition"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5656,6 +6440,11 @@
       "description": "GcpBackupConfig captures the Backup configuration details for Google Cloud resources. All Google Cloud resources regardless of type are protected with backup plan associations.",
       "id": "GcpBackupConfig",
       "properties": {
+        "autoProtectionPolicyBinding": {
+          "description": "Output only. The resource name of the `AutoProtectionPolicyBinding` that manages this datasource, if any. Format: `projects/{project}/locations/{location}/autoProtectionPolicies/{policy}/bindings/{binding}`.",
+          "readOnly": true,
+          "type": "string"
+        },
         "backupPlan": {
           "description": "The name of the backup plan.",
           "type": "string"
@@ -5883,6 +6672,12 @@
       },
       "type": "object"
     },
+    "InitiateDeleteAutoProtectionPolicyBindingRequest": {
+      "description": "Request message for initiating delete of an AutoProtectionPolicyBinding.",
+      "id": "InitiateDeleteAutoProtectionPolicyBindingRequest",
+      "properties": {},
+      "type": "object"
+    },
     "InstanceParams": {
       "description": "Additional instance params.",
       "id": "InstanceParams",
@@ -5893,6 +6688,24 @@
           },
           "description": "Optional. Resource manager tags to be bound to the instance.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "KeyValuePair": {
+      "description": "KeyValuePair defines a key-value pair for matching resource labels.",
+      "id": "KeyValuePair",
+      "properties": {
+        "key": {
+          "description": "Required. The key of the label to match. This must be in the format `{label_key}`. The key must match the regex Format:`\\p{Ll}\\p{Lo}{0,62}`.",
+          "type": "string"
+        },
+        "values": {
+          "description": "Required. The values of the label to match. There will be explicit “OR” between values of array. Each value must be in the format `{label_value}`. The value must match the regex Format: `[\\\\p{Ll}\\\\p{Lo}\\\\p{N}_-]{1,63}`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5908,6 +6721,81 @@
         "value": {
           "description": "Value of the label. The value must follow the format: `[\\\\p{Ll}\\\\p{Lo}\\\\p{N}_-]{1,63}`. This means the value must be one or more lowercase letters, lowercase international characters, numbers, underscores, or dashes. The value must be at most 63 characters long. International characters are allowed.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAppliedAutoProtectionPoliciesResponse": {
+      "description": "Response message for ListAppliedAutoProtectionPolicies.",
+      "id": "ListAppliedAutoProtectionPoliciesResponse",
+      "properties": {
+        "appliedAutoProtectionPolicies": {
+          "description": "A list of the AppliedAutoProtectionPolicy resources found.",
+          "items": {
+            "$ref": "AppliedAutoProtectionPolicy"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached. For example, \"projects/my-project/locations/us-east1\"].",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListAutoProtectionPoliciesResponse": {
+      "description": "Response message for ListAutoProtectionPolicies.",
+      "id": "ListAutoProtectionPoliciesResponse",
+      "properties": {
+        "autoProtectionPolicies": {
+          "description": "A list of the AutoProtectionPolicy resources found.",
+          "items": {
+            "$ref": "AutoProtectionPolicy"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListAutoProtectionPolicyBindingsResponse": {
+      "description": "Response message for ListAutoProtectionPolicyBindings.",
+      "id": "ListAutoProtectionPolicyBindingsResponse",
+      "properties": {
+        "autoProtectionPolicyBindings": {
+          "description": "A list of the AutoProtectionPolicyBindings resources found.",
+          "items": {
+            "$ref": "AutoProtectionPolicyBinding"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -6033,6 +6921,24 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListBindingMatchingResourcesResponse": {
+      "description": "The response message for getting a list of `BindingMatchingResources`.",
+      "id": "ListBindingMatchingResourcesResponse",
+      "properties": {
+        "matchingResources": {
+          "description": "The list of `BindingMatchingResources` in the project,location for the specified binding.",
+          "items": {
+            "$ref": "BindingMatchingResource"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token which may be sent as page_token in a subsequent `ListBindingMatchingResources` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6390,6 +7296,17 @@
       },
       "type": "object"
     },
+    "MatchingCondition": {
+      "description": "MatchingCondition specifies a set of conditions for matching resources.",
+      "id": "MatchingCondition",
+      "properties": {
+        "labelCondition": {
+          "$ref": "KeyValuePair",
+          "description": "Optional. A condition that matches resources based on their labels. For MVP, this is limited to a single label match."
+        }
+      },
+      "type": "object"
+    },
     "Metadata": {
       "description": "A metadata key/value entry.",
       "id": "Metadata",
@@ -6721,6 +7638,31 @@
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "PolicyEvaluationSummary": {
+      "description": "PolicyEvaluationSummary contains the summary of the last run of job that applies policy to matching resources.",
+      "id": "PolicyEvaluationSummary",
+      "properties": {
+        "failedResourceCount": {
+          "description": "Output only. The number of matching resources whose protection failed during job run.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "matchingResourceCount": {
+          "description": "Output only. The number of resources that currently match the policy's criteria.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "protectedResourceCount": {
+          "description": "Output only. The number of matching resources that are successfully protected.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
