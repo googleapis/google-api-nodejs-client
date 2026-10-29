@@ -129,6 +129,14 @@ export namespace apphub_v1 {
    */
   export interface Schema$Application {
     /**
+     * Output only. Properties of an underlying cloud resource that can comprise an Application.
+     */
+    applicationProperties?: Schema$ApplicationProperties;
+    /**
+     * Output only. Application type.
+     */
+    applicationType?: Schema$ApplicationType;
+    /**
      * Optional. Consumer provided attributes.
      */
     attributes?: Schema$Attributes;
@@ -164,6 +172,24 @@ export namespace apphub_v1 {
      * Output only. Update time.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Additional system properties of an Application.
+   */
+  export interface Schema$ApplicationProperties {
+    /**
+     * Output only. Additional metadata specific to the App Hub application. The key is a string that identifies the type of metadata and the value is the metadata contents specific to that type. Key format: `apphub.googleapis.com/{metadataType\}`
+     */
+    extendedMetadata?: {[key: string]: Schema$ExtendedMetadata} | null;
+  }
+  /**
+   * Application type.
+   */
+  export interface Schema$ApplicationType {
+    /**
+     * The type of the application.
+     */
+    type?: string | null;
   }
   /**
    * Consumer provided attributes.
@@ -1998,6 +2024,8 @@ export namespace apphub_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "applicationProperties": {},
+     *       //   "applicationType": {},
      *       //   "attributes": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -2293,6 +2321,8 @@ export namespace apphub_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "applicationProperties": {},
+     *   //   "applicationType": {},
      *   //   "attributes": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -2730,6 +2760,8 @@ export namespace apphub_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "applicationProperties": {},
+     *       //   "applicationType": {},
      *       //   "attributes": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
