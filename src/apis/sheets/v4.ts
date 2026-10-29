@@ -651,7 +651,7 @@ export namespace sheets_v4 {
      */
     stackedType?: string | null;
     /**
-     * True to make the chart 3D. Applies to Bar and Column charts.
+     * True to make the chart 3D. Applies to Bar and Column charts. Setting it on a Combo chart is allowed but has no effect; setting it on any other chart type returns an error.
      */
     threeDimensional?: boolean | null;
     /**
