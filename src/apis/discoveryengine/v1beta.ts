@@ -127,6 +127,36 @@ export namespace discoveryengine_v1beta {
   }
 
   /**
+   * Profile describing the visibility restriction of an MCP tool. Key: "google.com/tool.profiles/visibility.restriction"
+   */
+  export interface Schema$ApiservingMcpMcpToolVisibility {
+    /**
+     * A list of field-level visibility restrictions.
+     */
+    fieldVisibility?: Schema$ApiservingMcpMcpToolVisibilityFieldVisibility[];
+    /**
+     * The strategy used to enforce visibility restrictions. DO NOT USE. This field is not yet implemented.
+     */
+    visibilityEnforcementStrategy?: string | null;
+    /**
+     * The visibility restriction labels for the tool itself (e.g., "PRODUCER_DEFINED_PREVIEW"). Multiple labels can be provided as a comma-separated string.
+     */
+    visibilityRestriction?: string | null;
+  }
+  /**
+   * Visibility rules for individual tool parameters (fields). This allows producers to hide specific fields in tools/list and tools/call.
+   */
+  export interface Schema$ApiservingMcpMcpToolVisibilityFieldVisibility {
+    /**
+     * The visibility restriction labels for this field (comma-separated).
+     */
+    restriction?: string | null;
+    /**
+     * The name of the parameter in the input_schema or output_schema.
+     */
+    selector?: string | null;
+  }
+  /**
    * `Distribution` contains summary statistics for a population of values. It optionally contains a histogram representing the distribution of those values across a set of buckets. The summary statistics are the count, mean, sum of the squared deviation from the mean, the minimum, and the maximum of the set of population of values. The histogram is based on a sequence of buckets and gives a count of values that fall into each bucket. The boundaries of the buckets are given either explicitly or by formulas for buckets of fixed or exponentially increasing widths. Although it is not forbidden, it is generally a bad idea to include non-finite values (infinities or NaNs) in the population of values, as this will render the `mean` and `sum_of_squared_deviation` fields meaningless.
    */
   export interface Schema$GoogleApiDistribution {
@@ -1450,7 +1480,7 @@ export namespace discoveryengine_v1beta {
      */
     policyResults?: Schema$GoogleCloudDiscoveryengineV1alphaAssistAnswerCustomerPolicyEnforcementResultPolicyEnforcementResult[];
     /**
-     * Final verdict of the customer policy enforcement. If only one policy blocked the processing, the verdict is BLOCK.
+     * Final verdict of the customer policy enforcement. If at least one policy blocked the processing, the verdict is BLOCK. If no policy blocked the processing but at least one flagged it, the verdict is FLAG.
      */
     verdict?: string | null;
     /**
@@ -3338,7 +3368,7 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -6301,7 +6331,7 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example "projects/{projectId\}/locations/{locationId\}/collections/{collectionId\}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {"jira1ConnectorName": [(toolId1, "createTicket"), (toolId2, "transferTicket")], "gmail1ConnectorName": [(toolId3, "sendEmail"),..] \}
+     * Optional. The enabled tools on this assistant. The keys are data connector resource names, in the format `projects/{project\}/locations/{location\}/collections/{collection\}/dataConnector`. The values are the tools that the admin enabled on that connector. Admins can selectively enable tools on any of the connectors that they created in the project. For example: ``` { "projects/my-project/locations/global/collections/jira1/dataConnector": { "toolInfo": [ { "toolName": "create_jira_issue", "toolDisplayName": "Create Jira issue" \}, { "toolName": "update_jira_issue", "toolDisplayName": "Update Jira issue" \} ] \} \} ```
      */
     enabledTools?: {
       [key: string]: Schema$GoogleCloudDiscoveryengineV1AssistantToolList;
@@ -7724,7 +7754,7 @@ export namespace discoveryengine_v1beta {
      */
     policyResults?: Schema$GoogleCloudDiscoveryengineV1betaAssistAnswerCustomerPolicyEnforcementResultPolicyEnforcementResult[];
     /**
-     * Final verdict of the customer policy enforcement. If only one policy blocked the processing, the verdict is BLOCK.
+     * Final verdict of the customer policy enforcement. If at least one policy blocked the processing, the verdict is BLOCK. If no policy blocked the processing but at least one flagged it, the verdict is FLAG.
      */
     verdict?: string | null;
     /**
@@ -7805,7 +7835,7 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example "projects/{projectId\}/locations/{locationId\}/collections/{collectionId\}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {"jira1ConnectorName": [(toolId1, "createTicket"), (toolId2, "transferTicket")], "gmail1ConnectorName": [(toolId3, "sendEmail"),..] \}
+     * Optional. The enabled tools on this assistant. The keys are data connector resource names, in the format `projects/{project\}/locations/{location\}/collections/{collection\}/dataConnector`. The values are the tools that the admin enabled on that connector. Admins can selectively enable tools on any of the connectors that they created in the project. For example: ``` { "projects/my-project/locations/global/collections/jira1/dataConnector": { "toolInfo": [ { "toolName": "create_jira_issue", "toolDisplayName": "Create Jira issue" \}, { "toolName": "update_jira_issue", "toolDisplayName": "Update Jira issue" \} ] \} \} ```
      */
     enabledTools?: {
       [key: string]: Schema$GoogleCloudDiscoveryengineV1betaAssistantToolList;
@@ -9999,7 +10029,7 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -10336,7 +10366,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaFeedback {
     /**
-     * Optional. The additional user comment of the feedback if user gives a thumb down.
+     * Optional. The additional user comment of the feedback.
      */
     comment?: string | null;
     /**
@@ -10356,7 +10386,7 @@ export namespace discoveryengine_v1beta {
      */
     feedbackSource?: string | null;
     /**
-     * Required. Indicate whether the user gives a positive or negative feedback. If the user gives a negative feedback, there might be more feedback details.
+     * Required. Indicates whether the user gives a positive or negative feedback.
      */
     feedbackType?: string | null;
     /**
@@ -10364,7 +10394,11 @@ export namespace discoveryengine_v1beta {
      */
     llmModelVersion?: string | null;
     /**
-     * Optional. The reason if user gives a thumb down.
+     * Optional. Optional Model Armor false-positive dispute metadata attached to feedback.
+     */
+    modelArmorDisputeInfo?: Schema$GoogleCloudDiscoveryengineV1betaFeedbackModelArmorDisputeInfo;
+    /**
+     * Optional. The reasons why the user gives feedback.
      */
     reasons?: string[] | null;
   }
@@ -10404,6 +10438,23 @@ export namespace discoveryengine_v1beta {
      * Optional. The runtime trajectory id of the rated agent task turn, as set on `TaskServerEvent.trajectory_id`. Shared by all steps of the turn.
      */
     trajectoryId?: string | null;
+  }
+  /**
+   * Information submitted when a user disputes a Model Armor `BLOCK` or `FLAG` verdict.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaFeedbackModelArmorDisputeInfo {
+    /**
+     * Optional. The expected-label reason chip selected by the user (for example, "Everyday question" or "Legitimate work-related query").
+     */
+    expectedLabel?: string | null;
+    /**
+     * Optional. The raw Model Armor `SanitizationResult`, serialized as JSON.
+     */
+    sanitizationResultJson?: string | null;
+    /**
+     * Optional. Resource name of the Model Armor template that produced the sanitization result, in the format `projects/{project\}/locations/{location\}/templates/{id\}`.
+     */
+    templateName?: string | null;
   }
   /**
    * Response message for SiteSearchEngineService.FetchDomainVerificationStatus method.
@@ -11753,6 +11804,10 @@ export namespace discoveryengine_v1beta {
      * Required. The version of the [Terms for data use](https://cloud.google.com/retail/data-use-terms) that caller has read and would like to give consent to. Acceptable version is `2022-11-23`, and this may change over time.
      */
     dataUseTermsVersion?: string | null;
+    /**
+     * Optional. The identity provider for this location. When provided, the location's AclConfig is set from it as part of provisioning.
+     */
+    idpConfig?: Schema$GoogleCloudDiscoveryengineV1betaIdpConfig;
     /**
      * Optional. Parameters for Agentspace.
      */
@@ -15909,7 +15964,7 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -18091,6 +18146,7 @@ export namespace discoveryengine_v1beta {
      *       // {
      *       //   "acceptDataUseTerms": false,
      *       //   "dataUseTermsVersion": "my_dataUseTermsVersion",
+     *       //   "idpConfig": {},
      *       //   "saasParams": {}
      *       // }
      *     },
@@ -18787,6 +18843,7 @@ export namespace discoveryengine_v1beta {
      *       // {
      *       //   "acceptDataUseTerms": false,
      *       //   "dataUseTermsVersion": "my_dataUseTermsVersion",
+     *       //   "idpConfig": {},
      *       //   "saasParams": {}
      *       // }
      *     },
