@@ -446,7 +446,7 @@ export namespace vision_v1p1beta1 {
    */
   export interface Schema$FaceAnnotation {
     /**
-     * Anger likelihood.
+     * Deprecated: No longer populated.
      */
     angerLikelihood?: string | null;
     /**
@@ -470,7 +470,7 @@ export namespace vision_v1p1beta1 {
      */
     headwearLikelihood?: string | null;
     /**
-     * Joy likelihood.
+     * Deprecated: No longer populated.
      */
     joyLikelihood?: string | null;
     /**
@@ -490,11 +490,11 @@ export namespace vision_v1p1beta1 {
      */
     rollAngle?: number | null;
     /**
-     * Sorrow likelihood.
+     * Deprecated: No longer populated.
      */
     sorrowLikelihood?: string | null;
     /**
-     * Surprise likelihood.
+     * Deprecated: No longer populated.
      */
     surpriseLikelihood?: string | null;
     /**
@@ -918,7 +918,7 @@ export namespace vision_v1p1beta1 {
    */
   export interface Schema$GoogleCloudVisionV1p1beta1FaceAnnotation {
     /**
-     * Anger likelihood.
+     * Deprecated: No longer populated.
      */
     angerLikelihood?: string | null;
     /**
@@ -942,7 +942,7 @@ export namespace vision_v1p1beta1 {
      */
     headwearLikelihood?: string | null;
     /**
-     * Joy likelihood.
+     * Deprecated: No longer populated.
      */
     joyLikelihood?: string | null;
     /**
@@ -962,11 +962,11 @@ export namespace vision_v1p1beta1 {
      */
     rollAngle?: number | null;
     /**
-     * Sorrow likelihood.
+     * Deprecated: No longer populated.
      */
     sorrowLikelihood?: string | null;
     /**
-     * Surprise likelihood.
+     * Deprecated: No longer populated.
      */
     surpriseLikelihood?: string | null;
     /**
@@ -1908,7 +1908,7 @@ export namespace vision_v1p1beta1 {
    */
   export interface Schema$GoogleCloudVisionV1p2beta1FaceAnnotation {
     /**
-     * Anger likelihood.
+     * Deprecated: No longer populated.
      */
     angerLikelihood?: string | null;
     /**
@@ -1932,7 +1932,7 @@ export namespace vision_v1p1beta1 {
      */
     headwearLikelihood?: string | null;
     /**
-     * Joy likelihood.
+     * Deprecated: No longer populated.
      */
     joyLikelihood?: string | null;
     /**
@@ -1952,11 +1952,11 @@ export namespace vision_v1p1beta1 {
      */
     rollAngle?: number | null;
     /**
-     * Sorrow likelihood.
+     * Deprecated: No longer populated.
      */
     sorrowLikelihood?: string | null;
     /**
-     * Surprise likelihood.
+     * Deprecated: No longer populated.
      */
     surpriseLikelihood?: string | null;
     /**
@@ -2787,7 +2787,7 @@ export namespace vision_v1p1beta1 {
    */
   export interface Schema$GoogleCloudVisionV1p3beta1FaceAnnotation {
     /**
-     * Anger likelihood.
+     * Deprecated: No longer populated.
      */
     angerLikelihood?: string | null;
     /**
@@ -2811,7 +2811,7 @@ export namespace vision_v1p1beta1 {
      */
     headwearLikelihood?: string | null;
     /**
-     * Joy likelihood.
+     * Deprecated: No longer populated.
      */
     joyLikelihood?: string | null;
     /**
@@ -2831,11 +2831,11 @@ export namespace vision_v1p1beta1 {
      */
     rollAngle?: number | null;
     /**
-     * Sorrow likelihood.
+     * Deprecated: No longer populated.
      */
     sorrowLikelihood?: string | null;
     /**
-     * Surprise likelihood.
+     * Deprecated: No longer populated.
      */
     surpriseLikelihood?: string | null;
     /**
@@ -3731,7 +3731,7 @@ export namespace vision_v1p1beta1 {
    */
   export interface Schema$GoogleCloudVisionV1p4beta1FaceAnnotation {
     /**
-     * Anger likelihood.
+     * Deprecated: No longer populated.
      */
     angerLikelihood?: string | null;
     /**
@@ -3755,7 +3755,7 @@ export namespace vision_v1p1beta1 {
      */
     headwearLikelihood?: string | null;
     /**
-     * Joy likelihood.
+     * Deprecated: No longer populated.
      */
     joyLikelihood?: string | null;
     /**
@@ -3779,11 +3779,11 @@ export namespace vision_v1p1beta1 {
      */
     rollAngle?: number | null;
     /**
-     * Sorrow likelihood.
+     * Deprecated: No longer populated.
      */
     sorrowLikelihood?: string | null;
     /**
-     * Surprise likelihood.
+     * Deprecated: No longer populated.
      */
     surpriseLikelihood?: string | null;
     /**

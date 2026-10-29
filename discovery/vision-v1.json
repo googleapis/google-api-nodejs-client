@@ -1287,7 +1287,7 @@
       }
     }
   },
-  "revision": "20251120",
+  "revision": "20261016",
   "rootUrl": "https://vision.googleapis.com/",
   "schemas": {
     "AddProductToProductSetRequest": {
@@ -1987,7 +1987,8 @@
       "id": "FaceAnnotation",
       "properties": {
         "angerLikelihood": {
-          "description": "Anger likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -2060,7 +2061,8 @@
           "type": "string"
         },
         "joyLikelihood": {
-          "description": "Joy likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -2102,7 +2104,8 @@
           "type": "number"
         },
         "sorrowLikelihood": {
-          "description": "Sorrow likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -2122,7 +2125,8 @@
           "type": "string"
         },
         "surpriseLikelihood": {
-          "description": "Surprise likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -2570,7 +2574,8 @@
       "id": "GoogleCloudVisionV1p1beta1FaceAnnotation",
       "properties": {
         "angerLikelihood": {
-          "description": "Anger likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -2643,7 +2648,8 @@
           "type": "string"
         },
         "joyLikelihood": {
-          "description": "Joy likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -2685,7 +2691,8 @@
           "type": "number"
         },
         "sorrowLikelihood": {
-          "description": "Sorrow likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -2705,7 +2712,8 @@
           "type": "string"
         },
         "surpriseLikelihood": {
-          "description": "Surprise likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -3984,7 +3992,8 @@
       "id": "GoogleCloudVisionV1p2beta1FaceAnnotation",
       "properties": {
         "angerLikelihood": {
-          "description": "Anger likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -4057,7 +4066,8 @@
           "type": "string"
         },
         "joyLikelihood": {
-          "description": "Joy likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -4099,7 +4109,8 @@
           "type": "number"
         },
         "sorrowLikelihood": {
-          "description": "Sorrow likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -4119,7 +4130,8 @@
           "type": "string"
         },
         "surpriseLikelihood": {
-          "description": "Surprise likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -5433,7 +5445,8 @@
       "id": "GoogleCloudVisionV1p3beta1FaceAnnotation",
       "properties": {
         "angerLikelihood": {
-          "description": "Anger likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -5506,7 +5519,8 @@
           "type": "string"
         },
         "joyLikelihood": {
-          "description": "Joy likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -5548,7 +5562,8 @@
           "type": "number"
         },
         "sorrowLikelihood": {
-          "description": "Sorrow likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -5568,7 +5583,8 @@
           "type": "string"
         },
         "surpriseLikelihood": {
-          "description": "Surprise likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -6969,7 +6985,8 @@
       "id": "GoogleCloudVisionV1p4beta1FaceAnnotation",
       "properties": {
         "angerLikelihood": {
-          "description": "Anger likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -7042,7 +7059,8 @@
           "type": "string"
         },
         "joyLikelihood": {
-          "description": "Joy likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -7091,7 +7109,8 @@
           "type": "number"
         },
         "sorrowLikelihood": {
-          "description": "Sorrow likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
@@ -7111,7 +7130,8 @@
           "type": "string"
         },
         "surpriseLikelihood": {
-          "description": "Surprise likelihood.",
+          "deprecated": true,
+          "description": "Deprecated: No longer populated.",
           "enum": [
             "UNKNOWN",
             "VERY_UNLIKELY",
