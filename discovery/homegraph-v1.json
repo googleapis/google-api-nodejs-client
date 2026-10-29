@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20260821",
+  "revision": "20261023",
   "rootUrl": "https://homegraph.googleapis.com/",
   "schemas": {
     "AgentDeviceId": {
@@ -615,7 +615,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "Required. The actual event payload.",
+          "description": "Optional. The actual event payload.",
           "type": "object"
         },
         "eventId": {
@@ -626,6 +626,10 @@
           "description": "Required. The timestamp of the event.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "jsonTraitEvent": {
+          "$ref": "JsonTraitEvent",
+          "description": "Optional. Contains the dynamic JSON trait event payload."
         }
       },
       "type": "object"
@@ -635,7 +639,7 @@
       "id": "Events",
       "properties": {
         "componentId": {
-          "description": "Optional. The ID of the provider component if the events are associated with a specific component. Optional for WHDM events, required for UDDM events.",
+          "description": "Optional. The ID of the provider component if the events are associated with a specific component. Optional for WHDM events, required for UDDM and JSON events.",
           "type": "string"
         },
         "events": {
@@ -667,7 +671,7 @@
       "type": "object"
     },
     "HomeTraitPayload": {
-      "description": "Container for UDDM trait data associated with a device.",
+      "description": "Container for UDDM or JSON trait data associated with a device.",
       "id": "HomeTraitPayload",
       "properties": {
         "rootComponent": {
@@ -690,6 +694,44 @@
         },
         "deviceId": {
           "description": "Required. Unique identifier for the device.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "JsonTrait": {
+      "description": "Dynamic JSON trait state payload conforming to `json_trait_schema.md`. Used for Category 2 (vendor Matter clusters) and Category 3 (non-Matter capabilities) traits across all wire and internal paths, and for Category 1 traits on external JSON-only wire paths (e.g., `Query` with `JSON_TRAIT_ONLY`).",
+      "id": "JsonTrait",
+      "properties": {
+        "data": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Trait attribute map conforming to the trait's registered JSON Schema.",
+          "type": "object"
+        },
+        "id": {
+          "description": "Required. Canonical symbolic trait ID per `json_trait_schema.md`: - Standard Matter (Cat 1): `matter.` (e.g., `matter.thermostat`) - Google / vendor Matter (Cat 1/2): `matter..` (e.g., `matter.google.`, `matter.eve.utility`) - Non-Matter (Cat 3, any provider incl. Google): `ghp..` (e.g., `ghp.acme.warranty`, `ghp.google.`)",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "JsonTraitEvent": {
+      "description": "Dynamic JSON event payload conforming to `json_trait_schema.md`.",
+      "id": "JsonTraitEvent",
+      "properties": {
+        "data": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Event payload fields conforming to the event's registered JSON Schema.",
+          "type": "object"
+        },
+        "id": {
+          "description": "Required. Fully qualified event ID: `.` (e.g., `matter.doorLock.lockOperation`, `ghp.acme.warranty.claimUpdated`).",
           "type": "string"
         }
       },
@@ -774,18 +816,20 @@
           "type": "string"
         },
         "deviceView": {
-          "description": "Optional. Specifies the type of device data to be returned in the response. This allows callers to request traditional Smart Home traits, Unified Device Data Model (UDDM) traits, or both. If unspecified, defaults to SMART_HOME_TRAIT_ONLY.",
+          "description": "Optional. Specifies the type of device data to be returned in the response. This allows callers to request traditional Smart Home traits, Unified Device Data Model (UDDM) traits, or both. If unspecified, defaults to `SMART_HOME_TRAIT_ONLY`.",
           "enum": [
             "DEVICE_VIEW_UNSPECIFIED",
             "SMART_HOME_TRAIT_ONLY",
             "HOME_TRAIT_ONLY",
-            "HOME_TRAIT_AND_SMART_HOME_TRAIT"
+            "HOME_TRAIT_AND_SMART_HOME_TRAIT",
+            "JSON_TRAIT_ONLY"
           ],
           "enumDescriptions": [
-            "Default value. Equivalent to SMART_HOME_TRAIT_ONLY.",
+            "Default value. Equivalent to `SMART_HOME_TRAIT_ONLY`.",
             "Return only standard Smart Home traits in the `devices` map.",
             "Return only Unified Device Data Model (UDDM) traits in the `home_trait_payload` map.",
-            "Return both standard Smart Home traits and UDDM traits."
+            "Return both standard Smart Home traits and UDDM traits.",
+            "Return all component traits in `JsonTrait` format (`TraitData.json_trait` in `home_trait_payload`), converting persisted UDDM traits to `JsonTrait` on read."
           ],
           "type": "string"
         },
@@ -873,7 +917,7 @@
           "additionalProperties": {
             "$ref": "HomeTraitPayload"
           },
-          "description": "Map of device IDs to their Unified Device Data Model (UDDM) trait payloads. This field is populated when `device_view` is set to HOME_TRAIT_ONLY or HOME_TRAIT_AND_SMART_HOME_TRAIT.",
+          "description": "Map of device IDs to their Unified Device Data Model (UDDM) or JSON trait payloads. This field is populated when `device_view` is set to `HOME_TRAIT_ONLY`, `HOME_TRAIT_AND_SMART_HOME_TRAIT`, or `JSON_TRAIT_ONLY`.",
           "type": "object"
         }
       },
@@ -1136,6 +1180,10 @@
           "description": "Other metadata for the trait. The time the client update was committed in the server.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "jsonTrait": {
+          "$ref": "JsonTrait",
+          "description": "Contains the dynamic JSON trait payload."
         },
         "providerUpdateTime": {
           "description": "The custom timestamp supplied by the provider during a ReportStateAndNotification update (if provided). This field is returned as part of the `QueryResponse`.",

@@ -321,7 +321,7 @@ export namespace homegraph_v1 {
    */
   export interface Schema$EventData {
     /**
-     * Required. The actual event payload.
+     * Optional. The actual event payload.
      */
     event?: {[key: string]: any} | null;
     /**
@@ -332,13 +332,17 @@ export namespace homegraph_v1 {
      * Required. The timestamp of the event.
      */
     eventTime?: string | null;
+    /**
+     * Optional. Contains the dynamic JSON trait event payload.
+     */
+    jsonTraitEvent?: Schema$JsonTraitEvent;
   }
   /**
    * Contains a set of events for a specific component.
    */
   export interface Schema$Events {
     /**
-     * Optional. The ID of the provider component if the events are associated with a specific component. Optional for WHDM events, required for UDDM events.
+     * Optional. The ID of the provider component if the events are associated with a specific component. Optional for WHDM events, required for UDDM and JSON events.
      */
     componentId?: string | null;
     /**
@@ -388,7 +392,7 @@ export namespace homegraph_v1 {
     events?: Schema$Events[];
   }
   /**
-   * Container for UDDM trait data associated with a device.
+   * Container for UDDM or JSON trait data associated with a device.
    */
   export interface Schema$HomeTraitPayload {
     /**
@@ -408,6 +412,32 @@ export namespace homegraph_v1 {
      * Required. Unique identifier for the device.
      */
     deviceId?: string | null;
+  }
+  /**
+   * Dynamic JSON trait state payload conforming to `json_trait_schema.md`. Used for Category 2 (vendor Matter clusters) and Category 3 (non-Matter capabilities) traits across all wire and internal paths, and for Category 1 traits on external JSON-only wire paths (e.g., `Query` with `JSON_TRAIT_ONLY`).
+   */
+  export interface Schema$JsonTrait {
+    /**
+     * Optional. Trait attribute map conforming to the trait's registered JSON Schema.
+     */
+    data?: {[key: string]: any} | null;
+    /**
+     * Required. Canonical symbolic trait ID per `json_trait_schema.md`: - Standard Matter (Cat 1): `matter.` (e.g., `matter.thermostat`) - Google / vendor Matter (Cat 1/2): `matter..` (e.g., `matter.google.`, `matter.eve.utility`) - Non-Matter (Cat 3, any provider incl. Google): `ghp..` (e.g., `ghp.acme.warranty`, `ghp.google.`)
+     */
+    id?: string | null;
+  }
+  /**
+   * Dynamic JSON event payload conforming to `json_trait_schema.md`.
+   */
+  export interface Schema$JsonTraitEvent {
+    /**
+     * Optional. Event payload fields conforming to the event's registered JSON Schema.
+     */
+    data?: {[key: string]: any} | null;
+    /**
+     * Required. Fully qualified event ID: `.` (e.g., `matter.doorLock.lockOperation`, `ghp.acme.warranty.claimUpdated`).
+     */
+    id?: string | null;
   }
   export interface Schema$MediaUrlsStruct {
     /**
@@ -468,7 +498,7 @@ export namespace homegraph_v1 {
      */
     agentUserId?: string | null;
     /**
-     * Optional. Specifies the type of device data to be returned in the response. This allows callers to request traditional Smart Home traits, Unified Device Data Model (UDDM) traits, or both. If unspecified, defaults to SMART_HOME_TRAIT_ONLY.
+     * Optional. Specifies the type of device data to be returned in the response. This allows callers to request traditional Smart Home traits, Unified Device Data Model (UDDM) traits, or both. If unspecified, defaults to `SMART_HOME_TRAIT_ONLY`.
      */
     deviceView?: string | null;
     /**
@@ -528,7 +558,7 @@ export namespace homegraph_v1 {
      */
     devices?: {[key: string]: {[key: string]: any}} | null;
     /**
-     * Map of device IDs to their Unified Device Data Model (UDDM) trait payloads. This field is populated when `device_view` is set to HOME_TRAIT_ONLY or HOME_TRAIT_AND_SMART_HOME_TRAIT.
+     * Map of device IDs to their Unified Device Data Model (UDDM) or JSON trait payloads. This field is populated when `device_view` is set to `HOME_TRAIT_ONLY`, `HOME_TRAIT_AND_SMART_HOME_TRAIT`, or `JSON_TRAIT_ONLY`.
      */
     homeTraitPayload?: {[key: string]: Schema$HomeTraitPayload} | null;
   }
@@ -707,6 +737,10 @@ export namespace homegraph_v1 {
      * Other metadata for the trait. The time the client update was committed in the server.
      */
     commitTime?: string | null;
+    /**
+     * Contains the dynamic JSON trait payload.
+     */
+    jsonTrait?: Schema$JsonTrait;
     /**
      * The custom timestamp supplied by the provider during a ReportStateAndNotification update (if provided). This field is returned as part of the `QueryResponse`.
      */
