@@ -335,7 +335,7 @@
                       "type": "string"
                     },
                     "serverId": {
-                      "description": "Required. A unique ID for the server. Must start with a lowercase letter, and end with a lowercase letter or number. Can contain lowercase letters, numbers, and hyphens. Maximum length is 30 characters.",
+                      "description": "Required. A unique ID for the server. Must start with a lowercase letter, and end with a lowercase letter or number. Can contain lowercase letters, numbers, and hyphens. Can't begin with the prefix `goog` or contain the string `google`, including close misspellings such as `g00gle`. Maximum length is 30 characters.",
                       "location": "query",
                       "type": "string"
                     }
@@ -788,7 +788,7 @@
       }
     }
   },
-  "revision": "20260909",
+  "revision": "20261021",
   "rootUrl": "https://ftp.googleapis.com/",
   "schemas": {
     "AllowedConsumer": {
