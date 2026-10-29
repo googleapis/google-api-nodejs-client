@@ -1022,6 +1022,87 @@
                 }
               }
             },
+            "findings": {
+              "methods": {
+                "get": {
+                  "description": "Gets details of a single Finding.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/findings/{findingsId}",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.findings.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Finding to retrieve. Format: `projects/{project}/locations/{location}/findings/{finding}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/findings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Finding"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Findings in a given project and location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/findings",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.findings.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListFindingsRequest. Format: `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/findings",
+                  "response": {
+                    "$ref": "ListFindingsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                }
+              }
+            },
             "mcpServers": {
               "methods": {
                 "get": {
@@ -2049,7 +2130,7 @@
       }
     }
   },
-  "revision": "20261014",
+  "revision": "20261021",
   "rootUrl": "https://agentregistry.googleapis.com/",
   "schemas": {
     "A2ASkill": {
@@ -2704,6 +2785,103 @@
       },
       "type": "object"
     },
+    "File": {
+      "description": "File location of the finding.",
+      "id": "File",
+      "properties": {
+        "lineNumber": {
+          "description": "Optional. Line number (1-based), or 0 if whole File / unknown.",
+          "format": "int64",
+          "type": "string"
+        },
+        "path": {
+          "description": "Optional. Relative path of the file containing the finding.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Finding": {
+      "description": "Represents a security Finding.",
+      "id": "Finding",
+      "properties": {
+        "category": {
+          "description": "Optional. Category of the finding.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Create time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "detail": {
+          "description": "Optional. Detailed description of the finding.",
+          "type": "string"
+        },
+        "files": {
+          "description": "Optional. File associated with the finding.",
+          "items": {
+            "$ref": "File"
+          },
+          "type": "array"
+        },
+        "findingClass": {
+          "description": "Optional. Class of the finding.",
+          "enum": [
+            "FINDING_CLASS_UNSPECIFIED",
+            "VULNERABILITY",
+            "OBSERVATION",
+            "SECRET"
+          ],
+          "enumDescriptions": [
+            "Unspecified finding class.",
+            "Describes a potential weakness in software that increases risk to Confidentiality & Integrity & Availability.",
+            "Describes a security observation that is for informational purposes.",
+            "Describes a potential security risk due to plaintext credentials, keys, or tokens being exposed in an asset or workload."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Resource name of the Finding. Format: `projects/{project}/locations/{location}/findings/{finding}`.",
+          "type": "string"
+        },
+        "resource": {
+          "description": "Optional. The resource that the finding is associated with.",
+          "type": "string"
+        },
+        "severity": {
+          "description": "Optional. Severity of the finding.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "SEVERITY_CRITICAL",
+            "SEVERITY_HIGH",
+            "SEVERITY_MEDIUM",
+            "SEVERITY_LOW"
+          ],
+          "enumDescriptions": [
+            "This value is used for findings when a source doesn't write a severity value.",
+            "Critical severity.",
+            "High severity.",
+            "Medium severity.",
+            "Low severity."
+          ],
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. Universally unique identifier (UUID4) for the Finding.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Update time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Frontmatter": {
       "description": "Structured metadata attributes extracted from the package's local SKILL.md frontmatter.",
       "id": "Frontmatter",
@@ -3050,6 +3228,24 @@
         },
         "nextPageToken": {
           "description": "A token identifying a page of results the server should return. Used in page_token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListFindingsResponse": {
+      "description": "Message for response to listing Findings.",
+      "id": "ListFindingsResponse",
+      "properties": {
+        "findings": {
+          "description": "The list of Findings.",
+          "items": {
+            "$ref": "Finding"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
           "type": "string"
         }
       },
@@ -3482,6 +3678,76 @@
       },
       "type": "object"
     },
+    "ScanResult": {
+      "description": "Scan result of the skill revision.",
+      "id": "ScanResult",
+      "properties": {
+        "errorMessage": {
+          "description": "Output only. The error message if the scan failed.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "findings": {
+          "description": "Output only. The finding resource names for the skill revision.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "scanState": {
+          "description": "Output only. The state of the vulnerability check.",
+          "enum": [
+            "SCAN_STATE_UNSPECIFIED",
+            "FAILED",
+            "UNSUPPORTED_FORMAT",
+            "SUCCEEDED",
+            "DISABLED",
+            "RUNNING"
+          ],
+          "enumDescriptions": [
+            "Should not be used.",
+            "The underlying scanning system failed to execute the scan.",
+            "The uploaded artifact format is unsupported by the scanning system.",
+            "The scan has completed successfully.",
+            "The scan was disabled.",
+            "The scan is running."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "scanTime": {
+          "description": "Output only. The time when the scan was completed.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ScanningConfig": {
+      "description": "Configuration for scanning of the skill.",
+      "id": "ScanningConfig",
+      "properties": {
+        "policy": {
+          "description": "Optional. The security scanning policy.",
+          "enum": [
+            "POLICY_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED_BLOCKING",
+            "ENABLED_NONBLOCKING"
+          ],
+          "enumDescriptions": [
+            "Default value. Inherits system default (ENABLED_BLOCKING).",
+            "Bypasses scanning.",
+            "Scans the skill package and blocks download if security or safety issues are found.",
+            "Scans the skill package in audit mode without blocking downloads."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SearchAgentsRequest": {
       "description": "Message for searching Agents",
       "id": "SearchAgentsRequest",
@@ -3708,6 +3974,10 @@
           "description": "Optional. The publisher resource associated with this skill. Format: `projects/{project}/locations/{location}/publishers/{publisher}` The publisher dictates the allowed namespace prefixes for the skill's name and logical `skill_id` (e.g., Publisher `google` authorizes the `google-*` prefix).",
           "type": "string"
         },
+        "scanningConfig": {
+          "$ref": "ScanningConfig",
+          "description": "Optional. Optional. Scanning configuration for the skill."
+        },
         "skillId": {
           "description": "Output only. A stable, globally unique logical identifier for the skill. It is securely constructed by the backend by combining the associated `publisher`'s verified namespace and the skill's resource ID to enforce strict ownership. For example, the prefix `google-` is reserved exclusively for first-party Google publishers to prevent namespace squatting. Example: `urn:skill:google-workspace:create-docs`",
           "readOnly": true,
@@ -3810,6 +4080,11 @@
         "name": {
           "description": "Identifier. Resource name of the SkillRevision. Format: `projects/{project}/locations/{location}/skills/{skill}/revisions/{revision}`",
           "type": "string"
+        },
+        "scanResult": {
+          "$ref": "ScanResult",
+          "description": "Output only. Scan result of the skill revision.",
+          "readOnly": true
         },
         "sha256Hash": {
           "description": "Output only. Cryptographic SHA-256 integrity and deduplication digest of the payload zip.",
