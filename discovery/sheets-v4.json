@@ -892,7 +892,7 @@
       }
     }
   },
-  "revision": "20260930",
+  "revision": "20261019",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -1646,7 +1646,7 @@
           "type": "string"
         },
         "threeDimensional": {
-          "description": "True to make the chart 3D. Applies to Bar and Column charts.",
+          "description": "True to make the chart 3D. Applies to Bar and Column charts. Setting it on a Combo chart is allowed but has no effect; setting it on any other chart type returns an error.",
           "type": "boolean"
         },
         "totalDataLabel": {
