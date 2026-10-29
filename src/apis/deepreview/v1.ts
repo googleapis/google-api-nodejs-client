@@ -102,7 +102,7 @@ export namespace deepreview_v1 {
   /**
    * Deep Review API
    *
-   * Deep Review API for automated conference-quality scientific paper reviews.
+   * Deep Review API for automated, in-depth document reviews.
    *
    * @example
    * ```js
@@ -115,6 +115,7 @@ export namespace deepreview_v1 {
     documents: Resource$Documents;
     media: Resource$Media;
     operations: Resource$Operations;
+    v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -125,6 +126,7 @@ export namespace deepreview_v1 {
       this.documents = new Resource$Documents(this.context);
       this.media = new Resource$Media(this.context);
       this.operations = new Resource$Operations(this.context);
+      this.v1 = new Resource$V1(this.context);
     }
   }
 
@@ -174,10 +176,6 @@ export namespace deepreview_v1 {
      */
     givenName?: string | null;
   }
-  /**
-   * The request message for Operations.CancelOperation.
-   */
-  export interface Schema$CancelOperationRequest {}
   /**
    * Structured bibliographic metadata for an extracted or retrieved work.
    */
@@ -314,7 +312,7 @@ export namespace deepreview_v1 {
      */
     geminiApiKeySet?: boolean | null;
     /**
-     * Optional. The Gemini model name/version to use (e.g., "gemini-1.5-pro", "gemini-2.0-flash").
+     * Optional. The Gemini model identifier to use for the review. If omitted, the server uses its default model. Unsupported values return INVALID_ARGUMENT.
      */
     model?: string | null;
     /**
@@ -327,7 +325,7 @@ export namespace deepreview_v1 {
     userPrompt?: string | null;
   }
   /**
-   * Document Resource Model representing an uploaded document for review. Documents are immutable post-creation; to review a new version, create a new Document.
+   * A document uploaded for automated review. Documents are immutable post-creation; to review a new version, create a new Document.
    */
   export interface Schema$Document {
     /**
@@ -343,7 +341,7 @@ export namespace deepreview_v1 {
      */
     driveSource?: Schema$DriveSource;
     /**
-     * Output only. Summary of the most recent review run for this document, if any.
+     * Output only. Summary of the most recent review run for this document, if any. Populated by `GetDocument` and `ListDocuments`; unset on the document returned by `CreateDocument`, which has no reviews yet.
      */
     latestReviewSummary?: Schema$ReviewSummary;
     /**
@@ -352,7 +350,7 @@ export namespace deepreview_v1 {
     name?: string | null;
   }
   /**
-   * Polymorphic location targeting either a PDF page region/quote or text lines.
+   * A location targeting either a PDF page region/quote or text lines in the document.
    */
   export interface Schema$DocumentLocation {
     /**
@@ -365,7 +363,7 @@ export namespace deepreview_v1 {
     text?: Schema$TextLocation;
   }
   /**
-   * Response message for downloading a Document's raw content via Scotty media.
+   * Response message for downloading a Document's raw content using media download.
    */
   export interface Schema$DownloadDocumentResponse {}
   /**
@@ -385,7 +383,7 @@ export namespace deepreview_v1 {
      */
     resourceKeySet?: boolean | null;
     /**
-     * Optional. Input only. Immutable. Specific revision ID to import (defaults to latest head revision).
+     * Optional. Input only. Immutable. Importing a specific revision is not currently supported; non-empty values return INVALID_ARGUMENT.
      */
     revisionId?: string | null;
   }
@@ -393,6 +391,36 @@ export namespace deepreview_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Request message for estimating what a review would cost.
+   */
+  export interface Schema$EstimateReviewCostRequest {
+    /**
+     * Required. The review to estimate, as it would be passed to `CreateReview`. Only its `run_config` is read, and `gemini_api_key` is ignored.
+     */
+    review?: Schema$Review;
+  }
+  /**
+   * Response message for estimating what a review would cost. When the cost can't be estimated, for example because too few past reviews used the same model and depth, the costs are unset and `past_review_count` is 0.
+   */
+  export interface Schema$EstimateReviewCostResponse {
+    /**
+     * The 95th percentile of what comparable past reviews would cost for this document.
+     */
+    highCost?: Schema$Money;
+    /**
+     * The 20th percentile of what comparable past reviews would cost for this document.
+     */
+    lowCost?: Schema$Money;
+    /**
+     * The median of what comparable past reviews would cost for this document.
+     */
+    medianCost?: Schema$Money;
+    /**
+     * Number of past reviews the estimate is based on.
+     */
+    pastReviewCount?: number | null;
+  }
   /**
    * Per-field comparison result between extracted and retrieved metadata.
    */
@@ -437,23 +465,6 @@ export namespace deepreview_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * The response message for Operations.ListOperations.
-   */
-  export interface Schema$ListOperationsResponse {
-    /**
-     * The standard List next-page token.
-     */
-    nextPageToken?: string | null;
-    /**
-     * A list of operations that matches the specified filter in the request.
-     */
-    operations?: Schema$Operation[];
-    /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
-     */
-    unreachable?: string[] | null;
-  }
-  /**
    * Response message for listing Review resources.
    */
   export interface Schema$ListReviewsResponse {
@@ -465,6 +476,23 @@ export namespace deepreview_v1 {
      * The list of Review resources.
      */
     reviews?: Schema$Review[];
+  }
+  /**
+   * Represents an amount of money with its currency type.
+   */
+  export interface Schema$Money {
+    /**
+     * The three-letter currency code defined in ISO 4217.
+     */
+    currencyCode?: string | null;
+    /**
+     * Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
+     */
+    nanos?: number | null;
+    /**
+     * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
+     */
+    units?: string | null;
   }
   /**
    * Bounding box in normalized [0.0, 1.0] page coordinates (origin top-left).
@@ -547,7 +575,7 @@ export namespace deepreview_v1 {
     reviewMarkdown?: string | null;
   }
   /**
-   * Review Sub-Resource Model representing an evaluation run of a document.
+   * An evaluation run of a document.
    */
   export interface Schema$Review {
     /**
@@ -592,7 +620,7 @@ export namespace deepreview_v1 {
      */
     createTime?: string | null;
     /**
-     * Output only. Resource name of the Review. Format: `documents/{document\}/reviews/{review\}`
+     * Output only. Resource name of the Review.
      */
     review?: string | null;
     /**
@@ -643,7 +671,7 @@ export namespace deepreview_v1 {
     quotedLinePreview?: string | null;
   }
   /**
-   * W3C Web Annotation TextQuoteSelector for resilient text anchoring (https://www.w3.org/TR/annotation-model/#text-quote-selector).
+   * W3C Web Annotation TextQuoteSelector for resilient text anchoring (see https://www.w3.org/TR/annotation-model/#text-quote-selector for details).
    */
   export interface Schema$TextQuoteSelector {
     /**
@@ -659,6 +687,35 @@ export namespace deepreview_v1 {
      */
     suffix?: string | null;
   }
+  /**
+   * Singleton resource representing the authenticated caller's review quota limits and sliding-window usage.
+   */
+  export interface Schema$UserQuota {
+    /**
+     * Output only. Whether a custom per-user quota override is active for this user.
+     */
+    customLimitEnabled?: boolean | null;
+    /**
+     * Output only. Maximum free-tier reviews allowed per rolling 7-day window.
+     */
+    maxReviewCountPerWeek?: number | null;
+    /**
+     * Identifier. Resource name of the singleton user quota (`userQuota`).
+     */
+    name?: string | null;
+    /**
+     * Output only. Timestamp when the next review quota slot becomes available if `remaining_review_count` is 0; unset when quota is currently available.
+     */
+    nextAvailableTime?: string | null;
+    /**
+     * Output only. Remaining free-tier reviews available in the current rolling 7-day window (`max(0, max_review_count_per_week - used_review_count)`).
+     */
+    remainingReviewCount?: number | null;
+    /**
+     * Output only. Number of free-tier reviews used in the past 7 days.
+     */
+    usedReviewCount?: number | null;
+  }
 
   export class Resource$Documents {
     context: APIRequestContext;
@@ -669,7 +726,7 @@ export namespace deepreview_v1 {
     }
 
     /**
-     * Deletes a document and all associated reviews and stored blobs.
+     * Deletes a document and its stored content. If `force` is set to `true`, any associated reviews are also deleted.
      * @example
      * ```js
      * // Before running the sample:
@@ -690,7 +747,10 @@ export namespace deepreview_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive.file'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -699,11 +759,11 @@ export namespace deepreview_v1 {
      *
      *   // Do the magic
      *   const res = await deepreview.documents.delete({
-     *     // Optional. If set to true, and the document is not found, the request succeeds.
+     *     // Optional. If set to `true`, and the document is not found, the request succeeds.
      *     allowMissing: 'placeholder-value',
-     *     // Optional. If set to true, any child resources (e.g. review resources) are also deleted.
+     *     // Optional. If set to `true`, any child resources (e.g. review resources) are also deleted. If `false` and the document has existing reviews, the request fails with `FAILED_PRECONDITION`.
      *     force: 'placeholder-value',
-     *     // Required. The resource name of the document to delete. Format: `documents/{document\}`
+     *     // Required. The resource name of the document to delete.
      *     name: 'documents/my-document',
      *   });
      *   console.log(res.data);
@@ -803,7 +863,7 @@ export namespace deepreview_v1 {
     }
 
     /**
-     * Retrieves document metadata and review history.
+     * Estimates what a review of a document would cost on the caller's Gemini API key. The estimate comes from what past reviews with the same model and depth cost, adjusted to this document's size and repriced at the Gemini API's current list prices. It covers one review attempt that runs to completion, and doesn't include retries after errors.
      * @example
      * ```js
      * // Before running the sample:
@@ -824,7 +884,164 @@ export namespace deepreview_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive.file'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await deepreview.documents.estimateReviewCost({
+     *     // Required. The document to review.
+     *     document: 'documents/my-document',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "review": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "highCost": {},
+     *   //   "lowCost": {},
+     *   //   "medianCost": {},
+     *   //   "pastReviewCount": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    estimateReviewCost(
+      params: Params$Resource$Documents$Estimatereviewcost,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    estimateReviewCost(
+      params?: Params$Resource$Documents$Estimatereviewcost,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EstimateReviewCostResponse>>;
+    estimateReviewCost(
+      params: Params$Resource$Documents$Estimatereviewcost,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    estimateReviewCost(
+      params: Params$Resource$Documents$Estimatereviewcost,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$EstimateReviewCostResponse>,
+      callback: BodyResponseCallback<Schema$EstimateReviewCostResponse>
+    ): void;
+    estimateReviewCost(
+      params: Params$Resource$Documents$Estimatereviewcost,
+      callback: BodyResponseCallback<Schema$EstimateReviewCostResponse>
+    ): void;
+    estimateReviewCost(
+      callback: BodyResponseCallback<Schema$EstimateReviewCostResponse>
+    ): void;
+    estimateReviewCost(
+      paramsOrCallback?:
+        | Params$Resource$Documents$Estimatereviewcost
+        | BodyResponseCallback<Schema$EstimateReviewCostResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EstimateReviewCostResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EstimateReviewCostResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$EstimateReviewCostResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Documents$Estimatereviewcost;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Documents$Estimatereviewcost;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://deepreview.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+document}:estimateReviewCost').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['document'],
+        pathParams: ['document'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EstimateReviewCostResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EstimateReviewCostResponse>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves document metadata. The returned document includes its `latest_review_summary` when a review exists.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/deepreview.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const deepreview = google.deepreview('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -833,7 +1050,7 @@ export namespace deepreview_v1 {
      *
      *   // Do the magic
      *   const res = await deepreview.documents.get({
-     *     // Required. The resource name of the document to retrieve. Format: `documents/{document\}`
+     *     // Required. The resource name of the document to retrieve.
      *     name: 'documents/my-document',
      *   });
      *   console.log(res.data);
@@ -939,7 +1156,7 @@ export namespace deepreview_v1 {
     }
 
     /**
-     * Lists documents for the authenticated caller with cursor pagination.
+     * Lists documents for the authenticated caller with cursor pagination. Each returned document includes its `latest_review_summary` when a review exists.
      * @example
      * ```js
      * // Before running the sample:
@@ -960,7 +1177,10 @@ export namespace deepreview_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive.file'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -969,11 +1189,11 @@ export namespace deepreview_v1 {
      *
      *   // Do the magic
      *   const res = await deepreview.documents.list({
-     *     // Optional. Supported AIP-160 filter expressions (e.g., `display_name = "..."`).
+     *     // Optional. Custom filter expressions are not currently supported; non-empty values return INVALID_ARGUMENT.
      *     filter: 'placeholder-value',
-     *     // Optional. Supported AIP-132 order_by field.
+     *     // Optional. Custom order_by expressions are not currently supported; non-empty values return INVALID_ARGUMENT.
      *     orderBy: 'placeholder-value',
-     *     // Optional. The maximum number of documents to return in a single page. The server may return fewer than this value. If unspecified, at most 50 documents will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     // Optional. The maximum number of documents to return in a single page. The server may return fewer than this value. If unspecified, at most 50 documents will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token received from a previous `ListDocuments` call.
      *     pageToken: 'placeholder-value',
@@ -1082,35 +1302,46 @@ export namespace deepreview_v1 {
 
   export interface Params$Resource$Documents$Delete extends StandardParameters {
     /**
-     * Optional. If set to true, and the document is not found, the request succeeds.
+     * Optional. If set to `true`, and the document is not found, the request succeeds.
      */
     allowMissing?: boolean;
     /**
-     * Optional. If set to true, any child resources (e.g. review resources) are also deleted.
+     * Optional. If set to `true`, any child resources (e.g. review resources) are also deleted. If `false` and the document has existing reviews, the request fails with `FAILED_PRECONDITION`.
      */
     force?: boolean;
     /**
-     * Required. The resource name of the document to delete. Format: `documents/{document\}`
+     * Required. The resource name of the document to delete.
      */
     name?: string;
   }
+  export interface Params$Resource$Documents$Estimatereviewcost extends StandardParameters {
+    /**
+     * Required. The document to review.
+     */
+    document?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EstimateReviewCostRequest;
+  }
   export interface Params$Resource$Documents$Get extends StandardParameters {
     /**
-     * Required. The resource name of the document to retrieve. Format: `documents/{document\}`
+     * Required. The resource name of the document to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Documents$List extends StandardParameters {
     /**
-     * Optional. Supported AIP-160 filter expressions (e.g., `display_name = "..."`).
+     * Optional. Custom filter expressions are not currently supported; non-empty values return INVALID_ARGUMENT.
      */
     filter?: string;
     /**
-     * Optional. Supported AIP-132 order_by field.
+     * Optional. Custom order_by expressions are not currently supported; non-empty values return INVALID_ARGUMENT.
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of documents to return in a single page. The server may return fewer than this value. If unspecified, at most 50 documents will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of documents to return in a single page. The server may return fewer than this value. If unspecified, at most 50 documents will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      */
     pageSize?: number;
     /**
@@ -1126,7 +1357,7 @@ export namespace deepreview_v1 {
     }
 
     /**
-     * Creates and initiates an asynchronous multi-agent review for a document.
+     * Creates and initiates an asynchronous multi-agent review for a document. Returns a google.longrunning.Operation. When the operation completes, the `response` field contains a `Review` and the `metadata` field contains `CreateReviewMetadata`.
      * @example
      * ```js
      * // Before running the sample:
@@ -1147,7 +1378,10 @@ export namespace deepreview_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive.file'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1156,7 +1390,7 @@ export namespace deepreview_v1 {
      *
      *   // Do the magic
      *   const res = await deepreview.documents.reviews.create({
-     *     // Required. The parent Document resource name where this review will be created. Format: `documents/{document\}`
+     *     // Required. The parent Document resource name where this review will be created.
      *     parent: 'documents/my-document',
      *     // Optional. Idempotency identifier for network retry safety (AIP-155). Must be a valid UUID4 string.
      *     requestId: 'placeholder-value',
@@ -1306,7 +1540,10 @@ export namespace deepreview_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive.file'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1315,7 +1552,7 @@ export namespace deepreview_v1 {
      *
      *   // Do the magic
      *   const res = await deepreview.documents.reviews.get({
-     *     // Required. The resource name of the review to retrieve. Format: `documents/{document\}/reviews/{review\}`
+     *     // Required. The resource name of the review to retrieve.
      *     name: 'documents/my-document/reviews/my-review',
      *   });
      *   console.log(res.data);
@@ -1446,7 +1683,10 @@ export namespace deepreview_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive.file'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1455,15 +1695,15 @@ export namespace deepreview_v1 {
      *
      *   // Do the magic
      *   const res = await deepreview.documents.reviews.list({
-     *     // Optional. Supported AIP-160 filter expressions.
+     *     // Optional. Custom filter expressions are not currently supported; non-empty values return INVALID_ARGUMENT.
      *     filter: 'placeholder-value',
-     *     // Optional. Supported AIP-132 order_by field.
+     *     // Optional. Custom order_by expressions are not currently supported; non-empty values return INVALID_ARGUMENT.
      *     orderBy: 'placeholder-value',
-     *     // Optional. The maximum number of reviews to return in a single page. The server may return fewer than this value. If unspecified, at most 50 reviews will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     // Optional. The maximum number of reviews to return in a single page. The server may return fewer than this value. If unspecified, at most 50 reviews will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token received from a previous `ListReviews` call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent Document resource name. Format: `documents/{document\}`
+     *     // Required. The parent Document resource name.
      *     parent: 'documents/my-document',
      *   });
      *   console.log(res.data);
@@ -1573,7 +1813,7 @@ export namespace deepreview_v1 {
 
   export interface Params$Resource$Documents$Reviews$Create extends StandardParameters {
     /**
-     * Required. The parent Document resource name where this review will be created. Format: `documents/{document\}`
+     * Required. The parent Document resource name where this review will be created.
      */
     parent?: string;
     /**
@@ -1592,21 +1832,21 @@ export namespace deepreview_v1 {
   }
   export interface Params$Resource$Documents$Reviews$Get extends StandardParameters {
     /**
-     * Required. The resource name of the review to retrieve. Format: `documents/{document\}/reviews/{review\}`
+     * Required. The resource name of the review to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Documents$Reviews$List extends StandardParameters {
     /**
-     * Optional. Supported AIP-160 filter expressions.
+     * Optional. Custom filter expressions are not currently supported; non-empty values return INVALID_ARGUMENT.
      */
     filter?: string;
     /**
-     * Optional. Supported AIP-132 order_by field.
+     * Optional. Custom order_by expressions are not currently supported; non-empty values return INVALID_ARGUMENT.
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of reviews to return in a single page. The server may return fewer than this value. If unspecified, at most 50 reviews will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of reviews to return in a single page. The server may return fewer than this value. If unspecified, at most 50 reviews will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      */
     pageSize?: number;
     /**
@@ -1614,7 +1854,7 @@ export namespace deepreview_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent Document resource name. Format: `documents/{document\}`
+     * Required. The parent Document resource name.
      */
     parent?: string;
   }
@@ -1626,7 +1866,7 @@ export namespace deepreview_v1 {
     }
 
     /**
-     * Downloads the original document content (PDF binary) via Scotty media streaming (AIP-136 custom method).
+     * Downloads the original document content (PDF binary) using media streaming. Pass `alt=media` as a query parameter to stream the binary PDF bytes. Without `alt=media`, a JSON response is returned.
      * @example
      * ```js
      * // Before running the sample:
@@ -1647,7 +1887,10 @@ export namespace deepreview_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive.file'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1656,7 +1899,7 @@ export namespace deepreview_v1 {
      *
      *   // Do the magic
      *   const res = await deepreview.media.download({
-     *     // Required. The resource name of the document to download. Format: `documents/{document\}`
+     *     // Required. The resource name of the document to download.
      *     name: 'documents/my-document',
      *   });
      *   console.log(res.data);
@@ -1763,7 +2006,7 @@ export namespace deepreview_v1 {
     }
 
     /**
-     * Creates a new Document resource and ingests the manuscript via Scotty or Google Drive.
+     * Creates a new Document resource and ingests the manuscript using media upload or Google Drive.
      * @example
      * ```js
      * // Before running the sample:
@@ -1784,7 +2027,10 @@ export namespace deepreview_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive.file'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1923,7 +2169,7 @@ export namespace deepreview_v1 {
 
   export interface Params$Resource$Media$Download extends StandardParameters {
     /**
-     * Required. The resource name of the document to download. Format: `documents/{document\}`
+     * Required. The resource name of the document to download.
      */
     name?: string;
   }
@@ -1965,458 +2211,6 @@ export namespace deepreview_v1 {
       this.context = context;
       this.documents = new Resource$Operations$Documents(this.context);
     }
-
-    /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deepreview.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const deepreview = google.deepreview('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive.file'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await deepreview.operations.cancel({
-     *     // The name of the operation resource to be cancelled.
-     *     name: 'operations/.*',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    cancel(
-      params: Params$Resource$Operations$Cancel,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    cancel(
-      params?: Params$Resource$Operations$Cancel,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
-    cancel(
-      params: Params$Resource$Operations$Cancel,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    cancel(
-      params: Params$Resource$Operations$Cancel,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    cancel(
-      params: Params$Resource$Operations$Cancel,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
-    cancel(
-      paramsOrCallback?:
-        | Params$Resource$Operations$Cancel
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Operations$Cancel;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Operations$Cancel;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://deepreview.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deepreview.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const deepreview = google.deepreview('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive.file'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await deepreview.operations.delete({
-     *     // The name of the operation resource to be deleted.
-     *     name: 'operations/.*',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Operations$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Operations$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
-    delete(
-      params: Params$Resource$Operations$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Operations$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete(
-      params: Params$Resource$Operations$Delete,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Operations$Delete
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Operations$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Operations$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://deepreview.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-    /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/deepreview.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const deepreview = google.deepreview('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive.file'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await deepreview.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'operations',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     *     returnPartialSuccess: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Operations$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Operations$List,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
-    list(
-      params: Params$Resource$Operations$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Operations$List,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Operations$List,
-      callback: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListOperationsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Operations$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://deepreview.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListOperationsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Operations$Cancel extends StandardParameters {
-    /**
-     * The name of the operation resource to be cancelled.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$CancelOperationRequest;
-  }
-  export interface Params$Resource$Operations$Delete extends StandardParameters {
-    /**
-     * The name of the operation resource to be deleted.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Operations$List extends StandardParameters {
-    /**
-     * The standard list filter.
-     */
-    filter?: string;
-    /**
-     * The name of the operation's parent resource.
-     */
-    name?: string;
-    /**
-     * The standard list page size.
-     */
-    pageSize?: number;
-    /**
-     * The standard list page token.
-     */
-    pageToken?: string;
-    /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Operations$Documents {
@@ -2456,7 +2250,10 @@ export namespace deepreview_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive.file'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2575,6 +2372,160 @@ export namespace deepreview_v1 {
   export interface Params$Resource$Operations$Documents$Reviews$Get extends StandardParameters {
     /**
      * The name of the operation resource.
+     */
+    name?: string;
+  }
+
+  export class Resource$V1 {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves the review quota limits and sliding-window usage for the authenticated caller.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/deepreview.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const deepreview = google.deepreview('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await deepreview.getUserQuota({
+     *     // Required. The resource name of the singleton user quota to retrieve.
+     *     name: 'userQuota',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customLimitEnabled": false,
+     *   //   "maxReviewCountPerWeek": 0,
+     *   //   "name": "my_name",
+     *   //   "nextAvailableTime": "my_nextAvailableTime",
+     *   //   "remainingReviewCount": 0,
+     *   //   "usedReviewCount": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getUserQuota(
+      params: Params$Resource$V1$Getuserquota,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getUserQuota(
+      params?: Params$Resource$V1$Getuserquota,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserQuota>>;
+    getUserQuota(
+      params: Params$Resource$V1$Getuserquota,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getUserQuota(
+      params: Params$Resource$V1$Getuserquota,
+      options: MethodOptions | BodyResponseCallback<Schema$UserQuota>,
+      callback: BodyResponseCallback<Schema$UserQuota>
+    ): void;
+    getUserQuota(
+      params: Params$Resource$V1$Getuserquota,
+      callback: BodyResponseCallback<Schema$UserQuota>
+    ): void;
+    getUserQuota(callback: BodyResponseCallback<Schema$UserQuota>): void;
+    getUserQuota(
+      paramsOrCallback?:
+        | Params$Resource$V1$Getuserquota
+        | BodyResponseCallback<Schema$UserQuota>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserQuota>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$UserQuota> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserQuota>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$V1$Getuserquota;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Getuserquota;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://deepreview.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserQuota>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserQuota>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$V1$Getuserquota extends StandardParameters {
+    /**
+     * Required. The resource name of the singleton user quota to retrieve.
      */
     name?: string;
   }
