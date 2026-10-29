@@ -3,7 +3,7 @@
   "baseUrl": "https://mybusinessplaceactions.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "My Business Place Actions",
-  "description": "The My Business Place Actions API provides an interface for managing place action links of a location on Google. Note - If you have a quota of 0 after enabling the API, please request for GBP API access.",
+  "description": "The My Business Place Actions API provides an interface for managing place action links of a location on Google. Note: If you have a quota of 0 after enabling the API, please request GBP API access at https://developers.google.com/my-business/content/prereqs#request-access. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/my-business/",
   "fullyEncodeReservedExpansion": true,
@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20251022",
+  "revision": "20261026",
   "rootUrl": "https://mybusinessplaceactions.googleapis.com/",
   "schemas": {
     "Empty": {
