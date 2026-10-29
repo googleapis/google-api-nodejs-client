@@ -125,6 +125,19 @@ export namespace run_v2 {
   }
 
   /**
+   * Configuration for Ambient Networking.
+   */
+  export interface Schema$GoogleCloudRunV2AmbientNetworking {
+    /**
+     * The ambient networking scope of the instance.
+     */
+    ambientScope?: string | null;
+    /**
+     * Optional. Whether ambient networking is enabled.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * Settings for Binary Authorization feature.
    */
   export interface Schema$GoogleCloudRunV2BinaryAuthorization {
@@ -1322,6 +1335,10 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2Revision {
     /**
+     * Output only. The ambient networking configuration for this revision.
+     */
+    ambientNetworking?: Schema$GoogleCloudRunV2AmbientNetworking;
+    /**
      * Output only. Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects.
      */
     annotations?: {[key: string]: string} | null;
@@ -1504,6 +1521,10 @@ export namespace run_v2 {
    * RevisionTemplate describes the data a revision should have when created from a template.
    */
   export interface Schema$GoogleCloudRunV2RevisionTemplate {
+    /**
+     * Optional. The ambient networking configuration for this revision.
+     */
+    ambientNetworking?: Schema$GoogleCloudRunV2AmbientNetworking;
     /**
      * Optional. Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system annotations in v1 now have a corresponding field in v2 RevisionTemplate. This field follows Kubernetes annotations' namespacing, limits, and rules.
      */
@@ -2833,6 +2854,10 @@ export namespace run_v2 {
      * Optional. Option to specify the Pub/Sub topic to receive build status updates.
      */
     pubsubTopic?: string | null;
+    /**
+     * Optional. Ranked list (earlier items have higher priority) of Machine Series to consider when provisioning Worker VMs. A concrete machine type will be selected based on machine availability in the given region. This field must be empty for the Build to be eligible to be paired with a pre-provisioned worker VM.
+     */
+    rankedMachineSeries?: string[] | null;
     /**
      * Requested verifiability options.
      */
@@ -11845,6 +11870,7 @@ export namespace run_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "ambientNetworking": {},
      *   //   "annotations": {},
      *   //   "client": "my_client",
      *   //   "clientVersion": "my_clientVersion",
@@ -14033,6 +14059,7 @@ export namespace run_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "ambientNetworking": {},
      *   //   "annotations": {},
      *   //   "client": "my_client",
      *   //   "clientVersion": "my_clientVersion",
