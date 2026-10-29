@@ -10123,7 +10123,7 @@
       }
     }
   },
-  "revision": "20260721",
+  "revision": "20261023",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -10795,6 +10795,59 @@
         "enabled": {
           "description": "Whether this campaign has enabled ad blocking. When true, ad blocking is enabled for placements in the campaign, but this may be overridden by site and placement settings. When false, ad blocking is disabled for all placements under the campaign, regardless of site and placement settings.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "AdditionalAsset": {
+      "description": "Additional assets for a creative.",
+      "id": "AdditionalAsset",
+      "properties": {
+        "callToActions": {
+          "description": "Optional. Call to actions for the creative.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "coverImages": {
+          "description": "Optional. Cover images for the creative.",
+          "items": {
+            "$ref": "CreativeAsset"
+          },
+          "type": "array"
+        },
+        "descriptions": {
+          "description": "Optional. Descriptions for the creative.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "displayUrl": {
+          "description": "Optional. Display URL for the creative.",
+          "type": "string"
+        },
+        "headlines": {
+          "description": "Optional. Headlines for the creative.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "longDescriptions": {
+          "description": "Optional. Long descriptions for the creative.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "longHeadlines": {
+          "description": "Optional. Long headlines for the creative.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -12596,6 +12649,10 @@
           },
           "type": "array"
         },
+        "additionalAsset": {
+          "$ref": "AdditionalAsset",
+          "description": "Optional. Additional asset for the creative. This field captures additional assets that are associated with the creative and used in the context of the social/native and YouTube platforms."
+        },
         "additionalSizes": {
           "description": "Additional sizes associated with a responsive creative. When inserting or updating a creative either the size ID field or size width and height fields can be used. Applicable to DISPLAY creatives when the primary asset type is HTML_IMAGE.",
           "items": {
@@ -12646,6 +12703,19 @@
             "CREATIVE_AUTHORING_SOURCE_TRACKTO_STUDIO",
             "CREATIVE_AUTHORING_SOURCE_BORNLOGIC",
             "CREATIVE_AUTHORING_SOURCE_BEGEN_AI"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "DCM-UI or external API used to author the creative.",
@@ -13579,7 +13649,13 @@
             "OTHER",
             "ALTERNATE_VIDEO",
             "PARENT_AUDIO",
-            "TRANSCODED_AUDIO"
+            "TRANSCODED_AUDIO",
+            "COVER_IMAGE",
+            "HEADLINE",
+            "LONG_HEADLINE",
+            "DESCRIPTION",
+            "LONG_DESCRIPTION",
+            "CALL_TO_ACTION"
           ],
           "enumDescriptions": [
             "",
@@ -13591,7 +13667,13 @@
             "",
             "",
             "",
-            ""
+            "",
+            "Cover image.",
+            "Headline.",
+            "Long headline.",
+            "Description.",
+            "Long description.",
+            "Call to action."
           ],
           "type": "string"
         },
