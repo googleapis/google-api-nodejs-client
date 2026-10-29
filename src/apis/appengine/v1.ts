@@ -1846,6 +1846,10 @@ export namespace appengine_v1 {
      */
     vm?: boolean | null;
     /**
+     * Enables VPC access connectivity for standard apps.
+     */
+    vpcAccess?: Schema$VpcAccess;
+    /**
      * Enables VPC connectivity for standard apps.
      */
     vpcAccessConnector?: Schema$VpcAccessConnector;
@@ -1872,6 +1876,19 @@ export namespace appengine_v1 {
     volumeType?: string | null;
   }
   /**
+   * VPC Access settings
+   */
+  export interface Schema$VpcAccess {
+    /**
+     * The Direct VPC configuration. Currently only single network interface is supported.
+     */
+    networkInterfaces?: Schema$VpcNetworkInterface[];
+    /**
+     * The traffic egress setting for the VPC network interface, controlling what traffic is diverted through it.
+     */
+    vpcEgress?: string | null;
+  }
+  /**
    * VPC access connector specification.
    */
   export interface Schema$VpcAccessConnector {
@@ -1883,6 +1900,23 @@ export namespace appengine_v1 {
      * Full Serverless VPC Access Connector name e.g. projects/my-project/locations/us-central1/connectors/c1.
      */
     name?: string | null;
+  }
+  /**
+   * Network interface key message.
+   */
+  export interface Schema$VpcNetworkInterface {
+    /**
+     * Optional. The VPC network that the App Engine resource will be able to send traffic to. At least one of network or subnetwork must be specified. If both network and subnetwork are specified, the given VPC subnetwork must belong to the given VPC network. If network is not specified, it will be looked up from the subnetwork. Could be either a short name or a full path. e.g. {VPC_NETWORK\} or projects/{HOST_PROJECT_ID\}/global/networks/{VPC_NETWORK\}
+     */
+    network?: string | null;
+    /**
+     * Optional. The VPC subnetwork that the App Engine resource will get IPs from. At least one of network or subnetwork must be specified. If both network and subnetwork are specified, the given VPC subnetwork must belong to the given VPC network. If subnetwork is not specified, the subnetwork with the same name with the network will be used. Could be either a short name or a full path. e.g. {SUBNET_NAME\} or projects/{HOST_PROJECT_ID\}/regions/{REGION\}/subnetworks/{SUBNET_NAME\}
+     */
+    subnet?: string | null;
+    /**
+     * Optional. The network tags that will be applied to this App Engine resource.
+     */
+    tags?: string[] | null;
   }
   /**
    * The zip file information for a zip deployment.
@@ -6999,6 +7033,7 @@ export namespace appengine_v1 {
      *       //   "threadsafe": false,
      *       //   "versionUrl": "my_versionUrl",
      *       //   "vm": false,
+     *       //   "vpcAccess": {},
      *       //   "vpcAccessConnector": {},
      *       //   "zones": []
      *       // }
@@ -7494,6 +7529,7 @@ export namespace appengine_v1 {
      *   //   "threadsafe": false,
      *   //   "versionUrl": "my_versionUrl",
      *   //   "vm": false,
+     *   //   "vpcAccess": {},
      *   //   "vpcAccessConnector": {},
      *   //   "zones": []
      *   // }
@@ -7828,6 +7864,7 @@ export namespace appengine_v1 {
      *       //   "threadsafe": false,
      *       //   "versionUrl": "my_versionUrl",
      *       //   "vm": false,
+     *       //   "vpcAccess": {},
      *       //   "vpcAccessConnector": {},
      *       //   "zones": []
      *       // }
@@ -11895,6 +11932,7 @@ export namespace appengine_v1 {
      *         //   "threadsafe": false,
      *         //   "versionUrl": "my_versionUrl",
      *         //   "vm": false,
+     *         //   "vpcAccess": {},
      *         //   "vpcAccessConnector": {},
      *         //   "zones": []
      *         // }
