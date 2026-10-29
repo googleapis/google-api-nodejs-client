@@ -307,7 +307,7 @@ export namespace vault_v1 {
      */
     driveQuery?: Schema$HeldDriveQuery;
     /**
-     * Service-specific options for Gemini holds. If set, **CorpusType** must be **GEMINI**.
+     * Service-specific options for Gemini app holds. If set, **CorpusType** must be **GEMINI**.
      */
     geminiQuery?: Schema$HeldGeminiQuery;
     /**
@@ -496,7 +496,11 @@ export namespace vault_v1 {
      */
     driveOptions?: Schema$DriveExportOptions;
     /**
-     * Option available for Gemini export.
+     * Option available for Gemini in Workspace export.
+     */
+    geminiInWorkspaceOptions?: Schema$GeminiInWorkspaceExportOptions;
+    /**
+     * Option available for Gemini app export.
      */
     geminiOptions?: Schema$GeminiExportOptions;
     /**
@@ -538,7 +542,7 @@ export namespace vault_v1 {
     totalArtifactCount?: string | null;
   }
   /**
-   * The options for Gemini exports.
+   * The options for Gemini app exports.
    */
   export interface Schema$GeminiExportOptions {
     /**
@@ -547,7 +551,20 @@ export namespace vault_v1 {
     exportFormat?: string | null;
   }
   /**
-   * Additional options for Gemini search
+   * The options for Gemini in Workspace exports.
+   */
+  export interface Schema$GeminiInWorkspaceExportOptions {
+    /**
+     * The file format for exported messages.
+     */
+    exportFormat?: string | null;
+  }
+  /**
+   * Additional options for Gemini in Workspace search
+   */
+  export interface Schema$GeminiInWorkspaceOptions {}
+  /**
+   * Additional options for Gemini app search
    */
   export interface Schema$GeminiOptions {}
   /**
@@ -654,7 +671,7 @@ export namespace vault_v1 {
     includeTeamDriveFiles?: boolean | null;
   }
   /**
-   * Options for Gemini holds.
+   * Options for Gemini app holds.
    */
   export interface Schema$HeldGeminiQuery {}
   /**
@@ -1001,7 +1018,11 @@ export namespace vault_v1 {
      */
     endTime?: string | null;
     /**
-     * Set Gemini search-specific options.
+     * Set Gemini in Workspace search-specific options.
+     */
+    geminiInWorkspaceOptions?: Schema$GeminiInWorkspaceOptions;
+    /**
+     * Set Gemini app search-specific options.
      */
     geminiOptions?: Schema$GeminiOptions;
     /**

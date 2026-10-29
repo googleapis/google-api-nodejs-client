@@ -1208,7 +1208,7 @@
       }
     }
   },
-  "revision": "20260615",
+  "revision": "20261022",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {
@@ -1360,8 +1360,8 @@
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
             "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
             "Export as ICS. Only available for Calendar.",
-            "Export as XML. Only available for Gemini.",
-            "Export as JSON. Only available for Gemini in Workpace."
+            "Export as XML. Only available for Gemini app.",
+            "Export as JSON. Only available for Gemini in Workspace."
           ],
           "type": "string"
         }
@@ -1497,7 +1497,7 @@
         },
         "geminiQuery": {
           "$ref": "HeldGeminiQuery",
-          "description": "Service-specific options for Gemini holds. If set, **CorpusType** must be **GEMINI**."
+          "description": "Service-specific options for Gemini app holds. If set, **CorpusType** must be **GEMINI**."
         },
         "groupsQuery": {
           "$ref": "HeldGroupsQuery",
@@ -1761,9 +1761,13 @@
           "$ref": "DriveExportOptions",
           "description": "Options for Drive exports."
         },
+        "geminiInWorkspaceOptions": {
+          "$ref": "GeminiInWorkspaceExportOptions",
+          "description": "Option available for Gemini in Workspace export."
+        },
         "geminiOptions": {
           "$ref": "GeminiExportOptions",
-          "description": "Option available for Gemini export."
+          "description": "Option available for Gemini app export."
         },
         "groupsOptions": {
           "$ref": "GroupsExportOptions",
@@ -1823,7 +1827,7 @@
       "type": "object"
     },
     "GeminiExportOptions": {
-      "description": "The options for Gemini exports.",
+      "description": "The options for Gemini app exports.",
       "id": "GeminiExportOptions",
       "properties": {
         "exportFormat": {
@@ -1841,16 +1845,49 @@
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
             "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
             "Export as ICS. Only available for Calendar.",
-            "Export as XML. Only available for Gemini.",
-            "Export as JSON. Only available for Gemini in Workpace."
+            "Export as XML. Only available for Gemini app.",
+            "Export as JSON. Only available for Gemini in Workspace."
           ],
           "type": "string"
         }
       },
       "type": "object"
     },
+    "GeminiInWorkspaceExportOptions": {
+      "description": "The options for Gemini in Workspace exports.",
+      "id": "GeminiInWorkspaceExportOptions",
+      "properties": {
+        "exportFormat": {
+          "description": "The file format for exported messages.",
+          "enum": [
+            "EXPORT_FORMAT_UNSPECIFIED",
+            "MBOX",
+            "PST",
+            "ICS",
+            "XML",
+            "JSON"
+          ],
+          "enumDescriptions": [
+            "No export format specified.",
+            "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
+            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
+            "Export as ICS. Only available for Calendar.",
+            "Export as XML. Only available for Gemini app.",
+            "Export as JSON. Only available for Gemini in Workspace."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GeminiInWorkspaceOptions": {
+      "description": "Additional options for Gemini in Workspace search",
+      "id": "GeminiInWorkspaceOptions",
+      "properties": {},
+      "type": "object"
+    },
     "GeminiOptions": {
-      "description": "Additional options for Gemini search",
+      "description": "Additional options for Gemini app search",
       "id": "GeminiOptions",
       "properties": {},
       "type": "object"
@@ -1912,8 +1949,8 @@
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
             "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
             "Export as ICS. Only available for Calendar.",
-            "Export as XML. Only available for Gemini.",
-            "Export as JSON. Only available for Gemini in Workpace."
+            "Export as XML. Only available for Gemini app.",
+            "Export as JSON. Only available for Gemini in Workspace."
           ],
           "type": "string"
         }
@@ -1939,8 +1976,8 @@
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
             "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
             "Export as ICS. Only available for Calendar.",
-            "Export as XML. Only available for Gemini.",
-            "Export as JSON. Only available for Gemini in Workpace."
+            "Export as XML. Only available for Gemini app.",
+            "Export as JSON. Only available for Gemini in Workspace."
           ],
           "type": "string"
         }
@@ -2023,7 +2060,7 @@
       "type": "object"
     },
     "HeldGeminiQuery": {
-      "description": "Options for Gemini holds.",
+      "description": "Options for Gemini app holds.",
       "id": "HeldGeminiQuery",
       "properties": {},
       "type": "object"
@@ -2144,7 +2181,8 @@
             "HANGOUTS_CHAT",
             "VOICE",
             "CALENDAR",
-            "GEMINI"
+            "GEMINI",
+            "GEMINI_IN_WORKSPACE"
           ],
           "enumDescriptions": [
             "No service specified.",
@@ -2154,7 +2192,8 @@
             "For export, Google Chat only. For holds, Google Chat and classic Hangouts.",
             "Google Voice.",
             "Calendar.",
-            "Gemini."
+            "Gemini app.",
+            "Gemini in Workspace."
           ],
           "type": "string"
         },
@@ -2350,8 +2389,8 @@
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
             "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
             "Export as ICS. Only available for Calendar.",
-            "Export as XML. Only available for Gemini.",
-            "Export as JSON. Only available for Gemini in Workpace."
+            "Export as XML. Only available for Gemini app.",
+            "Export as JSON. Only available for Gemini in Workspace."
           ],
           "type": "string"
         },
@@ -2548,7 +2587,8 @@
             "HANGOUTS_CHAT",
             "VOICE",
             "CALENDAR",
-            "GEMINI"
+            "GEMINI",
+            "GEMINI_IN_WORKSPACE"
           ],
           "enumDescriptions": [
             "No service specified.",
@@ -2558,7 +2598,8 @@
             "For export, Google Chat only. For holds, Google Chat and classic Hangouts.",
             "Google Voice.",
             "Calendar.",
-            "Gemini."
+            "Gemini app.",
+            "Gemini in Workspace."
           ],
           "type": "string"
         },
@@ -2591,9 +2632,13 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "geminiInWorkspaceOptions": {
+          "$ref": "GeminiInWorkspaceOptions",
+          "description": "Set Gemini in Workspace search-specific options."
+        },
         "geminiOptions": {
           "$ref": "GeminiOptions",
-          "description": "Set Gemini search-specific options."
+          "description": "Set Gemini app search-specific options."
         },
         "hangoutsChatInfo": {
           "$ref": "HangoutsChatInfo",
@@ -2914,8 +2959,8 @@
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
             "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
             "Export as ICS. Only available for Calendar.",
-            "Export as XML. Only available for Gemini.",
-            "Export as JSON. Only available for Gemini in Workpace."
+            "Export as XML. Only available for Gemini app.",
+            "Export as JSON. Only available for Gemini in Workspace."
           ],
           "type": "string"
         }
