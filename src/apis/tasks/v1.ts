@@ -245,7 +245,7 @@ export namespace tasks_v1 {
      */
     etag?: string | null;
     /**
-     * Task list identifier.
+     * Task list identifier. In requests, the authenticated user's default task list can also be referred to as "@default".
      */
     id?: string | null;
     /**
@@ -309,7 +309,7 @@ export namespace tasks_v1 {
     }
 
     /**
-     * Deletes the authenticated user's specified task list. If the list contains assigned tasks, both the assigned tasks and the original tasks in the assignment surface (Docs, Chat Spaces) are deleted.
+     * Deletes the authenticated user's specified task list. If the list contains assigned tasks, both the assigned tasks and the original tasks in the assignment surface (Docs, Chat Spaces) are deleted. The user's default task list cannot be deleted.
      * @example
      * ```js
      * // Before running the sample:
@@ -339,7 +339,7 @@ export namespace tasks_v1 {
      *
      *   // Do the magic
      *   const res = await tasks.tasklists.delete({
-     *     // Task list identifier.
+     *     // Task list identifier. The default task list cannot be deleted.
      *     tasklist: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -471,7 +471,7 @@ export namespace tasks_v1 {
      *
      *   // Do the magic
      *   const res = await tasks.tasklists.get({
-     *     // Task list identifier.
+     *     // Task list identifier. Use "@default" to get the authenticated user's default task list.
      *     tasklist: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -764,9 +764,9 @@ export namespace tasks_v1 {
      *
      *   // Do the magic
      *   const res = await tasks.tasklists.list({
-     *     // Maximum number of task lists returned on one page. Optional. The default is 1000 (max allowed: 1000).
+     *     // Optional. Maximum number of task lists returned on one page. The default is 1000 (max allowed: 1000).
      *     maxResults: 'placeholder-value',
-     *     // Token specifying the result page to return. Optional.
+     *     // Optional. Token specifying the result page to return.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1182,13 +1182,13 @@ export namespace tasks_v1 {
 
   export interface Params$Resource$Tasklists$Delete extends StandardParameters {
     /**
-     * Task list identifier.
+     * Task list identifier. The default task list cannot be deleted.
      */
     tasklist?: string;
   }
   export interface Params$Resource$Tasklists$Get extends StandardParameters {
     /**
-     * Task list identifier.
+     * Task list identifier. Use "@default" to get the authenticated user's default task list.
      */
     tasklist?: string;
   }
@@ -1200,11 +1200,11 @@ export namespace tasks_v1 {
   }
   export interface Params$Resource$Tasklists$List extends StandardParameters {
     /**
-     * Maximum number of task lists returned on one page. Optional. The default is 1000 (max allowed: 1000).
+     * Optional. Maximum number of task lists returned on one page. The default is 1000 (max allowed: 1000).
      */
     maxResults?: number;
     /**
-     * Token specifying the result page to return. Optional.
+     * Optional. Token specifying the result page to return.
      */
     pageToken?: string;
   }
@@ -1684,9 +1684,11 @@ export namespace tasks_v1 {
      *
      *   // Do the magic
      *   const res = await tasks.tasks.insert({
-     *     // Parent task identifier. If the task is created at the top level, this parameter is omitted. An assigned task cannot be a parent task, nor can it have a parent. Setting the parent to an assigned task results in failure of the request. Optional.
+     *     // Optional. Flag indicating whether the task is created as 'hidden', as if it had been completed and then cleared from the task list (see the "clear" method). Hidden tasks are not returned by default when retrieving all tasks for a task list (see showHidden). Only completed tasks can be created as hidden, and they can not be nested or positioned, so parent and previous must be empty.
+     *     hidden: 'placeholder-value',
+     *     // Optional. Parent task identifier. If the task is created at the top level, this parameter is omitted. An assigned task cannot be a parent task, nor can it have a parent. Setting the parent to an assigned task results in failure of the request.
      *     parent: 'placeholder-value',
-     *     // Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted. Optional.
+     *     // Optional. Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted.
      *     previous: 'placeholder-value',
      *     // Task list identifier.
      *     tasklist: 'placeholder-value',
@@ -1866,29 +1868,29 @@ export namespace tasks_v1 {
      *
      *   // Do the magic
      *   const res = await tasks.tasks.list({
-     *     // Upper bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
+     *     // Optional. Upper bound for a task's completion date (as a RFC 3339 timestamp) to filter by. The default is not to filter by completion date.
      *     completedMax: 'placeholder-value',
-     *     // Lower bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
+     *     // Optional. Lower bound for a task's completion date (as a RFC 3339 timestamp) to filter by. The default is not to filter by completion date.
      *     completedMin: 'placeholder-value',
-     *     // Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
+     *     // Optional. Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by. The default is not to filter by due date.
      *     dueMax: 'placeholder-value',
-     *     // Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
+     *     // Optional. Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by. The default is not to filter by due date.
      *     dueMin: 'placeholder-value',
-     *     // Maximum number of tasks returned on one page. Optional. The default is 20 (max allowed: 100).
+     *     // Optional. Maximum number of tasks returned on one page. The default is 20 (max allowed: 100).
      *     maxResults: 'placeholder-value',
-     *     // Token specifying the result page to return. Optional.
+     *     // Optional. Token specifying the result page to return.
      *     pageToken: 'placeholder-value',
-     *     // Optional. Flag indicating whether tasks assigned to the current user are returned in the result. Optional. The default is False.
+     *     // Optional. Flag indicating whether tasks assigned to the current user are returned in the result. The default is False.
      *     showAssigned: 'placeholder-value',
-     *     // Flag indicating whether completed tasks are returned in the result. Note that showHidden must also be True to show tasks completed in first party clients, such as the web UI and Google's mobile apps. Optional. The default is True.
+     *     // Optional. Flag indicating whether completed tasks are returned in the result. Note that showHidden must also be True to show tasks completed in first party clients, such as the web UI and Google's mobile apps. The default is True.
      *     showCompleted: 'placeholder-value',
-     *     // Flag indicating whether deleted tasks are returned in the result. Optional. The default is False.
+     *     // Optional. Flag indicating whether deleted tasks are returned in the result. The default is False.
      *     showDeleted: 'placeholder-value',
-     *     // Flag indicating whether hidden tasks are returned in the result. Optional. The default is False.
+     *     // Optional. Flag indicating whether hidden tasks are returned in the result. The default is False.
      *     showHidden: 'placeholder-value',
      *     // Task list identifier.
      *     tasklist: 'placeholder-value',
-     *     // Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
+     *     // Optional. Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. The default is not to filter by last modification time.
      *     updatedMin: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2536,11 +2538,15 @@ export namespace tasks_v1 {
   }
   export interface Params$Resource$Tasks$Insert extends StandardParameters {
     /**
-     * Parent task identifier. If the task is created at the top level, this parameter is omitted. An assigned task cannot be a parent task, nor can it have a parent. Setting the parent to an assigned task results in failure of the request. Optional.
+     * Optional. Flag indicating whether the task is created as 'hidden', as if it had been completed and then cleared from the task list (see the "clear" method). Hidden tasks are not returned by default when retrieving all tasks for a task list (see showHidden). Only completed tasks can be created as hidden, and they can not be nested or positioned, so parent and previous must be empty.
+     */
+    hidden?: boolean;
+    /**
+     * Optional. Parent task identifier. If the task is created at the top level, this parameter is omitted. An assigned task cannot be a parent task, nor can it have a parent. Setting the parent to an assigned task results in failure of the request.
      */
     parent?: string;
     /**
-     * Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted. Optional.
+     * Optional. Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted.
      */
     previous?: string;
     /**
@@ -2555,43 +2561,43 @@ export namespace tasks_v1 {
   }
   export interface Params$Resource$Tasks$List extends StandardParameters {
     /**
-     * Upper bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
+     * Optional. Upper bound for a task's completion date (as a RFC 3339 timestamp) to filter by. The default is not to filter by completion date.
      */
     completedMax?: string;
     /**
-     * Lower bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
+     * Optional. Lower bound for a task's completion date (as a RFC 3339 timestamp) to filter by. The default is not to filter by completion date.
      */
     completedMin?: string;
     /**
-     * Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
+     * Optional. Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by. The default is not to filter by due date.
      */
     dueMax?: string;
     /**
-     * Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
+     * Optional. Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by. The default is not to filter by due date.
      */
     dueMin?: string;
     /**
-     * Maximum number of tasks returned on one page. Optional. The default is 20 (max allowed: 100).
+     * Optional. Maximum number of tasks returned on one page. The default is 20 (max allowed: 100).
      */
     maxResults?: number;
     /**
-     * Token specifying the result page to return. Optional.
+     * Optional. Token specifying the result page to return.
      */
     pageToken?: string;
     /**
-     * Optional. Flag indicating whether tasks assigned to the current user are returned in the result. Optional. The default is False.
+     * Optional. Flag indicating whether tasks assigned to the current user are returned in the result. The default is False.
      */
     showAssigned?: boolean;
     /**
-     * Flag indicating whether completed tasks are returned in the result. Note that showHidden must also be True to show tasks completed in first party clients, such as the web UI and Google's mobile apps. Optional. The default is True.
+     * Optional. Flag indicating whether completed tasks are returned in the result. Note that showHidden must also be True to show tasks completed in first party clients, such as the web UI and Google's mobile apps. The default is True.
      */
     showCompleted?: boolean;
     /**
-     * Flag indicating whether deleted tasks are returned in the result. Optional. The default is False.
+     * Optional. Flag indicating whether deleted tasks are returned in the result. The default is False.
      */
     showDeleted?: boolean;
     /**
-     * Flag indicating whether hidden tasks are returned in the result. Optional. The default is False.
+     * Optional. Flag indicating whether hidden tasks are returned in the result. The default is False.
      */
     showHidden?: boolean;
     /**
@@ -2599,7 +2605,7 @@ export namespace tasks_v1 {
      */
     tasklist?: string;
     /**
-     * Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
+     * Optional. Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. The default is not to filter by last modification time.
      */
     updatedMin?: string;
   }
