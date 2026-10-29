@@ -161,7 +161,7 @@
       }
     }
   },
-  "revision": "20261019",
+  "revision": "20261021",
   "rootUrl": "https://travelimpactmodel.googleapis.com/",
   "schemas": {
     "ComputeDetailedFlightEmissionsRequest": {
@@ -890,7 +890,7 @@
           "type": "string"
         },
         "distanceKm": {
-          "description": "Optional. Distance in kilometers, e.g. `2423`, from [1, 2.5e16) km. This is used to match a flight to distance-based emissions when origin and destination are not provided or there are no matching typical flights.",
+          "description": "Optional. Distance in kilometers, e.g. `2423`, from [`1`, `1e12`) km. This is used to match a flight to distance-based emissions when origin and destination are not provided or there are no matching typical flights.",
           "format": "int64",
           "type": "string"
         },
