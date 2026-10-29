@@ -402,6 +402,7 @@
             "$ref": "UploadAttachmentResponse"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/chat.bot",
             "https://www.googleapis.com/auth/chat.import",
             "https://www.googleapis.com/auth/chat.messages",
             "https://www.googleapis.com/auth/chat.messages.create"
@@ -1482,6 +1483,7 @@
                     "$ref": "Reaction"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/chat.bot",
                     "https://www.googleapis.com/auth/chat.import",
                     "https://www.googleapis.com/auth/chat.messages",
                     "https://www.googleapis.com/auth/chat.messages.reactions",
@@ -1510,6 +1512,7 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/chat.bot",
                     "https://www.googleapis.com/auth/chat.import",
                     "https://www.googleapis.com/auth/chat.messages",
                     "https://www.googleapis.com/auth/chat.messages.reactions"
@@ -2209,7 +2212,7 @@
       }
     }
   },
-  "revision": "20261015",
+  "revision": "20261025",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessPermissionSetting": {
@@ -2781,6 +2784,47 @@
       },
       "type": "object"
     },
+    "Citation": {
+      "description": "Citations are inline references that can provide users more detailed information about the inline reference. Corresponding inline citations should be present in the message text in a markup format of `{text}`. Citations are only supported when the message's `markup_syntax` is set to `MARKDOWN`. Unreferenced citations in `Elements.citations` (those without a matching `` tag in the message text) are ignored and do not cause the message to be rejected.",
+      "id": "Citation",
+      "properties": {
+        "citedSources": {
+          "description": "Optional. A list of sources that are relevant to the citation. Sources are displayed in the citation hover card.",
+          "items": {
+            "$ref": "CitedSource"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Required. The ID of the citation. This ID is defined by the app creating the citation and must match the `data-id` attribute of the `` tag in the message text. Must contain only ASCII letters and numbers, and less than 63 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CitedSource": {
+      "description": "A reference to a source of information.",
+      "id": "CitedSource",
+      "properties": {
+        "footer": {
+          "$ref": "Footer",
+          "description": "Optional. Additional information to show alongside the snippet in the form of a footer."
+        },
+        "snippet": {
+          "$ref": "Snippet",
+          "description": "Optional. Snippet containing information directly from the source."
+        },
+        "title": {
+          "description": "Required. The plaintext title of the `CitedSource`. Does not support markdown format.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Required. The URI pointing to the resource referenced by this `CitedSource`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Color": {
       "description": "Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to and from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't have information about the absolute color space that should be used to interpret the RGB value—for example, sRGB, Adobe RGB, DCI-P3, and BT.2020. By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most `1e-5`. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); }; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); } resultBuilder.push(hexString); return resultBuilder.join(''); }; // ...",
       "id": "Color",
@@ -3148,7 +3192,7 @@
       "properties": {
         "body": {
           "$ref": "GoogleAppsCardV1Card",
-          "description": "Input only. Body of the dialog, which is rendered in a modal. Google Chat apps don't support the following card entities: `DateTimePicker`, `OnChangeAction`."
+          "description": "Input only. Body of the dialog, which is rendered in a modal."
         }
       },
       "type": "object"
@@ -3207,6 +3251,38 @@
       },
       "type": "object"
     },
+    "Elements": {
+      "description": "Elements are additional message components, including inline `citations` (where each citation is associated with a specific portion of the message text) and `cited_sources` (which are general references used to generate the response and are not directly linked to specific segments of the text). Both `citations` and `cited_sources` can be provided as input when creating or updating a message and are populated on output when reading a message.",
+      "id": "Elements",
+      "properties": {
+        "citations": {
+          "description": "Optional. A list of inline citations referenced within the message text (via `` tags) that render as interactive hover cards.",
+          "items": {
+            "$ref": "Citation"
+          },
+          "type": "array"
+        },
+        "citedSources": {
+          "description": "Optional. A list of sources to be displayed under the message as footer links. These are not referenced inline. For inline references, use `citations`.",
+          "items": {
+            "$ref": "CitedSource"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ElementsImage": {
+      "description": "An object encapsulating different ways of representing an image. Currently supported representations: * An image fetched from a URI. Additional representations might be supported in the future.",
+      "id": "ElementsImage",
+      "properties": {
+        "imageUri": {
+          "description": "Required. The URI of the image. Must be a publicly accessible URI so that Chat can fetch and display it.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Emoji": {
       "description": "An emoji that is used as a reaction to a message.",
       "id": "Emoji",
@@ -3260,6 +3336,17 @@
             "$ref": "Space"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Footer": {
+      "description": "A footer for a source, used for attribution.",
+      "id": "Footer",
+      "properties": {
+        "text": {
+          "description": "Optional. The plaintext to display in the footer. Does not support markdown format.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3602,7 +3689,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1Carousel": {
-      "description": "A carousel, also known as a slider, rotates and displays a list of widgets in a slideshow format, with buttons navigating to the previous or next widget. For example, this is a JSON representation of a carousel that contains three text paragraph widgets. ``` { \"carouselCards\": [ { \"widgets\": [ { \"textParagraph\": { \"text\": \"First text paragraph in carousel\", } } ] }, { \"widgets\": [ { \"textParagraph\": { \"text\": \"Second text paragraph in carousel\", } } ] }, { \"widgets\": [ { \"textParagraph\": { \"text\": \"Third text paragraph in carousel\", } } ] } ] } ``` [Google Chat apps](https://developers.google.com/workspace/chat):",
+      "description": "Rotates and displays a list of carousel cards in a slideshow format, with buttons navigating to the previous or next card. For example, this is a JSON representation of a carousel that contains three text paragraph widgets. ``` { \"carouselCards\": [ { \"widgets\": [ { \"textParagraph\": { \"text\": \"First text paragraph in carousel\" } } ] }, { \"widgets\": [ { \"textParagraph\": { \"text\": \"Second text paragraph in carousel\" } } ] }, { \"widgets\": [ { \"textParagraph\": { \"text\": \"Third text paragraph in carousel\" } } ] } ] } ``` [Google Chat apps](https://developers.google.com/workspace/chat):",
       "id": "GoogleAppsCardV1Carousel",
       "properties": {
         "carouselCards": {
@@ -3650,12 +3737,12 @@
         },
         "enabled": {
           "deprecated": true,
-          "description": "Whether the chip is in an active state and responds to user actions. Defaults to `true`. Deprecated. Use `disabled` instead.",
+          "description": "Deprecated: Use `disabled` instead. Whether the chip is in an active state and responds to user actions.",
           "type": "boolean"
         },
         "icon": {
           "$ref": "GoogleAppsCardV1Icon",
-          "description": "The icon image. If both `icon` and `text` are set, then the icon appears before the text."
+          "description": "The icon image. If both `icon` and `label` are set, then the icon appears before the label."
         },
         "label": {
           "description": "The text displayed inside the chip.",
@@ -3868,7 +3955,7 @@
           "description": "Triggered when the user clicks **Save** or **Clear** from the `DateTimePicker` interface."
         },
         "timezoneOffsetDate": {
-          "description": "The number representing the time zone offset from UTC, in minutes. If set, the `value_ms_epoch` is displayed in the specified time zone. If unset, the value defaults to the user's time zone setting.",
+          "description": "The number representing the time zone offset from UTC, in minutes. If set, the `value_ms_epoch` is displayed in the specified time zone. If unset, the value defaults to the user's time zone setting. Note: This field is in minutes, whereas user interaction event payloads typically provide time zone offsets in milliseconds (divide by `60000` to convert).",
           "format": "int32",
           "type": "integer"
         },
@@ -3925,7 +4012,7 @@
         },
         "onClick": {
           "$ref": "GoogleAppsCardV1OnClick",
-          "description": "This action is triggered when users click `topLabel` or `bottomLabel`."
+          "description": "This action is triggered when users click anywhere on the `DecoratedText` widget (including `text`, `top_label`, `bottom_label`, and icons), except when clicking a separate interactive control (`button` or `switch_control`)."
         },
         "startIcon": {
           "$ref": "GoogleAppsCardV1Icon",
@@ -4070,7 +4157,7 @@
         },
         "onClick": {
           "$ref": "GoogleAppsCardV1OnClick",
-          "description": "This callback is reused by each individual grid item, but with the item's identifier and index in the items list added to the callback's parameters."
+          "description": "This callback is reused by each individual grid item, but with the item's identifier added to the callback's parameters (under the key `\"grid_item_identifier\"`)."
         },
         "title": {
           "description": "The text that displays in the grid header.",
@@ -4748,11 +4835,11 @@
         },
         "carousel": {
           "$ref": "GoogleAppsCardV1Carousel",
-          "description": "A carousel contains a collection of nested widgets. For example, this is a JSON representation of a carousel that contains two text paragraphs. ``` { \"widgets\": [ { \"textParagraph\": { \"text\": \"First text paragraph in the carousel.\" } }, { \"textParagraph\": { \"text\": \"Second text paragraph in the carousel.\" } } ] } ```"
+          "description": "Contains a collection of `CarouselCard` items, each of which contains nested widgets. For example, this is a JSON representation of a carousel that contains two carousel cards, each with a text paragraph: ``` { \"carouselCards\": [ { \"widgets\": [ { \"textParagraph\": { \"text\": \"First text paragraph in the carousel.\" } } ] }, { \"widgets\": [ { \"textParagraph\": { \"text\": \"Second text paragraph in the carousel.\" } } ] } ] } ```"
         },
         "chipList": {
           "$ref": "GoogleAppsCardV1ChipList",
-          "description": "A list of chips. For example, the following JSON creates two chips. The first is a text chip and the second is an icon chip that opens a link: ``` \"chipList\": { \"chips\": [ { \"text\": \"Edit\", \"disabled\": true, }, { \"icon\": { \"knownIcon\": \"INVITE\", \"altText\": \"check calendar\" }, \"onClick\": { \"openLink\": { \"url\": \"https://example.com/calendar\" } } } ] } ```"
+          "description": "A list of chips. For example, the following JSON creates two chips. The first is a text chip and the second is an icon chip that opens a link: ``` \"chipList\": { \"chips\": [ { \"label\": \"Edit\", \"disabled\": true }, { \"icon\": { \"knownIcon\": \"INVITE\", \"altText\": \"check calendar\" }, \"onClick\": { \"openLink\": { \"url\": \"https://example.com/calendar\" } } } ] } ```"
         },
         "columns": {
           "$ref": "GoogleAppsCardV1Columns",
@@ -5692,6 +5779,10 @@
           "description": "Output only. Information about a deleted message. A message is deleted when `delete_time` is set.",
           "readOnly": true
         },
+        "elements": {
+          "$ref": "Elements",
+          "description": "Optional. Additional message components, including inline `citations` (where each citation is associated with a specific portion of the message text) and `cited_sources` (which are general references used to generate the response and are not directly linked to specific segments of the text). On input, provide `elements` when creating or updating a message. On output, both `citations` and `cited_sources` are populated when reading a message that contains them. Callers can read structured citation metadata from `elements`, while `formatted_text` also includes inline citation tags or source links depending on `markup_syntax`. These differ from `annotations`, which are output-only and offer supplementary information tied to message fragments or the entire message text."
+        },
         "emojiReactionSummaries": {
           "description": "Output only. The list of emoji reaction summaries on the message.",
           "items": {
@@ -6503,6 +6594,21 @@
             "Add Chat app to space.",
             "Invoke slash command in space."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Snippet": {
+      "description": "A snippet object representing an excerpt from a larger corpus.",
+      "id": "Snippet",
+      "properties": {
+        "imagePreview": {
+          "$ref": "ElementsImage",
+          "description": "Optional. Image preview of the snippet provided as an input when creating the citation."
+        },
+        "text": {
+          "description": "Optional. A short plaintext excerpt directly from the corpus that is rendered in the citation hover card or source preview. When footer sources are automatically populated from inline `citations` (because `Elements.cited_sources` is not set), snippets are omitted from the deduplicated footer sources. Does not support markdown format, and must not exceed 1,000 characters.",
           "type": "string"
         }
       },
