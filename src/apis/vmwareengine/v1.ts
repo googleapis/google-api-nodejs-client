@@ -280,6 +280,31 @@ export namespace vmwareengine_v1 {
     role?: string | null;
   }
   /**
+   * Represents a capacity allocation. Capacity allocation is zonal.
+   */
+  export interface Schema$CapacityAllocation {
+    /**
+     * Output only. The allocated capacity for the capacity allocation.
+     */
+    allocatedCapacityCount?: number | null;
+    /**
+     * Output only. The consumed capacity for the capacity allocation.
+     */
+    consumedCapacityCount?: number | null;
+    /**
+     * Output only. The machine family of the capacity allocation.
+     */
+    machineFamily?: string | null;
+    /**
+     * Output only. Identifier. The resource name of the capacity allocation. The last segment of the name is the placement group name. For example: `projects/my-project/locations/us-central1-a/capacityAllocations/pg-123`
+     */
+    name?: string | null;
+    /**
+     * Output only. The private cloud names using the capacity allocation.
+     */
+    privateClouds?: string[] | null;
+  }
+  /**
    * A cluster in a private cloud.
    */
   export interface Schema$Cluster {
@@ -307,6 +332,10 @@ export namespace vmwareengine_v1 {
      * Required. The map of cluster node types in this cluster, where the key is canonical identifier of the node type (corresponds to the `NodeType`).
      */
     nodeTypeConfigs?: {[key: string]: Schema$NodeTypeConfig} | null;
+    /**
+     * Optional. The identifier of the placement group for cluster nodes. A placement group is an internal Google identifier for a group of resources that are physically located within the same fault domain. If provided, nodes for this cluster are placed within the specified placement group. If this field is omitted, the system selects an appropriate placement group.
+     */
+    placementGroup?: string | null;
     /**
      * Output only. State of the resource.
      */
@@ -765,6 +794,23 @@ export namespace vmwareengine_v1 {
     unreachable?: string[] | null;
   }
   /**
+   * Response message for VmwareEngine.ListCapacityAllocations
+   */
+  export interface Schema$ListCapacityAllocationsResponse {
+    /**
+     * A list of capacity allocations.
+     */
+    capacityAllocations?: Schema$CapacityAllocation[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unordered list. Locations that could not be reached when making an aggregated query using wildcards.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response message for VmwareEngine.ListClusters
    */
   export interface Schema$ListClustersResponse {
@@ -1171,6 +1217,10 @@ export namespace vmwareengine_v1 {
      * Required. The map of cluster node types in this cluster, where the key is canonical identifier of the node type (corresponds to the `NodeType`).
      */
     nodeTypeConfigs?: {[key: string]: Schema$NodeTypeConfig} | null;
+    /**
+     * Optional. The identifier of the placement group for management cluster nodes. A placement group is an internal Google identifier for a group of resources that are physically located within the same fault domain. If provided, nodes for this cluster are placed within the specified placement group. If this field is omitted, the system selects an appropriate placement group.
+     */
+    placementGroup?: string | null;
     /**
      * Optional. Configuration of a stretched cluster. Required for STRETCHED private clouds.
      */
@@ -1887,9 +1937,17 @@ export namespace vmwareengine_v1 {
      */
     preferredLocation?: string | null;
     /**
+     * Optional. The identifier of the placement group for preferred location cluster nodes. A placement group is an internal Google identifier for a group of resources that are physically located within the same fault domain. If provided, nodes for this cluster are placed within the specified placement group. If this field is omitted, the system selects an appropriate placement group.
+     */
+    preferredLocationPlacementGroup?: string | null;
+    /**
      * Required. Additional zone for a higher level of availability and load balancing. Specify the resource name or ID of a zone that belongs to the region of the private cloud. For example: `projects/{project\}/locations/europe-west3-b` or `europe-west3-b`, where `{project\}` can either be a project number or a project ID.
      */
     secondaryLocation?: string | null;
+    /**
+     * Optional. The identifier of the placement group for secondary location cluster nodes. A placement group is an internal Google identifier for a group of resources that are physically located within the same fault domain. If provided, nodes for this cluster are placed within the specified placement group. If this field is omitted, the system selects an appropriate placement group.
+     */
+    secondaryLocationPlacementGroup?: string | null;
   }
   /**
    * Subnet in a private cloud. Either `management` subnets (such as vMotion) that are read-only, or `userDefined`, which can also be updated.
@@ -2219,6 +2277,7 @@ export namespace vmwareengine_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     announcements: Resource$Projects$Locations$Announcements;
+    capacityAllocations: Resource$Projects$Locations$Capacityallocations;
     datastores: Resource$Projects$Locations$Datastores;
     dnsBindPermission: Resource$Projects$Locations$Dnsbindpermission;
     networkPeerings: Resource$Projects$Locations$Networkpeerings;
@@ -2233,6 +2292,8 @@ export namespace vmwareengine_v1 {
       this.announcements = new Resource$Projects$Locations$Announcements(
         this.context
       );
+      this.capacityAllocations =
+        new Resource$Projects$Locations$Capacityallocations(this.context);
       this.datastores = new Resource$Projects$Locations$Datastores(
         this.context
       );
@@ -3040,6 +3101,190 @@ export namespace vmwareengine_v1 {
     pageToken?: string;
     /**
      * Required. The resource name of the location to be queried for announcements. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Capacityallocations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists `CapacityAllocation` resources in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmwareengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const vmwareengine = google.vmwareengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vmwareengine.projects.locations.capacityAllocations.list({
+     *     // Optional. A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string or a number. The comparison operator must be `=`, `!=`, `\>`, `\>=`, `<`, or `<=`. The has operator `:` is also supported. Supported fields include `name`, `display_name` (or `placement_group`), `machine_family`, `allocated_capacity_count`, `consumed_capacity_count`, and `connected_placement_group` (using `=`). For example, if you are filtering a list of capacity allocations, you can exclude the ones named `example-capacity-allocation` by specifying `name != "example-capacity-allocation"`. You can also filter on other fields, such as machine family (`"ve1"`, `"ve2"`, or `"ve3"`) or connected placement group: ``` machine_family = "ve1" connected_placement_group = "example-placement-group" ``` To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (machine_family = "ve1") (allocated_capacity_count \> 10) ``` By default, each expression is an `AND` expression. However, you can include `AND`, `OR`, and `NOT` expressions explicitly. For example: ``` ((machine_family = "ve1") AND (allocated_capacity_count \> 10)) OR (consumed_capacity_count \> 0) ```
+     *     filter: 'placeholder-value',
+     *     // Optional. Sorts list results by a certain order. By default, returned results are ordered by `name` in ascending order. You can also sort results in descending order based on the `name` value using `orderBy="name desc"`. Currently, only ordering by `name` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of capacity allocations to return in one page. The service may return fewer than this value. The maximum value is coerced to 1000. The default value of this field is 500.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListCapacityAllocations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCapacityAllocations` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the location to query for capacity allocations. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a`
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "capacityAllocations": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Capacityallocations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Capacityallocations$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCapacityAllocationsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Capacityallocations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Capacityallocations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCapacityAllocationsResponse>,
+      callback: BodyResponseCallback<Schema$ListCapacityAllocationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Capacityallocations$List,
+      callback: BodyResponseCallback<Schema$ListCapacityAllocationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListCapacityAllocationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Capacityallocations$List
+        | BodyResponseCallback<Schema$ListCapacityAllocationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCapacityAllocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCapacityAllocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCapacityAllocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Capacityallocations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Capacityallocations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/capacityAllocations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCapacityAllocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCapacityAllocationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Capacityallocations$List extends StandardParameters {
+    /**
+     * Optional. A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string or a number. The comparison operator must be `=`, `!=`, `\>`, `\>=`, `<`, or `<=`. The has operator `:` is also supported. Supported fields include `name`, `display_name` (or `placement_group`), `machine_family`, `allocated_capacity_count`, `consumed_capacity_count`, and `connected_placement_group` (using `=`). For example, if you are filtering a list of capacity allocations, you can exclude the ones named `example-capacity-allocation` by specifying `name != "example-capacity-allocation"`. You can also filter on other fields, such as machine family (`"ve1"`, `"ve2"`, or `"ve3"`) or connected placement group: ``` machine_family = "ve1" connected_placement_group = "example-placement-group" ``` To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (machine_family = "ve1") (allocated_capacity_count \> 10) ``` By default, each expression is an `AND` expression. However, you can include `AND`, `OR`, and `NOT` expressions explicitly. For example: ``` ((machine_family = "ve1") AND (allocated_capacity_count \> 10)) OR (consumed_capacity_count \> 0) ```
+     */
+    filter?: string;
+    /**
+     * Optional. Sorts list results by a certain order. By default, returned results are ordered by `name` in ascending order. You can also sort results in descending order based on the `name` value using `orderBy="name desc"`. Currently, only ordering by `name` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of capacity allocations to return in one page. The service may return fewer than this value. The maximum value is coerced to 1000. The default value of this field is 500.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListCapacityAllocations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCapacityAllocations` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the location to query for capacity allocations. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a`
      */
     parent?: string;
   }
@@ -10829,6 +11074,7 @@ export namespace vmwareengine_v1 {
      *         //   "management": false,
      *         //   "name": "my_name",
      *         //   "nodeTypeConfigs": {},
+     *         //   "placementGroup": "my_placementGroup",
      *         //   "state": "my_state",
      *         //   "stretchedClusterConfig": {},
      *         //   "uid": "my_uid",
@@ -11128,6 +11374,7 @@ export namespace vmwareengine_v1 {
      *   //   "management": false,
      *   //   "name": "my_name",
      *   //   "nodeTypeConfigs": {},
+     *   //   "placementGroup": "my_placementGroup",
      *   //   "state": "my_state",
      *   //   "stretchedClusterConfig": {},
      *   //   "uid": "my_uid",
@@ -11729,6 +11976,7 @@ export namespace vmwareengine_v1 {
      *         //   "management": false,
      *         //   "name": "my_name",
      *         //   "nodeTypeConfigs": {},
+     *         //   "placementGroup": "my_placementGroup",
      *         //   "state": "my_state",
      *         //   "stretchedClusterConfig": {},
      *         //   "uid": "my_uid",
