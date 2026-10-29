@@ -330,7 +330,7 @@ export namespace apigateway_v1 {
      */
     displayName?: string | null;
     /**
-     * Output only. The streaming mode this gateway is actually served with, which the service resolves at creation from `streaming_mode`, the referenced API Config, and the platform default at the time. Read this rather than `streaming_mode` to determine whether a gateway supports response streaming.
+     * Output only. The streaming mode this gateway is actually served with, which the service resolves at creation from `streaming_mode`, the referenced API Config, and the platform default at the time. Read this rather than `streaming_mode` to determine whether a gateway supports streaming.
      */
     effectiveStreamingMode?: string | null;
     /**
@@ -346,7 +346,7 @@ export namespace apigateway_v1 {
      */
     state?: string | null;
     /**
-     * Optional. Immutable. Requests response streaming for a new gateway. An attempt to change it on update is rejected. If unset, the service selects the mode. This field records only what was requested and is never modified by the service; read `effective_streaming_mode` for the mode the gateway is served with.
+     * Optional. Immutable. Requests streaming for a new gateway. An attempt to change it on update is rejected. If unset, the service selects the mode. This field records only what was requested and is never modified by the service; read `effective_streaming_mode` for the mode the gateway is served with.
      */
     streamingMode?: string | null;
     /**
