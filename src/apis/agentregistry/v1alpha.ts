@@ -553,6 +553,64 @@ export namespace agentregistry_v1alpha {
     nextPageToken?: string | null;
   }
   /**
+   * File location of the finding.
+   */
+  export interface Schema$File {
+    /**
+     * Optional. Line number (1-based), or 0 if whole File / unknown.
+     */
+    lineNumber?: string | null;
+    /**
+     * Optional. Relative path of the file containing the finding.
+     */
+    path?: string | null;
+  }
+  /**
+   * Represents a security Finding.
+   */
+  export interface Schema$Finding {
+    /**
+     * Optional. Category of the finding.
+     */
+    category?: string | null;
+    /**
+     * Output only. Create time.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Detailed description of the finding.
+     */
+    detail?: string | null;
+    /**
+     * Optional. File associated with the finding.
+     */
+    files?: Schema$File[];
+    /**
+     * Optional. Class of the finding.
+     */
+    findingClass?: string | null;
+    /**
+     * Identifier. Resource name of the Finding. Format: `projects/{project\}/locations/{location\}/findings/{finding\}`.
+     */
+    name?: string | null;
+    /**
+     * Optional. The resource that the finding is associated with.
+     */
+    resource?: string | null;
+    /**
+     * Optional. Severity of the finding.
+     */
+    severity?: string | null;
+    /**
+     * Output only. Universally unique identifier (UUID4) for the Finding.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Update time.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Structured metadata attributes extracted from the package's local SKILL.md frontmatter.
    */
   export interface Schema$Frontmatter {
@@ -790,6 +848,19 @@ export namespace agentregistry_v1alpha {
     endpoints?: Schema$Endpoint[];
     /**
      * A token identifying a page of results the server should return. Used in page_token.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Message for response to listing Findings.
+   */
+  export interface Schema$ListFindingsResponse {
+    /**
+     * The list of Findings.
+     */
+    findings?: Schema$Finding[];
+    /**
+     * A token identifying a page of results the server should return.
      */
     nextPageToken?: string | null;
   }
@@ -1076,6 +1147,36 @@ export namespace agentregistry_v1alpha {
     verifiedPrefix?: string | null;
   }
   /**
+   * Configuration for scanning of the skill.
+   */
+  export interface Schema$ScanningConfig {
+    /**
+     * Optional. The security scanning policy.
+     */
+    policy?: string | null;
+  }
+  /**
+   * Scan result of the skill revision.
+   */
+  export interface Schema$ScanResult {
+    /**
+     * Output only. The error message if the scan failed.
+     */
+    errorMessage?: string | null;
+    /**
+     * Output only. The finding resource names for the skill revision.
+     */
+    findings?: string[] | null;
+    /**
+     * Output only. The state of the vulnerability check.
+     */
+    scanState?: string | null;
+    /**
+     * Output only. The time when the scan was completed.
+     */
+    scanTime?: string | null;
+  }
+  /**
    * Message for searching Agents
    */
   export interface Schema$SearchAgentsRequest {
@@ -1255,6 +1356,10 @@ export namespace agentregistry_v1alpha {
      */
     publisher?: string | null;
     /**
+     * Optional. Optional. Scanning configuration for the skill.
+     */
+    scanningConfig?: Schema$ScanningConfig;
+    /**
      * Output only. A stable, globally unique logical identifier for the skill. It is securely constructed by the backend by combining the associated `publisher`'s verified namespace and the skill's resource ID to enforce strict ownership. For example, the prefix `google-` is reserved exclusively for first-party Google publishers to prevent namespace squatting. Example: `urn:skill:google-workspace:create-docs`
      */
     skillId?: string | null;
@@ -1303,6 +1408,10 @@ export namespace agentregistry_v1alpha {
      * Identifier. Resource name of the SkillRevision. Format: `projects/{project\}/locations/{location\}/skills/{skill\}/revisions/{revision\}`
      */
     name?: string | null;
+    /**
+     * Output only. Scan result of the skill revision.
+     */
+    scanResult?: Schema$ScanResult;
     /**
      * Output only. Cryptographic SHA-256 integrity and deduplication digest of the payload zip.
      */
@@ -1388,6 +1497,7 @@ export namespace agentregistry_v1alpha {
     aiApplications: Resource$Projects$Locations$Aiapplications;
     bindings: Resource$Projects$Locations$Bindings;
     endpoints: Resource$Projects$Locations$Endpoints;
+    findings: Resource$Projects$Locations$Findings;
     mcpServers: Resource$Projects$Locations$Mcpservers;
     operations: Resource$Projects$Locations$Operations;
     publishers: Resource$Projects$Locations$Publishers;
@@ -1401,6 +1511,7 @@ export namespace agentregistry_v1alpha {
       );
       this.bindings = new Resource$Projects$Locations$Bindings(this.context);
       this.endpoints = new Resource$Projects$Locations$Endpoints(this.context);
+      this.findings = new Resource$Projects$Locations$Findings(this.context);
       this.mcpServers = new Resource$Projects$Locations$Mcpservers(
         this.context
       );
@@ -5480,6 +5591,343 @@ export namespace agentregistry_v1alpha {
     parent?: string;
   }
 
+  export class Resource$Projects$Locations$Findings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details of a single Finding.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/agentregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const agentregistry = google.agentregistry('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/agentregistry.read-only',
+     *       'https://www.googleapis.com/auth/agentregistry.read-write',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await agentregistry.projects.locations.findings.get({
+     *     // Required. The name of the Finding to retrieve. Format: `projects/{project\}/locations/{location\}/findings/{finding\}`.
+     *     name: 'projects/my-project/locations/my-location/findings/my-finding',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "category": "my_category",
+     *   //   "createTime": "my_createTime",
+     *   //   "detail": "my_detail",
+     *   //   "files": [],
+     *   //   "findingClass": "my_findingClass",
+     *   //   "name": "my_name",
+     *   //   "resource": "my_resource",
+     *   //   "severity": "my_severity",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Findings$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Findings$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Finding>>;
+    get(
+      params: Params$Resource$Projects$Locations$Findings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Findings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Finding>,
+      callback: BodyResponseCallback<Schema$Finding>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Findings$Get,
+      callback: BodyResponseCallback<Schema$Finding>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Finding>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Findings$Get
+        | BodyResponseCallback<Schema$Finding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Finding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Finding> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Finding>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Findings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Findings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://agentregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Finding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Finding>(parameters);
+      }
+    }
+
+    /**
+     * Lists Findings in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/agentregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const agentregistry = google.agentregistry('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/agentregistry.read-only',
+     *       'https://www.googleapis.com/auth/agentregistry.read-write',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await agentregistry.projects.locations.findings.list({
+     *     // Optional. Filtering results
+     *     filter: 'placeholder-value',
+     *     // Optional. Hint for how to order the results
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Parent value for ListFindingsRequest. Format: `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "findings": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Findings$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Findings$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListFindingsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Findings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Findings$List,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$ListFindingsResponse>,
+      callback: BodyResponseCallback<Schema$ListFindingsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Findings$List,
+      callback: BodyResponseCallback<Schema$ListFindingsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListFindingsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Findings$List
+        | BodyResponseCallback<Schema$ListFindingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFindingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFindingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListFindingsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Findings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Findings$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://agentregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/findings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListFindingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListFindingsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Findings$Get extends StandardParameters {
+    /**
+     * Required. The name of the Finding to retrieve. Format: `projects/{project\}/locations/{location\}/findings/{finding\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Findings$List extends StandardParameters {
+    /**
+     * Optional. Filtering results
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListFindingsRequest. Format: `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Mcpservers {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -7854,6 +8302,7 @@ export namespace agentregistry_v1alpha {
      *       //   "initialRevision": {},
      *       //   "name": "my_name",
      *       //   "publisher": "my_publisher",
+     *       //   "scanningConfig": {},
      *       //   "skillId": "my_skillId",
      *       //   "state": "my_state",
      *       //   "targetState": "my_targetState",
@@ -8168,6 +8617,7 @@ export namespace agentregistry_v1alpha {
      *   //   "initialRevision": {},
      *   //   "name": "my_name",
      *   //   "publisher": "my_publisher",
+     *   //   "scanningConfig": {},
      *   //   "skillId": "my_skillId",
      *   //   "state": "my_state",
      *   //   "targetState": "my_targetState",
@@ -8627,6 +9077,7 @@ export namespace agentregistry_v1alpha {
      *       //   "initialRevision": {},
      *       //   "name": "my_name",
      *       //   "publisher": "my_publisher",
+     *       //   "scanningConfig": {},
      *       //   "skillId": "my_skillId",
      *       //   "state": "my_state",
      *       //   "targetState": "my_targetState",
@@ -9410,6 +9861,7 @@ export namespace agentregistry_v1alpha {
      *       //   "frontmatter": {},
      *       //   "gcsSource": {},
      *       //   "name": "my_name",
+     *       //   "scanResult": {},
      *       //   "sha256Hash": "my_sha256Hash",
      *       //   "sizeBytes": "my_sizeBytes",
      *       //   "state": "my_state",
@@ -9719,6 +10171,7 @@ export namespace agentregistry_v1alpha {
      *   //   "frontmatter": {},
      *   //   "gcsSource": {},
      *   //   "name": "my_name",
+     *   //   "scanResult": {},
      *   //   "sha256Hash": "my_sha256Hash",
      *   //   "sizeBytes": "my_sizeBytes",
      *   //   "state": "my_state",
