@@ -344,7 +344,7 @@
       }
     }
   },
-  "revision": "20261009",
+  "revision": "20261023",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AISkillAnalysisOccurrence": {
@@ -1411,6 +1411,106 @@
           "description": "The EPSS score representing the probability [0-1] of exploitation in the wild in the next 30 days",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "Exploitability": {
+      "description": "Exploitability information for a vulnerability. This data can be used across multiple sources, including, but not limited to a top-level vulnerability, a package occurrence, or a package file location.",
+      "id": "Exploitability",
+      "properties": {
+        "signals": {
+          "description": "Individual exploitability signals from various sources.",
+          "items": {
+            "$ref": "ExploitabilitySignal"
+          },
+          "type": "array"
+        },
+        "summary": {
+          "$ref": "ExploitabilitySummary",
+          "description": "Rollup summary of the exploitability signals."
+        }
+      },
+      "type": "object"
+    },
+    "ExploitabilitySignal": {
+      "description": "A single exploitability signal from a specific source (e.g., an upstream advisory, a customer VEX document, or an internal build analysis).",
+      "id": "ExploitabilitySignal",
+      "properties": {
+        "rationale": {
+          "description": "Human-readable explanation of this signal.",
+          "type": "string"
+        },
+        "source": {
+          "description": "Identifier of the signal source.",
+          "type": "string"
+        },
+        "vexJustification": {
+          "description": "Justification for why the vulnerability is not exploitable.",
+          "enum": [
+            "JUSTIFICATION_TYPE_UNSPECIFIED",
+            "COMPONENT_NOT_PRESENT",
+            "VULNERABLE_CODE_NOT_PRESENT",
+            "VULNERABLE_CODE_NOT_IN_EXECUTE_PATH",
+            "VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY",
+            "INLINE_MITIGATIONS_ALREADY_EXIST"
+          ],
+          "enumDescriptions": [
+            "JUSTIFICATION_TYPE_UNSPECIFIED.",
+            "The vulnerable component is not present in the product.",
+            "The vulnerable code is not present. Typically this case occurs when source code is configured or built in a way that excludes the vulnerable code.",
+            "The vulnerable code can not be executed. Typically this case occurs when the product includes the vulnerable code but does not call or use the vulnerable code.",
+            "The vulnerable code cannot be controlled by an attacker to exploit the vulnerability.",
+            "The product includes built-in protections or features that prevent exploitation of the vulnerability. These built-in protections cannot be subverted by the attacker and cannot be configured or disabled by the user. These mitigations completely prevent exploitation based on known attack vectors."
+          ],
+          "type": "string"
+        },
+        "vexStatus": {
+          "description": "The VEX status asserted by this signal.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "AFFECTED",
+            "NOT_AFFECTED",
+            "FIXED",
+            "UNDER_INVESTIGATION"
+          ],
+          "enumDescriptions": [
+            "No state is specified.",
+            "This product is known to be affected by this vulnerability.",
+            "This product is known to be not affected by this vulnerability.",
+            "This product contains a fix for this vulnerability.",
+            "It is not known yet whether these versions are or are not affected by the vulnerability. However, it is still under investigation."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExploitabilitySummary": {
+      "description": "Rollup summary of exploitability across signals.",
+      "id": "ExploitabilitySummary",
+      "properties": {
+        "rationale": {
+          "description": "Human-readable explanation of the summary.",
+          "type": "string"
+        },
+        "vexStatus": {
+          "description": "The rolled-up VEX status. Usually, this should result in an AFFECTED or NOT_AFFECTED vex status.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "AFFECTED",
+            "NOT_AFFECTED",
+            "FIXED",
+            "UNDER_INVESTIGATION"
+          ],
+          "enumDescriptions": [
+            "No state is specified.",
+            "This product is known to be affected by this vulnerability.",
+            "This product is known to be not affected by this vulnerability.",
+            "This product contains a fix for this vulnerability.",
+            "It is not known yet whether these versions are or are not affected by the vulnerability. However, it is still under investigation."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -2663,6 +2763,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "exploitability": {
+          "$ref": "Exploitability",
+          "description": "Output only. Exploitability signals and summary for this package issue.",
+          "readOnly": true
+        },
         "fileLocation": {
           "description": "The location at which this package was found.",
           "items": {
@@ -3733,6 +3838,11 @@
             "Critical severity."
           ],
           "type": "string"
+        },
+        "exploitability": {
+          "$ref": "Exploitability",
+          "description": "Output only. Rollup of exploitability across all PackageIssues in this occurrence.",
+          "readOnly": true
         },
         "extraDetails": {
           "description": "Occurrence-specific extra details about the vulnerability.",

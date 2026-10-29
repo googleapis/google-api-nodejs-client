@@ -680,6 +680,53 @@ export namespace ondemandscanning_v1 {
     keyid?: string | null;
     sig?: string | null;
   }
+  /**
+   * Exploitability information for a vulnerability. This data can be used across multiple sources, including, but not limited to a top-level vulnerability, a package occurrence, or a package file location.
+   */
+  export interface Schema$Exploitability {
+    /**
+     * Individual exploitability signals from various sources.
+     */
+    signals?: Schema$ExploitabilitySignal[];
+    /**
+     * Rollup summary of the exploitability signals.
+     */
+    summary?: Schema$ExploitabilitySummary;
+  }
+  /**
+   * A single exploitability signal from a specific source (e.g., an upstream advisory, a customer VEX document, or an internal build analysis).
+   */
+  export interface Schema$ExploitabilitySignal {
+    /**
+     * Human-readable explanation of this signal.
+     */
+    rationale?: string | null;
+    /**
+     * Identifier of the signal source.
+     */
+    source?: string | null;
+    /**
+     * Justification for why the vulnerability is not exploitable.
+     */
+    vexJustification?: string | null;
+    /**
+     * The VEX status asserted by this signal.
+     */
+    vexStatus?: string | null;
+  }
+  /**
+   * Rollup summary of exploitability across signals.
+   */
+  export interface Schema$ExploitabilitySummary {
+    /**
+     * Human-readable explanation of the summary.
+     */
+    rationale?: string | null;
+    /**
+     * The rolled-up VEX status. Usually, this should result in an AFFECTED or NOT_AFFECTED vex status.
+     */
+    vexStatus?: string | null;
+  }
   export interface Schema$ExploitPredictionScoringSystem {
     /**
      * The percentile of the current score, the proportion of all scored vulnerabilities with the same or a lower EPSS score
@@ -1472,6 +1519,10 @@ export namespace ondemandscanning_v1 {
      */
     effectiveSeverity?: string | null;
     /**
+     * Output only. Exploitability signals and summary for this package issue.
+     */
+    exploitability?: Schema$Exploitability;
+    /**
      * The location at which this package was found.
      */
     fileLocation?: Schema$GrafeasV1FileLocation[];
@@ -2123,6 +2174,10 @@ export namespace ondemandscanning_v1 {
      * The distro assigned severity for this vulnerability when it is available, otherwise this is the note provider assigned severity. When there are multiple PackageIssues for this vulnerability, they can have different effective severities because some might be provided by the distro while others are provided by the language ecosystem for a language pack. For this reason, it is advised to use the effective severity on the PackageIssue level. In the case where multiple PackageIssues have differing effective severities, this field should be the highest severity for any of the PackageIssues.
      */
     effectiveSeverity?: string | null;
+    /**
+     * Output only. Rollup of exploitability across all PackageIssues in this occurrence.
+     */
+    exploitability?: Schema$Exploitability;
     /**
      * Occurrence-specific extra details about the vulnerability.
      */
