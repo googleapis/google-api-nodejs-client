@@ -39,6 +39,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquerydatatransfer.europe-west10.rep.googleapis.com/",
+      "location": "europe-west10"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://bigquerydatatransfer.europe-west2.rep.googleapis.com/",
       "location": "europe-west2"
     },
@@ -1651,7 +1656,7 @@
       }
     }
   },
-  "revision": "20260905",
+  "revision": "20261020",
   "rootUrl": "https://bigquerydatatransfer.googleapis.com/",
   "schemas": {
     "CheckValidCredsRequest": {

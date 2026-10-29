@@ -2423,7 +2423,7 @@
       }
     }
   },
-  "revision": "20260923",
+  "revision": "20261019",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -4313,6 +4313,8 @@
             "SHARED_DRIVE",
             "CBCM_BROWSER",
             "CHROME_OS_DEVICE",
+            "PERSONAL_AGENT",
+            "COWORKER_AGENT",
             "OTHER"
           ],
           "enumDescriptions": [
@@ -4323,6 +4325,8 @@
             "Represents Shared drive.",
             "Represents a CBCM-managed Chrome Browser type.",
             "Represents a ChromeOS-managed ChromeOS device type.",
+            "Represents a Personal Agent type.",
+            "Represents a Coworker Agent type.",
             "Represents other type."
           ],
           "readOnly": true,

@@ -5503,7 +5503,7 @@
       }
     }
   },
-  "revision": "20261008",
+  "revision": "20261016",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -11624,6 +11624,7 @@
           "items": {
             "enum": [
               "COMPONENT_UNSPECIFIED",
+              "ALLOYDB_CONNECTOR",
               "ANACONDA",
               "DELTA",
               "DOCKER",
@@ -11645,6 +11646,7 @@
             ],
             "enumDescriptions": [
               "Unspecified component. Specifying this will cause Cluster creation to fail.",
+              "The AlloyDB Connector.",
               "The Anaconda component is no longer supported or applicable to supported Dataproc on Compute Engine image versions (https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-version-clusters#supported-dataproc-image-versions). It cannot be activated on clusters created with supported Dataproc on Compute Engine image versions.",
               "Delta Lake.",
               "Docker",

@@ -36,6 +36,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://bigqueryreservation.europe-west10.rep.googleapis.com/",
+      "location": "europe-west10"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://bigqueryreservation.europe-west2.rep.googleapis.com/",
       "location": "europe-west2"
     },
@@ -1317,7 +1322,7 @@
       }
     }
   },
-  "revision": "20260829",
+  "revision": "20261024",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
