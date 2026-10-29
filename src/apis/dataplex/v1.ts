@@ -1317,6 +1317,10 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataDocumentationResult {
     /**
+     * Output only. Insights for a data product.
+     */
+    dataProductResult?: Schema$GoogleCloudDataplexV1DataDocumentationResultDataProductResult;
+    /**
      * Output only. Insights for a Dataset resource.
      */
     datasetResult?: Schema$GoogleCloudDataplexV1DataDocumentationResultDatasetResult;
@@ -1324,6 +1328,36 @@ export namespace dataplex_v1 {
      * Output only. Insights for a Table resource.
      */
     tableResult?: Schema$GoogleCloudDataplexV1DataDocumentationResultTableResult;
+  }
+  /**
+   * Generated metadata about a data product.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDocumentationResultDataProductResult {
+    /**
+     * Output only. Unordered list. Generated descriptions for assets in the data product. Note that some assets may not have a generated description. Such assets will not be included in this list.
+     */
+    assetDescriptions?: Schema$GoogleCloudDataplexV1DataDocumentationResultDataProductResultAssetDescription[];
+    /**
+     * Output only. A detailed description for the data product.
+     */
+    overview?: string | null;
+    /**
+     * Output only. Unordered list. Sample SQL queries for the data product.
+     */
+    queries?: Schema$GoogleCloudDataplexV1DataDocumentationResultQuery[];
+  }
+  /**
+   * Description for an asset in the data product.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDocumentationResultDataProductResultAssetDescription {
+    /**
+     * Output only. A generated description for the asset.
+     */
+    overview?: string | null;
+    /**
+     * Output only. The service-qualified full resource name of the asset. Example: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
+     */
+    resource?: string | null;
   }
   /**
    * Insights for a dataset resource.
@@ -1448,6 +1482,10 @@ export namespace dataplex_v1 {
      * Optional. Whether to publish result to Dataplex Catalog.
      */
     catalogPublishingEnabled?: boolean | null;
+    /**
+     * Optional. Custom instructions for generating data documentation. The maximum length is 2,048 characters.
+     */
+    customInstructions?: string | null;
     /**
      * Optional. Specifies which components of the data documentation to generate. Any component that is required to generate the specified components will also be generated. If no generation scope is specified, all available documentation components will be generated.
      */
@@ -3372,6 +3410,10 @@ export namespace dataplex_v1 {
      */
     createTime?: string | null;
     /**
+     * Output only. The type of the EntryGroup that this entry belongs to. The default value is an empty string. Recognised values include: * context-set: EntryGroup containing context set data assets.
+     */
+    entryGroupType?: string | null;
+    /**
      * Optional. Information related to the source system of the data resource that is represented by the entry.
      */
     entrySource?: Schema$GoogleCloudDataplexV1EntrySource;
@@ -3432,6 +3474,10 @@ export namespace dataplex_v1 {
      * Output only. Denotes the transfer status of the Entry Group. It is unspecified for Entry Group created from Dataplex API.
      */
     transferStatus?: string | null;
+    /**
+     * Optional. Immutable. The type of this EntryGroup. The default value is an empty string. Recognised values include: * context-set: EntryGroup containing context set data assets.
+     */
+    type?: string | null;
     /**
      * Output only. System generated globally unique ID for the EntryGroup. If you delete and recreate the EntryGroup with the same name, this ID will be different.
      */
@@ -8545,6 +8591,7 @@ export namespace dataplex_v1 {
      *   // {
      *   //   "aspects": {},
      *   //   "createTime": "my_createTime",
+     *   //   "entryGroupType": "my_entryGroupType",
      *   //   "entrySource": {},
      *   //   "entryType": "my_entryType",
      *   //   "fullyQualifiedName": "my_fullyQualifiedName",
@@ -8676,7 +8723,9 @@ export namespace dataplex_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *       'https://www.googleapis.com/auth/dataplex.readonly',
      *     ],
      *   });
      *
@@ -8867,6 +8916,7 @@ export namespace dataplex_v1 {
      *   // {
      *   //   "aspects": {},
      *   //   "createTime": "my_createTime",
+     *   //   "entryGroupType": "my_entryGroupType",
      *   //   "entrySource": {},
      *   //   "entryType": "my_entryType",
      *   //   "fullyQualifiedName": "my_fullyQualifiedName",
@@ -21511,6 +21561,7 @@ export namespace dataplex_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "transferStatus": "my_transferStatus",
+     *       //   "type": "my_type",
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -21823,6 +21874,7 @@ export namespace dataplex_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "transferStatus": "my_transferStatus",
+     *   //   "type": "my_type",
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -22290,6 +22342,7 @@ export namespace dataplex_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "transferStatus": "my_transferStatus",
+     *       //   "type": "my_type",
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -23064,6 +23117,7 @@ export namespace dataplex_v1 {
      *       // {
      *       //   "aspects": {},
      *       //   "createTime": "my_createTime",
+     *       //   "entryGroupType": "my_entryGroupType",
      *       //   "entrySource": {},
      *       //   "entryType": "my_entryType",
      *       //   "fullyQualifiedName": "my_fullyQualifiedName",
@@ -23079,6 +23133,7 @@ export namespace dataplex_v1 {
      *   // {
      *   //   "aspects": {},
      *   //   "createTime": "my_createTime",
+     *   //   "entryGroupType": "my_entryGroupType",
      *   //   "entrySource": {},
      *   //   "entryType": "my_entryType",
      *   //   "fullyQualifiedName": "my_fullyQualifiedName",
@@ -23230,6 +23285,7 @@ export namespace dataplex_v1 {
      *   // {
      *   //   "aspects": {},
      *   //   "createTime": "my_createTime",
+     *   //   "entryGroupType": "my_entryGroupType",
      *   //   "entrySource": {},
      *   //   "entryType": "my_entryType",
      *   //   "fullyQualifiedName": "my_fullyQualifiedName",
@@ -23386,6 +23442,7 @@ export namespace dataplex_v1 {
      *   // {
      *   //   "aspects": {},
      *   //   "createTime": "my_createTime",
+     *   //   "entryGroupType": "my_entryGroupType",
      *   //   "entrySource": {},
      *   //   "entryType": "my_entryType",
      *   //   "fullyQualifiedName": "my_fullyQualifiedName",
@@ -23703,6 +23760,7 @@ export namespace dataplex_v1 {
      *       // {
      *       //   "aspects": {},
      *       //   "createTime": "my_createTime",
+     *       //   "entryGroupType": "my_entryGroupType",
      *       //   "entrySource": {},
      *       //   "entryType": "my_entryType",
      *       //   "fullyQualifiedName": "my_fullyQualifiedName",
@@ -23718,6 +23776,7 @@ export namespace dataplex_v1 {
      *   // {
      *   //   "aspects": {},
      *   //   "createTime": "my_createTime",
+     *   //   "entryGroupType": "my_entryGroupType",
      *   //   "entrySource": {},
      *   //   "entryType": "my_entryType",
      *   //   "fullyQualifiedName": "my_fullyQualifiedName",

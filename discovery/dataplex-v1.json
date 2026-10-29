@@ -82,6 +82,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.asia-southeast4.rep.googleapis.com/",
+      "location": "asia-southeast4"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://dataplex.australia-southeast1.rep.googleapis.com/",
       "location": "australia-southeast1"
     },
@@ -1001,7 +1006,9 @@
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/dataplex.read-write"
+                "https://www.googleapis.com/auth/cloud-platform.read-only",
+                "https://www.googleapis.com/auth/dataplex.read-write",
+                "https://www.googleapis.com/auth/dataplex.readonly"
               ]
             },
             "modifyEntry": {
@@ -7634,7 +7641,7 @@
       }
     }
   },
-  "revision": "20261012",
+  "revision": "20261023",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -9307,6 +9314,11 @@
       "description": "The output of a DataDocumentation scan.",
       "id": "GoogleCloudDataplexV1DataDocumentationResult",
       "properties": {
+        "dataProductResult": {
+          "$ref": "GoogleCloudDataplexV1DataDocumentationResultDataProductResult",
+          "description": "Output only. Insights for a data product.",
+          "readOnly": true
+        },
         "datasetResult": {
           "$ref": "GoogleCloudDataplexV1DataDocumentationResultDatasetResult",
           "description": "Output only. Insights for a Dataset resource.",
@@ -9316,6 +9328,51 @@
           "$ref": "GoogleCloudDataplexV1DataDocumentationResultTableResult",
           "description": "Output only. Insights for a Table resource.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataDocumentationResultDataProductResult": {
+      "description": "Generated metadata about a data product.",
+      "id": "GoogleCloudDataplexV1DataDocumentationResultDataProductResult",
+      "properties": {
+        "assetDescriptions": {
+          "description": "Output only. Unordered list. Generated descriptions for assets in the data product. Note that some assets may not have a generated description. Such assets will not be included in this list.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataDocumentationResultDataProductResultAssetDescription"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "overview": {
+          "description": "Output only. A detailed description for the data product.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "queries": {
+          "description": "Output only. Unordered list. Sample SQL queries for the data product.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataDocumentationResultQuery"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataDocumentationResultDataProductResultAssetDescription": {
+      "description": "Description for an asset in the data product.",
+      "id": "GoogleCloudDataplexV1DataDocumentationResultDataProductResultAssetDescription",
+      "properties": {
+        "overview": {
+          "description": "Output only. A generated description for the asset.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resource": {
+          "description": "Output only. The service-qualified full resource name of the asset. Example: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -9527,6 +9584,10 @@
         "catalogPublishingEnabled": {
           "description": "Optional. Whether to publish result to Dataplex Catalog.",
           "type": "boolean"
+        },
+        "customInstructions": {
+          "description": "Optional. Custom instructions for generating data documentation. The maximum length is 2,048 characters.",
+          "type": "string"
         },
         "generationScopes": {
           "description": "Optional. Specifies which components of the data documentation to generate. Any component that is required to generate the specified components will also be generated. If no generation scope is specified, all available documentation components will be generated.",
@@ -12302,6 +12363,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "entryGroupType": {
+          "description": "Output only. The type of the EntryGroup that this entry belongs to. The default value is an empty string. Recognised values include: * context-set: EntryGroup containing context set data assets.",
+          "readOnly": true,
+          "type": "string"
+        },
         "entrySource": {
           "$ref": "GoogleCloudDataplexV1EntrySource",
           "description": "Optional. Information related to the source system of the data resource that is represented by the entry."
@@ -12382,6 +12448,10 @@
             "Indicates that a resource was transferred from Data Catalog service. The resource can only be updated from Dataplex API."
           ],
           "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. Immutable. The type of this EntryGroup. The default value is an empty string. Recognised values include: * context-set: EntryGroup containing context set data assets.",
           "type": "string"
         },
         "uid": {
