@@ -1265,7 +1265,7 @@
       }
     }
   },
-  "revision": "20261014",
+  "revision": "20261026",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -3568,7 +3568,7 @@
           "type": "string"
         },
         "configureWifi": {
-          "description": "Controls Wi-Fi configuring privileges. Based on the option set, user will have either full or limited or no control in configuring Wi-Fi networks.",
+          "description": "Optional. Controls Wi-Fi configuring privileges. Based on the option set, user will have either full or limited or no control in configuring Wi-Fi networks.",
           "enum": [
             "CONFIGURE_WIFI_UNSPECIFIED",
             "ALLOW_CONFIGURING_WIFI",
@@ -3592,7 +3592,7 @@
           "description": "Optional. The global private DNS settings."
         },
         "tetheringSettings": {
-          "description": "Controls tethering settings. Based on the value set, the user is partially or fully disallowed from using different forms of tethering.",
+          "description": "Optional. Controls tethering settings. Based on the value set, the user is partially or fully disallowed from using different forms of tethering.",
           "enum": [
             "TETHERING_SETTINGS_UNSPECIFIED",
             "ALLOW_ALL_TETHERING",
@@ -3608,7 +3608,7 @@
           "type": "string"
         },
         "usbDataAccess": {
-          "description": "Controls what files and/or data can be transferred via USB. Supported only on company-owned devices.",
+          "description": "Optional. Controls what files and/or data can be transferred via USB. Supported only on company-owned devices.",
           "enum": [
             "USB_DATA_ACCESS_UNSPECIFIED",
             "ALLOW_USB_DATA_TRANSFER",
@@ -3624,7 +3624,7 @@
           "type": "string"
         },
         "wifiDirectSettings": {
-          "description": "Controls configuring and using Wi-Fi direct settings. Supported on company-owned devices running Android 13 and above.",
+          "description": "Optional. Controls configuring and using Wi-Fi direct settings. Supported on company-owned devices running Android 13 and above.",
           "enum": [
             "WIFI_DIRECT_SETTINGS_UNSPECIFIED",
             "ALLOW_WIFI_DIRECT",
@@ -3643,7 +3643,7 @@
         },
         "wifiSsidPolicy": {
           "$ref": "WifiSsidPolicy",
-          "description": "Restrictions on which Wi-Fi SSIDs the device can connect to. Note that this does not affect which networks can be configured on the device. Supported on company-owned devices running Android 13 and above."
+          "description": "Optional. Restrictions on which Wi-Fi SSIDs the device can connect to. Note that this does not affect which networks can be configured on the device. Supported on company-owned devices running Android 13 and above."
         }
       },
       "type": "object"
@@ -4205,7 +4205,7 @@
             "Unspecified. This value is not used.",
             "The eSIM operation was successfully performed on the device.",
             "The eSIM operation is in progress.",
-            "The user needs to take an action for the eSIM operation to proceed.",
+            "The user needs to take an action for the eSIM operation to proceed. When ADD_ESIM is issued, this can happen when the device requires user consent to install or activate the eSIM, or when the eSIM profile requires a confirmation code that was not provided in confirmation_code.",
             "The eSIM operation cannot be executed when setup is in progress.",
             "The user has denied the eSIM operation.",
             "An error has occurred while trying to add or remove the eSIM on the device, see internal_error_details.",
@@ -4272,6 +4272,27 @@
         },
         "url": {
           "description": "The absolute URL to the data, which must use either the http or https scheme. Android Device Policy doesn't provide any credentials in the GET request, so the URL must be publicly accessible. Including a long, random component in the URL may be used to prevent attackers from discovering the URL.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExtraCapabilities": {
+      "description": "Extra capabilities for a role.",
+      "id": "ExtraCapabilities",
+      "properties": {
+        "localDeviceWipeCommand": {
+          "description": "Optional. Controls whether the companion app can perform local device wipe (https://developers.google.com/android/management/sdk-local-commands) using AMAPI SDK (https://developers.google.com/android/management/sdk-integration).",
+          "enum": [
+            "LOCAL_DEVICE_WIPE_COMMAND_UNSPECIFIED",
+            "LOCAL_DEVICE_WIPE_COMMAND_DISALLOWED",
+            "LOCAL_DEVICE_WIPE_COMMAND_ALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to LOCAL_DEVICE_WIPE_COMMAND_DISALLOWED.",
+            "The app is not allowed to perform local device wipe.",
+            "The app is allowed to perform local device wipe. Only the COMPANION_APP role type can use this field."
+          ],
           "type": "string"
         }
       },
@@ -4646,7 +4667,7 @@
             "See EuiccManager.ERROR_EUICC_MISSING (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_EUICC_MISSING) for details.",
             "See EuiccManager.ERROR_UNSUPPORTED_VERSION (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_UNSUPPORTED_VERSION) for details.",
             "See EuiccManager.ERROR_ADDRESS_MISSING (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_ADDRESS_MISSING) for details.",
-            "See EuiccManager.ERROR_INVALID_CONFIRMATION_CODE (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_INVALID_CONFIRMATION_CODE) for details.",
+            "The confirmation code is invalid. When ADD_ESIM is issued, this is reported when the carrier rejects the provided confirmation_code. See EuiccManager.ERROR_INVALID_CONFIRMATION_CODE (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_INVALID_CONFIRMATION_CODE) for details.",
             "See EuiccManager.ERROR_CERTIFICATE_ERROR (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_CERTIFICATE_ERROR) for details.",
             "See EuiccManager.ERROR_NO_PROFILES_AVAILABLE (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_NO_PROFILES_AVAILABLE) for details.",
             "See EuiccManager.ERROR_CONNECTION_ERROR (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_CONNECTION_ERROR) for details.",
@@ -5559,7 +5580,8 @@
             "NEW_ACCOUNT_NOT_IN_ENTERPRISE",
             "DEFAULT_APPLICATION_SETTING_UNSUPPORTED_SCOPES",
             "DEFAULT_APPLICATION_SETTING_FAILED_FOR_SCOPE",
-            "PRIVATE_DNS_HOST_NOT_SERVING"
+            "PRIVATE_DNS_HOST_NOT_SERVING",
+            "USER_NOT_UNLOCKED"
           ],
           "enumDescriptions": [
             "Specific non-compliance reason is not specified. Fields in specific_non_compliance_context are not set.",
@@ -5576,7 +5598,8 @@
             "Work account added by the user is not part of the enterprise. nonComplianceReason is set to USER_ACTION.",
             "The default application setting is applied to the scopes that are not supported by the management mode, even if the management mode itself is supported for the app type (e.g., a policy with DEFAULT_BROWSER app type and SCOPE_PERSONAL_PROFILE list sent to a fully managed device results in the scopes being inapplicable for the management mode). If the management mode is not supported for the app type, a NonComplianceDetail with MANAGEMENT_MODE is reported, without a specificNonComplianceReason.nonComplianceReason is set to MANAGEMENT_MODE.",
             "The default application setting failed to apply for a specific scope. defaultApplicationContext is set. nonComplianceReason is set to INVALID_VALUE or APP_NOT_INSTALLED.",
-            "The specified host for private DNS is a valid hostname but was found to not be a private DNS server. nonComplianceReason is set to INVALID_VALUE."
+            "The specified host for private DNS is a valid hostname but was found to not be a private DNS server. nonComplianceReason is set to INVALID_VALUE.",
+            "The user's device is not unlocked (in direct boot mode), preventing the application of the policy. nonComplianceReason is set to PENDING."
           ],
           "type": "string"
         }
@@ -6389,11 +6412,11 @@
         },
         "deviceConnectivityManagement": {
           "$ref": "DeviceConnectivityManagement",
-          "description": "Covers controls for device connectivity such as Wi-Fi, USB data access, keyboard/mouse connections, and more."
+          "description": "Optional. Covers controls for device connectivity such as Wi-Fi, USB data access, keyboard/mouse connections, and more."
         },
         "deviceOwnerLockScreenInfo": {
           "$ref": "UserFacingMessage",
-          "description": "The device owner information to be shown on the lock screen."
+          "description": "Optional. The device owner information to be shown on the lock screen."
         },
         "deviceRadioState": {
           "$ref": "DeviceRadioState",
@@ -6787,7 +6810,7 @@
         },
         "systemUpdate": {
           "$ref": "SystemUpdate",
-          "description": "The system update policy, which controls how OS updates are applied. If the update type is WINDOWED, the update window will automatically apply to Play app updates as well.Note: Google Play system updates (https://source.android.com/docs/core/ota/modular-system) (also called Mainline updates) are automatically downloaded and require a device reboot to be installed. Refer to the mainline section in Manage system updates (https://developer.android.com/work/dpc/system-updates#mainline) for further details."
+          "description": "The system update policy, which controls how OS updates are applied. If the update type is WINDOWED, the update window will automatically apply to Play app updates as well.Note: Google Play system updates (https://source.android.com/docs/core/ota/modular-system) (also called Mainline updates) are automatically downloaded and require a device reboot to be installed. Refer to the mainline section in Manage system updates (https://developer.android.com/work/dpc/system-updates#mainline) for further details.If this policy is set, it takes precedence over unifiedUpdatePolicy for OEM OS updates. For more information, see unifiedUpdatePolicy."
         },
         "tetheringConfigDisabled": {
           "deprecated": true,
@@ -7277,6 +7300,10 @@
       "description": "Role an app can have.",
       "id": "Role",
       "properties": {
+        "extraCapabilities": {
+          "$ref": "ExtraCapabilities",
+          "description": "Optional. Extra capabilities configured specifically for this role. Not all role types support or utilize extra capabilities."
+        },
         "roleType": {
           "description": "Required. The type of the role an app can have.",
           "enum": [
@@ -8348,7 +8375,7 @@
       "id": "WifiSsidPolicy",
       "properties": {
         "wifiSsidPolicyType": {
-          "description": "Type of the Wi-Fi SSID policy to be applied.",
+          "description": "Optional. Type of the Wi-Fi SSID policy to be applied.",
           "enum": [
             "WIFI_SSID_POLICY_TYPE_UNSPECIFIED",
             "WIFI_SSID_DENYLIST",
