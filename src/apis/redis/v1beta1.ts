@@ -816,11 +816,11 @@ export namespace redis_v1beta1 {
    */
   export interface Schema$ClusterWeeklyMaintenanceWindow {
     /**
-     * Optional. Allows to define schedule that runs specified day of the week.
+     * Optional. The day of the week for the maintenance window. This field is required. You can't use `DAY_OF_WEEK_UNSPECIFIED`.
      */
     day?: string | null;
     /**
-     * Optional. Start time of the window in UTC.
+     * Optional. The start time of the maintenance window in UTC. When you specify a maintenance window, `start_time` is required.
      */
     startTime?: Schema$TimeOfDay;
   }
@@ -2611,6 +2611,10 @@ export namespace redis_v1beta1 {
    * Zone distribution config for allocation of cluster resources.
    */
   export interface Schema$ZoneDistributionConfig {
+    /**
+     * Output only. The exact list of zones where the cluster currently has active VMs.
+     */
+    activeZones?: string[] | null;
     /**
      * Optional. The mode of zone distribution. Defaults to MULTI_ZONE, when not specified.
      */
