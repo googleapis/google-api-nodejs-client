@@ -2811,7 +2811,7 @@
       }
     }
   },
-  "revision": "20260922",
+  "revision": "20261021",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3034,6 +3034,10 @@
         "statefulHaConfig": {
           "$ref": "StatefulHAConfig",
           "description": "Optional. Configuration for the StatefulHA add-on."
+        },
+        "wizSensorConfig": {
+          "$ref": "WizSensorConfig",
+          "description": "Optional. Configuration for the Wiz Sensor add-on."
         }
       },
       "type": "object"
@@ -3107,6 +3111,17 @@
       "properties": {
         "enabled": {
           "description": "Optional. Whether AgentSandbox is enabled for this cluster.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "AmbientNetworkingConfig": {
+      "description": "AmbientNetworkingConfig contains the desired config of Ambient Networking on this cluster.",
+      "id": "AmbientNetworkingConfig",
+      "properties": {
+        "enabled": {
+          "description": "Optional. If true, enable ambient networking for this cluster.",
           "type": "boolean"
         }
       },
@@ -3330,6 +3345,34 @@
         "upgradeSettings": {
           "$ref": "UpgradeSettings",
           "description": "Specifies the upgrade settings for NAP created node pools"
+        }
+      },
+      "type": "object"
+    },
+    "AutoprovisioningRestrictionConfig": {
+      "description": "AutoprovisioningRestrictionConfig configures restrictions related to autoprovisioning settings.",
+      "id": "AutoprovisioningRestrictionConfig",
+      "properties": {
+        "authorizedServiceAccounts": {
+          "description": "Optional. Contains the list of service accounts allowed for autoprovisioned node pools / Custom ComputeClasses.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "serviceAccountPermissionCheck": {
+          "description": "Optional. Controls whether service account validation checks are enforced for autoprovisioning.",
+          "enum": [
+            "PERMISSION_CHECK_MODE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ],
+          "enumDescriptions": [
+            "Default value. Permission check mode is unspecified.",
+            "Service account permission check is disabled.",
+            "Service account permission check is enabled."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -4108,6 +4151,10 @@
           "$ref": "AutoprovisioningNodePoolDefaults",
           "description": "AutoprovisioningNodePoolDefaults contains defaults for a node pool created by NAP."
         },
+        "autoprovisioningRestrictionConfig": {
+          "$ref": "AutoprovisioningRestrictionConfig",
+          "description": "Optional. Configures restrictions related to autoprovisioning settings."
+        },
         "autoscalingProfile": {
           "description": "Defines autoscaling behaviour.",
           "enum": [
@@ -4198,6 +4245,10 @@
           "$ref": "AddonsConfig",
           "description": "Configurations for the various addons available to run in the cluster."
         },
+        "desiredAmbientNetworkingConfig": {
+          "$ref": "AmbientNetworkingConfig",
+          "description": "Optional. The desired ambient networking configuration."
+        },
         "desiredAnonymousAuthenticationConfig": {
           "$ref": "AnonymousAuthenticationConfig",
           "description": "Configuration for limiting anonymous access to all endpoints except the health checks."
@@ -4256,12 +4307,16 @@
           "enum": [
             "DATAPATH_PROVIDER_UNSPECIFIED",
             "LEGACY_DATAPATH",
-            "ADVANCED_DATAPATH"
+            "ADVANCED_DATAPATH",
+            "MIGRATE_TO_ADVANCED_DATAPATH",
+            "MIGRATE_TO_LEGACY_DATAPATH"
           ],
           "enumDescriptions": [
             "Default value.",
             "Use the IPTables implementation based on kube-proxy.",
-            "Use the eBPF based GKE Dataplane V2 with additional features. See the [GKE Dataplane V2 documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/dataplane-v2) for more."
+            "Use the eBPF based GKE Dataplane V2 with additional features. See the [GKE Dataplane V2 documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/dataplane-v2) for more.",
+            "Cluster has some existing nodes but new nodes should use ADVANCED_DATAPATH.",
+            "Cluster has some existing nodes but new nodes should use LEGACY_DATAPATH."
           ],
           "type": "string"
         },
@@ -5402,6 +5457,11 @@
           "format": "int32",
           "type": "integer"
         },
+        "ephemeralCapacityGb": {
+          "description": "Capacity set aside for Ephemeral Storage if using mixed Local SSD modes. The remaining capacity is Raw Block.",
+          "format": "int64",
+          "type": "string"
+        },
         "localSsdCount": {
           "description": "Number of local SSDs to use to back ephemeral storage. Uses NVMe interfaces. A zero (or unset) value has different meanings depending on machine type being used: 1. For pre-Gen3 machines, which support flexible numbers of local ssds, zero (or unset) means to disable using local SSDs as ephemeral storage. The limit for this value is dependent upon the maximum number of disk available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information. 2. For Gen3 machines which dictate a specific number of local ssds, zero (or unset) means to use the default number of local ssds that goes with that machine type. For example, for a c3-standard-8-lssd machine, 2 local ssds would be provisioned. For c3-standard-8 (which doesn't support local ssds), 0 will be provisioned. See https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds for more info.",
           "format": "int32",
@@ -5638,14 +5698,20 @@
             "GPU_DRIVER_VERSION_UNSPECIFIED",
             "INSTALLATION_DISABLED",
             "DEFAULT",
-            "LATEST"
+            "LATEST",
+            "SPECIFIC"
           ],
           "enumDescriptions": [
             "Default value is to not install any GPU driver.",
             "Disable GPU driver auto installation and needs manual installation",
             "\"Default\" GPU driver in COS and Ubuntu.",
-            "\"Latest\" GPU driver in COS."
+            "\"Latest\" GPU driver in COS.",
+            "\"Specific\" GPU driver in COS. If used, the specific_version field must be also set."
           ],
+          "type": "string"
+        },
+        "specificVersion": {
+          "description": "Optional. The specific version of the GPU driver to install. Use this field only with gpu_driver_version set to SPECIFIC. Otherwise, an error will be returned.",
           "type": "string"
         }
       },
@@ -6894,17 +6960,25 @@
       "description": "NetworkConfig reports the relative names of network & subnetwork.",
       "id": "NetworkConfig",
       "properties": {
+        "ambientNetworkingConfig": {
+          "$ref": "AmbientNetworkingConfig",
+          "description": "Optional. Contains the desired config of Ambient Networking mode on this cluster."
+        },
         "datapathProvider": {
           "description": "The desired datapath provider for this cluster. By default, uses the IPTables-based kube-proxy implementation.",
           "enum": [
             "DATAPATH_PROVIDER_UNSPECIFIED",
             "LEGACY_DATAPATH",
-            "ADVANCED_DATAPATH"
+            "ADVANCED_DATAPATH",
+            "MIGRATE_TO_ADVANCED_DATAPATH",
+            "MIGRATE_TO_LEGACY_DATAPATH"
           ],
           "enumDescriptions": [
             "Default value.",
             "Use the IPTables implementation based on kube-proxy.",
-            "Use the eBPF based GKE Dataplane V2 with additional features. See the [GKE Dataplane V2 documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/dataplane-v2) for more."
+            "Use the eBPF based GKE Dataplane V2 with additional features. See the [GKE Dataplane V2 documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/dataplane-v2) for more.",
+            "Cluster has some existing nodes but new nodes should use ADVANCED_DATAPATH.",
+            "Cluster has some existing nodes but new nodes should use LEGACY_DATAPATH."
           ],
           "type": "string"
         },
@@ -7486,6 +7560,16 @@
           "description": "Optional. Defines the maximum size of the container log file before it is rotated. See https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation Valid format is positive number + unit, e.g. 100Ki, 10Mi. Valid units are Ki, Mi, Gi. The value must be between 10Mi and 500Mi, inclusive. Note that the total container log size (container_log_max_size * container_log_max_files) cannot exceed 1% of the total storage of the node, to avoid disk pressure caused by log files. The default value is 10Mi if unspecified.",
           "type": "string"
         },
+        "containerLogMaxWorkers": {
+          "description": "Optional. Defines the maximum number of concurrent workers to rotate container log files. See https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation The value must be an integer between 1 and 10, inclusive. The default value is 1 if unspecified.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "containerLogMonitorInterval": {
+          "description": "Optional. Specifies the interval at which the container logs are monitored for performing the log rotate operation. The value must be a positive interval between 3s and 300s, inclusive. The default value is \"10s\" if unspecified.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "cpuCfsQuota": {
           "description": "Enable CPU CFS quota enforcement for containers that specify CPU limits. This option is enabled by default which makes kubelet use CFS quota (https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt) to enforce container CPU limits. Otherwise, CPU limits will not be enforced at all. Disable this option to mitigate CPU throttling problems while still having your pods to be in Guaranteed QoS class by specifying the CPU limits. The default value is 'true' if unspecified.",
           "type": "boolean"
@@ -7558,6 +7642,10 @@
         "reservedResourcesConfig": {
           "$ref": "ReservedResourcesConfig",
           "description": "Optional. Controls the reserved resources on the node. Only included if any fields are specified."
+        },
+        "reservedSystemCpus": {
+          "description": "Optional. The reserved_system_cpus option specifies the CPU list reserved for the host system services. Format: a list of CPU IDs (e.g. \"0-3\", \"0,1\") that can be parsed as a cpuset.",
+          "type": "string"
         },
         "shutdownGracePeriodCriticalPodsSeconds": {
           "description": "Optional. shutdown_grace_period_critical_pods_seconds is the maximum allowed grace period (in seconds) used to terminate critical pods during a node shutdown. This value should be <= shutdown_grace_period_seconds, and is only valid if shutdown_grace_period_seconds is set. https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/ Range: [0, 120].",
@@ -7638,6 +7726,24 @@
         "createPodRange": {
           "description": "Input only. Whether to create a new range for pod IPs in this node pool. Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are not specified. If neither `create_pod_range` or `pod_range` are specified, the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`) is used. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.",
           "type": "boolean"
+        },
+        "datapathProvider": {
+          "description": "The datapath provider for this node pool.",
+          "enum": [
+            "DATAPATH_PROVIDER_UNSPECIFIED",
+            "LEGACY_DATAPATH",
+            "ADVANCED_DATAPATH",
+            "MIGRATE_TO_ADVANCED_DATAPATH",
+            "MIGRATE_TO_LEGACY_DATAPATH"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Use the IPTables implementation based on kube-proxy.",
+            "Use the eBPF based GKE Dataplane V2 with additional features. See the [GKE Dataplane V2 documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/dataplane-v2) for more.",
+            "Cluster has some existing nodes but new nodes should use ADVANCED_DATAPATH.",
+            "Cluster has some existing nodes but new nodes should use LEGACY_DATAPATH."
+          ],
+          "type": "string"
         },
         "enablePrivateNodes": {
           "description": "Whether nodes have internal IP addresses only. If enable_private_nodes is not specified, then the value is derived from Cluster.NetworkConfig.default_enable_private_nodes",
@@ -9204,7 +9310,8 @@
           "type": "string"
         },
         "vulnerabilityMode": {
-          "description": "Sets which mode to use for vulnerability scanning.",
+          "deprecated": true,
+          "description": "Deprecated: Vulnerability scanning is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. Sets which mode to use for vulnerability scanning.",
           "enum": [
             "VULNERABILITY_MODE_UNSPECIFIED",
             "VULNERABILITY_DISABLED",
@@ -9215,13 +9322,13 @@
             false,
             false,
             true,
-            false
+            true
           ],
           "enumDescriptions": [
             "Default value not specified.",
             "Disables vulnerability scanning on the cluster.",
             "Deprecated: Basic vulnerability scanning is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. Applies basic vulnerability scanning on the cluster.",
-            "Applies the Security Posture's vulnerability on cluster Enterprise level features."
+            "Deprecated: Advanced vulnerability scanning is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. Applies the Security Posture's vulnerability on cluster Enterprise level features."
           ],
           "type": "string"
         }
@@ -10230,6 +10337,18 @@
           "description": "The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/*/locations/*/clusters/*/nodePools/*`.",
           "type": "string"
         },
+        "nodeConfigUpdateMode": {
+          "description": "Optional. Option to specify the rollout strategy to apply node pool configuration updates. If unspecified, standard rolling update strategy with VM recreation is used as the default behavior.",
+          "enum": [
+            "NODE_CONFIG_UPDATE_MODE_UNSPECIFIED",
+            "LIVE_UPDATE_WITHOUT_DRAIN"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Node updates are applied in-place on the running VM without VM recreation and without draining workloads/pods."
+          ],
+          "type": "string"
+        },
         "nodeDrainConfig": {
           "$ref": "NodeDrainConfig",
           "description": "The desired node drain configuration for nodes in the node pool."
@@ -10761,6 +10880,29 @@
             "LTSC2019 specifies to use LTSC2019 as the Windows Servercore Base Image.",
             "LTSC2022 specifies to use LTSC2022 as the Windows Servercore Base Image."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WizSensorConfig": {
+      "description": "Configuration for the Wiz Sensor add-on.",
+      "id": "WizSensorConfig",
+      "properties": {
+        "apiKeySecretUri": {
+          "description": "Optional. The GCP Secret Manager URI for the Wiz API key secret. Format: \"projects/{project_id}/secrets/{secret_name}/versions/{version}\" or Format: \"projects/{project_id}/locations/{location_id}/secrets/{secret_name}/versions/{version}\"",
+          "type": "string"
+        },
+        "enabled": {
+          "description": "Optional. Whether the Wiz Sensor add-on is enabled for this cluster.",
+          "type": "boolean"
+        },
+        "proxySecretUri": {
+          "description": "Optional. The GCP Secret Manager URI for the Wiz proxy configuration. Format: \"projects/{project_id}/secrets/{secret_name}/versions/{version}\" or Format: \"projects/{project_id}/locations/{location_id}/secrets/{secret_name}/versions/{version}\"",
+          "type": "string"
+        },
+        "registrySecretUri": {
+          "description": "Optional. The GCP Secret Manager URI for the Wiz registry secret. Format: \"projects/{project_id}/secrets/{secret_name}/versions/{version}\" or Format: \"projects/{project_id}/locations/{location_id}/secrets/{secret_name}/versions/{version}\"",
           "type": "string"
         }
       },
