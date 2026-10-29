@@ -877,7 +877,7 @@
                           "type": "string"
                         },
                         "targetingType": {
-                          "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`",
+                          "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_COMBINED_AUDIENCE` * `TARGETING_TYPE_CUSTOM_LIST` * `TARGETING_TYPE_FIRST_PARTY_AND_PARTNER_AUDIENCE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_GOOGLE_AUDIENCE` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_LOOKALIKE_AUDIENCE` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`",
                           "enum": [
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
@@ -901,6 +901,7 @@
                             "TARGETING_TYPE_ON_SCREEN_POSITION",
                             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                             "TARGETING_TYPE_ENVIRONMENT",
                             "TARGETING_TYPE_CARRIER_AND_ISP",
                             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -952,6 +953,7 @@
                             "Target ads in a specific on screen position.",
                             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                            "Filter website content by sensitive categories (for example, adult).",
                             "Target ads to a specific environment (for example, web or app).",
                             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                             "Target ads to a specific operating system (for example, macOS).",
@@ -1033,7 +1035,7 @@
                           "type": "string"
                         },
                         "targetingType": {
-                          "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`",
+                          "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_COMBINED_AUDIENCE` * `TARGETING_TYPE_CUSTOM_LIST` * `TARGETING_TYPE_FIRST_PARTY_AND_PARTNER_AUDIENCE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_GOOGLE_AUDIENCE` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_LOOKALIKE_AUDIENCE` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`",
                           "enum": [
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
@@ -1057,6 +1059,7 @@
                             "TARGETING_TYPE_ON_SCREEN_POSITION",
                             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                             "TARGETING_TYPE_ENVIRONMENT",
                             "TARGETING_TYPE_CARRIER_AND_ISP",
                             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -1108,6 +1111,7 @@
                             "Target ads in a specific on screen position.",
                             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                            "Filter website content by sensitive categories (for example, adult).",
                             "Target ads to a specific environment (for example, web or app).",
                             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                             "Target ads to a specific operating system (for example, macOS).",
@@ -1186,7 +1190,7 @@
                           "type": "string"
                         },
                         "targetingType": {
-                          "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`",
+                          "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_COMBINED_AUDIENCE` * `TARGETING_TYPE_CUSTOM_LIST` * `TARGETING_TYPE_FIRST_PARTY_AND_PARTNER_AUDIENCE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_GOOGLE_AUDIENCE` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_LOOKALIKE_AUDIENCE` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`",
                           "enum": [
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
@@ -1210,6 +1214,7 @@
                             "TARGETING_TYPE_ON_SCREEN_POSITION",
                             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                             "TARGETING_TYPE_ENVIRONMENT",
                             "TARGETING_TYPE_CARRIER_AND_ISP",
                             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -1261,6 +1266,7 @@
                             "Target ads in a specific on screen position.",
                             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                            "Filter website content by sensitive categories (for example, adult).",
                             "Target ads to a specific environment (for example, web or app).",
                             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                             "Target ads to a specific operating system (for example, macOS).",
@@ -1352,7 +1358,7 @@
                           "type": "string"
                         },
                         "targetingType": {
-                          "description": "Required. Identifies the type of assigned targeting options to list. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`",
+                          "description": "Required. Identifies the type of assigned targeting options to list. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_COMBINED_AUDIENCE` * `TARGETING_TYPE_CUSTOM_LIST` * `TARGETING_TYPE_FIRST_PARTY_AND_PARTNER_AUDIENCE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_GOOGLE_AUDIENCE` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_LOOKALIKE_AUDIENCE` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`",
                           "enum": [
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
@@ -1376,6 +1382,7 @@
                             "TARGETING_TYPE_ON_SCREEN_POSITION",
                             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                             "TARGETING_TYPE_ENVIRONMENT",
                             "TARGETING_TYPE_CARRIER_AND_ISP",
                             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -1427,6 +1434,7 @@
                             "Target ads in a specific on screen position.",
                             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                            "Filter website content by sensitive categories (for example, adult).",
                             "Target ads to a specific environment (for example, web or app).",
                             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                             "Target ads to a specific operating system (for example, macOS).",
@@ -2992,7 +3000,7 @@
                           "type": "string"
                         },
                         "targetingType": {
-                          "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY`",
+                          "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUCTION_PACKAGE` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE_DEAL` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY`",
                           "enum": [
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
@@ -3016,6 +3024,7 @@
                             "TARGETING_TYPE_ON_SCREEN_POSITION",
                             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                             "TARGETING_TYPE_ENVIRONMENT",
                             "TARGETING_TYPE_CARRIER_AND_ISP",
                             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -3067,6 +3076,7 @@
                             "Target ads in a specific on screen position.",
                             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                            "Filter website content by sensitive categories (for example, adult).",
                             "Target ads to a specific environment (for example, web or app).",
                             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                             "Target ads to a specific operating system (for example, macOS).",
@@ -3148,7 +3158,7 @@
                           "type": "string"
                         },
                         "targetingType": {
-                          "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY`",
+                          "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUCTION_PACKAGE` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE_DEAL` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY`",
                           "enum": [
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
@@ -3172,6 +3182,7 @@
                             "TARGETING_TYPE_ON_SCREEN_POSITION",
                             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                             "TARGETING_TYPE_ENVIRONMENT",
                             "TARGETING_TYPE_CARRIER_AND_ISP",
                             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -3223,6 +3234,7 @@
                             "Target ads in a specific on screen position.",
                             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                            "Filter website content by sensitive categories (for example, adult).",
                             "Target ads to a specific environment (for example, web or app).",
                             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                             "Target ads to a specific operating system (for example, macOS).",
@@ -3301,7 +3313,7 @@
                           "type": "string"
                         },
                         "targetingType": {
-                          "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_YOUTUBE_CHANNEL` (only for `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items) * `TARGETING_TYPE_YOUTUBE_VIDEO` (only for `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items)",
+                          "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUCTION_PACKAGE` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE_DEAL` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_YOUTUBE_CHANNEL` (only for `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items) * `TARGETING_TYPE_YOUTUBE_VIDEO` (only for `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items)",
                           "enum": [
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
@@ -3325,6 +3337,7 @@
                             "TARGETING_TYPE_ON_SCREEN_POSITION",
                             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                             "TARGETING_TYPE_ENVIRONMENT",
                             "TARGETING_TYPE_CARRIER_AND_ISP",
                             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -3376,6 +3389,7 @@
                             "Target ads in a specific on screen position.",
                             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                            "Filter website content by sensitive categories (for example, adult).",
                             "Target ads to a specific environment (for example, web or app).",
                             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                             "Target ads to a specific operating system (for example, macOS).",
@@ -3467,7 +3481,7 @@
                           "type": "string"
                         },
                         "targetingType": {
-                          "description": "Required. Identifies the type of assigned targeting options to list. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_YOUTUBE_CHANNEL` (only for `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items) * `TARGETING_TYPE_YOUTUBE_VIDEO` (only for `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items)",
+                          "description": "Required. Identifies the type of assigned targeting options to list. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUCTION_PACKAGE` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE_DEAL` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_YOUTUBE_CHANNEL` (only for `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items) * `TARGETING_TYPE_YOUTUBE_VIDEO` (only for `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items)",
                           "enum": [
                             "TARGETING_TYPE_UNSPECIFIED",
                             "TARGETING_TYPE_CHANNEL",
@@ -3491,6 +3505,7 @@
                             "TARGETING_TYPE_ON_SCREEN_POSITION",
                             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                             "TARGETING_TYPE_ENVIRONMENT",
                             "TARGETING_TYPE_CARRIER_AND_ISP",
                             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -3542,6 +3557,7 @@
                             "Target ads in a specific on screen position.",
                             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                            "Filter website content by sensitive categories (for example, adult).",
                             "Target ads to a specific environment (for example, web or app).",
                             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                             "Target ads to a specific operating system (for example, macOS).",
@@ -4344,7 +4360,7 @@
                       "type": "string"
                     },
                     "targetingType": {
-                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`",
+                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL`",
                       "enum": [
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
@@ -4368,6 +4384,7 @@
                         "TARGETING_TYPE_ON_SCREEN_POSITION",
                         "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                         "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                         "TARGETING_TYPE_ENVIRONMENT",
                         "TARGETING_TYPE_CARRIER_AND_ISP",
                         "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -4419,6 +4436,7 @@
                         "Target ads in a specific on screen position.",
                         "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                         "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                        "Filter website content by sensitive categories (for example, adult).",
                         "Target ads to a specific environment (for example, web or app).",
                         "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                         "Target ads to a specific operating system (for example, macOS).",
@@ -4491,7 +4509,7 @@
                       "type": "string"
                     },
                     "targetingType": {
-                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`",
+                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL`",
                       "enum": [
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
@@ -4515,6 +4533,7 @@
                         "TARGETING_TYPE_ON_SCREEN_POSITION",
                         "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                         "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                         "TARGETING_TYPE_ENVIRONMENT",
                         "TARGETING_TYPE_CARRIER_AND_ISP",
                         "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -4566,6 +4585,7 @@
                         "Target ads in a specific on screen position.",
                         "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                         "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                        "Filter website content by sensitive categories (for example, adult).",
                         "Target ads to a specific environment (for example, web or app).",
                         "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                         "Target ads to a specific operating system (for example, macOS).",
@@ -4659,6 +4679,7 @@
                         "TARGETING_TYPE_ON_SCREEN_POSITION",
                         "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                         "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                         "TARGETING_TYPE_ENVIRONMENT",
                         "TARGETING_TYPE_CARRIER_AND_ISP",
                         "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -4710,6 +4731,7 @@
                         "Target ads in a specific on screen position.",
                         "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                         "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                        "Filter website content by sensitive categories (for example, adult).",
                         "Target ads to a specific environment (for example, web or app).",
                         "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                         "Target ads to a specific operating system (for example, macOS).",
@@ -4816,6 +4838,7 @@
                         "TARGETING_TYPE_ON_SCREEN_POSITION",
                         "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                         "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                         "TARGETING_TYPE_ENVIRONMENT",
                         "TARGETING_TYPE_CARRIER_AND_ISP",
                         "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -4867,6 +4890,7 @@
                         "Target ads in a specific on screen position.",
                         "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                         "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                        "Filter website content by sensitive categories (for example, adult).",
                         "Target ads to a specific environment (for example, web or app).",
                         "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                         "Target ads to a specific operating system (for example, macOS).",
@@ -7074,6 +7098,7 @@
                         "TARGETING_TYPE_ON_SCREEN_POSITION",
                         "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                         "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                         "TARGETING_TYPE_ENVIRONMENT",
                         "TARGETING_TYPE_CARRIER_AND_ISP",
                         "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -7125,6 +7150,7 @@
                         "Target ads in a specific on screen position.",
                         "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                         "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                        "Filter website content by sensitive categories (for example, adult).",
                         "Target ads to a specific environment (for example, web or app).",
                         "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                         "Target ads to a specific operating system (for example, macOS).",
@@ -7221,6 +7247,7 @@
                         "TARGETING_TYPE_ON_SCREEN_POSITION",
                         "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                         "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                         "TARGETING_TYPE_ENVIRONMENT",
                         "TARGETING_TYPE_CARRIER_AND_ISP",
                         "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -7272,6 +7299,7 @@
                         "Target ads in a specific on screen position.",
                         "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                         "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                        "Filter website content by sensitive categories (for example, adult).",
                         "Target ads to a specific environment (for example, web or app).",
                         "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                         "Target ads to a specific operating system (for example, macOS).",
@@ -7365,6 +7393,7 @@
                         "TARGETING_TYPE_ON_SCREEN_POSITION",
                         "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                         "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                         "TARGETING_TYPE_ENVIRONMENT",
                         "TARGETING_TYPE_CARRIER_AND_ISP",
                         "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -7416,6 +7445,7 @@
                         "Target ads in a specific on screen position.",
                         "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                         "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                        "Filter website content by sensitive categories (for example, adult).",
                         "Target ads to a specific environment (for example, web or app).",
                         "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                         "Target ads to a specific operating system (for example, macOS).",
@@ -7522,6 +7552,7 @@
                         "TARGETING_TYPE_ON_SCREEN_POSITION",
                         "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                         "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                         "TARGETING_TYPE_ENVIRONMENT",
                         "TARGETING_TYPE_CARRIER_AND_ISP",
                         "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -7573,6 +7604,7 @@
                         "Target ads in a specific on screen position.",
                         "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                         "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                        "Filter website content by sensitive categories (for example, adult).",
                         "Target ads to a specific environment (for example, web or app).",
                         "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                         "Target ads to a specific operating system (for example, macOS).",
@@ -7703,7 +7735,7 @@
                   "type": "string"
                 },
                 "targetingType": {
-                  "description": "Required. The type of targeting option to retrieve. Accepted values are: * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_OMID`",
+                  "description": "Required. The type of targeting option to retrieve. Accepted values are: * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_AUCTION_PACKAGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_OMID`",
                   "enum": [
                     "TARGETING_TYPE_UNSPECIFIED",
                     "TARGETING_TYPE_CHANNEL",
@@ -7727,6 +7759,7 @@
                     "TARGETING_TYPE_ON_SCREEN_POSITION",
                     "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                     "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                    "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                     "TARGETING_TYPE_ENVIRONMENT",
                     "TARGETING_TYPE_CARRIER_AND_ISP",
                     "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -7778,6 +7811,7 @@
                     "Target ads in a specific on screen position.",
                     "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                     "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                    "Filter website content by sensitive categories (for example, adult).",
                     "Target ads to a specific environment (for example, web or app).",
                     "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                     "Target ads to a specific operating system (for example, macOS).",
@@ -7857,7 +7891,7 @@
                   "type": "string"
                 },
                 "targetingType": {
-                  "description": "Required. The type of targeting option to be listed. Accepted values are: * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_OMID`",
+                  "description": "Required. The type of targeting option to be listed. Accepted values are: * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_AUCTION_PACKAGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_OMID`",
                   "enum": [
                     "TARGETING_TYPE_UNSPECIFIED",
                     "TARGETING_TYPE_CHANNEL",
@@ -7881,6 +7915,7 @@
                     "TARGETING_TYPE_ON_SCREEN_POSITION",
                     "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                     "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                    "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                     "TARGETING_TYPE_ENVIRONMENT",
                     "TARGETING_TYPE_CARRIER_AND_ISP",
                     "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -7932,6 +7967,7 @@
                     "Target ads in a specific on screen position.",
                     "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                     "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                    "Filter website content by sensitive categories (for example, adult).",
                     "Target ads to a specific environment (for example, web or app).",
                     "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                     "Target ads to a specific operating system (for example, macOS).",
@@ -8008,6 +8044,7 @@
                     "TARGETING_TYPE_ON_SCREEN_POSITION",
                     "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
                     "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                    "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
                     "TARGETING_TYPE_ENVIRONMENT",
                     "TARGETING_TYPE_CARRIER_AND_ISP",
                     "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -8059,6 +8096,7 @@
                     "Target ads in a specific on screen position.",
                     "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
                     "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                    "Filter website content by sensitive categories (for example, adult).",
                     "Target ads to a specific environment (for example, web or app).",
                     "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
                     "Target ads to a specific operating system (for example, macOS).",
@@ -8284,7 +8322,7 @@
       }
     }
   },
-  "revision": "20261012",
+  "revision": "20261021",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -10855,7 +10893,7 @@
         },
         "inventorySourceDetails": {
           "$ref": "InventorySourceAssignedTargetingOptionDetails",
-          "description": "Inventory source details. This field will be populated when the targeting_type is `TARGETING_TYPE_INVENTORY_SOURCE` or `TARGETING_TYPE_INVENTORY_SOURCE_DEAL`."
+          "description": "Inventory source details. This field will be populated when the targeting_type is `TARGETING_TYPE_INVENTORY_SOURCE_DEAL`."
         },
         "inventorySourceGroupDetails": {
           "$ref": "InventorySourceGroupAssignedTargetingOptionDetails",
@@ -10947,6 +10985,7 @@
             "TARGETING_TYPE_ON_SCREEN_POSITION",
             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
             "TARGETING_TYPE_ENVIRONMENT",
             "TARGETING_TYPE_CARRIER_AND_ISP",
             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -10998,6 +11037,7 @@
             "Target ads in a specific on screen position.",
             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+            "Filter website content by sensitive categories (for example, adult).",
             "Target ads to a specific environment (for example, web or app).",
             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
             "Target ads to a specific operating system (for example, macOS).",
@@ -11456,14 +11496,14 @@
           "type": "array"
         },
         "createRequests": {
-          "description": "Optional. The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionRequest`. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`",
+          "description": "Optional. The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionRequest`. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_COMBINED_AUDIENCE` * `TARGETING_TYPE_CUSTOM_LIST` * `TARGETING_TYPE_FIRST_PARTY_AND_PARTNER_AUDIENCE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_GOOGLE_AUDIENCE` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_LOOKALIKE_AUDIENCE` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`",
           "items": {
             "$ref": "CreateAssignedTargetingOptionsRequest"
           },
           "type": "array"
         },
         "deleteRequests": {
-          "description": "Optional. The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`",
+          "description": "Optional. The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_COMBINED_AUDIENCE` * `TARGETING_TYPE_CUSTOM_LIST` * `TARGETING_TYPE_FIRST_PARTY_AND_PARTNER_AUDIENCE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_GOOGLE_AUDIENCE` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_LOOKALIKE_AUDIENCE` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`",
           "items": {
             "$ref": "DeleteAssignedTargetingOptionsRequest"
           },
@@ -11510,14 +11550,14 @@
       "id": "BulkEditAdvertiserAssignedTargetingOptionsRequest",
       "properties": {
         "createRequests": {
-          "description": "The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`",
+          "description": "The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL`",
           "items": {
             "$ref": "CreateAssignedTargetingOptionsRequest"
           },
           "type": "array"
         },
         "deleteRequests": {
-          "description": "The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`",
+          "description": "The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL`",
           "items": {
             "$ref": "DeleteAssignedTargetingOptionsRequest"
           },
@@ -11625,14 +11665,14 @@
       "id": "BulkEditAssignedTargetingOptionsRequest",
       "properties": {
         "createRequests": {
-          "description": "The assigned targeting options to create in batch, specified as a list of CreateAssignedTargetingOptionsRequest. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY`",
+          "description": "The assigned targeting options to create in batch, specified as a list of CreateAssignedTargetingOptionsRequest. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUCTION_PACKAGE` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE_DEAL` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY`",
           "items": {
             "$ref": "CreateAssignedTargetingOptionsRequest"
           },
           "type": "array"
         },
         "deleteRequests": {
-          "description": "The assigned targeting options to delete in batch, specified as a list of DeleteAssignedTargetingOptionsRequest. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY`",
+          "description": "The assigned targeting options to delete in batch, specified as a list of DeleteAssignedTargetingOptionsRequest. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUCTION_PACKAGE` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE_DEAL` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY`",
           "items": {
             "$ref": "DeleteAssignedTargetingOptionsRequest"
           },
@@ -13107,6 +13147,7 @@
             "TARGETING_TYPE_ON_SCREEN_POSITION",
             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
             "TARGETING_TYPE_ENVIRONMENT",
             "TARGETING_TYPE_CARRIER_AND_ISP",
             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -13158,6 +13199,7 @@
             "Target ads in a specific on screen position.",
             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+            "Filter website content by sensitive categories (for example, adult).",
             "Target ads to a specific environment (for example, web or app).",
             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
             "Target ads to a specific operating system (for example, macOS).",
@@ -13221,67 +13263,14 @@
           "description": "Required. The SDF version of the downloaded file. If set to `SDF_VERSION_UNSPECIFIED`, this will default to the version specified by the advertiser or partner identified by `root_id`. An advertiser inherits its SDF version from its partner unless configured otherwise.",
           "enum": [
             "SDF_VERSION_UNSPECIFIED",
-            "SDF_VERSION_3_1",
-            "SDF_VERSION_4",
-            "SDF_VERSION_4_1",
-            "SDF_VERSION_4_2",
-            "SDF_VERSION_5",
-            "SDF_VERSION_5_1",
-            "SDF_VERSION_5_2",
-            "SDF_VERSION_5_3",
-            "SDF_VERSION_5_4",
-            "SDF_VERSION_5_5",
-            "SDF_VERSION_6",
-            "SDF_VERSION_7",
-            "SDF_VERSION_7_1",
-            "SDF_VERSION_8",
-            "SDF_VERSION_8_1",
             "SDF_VERSION_9",
             "SDF_VERSION_9_1",
             "SDF_VERSION_9_2",
             "SDF_VERSION_10",
             "SDF_VERSION_10_1"
           ],
-          "enumDeprecated": [
-            false,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            false,
-            false,
-            false,
-            false,
-            false
-          ],
           "enumDescriptions": [
             "SDF version value is not specified or is unknown in this version.",
-            "SDF version 3.1",
-            "SDF version 4",
-            "SDF version 4.1",
-            "SDF version 4.2",
-            "SDF version 5.",
-            "SDF version 5.1",
-            "SDF version 5.2",
-            "SDF version 5.3",
-            "SDF version 5.4",
-            "SDF version 5.5",
-            "SDF version 6",
-            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
-            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
-            "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version.",
-            "SDF version 8.1.",
             "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version.",
             "SDF version 9.1.",
             "SDF version 9.2.",
@@ -14257,6 +14246,7 @@
             "TARGETING_TYPE_ON_SCREEN_POSITION",
             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
             "TARGETING_TYPE_ENVIRONMENT",
             "TARGETING_TYPE_CARRIER_AND_ISP",
             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -14308,6 +14298,7 @@
             "Target ads in a specific on screen position.",
             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+            "Filter website content by sensitive categories (for example, adult).",
             "Target ads to a specific environment (for example, web or app).",
             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
             "Target ads to a specific operating system (for example, macOS).",
@@ -14842,8 +14833,9 @@
           "type": "string"
         },
         "youtubeAndPartnersBidMultiplier": {
-          "description": "Optional. Bid multiplier allows you to show your ads more or less frequently based on the device type. It will apply a multiplier on the original bid price. When this field is 0, it indicates this field is not applicable instead of multiplying 0 on the original bid price. For example, if the bid price without multiplier is $10.0 and the multiplier is 1.5 for Tablet, the resulting bid price for Tablet will be $15.0. Only applicable to YouTube and Partners line items.",
+          "description": "Output only. Bid multiplier allows you to show your ads more or less frequently based on the device type. It will apply a multiplier on the original bid price. When this field is 0, it indicates this field is not applicable instead of multiplying 0 on the original bid price. For example, if the bid price without multiplier is $10.0 and the multiplier is 1.5 for Tablet, the resulting bid price for Tablet will be $15.0. Only applicable to YouTube and Partners line items.",
           "format": "double",
+          "readOnly": true,
           "type": "number"
         }
       },
@@ -14885,30 +14877,11 @@
           "description": "Required. The display name of the digital content label rating tier to be EXCLUDED. This field only accepts the value `CONTENT_RATING_TIER_UNRATED`.",
           "enum": [
             "CONTENT_RATING_TIER_UNSPECIFIED",
-            "CONTENT_RATING_TIER_UNRATED",
-            "CONTENT_RATING_TIER_GENERAL",
-            "CONTENT_RATING_TIER_PARENTAL_GUIDANCE",
-            "CONTENT_RATING_TIER_TEENS",
-            "CONTENT_RATING_TIER_MATURE",
-            "CONTENT_RATING_TIER_FAMILIES"
-          ],
-          "enumDeprecated": [
-            false,
-            false,
-            true,
-            true,
-            true,
-            true,
-            true
+            "CONTENT_RATING_TIER_UNRATED"
           ],
           "enumDescriptions": [
             "Content label is not specified in this version. This enum is a place holder for a default value and does not represent a real content rating.",
-            "Content that has not been labeled.",
-            "Deprecated: This content rating tier is no longer supported. Content suitable for general audiences.",
-            "Deprecated: This content rating tier is no longer supported. Content suitable for most audiences with parental guidance.",
-            "Deprecated: This content rating tier is no longer supported. Content suitable for teen and older audiences.",
-            "Deprecated: This content rating tier is no longer supported. Content suitable only for mature audiences.",
-            "Deprecated: This content rating tier is no longer supported. Content suitable for family audiences. It is a subset of CONTENT_RATING_TIER_GENERAL. Only applicable to YouTube and Partners line items."
+            "Content that has not been labeled."
           ],
           "type": "string"
         }
@@ -14923,30 +14896,11 @@
           "description": "Output only. An enum for the content label brand safety tiers.",
           "enum": [
             "CONTENT_RATING_TIER_UNSPECIFIED",
-            "CONTENT_RATING_TIER_UNRATED",
-            "CONTENT_RATING_TIER_GENERAL",
-            "CONTENT_RATING_TIER_PARENTAL_GUIDANCE",
-            "CONTENT_RATING_TIER_TEENS",
-            "CONTENT_RATING_TIER_MATURE",
-            "CONTENT_RATING_TIER_FAMILIES"
-          ],
-          "enumDeprecated": [
-            false,
-            false,
-            true,
-            true,
-            true,
-            true,
-            true
+            "CONTENT_RATING_TIER_UNRATED"
           ],
           "enumDescriptions": [
             "Content label is not specified in this version. This enum is a place holder for a default value and does not represent a real content rating.",
-            "Content that has not been labeled.",
-            "Deprecated: This content rating tier is no longer supported. Content suitable for general audiences.",
-            "Deprecated: This content rating tier is no longer supported. Content suitable for most audiences with parental guidance.",
-            "Deprecated: This content rating tier is no longer supported. Content suitable for teen and older audiences.",
-            "Deprecated: This content rating tier is no longer supported. Content suitable only for mature audiences.",
-            "Deprecated: This content rating tier is no longer supported. Content suitable for family audiences. It is a subset of CONTENT_RATING_TIER_GENERAL. Only applicable to YouTube and Partners line items."
+            "Content that has not been labeled."
           ],
           "readOnly": true,
           "type": "string"
@@ -16896,26 +16850,13 @@
             "GOOGLE_AUDIENCE_TYPE_UNSPECIFIED",
             "GOOGLE_AUDIENCE_TYPE_AFFINITY",
             "GOOGLE_AUDIENCE_TYPE_IN_MARKET",
-            "GOOGLE_AUDIENCE_TYPE_INSTALLED_APPS",
-            "GOOGLE_AUDIENCE_TYPE_NEW_MOBILE_DEVICES",
             "GOOGLE_AUDIENCE_TYPE_LIFE_EVENT",
             "GOOGLE_AUDIENCE_TYPE_EXTENDED_DEMOGRAPHIC"
-          ],
-          "enumDeprecated": [
-            false,
-            false,
-            false,
-            true,
-            true,
-            false,
-            false
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown.",
             "Affinity type Google audience.",
             "In-Market type Google audience.",
-            "Installed-Apps type Google audience.",
-            "New-Mobile-Devices type Google audience.",
             "Life-Event type Google audience.",
             "Extended-Demographic type Google audience."
           ],
@@ -17539,7 +17480,7 @@
           "type": "string"
         },
         "optimizationObjective": {
-          "description": "Optional. Required. The optimization objective of the insertion order.",
+          "description": "Required. The optimization objective of the insertion order.",
           "enum": [
             "OPTIMIZATION_OBJECTIVE_UNSPECIFIED",
             "CONVERSION",
@@ -17899,7 +17840,7 @@
       "type": "object"
     },
     "InventorySourceAssignedTargetingOptionDetails": {
-      "description": "Targeting details for inventory source. This will be populated in the details field of an AssignedTargetingOption when targeting_type is one of `TARGETING_TYPE_INVENTORY_SOURCE` or `TARGETING_TYPE_INVENTORY_SOURCE_DEAL`.",
+      "description": "Targeting details for inventory source. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_INVENTORY_SOURCE_DEAL`.",
       "id": "InventorySourceAssignedTargetingOptionDetails",
       "properties": {
         "inventorySourceId": {
@@ -20053,7 +19994,7 @@
           "type": "string"
         },
         "invoiceType": {
-          "description": "The invoice type for this partner cost. * Required when cost_type is one of: - `PARTNER_COST_TYPE_ADLOOX` - `PARTNER_COST_TYPE_DOUBLE_VERIFY` - `PARTNER_COST_TYPE_INTEGRAL_AD_SCIENCE`. * Output only for other types.",
+          "description": "The invoice type for this partner cost. * Required when cost_type is one of: - `PARTNER_COST_TYPE_PEER39` - `PARTNER_COST_TYPE_DOUBLE_VERIFY` - `PARTNER_COST_TYPE_INTEGRAL_AD_SCIENCE`. * Output only for other types.",
           "enum": [
             "PARTNER_COST_INVOICE_TYPE_UNSPECIFIED",
             "PARTNER_COST_INVOICE_TYPE_DV360",
@@ -20702,67 +20643,14 @@
           "description": "Required. The version of SDF being used.",
           "enum": [
             "SDF_VERSION_UNSPECIFIED",
-            "SDF_VERSION_3_1",
-            "SDF_VERSION_4",
-            "SDF_VERSION_4_1",
-            "SDF_VERSION_4_2",
-            "SDF_VERSION_5",
-            "SDF_VERSION_5_1",
-            "SDF_VERSION_5_2",
-            "SDF_VERSION_5_3",
-            "SDF_VERSION_5_4",
-            "SDF_VERSION_5_5",
-            "SDF_VERSION_6",
-            "SDF_VERSION_7",
-            "SDF_VERSION_7_1",
-            "SDF_VERSION_8",
-            "SDF_VERSION_8_1",
             "SDF_VERSION_9",
             "SDF_VERSION_9_1",
             "SDF_VERSION_9_2",
             "SDF_VERSION_10",
             "SDF_VERSION_10_1"
           ],
-          "enumDeprecated": [
-            false,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            false,
-            false,
-            false,
-            false,
-            false
-          ],
           "enumDescriptions": [
             "SDF version value is not specified or is unknown in this version.",
-            "SDF version 3.1",
-            "SDF version 4",
-            "SDF version 4.1",
-            "SDF version 4.2",
-            "SDF version 5.",
-            "SDF version 5.1",
-            "SDF version 5.2",
-            "SDF version 5.3",
-            "SDF version 5.4",
-            "SDF version 5.5",
-            "SDF version 6",
-            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
-            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
-            "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version.",
-            "SDF version 8.1.",
             "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version.",
             "SDF version 9.1.",
             "SDF version 9.2.",
@@ -20803,67 +20691,14 @@
           "description": "The SDF version used to execute this download task.",
           "enum": [
             "SDF_VERSION_UNSPECIFIED",
-            "SDF_VERSION_3_1",
-            "SDF_VERSION_4",
-            "SDF_VERSION_4_1",
-            "SDF_VERSION_4_2",
-            "SDF_VERSION_5",
-            "SDF_VERSION_5_1",
-            "SDF_VERSION_5_2",
-            "SDF_VERSION_5_3",
-            "SDF_VERSION_5_4",
-            "SDF_VERSION_5_5",
-            "SDF_VERSION_6",
-            "SDF_VERSION_7",
-            "SDF_VERSION_7_1",
-            "SDF_VERSION_8",
-            "SDF_VERSION_8_1",
             "SDF_VERSION_9",
             "SDF_VERSION_9_1",
             "SDF_VERSION_9_2",
             "SDF_VERSION_10",
             "SDF_VERSION_10_1"
           ],
-          "enumDeprecated": [
-            false,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            false,
-            false,
-            false,
-            false,
-            false
-          ],
           "enumDescriptions": [
             "SDF version value is not specified or is unknown in this version.",
-            "SDF version 3.1",
-            "SDF version 4",
-            "SDF version 4.1",
-            "SDF version 4.2",
-            "SDF version 5.",
-            "SDF version 5.1",
-            "SDF version 5.2",
-            "SDF version 5.3",
-            "SDF version 5.4",
-            "SDF version 5.5",
-            "SDF version 6",
-            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
-            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
-            "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version.",
-            "SDF version 8.1.",
             "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version.",
             "SDF version 9.1.",
             "SDF version 9.2.",
@@ -20965,67 +20800,11 @@
           "description": "Required. An enum for the Display & Video 360 Sensitive category content classified to be EXCLUDED. This field only accepts the following values: * `SENSITIVE_CATEGORY_EMBEDDED_VIDEO` * `SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO`",
           "enum": [
             "SENSITIVE_CATEGORY_UNSPECIFIED",
-            "SENSITIVE_CATEGORY_ADULT",
-            "SENSITIVE_CATEGORY_DEROGATORY",
-            "SENSITIVE_CATEGORY_DOWNLOADS_SHARING",
-            "SENSITIVE_CATEGORY_WEAPONS",
-            "SENSITIVE_CATEGORY_GAMBLING",
-            "SENSITIVE_CATEGORY_VIOLENCE",
-            "SENSITIVE_CATEGORY_SUGGESTIVE",
-            "SENSITIVE_CATEGORY_PROFANITY",
-            "SENSITIVE_CATEGORY_ALCOHOL",
-            "SENSITIVE_CATEGORY_DRUGS",
-            "SENSITIVE_CATEGORY_TOBACCO",
-            "SENSITIVE_CATEGORY_POLITICS",
-            "SENSITIVE_CATEGORY_RELIGION",
-            "SENSITIVE_CATEGORY_TRAGEDY",
-            "SENSITIVE_CATEGORY_TRANSPORTATION_ACCIDENTS",
-            "SENSITIVE_CATEGORY_SENSITIVE_SOCIAL_ISSUES",
-            "SENSITIVE_CATEGORY_SHOCKING",
             "SENSITIVE_CATEGORY_EMBEDDED_VIDEO",
             "SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO"
           ],
-          "enumDeprecated": [
-            false,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            false,
-            false
-          ],
           "enumDescriptions": [
             "Serves as a placeholder and doesn't specify a Display & Video 360 sensitive category.",
-            "Deprecated: This sensitive category is no longer supported. Adult or pornographic text, image, or video content.",
-            "Deprecated: This sensitive category is no longer supported. Content that may be construed as biased against individuals, groups, or organizations based on criteria such as race, religion, disability, sex, age, veteran status, sexual orientation, gender identity, or political affiliation. May also indicate discussion of such content, for instance, in an academic or journalistic context.",
-            "Deprecated: This sensitive category is no longer supported. Content related to audio, video, or software downloads.",
-            "Deprecated: This sensitive category is no longer supported. Contains content related to personal weapons, including knives, guns, small firearms, and ammunition. Selecting either \"weapons\" or \"sensitive social issues\" will result in selecting both.",
-            "Deprecated: This sensitive category is no longer supported. Contains content related to betting or wagering in a real-world or online setting.",
-            "Deprecated: This sensitive category is no longer supported. Content which may be considered graphically violent, gory, gruesome, or shocking, such as street fighting videos, accident photos, descriptions of torture, etc.",
-            "Deprecated: This sensitive category is no longer supported. Adult content, as well as suggestive content that's not explicitly pornographic. This category includes all pages categorized as adult.",
-            "Deprecated: This sensitive category is no longer supported. Prominent use of words considered indecent, such as curse words and sexual slang. Pages with only very occasional usage, such as news sites that might include such words in a quotation, are not included.",
-            "Deprecated: This sensitive category is no longer supported. Contains content related to alcoholic beverages, alcohol brands, recipes, etc.",
-            "Deprecated: This sensitive category is no longer supported. Contains content related to the recreational use of legal or illegal drugs, as well as to drug paraphernalia or cultivation.",
-            "Deprecated: This sensitive category is no longer supported. Contains content related to tobacco and tobacco accessories, including lighters, humidors, ashtrays, etc.",
-            "Deprecated: This sensitive category is no longer supported. Political news and media, including discussions of social, governmental, and public policy.",
-            "Deprecated: This sensitive category is no longer supported. Content related to religious thought or beliefs.",
-            "Deprecated: This sensitive category is no longer supported. Content related to death, disasters, accidents, war, etc.",
-            "Deprecated: This sensitive category is no longer supported. Content related to motor vehicle, aviation or other transportation accidents.",
-            "Deprecated: This sensitive category is no longer supported. Issues that evoke strong, opposing views and spark debate. These include issues that are controversial in most countries and markets (such as abortion), as well as those that are controversial in specific countries and markets (such as immigration reform in the United States).",
-            "Deprecated: This sensitive category is no longer supported. Content which may be considered shocking or disturbing, such as violent news stories, stunts, or toilet humor.",
             "YouTube videos embedded on websites outside of YouTube.com.",
             "Video of live events streamed over the internet."
           ],
@@ -21042,67 +20821,11 @@
           "description": "Output only. An enum for the Display & Video 360 Sensitive category content classifier.",
           "enum": [
             "SENSITIVE_CATEGORY_UNSPECIFIED",
-            "SENSITIVE_CATEGORY_ADULT",
-            "SENSITIVE_CATEGORY_DEROGATORY",
-            "SENSITIVE_CATEGORY_DOWNLOADS_SHARING",
-            "SENSITIVE_CATEGORY_WEAPONS",
-            "SENSITIVE_CATEGORY_GAMBLING",
-            "SENSITIVE_CATEGORY_VIOLENCE",
-            "SENSITIVE_CATEGORY_SUGGESTIVE",
-            "SENSITIVE_CATEGORY_PROFANITY",
-            "SENSITIVE_CATEGORY_ALCOHOL",
-            "SENSITIVE_CATEGORY_DRUGS",
-            "SENSITIVE_CATEGORY_TOBACCO",
-            "SENSITIVE_CATEGORY_POLITICS",
-            "SENSITIVE_CATEGORY_RELIGION",
-            "SENSITIVE_CATEGORY_TRAGEDY",
-            "SENSITIVE_CATEGORY_TRANSPORTATION_ACCIDENTS",
-            "SENSITIVE_CATEGORY_SENSITIVE_SOCIAL_ISSUES",
-            "SENSITIVE_CATEGORY_SHOCKING",
             "SENSITIVE_CATEGORY_EMBEDDED_VIDEO",
             "SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO"
           ],
-          "enumDeprecated": [
-            false,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            false,
-            false
-          ],
           "enumDescriptions": [
             "Serves as a placeholder and doesn't specify a Display & Video 360 sensitive category.",
-            "Deprecated: This sensitive category is no longer supported. Adult or pornographic text, image, or video content.",
-            "Deprecated: This sensitive category is no longer supported. Content that may be construed as biased against individuals, groups, or organizations based on criteria such as race, religion, disability, sex, age, veteran status, sexual orientation, gender identity, or political affiliation. May also indicate discussion of such content, for instance, in an academic or journalistic context.",
-            "Deprecated: This sensitive category is no longer supported. Content related to audio, video, or software downloads.",
-            "Deprecated: This sensitive category is no longer supported. Contains content related to personal weapons, including knives, guns, small firearms, and ammunition. Selecting either \"weapons\" or \"sensitive social issues\" will result in selecting both.",
-            "Deprecated: This sensitive category is no longer supported. Contains content related to betting or wagering in a real-world or online setting.",
-            "Deprecated: This sensitive category is no longer supported. Content which may be considered graphically violent, gory, gruesome, or shocking, such as street fighting videos, accident photos, descriptions of torture, etc.",
-            "Deprecated: This sensitive category is no longer supported. Adult content, as well as suggestive content that's not explicitly pornographic. This category includes all pages categorized as adult.",
-            "Deprecated: This sensitive category is no longer supported. Prominent use of words considered indecent, such as curse words and sexual slang. Pages with only very occasional usage, such as news sites that might include such words in a quotation, are not included.",
-            "Deprecated: This sensitive category is no longer supported. Contains content related to alcoholic beverages, alcohol brands, recipes, etc.",
-            "Deprecated: This sensitive category is no longer supported. Contains content related to the recreational use of legal or illegal drugs, as well as to drug paraphernalia or cultivation.",
-            "Deprecated: This sensitive category is no longer supported. Contains content related to tobacco and tobacco accessories, including lighters, humidors, ashtrays, etc.",
-            "Deprecated: This sensitive category is no longer supported. Political news and media, including discussions of social, governmental, and public policy.",
-            "Deprecated: This sensitive category is no longer supported. Content related to religious thought or beliefs.",
-            "Deprecated: This sensitive category is no longer supported. Content related to death, disasters, accidents, war, etc.",
-            "Deprecated: This sensitive category is no longer supported. Content related to motor vehicle, aviation or other transportation accidents.",
-            "Deprecated: This sensitive category is no longer supported. Issues that evoke strong, opposing views and spark debate. These include issues that are controversial in most countries and markets (such as abortion), as well as those that are controversial in specific countries and markets (such as immigration reform in the United States).",
-            "Deprecated: This sensitive category is no longer supported. Content which may be considered shocking or disturbing, such as violent news stories, stunts, or toilet humor.",
             "YouTube videos embedded on websites outside of YouTube.com.",
             "Video of live events streamed over the internet."
           ],
@@ -21423,6 +21146,7 @@
             "TARGETING_TYPE_ON_SCREEN_POSITION",
             "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
             "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
             "TARGETING_TYPE_ENVIRONMENT",
             "TARGETING_TYPE_CARRIER_AND_ISP",
             "TARGETING_TYPE_OPERATING_SYSTEM",
@@ -21474,6 +21198,7 @@
             "Target ads in a specific on screen position.",
             "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
             "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+            "Filter website content by sensitive categories (for example, adult).",
             "Target ads to a specific environment (for example, web or app).",
             "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
             "Target ads to a specific operating system (for example, macOS).",
@@ -22060,6 +21785,10 @@
           },
           "type": "array"
         },
+        "businessName": {
+          "description": "Optional. The business name shown on the ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.",
+          "type": "string"
+        },
         "companionBanners": {
           "description": "Optional. The list of companion banners used by this ad.",
           "items": {
@@ -22104,6 +21833,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "logo": {
+          "$ref": "ImageAsset",
+          "description": "Optional. The logo image used by this ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied."
         },
         "longHeadlines": {
           "description": "Optional. The list of long headlines shown on the call-to-action banner. Must be set unless the parent line item's lineItemType is `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE`, in which case this field cannot be set.",
