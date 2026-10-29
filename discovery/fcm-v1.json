@@ -316,11 +316,11 @@
       }
     }
   },
-  "revision": "20261013",
+  "revision": "20261018",
   "rootUrl": "https://fcm.googleapis.com/",
   "schemas": {
     "AndroidBackgroundSyncMessage": {
-      "description": "A Background Sync message that is sent to an Android device.",
+      "description": "A Background Sync message that is sent to Android devices.",
       "id": "AndroidBackgroundSyncMessage",
       "properties": {},
       "type": "object"
@@ -390,7 +390,7 @@
       "properties": {
         "backgroundSync": {
           "$ref": "AndroidBackgroundSyncMessage",
-          "description": "Optional. Non-urgent background sync message to send to android devices."
+          "description": "Optional. Non-urgent background sync message to send to Android devices. Delivery of these messages may be delayed or batched to optimize for battery."
         },
         "bandwidthConstrainedOk": {
           "description": "Optional. If set to true, messages will be allowed to be delivered to the app while the device is in bandwidth constrained mode. This should only be enabled when the app has been tested to properly handle messages in bandwidth constrained mode.",
@@ -417,7 +417,7 @@
         },
         "remoteNotification": {
           "$ref": "AndroidRemoteNotification",
-          "description": "Optional. User-facing notification to send to android devices."
+          "description": "Optional. User-facing notification to send to Android devices. These messages are delivered immediately and are not delayed by battery optimizations."
         },
         "restrictedPackageName": {
           "description": "Package name of the application where the registration token must match in order to receive the message.",
@@ -672,7 +672,7 @@
           "type": "integer"
         },
         "image": {
-          "description": "Contains the URL of an image that is going to be displayed in a notification. If present, it will override google.firebase.fcm.v1.Notification.image.",
+          "description": "An HTTPS URL of an image to display in the notification. If present, it overrides google.firebase.fcm.v1.Notification.image.",
           "type": "string"
         },
         "lightSettings": {
@@ -767,7 +767,7 @@
       "type": "object"
     },
     "AndroidRemoteNotification": {
-      "description": "A Remote Notification message that is sent to an Android device.",
+      "description": "A Remote Notification message that is sent to Android devices.",
       "id": "AndroidRemoteNotification",
       "properties": {
         "mutableContent": {
