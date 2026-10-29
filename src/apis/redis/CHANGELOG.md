@@ -1,5 +1,12 @@
 # Changelog
 
+## [27.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v27.0.1...redis-v27.1.0) (2026-10-29)
+
+
+### Features
+
+* **redis:** update the API ([47ddaad](https://github.com/googleapis/google-api-nodejs-client/commit/47ddaad38c5fb0f97fb1c78c60a56dcbe22c343e))
+
 ## [27.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v27.0.0...redis-v27.0.1) (2026-09-23)
 
 
