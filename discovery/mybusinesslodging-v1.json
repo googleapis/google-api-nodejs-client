@@ -3,7 +3,7 @@
   "baseUrl": "https://mybusinesslodging.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "My Business Lodging",
-  "description": "The My Business Lodging API enables managing lodging business information on Google. Note - If you have a quota of 0 after enabling the API, please request for GBP API access.",
+  "description": "The My Business Lodging API enables managing lodging business information on Google. Note: If you have a quota of 0 after enabling the API, please request GBP API access at https://developers.google.com/my-business/content/prereqs#request-access. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/my-business/",
   "fullyEncodeReservedExpansion": true,
@@ -194,7 +194,7 @@
       }
     }
   },
-  "revision": "20241002",
+  "revision": "20261026",
   "rootUrl": "https://mybusinesslodging.googleapis.com/",
   "schemas": {
     "Accessibility": {
