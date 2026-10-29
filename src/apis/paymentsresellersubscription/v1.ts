@@ -216,7 +216,7 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$EntitleSubscriptionRequest {
     /**
-     * Optional. The line items to be entitled. If unspecified, all line items will be entitled.
+     * Optional. Deprecated: This field is no longer supported. All line items are entitled automatically. Optional. The line items to be entitled. If unspecified, all line items will be entitled.
      */
     lineItemEntitlementDetails?: Schema$EntitleSubscriptionRequestLineItemEntitlementDetails[];
   }
