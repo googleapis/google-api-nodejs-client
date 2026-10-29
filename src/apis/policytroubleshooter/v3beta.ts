@@ -979,7 +979,7 @@ export namespace policytroubleshooter_v3beta {
      */
     principalSet?: string | null;
     /**
-     * Immutable. The full resource name that's used for access policy bindings. Examples: * Organization: `//cloudresourcemanager.googleapis.com/organizations/ORGANIZATION_ID` * Folder: `//cloudresourcemanager.googleapis.com/folders/FOLDER_ID` * Project: * `//cloudresourcemanager.googleapis.com/projects/PROJECT_NUMBER` * `//cloudresourcemanager.googleapis.com/projects/PROJECT_ID`
+     * Immutable. The full resource name that's used for Unified Access Policy bindings. Examples: * Organization: `//cloudresourcemanager.googleapis.com/organizations/ORGANIZATION_ID` * Folder: `//cloudresourcemanager.googleapis.com/folders/FOLDER_ID` * Project: * `//cloudresourcemanager.googleapis.com/projects/PROJECT_NUMBER` * `//cloudresourcemanager.googleapis.com/projects/PROJECT_ID`
      */
     resource?: string | null;
   }
