@@ -780,11 +780,43 @@
           "scopes": [
             "https://www.googleapis.com/auth/curation-partners"
           ]
+        },
+        "search": {
+          "description": "Searches for media planner accounts matching the given DSP seat ID.",
+          "flatPath": "v1/mediaPlanners:search",
+          "httpMethod": "GET",
+          "id": "curationpartners.mediaPlanners.search",
+          "parameterOrder": [],
+          "parameters": {
+            "dspSeatId": {
+              "description": "Required. The DSP seat ID to search for. The DSP seat ID is provided by the media planner.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "Optional. The maximum number of media planners to return. If unspecified, at most 100 media planners will be returned. The maximum value is 500; values above 500 will be coerced to 500.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. A token identifying a page of results the server should return. This value is received from a previous `SearchMediaPlanners` call in SearchMediaPlannersResponse.nextPageToken.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/mediaPlanners:search",
+          "response": {
+            "$ref": "SearchMediaPlannersResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/curation-partners"
+          ]
         }
       }
     }
   },
-  "revision": "20260901",
+  "revision": "20261020",
   "rootUrl": "https://curationpartners.googleapis.com/",
   "schemas": {
     "AccessControlSettings": {
@@ -2220,6 +2252,24 @@
       "properties": {
         "reportResult": {
           "description": "The unique name of the generated result. Use with `FetchReportResultRows` to retrieve data.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SearchMediaPlannersResponse": {
+      "description": "A response containing media planner account information from a search.",
+      "id": "SearchMediaPlannersResponse",
+      "properties": {
+        "mediaPlanners": {
+          "description": "List of media planners matching the search criteria.",
+          "items": {
+            "$ref": "MediaPlanner"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token which can be passed to a subsequent call to the SearchMediaPlanners method to retrieve the next page of results in SearchMediaPlannersRequest.page_token.",
           "type": "string"
         }
       },
