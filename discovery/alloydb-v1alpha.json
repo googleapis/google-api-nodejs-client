@@ -2086,7 +2086,7 @@
       }
     }
   },
-  "revision": "20261006",
+  "revision": "20261018",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -2501,6 +2501,18 @@
       "properties": {},
       "type": "object"
     },
+    "CertificateAuthorityInfo": {
+      "description": "Certificate Authority (CA) information for the cluster.",
+      "id": "CertificateAuthorityInfo",
+      "properties": {
+        "rootCaCert": {
+          "description": "Output only. The PEM-encoded root CA certificate of the cluster. Save this to a file (conventionally `root.crt`) and point the PostgreSQL client at it to authenticate by connecting with `sslmode=verify-full` or `sslmode=verify-ca`.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ClientConnectionConfig": {
       "description": "Client connection configuration",
       "id": "ClientConnectionConfig",
@@ -2595,6 +2607,11 @@
         "backupdrInfo": {
           "$ref": "BackupDrInfo",
           "description": "Output only. Output only information about BackupDR protection for this cluster.",
+          "readOnly": true
+        },
+        "certificateAuthorityInfo": {
+          "$ref": "CertificateAuthorityInfo",
+          "description": "Output only. Certificate Authority (CA) information for the cluster.",
           "readOnly": true
         },
         "cloudsqlBackupRunSource": {
@@ -3885,6 +3902,11 @@
           "$ref": "InstanceNetworkConfig",
           "description": "Optional. Instance-level network configuration."
         },
+        "networkInfo": {
+          "$ref": "InstanceNetworkInfo",
+          "description": "Output only. Instance-level network information.",
+          "readOnly": true
+        },
         "nodes": {
           "description": "Output only. List of available read-only VMs in this instance, including the standby for a PRIMARY instance.",
           "items": {
@@ -4033,6 +4055,22 @@
         },
         "network": {
           "description": "Output only. The resource link for the VPC network in which instance resources are created and from which they are accessible via Private IP. This will be the same value as the parent cluster's network. It is specified in the form: // `projects/{project_number}/global/networks/{network_id}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "publicDnsEnabled": {
+          "description": "Optional. Whether Public DNS is enabled for the instance.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceNetworkInfo": {
+      "description": "Output-only metadata related to instance-level network information.",
+      "id": "InstanceNetworkInfo",
+      "properties": {
+        "publicDnsName": {
+          "description": "Output only. The DNS name of the instance for public connectivity.",
           "readOnly": true,
           "type": "string"
         }
