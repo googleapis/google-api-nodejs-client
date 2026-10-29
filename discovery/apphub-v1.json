@@ -1486,13 +1486,23 @@
       }
     }
   },
-  "revision": "20260520",
+  "revision": "20261019",
   "rootUrl": "https://apphub.googleapis.com/",
   "schemas": {
     "Application": {
       "description": "Application defines the governance boundary for App Hub entities that perform a logical end-to-end business function. App Hub supports application level IAM permission to align with governance requirements.",
       "id": "Application",
       "properties": {
+        "applicationProperties": {
+          "$ref": "ApplicationProperties",
+          "description": "Output only. Properties of an underlying cloud resource that can comprise an Application.",
+          "readOnly": true
+        },
+        "applicationType": {
+          "$ref": "ApplicationType",
+          "description": "Output only. Application type.",
+          "readOnly": true
+        },
         "attributes": {
           "$ref": "Attributes",
           "description": "Optional. Consumer provided attributes."
@@ -1545,6 +1555,40 @@
           "description": "Output only. Update time.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApplicationProperties": {
+      "description": "Additional system properties of an Application.",
+      "id": "ApplicationProperties",
+      "properties": {
+        "extendedMetadata": {
+          "additionalProperties": {
+            "$ref": "ExtendedMetadata"
+          },
+          "description": "Output only. Additional metadata specific to the App Hub application. The key is a string that identifies the type of metadata and the value is the metadata contents specific to that type. Key format: `apphub.googleapis.com/{metadataType}`",
+          "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ApplicationType": {
+      "description": "Application type.",
+      "id": "ApplicationType",
+      "properties": {
+        "type": {
+          "description": "The type of the application.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "AI_APPLICATION"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "AI Application type."
+          ],
           "type": "string"
         }
       },
