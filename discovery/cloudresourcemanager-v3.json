@@ -216,6 +216,32 @@
             "https://www.googleapis.com/auth/cloud-platform.read-only"
           ]
         },
+        "getBoundaryConfig": {
+          "description": "Retrieves the BoundaryConfig identified by the specified `name` (for example, `folders/123456789/boundaryConfig`).",
+          "flatPath": "v3/folders/{foldersId}/boundaryConfig",
+          "httpMethod": "GET",
+          "id": "cloudresourcemanager.folders.getBoundaryConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the BoundaryConfig to retrieve. Format: `organizations/{organization}/boundaryConfig` or `folders/{folder}/boundaryConfig` Example: `folders/123456789/boundaryConfig`",
+              "location": "path",
+              "pattern": "^folders/[^/]+/boundaryConfig$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v3/{+name}",
+          "response": {
+            "$ref": "BoundaryConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
         "getIamPolicy": {
           "description": "Gets the access control policy for a folder. The returned policy may be empty if no such policy or resource exists. The `resource` field should be the folder's resource name, for example: \"folders/1234\". The caller must have `resourcemanager.folders.getIamPolicy` permission on the identified folder.",
           "flatPath": "v3/folders/{foldersId}:getIamPolicy",
@@ -461,9 +487,202 @@
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
           ]
+        },
+        "updateBoundaryConfig": {
+          "description": "Updates the BoundaryConfig identified by the specified `name` (for example, `folders/123456789/boundaryConfig`).",
+          "flatPath": "v3/folders/{foldersId}/boundaryConfig",
+          "httpMethod": "PATCH",
+          "id": "cloudresourcemanager.folders.updateBoundaryConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Identifier. The unique resource name of the BoundaryConfig. Format: - `organizations/{organization}/boundaryConfig` - `folders/{folder}/boundaryConfig` Example: `folders/123456789/boundaryConfig`",
+              "location": "path",
+              "pattern": "^folders/[^/]+/boundaryConfig$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Optional. The list of fields to update.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v3/{+name}",
+          "request": {
+            "$ref": "BoundaryConfig"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
         }
       },
       "resources": {
+        "boundaries": {
+          "methods": {
+            "create": {
+              "description": "Creates a Boundary under a parent Folder or Organization. Creating a Boundary triggers the creation of a Management Project if one is not supplied.",
+              "flatPath": "v3/folders/{foldersId}/boundaries",
+              "httpMethod": "POST",
+              "id": "cloudresourcemanager.folders.boundaries.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "boundaryId": {
+                  "description": "Required. The user-assigned ID for the Boundary, which will become the final component of the Boundary's resource name. Must be unique within the parent resource. It must be 6 to 30 lowercase ASCII letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. Example: `my-boundary-123`",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent resource under which the Boundary will be created. Format: `organizations/{organization_id}` or `folders/{folder_id}`",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+parent}/boundaries",
+              "request": {
+                "$ref": "Boundary"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes the Boundary identified by the specified `name` (for example, `folders/123456789/boundaries/my-boundary`).",
+              "flatPath": "v3/folders/{foldersId}/boundaries/{boundariesId}",
+              "httpMethod": "DELETE",
+              "id": "cloudresourcemanager.folders.boundaries.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the Boundary to delete. Format: `organizations/{organization_id}/boundaries/{boundary_id}` or `folders/{folder_id}/boundaries/{boundary_id}`",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+/boundaries/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Retrieves the Boundary identified by the specified `name` (for example, `folders/123456789/boundaries/my-boundary`).",
+              "flatPath": "v3/folders/{foldersId}/boundaries/{boundariesId}",
+              "httpMethod": "GET",
+              "id": "cloudresourcemanager.folders.boundaries.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the Boundary to retrieve. Format: `organizations/{organization_id}/boundaries/{boundary_id}` or `folders/{folder_id}/boundaries/{boundary_id}` Example: `folders/123456789/boundaries/my-boundary`",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+/boundaries/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "response": {
+                "$ref": "Boundary"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
+            "list": {
+              "description": "Lists Boundaries that are direct children of the specified organization or folder resource.",
+              "flatPath": "v3/folders/{foldersId}/boundaries",
+              "httpMethod": "GET",
+              "id": "cloudresourcemanager.folders.boundaries.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of Boundaries to return in the response. The service may return fewer Boundaries than requested. If unspecified, at most 100 Boundaries will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A pagination token received from a previous call to `ListBoundaries` that indicates from where listing should continue. Provide this to retrieve the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the parent resource whose Boundaries are being listed. Format: `organizations/{organization_id}` or `folders/{folder_id}`",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+parent}/boundaries",
+              "response": {
+                "$ref": "ListBoundariesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
+            "patch": {
+              "description": "Updates the `display_name` and `resource_filter.tag_filter.tag_value` of the Boundary identified by the specified `name` (for example, `folders/123456789/boundaries/my-boundary`).",
+              "flatPath": "v3/folders/{foldersId}/boundaries/{boundariesId}",
+              "httpMethod": "PATCH",
+              "id": "cloudresourcemanager.folders.boundaries.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The unique resource name of the Boundary. Format: - `organizations/{organization_id}/boundaries/{boundary_id}` - `folders/{folder_id}/boundaries/{boundary_id}` Example: `folders/123456789/boundaries/my-boundary`",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+/boundaries/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The list of fields to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "request": {
+                "$ref": "Boundary"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "capabilities": {
           "methods": {
             "get": {
@@ -952,6 +1171,32 @@
             "https://www.googleapis.com/auth/cloud-platform.read-only"
           ]
         },
+        "getBoundaryConfig": {
+          "description": "Retrieves the BoundaryConfig identified by the specified `name` (for example, `folders/123456789/boundaryConfig`).",
+          "flatPath": "v3/organizations/{organizationsId}/boundaryConfig",
+          "httpMethod": "GET",
+          "id": "cloudresourcemanager.organizations.getBoundaryConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the BoundaryConfig to retrieve. Format: `organizations/{organization}/boundaryConfig` or `folders/{folder}/boundaryConfig` Example: `folders/123456789/boundaryConfig`",
+              "location": "path",
+              "pattern": "^organizations/[^/]+/boundaryConfig$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v3/{+name}",
+          "response": {
+            "$ref": "BoundaryConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
         "getIamPolicy": {
           "description": "Gets the access control policy for an organization resource. The policy may be empty if no such policy or resource exists. The `resource` field should be the organization's resource name, for example: \"organizations/123\". Authorization requires the IAM permission `resourcemanager.organizations.getIamPolicy` on the specified organization.",
           "flatPath": "v3/organizations/{organizationsId}:getIamPolicy",
@@ -1070,9 +1315,202 @@
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/cloud-platform.read-only"
           ]
+        },
+        "updateBoundaryConfig": {
+          "description": "Updates the BoundaryConfig identified by the specified `name` (for example, `folders/123456789/boundaryConfig`).",
+          "flatPath": "v3/organizations/{organizationsId}/boundaryConfig",
+          "httpMethod": "PATCH",
+          "id": "cloudresourcemanager.organizations.updateBoundaryConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Identifier. The unique resource name of the BoundaryConfig. Format: - `organizations/{organization}/boundaryConfig` - `folders/{folder}/boundaryConfig` Example: `folders/123456789/boundaryConfig`",
+              "location": "path",
+              "pattern": "^organizations/[^/]+/boundaryConfig$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Optional. The list of fields to update.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v3/{+name}",
+          "request": {
+            "$ref": "BoundaryConfig"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
         }
       },
       "resources": {
+        "boundaries": {
+          "methods": {
+            "create": {
+              "description": "Creates a Boundary under a parent Folder or Organization. Creating a Boundary triggers the creation of a Management Project if one is not supplied.",
+              "flatPath": "v3/organizations/{organizationsId}/boundaries",
+              "httpMethod": "POST",
+              "id": "cloudresourcemanager.organizations.boundaries.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "boundaryId": {
+                  "description": "Required. The user-assigned ID for the Boundary, which will become the final component of the Boundary's resource name. Must be unique within the parent resource. It must be 6 to 30 lowercase ASCII letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. Example: `my-boundary-123`",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent resource under which the Boundary will be created. Format: `organizations/{organization_id}` or `folders/{folder_id}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+parent}/boundaries",
+              "request": {
+                "$ref": "Boundary"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes the Boundary identified by the specified `name` (for example, `folders/123456789/boundaries/my-boundary`).",
+              "flatPath": "v3/organizations/{organizationsId}/boundaries/{boundariesId}",
+              "httpMethod": "DELETE",
+              "id": "cloudresourcemanager.organizations.boundaries.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the Boundary to delete. Format: `organizations/{organization_id}/boundaries/{boundary_id}` or `folders/{folder_id}/boundaries/{boundary_id}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/boundaries/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Retrieves the Boundary identified by the specified `name` (for example, `folders/123456789/boundaries/my-boundary`).",
+              "flatPath": "v3/organizations/{organizationsId}/boundaries/{boundariesId}",
+              "httpMethod": "GET",
+              "id": "cloudresourcemanager.organizations.boundaries.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the Boundary to retrieve. Format: `organizations/{organization_id}/boundaries/{boundary_id}` or `folders/{folder_id}/boundaries/{boundary_id}` Example: `folders/123456789/boundaries/my-boundary`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/boundaries/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "response": {
+                "$ref": "Boundary"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
+            "list": {
+              "description": "Lists Boundaries that are direct children of the specified organization or folder resource.",
+              "flatPath": "v3/organizations/{organizationsId}/boundaries",
+              "httpMethod": "GET",
+              "id": "cloudresourcemanager.organizations.boundaries.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of Boundaries to return in the response. The service may return fewer Boundaries than requested. If unspecified, at most 100 Boundaries will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A pagination token received from a previous call to `ListBoundaries` that indicates from where listing should continue. Provide this to retrieve the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the parent resource whose Boundaries are being listed. Format: `organizations/{organization_id}` or `folders/{folder_id}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+parent}/boundaries",
+              "response": {
+                "$ref": "ListBoundariesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
+            "patch": {
+              "description": "Updates the `display_name` and `resource_filter.tag_filter.tag_value` of the Boundary identified by the specified `name` (for example, `folders/123456789/boundaries/my-boundary`).",
+              "flatPath": "v3/organizations/{organizationsId}/boundaries/{boundariesId}",
+              "httpMethod": "PATCH",
+              "id": "cloudresourcemanager.organizations.boundaries.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The unique resource name of the Boundary. Format: - `organizations/{organization_id}/boundaries/{boundary_id}` - `folders/{folder_id}/boundaries/{boundary_id}` Example: `folders/123456789/boundaries/my-boundary`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/boundaries/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The list of fields to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "request": {
+                "$ref": "Boundary"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "capabilityConfigs": {
           "methods": {
             "create": {
@@ -2475,7 +2913,7 @@
       }
     }
   },
-  "revision": "20261011",
+  "revision": "20261018",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2543,6 +2981,86 @@
         },
         "role": {
           "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Boundary": {
+      "description": "A Boundary is a collection of projects defined by a filtering criteria on an organization or a folder.",
+      "id": "Boundary",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The creation time of the Boundary.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Human-readable display name of the Boundary. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point. Example: `My Production Boundary`",
+          "type": "string"
+        },
+        "etag": {
+          "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "managementProject": {
+          "description": "Output only. The Management Project of the CapabilityConfig this Boundary is associated with. Will be empty if the Boundary is not associated with any CapabilityConfig. Format: `projects/{project_number}` Example: `projects/123456789012`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The unique resource name of the Boundary. Format: - `organizations/{organization_id}/boundaries/{boundary_id}` - `folders/{folder_id}/boundaries/{boundary_id}` Example: `folders/123456789/boundaries/my-boundary`",
+          "type": "string"
+        },
+        "resourceFilter": {
+          "$ref": "ResourceFilter",
+          "description": "Optional. The filter defining the criteria for descendant projects to be included in the Boundary. Descendant projects are dynamically included in the Boundary based on this filter."
+        },
+        "state": {
+          "description": "Output only. The lifecycle state of the Boundary.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "Boundary is being created.",
+            "Boundary is operational, and the management project is fully active."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The most recent time this Boundary was modified.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BoundaryConfig": {
+      "description": "A BoundaryConfig defines the common configurations regarding Boundaries defined under a parent CRM node (Folder or Organization), such as the partitioning tag key.",
+      "id": "BoundaryConfig",
+      "properties": {
+        "etag": {
+          "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The unique resource name of the BoundaryConfig. Format: - `organizations/{organization}/boundaryConfig` - `folders/{folder}/boundaryConfig` Example: `folders/123456789/boundaryConfig`",
+          "type": "string"
+        },
+        "tagKey": {
+          "description": "Optional. The namespaced name of the tag key. Format: `{parent_id}/{tag_key_short_name}` Example: `123456789012/env` (where 123456789012 is the organization ID).",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The most recent time this BoundaryConfig was modified.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3143,6 +3661,24 @@
       },
       "type": "object"
     },
+    "ListBoundariesResponse": {
+      "description": "A page of the response received from the ListBoundaries method. A paginated response where more pages are available has `next_page_token` set. This token can be used in a subsequent request to retrieve the next page. NOTE: A response may contain fewer elements than the request `page_size` and still have a `next_page_token`.",
+      "id": "ListBoundariesResponse",
+      "properties": {
+        "boundaries": {
+          "description": "The list of Boundaries under the parent. This list can be paginated.",
+          "items": {
+            "$ref": "Boundary"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Pagination token. If the result set is too large to fit in a single response, this token is returned. It encodes the position of the current result cursor. Feeding this value into a new list request with the `page_token` parameter gives the next page of the results. When `next_page_token` is not filled in, there is no next page and the list returned is the last page in the result set.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListCapabilityConfigsResponse": {
       "description": "A page of the response received from the ListCapabilityConfigs method. A paginated response where more pages are available has `next_page_token` set. This token can be used in a subsequent request to retrieve the next page. NOTE: A response may contain fewer elements than the request `page_size` and still have a `next_page_token`.",
       "id": "ListCapabilityConfigsResponse",
@@ -3586,6 +4122,17 @@
       },
       "type": "object"
     },
+    "ResourceFilter": {
+      "description": "Filter to define the criteria for including projects in the Boundary.",
+      "id": "ResourceFilter",
+      "properties": {
+        "tagFilter": {
+          "$ref": "TagFilter",
+          "description": "A tag based filter. A project must match it to be included."
+        }
+      },
+      "type": "object"
+    },
     "SearchFoldersResponse": {
       "description": "The response message for searching folders.",
       "id": "SearchFoldersResponse",
@@ -3729,6 +4276,21 @@
           },
           "description": "Tag keys/values directly bound to this resource, specified in namespaced format. For example: \"123/environment\": \"production\"",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "TagFilter": {
+      "description": "Matches projects based on a specific tag key and a specific tag value.",
+      "id": "TagFilter",
+      "properties": {
+        "tagKey": {
+          "description": "Required. Immutable. The namespaced name of the tag key. Format: `{parent_id}/{tag_key_short_name}` Example: `123456789012/env` (where 123456789012 is the organization ID).",
+          "type": "string"
+        },
+        "tagValue": {
+          "description": "Required. The allowed value for the tag key. A project matches this tag filter if its effective tag value for the given `tag_key` matches this value. Format: short name of the tag value. Example: `production` or `staging`.",
+          "type": "string"
         }
       },
       "type": "object"
