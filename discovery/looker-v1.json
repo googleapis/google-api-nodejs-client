@@ -800,7 +800,7 @@
       }
     }
   },
-  "revision": "20260927",
+  "revision": "20261011",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {
@@ -808,7 +808,7 @@
       "id": "AdminSettings",
       "properties": {
         "allowedEmailDomains": {
-          "description": "Email domain allowlist for the instance.",
+          "description": "Optional. Email domain allowlist for the instance.",
           "items": {
             "type": "string"
           },
@@ -919,11 +919,11 @@
       "id": "CustomDomain",
       "properties": {
         "domain": {
-          "description": "Domain name.",
+          "description": "Optional. Domain name.",
           "type": "string"
         },
         "state": {
-          "description": "Domain state.",
+          "description": "Output only. Domain state.",
           "enum": [
             "CUSTOM_DOMAIN_STATE_UNSPECIFIED",
             "UNVERIFIED",
@@ -942,6 +942,7 @@
             "ManagedCertificate is not ready.",
             "Status is not known."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -999,7 +1000,7 @@
       "id": "EncryptionConfig",
       "properties": {
         "kmsKeyName": {
-          "description": "Name of the CMEK key in KMS (input parameter).",
+          "description": "Optional. Immutable. Name of the CMEK key in KMS (input parameter).",
           "type": "string"
         },
         "kmsKeyNameVersion": {
@@ -1066,6 +1067,10 @@
         "exportMetrics": {
           "$ref": "ExportMetrics",
           "description": "Overall export metrics, timing, and component telemetry."
+        },
+        "exportTime": {
+          "description": "A string of digits representing the number of microseconds since the Unix epoch when the export was created. Used to identify the cloned source Elite System Activity (ESA) BigQuery dataset for O2C direct dataset migration.",
+          "type": "string"
         },
         "filePaths": {
           "description": "List of files created as part of export artifact (excluding the metadata). The paths are relative to the folder containing the metadata.",
@@ -1200,7 +1205,7 @@
         },
         "adminSettings": {
           "$ref": "AdminSettings",
-          "description": "Looker Instance Admin settings."
+          "description": "Optional. Looker Instance Admin settings."
         },
         "authType": {
           "$ref": "AuthType",
@@ -1225,7 +1230,7 @@
           "type": "string"
         },
         "consumerNetwork": {
-          "description": "Network name in the consumer project. Format: `projects/{project}/global/networks/{network}`. Note that the consumer network may be in a different GCP project than the consumer project that is hosting the Looker Instance.",
+          "description": "Optional. Network name in the consumer project. Format: `projects/{project}/global/networks/{network}`. Note that the consumer network may be in a different GCP project than the consumer project that is hosting the Looker Instance.",
           "type": "string"
         },
         "controlledEgressConfig": {
@@ -1244,11 +1249,11 @@
         },
         "customDomain": {
           "$ref": "CustomDomain",
-          "description": "Custom domain configuration for the instance."
+          "description": "Optional. Custom domain configuration for the instance."
         },
         "denyMaintenancePeriod": {
           "$ref": "DenyMaintenancePeriod",
-          "description": "Maintenance denial period for this instance."
+          "description": "Optional. Maintenance denial period for this instance."
         },
         "egressPublicIp": {
           "description": "Output only. Public Egress IP (IPv4).",
@@ -1257,7 +1262,7 @@
         },
         "encryptionConfig": {
           "$ref": "EncryptionConfig",
-          "description": "Encryption configuration (CMEK). Only set if CMEK has been enabled on the instance."
+          "description": "Optional. Encryption configuration (CMEK). Only set if CMEK has been enabled on the instance."
         },
         "fipsEnabled": {
           "description": "Optional. Whether FIPS is enabled on the Looker instance.",
@@ -1303,11 +1308,12 @@
         },
         "maintenanceSchedule": {
           "$ref": "MaintenanceSchedule",
-          "description": "Maintenance schedule for this instance."
+          "description": "Output only. Maintenance schedule for this instance.",
+          "readOnly": true
         },
         "maintenanceWindow": {
           "$ref": "MaintenanceWindow",
-          "description": "Maintenance window for this instance."
+          "description": "Optional. Maintenance window for this instance."
         },
         "name": {
           "description": "Output only. Format: `projects/{project}/locations/{location}/instances/{instance}`.",
@@ -1316,14 +1322,14 @@
         },
         "oauthConfig": {
           "$ref": "OAuthConfig",
-          "description": "Looker instance OAuth login settings."
+          "description": "Optional. Looker instance OAuth login settings."
         },
         "periodicExportConfig": {
           "$ref": "PeriodicExportConfig",
           "description": "Optional. Configuration for periodic export."
         },
         "platformEdition": {
-          "description": "Platform edition.",
+          "description": "Optional. Platform edition. Marked as OPTIONAL for backward compatibility, though it is required during instance creation.",
           "enum": [
             "PLATFORM_EDITION_UNSPECIFIED",
             "LOOKER_CORE_TRIAL",
@@ -1355,7 +1361,7 @@
           "type": "string"
         },
         "privateIpEnabled": {
-          "description": "Whether private IP is enabled on the Looker instance.",
+          "description": "Optional. Whether private IP is enabled on the Looker instance.",
           "type": "boolean"
         },
         "pscConfig": {
@@ -1367,7 +1373,7 @@
           "type": "boolean"
         },
         "publicIpEnabled": {
-          "description": "Whether public IP is enabled on the Looker instance.",
+          "description": "Optional. Whether public IP is enabled on the Looker instance.",
           "type": "boolean"
         },
         "releaseChannel": {
@@ -1387,7 +1393,7 @@
           "type": "string"
         },
         "reservedRange": {
-          "description": "Name of a reserved IP address range within the Instance.consumer_network, to be used for private services access connection. May or may not be specified in a create request.",
+          "description": "Optional. Name of a reserved IP address range within the Instance.consumer_network, to be used for private services access connection. May or may not be specified in a create request.",
           "type": "string"
         },
         "satisfiesPzi": {
