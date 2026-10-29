@@ -748,6 +748,39 @@ export namespace dfareporting_v5 {
     enabled?: boolean | null;
   }
   /**
+   * Additional assets for a creative.
+   */
+  export interface Schema$AdditionalAsset {
+    /**
+     * Optional. Call to actions for the creative.
+     */
+    callToActions?: string[] | null;
+    /**
+     * Optional. Cover images for the creative.
+     */
+    coverImages?: Schema$CreativeAsset[];
+    /**
+     * Optional. Descriptions for the creative.
+     */
+    descriptions?: string[] | null;
+    /**
+     * Optional. Display URL for the creative.
+     */
+    displayUrl?: string | null;
+    /**
+     * Optional. Headlines for the creative.
+     */
+    headlines?: string[] | null;
+    /**
+     * Optional. Long descriptions for the creative.
+     */
+    longDescriptions?: string[] | null;
+    /**
+     * Optional. Long headlines for the creative.
+     */
+    longHeadlines?: string[] | null;
+  }
+  /**
    * Ad List Response
    */
   export interface Schema$AdsListResponse {
@@ -2050,6 +2083,10 @@ export namespace dfareporting_v5 {
      * Whether the creative is active. Applicable to all creative types.
      */
     active?: boolean | null;
+    /**
+     * Optional. Additional asset for the creative. This field captures additional assets that are associated with the creative and used in the context of the social/native and YouTube platforms.
+     */
+    additionalAsset?: Schema$AdditionalAsset;
     /**
      * Additional sizes associated with a responsive creative. When inserting or updating a creative either the size ID field or size width and height fields can be used. Applicable to DISPLAY creatives when the primary asset type is HTML_IMAGE.
      */
@@ -22353,6 +22390,7 @@ export namespace dfareporting_v5 {
      *   //   "active": false,
      *   //   "adParameters": "my_adParameters",
      *   //   "adTagKeys": [],
+     *   //   "additionalAsset": {},
      *   //   "additionalSizes": [],
      *   //   "advertiserId": "my_advertiserId",
      *   //   "allowScriptAccess": false,
@@ -22551,6 +22589,7 @@ export namespace dfareporting_v5 {
      *       //   "active": false,
      *       //   "adParameters": "my_adParameters",
      *       //   "adTagKeys": [],
+     *       //   "additionalAsset": {},
      *       //   "additionalSizes": [],
      *       //   "advertiserId": "my_advertiserId",
      *       //   "allowScriptAccess": false,
@@ -22622,6 +22661,7 @@ export namespace dfareporting_v5 {
      *   //   "active": false,
      *   //   "adParameters": "my_adParameters",
      *   //   "adTagKeys": [],
+     *   //   "additionalAsset": {},
      *   //   "additionalSizes": [],
      *   //   "advertiserId": "my_advertiserId",
      *   //   "allowScriptAccess": false,
@@ -22991,6 +23031,7 @@ export namespace dfareporting_v5 {
      *       //   "active": false,
      *       //   "adParameters": "my_adParameters",
      *       //   "adTagKeys": [],
+     *       //   "additionalAsset": {},
      *       //   "additionalSizes": [],
      *       //   "advertiserId": "my_advertiserId",
      *       //   "allowScriptAccess": false,
@@ -23062,6 +23103,7 @@ export namespace dfareporting_v5 {
      *   //   "active": false,
      *   //   "adParameters": "my_adParameters",
      *   //   "adTagKeys": [],
+     *   //   "additionalAsset": {},
      *   //   "additionalSizes": [],
      *   //   "advertiserId": "my_advertiserId",
      *   //   "allowScriptAccess": false,
@@ -23259,6 +23301,7 @@ export namespace dfareporting_v5 {
      *       //   "active": false,
      *       //   "adParameters": "my_adParameters",
      *       //   "adTagKeys": [],
+     *       //   "additionalAsset": {},
      *       //   "additionalSizes": [],
      *       //   "advertiserId": "my_advertiserId",
      *       //   "allowScriptAccess": false,
@@ -23330,6 +23373,7 @@ export namespace dfareporting_v5 {
      *   //   "active": false,
      *   //   "adParameters": "my_adParameters",
      *   //   "adTagKeys": [],
+     *   //   "additionalAsset": {},
      *   //   "additionalSizes": [],
      *   //   "advertiserId": "my_advertiserId",
      *   //   "allowScriptAccess": false,
