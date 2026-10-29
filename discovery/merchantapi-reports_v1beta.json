@@ -142,7 +142,7 @@
       }
     }
   },
-  "revision": "20260921",
+  "revision": "20261026",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "BestSellersBrandView": {
@@ -1190,12 +1190,46 @@
           "enum": [
             "MARKETING_METHOD_ENUM_UNSPECIFIED",
             "ORGANIC",
-            "ADS"
+            "ADS",
+            "AFFILIATE"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Organic marketing.",
-            "Ads-based marketing."
+            "Ads-based marketing.",
+            "[YouTube Shopping Affiliate marketing](https://support.google.com/merchants/answer/14815513)."
+          ],
+          "type": "string"
+        },
+        "network": {
+          "description": "Network to which metrics apply. Segment.",
+          "enum": [
+            "NETWORK_ENUM_UNSPECIFIED",
+            "UNKNOWN",
+            "SEARCH",
+            "SEARCH_PARTNERS",
+            "CONTENT",
+            "MIXED",
+            "YOUTUBE",
+            "GOOGLE_TV",
+            "GOOGLE_OWNED_CHANNELS",
+            "GMAIL",
+            "DISCOVER",
+            "MAPS"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The value is unknown in this version.",
+            "Google search.",
+            "Search partners.",
+            "Display Network.",
+            "Cross-network.",
+            "YouTube",
+            "Google TV",
+            "This network is used for Google Owned channels such as Discover feed, Gmail, YouTube. Demand Gen stats are attributed to more granular network types such as GMAIL, DISCOVER, MAPS, YOUTUBE; this value is only used for historical data.",
+            "Gmail",
+            "Discover Feed",
+            "Maps"
           ],
           "type": "string"
         },
