@@ -129,7 +129,7 @@ export namespace looker_v1 {
    */
   export interface Schema$AdminSettings {
     /**
-     * Email domain allowlist for the instance.
+     * Optional. Email domain allowlist for the instance.
      */
     allowedEmailDomains?: string[] | null;
   }
@@ -201,11 +201,11 @@ export namespace looker_v1 {
    */
   export interface Schema$CustomDomain {
     /**
-     * Domain name.
+     * Optional. Domain name.
      */
     domain?: string | null;
     /**
-     * Domain state.
+     * Output only. Domain state.
      */
     state?: string | null;
   }
@@ -252,7 +252,7 @@ export namespace looker_v1 {
    */
   export interface Schema$EncryptionConfig {
     /**
-     * Name of the CMEK key in KMS (input parameter).
+     * Optional. Immutable. Name of the CMEK key in KMS (input parameter).
      */
     kmsKeyName?: string | null;
     /**
@@ -302,6 +302,10 @@ export namespace looker_v1 {
      * Overall export metrics, timing, and component telemetry.
      */
     exportMetrics?: Schema$ExportMetrics;
+    /**
+     * A string of digits representing the number of microseconds since the Unix epoch when the export was created. Used to identify the cloned source Elite System Activity (ESA) BigQuery dataset for O2C direct dataset migration.
+     */
+    exportTime?: string | null;
     /**
      * List of files created as part of export artifact (excluding the metadata). The paths are relative to the folder containing the metadata.
      */
@@ -401,7 +405,7 @@ export namespace looker_v1 {
      */
     acceleratedSecurityPatchEnabled?: boolean | null;
     /**
-     * Looker Instance Admin settings.
+     * Optional. Looker Instance Admin settings.
      */
     adminSettings?: Schema$AdminSettings;
     /**
@@ -417,7 +421,7 @@ export namespace looker_v1 {
      */
     classType?: string | null;
     /**
-     * Network name in the consumer project. Format: `projects/{project\}/global/networks/{network\}`. Note that the consumer network may be in a different GCP project than the consumer project that is hosting the Looker Instance.
+     * Optional. Network name in the consumer project. Format: `projects/{project\}/global/networks/{network\}`. Note that the consumer network may be in a different GCP project than the consumer project that is hosting the Looker Instance.
      */
     consumerNetwork?: string | null;
     /**
@@ -433,11 +437,11 @@ export namespace looker_v1 {
      */
     createTime?: string | null;
     /**
-     * Custom domain configuration for the instance.
+     * Optional. Custom domain configuration for the instance.
      */
     customDomain?: Schema$CustomDomain;
     /**
-     * Maintenance denial period for this instance.
+     * Optional. Maintenance denial period for this instance.
      */
     denyMaintenancePeriod?: Schema$DenyMaintenancePeriod;
     /**
@@ -445,7 +449,7 @@ export namespace looker_v1 {
      */
     egressPublicIp?: string | null;
     /**
-     * Encryption configuration (CMEK). Only set if CMEK has been enabled on the instance.
+     * Optional. Encryption configuration (CMEK). Only set if CMEK has been enabled on the instance.
      */
     encryptionConfig?: Schema$EncryptionConfig;
     /**
@@ -485,11 +489,11 @@ export namespace looker_v1 {
      */
     lookerVersion?: string | null;
     /**
-     * Maintenance schedule for this instance.
+     * Output only. Maintenance schedule for this instance.
      */
     maintenanceSchedule?: Schema$MaintenanceSchedule;
     /**
-     * Maintenance window for this instance.
+     * Optional. Maintenance window for this instance.
      */
     maintenanceWindow?: Schema$MaintenanceWindow;
     /**
@@ -497,7 +501,7 @@ export namespace looker_v1 {
      */
     name?: string | null;
     /**
-     * Looker instance OAuth login settings.
+     * Optional. Looker instance OAuth login settings.
      */
     oauthConfig?: Schema$OAuthConfig;
     /**
@@ -505,11 +509,11 @@ export namespace looker_v1 {
      */
     periodicExportConfig?: Schema$PeriodicExportConfig;
     /**
-     * Platform edition.
+     * Optional. Platform edition. Marked as OPTIONAL for backward compatibility, though it is required during instance creation.
      */
     platformEdition?: string | null;
     /**
-     * Whether private IP is enabled on the Looker instance.
+     * Optional. Whether private IP is enabled on the Looker instance.
      */
     privateIpEnabled?: boolean | null;
     /**
@@ -521,7 +525,7 @@ export namespace looker_v1 {
      */
     pscEnabled?: boolean | null;
     /**
-     * Whether public IP is enabled on the Looker instance.
+     * Optional. Whether public IP is enabled on the Looker instance.
      */
     publicIpEnabled?: boolean | null;
     /**
@@ -529,7 +533,7 @@ export namespace looker_v1 {
      */
     releaseChannel?: string | null;
     /**
-     * Name of a reserved IP address range within the Instance.consumer_network, to be used for private services access connection. May or may not be specified in a create request.
+     * Optional. Name of a reserved IP address range within the Instance.consumer_network, to be used for private services access connection. May or may not be specified in a create request.
      */
     reservedRange?: string | null;
     /**
