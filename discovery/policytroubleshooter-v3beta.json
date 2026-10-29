@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20261018",
+  "revision": "20261025",
   "rootUrl": "https://policytroubleshooter.googleapis.com/",
   "schemas": {
     "GoogleCloudPolicytroubleshooterIamV3betaAccessContext": {
@@ -1644,7 +1644,7 @@
           "enumDescriptions": [
             "Unspecified policy kind; Not a valid state",
             "Principal access boundary policy kind",
-            "Access policy kind."
+            "Unified Access Policy kind."
           ],
           "type": "string"
         },
@@ -1680,7 +1680,7 @@
           "type": "string"
         },
         "resource": {
-          "description": "Immutable. The full resource name that's used for access policy bindings. Examples: * Organization: `//cloudresourcemanager.googleapis.com/organizations/ORGANIZATION_ID` * Folder: `//cloudresourcemanager.googleapis.com/folders/FOLDER_ID` * Project: * `//cloudresourcemanager.googleapis.com/projects/PROJECT_NUMBER` * `//cloudresourcemanager.googleapis.com/projects/PROJECT_ID`",
+          "description": "Immutable. The full resource name that's used for Unified Access Policy bindings. Examples: * Organization: `//cloudresourcemanager.googleapis.com/organizations/ORGANIZATION_ID` * Folder: `//cloudresourcemanager.googleapis.com/folders/FOLDER_ID` * Project: * `//cloudresourcemanager.googleapis.com/projects/PROJECT_NUMBER` * `//cloudresourcemanager.googleapis.com/projects/PROJECT_ID`",
           "type": "string"
         }
       },
