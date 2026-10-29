@@ -423,7 +423,7 @@ export namespace observability_v1 {
    */
   export interface Schema$Scope {
     /**
-     * Required. The full resource name of the `LogScope`. For example: //logging.googleapis.com/projects/myproject/locations/global/logScopes/my-log-scope
+     * Required. The full resource name of the `logging.googleapis.com/LogScope`. For example: //logging.googleapis.com/projects/myproject/locations/global/logScopes/my-log-scope
      */
     logScope?: string | null;
     /**
@@ -431,7 +431,7 @@ export namespace observability_v1 {
      */
     name?: string | null;
     /**
-     * Required. The resource name of the `TraceScope`. For example: projects/myproject/locations/global/traceScopes/my-trace-scope
+     * Required. The unqualified resource name of the `cloudtrace.googleapis.com/TraceScope`. For example: projects/myproject/locations/global/traceScopes/my-trace-scope
      */
     traceScope?: string | null;
     /**
