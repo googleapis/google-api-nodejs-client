@@ -1435,6 +1435,19 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     mustBidRateCurrentMonth?: number | null;
   }
   /**
+   * A response containing media planner account information from a search.
+   */
+  export interface Schema$SearchMediaPlannersResponse {
+    /**
+     * List of media planners matching the search criteria.
+     */
+    mediaPlanners?: Schema$MediaPlanner[];
+    /**
+     * A token which can be passed to a subsequent call to the `SearchMediaPlanners` method to retrieve the next page of results in SearchMediaPlannersRequest.pageToken.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Request to send an RFP. All fields in this request are proposed to publisher and subject to changes by publisher during later negotiation.
    */
   export interface Schema$SendRfpRequest {
@@ -10614,6 +10627,155 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         return createAPIRequest<Schema$ListMediaPlannersResponse>(parameters);
       }
     }
+
+    /**
+     * Searches for media planner accounts matching the given DSP seat ID. For curators, this will return all matching media planners that have accepted curator terms.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.mediaPlanners.search({
+     *     // Required. The DSP seat ID to search for. The DSP seat ID is provided by the media planner.
+     *     dspSeatId: 'placeholder-value',
+     *     // Optional. The maximum number of media planners to return. If unspecified, at most 100 media planners will be returned. The maximum value is 500; values above 500 will be coerced to 500.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results the server should return. This value is received from a previous `SearchMediaPlanners` call in `SearchMediaPlannersResponse.nextPageToken`.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "mediaPlanners": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Mediaplanners$Search,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    search(
+      params?: Params$Resource$Mediaplanners$Search,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchMediaPlannersResponse>>;
+    search(
+      params: Params$Resource$Mediaplanners$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Mediaplanners$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchMediaPlannersResponse>,
+      callback: BodyResponseCallback<Schema$SearchMediaPlannersResponse>
+    ): void;
+    search(
+      params: Params$Resource$Mediaplanners$Search,
+      callback: BodyResponseCallback<Schema$SearchMediaPlannersResponse>
+    ): void;
+    search(
+      callback: BodyResponseCallback<Schema$SearchMediaPlannersResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Mediaplanners$Search
+        | BodyResponseCallback<Schema$SearchMediaPlannersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchMediaPlannersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchMediaPlannersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchMediaPlannersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Mediaplanners$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Mediaplanners$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl ||
+        'https://authorizedbuyersmarketplace.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/mediaPlanners:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchMediaPlannersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchMediaPlannersResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Mediaplanners$List extends StandardParameters {
@@ -10627,6 +10789,20 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     pageSize?: number;
     /**
      * Optional. A token identifying a page of results the server should return. This value is received from a previous `ListMediaPlanners` call in ListMediaPlannersResponse.nextPageToken.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Mediaplanners$Search extends StandardParameters {
+    /**
+     * Required. The DSP seat ID to search for. The DSP seat ID is provided by the media planner.
+     */
+    dspSeatId?: string;
+    /**
+     * Optional. The maximum number of media planners to return. If unspecified, at most 100 media planners will be returned. The maximum value is 500; values above 500 will be coerced to 500.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return. This value is received from a previous `SearchMediaPlanners` call in `SearchMediaPlannersResponse.nextPageToken`.
      */
     pageToken?: string;
   }
