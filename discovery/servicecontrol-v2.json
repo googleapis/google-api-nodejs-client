@@ -169,7 +169,7 @@
       }
     }
   },
-  "revision": "20261002",
+  "revision": "20261015",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "Api": {
@@ -519,6 +519,10 @@
             "Acts under its own authority.",
             "Acts on behalf of another authority."
           ],
+          "type": "string"
+        },
+        "id": {
+          "description": "The agent identifier of the caller agent. This is a globally unique, immutable name in Uniform Resource Name (URN) format. Example: 'urn:agent:projects-123456789:projects:123456789:locations:us-central1:aiplatform:reasoningEngines:987654321'",
           "type": "string"
         }
       },
