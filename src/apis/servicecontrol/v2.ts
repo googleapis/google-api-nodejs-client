@@ -379,6 +379,10 @@ export namespace servicecontrol_v2 {
      * The type of authority for the caller agent.
      */
     authority?: string | null;
+    /**
+     * The agent identifier of the caller agent. This is a globally unique, immutable name in Uniform Resource Name (URN) format. Example: 'urn:agent:projects-123456789:projects:123456789:locations:us-central1:aiplatform:reasoningEngines:987654321'
+     */
+    id?: string | null;
   }
   /**
    * Request message for the Check method.
