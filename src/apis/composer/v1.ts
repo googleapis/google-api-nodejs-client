@@ -549,6 +549,10 @@ export namespace composer_v1 {
      */
     creationDisabled?: boolean | null;
     /**
+     * Whether it is possible to create an environment in the `DEVELOPMENT` mode with the image version.
+     */
+    devModeSupported?: boolean | null;
+    /**
      * The string identifier of the ImageVersion, in the form: "composer-x.y.z-airflow-a.b.c"
      */
     imageVersionId?: string | null;

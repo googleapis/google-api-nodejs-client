@@ -1503,7 +1503,7 @@
       }
     }
   },
-  "revision": "20261011",
+  "revision": "20261015",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {
@@ -2154,6 +2154,10 @@
       "properties": {
         "creationDisabled": {
           "description": "Whether it is impossible to create an environment with the image version.",
+          "type": "boolean"
+        },
+        "devModeSupported": {
+          "description": "Whether it is possible to create an environment in the `DEVELOPMENT` mode with the image version.",
           "type": "boolean"
         },
         "imageVersionId": {
