@@ -1472,6 +1472,35 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "createLongRunning": {
+                      "description": "Creates a new CompilationResult in a given project and location asynchronously.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/compilationResults:createLongRunning",
+                      "httpMethod": "POST",
+                      "id": "dataform.projects.locations.repositories.compilationResults.createLongRunning",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The repository in which to create the compilation result. Must be in the format `projects/*/locations/*/repositories/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/compilationResults:createLongRunning",
+                      "request": {
+                        "$ref": "CompilationResult"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "get": {
                       "description": "Fetches a single CompilationResult.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/compilationResults/{compilationResultsId}",
@@ -3220,7 +3249,7 @@
       }
     }
   },
-  "revision": "20261011",
+  "revision": "20261021",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
