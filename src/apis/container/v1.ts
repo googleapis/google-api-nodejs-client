@@ -310,6 +310,10 @@ export namespace container_v1 {
      * Optional. Configuration for the StatefulHA add-on.
      */
     statefulHaConfig?: Schema$StatefulHAConfig;
+    /**
+     * Optional. Configuration for the Wiz Sensor add-on.
+     */
+    wizSensorConfig?: Schema$WizSensorConfig;
   }
   /**
    * AdvancedDatapathObservabilityConfig specifies configuration of observability features of advanced datapath.
@@ -351,6 +355,15 @@ export namespace container_v1 {
   export interface Schema$AgentSandboxConfig {
     /**
      * Optional. Whether AgentSandbox is enabled for this cluster.
+     */
+    enabled?: boolean | null;
+  }
+  /**
+   * AmbientNetworkingConfig contains the desired config of Ambient Networking on this cluster.
+   */
+  export interface Schema$AmbientNetworkingConfig {
+    /**
+     * Optional. If true, enable ambient networking for this cluster.
      */
     enabled?: boolean | null;
   }
@@ -501,6 +514,19 @@ export namespace container_v1 {
      * Specifies the upgrade settings for NAP created node pools
      */
     upgradeSettings?: Schema$UpgradeSettings;
+  }
+  /**
+   * AutoprovisioningRestrictionConfig configures restrictions related to autoprovisioning settings.
+   */
+  export interface Schema$AutoprovisioningRestrictionConfig {
+    /**
+     * Optional. Contains the list of service accounts allowed for autoprovisioned node pools / Custom ComputeClasses.
+     */
+    authorizedServiceAccounts?: string[] | null;
+    /**
+     * Optional. Controls whether service account validation checks are enforced for autoprovisioning.
+     */
+    serviceAccountPermissionCheck?: string | null;
   }
   /**
    * Autoscaled rollout policy utilizes the cluster autoscaler during blue-green upgrade to scale both the blue and green pools.
@@ -1109,6 +1135,10 @@ export namespace container_v1 {
      */
     autoprovisioningNodePoolDefaults?: Schema$AutoprovisioningNodePoolDefaults;
     /**
+     * Optional. Configures restrictions related to autoprovisioning settings.
+     */
+    autoprovisioningRestrictionConfig?: Schema$AutoprovisioningRestrictionConfig;
+    /**
      * Defines autoscaling behaviour.
      */
     autoscalingProfile?: string | null;
@@ -1171,6 +1201,10 @@ export namespace container_v1 {
      * Configurations for the various addons available to run in the cluster.
      */
     desiredAddonsConfig?: Schema$AddonsConfig;
+    /**
+     * Optional. The desired ambient networking configuration.
+     */
+    desiredAmbientNetworkingConfig?: Schema$AmbientNetworkingConfig;
     /**
      * Configuration for limiting anonymous access to all endpoints except the health checks.
      */
@@ -2017,6 +2051,10 @@ export namespace container_v1 {
      */
     dataCacheCount?: number | null;
     /**
+     * Capacity set aside for Ephemeral Storage if using mixed Local SSD modes. The remaining capacity is Raw Block.
+     */
+    ephemeralCapacityGb?: string | null;
+    /**
      * Number of local SSDs to use to back ephemeral storage. Uses NVMe interfaces. A zero (or unset) value has different meanings depending on machine type being used: 1. For pre-Gen3 machines, which support flexible numbers of local ssds, zero (or unset) means to disable using local SSDs as ephemeral storage. The limit for this value is dependent upon the maximum number of disk available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information. 2. For Gen3 machines which dictate a specific number of local ssds, zero (or unset) means to use the default number of local ssds that goes with that machine type. For example, for a c3-standard-8-lssd machine, 2 local ssds would be provisioned. For c3-standard-8 (which doesn't support local ssds), 0 will be provisioned. See https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds for more info.
      */
     localSsdCount?: number | null;
@@ -2303,6 +2341,10 @@ export namespace container_v1 {
      * Mode for how the GPU driver is installed.
      */
     gpuDriverVersion?: string | null;
+    /**
+     * Optional. The specific version of the GPU driver to install. Use this field only with gpu_driver_version set to SPECIFIC. Otherwise, an error will be returned.
+     */
+    specificVersion?: string | null;
   }
   /**
    * GPUSharingConfig represents the GPU sharing configuration for Hardware Accelerators.
@@ -3027,6 +3069,10 @@ export namespace container_v1 {
    */
   export interface Schema$NetworkConfig {
     /**
+     * Optional. Contains the desired config of Ambient Networking mode on this cluster.
+     */
+    ambientNetworkingConfig?: Schema$AmbientNetworkingConfig;
+    /**
      * The desired datapath provider for this cluster. By default, uses the IPTables-based kube-proxy implementation.
      */
     datapathProvider?: string | null;
@@ -3439,6 +3485,14 @@ export namespace container_v1 {
      */
     containerLogMaxSize?: string | null;
     /**
+     * Optional. Defines the maximum number of concurrent workers to rotate container log files. See https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation The value must be an integer between 1 and 10, inclusive. The default value is 1 if unspecified.
+     */
+    containerLogMaxWorkers?: number | null;
+    /**
+     * Optional. Specifies the interval at which the container logs are monitored for performing the log rotate operation. The value must be a positive interval between 3s and 300s, inclusive. The default value is "10s" if unspecified.
+     */
+    containerLogMonitorInterval?: string | null;
+    /**
      * Enable CPU CFS quota enforcement for containers that specify CPU limits. This option is enabled by default which makes kubelet use CFS quota (https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt) to enforce container CPU limits. Otherwise, CPU limits will not be enforced at all. Disable this option to mitigate CPU throttling problems while still having your pods to be in Guaranteed QoS class by specifying the CPU limits. The default value is 'true' if unspecified.
      */
     cpuCfsQuota?: boolean | null;
@@ -3507,6 +3561,10 @@ export namespace container_v1 {
      */
     reservedResourcesConfig?: Schema$ReservedResourcesConfig;
     /**
+     * Optional. The reserved_system_cpus option specifies the CPU list reserved for the host system services. Format: a list of CPU IDs (e.g. "0-3", "0,1") that can be parsed as a cpuset.
+     */
+    reservedSystemCpus?: string | null;
+    /**
      * Optional. shutdown_grace_period_critical_pods_seconds is the maximum allowed grace period (in seconds) used to terminate critical pods during a node shutdown. This value should be <= shutdown_grace_period_seconds, and is only valid if shutdown_grace_period_seconds is set. https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/ Range: [0, 120].
      */
     shutdownGracePeriodCriticalPodsSeconds?: number | null;
@@ -3569,6 +3627,10 @@ export namespace container_v1 {
      * Input only. Whether to create a new range for pod IPs in this node pool. Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are not specified. If neither `create_pod_range` or `pod_range` are specified, the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`) is used. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
      */
     createPodRange?: boolean | null;
+    /**
+     * The datapath provider for this node pool.
+     */
+    datapathProvider?: string | null;
     /**
      * Whether nodes have internal IP addresses only. If enable_private_nodes is not specified, then the value is derived from Cluster.NetworkConfig.default_enable_private_nodes
      */
@@ -4594,7 +4656,7 @@ export namespace container_v1 {
      */
     mode?: string | null;
     /**
-     * Sets which mode to use for vulnerability scanning.
+     * Deprecated: Vulnerability scanning is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. Sets which mode to use for vulnerability scanning.
      */
     vulnerabilityMode?: string | null;
   }
@@ -5356,6 +5418,10 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
+     * Optional. Option to specify the rollout strategy to apply node pool configuration updates. If unspecified, standard rolling update strategy with VM recreation is used as the default behavior.
+     */
+    nodeConfigUpdateMode?: string | null;
+    /**
      * The desired node drain configuration for nodes in the node pool.
      */
     nodeDrainConfig?: Schema$NodeDrainConfig;
@@ -5710,6 +5776,27 @@ export namespace container_v1 {
      * OSVersion specifies the Windows node config to be used on the node.
      */
     osVersion?: string | null;
+  }
+  /**
+   * Configuration for the Wiz Sensor add-on.
+   */
+  export interface Schema$WizSensorConfig {
+    /**
+     * Optional. The GCP Secret Manager URI for the Wiz API key secret. Format: "projects/{project_id\}/secrets/{secret_name\}/versions/{version\}" or Format: "projects/{project_id\}/locations/{location_id\}/secrets/{secret_name\}/versions/{version\}"
+     */
+    apiKeySecretUri?: string | null;
+    /**
+     * Optional. Whether the Wiz Sensor add-on is enabled for this cluster.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. The GCP Secret Manager URI for the Wiz proxy configuration. Format: "projects/{project_id\}/secrets/{secret_name\}/versions/{version\}" or Format: "projects/{project_id\}/locations/{location_id\}/secrets/{secret_name\}/versions/{version\}"
+     */
+    proxySecretUri?: string | null;
+    /**
+     * Optional. The GCP Secret Manager URI for the Wiz registry secret. Format: "projects/{project_id\}/secrets/{secret_name\}/versions/{version\}" or Format: "projects/{project_id\}/locations/{location_id\}/secrets/{secret_name\}/versions/{version\}"
+     */
+    registrySecretUri?: string | null;
   }
   /**
    * Configuration for the use of Kubernetes Service Accounts in IAM policies.
@@ -11533,6 +11620,7 @@ export namespace container_v1 {
      *       //   "maintenancePolicy": {},
      *       //   "maxRunDuration": "my_maxRunDuration",
      *       //   "name": "my_name",
+     *       //   "nodeConfigUpdateMode": "my_nodeConfigUpdateMode",
      *       //   "nodeDrainConfig": {},
      *       //   "nodeNetworkConfig": {},
      *       //   "nodePoolId": "my_nodePoolId",
@@ -17797,6 +17885,7 @@ export namespace container_v1 {
      *       //   "maintenancePolicy": {},
      *       //   "maxRunDuration": "my_maxRunDuration",
      *       //   "name": "my_name",
+     *       //   "nodeConfigUpdateMode": "my_nodeConfigUpdateMode",
      *       //   "nodeDrainConfig": {},
      *       //   "nodeNetworkConfig": {},
      *       //   "nodePoolId": "my_nodePoolId",
