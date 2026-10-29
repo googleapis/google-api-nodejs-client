@@ -13653,9 +13653,56 @@
       }
     }
   },
-  "revision": "20261013",
+  "revision": "20261022",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
+    "ApiservingMcpMcpToolVisibility": {
+      "description": "Profile describing the visibility restriction of an MCP tool. Key: \"google.com/tool.profiles/visibility.restriction\"",
+      "id": "ApiservingMcpMcpToolVisibility",
+      "properties": {
+        "fieldVisibility": {
+          "description": "A list of field-level visibility restrictions.",
+          "items": {
+            "$ref": "ApiservingMcpMcpToolVisibilityFieldVisibility"
+          },
+          "type": "array"
+        },
+        "visibilityEnforcementStrategy": {
+          "description": "The strategy used to enforce visibility restrictions. DO NOT USE. This field is not yet implemented.",
+          "enum": [
+            "VISIBILITY_ENFORCEMENT_STRATEGY_UNSPECIFIED",
+            "COMBINE",
+            "OVERRIDE"
+          ],
+          "enumDescriptions": [
+            "Default. Equivalent to COMBINE.",
+            "The principal must satisfy both API-level tool-level) visibility restrictions.",
+            "Bypasses the API-level visibility restrictions check; access is determined solely by the tool-level visibility restrictions."
+          ],
+          "type": "string"
+        },
+        "visibilityRestriction": {
+          "description": "The visibility restriction labels for the tool itself (e.g., \"PRODUCER_DEFINED_PREVIEW\"). Multiple labels can be provided as a comma-separated string.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApiservingMcpMcpToolVisibilityFieldVisibility": {
+      "description": "Visibility rules for individual tool parameters (fields). This allows producers to hide specific fields in tools/list and tools/call.",
+      "id": "ApiservingMcpMcpToolVisibilityFieldVisibility",
+      "properties": {
+        "restriction": {
+          "description": "The visibility restriction labels for this field (comma-separated).",
+          "type": "string"
+        },
+        "selector": {
+          "description": "The name of the parameter in the input_schema or output_schema.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleApiDistribution": {
       "description": "`Distribution` contains summary statistics for a population of values. It optionally contains a histogram representing the distribution of those values across a set of buckets. The summary statistics are the count, mean, sum of the squared deviation from the mean, the minimum, and the maximum of the set of population of values. The histogram is based on a sequence of buckets and gives a count of values that fall into each bucket. The boundaries of the buckets are given either explicitly or by formulas for buckets of fixed or exponentially increasing widths. Although it is not forbidden, it is generally a bad idea to include non-finite values (infinities or NaNs) in the population of values, as this will render the `mean` and `sum_of_squared_deviation` fields meaningless.",
       "id": "GoogleApiDistribution",
@@ -14305,7 +14352,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudDiscoveryengineV1AssistantToolList"
           },
-          "description": "Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example \"projects/{projectId}/locations/{locationId}/collections/{collectionId}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {\"jira1ConnectorName\": [(toolId1, \"createTicket\"), (toolId2, \"transferTicket\")], \"gmail1ConnectorName\": [(toolId3, \"sendEmail\"),..] }",
+          "description": "Optional. The enabled tools on this assistant. The keys are data connector resource names, in the format `projects/{project}/locations/{location}/collections/{collection}/dataConnector`. The values are the tools that the admin enabled on that connector. Admins can selectively enable tools on any of the connectors that they created in the project. For example: ``` { \"projects/my-project/locations/global/collections/jira1/dataConnector\": { \"toolInfo\": [ { \"toolName\": \"create_jira_issue\", \"toolDisplayName\": \"Create Jira issue\" }, { \"toolName\": \"update_jira_issue\", \"toolDisplayName\": \"Update Jira issue\" } ] } } ```",
           "type": "object"
         },
         "generationConfig": {
@@ -16543,7 +16590,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge`",
           "type": "object"
         },
         "industryVertical": {
@@ -21412,7 +21459,7 @@
           "type": "array"
         },
         "verdict": {
-          "description": "Final verdict of the customer policy enforcement. If only one policy blocked the processing, the verdict is BLOCK.",
+          "description": "Final verdict of the customer policy enforcement. If at least one policy blocked the processing, the verdict is BLOCK. If no policy blocked the processing but at least one flagged it, the verdict is FLAG.",
           "enum": [
             "UNSPECIFIED",
             "ALLOW",
@@ -21559,7 +21606,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantToolList"
           },
-          "description": "Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example \"projects/{projectId}/locations/{locationId}/collections/{collectionId}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {\"jira1ConnectorName\": [(toolId1, \"createTicket\"), (toolId2, \"transferTicket\")], \"gmail1ConnectorName\": [(toolId3, \"sendEmail\"),..] }",
+          "description": "Optional. The enabled tools on this assistant. The keys are data connector resource names, in the format `projects/{project}/locations/{location}/collections/{collection}/dataConnector`. The values are the tools that the admin enabled on that connector. Admins can selectively enable tools on any of the connectors that they created in the project. For example: ``` { \"projects/my-project/locations/global/collections/jira1/dataConnector\": { \"toolInfo\": [ { \"toolName\": \"create_jira_issue\", \"toolDisplayName\": \"Create Jira issue\" }, { \"toolName\": \"update_jira_issue\", \"toolDisplayName\": \"Update Jira issue\" } ] } } ```",
           "type": "object"
         },
         "generationConfig": {
@@ -26297,7 +26344,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge`",
           "type": "object"
         },
         "industryVertical": {
@@ -27104,7 +27151,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaFeedback",
       "properties": {
         "comment": {
-          "description": "Optional. The additional user comment of the feedback if user gives a thumb down.",
+          "description": "Optional. The additional user comment of the feedback.",
           "type": "string"
         },
         "componentVersion": {
@@ -27140,7 +27187,7 @@
           "type": "string"
         },
         "feedbackType": {
-          "description": "Required. Indicate whether the user gives a positive or negative feedback. If the user gives a negative feedback, there might be more feedback details.",
+          "description": "Required. Indicates whether the user gives a positive or negative feedback.",
           "enum": [
             "FEEDBACK_TYPE_UNSPECIFIED",
             "LIKE",
@@ -27157,8 +27204,12 @@
           "description": "The version of the LLM model that was used to generate the response.",
           "type": "string"
         },
+        "modelArmorDisputeInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaFeedbackModelArmorDisputeInfo",
+          "description": "Optional. Optional Model Armor false-positive dispute metadata attached to feedback."
+        },
         "reasons": {
-          "description": "Optional. The reason if user gives a thumb down.",
+          "description": "Optional. The reasons why the user gives feedback.",
           "items": {
             "enum": [
               "REASON_UNSPECIFIED",
@@ -27170,7 +27221,11 @@
               "BAD_CITATION",
               "CANVAS_NOT_GENERATED",
               "CANVAS_QUALITY_BAD",
-              "CANVAS_EXPORT_FAILED"
+              "CANVAS_EXPORT_FAILED",
+              "RELEVANT",
+              "COMPREHENSIVE",
+              "GOOD_CITATION",
+              "ACCURATE"
             ],
             "enumDescriptions": [
               "Unspecified reason.",
@@ -27182,7 +27237,11 @@
               "The response is not well-associated with the query.",
               "The expected canvas was not generated for the response.",
               "The generated canvas is of bad quality (e.g. inaccurate, incomplete, poorly formatted).",
-              "Exporting the generated canvas failed (e.g. download or external export action did not complete successfully)."
+              "Exporting the generated canvas failed (e.g. download or external export action did not complete successfully).",
+              "The response is relevant.",
+              "The response is comprehensive.",
+              "The response is well-associated with the query.",
+              "The response is accurate."
             ],
             "type": "string"
           },
@@ -27227,6 +27286,25 @@
         },
         "trajectoryId": {
           "description": "Optional. The runtime trajectory id of the rated agent task turn, as set on `TaskServerEvent.trajectory_id`. Shared by all steps of the turn.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaFeedbackModelArmorDisputeInfo": {
+      "description": "Information submitted when a user disputes a Model Armor `BLOCK` or `FLAG` verdict.",
+      "id": "GoogleCloudDiscoveryengineV1alphaFeedbackModelArmorDisputeInfo",
+      "properties": {
+        "expectedLabel": {
+          "description": "Optional. The expected-label reason chip selected by the user (for example, \"Everyday question\" or \"Legitimate work-related query\").",
+          "type": "string"
+        },
+        "sanitizationResultJson": {
+          "description": "Optional. The raw Model Armor `SanitizationResult`, serialized as JSON.",
+          "type": "string"
+        },
+        "templateName": {
+          "description": "Optional. Resource name of the Model Armor template that produced the sanitization result, in the format `projects/{project}/locations/{location}/templates/{id}`.",
           "type": "string"
         }
       },
@@ -30001,6 +30079,10 @@
         "dataUseTermsVersion": {
           "description": "Required. The version of the [Terms for data use](https://cloud.google.com/retail/data-use-terms) that caller has read and would like to give consent to. Acceptable version is `2022-11-23`, and this may change over time.",
           "type": "string"
+        },
+        "idpConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaIdpConfig",
+          "description": "Optional. The identity provider for this location. When provided, the location's AclConfig is set from it as part of provisioning."
         },
         "saasParams": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaProvisionProjectRequestSaasParams",
@@ -35879,7 +35961,7 @@
             ],
             "type": "string"
           },
-          "description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`",
+          "description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge`",
           "readOnly": true,
           "type": "object"
         },
@@ -37598,7 +37680,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge`",
           "type": "object"
         },
         "industryVertical": {
