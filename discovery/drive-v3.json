@@ -3044,7 +3044,7 @@
       }
     }
   },
-  "revision": "20261011",
+  "revision": "20261023",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3453,7 +3453,7 @@
           ],
           "enumDescriptions": [
             "The behavior is unspecified.",
-            "Any ReviewerResponse with a Response of APPROVED will be reset to NO_DECISION when the file content changes while the approval has a Status of IN_PROGRESS. When the approval has a Status of APPROVED and RESET_APPROVAL is selected, the file is locked.",
+            "Any ReviewerResponse with a Response of `APPROVED` will be reset to `NO_DECISION` when the file content changes while the approval has a Status of `IN_PROGRESS`. When the approval has a Status of `APPROVED` and `RESET_APPROVAL` is selected, the file is locked.",
             "No action is taken when the file content changes."
           ],
           "type": "string"
@@ -5654,7 +5654,7 @@
           ],
           "enumDescriptions": [
             "The behavior is unspecified.",
-            "Any ReviewerResponse with a Response of APPROVED will be reset to NO_DECISION when the file content changes while the approval has a Status of IN_PROGRESS. When the approval has a Status of APPROVED and RESET_APPROVAL is selected, the file is locked.",
+            "Any ReviewerResponse with a Response of `APPROVED` will be reset to `NO_DECISION` when the file content changes while the approval has a Status of `IN_PROGRESS`. When the approval has a Status of `APPROVED` and `RESET_APPROVAL` is selected, the file is locked.",
             "No action is taken when the file content changes."
           ],
           "type": "string"

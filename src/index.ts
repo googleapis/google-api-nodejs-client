@@ -264,6 +264,7 @@ export {displayvideo_v1dev} from './apis/displayvideo/v1dev';
 export {displayvideo_v2} from './apis/displayvideo/v2';
 export {displayvideo_v3} from './apis/displayvideo/v3';
 export {displayvideo_v4} from './apis/displayvideo/v4';
+export {displayvideo_v5} from './apis/displayvideo/v5';
 export {dlp_v2} from './apis/dlp/v2';
 export {dns_v1} from './apis/dns/v1';
 export {dns_v1beta2} from './apis/dns/v1beta2';
