@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/playdeveloperreporting-v15.0.1...playdeveloperreporting-v15.0.2) (2026-10-29)
+
+
+### Bug Fixes
+
+* **playdeveloperreporting:** update the API ([76a1c4f](https://github.com/googleapis/google-api-nodejs-client/commit/76a1c4f55e0526dd2d59d42cd80505b43b5879cd))
+
 ## [15.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/playdeveloperreporting-v15.0.0...playdeveloperreporting-v15.0.1) (2026-09-23)
 
 

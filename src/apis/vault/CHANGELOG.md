@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v13.0.1...vault-v13.1.0) (2026-10-29)
+
+
+### Features
+
+* **vault:** update the API ([b10722f](https://github.com/googleapis/google-api-nodejs-client/commit/b10722f25d3307bc4bc3162d746c2b8b5d453101))
+
 ## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v13.0.0...vault-v13.0.1) (2026-09-23)
 
 

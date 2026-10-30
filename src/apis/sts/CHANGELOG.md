@@ -1,5 +1,12 @@
 # Changelog
 
+## [20.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v20.0.2...sts-v20.1.0) (2026-10-29)
+
+
+### Features
+
+* **sts:** update the API ([149992c](https://github.com/googleapis/google-api-nodejs-client/commit/149992cb4cf5701a092e534c02b9e8201598ed6c))
+
 ## [20.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v20.0.1...sts-v20.0.2) (2026-10-03)
 
 

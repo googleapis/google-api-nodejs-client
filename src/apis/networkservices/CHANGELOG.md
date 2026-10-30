@@ -1,5 +1,12 @@
 # Changelog
 
+## [38.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v38.3.0...networkservices-v38.4.0) (2026-10-29)
+
+
+### Features
+
+* **networkservices:** update the API ([418bad9](https://github.com/googleapis/google-api-nodejs-client/commit/418bad9ced9c419b16b0269dfc447e95815a7bbc))
+
 ## [38.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v38.2.1...networkservices-v38.3.0) (2026-10-22)
 
 

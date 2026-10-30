@@ -1,5 +1,12 @@
 # Changelog
 
+## [38.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v38.0.0...discoveryengine-v38.1.0) (2026-10-29)
+
+
+### Features
+
+* **discoveryengine:** update the API ([6ae61c8](https://github.com/googleapis/google-api-nodejs-client/commit/6ae61c88597a2d50fa7084a537fbe2c0dc984c4f))
+
 ## [38.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v37.3.0...discoveryengine-v38.0.0) (2026-10-19)
 
 

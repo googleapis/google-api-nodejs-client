@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/vision-v10.0.1...vision-v10.1.0) (2026-10-29)
+
+
+### Features
+
+* **vision:** update the API ([5b8c49c](https://github.com/googleapis/google-api-nodejs-client/commit/5b8c49c9b925e03c2c880532d49fcf17c4671781))
+
 ## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/vision-v10.0.0...vision-v10.0.1) (2026-09-23)
 
 

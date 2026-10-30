@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessnotifications-v9.0.1...mybusinessnotifications-v9.0.2) (2026-10-29)
+
+
+### Bug Fixes
+
+* **mybusinessnotifications:** update the API ([3fa4de8](https://github.com/googleapis/google-api-nodejs-client/commit/3fa4de8d33bcd7dc8e21b89f5004d2cc76f2d793))
+
 ## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessnotifications-v9.0.0...mybusinessnotifications-v9.0.1) (2026-09-23)
 
 

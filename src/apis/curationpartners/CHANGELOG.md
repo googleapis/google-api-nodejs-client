@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/curationpartners-v3.0.1...curationpartners-v3.1.0) (2026-10-29)
+
+
+### Features
+
+* **curationpartners:** update the API ([f147fb7](https://github.com/googleapis/google-api-nodejs-client/commit/f147fb73b1ab2bd973bcd07c899c51c7ed48292e))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/curationpartners-v3.0.0...curationpartners-v3.0.1) (2026-09-23)
 
 

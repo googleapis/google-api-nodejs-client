@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/authorizedbuyersmarketplace-v19.0.1...authorizedbuyersmarketplace-v19.1.0) (2026-10-29)
+
+
+### Features
+
+* **authorizedbuyersmarketplace:** update the API ([d320d81](https://github.com/googleapis/google-api-nodejs-client/commit/d320d81645e1b96e8251567c2755586d28919a49))
+
 ## [19.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/authorizedbuyersmarketplace-v19.0.0...authorizedbuyersmarketplace-v19.0.1) (2026-09-23)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/oracledatabase-v14.1.0...oracledatabase-v14.2.0) (2026-10-29)
+
+
+### Features
+
+* **oracledatabase:** update the API ([6ae5499](https://github.com/googleapis/google-api-nodejs-client/commit/6ae5499cfc6ecb193b393f1965e315658186409b))
+
 ## [14.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/oracledatabase-v14.0.1...oracledatabase-v14.1.0) (2026-10-19)
 
 

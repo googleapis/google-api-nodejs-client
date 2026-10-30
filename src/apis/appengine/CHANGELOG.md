@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v18.0.1...appengine-v18.1.0) (2026-10-29)
+
+
+### Features
+
+* **appengine:** update the API ([ef68073](https://github.com/googleapis/google-api-nodejs-client/commit/ef68073788fbf2bb6f731c85d7710f59a26191b9))
+
 ## [18.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v18.0.0...appengine-v18.0.1) (2026-09-23)
 
 
