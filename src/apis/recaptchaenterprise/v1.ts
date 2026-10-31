@@ -352,7 +352,7 @@ export namespace recaptchaenterprise_v1 {
      */
     botType?: string | null;
     /**
-     * Optional. Enumerated string value that indicates the identity of the bot, formatted in kebab-case. Current example values include the following: * google-agent - AI_AGENT * browser-base - AI_AGENT * chat-gpt - AI_AGENT * aws-bedrock - AI_AGENT * cybaa-bot - AI_AGENT * cloudflare - AI_AGENT * payhawk - AI_AGENT * duck-duck-go - SEARCH_INDEXER * mediaboard - CONTENT_SCRAPER * marker-io - AI_AGENT * anchor-browser - AI_AGENT * shopify - AI_AGENT * stackscope - CONTENT_SCRAPER * manus - AI_AGENT * kernel-sh - AI_AGENT * zvelo - SEARCH_INDEXER Ensure that your applications can handle identifier values not explicitly listed here. Deprecated values might take some time to stop showing up in responses. New values can be pushed so this list should be taken as non exhaustive.
+     * Optional. Enumerated string value that indicates the identity of the bot, formatted in kebab-case. Current example values include the following: * google-agent - AI_AGENT * browser-base - AI_AGENT * chat-gpt - AI_AGENT * aws-bedrock - AI_AGENT * cybaa-bot - AI_AGENT * cloudflare - AI_AGENT * payhawk - AI_AGENT * duck-duck-go - SEARCH_INDEXER * mediaboard - CONTENT_SCRAPER * marker-io - AI_AGENT * anchor-browser - AI_AGENT * shopify - AI_AGENT * stackscope - CONTENT_SCRAPER * manus - AI_AGENT * kernel-sh - AI_AGENT * zvelo - SEARCH_INDEXER * meta-muse - AI_AGENT Ensure that your applications can handle identifier values not explicitly listed here. Deprecated values might take some time to stop showing up in responses. New values can be pushed so this list should be taken as non exhaustive.
      */
     name?: string | null;
   }
@@ -988,7 +988,7 @@ export namespace recaptchaenterprise_v1 {
      */
     action?: string | null;
     /**
-     * Required. URI path of the API endpoint to protect. Must start with '/'. Supports glob characters '*' to match a single path segment and '**' to match multiple path segments. Standalone root catch-alls ('/x' and '/x*') are invalid because it can negatively impact performance to trigger reCAPTCHA on every single request to your backend. Matching is evaluated against the URL path only (domain, scheme, and query parameters are ignored). Examples: - `/login` matches `/login`, `https://example.com/login`, and `/login?query=1`, but not `/login/step1`. - `/products/x` matches `/products/123`, but not `/products/123/456`. - `/content/x*` matches `/content/articles/2024/01/01`.
+     * Required. The URI path of the API endpoint to protect. The path is case-sensitive and must meet the following criteria: * Be unique, start with `/`, and contain 1 to 200 characters without consecutive slashes (`//`). * Include at least one non-wildcard segment. For example, cannot be `/`, `/x`, `/x*`, or `/x/`. * Wildcards must occupy complete segments: `*` matches a single segment. For example, `/api/x/login` or `/api/x` are valid; `/api/login*` is invalid, and `**` matches multiple segments as the final segment only. For example, `/api/x*` is valid; `/api/xx/login` is invalid. Matching is evaluated against the URL path only. Domain, scheme, and query parameters are ignored. Examples: * `/login` matches `/login`, `https://example.com/login`, and `/login?query=1`, but not `/login/step1`. * `/products/x` matches `/products/123`, but not `/products/123/456`. * `/content/x*` matches `/content/articles/2024/01/01`.
      */
     path?: string | null;
   }
