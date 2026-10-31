@@ -2906,6 +2906,7 @@ export namespace dialogflow_v2 {
     encryptionSpec?: Schema$GoogleCloudDialogflowV2EncryptionSpec;
   }
   export interface Schema$GoogleCloudDialogflowV2InputAudioConfig {
+    alternativeLanguageCodes?: string[] | null;
     audioEncoding?: string | null;
     disableInterimInputTranscripts?: boolean | null;
     disableNoSpeechRecognizedEvent?: boolean | null;
@@ -3607,6 +3608,7 @@ export namespace dialogflow_v2 {
     phrases?: string[] | null;
   }
   export interface Schema$GoogleCloudDialogflowV2SpeechToTextConfig {
+    alternativeLanguageCodes?: string[] | null;
     audioEncoding?: string | null;
     disableInterimInputTranscripts?: boolean | null;
     enableWordInfo?: boolean | null;
