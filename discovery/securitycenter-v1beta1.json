@@ -895,7 +895,7 @@
       }
     }
   },
-  "revision": "20261005",
+  "revision": "20261023",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -1688,6 +1688,18 @@
         "timestamp": {
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudRun": {
+      "id": "CloudRun",
+      "properties": {
+        "revisions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2623,6 +2635,9 @@
         },
         "cloudDlpInspection": {
           "$ref": "CloudDlpInspection"
+        },
+        "cloudRun": {
+          "$ref": "CloudRun"
         },
         "complianceDetails": {
           "$ref": "ComplianceDetails"
@@ -4736,6 +4751,18 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2CloudRun": {
+      "id": "GoogleCloudSecuritycenterV2CloudRun",
+      "properties": {
+        "revisions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2Compliance": {
       "id": "GoogleCloudSecuritycenterV2Compliance",
       "properties": {
@@ -5673,6 +5700,9 @@
         },
         "cloudDlpInspection": {
           "$ref": "GoogleCloudSecuritycenterV2CloudDlpInspection"
+        },
+        "cloudRun": {
+          "$ref": "GoogleCloudSecuritycenterV2CloudRun"
         },
         "complianceDetails": {
           "$ref": "GoogleCloudSecuritycenterV2ComplianceDetails"
