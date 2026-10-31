@@ -6117,7 +6117,7 @@
       }
     }
   },
-  "revision": "20261015",
+  "revision": "20261021",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudCesV1mainAgentTransfer": {
@@ -8343,6 +8343,14 @@
         },
         "location": {
           "description": "The agent's location.",
+          "type": "string"
+        },
+        "studyArmId": {
+          "description": "The study arm ID associated with the conversation. Only applicable to automated agents.",
+          "type": "string"
+        },
+        "studyId": {
+          "description": "The study ID associated with the conversation. Only applicable to automated agents.",
           "type": "string"
         },
         "team": {
@@ -12024,13 +12032,15 @@
             "PREDEFINED_QUESTION_TYPE_UNSPECIFIED",
             "CONVERSATION_OUTCOME",
             "CONVERSATION_OUTCOME_ESCALATION_INITIATOR_ROLE",
-            "CONVERSATION_OUTCOME_AI_AVERSION"
+            "CONVERSATION_OUTCOME_AI_AVERSION",
+            "CONVERSATION_OUTCOME_ESCALATION_REASON"
           ],
           "enumDescriptions": [
             "The type of the predefined question is unspecified.",
             "A prebuilt classifier classfying the outcome of the conversation. For example, if the customer issue mentioned in a conversation has been resolved or not.",
             "A prebuilt classifier classfying the initiator of the conversation escalation. For example, if it was initiated by the customer or the agent.",
-            "Classifies whether the customer demonstrates AI aversion by instantly requesting escalation to a human agent without attempting to work with the AI agent."
+            "Classifies whether the customer demonstrates AI aversion by instantly requesting escalation to a human agent without attempting to work with the AI agent.",
+            "Classifies the primary reason for escalating the conversation to a human agent."
           ],
           "type": "string"
         }
@@ -14953,6 +14963,14 @@
         },
         "location": {
           "description": "The agent's location.",
+          "type": "string"
+        },
+        "studyArmId": {
+          "description": "The study arm ID associated with the conversation. Only applicable to automated agents.",
+          "type": "string"
+        },
+        "studyId": {
+          "description": "The study ID associated with the conversation. Only applicable to automated agents.",
           "type": "string"
         },
         "team": {
@@ -19930,6 +19948,14 @@
         },
         "location": {
           "description": "The agent's location.",
+          "type": "string"
+        },
+        "studyArmId": {
+          "description": "The study arm ID associated with the conversation. Only applicable to automated agents.",
+          "type": "string"
+        },
+        "studyId": {
+          "description": "The study ID associated with the conversation. Only applicable to automated agents.",
           "type": "string"
         },
         "team": {

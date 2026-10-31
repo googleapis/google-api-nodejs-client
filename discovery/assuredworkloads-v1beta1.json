@@ -112,7 +112,7 @@
             "dbFindingSummaries": {
               "methods": {
                 "list": {
-                  "description": "Lists the finding summary by category for a given scope.",
+                  "description": "Lists summaries of the active findings in a Data Boundary scope (an organization, folder, or project), with one summary for each finding category.",
                   "flatPath": "v1beta1/folders/{foldersId}/locations/{locationsId}/dbFindingSummaries",
                   "httpMethod": "GET",
                   "id": "assuredworkloads.folders.locations.dbFindingSummaries.list",
@@ -121,7 +121,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. The filtering results.",
+                      "description": "Optional. A filter expression that restricts the framework deployments whose findings are summarized. The syntax follows [AIP-160](https://google.aip.dev/160). Supported fields are `framework_deployment`, `framework_name`, and `framework_revision` (the major revision ID of the framework).",
                       "location": "query",
                       "type": "string"
                     },
@@ -132,12 +132,12 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A token that identifies the page of results that the server should return.",
+                      "description": "Optional. A token that identifies the page of results that the server should return. Pass the `next_page_token` value from a previous result.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent scope for the framework overview page. Formats: - projects/{project}/locations/{location} - folders/{folder}/locations/{location} - organizations/{organization}/locations/{location}",
+                      "description": "Required. The parent scope to list finding summaries for. Formats: * `organizations/{organization}/locations/{location}` * `folders/{folder}/locations/{location}` * `projects/{project}/locations/{location}`",
                       "location": "path",
                       "pattern": "^folders/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -157,7 +157,7 @@
             "dbFrameworkComplianceReports": {
               "methods": {
                 "aggregate": {
-                  "description": "Gets the aggregated compliance report over time for a given scope.",
+                  "description": "Gets daily compliance reports over a time range for a framework that's deployed in a Data Boundary scope.",
                   "flatPath": "v1beta1/folders/{foldersId}/locations/{locationsId}/dbFrameworkComplianceReports/{dbFrameworkComplianceReportsId}:aggregate",
                   "httpMethod": "GET",
                   "id": "assuredworkloads.folders.locations.dbFrameworkComplianceReports.aggregate",
@@ -166,7 +166,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. The filtering results.",
+                      "description": "Optional. A filter expression that restricts the framework deployments that are included in the report. The syntax follows [AIP-160](https://google.aip.dev/160). Supported fields are `framework_deployment`, `framework_name`, and `framework_revision` (the major revision ID of the framework).",
                       "location": "query",
                       "type": "string"
                     },
@@ -183,7 +183,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The name of the aggregated compliance report over time to retrieve. Format: `organizations/{organization_id}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}`",
+                      "description": "Required. The name of the framework compliance report to aggregate over time. The report ID is the ID of the compliance framework, for example `builtin-fedramp-high`. Format: `organizations/{organization_id}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}`",
                       "location": "path",
                       "pattern": "^folders/[^/]+/locations/[^/]+/dbFrameworkComplianceReports/[^/]+$",
                       "required": true,
@@ -199,7 +199,7 @@
                   ]
                 },
                 "fetch": {
-                  "description": "Fetches the framework compliance report for a given scope.",
+                  "description": "Fetches the current compliance report for a framework that's deployed in a Data Boundary scope (an organization, folder, or project). The report includes the number of passing, failing, and not assessed controls in the framework.",
                   "flatPath": "v1beta1/folders/{foldersId}/locations/{locationsId}/dbFrameworkComplianceReports/{dbFrameworkComplianceReportsId}:fetch",
                   "httpMethod": "GET",
                   "id": "assuredworkloads.folders.locations.dbFrameworkComplianceReports.fetch",
@@ -208,18 +208,18 @@
                   ],
                   "parameters": {
                     "endTime": {
-                      "description": "Optional. The end time of the report.",
+                      "description": "Optional. The end time of the report. Reserved for future use. Currently, the report always reflects the current compliance state.",
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
                     },
                     "filter": {
-                      "description": "Optional. The filtering results.",
+                      "description": "Optional. A filter expression that restricts the results. Reserved for future use.",
                       "location": "query",
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The name of the framework compliance report to retrieve.",
+                      "description": "Required. The name of the framework compliance report to retrieve. The report ID is the ID of the compliance framework, for example `builtin-fedramp-high`. Formats: * `organizations/{organization}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}` * `folders/{folder}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}` * `projects/{project}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}`",
                       "location": "path",
                       "pattern": "^folders/[^/]+/locations/[^/]+/dbFrameworkComplianceReports/[^/]+$",
                       "required": true,
@@ -239,7 +239,7 @@
                 "dbControlComplianceSummaries": {
                   "methods": {
                     "list": {
-                      "description": "Lists the control compliance summary for a given scope.",
+                      "description": "Lists the compliance summaries of the controls in a framework compliance report.",
                       "flatPath": "v1beta1/folders/{foldersId}/locations/{locationsId}/dbFrameworkComplianceReports/{dbFrameworkComplianceReportsId}/dbControlComplianceSummaries",
                       "httpMethod": "GET",
                       "id": "assuredworkloads.folders.locations.dbFrameworkComplianceReports.dbControlComplianceSummaries.list",
@@ -248,7 +248,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. The filtering results.",
+                          "description": "Optional. A filter expression that restricts the results. The syntax follows [AIP-160](https://google.aip.dev/160). Supported fields are `framework_deployment`, `framework_name`, `framework_revision` (the major revision ID of the framework), and `end_time`. The `end_time` field accepts a single equality comparison with an [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) timestamp, for example `end_time = \"2026-01-01T00:00:00Z\"`. Only findings that were updated at or after this time are counted.",
                           "location": "query",
                           "type": "string"
                         },
@@ -259,12 +259,12 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. A token that identifies the page of results that the server should return.",
+                          "description": "Optional. A token that identifies the page of results that the server should return. Pass the `next_page_token` value from a previous result.",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent scope for the framework overview page. Format: organizations/{organization}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report} folders/{folder}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report} projects/{project}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}",
+                          "description": "Required. The framework compliance report to list control compliance summaries for. Formats: * `organizations/{organization}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}` * `folders/{folder}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}` * `projects/{project}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}`",
                           "location": "path",
                           "pattern": "^folders/[^/]+/locations/[^/]+/dbFrameworkComplianceReports/[^/]+$",
                           "required": true,
@@ -286,7 +286,7 @@
             "dbFrameworkComplianceSummaries": {
               "methods": {
                 "list": {
-                  "description": "Lists the framework compliance summary for a given scope.",
+                  "description": "Lists the compliance summaries of the frameworks that are deployed in a Data Boundary scope (an organization, folder, or project).",
                   "flatPath": "v1beta1/folders/{foldersId}/locations/{locationsId}/dbFrameworkComplianceSummaries",
                   "httpMethod": "GET",
                   "id": "assuredworkloads.folders.locations.dbFrameworkComplianceSummaries.list",
@@ -295,7 +295,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. The filtering results.",
+                      "description": "Optional. A filter expression that restricts the results. Reserved for future use.",
                       "location": "query",
                       "type": "string"
                     },
@@ -306,19 +306,19 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A token that identifies the page of results that the server should return. Pass the next_page_token value from a previous result.",
+                      "description": "Optional. A token that identifies the page of results that the server should return. Pass the `next_page_token` value from a previous result.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent scope for the framework compliance summary. Format: organizations/{organization}/locations/{location} folders/{folder}/locations/{location} projects/{project}/locations/{location}",
+                      "description": "Required. The parent scope to list framework compliance summaries for. Formats: * `organizations/{organization}/locations/{location}` * `folders/{folder}/locations/{location}` * `projects/{project}/locations/{location}`",
                       "location": "path",
                       "pattern": "^folders/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "view": {
-                      "description": "Optional. Specifies the level of detail to return in the response.",
+                      "description": "Optional. The level of detail to return for each summary. If not specified, `FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_BASIC` is used.",
                       "enum": [
                         "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_UNSPECIFIED",
                         "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_BASIC",
@@ -354,7 +354,7 @@
             "dbFindingSummaries": {
               "methods": {
                 "list": {
-                  "description": "Lists the finding summary by category for a given scope.",
+                  "description": "Lists summaries of the active findings in a Data Boundary scope (an organization, folder, or project), with one summary for each finding category.",
                   "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/dbFindingSummaries",
                   "httpMethod": "GET",
                   "id": "assuredworkloads.organizations.locations.dbFindingSummaries.list",
@@ -363,7 +363,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. The filtering results.",
+                      "description": "Optional. A filter expression that restricts the framework deployments whose findings are summarized. The syntax follows [AIP-160](https://google.aip.dev/160). Supported fields are `framework_deployment`, `framework_name`, and `framework_revision` (the major revision ID of the framework).",
                       "location": "query",
                       "type": "string"
                     },
@@ -374,12 +374,12 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A token that identifies the page of results that the server should return.",
+                      "description": "Optional. A token that identifies the page of results that the server should return. Pass the `next_page_token` value from a previous result.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent scope for the framework overview page. Formats: - projects/{project}/locations/{location} - folders/{folder}/locations/{location} - organizations/{organization}/locations/{location}",
+                      "description": "Required. The parent scope to list finding summaries for. Formats: * `organizations/{organization}/locations/{location}` * `folders/{folder}/locations/{location}` * `projects/{project}/locations/{location}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -399,7 +399,7 @@
             "dbFrameworkComplianceReports": {
               "methods": {
                 "aggregate": {
-                  "description": "Gets the aggregated compliance report over time for a given scope.",
+                  "description": "Gets daily compliance reports over a time range for a framework that's deployed in a Data Boundary scope.",
                   "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/dbFrameworkComplianceReports/{dbFrameworkComplianceReportsId}:aggregate",
                   "httpMethod": "GET",
                   "id": "assuredworkloads.organizations.locations.dbFrameworkComplianceReports.aggregate",
@@ -408,7 +408,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. The filtering results.",
+                      "description": "Optional. A filter expression that restricts the framework deployments that are included in the report. The syntax follows [AIP-160](https://google.aip.dev/160). Supported fields are `framework_deployment`, `framework_name`, and `framework_revision` (the major revision ID of the framework).",
                       "location": "query",
                       "type": "string"
                     },
@@ -425,7 +425,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The name of the aggregated compliance report over time to retrieve. Format: `organizations/{organization_id}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}`",
+                      "description": "Required. The name of the framework compliance report to aggregate over time. The report ID is the ID of the compliance framework, for example `builtin-fedramp-high`. Format: `organizations/{organization_id}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/dbFrameworkComplianceReports/[^/]+$",
                       "required": true,
@@ -441,7 +441,7 @@
                   ]
                 },
                 "fetch": {
-                  "description": "Fetches the framework compliance report for a given scope.",
+                  "description": "Fetches the current compliance report for a framework that's deployed in a Data Boundary scope (an organization, folder, or project). The report includes the number of passing, failing, and not assessed controls in the framework.",
                   "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/dbFrameworkComplianceReports/{dbFrameworkComplianceReportsId}:fetch",
                   "httpMethod": "GET",
                   "id": "assuredworkloads.organizations.locations.dbFrameworkComplianceReports.fetch",
@@ -450,18 +450,18 @@
                   ],
                   "parameters": {
                     "endTime": {
-                      "description": "Optional. The end time of the report.",
+                      "description": "Optional. The end time of the report. Reserved for future use. Currently, the report always reflects the current compliance state.",
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
                     },
                     "filter": {
-                      "description": "Optional. The filtering results.",
+                      "description": "Optional. A filter expression that restricts the results. Reserved for future use.",
                       "location": "query",
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The name of the framework compliance report to retrieve.",
+                      "description": "Required. The name of the framework compliance report to retrieve. The report ID is the ID of the compliance framework, for example `builtin-fedramp-high`. Formats: * `organizations/{organization}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}` * `folders/{folder}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}` * `projects/{project}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/dbFrameworkComplianceReports/[^/]+$",
                       "required": true,
@@ -481,7 +481,7 @@
                 "dbControlComplianceSummaries": {
                   "methods": {
                     "list": {
-                      "description": "Lists the control compliance summary for a given scope.",
+                      "description": "Lists the compliance summaries of the controls in a framework compliance report.",
                       "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/dbFrameworkComplianceReports/{dbFrameworkComplianceReportsId}/dbControlComplianceSummaries",
                       "httpMethod": "GET",
                       "id": "assuredworkloads.organizations.locations.dbFrameworkComplianceReports.dbControlComplianceSummaries.list",
@@ -490,7 +490,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. The filtering results.",
+                          "description": "Optional. A filter expression that restricts the results. The syntax follows [AIP-160](https://google.aip.dev/160). Supported fields are `framework_deployment`, `framework_name`, `framework_revision` (the major revision ID of the framework), and `end_time`. The `end_time` field accepts a single equality comparison with an [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) timestamp, for example `end_time = \"2026-01-01T00:00:00Z\"`. Only findings that were updated at or after this time are counted.",
                           "location": "query",
                           "type": "string"
                         },
@@ -501,12 +501,12 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. A token that identifies the page of results that the server should return.",
+                          "description": "Optional. A token that identifies the page of results that the server should return. Pass the `next_page_token` value from a previous result.",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent scope for the framework overview page. Format: organizations/{organization}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report} folders/{folder}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report} projects/{project}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}",
+                          "description": "Required. The framework compliance report to list control compliance summaries for. Formats: * `organizations/{organization}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}` * `folders/{folder}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}` * `projects/{project}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}`",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/locations/[^/]+/dbFrameworkComplianceReports/[^/]+$",
                           "required": true,
@@ -528,7 +528,7 @@
             "dbFrameworkComplianceSummaries": {
               "methods": {
                 "list": {
-                  "description": "Lists the framework compliance summary for a given scope.",
+                  "description": "Lists the compliance summaries of the frameworks that are deployed in a Data Boundary scope (an organization, folder, or project).",
                   "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/dbFrameworkComplianceSummaries",
                   "httpMethod": "GET",
                   "id": "assuredworkloads.organizations.locations.dbFrameworkComplianceSummaries.list",
@@ -537,7 +537,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. The filtering results.",
+                      "description": "Optional. A filter expression that restricts the results. Reserved for future use.",
                       "location": "query",
                       "type": "string"
                     },
@@ -548,19 +548,19 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A token that identifies the page of results that the server should return. Pass the next_page_token value from a previous result.",
+                      "description": "Optional. A token that identifies the page of results that the server should return. Pass the `next_page_token` value from a previous result.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent scope for the framework compliance summary. Format: organizations/{organization}/locations/{location} folders/{folder}/locations/{location} projects/{project}/locations/{location}",
+                      "description": "Required. The parent scope to list framework compliance summaries for. Formats: * `organizations/{organization}/locations/{location}` * `folders/{folder}/locations/{location}` * `projects/{project}/locations/{location}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "view": {
-                      "description": "Optional. Specifies the level of detail to return in the response.",
+                      "description": "Optional. The level of detail to return for each summary. If not specified, `FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_BASIC` is used.",
                       "enum": [
                         "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_UNSPECIFIED",
                         "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_BASIC",
@@ -1032,7 +1032,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the Violation to acknowledge. Format: organizations/{organization}/locations/{location}/workloads/{workload}/violations/{violation}",
+                          "description": "Required. The resource name of the violation to acknowledge. Format: `organizations/{organization}/locations/{location}/workloads/{workload}/violations/{violation}`",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+/violations/[^/]+$",
                           "required": true,
@@ -1051,7 +1051,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Retrieves Assured Workload Violation based on ID.",
+                      "description": "Retrieves an Assured Workloads violation by its resource name.",
                       "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}/violations/{violationsId}",
                       "httpMethod": "GET",
                       "id": "assuredworkloads.organizations.locations.workloads.violations.get",
@@ -1060,14 +1060,14 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the Violation to fetch (ie. Violation.name). Format: organizations/{organization}/locations/{location}/workloads/{workload}/violations/{violation}",
+                          "description": "Required. The resource name of the violation to retrieve (that is, the value of `Violation.name`). Format: `organizations/{organization}/locations/{location}/workloads/{workload}/violations/{violation}`",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+/violations/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "view": {
-                          "description": "Optional. Specifies the violation view (`AssuredWorkloads` or `DataBoundary`) for fetching violations.",
+                          "description": "Optional. The violation view (`VIOLATION_VIEW_ASSURED_WORKLOADS` or `VIOLATION_VIEW_DATA_BOUNDARY`) that the violation belongs to. If not specified, `VIOLATION_VIEW_ASSURED_WORKLOADS` is used.",
                           "enum": [
                             "VIOLATION_VIEW_UNSPECIFIED",
                             "VIOLATION_VIEW_ASSURED_WORKLOADS",
@@ -1100,7 +1100,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. A custom filter for filtering by the Violations properties.",
+                          "description": "Optional. A filter expression that restricts the violations that are returned. The syntax follows [AIP-160](https://google.aip.dev/160). Only the equality operator (`=`) is supported, and expressions can be combined with `AND`, `OR`, and `NOT`. When `view` is `VIOLATION_VIEW_DATA_BOUNDARY`, the following fields are supported: `violationId`, `category`, `state` (`UNRESOLVED`, `RESOLVED`, or `EXCEPTION`), `violationType` (`ORG_POLICY` or `RESOURCE`), `resourceType`, `resourceName`, `project`, `associatedOrgPolicyViolationId`, `cloudControlName`, `workloadDisplayName`, and `complianceType` (a framework ID). Example: `state = \"UNRESOLVED\" AND complianceType = \"builtin-fedramp-high\"`",
                           "location": "query",
                           "type": "string"
                         },
@@ -1117,30 +1117,30 @@
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Optional. Actionable sorting delegation.",
+                          "description": "Optional. A comma-separated list of fields to sort the results by. The default sort order is ascending; to sort in descending order, append ` desc` to the field name. For example, `update_time desc,category`. When `view` is `VIOLATION_VIEW_DATA_BOUNDARY`, the following fields are supported: `begin_time`, `update_time`, `resource_type`, `state`, and `category`. If not specified, results are sorted by `begin_time` in descending order.",
                           "location": "query",
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Optional. Page size.",
+                          "description": "Optional. The maximum number of violations to return. The service might return fewer violations than this value. If unspecified, at most 100 violations are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token returned from previous request.",
+                          "description": "Optional. A page token, received from a previous `ListViolations` call. Provide this token to retrieve the subsequent page. When paginating, all other parameters that are provided to `ListViolations` must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The Workload name. Format `organizations/{org_id}/locations/{location}/workloads/{workload}`.",
+                          "description": "Required. The workload to list violations for. To list violations across all workloads in an organization, use `-` as the workload ID. When `view` is `VIOLATION_VIEW_DATA_BOUNDARY`, violations are listed for the entire organization and location, and the workload ID is ignored. Format: `organizations/{organization}/locations/{location}/workloads/{workload}`",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "view": {
-                          "description": "Optional. Specifies the violation view(AssuredWorkloads or DataBoundary) for fetching violations.",
+                          "description": "Optional. The violation view (`VIOLATION_VIEW_ASSURED_WORKLOADS` or `VIOLATION_VIEW_DATA_BOUNDARY`) to list violations for. If not specified, `VIOLATION_VIEW_ASSURED_WORKLOADS` is used.",
                           "enum": [
                             "VIOLATION_VIEW_UNSPECIFIED",
                             "VIOLATION_VIEW_ASSURED_WORKLOADS",
@@ -1178,7 +1178,7 @@
             "dbFindingSummaries": {
               "methods": {
                 "list": {
-                  "description": "Lists the finding summary by category for a given scope.",
+                  "description": "Lists summaries of the active findings in a Data Boundary scope (an organization, folder, or project), with one summary for each finding category.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dbFindingSummaries",
                   "httpMethod": "GET",
                   "id": "assuredworkloads.projects.locations.dbFindingSummaries.list",
@@ -1187,7 +1187,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. The filtering results.",
+                      "description": "Optional. A filter expression that restricts the framework deployments whose findings are summarized. The syntax follows [AIP-160](https://google.aip.dev/160). Supported fields are `framework_deployment`, `framework_name`, and `framework_revision` (the major revision ID of the framework).",
                       "location": "query",
                       "type": "string"
                     },
@@ -1198,12 +1198,12 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A token that identifies the page of results that the server should return.",
+                      "description": "Optional. A token that identifies the page of results that the server should return. Pass the `next_page_token` value from a previous result.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent scope for the framework overview page. Formats: - projects/{project}/locations/{location} - folders/{folder}/locations/{location} - organizations/{organization}/locations/{location}",
+                      "description": "Required. The parent scope to list finding summaries for. Formats: * `organizations/{organization}/locations/{location}` * `folders/{folder}/locations/{location}` * `projects/{project}/locations/{location}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1223,7 +1223,7 @@
             "dbFrameworkComplianceReports": {
               "methods": {
                 "aggregate": {
-                  "description": "Gets the aggregated compliance report over time for a given scope.",
+                  "description": "Gets daily compliance reports over a time range for a framework that's deployed in a Data Boundary scope.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dbFrameworkComplianceReports/{dbFrameworkComplianceReportsId}:aggregate",
                   "httpMethod": "GET",
                   "id": "assuredworkloads.projects.locations.dbFrameworkComplianceReports.aggregate",
@@ -1232,7 +1232,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. The filtering results.",
+                      "description": "Optional. A filter expression that restricts the framework deployments that are included in the report. The syntax follows [AIP-160](https://google.aip.dev/160). Supported fields are `framework_deployment`, `framework_name`, and `framework_revision` (the major revision ID of the framework).",
                       "location": "query",
                       "type": "string"
                     },
@@ -1249,7 +1249,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The name of the aggregated compliance report over time to retrieve. Format: `organizations/{organization_id}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}`",
+                      "description": "Required. The name of the framework compliance report to aggregate over time. The report ID is the ID of the compliance framework, for example `builtin-fedramp-high`. Format: `organizations/{organization_id}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/dbFrameworkComplianceReports/[^/]+$",
                       "required": true,
@@ -1265,7 +1265,7 @@
                   ]
                 },
                 "fetch": {
-                  "description": "Fetches the framework compliance report for a given scope.",
+                  "description": "Fetches the current compliance report for a framework that's deployed in a Data Boundary scope (an organization, folder, or project). The report includes the number of passing, failing, and not assessed controls in the framework.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dbFrameworkComplianceReports/{dbFrameworkComplianceReportsId}:fetch",
                   "httpMethod": "GET",
                   "id": "assuredworkloads.projects.locations.dbFrameworkComplianceReports.fetch",
@@ -1274,18 +1274,18 @@
                   ],
                   "parameters": {
                     "endTime": {
-                      "description": "Optional. The end time of the report.",
+                      "description": "Optional. The end time of the report. Reserved for future use. Currently, the report always reflects the current compliance state.",
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
                     },
                     "filter": {
-                      "description": "Optional. The filtering results.",
+                      "description": "Optional. A filter expression that restricts the results. Reserved for future use.",
                       "location": "query",
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The name of the framework compliance report to retrieve.",
+                      "description": "Required. The name of the framework compliance report to retrieve. The report ID is the ID of the compliance framework, for example `builtin-fedramp-high`. Formats: * `organizations/{organization}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}` * `folders/{folder}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}` * `projects/{project}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/dbFrameworkComplianceReports/[^/]+$",
                       "required": true,
@@ -1305,7 +1305,7 @@
                 "dbControlComplianceSummaries": {
                   "methods": {
                     "list": {
-                      "description": "Lists the control compliance summary for a given scope.",
+                      "description": "Lists the compliance summaries of the controls in a framework compliance report.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dbFrameworkComplianceReports/{dbFrameworkComplianceReportsId}/dbControlComplianceSummaries",
                       "httpMethod": "GET",
                       "id": "assuredworkloads.projects.locations.dbFrameworkComplianceReports.dbControlComplianceSummaries.list",
@@ -1314,7 +1314,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. The filtering results.",
+                          "description": "Optional. A filter expression that restricts the results. The syntax follows [AIP-160](https://google.aip.dev/160). Supported fields are `framework_deployment`, `framework_name`, `framework_revision` (the major revision ID of the framework), and `end_time`. The `end_time` field accepts a single equality comparison with an [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) timestamp, for example `end_time = \"2026-01-01T00:00:00Z\"`. Only findings that were updated at or after this time are counted.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1325,12 +1325,12 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. A token that identifies the page of results that the server should return.",
+                          "description": "Optional. A token that identifies the page of results that the server should return. Pass the `next_page_token` value from a previous result.",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent scope for the framework overview page. Format: organizations/{organization}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report} folders/{folder}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report} projects/{project}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}",
+                          "description": "Required. The framework compliance report to list control compliance summaries for. Formats: * `organizations/{organization}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}` * `folders/{folder}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}` * `projects/{project}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dbFrameworkComplianceReports/[^/]+$",
                           "required": true,
@@ -1352,7 +1352,7 @@
             "dbFrameworkComplianceSummaries": {
               "methods": {
                 "list": {
-                  "description": "Lists the framework compliance summary for a given scope.",
+                  "description": "Lists the compliance summaries of the frameworks that are deployed in a Data Boundary scope (an organization, folder, or project).",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dbFrameworkComplianceSummaries",
                   "httpMethod": "GET",
                   "id": "assuredworkloads.projects.locations.dbFrameworkComplianceSummaries.list",
@@ -1361,7 +1361,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. The filtering results.",
+                      "description": "Optional. A filter expression that restricts the results. Reserved for future use.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1372,19 +1372,19 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A token that identifies the page of results that the server should return. Pass the next_page_token value from a previous result.",
+                      "description": "Optional. A token that identifies the page of results that the server should return. Pass the `next_page_token` value from a previous result.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent scope for the framework compliance summary. Format: organizations/{organization}/locations/{location} folders/{folder}/locations/{location} projects/{project}/locations/{location}",
+                      "description": "Required. The parent scope to list framework compliance summaries for. Formats: * `organizations/{organization}/locations/{location}` * `folders/{folder}/locations/{location}` * `projects/{project}/locations/{location}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "view": {
-                      "description": "Optional. Specifies the level of detail to return in the response.",
+                      "description": "Optional. The level of detail to return for each summary. If not specified, `FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_BASIC` is used.",
                       "enum": [
                         "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_UNSPECIFIED",
                         "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_BASIC",
@@ -1414,38 +1414,38 @@
       }
     }
   },
-  "revision": "20261006",
+  "revision": "20261026",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
-      "description": "Request for acknowledging the violation",
+      "description": "Request message for acknowledging a violation.",
       "id": "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest",
       "properties": {
         "acknowledgeType": {
-          "description": "Optional. Acknowledge type of specified violation.",
+          "description": "Optional. The scope of the acknowledgement for the specified violation. If not specified, `SINGLE_VIOLATION` is used.",
           "enum": [
             "ACKNOWLEDGE_TYPE_UNSPECIFIED",
             "SINGLE_VIOLATION",
             "EXISTING_CHILD_RESOURCE_VIOLATIONS"
           ],
           "enumDescriptions": [
-            "Acknowledge type unspecified.",
-            "Acknowledge only the specific violation.",
-            "Acknowledge specified orgPolicy violation and also associated resource violations."
+            "Default value. The acknowledge type isn't specified.",
+            "Acknowledges only the specified violation.",
+            "Acknowledges the specified organization policy violation and all of its existing associated resource violations."
           ],
           "type": "string"
         },
         "comment": {
-          "description": "Required. Business justification explaining the need for violation acknowledgement",
+          "description": "Required. The business justification for acknowledging the violation. The comment can't be empty or contain only whitespace characters.",
           "type": "string"
         },
         "nonCompliantOrgPolicy": {
           "deprecated": true,
-          "description": "Optional. This field is deprecated and will be removed in future version of the API. Name of the OrgPolicy which was modified with non-compliant change and resulted in this violation. Format: projects/{project_number}/policies/{constraint_name} folders/{folder_id}/policies/{constraint_name} organizations/{organization_id}/policies/{constraint_name}",
+          "description": "Optional. Deprecated: This field is deprecated and will be removed in a future version of the API. The service identifies the violation to acknowledge by `name`, and ignores this field. Don't set this field. The name of the organization policy that was modified with a non-compliant change and resulted in this violation. Formats: * `projects/{project_number}/policies/{constraint_name}` * `folders/{folder_id}/policies/{constraint_name}` * `organizations/{organization_id}/policies/{constraint_name}`",
           "type": "string"
         },
         "view": {
-          "description": "Optional. Specifies the violation view (`AssuredWorkloads` or `DataBoundary`) for acknowledging violations.",
+          "description": "Optional. The violation view (`VIOLATION_VIEW_ASSURED_WORKLOADS` or `VIOLATION_VIEW_DATA_BOUNDARY`) that the violation belongs to. If not specified, `VIOLATION_VIEW_ASSURED_WORKLOADS` is used.",
           "enum": [
             "VIOLATION_VIEW_UNSPECIFIED",
             "VIOLATION_VIEW_ASSURED_WORKLOADS",
@@ -1462,7 +1462,7 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponse": {
-      "description": "Response for violation acknowledgement",
+      "description": "Response message for acknowledging a violation. This message is empty.",
       "id": "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponse",
       "properties": {},
       "type": "object"
@@ -1472,7 +1472,7 @@
       "id": "GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse",
       "properties": {
         "aggregatedComplianceReports": {
-          "description": "The list of aggregated compliance reports.",
+          "description": "The daily compliance reports for the requested time range.",
           "items": {
             "$ref": "GoogleCloudAssuredworkloadsV1beta1AggregatedComplianceReport"
           },
@@ -1482,15 +1482,15 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1AggregatedComplianceReport": {
-      "description": "The aggregated compliance report.",
+      "description": "A point-in-time compliance report for a framework.",
       "id": "GoogleCloudAssuredworkloadsV1beta1AggregatedComplianceReport",
       "properties": {
         "controlAssessmentDetails": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1ControlAssessmentDetails",
-          "description": "The control assessment details of the framework."
+          "description": "The number of passing, failing, and not assessed controls in the framework at `report_time`."
         },
         "reportTime": {
-          "description": "The report time of the aggregated compliance report.",
+          "description": "The time that the compliance report represents.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -2005,7 +2005,7 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1DbControlComplianceSummary": {
-      "description": "The details for control compliance.",
+      "description": "A summary of the compliance status of a control in a framework compliance report.",
       "id": "GoogleCloudAssuredworkloadsV1beta1DbControlComplianceSummary",
       "properties": {
         "cloudControlReports": {
@@ -2055,7 +2055,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "Identifier. The name of the control compliance summary.",
+          "description": "Identifier. The resource name of the control compliance summary. Format: `organizations/{organization}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}/dbControlComplianceSummaries/{db_control_compliance_summary}`",
           "type": "string"
         },
         "orgPolicyFindingCount": {
@@ -2103,16 +2103,16 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1DbFindingSummary": {
-      "description": "The details for a finding.",
+      "description": "A summary of the active findings for a finding category in a Data Boundary scope.",
       "id": "GoogleCloudAssuredworkloadsV1beta1DbFindingSummary",
       "properties": {
         "findingCategory": {
-          "description": "Output only. The category of the finding.",
+          "description": "Output only. The category of the findings that are summarized.",
           "readOnly": true,
           "type": "string"
         },
         "findingClass": {
-          "description": "Output only. The class of the finding.",
+          "description": "Output only. The class of the findings.",
           "enum": [
             "FINDING_CLASS_UNSPECIFIED",
             "THREAT",
@@ -2141,36 +2141,36 @@
           "type": "string"
         },
         "findingCount": {
-          "description": "Output only. The count of the finding.",
+          "description": "Output only. The total number of active findings in the category.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The name of the finding summary.",
+          "description": "Identifier. The resource name of the finding summary.",
           "type": "string"
         },
         "organizationPolicyFindingCount": {
-          "description": "Output only. Number of active organization policy findings for this category.",
+          "description": "Output only. The number of active organization policy findings in the category.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "relatedFrameworks": {
-          "description": "Optional. The list of compliance frameworks that the finding belongs to.",
+          "description": "Optional. The display names of the compliance frameworks that the findings are related to.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "resourceFindingCount": {
-          "description": "Output only. Number of active resource findings for this category.",
+          "description": "Output only. The number of active resource findings in the category.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "severity": {
-          "description": "Output only. The severity of the finding.",
+          "description": "Output only. The severity of the findings.",
           "enum": [
             "SEVERITY_UNSPECIFIED",
             "CRITICAL",
@@ -2189,7 +2189,7 @@
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. The last updated time of the finding.",
+          "description": "Output only. The time when the findings in the category were last updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2198,30 +2198,30 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1DbFrameworkComplianceSummary": {
-      "description": "The details for a framework compliance summary.",
+      "description": "A summary of the compliance status of a framework that's deployed in a Data Boundary scope.",
       "id": "GoogleCloudAssuredworkloadsV1beta1DbFrameworkComplianceSummary",
       "properties": {
         "controlAssessmentDetails": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1ControlAssessmentDetails",
-          "description": "The control assessment details of the framework."
+          "description": "The number of passing, failing, and not assessed controls in the framework."
         },
         "controlsPassingTrend": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1Trend",
-          "description": "Output only. The trend of controls that are passing for the given duration.",
+          "description": "Output only. The trend of passing controls over the trend duration. This field is only populated when using `FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_FULL`.",
           "readOnly": true
         },
         "findingCount": {
-          "description": "Output only. The count of the findings generated against the framework.",
+          "description": "Output only. The number of findings that were generated against the framework. This field is only populated when using `FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_FULL`.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "framework": {
-          "description": "The name of the framework.",
+          "description": "The resource name of the compliance framework.",
           "type": "string"
         },
         "frameworkCategories": {
-          "description": "The list of framework categories supported by the framework.",
+          "description": "The categories of the framework.",
           "items": {
             "enum": [
               "FRAMEWORK_CATEGORY_UNSPECIFIED",
@@ -2244,11 +2244,11 @@
           "type": "array"
         },
         "frameworkDisplayName": {
-          "description": "Optional. The display name for the framework.",
+          "description": "Optional. The display name of the framework.",
           "type": "string"
         },
         "frameworkType": {
-          "description": "The type of framework.",
+          "description": "The type of the framework.",
           "enum": [
             "FRAMEWORK_TYPE_UNSPECIFIED",
             "BUILT_IN",
@@ -2272,11 +2272,11 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The name of the framework compliance summary.",
+          "description": "Identifier. The resource name of the framework compliance summary.",
           "type": "string"
         },
         "supportedCloudProviders": {
-          "description": "The list of cloud providers supported by the framework.",
+          "description": "The cloud providers that are supported by the framework.",
           "items": {
             "enum": [
               "CLOUD_PROVIDER_UNSPECIFIED",
@@ -2295,7 +2295,7 @@
           "type": "array"
         },
         "targetResourceDetails": {
-          "description": "The target resource details for the framework.",
+          "description": "The details of the target resources (organizations, folders, or projects) that the framework is deployed on.",
           "items": {
             "$ref": "GoogleCloudAssuredworkloadsV1beta1TargetResourceDetails"
           },
@@ -2322,14 +2322,14 @@
       "properties": {
         "controlAssessmentDetails": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1ControlAssessmentDetails",
-          "description": "The control assessment details of the framework."
+          "description": "The number of passing, failing, and not assessed controls in the framework."
         },
         "framework": {
-          "description": "The name of the framework.",
+          "description": "The resource name of the compliance framework. For example, `organizations/{organization}/locations/{location}/frameworks/{framework_id}`.",
           "type": "string"
         },
         "frameworkCategories": {
-          "description": "The list of framework categories supported.",
+          "description": "The categories of the framework.",
           "items": {
             "enum": [
               "FRAMEWORK_CATEGORY_UNSPECIFIED",
@@ -2356,7 +2356,7 @@
           "type": "string"
         },
         "frameworkDisplayName": {
-          "description": "Optional. The display name for the framework.",
+          "description": "Optional. The display name of the framework.",
           "type": "string"
         },
         "frameworkType": {
@@ -2384,11 +2384,11 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the framework compliance report.",
+          "description": "The resource name of the framework compliance report.",
           "type": "string"
         },
         "supportedCloudProviders": {
-          "description": "The list of cloud providers that are supported by the framework.",
+          "description": "The cloud providers that are supported by the framework.",
           "items": {
             "enum": [
               "CLOUD_PROVIDER_UNSPECIFIED",
@@ -2407,14 +2407,14 @@
           "type": "array"
         },
         "targetResourceDetails": {
-          "description": "The target resource details of the framework.",
+          "description": "The details of the target resources (organizations, folders, or projects) that the framework is deployed on.",
           "items": {
             "$ref": "GoogleCloudAssuredworkloadsV1beta1TargetResourceDetails"
           },
           "type": "array"
         },
         "updateTime": {
-          "description": "Output only. The last updated time of the report.",
+          "description": "Output only. The time when the report was last updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2423,18 +2423,18 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse": {
-      "description": "The response message for ListDBControlComplianceSummaries.",
+      "description": "The response message for ListDbControlComplianceSummaries.",
       "id": "GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse",
       "properties": {
         "dbControlComplianceSummaries": {
-          "description": "The list of control compliance details.",
+          "description": "The list of control compliance summaries.",
           "items": {
             "$ref": "GoogleCloudAssuredworkloadsV1beta1DbControlComplianceSummary"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Output only. The token to retrieve the next page of results.",
+          "description": "Output only. A token that can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.",
           "readOnly": true,
           "type": "string"
         }
@@ -2446,14 +2446,14 @@
       "id": "GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse",
       "properties": {
         "dbFindingSummaries": {
-          "description": "List of finding summary by category.",
+          "description": "The list of finding summaries, one for each finding category.",
           "items": {
             "$ref": "GoogleCloudAssuredworkloadsV1beta1DbFindingSummary"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Output only. The token to retrieve the next page of results.",
+          "description": "Output only. A token that can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.",
           "readOnly": true,
           "type": "string"
         }
@@ -2461,7 +2461,7 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse": {
-      "description": "The response message for ListDbFrameworkComplianceSummariesResponse.",
+      "description": "The response message for ListDbFrameworkComplianceSummaries.",
       "id": "GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse",
       "properties": {
         "dbFrameworkComplianceSummaries": {
@@ -2472,7 +2472,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Output only. The token to retrieve the next page of results.",
+          "description": "Output only. A token that can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.",
           "readOnly": true,
           "type": "string"
         }
@@ -2480,20 +2480,20 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1ListViolationsResponse": {
-      "description": "Response of ListViolations endpoint.",
+      "description": "Response message for the `ListViolations` method.",
       "id": "GoogleCloudAssuredworkloadsV1beta1ListViolationsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "The next page token. Returns empty if reached the last page.",
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.",
           "type": "string"
         },
         "totalSize": {
-          "description": "The total number of violations.",
+          "description": "The total number of violations that match the request, across all pages. This field might not be populated for all requests; when it's not populated, its value is `0`.",
           "format": "int32",
           "type": "integer"
         },
         "violations": {
-          "description": "List of Violations under a Workload.",
+          "description": "The list of violations.",
           "items": {
             "$ref": "GoogleCloudAssuredworkloadsV1beta1Violation"
           },
@@ -2851,20 +2851,20 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1Violation": {
-      "description": "Workload monitoring Violation.",
+      "description": "A compliance violation that's detected by Assured Workloads monitoring. A violation is created when an organization policy or a resource in a workload (or a Data Boundary scope) changes in a way that doesn't comply with the controls of the applicable compliance regime or framework.",
       "id": "GoogleCloudAssuredworkloadsV1beta1Violation",
       "properties": {
         "acknowledged": {
-          "description": "A boolean that indicates if the violation is acknowledged",
+          "description": "Whether the violation has been acknowledged.",
           "type": "boolean"
         },
         "acknowledgementTime": {
-          "description": "Optional. Timestamp when this violation was acknowledged first. Check exception_contexts to find the last time the violation was acknowledged when there are more than one violations. This field will be absent when acknowledged field is marked as false.",
+          "description": "Optional. The time when the violation was first acknowledged. To find the most recent time that the violation was acknowledged, check `exception_contexts`. This field is absent when `acknowledged` is `false`.",
           "format": "google-datetime",
           "type": "string"
         },
         "affectedFrameworks": {
-          "description": "Output only. List of compliance frameworks that are affected by this violation. This field is only populated when using `VIOLATION_VIEW_DATA_BOUNDARY`. e.g. \"FedRAMP High\", \"NIST 800-53\".",
+          "description": "Output only. The IDs of the compliance frameworks that are affected by this violation. For example, `builtin-fedramp-high`. This field is only populated when using `VIOLATION_VIEW_DATA_BOUNDARY`.",
           "items": {
             "type": "string"
           },
@@ -2872,44 +2872,44 @@
           "type": "array"
         },
         "associatedOrgPolicyViolationId": {
-          "description": "Optional. Output only. Violation Id of the org-policy violation due to which the resource violation is caused. Empty for org-policy violations.",
+          "description": "Optional. Output only. For resource violations, the ID of the organization policy violation that caused this resource violation. This field is empty for organization policy violations.",
           "readOnly": true,
           "type": "string"
         },
         "auditLogLink": {
-          "description": "Output only. Immutable. Audit Log Link for violated resource Format: https://console.cloud.google.com/logs/query;query={logName}{protoPayload.resourceName}{timeRange}{folder}",
+          "description": "Output only. Immutable. A link to the Cloud Audit Logs entries for the violated resource. Format: `https://console.cloud.google.com/logs/query;query={logName}{protoPayload.resourceName}{timeRange}{folder}`",
           "readOnly": true,
           "type": "string"
         },
         "beginTime": {
-          "description": "Output only. Time of the event which triggered the Violation.",
+          "description": "Output only. The time of the event that triggered the violation.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "category": {
-          "description": "Output only. Category under which this violation is mapped. e.g. Location, Service Usage, Access, Encryption, etc.",
+          "description": "Output only. The category that the violation is mapped to. For example, `Location`, `Service Usage`, `Access`, or `Encryption`.",
           "readOnly": true,
           "type": "string"
         },
         "childResourceViolationCount": {
-          "description": "Optional. Output only. The number of resource violations for particular org policy violation. This will be 0 in case of resource violation.",
+          "description": "Optional. Output only. For organization policy violations, the number of resource violations that are associated with this violation. This field is `0` for resource violations.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
         },
         "description": {
-          "description": "Output only. Description for the Violation. e.g. OrgPolicy gcp.resourceLocations has non compliant value.",
+          "description": "Output only. A description of the violation. For example, `OrgPolicy gcp.resourceLocations has non compliant value.`",
           "readOnly": true,
           "type": "string"
         },
         "exceptionAuditLogLink": {
-          "description": "Output only. Immutable. Audit Log link to find business justification provided for violation exception. Format: https://console.cloud.google.com/logs/query;query={logName}{protoPayload.resourceName}{protoPayload.methodName}{timeRange}{organization}",
+          "description": "Output only. Immutable. A link to the Cloud Audit Logs entries that contain the business justification that was provided when the violation was acknowledged. Format: `https://console.cloud.google.com/logs/query;query={logName}{protoPayload.resourceName}{protoPayload.methodName}{timeRange}{organization}`",
           "readOnly": true,
           "type": "string"
         },
         "exceptionContexts": {
-          "description": "Output only. List of all the exception detail added for the violation.",
+          "description": "Output only. The details of all of the acknowledgements (exceptions) for the violation.",
           "items": {
             "$ref": "GoogleCloudAssuredworkloadsV1beta1ViolationExceptionContext"
           },
@@ -2917,54 +2917,54 @@
           "type": "array"
         },
         "name": {
-          "description": "Output only. Immutable. Name of the Violation. Format: organizations/{organization}/locations/{location}/workloads/{workload_id}/violations/{violations_id}",
+          "description": "Output only. Immutable. The resource name of the violation. Format: `organizations/{organization}/locations/{location}/workloads/{workload_id}/violations/{violations_id}`",
           "readOnly": true,
           "type": "string"
         },
         "nonCompliantOrgPolicy": {
-          "description": "Output only. Immutable. Name of the OrgPolicy which was modified with non-compliant change and resulted this violation. Format: projects/{project_number}/policies/{constraint_name} folders/{folder_id}/policies/{constraint_name} organizations/{organization_id}/policies/{constraint_name}",
+          "description": "Output only. Immutable. The name of the organization policy that was modified with a non-compliant change and resulted in this violation. Formats: * `projects/{project_number}/policies/{constraint_name}` * `folders/{folder_id}/policies/{constraint_name}` * `organizations/{organization_id}/policies/{constraint_name}`",
           "readOnly": true,
           "type": "string"
         },
         "orgPolicyConstraint": {
           "deprecated": true,
-          "description": "Output only. Immutable. The org-policy-constraint that was incorrectly changed, which resulted in this violation.",
+          "description": "Output only. Immutable. Deprecated: This field is deprecated and might be removed in a future version of the API. Use `non_compliant_org_policy` instead, which contains the full resource name of the organization policy, including the constraint name. The organization policy constraint that was changed in a non-compliant way, which resulted in this violation.",
           "readOnly": true,
           "type": "string"
         },
         "parentProjectNumber": {
-          "description": "Optional. Output only. Parent project number where resource is present. Empty for org-policy violations.",
+          "description": "Optional. Output only. For resource violations, the number of the project that contains the non-compliant resource. This field is empty for organization policy violations.",
           "readOnly": true,
           "type": "string"
         },
         "remediation": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1ViolationRemediation",
-          "description": "Output only. Compliance violation remediation",
+          "description": "Output only. The remediation guidance for the violation.",
           "readOnly": true
         },
         "remediationMarkdown": {
-          "description": "Output only. Contains the remediation instructions for the violation in markdown format.",
+          "description": "Output only. The remediation instructions for the violation, in Markdown format. This field is only populated by `GetViolation` when using `VIOLATION_VIEW_DATA_BOUNDARY`. When this field isn't populated, see `remediation` instead.",
           "readOnly": true,
           "type": "string"
         },
         "resolveTime": {
-          "description": "Output only. Time of the event which fixed the Violation. If the violation is ACTIVE this will be empty.",
+          "description": "Output only. The time of the event that resolved the violation. This field is empty if the violation is unresolved.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "resourceName": {
-          "description": "Optional. Output only. Name of the resource like //storage.googleapis.com/myprojectxyz-testbucket. Empty for org-policy violations.",
+          "description": "Optional. Output only. For resource violations, the full resource name of the non-compliant resource. For example, `//storage.googleapis.com/myprojectxyz-testbucket`. This field is empty for organization policy violations.",
           "readOnly": true,
           "type": "string"
         },
         "resourceType": {
-          "description": "Optional. Output only. Type of the resource like compute.googleapis.com/Disk, etc. Empty for org-policy violations.",
+          "description": "Optional. Output only. For resource violations, the type of the non-compliant resource. For example, `compute.googleapis.com/Disk`. This field is empty for organization policy violations.",
           "readOnly": true,
           "type": "string"
         },
         "state": {
-          "description": "Output only. State of the violation",
+          "description": "Output only. The state of the violation.",
           "enum": [
             "STATE_UNSPECIFIED",
             "RESOLVED",
@@ -2972,31 +2972,31 @@
             "EXCEPTION"
           ],
           "enumDescriptions": [
-            "Unspecified state.",
-            "Violation is resolved.",
-            "Violation is Unresolved",
-            "Violation is Exception"
+            "Default value. The state isn't specified.",
+            "The violation is resolved.",
+            "The violation is unresolved and hasn't been acknowledged.",
+            "The violation is unresolved and has been acknowledged as an exception."
           ],
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. The last time when the Violation record was updated.",
+          "description": "Output only. The time when the violation record was last updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "violationType": {
-          "description": "Output only. Type of the violation",
+          "description": "Output only. The type of the violation.",
           "enum": [
             "VIOLATION_TYPE_UNSPECIFIED",
             "ORG_POLICY",
             "RESOURCE"
           ],
           "enumDescriptions": [
-            "Unspecified type.",
-            "Org Policy Violation.",
-            "Resource Violation."
+            "Default value. The violation type isn't specified.",
+            "A violation that's caused by a non-compliant change to an organization policy.",
+            "A violation that's caused by a non-compliant resource."
           ],
           "readOnly": true,
           "type": "string"
@@ -3005,31 +3005,31 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1ViolationExceptionContext": {
-      "description": "Violation exception detail.",
+      "description": "Details about an acknowledgement (exception) of a violation.",
       "id": "GoogleCloudAssuredworkloadsV1beta1ViolationExceptionContext",
       "properties": {
         "acknowledgementTime": {
-          "description": "Timestamp when the violation was acknowledged.",
+          "description": "The time when the violation was acknowledged.",
           "format": "google-datetime",
           "type": "string"
         },
         "comment": {
-          "description": "Business justification provided towards the acknowledgement of the violation.",
+          "description": "The business justification that was provided when the violation was acknowledged.",
           "type": "string"
         },
         "userName": {
-          "description": "Name of the user (or service account) who acknowledged the violation.",
+          "description": "The name of the user (or service account) who acknowledged the violation.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1ViolationRemediation": {
-      "description": "Represents remediation guidance to resolve compliance violation for AssuredWorkload",
+      "description": "Remediation guidance to resolve a compliance violation.",
       "id": "GoogleCloudAssuredworkloadsV1beta1ViolationRemediation",
       "properties": {
         "compliantValues": {
-          "description": "Values that can resolve the violation For example: for list org policy violations, this will either be the list of allowed or denied values",
+          "description": "The values that can resolve the violation. For example, for list organization policy violations, this field contains the list of allowed or denied values.",
           "items": {
             "type": "string"
           },
@@ -3037,10 +3037,10 @@
         },
         "instructions": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructions",
-          "description": "Required. Remediation instructions to resolve violations"
+          "description": "Required. The instructions to resolve the violation."
         },
         "remediationType": {
-          "description": "Output only. Reemediation type based on the type of org policy values violated",
+          "description": "Output only. The remediation type, which is based on the type of organization policy values that were violated.",
           "enum": [
             "REMEDIATION_TYPE_UNSPECIFIED",
             "REMEDIATION_BOOLEAN_ORG_POLICY_VIOLATION",
@@ -3051,13 +3051,13 @@
             "REMEDIATION_RESOURCE_VIOLATION_NON_CMEK_SERVICES"
           ],
           "enumDescriptions": [
-            "Unspecified remediation type",
-            "Remediation type for boolean org policy",
-            "Remediation type for list org policy which have allowed values in the monitoring rule",
-            "Remediation type for list org policy which have denied values in the monitoring rule",
-            "Remediation type for gcp.restrictCmekCryptoKeyProjects",
-            "Remediation type for resource violation.",
-            "Remediation type for resource violation due to gcp.restrictNonCmekServices"
+            "Default value. The remediation type isn't specified.",
+            "Remediation for a boolean organization policy violation.",
+            "Remediation for a list organization policy violation where the monitoring rule specifies allowed values.",
+            "Remediation for a list organization policy violation where the monitoring rule specifies denied values.",
+            "Remediation for a `gcp.restrictCmekCryptoKeyProjects` organization policy violation.",
+            "Remediation for a resource violation.",
+            "Remediation for a resource violation that's caused by the `gcp.restrictNonCmekServices` organization policy."
           ],
           "readOnly": true,
           "type": "string"
@@ -3066,40 +3066,40 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructions": {
-      "description": "Instructions to remediate violation",
+      "description": "Instructions to remediate a violation.",
       "id": "GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructions",
       "properties": {
         "consoleInstructions": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructionsConsole",
-          "description": "Remediation instructions to resolve violation via cloud console"
+          "description": "Instructions to resolve the violation by using the Google Cloud console."
         },
         "gcloudInstructions": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructionsGcloud",
-          "description": "Remediation instructions to resolve violation via gcloud cli"
+          "description": "Instructions to resolve the violation by using the gcloud CLI."
         }
       },
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructionsConsole": {
-      "description": "Remediation instructions to resolve violation via cloud console",
+      "description": "Instructions to remediate a violation by using the Google Cloud console.",
       "id": "GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructionsConsole",
       "properties": {
         "additionalLinks": {
-          "description": "Additional urls for more information about steps",
+          "description": "Additional URLs with more information about the steps.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "consoleUris": {
-          "description": "Link to console page where violations can be resolved",
+          "description": "Links to the Google Cloud console pages where the violation can be resolved.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "steps": {
-          "description": "Steps to resolve violation via cloud console",
+          "description": "The steps to resolve the violation by using the Google Cloud console.",
           "items": {
             "type": "string"
           },
@@ -3109,25 +3109,25 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructionsGcloud": {
-      "description": "Remediation instructions to resolve violation via gcloud cli",
+      "description": "Instructions to remediate a violation by using the Google Cloud CLI.",
       "id": "GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructionsGcloud",
       "properties": {
         "additionalLinks": {
-          "description": "Additional urls for more information about steps",
+          "description": "Additional URLs with more information about the steps.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "gcloudCommands": {
-          "description": "Gcloud command to resolve violation",
+          "description": "The gcloud CLI commands that resolve the violation.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "steps": {
-          "description": "Steps to resolve violation via gcloud cli",
+          "description": "The steps to resolve the violation by using the gcloud CLI.",
           "items": {
             "type": "string"
           },

@@ -489,7 +489,7 @@ export namespace backupdr_v1beta {
      */
     criteria?: Schema$Criteria;
     /**
-     * Optional. A description of the policy.
+     * Optional. A description of the policy. The description must be at most 2048 characters.
      */
     description?: string | null;
     /**
@@ -497,7 +497,7 @@ export namespace backupdr_v1beta {
      */
     etag?: string | null;
     /**
-     * Identifier. The resource name of the AutoprotectionPolicy. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}`
+     * Output only. Identifier. The resource name of the AutoprotectionPolicy. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}`
      */
     name?: string | null;
     /**
@@ -526,7 +526,7 @@ export namespace backupdr_v1beta {
      */
     createTime?: string | null;
     /**
-     * Optional. A description of the binding.
+     * Optional. A description of the binding. The description must be at most 2048 characters.
      */
     description?: string | null;
     /**
@@ -534,7 +534,7 @@ export namespace backupdr_v1beta {
      */
     etag?: string | null;
     /**
-     * Identifier. The resource name of the AutoProtectionPolicyBinding. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}/bindings/{binding\}`
+     * Output only. Identifier. The resource name of the AutoProtectionPolicyBinding. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}/bindings/{binding\}`
      */
     name?: string | null;
     /**
@@ -2455,7 +2455,16 @@ export namespace backupdr_v1beta {
   /**
    * Request message for initiating delete of an AutoProtectionPolicyBinding.
    */
-  export interface Schema$InitiateDeleteAutoProtectionPolicyBindingRequest {}
+  export interface Schema$InitiateDeleteAutoProtectionPolicyBindingRequest {
+    /**
+     * Optional. The current etag of the AutoProtectionPolicyBinding. If an etag is provided and does not match the current etag of the binding, deletion will be blocked and an ABORTED error will be returned.
+     */
+    etag?: string | null;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+  }
   /**
    * Additional instance params.
    */
@@ -4666,10 +4675,12 @@ export namespace backupdr_v1beta {
      *
      *   // Do the magic
      *   const res = await backupdr.projects.locations.autoProtectionPolicies.create({
-     *     // Required. The ID to use for the policy. This will become the final component of the policy's resource name.
+     *     // Required. The ID to use for the policy. This will become the final component of the policy's resource name. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *     autoProtectionPolicyId: 'placeholder-value',
      *     // Required. The parent resource where this policy will be created. Format: projects/{project\}/locations/{location\}
      *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -4833,6 +4844,8 @@ export namespace backupdr_v1beta {
      *     etag: 'placeholder-value',
      *     // Required. The name of the policy to delete. Format: projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}
      *     name: 'projects/my-project/locations/my-location/autoProtectionPolicies/my-autoProtectionPolicie',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -5281,8 +5294,10 @@ export namespace backupdr_v1beta {
      *
      *   // Do the magic
      *   const res = await backupdr.projects.locations.autoProtectionPolicies.patch({
-     *     // Identifier. The resource name of the AutoprotectionPolicy. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}`
+     *     // Output only. Identifier. The resource name of the AutoprotectionPolicy. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}`
      *     name: 'projects/my-project/locations/my-location/autoProtectionPolicies/my-autoProtectionPolicie',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
      *     // Optional. Field mask is used to specify the fields to be overwritten in the AutoProtectionPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
      *
@@ -5410,13 +5425,17 @@ export namespace backupdr_v1beta {
 
   export interface Params$Resource$Projects$Locations$Autoprotectionpolicies$Create extends StandardParameters {
     /**
-     * Required. The ID to use for the policy. This will become the final component of the policy's resource name.
+     * Required. The ID to use for the policy. This will become the final component of the policy's resource name. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      */
     autoProtectionPolicyId?: string;
     /**
      * Required. The parent resource where this policy will be created. Format: projects/{project\}/locations/{location\}
      */
     parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
 
     /**
      * Request body metadata
@@ -5432,6 +5451,10 @@ export namespace backupdr_v1beta {
      * Required. The name of the policy to delete. Format: projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}
      */
     name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
   }
   export interface Params$Resource$Projects$Locations$Autoprotectionpolicies$Get extends StandardParameters {
     /**
@@ -5463,9 +5486,13 @@ export namespace backupdr_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Autoprotectionpolicies$Patch extends StandardParameters {
     /**
-     * Identifier. The resource name of the AutoprotectionPolicy. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}`
+     * Output only. Identifier. The resource name of the AutoprotectionPolicy. Format: `projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}`
      */
     name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
     /**
      * Optional. Field mask is used to specify the fields to be overwritten in the AutoProtectionPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      */
@@ -5523,11 +5550,13 @@ export namespace backupdr_v1beta {
      *   // Do the magic
      *   const res =
      *     await backupdr.projects.locations.autoProtectionPolicies.bindings.create({
-     *       // Required. The ID to use for the binding. This will become the final component of the binding's resource name.
+     *       // Required. The ID to use for the binding. This will become the final component of the binding's resource name. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *       autoProtectionPolicyBindingId: 'placeholder-value',
      *       // Required. The parent resource where this binding will be created. Format: projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}
      *       parent:
      *         'projects/my-project/locations/my-location/autoProtectionPolicies/my-autoProtectionPolicie',
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -5843,7 +5872,10 @@ export namespace backupdr_v1beta {
      *         // Request body metadata
      *         requestBody: {
      *           // request body parameters
-     *           // {}
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "requestId": "my_requestId"
+     *           // }
      *         },
      *       },
      *     );
@@ -6120,13 +6152,17 @@ export namespace backupdr_v1beta {
 
   export interface Params$Resource$Projects$Locations$Autoprotectionpolicies$Bindings$Create extends StandardParameters {
     /**
-     * Required. The ID to use for the binding. This will become the final component of the binding's resource name.
+     * Required. The ID to use for the binding. This will become the final component of the binding's resource name. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      */
     autoProtectionPolicyBindingId?: string;
     /**
      * Required. The parent resource where this binding will be created. Format: projects/{project\}/locations/{location\}/autoProtectionPolicies/{auto_protection_policy\}
      */
     parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
 
     /**
      * Request body metadata

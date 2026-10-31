@@ -2541,6 +2541,15 @@ export namespace androidmanagement_v1 {
     verityMode?: string | null;
   }
   /**
+   * Determines how to proceed with the update.
+   */
+  export interface Schema$Outcome {
+    /**
+     * Optional. Determines how to proceed with the update.
+     */
+    outcomeType?: string | null;
+  }
+  /**
    * A list of package names.
    */
   export interface Schema$PackageNameList {
@@ -3090,6 +3099,10 @@ export namespace androidmanagement_v1 {
      */
     tetheringConfigDisabled?: boolean | null;
     /**
+     * Optional. The Unified Update Control policy, for controlling updates of software components on the device. Supported only on company-owned devices.The targets OS_UPDATE_WITH_API_LEVEL_CHANGE and OS_UPDATE_WITHOUT_API_LEVEL_CHANGE are supported only on devices where the OEM has integrated with Unified Update Controls, and are ignored otherwise. If systemUpdate is set, then that policy takes precedence and the targets OS_UPDATE_WITH_API_LEVEL_CHANGE and OS_UPDATE_WITHOUT_API_LEVEL_CHANGE are ignored here.
+     */
+    unifiedUpdatePolicy?: Schema$UnifiedUpdatePolicy;
+    /**
      * Whether user uninstallation of applications is disabled. This prevents apps from being uninstalled, even those removed using applications
      */
     uninstallAppsDisabled?: boolean | null;
@@ -3180,6 +3193,39 @@ export namespace androidmanagement_v1 {
      * Event type.
      */
     eventType?: string | null;
+  }
+  /**
+   * A predicate is something that can be evaluated on a device at any point of time, to return true or false. This is the conjunction (logical AND) of all the individual conditions defined here. An empty Predicate always evaluates to true.
+   */
+  export interface Schema$Predicate {
+    /**
+     * Optional. A lower bound on the current date, in the device time zone. If not set, always evaluates to true.
+     */
+    dateLowerBound?: Schema$Date;
+    /**
+     * Optional. An upper bound on the current date, in the device time zone. If not set, always evaluates to true.
+     */
+    dateUpperBound?: Schema$Date;
+    /**
+     * Optional. Evaluates to true if this list is empty or if the current day of the week in the device's local time is in this list.
+     */
+    daysOfWeek?: string[] | null;
+    /**
+     * Optional. A lower bound on the current time of the day, evaluated as hh:00:00 in the device time zone. Must specify only the hour (0-23). The policy will be rejected if minutes, seconds, or nanos are set. If not set, always evaluates to true.
+     */
+    timeOfDayLowerBound?: Schema$TimeOfDay;
+    /**
+     * Optional. An upper bound on the current time of the day, evaluated as hh:00:00 in the device time zone. Must specify only the hour (0-23). The policy will be rejected if minutes, seconds, or nanos are set. If not set, always evaluates to true.The window closes at the specified hour (for example, a lower bound of 14 and an upper bound of 15 covers 14:00 to 15:00). When both bounds are set in the same rule, timeOfDayUpperBound must be strictly greater than timeOfDayLowerBound for the window to match; if timeOfDayUpperBound is less than or equal to timeOfDayLowerBound, the predicate evaluates to false. Setting timeOfDayUpperBound to 0 (00:00) evaluates to false for the entire day. To extend a window to the end of the day (24:00), omit timeOfDayUpperBound. To define an overnight window spanning midnight, use two rules: an evening rule with only timeOfDayLowerBound set and a morning rule with only timeOfDayUpperBound set (targeting the following day if daysOfWeek is set).
+     */
+    timeOfDayUpperBound?: Schema$TimeOfDay;
+    /**
+     * Optional. A lower bound on the amount of time for which the update (that is, the specific build or version) has been available to the device. This must be a multiple of 24 hours.
+     */
+    updateAgeLowerBound?: string | null;
+    /**
+     * Optional. An upper bound on the amount of time for which the update has been available. If not set or set to zero, always evaluates to true. This must be a multiple of 24 hours.
+     */
+    updateAgeUpperBound?: string | null;
   }
   /**
    * Individual preferential network service configuration.
@@ -3374,6 +3420,31 @@ export namespace androidmanagement_v1 {
     roleType?: string | null;
   }
   /**
+   * A rule as a part of the Unified Update Control policy. See rules for how this is used.
+   */
+  export interface Schema$Rule {
+    /**
+     * Required. An EMM-defined identifier for this rule, of length at most 64 characters. This must not be empty. Within a UnifiedUpdatePolicy, different rules must have different ids.
+     */
+    id?: string | null;
+    /**
+     * Optional. Determines how to proceed with the update.
+     */
+    outcome?: Schema$Outcome;
+    /**
+     * Optional. The predicate of the rule, which can evaluate to true or false. See rules for how this is used. If not set, the predicate always evaluates to true.
+     */
+    predicate?: Schema$Predicate;
+    /**
+     * Optional. The stages at which the rule is evaluated. If this list is empty, the rule is evaluated at all stages. Specifying stages is supported only for OS_UPDATE_WITHOUT_API_LEVEL_CHANGE and OS_UPDATE_WITH_API_LEVEL_CHANGE. For SINGLE_APP, GOOGLE_SYSTEM_SERVICES, and GOOGLE_PLAY_SYSTEM_UPDATE, this field is ignored and the rule is evaluated at all stages.
+     */
+    stages?: string[] | null;
+    /**
+     * Required. Targets that this rule applies to. This can have multiple targets here for convenience, and that is equivalent to having multiple rules in sequence each having one target, in the same order in which targets are listed here. This list must not be empty and must not have duplicates.
+     */
+    targets?: Schema$Target[];
+  }
+  /**
    * Controls for the screen brightness settings.
    */
   export interface Schema$ScreenBrightnessSettings {
@@ -3483,6 +3554,15 @@ export namespace androidmanagement_v1 {
      * A URL where an enterprise admin can register their enterprise. The page can't be rendered in an iframe.
      */
     url?: string | null;
+  }
+  /**
+   * Details of an app on Google System services.
+   */
+  export interface Schema$SingleApp {
+    /**
+     * Required. The package name of the app. This can only be an app which is a part of GOOGLE_SYSTEM_SERVICES.
+     */
+    packageName?: string | null;
   }
   /**
    * Information about device software.
@@ -3711,6 +3791,19 @@ export namespace androidmanagement_v1 {
     updateStatus?: string | null;
   }
   /**
+   * A software component that can be updated.
+   */
+  export interface Schema$Target {
+    /**
+     * Details of an app on Google System services.
+     */
+    singleApp?: Schema$SingleApp;
+    /**
+     * Required. The type of software component that can be updated.
+     */
+    targetType?: string | null;
+  }
+  /**
    * Telephony information associated with a given SIM card on the device. This is supported for all SIM cards on fully managed devices on Android 6 and above. In addition, this is supported for admin-added eSIMs on all devices for Android 15 and above.
    */
   export interface Schema$TelephonyInfo {
@@ -3747,6 +3840,36 @@ export namespace androidmanagement_v1 {
      * A short header which appears above the HTML content.
      */
     header?: Schema$UserFacingMessage;
+  }
+  /**
+   * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and google.protobuf.Timestamp.
+   */
+  export interface Schema$TimeOfDay {
+    /**
+     * Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
+     */
+    minutes?: number | null;
+    /**
+     * Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
+     */
+    nanos?: number | null;
+    /**
+     * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
+  }
+  /**
+   * The Unified Update Control policy, for controlling updates of software components on the device (see Target). Supported only on company-owned devices.
+   */
+  export interface Schema$UnifiedUpdatePolicy {
+    /**
+     * Optional. When the policy is evaluated for a given target, all rules which refer to that target are evaluated in sequence. The first rule for which the predicate evaluates to true is considered, and its outcome is used. If no rule matches, the default update behavior applies. In other words, this behaves like a chained if-else statement.However, if an update has been available for more than a certain amount of time, any outcome of BLOCK is automatically changed to the default update behavior. At most 100 rules are allowed.
+     */
+    rules?: Schema$Rule[];
   }
   /**
    * Controls types of device activity logs collected from the device and reported via Pub/Sub notification (https://developers.google.com/android/management/notifications).
@@ -8044,6 +8167,7 @@ export namespace androidmanagement_v1 {
      *   //   "stayOnPluggedModes": [],
      *   //   "systemUpdate": {},
      *   //   "tetheringConfigDisabled": false,
+     *   //   "unifiedUpdatePolicy": {},
      *   //   "uninstallAppsDisabled": false,
      *   //   "unmuteMicrophoneDisabled": false,
      *   //   "usageLog": {},
@@ -8583,6 +8707,7 @@ export namespace androidmanagement_v1 {
      *       //   "stayOnPluggedModes": [],
      *       //   "systemUpdate": {},
      *       //   "tetheringConfigDisabled": false,
+     *       //   "unifiedUpdatePolicy": {},
      *       //   "uninstallAppsDisabled": false,
      *       //   "unmuteMicrophoneDisabled": false,
      *       //   "usageLog": {},
@@ -8692,6 +8817,7 @@ export namespace androidmanagement_v1 {
      *   //   "stayOnPluggedModes": [],
      *   //   "systemUpdate": {},
      *   //   "tetheringConfigDisabled": false,
+     *   //   "unifiedUpdatePolicy": {},
      *   //   "uninstallAppsDisabled": false,
      *   //   "unmuteMicrophoneDisabled": false,
      *   //   "usageLog": {},

@@ -676,6 +676,24 @@ export namespace compute_v1 {
      */
     externalIpv6PrefixLength?: number | null;
     /**
+     * Reference to the source of external IPv4 addresses,
+     * like a PublicDelegatedPrefix (PDP) for BYOIP.
+     * The PDP must support enhanced IPv4 allocations.
+     *
+     * Use one of the following formats to specify a PDP when allocating an
+     * external IPv4 address using BYOIP.
+     *
+     *    -
+     *    Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *    -
+     *    Partial URL, as in
+     *
+     *
+     *           - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *           - regions/region/publicDelegatedPrefixes/pdp-name
+     */
+    ipCollection?: string | null;
+    /**
      * Output only. [Output Only] Type of the resource. Alwayscompute#accessConfig for access configs.
      */
     kind?: string | null;
@@ -851,6 +869,12 @@ export namespace compute_v1 {
      */
     network?: string | null;
     /**
+     * Optional. The URL of the network attachment that this address comes from in the
+     * following format:
+     * projects/{project\}/regions/{region_name\}/networkAttachments/{network_attachment_name\}.
+     */
+    networkAttachment?: string | null;
+    /**
      * This signifies the networking tier used for configuring this address and
      * can only take the following values: PREMIUM orSTANDARD. Internal IP addresses are always Premium Tier;
      * global external IP addresses are always Premium Tier; regional external IP
@@ -908,6 +932,12 @@ export namespace compute_v1 {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string | null;
+    /**
+     * Optional. Producer Service's Service class ID for the region of this address. Can
+     * only be used with network_attachment. It is not possible to use on its own;
+     * however, network_attachment can be used without service_class_id.
+     */
+    serviceClassId?: string | null;
     /**
      * Output only. [Output Only] The status of the address, which can be one ofRESERVING, RESERVED, or IN_USE.
      * An address that is RESERVING is currently in the process of
@@ -3036,6 +3066,12 @@ export namespace compute_v1 {
      */
     description?: string | null;
     /**
+     * Dynamic forwarding configuration. This field is used to configure the
+     * backend service with dynamic forwarding feature which together with Service
+     * Extension allows customized and complex routing logic.
+     */
+    dynamicForwarding?: Schema$BackendServiceDynamicForwarding;
+    /**
      * [Output Only] The resource URL for the edge security policy associated with
      * this backend service.
      */
@@ -3814,6 +3850,43 @@ export namespace compute_v1 {
      * loadBalancingScheme set to EXTERNAL_MANAGED,INTERNAL_MANAGED INTERNAL_SELF_MANAGED.
      */
     name?: string | null;
+  }
+  /**
+   * Defines a dynamic forwarding configuration for the backend service.
+   */
+  export interface Schema$BackendServiceDynamicForwarding {
+    /**
+     * Dynamic Forwarding Proxy configuration.
+     */
+    forwardProxy?: Schema$BackendServiceDynamicForwardingForwardProxy;
+    /**
+     * IP:PORT based dynamic forwarding configuration.
+     */
+    ipPortSelection?: Schema$BackendServiceDynamicForwardingIpPortSelection;
+  }
+  /**
+   * Defines Dynamic Forwarding Proxy configuration.
+   */
+  export interface Schema$BackendServiceDynamicForwardingForwardProxy {
+    /**
+     * A boolean flag enabling dynamic forwarding proxy.
+     */
+    enabled?: boolean | null;
+    /**
+     * Determines the dynamic forwarding proxy mode.
+     */
+    proxyMode?: string | null;
+  }
+  /**
+   * Defines a IP:PORT based dynamic forwarding configuration for the backend
+   * service. Some ranges are restricted: Restricted
+   * ranges.
+   */
+  export interface Schema$BackendServiceDynamicForwardingIpPortSelection {
+    /**
+     * A boolean flag enabling IP:PORT based dynamic forwarding.
+     */
+    enabled?: boolean | null;
   }
   /**
    * For load balancers that have configurable
@@ -4918,6 +4991,15 @@ export namespace compute_v1 {
   }
   export interface Schema$CacheInvalidationRule {
     /**
+     * If set, this invalidation rule will only apply to requests routed to the
+     * given backend service or backend bucket.
+     * For example, for a backend bucket `bb1` in the same scope as the URL map,
+     * the path would be `projects/my-project/global/backendBuckets/bb1`; and
+     * for a backend service `bs1` in the same scope as the URL map, the path
+     * would be `projects/my-project/global/backendServices/bs1`.
+     */
+    backendService?: string | null;
+    /**
      * A list of cache tags used to identify cached objects.
      *
      *
@@ -4933,12 +5015,23 @@ export namespace compute_v1 {
      */
     cacheTags?: string[] | null;
     /**
+     * If set, this invalidation rule will only apply to responses with the given
+     * content-type. Parameters are not allowed and are ignored from the response
+     * when matching. Wildcards are not allowed.
+     */
+    contentType?: string | null;
+    /**
      * If set, this invalidation rule will only apply to requests with a Host
      * header matching host. This field also accepts wildcards (*) to replace the
      * leftmost (or first) label of a hostname. For example, *.example.com will
      * match www.example.com, but not sub1.dev.example.com.
      */
     host?: string | null;
+    /**
+     * If set, this invalidation rule will only apply to responses with the
+     * given HTTP status. Valid range is 200-599.
+     */
+    httpStatus?: number | null;
     path?: string | null;
   }
   /**
@@ -6074,9 +6167,28 @@ export namespace compute_v1 {
      */
     confidentialInstanceType?: string | null;
     /**
+     * Defines a set of Confidential Paravisor (SVSM) options.
+     */
+    confidentialParavisorConfig?: Schema$ConfidentialParavisorConfig;
+    /**
      * Defines whether the instance should have confidential compute enabled.
+     * When enabled, the technology used defaults to
+     * AMD SEV unless confidentialInstanceType is specified.
      */
     enableConfidentialCompute?: boolean | null;
+  }
+  /**
+   * A set of Confidential Paravisor (SVSM) options.
+   */
+  export interface Schema$ConfidentialParavisorConfig {
+    /**
+     * Defines the type of TPM to use for the confidential instance.
+     */
+    confidentialTpmType?: string | null;
+    /**
+     * Defines the IRQ mode to use for the confidential instance.
+     */
+    sevSnpIrqMode?: string | null;
   }
   /**
    * Message containing connection draining configuration.
@@ -6930,6 +7042,37 @@ export namespace compute_v1 {
      */
     sourceInstantSnapshotId?: string | null;
     /**
+     * The machine image to create the disk from. You can provide this as a
+     * partial or full URL to the resource. For example, the following are valid
+     * values:
+     *
+     *
+     *      - https://www.googleapis.com/compute/v1/projects/project/global/machineImages/machineImage
+     *    - projects/project/global/machineImages/machineImage
+     *      - global/machineImages/machineImage
+     */
+    sourceMachineImage?: string | null;
+    /**
+     * The device name of a disk within a given machine image. The
+     * source_machine_image must be specified.
+     */
+    sourceMachineImageDiskDeviceName?: string | null;
+    /**
+     * Thecustomer-supplied
+     * encryption key of the source machine image. Required if the source
+     * machine image is protected by a customer-supplied encryption key.
+     */
+    sourceMachineImageEncryptionKey?: Schema$CustomerEncryptionKey;
+    /**
+     * Output only. [Output Only] The unique ID of the machine image used to create this disk.
+     * This value identifies the exact machine image that was used to create this
+     * persistent disk. For example, if you created the persistent disk from a
+     * machine image that was later deleted and recreated under the same name, the
+     * source machine image ID would identify the exact version of the machine
+     * image that was used.
+     */
+    sourceMachineImageId?: string | null;
+    /**
      * The source snapshot used to create this disk. You can provide this as a
      * partial or full URL to the resource. For example, the following are valid
      * values:
@@ -7523,6 +7666,16 @@ export namespace compute_v1 {
      * 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
      */
     seconds?: string | null;
+  }
+  /**
+   * Dynamic compression policy for this URL Map's route.
+   */
+  export interface Schema$DynamicCompressionPolicy {
+    /**
+     * Compress text responses using Brotli or gzip compression, based on
+     * the client's Accept-Encoding header.
+     */
+    compressionMode?: string | null;
   }
   /**
    * Describes the cause of the error with structured details.
@@ -8212,6 +8365,19 @@ export namespace compute_v1 {
      */
     parent?: string | null;
     /**
+     * Indicates the source of this Firewall Policy. This field is optional on
+     * creation and defaults to USER_DEFINED.
+     *
+     * The USER_DEFINED value indicates a regular firewall policy.
+     *
+     * The SYSTEM value indicates a system-level policy managed by an
+     * internal service like GKE. This SYSTEM value is reserved for
+     * internal services and cannot be set by users during policy creation.
+     * Policies with a SYSTEM source cannot be modified or deleted by
+     * users.
+     */
+    policySource?: string | null;
+    /**
      * The type of the firewall policy. This field can be one of
      * VPC_POLICY, RDMA_ROCE_POLICY or ULL_POLICY.
      *
@@ -8687,6 +8853,34 @@ export namespace compute_v1 {
      */
     attachedExtensions?: Schema$ForwardingRuleAttachedExtension[];
     /**
+     * Output only. [Output Only] Specifies the load balancing availability group, one of the
+     * two that collectively provide high availability.
+     *
+     * Specifies the availability group of the forwarding rule. This
+     * field is for use by global external passthrough load balancers (load
+     * balancing scheme EXTERNAL_PASSTHROUGH) and is set for the
+     * child forwarding rules only. The possible values are:
+     *
+     *    - AVAILABILITY_GROUP0: Set for the child forwarding rule
+     *    that is programmed on the AVAILABILITY_GROUP0 load balancing
+     *    stack. The child forwarding rule has the same IP protocol, port, and
+     *    backend service settings as the parent forwarding rule, but has only one of
+     *    the two IP addresses of the parent forwarding rule, the one with the
+     *    purpose PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0.
+     *    - AVAILABILITY_GROUP1: Set for the child forwarding rule
+     *    that is programmed on the AVAILABILITY_GROUP1 load balancing
+     *    stack. The child forwarding rule has the same IP protocol, port and backend
+     *    service settings as the parent forwarding rule, but has only one of the two
+     *    IP addresses of the parent forwarding rule, the one with the purposePASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1.
+     *
+     *
+     *
+     * For each global external Passthrough Network Load Balancer forwarding rule
+     * (a parent forwarding rule) that you create, Google Cloud generates two
+     * output-only child forwarding rules, one forAVAILABILITY_GROUP0 and one forAVAILABILITY_GROUP1.
+     */
+    availabilityGroup?: string | null;
+    /**
      * Identifies the backend service to which the forwarding rule sends traffic.
      *
      * It is a required field for the following load balancers:
@@ -8711,6 +8905,17 @@ export namespace compute_v1 {
      * specified.
      */
     baseForwardingRule?: string | null;
+    /**
+     * Output only. [Output Only] The resource URLs for the child forwarding rules.
+     *
+     * Applicable only to the parent forwarding rule of global
+     * external passthrough load balancers. This field contains the list of child
+     * forwarding rule URLs associated with the parent forwarding rule: one for
+     * each availability group. AVAILABILITY_GROUP0 will be the first element, and
+     * AVAILABILITY_GROUP1 will be the second element. Refer to theavailabilityGroup field for further details. It cannot be set
+     * by any other forwarding rules.
+     */
+    childForwardingRules?: string[] | null;
     /**
      * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
@@ -8815,6 +9020,64 @@ export namespace compute_v1 {
      * forwarding rules set the IPAddress field instead. Refer to theavailabilityGroup field for further details.
      */
     IPAddress?: string | null;
+    /**
+     * IP addresses for which this forwarding rule accepts traffic. All IP
+     * addresses must have the same IP version, IPv4 or IPv6. When a client sends
+     * traffic that matches one of the specified IP addresses, protocol and ports,
+     * the forwarding rule directs the traffic to the referencedbackendService. All IP addresses are served by the same set of
+     * backends, and they share the target capacities specified in the backend
+     * service fairly.
+     *
+     * Global external Passthrough Network Load Balancer requires two IP addresses
+     * for each forwarding rule to provide high availability when both IP
+     * addresses are used to serve client requests. The two IP addresses must come
+     * from global IP pools that belong to two distinct Availability
+     * Groups, represented by the purposePASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0 andPASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1. TheIPAddresses field specifies zero, one, or two IP addresses:
+     *
+     *    - If omitted, Google Cloud assigns two ephemeral IP addresses, one from
+     *    each Availability Group.
+     *    - If you specify one IP address that references an existing static IP
+     *    address resource from one Availability Group, Google Cloud assigns an
+     *    ephemeral IP address from the other Availability Group.
+     *    - If you specify two IP addresses that reference existing static IP
+     *    address resources, they are required to be from different Availability
+     *    Groups.
+     *
+     *
+     *
+     * For global external Passthrough Network Load Balancer, each IP address can be one of the following:
+     *
+     *    - A static or ephemeral IPv4 address from a Google-owned IP pool.
+     *    - A static IPv4 address from a global public delegated prefix.
+     *    - A static or ephemeral IPv6 /96 prefix from a Google-owned IP pool.
+     *
+     *
+     *
+     * For global external Passthrough Network Load Balancer, the two IP addresses
+     * can be of different types. One IP address can be from a BYOIP prefix while
+     * the other is from a Google-owned IP pool. One IP address can be static
+     * while the other is ephemeral. However, both IP addresses must have the same
+     * IP version, IPv4 or IPv6.
+     *
+     * The IP addresses can only be set at creation and cannot be updated.
+     *
+     * When creating a global external Passthrough Network Load Balancer
+     * forwarding rule (a parent forwarding rule), you must use theIPAddresses field, but the Google Cloud-generated child
+     * forwarding rules set the IPAddress field instead. Refer to theavailabilityGroup field for further details.
+     *
+     * Refer to the IPAddress field for the formats that can be used
+     * to specify IP addresses while creating a forwarding rule.
+     *
+     * Because Passthrough Network Load Balancers do not terminate or translate
+     * traffic, the backend stack types must be compatible with the forwarding
+     * rule IP version:
+     *
+     *    - If the forwarding rule IP version is IPv4, backends should be
+     *    configured as dual-stack or IPv4-only.
+     *    - If the forwarding rule IP version is IPv6, backends should be
+     *    configured as dual-stack or IPv6-only.
+     */
+    IPAddresses?: string[] | null;
     /**
      * Resource reference of a PublicDelegatedPrefix. The PDP must
      * be a sub-PDP in EXTERNAL_IPV6_FORWARDING_RULE_CREATION mode.
@@ -8954,6 +9217,14 @@ export namespace compute_v1 {
      * this field. Once set, this field is not mutable.
      */
     noAutomateDnsZone?: boolean | null;
+    /**
+     * Output only. [Output Only] The resource URL for the parent forwarding rule.
+     *
+     * Applicable only to the child forwarding rules of global external
+     * passthrough load balancers. This field contains the URL of the parent
+     * forwarding rule.
+     */
+    parentForwardingRule?: string | null;
     /**
      * The ports, portRange, and allPorts
      * fields are mutually exclusive. Only packets addressed to ports in the
@@ -12262,6 +12533,11 @@ export namespace compute_v1 {
      */
     corsPolicy?: Schema$CorsPolicy;
     /**
+     * Dynamic compression policy for this URL Map's route. Available only for
+     * Global EXTERNAL_MANAGED load balancer schemes.
+     */
+    dynamicCompressionPolicy?: Schema$DynamicCompressionPolicy;
+    /**
      * The specification for fault injection introduced into traffic to test
      * the resiliency of clients to backend service failure. As part of fault
      * injection, when clients send requests to a backend service, delays can be
@@ -12277,6 +12553,13 @@ export namespace compute_v1 {
      * balancing: Routing and traffic management features.
      */
     faultInjectionPolicy?: Schema$HttpFaultInjection;
+    /**
+     * Image optimization policy for this URL Map's route. Available only for
+     * Global EXTERNAL_MANAGED load balancer schemes.
+     * Either Cloud CDN must be enabled on the backend service or backend bucket
+     * serving the route, or cache policy must be configured on the same route
+     */
+    imageOptimizationPolicy?: Schema$ImageOptimizationPolicy;
     /**
      * Specifies the maximum duration (timeout) for streams on the selected route.
      * Unlike the timeout field where the timeout duration starts
@@ -13066,6 +13349,20 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  /**
+   * The configuration for Cloud CDN's image optimization feature. This feature
+   * dynamically processes and delivers images from the network edge.
+   * Image Optimization is only available for Global External Application Load
+   * Balancers.
+   * Either Cloud CDN must be enabled on the backend service or backend bucket
+   * serving the route, or cache policy must be configured on the same route.
+   */
+  export interface Schema$ImageOptimizationPolicy {
+    /**
+     * Specifies whether to interpret query parameters for image optimization.
+     */
+    queryParameterInterpretation?: string | null;
   }
   /**
    * Additional image params.
@@ -19311,6 +19608,16 @@ export namespace compute_v1 {
    */
   export interface Schema$MachineImageParams {
     /**
+     * Input only. Specifies the list of disk device names that must be excluded from the
+     * new machine image.
+     */
+    excludedDisks?: string[] | null;
+    /**
+     * Input only. Specifies the list of disk device names that must be included with the
+     * new machine image.
+     */
+    includedDisks?: string[] | null;
+    /**
      * Input only. Resource manager tags to be bound to the machine image. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
@@ -19943,6 +20250,10 @@ export namespace compute_v1 {
    * information, readVirtual Private Cloud (VPC) Network.
    */
   export interface Schema$Network {
+    /**
+     * Output only. [Output Only] Additional tags for this resource.
+     */
+    additionalTags?: string[] | null;
     /**
      * Must be set to create a VPC network. If not set, a legacy network is
      * created.
@@ -24301,6 +24612,33 @@ export namespace compute_v1 {
      */
     publicDelegatedSubPrefixs?: Schema$PublicDelegatedPrefixPublicDelegatedSubPrefix[];
     /**
+     * Immutable. The purpose of the public delegated prefix.
+     *
+     * This field can only be set for the top-level global public delegated
+     * prefix. It is an output-only field for the sub-delegates that inherit the
+     * value from the top-level global public delegated prefix. Once the value is
+     * set, it cannot be changed.
+     *
+     * The field cannot be set for regional public delegated prefixes.
+     *
+     * The supported values are:
+     *
+     *
+     *      - APPLICATION_AND_PROXY_LOAD_BALANCERS: The global public
+     *      delegated prefix can only be used by Global External Application and
+     *      Proxy Load Balancers to allocate addresses for forwarding rules. This is
+     *      the default value.
+     *      - PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0: The
+     *      global public delegated prefix can only be used by Global External
+     *      Passthrough Network Load Balancers to allocate Availability Group 0
+     *      addresses for forwarding rules.
+     *      - PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1: The
+     *      global public delegated prefix can only be used by Global External
+     *      Passthrough Network Load Balancers to allocate Availability Group 1
+     *      addresses for forwarding rules.
+     */
+    purpose?: string | null;
+    /**
      * Output only. [Output Only] URL of the region where the public delegated prefix resides.
      * This field applies only to the region resource. You must specify this
      * field as part of the HTTP request URL. It is not settable as a field in
@@ -24461,6 +24799,11 @@ export namespace compute_v1 {
      * The name of the sub public delegated prefix.
      */
     name?: string | null;
+    /**
+     * Output only. [Output Only] The purpose of the sub public delegated prefix. Inherited
+     * from parent prefix.
+     */
+    purpose?: string | null;
     /**
      * Output only. [Output Only] The region of the sub public delegated prefix if it is
      * regional. If absent, the sub prefix is global.
@@ -26929,6 +27272,12 @@ export namespace compute_v1 {
      */
     gracefulShutdownTimestamp?: string | null;
     /**
+     * Output only. Protection tier for the workload which specifies the workload
+     * expectations in the event of infrastructure failures at data center
+     * (e.g. power and/or cooling failures).
+     */
+    protectionTier?: string | null;
+    /**
      * Time in future when the instance will be terminated inRFC3339 text format.
      */
     terminationTimestamp?: string | null;
@@ -28885,6 +29234,10 @@ export namespace compute_v1 {
     advertisedRoutes?: Schema$Route[];
     bfdStatus?: Schema$BfdStatus;
     /**
+     * Output only. [Output Only] Indicates whether the BGP peer is in a depreferenced state.
+     */
+    depreferenced?: boolean | null;
+    /**
      * Output only. Enable IPv4 traffic over BGP Peer.
      * It is enabled by default if the peerIpAddress is version 4.
      */
@@ -29276,6 +29629,12 @@ export namespace compute_v1 {
      * there will be no wait before the G2 Soft Off signal is triggered.
      */
     preemptionNoticeDuration?: Schema$Duration;
+    /**
+     * Protection tier for the workload which specifies the workload
+     * expectations in the event of infrastructure failures at data center
+     * (e.g. power and/or cooling failures).
+     */
+    protectionTier?: string | null;
     /**
      * Specifies the provisioning model of the instance.
      */
@@ -31025,7 +31384,8 @@ export namespace compute_v1 {
      */
     snapshotGroupName?: string | null;
     /**
-     * Indicates the type of the snapshot.
+     * Indicates the type of the snapshot. Valid values are ARCHIVE
+     * or STANDARD. The default is STANDARD.
      */
     snapshotType?: string | null;
     /**
@@ -33598,7 +33958,7 @@ export namespace compute_v1 {
      * Certificate Manager Certificates accepted formats are:
      *
      *    - //certificatemanager.googleapis.com/projects/{project\}/locations/{location\}/certificates/{resourceName\}.
-     *    - https://certificatemanager.googleapis.com/v1alpha1/projects/{project\}/locations/{location\}/certificates/{resourceName\}.
+     *    - https://certificatemanager.{universeDomain\}/v1alpha1/projects/{project\}/locations/{location\}/certificates/{resourceName\}.
      */
     sslCertificates?: string[] | null;
     /**
@@ -35024,6 +35384,10 @@ export namespace compute_v1 {
      */
     selfLink?: string | null;
     /**
+     * Output only. [Output Only] The status of the URL map.
+     */
+    status?: Schema$UrlMapStatus;
+    /**
      * The list of expected URL mapping tests. Request to update theUrlMap succeeds only if all test cases pass. You can specify a
      * maximum of 100 tests per UrlMap.
      *
@@ -35068,6 +35432,19 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  /**
+   * Message representing the quota usage for a UrlMap.
+   */
+  export interface Schema$UrlMapQuotaUsage {
+    /**
+     * Output only. The number of forwarding rules that uses this UrlMap.
+     */
+    forwardingRules?: number | null;
+    /**
+     * Output only. The number of quota units calculated for this UrlMap.
+     */
+    units?: string | null;
   }
   export interface Schema$UrlMapReference {
     urlMap?: string | null;
@@ -35124,6 +35501,15 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  /**
+   * [Output Only] The status of the URL map.
+   */
+  export interface Schema$UrlMapStatus {
+    /**
+     * Output only. Summary of quota usage for given UrlMap.
+     */
+    quotaUsage?: Schema$UrlMapQuotaUsage;
   }
   export interface Schema$UrlMapsValidateRequest {
     /**
@@ -35230,6 +35616,10 @@ export namespace compute_v1 {
      * If false, 'loadErrors' indicates the reasons.
      */
     loadSucceeded?: boolean | null;
+    /**
+     * Output only. Summary of quota usage for given UrlMap.
+     */
+    quotaUsage?: Schema$UrlMapQuotaUsage;
     testFailures?: Schema$TestFailure[];
     /**
      * If successfully loaded, this field indicates whether the test passed.
@@ -36793,10 +37183,15 @@ export namespace compute_v1 {
      *    pseudowires.
      */
     faultResponse?: string | null;
+    /**
+     * The flow management configuration for the wire.
+     */
+    flowManagement?: string | null;
   }
   export interface Schema$WorkloadIdentityConfig {
     identity?: string | null;
     identityCertificateEnabled?: boolean | null;
+    identityType?: string | null;
   }
   export interface Schema$XpnHostList {
     /**
@@ -37234,7 +37629,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/acceleratorTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -37391,7 +37786,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/acceleratorTypes/{acceleratorType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -37622,7 +38017,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/acceleratorTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -38098,7 +38493,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/addresses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -38282,7 +38677,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/addresses/{address}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -38361,11 +38756,13 @@ export namespace compute_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
+     *   //   "networkAttachment": "my_networkAttachment",
      *   //   "networkTier": "my_networkTier",
      *   //   "prefixLength": 0,
      *   //   "purpose": "my_purpose",
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
+     *   //   "serviceClassId": "my_serviceClassId",
      *   //   "status": "my_status",
      *   //   "subnetwork": "my_subnetwork",
      *   //   "users": []
@@ -38446,7 +38843,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/addresses/{address}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -38537,11 +38934,13 @@ export namespace compute_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "networkAttachment": "my_networkAttachment",
      *       //   "networkTier": "my_networkTier",
      *       //   "prefixLength": 0,
      *       //   "purpose": "my_purpose",
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
+     *       //   "serviceClassId": "my_serviceClassId",
      *       //   "status": "my_status",
      *       //   "subnetwork": "my_subnetwork",
      *       //   "users": []
@@ -38657,7 +39056,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/addresses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -38887,7 +39286,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/addresses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -39080,7 +39479,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/addresses/{address}/move'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -39275,7 +39674,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/addresses/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -39432,7 +39831,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/addresses/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -39970,7 +40369,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/advice/calendarMode'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -40128,7 +40527,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/advice/capacity'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -40287,7 +40686,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/advice/capacityHistory'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -40585,7 +40984,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/autoscalers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -40770,7 +41169,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/autoscalers/{autoscaler}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -40927,7 +41326,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/autoscalers/{autoscaler}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -41132,7 +41531,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/autoscalers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -41362,7 +41761,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/autoscalers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -41571,7 +41970,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/autoscalers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -41728,7 +42127,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/autoscalers/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -41935,7 +42334,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/autoscalers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -42510,7 +42909,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}/addSignedUrlKey'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -42757,7 +43156,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/backendBuckets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -42940,7 +43339,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -43127,7 +43526,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}/deleteSignedUrlKey'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -43286,7 +43685,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -43435,7 +43834,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -43639,7 +44038,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/backendBuckets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -43867,7 +44266,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/backendBuckets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -44098,7 +44497,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/listUsable'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -44307,7 +44706,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -44501,7 +44900,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}/setEdgeSecurityPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -44657,7 +45056,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -44812,7 +45211,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -45019,7 +45418,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -45785,7 +46184,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}/addSignedUrlKey'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -46033,7 +46432,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/backendServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -46218,7 +46617,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -46405,7 +46804,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}/deleteSignedUrlKey'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -46482,6 +46881,7 @@ export namespace compute_v1 {
      *   //   "customRequestHeaders": [],
      *   //   "customResponseHeaders": [],
      *   //   "description": "my_description",
+     *   //   "dynamicForwarding": {},
      *   //   "edgeSecurityPolicy": "my_edgeSecurityPolicy",
      *   //   "enableCDN": false,
      *   //   "externalManagedMigrationState": "my_externalManagedMigrationState",
@@ -46600,7 +47000,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -46738,7 +47138,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}/getEffectiveSecurityPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -46902,7 +47302,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}/getHealth'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -47051,7 +47451,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -47141,6 +47541,7 @@ export namespace compute_v1 {
      *       //   "customRequestHeaders": [],
      *       //   "customResponseHeaders": [],
      *       //   "description": "my_description",
+     *       //   "dynamicForwarding": {},
      *       //   "edgeSecurityPolicy": "my_edgeSecurityPolicy",
      *       //   "enableCDN": false,
      *       //   "externalManagedMigrationState": "my_externalManagedMigrationState",
@@ -47292,7 +47693,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/backendServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -47520,7 +47921,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/backendServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -47754,7 +48155,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/listUsable'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -47848,6 +48249,7 @@ export namespace compute_v1 {
      *       //   "customRequestHeaders": [],
      *       //   "customResponseHeaders": [],
      *       //   "description": "my_description",
+     *       //   "dynamicForwarding": {},
      *       //   "edgeSecurityPolicy": "my_edgeSecurityPolicy",
      *       //   "enableCDN": false,
      *       //   "externalManagedMigrationState": "my_externalManagedMigrationState",
@@ -48000,7 +48402,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -48194,7 +48596,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}/setEdgeSecurityPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -48350,7 +48752,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -48544,7 +48946,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}/setSecurityPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -48699,7 +49101,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -48791,6 +49193,7 @@ export namespace compute_v1 {
      *       //   "customRequestHeaders": [],
      *       //   "customResponseHeaders": [],
      *       //   "description": "my_description",
+     *       //   "dynamicForwarding": {},
      *       //   "edgeSecurityPolicy": "my_edgeSecurityPolicy",
      *       //   "enableCDN": false,
      *       //   "externalManagedMigrationState": "my_externalManagedMigrationState",
@@ -48943,7 +49346,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/backendServices/{backendService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -49756,7 +50159,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks/{crossSiteNetwork}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -49905,7 +50308,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks/{crossSiteNetwork}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -50103,7 +50506,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -50334,7 +50737,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -50538,7 +50941,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks/{crossSiteNetwork}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -50945,7 +51348,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/addResourcePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -51189,7 +51592,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/disks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -51381,7 +51784,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/bulkInsert'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -51575,7 +51978,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/bulkSetLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -51814,7 +52217,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/createSnapshot'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -52002,7 +52405,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -52109,6 +52512,10 @@ export namespace compute_v1 {
      *   //   "sourceImageId": "my_sourceImageId",
      *   //   "sourceInstantSnapshot": "my_sourceInstantSnapshot",
      *   //   "sourceInstantSnapshotId": "my_sourceInstantSnapshotId",
+     *   //   "sourceMachineImage": "my_sourceMachineImage",
+     *   //   "sourceMachineImageDiskDeviceName": "my_sourceMachineImageDiskDeviceName",
+     *   //   "sourceMachineImageEncryptionKey": {},
+     *   //   "sourceMachineImageId": "my_sourceMachineImageId",
      *   //   "sourceSnapshot": "my_sourceSnapshot",
      *   //   "sourceSnapshotEncryptionKey": {},
      *   //   "sourceSnapshotId": "my_sourceSnapshotId",
@@ -52195,7 +52602,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -52346,7 +52753,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -52470,6 +52877,10 @@ export namespace compute_v1 {
      *       //   "sourceImageId": "my_sourceImageId",
      *       //   "sourceInstantSnapshot": "my_sourceInstantSnapshot",
      *       //   "sourceInstantSnapshotId": "my_sourceInstantSnapshotId",
+     *       //   "sourceMachineImage": "my_sourceMachineImage",
+     *       //   "sourceMachineImageDiskDeviceName": "my_sourceMachineImageDiskDeviceName",
+     *       //   "sourceMachineImageEncryptionKey": {},
+     *       //   "sourceMachineImageId": "my_sourceMachineImageId",
      *       //   "sourceSnapshot": "my_sourceSnapshot",
      *       //   "sourceSnapshotEncryptionKey": {},
      *       //   "sourceSnapshotId": "my_sourceSnapshotId",
@@ -52590,7 +53001,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}/disks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -52818,7 +53229,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}/disks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -53013,7 +53424,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/removeResourcePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -53206,7 +53617,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/resize'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -53364,7 +53775,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -53558,7 +53969,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -53754,7 +54165,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/startAsyncReplication'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -53942,7 +54353,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/stopAsyncReplication'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -54137,7 +54548,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/stopGroupAsyncReplication'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -54294,7 +54705,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -54420,6 +54831,10 @@ export namespace compute_v1 {
      *       //   "sourceImageId": "my_sourceImageId",
      *       //   "sourceInstantSnapshot": "my_sourceInstantSnapshot",
      *       //   "sourceInstantSnapshotId": "my_sourceInstantSnapshotId",
+     *       //   "sourceMachineImage": "my_sourceMachineImage",
+     *       //   "sourceMachineImageDiskDeviceName": "my_sourceMachineImageDiskDeviceName",
+     *       //   "sourceMachineImageEncryptionKey": {},
+     *       //   "sourceMachineImageId": "my_sourceMachineImageId",
      *       //   "sourceSnapshot": "my_sourceSnapshot",
      *       //   "sourceSnapshotEncryptionKey": {},
      *       //   "sourceSnapshotId": "my_sourceSnapshotId",
@@ -54541,7 +54956,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -54735,7 +55150,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/updateKmsKey'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -55753,7 +56168,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/diskTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -55907,7 +56322,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/diskTypes/{diskType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -56136,7 +56551,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}/diskTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -56550,7 +56965,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/externalVpnGateways/{externalVpnGateway}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -56705,7 +57120,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/externalVpnGateways/{externalVpnGateway}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -56905,7 +57320,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/externalVpnGateways'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -57136,7 +57551,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/externalVpnGateways'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -57316,7 +57731,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/externalVpnGateways/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -57471,7 +57886,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/externalVpnGateways/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -57864,7 +58279,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}/addAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -58068,7 +58483,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}/addRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -58250,7 +58665,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}/cloneRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -58430,7 +58845,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -58501,6 +58916,7 @@ export namespace compute_v1 {
      *   //   "name": "my_name",
      *   //   "packetMirroringRules": [],
      *   //   "parent": "my_parent",
+     *   //   "policySource": "my_policySource",
      *   //   "policyType": "my_policyType",
      *   //   "region": "my_region",
      *   //   "ruleTupleCount": 0,
@@ -58587,7 +59003,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -58738,7 +59154,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}/getAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -58884,7 +59300,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -59043,7 +59459,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}/getRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -59130,6 +59546,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "packetMirroringRules": [],
      *       //   "parent": "my_parent",
+     *       //   "policySource": "my_policySource",
      *       //   "policyType": "my_policyType",
      *       //   "region": "my_region",
      *       //   "ruleTupleCount": 0,
@@ -59249,7 +59666,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/locations/global/firewallPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -59477,7 +59894,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/locations/global/firewallPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -59632,7 +60049,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/listAssociations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -59818,7 +60235,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}/move'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -59902,6 +60319,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "packetMirroringRules": [],
      *       //   "parent": "my_parent",
+     *       //   "policySource": "my_policySource",
      *       //   "policyType": "my_policyType",
      *       //   "region": "my_region",
      *       //   "ruleTupleCount": 0,
@@ -60022,7 +60440,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -60228,7 +60646,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}/patchRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -60410,7 +60828,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}/removeAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -60592,7 +61010,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{firewallPolicy}/removeRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -60745,7 +61163,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -60897,7 +61315,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/firewallPolicies/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -61530,7 +61948,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewalls/{firewall}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -61691,7 +62109,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewalls/{firewall}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -61898,7 +62316,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/firewalls'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -62125,7 +62543,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/firewalls'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -62337,7 +62755,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewalls/{firewall}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -62492,7 +62910,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewalls/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -62704,7 +63122,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewalls/{firewall}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -63194,7 +63612,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/forwardingRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -63381,7 +63799,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -63450,13 +63868,16 @@ export namespace compute_v1 {
      *   // Example response
      *   // {
      *   //   "IPAddress": "my_IPAddress",
+     *   //   "IPAddresses": [],
      *   //   "IPProtocol": "my_IPProtocol",
      *   //   "allPorts": false,
      *   //   "allowGlobalAccess": false,
      *   //   "allowPscGlobalAccess": false,
      *   //   "attachedExtensions": [],
+     *   //   "availabilityGroup": "my_availabilityGroup",
      *   //   "backendService": "my_backendService",
      *   //   "baseForwardingRule": "my_baseForwardingRule",
+     *   //   "childForwardingRules": [],
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
      *   //   "externalManagedBackendBucketMigrationState": "my_externalManagedBackendBucketMigrationState",
@@ -63475,6 +63896,7 @@ export namespace compute_v1 {
      *   //   "network": "my_network",
      *   //   "networkTier": "my_networkTier",
      *   //   "noAutomateDnsZone": false,
+     *   //   "parentForwardingRule": "my_parentForwardingRule",
      *   //   "portRange": "my_portRange",
      *   //   "ports": [],
      *   //   "pscConnectionId": "my_pscConnectionId",
@@ -63567,7 +63989,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -63646,13 +64068,16 @@ export namespace compute_v1 {
      *       // request body parameters
      *       // {
      *       //   "IPAddress": "my_IPAddress",
+     *       //   "IPAddresses": [],
      *       //   "IPProtocol": "my_IPProtocol",
      *       //   "allPorts": false,
      *       //   "allowGlobalAccess": false,
      *       //   "allowPscGlobalAccess": false,
      *       //   "attachedExtensions": [],
+     *       //   "availabilityGroup": "my_availabilityGroup",
      *       //   "backendService": "my_backendService",
      *       //   "baseForwardingRule": "my_baseForwardingRule",
+     *       //   "childForwardingRules": [],
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
      *       //   "externalManagedBackendBucketMigrationState": "my_externalManagedBackendBucketMigrationState",
@@ -63671,6 +64096,7 @@ export namespace compute_v1 {
      *       //   "network": "my_network",
      *       //   "networkTier": "my_networkTier",
      *       //   "noAutomateDnsZone": false,
+     *       //   "parentForwardingRule": "my_parentForwardingRule",
      *       //   "portRange": "my_portRange",
      *       //   "ports": [],
      *       //   "pscConnectionId": "my_pscConnectionId",
@@ -63797,7 +64223,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/forwardingRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -64028,7 +64454,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/forwardingRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -64112,13 +64538,16 @@ export namespace compute_v1 {
      *       // request body parameters
      *       // {
      *       //   "IPAddress": "my_IPAddress",
+     *       //   "IPAddresses": [],
      *       //   "IPProtocol": "my_IPProtocol",
      *       //   "allPorts": false,
      *       //   "allowGlobalAccess": false,
      *       //   "allowPscGlobalAccess": false,
      *       //   "attachedExtensions": [],
+     *       //   "availabilityGroup": "my_availabilityGroup",
      *       //   "backendService": "my_backendService",
      *       //   "baseForwardingRule": "my_baseForwardingRule",
+     *       //   "childForwardingRules": [],
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
      *       //   "externalManagedBackendBucketMigrationState": "my_externalManagedBackendBucketMigrationState",
@@ -64137,6 +64566,7 @@ export namespace compute_v1 {
      *       //   "network": "my_network",
      *       //   "networkTier": "my_networkTier",
      *       //   "noAutomateDnsZone": false,
+     *       //   "parentForwardingRule": "my_parentForwardingRule",
      *       //   "portRange": "my_portRange",
      *       //   "ports": [],
      *       //   "pscConnectionId": "my_pscConnectionId",
@@ -64263,7 +64693,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -64459,7 +64889,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/forwardingRules/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -64653,7 +65083,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}/setTarget'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -65306,7 +65736,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/futureReservations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -65493,7 +65923,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/futureReservations/{futureReservation}/cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -65678,7 +66108,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/futureReservations/{futureReservation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -65854,7 +66284,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/futureReservations/{futureReservation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -66075,7 +66505,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/futureReservations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -66312,7 +66742,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/futureReservations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -66539,7 +66969,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/futureReservations/{futureReservation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -67083,7 +67513,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/addresses/{address}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -67160,11 +67590,13 @@ export namespace compute_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
+     *   //   "networkAttachment": "my_networkAttachment",
      *   //   "networkTier": "my_networkTier",
      *   //   "prefixLength": 0,
      *   //   "purpose": "my_purpose",
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
+     *   //   "serviceClassId": "my_serviceClassId",
      *   //   "status": "my_status",
      *   //   "subnetwork": "my_subnetwork",
      *   //   "users": []
@@ -67246,7 +67678,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/addresses/{address}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -67335,11 +67767,13 @@ export namespace compute_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "networkAttachment": "my_networkAttachment",
      *       //   "networkTier": "my_networkTier",
      *       //   "prefixLength": 0,
      *       //   "purpose": "my_purpose",
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
+     *       //   "serviceClassId": "my_serviceClassId",
      *       //   "status": "my_status",
      *       //   "subnetwork": "my_subnetwork",
      *       //   "users": []
@@ -67455,7 +67889,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/addresses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -67682,7 +68116,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/addresses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -67874,7 +68308,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/addresses/{address}/move'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -68053,7 +68487,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/addresses/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -68208,7 +68642,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/addresses/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -68618,7 +69052,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/forwardingRules/{forwardingRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -68686,13 +69120,16 @@ export namespace compute_v1 {
      *   // Example response
      *   // {
      *   //   "IPAddress": "my_IPAddress",
+     *   //   "IPAddresses": [],
      *   //   "IPProtocol": "my_IPProtocol",
      *   //   "allPorts": false,
      *   //   "allowGlobalAccess": false,
      *   //   "allowPscGlobalAccess": false,
      *   //   "attachedExtensions": [],
+     *   //   "availabilityGroup": "my_availabilityGroup",
      *   //   "backendService": "my_backendService",
      *   //   "baseForwardingRule": "my_baseForwardingRule",
+     *   //   "childForwardingRules": [],
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
      *   //   "externalManagedBackendBucketMigrationState": "my_externalManagedBackendBucketMigrationState",
@@ -68711,6 +69148,7 @@ export namespace compute_v1 {
      *   //   "network": "my_network",
      *   //   "networkTier": "my_networkTier",
      *   //   "noAutomateDnsZone": false,
+     *   //   "parentForwardingRule": "my_parentForwardingRule",
      *   //   "portRange": "my_portRange",
      *   //   "ports": [],
      *   //   "pscConnectionId": "my_pscConnectionId",
@@ -68803,7 +69241,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/forwardingRules/{forwardingRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -68880,13 +69318,16 @@ export namespace compute_v1 {
      *       // request body parameters
      *       // {
      *       //   "IPAddress": "my_IPAddress",
+     *       //   "IPAddresses": [],
      *       //   "IPProtocol": "my_IPProtocol",
      *       //   "allPorts": false,
      *       //   "allowGlobalAccess": false,
      *       //   "allowPscGlobalAccess": false,
      *       //   "attachedExtensions": [],
+     *       //   "availabilityGroup": "my_availabilityGroup",
      *       //   "backendService": "my_backendService",
      *       //   "baseForwardingRule": "my_baseForwardingRule",
+     *       //   "childForwardingRules": [],
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
      *       //   "externalManagedBackendBucketMigrationState": "my_externalManagedBackendBucketMigrationState",
@@ -68905,6 +69346,7 @@ export namespace compute_v1 {
      *       //   "network": "my_network",
      *       //   "networkTier": "my_networkTier",
      *       //   "noAutomateDnsZone": false,
+     *       //   "parentForwardingRule": "my_parentForwardingRule",
      *       //   "portRange": "my_portRange",
      *       //   "ports": [],
      *       //   "pscConnectionId": "my_pscConnectionId",
@@ -69030,7 +69472,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/forwardingRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -69258,7 +69700,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/forwardingRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -69340,13 +69782,16 @@ export namespace compute_v1 {
      *       // request body parameters
      *       // {
      *       //   "IPAddress": "my_IPAddress",
+     *       //   "IPAddresses": [],
      *       //   "IPProtocol": "my_IPProtocol",
      *       //   "allPorts": false,
      *       //   "allowGlobalAccess": false,
      *       //   "allowPscGlobalAccess": false,
      *       //   "attachedExtensions": [],
+     *       //   "availabilityGroup": "my_availabilityGroup",
      *       //   "backendService": "my_backendService",
      *       //   "baseForwardingRule": "my_baseForwardingRule",
+     *       //   "childForwardingRules": [],
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
      *       //   "externalManagedBackendBucketMigrationState": "my_externalManagedBackendBucketMigrationState",
@@ -69365,6 +69810,7 @@ export namespace compute_v1 {
      *       //   "network": "my_network",
      *       //   "networkTier": "my_networkTier",
      *       //   "noAutomateDnsZone": false,
+     *       //   "parentForwardingRule": "my_parentForwardingRule",
      *       //   "portRange": "my_portRange",
      *       //   "ports": [],
      *       //   "pscConnectionId": "my_pscConnectionId",
@@ -69491,7 +69937,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/forwardingRules/{forwardingRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -69671,7 +70117,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/forwardingRules/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -69863,7 +70309,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/forwardingRules/{forwardingRule}/setTarget'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -70258,7 +70704,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/globalFrontendSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -70424,7 +70870,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/globalFrontendSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -70654,7 +71100,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networkEndpointGroups/{networkEndpointGroup}/attachNetworkEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -70839,7 +71285,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networkEndpointGroups/{networkEndpointGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -71034,7 +71480,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networkEndpointGroups/{networkEndpointGroup}/detachNetworkEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -71197,7 +71643,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networkEndpointGroups/{networkEndpointGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -71419,7 +71865,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networkEndpointGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -71649,7 +72095,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networkEndpointGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -71888,7 +72334,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networkEndpointGroups/{networkEndpointGroup}/listNetworkEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -72466,7 +72912,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/operations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -72603,7 +73049,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -72774,7 +73220,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -73002,7 +73448,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/operations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -73188,7 +73634,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/operations/{operation}/wait'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -73569,7 +74015,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/locations/global/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -73739,7 +74185,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/locations/global/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -73967,7 +74413,7 @@ export namespace compute_v1 {
               '$1'
             ),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -74275,7 +74721,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicDelegatedPrefixes/{publicDelegatedPrefix}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -74354,6 +74800,7 @@ export namespace compute_v1 {
      *   //   "name": "my_name",
      *   //   "parentPrefix": "my_parentPrefix",
      *   //   "publicDelegatedSubPrefixs": [],
+     *   //   "purpose": "my_purpose",
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status"
@@ -74437,7 +74884,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicDelegatedPrefixes/{publicDelegatedPrefix}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -74528,6 +74975,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "parentPrefix": "my_parentPrefix",
      *       //   "publicDelegatedSubPrefixs": [],
+     *       //   "purpose": "my_purpose",
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
      *       //   "status": "my_status"
@@ -74644,7 +75092,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicDelegatedPrefixes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -74875,7 +75323,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicDelegatedPrefixes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -74970,6 +75418,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "parentPrefix": "my_parentPrefix",
      *       //   "publicDelegatedSubPrefixs": [],
+     *       //   "purpose": "my_purpose",
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
      *       //   "status": "my_status"
@@ -75086,7 +75535,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicDelegatedPrefixes/{publicDelegatedPrefix}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -75536,7 +75985,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/vmExtensionPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -75737,7 +76186,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/vmExtensionPolicies/{globalVmExtensionPolicy}/delete'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -75895,7 +76344,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/vmExtensionPolicies/{globalVmExtensionPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -76096,7 +76545,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/vmExtensionPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -76330,7 +76779,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/vmExtensionPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -76533,7 +76982,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/vmExtensionPolicies/{globalVmExtensionPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -77091,7 +77540,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/healthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -77274,7 +77723,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/healthChecks/{healthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -77437,7 +77886,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/healthChecks/{healthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -77646,7 +78095,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/healthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -77874,7 +78323,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/healthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -78088,7 +78537,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/healthChecks/{healthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -78243,7 +78692,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/healthChecks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -78455,7 +78904,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/healthChecks/{healthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -78968,7 +79417,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{association}/hosts/{host}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -79154,7 +79603,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{association}/hosts/{host}/getVersion'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -79390,7 +79839,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{association}/hosts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -79743,7 +80192,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -79899,7 +80348,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -80100,7 +80549,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/httpHealthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -80328,7 +80777,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/httpHealthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -80534,7 +80983,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -80689,7 +81138,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpHealthChecks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -80893,7 +81342,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -81319,7 +81768,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -81475,7 +81924,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -81677,7 +82126,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpsHealthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -81907,7 +82356,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpsHealthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -82113,7 +82562,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -82268,7 +82717,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpsHealthChecks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -82472,7 +82921,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -82862,7 +83311,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/imageFamilyViews/{family}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -83065,7 +83514,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/images/{image}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -83261,7 +83710,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/images/{image}/deprecate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -83436,7 +83885,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/images/{image}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -83616,7 +84065,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/images/family/{family}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -83765,7 +84214,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/images/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -83989,7 +84438,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/images'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -84220,7 +84669,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/images'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -84445,7 +84894,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/images/{image}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -84601,7 +85050,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/images/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -84779,7 +85228,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/images/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -84934,7 +85383,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/images/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -85381,7 +85830,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/imageViews/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -85614,7 +86063,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/imageViews'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -85929,7 +86378,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resizeRequests/{resizeRequest}/cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -86132,7 +86581,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resizeRequests/{resizeRequest}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -86314,7 +86763,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resizeRequests/{resizeRequest}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -86538,7 +86987,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resizeRequests'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -86780,7 +87229,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resizeRequests'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -87236,7 +87685,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/abandonInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -87487,7 +87936,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/instanceGroupManagers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -87676,7 +88125,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/applyUpdatesToInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -87874,7 +88323,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/createInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -88066,7 +88515,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -88278,7 +88727,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/deleteInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -88465,7 +88914,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/deletePerInstanceConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -88645,7 +89094,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -88879,7 +89328,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -89112,7 +89561,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -89355,7 +89804,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/listErrors'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -89603,7 +90052,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/listManagedInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -89846,7 +90295,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/listPerInstanceConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -90088,7 +90537,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -90289,7 +90738,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/patchPerInstanceConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -90498,7 +90947,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/recreateInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -90710,7 +91159,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resize'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -90919,7 +91368,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resumeInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -91116,7 +91565,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -91316,7 +91765,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setTargetPools'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -91525,7 +91974,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/startInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -91747,7 +92196,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/stopInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -91966,7 +92415,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/suspendInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -92167,7 +92616,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/updatePerInstanceConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -93550,7 +93999,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/addInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -93797,7 +94246,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/instanceGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -93986,7 +94435,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -94150,7 +94599,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -94355,7 +94804,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -94591,7 +95040,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -94840,7 +95289,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/listInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -95041,7 +95490,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/removeInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -95236,7 +95685,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/setNamedPorts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -95393,7 +95842,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -96010,6 +96459,7 @@ export namespace compute_v1 {
      *       // {
      *       //   "externalIpv6": "my_externalIpv6",
      *       //   "externalIpv6PrefixLength": 0,
+     *       //   "ipCollection": "my_ipCollection",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
      *       //   "natIP": "my_natIP",
@@ -96131,7 +96581,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/addAccessConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -96346,7 +96796,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/addNetworkInterface'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -96541,7 +96991,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/addResourcePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -96790,7 +97240,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/instances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -97007,7 +97457,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/attachDisk'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -97207,7 +97657,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/bulkInsert'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -97394,7 +97844,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -97583,7 +98033,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/deleteAccessConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -97783,7 +98233,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/deleteNetworkInterface'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -97971,7 +98421,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/detachDisk'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -98162,7 +98612,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -98319,7 +98769,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/getEffectiveFirewalls'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -98478,7 +98928,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/getGuestAttributes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -98629,7 +99079,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -98775,7 +99225,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/screenshot'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -98947,7 +99397,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/serialPort'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -99100,7 +99550,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/getShieldedInstanceIdentity'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -99357,7 +99807,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}/instances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -99586,7 +100036,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}/instances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -99826,7 +100276,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/referrers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -100011,7 +100461,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/performMaintenance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -100206,7 +100656,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/removeResourcePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -100400,7 +100850,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/reportHostAsFaulty'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -100586,7 +101036,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/reset'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -100771,7 +101221,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/resume'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -100909,7 +101359,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/sendDiagnosticInterrupt'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -101098,7 +101548,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{resource}/setDeletionProtection'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -101288,7 +101738,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setDiskAutoDelete'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -101452,7 +101902,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -101647,7 +102097,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -101841,7 +102291,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setMachineResources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -102035,7 +102485,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setMachineType'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -102231,7 +102681,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setMetadata'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -102427,7 +102877,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setMinCpuPlatform'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -102621,7 +103071,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setName'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -102719,6 +103169,7 @@ export namespace compute_v1 {
      *       //   "onInstanceStopAction": {},
      *       //   "preemptible": false,
      *       //   "preemptionNoticeDuration": {},
+     *       //   "protectionTier": "my_protectionTier",
      *       //   "provisioningModel": "my_provisioningModel",
      *       //   "skipGuestOsShutdown": false,
      *       //   "terminationTime": "my_terminationTime"
@@ -102835,7 +103286,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setScheduling'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -103032,7 +103483,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setSecurityPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -103228,7 +103679,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setServiceAccount'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -103427,7 +103878,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setShieldedInstanceIntegrityPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -103622,7 +104073,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setTags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -103813,7 +104264,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/simulateMaintenanceEvent'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -103999,7 +104450,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/start'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -104196,7 +104647,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/startWithEncryptionKey'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -104391,7 +104842,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/stop'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -104587,7 +105038,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/suspend'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -104744,7 +105195,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -105000,7 +105451,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -105086,6 +105537,7 @@ export namespace compute_v1 {
      *       // {
      *       //   "externalIpv6": "my_externalIpv6",
      *       //   "externalIpv6PrefixLength": 0,
+     *       //   "ipCollection": "my_ipCollection",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
      *       //   "natIP": "my_natIP",
@@ -105207,7 +105659,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/updateAccessConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -105403,7 +105855,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/updateDisplayDevice'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -105626,7 +106078,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/updateNetworkInterface'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -105826,7 +106278,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/updateShieldedInstanceConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -107861,7 +108313,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -108057,7 +108509,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instanceSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -108357,7 +108809,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/instanceTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -108544,7 +108996,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/instanceTemplates/{instanceTemplate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -108697,7 +109149,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/instanceTemplates/{instanceTemplate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -108846,7 +109298,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/instanceTemplates/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -109048,7 +109500,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/instanceTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -109278,7 +109730,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/instanceTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -109434,7 +109886,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/instanceTemplates/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -109589,7 +110041,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/instanceTemplates/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -110094,7 +110546,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshotGroups/{instantSnapshotGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -110252,7 +110704,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshotGroups/{instantSnapshotGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -110403,7 +110855,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshotGroups/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -110607,7 +111059,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshotGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -110843,7 +111295,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshotGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -111001,7 +111453,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshotGroups/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -111158,7 +111610,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshotGroups/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -111647,7 +112099,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/instantSnapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -111841,7 +112293,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshots/{instantSnapshot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -112008,7 +112460,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshots/{instantSnapshot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -112159,7 +112611,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshots/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -112371,7 +112823,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -112602,7 +113054,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -112760,7 +113212,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshots/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -112956,7 +113408,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshots/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -113113,7 +113565,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/instantSnapshots/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -113681,7 +114133,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectAttachmentGroups/{interconnectAttachmentGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -113842,7 +114294,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectAttachmentGroups/{interconnectAttachmentGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -113992,7 +114444,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectAttachmentGroups/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -114148,7 +114600,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectAttachmentGroups/{interconnectAttachmentGroup}/getOperationalStatus'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -114352,7 +114804,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectAttachmentGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -114590,7 +115042,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectAttachmentGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -114801,7 +115253,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectAttachmentGroups/{interconnectAttachmentGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -114958,7 +115410,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectAttachmentGroups/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -115114,7 +115566,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectAttachmentGroups/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -115623,7 +116075,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/interconnectAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -115811,7 +116263,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments/{interconnectAttachment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -116005,7 +116457,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments/{interconnectAttachment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -116245,7 +116697,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -116479,7 +116931,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -116722,7 +117174,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments/{interconnectAttachment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -116918,7 +117370,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -117462,7 +117914,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups/{interconnectGroup}/createMembers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -117646,7 +118098,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups/{interconnectGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -117800,7 +118252,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups/{interconnectGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -117949,7 +118401,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -118103,7 +118555,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups/{interconnectGroup}/getOperationalStatus'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -118306,7 +118758,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -118540,7 +118992,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -118749,7 +119201,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups/{interconnectGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -118905,7 +119357,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -119060,7 +119512,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectGroups/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -119498,7 +119950,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectLocations/{interconnectLocation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -119728,7 +120180,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectLocations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -120010,7 +120462,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectRemoteLocations/{interconnectRemoteLocation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -120243,7 +120695,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnectRemoteLocations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -120541,7 +120993,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnects/{interconnect}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -120723,7 +121175,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnects/{interconnect}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -120884,7 +121336,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnects/{interconnect}/getDiagnostics'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -121040,7 +121492,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnects/{interconnect}/getMacsecConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -121268,7 +121720,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/interconnects'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -121495,7 +121947,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/interconnects'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -121726,7 +122178,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnects/{interconnect}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -121906,7 +122358,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnects/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -122098,7 +122550,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/interconnects/{interconnect}/setName'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -122526,7 +122978,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenseCodes/{licenseCode}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -122678,7 +123130,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenseCodes/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -122837,7 +123289,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenseCodes/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -122995,7 +123447,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenseCodes/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -123242,7 +123694,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenses/{license}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -123408,7 +123860,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenses/{license}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -123560,7 +124012,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenses/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -123774,7 +124226,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/licenses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -124008,7 +124460,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/licenses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -124167,7 +124619,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenses/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -124325,7 +124777,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenses/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -124541,7 +124993,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/licenses/{license}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -124970,7 +125422,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/machineImages/{machineImage}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -125134,7 +125586,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/machineImages/{machineImage}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -125283,7 +125735,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/machineImages/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -125497,7 +125949,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/machineImages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -125725,7 +126177,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/machineImages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -125881,7 +126333,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/machineImages/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -126060,7 +126512,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/machineImages/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -126215,7 +126667,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/machineImages/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -126689,7 +127141,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/machineTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -126850,7 +127302,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/machineTypes/{machineType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -127081,7 +127533,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/machineTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -127463,7 +127915,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/managedRulesets/{managedRuleset}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -127688,7 +128140,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/managedRulesets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -128048,7 +128500,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/networkAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -128236,7 +128688,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkAttachments/{networkAttachment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -128396,7 +128848,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkAttachments/{networkAttachment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -128547,7 +128999,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkAttachments/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -128754,7 +129206,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -128985,7 +129437,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -129196,7 +129648,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkAttachments/{networkAttachment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -129354,7 +129806,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkAttachments/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -129511,7 +129963,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkAttachments/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -130151,7 +130603,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/networkEdgeSecurityServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -130339,7 +130791,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEdgeSecurityServices/{networkEdgeSecurityService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -130498,7 +130950,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEdgeSecurityServices/{networkEdgeSecurityService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -130701,7 +131153,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEdgeSecurityServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -130908,7 +131360,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEdgeSecurityServices/{networkEdgeSecurityService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -131399,7 +131851,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/networkEndpointGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -131599,7 +132051,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups/{networkEndpointGroup}/attachNetworkEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -131789,7 +132241,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups/{networkEndpointGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -131988,7 +132440,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups/{networkEndpointGroup}/detachNetworkEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -132154,7 +132606,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups/{networkEndpointGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -132380,7 +132832,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -132613,7 +133065,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -132863,7 +133315,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups/{networkEndpointGroup}/listNetworkEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -133022,7 +133474,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -133723,7 +134175,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/addAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -133939,7 +134391,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/addPacketMirroringRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -134152,7 +134604,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/addRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -134405,7 +134857,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/firewallPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -134592,7 +135044,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/cloneRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -134775,7 +135227,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -134849,6 +135301,7 @@ export namespace compute_v1 {
      *   //   "name": "my_name",
      *   //   "packetMirroringRules": [],
      *   //   "parent": "my_parent",
+     *   //   "policySource": "my_policySource",
      *   //   "policyType": "my_policyType",
      *   //   "region": "my_region",
      *   //   "ruleTupleCount": 0,
@@ -134935,7 +135388,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -135089,7 +135542,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/getAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -135238,7 +135691,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -135403,7 +135856,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/getPacketMirroringRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -135565,7 +136018,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/getRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -135651,6 +136104,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "packetMirroringRules": [],
      *       //   "parent": "my_parent",
+     *       //   "policySource": "my_policySource",
      *       //   "policyType": "my_policyType",
      *       //   "region": "my_region",
      *       //   "ruleTupleCount": 0,
@@ -135770,7 +136224,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/firewallPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -135996,7 +136450,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/firewallPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -136083,6 +136537,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "packetMirroringRules": [],
      *       //   "parent": "my_parent",
+     *       //   "policySource": "my_policySource",
      *       //   "policyType": "my_policyType",
      *       //   "region": "my_region",
      *       //   "ruleTupleCount": 0,
@@ -136203,7 +136658,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -136415,7 +136870,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/patchPacketMirroringRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -136624,7 +137079,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/patchRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -136810,7 +137265,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/removeAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -136998,7 +137453,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/removePacketMirroringRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -137183,7 +137638,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{firewallPolicy}/removeRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -137339,7 +137794,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -137495,7 +137950,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/firewallPolicies/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -138350,7 +138805,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networkProfiles/{networkProfile}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -138584,7 +139039,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/networkProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -138891,7 +139346,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}/addPeering'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -139086,7 +139541,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}/cancelRequestRemovePeering'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -139268,7 +139723,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -139333,6 +139788,7 @@ export namespace compute_v1 {
      *   // Example response
      *   // {
      *   //   "IPv4Range": "my_IPv4Range",
+     *   //   "additionalTags": [],
      *   //   "autoCreateSubnetworks": false,
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
@@ -139429,7 +139885,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -139582,7 +140038,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}/getEffectiveFirewalls'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -139661,6 +140117,7 @@ export namespace compute_v1 {
      *       // request body parameters
      *       // {
      *       //   "IPv4Range": "my_IPv4Range",
+     *       //   "additionalTags": [],
      *       //   "autoCreateSubnetworks": false,
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
@@ -139791,7 +140248,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/networks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -140017,7 +140474,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/networks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -140257,7 +140714,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}/listPeeringRoutes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -140336,6 +140793,7 @@ export namespace compute_v1 {
      *       // request body parameters
      *       // {
      *       //   "IPv4Range": "my_IPv4Range",
+     *       //   "additionalTags": [],
      *       //   "autoCreateSubnetworks": false,
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",
@@ -140467,7 +140925,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -140658,7 +141116,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}/removePeering'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -140852,7 +141310,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}/requestRemovePeering'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -141035,7 +141493,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}/switchToCustomMode'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -141228,7 +141686,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}/updatePeering'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -141921,7 +142379,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/addNodes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -142167,7 +142625,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/nodeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -142352,7 +142810,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -142545,7 +143003,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/deleteNodes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -142708,7 +143166,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -142859,7 +143317,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -143068,7 +143526,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}/nodeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -143297,7 +143755,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}/nodeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -143529,7 +143987,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/listNodes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -143737,7 +144195,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -143931,7 +144389,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/performMaintenance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -144089,7 +144547,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -144282,7 +144740,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/setNodeTemplate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -144478,7 +144936,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/simulateMaintenanceEvent'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -144635,7 +145093,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -145547,7 +146005,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/nodeTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -145732,7 +146190,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{nodeTemplate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -145893,7 +146351,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{nodeTemplate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -146044,7 +146502,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -146251,7 +146709,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/nodeTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -146482,7 +146940,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/nodeTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -146640,7 +147098,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -146797,7 +147255,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -147390,7 +147848,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/nodeTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -147546,7 +148004,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/nodeTypes/{nodeType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -147775,7 +148233,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}/nodeTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -148214,7 +148672,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}/addAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -148416,7 +148874,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}/addRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -148603,7 +149061,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}/copyRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -148787,7 +149245,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -148951,7 +149409,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -149109,7 +149567,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}/getAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -149266,7 +149724,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}/getRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -149479,7 +149937,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/locations/global/securityPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -149709,7 +150167,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/locations/global/securityPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -149866,7 +150324,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/listAssociations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -150101,7 +150559,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/listPreconfiguredExpressionSets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -150289,7 +150747,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}/move'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -150500,7 +150958,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -150705,7 +151163,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}/patchRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -150893,7 +151351,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}/removeAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -151080,7 +151538,7 @@ export namespace compute_v1 {
               '/compute/v1/locations/global/securityPolicies/{securityPolicy}/removeRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -151831,7 +152289,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/packetMirrorings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -152018,7 +152476,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/packetMirrorings/{packetMirroring}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -152176,7 +152634,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/packetMirrorings/{packetMirroring}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -152380,7 +152838,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/packetMirrorings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -152611,7 +153069,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/packetMirrorings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -152819,7 +153277,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/packetMirrorings/{packetMirroring}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -152976,7 +153434,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/packetMirrorings/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -153474,7 +153932,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/previewFeatures/{previewFeature}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -153702,7 +154160,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/previewFeatures'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -153902,7 +154360,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/previewFeatures/{previewFeature}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -154226,7 +154684,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/disableXpnHost'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -154415,7 +154873,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/disableXpnResource'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -154595,7 +155053,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/enableXpnHost'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -154785,7 +155243,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/enableXpnResource'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -154947,7 +155405,7 @@ export namespace compute_v1 {
               '$1'
             ),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -155101,7 +155559,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/getXpnHost'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -155328,7 +155786,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/getXpnResources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -155562,7 +156020,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/listXpnHosts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -155765,7 +156223,7 @@ export namespace compute_v1 {
               '$1'
             ),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -155960,7 +156418,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/moveInstance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -156151,7 +156609,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/setCloudArmorTier'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -156345,7 +156803,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/setCommonInstanceMetadata'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -156537,7 +156995,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/setDefaultNetworkTier'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -156733,7 +157191,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/setUsageExportBucket'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -157358,7 +157816,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/projectViews'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -157559,7 +158017,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicAdvertisedPrefixes/{publicAdvertisedPrefix}/announce'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -157743,7 +158201,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicAdvertisedPrefixes/{publicAdvertisedPrefix}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -157903,7 +158361,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicAdvertisedPrefixes/{publicAdvertisedPrefix}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -158107,7 +158565,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicAdvertisedPrefixes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -158338,7 +158796,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicAdvertisedPrefixes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -158547,7 +159005,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicAdvertisedPrefixes/{publicAdvertisedPrefix}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -158730,7 +159188,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/publicAdvertisedPrefixes/{publicAdvertisedPrefix}/withdraw'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -159231,7 +159689,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/publicDelegatedPrefixes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -159419,7 +159877,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/publicDelegatedPrefixes/{publicDelegatedPrefix}/announce'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -159604,7 +160062,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/publicDelegatedPrefixes/{publicDelegatedPrefix}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -159685,6 +160143,7 @@ export namespace compute_v1 {
      *   //   "name": "my_name",
      *   //   "parentPrefix": "my_parentPrefix",
      *   //   "publicDelegatedSubPrefixs": [],
+     *   //   "purpose": "my_purpose",
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status"
@@ -159768,7 +160227,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/publicDelegatedPrefixes/{publicDelegatedPrefix}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -159861,6 +160320,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "parentPrefix": "my_parentPrefix",
      *       //   "publicDelegatedSubPrefixs": [],
+     *       //   "purpose": "my_purpose",
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
      *       //   "status": "my_status"
@@ -159977,7 +160437,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/publicDelegatedPrefixes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -160210,7 +160670,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/publicDelegatedPrefixes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -160307,6 +160767,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "parentPrefix": "my_parentPrefix",
      *       //   "publicDelegatedSubPrefixs": [],
+     *       //   "purpose": "my_purpose",
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
      *       //   "status": "my_status"
@@ -160423,7 +160884,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/publicDelegatedPrefixes/{publicDelegatedPrefix}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -160609,7 +161070,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/publicDelegatedPrefixes/{publicDelegatedPrefix}/withdraw'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -161183,7 +161644,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/autoscalers/{autoscaler}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -161341,7 +161802,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/autoscalers/{autoscaler}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -161546,7 +162007,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/autoscalers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -161778,7 +162239,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/autoscalers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -161987,7 +162448,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/autoscalers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -162144,7 +162605,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/autoscalers/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -162351,7 +162812,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/autoscalers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -162808,7 +163269,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendBuckets/{backendBucket}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -162969,7 +163430,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendBuckets/{backendBucket}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -163120,7 +163581,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendBuckets/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -163327,7 +163788,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendBuckets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -163558,7 +164019,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendBuckets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -163793,7 +164254,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendBuckets/listUsable'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -164005,7 +164466,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendBuckets/{backendBucket}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -164163,7 +164624,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendBuckets/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -164320,7 +164781,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendBuckets/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -164880,7 +165341,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -164959,6 +165420,7 @@ export namespace compute_v1 {
      *   //   "customRequestHeaders": [],
      *   //   "customResponseHeaders": [],
      *   //   "description": "my_description",
+     *   //   "dynamicForwarding": {},
      *   //   "edgeSecurityPolicy": "my_edgeSecurityPolicy",
      *   //   "enableCDN": false,
      *   //   "externalManagedMigrationState": "my_externalManagedMigrationState",
@@ -165077,7 +165539,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -165237,7 +165699,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}/getHealth'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -165388,7 +165850,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -165480,6 +165942,7 @@ export namespace compute_v1 {
      *       //   "customRequestHeaders": [],
      *       //   "customResponseHeaders": [],
      *       //   "description": "my_description",
+     *       //   "dynamicForwarding": {},
      *       //   "edgeSecurityPolicy": "my_edgeSecurityPolicy",
      *       //   "enableCDN": false,
      *       //   "externalManagedMigrationState": "my_externalManagedMigrationState",
@@ -165632,7 +166095,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -165863,7 +166326,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -166100,7 +166563,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/listUsable'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -166196,6 +166659,7 @@ export namespace compute_v1 {
      *       //   "customRequestHeaders": [],
      *       //   "customResponseHeaders": [],
      *       //   "description": "my_description",
+     *       //   "dynamicForwarding": {},
      *       //   "edgeSecurityPolicy": "my_edgeSecurityPolicy",
      *       //   "enableCDN": false,
      *       //   "externalManagedMigrationState": "my_externalManagedMigrationState",
@@ -166348,7 +166812,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -166506,7 +166970,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -166702,7 +167166,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}/setSecurityPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -166859,7 +167323,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -166954,6 +167418,7 @@ export namespace compute_v1 {
      *       //   "customRequestHeaders": [],
      *       //   "customResponseHeaders": [],
      *       //   "description": "my_description",
+     *       //   "dynamicForwarding": {},
      *       //   "edgeSecurityPolicy": "my_edgeSecurityPolicy",
      *       //   "enableCDN": false,
      *       //   "externalManagedMigrationState": "my_externalManagedMigrationState",
@@ -167106,7 +167571,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -167814,7 +168279,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/commitments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -167982,7 +168447,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/commitments/{commitment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -168197,7 +168662,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/commitments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -168428,7 +168893,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/commitments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -168650,7 +169115,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/commitments/{commitment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -169208,7 +169673,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/compositeHealthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -169395,7 +169860,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks/{compositeHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -169552,7 +170017,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks/{compositeHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -169704,7 +170169,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks/{compositeHealthCheck}/getHealth'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -169906,7 +170371,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -170137,7 +170602,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -170344,7 +170809,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks/{compositeHealthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -170502,7 +170967,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -171058,7 +171523,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}/addResourcePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -171251,7 +171716,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/bulkInsert'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -171487,7 +171952,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}/createSnapshot'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -171676,7 +172141,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -171783,6 +172248,10 @@ export namespace compute_v1 {
      *   //   "sourceImageId": "my_sourceImageId",
      *   //   "sourceInstantSnapshot": "my_sourceInstantSnapshot",
      *   //   "sourceInstantSnapshotId": "my_sourceInstantSnapshotId",
+     *   //   "sourceMachineImage": "my_sourceMachineImage",
+     *   //   "sourceMachineImageDiskDeviceName": "my_sourceMachineImageDiskDeviceName",
+     *   //   "sourceMachineImageEncryptionKey": {},
+     *   //   "sourceMachineImageId": "my_sourceMachineImageId",
      *   //   "sourceSnapshot": "my_sourceSnapshot",
      *   //   "sourceSnapshotEncryptionKey": {},
      *   //   "sourceSnapshotId": "my_sourceSnapshotId",
@@ -171869,7 +172338,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -172020,7 +172489,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -172141,6 +172610,10 @@ export namespace compute_v1 {
      *       //   "sourceImageId": "my_sourceImageId",
      *       //   "sourceInstantSnapshot": "my_sourceInstantSnapshot",
      *       //   "sourceInstantSnapshotId": "my_sourceInstantSnapshotId",
+     *       //   "sourceMachineImage": "my_sourceMachineImage",
+     *       //   "sourceMachineImageDiskDeviceName": "my_sourceMachineImageDiskDeviceName",
+     *       //   "sourceMachineImageEncryptionKey": {},
+     *       //   "sourceMachineImageId": "my_sourceMachineImageId",
      *       //   "sourceSnapshot": "my_sourceSnapshot",
      *       //   "sourceSnapshotEncryptionKey": {},
      *       //   "sourceSnapshotId": "my_sourceSnapshotId",
@@ -172262,7 +172735,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/regions/{region}/disks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -172490,7 +172963,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/regions/{region}/disks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -172685,7 +173158,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}/removeResourcePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -172878,7 +173351,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}/resize'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -173036,7 +173509,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -173230,7 +173703,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -173426,7 +173899,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}/startAsyncReplication'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -173614,7 +174087,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}/stopAsyncReplication'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -173809,7 +174282,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/stopGroupAsyncReplication'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -173966,7 +174439,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -174091,6 +174564,10 @@ export namespace compute_v1 {
      *       //   "sourceImageId": "my_sourceImageId",
      *       //   "sourceInstantSnapshot": "my_sourceInstantSnapshot",
      *       //   "sourceInstantSnapshotId": "my_sourceInstantSnapshotId",
+     *       //   "sourceMachineImage": "my_sourceMachineImage",
+     *       //   "sourceMachineImageDiskDeviceName": "my_sourceMachineImageDiskDeviceName",
+     *       //   "sourceMachineImageEncryptionKey": {},
+     *       //   "sourceMachineImageId": "my_sourceMachineImageId",
      *       //   "sourceSnapshot": "my_sourceSnapshot",
      *       //   "sourceSnapshotEncryptionKey": {},
      *       //   "sourceSnapshotId": "my_sourceSnapshotId",
@@ -174213,7 +174690,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -174407,7 +174884,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/disks/{disk}/updateKmsKey'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -175185,7 +175662,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/diskTypes/{diskType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -175415,7 +175892,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/diskTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -175789,7 +176266,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/healthAggregationPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -175977,7 +176454,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies/{healthAggregationPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -176136,7 +176613,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies/{healthAggregationPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -176339,7 +176816,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -176573,7 +177050,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -176781,7 +177258,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies/{healthAggregationPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -176939,7 +177416,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -177471,7 +177948,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthChecks/{healthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -177637,7 +178114,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthChecks/{healthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -177849,7 +178326,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -178080,7 +178557,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthChecks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -178296,7 +178773,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthChecks/{healthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -178453,7 +178930,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthChecks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -178667,7 +179144,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthChecks/{healthCheck}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -179190,7 +179667,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/healthCheckServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -179378,7 +179855,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthCheckServices/{healthCheckService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -179536,7 +180013,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthCheckServices/{healthCheckService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -179739,7 +180216,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthCheckServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -179971,7 +180448,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthCheckServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -180179,7 +180656,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthCheckServices/{healthCheckService}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -180337,7 +180814,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthCheckServices/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -180933,7 +181410,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/healthSources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -181118,7 +181595,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthSources/{healthSource}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -181275,7 +181752,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthSources/{healthSource}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -181424,7 +181901,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthSources/{healthSource}/getHealth'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -181627,7 +182104,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthSources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -181857,7 +182334,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthSources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -182065,7 +182542,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthSources/{healthSource}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -182222,7 +182699,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/healthSources/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -182777,7 +183254,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resizeRequests/{resizeRequest}/cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -182980,7 +183457,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resizeRequests/{resizeRequest}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -183163,7 +183640,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resizeRequests/{resizeRequest}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -183385,7 +183862,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resizeRequests'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -183630,7 +184107,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resizeRequests'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -184084,7 +184561,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/abandonInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -184271,7 +184748,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/applyUpdatesToInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -184472,7 +184949,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/createInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -184661,7 +185138,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -184873,7 +185350,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/deleteInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -185057,7 +185534,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/deletePerInstanceConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -185236,7 +185713,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -185467,7 +185944,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -185702,7 +186179,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -185945,7 +186422,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/listErrors'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -186189,7 +186666,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/listManagedInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -186430,7 +186907,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/listPerInstanceConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -186671,7 +187148,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -186872,7 +187349,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/patchPerInstanceConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -187081,7 +187558,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/recreateInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -187281,7 +187758,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resize'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -187490,7 +187967,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resumeInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -187685,7 +188162,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -187881,7 +188358,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setTargetPools'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -188090,7 +188567,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/startInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -188312,7 +188789,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/stopInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -188531,7 +189008,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/suspendInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -188731,7 +189208,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/updatePerInstanceConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -189936,7 +190413,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -190168,7 +190645,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -190421,7 +190898,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}/listInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -190617,7 +191094,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}/setNamedPorts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -190774,7 +191251,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceGroups/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -191257,7 +191734,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instances/bulkInsert'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -191482,7 +191959,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceTemplates/{instanceTemplate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -191637,7 +192114,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceTemplates/{instanceTemplate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -191838,7 +192315,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -192070,7 +192547,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instanceTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -192437,7 +192914,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshotGroups/{instantSnapshotGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -192596,7 +193073,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshotGroups/{instantSnapshotGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -192747,7 +193224,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshotGroups/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -192951,7 +193428,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshotGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -193187,7 +193664,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshotGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -193345,7 +193822,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshotGroups/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -193503,7 +193980,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshotGroups/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -193937,7 +194414,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshots/{instantSnapshot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -194104,7 +194581,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshots/{instantSnapshot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -194255,7 +194732,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshots/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -194467,7 +194944,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -194698,7 +195175,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -194856,7 +195333,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshots/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -195052,7 +195529,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshots/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -195210,7 +195687,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/instantSnapshots/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -195682,7 +196159,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups/{networkEndpointGroup}/attachNetworkEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -195870,7 +196347,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups/{networkEndpointGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -196070,7 +196547,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups/{networkEndpointGroup}/detachNetworkEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -196236,7 +196713,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups/{networkEndpointGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -196462,7 +196939,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -196695,7 +197172,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -196937,7 +197414,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups/{networkEndpointGroup}/listNetworkEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -197517,7 +197994,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/addAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -197732,7 +198209,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/addRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -197919,7 +198396,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/cloneRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -198104,7 +198581,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -198180,6 +198657,7 @@ export namespace compute_v1 {
      *   //   "name": "my_name",
      *   //   "packetMirroringRules": [],
      *   //   "parent": "my_parent",
+     *   //   "policySource": "my_policySource",
      *   //   "policyType": "my_policyType",
      *   //   "region": "my_region",
      *   //   "ruleTupleCount": 0,
@@ -198266,7 +198744,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -198423,7 +198901,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/getAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -198581,7 +199059,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/getEffectiveFirewalls'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -198735,7 +199213,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -198899,7 +199377,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/getRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -198986,6 +199464,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "packetMirroringRules": [],
      *       //   "parent": "my_parent",
+     *       //   "policySource": "my_policySource",
      *       //   "policyType": "my_policyType",
      *       //   "region": "my_region",
      *       //   "ruleTupleCount": 0,
@@ -199106,7 +199585,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -199336,7 +199815,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -199425,6 +199904,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "packetMirroringRules": [],
      *       //   "parent": "my_parent",
+     *       //   "policySource": "my_policySource",
      *       //   "policyType": "my_policyType",
      *       //   "region": "my_region",
      *       //   "ruleTupleCount": 0,
@@ -199545,7 +200025,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -199744,7 +200224,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/patchAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -199955,7 +200435,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/patchRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -200143,7 +200623,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/removeAssociation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -200330,7 +200810,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewallPolicy}/removeRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -200489,7 +200969,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -200647,7 +201127,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -201488,7 +201968,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/notificationEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -201675,7 +202155,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/notificationEndpoints/{notificationEndpoint}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -201829,7 +202309,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/notificationEndpoints/{notificationEndpoint}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -202028,7 +202508,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/notificationEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -202259,7 +202739,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/notificationEndpoints'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -202417,7 +202897,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/notificationEndpoints/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -202867,7 +203347,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -203040,7 +203520,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -203271,7 +203751,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/operations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -203459,7 +203939,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/operations/{operation}/wait'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -203780,7 +204260,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/regions/{region}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -204024,7 +204504,7 @@ export namespace compute_v1 {
               '$1'
             ),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -204328,7 +204808,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{securityPolicy}/addRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -204513,7 +204993,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{securityPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -204678,7 +205158,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{securityPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -204836,7 +205316,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{securityPolicy}/getRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -205049,7 +205529,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -205279,7 +205759,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -205497,7 +205977,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{securityPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -205693,7 +206173,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{securityPolicy}/patchRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -205866,7 +206346,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{securityPolicy}/removeRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -206062,7 +206542,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -206604,7 +207084,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshots/{snapshot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -206789,7 +207269,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshots/{snapshot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -206940,7 +207420,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshots/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -207172,7 +207652,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -207403,7 +207883,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -207561,7 +208041,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshots/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -207757,7 +208237,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshots/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -207914,7 +208394,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshots/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -208108,7 +208588,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshots/{snapshot}/updateKmsKey'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -208561,7 +209041,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshotSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -208755,7 +209235,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/snapshotSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -208993,7 +209473,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslCertificates/{sslCertificate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -209154,7 +209634,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslCertificates/{sslCertificate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -209359,7 +209839,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslCertificates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -209590,7 +210070,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslCertificates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -209960,7 +210440,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslPolicies/{sslPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -210119,7 +210599,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslPolicies/{sslPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -210135,6 +210615,157 @@ export namespace compute_v1 {
         );
       } else {
         return createAPIRequest<Schema$SslPolicy>(parameters);
+      }
+    }
+
+    /**
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionSslPolicies.getIamPolicy({
+     *     // Requested IAM Policy version.
+     *     optionsRequestedPolicyVersion: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Regionsslpolicies$Getiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getIamPolicy(
+      params?: Params$Resource$Regionsslpolicies$Getiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
+    getIamPolicy(
+      params: Params$Resource$Regionsslpolicies$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Regionsslpolicies$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Regionsslpolicies$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Regionsslpolicies$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionsslpolicies$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslpolicies$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/sslPolicies/{resource}/getIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '2026-11-01',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
       }
     }
 
@@ -210324,7 +210955,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -210555,7 +211186,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -210789,7 +211420,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslPolicies/listAvailableFeatures'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -210998,7 +211629,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/sslPolicies/{sslPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -211014,6 +211645,321 @@ export namespace compute_v1 {
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionSslPolicies.setIamPolicy({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bindings": [],
+     *       //   "etag": "my_etag",
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Regionsslpolicies$Setiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setIamPolicy(
+      params?: Params$Resource$Regionsslpolicies$Setiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
+    setIamPolicy(
+      params: Params$Resource$Regionsslpolicies$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Regionsslpolicies$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Regionsslpolicies$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Regionsslpolicies$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionsslpolicies$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslpolicies$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/sslPolicies/{resource}/setIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '2026-11-01',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionSslPolicies.testIamPermissions({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Regionsslpolicies$Testiampermissions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    testIamPermissions(
+      params?: Params$Resource$Regionsslpolicies$Testiampermissions,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>;
+    testIamPermissions(
+      params: Params$Resource$Regionsslpolicies$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Regionsslpolicies$Testiampermissions,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Regionsslpolicies$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Regionsslpolicies$Testiampermissions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionsslpolicies$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslpolicies$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/sslPolicies/{resource}/testIamPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '2026-11-01',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
       }
     }
   }
@@ -211063,6 +212009,24 @@ export namespace compute_v1 {
      * and comply with RFC1035.
      */
     sslPolicy?: string;
+  }
+  export interface Params$Resource$Regionsslpolicies$Getiampolicy extends StandardParameters {
+    /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
   }
   export interface Params$Resource$Regionsslpolicies$Insert extends StandardParameters {
     /**
@@ -211329,6 +212293,44 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$SslPolicy;
   }
+  export interface Params$Resource$Regionsslpolicies$Setiampolicy extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionSetPolicyRequest;
+  }
+  export interface Params$Resource$Regionsslpolicies$Testiampermissions extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
 
   export class Resource$Regiontargethttpproxies {
     context: APIRequestContext;
@@ -211502,7 +212504,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpProxies/{targetHttpProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -211658,7 +212660,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpProxies/{targetHttpProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -211860,7 +212862,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -212091,7 +213093,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -212284,7 +213286,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpProxies/{targetHttpProxy}/setUrlMap'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -212686,7 +213688,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -212849,7 +213851,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -213058,7 +214060,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -213290,7 +214292,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -213503,7 +214505,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -213698,7 +214700,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}/setSslCertificates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -213891,7 +214893,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}/setUrlMap'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -214364,7 +215366,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetTcpProxies/{targetTcpProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -214520,7 +215522,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetTcpProxies/{targetTcpProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -214722,7 +215724,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetTcpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -214953,7 +215955,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetTcpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -215309,7 +216311,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/urlMaps/{urlMap}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -215390,6 +216392,7 @@ export namespace compute_v1 {
      *   //   "pathMatchers": [],
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
+     *   //   "status": {},
      *   //   "tests": []
      *   // }
      * }
@@ -215469,7 +216472,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/urlMaps/{urlMap}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -215551,6 +216554,7 @@ export namespace compute_v1 {
      *       //   "pathMatchers": [],
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
+     *       //   "status": {},
      *       //   "tests": []
      *       // }
      *     },
@@ -215665,7 +216669,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/urlMaps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -215895,7 +216899,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/urlMaps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -215981,6 +216985,7 @@ export namespace compute_v1 {
      *       //   "pathMatchers": [],
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
+     *       //   "status": {},
      *       //   "tests": []
      *       // }
      *     },
@@ -216095,7 +217100,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/urlMaps/{urlMap}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -216179,6 +217184,7 @@ export namespace compute_v1 {
      *       //   "pathMatchers": [],
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
+     *       //   "status": {},
      *       //   "tests": []
      *       // }
      *     },
@@ -216293,7 +217299,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/urlMaps/{urlMap}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -216451,7 +217457,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/urlMaps/{urlMap}/validate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -216906,7 +217912,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/regions/{region}/zones'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -217165,7 +218171,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/reliabilityRisks/{reliabilityRisk}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -217397,7 +218403,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/reliabilityRisks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -217667,7 +218673,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}/reservationBlocks/{reservationBlock}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -217822,7 +218828,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{parentResource}/reservationBlocks/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -218058,7 +219064,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}/reservationBlocks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -218256,7 +219262,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}/reservationBlocks/{reservationBlock}/performMaintenance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -218416,7 +219422,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{parentResource}/reservationBlocks/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -218575,7 +219581,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{parentResource}/reservationBlocks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -219065,7 +220071,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/reservations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -219250,7 +220256,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -219423,7 +220429,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -219574,7 +220580,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -219794,7 +220800,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -220025,7 +221031,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -220218,7 +221224,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}/performMaintenance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -220413,7 +221419,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}/resize'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -220571,7 +221577,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -220728,7 +221734,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -220952,7 +221958,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -221568,7 +222574,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -221746,7 +222752,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}/getHealth'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -221943,7 +222949,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}/getVersion'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -222180,7 +223186,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSlots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -222375,7 +223381,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -222756,7 +223762,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -222916,7 +223922,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentResource}/reservationSubBlocks/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -223113,7 +224119,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/getVersion'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -223359,7 +224365,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -223550,7 +224556,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/performMaintenance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -223754,7 +224760,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/reportFaulty'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -223919,7 +224925,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentResource}/reservationSubBlocks/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -224078,7 +225084,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/{+parentResource}/reservationSubBlocks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -224648,7 +225654,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/resourcePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -224835,7 +225841,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/resourcePolicies/{resourcePolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -224994,7 +226000,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/resourcePolicies/{resourcePolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -225145,7 +226151,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/resourcePolicies/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -225349,7 +226355,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/resourcePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -225581,7 +226587,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/resourcePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -225789,7 +226795,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/resourcePolicies/{resourcePolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -225947,7 +226953,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/resourcePolicies/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -226104,7 +227110,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/resourcePolicies/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -226674,7 +227680,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/rolloutPlans/{rolloutPlan}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -226825,7 +227831,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/rolloutPlans/{rolloutPlan}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -227021,7 +228027,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/rolloutPlans'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -227250,7 +228256,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/rolloutPlans'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -227600,7 +228606,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/rollouts/{rollout}/advance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -227787,7 +228793,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/rollouts/{rollout}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -227969,7 +228975,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/rollouts/{rollout}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -228127,7 +229133,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/rollouts/{rollout}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -228355,7 +229361,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/rollouts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -228541,7 +229547,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/rollouts/{rollout}/pause'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -228727,7 +229733,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/rollouts/{rollout}/resume'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -229238,7 +230244,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/routers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -229422,7 +230428,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -229609,7 +230615,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/deleteNamedSet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -229796,7 +230802,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/deleteRoutePolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -229955,7 +230961,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -230108,7 +231114,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/getNamedSet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -230261,7 +231267,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/getNatIpInfo'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -230501,7 +231507,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/getNatMappingInfo'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -230654,7 +231660,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/getRoutePolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -230806,7 +231812,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/getRouterStatus'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -231012,7 +232018,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -231240,7 +232246,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -231491,7 +232497,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/listBgpRoutes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -231730,7 +232736,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/listNamedSets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -231969,7 +232975,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/listRoutePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -232179,7 +233185,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -232376,7 +233382,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/patchNamedSet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -232573,7 +233579,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/patchRoutePolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -232745,7 +233751,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/preview'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -232955,7 +233961,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -233152,7 +234158,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/updateNamedSet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -233349,7 +234355,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/routers/{router}/updateRoutePolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -234637,7 +235643,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/routes/{route}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -234804,7 +235810,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/routes/{route}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -235018,7 +236024,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/routes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -235243,7 +236249,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/routes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -235398,7 +236404,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/routes/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -235768,7 +236774,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}/addRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -236017,7 +237023,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/securityPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -236202,7 +237208,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -236365,7 +237371,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -236521,7 +237527,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}/getRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -236731,7 +237737,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/securityPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -236957,7 +237963,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/securityPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -237190,7 +238196,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/securityPolicies/listPreconfiguredExpressionSets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -237408,7 +238414,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -237602,7 +238608,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}/patchRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -237773,7 +238779,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}/removeRule'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -237953,7 +238959,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/securityPolicies/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -238700,7 +239706,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/serviceAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -238887,7 +239893,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/serviceAttachments/{serviceAttachment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -239056,7 +240062,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/serviceAttachments/{serviceAttachment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -239207,7 +240213,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/serviceAttachments/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -239420,7 +240426,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/serviceAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -239651,7 +240657,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/serviceAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -239869,7 +240875,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/serviceAttachments/{serviceAttachment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -240027,7 +241033,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/serviceAttachments/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -240184,7 +241190,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/serviceAttachments/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -240761,7 +241767,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/snapshots/{snapshot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -240943,7 +241949,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/snapshots/{snapshot}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -241092,7 +242098,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/snapshots/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -241323,7 +242329,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/snapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -241550,7 +242556,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/snapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -241706,7 +242712,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/snapshots/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -241885,7 +242891,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/snapshots/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -242040,7 +243046,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/snapshots/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -242232,7 +243238,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/snapshots/{snapshot}/updateKmsKey'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -242630,7 +243636,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/snapshotSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -242821,7 +243827,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/snapshotSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -243114,7 +244120,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/sslCertificates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -243299,7 +244305,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/sslCertificates/{sslCertificate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -243456,7 +244462,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/sslCertificates/{sslCertificate}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -243658,7 +244664,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/sslCertificates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -243886,7 +244892,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/sslCertificates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -244409,7 +245415,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/sslPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -244595,7 +245601,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/sslPolicies/{sslPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -244751,7 +245757,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/sslPolicies/{sslPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -244767,6 +245773,155 @@ export namespace compute_v1 {
         );
       } else {
         return createAPIRequest<Schema$SslPolicy>(parameters);
+      }
+    }
+
+    /**
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.sslPolicies.getIamPolicy({
+     *     // Requested IAM Policy version.
+     *     optionsRequestedPolicyVersion: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Sslpolicies$Getiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getIamPolicy(
+      params?: Params$Resource$Sslpolicies$Getiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
+    getIamPolicy(
+      params: Params$Resource$Sslpolicies$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Sslpolicies$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Sslpolicies$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Sslpolicies$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sslpolicies$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sslpolicies$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/global/sslPolicies/{resource}/getIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '2026-11-01',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
       }
     }
 
@@ -244952,7 +246107,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/sslPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -245179,7 +246334,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/sslPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -245411,7 +246566,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/sslPolicies/listAvailableFeatures'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -245618,7 +246773,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/sslPolicies/{sslPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -245634,6 +246789,317 @@ export namespace compute_v1 {
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.sslPolicies.setIamPolicy({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bindings": [],
+     *       //   "etag": "my_etag",
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Sslpolicies$Setiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setIamPolicy(
+      params?: Params$Resource$Sslpolicies$Setiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
+    setIamPolicy(
+      params: Params$Resource$Sslpolicies$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Sslpolicies$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Sslpolicies$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Sslpolicies$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sslpolicies$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sslpolicies$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/global/sslPolicies/{resource}/setIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '2026-11-01',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.sslPolicies.testIamPermissions({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Sslpolicies$Testiampermissions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    testIamPermissions(
+      params?: Params$Resource$Sslpolicies$Testiampermissions,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>;
+    testIamPermissions(
+      params: Params$Resource$Sslpolicies$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Sslpolicies$Testiampermissions,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Sslpolicies$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Sslpolicies$Testiampermissions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sslpolicies$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sslpolicies$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/global/sslPolicies/{resource}/testIamPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '2026-11-01',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
       }
     }
   }
@@ -245785,6 +247251,20 @@ export namespace compute_v1 {
      * and comply with RFC1035.
      */
     sslPolicy?: string;
+  }
+  export interface Params$Resource$Sslpolicies$Getiampolicy extends StandardParameters {
+    /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
   }
   export interface Params$Resource$Sslpolicies$Insert extends StandardParameters {
     /**
@@ -246035,6 +247515,36 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$SslPolicy;
   }
+  export interface Params$Resource$Sslpolicies$Setiampolicy extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalSetPolicyRequest;
+  }
+  export interface Params$Resource$Sslpolicies$Testiampermissions extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
 
   export class Resource$Storagepools {
     context: APIRequestContext;
@@ -246269,7 +247779,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/storagePools'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -246458,7 +247968,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePools/{storagePool}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -246625,7 +248135,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePools/{storagePool}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -246776,7 +248286,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePools/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -246989,7 +248499,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePools'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -247222,7 +248732,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePools'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -247459,7 +248969,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePools/{storagePool}/listDisks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -247617,7 +249127,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePools/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -247774,7 +249284,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePools/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -247994,7 +249504,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePools/{storagePool}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -248730,7 +250240,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/storagePoolTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -248894,7 +250404,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePoolTypes/{storagePoolType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -249125,7 +250635,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/storagePoolTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -249607,7 +251117,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/subnetworks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -249792,7 +251302,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -249985,7 +251495,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}/expandIpCidrRange'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -250167,7 +251677,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -250318,7 +251828,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -250542,7 +252052,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -250778,7 +252288,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -251016,7 +252526,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/subnetworks/listUsable'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -251257,7 +252767,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -251415,7 +252925,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -251611,7 +253121,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}/setPrivateIpGoogleAccess'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -251768,7 +253278,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/subnetworks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -252541,7 +254051,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetGrpcProxies/{targetGrpcProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -252694,7 +254204,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetGrpcProxies/{targetGrpcProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -252893,7 +254403,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetGrpcProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -253121,7 +254631,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetGrpcProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -253324,7 +254834,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetGrpcProxies/{targetGrpcProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -253768,7 +255278,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/targetHttpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -253953,7 +255463,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpProxies/{targetHttpProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -254107,7 +255617,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpProxies/{targetHttpProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -254307,7 +255817,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -254536,7 +256046,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -254740,7 +256250,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpProxies/{targetHttpProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -254931,7 +256441,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/targetHttpProxies/{targetHttpProxy}/setUrlMap'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -255517,7 +257027,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/targetHttpsProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -255702,7 +257212,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -255863,7 +257373,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -256070,7 +257580,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpsProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -256300,7 +257810,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpsProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -256511,7 +258021,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -256703,7 +258213,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}/setCertificateMap'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -256895,7 +258405,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}/setQuicOverride'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -257087,7 +258597,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setSslCertificates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -257282,7 +258792,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}/setSslPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -257474,7 +258984,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setUrlMap'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -258188,7 +259698,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/targetInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -258375,7 +259885,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/targetInstances/{targetInstance}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -258531,7 +260041,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/targetInstances/{targetInstance}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -258733,7 +260243,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/targetInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -258964,7 +260474,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/targetInstances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -259160,7 +260670,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/targetInstances/{targetInstance}/setSecurityPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -259317,7 +260827,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/targetInstances/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -259857,7 +261367,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/addHealthCheck'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -260050,7 +261560,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/addInstance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -260295,7 +261805,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/targetPools'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -260480,7 +261990,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -260636,7 +262146,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -260795,7 +262305,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/getHealth'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -260999,7 +262509,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -261229,7 +262739,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -261422,7 +262932,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/removeHealthCheck'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -261615,7 +263125,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/removeInstance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -261810,7 +263320,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/setBackup'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -262006,7 +263516,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/setSecurityPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -262163,7 +263673,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetPools/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -262891,7 +264401,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -263045,7 +264555,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -263244,7 +264754,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/targetSslProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -263472,7 +264982,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/targetSslProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -263664,7 +265174,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}/setBackendService'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -263856,7 +265366,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}/setCertificateMap'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -264047,7 +265557,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}/setProxyHeader'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -264239,7 +265749,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}/setSslCertificates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -264434,7 +265944,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}/setSslPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -264589,7 +266099,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetSslProxies/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -265177,7 +266687,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/targetTcpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -265362,7 +266872,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetTcpProxies/{targetTcpProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -265516,7 +267026,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetTcpProxies/{targetTcpProxy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -265715,7 +267225,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/targetTcpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -265943,7 +267453,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/targetTcpProxies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -266135,7 +267645,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetTcpProxies/{targetTcpProxy}/setBackendService'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -266326,7 +267836,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetTcpProxies/{targetTcpProxy}/setProxyHeader'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -266481,7 +267991,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/targetTcpProxies/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -267082,7 +268592,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/aggregated/targetVpnGateways'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -267269,7 +268779,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -267428,7 +268938,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -267633,7 +269143,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetVpnGateways'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -267865,7 +269375,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetVpnGateways'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -268060,7 +269570,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/targetVpnGateways/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -268633,7 +270143,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/urlMaps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -268814,7 +270324,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/urlMaps/{urlMap}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -268893,6 +270403,7 @@ export namespace compute_v1 {
      *   //   "pathMatchers": [],
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
+     *   //   "status": {},
      *   //   "tests": []
      *   // }
      * }
@@ -268970,7 +270481,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/urlMaps/{urlMap}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -269061,6 +270572,7 @@ export namespace compute_v1 {
      *       //   "pathMatchers": [],
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
+     *       //   "status": {},
      *       //   "tests": []
      *       // }
      *     },
@@ -269173,7 +270685,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/urlMaps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -269254,8 +270766,11 @@ export namespace compute_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "backendService": "my_backendService",
      *       //   "cacheTags": [],
+     *       //   "contentType": "my_contentType",
      *       //   "host": "my_host",
+     *       //   "httpStatus": 0,
      *       //   "path": "my_path"
      *       // }
      *     },
@@ -269370,7 +270885,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/urlMaps/{urlMap}/invalidateCache'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -269596,7 +271111,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/urlMaps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -269691,6 +271206,7 @@ export namespace compute_v1 {
      *       //   "pathMatchers": [],
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
+     *       //   "status": {},
      *       //   "tests": []
      *       // }
      *     },
@@ -269803,7 +271319,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/urlMaps/{urlMap}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -269958,7 +271474,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/urlMaps/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -270051,6 +271567,7 @@ export namespace compute_v1 {
      *       //   "pathMatchers": [],
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
+     *       //   "status": {},
      *       //   "tests": []
      *       // }
      *     },
@@ -270163,7 +271680,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/global/urlMaps/{urlMap}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -270319,7 +271836,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/urlMaps/{urlMap}/validate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -270963,7 +272480,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/vpnGateways'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -271148,7 +272665,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{vpnGateway}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -271305,7 +272822,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{vpnGateway}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -271455,7 +272972,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{vpnGateway}/getStatus'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -271662,7 +273179,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnGateways'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -271892,7 +273409,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnGateways'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -272087,7 +273604,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -272244,7 +273761,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -272849,7 +274366,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/aggregated/vpnTunnels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -273034,7 +274551,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnTunnels/{vpnTunnel}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -273203,7 +274720,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnTunnels/{vpnTunnel}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -273420,7 +274937,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnTunnels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -273650,7 +275167,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnTunnels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -273845,7 +275362,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/regions/{region}/vpnTunnels/{resource}/setLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -274357,7 +275874,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks/{crossSiteNetwork}/wireGroups/{wireGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -274511,7 +276028,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks/{crossSiteNetwork}/wireGroups/{wireGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -274716,7 +276233,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks/{crossSiteNetwork}/wireGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -274946,7 +276463,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks/{crossSiteNetwork}/wireGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -275156,7 +276673,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/crossSiteNetworks/{crossSiteNetwork}/wireGroups/{wireGroup}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -275527,7 +277044,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -275700,7 +277217,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -275930,7 +277447,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}/operations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -276117,7 +277634,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/operations/{operation}/wait'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -276421,7 +277938,7 @@ export namespace compute_v1 {
               rootUrl + '/compute/v1/projects/{project}/zones/{zone}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -276647,7 +278164,7 @@ export namespace compute_v1 {
               '$1'
             ),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -276945,7 +278462,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/vmExtensionPolicies/{vmExtensionPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -277104,7 +278621,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/vmExtensionPolicies/{vmExtensionPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -277308,7 +278825,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/vmExtensionPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -277541,7 +279058,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/vmExtensionPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),
@@ -277747,7 +279264,7 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/zones/{zone}/vmExtensionPolicies/{vmExtensionPolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
-            apiVersion: '2026-09-01',
+            apiVersion: '2026-11-01',
           },
           options
         ),

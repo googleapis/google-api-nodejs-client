@@ -147,7 +147,7 @@
           ]
         },
         "estimateReviewCost": {
-          "description": "Estimates what a review of a document would cost on the caller's Gemini API key. The estimate comes from what past reviews with the same model and depth cost, adjusted to this document's size and repriced at the Gemini API's current list prices. It covers one review attempt that runs to completion, and doesn't include retries after errors.",
+          "description": "Estimates what a review of a document would cost on the caller's Gemini API key. The estimate comes from what past reviews with the same model, depth, and thinking level cost, adjusted to this document's size and repriced at the Gemini API's current list prices. It covers one review attempt that runs to completion, and doesn't include retries after errors.",
           "flatPath": "v1/documents/{documentsId}:estimateReviewCost",
           "httpMethod": "POST",
           "id": "deepreview.documents.estimateReviewCost",
@@ -507,7 +507,7 @@
       }
     }
   },
-  "revision": "20261028",
+  "revision": "20261030",
   "rootUrl": "https://deepreview.googleapis.com/",
   "schemas": {
     "AnchoredReviewComment": {
@@ -821,6 +821,22 @@
           "description": "Optional. The Gemini model identifier to use for the review. If omitted, the server uses its default model. Unsupported values return INVALID_ARGUMENT.",
           "type": "string"
         },
+        "thinkingLevel": {
+          "description": "Optional. Reasoning effort level for model calls in the review pipeline. Defaults to `THINKING_LEVEL_MEDIUM` when omitted or `THINKING_LEVEL_UNSPECIFIED`. Non-`THINKING_LEVEL_MEDIUM` thinking levels require `gemini_api_key` when calling `CreateReview`; otherwise `CreateReview` returns `INVALID_ARGUMENT`.",
+          "enum": [
+            "THINKING_LEVEL_UNSPECIFIED",
+            "THINKING_LEVEL_LOW",
+            "THINKING_LEVEL_MEDIUM",
+            "THINKING_LEVEL_HIGH"
+          ],
+          "enumDescriptions": [
+            "Default unspecified thinking level. The server uses its default thinking level (`THINKING_LEVEL_MEDIUM`).",
+            "Low reasoning effort for faster turnaround and lower token cost.",
+            "Balanced reasoning effort. Used by default and for all reviews created without a developer Bring-Your-Own-Key Gemini API key.",
+            "Maximum reasoning effort for deep mathematical, theoretical, and logical verification."
+          ],
+          "type": "string"
+        },
         "topology": {
           "description": "Optional. Review execution topology profile to use.",
           "enum": [
@@ -941,7 +957,7 @@
       "type": "object"
     },
     "EstimateReviewCostResponse": {
-      "description": "Response message for estimating what a review would cost. When the cost can't be estimated, for example because too few past reviews used the same model and depth, the costs are unset and `past_review_count` is 0.",
+      "description": "Response message for estimating what a review would cost. When the cost can't be estimated, for example because too few past reviews used the same model, depth, and thinking level, the costs are unset and `past_review_count` is 0.",
       "id": "EstimateReviewCostResponse",
       "properties": {
         "highCost": {

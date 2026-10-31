@@ -1168,6 +1168,14 @@ export namespace contactcenterinsights_v1 {
      */
     location?: string | null;
     /**
+     * The study arm ID associated with the conversation. Only applicable to automated agents.
+     */
+    studyArmId?: string | null;
+    /**
+     * The study ID associated with the conversation. Only applicable to automated agents.
+     */
+    studyId?: string | null;
+    /**
      * A user-specified string representing the agent's team. Deprecated in favor of the `teams` field.
      */
     team?: string | null;
@@ -5321,6 +5329,14 @@ export namespace contactcenterinsights_v1 {
      */
     location?: string | null;
     /**
+     * The study arm ID associated with the conversation. Only applicable to automated agents.
+     */
+    studyArmId?: string | null;
+    /**
+     * The study ID associated with the conversation. Only applicable to automated agents.
+     */
+    studyId?: string | null;
+    /**
      * A user-specified string representing the agent's team. Deprecated in favor of the `teams` field.
      */
     team?: string | null;
@@ -8533,6 +8549,14 @@ export namespace contactcenterinsights_v1 {
      * The agent's location.
      */
     location?: string | null;
+    /**
+     * The study arm ID associated with the conversation. Only applicable to automated agents.
+     */
+    studyArmId?: string | null;
+    /**
+     * The study ID associated with the conversation. Only applicable to automated agents.
+     */
+    studyId?: string | null;
     /**
      * A user-specified string representing the agent's team. Deprecated in favor of the `teams` field.
      */

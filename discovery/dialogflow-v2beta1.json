@@ -8584,7 +8584,7 @@
       }
     }
   },
-  "revision": "20261018",
+  "revision": "20261027",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -19211,6 +19211,12 @@
     "GoogleCloudDialogflowV2beta1InputAudioConfig": {
       "id": "GoogleCloudDialogflowV2beta1InputAudioConfig",
       "properties": {
+        "alternativeLanguageCodes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "audioEncoding": {
           "enum": [
             "AUDIO_ENCODING_UNSPECIFIED",
@@ -22502,6 +22508,12 @@
     "GoogleCloudDialogflowV2beta1SpeechToTextConfig": {
       "id": "GoogleCloudDialogflowV2beta1SpeechToTextConfig",
       "properties": {
+        "alternativeLanguageCodes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "audioEncoding": {
           "enum": [
             "AUDIO_ENCODING_UNSPECIFIED",

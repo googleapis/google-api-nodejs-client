@@ -188,7 +188,7 @@ export namespace webcontentpublisher_v1 {
      */
     newsletterConfig?: Schema$NewsletterConfig;
     /**
-     * Output only. The current state of this CTA.
+     * Optional. The current state of this CTA.
      */
     state?: string | null;
     /**
@@ -222,7 +222,7 @@ export namespace webcontentpublisher_v1 {
      */
     categoryLabel?: string | null;
     /**
-     * Required. The question prompt displayed to readers.
+     * Optional. The question prompt displayed to readers (up to 140 characters).
      */
     displayText?: string | null;
     /**
@@ -477,6 +477,10 @@ export namespace webcontentpublisher_v1 {
      * Optional. Ordered list of questions presented in the survey (1-3 items when `ACTIVE`; 0-3 when `DRAFT`).
      */
     questions?: Schema$SurveyQuestion[];
+    /**
+     * Output only. Link to the Looker Studio dashboard.
+     */
+    reportUrl?: string | null;
   }
   /**
    * A single question within a survey, which can be either a preset question from the catalog or a custom publisher-defined question.

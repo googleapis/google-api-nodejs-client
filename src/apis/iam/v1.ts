@@ -1071,7 +1071,7 @@ export namespace iam_v1 {
      */
     fullResourceName?: string | null;
     /**
-     * Optional limit on the number of roles to include in the response. The default is 300, and the maximum is 2,000.
+     * Optional limit on the number of roles to include in the response. The default is 300, and the maximum is 3,000.
      */
     pageSize?: number | null;
     /**

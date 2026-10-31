@@ -562,7 +562,7 @@ export namespace servicenetworking_v1beta {
    */
   export interface Schema$CommonLanguageSettings {
     /**
-     * The destination where API teams want this client library to be published.
+     * Deprecated: Client libraries are published for all supported languages by default when a `library_settings` entry is present with a `version` and `launch_stage`. The destination where API teams want this client library to be published.
      */
     destinations?: string[] | null;
     /**

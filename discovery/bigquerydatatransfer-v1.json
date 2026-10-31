@@ -650,6 +650,7 @@
                     "$ref": "TransferConfig"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -797,6 +798,7 @@
                     "$ref": "TransferConfig"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -1174,6 +1176,7 @@
                 "$ref": "TransferConfig"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/bigquery",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
@@ -1321,6 +1324,7 @@
                 "$ref": "TransferConfig"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/bigquery",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
@@ -1656,7 +1660,7 @@
       }
     }
   },
-  "revision": "20261020",
+  "revision": "20261024",
   "rootUrl": "https://bigquerydatatransfer.googleapis.com/",
   "schemas": {
     "CheckValidCredsRequest": {

@@ -291,6 +291,10 @@ export namespace looker_v1 {
    */
   export interface Schema$ExportMetadata {
     /**
+     * Opaque capability token for O2C Elite System Activity (ESA) direct dataset migration. It is minted by the exporter together with the cloned source dataset and presented back to Looker Original when the import requests access to that dataset.
+     */
+    esaMigrationToken?: string | null;
+    /**
      * Source BigQuery dataset (formatted as `project_id:dataset_id`) for O2C Elite System Activity (ESA) direct dataset migration.
      */
     esaSourceDatasetId?: string | null;

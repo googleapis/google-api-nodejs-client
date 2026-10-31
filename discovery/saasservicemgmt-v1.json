@@ -20,7 +20,7 @@
   "canonicalName": "SaaS Service Management",
   "description": "Model, deploy, and operate your SaaS at scale. ",
   "discoveryVersion": "v1",
-  "documentationLink": "https://cloud.google.com/saas-runtime/docs",
+  "documentationLink": "https://docs.cloud.google.com/app-lifecycle-manager",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -1866,7 +1866,7 @@
       }
     }
   },
-  "revision": "20261005",
+  "revision": "20261020",
   "rootUrl": "https://saasservicemgmt.googleapis.com/",
   "schemas": {
     "Aggregate": {
@@ -1990,6 +1990,18 @@
       "description": "Deprovision is the unit operation that deprovision the underlying resources represented by a Unit. Can only execute if the Unit is currently provisioned.",
       "id": "Deprovision",
       "properties": {},
+      "type": "object"
+    },
+    "DurationLimits": {
+      "description": "DurationLimits defines the time-related constraints for a UnitOperation's execution. This allows users to control how long an operation can run before being cancelled by the system.",
+      "id": "DurationLimits",
+      "properties": {
+        "unitOperationTimeout": {
+          "description": "Optional. The maximum duration a UnitOperation is allowed to execute in the RUNNING state. - Minimum value: 60 seconds (1 minute) - Maximum value: 604800 seconds (7 days) If this field is not set, or if the provided value falls outside the allowed range, the system will use a default timeout of 10800 seconds (3 hours). Upon exceeding this time limit, the UnitOperation will be best-effort cancelled, and its state will be set to FAILED.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Empty": {
@@ -3331,6 +3343,10 @@
           },
           "type": "array"
         },
+        "durationLimits": {
+          "$ref": "DurationLimits",
+          "description": "Optional. Defines the default duration limits for UnitOperations created from this UnitKind. These settings provide a baseline for execution time constraints. The limits specified here can be overridden by more specific settings on an individual UnitOperation resource. See the DurationLimits message definition for details on the constraints like minimum, maximum, and system default values for unit_operation_timeout. If not set, UnitOperations will use the system default duration limits unless overridden on the UnitOperation."
+        },
         "etag": {
           "description": "Output only. An opaque value that uniquely identifies a version or generation of a resource. It can be used to confirm that the client and server agree on the ordering of a resource being written.",
           "readOnly": true,
@@ -3417,6 +3433,10 @@
         "deprovision": {
           "$ref": "Deprovision",
           "description": "Optional. Deprovision operation."
+        },
+        "durationLimits": {
+          "$ref": "DurationLimits",
+          "description": "Optional. Defines the duration limits for this specific UnitOperation instance. These settings override any default duration limits set on the UnitKind. See the DurationLimits message definition for details on the constraints like minimum, maximum, and system default values for unit_operation_timeout."
         },
         "engineState": {
           "description": "Optional. Output only. The engine state for on-going deployment engine operation(s). This field is opaque for external usage.",

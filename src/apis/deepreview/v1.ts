@@ -316,6 +316,10 @@ export namespace deepreview_v1 {
      */
     model?: string | null;
     /**
+     * Optional. Reasoning effort level for model calls in the review pipeline. Defaults to `THINKING_LEVEL_MEDIUM` when omitted or `THINKING_LEVEL_UNSPECIFIED`. Non-`THINKING_LEVEL_MEDIUM` thinking levels require `gemini_api_key` when calling `CreateReview`; otherwise `CreateReview` returns `INVALID_ARGUMENT`.
+     */
+    thinkingLevel?: string | null;
+    /**
      * Optional. Review execution topology profile to use.
      */
     topology?: string | null;
@@ -401,7 +405,7 @@ export namespace deepreview_v1 {
     review?: Schema$Review;
   }
   /**
-   * Response message for estimating what a review would cost. When the cost can't be estimated, for example because too few past reviews used the same model and depth, the costs are unset and `past_review_count` is 0.
+   * Response message for estimating what a review would cost. When the cost can't be estimated, for example because too few past reviews used the same model, depth, and thinking level, the costs are unset and `past_review_count` is 0.
    */
   export interface Schema$EstimateReviewCostResponse {
     /**
@@ -863,7 +867,7 @@ export namespace deepreview_v1 {
     }
 
     /**
-     * Estimates what a review of a document would cost on the caller's Gemini API key. The estimate comes from what past reviews with the same model and depth cost, adjusted to this document's size and repriced at the Gemini API's current list prices. It covers one review attempt that runs to completion, and doesn't include retries after errors.
+     * Estimates what a review of a document would cost on the caller's Gemini API key. The estimate comes from what past reviews with the same model, depth, and thinking level cost, adjusted to this document's size and repriced at the Gemini API's current list prices. It covers one review attempt that runs to completion, and doesn't include retries after errors.
      * @example
      * ```js
      * // Before running the sample:

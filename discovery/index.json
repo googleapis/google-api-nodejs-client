@@ -2938,9 +2938,24 @@
       "id": "devicerun:v1alpha",
       "kind": "discovery#directoryItem",
       "name": "devicerun",
-      "preferred": true,
+      "preferred": false,
       "title": "Device Run API",
       "version": "v1alpha"
+    },
+    {
+      "description": "The Device Run API allows management, scheduling, and execution of automated sessions and workloads across device catalogs.",
+      "discoveryRestUrl": "https://devicerun.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://docs.cloud.google.com/developer-device-platform/device-run",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "devicerun:v1",
+      "kind": "discovery#directoryItem",
+      "name": "devicerun",
+      "preferred": true,
+      "title": "Device Run API",
+      "version": "v1"
     },
     {
       "description": "Build applications to efficiently manage large or complex trafficking, reporting, and attribution workflows for Campaign Manager 360.",

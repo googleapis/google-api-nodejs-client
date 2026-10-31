@@ -632,7 +632,7 @@
                   ],
                   "parameters": {
                     "autoProtectionPolicyId": {
-                      "description": "Required. The ID to use for the policy. This will become the final component of the policy's resource name.",
+                      "description": "Required. The ID to use for the policy. This will become the final component of the policy's resource name. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.",
                       "location": "query",
                       "type": "string"
                     },
@@ -641,6 +641,11 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
                       "type": "string"
                     }
                   },
@@ -675,6 +680,11 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/autoProtectionPolicies/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
                       "type": "string"
                     }
                   },
@@ -770,10 +780,15 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Identifier. The resource name of the AutoProtectionPolicy. Format: `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}`",
+                      "description": "Output only. Identifier. The resource name of the AutoProtectionPolicy. Format: `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/autoProtectionPolicies/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
                       "type": "string"
                     },
                     "updateMask": {
@@ -809,7 +824,7 @@
                       ],
                       "parameters": {
                         "autoProtectionPolicyBindingId": {
-                          "description": "Required. The ID to use for the binding. This will become the final component of the binding's resource name.",
+                          "description": "Required. The ID to use for the binding. This will become the final component of the binding's resource name. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.",
                           "location": "query",
                           "type": "string"
                         },
@@ -818,6 +833,11 @@
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/autoProtectionPolicies/[^/]+$",
                           "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
                           "type": "string"
                         }
                       },
@@ -3179,7 +3199,7 @@
       }
     }
   },
-  "revision": "20261014",
+  "revision": "20261024",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -3763,7 +3783,7 @@
           "description": "Required. The criteria for matching resources."
         },
         "description": {
-          "description": "Optional. A description of the policy.",
+          "description": "Optional. A description of the policy. The description must be at most 2048 characters.",
           "type": "string"
         },
         "etag": {
@@ -3771,7 +3791,8 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The resource name of the AutoProtectionPolicy. Format: `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}`",
+          "description": "Output only. Identifier. The resource name of the AutoProtectionPolicy. Format: `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}`",
+          "readOnly": true,
           "type": "string"
         },
         "policyEvaluationSummary": {
@@ -3823,7 +3844,7 @@
           "type": "string"
         },
         "description": {
-          "description": "Optional. A description of the binding.",
+          "description": "Optional. A description of the binding. The description must be at most 2048 characters.",
           "type": "string"
         },
         "etag": {
@@ -3831,7 +3852,8 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The resource name of the AutoProtectionPolicyBinding. Format: `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}`",
+          "description": "Output only. Identifier. The resource name of the AutoProtectionPolicyBinding. Format: `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}`",
+          "readOnly": true,
           "type": "string"
         },
         "scope": {
@@ -6675,7 +6697,16 @@
     "InitiateDeleteAutoProtectionPolicyBindingRequest": {
       "description": "Request message for initiating delete of an AutoProtectionPolicyBinding.",
       "id": "InitiateDeleteAutoProtectionPolicyBindingRequest",
-      "properties": {},
+      "properties": {
+        "etag": {
+          "description": "Optional. The current etag of the AutoProtectionPolicyBinding. If an etag is provided and does not match the current etag of the binding, deletion will be blocked and an ABORTED error will be returned.",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "InstanceParams": {

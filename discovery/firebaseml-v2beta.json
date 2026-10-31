@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20261018",
+  "revision": "20261025",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -649,7 +649,8 @@
             "UNEXPECTED_TOOL_CALL",
             "NO_IMAGE",
             "MALFORMED_RESPONSE",
-            "CONTINUATION"
+            "CONTINUATION",
+            "TOO_MANY_TOOL_CALLS"
           ],
           "enumDescriptions": [
             "The finish reason is unspecified.",
@@ -670,7 +671,8 @@
             "The model generated a function call that is semantically invalid. This can happen, for example, if function calling is not enabled or the generated function is not in the function declaration.",
             "The model was expected to generate an image, but didn't.",
             "Finishes due to malformed response.",
-            "Token generation was stopped because the response reached the per-request token limit, but generation is not yet complete. The model response can be continued via a subsequent request using the returned `continuation_token`."
+            "Token generation was stopped because the response reached the per-request token limit, but generation is not yet complete. The model response can be continued via a subsequent request using the returned `continuation_token`.",
+            "The model made too many tool calls in a single request, so the server-side tool loop stopped before the model returned a final answer."
           ],
           "readOnly": true,
           "type": "string"

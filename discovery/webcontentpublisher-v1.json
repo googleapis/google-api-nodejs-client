@@ -476,7 +476,7 @@
       }
     }
   },
-  "revision": "20261012",
+  "revision": "20261028",
   "rootUrl": "https://webcontentpublisher.googleapis.com/",
   "schemas": {
     "AnswerChoiceTemplate": {
@@ -1585,7 +1585,7 @@
           "description": "Optional. Configuration specific to newsletter signup CTAs. Only populated if type is `NEWSLETTER_SIGNUP`."
         },
         "state": {
-          "description": "Output only. The current state of this CTA.",
+          "description": "Optional. The current state of this CTA.",
           "enum": [
             "STATE_UNSPECIFIED",
             "DRAFT",
@@ -1596,7 +1596,6 @@
             "The CTA is a draft and not yet visible to users.",
             "The CTA is active and visible to users."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "surveyConfig": {
@@ -1647,7 +1646,7 @@
           "type": "string"
         },
         "displayText": {
-          "description": "Required. The question prompt displayed to readers.",
+          "description": "Optional. The question prompt displayed to readers (up to 140 characters).",
           "type": "string"
         },
         "id": {
@@ -2042,6 +2041,11 @@
             "$ref": "SurveyQuestion"
           },
           "type": "array"
+        },
+        "reportUrl": {
+          "description": "Output only. Link to the Looker Studio dashboard.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

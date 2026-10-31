@@ -2669,7 +2669,7 @@
       }
     }
   },
-  "revision": "20261016",
+  "revision": "20261023",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2AmbientNetworking": {
@@ -3606,7 +3606,7 @@
       "type": "object"
     },
     "GoogleCloudRunV2GCSVolumeSource": {
-      "description": "Represents a volume backed by a Cloud Storage bucket using Cloud Storage FUSE.",
+      "description": "Represents a volume backed by a Cloud Storage bucket (mounted via Cloud Storage FUSE or as a block device disk).",
       "id": "GoogleCloudRunV2GCSVolumeSource",
       "properties": {
         "bucket": {
@@ -3942,6 +3942,10 @@
             "Never restart the instance."
           ],
           "type": "string"
+        },
+        "sandboxes": {
+          "$ref": "GoogleCloudRunV2SandboxConfiguration",
+          "description": "Optional. Configuration for sandboxes."
         },
         "satisfiesPzs": {
           "description": "Output only. Reserved for future use.",
@@ -4713,6 +4717,11 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "sandboxes": {
+          "$ref": "GoogleCloudRunV2SandboxConfiguration",
+          "description": "Output only. Configuration for sandboxes.",
+          "readOnly": true
+        },
         "satisfiesPzs": {
           "description": "Output only. Reserved for future use.",
           "readOnly": true,
@@ -4912,6 +4921,10 @@
           "description": "Optional. The unique name for the revision. If this field is omitted, it will be automatically generated based on the Service name.",
           "type": "string"
         },
+        "sandboxes": {
+          "$ref": "GoogleCloudRunV2SandboxConfiguration",
+          "description": "Optional. Configuration for sandboxes."
+        },
         "scaling": {
           "$ref": "GoogleCloudRunV2RevisionScaling",
           "description": "Optional. Scaling settings for this Revision."
@@ -4966,6 +4979,67 @@
         "validateOnly": {
           "description": "Indicates that the request should be validated without actually deleting any resources.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2SandboxConfiguration": {
+      "description": "Configuration for sandboxes.",
+      "id": "GoogleCloudRunV2SandboxConfiguration",
+      "properties": {
+        "templates": {
+          "description": "Required. Sandbox templates that can be launched through the `sandbox` CLI.",
+          "items": {
+            "$ref": "GoogleCloudRunV2SandboxTemplate"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2SandboxTemplate": {
+      "description": "Template for a single sandbox.",
+      "id": "GoogleCloudRunV2SandboxTemplate",
+      "properties": {
+        "args": {
+          "description": "Optional. Arguments to the entrypoint. The docker image's CMD is used if this is not provided.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "command": {
+          "description": "Optional. Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "env": {
+          "description": "Optional. List of environment variables to set in the sandbox.",
+          "items": {
+            "$ref": "GoogleCloudRunV2EnvVar"
+          },
+          "type": "array"
+        },
+        "image": {
+          "description": "Required. Name of the container image in Dockerhub or Artifact Registry. If the host is not provided, Dockerhub is assumed.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Name of the sandbox specified as a DNS_LABEL (RFC 1123).",
+          "type": "string"
+        },
+        "volumeMounts": {
+          "description": "Optional. Volume to mount into the container's filesystem.",
+          "items": {
+            "$ref": "GoogleCloudRunV2VolumeMount"
+          },
+          "type": "array"
+        },
+        "workingDir": {
+          "description": "Optional. Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5645,6 +5719,10 @@
           "readOnly": true,
           "type": "integer"
         },
+        "sandboxes": {
+          "$ref": "GoogleCloudRunV2SandboxConfiguration",
+          "description": "Configuration for sandboxes."
+        },
         "satisfiesPzs": {
           "description": "Output only. Reserved for future use.",
           "readOnly": true,
@@ -5766,6 +5844,10 @@
         "nodeSelector": {
           "$ref": "GoogleCloudRunV2NodeSelector",
           "description": "Optional. The node selector for the task template."
+        },
+        "sandboxes": {
+          "$ref": "GoogleCloudRunV2SandboxConfiguration",
+          "description": "Optional. Configuration for sandboxes."
         },
         "serviceAccount": {
           "description": "Optional. Email address of the IAM service account associated with the Task of a Job. The service account represents the identity of the running task, and determines what permissions the task has. If not provided, the task will use the project's default service account.",
@@ -6246,6 +6328,10 @@
         "revision": {
           "description": "Optional. The unique name for the revision. If this field is omitted, it will be automatically generated based on the WorkerPool name.",
           "type": "string"
+        },
+        "sandboxes": {
+          "$ref": "GoogleCloudRunV2SandboxConfiguration",
+          "description": "Optional. Configuration for sandboxes."
         },
         "serviceAccount": {
           "description": "Optional. Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project's default service account.",

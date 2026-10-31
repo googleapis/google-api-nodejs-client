@@ -731,7 +731,7 @@
                       "type": "string"
                     },
                     "filterExpression": {
-                      "description": "Optional. Filters the events counted in the report by custom keys. Not all reports support this filter. It is currently only supported for web apps, for the `webMetrics`, `topBrowsers`, `topOperatingSystems`, `topVersions`, and `topCustomKeys` reports. Requests for other apps or reports that set this field are rejected with INVALID_ARGUMENT. Supported forms: * Equality: `custom_keys.level = \"vip\"` * Has: `custom_keys.level:\"vip\"` (matches the same events as equality) * Presence: `custom_keys.level:*` * OR across values of one key: `custom_keys.level = \"vip\" OR custom_keys.level = \"enterprise\"` * AND across different keys: `custom_keys.level = \"vip\" AND custom_keys.region = \"us\"` Keys are case-sensitive. Keys and values containing spaces must be double-quoted, for example `custom_keys.\"app state\" = \"background\"`. OR across different keys, repeating a key within an AND, NOT, and comparators other than `=` and `:` are rejected with INVALID_ARGUMENT. Wildcards are not supported in values; use `custom_keys.:*` to match events that set a key to any value. This filter expression applies in addition to the `filter` field above. The syntax is a subset of AIP-160 (https://google.aip.dev/160).",
+                      "description": "Optional. Filters the events counted in the report by custom keys. Not all reports support this filter. It is currently only supported for web apps; see the report's `usage` field for whether `filter_expression` is supported. Requests for other apps or unsupported reports that set this field are rejected with `INVALID_ARGUMENT`. Supported forms: * Equality: `custom_keys.level = \"vip\"` * Has: `custom_keys.level:\"vip\"` (matches the same events as equality) * Presence: `custom_keys.level:*` * OR across values of one key: `custom_keys.level = \"vip\" OR custom_keys.level = \"enterprise\"` * AND across different keys: `custom_keys.level = \"vip\" AND custom_keys.region = \"us\"` Keys are case-sensitive. Keys and values containing spaces must be double-quoted, for example `custom_keys.\"app state\" = \"background\"`. OR across different keys, repeating a key within an AND, NOT, and comparators other than `=` and `:` are rejected with INVALID_ARGUMENT. Wildcards are not supported in values; use `custom_keys.:*` to match events that set a key to any value. This filter expression applies in addition to the `filter` field above. The syntax is a subset of AIP-160 (https://google.aip.dev/160).",
                       "location": "query",
                       "type": "string"
                     },
@@ -888,7 +888,7 @@
       }
     }
   },
-  "revision": "20261022",
+  "revision": "20261029",
   "rootUrl": "https://firebasecrashlytics.googleapis.com/",
   "schemas": {
     "BatchGetEventsResponse": {
