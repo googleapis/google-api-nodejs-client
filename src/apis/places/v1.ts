@@ -226,7 +226,7 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1AutocompletePlacesRequest {
     /**
-     * Optional. Included primary Place type (for example, "restaurant" or "gas_station") in Place Types (https://developers.google.com/maps/documentation/places/web-service/place-types), or only `(regions)`, or only `(cities)`. A Place is only returned if its primary type is included in this list. Up to 5 values can be specified. If no types are specified, all Place types are returned.
+     * Optional. Included primary Place type (for example, "restaurant" or "gas_station") in [Place Types](https://developers.google.com/maps/documentation/places/web-service/place-types), or only `(regions)`, or only `(cities)`. A Place is only returned if its primary type is included in this list. Up to 5 values can be specified. If no types are specified, all Place types are returned.
      */
     includedPrimaryTypes?: string[] | null;
     /**
@@ -557,7 +557,7 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1FuelOptionsFuelPrice {
     /**
-     * The price of the fuel.
+     * The price of the fuel. The price is per US liquid gallon in the United States, and per liter elsewhere. Prices do not distinguish between payment methods (cash or credit). When a station offers multiple prices for the same `FuelType`, the API returns the standard (highest) price.
      */
     price?: Schema$GoogleTypeMoney;
     /**
@@ -565,7 +565,7 @@ export namespace places_v1 {
      */
     type?: string | null;
     /**
-     * The time the fuel price was last updated.
+     * The time the fuel price was last updated. This represents the time when the specific fuel price offer was last observed or updated by the data provider.
      */
     updateTime?: string | null;
   }
