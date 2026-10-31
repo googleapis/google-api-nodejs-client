@@ -463,7 +463,7 @@
         "builds": {
           "methods": {
             "approve": {
-              "description": "Approves or rejects a pending build. If approved, the returned long-running operation (LRO) will be analogous to the LRO returned from a CreateBuild call. If rejected, the returned LRO will be immediately done.",
+              "description": "Approves or rejects a pending build. If approved, the returned long-running operation (LRO) will be analogous to the LRO returned from a CreateBuild call. If rejected, the returned LRO will be immediately done. Note: This method only approves or rejects builds in the \"global\" region when using the legacy resource path projects/{project_id}/builds/{id}:approve. For all regions, use the regional resource path: `projects/{project_id}/locations/{location}/builds/{id}:approve`.",
               "flatPath": "v1/projects/{projectsId}/builds/{buildsId}:approve",
               "httpMethod": "POST",
               "id": "cloudbuild.projects.builds.approve",
@@ -1146,7 +1146,7 @@
             "builds": {
               "methods": {
                 "approve": {
-                  "description": "Approves or rejects a pending build. If approved, the returned long-running operation (LRO) will be analogous to the LRO returned from a CreateBuild call. If rejected, the returned LRO will be immediately done.",
+                  "description": "Approves or rejects a pending build. If approved, the returned long-running operation (LRO) will be analogous to the LRO returned from a CreateBuild call. If rejected, the returned LRO will be immediately done. Note: This method only approves or rejects builds in the \"global\" region when using the legacy resource path projects/{project_id}/builds/{id}:approve. For all regions, use the regional resource path: `projects/{project_id}/locations/{location}/builds/{id}:approve`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/builds/{buildsId}:approve",
                   "httpMethod": "POST",
                   "id": "cloudbuild.projects.locations.builds.approve",
@@ -1587,7 +1587,7 @@
             "triggers": {
               "methods": {
                 "create": {
-                  "description": "Creates a new `BuildTrigger`.",
+                  "description": "Creates a new `BuildTrigger`. Note: This method only creates triggers in the \"global\" region when using the legacy resource path projects/{project_id}/triggers. For all regions, use the regional resource path: `projects/{project_id}/locations/{location}/triggers`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers",
                   "httpMethod": "POST",
                   "id": "cloudbuild.projects.locations.triggers.create",
@@ -1620,7 +1620,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a `BuildTrigger` by its project ID and trigger ID.",
+                  "description": "Deletes a `BuildTrigger` by its project ID and trigger ID. Note: This method only deletes triggers in the \"global\" region when using the legacy resource path projects/{project_id}/triggers/{trigger_id}. For all regions, use the regional resource path: `projects/{project_id}/locations/{location}/triggers/{trigger_id}`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}",
                   "httpMethod": "DELETE",
                   "id": "cloudbuild.projects.locations.triggers.delete",
@@ -1655,7 +1655,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Returns information about a `BuildTrigger`.",
+                  "description": "Returns information about a `BuildTrigger`. Note: This method only gets triggers in the \"global\" region when using the legacy resource path projects/{project_id}/triggers/{trigger_id}. For all regions, use the regional resource path: `projects/{project_id}/locations/{location}/triggers/{trigger_id}`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}",
                   "httpMethod": "GET",
                   "id": "cloudbuild.projects.locations.triggers.get",
@@ -1690,7 +1690,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists existing `BuildTrigger`s.",
+                  "description": "Lists existing `BuildTrigger`s. Note: This method only lists triggers in the \"global\" region when using the legacy resource path projects/{project_id}/triggers. For all regions, use the regional resource path: `projects/{project_id}/locations/{location}/triggers`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers",
                   "httpMethod": "GET",
                   "id": "cloudbuild.projects.locations.triggers.list",
@@ -1731,7 +1731,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a `BuildTrigger` by its project ID and trigger ID.",
+                  "description": "Updates a `BuildTrigger` by its project ID and trigger ID. Note: This method only updates triggers in the \"global\" region when using the legacy resource path projects/{project_id}/triggers/{trigger_id}. For all regions, use the regional resource path: `projects/{project_id}/locations/{location}/triggers/{trigger_id}`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}",
                   "httpMethod": "PATCH",
                   "id": "cloudbuild.projects.locations.triggers.patch",
@@ -2031,7 +2031,7 @@
         "triggers": {
           "methods": {
             "create": {
-              "description": "Creates a new `BuildTrigger`.",
+              "description": "Creates a new `BuildTrigger`. Note: This method only creates triggers in the \"global\" region when using the legacy resource path projects/{project_id}/triggers. For all regions, use the regional resource path: `projects/{project_id}/locations/{location}/triggers`.",
               "flatPath": "v1/projects/{projectId}/triggers",
               "httpMethod": "POST",
               "id": "cloudbuild.projects.triggers.create",
@@ -2063,7 +2063,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes a `BuildTrigger` by its project ID and trigger ID.",
+              "description": "Deletes a `BuildTrigger` by its project ID and trigger ID. Note: This method only deletes triggers in the \"global\" region when using the legacy resource path projects/{project_id}/triggers/{trigger_id}. For all regions, use the regional resource path: `projects/{project_id}/locations/{location}/triggers/{trigger_id}`.",
               "flatPath": "v1/projects/{projectId}/triggers/{triggerId}",
               "httpMethod": "DELETE",
               "id": "cloudbuild.projects.triggers.delete",
@@ -2099,7 +2099,7 @@
               ]
             },
             "get": {
-              "description": "Returns information about a `BuildTrigger`.",
+              "description": "Returns information about a `BuildTrigger`. Note: This method only gets triggers in the \"global\" region when using the legacy resource path projects/{project_id}/triggers/{trigger_id}. For all regions, use the regional resource path: `projects/{project_id}/locations/{location}/triggers/{trigger_id}`.",
               "flatPath": "v1/projects/{projectId}/triggers/{triggerId}",
               "httpMethod": "GET",
               "id": "cloudbuild.projects.triggers.get",
@@ -2135,7 +2135,7 @@
               ]
             },
             "list": {
-              "description": "Lists existing `BuildTrigger`s.",
+              "description": "Lists existing `BuildTrigger`s. Note: This method only lists triggers in the \"global\" region when using the legacy resource path projects/{project_id}/triggers. For all regions, use the regional resource path: `projects/{project_id}/locations/{location}/triggers`.",
               "flatPath": "v1/projects/{projectId}/triggers",
               "httpMethod": "GET",
               "id": "cloudbuild.projects.triggers.list",
@@ -2175,7 +2175,7 @@
               ]
             },
             "patch": {
-              "description": "Updates a `BuildTrigger` by its project ID and trigger ID.",
+              "description": "Updates a `BuildTrigger` by its project ID and trigger ID. Note: This method only updates triggers in the \"global\" region when using the legacy resource path projects/{project_id}/triggers/{trigger_id}. For all regions, use the regional resource path: `projects/{project_id}/locations/{location}/triggers/{trigger_id}`.",
               "flatPath": "v1/projects/{projectId}/triggers/{triggerId}",
               "httpMethod": "PATCH",
               "id": "cloudbuild.projects.triggers.patch",
@@ -2324,7 +2324,7 @@
       }
     }
   },
-  "revision": "20261010",
+  "revision": "20261025",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -3084,6 +3084,25 @@
         "pubsubTopic": {
           "description": "Optional. Option to specify the Pub/Sub topic to receive build status updates.",
           "type": "string"
+        },
+        "rankedMachineSeries": {
+          "description": "Optional. Ranked list (earlier items have higher priority) of Machine Series to consider when provisioning Worker VMs. A concrete machine type will be selected based on machine availability in the given region. This field must be empty for the Build to be eligible to be paired with a pre-provisioned worker VM.",
+          "items": {
+            "enum": [
+              "MACHINE_SERIES_UNSPECIFIED",
+              "MACHINE_SERIES_E",
+              "MACHINE_SERIES_N",
+              "MACHINE_SERIES_C"
+            ],
+            "enumDescriptions": [
+              "Should not be used.",
+              "Cost-optimized machines such as E2.",
+              "General-purpose machines such as N4.",
+              "Performance-optimized machines such as C4."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         },
         "requestedVerifyOption": {
           "description": "Requested verifiability options.",
@@ -5536,6 +5555,25 @@
         "machineType": {
           "description": "Optional. Machine type of a worker, such as `e2-medium`. See [Worker pool config file](https://cloud.google.com/build/docs/private-pools/worker-pool-config-file-schema). If left blank, Cloud Build will use a sensible default.",
           "type": "string"
+        },
+        "rankedMachineSeries": {
+          "description": "Optional. Ranked list (earlier items have higher priority) of Machine Series to consider when provisioning Worker VMs. A concrete machine type will be selected based on machine availability in the given region.",
+          "items": {
+            "enum": [
+              "MACHINE_SERIES_UNSPECIFIED",
+              "MACHINE_SERIES_E",
+              "MACHINE_SERIES_N",
+              "MACHINE_SERIES_C"
+            ],
+            "enumDescriptions": [
+              "Should not be used.",
+              "Cost-optimized machines such as E2.",
+              "General-purpose machines such as N4.",
+              "Performance-optimized machines such as C4."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         },
         "workerRelease": {
           "description": "Optional. Option to specify which release or release channel (rapid|regular|stable) to use to run this build.",

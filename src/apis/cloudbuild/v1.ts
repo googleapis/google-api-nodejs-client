@@ -635,6 +635,10 @@ export namespace cloudbuild_v1 {
      */
     pubsubTopic?: string | null;
     /**
+     * Optional. Ranked list (earlier items have higher priority) of Machine Series to consider when provisioning Worker VMs. A concrete machine type will be selected based on machine availability in the given region. This field must be empty for the Build to be eligible to be paired with a pre-provisioned worker VM.
+     */
+    rankedMachineSeries?: string[] | null;
+    /**
      * Requested verifiability options.
      */
     requestedVerifyOption?: string | null;
@@ -2415,6 +2419,10 @@ export namespace cloudbuild_v1 {
      */
     machineType?: string | null;
     /**
+     * Optional. Ranked list (earlier items have higher priority) of Machine Series to consider when provisioning Worker VMs. A concrete machine type will be selected based on machine availability in the given region.
+     */
+    rankedMachineSeries?: string[] | null;
+    /**
      * Optional. Option to specify which release or release channel (rapid|regular|stable) to use to run this build.
      */
     workerRelease?: string | null;
@@ -3118,7 +3126,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Approves or rejects a pending build. If approved, the returned long-running operation (LRO) will be analogous to the LRO returned from a CreateBuild call. If rejected, the returned LRO will be immediately done.
+     * Approves or rejects a pending build. If approved, the returned long-running operation (LRO) will be analogous to the LRO returned from a CreateBuild call. If rejected, the returned LRO will be immediately done. Note: This method only approves or rejects builds in the "global" region when using the legacy resource path projects/{project_id\}/builds/{id\}:approve. For all regions, use the regional resource path: `projects/{project_id\}/locations/{location\}/builds/{id\}:approve`.
      * @example
      * ```js
      * // Before running the sample:
@@ -6533,7 +6541,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Approves or rejects a pending build. If approved, the returned long-running operation (LRO) will be analogous to the LRO returned from a CreateBuild call. If rejected, the returned LRO will be immediately done.
+     * Approves or rejects a pending build. If approved, the returned long-running operation (LRO) will be analogous to the LRO returned from a CreateBuild call. If rejected, the returned LRO will be immediately done. Note: This method only approves or rejects builds in the "global" region when using the legacy resource path projects/{project_id\}/builds/{id\}:approve. For all regions, use the regional resource path: `projects/{project_id\}/locations/{location\}/builds/{id\}:approve`.
      * @example
      * ```js
      * // Before running the sample:
@@ -8726,7 +8734,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Creates a new `BuildTrigger`.
+     * Creates a new `BuildTrigger`. Note: This method only creates triggers in the "global" region when using the legacy resource path projects/{project_id\}/triggers. For all regions, use the regional resource path: `projects/{project_id\}/locations/{location\}/triggers`.
      * @example
      * ```js
      * // Before running the sample:
@@ -8925,7 +8933,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Deletes a `BuildTrigger` by its project ID and trigger ID.
+     * Deletes a `BuildTrigger` by its project ID and trigger ID. Note: This method only deletes triggers in the "global" region when using the legacy resource path projects/{project_id\}/triggers/{trigger_id\}. For all regions, use the regional resource path: `projects/{project_id\}/locations/{location\}/triggers/{trigger_id\}`.
      * @example
      * ```js
      * // Before running the sample:
@@ -9060,7 +9068,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Returns information about a `BuildTrigger`.
+     * Returns information about a `BuildTrigger`. Note: This method only gets triggers in the "global" region when using the legacy resource path projects/{project_id\}/triggers/{trigger_id\}. For all regions, use the regional resource path: `projects/{project_id\}/locations/{location\}/triggers/{trigger_id\}`.
      * @example
      * ```js
      * // Before running the sample:
@@ -9224,7 +9232,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Lists existing `BuildTrigger`s.
+     * Lists existing `BuildTrigger`s. Note: This method only lists triggers in the "global" region when using the legacy resource path projects/{project_id\}/triggers. For all regions, use the regional resource path: `projects/{project_id\}/locations/{location\}/triggers`.
      * @example
      * ```js
      * // Before running the sample:
@@ -9371,7 +9379,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Updates a `BuildTrigger` by its project ID and trigger ID.
+     * Updates a `BuildTrigger` by its project ID and trigger ID. Note: This method only updates triggers in the "global" region when using the legacy resource path projects/{project_id\}/triggers/{trigger_id\}. For all regions, use the regional resource path: `projects/{project_id\}/locations/{location\}/triggers/{trigger_id\}`.
      * @example
      * ```js
      * // Before running the sample:
@@ -10836,7 +10844,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Creates a new `BuildTrigger`.
+     * Creates a new `BuildTrigger`. Note: This method only creates triggers in the "global" region when using the legacy resource path projects/{project_id\}/triggers. For all regions, use the regional resource path: `projects/{project_id\}/locations/{location\}/triggers`.
      * @example
      * ```js
      * // Before running the sample:
@@ -11035,7 +11043,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Deletes a `BuildTrigger` by its project ID and trigger ID.
+     * Deletes a `BuildTrigger` by its project ID and trigger ID. Note: This method only deletes triggers in the "global" region when using the legacy resource path projects/{project_id\}/triggers/{trigger_id\}. For all regions, use the regional resource path: `projects/{project_id\}/locations/{location\}/triggers/{trigger_id\}`.
      * @example
      * ```js
      * // Before running the sample:
@@ -11172,7 +11180,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Returns information about a `BuildTrigger`.
+     * Returns information about a `BuildTrigger`. Note: This method only gets triggers in the "global" region when using the legacy resource path projects/{project_id\}/triggers/{trigger_id\}. For all regions, use the regional resource path: `projects/{project_id\}/locations/{location\}/triggers/{trigger_id\}`.
      * @example
      * ```js
      * // Before running the sample:
@@ -11338,7 +11346,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Lists existing `BuildTrigger`s.
+     * Lists existing `BuildTrigger`s. Note: This method only lists triggers in the "global" region when using the legacy resource path projects/{project_id\}/triggers. For all regions, use the regional resource path: `projects/{project_id\}/locations/{location\}/triggers`.
      * @example
      * ```js
      * // Before running the sample:
@@ -11485,7 +11493,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Updates a `BuildTrigger` by its project ID and trigger ID.
+     * Updates a `BuildTrigger` by its project ID and trigger ID. Note: This method only updates triggers in the "global" region when using the legacy resource path projects/{project_id\}/triggers/{trigger_id\}. For all regions, use the regional resource path: `projects/{project_id\}/locations/{location\}/triggers/{trigger_id\}`.
      * @example
      * ```js
      * // Before running the sample:
