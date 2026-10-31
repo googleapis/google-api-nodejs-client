@@ -174,6 +174,36 @@ export namespace developerconnect_v1 {
     updateTime?: string | null;
   }
   /**
+   * Request message for AddGitRepositoryLinkPullRequestComment.
+   */
+  export interface Schema$AddGitRepositoryLinkPullRequestCommentRequest {
+    /**
+     * Required. The comment to add.
+     */
+    comment?: Schema$PullRequestComment;
+    /**
+     * Required. The ID of the Pull Request.
+     */
+    pullRequestId?: string | null;
+  }
+  /**
+   * Request message for AddGitRepositoryLinkPullRequestReviewComment.
+   */
+  export interface Schema$AddGitRepositoryLinkPullRequestReviewCommentRequest {
+    /**
+     * Required. The review comment to add.
+     */
+    comment?: Schema$PullRequestReviewComment;
+    /**
+     * Optional. The commit SHA to comment on. If not specified, defaults to the HEAD commit of the Pull Request.
+     */
+    commitId?: string | null;
+    /**
+     * Required. The ID of the Pull Request.
+     */
+    pullRequestId?: string | null;
+  }
+  /**
    * AppHubService represents the App Hub Service.
    */
   export interface Schema$AppHubService {
@@ -338,6 +368,23 @@ export namespace developerconnect_v1 {
     webhookSecretSecretVersion?: string | null;
   }
   /**
+   * BlameRange represents blame information for a range of lines.
+   */
+  export interface Schema$BlameRange {
+    /**
+     * The commit metadata for this line range.
+     */
+    commit?: Schema$SCMCommit;
+    /**
+     * The 1-indexed starting line number of the range (inclusive).
+     */
+    firstLine?: number | null;
+    /**
+     * The 1-indexed ending line number of the range (inclusive).
+     */
+    lastLine?: number | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -358,7 +405,7 @@ export namespace developerconnect_v1 {
      */
     bitbucketDataCenterConfig?: Schema$BitbucketDataCenterConfig;
     /**
-     * Output only. [Output only] Create timestamp
+     * Output only. Create timestamp.
      */
     createTime?: string | null;
     /**
@@ -366,7 +413,7 @@ export namespace developerconnect_v1 {
      */
     cryptoKeyConfig?: Schema$CryptoKeyConfig;
     /**
-     * Output only. [Output only] Delete timestamp
+     * Output only. Delete timestamp.
      */
     deleteTime?: string | null;
     /**
@@ -394,7 +441,7 @@ export namespace developerconnect_v1 {
      */
     gitlabEnterpriseConfig?: Schema$GitLabEnterpriseConfig;
     /**
-     * Optional. Configuration for the git proxy feature. Enabling the git proxy allows clients to perform git operations on the repositories linked in the connection. [Learn more](https://docs.cloud.google.com/developer-connect/docs/configure-git-proxy).
+     * Optional. Configuration for the Git proxy feature. Enabling the Git proxy allows clients to perform Git operations on the repositories linked in the connection. [Learn more](https://docs.cloud.google.com/developer-connect/docs/configure-git-proxy).
      */
     gitProxyConfig?: Schema$GitProxyConfig;
     /**
@@ -426,7 +473,7 @@ export namespace developerconnect_v1 {
      */
     uid?: string | null;
     /**
-     * Output only. [Output only] Update timestamp
+     * Output only. Update timestamp.
      */
     updateTime?: string | null;
   }
@@ -530,6 +577,15 @@ export namespace developerconnect_v1 {
     updateTime?: string | null;
   }
   /**
+   * Response message for DiffGitRepositoryLinkCommit.
+   */
+  export interface Schema$DiffGitRepositoryLinkCommitResponse {
+    /**
+     * The file diff extracted from the unified diff.
+     */
+    files?: Schema$FileDiff[];
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -592,6 +648,54 @@ export namespace developerconnect_v1 {
      * Name of the refs fetched.
      */
     refNames?: string[] | null;
+  }
+  /**
+   * Response message for FetchGitRepositoryLinkCommitList.
+   */
+  export interface Schema$FetchGitRepositoryLinkCommitListResponse {
+    /**
+     * The list of commit metadata.
+     */
+    commits?: Schema$SCMCommit[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for FetchGitRepositoryLinkCommit.
+   */
+  export interface Schema$FetchGitRepositoryLinkCommitResponse {
+    /**
+     * The commit metadata.
+     */
+    commit?: Schema$SCMCommit;
+    /**
+     * List of file changes and patch diffs. Omitted when view is `BASIC`. Patch diffs (`FileDiff.patch`) are only populated when `path_filters` is specified in the request.
+     */
+    files?: Schema$FileDiff[];
+  }
+  /**
+   * Response message for FetchGitRepositoryLinkFileBlame.
+   */
+  export interface Schema$FetchGitRepositoryLinkFileBlameResponse {
+    /**
+     * The list of blame ranges for the file.
+     */
+    ranges?: Schema$BlameRange[];
+  }
+  /**
+   * Response message for FetchGitRepositoryLinkPullRequestList.
+   */
+  export interface Schema$FetchGitRepositoryLinkPullRequestListResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of pull requests.
+     */
+    pullRequests?: Schema$PullRequest[];
   }
   /**
    * Response message for FetchLinkableGitRepositories.
@@ -673,6 +777,23 @@ export namespace developerconnect_v1 {
      * The name of the parameter in the input_schema or output_schema.
      */
     selector?: string | null;
+  }
+  /**
+   * Message for a file diff.
+   */
+  export interface Schema$FileDiff {
+    /**
+     * Standard unified diff patch hunk for the file. Only populated when `path_filters` is specified in the request; otherwise empty.
+     */
+    patch?: string | null;
+    /**
+     * Relative path to the file in the repository.
+     */
+    path?: string | null;
+    /**
+     * Status of change: "ADDED", "MODIFIED", "REMOVED", "RENAMED".
+     */
+    status?: string | null;
   }
   /**
    * Message for responding to finishing an OAuth flow.
@@ -833,7 +954,7 @@ export namespace developerconnect_v1 {
    */
   export interface Schema$GitProxyConfig {
     /**
-     * Optional. Setting this to true allows the git proxy to be used for performing git operations on the repositories linked in the connection.
+     * Optional. Setting this to true allows the Git proxy to be used for performing Git operations on the repositories linked in the connection.
      */
     enabled?: boolean | null;
     /**
@@ -854,11 +975,11 @@ export namespace developerconnect_v1 {
      */
     cloneUri?: string | null;
     /**
-     * Output only. [Output only] Create timestamp
+     * Output only. Create timestamp.
      */
     createTime?: string | null;
     /**
-     * Output only. [Output only] Delete timestamp
+     * Output only. Delete timestamp.
      */
     deleteTime?: string | null;
     /**
@@ -866,7 +987,7 @@ export namespace developerconnect_v1 {
      */
     etag?: string | null;
     /**
-     * Output only. URI to access the linked repository through the Git Proxy. This field is only populated if the git proxy is enabled for the connection.
+     * Output only. URI to access the linked repository through the Git proxy. This field is only populated if the Git proxy is enabled for the connection.
      */
     gitProxyUri?: string | null;
     /**
@@ -886,7 +1007,7 @@ export namespace developerconnect_v1 {
      */
     uid?: string | null;
     /**
-     * Output only. [Output only] Update timestamp
+     * Output only. Update timestamp.
      */
     updateTime?: string | null;
     /**
@@ -1073,7 +1194,7 @@ export namespace developerconnect_v1 {
    */
   export interface Schema$ListConnectionsResponse {
     /**
-     * The list of Connection
+     * The list of Connections.
      */
     connections?: Schema$Connection[];
     /**
@@ -1103,7 +1224,7 @@ export namespace developerconnect_v1 {
    */
   export interface Schema$ListGitRepositoryLinksResponse {
     /**
-     * The list of GitRepositoryLinks
+     * The list of GitRepositoryLinks.
      */
     gitRepositoryLinks?: Schema$GitRepositoryLink[];
     /**
@@ -1222,6 +1343,31 @@ export namespace developerconnect_v1 {
     visibilityRestriction?: string | null;
   }
   /**
+   * Message for modifying SCM Pull Request.
+   */
+  export interface Schema$ModifyGitRepositoryLinkPullRequestRequest {
+    /**
+     * Optional. The target branch to merge into.
+     */
+    baseRef?: string | null;
+    /**
+     * Optional. The body description of the Pull Request.
+     */
+    body?: string | null;
+    /**
+     * Required. The SCM-specific pull request identifier (for example, "45").
+     */
+    pullRequestId?: string | null;
+    /**
+     * Optional. The state of the Pull Request.
+     */
+    state?: string | null;
+    /**
+     * Optional. The title of the Pull Request.
+     */
+    title?: string | null;
+  }
+  /**
    * Represents an OAuth token of the account that authorized the Connection, and associated metadata.
    */
   export interface Schema$OAuthCredential {
@@ -1233,6 +1379,15 @@ export namespace developerconnect_v1 {
      * Output only. The username associated with this token.
      */
     username?: string | null;
+  }
+  /**
+   * Message for opening SCM Pull Request.
+   */
+  export interface Schema$OpenGitRepositoryLinkPullRequestRequest {
+    /**
+     * Required. The Pull Request details to open. Input fields used: title, body, head_ref, base_ref.
+     */
+    pullRequest?: Schema$PullRequest;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1373,6 +1528,137 @@ export namespace developerconnect_v1 {
     httpProxyBaseUri?: string | null;
   }
   /**
+   * Message representing a SCM Pull Request.
+   */
+  export interface Schema$PullRequest {
+    /**
+     * Output only. The username of the author.
+     */
+    author?: string | null;
+    /**
+     * Required. The target commit SHA of the base branch.
+     */
+    baseRef?: string | null;
+    /**
+     * Optional. The body description of the PR.
+     */
+    body?: string | null;
+    /**
+     * Output only. When the PR was closed.
+     */
+    closeTime?: string | null;
+    /**
+     * Output only. When the PR was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. When the PR was declined. Only set for SCM providers that support declining pull requests. Never set for GitHub, GitHub Enterprise, GitLab, or GitLab Enterprise, where a pull request closed without being merged is `CLOSED`.
+     */
+    declineTime?: string | null;
+    /**
+     * Required. The source commit SHA of the head branch.
+     */
+    headRef?: string | null;
+    /**
+     * Output only. The HTML URL of the pull request on the SCM provider.
+     */
+    htmlUrl?: string | null;
+    /**
+     * Required. The ID of the PR.
+     */
+    id?: string | null;
+    /**
+     * Output only. The mergeability state of the pull request.
+     */
+    mergeability?: string | null;
+    /**
+     * Output only. When the PR was merged.
+     */
+    mergeTime?: string | null;
+    /**
+     * Output only. The current state of the PR.
+     */
+    state?: string | null;
+    /**
+     * Required. The title of the PR.
+     */
+    title?: string | null;
+    /**
+     * Output only. When the PR was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Message representing a SCM Pull Request Comment.
+   */
+  export interface Schema$PullRequestComment {
+    /**
+     * Output only. The username of the author.
+     */
+    author?: string | null;
+    /**
+     * Required. The body of the comment.
+     */
+    body?: string | null;
+    /**
+     * Output only. When the comment was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The ID of the comment.
+     */
+    id?: string | null;
+    /**
+     * Output only. When the comment was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Message representing a SCM Pull Request Review Comment (inline on diff).
+   */
+  export interface Schema$PullRequestReviewComment {
+    /**
+     * Output only. The username of the author.
+     */
+    author?: string | null;
+    /**
+     * Required. The body of the comment.
+     */
+    body?: string | null;
+    /**
+     * Output only. The commit SHA the comment was actually applied to.
+     */
+    commitId?: string | null;
+    /**
+     * Output only. When the comment was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The first line of the comment range (inclusive). If not specified, the comment applies only to the `last_line`.
+     */
+    firstLine?: number | null;
+    /**
+     * Output only. The ID of the comment.
+     */
+    id?: string | null;
+    /**
+     * Required. The last line of the comment range (inclusive). If `first_line` is not specified, the comment applies only to this line.
+     */
+    lastLine?: number | null;
+    /**
+     * Required. The file path to comment on.
+     */
+    path?: string | null;
+    /**
+     * Optional. The side of the diff to comment on. Defaults to HEAD.
+     */
+    side?: string | null;
+    /**
+     * Output only. When the comment was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * RuntimeConfig represents the runtimes where the application is deployed.
    */
   export interface Schema$RuntimeConfig {
@@ -1400,6 +1686,35 @@ export namespace developerconnect_v1 {
      * Required. Immutable. The URI of the runtime configuration. For GKE, this is the cluster name. For Cloud Run, this is the service name.
      */
     uri?: string | null;
+  }
+  /**
+   * SCMCommit represents commit metadata.
+   */
+  export interface Schema$SCMCommit {
+    /**
+     * The author's display name.
+     */
+    author?: string | null;
+    /**
+     * The author's email address.
+     */
+    authorEmail?: string | null;
+    /**
+     * Timestamp when the commit was authored.
+     */
+    commitTime?: string | null;
+    /**
+     * Commit message text.
+     */
+    message?: string | null;
+    /**
+     * Full 40-character SCM commit SHA.
+     */
+    sha?: string | null;
+    /**
+     * The SCM provider's HTML URL link for this commit.
+     */
+    url?: string | null;
   }
   /**
    * Configuration for connections to Secure Source Manager instance
@@ -2523,9 +2838,9 @@ export namespace developerconnect_v1 {
      *
      *   // Do the magic
      *   const res = await developerconnect.projects.locations.accountConnectors.list({
-     *     // Optional. Filtering results
+     *     // Optional. Filtering results.
      *     filter: 'placeholder-value',
-     *     // Optional. Hint for how to order the results
+     *     // Optional. Hint for how to order the results.
      *     orderBy: 'placeholder-value',
      *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
@@ -2886,11 +3201,11 @@ export namespace developerconnect_v1 {
   }
   export interface Params$Resource$Projects$Locations$Accountconnectors$List extends StandardParameters {
     /**
-     * Optional. Filtering results
+     * Optional. Filtering results.
      */
     filter?: string;
     /**
-     * Optional. Hint for how to order the results
+     * Optional. Hint for how to order the results.
      */
     orderBy?: string;
     /**
@@ -3715,9 +4030,9 @@ export namespace developerconnect_v1 {
      *   // Do the magic
      *   const res =
      *     await developerconnect.projects.locations.accountConnectors.users.list({
-     *       // Optional. Filtering results
+     *       // Optional. Filtering results.
      *       filter: 'placeholder-value',
-     *       // Optional. Hint for how to order the results
+     *       // Optional. Hint for how to order the results.
      *       orderBy: 'placeholder-value',
      *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
@@ -4054,11 +4369,11 @@ export namespace developerconnect_v1 {
   }
   export interface Params$Resource$Projects$Locations$Accountconnectors$Users$List extends StandardParameters {
     /**
-     * Optional. Filtering results
+     * Optional. Filtering results.
      */
     filter?: string;
     /**
-     * Optional. Hint for how to order the results
+     * Optional. Hint for how to order the results.
      */
     orderBy?: string;
     /**
@@ -4123,7 +4438,7 @@ export namespace developerconnect_v1 {
      *
      *   // Do the magic
      *   const res = await developerconnect.projects.locations.connections.create({
-     *     // Required. Id of the requesting object If auto-generating Id server-side, remove this field and connection_id from the method_signature of Create RPC
+     *     // Required. The ID to use for the connection, which becomes the final component of the connection's resource name.
      *     connectionId: 'placeholder-value',
      *     // Required. Value for parent.
      *     parent: 'projects/my-project/locations/my-location',
@@ -4905,9 +5220,9 @@ export namespace developerconnect_v1 {
      *
      *   // Do the magic
      *   const res = await developerconnect.projects.locations.connections.list({
-     *     // Optional. Filtering results
+     *     // Optional. Filtering results.
      *     filter: 'placeholder-value',
-     *     // Optional. Hint for how to order the results
+     *     // Optional. Hint for how to order the results.
      *     orderBy: 'placeholder-value',
      *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
@@ -5349,7 +5664,7 @@ export namespace developerconnect_v1 {
 
   export interface Params$Resource$Projects$Locations$Connections$Create extends StandardParameters {
     /**
-     * Required. Id of the requesting object If auto-generating Id server-side, remove this field and connection_id from the method_signature of Create RPC
+     * Required. The ID to use for the connection, which becomes the final component of the connection's resource name.
      */
     connectionId?: string;
     /**
@@ -5416,11 +5731,11 @@ export namespace developerconnect_v1 {
   }
   export interface Params$Resource$Projects$Locations$Connections$List extends StandardParameters {
     /**
-     * Optional. Filtering results
+     * Optional. Filtering results.
      */
     filter?: string;
     /**
-     * Optional. Hint for how to order the results
+     * Optional. Hint for how to order the results.
      */
     orderBy?: string;
     /**
@@ -5479,6 +5794,327 @@ export namespace developerconnect_v1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Add a comment to a Pull Request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/developerconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const developerconnect = google.developerconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await developerconnect.projects.locations.connections.gitRepositoryLinks.addPullRequestComment(
+     *       {
+     *         // Required. The resource name of the GitRepositoryLink in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     *         name: 'projects/my-project/locations/my-location/connections/my-connection/gitRepositoryLinks/my-gitRepositoryLink',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "comment": {},
+     *           //   "pullRequestId": "my_pullRequestId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": "my_author",
+     *   //   "body": "my_body",
+     *   //   "createTime": "my_createTime",
+     *   //   "id": "my_id",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addPullRequestComment(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Addpullrequestcomment,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    addPullRequestComment(
+      params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Addpullrequestcomment,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PullRequestComment>>;
+    addPullRequestComment(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Addpullrequestcomment,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addPullRequestComment(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Addpullrequestcomment,
+      options: MethodOptions | BodyResponseCallback<Schema$PullRequestComment>,
+      callback: BodyResponseCallback<Schema$PullRequestComment>
+    ): void;
+    addPullRequestComment(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Addpullrequestcomment,
+      callback: BodyResponseCallback<Schema$PullRequestComment>
+    ): void;
+    addPullRequestComment(
+      callback: BodyResponseCallback<Schema$PullRequestComment>
+    ): void;
+    addPullRequestComment(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Addpullrequestcomment
+        | BodyResponseCallback<Schema$PullRequestComment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PullRequestComment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PullRequestComment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PullRequestComment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Addpullrequestcomment;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Addpullrequestcomment;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:addPullRequestComment').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PullRequestComment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PullRequestComment>(parameters);
+      }
+    }
+
+    /**
+     * Add a review comment (inline on diff) to a Pull Request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/developerconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const developerconnect = google.developerconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await developerconnect.projects.locations.connections.gitRepositoryLinks.addPullRequestReviewComment(
+     *       {
+     *         // Required. The resource name of the GitRepositoryLink in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     *         name: 'projects/my-project/locations/my-location/connections/my-connection/gitRepositoryLinks/my-gitRepositoryLink',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "comment": {},
+     *           //   "commitId": "my_commitId",
+     *           //   "pullRequestId": "my_pullRequestId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": "my_author",
+     *   //   "body": "my_body",
+     *   //   "commitId": "my_commitId",
+     *   //   "createTime": "my_createTime",
+     *   //   "firstLine": 0,
+     *   //   "id": "my_id",
+     *   //   "lastLine": 0,
+     *   //   "path": "my_path",
+     *   //   "side": "my_side",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addPullRequestReviewComment(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Addpullrequestreviewcomment,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    addPullRequestReviewComment(
+      params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Addpullrequestreviewcomment,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PullRequestReviewComment>>;
+    addPullRequestReviewComment(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Addpullrequestreviewcomment,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addPullRequestReviewComment(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Addpullrequestreviewcomment,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$PullRequestReviewComment>,
+      callback: BodyResponseCallback<Schema$PullRequestReviewComment>
+    ): void;
+    addPullRequestReviewComment(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Addpullrequestreviewcomment,
+      callback: BodyResponseCallback<Schema$PullRequestReviewComment>
+    ): void;
+    addPullRequestReviewComment(
+      callback: BodyResponseCallback<Schema$PullRequestReviewComment>
+    ): void;
+    addPullRequestReviewComment(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Addpullrequestreviewcomment
+        | BodyResponseCallback<Schema$PullRequestReviewComment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PullRequestReviewComment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PullRequestReviewComment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PullRequestReviewComment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Addpullrequestreviewcomment;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Addpullrequestreviewcomment;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:addPullRequestReviewComment').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PullRequestReviewComment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PullRequestReviewComment>(parameters);
+      }
     }
 
     /**
@@ -5801,6 +6437,644 @@ export namespace developerconnect_v1 {
     }
 
     /**
+     * Diff commits for a GitRepositoryLink.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/developerconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const developerconnect = google.developerconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await developerconnect.projects.locations.connections.gitRepositoryLinks.diffCommit(
+     *       {
+     *         // Required. The base commit SHA or ref.
+     *         baseSha: 'placeholder-value',
+     *         // Required. The head commit SHA or ref.
+     *         headSha: 'placeholder-value',
+     *         // Required. The resource name of the GitRepositoryLink.
+     *         name: 'projects/my-project/locations/my-location/connections/my-connection/gitRepositoryLinks/my-gitRepositoryLink',
+     *         // Optional. Path patterns or exact paths to filter returned files. When `path_filters` is specified, `FileDiff.patch` is populated for all matching files (use `["**"]` to include patches for all changed files). When `path_filters` is omitted or empty, the full list of `FileDiff` is returned without patch diffs (`FileDiff.patch` is empty).
+     *         pathFilters: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "files": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    diffCommit(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Diffcommit,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    diffCommit(
+      params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Diffcommit,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$DiffGitRepositoryLinkCommitResponse>
+    >;
+    diffCommit(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Diffcommit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    diffCommit(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Diffcommit,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DiffGitRepositoryLinkCommitResponse>,
+      callback: BodyResponseCallback<Schema$DiffGitRepositoryLinkCommitResponse>
+    ): void;
+    diffCommit(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Diffcommit,
+      callback: BodyResponseCallback<Schema$DiffGitRepositoryLinkCommitResponse>
+    ): void;
+    diffCommit(
+      callback: BodyResponseCallback<Schema$DiffGitRepositoryLinkCommitResponse>
+    ): void;
+    diffCommit(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Diffcommit
+        | BodyResponseCallback<Schema$DiffGitRepositoryLinkCommitResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DiffGitRepositoryLinkCommitResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DiffGitRepositoryLinkCommitResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$DiffGitRepositoryLinkCommitResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Diffcommit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Diffcommit;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:diffCommit').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DiffGitRepositoryLinkCommitResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DiffGitRepositoryLinkCommitResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Fetch Commit details from a Git repository link.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/developerconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const developerconnect = google.developerconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await developerconnect.projects.locations.connections.gitRepositoryLinks.fetchCommit(
+     *       {
+     *         // Required. The commit SHA, or symbolic revision (for example, branch name, tag, or Git reference).
+     *         commitSha: 'placeholder-value',
+     *         // Required. The resource name of the GitRepositoryLink in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     *         name: 'projects/my-project/locations/my-location/connections/my-connection/gitRepositoryLinks/my-gitRepositoryLink',
+     *         // Optional. Path patterns or exact paths to filter returned files (only applicable in `FULL` view). When `path_filters` is specified, `FileDiff.patch` is populated for all matching files (use `["**"]` to include patches for all changed files). When `path_filters` is omitted or empty, the full list of `FileDiff` is returned without patch diffs (`FileDiff.patch` is empty).
+     *         pathFilters: 'placeholder-value',
+     *         // Optional. The level of commit details to return in the response. Defaults to `FULL` if unspecified. In `FULL` view, `files` metadata (paths and statuses) are returned; `path_filters` must also be specified to populate line patch hunks.
+     *         view: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commit": {},
+     *   //   "files": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchCommit(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchcommit,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchCommit(
+      params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchcommit,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchGitRepositoryLinkCommitResponse>
+    >;
+    fetchCommit(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchcommit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchCommit(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchcommit,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchGitRepositoryLinkCommitResponse>,
+      callback: BodyResponseCallback<Schema$FetchGitRepositoryLinkCommitResponse>
+    ): void;
+    fetchCommit(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchcommit,
+      callback: BodyResponseCallback<Schema$FetchGitRepositoryLinkCommitResponse>
+    ): void;
+    fetchCommit(
+      callback: BodyResponseCallback<Schema$FetchGitRepositoryLinkCommitResponse>
+    ): void;
+    fetchCommit(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchcommit
+        | BodyResponseCallback<Schema$FetchGitRepositoryLinkCommitResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchGitRepositoryLinkCommitResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchGitRepositoryLinkCommitResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchGitRepositoryLinkCommitResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchcommit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchcommit;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:fetchCommit').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchGitRepositoryLinkCommitResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchGitRepositoryLinkCommitResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Fetch a list of Commits from a Git repository link.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/developerconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const developerconnect = google.developerconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await developerconnect.projects.locations.connections.gitRepositoryLinks.fetchCommitList(
+     *       {
+     *         // Required. The resource name of the GitRepositoryLink in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     *         name: 'projects/my-project/locations/my-location/connections/my-connection/gitRepositoryLinks/my-gitRepositoryLink',
+     *         // Optional. Number of results to return in the list. Default is 50. Max is 100.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `FetchGitRepositoryLinkCommitList` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchGitRepositoryLinkCommitList` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Optional. The commit SHA, or symbolic revision (for example, branch name, tag, or Git reference) from which to start listing commits.
+     *         ref: 'placeholder-value',
+     *         // Optional. The level of commit details to return in the response. Only `BASIC` is supported; `FULL` returns `INVALID_ARGUMENT`. Defaults to `BASIC` if unspecified. Use `FetchGitRepositoryLinkCommit` to get file diffs for a single commit.
+     *         view: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commits": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchCommitList(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchcommitlist,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchCommitList(
+      params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchcommitlist,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchGitRepositoryLinkCommitListResponse>
+    >;
+    fetchCommitList(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchcommitlist,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchCommitList(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchcommitlist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchGitRepositoryLinkCommitListResponse>,
+      callback: BodyResponseCallback<Schema$FetchGitRepositoryLinkCommitListResponse>
+    ): void;
+    fetchCommitList(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchcommitlist,
+      callback: BodyResponseCallback<Schema$FetchGitRepositoryLinkCommitListResponse>
+    ): void;
+    fetchCommitList(
+      callback: BodyResponseCallback<Schema$FetchGitRepositoryLinkCommitListResponse>
+    ): void;
+    fetchCommitList(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchcommitlist
+        | BodyResponseCallback<Schema$FetchGitRepositoryLinkCommitListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchGitRepositoryLinkCommitListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchGitRepositoryLinkCommitListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchGitRepositoryLinkCommitListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchcommitlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchcommitlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:fetchCommitList').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchGitRepositoryLinkCommitListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchGitRepositoryLinkCommitListResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Fetches blame information for a file or line range in a file.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/developerconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const developerconnect = google.developerconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await developerconnect.projects.locations.connections.gitRepositoryLinks.fetchFileBlame(
+     *       {
+     *         // Optional. The 1-indexed starting line number of the range to blame (inclusive). If not specified, blame begins at line 1.
+     *         firstLine: 'placeholder-value',
+     *         // Optional. The 1-indexed ending line number of the range to blame (inclusive). If not specified, blame extends to the end of the file.
+     *         lastLine: 'placeholder-value',
+     *         // Required. The resource name of the GitRepositoryLink in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     *         name: 'projects/my-project/locations/my-location/connections/my-connection/gitRepositoryLinks/my-gitRepositoryLink',
+     *         // Required. The file path within the repository.
+     *         path: 'placeholder-value',
+     *         // Required. The SCM commit SHA, or symbolic revision (for example, branch name, tag) from which to fetch the blame.
+     *         ref: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ranges": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchFileBlame(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchfileblame,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchFileBlame(
+      params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchfileblame,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchGitRepositoryLinkFileBlameResponse>
+    >;
+    fetchFileBlame(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchfileblame,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchFileBlame(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchfileblame,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchGitRepositoryLinkFileBlameResponse>,
+      callback: BodyResponseCallback<Schema$FetchGitRepositoryLinkFileBlameResponse>
+    ): void;
+    fetchFileBlame(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchfileblame,
+      callback: BodyResponseCallback<Schema$FetchGitRepositoryLinkFileBlameResponse>
+    ): void;
+    fetchFileBlame(
+      callback: BodyResponseCallback<Schema$FetchGitRepositoryLinkFileBlameResponse>
+    ): void;
+    fetchFileBlame(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchfileblame
+        | BodyResponseCallback<Schema$FetchGitRepositoryLinkFileBlameResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchGitRepositoryLinkFileBlameResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchGitRepositoryLinkFileBlameResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchGitRepositoryLinkFileBlameResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchfileblame;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchfileblame;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:fetchFileBlame').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchGitRepositoryLinkFileBlameResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchGitRepositoryLinkFileBlameResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Fetch the list of branches or tags for a given repository.
      * @example
      * ```js
@@ -5950,6 +7224,322 @@ export namespace developerconnect_v1 {
         );
       } else {
         return createAPIRequest<Schema$FetchGitRefsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Fetch Pull Request details from a Git repository link.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/developerconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const developerconnect = google.developerconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await developerconnect.projects.locations.connections.gitRepositoryLinks.fetchPullRequest(
+     *       {
+     *         // Required. The resource name of the GitRepositoryLink in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     *         name: 'projects/my-project/locations/my-location/connections/my-connection/gitRepositoryLinks/my-gitRepositoryLink',
+     *         // Required. The ID of the Pull Request.
+     *         pullRequestId: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": "my_author",
+     *   //   "baseRef": "my_baseRef",
+     *   //   "body": "my_body",
+     *   //   "closeTime": "my_closeTime",
+     *   //   "createTime": "my_createTime",
+     *   //   "declineTime": "my_declineTime",
+     *   //   "headRef": "my_headRef",
+     *   //   "htmlUrl": "my_htmlUrl",
+     *   //   "id": "my_id",
+     *   //   "mergeTime": "my_mergeTime",
+     *   //   "mergeability": "my_mergeability",
+     *   //   "state": "my_state",
+     *   //   "title": "my_title",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchPullRequest(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchpullrequest,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchPullRequest(
+      params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchpullrequest,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PullRequest>>;
+    fetchPullRequest(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchpullrequest,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchPullRequest(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchpullrequest,
+      options: MethodOptions | BodyResponseCallback<Schema$PullRequest>,
+      callback: BodyResponseCallback<Schema$PullRequest>
+    ): void;
+    fetchPullRequest(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchpullrequest,
+      callback: BodyResponseCallback<Schema$PullRequest>
+    ): void;
+    fetchPullRequest(callback: BodyResponseCallback<Schema$PullRequest>): void;
+    fetchPullRequest(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchpullrequest
+        | BodyResponseCallback<Schema$PullRequest>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PullRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PullRequest>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PullRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchpullrequest;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchpullrequest;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:fetchPullRequest').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PullRequest>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PullRequest>(parameters);
+      }
+    }
+
+    /**
+     * Fetches a list of Pull Requests from the remote repository.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/developerconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const developerconnect = google.developerconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await developerconnect.projects.locations.connections.gitRepositoryLinks.fetchPullRequestList(
+     *       {
+     *         // Optional. A filter expression that filters the pull requests returned in the response. Only a single equality comparison on `state` is supported, for example `state = "OPEN"`. Supported values are `OPEN`, `CLOSED`, and `MERGED`. `DECLINED` is only supported for SCM providers that support declining pull requests, and returns `INVALID_ARGUMENT` for GitHub, GitHub Enterprise, GitLab, and GitLab Enterprise. Other values or expressions return `INVALID_ARGUMENT`. Defaults to `state = "OPEN"` if unspecified.
+     *         filter: 'placeholder-value',
+     *         // Required. The GitRepositoryLink resource name in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     *         name: 'projects/my-project/locations/my-location/connections/my-connection/gitRepositoryLinks/my-gitRepositoryLink',
+     *         // Optional. Number of results to return in the list. Default is 20. Max is 100. A page may contain fewer than `page_size` results even when more results are available; use `next_page_token` to check for more pages.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `FetchGitRepositoryLinkPullRequestList` call. Provide this to retrieve the subsequent page.
+     *         pageToken: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pullRequests": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchPullRequestList(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchpullrequestlist,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchPullRequestList(
+      params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchpullrequestlist,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchGitRepositoryLinkPullRequestListResponse>
+    >;
+    fetchPullRequestList(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchpullrequestlist,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchPullRequestList(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchpullrequestlist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchGitRepositoryLinkPullRequestListResponse>,
+      callback: BodyResponseCallback<Schema$FetchGitRepositoryLinkPullRequestListResponse>
+    ): void;
+    fetchPullRequestList(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchpullrequestlist,
+      callback: BodyResponseCallback<Schema$FetchGitRepositoryLinkPullRequestListResponse>
+    ): void;
+    fetchPullRequestList(
+      callback: BodyResponseCallback<Schema$FetchGitRepositoryLinkPullRequestListResponse>
+    ): void;
+    fetchPullRequestList(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchpullrequestlist
+        | BodyResponseCallback<Schema$FetchGitRepositoryLinkPullRequestListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchGitRepositoryLinkPullRequestListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchGitRepositoryLinkPullRequestListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchGitRepositoryLinkPullRequestListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchpullrequestlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchpullrequestlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:fetchPullRequestList').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchGitRepositoryLinkPullRequestListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchGitRepositoryLinkPullRequestListResponse>(
+          parameters
+        );
       }
     }
 
@@ -6444,15 +8034,15 @@ export namespace developerconnect_v1 {
      *   const res =
      *     await developerconnect.projects.locations.connections.gitRepositoryLinks.list(
      *       {
-     *         // Optional. Filtering results
+     *         // Optional. Filtering results.
      *         filter: 'placeholder-value',
-     *         // Optional. Hint for how to order the results
+     *         // Optional. Hint for how to order the results.
      *         orderBy: 'placeholder-value',
      *         // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
      *         pageSize: 'placeholder-value',
      *         // Optional. A token identifying a page of results the server should return.
      *         pageToken: 'placeholder-value',
-     *         // Required. Parent value for ListGitRepositoryLinksRequest
+     *         // Required. Parent value for ListGitRepositoryLinksRequest.
      *         parent:
      *           'projects/my-project/locations/my-location/connections/my-connection',
      *       },
@@ -6567,6 +8157,336 @@ export namespace developerconnect_v1 {
         return createAPIRequest<Schema$ListGitRepositoryLinksResponse>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Modifies a Pull Request in the remote SCM repository associated with a GitRepositoryLink.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/developerconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const developerconnect = google.developerconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await developerconnect.projects.locations.connections.gitRepositoryLinks.modifyPullRequest(
+     *       {
+     *         // Required. The GitRepositoryLink resource name in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     *         name: 'projects/my-project/locations/my-location/connections/my-connection/gitRepositoryLinks/my-gitRepositoryLink',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "baseRef": "my_baseRef",
+     *           //   "body": "my_body",
+     *           //   "pullRequestId": "my_pullRequestId",
+     *           //   "state": "my_state",
+     *           //   "title": "my_title"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": "my_author",
+     *   //   "baseRef": "my_baseRef",
+     *   //   "body": "my_body",
+     *   //   "closeTime": "my_closeTime",
+     *   //   "createTime": "my_createTime",
+     *   //   "declineTime": "my_declineTime",
+     *   //   "headRef": "my_headRef",
+     *   //   "htmlUrl": "my_htmlUrl",
+     *   //   "id": "my_id",
+     *   //   "mergeTime": "my_mergeTime",
+     *   //   "mergeability": "my_mergeability",
+     *   //   "state": "my_state",
+     *   //   "title": "my_title",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    modifyPullRequest(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Modifypullrequest,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    modifyPullRequest(
+      params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Modifypullrequest,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PullRequest>>;
+    modifyPullRequest(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Modifypullrequest,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    modifyPullRequest(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Modifypullrequest,
+      options: MethodOptions | BodyResponseCallback<Schema$PullRequest>,
+      callback: BodyResponseCallback<Schema$PullRequest>
+    ): void;
+    modifyPullRequest(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Modifypullrequest,
+      callback: BodyResponseCallback<Schema$PullRequest>
+    ): void;
+    modifyPullRequest(callback: BodyResponseCallback<Schema$PullRequest>): void;
+    modifyPullRequest(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Modifypullrequest
+        | BodyResponseCallback<Schema$PullRequest>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PullRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PullRequest>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PullRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Modifypullrequest;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Modifypullrequest;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:modifyPullRequest').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PullRequest>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PullRequest>(parameters);
+      }
+    }
+
+    /**
+     * Opens a Pull Request in the remote SCM repository associated with a GitRepositoryLink.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/developerconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const developerconnect = google.developerconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await developerconnect.projects.locations.connections.gitRepositoryLinks.openPullRequest(
+     *       {
+     *         // Required. The GitRepositoryLink resource name in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     *         name: 'projects/my-project/locations/my-location/connections/my-connection/gitRepositoryLinks/my-gitRepositoryLink',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "pullRequest": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": "my_author",
+     *   //   "baseRef": "my_baseRef",
+     *   //   "body": "my_body",
+     *   //   "closeTime": "my_closeTime",
+     *   //   "createTime": "my_createTime",
+     *   //   "declineTime": "my_declineTime",
+     *   //   "headRef": "my_headRef",
+     *   //   "htmlUrl": "my_htmlUrl",
+     *   //   "id": "my_id",
+     *   //   "mergeTime": "my_mergeTime",
+     *   //   "mergeability": "my_mergeability",
+     *   //   "state": "my_state",
+     *   //   "title": "my_title",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    openPullRequest(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Openpullrequest,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    openPullRequest(
+      params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Openpullrequest,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PullRequest>>;
+    openPullRequest(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Openpullrequest,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    openPullRequest(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Openpullrequest,
+      options: MethodOptions | BodyResponseCallback<Schema$PullRequest>,
+      callback: BodyResponseCallback<Schema$PullRequest>
+    ): void;
+    openPullRequest(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Openpullrequest,
+      callback: BodyResponseCallback<Schema$PullRequest>
+    ): void;
+    openPullRequest(callback: BodyResponseCallback<Schema$PullRequest>): void;
+    openPullRequest(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Openpullrequest
+        | BodyResponseCallback<Schema$PullRequest>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PullRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PullRequest>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PullRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Openpullrequest;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Openpullrequest;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:openPullRequest').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PullRequest>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PullRequest>(parameters);
       }
     }
 
@@ -7163,6 +9083,28 @@ export namespace developerconnect_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Addpullrequestcomment extends StandardParameters {
+    /**
+     * Required. The resource name of the GitRepositoryLink in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddGitRepositoryLinkPullRequestCommentRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Addpullrequestreviewcomment extends StandardParameters {
+    /**
+     * Required. The resource name of the GitRepositoryLink in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddGitRepositoryLinkPullRequestReviewCommentRequest;
+  }
   export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Create extends StandardParameters {
     /**
      * Required. The ID to use for the repository, which will become the final component of the repository's resource name. This ID should be unique in the connection. Allows alphanumeric characters and any of -._~%!$&'()*+,;=@.
@@ -7204,6 +9146,86 @@ export namespace developerconnect_v1 {
      */
     validateOnly?: boolean;
   }
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Diffcommit extends StandardParameters {
+    /**
+     * Required. The base commit SHA or ref.
+     */
+    baseSha?: string;
+    /**
+     * Required. The head commit SHA or ref.
+     */
+    headSha?: string;
+    /**
+     * Required. The resource name of the GitRepositoryLink.
+     */
+    name?: string;
+    /**
+     * Optional. Path patterns or exact paths to filter returned files. When `path_filters` is specified, `FileDiff.patch` is populated for all matching files (use `["**"]` to include patches for all changed files). When `path_filters` is omitted or empty, the full list of `FileDiff` is returned without patch diffs (`FileDiff.patch` is empty).
+     */
+    pathFilters?: string[];
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchcommit extends StandardParameters {
+    /**
+     * Required. The commit SHA, or symbolic revision (for example, branch name, tag, or Git reference).
+     */
+    commitSha?: string;
+    /**
+     * Required. The resource name of the GitRepositoryLink in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     */
+    name?: string;
+    /**
+     * Optional. Path patterns or exact paths to filter returned files (only applicable in `FULL` view). When `path_filters` is specified, `FileDiff.patch` is populated for all matching files (use `["**"]` to include patches for all changed files). When `path_filters` is omitted or empty, the full list of `FileDiff` is returned without patch diffs (`FileDiff.patch` is empty).
+     */
+    pathFilters?: string[];
+    /**
+     * Optional. The level of commit details to return in the response. Defaults to `FULL` if unspecified. In `FULL` view, `files` metadata (paths and statuses) are returned; `path_filters` must also be specified to populate line patch hunks.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchcommitlist extends StandardParameters {
+    /**
+     * Required. The resource name of the GitRepositoryLink in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     */
+    name?: string;
+    /**
+     * Optional. Number of results to return in the list. Default is 50. Max is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `FetchGitRepositoryLinkCommitList` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchGitRepositoryLinkCommitList` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Optional. The commit SHA, or symbolic revision (for example, branch name, tag, or Git reference) from which to start listing commits.
+     */
+    ref?: string;
+    /**
+     * Optional. The level of commit details to return in the response. Only `BASIC` is supported; `FULL` returns `INVALID_ARGUMENT`. Defaults to `BASIC` if unspecified. Use `FetchGitRepositoryLinkCommit` to get file diffs for a single commit.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchfileblame extends StandardParameters {
+    /**
+     * Optional. The 1-indexed starting line number of the range to blame (inclusive). If not specified, blame begins at line 1.
+     */
+    firstLine?: number;
+    /**
+     * Optional. The 1-indexed ending line number of the range to blame (inclusive). If not specified, blame extends to the end of the file.
+     */
+    lastLine?: number;
+    /**
+     * Required. The resource name of the GitRepositoryLink in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     */
+    name?: string;
+    /**
+     * Required. The file path within the repository.
+     */
+    path?: string;
+    /**
+     * Required. The SCM commit SHA, or symbolic revision (for example, branch name, tag) from which to fetch the blame.
+     */
+    ref?: string;
+  }
   export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchgitrefs extends StandardParameters {
     /**
      * Required. The resource name of GitRepositoryLink in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
@@ -7221,6 +9243,34 @@ export namespace developerconnect_v1 {
      * Required. Type of refs to fetch.
      */
     refType?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchpullrequest extends StandardParameters {
+    /**
+     * Required. The resource name of the GitRepositoryLink in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     */
+    name?: string;
+    /**
+     * Required. The ID of the Pull Request.
+     */
+    pullRequestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchpullrequestlist extends StandardParameters {
+    /**
+     * Optional. A filter expression that filters the pull requests returned in the response. Only a single equality comparison on `state` is supported, for example `state = "OPEN"`. Supported values are `OPEN`, `CLOSED`, and `MERGED`. `DECLINED` is only supported for SCM providers that support declining pull requests, and returns `INVALID_ARGUMENT` for GitHub, GitHub Enterprise, GitLab, and GitLab Enterprise. Other values or expressions return `INVALID_ARGUMENT`. Defaults to `state = "OPEN"` if unspecified.
+     */
+    filter?: string;
+    /**
+     * Required. The GitRepositoryLink resource name in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     */
+    name?: string;
+    /**
+     * Optional. Number of results to return in the list. Default is 20. Max is 100. A page may contain fewer than `page_size` results even when more results are available; use `next_page_token` to check for more pages.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `FetchGitRepositoryLinkPullRequestList` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
   }
   export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchreadtoken extends StandardParameters {
     /**
@@ -7252,11 +9302,11 @@ export namespace developerconnect_v1 {
   }
   export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$List extends StandardParameters {
     /**
-     * Optional. Filtering results
+     * Optional. Filtering results.
      */
     filter?: string;
     /**
-     * Optional. Hint for how to order the results
+     * Optional. Hint for how to order the results.
      */
     orderBy?: string;
     /**
@@ -7268,9 +9318,31 @@ export namespace developerconnect_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Parent value for ListGitRepositoryLinksRequest
+     * Required. Parent value for ListGitRepositoryLinksRequest.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Modifypullrequest extends StandardParameters {
+    /**
+     * Required. The GitRepositoryLink resource name in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ModifyGitRepositoryLinkPullRequestRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Openpullrequest extends StandardParameters {
+    /**
+     * Required. The GitRepositoryLink resource name in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OpenGitRepositoryLinkPullRequestRequest;
   }
   export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketcloudwebhook extends StandardParameters {
     /**
