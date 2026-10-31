@@ -7641,7 +7641,7 @@
       }
     }
   },
-  "revision": "20261023",
+  "revision": "20261027",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -14639,6 +14639,10 @@
         "changePayload": {
           "$ref": "GoogleCloudDataplexV1BatchChangeMetadataRequest",
           "description": "Required. The detailed specification of the proposed changes. This payload is intended to be embedded as the change_payload in the resulting ChangeRequest."
+        },
+        "deferredValidation": {
+          "description": "Optional. If set to true, defers reference validation between entries to when the change request is approved and applied. Structural validation of entries and aspects is still performed at the time of submission. The default is false.",
+          "type": "boolean"
         },
         "justification": {
           "description": "Optional. Justification for the metadata change request.",
