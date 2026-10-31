@@ -4369,7 +4369,7 @@
       }
     }
   },
-  "revision": "20261016",
+  "revision": "20261023",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AccessRestrictions": {
@@ -4739,9 +4739,9 @@
           ],
           "enumDescriptions": [
             "No AttributesType specified.",
-            "Used to get the user's group claims from the Microsoft Entra ID identity provider using the configuration provided in ExtraAttributesOAuth2Client. The `mail` property of the `microsoft.graph.group` object is used for claim mapping. See https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0#properties for more details on `microsoft.graph.group` properties. The group mail addresses of the user's groups that are returned from Microsoft Entra ID can be mapped by using the following attributes: * OIDC: `assertion.groups` * SAML: `assertion.attributes.groups`",
-            "Used to get the user's group claims from the Microsoft Entra ID identity provider using the configuration provided in ExtraAttributesOAuth2Client. The `id` property of the `microsoft.graph.group` object is used for claim mapping. See https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0#properties for more details on `microsoft.graph.group` properties. The group IDs of the user's groups that are returned from Microsoft Entra ID can be mapped by using the following attributes: * OIDC: `assertion.groups` * SAML: `assertion.attributes.groups`",
-            "Used to get the user's group claims from the Microsoft Entra ID identity provider using the configuration provided in ExtraAttributesOAuth2Client. The `displayName` property of the `microsoft.graph.group` object is used for claim mapping. See https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0#properties for more details on `microsoft.graph.group` properties. The display names of the user's groups that are returned from Microsoft Entra ID can be mapped by using the following attributes: * OIDC: `assertion.groups` * SAML: `assertion.attributes.groups`"
+            "Used to get the user's group claims from the Microsoft Entra ID identity provider using the configuration provided in `ExtraAttributesOAuth2Client`. The `mail` property of the `microsoft.graph.group` object is used for claim mapping. See https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0#properties for more details on `microsoft.graph.group` properties. The group mail addresses of the user's groups that are returned from Microsoft Entra ID can be mapped by using the following attributes: * OIDC: `assertion.groups` * SAML: `assertion.attributes.groups`",
+            "Used to get the user's group claims from the Microsoft Entra ID identity provider using the configuration provided in `ExtraAttributesOAuth2Client`. The `id` property of the `microsoft.graph.group` object is used for claim mapping. See https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0#properties for more details on `microsoft.graph.group` properties. The group IDs of the user's groups that are returned from Microsoft Entra ID can be mapped by using the following attributes: * OIDC: `assertion.groups` * SAML: `assertion.attributes.groups`",
+            "Used to get the user's group claims from the Microsoft Entra ID identity provider using the configuration provided in `ExtraAttributesOAuth2Client`. The `displayName` property of the `microsoft.graph.group` object is used for claim mapping. See https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0#properties for more details on `microsoft.graph.group` properties. The display names of the user's groups that are returned from Microsoft Entra ID can be mapped by using the following attributes: * OIDC: `assertion.groups` * SAML: `assertion.attributes.groups`"
           ],
           "type": "string"
         },
@@ -5784,7 +5784,7 @@
           "type": "string"
         },
         "pageSize": {
-          "description": "Optional limit on the number of roles to include in the response. The default is 300, and the maximum is 2,000.",
+          "description": "Optional limit on the number of roles to include in the response. The default is 300, and the maximum is 3,000.",
           "format": "int32",
           "type": "integer"
         },
