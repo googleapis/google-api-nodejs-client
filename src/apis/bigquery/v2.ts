@@ -2558,6 +2558,10 @@ export namespace bigquery_v2 {
      */
     printHeader?: boolean | null;
     /**
+     * Optional. A set of key-value pairs representing the secure context. This can be used to pass sensitive or context-specific information. They can be retrieved via the SECURE_CONTEXT() function and used to modify the run-time behavior of an extract job on tables with row access policies.
+     */
+    secureContext?: Schema$SecureContext;
+    /**
      * A reference to the model being exported.
      */
     sourceModel?: Schema$ModelReference;
