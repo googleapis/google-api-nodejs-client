@@ -186,6 +186,10 @@ export namespace solar_v1 {
    */
   export interface Schema$BuildingInsightsDetectedArrays {
     /**
+     * A list of solar arrays detected on the building.
+     */
+    arrays?: Schema$BuildingInsightsDetectedArraysSolarArray[];
+    /**
      * Indicates the detection status of solar arrays for this building.
      */
     detectionStatus?: string | null;
@@ -193,6 +197,15 @@ export namespace solar_v1 {
      * The date indicating when the latest solar array data was captured.
      */
     latestCaptureDate?: Schema$Date;
+  }
+  /**
+   * Details of a single detected solar array.
+   */
+  export interface Schema$BuildingInsightsDetectedArraysSolarArray {
+    /**
+     * A GeoJSON representation of the building area where solar panels were detected. The GeoJSON data must be in RFC 7946 format and represent a Polygon for a single contiguous area. The Polygon will be represented by several loops when it contains holes. Example: { "type": "Polygon", "coordinates": [ [ [-1, -1], [-1, 0], [0, 0], [-1, -1] ] ] \}
+     */
+    polygonGeojson?: {[key: string]: any} | null;
   }
   /**
    * Cost and benefit of an outright purchase of a particular configuration of solar panels with a particular electricity usage.
