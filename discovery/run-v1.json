@@ -3652,7 +3652,7 @@
       }
     }
   },
-  "revision": "20261016",
+  "revision": "20261023",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -6439,6 +6439,10 @@
           "description": "Optional. Restart policy for the Instance. Allowable values are 'Always', 'OnFailure', or 'Never'.",
           "type": "string"
         },
+        "sandboxes": {
+          "$ref": "SandboxConfiguration",
+          "description": "Optional. Sandbox configuration that can be launched through the `sandbox` CLI."
+        },
         "serviceAccountName": {
           "description": "Optional. Email address of the IAM service account associated with the Instance. The service account represents the identity of the running container, and determines what permissions the Instance has. If not provided, the Instance will use the project's default service account.",
           "type": "string"
@@ -7388,6 +7392,10 @@
           "description": "Optional. Runtime. Leave unset for default.",
           "type": "string"
         },
+        "sandboxes": {
+          "$ref": "SandboxConfiguration",
+          "description": "Optional. Sandbox configuration that can be launched through the `sandbox` CLI."
+        },
         "serviceAccountName": {
           "description": "Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project's default service account.",
           "type": "string"
@@ -7540,6 +7548,67 @@
         "overrides": {
           "$ref": "Overrides",
           "description": "Optional. Overrides existing job configuration for one specific new job execution only, using the specified values to update the job configuration for the new execution."
+        }
+      },
+      "type": "object"
+    },
+    "SandboxConfiguration": {
+      "description": "Configuration for sandboxes.",
+      "id": "SandboxConfiguration",
+      "properties": {
+        "templates": {
+          "description": "Required. Sandbox templates that can be launched through the `sandbox` CLI.",
+          "items": {
+            "$ref": "SandboxTemplate"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SandboxTemplate": {
+      "description": "Template for a single sandbox.",
+      "id": "SandboxTemplate",
+      "properties": {
+        "args": {
+          "description": "Optional. Arguments to the entrypoint. The docker image's CMD is used if this is not provided.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "command": {
+          "description": "Optional. Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "env": {
+          "description": "Optional. List of environment variables to set in the sandbox.",
+          "items": {
+            "$ref": "EnvVar"
+          },
+          "type": "array"
+        },
+        "image": {
+          "description": "Required. Name of the container image in Dockerhub or Artifact Registry. If the host is not provided, Dockerhub is assumed.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Name of the sandbox specified as a DNS_LABEL (RFC 1123).",
+          "type": "string"
+        },
+        "volumeMounts": {
+          "description": "Optional. Volume to mount into the container's filesystem.",
+          "items": {
+            "$ref": "VolumeMount"
+          },
+          "type": "array"
+        },
+        "workingDir": {
+          "description": "Optional. Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -7925,6 +7994,10 @@
           },
           "description": "Optional. The Node Selector configuration. Map of selector key to a value which matches a node.",
           "type": "object"
+        },
+        "sandboxes": {
+          "$ref": "SandboxConfiguration",
+          "description": "Optional. Sandbox configuration that can be launched through the `sandbox` CLI."
         },
         "serviceAccountName": {
           "description": "Optional. Email address of the IAM service account associated with the task of a job execution. The service account represents the identity of the running task, and determines what permissions the task has. If not provided, the task will use the project's default service account.",

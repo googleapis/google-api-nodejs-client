@@ -707,7 +707,7 @@ export namespace run_v2 {
     operationState?: string | null;
   }
   /**
-   * Represents a volume backed by a Cloud Storage bucket using Cloud Storage FUSE.
+   * Represents a volume backed by a Cloud Storage bucket (mounted via Cloud Storage FUSE or as a block device disk).
    */
   export interface Schema$GoogleCloudRunV2GCSVolumeSource {
     /**
@@ -918,6 +918,10 @@ export namespace run_v2 {
      * Optional. Restart policy for the Instance.
      */
     restartPolicy?: string | null;
+    /**
+     * Optional. Configuration for sandboxes.
+     */
+    sandboxes?: Schema$GoogleCloudRunV2SandboxConfiguration;
     /**
      * Output only. Reserved for future use.
      */
@@ -1435,6 +1439,10 @@ export namespace run_v2 {
      */
     reconciling?: boolean | null;
     /**
+     * Output only. Configuration for sandboxes.
+     */
+    sandboxes?: Schema$GoogleCloudRunV2SandboxConfiguration;
+    /**
      * Output only. Reserved for future use.
      */
     satisfiesPzs?: boolean | null;
@@ -1582,6 +1590,10 @@ export namespace run_v2 {
      */
     revision?: string | null;
     /**
+     * Optional. Configuration for sandboxes.
+     */
+    sandboxes?: Schema$GoogleCloudRunV2SandboxConfiguration;
+    /**
      * Optional. Scaling settings for this Revision.
      */
     scaling?: Schema$GoogleCloudRunV2RevisionScaling;
@@ -1630,6 +1642,48 @@ export namespace run_v2 {
      * Indicates that the request should be validated without actually deleting any resources.
      */
     validateOnly?: boolean | null;
+  }
+  /**
+   * Configuration for sandboxes.
+   */
+  export interface Schema$GoogleCloudRunV2SandboxConfiguration {
+    /**
+     * Required. Sandbox templates that can be launched through the `sandbox` CLI.
+     */
+    templates?: Schema$GoogleCloudRunV2SandboxTemplate[];
+  }
+  /**
+   * Template for a single sandbox.
+   */
+  export interface Schema$GoogleCloudRunV2SandboxTemplate {
+    /**
+     * Optional. Arguments to the entrypoint. The docker image's CMD is used if this is not provided.
+     */
+    args?: string[] | null;
+    /**
+     * Optional. Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided.
+     */
+    command?: string[] | null;
+    /**
+     * Optional. List of environment variables to set in the sandbox.
+     */
+    env?: Schema$GoogleCloudRunV2EnvVar[];
+    /**
+     * Required. Name of the container image in Dockerhub or Artifact Registry. If the host is not provided, Dockerhub is assumed.
+     */
+    image?: string | null;
+    /**
+     * Required. Name of the sandbox specified as a DNS_LABEL (RFC 1123).
+     */
+    name?: string | null;
+    /**
+     * Optional. Volume to mount into the container's filesystem.
+     */
+    volumeMounts?: Schema$GoogleCloudRunV2VolumeMount[];
+    /**
+     * Optional. Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image.
+     */
+    workingDir?: string | null;
   }
   /**
    * SecretEnvVarSource represents a source for the value of an EnvVar.
@@ -2088,6 +2142,10 @@ export namespace run_v2 {
      */
     retried?: number | null;
     /**
+     * Configuration for sandboxes.
+     */
+    sandboxes?: Schema$GoogleCloudRunV2SandboxConfiguration;
+    /**
      * Output only. Reserved for future use.
      */
     satisfiesPzs?: boolean | null;
@@ -2173,6 +2231,10 @@ export namespace run_v2 {
      * Optional. The node selector for the task template.
      */
     nodeSelector?: Schema$GoogleCloudRunV2NodeSelector;
+    /**
+     * Optional. Configuration for sandboxes.
+     */
+    sandboxes?: Schema$GoogleCloudRunV2SandboxConfiguration;
     /**
      * Optional. Email address of the IAM service account associated with the Task of a Job. The service account represents the identity of the running task, and determines what permissions the task has. If not provided, the task will use the project's default service account.
      */
@@ -2520,6 +2582,10 @@ export namespace run_v2 {
      * Optional. The unique name for the revision. If this field is omitted, it will be automatically generated based on the WorkerPool name.
      */
     revision?: string | null;
+    /**
+     * Optional. Configuration for sandboxes.
+     */
+    sandboxes?: Schema$GoogleCloudRunV2SandboxConfiguration;
     /**
      * Optional. Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project's default service account.
      */
@@ -4892,6 +4958,7 @@ export namespace run_v2 {
      *       //   "observedGeneration": "my_observedGeneration",
      *       //   "reconciling": false,
      *       //   "restartPolicy": "my_restartPolicy",
+     *       //   "sandboxes": {},
      *       //   "satisfiesPzs": false,
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "sshEnabled": false,
@@ -5235,6 +5302,7 @@ export namespace run_v2 {
      *   //   "observedGeneration": "my_observedGeneration",
      *   //   "reconciling": false,
      *   //   "restartPolicy": "my_restartPolicy",
+     *   //   "sandboxes": {},
      *   //   "satisfiesPzs": false,
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "sshEnabled": false,
@@ -5725,6 +5793,7 @@ export namespace run_v2 {
      *       //   "observedGeneration": "my_observedGeneration",
      *       //   "reconciling": false,
      *       //   "restartPolicy": "my_restartPolicy",
+     *       //   "sandboxes": {},
      *       //   "satisfiesPzs": false,
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "sshEnabled": false,
@@ -9106,6 +9175,7 @@ export namespace run_v2 {
      *   //   "observedGeneration": "my_observedGeneration",
      *   //   "reconciling": false,
      *   //   "retried": 0,
+     *   //   "sandboxes": {},
      *   //   "satisfiesPzs": false,
      *   //   "scheduledTime": "my_scheduledTime",
      *   //   "serviceAccount": "my_serviceAccount",
@@ -11895,6 +11965,7 @@ export namespace run_v2 {
      *   //   "nodeSelector": {},
      *   //   "observedGeneration": "my_observedGeneration",
      *   //   "reconciling": false,
+     *   //   "sandboxes": {},
      *   //   "satisfiesPzs": false,
      *   //   "scaling": {},
      *   //   "scalingStatus": {},
@@ -14084,6 +14155,7 @@ export namespace run_v2 {
      *   //   "nodeSelector": {},
      *   //   "observedGeneration": "my_observedGeneration",
      *   //   "reconciling": false,
+     *   //   "sandboxes": {},
      *   //   "satisfiesPzs": false,
      *   //   "scaling": {},
      *   //   "scalingStatus": {},

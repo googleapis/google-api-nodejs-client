@@ -2106,6 +2106,10 @@ export namespace run_v1 {
      */
     restartPolicy?: string | null;
     /**
+     * Optional. Sandbox configuration that can be launched through the `sandbox` CLI.
+     */
+    sandboxes?: Schema$SandboxConfiguration;
+    /**
      * Optional. Email address of the IAM service account associated with the Instance. The service account represents the identity of the running container, and determines what permissions the Instance has. If not provided, the Instance will use the project's default service account.
      */
     serviceAccountName?: string | null;
@@ -2837,6 +2841,10 @@ export namespace run_v1 {
      */
     runtimeClassName?: string | null;
     /**
+     * Optional. Sandbox configuration that can be launched through the `sandbox` CLI.
+     */
+    sandboxes?: Schema$SandboxConfiguration;
+    /**
      * Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project's default service account.
      */
     serviceAccountName?: string | null;
@@ -2955,6 +2963,48 @@ export namespace run_v1 {
      * Optional. Overrides existing job configuration for one specific new job execution only, using the specified values to update the job configuration for the new execution.
      */
     overrides?: Schema$Overrides;
+  }
+  /**
+   * Configuration for sandboxes.
+   */
+  export interface Schema$SandboxConfiguration {
+    /**
+     * Required. Sandbox templates that can be launched through the `sandbox` CLI.
+     */
+    templates?: Schema$SandboxTemplate[];
+  }
+  /**
+   * Template for a single sandbox.
+   */
+  export interface Schema$SandboxTemplate {
+    /**
+     * Optional. Arguments to the entrypoint. The docker image's CMD is used if this is not provided.
+     */
+    args?: string[] | null;
+    /**
+     * Optional. Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided.
+     */
+    command?: string[] | null;
+    /**
+     * Optional. List of environment variables to set in the sandbox.
+     */
+    env?: Schema$EnvVar[];
+    /**
+     * Required. Name of the container image in Dockerhub or Artifact Registry. If the host is not provided, Dockerhub is assumed.
+     */
+    image?: string | null;
+    /**
+     * Required. Name of the sandbox specified as a DNS_LABEL (RFC 1123).
+     */
+    name?: string | null;
+    /**
+     * Optional. Volume to mount into the container's filesystem.
+     */
+    volumeMounts?: Schema$VolumeMount[];
+    /**
+     * Optional. Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image.
+     */
+    workingDir?: string | null;
   }
   /**
    * Not supported by Cloud Run. SecretEnvSource selects a Secret to populate the environment variables with. The contents of the target Secret's Data field will represent the key-value pairs as environment variables.
@@ -3259,6 +3309,10 @@ export namespace run_v1 {
      * Optional. The Node Selector configuration. Map of selector key to a value which matches a node.
      */
     nodeSelector?: {[key: string]: string} | null;
+    /**
+     * Optional. Sandbox configuration that can be launched through the `sandbox` CLI.
+     */
+    sandboxes?: Schema$SandboxConfiguration;
     /**
      * Optional. Email address of the IAM service account associated with the task of a job execution. The service account represents the identity of the running task, and determines what permissions the task has. If not provided, the task will use the project's default service account.
      */
