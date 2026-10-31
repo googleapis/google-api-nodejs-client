@@ -243,6 +243,7 @@ export {deploymentmanager_v2beta} from './apis/deploymentmanager/v2beta';
 export {developerconnect_v1} from './apis/developerconnect/v1';
 export {developerknowledge_v1} from './apis/developerknowledge/v1';
 export {developerknowledge_v1alpha} from './apis/developerknowledge/v1alpha';
+export {devicerun_v1} from './apis/devicerun/v1';
 export {devicerun_v1alpha} from './apis/devicerun/v1alpha';
 export {dfareporting_v3_3} from './apis/dfareporting/v3.3';
 export {dfareporting_v3_4} from './apis/dfareporting/v3.4';
