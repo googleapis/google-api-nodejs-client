@@ -339,6 +339,19 @@ export namespace alertcenter_v1beta1 {
     updateTime?: string | null;
   }
   /**
+   * The alert data relevant for this alert
+   */
+  export interface Schema$AlertDetail {
+    /**
+     * Audit data key
+     */
+    fieldName?: string | null;
+    /**
+     * Audit data values
+     */
+    fieldValues?: Schema$SystemDefinedAlertDataAlertDetailFieldValue[];
+  }
+  /**
    * A customer feedback about an alert.
    */
   export interface Schema$AlertFeedback {
@@ -1366,6 +1379,36 @@ export namespace alertcenter_v1beta1 {
      * The serial number of the device.
      */
     serialNumber?: string | null;
+  }
+  /**
+   * System defined alerts which trigger when an relevant audit event occures.
+   */
+  export interface Schema$SystemDefinedAlertData {
+    /**
+     * Details of the conditions which led to alert being created
+     */
+    alertDetails?: Schema$AlertDetail[];
+  }
+  /**
+   * Audit data value
+   */
+  export interface Schema$SystemDefinedAlertDataAlertDetailFieldValue {
+    /**
+     * Value if the type is boolean
+     */
+    boolValue?: boolean | null;
+    /**
+     * Value if the type is integer
+     */
+    intValue?: string | null;
+    /**
+     * Value if the type is string
+     */
+    stringValue?: string | null;
+    /**
+     * Value is the type is a timestamp
+     */
+    timestampValue?: string | null;
   }
   /**
    * Details for an invalid transfer or forward.
