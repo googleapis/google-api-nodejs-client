@@ -416,6 +416,48 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
+              },
+              "resources": {
+                "phoneNumbers": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists phone numbers allocated to a single ContactCenter.",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/contactCenters/{contactCentersId}/phoneNumbers",
+                      "httpMethod": "GET",
+                      "id": "contactcenteraiplatform.projects.locations.contactCenters.phoneNumbers.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. Requested page size. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the default page size is 500.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. Page token from a previous ListPhoneNumbers call.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent ContactCenter resource name. Format: projects/{project}/locations/{location}/contactCenters/{contact_center}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/contactCenters/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+parent}/phoneNumbers",
+                      "response": {
+                        "$ref": "ListPhoneNumbersResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
               }
             },
             "operations": {
@@ -551,7 +593,7 @@
       }
     }
   },
-  "revision": "20260423",
+  "revision": "20261104",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "AdminUser": {
@@ -1140,6 +1182,24 @@
       },
       "type": "object"
     },
+    "ListPhoneNumbersResponse": {
+      "description": "Response message for ListPhoneNumbers.",
+      "id": "ListPhoneNumbersResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token identifying the next page of results.",
+          "type": "string"
+        },
+        "phoneNumbers": {
+          "description": "The list of phone numbers allocated to the ContactCenter.",
+          "items": {
+            "$ref": "PhoneNumber"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Location": {
       "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
@@ -1259,6 +1319,140 @@
           "description": "Output only. Name of the verb executed by the operation.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PhoneNumber": {
+      "description": "Message describing a phone number allocated to a ContactCenter tenant.",
+      "id": "PhoneNumber",
+      "properties": {
+        "assignmentState": {
+          "description": "Output only. Current assignment and lifecycle state.",
+          "enum": [
+            "ASSIGNMENT_STATE_UNSPECIFIED",
+            "ASSIGNMENT_STATE_UNASSIGNED",
+            "ASSIGNMENT_STATE_ASSIGNED",
+            "ASSIGNMENT_STATE_COOLING_OFF",
+            "ASSIGNMENT_STATE_PORTING_IN",
+            "ASSIGNMENT_STATE_RELEASED"
+          ],
+          "enumDescriptions": [
+            "Unspecified assignment state.",
+            "Unassigned / in inventory pool.",
+            "Actively assigned to the tenant.",
+            "Soft-deleted / in cooling-off period (still billed).",
+            "Port-in in progress.",
+            "Permanently released from active use."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "carrier": {
+          "description": "Output only. Underlying carrier hosting the number.",
+          "enum": [
+            "CARRIER_UNSPECIFIED",
+            "CARRIER_TWILIO",
+            "CARRIER_VONAGE",
+            "CARRIER_TELNYX",
+            "CARRIER_GTP"
+          ],
+          "enumDescriptions": [
+            "Unspecified carrier.",
+            "Twilio carrier.",
+            "Vonage (Nexmo) carrier.",
+            "Telnyx carrier.",
+            "Google Telephony Platform (GTP) carrier."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "complianceState": {
+          "description": "Output only. Regulatory compliance state.",
+          "enum": [
+            "COMPLIANCE_STATE_UNSPECIFIED",
+            "COMPLIANCE_STATE_VERIFIED",
+            "COMPLIANCE_STATE_LEGACY_VERIFIED",
+            "COMPLIANCE_STATE_PENDING",
+            "COMPLIANCE_STATE_REJECTED"
+          ],
+          "enumDescriptions": [
+            "Unspecified compliance state.",
+            "Regulatory bundle verified and approved.",
+            "Pre-existing phone number exempt from document backfill.",
+            "Regulatory bundle pending review.",
+            "Regulatory bundle rejected."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "countryCode": {
+          "description": "Output only. ISO 3166-1 alpha-2 country code (e.g., \"US\", \"GB\", \"IT\").",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Timestamp when the phone number was added to the tenant.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "numberType": {
+          "description": "Output only. Tariff and routing classification.",
+          "enum": [
+            "NUMBER_TYPE_UNSPECIFIED",
+            "NUMBER_TYPE_LOCAL",
+            "NUMBER_TYPE_TOLL_FREE",
+            "NUMBER_TYPE_MOBILE",
+            "NUMBER_TYPE_NATIONAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified number type.",
+            "Local / geographic number.",
+            "Toll-free number.",
+            "Mobile number.",
+            "National non-geographic number."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "Output only. E.164 formatted phone number (e.g., \"+16502530000\").",
+          "readOnly": true,
+          "type": "string"
+        },
+        "regulatoryBundleId": {
+          "description": "Output only. Reference ID for the country-specific regulatory bundle, or \"LEGACY_VERIFIED\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "smsState": {
+          "description": "Output only. SMS capability state.",
+          "enum": [
+            "SMS_STATE_UNSPECIFIED",
+            "SMS_STATE_DISABLED",
+            "SMS_STATE_ENABLED",
+            "SMS_STATE_PENDING_REGISTRATION"
+          ],
+          "enumDescriptions": [
+            "Unspecified SMS state.",
+            "SMS is disabled.",
+            "SMS is enabled and active.",
+            "SMS is pending campaign registration."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when the phone number record was last modified.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "voiceEnabled": {
+          "description": "Output only. Whether voice capabilities are enabled for this phone number.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"

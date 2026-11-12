@@ -519,6 +519,19 @@ export namespace contactcenteraiplatform_v1alpha1 {
     unreachable?: string[] | null;
   }
   /**
+   * Response message for ListPhoneNumbers.
+   */
+  export interface Schema$ListPhoneNumbersResponse {
+    /**
+     * Token identifying the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of phone numbers allocated to the ContactCenter.
+     */
+    phoneNumbers?: Schema$PhoneNumber[];
+  }
+  /**
    * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
@@ -608,6 +621,55 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * Message describing a phone number allocated to a ContactCenter tenant.
+   */
+  export interface Schema$PhoneNumber {
+    /**
+     * Output only. Current assignment and lifecycle state.
+     */
+    assignmentState?: string | null;
+    /**
+     * Output only. Underlying carrier hosting the number.
+     */
+    carrier?: string | null;
+    /**
+     * Output only. Regulatory compliance state.
+     */
+    complianceState?: string | null;
+    /**
+     * Output only. ISO 3166-1 alpha-2 country code (e.g., "US", "GB", "IT").
+     */
+    countryCode?: string | null;
+    /**
+     * Output only. Timestamp when the phone number was added to the tenant.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Tariff and routing classification.
+     */
+    numberType?: string | null;
+    /**
+     * Output only. E.164 formatted phone number (e.g., "+16502530000").
+     */
+    phoneNumber?: string | null;
+    /**
+     * Output only. Reference ID for the country-specific regulatory bundle, or "LEGACY_VERIFIED".
+     */
+    regulatoryBundleId?: string | null;
+    /**
+     * Output only. SMS capability state.
+     */
+    smsState?: string | null;
+    /**
+     * Output only. Timestamp when the phone number record was last modified.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. Whether voice capabilities are enabled for this phone number.
+     */
+    voiceEnabled?: boolean | null;
   }
   /**
    * Specifies the time interval during which the solver should generate shifts. The start time must be before the end time.
@@ -1551,8 +1613,13 @@ export namespace contactcenteraiplatform_v1alpha1 {
 
   export class Resource$Projects$Locations$Contactcenters {
     context: APIRequestContext;
+    phoneNumbers: Resource$Projects$Locations$Contactcenters$Phonenumbers;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.phoneNumbers =
+        new Resource$Projects$Locations$Contactcenters$Phonenumbers(
+          this.context
+        );
     }
 
     /**
@@ -2437,6 +2504,177 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * Request body metadata
      */
     requestBody?: Schema$ContactCenter;
+  }
+
+  export class Resource$Projects$Locations$Contactcenters$Phonenumbers {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists phone numbers allocated to a single ContactCenter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenteraiplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const contactcenteraiplatform = google.contactcenteraiplatform('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await contactcenteraiplatform.projects.locations.contactCenters.phoneNumbers.list(
+     *       {
+     *         // Optional. Requested page size. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the default page size is 500.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. Page token from a previous ListPhoneNumbers call.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent ContactCenter resource name. Format: projects/{project\}/locations/{location\}/contactCenters/{contact_center\}
+     *         parent:
+     *           'projects/my-project/locations/my-location/contactCenters/my-contactCenter',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "phoneNumbers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Contactcenters$Phonenumbers$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Contactcenters$Phonenumbers$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPhoneNumbersResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Contactcenters$Phonenumbers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Contactcenters$Phonenumbers$List,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$ListPhoneNumbersResponse>,
+      callback: BodyResponseCallback<Schema$ListPhoneNumbersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Contactcenters$Phonenumbers$List,
+      callback: BodyResponseCallback<Schema$ListPhoneNumbersResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListPhoneNumbersResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Contactcenters$Phonenumbers$List
+        | BodyResponseCallback<Schema$ListPhoneNumbersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPhoneNumbersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPhoneNumbersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPhoneNumbersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Contactcenters$Phonenumbers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Contactcenters$Phonenumbers$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenteraiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/phoneNumbers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPhoneNumbersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPhoneNumbersResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Contactcenters$Phonenumbers$List extends StandardParameters {
+    /**
+     * Optional. Requested page size. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the default page size is 500.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token from a previous ListPhoneNumbers call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent ContactCenter resource name. Format: projects/{project\}/locations/{location\}/contactCenters/{contact_center\}
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Operations {
