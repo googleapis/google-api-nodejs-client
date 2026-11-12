@@ -851,6 +851,10 @@ export namespace dataproc_v1 {
      */
     metastoreConfig?: Schema$MetastoreConfig;
     /**
+     * Optional. Config for scheduling the resources to be allocated when available.
+     */
+    schedulingConfig?: Schema$SchedulingConfig;
+    /**
      * Optional. The Compute Engine config settings for a cluster's secondary worker instances
      */
     secondaryWorkerConfig?: Schema$InstanceGroupConfig;
@@ -3279,6 +3283,19 @@ export namespace dataproc_v1 {
      * Optional. Properties of the workload organized by origin.
      */
     propertiesInfo?: Schema$PropertiesInfo;
+  }
+  /**
+   * Config for scheduling the request to create Compute Engine resources for the cluster, when available.
+   */
+  export interface Schema$SchedulingConfig {
+    /**
+     * Optional. Required lifetime of the resources, once provisioned. Min 10 mins, Max/Default 7 days . Note that the cluster can still be deleted before reaching this time. This time is a maximum amount of time before the cluster is forcibly deleted. Lower times are more likely to start running sooner.
+     */
+    requestedRunDuration?: string | null;
+    /**
+     * Optional. How long to wait for worker resources to be allocated before failing the cluster creation request. Max/Default value: 13 days
+     */
+    schedulingTimeout?: string | null;
   }
   /**
    * List of Executors associated with a Spark Application.
