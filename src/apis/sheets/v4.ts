@@ -582,7 +582,7 @@ export namespace sheets_v4 {
      */
     dataLabel?: Schema$DataLabel;
     /**
-     * The line style of this series. Valid only if the chartType is AREA, LINE, or SCATTER. COMBO charts are also supported if the series chart type is AREA or LINE.
+     * The line style of this series. Valid only if the chartType is AREA, LINE, or SCATTER. COMBO charts are also supported if the series chart type is AREA, STEPPED_AREA, or LINE.
      */
     lineStyle?: Schema$LineStyle;
     /**
@@ -602,7 +602,7 @@ export namespace sheets_v4 {
      */
     targetAxis?: string | null;
     /**
-     * The type of this series. Valid only if the chartType is COMBO. Different types will change the way the series is visualized. Only LINE, AREA, and COLUMN are supported.
+     * The type of this series. Valid only if the chartType is COMBO. Different types will change the way the series is visualized. Only LINE, AREA, STEPPED_AREA, and COLUMN are supported.
      */
     type?: string | null;
   }
@@ -639,7 +639,7 @@ export namespace sheets_v4 {
      */
     legendPosition?: string | null;
     /**
-     * Gets whether all lines should be rendered smooth or straight by default. Applies to Line charts.
+     * Gets whether all lines should be rendered smooth or straight by default. Applies to Line and Combo charts.
      */
     lineSmoothing?: boolean | null;
     /**
