@@ -842,7 +842,7 @@
       }
     }
   },
-  "revision": "20261025",
+  "revision": "20261102",
   "rootUrl": "https://threatintelligence.googleapis.com/",
   "schemas": {
     "AVDetections": {
@@ -1423,6 +1423,28 @@
       },
       "type": "object"
     },
+    "CustomerProfileBrand": {
+      "description": "Brand information for the customer profile.",
+      "id": "CustomerProfileBrand",
+      "properties": {
+        "brand": {
+          "description": "Required. The name of the brand.",
+          "type": "string"
+        },
+        "citationIds": {
+          "description": "Optional. The citation ids for the brand.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Optional. The unique identifier for the brand.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CustomerProfileCitation": {
       "description": "Citation information for the customer profile.",
       "id": "CustomerProfileCitation",
@@ -1491,6 +1513,13 @@
       "description": "CustomerProfileConfig is the configuration for the customer profile.",
       "id": "CustomerProfileConfig",
       "properties": {
+        "brands": {
+          "description": "Optional. Brands associated with the organization.",
+          "items": {
+            "$ref": "CustomerProfileBrand"
+          },
+          "type": "array"
+        },
         "citations": {
           "description": "Optional. Citations for the organization profile.",
           "items": {

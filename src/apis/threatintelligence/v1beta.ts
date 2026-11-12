@@ -481,6 +481,23 @@ export namespace threatintelligence_v1beta {
     snapshot?: Schema$Configuration;
   }
   /**
+   * Brand information for the customer profile.
+   */
+  export interface Schema$CustomerProfileBrand {
+    /**
+     * Required. The name of the brand.
+     */
+    brand?: string | null;
+    /**
+     * Optional. The citation ids for the brand.
+     */
+    citationIds?: string[] | null;
+    /**
+     * Optional. The unique identifier for the brand.
+     */
+    id?: string | null;
+  }
+  /**
    * Citation information for the customer profile.
    */
   export interface Schema$CustomerProfileCitation {
@@ -535,6 +552,10 @@ export namespace threatintelligence_v1beta {
    * CustomerProfileConfig is the configuration for the customer profile.
    */
   export interface Schema$CustomerProfileConfig {
+    /**
+     * Optional. Brands associated with the organization.
+     */
+    brands?: Schema$CustomerProfileBrand[];
     /**
      * Optional. Citations for the organization profile.
      */
