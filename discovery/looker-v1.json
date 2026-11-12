@@ -800,7 +800,7 @@
       }
     }
   },
-  "revision": "20261011",
+  "revision": "20261020",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {
@@ -1056,6 +1056,10 @@
       "description": "ExportMetadata represents the metadata of the exported artifacts. The metadata.json file in export artifact can be parsed as this message",
       "id": "ExportMetadata",
       "properties": {
+        "esaMigrationToken": {
+          "description": "Opaque capability token for O2C Elite System Activity (ESA) direct dataset migration. It is minted by the exporter together with the cloned source dataset and presented back to Looker Original when the import requests access to that dataset.",
+          "type": "string"
+        },
         "esaSourceDatasetId": {
           "description": "Source BigQuery dataset (formatted as `project_id:dataset_id`) for O2C Elite System Activity (ESA) direct dataset migration.",
           "type": "string"
