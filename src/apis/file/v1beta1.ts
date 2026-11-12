@@ -283,10 +283,6 @@ export namespace file_v1beta1 {
     year?: number | null;
   }
   /**
-   * DeleteVolumeRequest deletes a volume.
-   */
-  export interface Schema$DeleteVolumeRequest {}
-  /**
    * DenyMaintenancePeriod definition. Maintenance is forbidden within the deny period. The start_date must be less than the end_date.
    */
   export interface Schema$DenyMaintenancePeriod {
@@ -1429,7 +1425,7 @@ export namespace file_v1beta1 {
      */
     quotaMib?: string | null;
     /**
-     * Optional. The state of the volume. This field is caller-settable via `UpdateVolume` to transition a volume from `HOT` to `COLD` (freezing the volume). In `CreateVolume`, this field is output-only and initialized to `HOT`.
+     * Optional. The state of the volume. This field is caller-settable via `UpdateVolume` to transition a volume from `HOT` to `COLD` (freezing the volume). In `CreateVolume`, this field is output-only: the volume is created as `HOT` when `ip_acls` is non-empty. When `ip_acls` is empty, the volume may be created `WARM` with no `mount_point` until `ip_acls` are set with `UpdateVolume`.
      */
     state?: string | null;
   }
@@ -1445,6 +1441,10 @@ export namespace file_v1beta1 {
      * Optional. The number of IOPs provisioned per active volume.
      */
     activeVolumeIops?: number | null;
+    /**
+     * Optional. How long a volume stays `WARM` after it is deactivated before it is automatically frozen (moved to `COLD`). Must be positive if set. Default: 7 days.
+     */
+    autoFreezeDelay?: string | null;
     /**
      * Output only. The time when the volume pool was created.
      */
@@ -6973,6 +6973,7 @@ export namespace file_v1beta1 {
      *       // {
      *       //   "activeVolumeCount": 0,
      *       //   "activeVolumeIops": 0,
+     *       //   "autoFreezeDelay": "my_autoFreezeDelay",
      *       //   "createTime": "my_createTime",
      *       //   "defaultVolumeQuotaMib": 0,
      *       //   "description": "my_description",
@@ -7121,6 +7122,8 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.volumePools.delete({
+     *     // Optional. If set to `true`, the volume pool is deleted even if it has volumes, and its volumes are deleted with it. Otherwise, the request fails if the volume pool has any volumes.
+     *     force: 'placeholder-value',
      *     // Required. The volume pool resource name, in the format `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}`.
      *     name: 'projects/my-project/locations/my-location/volumePools/my-volumePool',
      *   });
@@ -7267,6 +7270,7 @@ export namespace file_v1beta1 {
      *   // {
      *   //   "activeVolumeCount": 0,
      *   //   "activeVolumeIops": 0,
+     *   //   "autoFreezeDelay": "my_autoFreezeDelay",
      *   //   "createTime": "my_createTime",
      *   //   "defaultVolumeQuotaMib": 0,
      *   //   "description": "my_description",
@@ -7559,6 +7563,7 @@ export namespace file_v1beta1 {
      *       // {
      *       //   "activeVolumeCount": 0,
      *       //   "activeVolumeIops": 0,
+     *       //   "autoFreezeDelay": "my_autoFreezeDelay",
      *       //   "createTime": "my_createTime",
      *       //   "defaultVolumeQuotaMib": 0,
      *       //   "description": "my_description",
@@ -7690,6 +7695,10 @@ export namespace file_v1beta1 {
     requestBody?: Schema$VolumePool;
   }
   export interface Params$Resource$Projects$Locations$Volumepools$Delete extends StandardParameters {
+    /**
+     * Optional. If set to `true`, the volume pool is deleted even if it has volumes, and its volumes are deleted with it. Otherwise, the request fails if the volume pool has any volumes.
+     */
+    force?: boolean;
     /**
      * Required. The volume pool resource name, in the format `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}`.
      */
@@ -8174,309 +8183,6 @@ export namespace file_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-    /**
-     * Creates a volume directly on the CLH, bypassing CCFE. This is a temporary PoC that will be used for testing and removed.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/file.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const file = google.file('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await file.projects.locations.volumePools.volumes.directCreate({
-     *     // Required. The parent volume pool path, in the format `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}`.
-     *     parent:
-     *       'projects/my-project/locations/my-location/volumePools/my-volumePool',
-     *     // Required. The ID to use for the volume. The ID must be unique within the specified volume pool.
-     *     volumeId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "ipAcls": [],
-     *       //   "labels": {},
-     *       //   "mountPoint": {},
-     *       //   "name": "my_name",
-     *       //   "quotaMib": "my_quotaMib",
-     *       //   "state": "my_state"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "ipAcls": [],
-     *   //   "labels": {},
-     *   //   "mountPoint": {},
-     *   //   "name": "my_name",
-     *   //   "quotaMib": "my_quotaMib",
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    directCreate(
-      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Directcreate,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    directCreate(
-      params?: Params$Resource$Projects$Locations$Volumepools$Volumes$Directcreate,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Volume>>;
-    directCreate(
-      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Directcreate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    directCreate(
-      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Directcreate,
-      options: MethodOptions | BodyResponseCallback<Schema$Volume>,
-      callback: BodyResponseCallback<Schema$Volume>
-    ): void;
-    directCreate(
-      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Directcreate,
-      callback: BodyResponseCallback<Schema$Volume>
-    ): void;
-    directCreate(callback: BodyResponseCallback<Schema$Volume>): void;
-    directCreate(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Volumepools$Volumes$Directcreate
-        | BodyResponseCallback<Schema$Volume>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Volume>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        BodyResponseCallback<Schema$Volume> | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Volume>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Volumepools$Volumes$Directcreate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Volumepools$Volumes$Directcreate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+parent}/volumes:directCreate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Volume>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Volume>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a volume directly on the CLH, bypassing CCFE. This is a temporary PoC that will be used for testing and removed.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/file.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const file = google.file('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await file.projects.locations.volumePools.volumes.directDelete({
-     *     // Required. The volume resource name, in the format `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}/volumes/{volume\}`.
-     *     name: 'projects/my-project/locations/my-location/volumePools/my-volumePool/volumes/my-volume',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    directDelete(
-      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Directdelete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    directDelete(
-      params?: Params$Resource$Projects$Locations$Volumepools$Volumes$Directdelete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
-    directDelete(
-      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Directdelete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    directDelete(
-      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Directdelete,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    directDelete(
-      params: Params$Resource$Projects$Locations$Volumepools$Volumes$Directdelete,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    directDelete(callback: BodyResponseCallback<Schema$Empty>): void;
-    directDelete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Volumepools$Volumes$Directdelete
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Volumepools$Volumes$Directdelete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Volumepools$Volumes$Directdelete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+name}:directDelete').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
             apiVersion: '',
           },
           options
@@ -9127,32 +8833,6 @@ export namespace file_v1beta1 {
      * Required. The volume resource name, in the format `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}/volumes/{volume\}`.
      */
     name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Volumepools$Volumes$Directcreate extends StandardParameters {
-    /**
-     * Required. The parent volume pool path, in the format `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}`.
-     */
-    parent?: string;
-    /**
-     * Required. The ID to use for the volume. The ID must be unique within the specified volume pool.
-     */
-    volumeId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Volume;
-  }
-  export interface Params$Resource$Projects$Locations$Volumepools$Volumes$Directdelete extends StandardParameters {
-    /**
-     * Required. The volume resource name, in the format `projects/{project\}/locations/{location\}/volumePools/{volume_pool\}/volumes/{volume\}`.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$DeleteVolumeRequest;
   }
   export interface Params$Resource$Projects$Locations$Volumepools$Volumes$Get extends StandardParameters {
     /**

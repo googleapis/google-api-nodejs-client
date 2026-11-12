@@ -1472,6 +1472,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "force": {
+                      "description": "Optional. If set to `true`, the volume pool is deleted even if it has volumes, and its volumes are deleted with it. Otherwise, the request fails if the volume pool has any volumes.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Required. The volume pool resource name, in the format `projects/{project}/locations/{location}/volumePools/{volume_pool}`.",
                       "location": "path",
@@ -1683,67 +1688,6 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
-                    "directCreate": {
-                      "description": "Creates a volume directly on the CLH, bypassing CCFE. This is a temporary PoC that will be used for testing and removed.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumePools/{volumePoolsId}/volumes:directCreate",
-                      "httpMethod": "POST",
-                      "id": "file.projects.locations.volumePools.volumes.directCreate",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "parent": {
-                          "description": "Required. The parent volume pool path, in the format `projects/{project}/locations/{location}/volumePools/{volume_pool}`.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/volumePools/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "volumeId": {
-                          "description": "Required. The ID to use for the volume. The ID must be unique within the specified volume pool.",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta1/{+parent}/volumes:directCreate",
-                      "request": {
-                        "$ref": "Volume"
-                      },
-                      "response": {
-                        "$ref": "Volume"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "directDelete": {
-                      "description": "Deletes a volume directly on the CLH, bypassing CCFE. This is a temporary PoC that will be used for testing and removed.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumePools/{volumePoolsId}/volumes/{volumesId}:directDelete",
-                      "httpMethod": "POST",
-                      "id": "file.projects.locations.volumePools.volumes.directDelete",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The volume resource name, in the format `projects/{project}/locations/{location}/volumePools/{volume_pool}/volumes/{volume}`.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/volumePools/[^/]+/volumes/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta1/{+name}:directDelete",
-                      "request": {
-                        "$ref": "DeleteVolumeRequest"
-                      },
-                      "response": {
-                        "$ref": "Empty"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
                     "get": {
                       "description": "Gets the details of a specific volume.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumePools/{volumePoolsId}/volumes/{volumesId}",
@@ -1886,7 +1830,7 @@
       }
     }
   },
-  "revision": "20261006",
+  "revision": "20261029",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "AcquireShareRequest": {
@@ -2136,12 +2080,6 @@
           "type": "integer"
         }
       },
-      "type": "object"
-    },
-    "DeleteVolumeRequest": {
-      "description": "DeleteVolumeRequest deletes a volume.",
-      "id": "DeleteVolumeRequest",
-      "properties": {},
       "type": "object"
     },
     "DenyMaintenancePeriod": {
@@ -3907,7 +3845,7 @@
           "type": "string"
         },
         "state": {
-          "description": "Optional. The state of the volume. This field is caller-settable via `UpdateVolume` to transition a volume from `HOT` to `COLD` (freezing the volume). In `CreateVolume`, this field is output-only and initialized to `HOT`.",
+          "description": "Optional. The state of the volume. This field is caller-settable via `UpdateVolume` to transition a volume from `HOT` to `COLD` (freezing the volume). In `CreateVolume`, this field is output-only: the volume is created as `HOT` when `ip_acls` is non-empty. When `ip_acls` is empty, the volume may be created `WARM` with no `mount_point` until `ip_acls` are set with `UpdateVolume`.",
           "enum": [
             "STATE_UNSPECIFIED",
             "CREATING",
@@ -3940,6 +3878,11 @@
           "description": "Optional. The number of IOPs provisioned per active volume.",
           "format": "int32",
           "type": "integer"
+        },
+        "autoFreezeDelay": {
+          "description": "Optional. How long a volume stays `WARM` after it is deactivated before it is automatically frozen (moved to `COLD`). Must be positive if set. Default: 7 days.",
+          "format": "google-duration",
+          "type": "string"
         },
         "createTime": {
           "description": "Output only. The time when the volume pool was created.",
