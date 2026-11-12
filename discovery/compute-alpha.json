@@ -58444,7 +58444,7 @@
       }
     }
   },
-  "revision": "20261016",
+  "revision": "20261106",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -63643,7 +63643,7 @@
       "id": "BackendServiceHAPolicy",
       "properties": {
         "fastIPMove": {
-          "description": "Specifies whether fast IP move is enabled, and if so, the mechanism to\nachieve it.\n\nSupported values are:\n   \n   - DISABLED: Fast IP Move is disabled. You can only use the\n   haPolicy.leader API to update the leader.\n   - >GARP_RA: Provides a method to very quickly define a new network\n   endpoint as the leader. This method is faster than updating the leader\n   using the haPolicy.leader API. Fast IP move works as follows: The VM\n   hosting the network endpoint that should become the new leader sends\n   either a Gratuitous ARP (GARP) packet (IPv4) or an ICMPv6 Router\n   Advertisement(RA) packet (IPv6).  Google Cloud immediately but\n   temporarily associates the forwarding rule IP address with that VM, and\n   both new and in-flight packets are quickly delivered to that VM.\n   - HA_CONTROLLER: The Backend Service is managed by a High Availability\n   Controller. Failover and leader election are exclusively managed by the\n   HA Controller service.\n\n\n\nNote the important properties of the Fast IP Move functionality:\n   \n   - The GARP/RA-initiated re-routing stays active for approximately 20\n   minutes. After triggering fast failover, you must also\n   appropriately set the haPolicy.leader.\n   -  The new leader instance should continue to send GARP/RA packets\n   periodically every 10 seconds until at least 10 minutes after updating\n   the haPolicy.leader (but stop immediately if it is no longer the leader).\n   - After triggering a fast failover, we recommend that you wait at least\n   3 seconds before sending another GARP/RA packet from a different VM\n   instance to avoid race conditions.\n   - Don't send GARP/RA packets from different VM\n   instances at the same time. If multiple instances continue to send\n   GARP/RA packets, traffic might be routed to different destinations in an\n   alternating order. This condition ceases when a single instance\n   issues a GARP/RA packet.\n   - The GARP/RA request always takes priority over the leader API.\n   Using the haPolicy.leader API to change the leader to a different\n   instance will have no effect until the GARP/RA request becomes\n   inactive.\n   - The GARP/RA packets should follow the GARP/RA\n   Packet Specifications..\n   -  When multiple forwarding rules refer to a regional backend service,\n   you need only send a GARP or RA packet for a single forwarding rule\n   virtual IP. The virtual IPs for all forwarding rules targeting the same\n   backend service will also be moved to the sender of the GARP or RA\n   packet. \n\n\n\nThe following are the Fast IP Move limitations (that is, when fastIPMove\nis not DISABLED):\n   \n   - Multiple forwarding rules cannot use the same IP address if one of\n   them refers to a regional backend service with fastIPMove.\n   - The regional backend service must set the network field, and all\n   NEGs must belong to that network. However, individual\n   NEGs can belong to different subnetworks of that network. \n   - The maximum number of network endpoints across all backends of a\n   backend service with fastIPMove is 32.\n   - The maximum number of backend services with fastIPMove that can have\n   the same network endpoint attached to one of its backends is 64.\n   - The maximum number of backend services with fastIPMove in a VPC in a\n   region is 64.\n   - The network endpoints that are attached to a backend of a backend\n   service with fastIPMove cannot resolve to Gen3+ machines for IPv6.\n   - Traffic directed to the leader by a static route next hop will not be\n   redirected to a new leader by fast failover. Such traffic will only be\n   redirected once an haPolicy.leader update has taken effect. Only traffic\n   to the forwarding rule's virtual IP will be redirected to a new leader by\n   fast failover.\n\n\nhaPolicy.fastIPMove can be set only at backend service creation time.\nOnce set, it cannot be updated.\n\nBy default, fastIpMove is set to DISABLED.",
+          "description": "Specifies whether fast IP move is enabled, and if so, the mechanism to\nachieve it.\n\nSupported values are:\n   \n   - DISABLED: Fast IP Move is disabled. You can only use the\n   haPolicy.leader API to update the leader.\n   - >GARP_RA: Provides a method to very quickly define a new network\n   endpoint as the leader. This method is faster than updating the leader\n   using the haPolicy.leader API. Fast IP move works as follows: The VM\n   hosting the network endpoint that should become the new leader sends\n   either a Gratuitous ARP (GARP) packet (IPv4) or an ICMPv6 Router\n   Advertisement(RA) packet (IPv6).  Google Cloud immediately but\n   temporarily associates the forwarding rule IP address with that VM, and\n   both new and in-flight packets are quickly delivered to that VM.\n\n\n\nNote the important properties of the Fast IP Move functionality:\n   \n   - The GARP/RA-initiated re-routing stays active for approximately 20\n   minutes. After triggering fast failover, you must also\n   appropriately set the haPolicy.leader.\n   -  The new leader instance should continue to send GARP/RA packets\n   periodically every 10 seconds until at least 10 minutes after updating\n   the haPolicy.leader (but stop immediately if it is no longer the leader).\n   - After triggering a fast failover, we recommend that you wait at least\n   3 seconds before sending another GARP/RA packet from a different VM\n   instance to avoid race conditions.\n   - Don't send GARP/RA packets from different VM\n   instances at the same time. If multiple instances continue to send\n   GARP/RA packets, traffic might be routed to different destinations in an\n   alternating order. This condition ceases when a single instance\n   issues a GARP/RA packet.\n   - The GARP/RA request always takes priority over the leader API.\n   Using the haPolicy.leader API to change the leader to a different\n   instance will have no effect until the GARP/RA request becomes\n   inactive.\n   - The GARP/RA packets should follow the GARP/RA\n   Packet Specifications..\n   -  When multiple forwarding rules refer to a regional backend service,\n   you need only send a GARP or RA packet for a single forwarding rule\n   virtual IP. The virtual IPs for all forwarding rules targeting the same\n   backend service will also be moved to the sender of the GARP or RA\n   packet. \n\n\n\nThe following are the Fast IP Move limitations (that is, when fastIPMove\nis not DISABLED):\n   \n   - Multiple forwarding rules cannot use the same IP address if one of\n   them refers to a regional backend service with fastIPMove.\n   - The regional backend service must set the network field, and all\n   NEGs must belong to that network. However, individual\n   NEGs can belong to different subnetworks of that network. \n   - The maximum number of network endpoints across all backends of a\n   backend service with fastIPMove is 32.\n   - The maximum number of backend services with fastIPMove that can have\n   the same network endpoint attached to one of its backends is 64.\n   - The maximum number of backend services with fastIPMove in a VPC in a\n   region is 64.\n   - The network endpoints that are attached to a backend of a backend\n   service with fastIPMove cannot resolve to Gen3+ machines for IPv6.\n   - Traffic directed to the leader by a static route next hop will not be\n   redirected to a new leader by fast failover. Such traffic will only be\n   redirected once an haPolicy.leader update has taken effect. Only traffic\n   to the forwarding rule's virtual IP will be redirected to a new leader by\n   fast failover.\n\n\nhaPolicy.fastIPMove can be set only at backend service creation time.\nOnce set, it cannot be updated.\n\nBy default, fastIpMove is set to DISABLED.",
           "enum": [
             "DISABLED",
             "GARP_RA"
@@ -65516,7 +65516,7 @@
       "id": "CapacityAdviceRequestInstancePropertiesScheduling",
       "properties": {
         "maxRunDuration": {
-          "description": "The maximum time that instances can run before Compute Engine\nterminates them.",
+          "description": "Optional. The maximum time that instances can run before Compute Engine\nterminates them. If you set the `provisioning_model` to `FLEX_START`,\nthen Compute Engine requires this duration, and the value must be\nbetween 10 minutes and 7 days.",
           "format": "google-duration",
           "type": "string"
         },
@@ -65581,7 +65581,7 @@
           "type": "string"
         },
         "estimatedWaitDuration": {
-          "description": "Output only. The likely maximum time that you will have to wait until\nCompute Engine provisions your instances.",
+          "description": "Output only. The estimated time you have to wait before Compute Engine provisions\nyour instances. The value 999999999s indicates that the wait time is\nunknown or very long.",
           "format": "google-duration",
           "readOnly": true,
           "type": "string"
@@ -67339,7 +67339,7 @@
           "description": "Defines a set of Confidential Paravisor (SVSM) options."
         },
         "enableConfidentialCompute": {
-          "description": "Defines whether the instance should have confidential compute enabled.",
+          "description": "Defines whether the instance should have confidential compute enabled.\nWhen enabled, the technology used defaults to \nAMD SEV unless confidentialInstanceType is specified.",
           "type": "boolean"
         }
       },
@@ -67350,28 +67350,30 @@
       "id": "ConfidentialParavisorConfig",
       "properties": {
         "confidentialTpmType": {
+          "description": "Defines the type of TPM to use for the confidential instance.",
           "enum": [
             "CONFIDENTIAL_TPM_TYPE_UNSPECIFIED",
             "EPHEMERAL",
             "NO_CC_TPM"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            ""
+            "No TPM type specified. Do not use this value.",
+            "An ephemeral vTPM running in the paravisor (SVSM).",
+            "No confidential computing vTPM is used in the paravisor (SVSM)."
           ],
           "type": "string"
         },
         "sevSnpIrqMode": {
+          "description": "Defines the IRQ mode to use for the confidential instance.",
           "enum": [
             "RESTRICTED",
             "SEV_SNP_IRQ_MODE_UNSPECIFIED",
             "UNRESTRICTED"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            ""
+            "Restricted interrupt injection.",
+            "No IRQ mode specified. Do not use this value.",
+            "Unrestricted interrupt injection."
           ],
           "type": "string"
         }
@@ -93915,14 +93917,14 @@
       "id": "MachineImageParams",
       "properties": {
         "excludedDisks": {
-          "description": "Input only. [Input Only] Specifies the list of disk device names that must be\nexcluded from the new machine image.",
+          "description": "Input only. Specifies the list of disk device names that must be excluded from the\nnew machine image.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "includedDisks": {
-          "description": "Input only. [Input Only] Specifies the list of disk device names that must be\nincluded with the new machine image.",
+          "description": "Input only. Specifies the list of disk device names that must be included with the\nnew machine image.",
           "items": {
             "type": "string"
           },
@@ -109212,14 +109214,14 @@
           "type": "string"
         },
         "snapshotType": {
-          "description": "Indicates the type of the snapshot.",
+          "description": "Indicates the type of the snapshot. Valid values are ARCHIVE\nor STANDARD.",
           "enum": [
             "ARCHIVE",
             "STANDARD"
           ],
           "enumDescriptions": [
-            "",
-            ""
+            "Indicates that the original snapshot is an archive snapshot.",
+            "Indicates that the original snapshot is a standard snapshot."
           ],
           "type": "string"
         },
@@ -122696,14 +122698,14 @@
           "type": "string"
         },
         "snapshotType": {
-          "description": "Indicates the type of the snapshot.",
+          "description": "Indicates the type of the snapshot. Valid values are ARCHIVE\nor STANDARD. The default is STANDARD.",
           "enum": [
             "ARCHIVE",
             "STANDARD"
           ],
           "enumDescriptions": [
-            "",
-            ""
+            "Indicates an archive snapshot, which is recommended for long-term\nretention and compliance.",
+            "Indicates a standard snapshot, which is recommended for frequent\nrestores."
           ],
           "type": "string"
         },
@@ -129017,7 +129019,7 @@
           "type": "string"
         },
         "sslCertificates": {
-          "description": "URLs to SslCertificate resources that are used to authenticate\nconnections between users and the load balancer. At least one SSL\ncertificate must be specified. SslCertificates do not apply when the load\nbalancing scheme is set to INTERNAL_SELF_MANAGED.\n\nThe URLs should refer to a SSL Certificate resource or Certificate Manager\nCertificate resource. Mixing Classic Certificates and Certificate Manager\nCertificates is not allowed. Certificate Manager Certificates must include\nthe certificatemanager API namespace. Using Certificate Manager\nCertificates in this field is not supported by Global external Application\nLoad Balancer or Classic Application Load Balancer, use certificate_map\ninstead.\n\nCurrently, you may specify up to 15 Classic SSL Certificates or up to 100\nCertificate Manager Certificates.\n\nCertificate Manager Certificates accepted formats are:\n   \n   - //certificatemanager.googleapis.com/projects/{project}/locations/{location}/certificates/{resourceName}.\n   - https://certificatemanager.googleapis.com/v1alpha1/projects/{project}/locations/{location}/certificates/{resourceName}.",
+          "description": "URLs to SslCertificate resources that are used to authenticate\nconnections between users and the load balancer. At least one SSL\ncertificate must be specified. SslCertificates do not apply when the load\nbalancing scheme is set to INTERNAL_SELF_MANAGED.\n\nThe URLs should refer to a SSL Certificate resource or Certificate Manager\nCertificate resource. Mixing Classic Certificates and Certificate Manager\nCertificates is not allowed. Certificate Manager Certificates must include\nthe certificatemanager API namespace. Using Certificate Manager\nCertificates in this field is not supported by Global external Application\nLoad Balancer or Classic Application Load Balancer, use certificate_map\ninstead.\n\nCurrently, you may specify up to 15 Classic SSL Certificates or up to 100\nCertificate Manager Certificates.\n\nCertificate Manager Certificates accepted formats are:\n   \n   - //certificatemanager.googleapis.com/projects/{project}/locations/{location}/certificates/{resourceName}.\n   - https://certificatemanager.{universeDomain}/v1alpha1/projects/{project}/locations/{location}/certificates/{resourceName}.",
           "items": {
             "type": "string"
           },

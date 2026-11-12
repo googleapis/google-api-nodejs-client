@@ -6231,6 +6231,484 @@
         }
       }
     },
+    "folderRolloutPlans": {
+      "methods": {
+        "delete": {
+          "apiVersion": "2026-10-01-preview",
+          "description": "Deletes a FolderRolloutPlan.",
+          "flatPath": "folders/{foldersId}/global/rolloutPlans/{rolloutPlan}",
+          "httpMethod": "DELETE",
+          "id": "compute.folderRolloutPlans.delete",
+          "parameterOrder": [
+            "folder",
+            "rolloutPlan"
+          ],
+          "parameters": {
+            "folder": {
+              "description": "Folder ID for this request.",
+              "location": "path",
+              "pattern": "folders/[0-9]{0,20}",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "rolloutPlan": {
+              "description": "Name of the FolderRolloutPlan resource to delete.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{+folder}/global/rolloutPlans/{rolloutPlan}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "get": {
+          "apiVersion": "2026-10-01-preview",
+          "description": "Gets details of a single folder-scoped RolloutPlan.",
+          "flatPath": "folders/{foldersId}/global/rolloutPlans/{rolloutPlan}",
+          "httpMethod": "GET",
+          "id": "compute.folderRolloutPlans.get",
+          "parameterOrder": [
+            "folder",
+            "rolloutPlan"
+          ],
+          "parameters": {
+            "folder": {
+              "description": "Folder ID for this request.",
+              "location": "path",
+              "pattern": "folders/[0-9]{0,20}",
+              "required": true,
+              "type": "string"
+            },
+            "rolloutPlan": {
+              "description": "Name of the persistent rollout plan to return.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{+folder}/global/rolloutPlans/{rolloutPlan}",
+          "response": {
+            "$ref": "RolloutPlan"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "insert": {
+          "apiVersion": "2026-10-01-preview",
+          "description": "Creates a new RolloutPlan in a given folder and location.",
+          "flatPath": "folders/{foldersId}/global/rolloutPlans",
+          "httpMethod": "POST",
+          "id": "compute.folderRolloutPlans.insert",
+          "parameterOrder": [
+            "folder"
+          ],
+          "parameters": {
+            "folder": {
+              "description": "Folder ID for this request.",
+              "location": "path",
+              "pattern": "folders/[0-9]{0,20}",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "{+folder}/global/rolloutPlans",
+          "request": {
+            "$ref": "RolloutPlan"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "list": {
+          "apiVersion": "2026-10-01-preview",
+          "description": "Lists FolderRolloutPlans in a given folder and location.",
+          "flatPath": "folders/{foldersId}/global/rolloutPlans",
+          "httpMethod": "GET",
+          "id": "compute.folderRolloutPlans.list",
+          "parameterOrder": [
+            "folder"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "A filter expression that filters resources listed in the response. Most\nCompute resources support two types of filter expressions:\nexpressions that support regular expressions and expressions that follow\nAPI improvement proposal AIP-160.\nThese two types of filter expressions cannot be mixed in one request.\n\nIf you want to use AIP-160, your expression must specify the field name, an\noperator, and the value that you want to use for filtering. The value\nmust be a string, a number, or a boolean. The operator\nmust be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`.\n\nFor example, if you are filtering Compute Engine instances, you can\nexclude instances named `example-instance` by specifying\n`name != example-instance`.\n\nThe `:*` comparison can be used to test whether a key has been defined.\nFor example, to find all objects with `owner` label use:\n```\nlabels.owner:*\n```\n\nYou can also filter nested fields. For example, you could specify\n`scheduling.automaticRestart = false` to include instances only\nif they are not scheduled for automatic restarts. You can use filtering\non nested fields to filter based onresource labels.\n\nTo filter on multiple expressions, provide each separate expression within\nparentheses. For example:\n```\n(scheduling.automaticRestart = true)\n(cpuPlatform = \"Intel Skylake\")\n```\nBy default, each expression is an `AND` expression. However, you\ncan include `AND` and `OR` expressions explicitly.\nFor example:\n```\n(cpuPlatform = \"Intel Skylake\") OR\n(cpuPlatform = \"Intel Broadwell\") AND\n(scheduling.automaticRestart = true)\n```\n\nIf you want to use a regular expression, use the `eq` (equal) or `ne`\n(not equal) operator against a single un-parenthesized expression with or\nwithout quotes or against multiple parenthesized expressions. Examples:\n\n`fieldname eq unquoted literal`\n`fieldname eq 'single quoted literal'`\n`fieldname eq \"double quoted literal\"`\n`(fieldname1 eq literal) (fieldname2 ne \"literal\")`\n\nThe literal value is interpreted as a regular expression using GoogleRE2 library syntax.\nThe literal value must match the entire field.\n\nFor example, to filter for instances that do not end with name \"instance\",\nyou would use `name ne .*instance`.\n\nYou cannot combine constraints on multiple fields using regular\nexpressions.",
+              "location": "query",
+              "type": "string"
+            },
+            "folder": {
+              "description": "Folder ID for this request.",
+              "location": "path",
+              "pattern": "folders/[0-9]{0,20}",
+              "required": true,
+              "type": "string"
+            },
+            "maxResults": {
+              "default": "500",
+              "description": "The maximum number of results per page that should be returned.\nIf the number of available results is larger than `maxResults`,\nCompute Engine returns a `nextPageToken` that can be used to get\nthe next page of results in subsequent list requests. Acceptable values are\n`0` to `500`, inclusive. (Default: `500`)",
+              "format": "uint32",
+              "location": "query",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "orderBy": {
+              "description": "Sorts list results by a certain order. By default, results\nare returned in alphanumerical order based on the resource name.\n\nYou can also sort results in descending order based on the creation\ntimestamp using `orderBy=\"creationTimestamp desc\"`. This sorts\nresults based on the `creationTimestamp` field in\nreverse chronological order (newest result first). Use this to sort\nresources like operations so that the newest operation is returned first.\n\nCurrently, only sorting by `name` or\n`creationTimestamp desc` is supported.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "Specifies a page token to use. Set `pageToken` to the\n`nextPageToken` returned by a previous list request to get\nthe next page of results.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "{+folder}/global/rolloutPlans",
+          "response": {
+            "$ref": "RolloutPlansListResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        }
+      }
+    },
+    "folderRollouts": {
+      "methods": {
+        "advance": {
+          "apiVersion": "2026-10-01-preview",
+          "description": "Advances a Rollout to the next wave, or completes it if no waves remain.",
+          "flatPath": "folders/{foldersId}/global/rollouts/{rollout}/advance",
+          "httpMethod": "POST",
+          "id": "compute.folderRollouts.advance",
+          "parameterOrder": [
+            "folder",
+            "rollout"
+          ],
+          "parameters": {
+            "currentWaveNumber": {
+              "description": "Required. Wave number of the current wave.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "folder": {
+              "description": "Required. Folder ID for this request.",
+              "location": "path",
+              "pattern": "folders/[0-9]{1,19}",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "rollout": {
+              "description": "Required. Name of the Rollout resource to advance.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{+folder}/global/rollouts/{rollout}/advance",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "cancel": {
+          "apiVersion": "2026-10-01-preview",
+          "description": "Cancels a Rollout.",
+          "flatPath": "folders/{foldersId}/global/rollouts/{rollout}",
+          "httpMethod": "PATCH",
+          "id": "compute.folderRollouts.cancel",
+          "parameterOrder": [
+            "folder",
+            "rollout"
+          ],
+          "parameters": {
+            "folder": {
+              "description": "Required. Folder ID for this request.",
+              "location": "path",
+              "pattern": "folders/[0-9]{1,19}",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "rollback": {
+              "description": "Optional. If true, then the ongoing rollout must be rolled back. Else, just cancel\nthe rollout without taking any further actions. Note that products must\nsupport at least one of these options, however, it does not need to support\nboth.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "rollout": {
+              "description": "Name of the Rollout resource to cancel.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{+folder}/global/rollouts/{rollout}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "delete": {
+          "apiVersion": "2026-10-01-preview",
+          "description": "Deletes a Rollout.",
+          "flatPath": "folders/{foldersId}/global/rollouts/{rollout}",
+          "httpMethod": "DELETE",
+          "id": "compute.folderRollouts.delete",
+          "parameterOrder": [
+            "folder",
+            "rollout"
+          ],
+          "parameters": {
+            "folder": {
+              "description": "Required. Folder ID for this request.",
+              "location": "path",
+              "pattern": "folders/[0-9]{1,19}",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "rollout": {
+              "description": "Name of the Rollout resource to delete.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{+folder}/global/rollouts/{rollout}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "get": {
+          "apiVersion": "2026-10-01-preview",
+          "description": "Gets details of a single folder-scoped Rollout.",
+          "flatPath": "folders/{foldersId}/global/rollouts/{rollout}",
+          "httpMethod": "GET",
+          "id": "compute.folderRollouts.get",
+          "parameterOrder": [
+            "folder",
+            "rollout"
+          ],
+          "parameters": {
+            "folder": {
+              "description": "Folder ID for this request.",
+              "location": "path",
+              "pattern": "folders/[0-9]{0,20}",
+              "required": true,
+              "type": "string"
+            },
+            "rollout": {
+              "description": "Name of the persistent rollout to return.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{+folder}/global/rollouts/{rollout}",
+          "response": {
+            "$ref": "Rollout"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "list": {
+          "apiVersion": "2026-10-01-preview",
+          "description": "Lists Rollouts in a given folder and location.",
+          "flatPath": "folders/{foldersId}/global/rollouts",
+          "httpMethod": "GET",
+          "id": "compute.folderRollouts.list",
+          "parameterOrder": [
+            "folder"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "A filter expression that filters resources listed in the response. Most\nCompute resources support two types of filter expressions:\nexpressions that support regular expressions and expressions that follow\nAPI improvement proposal AIP-160.\nThese two types of filter expressions cannot be mixed in one request.\n\nIf you want to use AIP-160, your expression must specify the field name, an\noperator, and the value that you want to use for filtering. The value\nmust be a string, a number, or a boolean. The operator\nmust be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`.\n\nFor example, if you are filtering Compute Engine instances, you can\nexclude instances named `example-instance` by specifying\n`name != example-instance`.\n\nThe `:*` comparison can be used to test whether a key has been defined.\nFor example, to find all objects with `owner` label use:\n```\nlabels.owner:*\n```\n\nYou can also filter nested fields. For example, you could specify\n`scheduling.automaticRestart = false` to include instances only\nif they are not scheduled for automatic restarts. You can use filtering\non nested fields to filter based onresource labels.\n\nTo filter on multiple expressions, provide each separate expression within\nparentheses. For example:\n```\n(scheduling.automaticRestart = true)\n(cpuPlatform = \"Intel Skylake\")\n```\nBy default, each expression is an `AND` expression. However, you\ncan include `AND` and `OR` expressions explicitly.\nFor example:\n```\n(cpuPlatform = \"Intel Skylake\") OR\n(cpuPlatform = \"Intel Broadwell\") AND\n(scheduling.automaticRestart = true)\n```\n\nIf you want to use a regular expression, use the `eq` (equal) or `ne`\n(not equal) operator against a single un-parenthesized expression with or\nwithout quotes or against multiple parenthesized expressions. Examples:\n\n`fieldname eq unquoted literal`\n`fieldname eq 'single quoted literal'`\n`fieldname eq \"double quoted literal\"`\n`(fieldname1 eq literal) (fieldname2 ne \"literal\")`\n\nThe literal value is interpreted as a regular expression using GoogleRE2 library syntax.\nThe literal value must match the entire field.\n\nFor example, to filter for instances that do not end with name \"instance\",\nyou would use `name ne .*instance`.\n\nYou cannot combine constraints on multiple fields using regular\nexpressions.",
+              "location": "query",
+              "type": "string"
+            },
+            "folder": {
+              "description": "Required. Folder ID for this request.",
+              "location": "path",
+              "pattern": "folders/[0-9]{1,19}",
+              "required": true,
+              "type": "string"
+            },
+            "maxResults": {
+              "default": "500",
+              "description": "The maximum number of results per page that should be returned.\nIf the number of available results is larger than `maxResults`,\nCompute Engine returns a `nextPageToken` that can be used to get\nthe next page of results in subsequent list requests. Acceptable values are\n`0` to `500`, inclusive. (Default: `500`)",
+              "format": "uint32",
+              "location": "query",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "orderBy": {
+              "description": "Sorts list results by a certain order. By default, results\nare returned in alphanumerical order based on the resource name.\n\nYou can also sort results in descending order based on the creation\ntimestamp using `orderBy=\"creationTimestamp desc\"`. This sorts\nresults based on the `creationTimestamp` field in\nreverse chronological order (newest result first). Use this to sort\nresources like operations so that the newest operation is returned first.\n\nCurrently, only sorting by `name` or\n`creationTimestamp desc` is supported.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "Specifies a page token to use. Set `pageToken` to the\n`nextPageToken` returned by a previous list request to get\nthe next page of results.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "{+folder}/global/rollouts",
+          "response": {
+            "$ref": "FolderRolloutsListResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "pause": {
+          "apiVersion": "2026-10-01-preview",
+          "description": "Pauses a Rollout.",
+          "flatPath": "folders/{foldersId}/global/rollouts/{rollout}/pause",
+          "httpMethod": "POST",
+          "id": "compute.folderRollouts.pause",
+          "parameterOrder": [
+            "folder",
+            "rollout"
+          ],
+          "parameters": {
+            "etag": {
+              "description": "The etag of the Rollout.\nIf this is provided, the request will only succeed if the etag matches\nthe current etag of the Rollout.",
+              "location": "query",
+              "type": "string"
+            },
+            "folder": {
+              "description": "Required. Folder ID for this request.",
+              "location": "path",
+              "pattern": "folders/[0-9]{1,19}",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "rollout": {
+              "description": "Required. Name of the Rollout resource to pause.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{+folder}/global/rollouts/{rollout}/pause",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "resume": {
+          "apiVersion": "2026-10-01-preview",
+          "description": "Resumes a Rollout.",
+          "flatPath": "folders/{foldersId}/global/rollouts/{rollout}/resume",
+          "httpMethod": "POST",
+          "id": "compute.folderRollouts.resume",
+          "parameterOrder": [
+            "folder",
+            "rollout"
+          ],
+          "parameters": {
+            "etag": {
+              "description": "The etag of the Rollout.\nIf this is provided, the request will only succeed if the etag matches\nthe current etag of the Rollout.",
+              "location": "query",
+              "type": "string"
+            },
+            "folder": {
+              "description": "Required. Folder ID for this request.",
+              "location": "path",
+              "pattern": "folders/[0-9]{1,19}",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "rollout": {
+              "description": "Required. Name of the Rollout resource to resume.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{+folder}/global/rollouts/{rollout}/resume",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        }
+      }
+    },
     "folderZoneVmExtensionPolicies": {
       "methods": {
         "delete": {
@@ -22312,6 +22790,113 @@
         }
       }
     },
+    "networkLocationBindings": {
+      "methods": {
+        "get": {
+          "apiVersion": "2026-10-01-preview",
+          "description": "Returns the specified NetworkLocationBinding resource in the given scope.",
+          "flatPath": "projects/{project}/regions/{region}/networkLocationBindings/{networkLocationBinding}",
+          "httpMethod": "GET",
+          "id": "compute.networkLocationBindings.get",
+          "parameterOrder": [
+            "project",
+            "region",
+            "networkLocationBinding"
+          ],
+          "parameters": {
+            "networkLocationBinding": {
+              "description": "Name of the NetworkLocationBinding resource to return.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region of this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/networkLocationBindings/{networkLocationBinding}",
+          "response": {
+            "$ref": "NetworkLocationBinding"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "list": {
+          "apiVersion": "2026-10-01-preview",
+          "description": "Lists the NetworkLocationBindings for a project in the given scope.",
+          "flatPath": "projects/{project}/regions/{region}/networkLocationBindings",
+          "httpMethod": "GET",
+          "id": "compute.networkLocationBindings.list",
+          "parameterOrder": [
+            "project",
+            "region"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "A filter expression that filters resources listed in the response. Most\nCompute resources support two types of filter expressions:\nexpressions that support regular expressions and expressions that follow\nAPI improvement proposal AIP-160.\nThese two types of filter expressions cannot be mixed in one request.\n\nIf you want to use AIP-160, your expression must specify the field name, an\noperator, and the value that you want to use for filtering. The value\nmust be a string, a number, or a boolean. The operator\nmust be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`.\n\nFor example, if you are filtering Compute Engine instances, you can\nexclude instances named `example-instance` by specifying\n`name != example-instance`.\n\nThe `:*` comparison can be used to test whether a key has been defined.\nFor example, to find all objects with `owner` label use:\n```\nlabels.owner:*\n```\n\nYou can also filter nested fields. For example, you could specify\n`scheduling.automaticRestart = false` to include instances only\nif they are not scheduled for automatic restarts. You can use filtering\non nested fields to filter based onresource labels.\n\nTo filter on multiple expressions, provide each separate expression within\nparentheses. For example:\n```\n(scheduling.automaticRestart = true)\n(cpuPlatform = \"Intel Skylake\")\n```\nBy default, each expression is an `AND` expression. However, you\ncan include `AND` and `OR` expressions explicitly.\nFor example:\n```\n(cpuPlatform = \"Intel Skylake\") OR\n(cpuPlatform = \"Intel Broadwell\") AND\n(scheduling.automaticRestart = true)\n```\n\nIf you want to use a regular expression, use the `eq` (equal) or `ne`\n(not equal) operator against a single un-parenthesized expression with or\nwithout quotes or against multiple parenthesized expressions. Examples:\n\n`fieldname eq unquoted literal`\n`fieldname eq 'single quoted literal'`\n`fieldname eq \"double quoted literal\"`\n`(fieldname1 eq literal) (fieldname2 ne \"literal\")`\n\nThe literal value is interpreted as a regular expression using GoogleRE2 library syntax.\nThe literal value must match the entire field.\n\nFor example, to filter for instances that do not end with name \"instance\",\nyou would use `name ne .*instance`.\n\nYou cannot combine constraints on multiple fields using regular\nexpressions.",
+              "location": "query",
+              "type": "string"
+            },
+            "maxResults": {
+              "default": "500",
+              "description": "The maximum number of results per page that should be returned.\nIf the number of available results is larger than `maxResults`,\nCompute Engine returns a `nextPageToken` that can be used to get\nthe next page of results in subsequent list requests. Acceptable values are\n`0` to `500`, inclusive. (Default: `500`)",
+              "format": "uint32",
+              "location": "query",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "orderBy": {
+              "description": "Sorts list results by a certain order. By default, results\nare returned in alphanumerical order based on the resource name.\n\nYou can also sort results in descending order based on the creation\ntimestamp using `orderBy=\"creationTimestamp desc\"`. This sorts\nresults based on the `creationTimestamp` field in\nreverse chronological order (newest result first). Use this to sort\nresources like operations so that the newest operation is returned first.\n\nCurrently, only sorting by `name` or\n`creationTimestamp desc` is supported.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "Specifies a page token to use. Set `pageToken` to the\n`nextPageToken` returned by a previous list request to get\nthe next page of results.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region of this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/networkLocationBindings",
+          "response": {
+            "$ref": "NetworkLocationBindingList"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        }
+      }
+    },
     "networkProfiles": {
       "methods": {
         "get": {
@@ -37544,6 +38129,12 @@
             "region"
           ],
           "parameters": {
+            "name": {
+              "description": "Required. Name of the SslCertificate resource to be created. The name must be 1-63\ncharacters long, and comply withRFC1035.",
+              "location": "query",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "type": "string"
+            },
             "project": {
               "description": "Project ID for this request.",
               "location": "path",
@@ -45011,6 +45602,12 @@
             "project"
           ],
           "parameters": {
+            "name": {
+              "description": "Required. Name of the SslCertificate resource to be created. The name must be 1-63\ncharacters long, and comply withRFC1035.",
+              "location": "query",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "type": "string"
+            },
             "project": {
               "description": "Project ID for this request.",
               "location": "path",
@@ -52184,7 +52781,7 @@
       }
     }
   },
-  "revision": "20261016",
+  "revision": "20261106",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -54213,9 +54810,13 @@
             "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT3P",
             "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P",
             "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT5P",
-            "VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU7X"
+            "VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU7X",
+            "VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU8T",
+            "VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU8T_METAL"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -56833,6 +57434,10 @@
           "description": "The URL of the network to which this backend service belongs.\n\nThis field must be set for Internal Passthrough Network Load Balancers when\nthe haPolicy is enabled, and for External Passthrough Network Load\nBalancers when the haPolicy fastIpMove is enabled.\n\nThis field can only be specified when the load balancing scheme is set toINTERNAL, or when the load balancing scheme is set toEXTERNAL and haPolicy fastIpMove is enabled.",
           "type": "string"
         },
+        "networkAttachment": {
+          "description": "Optional. The URL of the network attachment that this resource\nbelongs to.projects/{project}/regions/{region_name}/networkAttachments/{network_attachment_name}.",
+          "type": "string"
+        },
         "networkPassThroughLbTrafficPolicy": {
           "$ref": "BackendServiceNetworkPassThroughLbTrafficPolicy",
           "description": "Configures traffic steering properties of internal passthrough Network\nLoad Balancers.\n\nnetworkPassThroughLbTrafficPolicy cannot be specified with haPolicy."
@@ -56908,6 +57513,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "serviceClassId": {
+          "description": "Optional. The service class ID associated with this resource.\nProducer Service's Service class ID for the region of this backend\nservice. Can only be used with network_attachment. It is not possible to\nuse on its own; however, network_attachment can be used without\nservice_class_id.",
+          "type": "string"
         },
         "serviceLbPolicy": {
           "description": "URL to networkservices.ServiceLbPolicy resource.\n\nCan only be set if load balancing scheme is EXTERNAL_MANAGED,\nINTERNAL_MANAGED or INTERNAL_SELF_MANAGED for a global backend service, and\nEXTERNAL_MANAGED or INTERNAL_MANAGED for a regional backend service. For a\nglobal backend service, the service lb policy must be global. For a\nregional backend service, the service lb policy must be regional and in the\nsame region.",
@@ -57360,7 +57969,7 @@
           "enumDescriptions": [
             "",
             "",
-            ""
+            "The Backend Service is managed by a High Availability Controller.\nFailover and leader election are exclusively managed by the HA\nController service."
           ],
           "type": "string"
         },
@@ -60755,9 +61364,48 @@
           ],
           "type": "string"
         },
+        "confidentialParavisorConfig": {
+          "$ref": "ConfidentialParavisorConfig",
+          "description": "Defines a set of Confidential Paravisor (SVSM) options."
+        },
         "enableConfidentialCompute": {
-          "description": "Defines whether the instance should have confidential compute enabled.",
+          "description": "Defines whether the instance should have confidential compute enabled.\nWhen enabled, the technology used defaults to \nAMD SEV unless confidentialInstanceType is specified.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ConfidentialParavisorConfig": {
+      "description": "A set of Confidential Paravisor (SVSM) options.",
+      "id": "ConfidentialParavisorConfig",
+      "properties": {
+        "confidentialTpmType": {
+          "description": "Defines the type of TPM to use for the confidential instance.",
+          "enum": [
+            "CONFIDENTIAL_TPM_TYPE_UNSPECIFIED",
+            "EPHEMERAL",
+            "NO_CC_TPM"
+          ],
+          "enumDescriptions": [
+            "No TPM type specified. Do not use this value.",
+            "An ephemeral vTPM running in the paravisor (SVSM).",
+            "No confidential computing vTPM is used in the paravisor (SVSM)."
+          ],
+          "type": "string"
+        },
+        "sevSnpIrqMode": {
+          "description": "Defines the IRQ mode to use for the confidential instance.",
+          "enum": [
+            "RESTRICTED",
+            "SEV_SNP_IRQ_MODE_UNSPECIFIED",
+            "UNRESTRICTED"
+          ],
+          "enumDescriptions": [
+            "Restricted interrupt injection.",
+            "No IRQ mode specified. Do not use this value.",
+            "Unrestricted interrupt injection."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -63933,11 +64581,13 @@
         "policyType": {
           "description": "The type of the firewall policy. This field can be one of\nVPC_POLICY, RDMA_ROCE_POLICY or ULL_POLICY.\n\nNote: if not specified then VPC_POLICY will be used.",
           "enum": [
+            "NCC_GATEWAY_POLICY",
             "RDMA_ROCE_POLICY",
             "ULL_POLICY",
             "VPC_POLICY"
           ],
           "enumDescriptions": [
+            "A NCC Gateway firewall policy.",
             "",
             "",
             ""
@@ -64529,6 +65179,167 @@
       },
       "type": "object"
     },
+    "FolderRolloutsListResponse": {
+      "id": "FolderRolloutsListResponse",
+      "properties": {
+        "etag": {
+          "type": "string"
+        },
+        "id": {
+          "description": "[Output Only] Unique identifier for the resource; defined by the server.",
+          "type": "string"
+        },
+        "items": {
+          "description": "A list of Rollout resources.",
+          "items": {
+            "$ref": "Rollout"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "[Output Only] This token allows you to get the next page of results for\nlist requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for\nthe query parameter pageToken in the next list request.\nSubsequent list requests will have their own nextPageToken to\ncontinue paging through the results.",
+          "type": "string"
+        },
+        "selfLink": {
+          "description": "Output only. [Output Only] Server-defined URL for this resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "unreachables": {
+          "description": "Output only. [Output Only] Unreachable resources.\nend_interface: MixerListResponseWithEtagBuilder",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "warning": {
+          "description": "[Output Only] Informational warning message.",
+          "properties": {
+            "code": {
+              "description": "[Output Only] A warning code, if applicable. For example, Compute\nEngine returns NO_RESULTS_ON_PAGE if there\nare no results in the response.",
+              "enum": [
+                "CLEANUP_FAILED",
+                "DEPRECATED_RESOURCE_USED",
+                "DEPRECATED_TYPE_USED",
+                "DISK_SIZE_LARGER_THAN_IMAGE_SIZE",
+                "EXPERIMENTAL_TYPE_USED",
+                "EXTERNAL_API_WARNING",
+                "FIELD_VALUE_OVERRIDEN",
+                "INJECTED_KERNELS_DEPRECATED",
+                "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB",
+                "LARGE_DEPLOYMENT_WARNING",
+                "LIST_OVERHEAD_QUOTA_EXCEED",
+                "MISSING_TYPE_DEPENDENCY",
+                "NEXT_HOP_ADDRESS_NOT_ASSIGNED",
+                "NEXT_HOP_CANNOT_IP_FORWARD",
+                "NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE",
+                "NEXT_HOP_INSTANCE_NOT_FOUND",
+                "NEXT_HOP_INSTANCE_NOT_ON_NETWORK",
+                "NEXT_HOP_NOT_RUNNING",
+                "NOT_CRITICAL_ERROR",
+                "NO_RESULTS_ON_PAGE",
+                "PARTIAL_SUCCESS",
+                "QUOTA_INFO_UNAVAILABLE",
+                "REQUIRED_TOS_AGREEMENT",
+                "RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING",
+                "RESOURCE_NOT_DELETED",
+                "SCHEMA_VALIDATION_IGNORED",
+                "SINGLE_INSTANCE_PROPERTY_TEMPLATE",
+                "UNDECLARED_PROPERTIES",
+                "UNREACHABLE"
+              ],
+              "enumDeprecated": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "enumDescriptions": [
+                "Warning about failed cleanup of transient changes made by a failed\noperation.",
+                "A link to a deprecated resource was created.",
+                "When deploying and at least one of the resources has a type marked as\ndeprecated",
+                "The user created a boot disk that is larger than image size.",
+                "When deploying and at least one of the resources has a type marked as\nexperimental",
+                "Warning that is present in an external api call",
+                "Warning that value of a field has been overridden.\nDeprecated unused field.",
+                "The operation involved use of an injected kernel, which is deprecated.",
+                "A WEIGHTED_MAGLEV backend service is associated with a health check that is\nnot of type HTTP/HTTPS/HTTP2.",
+                "When deploying a deployment with a exceedingly large number of resources",
+                "Resource can't be retrieved due to list overhead quota exceed\nwhich captures the amount of resources filtered out by\nuser-defined list filter.",
+                "A resource depends on a missing type",
+                "The route's nextHopIp address is not assigned to an instance on the\nnetwork.",
+                "The route's next hop instance cannot ip forward.",
+                "The route's nextHopInstance URL refers to an instance that does not have an\nipv6 interface on the same network as the route.",
+                "The route's nextHopInstance URL refers to an instance that does not exist.",
+                "The route's nextHopInstance URL refers to an instance that is not on the\nsame network as the route.",
+                "The route's next hop instance does not have a status of RUNNING.",
+                "Error which is not critical. We decided to continue the process despite\nthe mentioned error.",
+                "No results are present on a particular list page.",
+                "Success is reported, but some results may be missing due to errors",
+                "Quota information is not available to client requests (e.g:\nregions.list).",
+                "The user attempted to use a resource that requires a TOS they have not\naccepted.",
+                "Warning that a resource is in use.",
+                "One or more of the resources set to auto-delete could not be deleted\nbecause they were in use.",
+                "When a resource schema validation is ignored.",
+                "Instance template used in instance group manager is valid as such, but\nits application does not make a lot of sense, because it allows only\nsingle instance in instance group.",
+                "When undeclared properties in the schema are present",
+                "A given scope cannot be reached."
+              ],
+              "type": "string"
+            },
+            "data": {
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
+              "items": {
+                "properties": {
+                  "key": {
+                    "description": "[Output Only] A key that provides more detail on the warning being\nreturned. For example, for warnings where there are no results in a list\nrequest for a particular zone, this key might be scope and\nthe key value might be the zone name. Other examples might be a key\nindicating a deprecated resource and a suggested replacement, or a\nwarning about invalid network settings (for example, if an instance\nattempts to perform IP forwarding but is not enabled for IP forwarding).",
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "[Output Only] A warning data value corresponding to the key.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "message": {
+              "description": "[Output Only] A human-readable description of the warning code.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "FolderVmExtensionPolicyAggregatedListResponse": {
       "id": "FolderVmExtensionPolicyAggregatedListResponse",
       "properties": {
@@ -64870,6 +65681,10 @@
           "description": "This field is not used for global external load balancing.\n\nFor internal passthrough Network Load Balancers, this field identifies the\nnetwork that the load balanced IP should belong to for this forwarding\nrule.\nIf the subnetwork is specified, the network of the subnetwork will be used.\nIf neither subnetwork nor this field is specified, the default network will\nbe used.\n\nFor Private Service Connect forwarding rules that forward traffic to Google\nAPIs, a network must be provided.",
           "type": "string"
         },
+        "networkAttachment": {
+          "description": "Optional. The URL of the network attachment that this resource\nbelongs to.projects/{project}/regions/{region_name}/networkAttachments/{network_attachment_name}.",
+          "type": "string"
+        },
         "networkTier": {
           "description": "This signifies the networking tier used for configuring\nthis load balancer and can only take the following values:PREMIUM, STANDARD.\n\nFor regional ForwardingRule, the valid values are PREMIUM andSTANDARD. For GlobalForwardingRule, the valid value isPREMIUM.\n\nIf this field is not specified, it is assumed to be PREMIUM.\nIf IPAddress is specified, this value must be equal to the\nnetworkTier of the Address.",
           "enum": [
@@ -64938,6 +65753,10 @@
         "selfLinkWithId": {
           "description": "Output only. [Output Only] Server-defined URL for this resource with the resource id.",
           "readOnly": true,
+          "type": "string"
+        },
+        "serviceClassId": {
+          "description": "Optional. Producer Service's Service class ID for the region of this forwarding rule.\nCan only be used with network_attachment. It is not possible to use on its\nown; however, network_attachment can be used without service_class_id.",
           "type": "string"
         },
         "serviceDirectoryRegistrations": {
@@ -66603,9 +67422,13 @@
             "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT3P",
             "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P",
             "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT5P",
-            "VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU7X"
+            "VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU7X",
+            "VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU8T",
+            "VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU8T_METAL"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -73835,6 +74658,37 @@
           },
           "type": "array"
         },
+        "metadataOverrides": {
+          "description": "Metadata key/value pairs assigned to instances created from this\nselection. Key/value pairs specified here override keys specified in the\ninstance properties on a key-by-key basis.",
+          "items": {
+            "description": "Metadata",
+            "properties": {
+              "key": {
+                "annotations": {
+                  "required": [
+                    "compute.instances.insert",
+                    "compute.projects.setCommonInstanceMetadata"
+                  ]
+                },
+                "description": "Key for the metadata entry. Keys must conform to the following\nregexp: [a-zA-Z0-9-_]+, and be less than 128 bytes in length.\nThis is reflected as part of a URL in the metadata server. Additionally, to\navoid ambiguity, keys must not conflict with any other metadata keys\nfor the project.",
+                "pattern": "[a-zA-Z0-9-_]{1,128}",
+                "type": "string"
+              },
+              "value": {
+                "annotations": {
+                  "required": [
+                    "compute.instances.insert",
+                    "compute.projects.setCommonInstanceMetadata"
+                  ]
+                },
+                "description": "Value for the metadata entry. These are free-form strings, and only\nhave meaning as interpreted by the image running in the instance. The\nonly restriction placed on values is that their size must be less than\nor equal to 262144 bytes (256 KiB).",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
         "minCpuPlatform": {
           "description": "Name of the minimum CPU platform to be used by this instance selection.\ne.g. 'Intel Ice Lake'.",
           "type": "string"
@@ -75812,6 +76666,27 @@
     "InstanceGroupManagerUpdatePolicy": {
       "id": "InstanceGroupManagerUpdatePolicy",
       "properties": {
+        "allowedActions": {
+          "description": "Actions that are allowed to update instances within MIG.",
+          "items": {
+            "enum": [
+              "NONE",
+              "REFRESH",
+              "REPLACE",
+              "RESTART",
+              "RESTART_IN_PLACE"
+            ],
+            "enumDescriptions": [
+              "Do not perform any action.",
+              "Do not stop the instance.",
+              "(Default.) Replace the instance according to the replacement method\noption.",
+              "Stop the instance and start it again.",
+              "Restart the instance using the same capacity and preserving local SSDs."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
         "instanceRedistributionType": {
           "description": "The \ninstance redistribution policy for regional managed instance groups.\nValid values are: \n   \n   - PROACTIVE (default): The group attempts to maintain an\n   even distribution of VM instances across zones in the region.\n   - NONE: For non-autoscaled groups, proactive\n   redistribution is disabled.",
           "enum": [
@@ -75838,13 +76713,15 @@
             "NONE",
             "REFRESH",
             "REPLACE",
-            "RESTART"
+            "RESTART",
+            "RESTART_IN_PLACE"
           ],
           "enumDescriptions": [
             "Do not perform any action.",
             "Do not stop the instance.",
             "(Default.) Replace the instance according to the replacement method\noption.",
-            "Stop the instance and start it again."
+            "Stop the instance and start it again.",
+            "Restart the instance using the same capacity and preserving local SSDs."
           ],
           "type": "string"
         },
@@ -75854,13 +76731,15 @@
             "NONE",
             "REFRESH",
             "REPLACE",
-            "RESTART"
+            "RESTART",
+            "RESTART_IN_PLACE"
           ],
           "enumDescriptions": [
             "Do not perform any action.",
             "Do not stop the instance.",
             "(Default.) Replace the instance according to the replacement method\noption.",
-            "Stop the instance and start it again."
+            "Stop the instance and start it again.",
+            "Restart the instance using the same capacity and preserving local SSDs."
           ],
           "type": "string"
         },
@@ -75930,6 +76809,27 @@
           "description": "Flag to update all instances instead of specified list of \"instances\".\nIf the flag is set to true then the instances may not be specified\nin the request.",
           "type": "boolean"
         },
+        "allowedActions": {
+          "description": "Actions that are allowed to update instances within MIG.",
+          "items": {
+            "enum": [
+              "NONE",
+              "REFRESH",
+              "REPLACE",
+              "RESTART",
+              "RESTART_IN_PLACE"
+            ],
+            "enumDescriptions": [
+              "Do not perform any action.",
+              "Do not stop the instance.",
+              "(Default.) Replace the instance according to the replacement method\noption.",
+              "Stop the instance and start it again.",
+              "Restart the instance using the same capacity and preserving local SSDs."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
         "instances": {
           "description": "The list of URLs of one or more instances for which you want to apply\nupdates. Each URL can be a full URL or a partial URL, such aszones/[ZONE]/instances/[INSTANCE_NAME].",
           "items": {
@@ -75943,13 +76843,15 @@
             "NONE",
             "REFRESH",
             "REPLACE",
-            "RESTART"
+            "RESTART",
+            "RESTART_IN_PLACE"
           ],
           "enumDescriptions": [
             "Do not perform any action.",
             "Do not stop the instance.",
             "(Default.) Replace the instance according to the replacement method\noption.",
-            "Stop the instance and start it again."
+            "Stop the instance and start it again.",
+            "Restart the instance using the same capacity and preserving local SSDs."
           ],
           "type": "string"
         },
@@ -75959,13 +76861,15 @@
             "NONE",
             "REFRESH",
             "REPLACE",
-            "RESTART"
+            "RESTART",
+            "RESTART_IN_PLACE"
           ],
           "enumDescriptions": [
             "Do not perform any action.",
             "Do not stop the instance.",
             "(Default.) Replace the instance according to the replacement method\noption.",
-            "Stop the instance and start it again."
+            "Stop the instance and start it again.",
+            "Restart the instance using the same capacity and preserving local SSDs."
           ],
           "type": "string"
         }
@@ -77275,6 +78179,10 @@
         "confidentialInstanceConfig": {
           "$ref": "ConfidentialInstanceConfig",
           "description": "Specifies the Confidential Instance options.\nNote that for MachineImage, this is not supported yet."
+        },
+        "deletionProtection": {
+          "description": "Whether the resource should be protected against deletion.",
+          "type": "boolean"
         },
         "description": {
           "description": "An optional text description for the instances that are created from these\nproperties.",
@@ -85788,6 +86696,14 @@
           ],
           "type": "string"
         },
+        "networkLocationBindings": {
+          "description": "Output only. [Output Only] List of server-defined fully-qualified URLs of regional\nnetwork location bindings in this VPC network.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "networkProfile": {
           "description": "A full or partial URL of the network profile to apply to this network.\nThis field can be set only at resource creation time. For example, the\nfollowing are valid URLs: \n   \n   - https://www.googleapis.com/compute/{api_version}/projects/{project_id}/global/networkProfiles/{network_profile_name}\n   - projects/{project_id}/global/networkProfiles/{network_profile_name}",
           "type": "string"
@@ -88236,6 +89152,291 @@
       },
       "type": "object"
     },
+    "NetworkLocationBinding": {
+      "description": "A regional, read-only resource that reflects the physical location(s) (i.e.\nclusters) to which a special-purpose VPC network is bound, across the zones\nof a region. Its lifecycle is managed by the service: it is created when a\nnetwork using a network profile that requires location binding is created,\nand deleted when that network is deleted.",
+      "id": "NetworkLocationBinding",
+      "properties": {
+        "creationTimestamp": {
+          "description": "Output only. [Output Only] Creation timestamp inRFC3339\ntext format.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Output only. [Output Only] An optional textual description of the resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. [Output Only] The unique identifier for the resource type. The server\ngenerates this identifier.",
+          "format": "uint64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kind": {
+          "default": "compute#networkLocationBinding",
+          "description": "Output only. [Output Only] Type of the resource. Alwayscompute#networkLocationBinding for network location bindings.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. [Output Only] Name of the resource. The name is generated by the server\nwhen the associated network is created.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "network": {
+          "description": "Output only. [Output Only] The network this network location binding belongs to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "region": {
+          "description": "Output only. [Output Only] URL of the region where the network location binding\nresides. You must specify this field as part of the HTTP request URL. It\nis not settable as a field in the request body.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "selfLink": {
+          "description": "Output only. [Output Only] Server-defined URL for the resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "selfLinkWithId": {
+          "description": "Output only. [Output Only] Server-defined URL for this resource with the resource id.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. [Output Only] State of the binding.",
+          "enum": [
+            "BINDING_STATE_BOUND",
+            "BINDING_STATE_UNBOUND"
+          ],
+          "enumDescriptions": [
+            "The VPC is bound to the cluster(s) listed in status.zonal_bindings.",
+            "The VPC is not yet bound to any specific cluster(s). This is the state\nbefore the first instance is created."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "$ref": "NetworkLocationBindingStatus",
+          "description": "Output only. [Output Only] Status and derived information about the network location\nbinding.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "NetworkLocationBindingList": {
+      "description": "Response message for NetworkLocationBindings.List.",
+      "id": "NetworkLocationBindingList",
+      "properties": {
+        "etag": {
+          "description": "Server-defined ETag for optimistic concurrency control.",
+          "type": "string"
+        },
+        "id": {
+          "description": "[Output Only] Unique identifier for the resource; defined by the server.",
+          "type": "string"
+        },
+        "items": {
+          "description": "A list of NetworkLocationBinding resources.",
+          "items": {
+            "$ref": "NetworkLocationBinding"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "default": "compute#networkLocationBindingList",
+          "description": "Output only. [Output Only] Type of the resource. Alwayscompute#networkLocationBindingList for a list of network\nlocation bindings.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nextPageToken": {
+          "description": "[Output Only] This token allows you to get the next page of results for\nlist requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for\nthe query parameter pageToken in the next list request.\nSubsequent list requests will have their own nextPageToken to\ncontinue paging through the results.",
+          "type": "string"
+        },
+        "selfLink": {
+          "description": "[Output Only] Server-defined URL for this resource.",
+          "type": "string"
+        },
+        "unreachables": {
+          "description": "Output only. [Output Only] Unreachable resources.\nend_interface: MixerListResponseWithEtagBuilder",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "warning": {
+          "description": "[Output Only] Informational warning message.",
+          "properties": {
+            "code": {
+              "description": "[Output Only] A warning code, if applicable. For example, Compute\nEngine returns NO_RESULTS_ON_PAGE if there\nare no results in the response.",
+              "enum": [
+                "CLEANUP_FAILED",
+                "DEPRECATED_RESOURCE_USED",
+                "DEPRECATED_TYPE_USED",
+                "DISK_SIZE_LARGER_THAN_IMAGE_SIZE",
+                "EXPERIMENTAL_TYPE_USED",
+                "EXTERNAL_API_WARNING",
+                "FIELD_VALUE_OVERRIDEN",
+                "INJECTED_KERNELS_DEPRECATED",
+                "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB",
+                "LARGE_DEPLOYMENT_WARNING",
+                "LIST_OVERHEAD_QUOTA_EXCEED",
+                "MISSING_TYPE_DEPENDENCY",
+                "NEXT_HOP_ADDRESS_NOT_ASSIGNED",
+                "NEXT_HOP_CANNOT_IP_FORWARD",
+                "NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE",
+                "NEXT_HOP_INSTANCE_NOT_FOUND",
+                "NEXT_HOP_INSTANCE_NOT_ON_NETWORK",
+                "NEXT_HOP_NOT_RUNNING",
+                "NOT_CRITICAL_ERROR",
+                "NO_RESULTS_ON_PAGE",
+                "PARTIAL_SUCCESS",
+                "QUOTA_INFO_UNAVAILABLE",
+                "REQUIRED_TOS_AGREEMENT",
+                "RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING",
+                "RESOURCE_NOT_DELETED",
+                "SCHEMA_VALIDATION_IGNORED",
+                "SINGLE_INSTANCE_PROPERTY_TEMPLATE",
+                "UNDECLARED_PROPERTIES",
+                "UNREACHABLE"
+              ],
+              "enumDeprecated": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "enumDescriptions": [
+                "Warning about failed cleanup of transient changes made by a failed\noperation.",
+                "A link to a deprecated resource was created.",
+                "When deploying and at least one of the resources has a type marked as\ndeprecated",
+                "The user created a boot disk that is larger than image size.",
+                "When deploying and at least one of the resources has a type marked as\nexperimental",
+                "Warning that is present in an external api call",
+                "Warning that value of a field has been overridden.\nDeprecated unused field.",
+                "The operation involved use of an injected kernel, which is deprecated.",
+                "A WEIGHTED_MAGLEV backend service is associated with a health check that is\nnot of type HTTP/HTTPS/HTTP2.",
+                "When deploying a deployment with a exceedingly large number of resources",
+                "Resource can't be retrieved due to list overhead quota exceed\nwhich captures the amount of resources filtered out by\nuser-defined list filter.",
+                "A resource depends on a missing type",
+                "The route's nextHopIp address is not assigned to an instance on the\nnetwork.",
+                "The route's next hop instance cannot ip forward.",
+                "The route's nextHopInstance URL refers to an instance that does not have an\nipv6 interface on the same network as the route.",
+                "The route's nextHopInstance URL refers to an instance that does not exist.",
+                "The route's nextHopInstance URL refers to an instance that is not on the\nsame network as the route.",
+                "The route's next hop instance does not have a status of RUNNING.",
+                "Error which is not critical. We decided to continue the process despite\nthe mentioned error.",
+                "No results are present on a particular list page.",
+                "Success is reported, but some results may be missing due to errors",
+                "Quota information is not available to client requests (e.g:\nregions.list).",
+                "The user attempted to use a resource that requires a TOS they have not\naccepted.",
+                "Warning that a resource is in use.",
+                "One or more of the resources set to auto-delete could not be deleted\nbecause they were in use.",
+                "When a resource schema validation is ignored.",
+                "Instance template used in instance group manager is valid as such, but\nits application does not make a lot of sense, because it allows only\nsingle instance in instance group.",
+                "When undeclared properties in the schema are present",
+                "A given scope cannot be reached."
+              ],
+              "type": "string"
+            },
+            "data": {
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }]",
+              "items": {
+                "properties": {
+                  "key": {
+                    "description": "[Output Only] A key that provides more detail on the warning being\nreturned. For example, for warnings where there are no results in a list\nrequest for a particular zone, this key might be scope and\nthe key value might be the zone name. Other examples might be a key\nindicating a deprecated resource and a suggested replacement, or a\nwarning about invalid network settings (for example, if an instance\nattempts to perform IP forwarding but is not enabled for IP forwarding).",
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "[Output Only] A warning data value corresponding to the key.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "message": {
+              "description": "[Output Only] A human-readable description of the warning code.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "NetworkLocationBindingStatus": {
+      "description": "Status and derived information about the network location binding.",
+      "id": "NetworkLocationBindingStatus",
+      "properties": {
+        "bindingType": {
+          "description": "Output only. [Output Only] Indicates whether a single cluster, specific clusters, or\nall clusters are allowed for instance creation.",
+          "enum": [
+            "BINDING_TYPE_ALL_CLUSTERS",
+            "BINDING_TYPE_MULTI_CLUSTERS",
+            "BINDING_TYPE_SINGLE_CLUSTER"
+          ],
+          "enumDescriptions": [
+            "Instances may be created in any cluster.",
+            "Instances may be created in the specific clusters listed in\nstatus.zonal_bindings.",
+            "Instances may only be created in a single cluster."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "zonalBindings": {
+          "additionalProperties": {
+            "$ref": "NetworkLocationBindingZonalBinding"
+          },
+          "description": "Output only. [Output Only] The mapping of zones to their binding information, keyed\nby the zone, e.g. zones/us-central1-a.",
+          "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "NetworkLocationBindingZonalBinding": {
+      "description": "Binding information for a single zone.",
+      "id": "NetworkLocationBindingZonalBinding",
+      "properties": {
+        "prodClusters": {
+          "description": "Output only. [Output Only] Prod cluster names in the zone that this network could\nschedule instances in.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "NetworkParams": {
       "description": "Additional network parameters.",
       "id": "NetworkParams",
@@ -88904,11 +90105,13 @@
         "firewallPolicyTypes": {
           "items": {
             "enum": [
+              "NCC_GATEWAY_POLICY",
               "RDMA_ROCE_POLICY",
               "ULL_POLICY",
               "VPC_POLICY"
             ],
             "enumDescriptions": [
+              "A NCC Gateway firewall policy.",
               "",
               "",
               ""
@@ -97112,6 +98315,27 @@
           "description": "Flag to update all instances instead of specified list of \"instances\".\nIf the flag is set to true then the instances may not be specified\nin the request.",
           "type": "boolean"
         },
+        "allowedActions": {
+          "description": "Actions that are allowed to update instances within MIG.",
+          "items": {
+            "enum": [
+              "NONE",
+              "REFRESH",
+              "REPLACE",
+              "RESTART",
+              "RESTART_IN_PLACE"
+            ],
+            "enumDescriptions": [
+              "Do not perform any action.",
+              "Do not stop the instance.",
+              "(Default.) Replace the instance according to the replacement method\noption.",
+              "Stop the instance and start it again.",
+              "Restart the instance using the same capacity and preserving local SSDs."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
         "instances": {
           "description": "The list of URLs of one or more instances for which you want to apply\nupdates. Each URL can be a full URL or a partial URL, such aszones/[ZONE]/instances/[INSTANCE_NAME].",
           "items": {
@@ -97125,13 +98349,15 @@
             "NONE",
             "REFRESH",
             "REPLACE",
-            "RESTART"
+            "RESTART",
+            "RESTART_IN_PLACE"
           ],
           "enumDescriptions": [
             "Do not perform any action.",
             "Do not stop the instance.",
             "(Default.) Replace the instance according to the replacement method\noption.",
-            "Stop the instance and start it again."
+            "Stop the instance and start it again.",
+            "Restart the instance using the same capacity and preserving local SSDs."
           ],
           "type": "string"
         },
@@ -97141,13 +98367,15 @@
             "NONE",
             "REFRESH",
             "REPLACE",
-            "RESTART"
+            "RESTART",
+            "RESTART_IN_PLACE"
           ],
           "enumDescriptions": [
             "Do not perform any action.",
             "Do not stop the instance.",
             "(Default.) Replace the instance according to the replacement method\noption.",
-            "Stop the instance and start it again."
+            "Stop the instance and start it again.",
+            "Restart the instance using the same capacity and preserving local SSDs."
           ],
           "type": "string"
         }
@@ -107048,6 +108276,20 @@
           "description": "Metadata of the service attachment.",
           "type": "object"
         },
+        "mode": {
+          "description": "Optional. The connection mode of the service attachment.",
+          "enum": [
+            "DIRECT",
+            "MODE_UNSPECIFIED",
+            "NAT"
+          ],
+          "enumDescriptions": [
+            "The service attachment does not use NAT subnets to create connections.",
+            "Default value. The service attachment defaults to NAT mode.",
+            "The service attachment uses NAT subnets to create connections."
+          ],
+          "type": "string"
+        },
         "name": {
           "annotations": {
             "required": [
@@ -107988,14 +109230,14 @@
           "type": "string"
         },
         "snapshotType": {
-          "description": "Indicates the type of the snapshot.",
+          "description": "Indicates the type of the snapshot. Valid values are ARCHIVE\nor STANDARD. The default is STANDARD.",
           "enum": [
             "ARCHIVE",
             "STANDARD"
           ],
           "enumDescriptions": [
-            "",
-            ""
+            "Indicates an archive snapshot, which is recommended for long-term\nretention and compliance.",
+            "Indicates a standard snapshot, which is recommended for frequent\nrestores."
           ],
           "type": "string"
         },
@@ -113520,7 +114762,7 @@
           "type": "string"
         },
         "sslCertificates": {
-          "description": "URLs to SslCertificate resources that are used to authenticate\nconnections between users and the load balancer. At least one SSL\ncertificate must be specified. SslCertificates do not apply when the load\nbalancing scheme is set to INTERNAL_SELF_MANAGED.\n\nThe URLs should refer to a SSL Certificate resource or Certificate Manager\nCertificate resource. Mixing Classic Certificates and Certificate Manager\nCertificates is not allowed. Certificate Manager Certificates must include\nthe certificatemanager API namespace. Using Certificate Manager\nCertificates in this field is not supported by Global external Application\nLoad Balancer or Classic Application Load Balancer, use certificate_map\ninstead.\n\nCurrently, you may specify up to 15 Classic SSL Certificates or up to 100\nCertificate Manager Certificates.\n\nCertificate Manager Certificates accepted formats are:\n   \n   - //certificatemanager.googleapis.com/projects/{project}/locations/{location}/certificates/{resourceName}.\n   - https://certificatemanager.googleapis.com/v1alpha1/projects/{project}/locations/{location}/certificates/{resourceName}.",
+          "description": "URLs to SslCertificate resources that are used to authenticate\nconnections between users and the load balancer. At least one SSL\ncertificate must be specified. SslCertificates do not apply when the load\nbalancing scheme is set to INTERNAL_SELF_MANAGED.\n\nThe URLs should refer to a SSL Certificate resource or Certificate Manager\nCertificate resource. Mixing Classic Certificates and Certificate Manager\nCertificates is not allowed. Certificate Manager Certificates must include\nthe certificatemanager API namespace. Using Certificate Manager\nCertificates in this field is not supported by Global external Application\nLoad Balancer or Classic Application Load Balancer, use certificate_map\ninstead.\n\nCurrently, you may specify up to 15 Classic SSL Certificates or up to 100\nCertificate Manager Certificates.\n\nCertificate Manager Certificates accepted formats are:\n   \n   - //certificatemanager.googleapis.com/projects/{project}/locations/{location}/certificates/{resourceName}.\n   - https://certificatemanager.{universeDomain}/v1alpha1/projects/{project}/locations/{location}/certificates/{resourceName}.",
           "items": {
             "type": "string"
           },
