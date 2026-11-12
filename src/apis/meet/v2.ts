@@ -372,7 +372,7 @@ export namespace meet_v2 {
      */
     email?: string | null;
     /**
-     * Identifier. Resource name of the member. Format: spaces/{space\}/members/{member\}
+     * Identifier. Resource name of the member. Format: `spaces/{space\}/members/{member\}`
      */
     name?: string | null;
     /**
@@ -658,7 +658,7 @@ export namespace meet_v2 {
      */
     languageCode?: string | null;
     /**
-     * Output only. Resource name of the entry. Format: "conferenceRecords/{conference_record\}/transcripts/{transcript\}/entries/{entry\}"
+     * Output only. Resource name of the entry. Format: `conferenceRecords/{conference_record\}/transcripts/{transcript\}/entries/{entry\}`
      */
     name?: string | null;
     /**
@@ -4340,7 +4340,7 @@ export namespace meet_v2 {
      *
      *   // Do the magic
      *   const res = await meet.spaces.members.patch({
-     *     // Identifier. Resource name of the member. Format: spaces/{space\}/members/{member\}
+     *     // Identifier. Resource name of the member. Format: `spaces/{space\}/members/{member\}`
      *     name: 'spaces/my-space/members/my-member',
      *     // Optional. Field mask used to specify the fields to be updated in the member. If update_mask isn't provided(not set, set with empty paths, or only has "" as paths), it defaults to update all fields provided with values in the request. Using "*" as update_mask will update all fields, including deleting fields not set in the request. In case of BatchUpdate, it must be absent or the same as the update_mask in BatchUpdateMembersRequest when UpdateMemberRequest is built as a child request of BatchUpdateMembersRequest.
      *     updateMask: 'placeholder-value',
@@ -4507,7 +4507,7 @@ export namespace meet_v2 {
   }
   export interface Params$Resource$Spaces$Members$Patch extends StandardParameters {
     /**
-     * Identifier. Resource name of the member. Format: spaces/{space\}/members/{member\}
+     * Identifier. Resource name of the member. Format: `spaces/{space\}/members/{member\}`
      */
     name?: string;
     /**
