@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/storage",
-  "version": "27.0.0",
+  "version": "28.0.0",
   "description": "storage",
   "main": "build/index.js",
   "types": "build/index.d.ts",

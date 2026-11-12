@@ -1,5 +1,12 @@
 # Changelog
 
+## [34.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v34.1.1...gkehub-v34.1.2) (2026-11-12)
+
+
+### Bug Fixes
+
+* **gkehub:** update the API ([e4938a0](https://github.com/googleapis/google-api-nodejs-client/commit/e4938a0a0dc6c08d62906bdd57be7e4d3cf0a78b))
+
 ## [34.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v34.1.0...gkehub-v34.1.1) (2026-10-19)
 
 

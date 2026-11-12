@@ -1,5 +1,12 @@
 # Changelog
 
+## [22.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v22.2.0...securitycenter-v22.3.0) (2026-11-12)
+
+
+### Features
+
+* **securitycenter:** update the API ([13b7c56](https://github.com/googleapis/google-api-nodejs-client/commit/13b7c561149be70e24ddad36972e5c87002cf75a))
+
 ## [22.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v22.1.0...securitycenter-v22.2.0) (2026-10-29)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [40.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v40.0.2...youtube-v40.1.0) (2026-11-12)
+
+
+### Features
+
+* **youtube:** update the API ([f2f7fc7](https://github.com/googleapis/google-api-nodejs-client/commit/f2f7fc7d40e0e97b804d3c6811774cc4d1c4ca2d))
+
 ## [40.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v40.0.1...youtube-v40.0.2) (2026-10-22)
 
 

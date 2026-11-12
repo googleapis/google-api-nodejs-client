@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquerydatapolicy-v9.0.1...bigquerydatapolicy-v9.1.0) (2026-11-12)
+
+
+### Features
+
+* **bigquerydatapolicy:** update the API ([42a2800](https://github.com/googleapis/google-api-nodejs-client/commit/42a2800094bc1fa5a93f476b0ca01a9ba4fdcb0a))
+
 ## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/bigquerydatapolicy-v9.0.0...bigquerydatapolicy-v9.0.1) (2026-09-23)
 
 

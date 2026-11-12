@@ -1,5 +1,12 @@
 # Changelog
 
+## [20.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v20.1.0...calendar-v20.2.0) (2026-11-12)
+
+
+### Features
+
+* **calendar:** update the API ([f39cb86](https://github.com/googleapis/google-api-nodejs-client/commit/f39cb86ee3d0db55e79e586056500efc5ec34a82))
+
 ## [20.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v20.0.1...calendar-v20.1.0) (2026-10-03)
 
 

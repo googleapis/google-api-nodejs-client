@@ -1,5 +1,16 @@
 # Changelog
 
+## [22.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/file-v21.2.0...file-v22.0.0) (2026-11-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* **file:** This release has breaking changes.
+
+### Features
+
+* **file:** update the API ([21270ee](https://github.com/googleapis/google-api-nodejs-client/commit/21270eef0367c6daf9e7ccdda2c9dea68923a4a2))
+
 ## [21.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/file-v21.1.0...file-v21.2.0) (2026-10-19)
 
 

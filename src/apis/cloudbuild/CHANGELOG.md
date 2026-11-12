@@ -1,5 +1,12 @@
 # Changelog
 
+## [25.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v25.2.0...cloudbuild-v25.3.0) (2026-11-12)
+
+
+### Features
+
+* **cloudbuild:** update the API ([6cb0bee](https://github.com/googleapis/google-api-nodejs-client/commit/6cb0beee14b74493214aca86580f0a607c3d7f97))
+
 ## [25.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v25.1.0...cloudbuild-v25.2.0) (2026-10-19)
 
 

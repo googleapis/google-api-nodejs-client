@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/accesscontextmanager-v19.0.2...accesscontextmanager-v19.0.3) (2026-11-12)
+
+
+### Bug Fixes
+
+* **accesscontextmanager:** update the API ([aa442c9](https://github.com/googleapis/google-api-nodejs-client/commit/aa442c9bdc066c3c8aa17150620d924ef13d7700))
+
 ## [19.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/accesscontextmanager-v19.0.1...accesscontextmanager-v19.0.2) (2026-10-19)
 
 

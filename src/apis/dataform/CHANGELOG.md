@@ -1,5 +1,12 @@
 # Changelog
 
+## [21.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v21.3.0...dataform-v21.4.0) (2026-11-12)
+
+
+### Features
+
+* **dataform:** update the API ([3f3a1eb](https://github.com/googleapis/google-api-nodejs-client/commit/3f3a1eb20511340a4f2ab9eb2bb11251b79cef19))
+
 ## [21.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v21.2.0...dataform-v21.3.0) (2026-10-29)
 
 

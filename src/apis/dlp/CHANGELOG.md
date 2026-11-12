@@ -1,5 +1,12 @@
 # Changelog
 
+## [24.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v24.0.1...dlp-v24.1.0) (2026-11-12)
+
+
+### Features
+
+* **dlp:** update the API ([d4d2988](https://github.com/googleapis/google-api-nodejs-client/commit/d4d29884c36c26d5b03a12f6ecc3d8c859dd4bf5))
+
 ## [24.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v24.0.0...dlp-v24.0.1) (2026-09-23)
 
 

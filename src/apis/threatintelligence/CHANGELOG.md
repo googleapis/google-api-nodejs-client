@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/threatintelligence-v7.2.0...threatintelligence-v7.3.0) (2026-11-12)
+
+
+### Features
+
+* **threatintelligence:** update the API ([acf7285](https://github.com/googleapis/google-api-nodejs-client/commit/acf7285aeb847277c4638398b1b166cfdf35f1ab))
+
 ## [7.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/threatintelligence-v7.1.0...threatintelligence-v7.2.0) (2026-10-29)
 
 

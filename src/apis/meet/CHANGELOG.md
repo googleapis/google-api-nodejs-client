@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/meet-v9.1.0...meet-v9.1.1) (2026-11-12)
+
+
+### Bug Fixes
+
+* **meet:** update the API ([832ca4f](https://github.com/googleapis/google-api-nodejs-client/commit/832ca4fc037afd0394be62589fcb32442279f230))
+
 ## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/meet-v9.0.0...meet-v9.1.0) (2026-09-23)
 
 

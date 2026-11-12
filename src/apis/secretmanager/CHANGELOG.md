@@ -1,5 +1,16 @@
 # Changelog
 
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/secretmanager-v12.0.1...secretmanager-v13.0.0) (2026-11-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* **secretmanager:** This release has breaking changes.
+
+### Features
+
+* **secretmanager:** update the API ([38d1285](https://github.com/googleapis/google-api-nodejs-client/commit/38d12857d3fbbd9635bf8a328bfe743d1c9305dc))
+
 ## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/secretmanager-v12.0.0...secretmanager-v12.0.1) (2026-09-23)
 
 

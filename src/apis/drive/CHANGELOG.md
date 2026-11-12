@@ -1,5 +1,12 @@
 # Changelog
 
+## [27.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v27.0.0...drive-v27.1.0) (2026-11-12)
+
+
+### Features
+
+* **drive:** update the API ([05a0f51](https://github.com/googleapis/google-api-nodejs-client/commit/05a0f519dc6b98ffc01a5ddca7ad11c9298871e1))
+
 ## [27.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v26.0.2...drive-v27.0.0) (2026-10-19)
 
 

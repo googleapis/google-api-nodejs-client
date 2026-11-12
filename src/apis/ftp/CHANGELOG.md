@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/ftp-v3.1.1...ftp-v3.2.0) (2026-11-12)
+
+
+### Features
+
+* **ftp:** update the API ([5ba08a5](https://github.com/googleapis/google-api-nodejs-client/commit/5ba08a5e5dfd8fe3e2ef4b8d94e7364fda878071))
+
 ## [3.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/ftp-v3.1.0...ftp-v3.1.1) (2026-10-29)
 
 
