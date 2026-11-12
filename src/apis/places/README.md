@@ -2,7 +2,7 @@
 
 # places
 
-> 
+> The Places API allows developers to access a variety of search and retrieval endpoints for a Place.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in
