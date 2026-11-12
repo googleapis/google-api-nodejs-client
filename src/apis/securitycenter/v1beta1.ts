@@ -335,6 +335,9 @@ export namespace securitycenter_v1beta1 {
     resourceContainer?: string | null;
     timestamp?: string | null;
   }
+  export interface Schema$CloudRun {
+    revisions?: string[] | null;
+  }
   export interface Schema$Compliance {
     ids?: string[] | null;
     standard?: string | null;
@@ -541,6 +544,7 @@ export namespace securitycenter_v1beta1 {
     cloudArmor?: Schema$CloudArmor;
     cloudDlpDataProfile?: Schema$CloudDlpDataProfile;
     cloudDlpInspection?: Schema$CloudDlpInspection;
+    cloudRun?: Schema$CloudRun;
     complianceDetails?: Schema$ComplianceDetails;
     compliances?: Schema$Compliance[];
     connections?: Schema$Connection[];
@@ -1041,6 +1045,9 @@ export namespace securitycenter_v1beta1 {
     resourceContainer?: string | null;
     timestamp?: string | null;
   }
+  export interface Schema$GoogleCloudSecuritycenterV2CloudRun {
+    revisions?: string[] | null;
+  }
   export interface Schema$GoogleCloudSecuritycenterV2Compliance {
     ids?: string[] | null;
     standard?: string | null;
@@ -1248,6 +1255,7 @@ export namespace securitycenter_v1beta1 {
     cloudArmor?: Schema$GoogleCloudSecuritycenterV2CloudArmor;
     cloudDlpDataProfile?: Schema$GoogleCloudSecuritycenterV2CloudDlpDataProfile;
     cloudDlpInspection?: Schema$GoogleCloudSecuritycenterV2CloudDlpInspection;
+    cloudRun?: Schema$GoogleCloudSecuritycenterV2CloudRun;
     complianceDetails?: Schema$GoogleCloudSecuritycenterV2ComplianceDetails;
     compliances?: Schema$GoogleCloudSecuritycenterV2Compliance[];
     connections?: Schema$GoogleCloudSecuritycenterV2Connection[];
