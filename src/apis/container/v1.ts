@@ -2060,6 +2060,19 @@ export namespace container_v1 {
     localSsdCount?: number | null;
   }
   /**
+   * Additional entries to be added to /etc/hosts.
+   */
+  export interface Schema$EtcHostsEntry {
+    /**
+     * The hostname of the host.
+     */
+    host?: string | null;
+    /**
+     * The IPv4 or IPv6 address of the host.
+     */
+    ip?: string | null;
+  }
+  /**
    * Eviction grace periods are grace periods for each eviction signal.
    */
   export interface Schema$EvictionGracePeriod {
@@ -2678,6 +2691,32 @@ export namespace container_v1 {
     enabledApis?: string[] | null;
   }
   /**
+   * Definition of possible additional kernel command line arguments to be configured to the kernel.
+   */
+  export interface Schema$KernelCommandlineOverrides {
+    /**
+     * Optional. Defines the change of init_on_alloc.
+     */
+    initOnAlloc?: string | null;
+    /**
+     * Optional. Defines the change of spec_rstack_overflow.
+     */
+    specRstackOverflow?: string | null;
+  }
+  /**
+   * Parameters that can be configured on the kernel.
+   */
+  export interface Schema$KernelOverrides {
+    /**
+     * Optional. Allow setting for optional kernel command line arguments overrides.
+     */
+    kernelCommandlineOverrides?: Schema$KernelCommandlineOverrides;
+    /**
+     * Optional. lrugen (Multi-Gen LRU) options
+     */
+    lruGen?: Schema$LRUGen;
+  }
+  /**
    * Contains expiry information about the kubelet certificate.
    */
   export interface Schema$KubeletCertInfo {
@@ -2717,6 +2756,18 @@ export namespace container_v1 {
      */
     accurateTimeConfig?: Schema$AccurateTimeConfig;
     /**
+     * Optional. Additional entries to be added to /etc/hosts.
+     */
+    additionalEtcHosts?: Schema$EtcHostsEntry[];
+    /**
+     * Optional. Additional entries to be added to /etc/resolv.conf.
+     */
+    additionalEtcResolvConf?: Schema$ResolvedConfEntry[];
+    /**
+     * Optional. Additional entries to be added to /etc/systemd/resolved.conf.
+     */
+    additionalEtcSystemdResolvedConf?: Schema$ResolvedConfEntry[];
+    /**
      * cgroup_mode specifies the cgroup mode to be used on the node.
      */
     cgroupMode?: string | null;
@@ -2733,6 +2784,10 @@ export namespace container_v1 {
      */
     hugepages?: Schema$HugepagesConfig;
     /**
+     * Optional. Defines the kernel overrides to be applied to the nodes. Note: sysctl changes are defined separately in the sysctls fields.
+     */
+    kernelOverrides?: Schema$KernelOverrides;
+    /**
      * Optional. Configuration for kernel module loading on nodes. When enabled, the node pool will be provisioned with a Container-Optimized OS image that enforces kernel module signature verification.
      */
     nodeKernelModuleLoading?: Schema$NodeKernelModuleLoading;
@@ -2748,6 +2803,10 @@ export namespace container_v1 {
      * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.neigh.default.gc_thresh1 net.ipv4.neigh.default.gc_thresh2 net.ipv4.neigh.default.gc_thresh3 net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_mtu_probing net.ipv4.tcp_max_orphans net.ipv4.tcp_max_tw_buckets net.ipv4.tcp_syn_retries net.ipv4.tcp_ecn net.ipv4.tcp_congestion_control net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.keys.maxkeys kernel.keys.maxbytes kernel.shmmni kernel.shmmax kernel.shmall kernel.core_pattern kernel.perf_event_paranoid kernel.sched_rt_runtime_us kernel.softlockup_panic kernel.yama.ptrace_scope kernel.kptr_restrict kernel.dmesg_restrict kernel.sysrq fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_background_bytes vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_bytes vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes
      */
     sysctls?: {[key: string]: string} | null;
+    /**
+     * Optional. Configures the timezone of the node.
+     */
+    timeZone?: string | null;
     /**
      * Optional. Defines the transparent hugepage defrag configuration on the node. VM hugepage allocation can be managed by either limiting defragmentation for delayed allocation or skipping it entirely for immediate allocation only. See https://docs.kernel.org/admin-guide/mm/transhuge.html for more details.
      */
@@ -2840,6 +2899,19 @@ export namespace container_v1 {
      * Logging variant deployed on nodes.
      */
     variant?: string | null;
+  }
+  /**
+   * lrugen (Multi-Gen LRU) options See https://docs.kernel.org/admin-guide/mm/multigen_lru.html
+   */
+  export interface Schema$LRUGen {
+    /**
+     * Optional. Enable lrugen.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. Users can write N to min_ttl_ms to prevent the working set of N milliseconds from getting evicted.
+     */
+    minTtlMs?: number | null;
   }
   /**
    * Configuration for the Lustre CSI driver.
@@ -4416,6 +4488,19 @@ export namespace container_v1 {
      * Optional. The amount of memory to reserve for system daemons (in MiB). This is a user-specified value. If unspecified, GKE decides the default based on node version using different formula.
      */
     memoryReservedMib?: string | null;
+  }
+  /**
+   * Additional entries to be added to resolved.conf.
+   */
+  export interface Schema$ResolvedConfEntry {
+    /**
+     * The key of resolved.conf
+     */
+    key?: string | null;
+    /**
+     * Optional. The value of resolved.conf
+     */
+    value?: string[] | null;
   }
   /**
    * Collection of [Resource Manager labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels).
