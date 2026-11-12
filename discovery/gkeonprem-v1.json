@@ -3163,7 +3163,7 @@
       }
     }
   },
-  "revision": "20260422",
+  "revision": "20261029",
   "rootUrl": "https://gkeonprem.googleapis.com/",
   "schemas": {
     "Authorization": {
@@ -6887,6 +6887,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "validationCheck": {
+          "$ref": "ValidationCheck",
+          "description": "The validation check for the node pool."
         }
       },
       "type": "object"

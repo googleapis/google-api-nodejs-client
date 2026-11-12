@@ -2871,6 +2871,10 @@ export namespace gkeonprem_v1 {
      * Output only. The time at which this node pool was last updated.
      */
     updateTime?: string | null;
+    /**
+     * The validation check for the node pool.
+     */
+    validationCheck?: Schema$ValidationCheck;
   }
   /**
    * NodePoolAutoscaling config for the NodePool to allow for the kubernetes to scale NodePool.
@@ -14669,7 +14673,8 @@ export namespace gkeonprem_v1 {
      *         //   "state": "my_state",
      *         //   "status": {},
      *         //   "uid": "my_uid",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "validationCheck": {}
      *         // }
      *       },
      *     });
@@ -15132,7 +15137,8 @@ export namespace gkeonprem_v1 {
      *   //   "state": "my_state",
      *   //   "status": {},
      *   //   "uid": "my_uid",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "validationCheck": {}
      *   // }
      * }
      *
@@ -15582,7 +15588,8 @@ export namespace gkeonprem_v1 {
      *         //   "state": "my_state",
      *         //   "status": {},
      *         //   "uid": "my_uid",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "validationCheck": {}
      *         // }
      *       },
      *     });
