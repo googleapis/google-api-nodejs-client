@@ -244,6 +244,10 @@ export namespace bigquerydatapolicy_v2 {
      */
     grantees?: string[] | null;
     /**
+     * Optional. Matching condition specified as a SQL expression string. Data Governance Tag matcher functions are: `COLUMN_HAS_TAG_KEY(keyName STRING) -\> BOOL` `COLUMN_MATCH_TAG(keyName STRING, valueShortName STRING) -\> BOOL` For example: `COLUMN_HAS_TAG_KEY('project-id/pii') AND COLUMN_MATCH_TAG('project-id/pii', 'ssn')`
+     */
+    matchingCondition?: string | null;
+    /**
      * Identifier. Resource name of this data policy, in the format of `projects/{project_number\}/locations/{location_id\}/dataPolicies/{data_policy_id\}`.
      */
     name?: string | null;
@@ -457,6 +461,7 @@ export namespace bigquerydatapolicy_v2 {
      *   //   "dataPolicyType": "my_dataPolicyType",
      *   //   "etag": "my_etag",
      *   //   "grantees": [],
+     *   //   "matchingCondition": "my_matchingCondition",
      *   //   "name": "my_name",
      *   //   "policyTag": "my_policyTag",
      *   //   "version": "my_version"
@@ -615,6 +620,7 @@ export namespace bigquerydatapolicy_v2 {
      *   //   "dataPolicyType": "my_dataPolicyType",
      *   //   "etag": "my_etag",
      *   //   "grantees": [],
+     *   //   "matchingCondition": "my_matchingCondition",
      *   //   "name": "my_name",
      *   //   "policyTag": "my_policyTag",
      *   //   "version": "my_version"
@@ -898,6 +904,7 @@ export namespace bigquerydatapolicy_v2 {
      *   //   "dataPolicyType": "my_dataPolicyType",
      *   //   "etag": "my_etag",
      *   //   "grantees": [],
+     *   //   "matchingCondition": "my_matchingCondition",
      *   //   "name": "my_name",
      *   //   "policyTag": "my_policyTag",
      *   //   "version": "my_version"
@@ -1350,6 +1357,7 @@ export namespace bigquerydatapolicy_v2 {
      *       //   "dataPolicyType": "my_dataPolicyType",
      *       //   "etag": "my_etag",
      *       //   "grantees": [],
+     *       //   "matchingCondition": "my_matchingCondition",
      *       //   "name": "my_name",
      *       //   "policyTag": "my_policyTag",
      *       //   "version": "my_version"
@@ -1366,6 +1374,7 @@ export namespace bigquerydatapolicy_v2 {
      *   //   "dataPolicyType": "my_dataPolicyType",
      *   //   "etag": "my_etag",
      *   //   "grantees": [],
+     *   //   "matchingCondition": "my_matchingCondition",
      *   //   "name": "my_name",
      *   //   "policyTag": "my_policyTag",
      *   //   "version": "my_version"
@@ -1521,6 +1530,7 @@ export namespace bigquerydatapolicy_v2 {
      *   //   "dataPolicyType": "my_dataPolicyType",
      *   //   "etag": "my_etag",
      *   //   "grantees": [],
+     *   //   "matchingCondition": "my_matchingCondition",
      *   //   "name": "my_name",
      *   //   "policyTag": "my_policyTag",
      *   //   "version": "my_version"

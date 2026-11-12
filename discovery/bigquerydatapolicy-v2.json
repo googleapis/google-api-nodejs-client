@@ -429,7 +429,7 @@
       }
     }
   },
-  "revision": "20260722",
+  "revision": "20261021",
   "rootUrl": "https://bigquerydatapolicy.googleapis.com/",
   "schemas": {
     "AddGranteesRequest": {
@@ -626,6 +626,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "matchingCondition": {
+          "description": "Optional. Matching condition specified as a SQL expression string. Data Governance Tag matcher functions are: `COLUMN_HAS_TAG_KEY(keyName STRING) -> BOOL` `COLUMN_MATCH_TAG(keyName STRING, valueShortName STRING) -> BOOL` For example: `COLUMN_HAS_TAG_KEY('project-id/pii') AND COLUMN_MATCH_TAG('project-id/pii', 'ssn')`",
+          "type": "string"
         },
         "name": {
           "description": "Identifier. Resource name of this data policy, in the format of `projects/{project_number}/locations/{location_id}/dataPolicies/{data_policy_id}`.",
