@@ -824,6 +824,43 @@ export namespace dataplex_v1 {
     failedRequests?: {[key: string]: Schema$GoogleRpcStatus} | null;
   }
   /**
+   * Represents the metadata of a long-running operation.
+   */
+  export interface Schema$GoogleCloudDataplexV1BatchOperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. A map of failed requests, where the key is the index of the request in a batch and the value is the error status.
+     */
+    failedRequests?: {[key: string]: Schema$GoogleRpcStatus} | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to Code.CANCELLED.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation. This corresponds to the type of operation being performed. For example: 'batchCreate' or 'batchChangeMetadata'.
+     */
+    verb?: string | null;
+  }
+  /**
    * Payload associated with Business Glossary related log events.
    */
   export interface Schema$GoogleCloudDataplexV1BusinessGlossaryEvent {
@@ -4907,6 +4944,10 @@ export namespace dataplex_v1 {
      * Required. The detailed specification of the proposed changes. This payload is intended to be embedded as the change_payload in the resulting ChangeRequest.
      */
     changePayload?: Schema$GoogleCloudDataplexV1BatchChangeMetadataRequest;
+    /**
+     * Optional. If set to true, defers reference validation between entries to when the change request is approved and applied. Structural validation of entries and aspects is still performed at the time of submission. The default is false.
+     */
+    deferredValidation?: boolean | null;
     /**
      * Optional. Justification for the metadata change request.
      */
@@ -22498,6 +22539,7 @@ export namespace dataplex_v1 {
      *         // request body parameters
      *         // {
      *         //   "changePayload": {},
+     *         //   "deferredValidation": false,
      *         //   "justification": "my_justification",
      *         //   "labels": {}
      *         // }
@@ -24315,7 +24357,9 @@ export namespace dataplex_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *       'https://www.googleapis.com/auth/dataplex.readonly',
      *     ],
      *   });
      *

@@ -4133,7 +4133,9 @@
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/dataplex.read-write"
+                        "https://www.googleapis.com/auth/cloud-platform.read-only",
+                        "https://www.googleapis.com/auth/dataplex.read-write",
+                        "https://www.googleapis.com/auth/dataplex.readonly"
                       ]
                     },
                     "patch": {
@@ -7641,7 +7643,7 @@
       }
     }
   },
-  "revision": "20261023",
+  "revision": "20261106",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -8613,6 +8615,58 @@
           },
           "description": "A map of failed requests for a batch change, where the key is the 0-based index of the failed request in the batch and the value is the error status. If all operations succeeded, this map is empty.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1BatchOperationMetadata": {
+      "description": "Represents the metadata of a long-running operation.",
+      "id": "GoogleCloudDataplexV1BatchOperationMetadata",
+      "properties": {
+        "apiVersion": {
+          "description": "Output only. API version used to start the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "failedRequests": {
+          "additionalProperties": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "description": "Output only. A map of failed requests, where the key is the index of the request in a batch and the value is the error status.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "requestedCancellation": {
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to Code.CANCELLED.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "statusMessage": {
+          "description": "Output only. Human-readable status of the operation, if any.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "target": {
+          "description": "Output only. Server-defined resource path for the target of the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "verb": {
+          "description": "Output only. Name of the verb executed by the operation. This corresponds to the type of operation being performed. For example: 'batchCreate' or 'batchChangeMetadata'.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -14639,6 +14693,10 @@
         "changePayload": {
           "$ref": "GoogleCloudDataplexV1BatchChangeMetadataRequest",
           "description": "Required. The detailed specification of the proposed changes. This payload is intended to be embedded as the change_payload in the resulting ChangeRequest."
+        },
+        "deferredValidation": {
+          "description": "Optional. If set to true, defers reference validation between entries to when the change request is approved and applied. Structural validation of entries and aspects is still performed at the time of submission. The default is false.",
+          "type": "boolean"
         },
         "justification": {
           "description": "Optional. Justification for the metadata change request.",
