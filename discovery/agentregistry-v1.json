@@ -2130,7 +2130,7 @@
       }
     }
   },
-  "revision": "20261021",
+  "revision": "20261029",
   "rootUrl": "https://agentregistry.googleapis.com/",
   "schemas": {
     "A2ASkill": {
@@ -2775,10 +2775,6 @@
       "description": "Represents a security Finding.",
       "id": "Finding",
       "properties": {
-        "category": {
-          "description": "Optional. Category of the finding.",
-          "type": "string"
-        },
         "createTime": {
           "description": "Output only. Create time.",
           "format": "google-datetime",
@@ -2801,13 +2797,11 @@
           "enum": [
             "FINDING_CLASS_UNSPECIFIED",
             "VULNERABILITY",
-            "OBSERVATION",
             "SECRET"
           ],
           "enumDescriptions": [
             "Unspecified finding class.",
             "Describes a potential weakness in software that increases risk to Confidentiality & Integrity & Availability.",
-            "Describes a security observation that is for informational purposes.",
             "Describes a potential security risk due to plaintext credentials, keys, or tokens being exposed in an asset or workload."
           ],
           "type": "string"
@@ -3924,7 +3918,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Required. Human-readable display name of the skill. Maximum length is 128 characters.",
+          "description": "Optional. Human-readable display name of the skill. Maximum length is 128 characters.",
           "type": "string"
         },
         "frontmatter": {
@@ -4147,6 +4141,15 @@
       "description": "Represents a single tool provided by an MCP Server.",
       "id": "Tool",
       "properties": {
+        "_meta": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output only. Protocol-level tool metadata conforming to MCP _meta specification. Output only.",
+          "readOnly": true,
+          "type": "object"
+        },
         "annotations": {
           "$ref": "Annotations",
           "description": "Output only. Annotations associated with the tool.",

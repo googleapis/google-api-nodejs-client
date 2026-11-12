@@ -545,10 +545,6 @@ export namespace agentregistry_v1 {
    */
   export interface Schema$Finding {
     /**
-     * Optional. Category of the finding.
-     */
-    category?: string | null;
-    /**
      * Output only. Create time.
      */
     createTime?: string | null;
@@ -1311,7 +1307,7 @@ export namespace agentregistry_v1 {
      */
     description?: string | null;
     /**
-     * Required. Human-readable display name of the skill. Maximum length is 128 characters.
+     * Optional. Human-readable display name of the skill. Maximum length is 128 characters.
      */
     displayName?: string | null;
     /**
@@ -1455,6 +1451,10 @@ export namespace agentregistry_v1 {
      * Output only. Human-readable name of the tool.
      */
     name?: string | null;
+    /**
+     * Output only. Protocol-level tool metadata conforming to MCP _meta specification. Output only.
+     */
+    _meta?: {[key: string]: any} | null;
   }
 
   export class Resource$Projects {
@@ -5616,7 +5616,6 @@ export namespace agentregistry_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
      *   //   "detail": "my_detail",
      *   //   "files": [],
