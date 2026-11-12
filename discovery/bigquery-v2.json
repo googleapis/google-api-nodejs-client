@@ -2395,7 +2395,7 @@
       }
     }
   },
-  "revision": "20260922",
+  "revision": "20261009",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -5961,6 +5961,10 @@
           "default": "true",
           "description": "Optional. Whether to print out a header row in the results. Default is true. Not applicable when extracting models.",
           "type": "boolean"
+        },
+        "secureContext": {
+          "$ref": "SecureContext",
+          "description": "Optional. A set of key-value pairs representing the secure context. This can be used to pass sensitive or context-specific information. They can be retrieved via the SECURE_CONTEXT() function and used to modify the run-time behavior of an extract job on tables with row access policies."
         },
         "sourceModel": {
           "$ref": "ModelReference",
