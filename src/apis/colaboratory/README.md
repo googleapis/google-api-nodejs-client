@@ -1,27 +1,18 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# area120tables
+# colaboratory
 
-> 
-
-## Support status
-**Note**: Google provides multiple libraries for this service. This library is in
-maintenance mode, and will continue to be made available for users who have
-existing applications. If you're building a new application, or modernizing a
-legacy application, please use [@google/area120-tables](https://www.npmjs.com/package/@google/area120-tables) instead.
-The [@google/area120-tables](https://www.npmjs.com/package/@google/area120-tables) library is faster, easier to use, and better maintained.
-
-To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+> The Colab API lets you programmatically manage Colab runtimes.
 
 ## Installation
 
 ```sh
-$ npm install @googleapis/area120tables
+$ npm install @googleapis/colaboratory
 ```
 
 ## Usage
 All documentation and usage information can be found on [GitHub](https://github.com/googleapis/google-api-nodejs-client).
-Information on classes can be found in [Googleapis Documentation](https://googleapis.dev/nodejs/googleapis/latest/area120tables/classes/Area120tables.html).
+Information on classes can be found in [Googleapis Documentation](https://googleapis.dev/nodejs/googleapis/latest/colaboratory/classes/Colaboratory.html).
 
 ## License
 This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/googleapis/google-api-nodejs-client/blob/main/LICENSE).

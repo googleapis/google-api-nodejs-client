@@ -14,25 +14,35 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {devicerun_v1} from './v1';
 import {devicerun_v1alpha} from './v1alpha';
 
 export const VERSIONS = {
+  v1: devicerun_v1.Devicerun,
   v1alpha: devicerun_v1alpha.Devicerun,
 };
 
+export function devicerun(version: 'v1'): devicerun_v1.Devicerun;
+export function devicerun(
+  options: devicerun_v1.Options
+): devicerun_v1.Devicerun;
 export function devicerun(version: 'v1alpha'): devicerun_v1alpha.Devicerun;
 export function devicerun(
   options: devicerun_v1alpha.Options
 ): devicerun_v1alpha.Devicerun;
-export function devicerun<T = devicerun_v1alpha.Devicerun>(
+export function devicerun<
+  T = devicerun_v1.Devicerun | devicerun_v1alpha.Devicerun,
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1alpha' | devicerun_v1alpha.Options
+  versionOrOptions:
+    'v1' | devicerun_v1.Options | 'v1alpha' | devicerun_v1alpha.Options
 ) {
   return getAPI<T>('devicerun', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {devicerun_v1};
 export {devicerun_v1alpha};
 export {
   AuthPlus,

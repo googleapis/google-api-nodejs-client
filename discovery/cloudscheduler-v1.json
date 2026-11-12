@@ -23,11 +23,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudscheduler.us-central2.rep.googleapis.com/",
-      "location": "us-central2"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://cloudscheduler.us-east1.rep.googleapis.com/",
       "location": "us-east1"
     },
@@ -35,11 +30,6 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://cloudscheduler.us-east4.rep.googleapis.com/",
       "location": "us-east4"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudscheduler.us-east7.rep.googleapis.com/",
-      "location": "us-east7"
     },
     {
       "description": "Regional Endpoint",
@@ -663,7 +653,7 @@
       }
     }
   },
-  "revision": "20261020",
+  "revision": "20261106",
   "rootUrl": "https://cloudscheduler.googleapis.com/",
   "schemas": {
     "AppEngineHttpTarget": {

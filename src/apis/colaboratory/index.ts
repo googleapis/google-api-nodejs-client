@@ -14,28 +14,38 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
-import {area120tables_v1alpha1} from './v1alpha1';
+import {colaboratory_v1} from './v1';
+import {colaboratory_v1beta} from './v1beta';
 
 export const VERSIONS = {
-  v1alpha1: area120tables_v1alpha1.Area120tables,
+  v1: colaboratory_v1.Colaboratory,
+  v1beta: colaboratory_v1beta.Colaboratory,
 };
 
-export function area120tables(
-  version: 'v1alpha1'
-): area120tables_v1alpha1.Area120tables;
-export function area120tables(
-  options: area120tables_v1alpha1.Options
-): area120tables_v1alpha1.Area120tables;
-export function area120tables<T = area120tables_v1alpha1.Area120tables>(
+export function colaboratory(version: 'v1'): colaboratory_v1.Colaboratory;
+export function colaboratory(
+  options: colaboratory_v1.Options
+): colaboratory_v1.Colaboratory;
+export function colaboratory(
+  version: 'v1beta'
+): colaboratory_v1beta.Colaboratory;
+export function colaboratory(
+  options: colaboratory_v1beta.Options
+): colaboratory_v1beta.Colaboratory;
+export function colaboratory<
+  T = colaboratory_v1.Colaboratory | colaboratory_v1beta.Colaboratory,
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1alpha1' | area120tables_v1alpha1.Options
+  versionOrOptions:
+    'v1' | colaboratory_v1.Options | 'v1beta' | colaboratory_v1beta.Options
 ) {
-  return getAPI<T>('area120tables', versionOrOptions, VERSIONS, this);
+  return getAPI<T>('colaboratory', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
-export {area120tables_v1alpha1};
+export {colaboratory_v1};
+export {colaboratory_v1beta};
 export {
   AuthPlus,
   GlobalOptions,

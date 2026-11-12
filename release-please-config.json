@@ -190,7 +190,6 @@
     "src/apis/datastore": {},
     "src/apis/assuredworkloads": {},
     "src/apis/run": {},
-    "src/apis/area120tables": {},
     "src/apis/texttospeech": {},
     "src/apis/bigqueryconnection": {},
     "src/apis/securesourcemanager": {},
