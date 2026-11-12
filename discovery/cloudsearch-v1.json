@@ -1035,6 +1035,11 @@
                   "location": "query",
                   "type": "string"
                 },
+                "requestOptions.queryLanguageCode": {
+                  "description": "Optional. The BCP-47 language code representing the language of the query.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "requestOptions.searchApplicationId": {
                   "description": "The ID generated when you create a search application using the [admin console](https://support.google.com/a/answer/9043922).",
                   "location": "query",
@@ -2111,7 +2116,7 @@
       }
     }
   },
-  "revision": "20260729",
+  "revision": "20261106",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "Action": {
@@ -6911,6 +6916,10 @@
           "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The Suggest API uses this field as a hint to make better third-party autocomplete predictions.",
           "type": "string"
         },
+        "queryLanguageCode": {
+          "description": "Optional. The BCP-47 language code representing the language of the query.",
+          "type": "string"
+        },
         "searchApplicationId": {
           "description": "The ID generated when you create a search application using the [admin console](https://support.google.com/a/answer/9043922).",
           "type": "string"
@@ -7344,7 +7353,7 @@
       "type": "object"
     },
     "SearchResponse": {
-      "description": "The search API response. NEXT ID: 20",
+      "description": "The search API response. NEXT ID: 21",
       "id": "SearchResponse",
       "properties": {
         "debugInfo": {
