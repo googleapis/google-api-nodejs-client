@@ -1978,7 +1978,7 @@
       }
     }
   },
-  "revision": "20260925",
+  "revision": "20261030",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -2117,6 +2117,39 @@
         "timeZone": {
           "description": "The time zone of the calendar. (Formatted as an IANA Time Zone Database name, e.g. \"Europe/Zurich\".) Optional.",
           "type": "string"
+        },
+        "workingHours": {
+          "description": "Represents the information about the user's working hours. Only available for primary calendars of Google Workspace users. To update the working hours, the entire working hours object must be passed. If not specified (or passed as null or an empty object), the existing working hours remain unchanged. To disable working hours or clear the schedule, set workingHoursEnabled to false (and omit availableTimes or pass an empty list).",
+          "properties": {
+            "availableTimes": {
+              "description": "Working hours. Each availability period represents the user's working hours block during one day.",
+              "items": {
+                "properties": {
+                  "dayOfWeek": {
+                    "description": "Day of the week. Required. Possible values are:  \n- \"monday\"\n- \"tuesday\"\n- \"wednesday\"\n- \"thursday\"\n- \"friday\"\n- \"saturday\"\n- \"sunday\"",
+                    "type": "string"
+                  },
+                  "periodEnd": {
+                    "description": "Period end, in minutes from the start of the day, exclusive. Required.",
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "periodStart": {
+                    "description": "Period start, in minutes from the start of the day, inclusive. Required.",
+                    "format": "int32",
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "workingHoursEnabled": {
+              "description": "Whether the working hours are enabled for this calendar. Cannot be set to true when availableTimes is empty.",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
         }
       },
       "type": "object"
