@@ -761,7 +761,7 @@ export namespace health_v4 {
      */
     dataSourceFamily?: string | null;
     /**
-     * Optional. The maximum number of data points to return. If unspecified, at most 90 data points will be returned. The maximum page size is 10000; values above that will be truncated accordingly.
+     * Optional. The maximum number of data points to return. If unspecified, at most `90` data points will be returned. The maximum page size is `90`. For `calories-in-heart-rate-zone`, `heart-rate`, `active-minutes`, and `total-calories`, the default and maximum page size is `14`.
      */
     pageSize?: number | null;
     /**
@@ -4958,15 +4958,25 @@ export namespace health_v4 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.ecg.readonly',
      *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.irn.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.location.readonly',
      *       'https://www.googleapis.com/auth/googlehealth.logged_symptoms.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.mindfulness.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.nutrition.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.profile.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.profile.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.reproductive_health.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.settings.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.settings.writeonly',
      *       'https://www.googleapis.com/auth/googlehealth.sleep.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.sleep.writeonly',
      *     ],
      *   });
      *
