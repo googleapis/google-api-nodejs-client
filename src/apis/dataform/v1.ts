@@ -1081,6 +1081,10 @@ export namespace dataform_v1 {
    */
   export interface Schema$InvocationConfig {
     /**
+     * Optional. Maximum number of actions that can be executed concurrently.
+     */
+    concurrentActionsLimit?: number | null;
+    /**
      * Optional. Configuration for end user authentication. Do not set if `service_account` is used.
      */
     endUserAuthConfig?: Schema$EndUserAuthenticationConfig;

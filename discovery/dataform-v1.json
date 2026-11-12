@@ -3249,7 +3249,7 @@
       }
     }
   },
-  "revision": "20261021",
+  "revision": "20261030",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -4466,6 +4466,11 @@
       "description": "Includes various configuration options for a workflow invocation. If both `included_targets` and `included_tags` are unset, all actions will be included.",
       "id": "InvocationConfig",
       "properties": {
+        "concurrentActionsLimit": {
+          "description": "Optional. Maximum number of actions that can be executed concurrently.",
+          "format": "int32",
+          "type": "integer"
+        },
         "endUserAuthConfig": {
           "$ref": "EndUserAuthenticationConfig",
           "description": "Optional. Configuration for end user authentication. Do not set if `service_account` is used."
@@ -6181,7 +6186,8 @@
             "DISABLED",
             "SUCCEEDED",
             "CANCELLED",
-            "FAILED"
+            "FAILED",
+            "QUEUED"
           ],
           "enumDescriptions": [
             "The action has not yet been considered for invocation.",
@@ -6190,7 +6196,8 @@
             "Execution of the action was disabled as per the configuration of the corresponding compilation result action. A terminal state.",
             "The action succeeded. A terminal state.",
             "The action was cancelled. A terminal state.",
-            "The action failed. A terminal state."
+            "The action failed. A terminal state.",
+            "Execution of the action was queued waiting for an available concurrency slot."
           ],
           "readOnly": true,
           "type": "string"
