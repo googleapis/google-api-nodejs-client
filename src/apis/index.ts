@@ -123,10 +123,6 @@ import {VERSIONS as appengineVersions, appengine} from './appengine';
 import {VERSIONS as apphubVersions, apphub} from './apphub';
 import {VERSIONS as appsactivityVersions, appsactivity} from './appsactivity';
 import {VERSIONS as appsmarketVersions, appsmarket} from './appsmarket';
-import {
-  VERSIONS as area120tablesVersions,
-  area120tables,
-} from './area120tables';
 import {VERSIONS as areainsightsVersions, areainsights} from './areainsights';
 import {
   VERSIONS as artifactregistryVersions,
@@ -271,6 +267,7 @@ import {VERSIONS as cloudshellVersions, cloudshell} from './cloudshell';
 import {VERSIONS as cloudsupportVersions, cloudsupport} from './cloudsupport';
 import {VERSIONS as cloudtasksVersions, cloudtasks} from './cloudtasks';
 import {VERSIONS as cloudtraceVersions, cloudtrace} from './cloudtrace';
+import {VERSIONS as colaboratoryVersions, colaboratory} from './colaboratory';
 import {VERSIONS as composerVersions, composer} from './composer';
 import {VERSIONS as computeVersions, compute} from './compute';
 import {VERSIONS as configVersions, config} from './config';
@@ -879,7 +876,6 @@ export const APIS: APIList = {
   apphub: apphubVersions,
   appsactivity: appsactivityVersions,
   appsmarket: appsmarketVersions,
-  area120tables: area120tablesVersions,
   areainsights: areainsightsVersions,
   artifactregistry: artifactregistryVersions,
   assuredworkloads: assuredworkloadsVersions,
@@ -937,6 +933,7 @@ export const APIS: APIList = {
   cloudsupport: cloudsupportVersions,
   cloudtasks: cloudtasksVersions,
   cloudtrace: cloudtraceVersions,
+  colaboratory: colaboratoryVersions,
   composer: composerVersions,
   compute: computeVersions,
   config: configVersions,
@@ -1220,7 +1217,6 @@ export class GeneratedAPIs {
   apphub = apphub;
   appsactivity = appsactivity;
   appsmarket = appsmarket;
-  area120tables = area120tables;
   areainsights = areainsights;
   artifactregistry = artifactregistry;
   assuredworkloads = assuredworkloads;
@@ -1278,6 +1274,7 @@ export class GeneratedAPIs {
   cloudsupport = cloudsupport;
   cloudtasks = cloudtasks;
   cloudtrace = cloudtrace;
+  colaboratory = colaboratory;
   composer = composer;
   compute = compute;
   config = config;

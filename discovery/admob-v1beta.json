@@ -134,8 +134,7 @@
           "scopes": [
             "https://www.googleapis.com/auth/admob.readonly",
             "https://www.googleapis.com/auth/admob.report"
-          ],
-          "streamingType": "NONE"
+          ]
         },
         "list": {
           "description": "Lists the AdMob publisher account that was most recently signed in to from the AdMob UI. For more information, see https://support.google.com/admob/answer/10243672.",
@@ -163,8 +162,7 @@
           "scopes": [
             "https://www.googleapis.com/auth/admob.readonly",
             "https://www.googleapis.com/auth/admob.report"
-          ],
-          "streamingType": "NONE"
+          ]
         }
       },
       "resources": {
@@ -205,8 +203,7 @@
               "scopes": [
                 "https://www.googleapis.com/auth/admob.readonly",
                 "https://www.googleapis.com/auth/admob.report"
-              ],
-              "streamingType": "NONE"
+              ]
             }
           },
           "resources": {
@@ -246,8 +243,7 @@
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/admob.readonly"
-                  ],
-                  "streamingType": "NONE"
+                  ]
                 }
               }
             }
@@ -278,8 +274,7 @@
               },
               "response": {
                 "$ref": "BatchCreateAdUnitMappingsResponse"
-              },
-              "streamingType": "NONE"
+              }
             }
           }
         },
@@ -308,8 +303,7 @@
               },
               "response": {
                 "$ref": "AdUnit"
-              },
-              "streamingType": "NONE"
+              }
             },
             "list": {
               "description": "List the ad units under the specified AdMob account.",
@@ -345,8 +339,7 @@
               },
               "scopes": [
                 "https://www.googleapis.com/auth/admob.readonly"
-              ],
-              "streamingType": "NONE"
+              ]
             }
           },
           "resources": {
@@ -375,8 +368,7 @@
                   },
                   "response": {
                     "$ref": "AdUnitMapping"
-                  },
-                  "streamingType": "NONE"
+                  }
                 },
                 "list": {
                   "description": "List ad unit mappings under the specified AdMob account and ad unit. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.",
@@ -417,8 +409,7 @@
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/admob.readonly"
-                  ],
-                  "streamingType": "NONE"
+                  ]
                 }
               }
             }
@@ -449,8 +440,7 @@
               },
               "response": {
                 "$ref": "App"
-              },
-              "streamingType": "NONE"
+              }
             },
             "list": {
               "description": "List the apps under the specified AdMob account.",
@@ -486,8 +476,7 @@
               },
               "scopes": [
                 "https://www.googleapis.com/auth/admob.readonly"
-              ],
-              "streamingType": "NONE"
+              ]
             }
           }
         },
@@ -520,8 +509,7 @@
               "scopes": [
                 "https://www.googleapis.com/auth/admob.readonly",
                 "https://www.googleapis.com/auth/admob.report"
-              ],
-              "streamingType": "NONE"
+              ]
             }
           }
         },
@@ -550,8 +538,7 @@
               },
               "response": {
                 "$ref": "MediationGroup"
-              },
-              "streamingType": "NONE"
+              }
             },
             "list": {
               "description": "List mediation groups under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.",
@@ -592,8 +579,7 @@
               },
               "scopes": [
                 "https://www.googleapis.com/auth/admob.readonly"
-              ],
-              "streamingType": "NONE"
+              ]
             },
             "patch": {
               "description": "Update the specified mediation group under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.",
@@ -624,8 +610,7 @@
               },
               "response": {
                 "$ref": "MediationGroup"
-              },
-              "streamingType": "NONE"
+              }
             }
           },
           "resources": {
@@ -654,8 +639,7 @@
                   },
                   "response": {
                     "$ref": "MediationAbExperiment"
-                  },
-                  "streamingType": "NONE"
+                  }
                 },
                 "stop": {
                   "description": "Stop the mediation A/B experiment and choose a variant. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.",
@@ -680,8 +664,7 @@
                   },
                   "response": {
                     "$ref": "MediationAbExperiment"
-                  },
-                  "streamingType": "NONE"
+                  }
                 }
               }
             }
@@ -716,8 +699,7 @@
               "scopes": [
                 "https://www.googleapis.com/auth/admob.readonly",
                 "https://www.googleapis.com/auth/admob.report"
-              ],
-              "streamingType": "SERVER_SIDE"
+              ]
             }
           }
         },
@@ -750,15 +732,14 @@
               "scopes": [
                 "https://www.googleapis.com/auth/admob.readonly",
                 "https://www.googleapis.com/auth/admob.report"
-              ],
-              "streamingType": "SERVER_SIDE"
+              ]
             }
           }
         }
       }
     }
   },
-  "revision": "20261008",
+  "revision": "20261109",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "AdSource": {

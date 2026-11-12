@@ -816,7 +816,7 @@
       }
     }
   },
-  "revision": "20261020",
+  "revision": "20261103",
   "rootUrl": "https://curationpartners.googleapis.com/",
   "schemas": {
     "AccessControlSettings": {
@@ -2148,13 +2148,15 @@
             "TIME_ZONE_SOURCE_UNSPECIFIED",
             "AD_EXCHANGE",
             "UTC",
-            "PROVIDED"
+            "PROVIDED",
+            "CURATOR"
           ],
           "enumDescriptions": [
             "Unspecified default value.",
             "Use the Pacific time zone(PT).",
             "Use UTC time zone.",
-            "Use the time zone provided in the ReportDefinition.time_zone field. Reports may take longer to run since the dates are dynamically calculated at request time."
+            "Use the time zone provided in the ReportDefinition.time_zone field. Reports may take longer to run since the dates are dynamically calculated at request time.",
+            "Use the time zone from the curator's account settings."
           ],
           "type": "string"
         }

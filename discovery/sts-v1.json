@@ -64,6 +64,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://sts.asia-southeast4.rep.googleapis.com/",
+      "location": "asia-southeast4"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://sts.australia-southeast1.rep.googleapis.com/",
       "location": "australia-southeast1"
     },
@@ -481,7 +486,7 @@
       }
     }
   },
-  "revision": "20261014",
+  "revision": "20261028",
   "rootUrl": "https://sts.googleapis.com/",
   "schemas": {
     "GoogleIamV1Binding": {

@@ -132,9 +132,6 @@
       "path": "./src/apis/appsmarket/tsconfig.build.json"
     },
     {
-      "path": "./src/apis/area120tables/tsconfig.build.json"
-    },
-    {
       "path": "./src/apis/areainsights/tsconfig.build.json"
     },
     {
@@ -304,6 +301,9 @@
     },
     {
       "path": "./src/apis/cloudtrace/tsconfig.build.json"
+    },
+    {
+      "path": "./src/apis/colaboratory/tsconfig.build.json"
     },
     {
       "path": "./src/apis/composer/tsconfig.build.json"

@@ -37,8 +37,8 @@ module.exports = {
     },
   },
   output: {
-    library: 'Area120tables',
-    filename: 'area120tables.min.js',
+    library: 'Colaboratory',
+    filename: 'colaboratory.min.js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
