@@ -15,6 +15,68 @@
   "description": "This API enables connectivity with and between Google Cloud resources.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/network-connectivity/docs/reference/networkconnectivity/rest",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://networkconnectivity.us-central1.rep.googleapis.com/",
+      "location": "us-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://networkconnectivity.us-central2.rep.googleapis.com/",
+      "location": "us-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://networkconnectivity.us-east1.rep.googleapis.com/",
+      "location": "us-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://networkconnectivity.us-east4.rep.googleapis.com/",
+      "location": "us-east4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://networkconnectivity.us-east5.rep.googleapis.com/",
+      "location": "us-east5"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://networkconnectivity.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://networkconnectivity.us-south1.rep.googleapis.com/",
+      "location": "us-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://networkconnectivity.us-west1.rep.googleapis.com/",
+      "location": "us-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://networkconnectivity.us-west2.rep.googleapis.com/",
+      "location": "us-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://networkconnectivity.us-west3.rep.googleapis.com/",
+      "location": "us-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://networkconnectivity.us-west4.rep.googleapis.com/",
+      "location": "us-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://networkconnectivity.us-west8.rep.googleapis.com/",
+      "location": "us-west8"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -4046,7 +4108,7 @@
       }
     }
   },
-  "revision": "20261008",
+  "revision": "20261029",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -4814,6 +4876,21 @@
       "properties": {},
       "type": "object"
     },
+    "ExportPscConfig": {
+      "description": "Configuration for more granular control of Private Service Connect connection propagation. This allows enabling or disabling connection propagation for specific types of Private Service Connect endpoints.",
+      "id": "ExportPscConfig",
+      "properties": {
+        "globalGoogleApis": {
+          "description": "Optional. Controls whether Private Service Connect endpoints for global Google APIs should be propagated. The default value is false.",
+          "type": "boolean"
+        },
+        "publishedServicesAndRegionalGoogleApis": {
+          "description": "Optional. Controls whether Private Service Connect endpoints for regional ILBs and regional Google APIs should be propagated. Default value is true if export_psc is true. Otherwise, the default value is false.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "Expr": {
       "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
@@ -5210,6 +5287,10 @@
           "description": "Optional. Whether Private Service Connect connection propagation is enabled for the hub. If true, Private Service Connect endpoints in VPC spokes attached to the hub are made accessible to other VPC spokes attached to the hub. The default value is false.",
           "type": "boolean"
         },
+        "exportPscConfig": {
+          "$ref": "ExportPscConfig",
+          "description": "Optional. Config for more granular control of Private Service Connect transitivity."
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -5550,6 +5631,38 @@
           },
           "type": "array"
         },
+        "proposedExcludeExportRanges": {
+          "description": "Output only. The proposed exclude export IP ranges waiting for hub administrator's approval.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "proposedExcludeImportRanges": {
+          "description": "Output only. The proposed exclude import IP ranges waiting for hub administrator's approval.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "proposedIncludeExportRanges": {
+          "description": "Output only. The proposed include export IP ranges waiting for hub administrator's approval.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "proposedIncludeImportRanges": {
+          "description": "Output only. The proposed include import IP ranges waiting for hub administrator's approval.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "siteToSiteDataTransfer": {
           "description": "A value that controls whether site-to-site data transfer is enabled for these resources. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).",
           "type": "boolean"
@@ -5662,6 +5775,38 @@
           },
           "type": "array"
         },
+        "proposedExcludeExportRanges": {
+          "description": "Output only. The proposed exclude export IP ranges waiting for hub administrator's approval.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "proposedExcludeImportRanges": {
+          "description": "Output only. The proposed exclude import IP ranges waiting for hub administrator's approval.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "proposedIncludeExportRanges": {
+          "description": "Output only. The proposed include export IP ranges waiting for hub administrator's approval.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "proposedIncludeImportRanges": {
+          "description": "Output only. The proposed include import IP ranges waiting for hub administrator's approval.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "siteToSiteDataTransfer": {
           "description": "A value that controls whether site-to-site data transfer is enabled for these resources. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).",
           "type": "boolean"
@@ -5753,6 +5898,38 @@
           "items": {
             "type": "string"
           },
+          "type": "array"
+        },
+        "proposedExcludeExportRanges": {
+          "description": "Output only. The proposed exclude export IP ranges waiting for hub administrator's approval.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "proposedExcludeImportRanges": {
+          "description": "Output only. The proposed exclude import IP ranges waiting for hub administrator's approval.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "proposedIncludeExportRanges": {
+          "description": "Output only. The proposed include export IP ranges waiting for hub administrator's approval.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "proposedIncludeImportRanges": {
+          "description": "Output only. The proposed include import IP ranges waiting for hub administrator's approval.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
           "type": "array"
         },
         "siteToSiteDataTransfer": {
@@ -7370,13 +7547,15 @@
             "ROUTE_TYPE_UNSPECIFIED",
             "VPC_PRIMARY_SUBNET",
             "VPC_SECONDARY_SUBNET",
-            "DYNAMIC_ROUTE"
+            "DYNAMIC_ROUTE",
+            "PSC_GLOBAL_GAPI"
           ],
           "enumDescriptions": [
             "No route type information specified",
             "The route leads to a destination within the primary address range of the VPC network's subnet.",
             "The route leads to a destination within the secondary address range of the VPC network's subnet.",
-            "The route leads to a destination in a dynamic route. Dynamic routes are derived from Border Gateway Protocol (BGP) advertisements received from an NCC hybrid spoke."
+            "The route leads to a destination in a dynamic route. Dynamic routes are derived from Border Gateway Protocol (BGP) advertisements received from an NCC hybrid spoke.",
+            "The route leads to a destination within the Private Service Connect Global Google API range of the VPC network."
           ],
           "readOnly": true,
           "type": "string"

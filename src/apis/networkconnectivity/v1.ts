@@ -588,6 +588,19 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Configuration for more granular control of Private Service Connect connection propagation. This allows enabling or disabling connection propagation for specific types of Private Service Connect endpoints.
+   */
+  export interface Schema$ExportPscConfig {
+    /**
+     * Optional. Controls whether Private Service Connect endpoints for global Google APIs should be propagated. The default value is false.
+     */
+    globalGoogleApis?: boolean | null;
+    /**
+     * Optional. Controls whether Private Service Connect endpoints for regional ILBs and regional Google APIs should be propagated. Default value is true if export_psc is true. Otherwise, the default value is false.
+     */
+    publishedServicesAndRegionalGoogleApis?: boolean | null;
+  }
+  /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
@@ -833,6 +846,10 @@ export namespace networkconnectivity_v1 {
      */
     exportPsc?: boolean | null;
     /**
+     * Optional. Config for more granular control of Private Service Connect transitivity.
+     */
+    exportPscConfig?: Schema$ExportPscConfig;
+    /**
      * Optional labels in key-value pair format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
      */
     labels?: {[key: string]: string} | null;
@@ -1010,6 +1027,22 @@ export namespace networkconnectivity_v1 {
      */
     includeImportRanges?: string[] | null;
     /**
+     * Output only. The proposed exclude export IP ranges waiting for hub administrator's approval.
+     */
+    proposedExcludeExportRanges?: string[] | null;
+    /**
+     * Output only. The proposed exclude import IP ranges waiting for hub administrator's approval.
+     */
+    proposedExcludeImportRanges?: string[] | null;
+    /**
+     * Output only. The proposed include export IP ranges waiting for hub administrator's approval.
+     */
+    proposedIncludeExportRanges?: string[] | null;
+    /**
+     * Output only. The proposed include import IP ranges waiting for hub administrator's approval.
+     */
+    proposedIncludeImportRanges?: string[] | null;
+    /**
      * A value that controls whether site-to-site data transfer is enabled for these resources. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      */
     siteToSiteDataTransfer?: boolean | null;
@@ -1081,6 +1114,22 @@ export namespace networkconnectivity_v1 {
      */
     instances?: Schema$RouterApplianceInstance[];
     /**
+     * Output only. The proposed exclude export IP ranges waiting for hub administrator's approval.
+     */
+    proposedExcludeExportRanges?: string[] | null;
+    /**
+     * Output only. The proposed exclude import IP ranges waiting for hub administrator's approval.
+     */
+    proposedExcludeImportRanges?: string[] | null;
+    /**
+     * Output only. The proposed include export IP ranges waiting for hub administrator's approval.
+     */
+    proposedIncludeExportRanges?: string[] | null;
+    /**
+     * Output only. The proposed include import IP ranges waiting for hub administrator's approval.
+     */
+    proposedIncludeImportRanges?: string[] | null;
+    /**
      * A value that controls whether site-to-site data transfer is enabled for these resources. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      */
     siteToSiteDataTransfer?: boolean | null;
@@ -1138,6 +1187,22 @@ export namespace networkconnectivity_v1 {
      * Optional. Hub routes fully encompassed by include import ranges are included during import from hub.
      */
     includeImportRanges?: string[] | null;
+    /**
+     * Output only. The proposed exclude export IP ranges waiting for hub administrator's approval.
+     */
+    proposedExcludeExportRanges?: string[] | null;
+    /**
+     * Output only. The proposed exclude import IP ranges waiting for hub administrator's approval.
+     */
+    proposedExcludeImportRanges?: string[] | null;
+    /**
+     * Output only. The proposed include export IP ranges waiting for hub administrator's approval.
+     */
+    proposedIncludeExportRanges?: string[] | null;
+    /**
+     * Output only. The proposed include import IP ranges waiting for hub administrator's approval.
+     */
+    proposedIncludeImportRanges?: string[] | null;
     /**
      * A value that controls whether site-to-site data transfer is enabled for these resources. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      */
@@ -4427,6 +4492,7 @@ export namespace networkconnectivity_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "exportPsc": false,
+     *       //   "exportPscConfig": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "policyMode": "my_policyMode",
@@ -4733,6 +4799,7 @@ export namespace networkconnectivity_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "exportPsc": false,
+     *   //   "exportPscConfig": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "policyMode": "my_policyMode",
@@ -5329,6 +5396,7 @@ export namespace networkconnectivity_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "exportPsc": false,
+     *       //   "exportPscConfig": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "policyMode": "my_policyMode",
