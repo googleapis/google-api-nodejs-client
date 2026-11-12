@@ -185,6 +185,53 @@
                 "https://www.googleapis.com/auth/chromewebstore"
               ]
             },
+            "fetchReviews": {
+              "description": "Fetch user reviews for an item.",
+              "flatPath": "v2/publishers/{publishersId}/items/{itemsId}:fetchReviews",
+              "httpMethod": "GET",
+              "id": "chromewebstore.publishers.items.fetchReviews",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. A filter to apply to the reviews. Only equality comparison on rating is supported, e.g. `rating = 5`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Required. The item resource name whose reviews are being fetched. Format: publishers/{publisher_id}/items/{item_id}",
+                  "location": "path",
+                  "pattern": "^publishers/[^/]+/items/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. An optional comma-separated list of fields by which to sort the results. The default sort order is ascending (`asc`). Supported fields are: - `rating`: Supported orders are `asc` (default) and `desc`. - `create_time`: Only `desc` (most recent first) is supported; `desc` must be explicitly specified since the default is `asc`. Example: `rating desc`, `create_time desc`, or `rating desc, create_time desc`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The maximum number of reviews to return. The service may return fewer than this value. If unspecified, at most 50 reviews will be returned. The maximum value is 200; values above 200 will be coerced to 200.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `FetchItemReviews` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchItemReviews` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}:fetchReviews",
+              "response": {
+                "$ref": "FetchItemReviewsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chromewebstore",
+                "https://www.googleapis.com/auth/chromewebstore.readonly"
+              ]
+            },
             "fetchStatus": {
               "description": "Fetch the status of an item.",
               "flatPath": "v2/publishers/{publishersId}/items/{itemsId}:fetchStatus",
@@ -205,6 +252,32 @@
               "path": "v2/{+name}:fetchStatus",
               "response": {
                 "$ref": "FetchItemStatusResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chromewebstore",
+                "https://www.googleapis.com/auth/chromewebstore.readonly"
+              ]
+            },
+            "getRatingSummary": {
+              "description": "Gets the RatingSummary for the publishers item.",
+              "flatPath": "v2/publishers/{publishersId}/items/{itemsId}/ratingSummary",
+              "httpMethod": "GET",
+              "id": "chromewebstore.publishers.items.getRatingSummary",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the rating summary to retrieve. Format: publishers/{publisher}/items/{item}/ratingSummary",
+                  "location": "path",
+                  "pattern": "^publishers/[^/]+/items/[^/]+/ratingSummary$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}",
+              "response": {
+                "$ref": "RatingSummary"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/chromewebstore",
@@ -234,6 +307,119 @@
               },
               "response": {
                 "$ref": "PublishItemResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chromewebstore"
+              ]
+            },
+            "queryMetrics": {
+              "description": "Query the metrics for an item.",
+              "flatPath": "v2/publishers/{publishersId}/items/{itemsId}:queryMetrics",
+              "httpMethod": "GET",
+              "id": "chromewebstore.publishers.items.queryMetrics",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "dimensions": {
+                  "description": "Optional. Dimensions to slice the metrics by. At most one dimension can be specified. **Supported dimensions:** - os: The operating system of the user. - app-version: The version of the item. - country: The country of the user. - install-source: The source of the install. - install-type: The type of install (from webstore, inline, or other). - language: The language of the user. - enabled: If the item is enabled or disabled. - utm-campaign: The UTM campaign of the user. - utm-content: The UTM content of the user. - utm-medium: The UTM medium of the user. - utm-source: The UTM source of the user. - utm-term: The UTM term of the user.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
+                "metrics": {
+                  "description": "Required. The metrics to query the metric set for. **Supported metrics:** - installs: Count of item installs. - installs-7d: Count of item installs in the last 7 days. - uninstalls: Count of item uninstalls. - users: Count of daily active users of the item. - users-7d: Count of 7-day active users of the item. - impressions: Count of item impressions across the entire store front. - page-views: Count of individual views of the item's detail page.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Required. The name of the item to query the metrics for. Format: publishers/{publisher}/items/{item}",
+                  "location": "path",
+                  "pattern": "^publishers/[^/]+/items/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The maximum number of rows to return. If unspecified, at most 100 rows will be returned. The maximum value is 1000; Values above 1000 will be coerced to 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to the request must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "timeSpec.firstDate.day": {
+                  "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "timeSpec.firstDate.month": {
+                  "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "timeSpec.firstDate.year": {
+                  "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "timeSpec.lastDate.day": {
+                  "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "timeSpec.lastDate.month": {
+                  "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "timeSpec.lastDate.year": {
+                  "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                }
+              },
+              "path": "v2/{+name}:queryMetrics",
+              "response": {
+                "$ref": "QueryItemMetricsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chromewebstore",
+                "https://www.googleapis.com/auth/chromewebstore.readonly"
+              ]
+            },
+            "rollback": {
+              "description": "Rolls back an item's published CRX package to a specified previously published CRX package and publishes it to all users.",
+              "flatPath": "v2/publishers/{publishersId}/items/{itemsId}:rollback",
+              "httpMethod": "POST",
+              "id": "chromewebstore.publishers.items.rollback",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the item to rollback in the form `publishers/{publisherId}/items/{itemId}`",
+                  "location": "path",
+                  "pattern": "^publishers/[^/]+/items/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}:rollback",
+              "request": {
+                "$ref": "RollbackItemRequest"
+              },
+              "response": {
+                "$ref": "RollbackItemResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/chromewebstore"
@@ -272,9 +458,20 @@
       }
     }
   },
-  "revision": "20260924",
+  "revision": "20261030",
   "rootUrl": "https://chromewebstore.googleapis.com/",
   "schemas": {
+    "AuthorInfo": {
+      "description": "Info on the author of the review.",
+      "id": "AuthorInfo",
+      "properties": {
+        "displayName": {
+          "description": "Display name for the author.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CancelSubmissionRequest": {
       "description": "Request message for CancelSubmission.",
       "id": "CancelSubmissionRequest",
@@ -285,6 +482,28 @@
       "description": "Response message for `CancelSubmission`.",
       "id": "CancelSubmissionResponse",
       "properties": {},
+      "type": "object"
+    },
+    "Date": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
+      "id": "Date",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "DeployInfo": {
@@ -311,6 +530,24 @@
           "description": "The current deploy percentage for the release channel (nonnegative number between 0 and 100).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "FetchItemReviewsResponse": {
+      "description": "Response message for FetchItemReviews.",
+      "id": "FetchItemReviewsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "reviews": {
+          "description": "The list of reviews.",
+          "items": {
+            "$ref": "Review"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -408,6 +645,52 @@
       },
       "type": "object"
     },
+    "MetricRow": {
+      "description": "A single row of metrics and dimension values.",
+      "id": "MetricRow",
+      "properties": {
+        "date": {
+          "$ref": "Date",
+          "description": "The date of the record."
+        },
+        "dimensionValues": {
+          "description": "Dimension value columns for the row.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metricValues": {
+          "description": "Metric columns for the row.",
+          "items": {
+            "$ref": "MetricValue"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MetricValue": {
+      "description": "Represents the value of a single metric",
+      "id": "MetricValue",
+      "properties": {
+        "metric": {
+          "description": "The name of the metric",
+          "type": "string"
+        },
+        "uniqueUserCount": {
+          "description": "The unique user count associated with the metric (if applicable).",
+          "format": "int64",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value of the metric.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PublishItemRequest": {
       "description": "Request message for PublishItem.",
       "id": "PublishItemRequest",
@@ -486,6 +769,139 @@
           "readOnly": true
         }
       },
+      "type": "object"
+    },
+    "QueryItemMetricsResponse": {
+      "description": "Response message for QueryItemMetrics.",
+      "id": "QueryItemMetricsResponse",
+      "properties": {
+        "metricRows": {
+          "description": "The metric rows.",
+          "items": {
+            "$ref": "MetricRow"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RatingSummary": {
+      "description": "Singleton resource for the rating summary of an item.",
+      "id": "RatingSummary",
+      "properties": {
+        "fiveStarRatingCount": {
+          "description": "The number of five star ratings.",
+          "format": "int64",
+          "type": "string"
+        },
+        "fourStarRatingCount": {
+          "description": "The number of four star ratings.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Item rating summary resource name Format: publishers/{publisher}/items/{item}/ratingSummary",
+          "type": "string"
+        },
+        "nonEmptyReviewCount": {
+          "description": "The number of ratings with a non-empty review text.",
+          "format": "int64",
+          "type": "string"
+        },
+        "oneStarRatingCount": {
+          "description": "The number of one star ratings.",
+          "format": "int64",
+          "type": "string"
+        },
+        "rating": {
+          "description": "The rating of the item as shown on the store page, expressed as a double between 1 and 5.",
+          "format": "double",
+          "type": "number"
+        },
+        "ratingCount": {
+          "description": "The total number of ratings for the item.",
+          "format": "int64",
+          "type": "string"
+        },
+        "threeStarRatingCount": {
+          "description": "The number of three star ratings.",
+          "format": "int64",
+          "type": "string"
+        },
+        "twoStarRatingCount": {
+          "description": "The number of two star ratings.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Review": {
+      "description": "A review written by a user to rate an item in the Chrome Web Store.",
+      "id": "Review",
+      "properties": {
+        "authorInfo": {
+          "$ref": "AuthorInfo",
+          "description": "Info on the author of the review."
+        },
+        "comment": {
+          "description": "Content of the review.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. When the review was posted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "item": {
+          "description": "Output only. The item that this review evaluates. Format: publishers/{publisher}/items/{item}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Review resource name. Format: reviews/{reviewId}",
+          "type": "string"
+        },
+        "rating": {
+          "description": "Rating of the item, between 1 and 5.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "RollbackItemRequest": {
+      "description": "Request message for RollbackItem.",
+      "id": "RollbackItemRequest",
+      "properties": {
+        "newVersion": {
+          "description": "Required. The new version to assign to the package being rolled back to. This effectively \"rolls forward\" the previous package by giving it a higher version number than the currently-published package. E.g. if the current published version is 1.1, the new version could be 1.1.1 or 1.2 but not 1.0.",
+          "type": "string"
+        },
+        "rollbackReason": {
+          "description": "Required. The reason for the rollback that will be used for internal auditing and developer dashboard visibility.",
+          "type": "string"
+        },
+        "targetCrxVersion": {
+          "description": "Required. The target previously published CRX version to roll back to. If unset, defaults to the last published CRX version.",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "Optional. If set, validate and dry run the request but do not actually initiate the rollback",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "RollbackItemResponse": {
+      "description": "Response message for `RollbackItem`.",
+      "id": "RollbackItemResponse",
+      "properties": {},
       "type": "object"
     },
     "SetPublishedDeployPercentageRequest": {
