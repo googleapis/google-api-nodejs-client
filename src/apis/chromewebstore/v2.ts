@@ -127,6 +127,15 @@ export namespace chromewebstore_v2 {
   }
 
   /**
+   * Info on the author of the review.
+   */
+  export interface Schema$AuthorInfo {
+    /**
+     * Display name for the author.
+     */
+    displayName?: string | null;
+  }
+  /**
    * Request message for CancelSubmission.
    */
   export interface Schema$CancelSubmissionRequest {}
@@ -134,6 +143,23 @@ export namespace chromewebstore_v2 {
    * Response message for `CancelSubmission`.
    */
   export interface Schema$CancelSubmissionResponse {}
+  /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
   /**
    * Deployment information for a specific release channel. Used in requests to update deployment parameters.
    */
@@ -155,6 +181,19 @@ export namespace chromewebstore_v2 {
      * The current deploy percentage for the release channel (nonnegative number between 0 and 100).
      */
     deployPercentage?: number | null;
+  }
+  /**
+   * Response message for FetchItemReviews.
+   */
+  export interface Schema$FetchItemReviewsResponse {
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of reviews.
+     */
+    reviews?: Schema$Review[];
   }
   /**
    * Response message for `FetchItemStatus`.
@@ -207,6 +246,40 @@ export namespace chromewebstore_v2 {
     state?: string | null;
   }
   /**
+   * A single row of metrics and dimension values.
+   */
+  export interface Schema$MetricRow {
+    /**
+     * The date of the record.
+     */
+    date?: Schema$Date;
+    /**
+     * Dimension value columns for the row.
+     */
+    dimensionValues?: string[] | null;
+    /**
+     * Metric columns for the row.
+     */
+    metricValues?: Schema$MetricValue[];
+  }
+  /**
+   * Represents the value of a single metric
+   */
+  export interface Schema$MetricValue {
+    /**
+     * The name of the metric
+     */
+    metric?: string | null;
+    /**
+     * The unique user count associated with the metric (if applicable).
+     */
+    uniqueUserCount?: string | null;
+    /**
+     * The value of the metric.
+     */
+    value?: string | null;
+  }
+  /**
    * Request message for PublishItem.
    */
   export interface Schema$PublishItemRequest {
@@ -248,6 +321,114 @@ export namespace chromewebstore_v2 {
      */
     warningInfo?: Schema$WarningsInfo;
   }
+  /**
+   * Response message for QueryItemMetrics.
+   */
+  export interface Schema$QueryItemMetricsResponse {
+    /**
+     * The metric rows.
+     */
+    metricRows?: Schema$MetricRow[];
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Singleton resource for the rating summary of an item.
+   */
+  export interface Schema$RatingSummary {
+    /**
+     * The number of five star ratings.
+     */
+    fiveStarRatingCount?: string | null;
+    /**
+     * The number of four star ratings.
+     */
+    fourStarRatingCount?: string | null;
+    /**
+     * Identifier. Item rating summary resource name Format: publishers/{publisher\}/items/{item\}/ratingSummary
+     */
+    name?: string | null;
+    /**
+     * The number of ratings with a non-empty review text.
+     */
+    nonEmptyReviewCount?: string | null;
+    /**
+     * The number of one star ratings.
+     */
+    oneStarRatingCount?: string | null;
+    /**
+     * The rating of the item as shown on the store page, expressed as a double between 1 and 5.
+     */
+    rating?: number | null;
+    /**
+     * The total number of ratings for the item.
+     */
+    ratingCount?: string | null;
+    /**
+     * The number of three star ratings.
+     */
+    threeStarRatingCount?: string | null;
+    /**
+     * The number of two star ratings.
+     */
+    twoStarRatingCount?: string | null;
+  }
+  /**
+   * A review written by a user to rate an item in the Chrome Web Store.
+   */
+  export interface Schema$Review {
+    /**
+     * Info on the author of the review.
+     */
+    authorInfo?: Schema$AuthorInfo;
+    /**
+     * Content of the review.
+     */
+    comment?: string | null;
+    /**
+     * Output only. When the review was posted.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The item that this review evaluates. Format: publishers/{publisher\}/items/{item\}
+     */
+    item?: string | null;
+    /**
+     * Identifier. Review resource name. Format: reviews/{reviewId\}
+     */
+    name?: string | null;
+    /**
+     * Rating of the item, between 1 and 5.
+     */
+    rating?: number | null;
+  }
+  /**
+   * Request message for RollbackItem.
+   */
+  export interface Schema$RollbackItemRequest {
+    /**
+     * Required. The new version to assign to the package being rolled back to. This effectively "rolls forward" the previous package by giving it a higher version number than the currently-published package. E.g. if the current published version is 1.1, the new version could be 1.1.1 or 1.2 but not 1.0.
+     */
+    newVersion?: string | null;
+    /**
+     * Required. The reason for the rollback that will be used for internal auditing and developer dashboard visibility.
+     */
+    rollbackReason?: string | null;
+    /**
+     * Required. The target previously published CRX version to roll back to. If unset, defaults to the last published CRX version.
+     */
+    targetCrxVersion?: string | null;
+    /**
+     * Optional. If set, validate and dry run the request but do not actually initiate the rollback
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
+   * Response message for `RollbackItem`.
+   */
+  export interface Schema$RollbackItemResponse {}
   /**
    * Request message for SetPublishedDeployPercentage.
    */
@@ -658,6 +839,159 @@ export namespace chromewebstore_v2 {
     }
 
     /**
+     * Fetch user reviews for an item.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromewebstore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromewebstore = google.chromewebstore('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chromewebstore',
+     *       'https://www.googleapis.com/auth/chromewebstore.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromewebstore.publishers.items.fetchReviews({
+     *     // Optional. A filter to apply to the reviews. Only equality comparison on rating is supported, e.g. `rating = 5`.
+     *     filter: 'placeholder-value',
+     *     // Required. The item resource name whose reviews are being fetched. Format: publishers/{publisher_id\}/items/{item_id\}
+     *     name: 'publishers/my-publisher/items/my-item',
+     *     // Optional. An optional comma-separated list of fields by which to sort the results. The default sort order is ascending (`asc`). Supported fields are: - `rating`: Supported orders are `asc` (default) and `desc`. - `create_time`: Only `desc` (most recent first) is supported; `desc` must be explicitly specified since the default is `asc`. Example: `rating desc`, `create_time desc`, or `rating desc, create_time desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of reviews to return. The service may return fewer than this value. If unspecified, at most 50 reviews will be returned. The maximum value is 200; values above 200 will be coerced to 200.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `FetchItemReviews` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchItemReviews` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reviews": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchReviews(
+      params: Params$Resource$Publishers$Items$Fetchreviews,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchReviews(
+      params?: Params$Resource$Publishers$Items$Fetchreviews,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FetchItemReviewsResponse>>;
+    fetchReviews(
+      params: Params$Resource$Publishers$Items$Fetchreviews,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchReviews(
+      params: Params$Resource$Publishers$Items$Fetchreviews,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$FetchItemReviewsResponse>,
+      callback: BodyResponseCallback<Schema$FetchItemReviewsResponse>
+    ): void;
+    fetchReviews(
+      params: Params$Resource$Publishers$Items$Fetchreviews,
+      callback: BodyResponseCallback<Schema$FetchItemReviewsResponse>
+    ): void;
+    fetchReviews(
+      callback: BodyResponseCallback<Schema$FetchItemReviewsResponse>
+    ): void;
+    fetchReviews(
+      paramsOrCallback?:
+        | Params$Resource$Publishers$Items$Fetchreviews
+        | BodyResponseCallback<Schema$FetchItemReviewsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchItemReviewsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchItemReviewsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FetchItemReviewsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Publishers$Items$Fetchreviews;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Publishers$Items$Fetchreviews;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromewebstore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:fetchReviews').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchItemReviewsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchItemReviewsResponse>(parameters);
+      }
+    }
+
+    /**
      * Fetch the status of an item.
      * @example
      * ```js
@@ -805,6 +1139,154 @@ export namespace chromewebstore_v2 {
         );
       } else {
         return createAPIRequest<Schema$FetchItemStatusResponse>(parameters);
+      }
+    }
+
+    /**
+     * Gets the RatingSummary for the publishers item.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromewebstore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromewebstore = google.chromewebstore('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chromewebstore',
+     *       'https://www.googleapis.com/auth/chromewebstore.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromewebstore.publishers.items.getRatingSummary({
+     *     // Required. The name of the rating summary to retrieve. Format: publishers/{publisher\}/items/{item\}/ratingSummary
+     *     name: 'publishers/my-publisher/items/my-item/ratingSummary',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fiveStarRatingCount": "my_fiveStarRatingCount",
+     *   //   "fourStarRatingCount": "my_fourStarRatingCount",
+     *   //   "name": "my_name",
+     *   //   "nonEmptyReviewCount": "my_nonEmptyReviewCount",
+     *   //   "oneStarRatingCount": "my_oneStarRatingCount",
+     *   //   "rating": {},
+     *   //   "ratingCount": "my_ratingCount",
+     *   //   "threeStarRatingCount": "my_threeStarRatingCount",
+     *   //   "twoStarRatingCount": "my_twoStarRatingCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getRatingSummary(
+      params: Params$Resource$Publishers$Items$Getratingsummary,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getRatingSummary(
+      params?: Params$Resource$Publishers$Items$Getratingsummary,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RatingSummary>>;
+    getRatingSummary(
+      params: Params$Resource$Publishers$Items$Getratingsummary,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getRatingSummary(
+      params: Params$Resource$Publishers$Items$Getratingsummary,
+      options: MethodOptions | BodyResponseCallback<Schema$RatingSummary>,
+      callback: BodyResponseCallback<Schema$RatingSummary>
+    ): void;
+    getRatingSummary(
+      params: Params$Resource$Publishers$Items$Getratingsummary,
+      callback: BodyResponseCallback<Schema$RatingSummary>
+    ): void;
+    getRatingSummary(
+      callback: BodyResponseCallback<Schema$RatingSummary>
+    ): void;
+    getRatingSummary(
+      paramsOrCallback?:
+        | Params$Resource$Publishers$Items$Getratingsummary
+        | BodyResponseCallback<Schema$RatingSummary>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RatingSummary>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RatingSummary>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RatingSummary>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Publishers$Items$Getratingsummary;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Publishers$Items$Getratingsummary;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromewebstore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RatingSummary>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RatingSummary>(parameters);
       }
     }
 
@@ -957,6 +1439,319 @@ export namespace chromewebstore_v2 {
         );
       } else {
         return createAPIRequest<Schema$PublishItemResponse>(parameters);
+      }
+    }
+
+    /**
+     * Query the metrics for an item.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromewebstore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromewebstore = google.chromewebstore('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chromewebstore',
+     *       'https://www.googleapis.com/auth/chromewebstore.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromewebstore.publishers.items.queryMetrics({
+     *     // Optional. Dimensions to slice the metrics by. At most one dimension can be specified. **Supported dimensions:** - os: The operating system of the user. - app-version: The version of the item. - country: The country of the user. - install-source: The source of the install. - install-type: The type of install (from webstore, inline, or other). - language: The language of the user. - enabled: If the item is enabled or disabled. - utm-campaign: The UTM campaign of the user. - utm-content: The UTM content of the user. - utm-medium: The UTM medium of the user. - utm-source: The UTM source of the user. - utm-term: The UTM term of the user.
+     *     dimensions: 'placeholder-value',
+     *     // Required. The metrics to query the metric set for. **Supported metrics:** - installs: Count of item installs. - installs-7d: Count of item installs in the last 7 days. - uninstalls: Count of item uninstalls. - users: Count of daily active users of the item. - users-7d: Count of 7-day active users of the item. - impressions: Count of item impressions across the entire store front. - page-views: Count of individual views of the item's detail page.
+     *     metrics: 'placeholder-value',
+     *     // Required. The name of the item to query the metrics for. Format: publishers/{publisher\}/items/{item\}
+     *     name: 'publishers/my-publisher/items/my-item',
+     *     // Optional. The maximum number of rows to return. If unspecified, at most 100 rows will be returned. The maximum value is 1000; Values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to the request must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     *     'timeSpec.firstDate.day': 'placeholder-value',
+     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     *     'timeSpec.firstDate.month': 'placeholder-value',
+     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     *     'timeSpec.firstDate.year': 'placeholder-value',
+     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     *     'timeSpec.lastDate.day': 'placeholder-value',
+     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     *     'timeSpec.lastDate.month': 'placeholder-value',
+     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     *     'timeSpec.lastDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metricRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    queryMetrics(
+      params: Params$Resource$Publishers$Items$Querymetrics,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    queryMetrics(
+      params?: Params$Resource$Publishers$Items$Querymetrics,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$QueryItemMetricsResponse>>;
+    queryMetrics(
+      params: Params$Resource$Publishers$Items$Querymetrics,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    queryMetrics(
+      params: Params$Resource$Publishers$Items$Querymetrics,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$QueryItemMetricsResponse>,
+      callback: BodyResponseCallback<Schema$QueryItemMetricsResponse>
+    ): void;
+    queryMetrics(
+      params: Params$Resource$Publishers$Items$Querymetrics,
+      callback: BodyResponseCallback<Schema$QueryItemMetricsResponse>
+    ): void;
+    queryMetrics(
+      callback: BodyResponseCallback<Schema$QueryItemMetricsResponse>
+    ): void;
+    queryMetrics(
+      paramsOrCallback?:
+        | Params$Resource$Publishers$Items$Querymetrics
+        | BodyResponseCallback<Schema$QueryItemMetricsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryItemMetricsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryItemMetricsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$QueryItemMetricsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Publishers$Items$Querymetrics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Publishers$Items$Querymetrics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromewebstore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:queryMetrics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$QueryItemMetricsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$QueryItemMetricsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Rolls back an item's published CRX package to a specified previously published CRX package and publishes it to all users.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromewebstore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromewebstore = google.chromewebstore('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chromewebstore'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromewebstore.publishers.items.rollback({
+     *     // Required. Name of the item to rollback in the form `publishers/{publisherId\}/items/{itemId\}`
+     *     name: 'publishers/my-publisher/items/my-item',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "newVersion": "my_newVersion",
+     *       //   "rollbackReason": "my_rollbackReason",
+     *       //   "targetCrxVersion": "my_targetCrxVersion",
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rollback(
+      params: Params$Resource$Publishers$Items$Rollback,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    rollback(
+      params?: Params$Resource$Publishers$Items$Rollback,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RollbackItemResponse>>;
+    rollback(
+      params: Params$Resource$Publishers$Items$Rollback,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rollback(
+      params: Params$Resource$Publishers$Items$Rollback,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$RollbackItemResponse>,
+      callback: BodyResponseCallback<Schema$RollbackItemResponse>
+    ): void;
+    rollback(
+      params: Params$Resource$Publishers$Items$Rollback,
+      callback: BodyResponseCallback<Schema$RollbackItemResponse>
+    ): void;
+    rollback(callback: BodyResponseCallback<Schema$RollbackItemResponse>): void;
+    rollback(
+      paramsOrCallback?:
+        | Params$Resource$Publishers$Items$Rollback
+        | BodyResponseCallback<Schema$RollbackItemResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RollbackItemResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RollbackItemResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RollbackItemResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Publishers$Items$Rollback;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Publishers$Items$Rollback;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromewebstore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:rollback').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RollbackItemResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RollbackItemResponse>(parameters);
       }
     }
 
@@ -1128,9 +1923,37 @@ export namespace chromewebstore_v2 {
      */
     requestBody?: Schema$CancelSubmissionRequest;
   }
+  export interface Params$Resource$Publishers$Items$Fetchreviews extends StandardParameters {
+    /**
+     * Optional. A filter to apply to the reviews. Only equality comparison on rating is supported, e.g. `rating = 5`.
+     */
+    filter?: string;
+    /**
+     * Required. The item resource name whose reviews are being fetched. Format: publishers/{publisher_id\}/items/{item_id\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional comma-separated list of fields by which to sort the results. The default sort order is ascending (`asc`). Supported fields are: - `rating`: Supported orders are `asc` (default) and `desc`. - `create_time`: Only `desc` (most recent first) is supported; `desc` must be explicitly specified since the default is `asc`. Example: `rating desc`, `create_time desc`, or `rating desc, create_time desc`.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of reviews to return. The service may return fewer than this value. If unspecified, at most 50 reviews will be returned. The maximum value is 200; values above 200 will be coerced to 200.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `FetchItemReviews` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchItemReviews` must match the call that provided the page token.
+     */
+    pageToken?: string;
+  }
   export interface Params$Resource$Publishers$Items$Fetchstatus extends StandardParameters {
     /**
      * Required. Name of the item to retrieve the status of in the form `publishers/{publisherId\}/items/{itemId\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Publishers$Items$Getratingsummary extends StandardParameters {
+    /**
+     * Required. The name of the rating summary to retrieve. Format: publishers/{publisher\}/items/{item\}/ratingSummary
      */
     name?: string;
   }
@@ -1144,6 +1967,63 @@ export namespace chromewebstore_v2 {
      * Request body metadata
      */
     requestBody?: Schema$PublishItemRequest;
+  }
+  export interface Params$Resource$Publishers$Items$Querymetrics extends StandardParameters {
+    /**
+     * Optional. Dimensions to slice the metrics by. At most one dimension can be specified. **Supported dimensions:** - os: The operating system of the user. - app-version: The version of the item. - country: The country of the user. - install-source: The source of the install. - install-type: The type of install (from webstore, inline, or other). - language: The language of the user. - enabled: If the item is enabled or disabled. - utm-campaign: The UTM campaign of the user. - utm-content: The UTM content of the user. - utm-medium: The UTM medium of the user. - utm-source: The UTM source of the user. - utm-term: The UTM term of the user.
+     */
+    dimensions?: string[];
+    /**
+     * Required. The metrics to query the metric set for. **Supported metrics:** - installs: Count of item installs. - installs-7d: Count of item installs in the last 7 days. - uninstalls: Count of item uninstalls. - users: Count of daily active users of the item. - users-7d: Count of 7-day active users of the item. - impressions: Count of item impressions across the entire store front. - page-views: Count of individual views of the item's detail page.
+     */
+    metrics?: string[];
+    /**
+     * Required. The name of the item to query the metrics for. Format: publishers/{publisher\}/items/{item\}
+     */
+    name?: string;
+    /**
+     * Optional. The maximum number of rows to return. If unspecified, at most 100 rows will be returned. The maximum value is 1000; Values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to the request must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    'timeSpec.firstDate.day'?: number;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    'timeSpec.firstDate.month'?: number;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    'timeSpec.firstDate.year'?: number;
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    'timeSpec.lastDate.day'?: number;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    'timeSpec.lastDate.month'?: number;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    'timeSpec.lastDate.year'?: number;
+  }
+  export interface Params$Resource$Publishers$Items$Rollback extends StandardParameters {
+    /**
+     * Required. Name of the item to rollback in the form `publishers/{publisherId\}/items/{itemId\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RollbackItemRequest;
   }
   export interface Params$Resource$Publishers$Items$Setpublisheddeploypercentage extends StandardParameters {
     /**
