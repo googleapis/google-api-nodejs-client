@@ -2,6 +2,9 @@
   "auth": {
     "oauth2": {
       "scopes": {
+        "https://www.googleapis.com/auth/webcontentpublisher.publications.entitlements.readonly.system": {
+          "description": "Private Service: https://www.googleapis.com/auth/webcontentpublisher.publications.entitlements.readonly.system"
+        },
         "https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system": {
           "description": "Private Service: https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system"
         }
@@ -427,7 +430,7 @@
               "type": "string"
             },
             "name": {
-              "description": "Required. The resource name of the publication. Format: publications/{publication_id}",
+              "description": "Required. The resource name of the publication. Format: publications/{publication}",
               "location": "path",
               "pattern": "^publications/[^/]+$",
               "required": true,
@@ -443,6 +446,41 @@
           "response": {
             "$ref": "CheckFreeAccessResponse"
           }
+        },
+        "checkProgramAccess": {
+          "description": "Checks if a reader has active program access.",
+          "flatPath": "v1/publications/{publicationsId}:checkProgramAccess",
+          "httpMethod": "GET",
+          "id": "webcontentpublisher.publications.checkProgramAccess",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The resource name of the publication. Format: publications/{publication}",
+              "location": "path",
+              "pattern": "^publications/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "productId": {
+              "description": "Required. The specific product ID being accessed.",
+              "location": "query",
+              "type": "string"
+            },
+            "swgUserToken": {
+              "description": "Required. The encrypted site token string received from the Chrome HTTP header.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}:checkProgramAccess",
+          "response": {
+            "$ref": "CheckProgramAccessResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/webcontentpublisher.publications.entitlements.readonly.system"
+          ]
         }
       }
     },
@@ -476,7 +514,7 @@
       }
     }
   },
-  "revision": "20261012",
+  "revision": "20261103",
   "rootUrl": "https://webcontentpublisher.googleapis.com/",
   "schemas": {
     "AnswerChoiceTemplate": {
@@ -1533,6 +1571,29 @@
       },
       "type": "object"
     },
+    "CheckProgramAccessResponse": {
+      "description": "Response message for `CheckProgramAccess`.",
+      "id": "CheckProgramAccessResponse",
+      "properties": {
+        "status": {
+          "description": "The entitlement access status.",
+          "enum": [
+            "PROGRAM_ACCESS_STATUS_UNSPECIFIED",
+            "HAS_ACCESS",
+            "NO_ACCESS",
+            "CAP_EXHAUSTED"
+          ],
+          "enumDescriptions": [
+            "Status is unspecified.",
+            "The reader has active program access.",
+            "The reader does not have active program access.",
+            "The program access quota or meter has been exhausted."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ContentPolicyStatus": {
       "description": "The content policy status of the publication, indicating any violations.",
       "id": "ContentPolicyStatus",
@@ -1585,7 +1646,7 @@
           "description": "Optional. Configuration specific to newsletter signup CTAs. Only populated if type is `NEWSLETTER_SIGNUP`."
         },
         "state": {
-          "description": "Output only. The current state of this CTA.",
+          "description": "Optional. The current state of this CTA.",
           "enum": [
             "STATE_UNSPECIFIED",
             "DRAFT",
@@ -1596,7 +1657,6 @@
             "The CTA is a draft and not yet visible to users.",
             "The CTA is active and visible to users."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "surveyConfig": {
@@ -1647,7 +1707,7 @@
           "type": "string"
         },
         "displayText": {
-          "description": "Required. The question prompt displayed to readers.",
+          "description": "Optional. The question prompt displayed to readers (up to 140 characters).",
           "type": "string"
         },
         "id": {
@@ -2042,6 +2102,11 @@
             "$ref": "SurveyQuestion"
           },
           "type": "array"
+        },
+        "reportUrl": {
+          "description": "Output only. Link to the Looker Studio dashboard.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

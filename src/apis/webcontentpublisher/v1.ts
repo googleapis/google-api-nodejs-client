@@ -159,6 +159,15 @@ export namespace webcontentpublisher_v1 {
     isAllowed?: boolean | null;
   }
   /**
+   * Response message for `CheckProgramAccess`.
+   */
+  export interface Schema$CheckProgramAccessResponse {
+    /**
+     * The entitlement access status.
+     */
+    status?: string | null;
+  }
+  /**
    * The content policy status of the publication, indicating any violations.
    */
   export interface Schema$ContentPolicyStatus {
@@ -188,7 +197,7 @@ export namespace webcontentpublisher_v1 {
      */
     newsletterConfig?: Schema$NewsletterConfig;
     /**
-     * Output only. The current state of this CTA.
+     * Optional. The current state of this CTA.
      */
     state?: string | null;
     /**
@@ -222,7 +231,7 @@ export namespace webcontentpublisher_v1 {
      */
     categoryLabel?: string | null;
     /**
-     * Required. The question prompt displayed to readers.
+     * Optional. The question prompt displayed to readers (up to 140 characters).
      */
     displayText?: string | null;
     /**
@@ -477,6 +486,10 @@ export namespace webcontentpublisher_v1 {
      * Optional. Ordered list of questions presented in the survey (1-3 items when `ACTIVE`; 0-3 when `DRAFT`).
      */
     questions?: Schema$SurveyQuestion[];
+    /**
+     * Output only. Link to the Looker Studio dashboard.
+     */
+    reportUrl?: string | null;
   }
   /**
    * A single question within a survey, which can be either a preset question from the catalog or a custom publisher-defined question.
@@ -2102,7 +2115,7 @@ export namespace webcontentpublisher_v1 {
      *   const res = await webcontentpublisher.publications.checkFreeAccess({
      *     // Required. The HTTP referrer.
      *     httpReferrer: 'placeholder-value',
-     *     // Required. The resource name of the publication. Format: publications/{publication_id\}
+     *     // Required. The resource name of the publication. Format: publications/{publication\}
      *     name: 'publications/my-publication',
      *     // Required. The URI of the content.
      *     uri: 'placeholder-value',
@@ -2213,6 +2226,153 @@ export namespace webcontentpublisher_v1 {
         return createAPIRequest<Schema$CheckFreeAccessResponse>(parameters);
       }
     }
+
+    /**
+     * Checks if a reader has active program access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/webcontentpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const webcontentpublisher = google.webcontentpublisher('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/webcontentpublisher.publications.entitlements.readonly.system',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await webcontentpublisher.publications.checkProgramAccess({
+     *     // Required. The resource name of the publication. Format: publications/{publication\}
+     *     name: 'publications/my-publication',
+     *     // Required. The specific product ID being accessed.
+     *     productId: 'placeholder-value',
+     *     // Required. The encrypted site token string received from the Chrome HTTP header.
+     *     swgUserToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    checkProgramAccess(
+      params: Params$Resource$Publications$Checkprogramaccess,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    checkProgramAccess(
+      params?: Params$Resource$Publications$Checkprogramaccess,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckProgramAccessResponse>>;
+    checkProgramAccess(
+      params: Params$Resource$Publications$Checkprogramaccess,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkProgramAccess(
+      params: Params$Resource$Publications$Checkprogramaccess,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$CheckProgramAccessResponse>,
+      callback: BodyResponseCallback<Schema$CheckProgramAccessResponse>
+    ): void;
+    checkProgramAccess(
+      params: Params$Resource$Publications$Checkprogramaccess,
+      callback: BodyResponseCallback<Schema$CheckProgramAccessResponse>
+    ): void;
+    checkProgramAccess(
+      callback: BodyResponseCallback<Schema$CheckProgramAccessResponse>
+    ): void;
+    checkProgramAccess(
+      paramsOrCallback?:
+        | Params$Resource$Publications$Checkprogramaccess
+        | BodyResponseCallback<Schema$CheckProgramAccessResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckProgramAccessResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckProgramAccessResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CheckProgramAccessResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Publications$Checkprogramaccess;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Publications$Checkprogramaccess;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://webcontentpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:checkProgramAccess').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckProgramAccessResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckProgramAccessResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Publications$Checkfreeaccess extends StandardParameters {
@@ -2221,13 +2381,27 @@ export namespace webcontentpublisher_v1 {
      */
     httpReferrer?: string;
     /**
-     * Required. The resource name of the publication. Format: publications/{publication_id\}
+     * Required. The resource name of the publication. Format: publications/{publication\}
      */
     name?: string;
     /**
      * Required. The URI of the content.
      */
     uri?: string;
+  }
+  export interface Params$Resource$Publications$Checkprogramaccess extends StandardParameters {
+    /**
+     * Required. The resource name of the publication. Format: publications/{publication\}
+     */
+    name?: string;
+    /**
+     * Required. The specific product ID being accessed.
+     */
+    productId?: string;
+    /**
+     * Required. The encrypted site token string received from the Chrome HTTP header.
+     */
+    swgUserToken?: string;
   }
 
   export class Resource$Users {
