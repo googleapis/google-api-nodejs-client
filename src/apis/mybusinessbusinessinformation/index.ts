@@ -15,9 +15,11 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {mybusinessbusinessinformation_v1} from './v1';
+import {mybusinessbusinessinformation_v1alpha} from './v1alpha';
 
 export const VERSIONS = {
   v1: mybusinessbusinessinformation_v1.Mybusinessbusinessinformation,
+  v1alpha: mybusinessbusinessinformation_v1alpha.Mybusinessbusinessinformation,
 };
 
 export function mybusinessbusinessinformation(
@@ -26,11 +28,23 @@ export function mybusinessbusinessinformation(
 export function mybusinessbusinessinformation(
   options: mybusinessbusinessinformation_v1.Options
 ): mybusinessbusinessinformation_v1.Mybusinessbusinessinformation;
+export function mybusinessbusinessinformation(
+  version: 'v1alpha'
+): mybusinessbusinessinformation_v1alpha.Mybusinessbusinessinformation;
+export function mybusinessbusinessinformation(
+  options: mybusinessbusinessinformation_v1alpha.Options
+): mybusinessbusinessinformation_v1alpha.Mybusinessbusinessinformation;
 export function mybusinessbusinessinformation<
-  T = mybusinessbusinessinformation_v1.Mybusinessbusinessinformation,
+  T =
+    | mybusinessbusinessinformation_v1.Mybusinessbusinessinformation
+    | mybusinessbusinessinformation_v1alpha.Mybusinessbusinessinformation,
 >(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | mybusinessbusinessinformation_v1.Options
+  versionOrOptions:
+    | 'v1'
+    | mybusinessbusinessinformation_v1.Options
+    | 'v1alpha'
+    | mybusinessbusinessinformation_v1alpha.Options
 ) {
   return getAPI<T>(
     'mybusinessbusinessinformation',
@@ -43,6 +57,7 @@ export function mybusinessbusinessinformation<
 const auth = new AuthPlus();
 export {auth};
 export {mybusinessbusinessinformation_v1};
+export {mybusinessbusinessinformation_v1alpha};
 export {
   AuthPlus,
   GlobalOptions,

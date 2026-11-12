@@ -612,7 +612,7 @@
       }
     }
   },
-  "revision": "20261026",
+  "revision": "20261109",
   "rootUrl": "https://mybusinessbusinessinformation.googleapis.com/",
   "schemas": {
     "AdWordsLocationExtensions": {
@@ -1178,7 +1178,8 @@
           "type": "boolean"
         },
         "canHaveBusinessCalls": {
-          "description": "Output only. Indicates if the listing is eligible for business calls.",
+          "deprecated": true,
+          "description": "Output only. Deprecated: Relates to the Call Tracking feature which is no longer supported. Indicates whether the location is eligible for business calls.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -1244,7 +1245,7 @@
           "type": "string"
         },
         "placeId": {
-          "description": "Output only. If this locationappears on Google Maps, this field is populated with the place ID for the location. This ID can be used in various Places APIs. This field can be set during Create calls, but not for Update.",
+          "description": "Output only. If this location appears on Google Maps, this field is populated with the place ID for the location. This ID can be used in various Places APIs. This field can be set during Create calls, but not for Update.",
           "readOnly": true,
           "type": "string"
         }
