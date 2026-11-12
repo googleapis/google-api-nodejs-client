@@ -1561,7 +1561,7 @@
       }
     }
   },
-  "revision": "20261015",
+  "revision": "20261106",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {
@@ -2039,14 +2039,16 @@
             "ENVIRONMENT_SIZE_SMALL",
             "ENVIRONMENT_SIZE_MEDIUM",
             "ENVIRONMENT_SIZE_LARGE",
-            "ENVIRONMENT_SIZE_EXTRA_LARGE"
+            "ENVIRONMENT_SIZE_EXTRA_LARGE",
+            "ENVIRONMENT_SIZE_X_EXTRA_LARGE"
           ],
           "enumDescriptions": [
             "The size of the environment is unspecified.",
             "The environment size is small.",
             "The environment size is medium.",
             "The environment size is large.",
-            "The environment size is extra large."
+            "The environment size is extra large.",
+            "The environment size is double extra large."
           ],
           "type": "string"
         },
@@ -2091,6 +2093,10 @@
             "Enabled High Resilience mode, including Cloud SQL HA."
           ],
           "type": "string"
+        },
+        "scheduledHibernationConfig": {
+          "$ref": "ScheduledHibernationConfig",
+          "description": "Optional. The configuration for hibernating and resuming the environment on a schedule. Supported for environments that have `mode` set to `DEVELOPMENT`."
         },
         "softwareConfig": {
           "$ref": "SoftwareConfig",
@@ -2856,6 +2862,35 @@
       "properties": {
         "snapshotPath": {
           "description": "The fully-resolved Cloud Storage path of the created snapshot, e.g.: \"gs://my-bucket/snapshots/project_location_environment_timestamp\". This field is populated only if the snapshot creation was successful.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ScheduledHibernationConfig": {
+      "description": "The configuration for hibernating and resuming the environment on a schedule. Supported for environments in the development mode.",
+      "id": "ScheduledHibernationConfig",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Whether hibernating and resuming the environment on a schedule is enabled.",
+          "type": "boolean"
+        },
+        "hibernationSchedules": {
+          "description": "Optional. The cron expressions representing the times when the environment will automatically hibernate, entering the HIBERNATED state.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "resumptionSchedules": {
+          "description": "Optional. The cron expressions representing the times when the environment will automatically resume, entering the RUNNING state.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "timeZone": {
+          "description": "Optional. Time zone that sets the context to interpret the schedule expressions. Expected format is \"UTC+05\", \"UTC-03\", etc.",
           "type": "string"
         }
       },

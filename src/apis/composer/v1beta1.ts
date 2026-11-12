@@ -460,6 +460,10 @@ export namespace composer_v1beta1 {
      */
     resilienceMode?: string | null;
     /**
+     * Optional. The configuration for hibernating and resuming the environment on a schedule. Supported for environments that have `mode` set to `DEVELOPMENT`.
+     */
+    scheduledHibernationConfig?: Schema$ScheduledHibernationConfig;
+    /**
      * Optional. The configuration settings for software inside the environment.
      */
     softwareConfig?: Schema$SoftwareConfig;
@@ -1039,6 +1043,27 @@ export namespace composer_v1beta1 {
      * The fully-resolved Cloud Storage path of the created snapshot, e.g.: "gs://my-bucket/snapshots/project_location_environment_timestamp". This field is populated only if the snapshot creation was successful.
      */
     snapshotPath?: string | null;
+  }
+  /**
+   * The configuration for hibernating and resuming the environment on a schedule. Supported for environments in the development mode.
+   */
+  export interface Schema$ScheduledHibernationConfig {
+    /**
+     * Optional. Whether hibernating and resuming the environment on a schedule is enabled.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. The cron expressions representing the times when the environment will automatically hibernate, entering the HIBERNATED state.
+     */
+    hibernationSchedules?: string[] | null;
+    /**
+     * Optional. The cron expressions representing the times when the environment will automatically resume, entering the RUNNING state.
+     */
+    resumptionSchedules?: string[] | null;
+    /**
+     * Optional. Time zone that sets the context to interpret the schedule expressions. Expected format is "UTC+05", "UTC-03", etc.
+     */
+    timeZone?: string | null;
   }
   /**
    * The configuration for scheduled snapshot creation mechanism.
