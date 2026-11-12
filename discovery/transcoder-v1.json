@@ -12,7 +12,7 @@
   "baseUrl": "https://transcoder.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Transcoder",
-  "description": "This API converts video files into formats suitable for consumer distribution. For more information, see the Transcoder API overview. ",
+  "description": "This API converts video files into formats suitable for consumer distribution.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/transcoder/docs/",
   "fullyEncodeReservedExpansion": true,
@@ -385,7 +385,7 @@
       }
     }
   },
-  "revision": "20250723",
+  "revision": "20261028",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
