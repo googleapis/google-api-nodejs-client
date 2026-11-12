@@ -673,6 +673,36 @@ export namespace bigqueryreservation_v1 {
      */
     permissions?: string[] | null;
   }
+  /**
+   * The request for ReservationService.UpgradeEdition. You must specify at least one reservation or capacity commitment.
+   */
+  export interface Schema$UpgradeEditionRequest {
+    /**
+     * Optional. The resource names of the capacity commitments to upgrade, in the format `projects/{project\}/locations/{location\}/capacityCommitments/{capacity_commitment\}`. For example, `projects/myproject/locations/us-west1/capacityCommitments/123`. These capacity commitments must be in the `ACTIVE` state and must exist under the specified `parent`. The `commitment_start_time` and `commitment_end_time` fields don't change after the upgrade.
+     */
+    capacityCommitments?: string[] | null;
+    /**
+     * Optional. The resource names of the reservations to upgrade, in the format `projects/{project\}/locations/{location\}/reservations/{reservation\}`. For example, `projects/myproject/locations/us-west1/reservations/team1-prod`. These reservations must exist under the specified `parent`.
+     */
+    reservations?: string[] | null;
+    /**
+     * The edition to upgrade the capacity commitments and reservations to. Supported values are `ENTERPRISE` and `ENTERPRISE_PLUS`.
+     */
+    targetEdition?: string | null;
+  }
+  /**
+   * The response for ReservationService.UpgradeEdition.
+   */
+  export interface Schema$UpgradeEditionResponse {
+    /**
+     * The updated capacity commitments after the upgrade.
+     */
+    capacityCommitments?: Schema$CapacityCommitment[];
+    /**
+     * The updated reservations after the upgrade.
+     */
+    reservations?: Schema$Reservation[];
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -1304,6 +1334,161 @@ export namespace bigqueryreservation_v1 {
         return createAPIRequest<Schema$BiReservation>(parameters);
       }
     }
+
+    /**
+     * Upgrades the edition for a list of reservations and capacity commitments. You can only upgrade to a higher edition (from `STANDARD` to `ENTERPRISE` or `ENTERPRISE_PLUS`, from `ENTERPRISE` to `ENTERPRISE_PLUS`, or from `EDITION_UNSPECIFIED` to `ENTERPRISE` or `ENTERPRISE_PLUS`). You can't downgrade an edition. The upgrade must not cause an overall flexible slot increase across the original and target editions (for example, by upgrading a reservation without upgrading its corresponding capacity commitment). Otherwise, the method fails with a `google.rpc.Code.FAILED_PRECONDITION` error. Before the upgrade, the service validates that the resources meet the requirements of the target edition (for example, all reservations within a reservation group must be upgraded together).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.upgradeEdition({
+     *     // The parent resource name that identifies the admin project and location, in the format `projects/{project\}/locations/{location\}`. For example, `projects/myproject/locations/us-west1`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "capacityCommitments": [],
+     *       //   "reservations": [],
+     *       //   "targetEdition": "my_targetEdition"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "capacityCommitments": [],
+     *   //   "reservations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upgradeEdition(
+      params: Params$Resource$Projects$Locations$Upgradeedition,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    upgradeEdition(
+      params?: Params$Resource$Projects$Locations$Upgradeedition,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UpgradeEditionResponse>>;
+    upgradeEdition(
+      params: Params$Resource$Projects$Locations$Upgradeedition,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upgradeEdition(
+      params: Params$Resource$Projects$Locations$Upgradeedition,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$UpgradeEditionResponse>,
+      callback: BodyResponseCallback<Schema$UpgradeEditionResponse>
+    ): void;
+    upgradeEdition(
+      params: Params$Resource$Projects$Locations$Upgradeedition,
+      callback: BodyResponseCallback<Schema$UpgradeEditionResponse>
+    ): void;
+    upgradeEdition(
+      callback: BodyResponseCallback<Schema$UpgradeEditionResponse>
+    ): void;
+    upgradeEdition(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Upgradeedition
+        | BodyResponseCallback<Schema$UpgradeEditionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UpgradeEditionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UpgradeEditionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UpgradeEditionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Upgradeedition;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Upgradeedition;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:upgradeEdition').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UpgradeEditionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UpgradeEditionResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Getbireservation extends StandardParameters {
@@ -1362,6 +1547,17 @@ export namespace bigqueryreservation_v1 {
      * Request body metadata
      */
     requestBody?: Schema$BiReservation;
+  }
+  export interface Params$Resource$Projects$Locations$Upgradeedition extends StandardParameters {
+    /**
+     * The parent resource name that identifies the admin project and location, in the format `projects/{project\}/locations/{location\}`. For example, `projects/myproject/locations/us-west1`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpgradeEditionRequest;
   }
 
   export class Resource$Projects$Locations$Capacitycommitments {
