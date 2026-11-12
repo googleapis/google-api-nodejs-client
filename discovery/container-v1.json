@@ -2811,7 +2811,7 @@
       }
     }
   },
-  "revision": "20261021",
+  "revision": "20261027",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -5470,6 +5470,21 @@
       },
       "type": "object"
     },
+    "EtcHostsEntry": {
+      "description": "Additional entries to be added to /etc/hosts.",
+      "id": "EtcHostsEntry",
+      "properties": {
+        "host": {
+          "description": "The hostname of the host.",
+          "type": "string"
+        },
+        "ip": {
+          "description": "The IPv4 or IPv6 address of the host.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EvictionGracePeriod": {
       "description": "Eviction grace periods are grace periods for each eviction signal.",
       "id": "EvictionGracePeriod",
@@ -6334,6 +6349,52 @@
       },
       "type": "object"
     },
+    "KernelCommandlineOverrides": {
+      "description": "Definition of possible additional kernel command line arguments to be configured to the kernel.",
+      "id": "KernelCommandlineOverrides",
+      "properties": {
+        "initOnAlloc": {
+          "description": "Optional. Defines the change of init_on_alloc.",
+          "enum": [
+            "INIT_ON_ALLOC_UNSPECIFIED",
+            "INIT_ON_ALLOC_OFF"
+          ],
+          "enumDescriptions": [
+            "Default value. GKE will not modify the kernel configuration.",
+            "Disable init_on_alloc."
+          ],
+          "type": "string"
+        },
+        "specRstackOverflow": {
+          "description": "Optional. Defines the change of spec_rstack_overflow.",
+          "enum": [
+            "SPEC_RSTACK_OVERFLOW_UNSPECIFIED",
+            "SPEC_RSTACK_OVERFLOW_OFF"
+          ],
+          "enumDescriptions": [
+            "Default value. GKE will not modify the kernel configuration.",
+            "Disable spec_rstack_overflow."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "KernelOverrides": {
+      "description": "Parameters that can be configured on the kernel.",
+      "id": "KernelOverrides",
+      "properties": {
+        "kernelCommandlineOverrides": {
+          "$ref": "KernelCommandlineOverrides",
+          "description": "Optional. Allow setting for optional kernel command line arguments overrides."
+        },
+        "lruGen": {
+          "$ref": "LRUGen",
+          "description": "Optional. lrugen (Multi-Gen LRU) options"
+        }
+      },
+      "type": "object"
+    },
     "KubeletCertInfo": {
       "description": "Contains expiry information about the kubelet certificate.",
       "id": "KubeletCertInfo",
@@ -6364,6 +6425,22 @@
       },
       "type": "object"
     },
+    "LRUGen": {
+      "description": "lrugen (Multi-Gen LRU) options See https://docs.kernel.org/admin-guide/mm/multigen_lru.html",
+      "id": "LRUGen",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Enable lrugen.",
+          "type": "boolean"
+        },
+        "minTtlMs": {
+          "description": "Optional. Users can write N to min_ttl_ms to prevent the working set of N milliseconds from getting evicted.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "LegacyAbac": {
       "description": "Configuration for the legacy Attribute Based Access Control authorization mode.",
       "id": "LegacyAbac",
@@ -6382,6 +6459,27 @@
         "accurateTimeConfig": {
           "$ref": "AccurateTimeConfig",
           "description": "Optional. The accurate time configuration for the node pool."
+        },
+        "additionalEtcHosts": {
+          "description": "Optional. Additional entries to be added to /etc/hosts.",
+          "items": {
+            "$ref": "EtcHostsEntry"
+          },
+          "type": "array"
+        },
+        "additionalEtcResolvConf": {
+          "description": "Optional. Additional entries to be added to /etc/resolv.conf.",
+          "items": {
+            "$ref": "ResolvedConfEntry"
+          },
+          "type": "array"
+        },
+        "additionalEtcSystemdResolvedConf": {
+          "description": "Optional. Additional entries to be added to /etc/systemd/resolved.conf.",
+          "items": {
+            "$ref": "ResolvedConfEntry"
+          },
+          "type": "array"
         },
         "cgroupMode": {
           "description": "cgroup_mode specifies the cgroup mode to be used on the node.",
@@ -6409,6 +6507,10 @@
           "$ref": "HugepagesConfig",
           "description": "Optional. Amounts for 2M and 1G hugepages"
         },
+        "kernelOverrides": {
+          "$ref": "KernelOverrides",
+          "description": "Optional. Defines the kernel overrides to be applied to the nodes. Note: sysctl changes are defined separately in the sysctls fields."
+        },
         "nodeKernelModuleLoading": {
           "$ref": "NodeKernelModuleLoading",
           "description": "Optional. Configuration for kernel module loading on nodes. When enabled, the node pool will be provisioned with a Container-Optimized OS image that enforces kernel module signature verification."
@@ -6427,6 +6529,10 @@
           },
           "description": "The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.neigh.default.gc_thresh1 net.ipv4.neigh.default.gc_thresh2 net.ipv4.neigh.default.gc_thresh3 net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_mtu_probing net.ipv4.tcp_max_orphans net.ipv4.tcp_max_tw_buckets net.ipv4.tcp_syn_retries net.ipv4.tcp_ecn net.ipv4.tcp_congestion_control net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.keys.maxkeys kernel.keys.maxbytes kernel.shmmni kernel.shmmax kernel.shmall kernel.core_pattern kernel.perf_event_paranoid kernel.sched_rt_runtime_us kernel.softlockup_panic kernel.yama.ptrace_scope kernel.kptr_restrict kernel.dmesg_restrict kernel.sysrq fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_background_bytes vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_bytes vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes",
           "type": "object"
+        },
+        "timeZone": {
+          "description": "Optional. Configures the timezone of the node.",
+          "type": "string"
         },
         "transparentHugepageDefrag": {
           "description": "Optional. Defines the transparent hugepage defrag configuration on the node. VM hugepage allocation can be managed by either limiting defragmentation for delayed allocation or skipping it entirely for immediate allocation only. See https://docs.kernel.org/admin-guide/mm/transhuge.html for more details.",
@@ -8963,6 +9069,24 @@
           "description": "Optional. The amount of memory to reserve for system daemons (in MiB). This is a user-specified value. If unspecified, GKE decides the default based on node version using different formula.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResolvedConfEntry": {
+      "description": "Additional entries to be added to resolved.conf.",
+      "id": "ResolvedConfEntry",
+      "properties": {
+        "key": {
+          "description": "The key of resolved.conf",
+          "type": "string"
+        },
+        "value": {
+          "description": "Optional. The value of resolved.conf",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
