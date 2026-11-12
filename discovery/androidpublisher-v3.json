@@ -5970,7 +5970,7 @@
       }
     }
   },
-  "revision": "20261026",
+  "revision": "20261111",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -9628,7 +9628,7 @@
           "additionalProperties": {
             "$ref": "Price"
           },
-          "description": "Prices per buyer region. None of these can be zero, as in-app products are never free. Map key is region code, as defined by ISO 3166-2.",
+          "description": "Prices per buyer region. None of these can be zero, as in-app products are never free. Map key is region code, as defined by ISO 3166-1 alpha-2.",
           "type": "object"
         },
         "purchaseType": {
@@ -10991,7 +10991,7 @@
           "description": "The price defined in the purchase option for this region will be used."
         },
         "regionCode": {
-          "description": "Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g., \"US\".",
+          "description": "Required. Region code this configuration applies to, as defined by ISO 3166-1 alpha-2, e.g., \"US\".",
           "type": "string"
         },
         "relativeDiscount": {
@@ -11154,7 +11154,7 @@
           "description": "The price of the purchase option in the specified region. Must be set in the currency that is linked to the specified region."
         },
         "regionCode": {
-          "description": "Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g., \"US\".",
+          "description": "Required. Region code this configuration applies to, as defined by ISO 3166-1 alpha-2, e.g., \"US\".",
           "type": "string"
         }
       },
@@ -12359,7 +12359,7 @@
           "description": "The price of the base plan in the specified region. Must be set if the base plan is available to new subscribers. Must be set in the currency that is linked to the specified region."
         },
         "regionCode": {
-          "description": "Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g. \"US\".",
+          "description": "Required. Region code this configuration applies to, as defined by ISO 3166-1 alpha-2, e.g. \"US\".",
           "type": "string"
         }
       },
@@ -12389,7 +12389,7 @@
           "type": "string"
         },
         "regionCode": {
-          "description": "Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g. \"US\".",
+          "description": "Required. Region code this configuration applies to, as defined by ISO 3166-1 alpha-2, e.g. \"US\".",
           "type": "string"
         }
       },
@@ -12418,7 +12418,7 @@
           "type": "string"
         },
         "regionCode": {
-          "description": "Region code this configuration applies to, as defined by ISO 3166-2, e.g. \"US\".",
+          "description": "Region code this configuration applies to, as defined by ISO 3166-1 alpha-2, e.g. \"US\".",
           "type": "string"
         }
       },
@@ -12433,7 +12433,7 @@
           "type": "boolean"
         },
         "regionCode": {
-          "description": "Required. Immutable. Region code this configuration applies to, as defined by ISO 3166-2, e.g. \"US\".",
+          "description": "Required. Immutable. Region code this configuration applies to, as defined by ISO 3166-1 alpha-2, e.g. \"US\".",
           "type": "string"
         }
       },
@@ -12482,7 +12482,7 @@
           "type": "boolean"
         },
         "regionCode": {
-          "description": "Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g. \"US\".",
+          "description": "Required. Region code this configuration applies to, as defined by ISO 3166-1 alpha-2, e.g. \"US\".",
           "type": "string"
         },
         "streamingTaxType": {
@@ -12733,7 +12733,7 @@
       "id": "RestrictedPaymentCountries",
       "properties": {
         "regionCodes": {
-          "description": "Required. Region codes to impose payment restrictions on, as defined by ISO 3166-2, e.g. \"US\".",
+          "description": "Required. Region codes to impose payment restrictions on, as defined by ISO 3166-1 alpha-2, e.g. \"US\".",
           "items": {
             "type": "string"
           },

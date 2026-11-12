@@ -2694,7 +2694,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string | null;
     /**
-     * Prices per buyer region. None of these can be zero, as in-app products are never free. Map key is region code, as defined by ISO 3166-2.
+     * Prices per buyer region. None of these can be zero, as in-app products are never free. Map key is region code, as defined by ISO 3166-1 alpha-2.
      */
     prices?: {[key: string]: Schema$Price} | null;
     /**
@@ -3656,7 +3656,7 @@ export namespace androidpublisher_v3 {
      */
     noOverride?: Schema$OneTimeProductOfferNoPriceOverrideOptions;
     /**
-     * Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g., "US".
+     * Required. Region code this configuration applies to, as defined by ISO 3166-1 alpha-2, e.g., "US".
      */
     regionCode?: string | null;
     /**
@@ -3752,7 +3752,7 @@ export namespace androidpublisher_v3 {
      */
     price?: Schema$Money;
     /**
-     * Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g., "US".
+     * Required. Region code this configuration applies to, as defined by ISO 3166-1 alpha-2, e.g., "US".
      */
     regionCode?: string | null;
   }
@@ -4621,7 +4621,7 @@ export namespace androidpublisher_v3 {
      */
     price?: Schema$Money;
     /**
-     * Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g. "US".
+     * Required. Region code this configuration applies to, as defined by ISO 3166-1 alpha-2, e.g. "US".
      */
     regionCode?: string | null;
   }
@@ -4638,7 +4638,7 @@ export namespace androidpublisher_v3 {
      */
     priceIncreaseType?: string | null;
     /**
-     * Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g. "US".
+     * Required. Region code this configuration applies to, as defined by ISO 3166-1 alpha-2, e.g. "US".
      */
     regionCode?: string | null;
   }
@@ -4651,7 +4651,7 @@ export namespace androidpublisher_v3 {
      */
     productAgeRatingTier?: string | null;
     /**
-     * Region code this configuration applies to, as defined by ISO 3166-2, e.g. "US".
+     * Region code this configuration applies to, as defined by ISO 3166-1 alpha-2, e.g. "US".
      */
     regionCode?: string | null;
   }
@@ -4664,7 +4664,7 @@ export namespace androidpublisher_v3 {
      */
     newSubscriberAvailability?: boolean | null;
     /**
-     * Required. Immutable. Region code this configuration applies to, as defined by ISO 3166-2, e.g. "US".
+     * Required. Immutable. Region code this configuration applies to, as defined by ISO 3166-1 alpha-2, e.g. "US".
      */
     regionCode?: string | null;
   }
@@ -4706,7 +4706,7 @@ export namespace androidpublisher_v3 {
      */
     eligibleForStreamingServiceTaxRate?: boolean | null;
     /**
-     * Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g. "US".
+     * Required. Region code this configuration applies to, as defined by ISO 3166-1 alpha-2, e.g. "US".
      */
     regionCode?: string | null;
     /**
@@ -4835,7 +4835,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$RestrictedPaymentCountries {
     /**
-     * Required. Region codes to impose payment restrictions on, as defined by ISO 3166-2, e.g. "US".
+     * Required. Region codes to impose payment restrictions on, as defined by ISO 3166-1 alpha-2, e.g. "US".
      */
     regionCodes?: string[] | null;
   }
