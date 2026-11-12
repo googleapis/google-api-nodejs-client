@@ -657,6 +657,15 @@ export namespace alloydb_v1 {
     poolerScalingType?: string | null;
   }
   /**
+   * Connections count policy for the autoscaler.
+   */
+  export interface Schema$ConnectionsCount {
+    /**
+     * Optional. The target number of connections for the autoscaler to scale the instance to.
+     */
+    targetCount?: string | null;
+  }
+  /**
    * ContinuousBackupConfig describes the continuous backups recovery configurations of a cluster.
    */
   export interface Schema$ContinuousBackupConfig {
@@ -1544,6 +1553,10 @@ export namespace alloydb_v1 {
    * Policy for the autoscaler.
    */
   export interface Schema$Policy {
+    /**
+     * Optional. Connections count policy for the autoscaler. If not set, the autoscaler will not use connection count for scaling.
+     */
+    connectionsCount?: Schema$ConnectionsCount;
     /**
      * The period of time in seconds after a new node is created before the autoscaler will incorporate its resource usage (e.g. CPU utilization) into the autoscaling recommendation algorithm.
      */

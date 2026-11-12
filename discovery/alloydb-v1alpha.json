@@ -2086,7 +2086,7 @@
       }
     }
   },
-  "revision": "20261018",
+  "revision": "20261026",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -3102,6 +3102,18 @@
             "The number of poolers is automatically determined by the service based on the VM size.",
             "The number of poolers is kept unchanged no matter the machine size."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConnectionsCount": {
+      "description": "Connections count policy for the autoscaler.",
+      "id": "ConnectionsCount",
+      "properties": {
+        "targetCount": {
+          "description": "Optional. The target number of connections for the autoscaler to scale the instance to.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -4682,6 +4694,10 @@
       "description": "Policy for the autoscaler.",
       "id": "Policy",
       "properties": {
+        "connectionsCount": {
+          "$ref": "ConnectionsCount",
+          "description": "Optional. Connections count policy for the autoscaler. If not set, the autoscaler will not use connection count for scaling."
+        },
         "coolDownPeriodSec": {
           "description": "The period of time in seconds after a new node is created before the autoscaler will incorporate its resource usage (e.g. CPU utilization) into the autoscaling recommendation algorithm.",
           "format": "int64",
