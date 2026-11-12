@@ -624,7 +624,7 @@
                       ],
                       "parameters": {
                         "force": {
-                          "description": "Optional. If set to true, the request will force the deletion of the User.",
+                          "description": "Optional. If set to `true`, the request will `force` the deletion of the User.",
                           "location": "query",
                           "type": "boolean"
                         },
@@ -788,7 +788,7 @@
       }
     }
   },
-  "revision": "20261021",
+  "revision": "20261028",
   "rootUrl": "https://ftp.googleapis.com/",
   "schemas": {
     "AllowedConsumer": {
@@ -1010,6 +1010,33 @@
       },
       "type": "object"
     },
+    "LoggingConfig": {
+      "description": "Configuration for Cloud Logging on the Server.",
+      "id": "LoggingConfig",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Whether platform logging (`ftp.googleapis.com/ftp_events`) is enabled for this server. Defaults to `false`.",
+          "type": "boolean"
+        },
+        "verbosity": {
+          "description": "Optional. The verbosity level of logs emitted when `enabled` is `true`. Defaults to `ALL_EVENTS` if unspecified when `enabled` is `true`.",
+          "enum": [
+            "LOG_VERBOSITY_UNSPECIFIED",
+            "ALL_EVENTS",
+            "TRANSFERS_AND_AUTH_ONLY",
+            "ERRORS_ONLY"
+          ],
+          "enumDescriptions": [
+            "Default value. Defaults to `ALL_EVENTS` when logging is `enabled`.",
+            "Logs all SFTP events, including authentication, session lifecycle, file transfers, and directory/metadata commands.",
+            "Logs authentication, session lifecycle, file transfers, and failed commands. Suppresses successful non-transfer commands (such as LIST or STAT).",
+            "Logs only failed operations and errors."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
@@ -1158,6 +1185,10 @@
           },
           "description": "Optional. Labels as key value pairs",
           "type": "object"
+        },
+        "loggingConfig": {
+          "$ref": "LoggingConfig",
+          "description": "Optional. Configuration for Cloud Logging on the Server."
         },
         "name": {
           "description": "Identifier. name of resource",
