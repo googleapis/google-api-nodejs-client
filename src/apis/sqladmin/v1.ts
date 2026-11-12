@@ -3427,42 +3427,6 @@ export namespace sqladmin_v1 {
     maintenanceType?: string | null;
   }
   /**
-   * Request to start executing a captured workload on a replay instance (the Cloud SQL instance where the recorded SQL queries are executed).
-   */
-  export interface Schema$SqlWorkloadCapturesStartReplayRequest {
-    /**
-     * Required. Contains details about the start workload replay operation.
-     */
-    startWorkloadReplayContext?: Schema$StartWorkloadReplayContext;
-  }
-  /**
-   * Request to start recording traffic from the primary instance (captured workload).
-   */
-  export interface Schema$SqlWorkloadCapturesStartRequest {
-    /**
-     * Optional. Contains details about the start workload capture operation.
-     */
-    startWorkloadCaptureContext?: Schema$StartWorkloadCaptureContext;
-  }
-  /**
-   * Request to stop an active workload replay on a target Cloud SQL replay instance.
-   */
-  export interface Schema$SqlWorkloadCapturesStopReplayRequest {
-    /**
-     * Optional. Contains details about the stop workload replay operation. If omitted, default values are used.
-     */
-    stopWorkloadReplayContext?: Schema$StopWorkloadReplayContext;
-  }
-  /**
-   * Request to stop recording traffic from the primary instance.
-   */
-  export interface Schema$SqlWorkloadCapturesStopRequest {
-    /**
-     * Optional. Contains details about the stop workload capture operation.
-     */
-    stopWorkloadCaptureContext?: Schema$StopWorkloadCaptureContext;
-  }
-  /**
    * SslCerts Resource
    */
   export interface Schema$SslCert {
@@ -3872,6 +3836,9 @@ export namespace sqladmin_v1 {
      */
     workloadId?: string | null;
   }
+  /**
+   * Instance list captured workloads response.
+   */
   export interface Schema$WorkloadCapturesListResponse {
     /**
      * This is always `sql#workloadCapturesList`.
@@ -3881,6 +3848,42 @@ export namespace sqladmin_v1 {
      * List of captured workloads for the instance.
      */
     workloadCaptures?: Schema$WorkloadCapture[];
+  }
+  /**
+   * Request to start executing a captured workload on a replay instance (the Cloud SQL instance where the recorded SQL queries are executed).
+   */
+  export interface Schema$WorkloadCapturesStartReplayRequest {
+    /**
+     * Required. Contains details about the start workload replay operation.
+     */
+    startWorkloadReplayContext?: Schema$StartWorkloadReplayContext;
+  }
+  /**
+   * Request to start recording traffic from the primary instance (captured workload).
+   */
+  export interface Schema$WorkloadCapturesStartRequest {
+    /**
+     * Optional. Contains details about the start workload capture operation.
+     */
+    startWorkloadCaptureContext?: Schema$StartWorkloadCaptureContext;
+  }
+  /**
+   * Request to stop an active workload replay on a target Cloud SQL replay instance.
+   */
+  export interface Schema$WorkloadCapturesStopReplayRequest {
+    /**
+     * Optional. Contains details about the stop workload replay operation. If omitted, default values are used.
+     */
+    stopWorkloadReplayContext?: Schema$StopWorkloadReplayContext;
+  }
+  /**
+   * Request to stop recording traffic from the primary instance.
+   */
+  export interface Schema$WorkloadCapturesStopRequest {
+    /**
+     * Optional. Contains details about the stop workload capture operation.
+     */
+    stopWorkloadCaptureContext?: Schema$StopWorkloadCaptureContext;
   }
 
   export class Resource$Backupruns {
@@ -19623,7 +19626,7 @@ export namespace sqladmin_v1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$SqlWorkloadCapturesStartRequest;
+    requestBody?: Schema$WorkloadCapturesStartRequest;
   }
   export interface Params$Resource$Workloadcaptures$Startreplay extends StandardParameters {
     /**
@@ -19642,7 +19645,7 @@ export namespace sqladmin_v1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$SqlWorkloadCapturesStartReplayRequest;
+    requestBody?: Schema$WorkloadCapturesStartReplayRequest;
   }
   export interface Params$Resource$Workloadcaptures$Stop extends StandardParameters {
     /**
@@ -19657,7 +19660,7 @@ export namespace sqladmin_v1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$SqlWorkloadCapturesStopRequest;
+    requestBody?: Schema$WorkloadCapturesStopRequest;
   }
   export interface Params$Resource$Workloadcaptures$Stopreplay extends StandardParameters {
     /**
@@ -19672,6 +19675,6 @@ export namespace sqladmin_v1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$SqlWorkloadCapturesStopReplayRequest;
+    requestBody?: Schema$WorkloadCapturesStopReplayRequest;
   }
 }
