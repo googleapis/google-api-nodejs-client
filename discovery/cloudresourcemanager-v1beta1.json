@@ -568,7 +568,7 @@
       }
     }
   },
-  "revision": "20261011",
+  "revision": "20261026",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "Ancestor": {
@@ -1186,6 +1186,21 @@
             "The project has been marked for deletion by the user (by invoking DeleteProject) or by the system (Google Cloud Platform). This can generally be reversed by invoking UndeleteProject.",
             "This lifecycle state is no longer used and is not returned by the API."
           ],
+          "type": "string"
+        },
+        "managementType": {
+          "description": "Output only. The type of Management Project. This field is only populated if `is_management_project` is `true`.",
+          "enum": [
+            "MANAGEMENT_TYPE_UNSPECIFIED",
+            "SELF_MANAGED",
+            "HUB"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "The Management Project is a self-managed project that constitutes its own boundary.",
+            "The Management Project is a hub project that manages resources across a boundary."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "name": {

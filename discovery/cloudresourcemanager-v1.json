@@ -287,7 +287,7 @@
     "liens": {
       "methods": {
         "create": {
-          "description": "Create a Lien which applies to the resource denoted by the `parent` field. Callers of this method will require permission on the `parent` resource. For example, applying to `projects/1234` requires permission `resourcemanager.projects.updateLiens`. NOTE: Some resources may limit the number of Liens which may be applied.",
+          "description": "Creates a Lien which applies to the resource denoted by the `parent` field. Callers of this method will require permission on the `parent` resource. For example, applying to `projects/1234` requires permission `resourcemanager.projects.updateLiens`. NOTE: Some resources may limit the number of Liens which may be applied.",
           "flatPath": "v1/liens",
           "httpMethod": "POST",
           "id": "cloudresourcemanager.liens.create",
@@ -306,7 +306,7 @@
           ]
         },
         "delete": {
-          "description": "Delete a Lien by `name`. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.updateLiens`.",
+          "description": "Deletes a Lien by `name`. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.updateLiens`.",
           "flatPath": "v1/liens/{liensId}",
           "httpMethod": "DELETE",
           "id": "cloudresourcemanager.liens.delete",
@@ -332,7 +332,7 @@
           ]
         },
         "get": {
-          "description": "Retrieve a Lien by `name`. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.get`",
+          "description": "Retrieves a Lien by `name`. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.get`",
           "flatPath": "v1/liens/{liensId}",
           "httpMethod": "GET",
           "id": "cloudresourcemanager.liens.get",
@@ -358,7 +358,7 @@
           ]
         },
         "list": {
-          "description": "List all Liens applied to the `parent` resource. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.get`.",
+          "description": "Lists all Liens applied to the `parent` resource. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.get`.",
           "flatPath": "v1/liens",
           "httpMethod": "GET",
           "id": "cloudresourcemanager.liens.list",
@@ -1171,7 +1171,7 @@
       }
     }
   },
-  "revision": "20261011",
+  "revision": "20261107",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "Ancestor": {
@@ -2119,6 +2119,21 @@
             "The project has been marked for deletion by the user (by invoking DeleteProject) or by the system (Google Cloud Platform). This can generally be reversed by invoking UndeleteProject.",
             "This lifecycle state is no longer used and not returned by the API."
           ],
+          "type": "string"
+        },
+        "managementType": {
+          "description": "Output only. The type of Management Project. This field is only populated if `is_management_project` is `true`.",
+          "enum": [
+            "MANAGEMENT_TYPE_UNSPECIFIED",
+            "SELF_MANAGED",
+            "HUB"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "The Management Project is a self-managed project that constitutes its own boundary.",
+            "The Management Project is a hub project that manages resources across a boundary."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "name": {
