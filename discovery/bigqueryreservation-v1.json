@@ -384,6 +384,35 @@
                 "https://www.googleapis.com/auth/bigquery",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "upgradeEdition": {
+              "description": "Upgrades the edition for a list of reservations and capacity commitments. You can only upgrade to a higher edition (from `STANDARD` to `ENTERPRISE` or `ENTERPRISE_PLUS`, from `ENTERPRISE` to `ENTERPRISE_PLUS`, or from `EDITION_UNSPECIFIED` to `ENTERPRISE` or `ENTERPRISE_PLUS`). You can't downgrade an edition. The upgrade must not cause an overall flexible slot increase across the original and target editions (for example, by upgrading a reservation without upgrading its corresponding capacity commitment). Otherwise, the method fails with a `google.rpc.Code.FAILED_PRECONDITION` error. Before the upgrade, the service validates that the resources meet the requirements of the target edition (for example, all reservations within a reservation group must be upgraded together).",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:upgradeEdition",
+              "httpMethod": "POST",
+              "id": "bigqueryreservation.projects.locations.upgradeEdition",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "The parent resource name that identifies the admin project and location, in the format `projects/{project}/locations/{location}`. For example, `projects/myproject/locations/us-west1`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}:upgradeEdition",
+              "request": {
+                "$ref": "UpgradeEditionRequest"
+              },
+              "response": {
+                "$ref": "UpgradeEditionResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/bigquery",
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           },
           "resources": {
@@ -1322,7 +1351,7 @@
       }
     }
   },
-  "revision": "20261024",
+  "revision": "20261102",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -2212,6 +2241,64 @@
           "description": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UpgradeEditionRequest": {
+      "description": "The request for ReservationService.UpgradeEdition. You must specify at least one reservation or capacity commitment.",
+      "id": "UpgradeEditionRequest",
+      "properties": {
+        "capacityCommitments": {
+          "description": "Optional. The resource names of the capacity commitments to upgrade, in the format `projects/{project}/locations/{location}/capacityCommitments/{capacity_commitment}`. For example, `projects/myproject/locations/us-west1/capacityCommitments/123`. These capacity commitments must be in the `ACTIVE` state and must exist under the specified `parent`. The `commitment_start_time` and `commitment_end_time` fields don't change after the upgrade.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "reservations": {
+          "description": "Optional. The resource names of the reservations to upgrade, in the format `projects/{project}/locations/{location}/reservations/{reservation}`. For example, `projects/myproject/locations/us-west1/reservations/team1-prod`. These reservations must exist under the specified `parent`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "targetEdition": {
+          "description": "The edition to upgrade the capacity commitments and reservations to. Supported values are `ENTERPRISE` and `ENTERPRISE_PLUS`.",
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "STANDARD",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS"
+          ],
+          "enumDescriptions": [
+            "Default value, which will be treated as ENTERPRISE.",
+            "Standard edition.",
+            "Enterprise edition.",
+            "Enterprise Plus edition."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpgradeEditionResponse": {
+      "description": "The response for ReservationService.UpgradeEdition.",
+      "id": "UpgradeEditionResponse",
+      "properties": {
+        "capacityCommitments": {
+          "description": "The updated capacity commitments after the upgrade.",
+          "items": {
+            "$ref": "CapacityCommitment"
+          },
+          "type": "array"
+        },
+        "reservations": {
+          "description": "The updated reservations after the upgrade.",
+          "items": {
+            "$ref": "Reservation"
           },
           "type": "array"
         }
