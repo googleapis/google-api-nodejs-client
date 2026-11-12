@@ -255,7 +255,7 @@ export namespace css_v1 {
      */
     description?: string | null;
     /**
-     * The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center).
+     * The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center). Supported values are: - `css_ads_experiences` - `css_organic_experiences`
      */
     excludedDestinations?: string[] | null;
     /**
@@ -311,7 +311,7 @@ export namespace css_v1 {
      */
     imageLink?: string | null;
     /**
-     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`.
+     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excluded_destinations`. Supported values are: - `css_ads_experiences` - `css_organic_experiences`
      */
     includedDestinations?: string[] | null;
     /**

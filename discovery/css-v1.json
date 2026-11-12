@@ -547,7 +547,7 @@
       }
     }
   },
-  "revision": "20260930",
+  "revision": "20261104",
   "rootUrl": "https://css.googleapis.com/",
   "schemas": {
     "Account": {
@@ -739,7 +739,7 @@
           "type": "string"
         },
         "excludedDestinations": {
-          "description": "The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center).",
+          "description": "The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center). Supported values are: - `css_ads_experiences` - `css_organic_experiences`",
           "items": {
             "type": "string"
           },
@@ -799,7 +799,7 @@
           "type": "string"
         },
         "includedDestinations": {
-          "description": "The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`.",
+          "description": "The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excluded_destinations`. Supported values are: - `css_ads_experiences` - `css_organic_experiences`",
           "items": {
             "type": "string"
           },
