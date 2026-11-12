@@ -475,7 +475,7 @@ export namespace games_v1 {
     player_id?: string | null;
   }
   /**
-   * Request message for PlayerGameEvents.BatchRecordEvents Next ID: 7
+   * Request message for PlayerGameEvents.BatchRecordEvents Next ID: 8
    */
   export interface Schema$BatchRecordEventsRequest {
     /**
@@ -486,6 +486,10 @@ export namespace games_v1 {
      * Required. A list of player game events to be recorded. Maximum of 30 events per batch request.
      */
     events?: Schema$PlayerGameEvent[];
+    /**
+     * Optional. Developer-provided fraud or integrity verdicts passed as a request parameter. Maximum of 10 integrity verdicts per batch request.
+     */
+    integrityVerdicts?: Schema$DeveloperIntegrityVerdict[];
     /**
      * Required. Application package name (e.g., "com.example.game").
      */
@@ -541,6 +545,23 @@ export namespace games_v1 {
      * Token corresponding to the next page of results.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Represents a developer-provided fraud or integrity verdict.
+   */
+  export interface Schema$DeveloperIntegrityVerdict {
+    /**
+     * Required. The standardized verdict category.
+     */
+    category?: string | null;
+    /**
+     * Optional. Free-form diagnostic description or internal error code. Maximum length: 128 characters. Stored for console debugging; never shown to players.
+     */
+    description?: string | null;
+    /**
+     * Required. The source that issued the verdict.
+     */
+    source?: string | null;
   }
   /**
    * Container for a URL end point of the requested type.
@@ -4471,6 +4492,7 @@ export namespace games_v1 {
      *       // {
      *       //   "droidGuardBlob": "my_droidGuardBlob",
      *       //   "events": [],
+     *       //   "integrityVerdicts": [],
      *       //   "packageName": "my_packageName",
      *       //   "requestTime": "my_requestTime",
      *       //   "salt": "my_salt"
