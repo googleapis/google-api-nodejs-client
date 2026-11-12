@@ -535,6 +535,10 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     lifecycleState?: string | null;
     /**
+     * Output only. The type of Management Project. This field is only populated if `is_management_project` is `true`.
+     */
+    managementType?: string | null;
+    /**
      * The optional user-assigned display name of the Project. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point. Example: `My Project` Read-write.
      */
     name?: string | null;
@@ -1681,6 +1685,7 @@ export namespace cloudresourcemanager_v1beta1 {
      *       //   "isManagementProject": false,
      *       //   "labels": {},
      *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "managementType": "my_managementType",
      *       //   "name": "my_name",
      *       //   "parent": {},
      *       //   "projectId": "my_projectId",
@@ -1697,6 +1702,7 @@ export namespace cloudresourcemanager_v1beta1 {
      *   //   "isManagementProject": false,
      *   //   "labels": {},
      *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "managementType": "my_managementType",
      *   //   "name": "my_name",
      *   //   "parent": {},
      *   //   "projectId": "my_projectId",
@@ -1975,6 +1981,7 @@ export namespace cloudresourcemanager_v1beta1 {
      *   //   "isManagementProject": false,
      *   //   "labels": {},
      *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "managementType": "my_managementType",
      *   //   "name": "my_name",
      *   //   "parent": {},
      *   //   "projectId": "my_projectId",
@@ -3000,6 +3007,7 @@ export namespace cloudresourcemanager_v1beta1 {
      *       //   "isManagementProject": false,
      *       //   "labels": {},
      *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "managementType": "my_managementType",
      *       //   "name": "my_name",
      *       //   "parent": {},
      *       //   "projectId": "my_projectId",
@@ -3016,6 +3024,7 @@ export namespace cloudresourcemanager_v1beta1 {
      *   //   "isManagementProject": false,
      *   //   "labels": {},
      *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "managementType": "my_managementType",
      *   //   "name": "my_name",
      *   //   "parent": {},
      *   //   "projectId": "my_projectId",

@@ -791,6 +791,10 @@ export namespace cloudresourcemanager_v1 {
      */
     lifecycleState?: string | null;
     /**
+     * Output only. The type of Management Project. This field is only populated if `is_management_project` is `true`.
+     */
+    managementType?: string | null;
+    /**
      * The optional user-assigned display name of the Project. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point. Example: `My Project` Read-write.
      */
     name?: string | null;
@@ -1979,7 +1983,7 @@ export namespace cloudresourcemanager_v1 {
     }
 
     /**
-     * Create a Lien which applies to the resource denoted by the `parent` field. Callers of this method will require permission on the `parent` resource. For example, applying to `projects/1234` requires permission `resourcemanager.projects.updateLiens`. NOTE: Some resources may limit the number of Liens which may be applied.
+     * Creates a Lien which applies to the resource denoted by the `parent` field. Callers of this method will require permission on the `parent` resource. For example, applying to `projects/1234` requires permission `resourcemanager.projects.updateLiens`. NOTE: Some resources may limit the number of Liens which may be applied.
      * @example
      * ```js
      * // Before running the sample:
@@ -2130,7 +2134,7 @@ export namespace cloudresourcemanager_v1 {
     }
 
     /**
-     * Delete a Lien by `name`. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.updateLiens`.
+     * Deletes a Lien by `name`. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.updateLiens`.
      * @example
      * ```js
      * // Before running the sample:
@@ -2264,7 +2268,7 @@ export namespace cloudresourcemanager_v1 {
     }
 
     /**
-     * Retrieve a Lien by `name`. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.get`
+     * Retrieves a Lien by `name`. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.get`
      * @example
      * ```js
      * // Before running the sample:
@@ -2405,7 +2409,7 @@ export namespace cloudresourcemanager_v1 {
     }
 
     /**
-     * List all Liens applied to the `parent` resource. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.get`.
+     * Lists all Liens applied to the `parent` resource. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.get`.
      * @example
      * ```js
      * // Before running the sample:
@@ -4711,6 +4715,7 @@ export namespace cloudresourcemanager_v1 {
      *       //   "isManagementProject": false,
      *       //   "labels": {},
      *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "managementType": "my_managementType",
      *       //   "name": "my_name",
      *       //   "parent": {},
      *       //   "projectId": "my_projectId",
@@ -5002,6 +5007,7 @@ export namespace cloudresourcemanager_v1 {
      *   //   "isManagementProject": false,
      *   //   "labels": {},
      *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "managementType": "my_managementType",
      *   //   "name": "my_name",
      *   //   "parent": {},
      *   //   "projectId": "my_projectId",
@@ -6808,6 +6814,7 @@ export namespace cloudresourcemanager_v1 {
      *       //   "isManagementProject": false,
      *       //   "labels": {},
      *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "managementType": "my_managementType",
      *       //   "name": "my_name",
      *       //   "parent": {},
      *       //   "projectId": "my_projectId",
@@ -6825,6 +6832,7 @@ export namespace cloudresourcemanager_v1 {
      *   //   "isManagementProject": false,
      *   //   "labels": {},
      *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "managementType": "my_managementType",
      *   //   "name": "my_name",
      *   //   "parent": {},
      *   //   "projectId": "my_projectId",

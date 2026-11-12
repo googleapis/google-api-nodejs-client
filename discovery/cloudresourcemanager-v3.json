@@ -372,7 +372,7 @@
           ]
         },
         "search": {
-          "description": "Search for folders that match specific filter criteria. `search()` provides an eventually consistent view of the folders a user has access to which meet the specified filter criteria. This will only return folders on which the caller has the permission `resourcemanager.folders.get`.",
+          "description": "Searches for folders that match specific filter criteria. `search()` provides an eventually consistent view of the folders a user has access to which meet the specified filter criteria. This will only return folders on which the caller has the permission `resourcemanager.folders.get`.",
           "flatPath": "v3/folders:search",
           "httpMethod": "GET",
           "id": "cloudresourcemanager.folders.search",
@@ -910,7 +910,7 @@
     "liens": {
       "methods": {
         "create": {
-          "description": "Create a Lien which applies to the resource denoted by the `parent` field. Callers of this method will require permission on the `parent` resource. For example, applying to `projects/1234` requires permission `resourcemanager.projects.updateLiens`. NOTE: Some resources may limit the number of Liens which may be applied.",
+          "description": "Creates a Lien which applies to the resource denoted by the `parent` field. Callers of this method will require permission on the `parent` resource. For example, applying to `projects/1234` requires permission `resourcemanager.projects.updateLiens`. NOTE: Some resources may limit the number of Liens which may be applied.",
           "flatPath": "v3/liens",
           "httpMethod": "POST",
           "id": "cloudresourcemanager.liens.create",
@@ -929,7 +929,7 @@
           ]
         },
         "delete": {
-          "description": "Delete a Lien by `name`. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.updateLiens`.",
+          "description": "Deletes a Lien by `name`. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.updateLiens`.",
           "flatPath": "v3/liens/{liensId}",
           "httpMethod": "DELETE",
           "id": "cloudresourcemanager.liens.delete",
@@ -955,7 +955,7 @@
           ]
         },
         "get": {
-          "description": "Retrieve a Lien by `name`. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.get`",
+          "description": "Retrieves a Lien by `name`. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.get`",
           "flatPath": "v3/liens/{liensId}",
           "httpMethod": "GET",
           "id": "cloudresourcemanager.liens.get",
@@ -981,7 +981,7 @@
           ]
         },
         "list": {
-          "description": "List all Liens applied to the `parent` resource. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.get`.",
+          "description": "Lists all Liens applied to the `parent` resource. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.get`.",
           "flatPath": "v3/liens",
           "httpMethod": "GET",
           "id": "cloudresourcemanager.liens.list",
@@ -1675,7 +1675,7 @@
     "projects": {
       "methods": {
         "create": {
-          "description": "Request that a new project be created. The result is an `Operation` which can be used to track the creation process. This process usually takes a few seconds, but can sometimes take much longer. The tracking `Operation` is automatically deleted after a few hours, so there is no need to call `DeleteOperation`.",
+          "description": "Requests that a new project be created. The result is an `Operation` which can be used to track the creation process. This process usually takes a few seconds, but can sometimes take much longer. The tracking `Operation` is automatically deleted after a few hours, so there is no need to call `DeleteOperation`.",
           "flatPath": "v3/projects",
           "httpMethod": "POST",
           "id": "cloudresourcemanager.projects.create",
@@ -1744,7 +1744,7 @@
           ]
         },
         "getIamPolicy": {
-          "description": "Returns the IAM access control policy for the specified project, in the format `projects/{ProjectIdOrNumber}` e.g. projects/123. Permission is denied if the policy or the resource do not exist.",
+          "description": "Returns the IAM access control policy for the specified project, in the format `projects/{ProjectIdOrNumber}`, for example, `projects/123`. Permission is denied if the policy or the resource do not exist.",
           "flatPath": "v3/projects/{projectsId}:getIamPolicy",
           "httpMethod": "POST",
           "id": "cloudresourcemanager.projects.getIamPolicy",
@@ -1811,7 +1811,7 @@
           ]
         },
         "move": {
-          "description": "Move a project to another place in your resource hierarchy, under a new resource parent. Returns an operation which can be used to track the process of the project move workflow. Upon success, the `Operation.response` field will be populated with the moved project. The caller must have `resourcemanager.projects.move` permission on the project, on the project's current and proposed new parent. If project has no current parent, or it currently does not have an associated organization resource, you will also need the `resourcemanager.projects.setIamPolicy` permission in the project. ",
+          "description": "Moves a project to another place in your resource hierarchy, under a new resource parent. Returns an operation which can be used to track the process of the project move workflow. Upon success, the `Operation.response` field will be populated with the moved project. The caller must have `resourcemanager.projects.move` permission on the project, on the project's current and proposed new parent. If project has no current parent, or it currently does not have an associated organization resource, you will also need the `resourcemanager.projects.setIamPolicy` permission in the project. ",
           "flatPath": "v3/projects/{projectsId}:move",
           "httpMethod": "POST",
           "id": "cloudresourcemanager.projects.move",
@@ -1873,7 +1873,7 @@
           ]
         },
         "search": {
-          "description": "Search for projects that the caller has the `resourcemanager.projects.get` permission on, and also satisfy the specified query. This method returns projects in an unspecified order. This method is eventually consistent with project mutations; this means that a newly created project may not appear in the results or recent updates to an existing project may not be reflected in the results. To retrieve the latest state of a project, use the GetProject method.",
+          "description": "Searches for projects on which the caller has the `resourcemanager.projects.get` permission and that match the specified query. This method returns projects in an unspecified order. This method is eventually consistent with project mutations; this means that a newly created project may not appear in the results or recent updates to an existing project may not be reflected in the results. To retrieve the latest state of a project, use the GetProject method.",
           "flatPath": "v3/projects:search",
           "httpMethod": "GET",
           "id": "cloudresourcemanager.projects.search",
@@ -1906,7 +1906,7 @@
           ]
         },
         "setIamPolicy": {
-          "description": "Sets the IAM access control policy for the specified project, in the format `projects/{ProjectIdOrNumber}` e.g. projects/123. CAUTION: This method will replace the existing policy, and cannot be used to append additional IAM settings. Note: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles. The following constraints apply when using `setIamPolicy()`: + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`. + The owner role can be granted to a `user`, `serviceAccount`, or a group that is part of an organization. For example, group@myownpersonaldomain.com could be added as an owner to a project in the myownpersonaldomain.com organization, but not the examplepetstore.com organization. + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited using the Cloud Platform console and must accept the invitation. + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation. + Invitations to grant the owner role cannot be sent using `setIamPolicy()`; they must be sent only using the Cloud Platform Console. + If the project is not part of an organization, there must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified. If the project is part of an organization, you can remove all owners, potentially making the organization inaccessible.",
+          "description": "Sets the IAM access control policy for the specified project, in the format `projects/{ProjectIdOrNumber}`, for example, `projects/123`. CAUTION: This method will replace the existing policy, and cannot be used to append additional IAM settings. Note: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles. The following constraints apply when using `setIamPolicy()`: + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`. + The owner role can be granted to a `user`, `serviceAccount`, or a group that is part of an organization. For example, group@myownpersonaldomain.com could be added as an owner to a project in the myownpersonaldomain.com organization, but not the examplepetstore.com organization. + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited using the Cloud Platform console and must accept the invitation. + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation. + Invitations to grant the owner role cannot be sent using `setIamPolicy()`; they must be sent only using the Cloud Platform Console. + If the project is not part of an organization, there must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified. If the project is part of an organization, you can remove all owners, potentially making the organization inaccessible.",
           "flatPath": "v3/projects/{projectsId}:setIamPolicy",
           "httpMethod": "POST",
           "id": "cloudresourcemanager.projects.setIamPolicy",
@@ -1934,7 +1934,7 @@
           ]
         },
         "testIamPermissions": {
-          "description": "Returns permissions that a caller has on the specified project, in the format `projects/{ProjectIdOrNumber}` e.g. projects/123..",
+          "description": "Returns permissions that a caller has on the specified project, in the format `projects/{ProjectIdOrNumber}`, for example, `projects/123`.",
           "flatPath": "v3/projects/{projectsId}:testIamPermissions",
           "httpMethod": "POST",
           "id": "cloudresourcemanager.projects.testIamPermissions",
@@ -2913,7 +2913,7 @@
       }
     }
   },
-  "revision": "20261018",
+  "revision": "20261107",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -4057,6 +4057,21 @@
           },
           "description": "Optional. The labels associated with this project. Label keys must be between 1 and 63 characters long and must conform to the following regular expression: \\[a-z\\](\\[-a-z0-9\\]*\\[a-z0-9\\])?. Label values must be between 0 and 63 characters long and must conform to the regular expression (\\[a-z\\](\\[-a-z0-9\\]*\\[a-z0-9\\])?)?. No more than 64 labels can be associated with a given resource. Clients should store labels in a representation such as JSON that does not depend on specific characters being disallowed. Example: `\"myBusinessDimension\" : \"businessValue\"`",
           "type": "object"
+        },
+        "managementType": {
+          "description": "Output only. The type of Management Project. This field is only populated if `is_management_project` is `true`.",
+          "enum": [
+            "MANAGEMENT_TYPE_UNSPECIFIED",
+            "SELF_MANAGED",
+            "HUB"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "The Management Project is a self-managed project that constitutes its own boundary.",
+            "The Management Project is a hub project that manages resources across a boundary."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "name": {
           "description": "Output only. The unique resource name of the project. It is an int64 generated number prefixed by \"projects/\". Example: `projects/415104041262`",
