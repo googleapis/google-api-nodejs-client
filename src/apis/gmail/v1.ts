@@ -1542,6 +1542,8 @@ export namespace gmail_v1 {
      *       'https://mail.google.com/',
      *       'https://www.googleapis.com/auth/gmail.addons.current.action.compose',
      *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.drafts',
+     *       'https://www.googleapis.com/auth/gmail.drafts.create',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *     ],
      *   });
@@ -1701,6 +1703,7 @@ export namespace gmail_v1 {
      *       'https://mail.google.com/',
      *       'https://www.googleapis.com/auth/gmail.addons.current.action.compose',
      *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.drafts',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *     ],
      *   });
@@ -1837,6 +1840,8 @@ export namespace gmail_v1 {
      *     scopes: [
      *       'https://mail.google.com/',
      *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.drafts',
+     *       'https://www.googleapis.com/auth/gmail.drafts.readonly',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *       'https://www.googleapis.com/auth/gmail.readonly',
      *     ],
@@ -1982,6 +1987,8 @@ export namespace gmail_v1 {
      *     scopes: [
      *       'https://mail.google.com/',
      *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.drafts',
+     *       'https://www.googleapis.com/auth/gmail.drafts.readonly',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *       'https://www.googleapis.com/auth/gmail.readonly',
      *     ],
@@ -2301,6 +2308,7 @@ export namespace gmail_v1 {
      *       'https://mail.google.com/',
      *       'https://www.googleapis.com/auth/gmail.addons.current.action.compose',
      *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.drafts',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *     ],
      *   });
@@ -2595,6 +2603,8 @@ export namespace gmail_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.messages',
+     *       'https://www.googleapis.com/auth/gmail.messages.readonly',
      *       'https://www.googleapis.com/auth/gmail.metadata',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *       'https://www.googleapis.com/auth/gmail.readonly',
@@ -2784,6 +2794,7 @@ export namespace gmail_v1 {
      *     scopes: [
      *       'https://mail.google.com/',
      *       'https://www.googleapis.com/auth/gmail.labels',
+     *       'https://www.googleapis.com/auth/gmail.labels.create',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *     ],
      *   });
@@ -3086,6 +3097,7 @@ export namespace gmail_v1 {
      *     scopes: [
      *       'https://mail.google.com/',
      *       'https://www.googleapis.com/auth/gmail.labels',
+     *       'https://www.googleapis.com/auth/gmail.labels.readonly',
      *       'https://www.googleapis.com/auth/gmail.metadata',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *       'https://www.googleapis.com/auth/gmail.readonly',
@@ -3238,6 +3250,7 @@ export namespace gmail_v1 {
      *     scopes: [
      *       'https://mail.google.com/',
      *       'https://www.googleapis.com/auth/gmail.labels',
+     *       'https://www.googleapis.com/auth/gmail.labels.readonly',
      *       'https://www.googleapis.com/auth/gmail.metadata',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *       'https://www.googleapis.com/auth/gmail.readonly',
@@ -3791,7 +3804,11 @@ export namespace gmail_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://mail.google.com/'],
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.messages',
+     *       'https://www.googleapis.com/auth/gmail.messages.delete',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3930,6 +3947,9 @@ export namespace gmail_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.messages',
+     *       'https://www.googleapis.com/auth/gmail.messages.delete',
+     *       'https://www.googleapis.com/auth/gmail.messages.modify',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *     ],
      *   });
@@ -4072,7 +4092,11 @@ export namespace gmail_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://mail.google.com/'],
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.messages',
+     *       'https://www.googleapis.com/auth/gmail.messages.delete',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4209,6 +4233,8 @@ export namespace gmail_v1 {
      *       'https://www.googleapis.com/auth/gmail.addons.current.message.action',
      *       'https://www.googleapis.com/auth/gmail.addons.current.message.metadata',
      *       'https://www.googleapis.com/auth/gmail.addons.current.message.readonly',
+     *       'https://www.googleapis.com/auth/gmail.messages',
+     *       'https://www.googleapis.com/auth/gmail.messages.readonly',
      *       'https://www.googleapis.com/auth/gmail.metadata',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *       'https://www.googleapis.com/auth/gmail.readonly',
@@ -4723,6 +4749,8 @@ export namespace gmail_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.messages',
+     *       'https://www.googleapis.com/auth/gmail.messages.readonly',
      *       'https://www.googleapis.com/auth/gmail.metadata',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *       'https://www.googleapis.com/auth/gmail.readonly',
@@ -4878,6 +4906,9 @@ export namespace gmail_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.messages',
+     *       'https://www.googleapis.com/auth/gmail.messages.delete',
+     *       'https://www.googleapis.com/auth/gmail.messages.modify',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *     ],
      *   });
@@ -5042,6 +5073,7 @@ export namespace gmail_v1 {
      *       'https://www.googleapis.com/auth/gmail.compose',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *       'https://www.googleapis.com/auth/gmail.send',
+     *       'https://www.googleapis.com/auth/gmail.send.self',
      *     ],
      *   });
      *
@@ -5213,6 +5245,8 @@ export namespace gmail_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.messages',
+     *       'https://www.googleapis.com/auth/gmail.messages.delete',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *     ],
      *   });
@@ -5362,6 +5396,8 @@ export namespace gmail_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.messages',
+     *       'https://www.googleapis.com/auth/gmail.messages.delete',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *     ],
      *   });
@@ -5734,6 +5770,8 @@ export namespace gmail_v1 {
      *       'https://mail.google.com/',
      *       'https://www.googleapis.com/auth/gmail.addons.current.message.action',
      *       'https://www.googleapis.com/auth/gmail.addons.current.message.readonly',
+     *       'https://www.googleapis.com/auth/gmail.messages',
+     *       'https://www.googleapis.com/auth/gmail.messages.readonly',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *       'https://www.googleapis.com/auth/gmail.readonly',
      *     ],
@@ -9904,7 +9942,10 @@ export namespace gmail_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.basic'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.filters',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10051,7 +10092,10 @@ export namespace gmail_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.basic'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.filters',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10187,6 +10231,8 @@ export namespace gmail_v1 {
      *       'https://www.googleapis.com/auth/gmail.modify',
      *       'https://www.googleapis.com/auth/gmail.readonly',
      *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.filters',
+     *       'https://www.googleapis.com/auth/gmail.settings.filters.readonly',
      *     ],
      *   });
      *
@@ -10331,6 +10377,8 @@ export namespace gmail_v1 {
      *       'https://www.googleapis.com/auth/gmail.modify',
      *       'https://www.googleapis.com/auth/gmail.readonly',
      *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.filters',
+     *       'https://www.googleapis.com/auth/gmail.settings.filters.readonly',
      *     ],
      *   });
      *
@@ -13070,7 +13118,11 @@ export namespace gmail_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://mail.google.com/'],
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.messages',
+     *       'https://www.googleapis.com/auth/gmail.messages.delete',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13207,6 +13259,8 @@ export namespace gmail_v1 {
      *       'https://www.googleapis.com/auth/gmail.addons.current.message.action',
      *       'https://www.googleapis.com/auth/gmail.addons.current.message.metadata',
      *       'https://www.googleapis.com/auth/gmail.addons.current.message.readonly',
+     *       'https://www.googleapis.com/auth/gmail.messages',
+     *       'https://www.googleapis.com/auth/gmail.messages.readonly',
      *       'https://www.googleapis.com/auth/gmail.metadata',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *       'https://www.googleapis.com/auth/gmail.readonly',
@@ -13357,6 +13411,8 @@ export namespace gmail_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.messages',
+     *       'https://www.googleapis.com/auth/gmail.messages.readonly',
      *       'https://www.googleapis.com/auth/gmail.metadata',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *       'https://www.googleapis.com/auth/gmail.readonly',
@@ -13511,6 +13567,9 @@ export namespace gmail_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.messages',
+     *       'https://www.googleapis.com/auth/gmail.messages.delete',
+     *       'https://www.googleapis.com/auth/gmail.messages.modify',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *     ],
      *   });
@@ -13663,6 +13722,8 @@ export namespace gmail_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.messages',
+     *       'https://www.googleapis.com/auth/gmail.messages.delete',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *     ],
      *   });
@@ -13806,6 +13867,8 @@ export namespace gmail_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.messages',
+     *       'https://www.googleapis.com/auth/gmail.messages.delete',
      *       'https://www.googleapis.com/auth/gmail.modify',
      *     ],
      *   });
