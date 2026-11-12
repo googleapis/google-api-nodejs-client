@@ -186,6 +186,7 @@ export namespace datamanager_v1 {
     gclid?: string | null;
     impressionId?: string | null;
     landingPageDeviceInfo?: Schema$DeviceInfo;
+    leadId?: string | null;
     matchId?: string | null;
     mobileDeviceId?: string | null;
     ppid?: string | null;
@@ -214,6 +215,9 @@ export namespace datamanager_v1 {
   export interface Schema$Baseline {
     baselineLocation?: Schema$Location;
     locationAutoDetectionEnabled?: boolean | null;
+  }
+  export interface Schema$CallInfo {
+    startTimestamp?: string | null;
   }
   export interface Schema$CartData {
     couponCodes?: string[] | null;
@@ -283,6 +287,7 @@ export namespace datamanager_v1 {
   export interface Schema$ErrorCount {
     reason?: string | null;
     recordCount?: string | null;
+    recordIndices?: number[] | null;
   }
   export interface Schema$ErrorInfo {
     errorCounts?: Schema$ErrorCount[];
@@ -291,6 +296,7 @@ export namespace datamanager_v1 {
     additionalEventParameters?: Schema$EventParameter[];
     adIdentifiers?: Schema$AdIdentifiers;
     appInstanceId?: string | null;
+    callInfo?: Schema$CallInfo;
     cartData?: Schema$CartData;
     clientId?: string | null;
     consent?: Schema$Consent;
@@ -502,6 +508,11 @@ export namespace datamanager_v1 {
     dataSourceType?: string | null;
     keySpace?: string | null;
   }
+  export interface Schema$Money {
+    currencyCode?: string | null;
+    nanos?: number | null;
+    units?: string | null;
+  }
   export interface Schema$PairData {
     pairIds?: string[] | null;
   }
@@ -532,6 +543,37 @@ export namespace datamanager_v1 {
   }
   export interface Schema$PartnerLinkMetadata {
     implicitAccounts?: Schema$PartnerCustomerAccount[];
+  }
+  export interface Schema$PartnerMatchAdGroup {
+    adGroupId?: string | null;
+    displayName?: string | null;
+  }
+  export interface Schema$PartnerMatchAdvertiserAccount {
+    accountId?: string | null;
+    accountType?: string | null;
+    displayName?: string | null;
+  }
+  export interface Schema$PartnerMatchCampaign {
+    campaignId?: string | null;
+    displayName?: string | null;
+  }
+  export interface Schema$PartnerMatchLineItem {
+    displayName?: string | null;
+    lineItemId?: string | null;
+  }
+  export interface Schema$PartnerMatchReportEntry {
+    adGroup?: Schema$PartnerMatchAdGroup;
+    advertiserAccount?: Schema$PartnerMatchAdvertiserAccount;
+    campaign?: Schema$PartnerMatchCampaign;
+    dataFees?: Schema$Money;
+    impressionCount?: string | null;
+    lineItem?: Schema$PartnerMatchLineItem;
+    mediaCost?: Schema$Money;
+    userList?: Schema$PartnerMatchUserList;
+  }
+  export interface Schema$PartnerMatchUserList {
+    displayName?: string | null;
+    userListId?: string | null;
   }
   export interface Schema$PartnerProvidedIdData {
     partnerProvidedIds?: string[] | null;
@@ -635,6 +677,10 @@ export namespace datamanager_v1 {
   }
   export interface Schema$RetrieveInsightsResponse {
     marketingDataInsights?: Schema$MarketingDataInsight[];
+  }
+  export interface Schema$RetrievePartnerMatchReportResponse {
+    nextPageToken?: string | null;
+    partnerMatchReportEntries?: Schema$PartnerMatchReportEntry[];
   }
   export interface Schema$RetrieveRequestStatusResponse {
     requestStatusPerDestination?: Schema$RequestStatusPerDestination[];
@@ -770,6 +816,7 @@ export namespace datamanager_v1 {
   export interface Schema$WarningCount {
     reason?: string | null;
     recordCount?: string | null;
+    recordIndices?: number[] | null;
   }
   export interface Schema$WarningInfo {
     warningCounts?: Schema$WarningCount[];
@@ -788,6 +835,7 @@ export namespace datamanager_v1 {
     context: APIRequestContext;
     insights: Resource$Accounttypes$Accounts$Insights;
     partnerLinks: Resource$Accounttypes$Accounts$Partnerlinks;
+    reports: Resource$Accounttypes$Accounts$Reports;
     userListDirectLicenses: Resource$Accounttypes$Accounts$Userlistdirectlicenses;
     userListGlobalLicenses: Resource$Accounttypes$Accounts$Userlistgloballicenses;
     userLists: Resource$Accounttypes$Accounts$Userlists;
@@ -797,6 +845,7 @@ export namespace datamanager_v1 {
       this.partnerLinks = new Resource$Accounttypes$Accounts$Partnerlinks(
         this.context
       );
+      this.reports = new Resource$Accounttypes$Accounts$Reports(this.context);
       this.userListDirectLicenses =
         new Resource$Accounttypes$Accounts$Userlistdirectlicenses(this.context);
       this.userListGlobalLicenses =
@@ -1455,6 +1504,203 @@ export namespace datamanager_v1 {
      *
      */
     parent?: string;
+  }
+
+  export class Resource$Accounttypes$Accounts$Reports {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamanager.accountTypes.accounts.reports.retrievePartnerMatchReport({
+     *       currencyCode: 'placeholder-value',
+     *
+     *       endDate: 'placeholder-value',
+     *
+     *       filter: 'placeholder-value',
+     *
+     *       pageSize: 'placeholder-value',
+     *
+     *       pageToken: 'placeholder-value',
+     *
+     *       parent: 'accountTypes/my-accountType/accounts/my-account',
+     *
+     *       startDate: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "partnerMatchReportEntries": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    retrievePartnerMatchReport(
+      params: Params$Resource$Accounttypes$Accounts$Reports$Retrievepartnermatchreport,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    retrievePartnerMatchReport(
+      params?: Params$Resource$Accounttypes$Accounts$Reports$Retrievepartnermatchreport,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$RetrievePartnerMatchReportResponse>
+    >;
+    retrievePartnerMatchReport(
+      params: Params$Resource$Accounttypes$Accounts$Reports$Retrievepartnermatchreport,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    retrievePartnerMatchReport(
+      params: Params$Resource$Accounttypes$Accounts$Reports$Retrievepartnermatchreport,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RetrievePartnerMatchReportResponse>,
+      callback: BodyResponseCallback<Schema$RetrievePartnerMatchReportResponse>
+    ): void;
+    retrievePartnerMatchReport(
+      params: Params$Resource$Accounttypes$Accounts$Reports$Retrievepartnermatchreport,
+      callback: BodyResponseCallback<Schema$RetrievePartnerMatchReportResponse>
+    ): void;
+    retrievePartnerMatchReport(
+      callback: BodyResponseCallback<Schema$RetrievePartnerMatchReportResponse>
+    ): void;
+    retrievePartnerMatchReport(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Reports$Retrievepartnermatchreport
+        | BodyResponseCallback<Schema$RetrievePartnerMatchReportResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RetrievePartnerMatchReportResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RetrievePartnerMatchReportResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$RetrievePartnerMatchReportResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Reports$Retrievepartnermatchreport;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounttypes$Accounts$Reports$Retrievepartnermatchreport;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/reports:retrievePartnerMatchReport'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RetrievePartnerMatchReportResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RetrievePartnerMatchReportResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounttypes$Accounts$Reports$Retrievepartnermatchreport extends StandardParameters {
+    /**
+     *
+     */
+    currencyCode?: string;
+    /**
+     *
+     */
+    endDate?: string;
+    /**
+     *
+     */
+    filter?: string;
+    /**
+     *
+     */
+    pageSize?: number;
+    /**
+     *
+     */
+    pageToken?: string;
+    /**
+     *
+     */
+    parent?: string;
+    /**
+     *
+     */
+    startDate?: string;
   }
 
   export class Resource$Accounttypes$Accounts$Userlistdirectlicenses {
