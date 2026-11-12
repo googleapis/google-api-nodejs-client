@@ -566,12 +566,12 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filtering results",
+                      "description": "Optional. Filtering results.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Hint for how to order the results",
+                      "description": "Optional. Hint for how to order the results.",
                       "location": "query",
                       "type": "string"
                     },
@@ -834,12 +834,12 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filtering results",
+                          "description": "Optional. Filtering results.",
                           "location": "query",
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Optional. Hint for how to order the results",
+                          "description": "Optional. Hint for how to order the results.",
                           "location": "query",
                           "type": "string"
                         },
@@ -911,7 +911,7 @@
                   ],
                   "parameters": {
                     "connectionId": {
-                      "description": "Required. Id of the requesting object If auto-generating Id server-side, remove this field and connection_id from the method_signature of Create RPC",
+                      "description": "Required. The ID to use for the connection, which becomes the final component of the connection's resource name.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1080,12 +1080,12 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filtering results",
+                      "description": "Optional. Filtering results.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Hint for how to order the results",
+                      "description": "Optional. Hint for how to order the results.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1194,6 +1194,62 @@
               "resources": {
                 "gitRepositoryLinks": {
                   "methods": {
+                    "addPullRequestComment": {
+                      "description": "Add a comment to a Pull Request.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/gitRepositoryLinks/{gitRepositoryLinksId}:addPullRequestComment",
+                      "httpMethod": "POST",
+                      "id": "developerconnect.projects.locations.connections.gitRepositoryLinks.addPullRequestComment",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the GitRepositoryLink in the format `projects/*/locations/*/connections/*/gitRepositoryLinks/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/gitRepositoryLinks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:addPullRequestComment",
+                      "request": {
+                        "$ref": "AddGitRepositoryLinkPullRequestCommentRequest"
+                      },
+                      "response": {
+                        "$ref": "PullRequestComment"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "addPullRequestReviewComment": {
+                      "description": "Add a review comment (inline on diff) to a Pull Request.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/gitRepositoryLinks/{gitRepositoryLinksId}:addPullRequestReviewComment",
+                      "httpMethod": "POST",
+                      "id": "developerconnect.projects.locations.connections.gitRepositoryLinks.addPullRequestReviewComment",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the GitRepositoryLink in the format `projects/*/locations/*/connections/*/gitRepositoryLinks/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/gitRepositoryLinks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:addPullRequestReviewComment",
+                      "request": {
+                        "$ref": "AddGitRepositoryLinkPullRequestReviewCommentRequest"
+                      },
+                      "response": {
+                        "$ref": "PullRequestReviewComment"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "create": {
                       "description": "Creates a GitRepositoryLink. Upon linking a Git Repository, Developer Connect will configure the Git Repository to send webhook events to Developer Connect. Connections that use Firebase GitHub Application will have events forwarded to the Firebase service. Connections that use Gemini Code Assist will have events forwarded to Gemini Code Assist service. All other Connections will have events forwarded to Cloud Build.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/gitRepositoryLinks",
@@ -1277,6 +1333,201 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "diffCommit": {
+                      "description": "Diff commits for a GitRepositoryLink.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/gitRepositoryLinks/{gitRepositoryLinksId}:diffCommit",
+                      "httpMethod": "GET",
+                      "id": "developerconnect.projects.locations.connections.gitRepositoryLinks.diffCommit",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "baseSha": {
+                          "description": "Required. The base commit SHA or ref.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "headSha": {
+                          "description": "Required. The head commit SHA or ref.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. The resource name of the GitRepositoryLink.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/gitRepositoryLinks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pathFilters": {
+                          "description": "Optional. Path patterns or exact paths to filter returned files. When `path_filters` is specified, `FileDiff.patch` is populated for all matching files (use `[\"**\"]` to include patches for all changed files). When `path_filters` is omitted or empty, the full list of `FileDiff` is returned without patch diffs (`FileDiff.patch` is empty).",
+                          "location": "query",
+                          "repeated": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:diffCommit",
+                      "response": {
+                        "$ref": "DiffGitRepositoryLinkCommitResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "fetchCommit": {
+                      "description": "Fetch Commit details from a Git repository link.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/gitRepositoryLinks/{gitRepositoryLinksId}:fetchCommit",
+                      "httpMethod": "GET",
+                      "id": "developerconnect.projects.locations.connections.gitRepositoryLinks.fetchCommit",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "commitSha": {
+                          "description": "Required. The commit SHA, or symbolic revision (for example, branch name, tag, or Git reference).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. The resource name of the GitRepositoryLink in the format `projects/*/locations/*/connections/*/gitRepositoryLinks/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/gitRepositoryLinks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pathFilters": {
+                          "description": "Optional. Path patterns or exact paths to filter returned files (only applicable in `FULL` view). When `path_filters` is specified, `FileDiff.patch` is populated for all matching files (use `[\"**\"]` to include patches for all changed files). When `path_filters` is omitted or empty, the full list of `FileDiff` is returned without patch diffs (`FileDiff.patch` is empty).",
+                          "location": "query",
+                          "repeated": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. The level of commit details to return in the response. Defaults to `FULL` if unspecified. In `FULL` view, `files` metadata (paths and statuses) are returned; `path_filters` must also be specified to populate line patch hunks.",
+                          "enum": [
+                            "COMMIT_VIEW_UNSPECIFIED",
+                            "BASIC",
+                            "FULL"
+                          ],
+                          "enumDescriptions": [
+                            "Unspecified, defaults to BASIC.",
+                            "Basic view, returns commit metadata but no file diffs.",
+                            "Full view, returns commit metadata and file diffs."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:fetchCommit",
+                      "response": {
+                        "$ref": "FetchGitRepositoryLinkCommitResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "fetchCommitList": {
+                      "description": "Fetch a list of Commits from a Git repository link.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/gitRepositoryLinks/{gitRepositoryLinksId}:fetchCommitList",
+                      "httpMethod": "GET",
+                      "id": "developerconnect.projects.locations.connections.gitRepositoryLinks.fetchCommitList",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the GitRepositoryLink in the format `projects/*/locations/*/connections/*/gitRepositoryLinks/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/gitRepositoryLinks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Number of results to return in the list. Default is 50. Max is 100.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `FetchGitRepositoryLinkCommitList` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchGitRepositoryLinkCommitList` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "ref": {
+                          "description": "Optional. The commit SHA, or symbolic revision (for example, branch name, tag, or Git reference) from which to start listing commits.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. The level of commit details to return in the response. Only `BASIC` is supported; `FULL` returns `INVALID_ARGUMENT`. Defaults to `BASIC` if unspecified. Use `FetchGitRepositoryLinkCommit` to get file diffs for a single commit.",
+                          "enum": [
+                            "COMMIT_VIEW_UNSPECIFIED",
+                            "BASIC",
+                            "FULL"
+                          ],
+                          "enumDescriptions": [
+                            "Unspecified, defaults to BASIC.",
+                            "Basic view, returns commit metadata but no file diffs.",
+                            "Full view, returns commit metadata and file diffs."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:fetchCommitList",
+                      "response": {
+                        "$ref": "FetchGitRepositoryLinkCommitListResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "fetchFileBlame": {
+                      "description": "Fetches blame information for a file or line range in a file.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/gitRepositoryLinks/{gitRepositoryLinksId}:fetchFileBlame",
+                      "httpMethod": "GET",
+                      "id": "developerconnect.projects.locations.connections.gitRepositoryLinks.fetchFileBlame",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "firstLine": {
+                          "description": "Optional. The 1-indexed starting line number of the range to blame (inclusive). If not specified, blame begins at line 1.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "lastLine": {
+                          "description": "Optional. The 1-indexed ending line number of the range to blame (inclusive). If not specified, blame extends to the end of the file.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "name": {
+                          "description": "Required. The resource name of the GitRepositoryLink in the format `projects/*/locations/*/connections/*/gitRepositoryLinks/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/gitRepositoryLinks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "path": {
+                          "description": "Required. The file path within the repository.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "ref": {
+                          "description": "Required. The SCM commit SHA, or symbolic revision (for example, branch name, tag) from which to fetch the blame.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:fetchFileBlame",
+                      "response": {
+                        "$ref": "FetchGitRepositoryLinkFileBlameResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "fetchGitRefs": {
                       "description": "Fetch the list of branches or tags for a given repository.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/gitRepositoryLinks/{gitRepositoryLinksId}:fetchGitRefs",
@@ -1323,6 +1574,77 @@
                       "path": "v1/{+gitRepositoryLink}:fetchGitRefs",
                       "response": {
                         "$ref": "FetchGitRefsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "fetchPullRequest": {
+                      "description": "Fetch Pull Request details from a Git repository link.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/gitRepositoryLinks/{gitRepositoryLinksId}:fetchPullRequest",
+                      "httpMethod": "GET",
+                      "id": "developerconnect.projects.locations.connections.gitRepositoryLinks.fetchPullRequest",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the GitRepositoryLink in the format `projects/*/locations/*/connections/*/gitRepositoryLinks/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/gitRepositoryLinks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pullRequestId": {
+                          "description": "Required. The ID of the Pull Request.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:fetchPullRequest",
+                      "response": {
+                        "$ref": "PullRequest"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "fetchPullRequestList": {
+                      "description": "Fetches a list of Pull Requests from the remote repository.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/gitRepositoryLinks/{gitRepositoryLinksId}:fetchPullRequestList",
+                      "httpMethod": "GET",
+                      "id": "developerconnect.projects.locations.connections.gitRepositoryLinks.fetchPullRequestList",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. A filter expression that filters the pull requests returned in the response. Only a single equality comparison on `state` is supported, for example `state = \"OPEN\"`. Supported values are `OPEN`, `CLOSED`, and `MERGED`. `DECLINED` is only supported for SCM providers that support declining pull requests, and returns `INVALID_ARGUMENT` for GitHub, GitHub Enterprise, GitLab, and GitLab Enterprise. Other values or expressions return `INVALID_ARGUMENT`. Defaults to `state = \"OPEN\"` if unspecified.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. The GitRepositoryLink resource name in the format `projects/*/locations/*/connections/*/gitRepositoryLinks/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/gitRepositoryLinks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Number of results to return in the list. Default is 20. Max is 100. A page may contain fewer than `page_size` results even when more results are available; use `next_page_token` to check for more pages.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `FetchGitRepositoryLinkPullRequestList` call. Provide this to retrieve the subsequent page.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:fetchPullRequestList",
+                      "response": {
+                        "$ref": "FetchGitRepositoryLinkPullRequestListResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -1419,12 +1741,12 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filtering results",
+                          "description": "Optional. Filtering results.",
                           "location": "query",
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Optional. Hint for how to order the results",
+                          "description": "Optional. Hint for how to order the results.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1440,7 +1762,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. Parent value for ListGitRepositoryLinksRequest",
+                          "description": "Required. Parent value for ListGitRepositoryLinksRequest.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
                           "required": true,
@@ -1450,6 +1772,62 @@
                       "path": "v1/{+parent}/gitRepositoryLinks",
                       "response": {
                         "$ref": "ListGitRepositoryLinksResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "modifyPullRequest": {
+                      "description": "Modifies a Pull Request in the remote SCM repository associated with a GitRepositoryLink.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/gitRepositoryLinks/{gitRepositoryLinksId}:modifyPullRequest",
+                      "httpMethod": "POST",
+                      "id": "developerconnect.projects.locations.connections.gitRepositoryLinks.modifyPullRequest",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The GitRepositoryLink resource name in the format `projects/*/locations/*/connections/*/gitRepositoryLinks/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/gitRepositoryLinks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:modifyPullRequest",
+                      "request": {
+                        "$ref": "ModifyGitRepositoryLinkPullRequestRequest"
+                      },
+                      "response": {
+                        "$ref": "PullRequest"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "openPullRequest": {
+                      "description": "Opens a Pull Request in the remote SCM repository associated with a GitRepositoryLink.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/gitRepositoryLinks/{gitRepositoryLinksId}:openPullRequest",
+                      "httpMethod": "POST",
+                      "id": "developerconnect.projects.locations.connections.gitRepositoryLinks.openPullRequest",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The GitRepositoryLink resource name in the format `projects/*/locations/*/connections/*/gitRepositoryLinks/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/gitRepositoryLinks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:openPullRequest",
+                      "request": {
+                        "$ref": "OpenGitRepositoryLinkPullRequestRequest"
+                      },
+                      "response": {
+                        "$ref": "PullRequest"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -1965,7 +2343,7 @@
       }
     }
   },
-  "revision": "20261002",
+  "revision": "20261025",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "AccountConnector": {
@@ -2026,6 +2404,40 @@
           "description": "Output only. The timestamp when the accountConnector was updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AddGitRepositoryLinkPullRequestCommentRequest": {
+      "description": "Request message for AddGitRepositoryLinkPullRequestComment.",
+      "id": "AddGitRepositoryLinkPullRequestCommentRequest",
+      "properties": {
+        "comment": {
+          "$ref": "PullRequestComment",
+          "description": "Required. The comment to add."
+        },
+        "pullRequestId": {
+          "description": "Required. The ID of the Pull Request.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AddGitRepositoryLinkPullRequestReviewCommentRequest": {
+      "description": "Request message for AddGitRepositoryLinkPullRequestReviewComment.",
+      "id": "AddGitRepositoryLinkPullRequestReviewCommentRequest",
+      "properties": {
+        "comment": {
+          "$ref": "PullRequestReviewComment",
+          "description": "Required. The review comment to add."
+        },
+        "commitId": {
+          "description": "Optional. The commit SHA to comment on. If not specified, defaults to the HEAD commit of the Pull Request.",
+          "type": "string"
+        },
+        "pullRequestId": {
+          "description": "Required. The ID of the Pull Request.",
           "type": "string"
         }
       },
@@ -2234,6 +2646,27 @@
       },
       "type": "object"
     },
+    "BlameRange": {
+      "description": "BlameRange represents blame information for a range of lines.",
+      "id": "BlameRange",
+      "properties": {
+        "commit": {
+          "$ref": "SCMCommit",
+          "description": "The commit metadata for this line range."
+        },
+        "firstLine": {
+          "description": "The 1-indexed starting line number of the range (inclusive).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "lastLine": {
+          "description": "The 1-indexed ending line number of the range (inclusive).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -2260,7 +2693,7 @@
           "description": "Configuration for connections to an instance of Bitbucket Data Center."
         },
         "createTime": {
-          "description": "Output only. [Output only] Create timestamp",
+          "description": "Output only. Create timestamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2270,7 +2703,7 @@
           "description": "Optional. The crypto key configuration. This field is used by the Customer-Managed Encryption Keys (CMEK) feature."
         },
         "deleteTime": {
-          "description": "Output only. [Output only] Delete timestamp",
+          "description": "Output only. Delete timestamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2285,7 +2718,7 @@
         },
         "gitProxyConfig": {
           "$ref": "GitProxyConfig",
-          "description": "Optional. Configuration for the git proxy feature. Enabling the git proxy allows clients to perform git operations on the repositories linked in the connection. [Learn more](https://docs.cloud.google.com/developer-connect/docs/configure-git-proxy)."
+          "description": "Optional. Configuration for the Git proxy feature. Enabling the Git proxy allows clients to perform Git operations on the repositories linked in the connection. [Learn more](https://docs.cloud.google.com/developer-connect/docs/configure-git-proxy)."
         },
         "githubConfig": {
           "$ref": "GitHubConfig",
@@ -2338,7 +2771,7 @@
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update timestamp",
+          "description": "Output only. Update timestamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2492,6 +2925,20 @@
       },
       "type": "object"
     },
+    "DiffGitRepositoryLinkCommitResponse": {
+      "description": "Response message for DiffGitRepositoryLinkCommit.",
+      "id": "DiffGitRepositoryLinkCommitResponse",
+      "properties": {
+        "files": {
+          "description": "The file diff extracted from the unified diff.",
+          "items": {
+            "$ref": "FileDiff"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -2572,6 +3019,74 @@
           "description": "Name of the refs fetched.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FetchGitRepositoryLinkCommitListResponse": {
+      "description": "Response message for FetchGitRepositoryLinkCommitList.",
+      "id": "FetchGitRepositoryLinkCommitListResponse",
+      "properties": {
+        "commits": {
+          "description": "The list of commit metadata.",
+          "items": {
+            "$ref": "SCMCommit"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FetchGitRepositoryLinkCommitResponse": {
+      "description": "Response message for FetchGitRepositoryLinkCommit.",
+      "id": "FetchGitRepositoryLinkCommitResponse",
+      "properties": {
+        "commit": {
+          "$ref": "SCMCommit",
+          "description": "The commit metadata."
+        },
+        "files": {
+          "description": "List of file changes and patch diffs. Omitted when view is `BASIC`. Patch diffs (`FileDiff.patch`) are only populated when `path_filters` is specified in the request.",
+          "items": {
+            "$ref": "FileDiff"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FetchGitRepositoryLinkFileBlameResponse": {
+      "description": "Response message for FetchGitRepositoryLinkFileBlame.",
+      "id": "FetchGitRepositoryLinkFileBlameResponse",
+      "properties": {
+        "ranges": {
+          "description": "The list of blame ranges for the file.",
+          "items": {
+            "$ref": "BlameRange"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FetchGitRepositoryLinkPullRequestListResponse": {
+      "description": "Response message for FetchGitRepositoryLinkPullRequestList.",
+      "id": "FetchGitRepositoryLinkPullRequestListResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "pullRequests": {
+          "description": "The list of pull requests.",
+          "items": {
+            "$ref": "PullRequest"
           },
           "type": "array"
         }
@@ -2676,6 +3191,25 @@
         },
         "selector": {
           "description": "The name of the parameter in the input_schema or output_schema.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FileDiff": {
+      "description": "Message for a file diff.",
+      "id": "FileDiff",
+      "properties": {
+        "patch": {
+          "description": "Standard unified diff patch hunk for the file. Only populated when `path_filters` is specified in the request; otherwise empty.",
+          "type": "string"
+        },
+        "path": {
+          "description": "Relative path to the file in the repository.",
+          "type": "string"
+        },
+        "status": {
+          "description": "Status of change: \"ADDED\", \"MODIFIED\", \"REMOVED\", \"RENAMED\".",
           "type": "string"
         }
       },
@@ -2890,7 +3424,7 @@
       "id": "GitProxyConfig",
       "properties": {
         "enabled": {
-          "description": "Optional. Setting this to true allows the git proxy to be used for performing git operations on the repositories linked in the connection.",
+          "description": "Optional. Setting this to true allows the Git proxy to be used for performing Git operations on the repositories linked in the connection.",
           "type": "boolean"
         },
         "httpProxyBaseUri": {
@@ -2917,13 +3451,13 @@
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. [Output only] Create timestamp",
+          "description": "Output only. Create timestamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "deleteTime": {
-          "description": "Output only. [Output only] Delete timestamp",
+          "description": "Output only. Delete timestamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2933,7 +3467,7 @@
           "type": "string"
         },
         "gitProxyUri": {
-          "description": "Output only. URI to access the linked repository through the Git Proxy. This field is only populated if the git proxy is enabled for the connection.",
+          "description": "Output only. URI to access the linked repository through the Git proxy. This field is only populated if the Git proxy is enabled for the connection.",
           "readOnly": true,
           "type": "string"
         },
@@ -2959,7 +3493,7 @@
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update timestamp",
+          "description": "Output only. Update timestamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -3222,7 +3756,7 @@
       "id": "ListConnectionsResponse",
       "properties": {
         "connections": {
-          "description": "The list of Connection",
+          "description": "The list of Connections.",
           "items": {
             "$ref": "Connection"
           },
@@ -3265,7 +3799,7 @@
       "id": "ListGitRepositoryLinksResponse",
       "properties": {
         "gitRepositoryLinks": {
-          "description": "The list of GitRepositoryLinks",
+          "description": "The list of GitRepositoryLinks.",
           "items": {
             "$ref": "GitRepositoryLink"
           },
@@ -3444,6 +3978,43 @@
       },
       "type": "object"
     },
+    "ModifyGitRepositoryLinkPullRequestRequest": {
+      "description": "Message for modifying SCM Pull Request.",
+      "id": "ModifyGitRepositoryLinkPullRequestRequest",
+      "properties": {
+        "baseRef": {
+          "description": "Optional. The target branch to merge into.",
+          "type": "string"
+        },
+        "body": {
+          "description": "Optional. The body description of the Pull Request.",
+          "type": "string"
+        },
+        "pullRequestId": {
+          "description": "Required. The SCM-specific pull request identifier (for example, \"45\").",
+          "type": "string"
+        },
+        "state": {
+          "description": "Optional. The state of the Pull Request.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "OPEN",
+            "CLOSED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The pull request is open.",
+            "The pull request is closed."
+          ],
+          "type": "string"
+        },
+        "title": {
+          "description": "Optional. The title of the Pull Request.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "OAuthCredential": {
       "description": "Represents an OAuth token of the account that authorized the Connection, and associated metadata.",
       "id": "OAuthCredential",
@@ -3456,6 +4027,17 @@
           "description": "Output only. The username associated with this token.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OpenGitRepositoryLinkPullRequestRequest": {
+      "description": "Message for opening SCM Pull Request.",
+      "id": "OpenGitRepositoryLinkPullRequestRequest",
+      "properties": {
+        "pullRequest": {
+          "$ref": "PullRequest",
+          "description": "Required. The Pull Request details to open. Input fields used: title, body, head_ref, base_ref."
         }
       },
       "type": "object"
@@ -3666,6 +4248,208 @@
       },
       "type": "object"
     },
+    "PullRequest": {
+      "description": "Message representing a SCM Pull Request.",
+      "id": "PullRequest",
+      "properties": {
+        "author": {
+          "description": "Output only. The username of the author.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "baseRef": {
+          "description": "Required. The target commit SHA of the base branch.",
+          "type": "string"
+        },
+        "body": {
+          "description": "Optional. The body description of the PR.",
+          "type": "string"
+        },
+        "closeTime": {
+          "description": "Output only. When the PR was closed.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. When the PR was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "declineTime": {
+          "description": "Output only. When the PR was declined. Only set for SCM providers that support declining pull requests. Never set for GitHub, GitHub Enterprise, GitLab, or GitLab Enterprise, where a pull request closed without being merged is `CLOSED`.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "headRef": {
+          "description": "Required. The source commit SHA of the head branch.",
+          "type": "string"
+        },
+        "htmlUrl": {
+          "description": "Output only. The HTML URL of the pull request on the SCM provider.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Required. The ID of the PR.",
+          "type": "string"
+        },
+        "mergeTime": {
+          "description": "Output only. When the PR was merged.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "mergeability": {
+          "description": "Output only. The mergeability state of the pull request.",
+          "enum": [
+            "MERGEABILITY_UNSPECIFIED",
+            "MERGEABLE",
+            "CONFLICTING",
+            "COMPUTING"
+          ],
+          "enumDescriptions": [
+            "Mergeability state is unspecified.",
+            "The pull request can be merged cleanly without Git conflicts.",
+            "The pull request has merge conflicts and cannot be merged cleanly.",
+            "The mergeability state is currently being computed asynchronously by the upstream SCM provider."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the PR.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "OPEN",
+            "CLOSED",
+            "MERGED",
+            "DECLINED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The PR is open.",
+            "The PR is closed.",
+            "The PR is merged.",
+            "The PR is declined. Only used by SCM providers that support declining pull requests. Never used for GitHub, GitHub Enterprise, GitLab, or GitLab Enterprise, where a pull request closed without being merged is `CLOSED`."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "title": {
+          "description": "Required. The title of the PR.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. When the PR was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PullRequestComment": {
+      "description": "Message representing a SCM Pull Request Comment.",
+      "id": "PullRequestComment",
+      "properties": {
+        "author": {
+          "description": "Output only. The username of the author.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "body": {
+          "description": "Required. The body of the comment.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. When the comment was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. The ID of the comment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. When the comment was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PullRequestReviewComment": {
+      "description": "Message representing a SCM Pull Request Review Comment (inline on diff).",
+      "id": "PullRequestReviewComment",
+      "properties": {
+        "author": {
+          "description": "Output only. The username of the author.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "body": {
+          "description": "Required. The body of the comment.",
+          "type": "string"
+        },
+        "commitId": {
+          "description": "Output only. The commit SHA the comment was actually applied to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. When the comment was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "firstLine": {
+          "description": "Optional. The first line of the comment range (inclusive). If not specified, the comment applies only to the `last_line`.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "description": "Output only. The ID of the comment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastLine": {
+          "description": "Required. The last line of the comment range (inclusive). If `first_line` is not specified, the comment applies only to this line.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "path": {
+          "description": "Required. The file path to comment on.",
+          "type": "string"
+        },
+        "side": {
+          "description": "Optional. The side of the diff to comment on. Defaults to HEAD.",
+          "enum": [
+            "DIFF_SIDE_UNSPECIFIED",
+            "BASE",
+            "HEAD"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The side of the diff before changes (deleted or modified lines).",
+            "The side of the diff after changes (added or modified lines)."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. When the comment was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RuntimeConfig": {
       "description": "RuntimeConfig represents the runtimes where the application is deployed.",
       "id": "RuntimeConfig",
@@ -3707,6 +4491,38 @@
         },
         "uri": {
           "description": "Required. Immutable. The URI of the runtime configuration. For GKE, this is the cluster name. For Cloud Run, this is the service name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SCMCommit": {
+      "description": "SCMCommit represents commit metadata.",
+      "id": "SCMCommit",
+      "properties": {
+        "author": {
+          "description": "The author's display name.",
+          "type": "string"
+        },
+        "authorEmail": {
+          "description": "The author's email address.",
+          "type": "string"
+        },
+        "commitTime": {
+          "description": "Timestamp when the commit was authored.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "message": {
+          "description": "Commit message text.",
+          "type": "string"
+        },
+        "sha": {
+          "description": "Full 40-character SCM commit SHA.",
+          "type": "string"
+        },
+        "url": {
+          "description": "The SCM provider's HTML URL link for this commit.",
           "type": "string"
         }
       },
