@@ -5503,7 +5503,7 @@
       }
     }
   },
-  "revision": "20261016",
+  "revision": "20261023",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -6663,6 +6663,10 @@
         "metastoreConfig": {
           "$ref": "MetastoreConfig",
           "description": "Optional. Metastore configuration."
+        },
+        "schedulingConfig": {
+          "$ref": "SchedulingConfig",
+          "description": "Optional. Config for scheduling the resources to be allocated when available."
         },
         "secondaryWorkerConfig": {
           "$ref": "InstanceGroupConfig",
@@ -10753,6 +10757,23 @@
         "propertiesInfo": {
           "$ref": "PropertiesInfo",
           "description": "Optional. Properties of the workload organized by origin."
+        }
+      },
+      "type": "object"
+    },
+    "SchedulingConfig": {
+      "description": "Config for scheduling the request to create Compute Engine resources for the cluster, when available.",
+      "id": "SchedulingConfig",
+      "properties": {
+        "requestedRunDuration": {
+          "description": "Optional. Required lifetime of the resources, once provisioned. Min 10 mins, Max/Default 7 days . Note that the cluster can still be deleted before reaching this time. This time is a maximum amount of time before the cluster is forcibly deleted. Lower times are more likely to start running sooner.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "schedulingTimeout": {
+          "description": "Optional. How long to wait for worker resources to be allocated before failing the cluster creation request. Max/Default value: 13 days",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"
