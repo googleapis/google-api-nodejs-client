@@ -278,6 +278,19 @@ export namespace ftp_v1alpha {
     name?: string | null;
   }
   /**
+   * Configuration for Cloud Logging on the Server.
+   */
+  export interface Schema$LoggingConfig {
+    /**
+     * Optional. Whether platform logging (`ftp.googleapis.com/ftp_events`) is enabled for this server. Defaults to `false`.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. The verbosity level of logs emitted when `enabled` is `true`. Defaults to `ALL_EVENTS` if unspecified when `enabled` is `true`.
+     */
+    verbosity?: string | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -384,6 +397,10 @@ export namespace ftp_v1alpha {
      * Optional. Labels as key value pairs
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Configuration for Cloud Logging on the Server.
+     */
+    loggingConfig?: Schema$LoggingConfig;
     /**
      * Identifier. name of resource
      */
@@ -1528,6 +1545,7 @@ export namespace ftp_v1alpha {
      *       //   "googleManagedServerCredential": {},
      *       //   "internalConfig": {},
      *       //   "labels": {},
+     *       //   "loggingConfig": {},
      *       //   "name": "my_name",
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
@@ -1827,6 +1845,7 @@ export namespace ftp_v1alpha {
      *   //   "googleManagedServerCredential": {},
      *   //   "internalConfig": {},
      *   //   "labels": {},
+     *   //   "loggingConfig": {},
      *   //   "name": "my_name",
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
@@ -2125,6 +2144,7 @@ export namespace ftp_v1alpha {
      *       //   "googleManagedServerCredential": {},
      *       //   "internalConfig": {},
      *       //   "labels": {},
+     *       //   "loggingConfig": {},
      *       //   "name": "my_name",
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
@@ -2830,7 +2850,7 @@ export namespace ftp_v1alpha {
      *
      *   // Do the magic
      *   const res = await ftp.projects.locations.servers.users.delete({
-     *     // Optional. If set to true, the request will force the deletion of the User.
+     *     // Optional. If set to `true`, the request will `force` the deletion of the User.
      *     force: 'placeholder-value',
      *     // Required. Name of the resource
      *     name: 'projects/my-project/locations/my-location/servers/my-server/users/my-user',
@@ -3407,7 +3427,7 @@ export namespace ftp_v1alpha {
   }
   export interface Params$Resource$Projects$Locations$Servers$Users$Delete extends StandardParameters {
     /**
-     * Optional. If set to true, the request will force the deletion of the User.
+     * Optional. If set to `true`, the request will `force` the deletion of the User.
      */
     force?: boolean;
     /**
