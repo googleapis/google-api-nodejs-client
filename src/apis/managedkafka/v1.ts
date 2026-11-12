@@ -319,7 +319,7 @@ export namespace managedkafka_v1 {
      */
     gcpConfig?: Schema$GcpConfig;
     /**
-     * Optional. The Apache Kafka version of the cluster (for example, `3.7.x`, `4.3.x`). If not specified during cluster creation, defaults to `3.7.x`.
+     * Optional. The Apache Kafka version of the cluster. Specifically, this value is the finalized metadata version. If not specified during cluster creation, defaults to `3.7.x`. Supported values: `3.7.x`.
      */
     kafkaVersion?: string | null;
     /**
