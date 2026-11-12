@@ -2754,7 +2754,7 @@
       }
     }
   },
-  "revision": "20261015",
+  "revision": "20261103",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -4884,6 +4884,21 @@
         },
         "sqlCode": {
           "description": "The SQL code which creates the function.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GcsSource": {
+      "description": "Cloud Storage source details for seeding.",
+      "id": "GcsSource",
+      "properties": {
+        "bucket": {
+          "description": "Required. The Cloud Storage bucket containing the schema report files.",
+          "type": "string"
+        },
+        "prefix": {
+          "description": "Required. The prefix for the report paths in the bucket. Different seed versions (report versions) might reside in the same bucket, the prefix allows to identify the correct seed version.",
           "type": "string"
         }
       },
@@ -7530,6 +7545,10 @@
           "description": "Optional. Fully qualified (Uri) name of the destination connection profile.",
           "type": "string"
         },
+        "gcsSource": {
+          "$ref": "GcsSource",
+          "description": "Optional. Cloud Storage source details for seeding."
+        },
         "sourceConnectionProfile": {
           "description": "Optional. Fully qualified (Uri) name of the source connection profile.",
           "type": "string"
@@ -7927,8 +7946,15 @@
       "description": "List of configurations for the source objects to be migrated.",
       "id": "SourceObjectsConfig",
       "properties": {
+        "excludedObjectConfigs": {
+          "description": "Optional. The list of the objects to be excluded from the migration. Exclusion takes precedence over inclusion in `object_configs`.",
+          "items": {
+            "$ref": "SourceObjectConfig"
+          },
+          "type": "array"
+        },
         "objectConfigs": {
-          "description": "Optional. The list of the objects to be migrated.",
+          "description": "Optional. The list of the objects to be included in the migration.",
           "items": {
             "$ref": "SourceObjectConfig"
           },

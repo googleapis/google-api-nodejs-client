@@ -1355,6 +1355,19 @@ export namespace datamigration_v1 {
     sqlCode?: string | null;
   }
   /**
+   * Cloud Storage source details for seeding.
+   */
+  export interface Schema$GcsSource {
+    /**
+     * Required. The Cloud Storage bucket containing the schema report files.
+     */
+    bucket?: string | null;
+    /**
+     * Required. The prefix for the report paths in the bucket. Different seed versions (report versions) might reside in the same bucket, the prefix allows to identify the correct seed version.
+     */
+    prefix?: string | null;
+  }
+  /**
    * Request message for 'GenerateSshScript' request.
    */
   export interface Schema$GenerateSshScriptRequest {
@@ -2959,6 +2972,10 @@ export namespace datamigration_v1 {
      */
     destinationConnectionProfile?: string | null;
     /**
+     * Optional. Cloud Storage source details for seeding.
+     */
+    gcsSource?: Schema$GcsSource;
+    /**
      * Optional. Fully qualified (Uri) name of the source connection profile.
      */
     sourceConnectionProfile?: string | null;
@@ -3211,7 +3228,11 @@ export namespace datamigration_v1 {
    */
   export interface Schema$SourceObjectsConfig {
     /**
-     * Optional. The list of the objects to be migrated.
+     * Optional. The list of the objects to be excluded from the migration. Exclusion takes precedence over inclusion in `object_configs`.
+     */
+    excludedObjectConfigs?: Schema$SourceObjectConfig[];
+    /**
+     * Optional. The list of the objects to be included in the migration.
      */
     objectConfigs?: Schema$SourceObjectConfig[];
     /**
@@ -8105,6 +8126,7 @@ export namespace datamigration_v1 {
      *       // {
      *       //   "autoCommit": false,
      *       //   "destinationConnectionProfile": "my_destinationConnectionProfile",
+     *       //   "gcsSource": {},
      *       //   "sourceConnectionProfile": "my_sourceConnectionProfile"
      *       // }
      *     },
