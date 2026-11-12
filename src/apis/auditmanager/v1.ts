@@ -133,6 +133,12 @@ export namespace auditmanager_v1 {
    */
   export interface Schema$AuditReport {
     /**
+     * Output only. Parameter values provided by the user and values for tunable parameters, stored in the DB, keyed by control name.
+     */
+    cloudControlParameterStates?: {
+      [key: string]: Schema$CloudControlParameterStates;
+    } | null;
+    /**
      * Output only. Compliance framework to use for the audit report. For example, `CIS_GCP_FOUNDATIONS_V1_2_0`.
      */
     complianceFramework?: string | null;
@@ -214,6 +220,10 @@ export namespace auditmanager_v1 {
      */
     nextRunTime?: string | null;
     /**
+     * Optional. Maps dynamic parameter overrides by Cloud Control resource name at execution time. For example, `{"organizations/123/locations/global/cloudControls/control-1": {parameters: [...]\}\}`
+     */
+    parameterOverrides?: {[key: string]: Schema$ParameterOverrides} | null;
+    /**
      * Required. Format for the audit report.
      */
     reportFormat?: string | null;
@@ -247,6 +257,15 @@ export namespace auditmanager_v1 {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * Collection of parameter states for a cloud control.
+   */
+  export interface Schema$CloudControlParameterStates {
+    /**
+     * Output only. The parameter states for the cloud control.
+     */
+    parameterStates?: Schema$ParameterState[];
+  }
   /**
    * A control.
    */
@@ -387,6 +406,10 @@ export namespace auditmanager_v1 {
      */
     gcsUri?: string | null;
     /**
+     * Optional. Maps dynamic parameter overrides by Cloud Control resource name at execution time. For example, `{"organizations/123/locations/global/cloudControls/control-1": {parameters: [...]\}\}`
+     */
+    parameterOverrides?: {[key: string]: Schema$ParameterOverrides} | null;
+    /**
      * Required. Format for the audit report.
      */
     reportFormat?: string | null;
@@ -407,6 +430,10 @@ export namespace auditmanager_v1 {
      * Optional. Deprecated. The standard (industry or regulatory requirements) that the audit scope report is run against. Use the `compliance_framework` field instead.
      */
     complianceStandard?: string | null;
+    /**
+     * Optional. Maps dynamic parameter overrides by Cloud Control resource name at execution time. For example, `{"organizations/123/locations/global/cloudControls/control-1": {parameters: [...]\}\}`
+     */
+    parameterOverrides?: {[key: string]: Schema$ParameterOverrides} | null;
     /**
      * Required. Format for the audit scope report.
      */
@@ -586,6 +613,66 @@ export namespace auditmanager_v1 {
     verb?: string | null;
   }
   /**
+   * Parameters are key-value pairs that let you provide your custom location requirements, environment requirements, or other settings that are relevant to the cloud control.
+   */
+  export interface Schema$Parameter {
+    /**
+     * Required. The name or key of the parameter.
+     */
+    name?: string | null;
+    /**
+     * Required. The value of the parameter.
+     */
+    parameterValue?: Schema$ParamValue;
+  }
+  /**
+   * Wrapper message to associate a list of CSC internal parameter overrides with a control name.
+   */
+  export interface Schema$ParameterOverrides {
+    /**
+     * The list of parameter overrides.
+     */
+    parameters?: Schema$Parameter[];
+  }
+  /**
+   * State of a parameter for a cloud control.
+   */
+  export interface Schema$ParameterState {
+    /**
+     * Output only. Whether this parameter was overridden by the user.
+     */
+    isOverridden?: boolean | null;
+    /**
+     * Output only. The parameter key and value.
+     */
+    parameter?: Schema$Parameter;
+  }
+  /**
+   * The possible parameter value types.
+   */
+  export interface Schema$ParamValue {
+    /**
+     * Optional. A boolean value.
+     */
+    boolValue?: boolean | null;
+    /**
+     * Optional. A double value.
+     */
+    numberValue?: number | null;
+    /**
+     * Optional. Sub-parameter values.
+     */
+    oneofValue?: Schema$Parameter;
+    /**
+     * Optional. A repeated string.
+     */
+    stringListValue?: Schema$StringList;
+    /**
+     * Optional. A string value.
+     */
+    stringValue?: string | null;
+  }
+  /**
    * Details about the current status of the report-generation process.
    */
   export interface Schema$ReportGenerationProgress {
@@ -705,6 +792,15 @@ export namespace auditmanager_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * A list of strings for the parameter value.
+   */
+  export interface Schema$StringList {
+    /**
+     * Required. The strings in the list.
+     */
+    values?: string[] | null;
   }
 
   export class Resource$Folders {
@@ -959,6 +1055,7 @@ export namespace auditmanager_v1 {
      *       //   "complianceFramework": "my_complianceFramework",
      *       //   "complianceStandard": "my_complianceStandard",
      *       //   "gcsUri": "my_gcsUri",
+     *       //   "parameterOverrides": {},
      *       //   "reportFormat": "my_reportFormat",
      *       //   "validateOnly": false
      *       // }
@@ -1111,6 +1208,7 @@ export namespace auditmanager_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "cloudControlParameterStates": {},
      *   //   "complianceFramework": "my_complianceFramework",
      *   //   "complianceStandard": "my_complianceStandard",
      *   //   "controlDetails": [],
@@ -1455,6 +1553,7 @@ export namespace auditmanager_v1 {
      *       //   "lastTriggerTime": "my_lastTriggerTime",
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
+     *       //   "parameterOverrides": {},
      *       //   "reportFormat": "my_reportFormat",
      *       //   "scheduleConfig": {},
      *       //   "state": "my_state",
@@ -1474,6 +1573,7 @@ export namespace auditmanager_v1 {
      *   //   "lastTriggerTime": "my_lastTriggerTime",
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "parameterOverrides": {},
      *   //   "reportFormat": "my_reportFormat",
      *   //   "scheduleConfig": {},
      *   //   "state": "my_state",
@@ -1625,6 +1725,7 @@ export namespace auditmanager_v1 {
      *   //   "lastTriggerTime": "my_lastTriggerTime",
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "parameterOverrides": {},
      *   //   "reportFormat": "my_reportFormat",
      *   //   "scheduleConfig": {},
      *   //   "state": "my_state",
@@ -1926,6 +2027,7 @@ export namespace auditmanager_v1 {
      *       //   "lastTriggerTime": "my_lastTriggerTime",
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
+     *       //   "parameterOverrides": {},
      *       //   "reportFormat": "my_reportFormat",
      *       //   "scheduleConfig": {},
      *       //   "state": "my_state",
@@ -1945,6 +2047,7 @@ export namespace auditmanager_v1 {
      *   //   "lastTriggerTime": "my_lastTriggerTime",
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "parameterOverrides": {},
      *   //   "reportFormat": "my_reportFormat",
      *   //   "scheduleConfig": {},
      *   //   "state": "my_state",
@@ -2153,6 +2256,7 @@ export namespace auditmanager_v1 {
      *       // {
      *       //   "complianceFramework": "my_complianceFramework",
      *       //   "complianceStandard": "my_complianceStandard",
+     *       //   "parameterOverrides": {},
      *       //   "reportFormat": "my_reportFormat",
      *       //   "validateOnly": false
      *       // }
@@ -3351,6 +3455,7 @@ export namespace auditmanager_v1 {
      *       //   "complianceFramework": "my_complianceFramework",
      *       //   "complianceStandard": "my_complianceStandard",
      *       //   "gcsUri": "my_gcsUri",
+     *       //   "parameterOverrides": {},
      *       //   "reportFormat": "my_reportFormat",
      *       //   "validateOnly": false
      *       // }
@@ -3504,6 +3609,7 @@ export namespace auditmanager_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "cloudControlParameterStates": {},
      *   //   "complianceFramework": "my_complianceFramework",
      *   //   "complianceStandard": "my_complianceStandard",
      *   //   "controlDetails": [],
@@ -3849,6 +3955,7 @@ export namespace auditmanager_v1 {
      *       //   "lastTriggerTime": "my_lastTriggerTime",
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
+     *       //   "parameterOverrides": {},
      *       //   "reportFormat": "my_reportFormat",
      *       //   "scheduleConfig": {},
      *       //   "state": "my_state",
@@ -3868,6 +3975,7 @@ export namespace auditmanager_v1 {
      *   //   "lastTriggerTime": "my_lastTriggerTime",
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "parameterOverrides": {},
      *   //   "reportFormat": "my_reportFormat",
      *   //   "scheduleConfig": {},
      *   //   "state": "my_state",
@@ -4020,6 +4128,7 @@ export namespace auditmanager_v1 {
      *   //   "lastTriggerTime": "my_lastTriggerTime",
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "parameterOverrides": {},
      *   //   "reportFormat": "my_reportFormat",
      *   //   "scheduleConfig": {},
      *   //   "state": "my_state",
@@ -4323,6 +4432,7 @@ export namespace auditmanager_v1 {
      *       //   "lastTriggerTime": "my_lastTriggerTime",
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
+     *       //   "parameterOverrides": {},
      *       //   "reportFormat": "my_reportFormat",
      *       //   "scheduleConfig": {},
      *       //   "state": "my_state",
@@ -4342,6 +4452,7 @@ export namespace auditmanager_v1 {
      *   //   "lastTriggerTime": "my_lastTriggerTime",
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "parameterOverrides": {},
      *   //   "reportFormat": "my_reportFormat",
      *   //   "scheduleConfig": {},
      *   //   "state": "my_state",
@@ -4552,6 +4663,7 @@ export namespace auditmanager_v1 {
      *         // {
      *         //   "complianceFramework": "my_complianceFramework",
      *         //   "complianceStandard": "my_complianceStandard",
+     *         //   "parameterOverrides": {},
      *         //   "reportFormat": "my_reportFormat",
      *         //   "validateOnly": false
      *         // }
@@ -6690,6 +6802,7 @@ export namespace auditmanager_v1 {
      *       //   "complianceFramework": "my_complianceFramework",
      *       //   "complianceStandard": "my_complianceStandard",
      *       //   "gcsUri": "my_gcsUri",
+     *       //   "parameterOverrides": {},
      *       //   "reportFormat": "my_reportFormat",
      *       //   "validateOnly": false
      *       // }
@@ -6842,6 +6955,7 @@ export namespace auditmanager_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "cloudControlParameterStates": {},
      *   //   "complianceFramework": "my_complianceFramework",
      *   //   "complianceStandard": "my_complianceStandard",
      *   //   "controlDetails": [],
@@ -7186,6 +7300,7 @@ export namespace auditmanager_v1 {
      *       //   "lastTriggerTime": "my_lastTriggerTime",
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
+     *       //   "parameterOverrides": {},
      *       //   "reportFormat": "my_reportFormat",
      *       //   "scheduleConfig": {},
      *       //   "state": "my_state",
@@ -7205,6 +7320,7 @@ export namespace auditmanager_v1 {
      *   //   "lastTriggerTime": "my_lastTriggerTime",
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "parameterOverrides": {},
      *   //   "reportFormat": "my_reportFormat",
      *   //   "scheduleConfig": {},
      *   //   "state": "my_state",
@@ -7356,6 +7472,7 @@ export namespace auditmanager_v1 {
      *   //   "lastTriggerTime": "my_lastTriggerTime",
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "parameterOverrides": {},
      *   //   "reportFormat": "my_reportFormat",
      *   //   "scheduleConfig": {},
      *   //   "state": "my_state",
@@ -7657,6 +7774,7 @@ export namespace auditmanager_v1 {
      *       //   "lastTriggerTime": "my_lastTriggerTime",
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
+     *       //   "parameterOverrides": {},
      *       //   "reportFormat": "my_reportFormat",
      *       //   "scheduleConfig": {},
      *       //   "state": "my_state",
@@ -7676,6 +7794,7 @@ export namespace auditmanager_v1 {
      *   //   "lastTriggerTime": "my_lastTriggerTime",
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "parameterOverrides": {},
      *   //   "reportFormat": "my_reportFormat",
      *   //   "scheduleConfig": {},
      *   //   "state": "my_state",
@@ -7884,6 +8003,7 @@ export namespace auditmanager_v1 {
      *       // {
      *       //   "complianceFramework": "my_complianceFramework",
      *       //   "complianceStandard": "my_complianceStandard",
+     *       //   "parameterOverrides": {},
      *       //   "reportFormat": "my_reportFormat",
      *       //   "validateOnly": false
      *       // }
