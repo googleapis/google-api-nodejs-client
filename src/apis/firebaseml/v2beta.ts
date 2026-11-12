@@ -234,6 +234,10 @@ export namespace firebaseml_v2beta {
      */
     mode?: string | null;
     /**
+     * Optional. The source text to be edited or rewritten via voice instructions. When provided in `SMART` mode, the model evaluates the audio input against this text and emits the complete replacement text in the candidate response rather than appending to it.
+     */
+    sourceText?: string | null;
+    /**
      * Optional. Configures word-level timestamp generation.
      */
     wordTimestamp?: boolean | null;
@@ -798,6 +802,10 @@ export namespace firebaseml_v2beta {
      * Inline media bytes.
      */
     inlineData?: Schema$GoogleCloudAiplatformV1beta1FunctionResponseBlob;
+    /**
+     * Optional. Processes this part's media for understanding. Only meaningful for video parts (`inline_data` or `file_data` with video mime). Non-video parts ignore this field.
+     */
+    mediaProcessing?: string | null;
   }
   /**
    * Request message for [PredictionService.GenerateContent].
@@ -1127,7 +1135,7 @@ export namespace firebaseml_v2beta {
      */
     enableWidget?: boolean | null;
     /**
-     * Optional. Specifies the types of Google Maps grounding to enable. Defaults to `places` when unset.
+     * Optional. Specifies the types of Google Maps grounding to enable. Defaults to `places` when unset, and to `places` and `routing` for Gemini 4 and later models. When set, only the listed types are enabled; for example, setting only `places` disables routing.
      */
     groundingTypes?: Schema$GoogleCloudAiplatformV1beta1GoogleMapsGroundingTypes;
   }
@@ -1140,7 +1148,7 @@ export namespace firebaseml_v2beta {
      */
     places?: Schema$GoogleCloudAiplatformV1beta1GoogleMapsPlaces;
     /**
-     * Optional. Enables grounding with Google Maps Routing APIs (ComputeRoutes and SearchAlongRoute).
+     * Optional. Enables grounding with Google Maps Routing APIs (ComputeRoutes and SearchAlongRoute). Also enabled by default for Gemini 4 and later models when no `GroundingTypes` are specified.
      */
     routing?: Schema$GoogleCloudAiplatformV1beta1GoogleMapsRouting;
   }
@@ -1149,7 +1157,7 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GoogleMapsPlaces {}
   /**
-   * Grounding with Google Maps Routing APIs (ComputeRoutes and SearchAlongRoute).
+   * Grounding with Google Maps Routing APIs (ComputeRoutes and SearchAlongRoute). Also enabled by default for Gemini 4 and later models when no grounding type is specified.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GoogleMapsRouting {}
   /**
@@ -2151,6 +2159,10 @@ export namespace firebaseml_v2beta {
      * Optional. Function calling config.
      */
     functionCallingConfig?: Schema$GoogleCloudAiplatformV1beta1FunctionCallingConfig;
+    /**
+     * Optional. If true, the API response will include the server-side tool calls and responses within the `Content` message. This allows clients to observe the server's tool interactions.
+     */
+    includeServerSideToolInvocations?: boolean | null;
     /**
      * Optional. Retrieval config.
      */

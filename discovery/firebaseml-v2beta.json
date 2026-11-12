@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20261018",
+  "revision": "20261108",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -384,6 +384,10 @@
             "Verbatim transcription mode.",
             "Smart transcription mode."
           ],
+          "type": "string"
+        },
+        "sourceText": {
+          "description": "Optional. The source text to be edited or rewritten via voice instructions. When provided in `SMART` mode, the model evaluates the audio input against this text and emits the complete replacement text in the candidate response rather than appending to it.",
           "type": "string"
         },
         "wordTimestamp": {
@@ -649,7 +653,8 @@
             "UNEXPECTED_TOOL_CALL",
             "NO_IMAGE",
             "MALFORMED_RESPONSE",
-            "CONTINUATION"
+            "CONTINUATION",
+            "TOO_MANY_TOOL_CALLS"
           ],
           "enumDescriptions": [
             "The finish reason is unspecified.",
@@ -670,7 +675,8 @@
             "The model generated a function call that is semantically invalid. This can happen, for example, if function calling is not enabled or the generated function is not in the function declaration.",
             "The model was expected to generate an image, but didn't.",
             "Finishes due to malformed response.",
-            "Token generation was stopped because the response reached the per-request token limit, but generation is not yet complete. The model response can be continued via a subsequent request using the returned `continuation_token`."
+            "Token generation was stopped because the response reached the per-request token limit, but generation is not yet complete. The model response can be continued via a subsequent request using the returned `continuation_token`.",
+            "The model made too many tool calls in a single request, so the server-side tool loop stopped before the model returned a final answer."
           ],
           "readOnly": true,
           "type": "string"
@@ -1260,6 +1266,20 @@
         "inlineData": {
           "$ref": "GoogleCloudAiplatformV1beta1FunctionResponseBlob",
           "description": "Inline media bytes."
+        },
+        "mediaProcessing": {
+          "description": "Optional. Processes this part's media for understanding. Only meaningful for video parts (`inline_data` or `file_data` with video mime). Non-video parts ignore this field.",
+          "enum": [
+            "MEDIA_PROCESSING_UNSPECIFIED",
+            "STATIC",
+            "AGENTIC"
+          ],
+          "enumDescriptions": [
+            "Defaults to model-specific processing.",
+            "Fixed-rate frame extraction. All frames placed in context.",
+            "Model-driven dynamic navigation. Recommended for most use cases."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1794,7 +1814,7 @@
         },
         "groundingTypes": {
           "$ref": "GoogleCloudAiplatformV1beta1GoogleMapsGroundingTypes",
-          "description": "Optional. Specifies the types of Google Maps grounding to enable. Defaults to `places` when unset."
+          "description": "Optional. Specifies the types of Google Maps grounding to enable. Defaults to `places` when unset, and to `places` and `routing` for Gemini 4 and later models. When set, only the listed types are enabled; for example, setting only `places` disables routing."
         }
       },
       "type": "object"
@@ -1809,7 +1829,7 @@
         },
         "routing": {
           "$ref": "GoogleCloudAiplatformV1beta1GoogleMapsRouting",
-          "description": "Optional. Enables grounding with Google Maps Routing APIs (ComputeRoutes and SearchAlongRoute)."
+          "description": "Optional. Enables grounding with Google Maps Routing APIs (ComputeRoutes and SearchAlongRoute). Also enabled by default for Gemini 4 and later models when no `GroundingTypes` are specified."
         }
       },
       "type": "object"
@@ -1821,7 +1841,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1GoogleMapsRouting": {
-      "description": "Grounding with Google Maps Routing APIs (ComputeRoutes and SearchAlongRoute).",
+      "description": "Grounding with Google Maps Routing APIs (ComputeRoutes and SearchAlongRoute). Also enabled by default for Gemini 4 and later models when no grounding type is specified.",
       "id": "GoogleCloudAiplatformV1beta1GoogleMapsRouting",
       "properties": {},
       "type": "object"
@@ -3387,6 +3407,10 @@
         "functionCallingConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1FunctionCallingConfig",
           "description": "Optional. Function calling config."
+        },
+        "includeServerSideToolInvocations": {
+          "description": "Optional. If true, the API response will include the server-side tool calls and responses within the `Content` message. This allows clients to observe the server's tool interactions.",
+          "type": "boolean"
         },
         "retrievalConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1RetrievalConfig",
