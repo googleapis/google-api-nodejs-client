@@ -145,7 +145,7 @@ export namespace apigateway_v1beta {
      */
     managedService?: string | null;
     /**
-     * Output only. Resource name of the API. Format: projects/{project\}/locations/global/apis/{api\}
+     * Identifier. Resource name of the API. Format: projects/{project\}/locations/global/apis/{api\}
      */
     name?: string | null;
     /**
@@ -190,7 +190,7 @@ export namespace apigateway_v1beta {
      */
     managedServiceConfigs?: Schema$ApigatewayApiConfigFile[];
     /**
-     * Output only. Resource name of the API Config. Format: projects/{project\}/locations/global/apis/{api\}/configs/{api_config\}
+     * Identifier. Resource name of the API Config. Format: projects/{project\}/locations/global/apis/{api\}/configs/{api_config\}
      */
     name?: string | null;
     /**
@@ -351,7 +351,7 @@ export namespace apigateway_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. Resource name of the Gateway. Format: projects/{project\}/locations/{location\}/gateways/{gateway\}
+     * Identifier. Resource name of the Gateway. Format: projects/{project\}/locations/{location\}/gateways/{gateway\}
      */
     name?: string | null;
     /**
@@ -1590,13 +1590,13 @@ export namespace apigateway_v1beta {
      *
      *   // Do the magic
      *   const res = await apigateway.projects.locations.apis.list({
-     *     // Filter.
+     *     // Optional. Filter.
      *     filter: 'placeholder-value',
-     *     // Order by parameters.
+     *     // Optional. Order by parameters.
      *     orderBy: 'placeholder-value',
-     *     // Page size.
+     *     // Optional. Page size.
      *     pageSize: 'placeholder-value',
-     *     // Page token.
+     *     // Optional. Page token.
      *     pageToken: 'placeholder-value',
      *     // Required. Parent resource of the API, of the form: `projects/x/locations/global`
      *     parent: 'projects/my-project/locations/my-location',
@@ -1740,9 +1740,9 @@ export namespace apigateway_v1beta {
      *
      *   // Do the magic
      *   const res = await apigateway.projects.locations.apis.patch({
-     *     // Output only. Resource name of the API. Format: projects/{project\}/locations/global/apis/{api\}
+     *     // Identifier. Resource name of the API. Format: projects/{project\}/locations/global/apis/{api\}
      *     name: 'projects/my-project/locations/my-location/apis/my-api',
-     *     // Field mask is used to specify the fields to be overwritten in the Api resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *     // Optional. Field mask is used to specify the fields to be overwritten in the Api resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. The request fails if `update_mask` is missing or empty.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2208,19 +2208,19 @@ export namespace apigateway_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Apis$List extends StandardParameters {
     /**
-     * Filter.
+     * Optional. Filter.
      */
     filter?: string;
     /**
-     * Order by parameters.
+     * Optional. Order by parameters.
      */
     orderBy?: string;
     /**
-     * Page size.
+     * Optional. Page size.
      */
     pageSize?: number;
     /**
-     * Page token.
+     * Optional. Page token.
      */
     pageToken?: string;
     /**
@@ -2230,11 +2230,11 @@ export namespace apigateway_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Apis$Patch extends StandardParameters {
     /**
-     * Output only. Resource name of the API. Format: projects/{project\}/locations/global/apis/{api\}
+     * Identifier. Resource name of the API. Format: projects/{project\}/locations/global/apis/{api\}
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the Api resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     * Optional. Field mask is used to specify the fields to be overwritten in the Api resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. The request fails if `update_mask` is missing or empty.
      */
     updateMask?: string;
 
@@ -2605,7 +2605,7 @@ export namespace apigateway_v1beta {
      *   const res = await apigateway.projects.locations.apis.configs.get({
      *     // Required. Resource name of the form: `projects/x/locations/global/apis/x/configs/x`
      *     name: 'projects/my-project/locations/my-location/apis/my-api/configs/my-config',
-     *     // Specifies which fields of the API Config are returned in the response. Defaults to `BASIC` view.
+     *     // Optional. Specifies which fields of the API Config are returned in the response. Defaults to `BASIC` view.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2894,13 +2894,13 @@ export namespace apigateway_v1beta {
      *
      *   // Do the magic
      *   const res = await apigateway.projects.locations.apis.configs.list({
-     *     // Filter.
+     *     // Optional. Filter.
      *     filter: 'placeholder-value',
-     *     // Order by parameters.
+     *     // Optional. Order by parameters.
      *     orderBy: 'placeholder-value',
-     *     // Page size.
+     *     // Optional. Page size.
      *     pageSize: 'placeholder-value',
-     *     // Page token.
+     *     // Optional. Page token.
      *     pageToken: 'placeholder-value',
      *     // Required. Parent resource of the API Config, of the form: `projects/x/locations/global/apis/x`
      *     parent: 'projects/my-project/locations/my-location/apis/my-api',
@@ -3051,9 +3051,9 @@ export namespace apigateway_v1beta {
      *
      *   // Do the magic
      *   const res = await apigateway.projects.locations.apis.configs.patch({
-     *     // Output only. Resource name of the API Config. Format: projects/{project\}/locations/global/apis/{api\}/configs/{api_config\}
+     *     // Identifier. Resource name of the API Config. Format: projects/{project\}/locations/global/apis/{api\}/configs/{api_config\}
      *     name: 'projects/my-project/locations/my-location/apis/my-api/configs/my-config',
-     *     // Field mask is used to specify the fields to be overwritten in the ApiConfig resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *     // Optional. Field mask is used to specify the fields to be overwritten in the ApiConfig resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. The request fails if `update_mask` is missing or empty.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3516,7 +3516,7 @@ export namespace apigateway_v1beta {
      */
     name?: string;
     /**
-     * Specifies which fields of the API Config are returned in the response. Defaults to `BASIC` view.
+     * Optional. Specifies which fields of the API Config are returned in the response. Defaults to `BASIC` view.
      */
     view?: string;
   }
@@ -3532,19 +3532,19 @@ export namespace apigateway_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Apis$Configs$List extends StandardParameters {
     /**
-     * Filter.
+     * Optional. Filter.
      */
     filter?: string;
     /**
-     * Order by parameters.
+     * Optional. Order by parameters.
      */
     orderBy?: string;
     /**
-     * Page size.
+     * Optional. Page size.
      */
     pageSize?: number;
     /**
-     * Page token.
+     * Optional. Page token.
      */
     pageToken?: string;
     /**
@@ -3554,11 +3554,11 @@ export namespace apigateway_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Apis$Configs$Patch extends StandardParameters {
     /**
-     * Output only. Resource name of the API Config. Format: projects/{project\}/locations/global/apis/{api\}/configs/{api_config\}
+     * Identifier. Resource name of the API Config. Format: projects/{project\}/locations/global/apis/{api\}/configs/{api_config\}
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the ApiConfig resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     * Optional. Field mask is used to specify the fields to be overwritten in the ApiConfig resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. The request fails if `update_mask` is missing or empty.
      */
     updateMask?: string;
 
@@ -4210,13 +4210,13 @@ export namespace apigateway_v1beta {
      *
      *   // Do the magic
      *   const res = await apigateway.projects.locations.gateways.list({
-     *     // Filter.
+     *     // Optional. Filter.
      *     filter: 'placeholder-value',
-     *     // Order by parameters.
+     *     // Optional. Order by parameters.
      *     orderBy: 'placeholder-value',
-     *     // Page size.
+     *     // Optional. Page size.
      *     pageSize: 'placeholder-value',
-     *     // Page token.
+     *     // Optional. Page token.
      *     pageToken: 'placeholder-value',
      *     // Required. Parent resource of the Gateway, of the form: `projects/x/locations/x`
      *     parent: 'projects/my-project/locations/my-location',
@@ -4363,9 +4363,9 @@ export namespace apigateway_v1beta {
      *
      *   // Do the magic
      *   const res = await apigateway.projects.locations.gateways.patch({
-     *     // Output only. Resource name of the Gateway. Format: projects/{project\}/locations/{location\}/gateways/{gateway\}
+     *     // Identifier. Resource name of the Gateway. Format: projects/{project\}/locations/{location\}/gateways/{gateway\}
      *     name: 'projects/my-project/locations/my-location/gateways/my-gateway',
-     *     // Field mask is used to specify the fields to be overwritten in the Gateway resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *     // Optional. Field mask is used to specify the fields to be overwritten in the Gateway resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. The request fails if `update_mask` is missing or empty.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4834,19 +4834,19 @@ export namespace apigateway_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Gateways$List extends StandardParameters {
     /**
-     * Filter.
+     * Optional. Filter.
      */
     filter?: string;
     /**
-     * Order by parameters.
+     * Optional. Order by parameters.
      */
     orderBy?: string;
     /**
-     * Page size.
+     * Optional. Page size.
      */
     pageSize?: number;
     /**
-     * Page token.
+     * Optional. Page token.
      */
     pageToken?: string;
     /**
@@ -4856,11 +4856,11 @@ export namespace apigateway_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Gateways$Patch extends StandardParameters {
     /**
-     * Output only. Resource name of the Gateway. Format: projects/{project\}/locations/{location\}/gateways/{gateway\}
+     * Identifier. Resource name of the Gateway. Format: projects/{project\}/locations/{location\}/gateways/{gateway\}
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the Gateway resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     * Optional. Field mask is used to specify the fields to be overwritten in the Gateway resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. The request fails if `update_mask` is missing or empty.
      */
     updateMask?: string;
 

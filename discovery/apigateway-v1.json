@@ -308,23 +308,23 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Filter.",
+                      "description": "Optional. Filter.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Order by parameters.",
+                      "description": "Optional. Order by parameters.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Page size.",
+                      "description": "Optional. Page size.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Page token.",
+                      "description": "Optional. Page token.",
                       "location": "query",
                       "type": "string"
                     },
@@ -354,14 +354,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. Resource name of the API. Format: projects/{project}/locations/global/apis/{api}",
+                      "description": "Identifier. Resource name of the API. Format: projects/{project}/locations/global/apis/{api}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/apis/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Field mask is used to specify the fields to be overwritten in the Api resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the Api resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. The request fails if `update_mask` is missing or empty.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -513,7 +513,7 @@
                           "type": "string"
                         },
                         "view": {
-                          "description": "Specifies which fields of the API Config are returned in the response. Defaults to `BASIC` view.",
+                          "description": "Optional. Specifies which fields of the API Config are returned in the response. Defaults to `BASIC` view.",
                           "enum": [
                             "CONFIG_VIEW_UNSPECIFIED",
                             "BASIC",
@@ -577,23 +577,23 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filter.",
+                          "description": "Optional. Filter.",
                           "location": "query",
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Order by parameters.",
+                          "description": "Optional. Order by parameters.",
                           "location": "query",
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Page size.",
+                          "description": "Optional. Page size.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Page token.",
+                          "description": "Optional. Page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -623,14 +623,14 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. Resource name of the API Config. Format: projects/{project}/locations/global/apis/{api}/configs/{api_config}",
+                          "description": "Identifier. Resource name of the API Config. Format: projects/{project}/locations/global/apis/{api}/configs/{api_config}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/apis/[^/]+/configs/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Field mask is used to specify the fields to be overwritten in the ApiConfig resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                          "description": "Optional. Field mask is used to specify the fields to be overwritten in the ApiConfig resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. The request fails if `update_mask` is missing or empty.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -833,23 +833,23 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Filter.",
+                      "description": "Optional. Filter.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Order by parameters.",
+                      "description": "Optional. Order by parameters.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Page size.",
+                      "description": "Optional. Page size.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Page token.",
+                      "description": "Optional. Page token.",
                       "location": "query",
                       "type": "string"
                     },
@@ -879,14 +879,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. Resource name of the Gateway. Format: projects/{project}/locations/{location}/gateways/{gateway}",
+                      "description": "Identifier. Resource name of the Gateway. Format: projects/{project}/locations/{location}/gateways/{gateway}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/gateways/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Field mask is used to specify the fields to be overwritten in the Gateway resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the Gateway resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. The request fails if `update_mask` is missing or empty.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1094,7 +1094,7 @@
       }
     }
   },
-  "revision": "20261014",
+  "revision": "20261028",
   "rootUrl": "https://apigateway.googleapis.com/",
   "schemas": {
     "ApigatewayApi": {
@@ -1123,8 +1123,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Resource name of the API. Format: projects/{project}/locations/global/apis/{api}",
-          "readOnly": true,
+          "description": "Identifier. Resource name of the API. Format: projects/{project}/locations/global/apis/{api}",
           "type": "string"
         },
         "state": {
@@ -1197,8 +1196,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Output only. Resource name of the API Config. Format: projects/{project}/locations/global/apis/{api}/configs/{api_config}",
-          "readOnly": true,
+          "description": "Identifier. Resource name of the API Config. Format: projects/{project}/locations/global/apis/{api}/configs/{api_config}",
           "type": "string"
         },
         "openapiDocuments": {
@@ -1435,8 +1433,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. Resource name of the Gateway. Format: projects/{project}/locations/{location}/gateways/{gateway}",
-          "readOnly": true,
+          "description": "Identifier. Resource name of the Gateway. Format: projects/{project}/locations/{location}/gateways/{gateway}",
           "type": "string"
         },
         "state": {
