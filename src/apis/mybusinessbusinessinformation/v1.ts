@@ -557,7 +557,7 @@ export namespace mybusinessbusinessinformation_v1 {
      */
     canDelete?: boolean | null;
     /**
-     * Output only. Indicates if the listing is eligible for business calls.
+     * Output only. Deprecated: Relates to the Call Tracking feature which is no longer supported. Indicates whether the location is eligible for business calls.
      */
     canHaveBusinessCalls?: boolean | null;
     /**
@@ -609,7 +609,7 @@ export namespace mybusinessbusinessinformation_v1 {
      */
     newReviewUri?: string | null;
     /**
-     * Output only. If this locationappears on Google Maps, this field is populated with the place ID for the location. This ID can be used in various Places APIs. This field can be set during Create calls, but not for Update.
+     * Output only. If this location appears on Google Maps, this field is populated with the place ID for the location. This ID can be used in various Places APIs. This field can be set during Create calls, but not for Update.
      */
     placeId?: string | null;
   }
