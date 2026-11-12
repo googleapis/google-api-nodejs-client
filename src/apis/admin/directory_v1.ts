@@ -20689,7 +20689,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Create a guest user with access to a [subset of Workspace capabilities](https://support.google.com/a/answer/16558545). This feature is currently in Open Beta.
+     * Create a guest user with access to a [subset of Workspace capabilities](https://support.google.com/a/answer/16558545).
      * @example
      * ```js
      * // Before running the sample:
