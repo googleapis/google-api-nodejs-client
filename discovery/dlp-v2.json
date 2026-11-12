@@ -5274,7 +5274,7 @@
       }
     }
   },
-  "revision": "20260912",
+  "revision": "20261031",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -5975,7 +5975,8 @@
             "AUDIO",
             "VIDEO",
             "EXECUTABLE",
-            "AI_MODEL"
+            "AI_MODEL",
+            "IMAGE_TIFF"
           ],
           "enumDescriptions": [
             "Unused",
@@ -5993,9 +5994,10 @@
             "csv",
             "tsv",
             "Audio file types. Only used for profiling.",
-            "Video file types. Only used for profiling.",
+            "Video file types.",
             "Executable file types. Only used for profiling.",
-            "AI model file types. Only used for profiling."
+            "AI model file types. Only used for profiling.",
+            "TIFF image format."
           ],
           "type": "string"
         }
@@ -6264,7 +6266,7 @@
               "Includes all files.",
               "Includes all file extensions not covered by another entry. Binary scanning attempts to convert the content of the file to utf_8 to scan the file. If you wish to avoid this fall back, specify one or more of the other file types in your storage scan.",
               "Included file extensions: asc,asp, aspx, brf, c, cc,cfm, cgi, cpp, csv, cxx, c++, cs, css, dart, dat, dot, eml,, epbub, ged, go, h, hh, hpp, hxx, h++, hs, html, htm, mkd, markdown, m, ml, mli, perl, pl, plist, pm, php, phtml, pht, properties, py, pyw, rb, rbw, rs, rss, rc, scala, sh, sql, swift, tex, shtml, shtm, xhtml, lhs, ics, ini, java, js, json, jsonl, kix, kml, ocaml, md, txt, text, tsv, vb, vcard, vcs, wml, xcodeproj, xml, xsl, xsd, yml, yaml.",
-              "Included file extensions: bmp, gif, jpg, jpeg, jpe, png. Setting bytes_limit_per_file or bytes_limit_per_file_percent has no effect on image files. Image inspection is restricted to the `global`, `us`, `asia`, and `europe` regions.",
+              "Included file extensions: bmp, gif, jpg, jpeg, jpe, png, tif, tiff. Setting bytes_limit_per_file or bytes_limit_per_file_percent has no effect on image files. Image inspection is restricted to the `global`, `us`, `asia`, and `europe` regions.",
               "Microsoft Word files larger than 30 MB will be scanned as binary files. Included file extensions: docx, dotx, docm, dotm. Setting `bytes_limit_per_file` or `bytes_limit_per_file_percent` has no effect on Word files.",
               "PDF files larger than 30 MB will be scanned as binary files. Included file extensions: pdf. Setting `bytes_limit_per_file` or `bytes_limit_per_file_percent` has no effect on PDF files.",
               "Included file extensions: avro",
@@ -7728,7 +7730,7 @@
               "Includes all files.",
               "Includes all file extensions not covered by another entry. Binary scanning attempts to convert the content of the file to utf_8 to scan the file. If you wish to avoid this fall back, specify one or more of the other file types in your storage scan.",
               "Included file extensions: asc,asp, aspx, brf, c, cc,cfm, cgi, cpp, csv, cxx, c++, cs, css, dart, dat, dot, eml,, epbub, ged, go, h, hh, hpp, hxx, h++, hs, html, htm, mkd, markdown, m, ml, mli, perl, pl, plist, pm, php, phtml, pht, properties, py, pyw, rb, rbw, rs, rss, rc, scala, sh, sql, swift, tex, shtml, shtm, xhtml, lhs, ics, ini, java, js, json, jsonl, kix, kml, ocaml, md, txt, text, tsv, vb, vcard, vcs, wml, xcodeproj, xml, xsl, xsd, yml, yaml.",
-              "Included file extensions: bmp, gif, jpg, jpeg, jpe, png. Setting bytes_limit_per_file or bytes_limit_per_file_percent has no effect on image files. Image inspection is restricted to the `global`, `us`, `asia`, and `europe` regions.",
+              "Included file extensions: bmp, gif, jpg, jpeg, jpe, png, tif, tiff. Setting bytes_limit_per_file or bytes_limit_per_file_percent has no effect on image files. Image inspection is restricted to the `global`, `us`, `asia`, and `europe` regions.",
               "Microsoft Word files larger than 30 MB will be scanned as binary files. Included file extensions: docx, dotx, docm, dotm. Setting `bytes_limit_per_file` or `bytes_limit_per_file_percent` has no effect on Word files.",
               "PDF files larger than 30 MB will be scanned as binary files. Included file extensions: pdf. Setting `bytes_limit_per_file` or `bytes_limit_per_file_percent` has no effect on PDF files.",
               "Included file extensions: avro",
@@ -9804,6 +9806,11 @@
             "$ref": "GooglePrivacyDlpV2BoundingBox"
           },
           "type": "array"
+        },
+        "pageNumber": {
+          "description": "The 0-indexed page number or frame index for multi-page image formats.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"

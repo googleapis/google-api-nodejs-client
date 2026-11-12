@@ -3180,6 +3180,10 @@ export namespace dlp_v2 {
      * Bounding boxes locating the pixels within the image containing the finding.
      */
     boundingBoxes?: Schema$GooglePrivacyDlpV2BoundingBox[];
+    /**
+     * The 0-indexed page number or frame index for multi-page image formats.
+     */
+    pageNumber?: number | null;
   }
   /**
    * Configuration for determining how redaction of images should occur.
