@@ -4188,7 +4188,7 @@
       }
     }
   },
-  "revision": "20261019",
+  "revision": "20261104",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -11291,6 +11291,10 @@
         "qhd": {
           "$ref": "Thumbnail",
           "description": "The quad high definition (1440p / 2K) quality image for this resource."
+        },
+        "shortsAspectRatio": {
+          "$ref": "Thumbnail",
+          "description": "The Shorts aspect ratio (9:16) image for this resource."
         },
         "standard": {
           "$ref": "Thumbnail",

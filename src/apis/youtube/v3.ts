@@ -3997,6 +3997,10 @@ export namespace youtube_v3 {
      */
     qhd?: Schema$Thumbnail;
     /**
+     * The Shorts aspect ratio (9:16) image for this resource.
+     */
+    shortsAspectRatio?: Schema$Thumbnail;
+    /**
      * The standard quality image for this resource.
      */
     standard?: Schema$Thumbnail;
