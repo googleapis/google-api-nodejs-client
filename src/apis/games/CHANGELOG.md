@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/games-v19.0.1...games-v19.1.0) (2026-11-12)
+
+
+### Features
+
+* **games:** update the API ([d8e4e41](https://github.com/googleapis/google-api-nodejs-client/commit/d8e4e41be52db8afae01433d6202273e5084e057))
+
 ## [19.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/games-v19.0.0...games-v19.0.1) (2026-09-23)
 
 

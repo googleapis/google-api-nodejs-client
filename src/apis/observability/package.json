@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/observability",
-  "version": "14.0.2",
+  "version": "14.1.0",
   "description": "observability",
   "main": "build/index.js",
   "types": "build/index.d.ts",

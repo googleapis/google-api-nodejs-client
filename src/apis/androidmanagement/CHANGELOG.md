@@ -1,5 +1,12 @@
 # Changelog
 
+## [30.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v30.3.0...androidmanagement-v30.4.0) (2026-11-12)
+
+
+### Features
+
+* **androidmanagement:** update the API ([a89d912](https://github.com/googleapis/google-api-nodejs-client/commit/a89d912c4603d56c7dd08073fc5fb449e80214b7))
+
 ## [30.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v30.2.2...androidmanagement-v30.3.0) (2026-10-29)
 
 

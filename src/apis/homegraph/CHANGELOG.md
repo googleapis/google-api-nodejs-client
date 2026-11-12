@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/homegraph-v16.1.0...homegraph-v16.1.1) (2026-11-12)
+
+
+### Bug Fixes
+
+* **homegraph:** update the API ([c2f6ff8](https://github.com/googleapis/google-api-nodejs-client/commit/c2f6ff8815734546ccfd6ae1b83a1faa510af1b3))
+
 ## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/homegraph-v16.0.1...homegraph-v16.1.0) (2026-10-29)
 
 

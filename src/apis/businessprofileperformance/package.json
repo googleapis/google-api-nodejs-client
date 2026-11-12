@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/businessprofileperformance",
-  "version": "9.0.2",
+  "version": "9.0.3",
   "description": "businessprofileperformance",
   "main": "build/index.js",
   "types": "build/index.d.ts",

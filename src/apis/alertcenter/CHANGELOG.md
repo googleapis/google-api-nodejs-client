@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v19.0.1...alertcenter-v19.1.0) (2026-11-12)
+
+
+### Features
+
+* **alertcenter:** update the API ([df35d1e](https://github.com/googleapis/google-api-nodejs-client/commit/df35d1ebb52ad904059761ee7f21827ceef2b1a7))
+
 ## [19.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v19.0.0...alertcenter-v19.0.1) (2026-09-23)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebasedataconnect-v13.0.0...firebasedataconnect-v13.0.1) (2026-11-12)
+
+
+### Bug Fixes
+
+* **firebasedataconnect:** update the API ([8c14a37](https://github.com/googleapis/google-api-nodejs-client/commit/8c14a3780dd5cee9ff9464d0cd0c74951b30334d))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasedataconnect-v12.2.0...firebasedataconnect-v13.0.0) (2026-10-19)
 
 
