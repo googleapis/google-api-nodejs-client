@@ -860,7 +860,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Identifier. Resource name of the member. Format: spaces/{space}/members/{member}",
+                  "description": "Identifier. Resource name of the member. Format: `spaces/{space}/members/{member}`",
                   "location": "path",
                   "pattern": "^spaces/[^/]+/members/[^/]+$",
                   "required": true,
@@ -889,7 +889,7 @@
       }
     }
   },
-  "revision": "20260915",
+  "revision": "20261029",
   "rootUrl": "https://meet.googleapis.com/",
   "schemas": {
     "ActiveConference": {
@@ -1221,7 +1221,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. Resource name of the member. Format: spaces/{space}/members/{member}",
+          "description": "Identifier. Resource name of the member. Format: `spaces/{space}/members/{member}`",
           "type": "string"
         },
         "role": {
@@ -1727,7 +1727,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Resource name of the entry. Format: \"conferenceRecords/{conference_record}/transcripts/{transcript}/entries/{entry}\"",
+          "description": "Output only. Resource name of the entry. Format: `conferenceRecords/{conference_record}/transcripts/{transcript}/entries/{entry}`",
           "readOnly": true,
           "type": "string"
         },
