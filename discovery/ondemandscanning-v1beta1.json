@@ -344,7 +344,7 @@
       }
     }
   },
-  "revision": "20261023",
+  "revision": "20261030",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AISkillAnalysisOccurrence": {
@@ -1734,10 +1734,32 @@
       },
       "type": "object"
     },
+    "GrafeasV1LayerAttribute": {
+      "description": "LayerAttribute represents a single attribute (such as a tag) that applies to a layer, along with the plugin that generated it.",
+      "id": "GrafeasV1LayerAttribute",
+      "properties": {
+        "plugin": {
+          "description": "The name of the plugin that generated this attribute.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value of the attribute, with a meaning defined by the plugin.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GrafeasV1LayerDetails": {
       "description": "Details about the layer a package was found in.",
       "id": "GrafeasV1LayerDetails",
       "properties": {
+        "attributes": {
+          "description": "Attributes that apply to the layer, such as buildpacks metadata.",
+          "items": {
+            "$ref": "GrafeasV1LayerAttribute"
+          },
+          "type": "array"
+        },
         "baseImages": {
           "description": "The base images the layer is found within.",
           "items": {
