@@ -1788,7 +1788,7 @@
       }
     }
   },
-  "revision": "20260908",
+  "revision": "20261102",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1betaAccessBetweenFilter": {
@@ -3320,7 +3320,7 @@
           "description": "The account to create."
         },
         "redirectUri": {
-          "description": "Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in Cloud Console as a Redirect URI.",
+          "description": "Redirect URI where the user will be sent after accepting Terms of Service.",
           "type": "string"
         }
       },
