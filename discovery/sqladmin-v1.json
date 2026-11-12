@@ -3589,7 +3589,7 @@
           },
           "path": "v1/projects/{project}/instances/{instance}/workloadCaptures:start",
           "request": {
-            "$ref": "SqlWorkloadCapturesStartRequest"
+            "$ref": "WorkloadCapturesStartRequest"
           },
           "response": {
             "$ref": "Operation"
@@ -3631,7 +3631,7 @@
           },
           "path": "v1/projects/{project}/instances/{instance}/workloadCaptures/{workloadId}:startReplay",
           "request": {
-            "$ref": "SqlWorkloadCapturesStartReplayRequest"
+            "$ref": "WorkloadCapturesStartReplayRequest"
           },
           "response": {
             "$ref": "Operation"
@@ -3666,7 +3666,7 @@
           },
           "path": "v1/projects/{project}/instances/{instance}/workloadCaptures:stop",
           "request": {
-            "$ref": "SqlWorkloadCapturesStopRequest"
+            "$ref": "WorkloadCapturesStopRequest"
           },
           "response": {
             "$ref": "Operation"
@@ -3701,7 +3701,7 @@
           },
           "path": "v1/projects/{project}/instances/{instance}/workloadCaptures:stopReplay",
           "request": {
-            "$ref": "SqlWorkloadCapturesStopReplayRequest"
+            "$ref": "WorkloadCapturesStopReplayRequest"
           },
           "response": {
             "$ref": "Operation"
@@ -3714,7 +3714,7 @@
       }
     }
   },
-  "revision": "20261006",
+  "revision": "20261018",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -10111,50 +10111,6 @@
       },
       "type": "object"
     },
-    "SqlWorkloadCapturesStartReplayRequest": {
-      "description": "Request to start executing a captured workload on a replay instance (the Cloud SQL instance where the recorded SQL queries are executed).",
-      "id": "SqlWorkloadCapturesStartReplayRequest",
-      "properties": {
-        "startWorkloadReplayContext": {
-          "$ref": "StartWorkloadReplayContext",
-          "description": "Required. Contains details about the start workload replay operation."
-        }
-      },
-      "type": "object"
-    },
-    "SqlWorkloadCapturesStartRequest": {
-      "description": "Request to start recording traffic from the primary instance (captured workload).",
-      "id": "SqlWorkloadCapturesStartRequest",
-      "properties": {
-        "startWorkloadCaptureContext": {
-          "$ref": "StartWorkloadCaptureContext",
-          "description": "Optional. Contains details about the start workload capture operation."
-        }
-      },
-      "type": "object"
-    },
-    "SqlWorkloadCapturesStopReplayRequest": {
-      "description": "Request to stop an active workload replay on a target Cloud SQL replay instance.",
-      "id": "SqlWorkloadCapturesStopReplayRequest",
-      "properties": {
-        "stopWorkloadReplayContext": {
-          "$ref": "StopWorkloadReplayContext",
-          "description": "Optional. Contains details about the stop workload replay operation. If omitted, default values are used."
-        }
-      },
-      "type": "object"
-    },
-    "SqlWorkloadCapturesStopRequest": {
-      "description": "Request to stop recording traffic from the primary instance.",
-      "id": "SqlWorkloadCapturesStopRequest",
-      "properties": {
-        "stopWorkloadCaptureContext": {
-          "$ref": "StopWorkloadCaptureContext",
-          "description": "Optional. Contains details about the stop workload capture operation."
-        }
-      },
-      "type": "object"
-    },
     "SslCert": {
       "description": "SslCerts Resource",
       "id": "SslCert",
@@ -10718,6 +10674,7 @@
       "type": "object"
     },
     "WorkloadCapturesListResponse": {
+      "description": "Instance list captured workloads response.",
       "id": "WorkloadCapturesListResponse",
       "properties": {
         "kind": {
@@ -10730,6 +10687,50 @@
             "$ref": "WorkloadCapture"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadCapturesStartReplayRequest": {
+      "description": "Request to start executing a captured workload on a replay instance (the Cloud SQL instance where the recorded SQL queries are executed).",
+      "id": "WorkloadCapturesStartReplayRequest",
+      "properties": {
+        "startWorkloadReplayContext": {
+          "$ref": "StartWorkloadReplayContext",
+          "description": "Required. Contains details about the start workload replay operation."
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadCapturesStartRequest": {
+      "description": "Request to start recording traffic from the primary instance (captured workload).",
+      "id": "WorkloadCapturesStartRequest",
+      "properties": {
+        "startWorkloadCaptureContext": {
+          "$ref": "StartWorkloadCaptureContext",
+          "description": "Optional. Contains details about the start workload capture operation."
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadCapturesStopReplayRequest": {
+      "description": "Request to stop an active workload replay on a target Cloud SQL replay instance.",
+      "id": "WorkloadCapturesStopReplayRequest",
+      "properties": {
+        "stopWorkloadReplayContext": {
+          "$ref": "StopWorkloadReplayContext",
+          "description": "Optional. Contains details about the stop workload replay operation. If omitted, default values are used."
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadCapturesStopRequest": {
+      "description": "Request to stop recording traffic from the primary instance.",
+      "id": "WorkloadCapturesStopRequest",
+      "properties": {
+        "stopWorkloadCaptureContext": {
+          "$ref": "StopWorkloadCaptureContext",
+          "description": "Optional. Contains details about the stop workload capture operation."
         }
       },
       "type": "object"
