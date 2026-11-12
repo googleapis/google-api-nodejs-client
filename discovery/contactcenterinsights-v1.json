@@ -3580,154 +3580,6 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
-              },
-              "resources": {
-                "charts": {
-                  "methods": {
-                    "create": {
-                      "description": "Creates a Chart.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dashboards/{dashboardsId}/charts",
-                      "httpMethod": "POST",
-                      "id": "contactcenterinsights.projects.locations.dashboards.charts.create",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "chartId": {
-                          "description": "Optional. A unique ID for the new Chart. This ID will become the final component of the Chart's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "parent": {
-                          "description": "Required. The parent resource of the chart.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/dashboards/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+parent}/charts",
-                      "request": {
-                        "$ref": "GoogleCloudContactcenterinsightsV1Chart"
-                      },
-                      "response": {
-                        "$ref": "GoogleCloudContactcenterinsightsV1Chart"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "delete": {
-                      "description": "Deletes a Chart.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dashboards/{dashboardsId}/charts/{chartsId}",
-                      "httpMethod": "DELETE",
-                      "id": "contactcenterinsights.projects.locations.dashboards.charts.delete",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The name of the chart to delete.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/dashboards/[^/]+/charts/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}",
-                      "response": {
-                        "$ref": "GoogleProtobufEmpty"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "get": {
-                      "description": "Gets a Chart.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dashboards/{dashboardsId}/charts/{chartsId}",
-                      "httpMethod": "GET",
-                      "id": "contactcenterinsights.projects.locations.dashboards.charts.get",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The name of the chart to get.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/dashboards/[^/]+/charts/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}",
-                      "response": {
-                        "$ref": "GoogleCloudContactcenterinsightsV1Chart"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "list": {
-                      "description": "Lists Charts.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dashboards/{dashboardsId}/charts",
-                      "httpMethod": "GET",
-                      "id": "contactcenterinsights.projects.locations.dashboards.charts.list",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "parent": {
-                          "description": "Required. The parent resource of the charts.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/dashboards/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+parent}/charts",
-                      "response": {
-                        "$ref": "GoogleCloudContactcenterinsightsV1ListChartsResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "patch": {
-                      "description": "Updates a Chart.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dashboards/{dashboardsId}/charts/{chartsId}",
-                      "httpMethod": "PATCH",
-                      "id": "contactcenterinsights.projects.locations.dashboards.charts.patch",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Identifier. Chart resource name. Format: projects/{project}/locations/{location}/dashboards/{dashboard}/charts/{chart}",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/dashboards/[^/]+/charts/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "updateMask": {
-                          "description": "Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name`",
-                          "format": "google-fieldmask",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}",
-                      "request": {
-                        "$ref": "GoogleCloudContactcenterinsightsV1Chart"
-                      },
-                      "response": {
-                        "$ref": "GoogleCloudContactcenterinsightsV1Chart"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  }
-                }
               }
             },
             "datasets": {
@@ -6117,7 +5969,7 @@
       }
     }
   },
-  "revision": "20261015",
+  "revision": "20261104",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudCesV1mainAgentTransfer": {
@@ -6347,6 +6199,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "targetApp": {
+          "description": "Output only. The app this call targets, derived by the assistant from the call's resource arguments: an app resource name, `PROJECT` for location-scoped tools, or empty for session-local tools. Set only in project-scoped assistant sessions.",
+          "readOnly": true,
+          "type": "string"
+        },
         "tool": {
           "description": "Optional. The name of the tool to execute. Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`",
           "type": "string"
@@ -6388,6 +6245,11 @@
           },
           "description": "Required. The tool execution result in JSON object format. Use \"output\" key to specify tool response and \"error\" key to specify error details (if any). If \"output\" and \"error\" keys are not specified, then whole \"response\" is treated as tool execution result.",
           "type": "object"
+        },
+        "targetApp": {
+          "description": "Output only. The app the executed tool targeted; mirrors ToolCall.target_app.",
+          "readOnly": true,
+          "type": "string"
         },
         "tool": {
           "description": "Optional. The name of the tool to execute. Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`",
@@ -8345,6 +8207,14 @@
           "description": "The agent's location.",
           "type": "string"
         },
+        "studyArmId": {
+          "description": "The study arm ID associated with the conversation. Only applicable to automated agents.",
+          "type": "string"
+        },
+        "studyId": {
+          "description": "The study ID associated with the conversation. Only applicable to automated agents.",
+          "type": "string"
+        },
         "team": {
           "deprecated": true,
           "description": "A user-specified string representing the agent's team. Deprecated in favor of the `teams` field.",
@@ -9802,6 +9672,8 @@
             "EXPORT_V15",
             "EXPORT_V16",
             "EXPORT_V17",
+            "EXPORT_V18",
+            "EXPORT_V19",
             "EXPORT_VERSION_LATEST_AVAILABLE"
           ],
           "enumDescriptions": [
@@ -9823,6 +9695,8 @@
             "Export schema version 15.",
             "Export schema version 16.",
             "Export schema version 17.",
+            "Export schema version 18.",
+            "Export schema version 19.",
             "Export schema version latest available."
           ],
           "type": "string"
@@ -11259,24 +11133,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudContactcenterinsightsV1ListChartsResponse": {
-      "description": "The response of listing charts.",
-      "id": "GoogleCloudContactcenterinsightsV1ListChartsResponse",
-      "properties": {
-        "charts": {
-          "description": "The charts under the parent.",
-          "items": {
-            "$ref": "GoogleCloudContactcenterinsightsV1Chart"
-          },
-          "type": "array"
-        },
-        "nextPageToken": {
-          "description": "The value returned by the last `ListChartsResponse`. This value indicates that this is a continuation of a prior `ListCharts` call and that the system should return the next page of data.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudContactcenterinsightsV1ListConversationsResponse": {
       "description": "The response of listing conversations.",
       "id": "GoogleCloudContactcenterinsightsV1ListConversationsResponse",
@@ -12024,13 +11880,15 @@
             "PREDEFINED_QUESTION_TYPE_UNSPECIFIED",
             "CONVERSATION_OUTCOME",
             "CONVERSATION_OUTCOME_ESCALATION_INITIATOR_ROLE",
-            "CONVERSATION_OUTCOME_AI_AVERSION"
+            "CONVERSATION_OUTCOME_AI_AVERSION",
+            "CONVERSATION_OUTCOME_ESCALATION_REASON"
           ],
           "enumDescriptions": [
             "The type of the predefined question is unspecified.",
             "A prebuilt classifier classfying the outcome of the conversation. For example, if the customer issue mentioned in a conversation has been resolved or not.",
             "A prebuilt classifier classfying the initiator of the conversation escalation. For example, if it was initiated by the customer or the agent.",
-            "Classifies whether the customer demonstrates AI aversion by instantly requesting escalation to a human agent without attempting to work with the AI agent."
+            "Classifies whether the customer demonstrates AI aversion by instantly requesting escalation to a human agent without attempting to work with the AI agent.",
+            "Classifies the primary reason for escalating the conversation to a human agent."
           ],
           "type": "string"
         }
@@ -14955,6 +14813,14 @@
           "description": "The agent's location.",
           "type": "string"
         },
+        "studyArmId": {
+          "description": "The study arm ID associated with the conversation. Only applicable to automated agents.",
+          "type": "string"
+        },
+        "studyId": {
+          "description": "The study ID associated with the conversation. Only applicable to automated agents.",
+          "type": "string"
+        },
         "team": {
           "deprecated": true,
           "description": "A user-specified string representing the agent's team. Deprecated in favor of the `teams` field.",
@@ -16236,6 +16102,8 @@
             "EXPORT_V15",
             "EXPORT_V16",
             "EXPORT_V17",
+            "EXPORT_V18",
+            "EXPORT_V19",
             "EXPORT_VERSION_LATEST_AVAILABLE"
           ],
           "enumDescriptions": [
@@ -16257,6 +16125,8 @@
             "Export schema version 15.",
             "Export schema version 16.",
             "Export schema version 17.",
+            "Export schema version 18.",
+            "Export schema version 19.",
             "Export schema version latest available."
           ],
           "type": "string"
@@ -19932,6 +19802,14 @@
           "description": "The agent's location.",
           "type": "string"
         },
+        "studyArmId": {
+          "description": "The study arm ID associated with the conversation. Only applicable to automated agents.",
+          "type": "string"
+        },
+        "studyId": {
+          "description": "The study ID associated with the conversation. Only applicable to automated agents.",
+          "type": "string"
+        },
         "team": {
           "deprecated": true,
           "description": "A user-specified string representing the agent's team. Deprecated in favor of the `teams` field.",
@@ -21213,6 +21091,8 @@
             "EXPORT_V15",
             "EXPORT_V16",
             "EXPORT_V17",
+            "EXPORT_V18",
+            "EXPORT_V19",
             "EXPORT_VERSION_LATEST_AVAILABLE"
           ],
           "enumDescriptions": [
@@ -21234,6 +21114,8 @@
             "Export schema version 15.",
             "Export schema version 16.",
             "Export schema version 17.",
+            "Export schema version 18.",
+            "Export schema version 19.",
             "Export schema version latest available."
           ],
           "type": "string"
