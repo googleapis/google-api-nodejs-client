@@ -295,7 +295,7 @@
       }
     }
   },
-  "revision": "20260901",
+  "revision": "20261110",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AttributionSettings": {
@@ -342,7 +342,7 @@
       "type": "object"
     },
     "ConversionSource": {
-      "description": "Represents a conversion source owned by a Merchant account. A merchant account can have up to 200 conversion sources.",
+      "description": "Represents a conversion source owned by a Merchant account. A merchant account can have up to 200 conversion sources. For more information, see [Manage conversion sources](https://developers.google.com/merchant/api/guides/conversion-sources/overview).",
       "id": "ConversionSource",
       "properties": {
         "controller": {
@@ -579,7 +579,7 @@
       "type": "object"
     },
     "ProductStatusChangeMessage": {
-      "description": "The message that the merchant will receive to notify about product status change event",
+      "description": "The message that the merchant will receive to notify about product status change event. For more information, see [Product status changes](https://developers.google.com/merchant/api/guides/notifications/product-status-changes).",
       "id": "ProductStatusChangeMessage",
       "properties": {
         "account": {

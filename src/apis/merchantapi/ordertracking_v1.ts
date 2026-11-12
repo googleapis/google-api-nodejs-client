@@ -199,7 +199,7 @@ export namespace merchantapi_ordertracking_v1 {
     quantity?: string | null;
   }
   /**
-   * Represents a business trade from which signals are extracted, such as shipping.
+   * Represents a business trade from which signals are extracted, such as shipping. For more information, see [Manage order tracking signals](https://developers.google.com/merchant/api/guides/order/overview).
    */
   export interface Schema$OrderTrackingSignal {
     /**
@@ -219,7 +219,7 @@ export namespace merchantapi_ordertracking_v1 {
      */
     lineItems?: Schema$LineItemDetails[];
     /**
-     * Optional. The Google Merchant Center ID of this order tracking signal. This value is optional. If left unset, the caller's Merchant Center ID is used. You must request access in order to provide data on behalf of another business. For more information, see [Submitting Order Tracking Signals](/shopping-content/guides/order-tracking-signals).
+     * Optional. The Google Merchant Center ID of this order tracking signal. This value is optional. If left unset, the caller's Merchant Center ID is used. You must request access in order to provide data on behalf of another business. For more information, see [Manage order tracking signals](https://developers.google.com/merchant/api/guides/order/overview).
      */
     merchantId?: string | null;
     /**
@@ -278,7 +278,7 @@ export namespace merchantapi_ordertracking_v1 {
     reportingContext?: string | null;
   }
   /**
-   * The message that the merchant will receive to notify about product status change event
+   * The message that the merchant will receive to notify about product status change event. For more information, see [Product status changes](https://developers.google.com/merchant/api/guides/notifications/product-status-changes).
    */
   export interface Schema$ProductStatusChangeMessage {
     /**

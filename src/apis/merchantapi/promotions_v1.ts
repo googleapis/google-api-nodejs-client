@@ -435,7 +435,7 @@ export namespace merchantapi_promotions_v1 {
     reportingContext?: string | null;
   }
   /**
-   * The message that the merchant will receive to notify about product status change event
+   * The message that the merchant will receive to notify about product status change event. For more information, see [Product status changes](https://developers.google.com/merchant/api/guides/notifications/product-status-changes).
    */
   export interface Schema$ProductStatusChangeMessage {
     /**
@@ -476,7 +476,7 @@ export namespace merchantapi_promotions_v1 {
     resourceType?: string | null;
   }
   /**
-   * Represents a promotion. See the following articles for more details. Required promotion input attributes to pass data validation checks are primarily defined below: * [Promotions data specification](https://support.google.com/merchants/answer/2906014) * [Local promotions data specification](https://support.google.com/merchants/answer/10146130) After inserting, updating a promotion input, it may take several minutes before the final promotion can be retrieved.
+   * Represents a promotion. See the following articles for more details. Required promotion input attributes to pass data validation checks are primarily defined below: * [Promotions data specification](https://support.google.com/merchants/answer/2906014) * [Local promotions data specification](https://support.google.com/merchants/answer/10146130) After inserting, updating a promotion input, it may take several minutes before the final promotion can be retrieved. For more information, see [Manage promotions](https://developers.google.com/merchant/api/guides/promotions/overview) and [Troubleshoot issues](https://developers.google.com/merchant/api/guides/promotions/troubleshooting).
    */
   export interface Schema$Promotion {
     /**
@@ -484,7 +484,7 @@ export namespace merchantapi_promotions_v1 {
      */
     attributes?: Schema$Attributes;
     /**
-     * Required. The two-letter [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the promotion. Promotions is only for [selected languages](https://support.google.com/merchants/answer/4588281?ref_topic=6396150&sjid=18314938579342094533-NC#option3&zippy=).
+     * Required. The two-letter [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the promotion. Promotions is only for [selected languages](https://support.google.com/merchants/answer/4588281#option3&zippy=).
      */
     contentLanguage?: string | null;
     /**
@@ -500,7 +500,7 @@ export namespace merchantapi_promotions_v1 {
      */
     name?: string | null;
     /**
-     * Required. The user provided promotion ID to uniquely identify the promotion. Follow [minimum requirements](https://support.google.com/merchants/answer/7050148?ref_topic=7322920&sjid=871860036916537104-NC#minimum_requirements) to prevent promotion disapprovals.
+     * Required. The user provided promotion ID to uniquely identify the promotion. Follow [minimum requirements](https://support.google.com/merchants/answer/7050148#minimum_requirements) to prevent promotion disapprovals.
      */
     promotionId?: string | null;
     /**

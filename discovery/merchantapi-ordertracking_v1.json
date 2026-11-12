@@ -147,7 +147,7 @@
       }
     }
   },
-  "revision": "20260901",
+  "revision": "20261110",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "DateTime": {
@@ -241,7 +241,7 @@
       "type": "object"
     },
     "OrderTrackingSignal": {
-      "description": "Represents a business trade from which signals are extracted, such as shipping.",
+      "description": "Represents a business trade from which signals are extracted, such as shipping. For more information, see [Manage order tracking signals](https://developers.google.com/merchant/api/guides/order/overview).",
       "id": "OrderTrackingSignal",
       "properties": {
         "customerShippingFee": {
@@ -264,7 +264,7 @@
           "type": "array"
         },
         "merchantId": {
-          "description": "Optional. The Google Merchant Center ID of this order tracking signal. This value is optional. If left unset, the caller's Merchant Center ID is used. You must request access in order to provide data on behalf of another business. For more information, see [Submitting Order Tracking Signals](/shopping-content/guides/order-tracking-signals).",
+          "description": "Optional. The Google Merchant Center ID of this order tracking signal. This value is optional. If left unset, the caller's Merchant Center ID is used. You must request access in order to provide data on behalf of another business. For more information, see [Manage order tracking signals](https://developers.google.com/merchant/api/guides/order/overview).",
           "format": "int64",
           "type": "string"
         },
@@ -408,7 +408,7 @@
       "type": "object"
     },
     "ProductStatusChangeMessage": {
-      "description": "The message that the merchant will receive to notify about product status change event",
+      "description": "The message that the merchant will receive to notify about product status change event. For more information, see [Product status changes](https://developers.google.com/merchant/api/guides/notifications/product-status-changes).",
       "id": "ProductStatusChangeMessage",
       "properties": {
         "account": {

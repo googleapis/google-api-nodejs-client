@@ -203,7 +203,7 @@
       }
     }
   },
-  "revision": "20261026",
+  "revision": "20261110",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -976,7 +976,7 @@
       "type": "object"
     },
     "ProductStatusChangeMessage": {
-      "description": "The message that the merchant will receive to notify about product status change event",
+      "description": "The message that the merchant will receive to notify about product status change event. For more information, see [Product status changes](https://developers.google.com/merchant/api/guides/notifications/product-status-changes).",
       "id": "ProductStatusChangeMessage",
       "properties": {
         "account": {
@@ -1042,7 +1042,7 @@
       "type": "object"
     },
     "Promotion": {
-      "description": "Represents a promotion. See the following articles for more details. Required promotion input attributes to pass data validation checks are primarily defined below: * [Promotions data specification](https://support.google.com/merchants/answer/2906014) * [Local promotions data specification](https://support.google.com/merchants/answer/10146130) After inserting, updating a promotion input, it may take several minutes before the final promotion can be retrieved.",
+      "description": "Represents a promotion. See the following articles for more details. Required promotion input attributes to pass data validation checks are primarily defined below: * [Promotions data specification](https://support.google.com/merchants/answer/2906014) * [Local promotions data specification](https://support.google.com/merchants/answer/10146130) After inserting, updating a promotion input, it may take several minutes before the final promotion can be retrieved. For more information, see [Manage promotions](https://developers.google.com/merchant/api/guides/promotions/overview) and [Troubleshoot issues](https://developers.google.com/merchant/api/guides/promotions/troubleshooting).",
       "id": "Promotion",
       "properties": {
         "attributes": {
@@ -1050,7 +1050,7 @@
           "description": "Optional. A list of promotion attributes."
         },
         "contentLanguage": {
-          "description": "Required. The two-letter [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the promotion. Promotions is only for [selected languages](https://support.google.com/merchants/answer/4588281?ref_topic=6396150&sjid=18314938579342094533-NC#option3&zippy=).",
+          "description": "Required. The two-letter [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the promotion. Promotions is only for [selected languages](https://support.google.com/merchants/answer/4588281#option3&zippy=).",
           "type": "string"
         },
         "customAttributes": {
@@ -1070,7 +1070,7 @@
           "type": "string"
         },
         "promotionId": {
-          "description": "Required. The user provided promotion ID to uniquely identify the promotion. Follow [minimum requirements](https://support.google.com/merchants/answer/7050148?ref_topic=7322920&sjid=871860036916537104-NC#minimum_requirements) to prevent promotion disapprovals.",
+          "description": "Required. The user provided promotion ID to uniquely identify the promotion. Follow [minimum requirements](https://support.google.com/merchants/answer/7050148#minimum_requirements) to prevent promotion disapprovals.",
           "type": "string"
         },
         "promotionStatus": {

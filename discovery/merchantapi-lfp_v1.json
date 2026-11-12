@@ -327,7 +327,7 @@
       }
     }
   },
-  "revision": "20260901",
+  "revision": "20261110",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "CountrySettings": {
@@ -451,7 +451,7 @@
       "type": "object"
     },
     "LfpInventory": {
-      "description": "Local Inventory for the merchant.",
+      "description": "Local Inventory for the merchant. For more information, see [Manage local feeds partnership](https://developers.google.com/merchant/api/guides/local-feeds-partnership/overview).",
       "id": "LfpInventory",
       "properties": {
         "availability": {
@@ -468,7 +468,7 @@
           "type": "string"
         },
         "feedLabel": {
-          "description": "Optional. The [feed label](https://developers.google.com/shopping-content/guides/products/feed-labels) for the product. If this is not set, it will default to `regionCode`.",
+          "description": "Optional. The [feed label](https://developers.google.com/merchant/api/guides/data-sources/api-sources) for the product. If this is not set, it will default to `regionCode`.",
           "type": "string"
         },
         "gtin": {
@@ -518,7 +518,7 @@
       "type": "object"
     },
     "LfpMerchantState": {
-      "description": "The LFP state of a merchant.",
+      "description": "The LFP state of a merchant. For more information, see [Manage local feeds partnership](https://developers.google.com/merchant/api/guides/local-feeds-partnership/overview).",
       "id": "LfpMerchantState",
       "properties": {
         "countrySettings": {
@@ -553,7 +553,7 @@
       "type": "object"
     },
     "LfpSale": {
-      "description": "A sale for the merchant.",
+      "description": "A sale for the merchant. For more information, see [Manage local feeds partnership](https://developers.google.com/merchant/api/guides/local-feeds-partnership/overview).",
       "id": "LfpSale",
       "properties": {
         "contentLanguage": {
@@ -561,7 +561,7 @@
           "type": "string"
         },
         "feedLabel": {
-          "description": "Optional. The [feed label](https://developers.google.com/shopping-content/guides/products/feed-labels) for the product. If this is not set, it will default to `regionCode`.",
+          "description": "Optional. The [feed label](https://developers.google.com/merchant/api/guides/data-sources/api-sources) for the product. If this is not set, it will default to `regionCode`.",
           "type": "string"
         },
         "gtin": {
@@ -613,7 +613,7 @@
       "type": "object"
     },
     "LfpStore": {
-      "description": "A store for the merchant. This will be used to match to a store under the Google Business Profile of the target merchant. If a matching store can't be found, the inventories or sales submitted with the store code will not be used.",
+      "description": "A store for the merchant. This will be used to match to a store under the Google Business Profile of the target merchant. If a matching store can't be found, the inventories or sales submitted with the store code will not be used. For more information, see [Manage local feeds partnership](https://developers.google.com/merchant/api/guides/local-feeds-partnership/overview).",
       "id": "LfpStore",
       "properties": {
         "gcidCategory": {
@@ -837,7 +837,7 @@
       "type": "object"
     },
     "ProductStatusChangeMessage": {
-      "description": "The message that the merchant will receive to notify about product status change event",
+      "description": "The message that the merchant will receive to notify about product status change event. For more information, see [Product status changes](https://developers.google.com/merchant/api/guides/notifications/product-status-changes).",
       "id": "ProductStatusChangeMessage",
       "properties": {
         "account": {
