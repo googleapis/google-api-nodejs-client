@@ -419,6 +419,10 @@ export namespace observability_v1 {
     verb?: string | null;
   }
   /**
+   * Request for reprovisioning a bucket, replaces configuration with that of the configured Observability settings.
+   */
+  export interface Schema$ReprovisionBucketRequest {}
+  /**
    * Message describing Scope object
    */
   export interface Schema$Scope {
@@ -4296,6 +4300,153 @@ export namespace observability_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Initiates reprovisioning of a bucket. This is allowed only a single time for a bucket and results in data loss. Subsequent calls to this method for the same bucket will result in a FAILED_PRECONDITION (400 Bad Request) error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/observability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const observability = google.observability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await observability.projects.locations.buckets.reprovision({
+     *     // Required. Name of the bucket to reprovision. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]
+     *     name: 'projects/my-project/locations/my-location/buckets/my-bucket',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    reprovision(
+      params: Params$Resource$Projects$Locations$Buckets$Reprovision,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    reprovision(
+      params?: Params$Resource$Projects$Locations$Buckets$Reprovision,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    reprovision(
+      params: Params$Resource$Projects$Locations$Buckets$Reprovision,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reprovision(
+      params: Params$Resource$Projects$Locations$Buckets$Reprovision,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    reprovision(
+      params: Params$Resource$Projects$Locations$Buckets$Reprovision,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    reprovision(callback: BodyResponseCallback<Schema$Operation>): void;
+    reprovision(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Buckets$Reprovision
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Buckets$Reprovision;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Buckets$Reprovision;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://observability.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:reprovision').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Buckets$Create extends StandardParameters {
@@ -4351,6 +4502,17 @@ export namespace observability_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Bucket;
+  }
+  export interface Params$Resource$Projects$Locations$Buckets$Reprovision extends StandardParameters {
+    /**
+     * Required. Name of the bucket to reprovision. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReprovisionBucketRequest;
   }
 
   export class Resource$Projects$Locations$Buckets$Datasets {
