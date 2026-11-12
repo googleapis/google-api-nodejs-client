@@ -2731,7 +2731,7 @@
       }
     }
   },
-  "revision": "20260806",
+  "revision": "20261111",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -3962,7 +3962,7 @@
           "description": "Deprecated. Use textModulesData instead."
         },
         "issuerName": {
-          "description": "Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens.",
+          "description": "Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. Ignored if `localizedIssuerName` is set, including when a patch request sets only this field. To change the issuer name of a class that has `localizedIssuerName`, update `localizedIssuerName` instead.",
           "type": "string"
         },
         "kind": {
@@ -3976,7 +3976,7 @@
         },
         "localizedIssuerName": {
           "$ref": "LocalizedString",
-          "description": "Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens."
+          "description": "Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. If set, this field takes precedence over `issuerName`."
         },
         "locations": {
           "deprecated": true,
@@ -4783,7 +4783,7 @@
           "description": "Deprecated. Use textModulesData instead."
         },
         "issuerName": {
-          "description": "Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens.",
+          "description": "Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. Ignored if `localizedIssuerName` is set, including when a patch request sets only this field. To change the issuer name of a class that has `localizedIssuerName`, update `localizedIssuerName` instead.",
           "type": "string"
         },
         "kind": {
@@ -4825,7 +4825,7 @@
         },
         "localizedIssuerName": {
           "$ref": "LocalizedString",
-          "description": "Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens."
+          "description": "Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. If set, this field takes precedence over `issuerName`."
         },
         "locations": {
           "deprecated": true,
@@ -5763,7 +5763,7 @@
           "description": "Deprecated. Use textModulesData instead."
         },
         "issuerName": {
-          "description": "Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens.",
+          "description": "Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. Ignored if `localizedIssuerName` is set, including when a patch request sets only this field. To change the issuer name of a class that has `localizedIssuerName`, update `localizedIssuerName` instead.",
           "type": "string"
         },
         "kind": {
@@ -5785,7 +5785,7 @@
         },
         "localizedIssuerName": {
           "$ref": "LocalizedString",
-          "description": "Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens."
+          "description": "Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. If set, this field takes precedence over `issuerName`."
         },
         "localizedMerchantName": {
           "$ref": "LocalizedString",
@@ -6666,7 +6666,7 @@
           "description": "Deprecated. Use textModulesData instead."
         },
         "issuerName": {
-          "description": "Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens.",
+          "description": "Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. Ignored if `localizedIssuerName` is set, including when a patch request sets only this field. To change the issuer name of a class that has `localizedIssuerName`, update `localizedIssuerName` instead.",
           "type": "string"
         },
         "kind": {
@@ -6688,7 +6688,7 @@
         },
         "localizedIssuerName": {
           "$ref": "LocalizedString",
-          "description": "Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens."
+          "description": "Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. If set, this field takes precedence over `issuerName`."
         },
         "localizedProgramName": {
           "$ref": "LocalizedString",
@@ -7693,7 +7693,7 @@
           "description": "Deprecated. Use textModulesData instead."
         },
         "issuerName": {
-          "description": "Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens.",
+          "description": "Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. Ignored if `localizedIssuerName` is set, including when a patch request sets only this field. To change the issuer name of a class that has `localizedIssuerName`, update `localizedIssuerName` instead.",
           "type": "string"
         },
         "kind": {
@@ -7715,7 +7715,7 @@
         },
         "localizedIssuerName": {
           "$ref": "LocalizedString",
-          "description": "Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens."
+          "description": "Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. If set, this field takes precedence over `issuerName`."
         },
         "localizedProvider": {
           "$ref": "LocalizedString",
@@ -9164,7 +9164,7 @@
           "description": "Deprecated. Use textModulesData instead."
         },
         "issuerName": {
-          "description": "Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens.",
+          "description": "Required. The issuer name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. Ignored if `localizedIssuerName` is set, including when a patch request sets only this field. To change the issuer name of a class that has `localizedIssuerName`, update `localizedIssuerName` instead.",
           "type": "string"
         },
         "languageOverride": {
@@ -9177,7 +9177,7 @@
         },
         "localizedIssuerName": {
           "$ref": "LocalizedString",
-          "description": "Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens."
+          "description": "Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens. If set, this field takes precedence over `issuerName`."
         },
         "locations": {
           "deprecated": true,
