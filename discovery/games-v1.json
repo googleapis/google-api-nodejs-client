@@ -1501,7 +1501,7 @@
       }
     }
   },
-  "revision": "20260907",
+  "revision": "20261106",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
@@ -1946,7 +1946,7 @@
       "type": "object"
     },
     "BatchRecordEventsRequest": {
-      "description": "Request message for PlayerGameEvents.BatchRecordEvents Next ID: 7",
+      "description": "Request message for PlayerGameEvents.BatchRecordEvents Next ID: 8",
       "id": "BatchRecordEventsRequest",
       "properties": {
         "droidGuardBlob": {
@@ -1957,6 +1957,13 @@
           "description": "Required. A list of player game events to be recorded. Maximum of 30 events per batch request.",
           "items": {
             "$ref": "PlayerGameEvent"
+          },
+          "type": "array"
+        },
+        "integrityVerdicts": {
+          "description": "Optional. Developer-provided fraud or integrity verdicts passed as a request parameter. Maximum of 10 integrity verdicts per batch request.",
+          "items": {
+            "$ref": "DeveloperIntegrityVerdict"
           },
           "type": "array"
         },
@@ -2027,6 +2034,53 @@
         },
         "nextPageToken": {
           "description": "Token corresponding to the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeveloperIntegrityVerdict": {
+      "description": "Represents a developer-provided fraud or integrity verdict.",
+      "id": "DeveloperIntegrityVerdict",
+      "properties": {
+        "category": {
+          "description": "Required. The standardized verdict category.",
+          "enum": [
+            "CATEGORY_UNSPECIFIED",
+            "DEVICE_UNTRUSTED",
+            "APP_UNRECOGNIZED",
+            "ACCOUNT_UNLICENSED",
+            "ENVIRONMENT_RISK",
+            "IMPOSSIBLE_GAMEPLAY",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Default value. Do not use.",
+            "Phone is rooted or compromised.",
+            "Binary is modified, cracked, or tampered.",
+            "Account did not acquire game through Play.",
+            "Automated bot or malicious app detected.",
+            "Physically impossible gameplay detected for player.",
+            "Other abuse category."
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Free-form diagnostic description or internal error code. Maximum length: 128 characters. Stored for console debugging; never shown to players.",
+          "type": "string"
+        },
+        "source": {
+          "description": "Required. The source that issued the verdict.",
+          "enum": [
+            "SOURCE_UNSPECIFIED",
+            "DEVELOPER_INTERNAL",
+            "PLAY_INTEGRITY"
+          ],
+          "enumDescriptions": [
+            "Default value. Do not use.",
+            "Developer's proprietary anti-cheat system.",
+            "Google Play Integrity API."
+          ],
           "type": "string"
         }
       },
