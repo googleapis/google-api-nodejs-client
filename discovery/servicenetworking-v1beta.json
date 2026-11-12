@@ -307,7 +307,7 @@
       }
     }
   },
-  "revision": "20260727",
+  "revision": "20261028",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -910,7 +910,8 @@
       "id": "CommonLanguageSettings",
       "properties": {
         "destinations": {
-          "description": "The destination where API teams want this client library to be published.",
+          "deprecated": true,
+          "description": "Deprecated: Client libraries are published for all supported languages by default when a `library_settings` entry is present with a `version` and `launch_stage`. The destination where API teams want this client library to be published.",
           "items": {
             "enum": [
               "CLIENT_LIBRARY_DESTINATION_UNSPECIFIED",
