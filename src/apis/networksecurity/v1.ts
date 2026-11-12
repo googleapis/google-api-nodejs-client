@@ -726,15 +726,15 @@ export namespace networksecurity_v1 {
     title?: string | null;
   }
   /**
-   * Message describing Endpoint object.
+   * Message describing a firewall endpoint.
    */
   export interface Schema$FirewallEndpoint {
     /**
-     * Output only. Deprecated: List of networks that are associated with this endpoint in the local zone. This is a projection of the FirewallEndpointAssociations pointing at this endpoint. A network will only appear in this list after traffic routing is fully configured. Format: projects/{project\}/global/networks/{name\}.
+     * Output only. Deprecated: Use the `network` field in the `associations` message instead. List of networks that are associated with this endpoint in the local zone. This is a projection of the firewall endpoint association resources pointing at this endpoint. A network only appears in this list after traffic routing is fully configured. Format: `projects/{project\}/global/networks/{name\}`.
      */
     associatedNetworks?: string[] | null;
     /**
-     * Output only. List of FirewallEndpointAssociations that are associated to this endpoint. An association will only appear in this list after traffic routing is fully configured.
+     * Output only. List of firewall endpoint association resources that are associated with this endpoint. An association only appears in this list after traffic routing is fully configured.
      */
     associations?: Schema$FirewallEndpointAssociationReference[];
     /**
@@ -742,11 +742,11 @@ export namespace networksecurity_v1 {
      */
     billingProjectId?: string | null;
     /**
-     * Output only. Create time stamp.
+     * Output only. Create timestamp.
      */
     createTime?: string | null;
     /**
-     * Optional. Description of the firewall endpoint. Max length 2048 characters.
+     * Optional. Description of the firewall endpoint. The maximum length is 2048 characters.
      */
     description?: string | null;
     /**
@@ -754,11 +754,11 @@ export namespace networksecurity_v1 {
      */
     endpointSettings?: Schema$FirewallEndpointEndpointSettings;
     /**
-     * Optional. Labels as key value pairs
+     * Optional. Labels as key-value pairs.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Immutable. Identifier. Name of resource.
+     * Immutable. Identifier. The name of the resource.
      */
     name?: string | null;
     /**
@@ -766,11 +766,11 @@ export namespace networksecurity_v1 {
      */
     reconciling?: boolean | null;
     /**
-     * Output only. [Output Only] Reserved for future use.
+     * Output only. Reserved for future use.
      */
     satisfiesPzi?: boolean | null;
     /**
-     * Output only. [Output Only] Reserved for future use.
+     * Output only. Reserved for future use.
      */
     satisfiesPzs?: boolean | null;
     /**
@@ -778,36 +778,36 @@ export namespace networksecurity_v1 {
      */
     state?: string | null;
     /**
-     * Output only. Update time stamp
+     * Output only. Update timestamp.
      */
     updateTime?: string | null;
     /**
-     * Optional. Settings for WildFire analysis.
+     * Optional. Settings for Advanced malware sandbox (WildFire) analysis.
      */
     wildfireSettings?: Schema$FirewallEndpointWildfireSettings;
   }
   /**
-   * Message describing Association object
+   * Message describing a firewall endpoint association.
    */
   export interface Schema$FirewallEndpointAssociation {
     /**
-     * Output only. Create time stamp
+     * Output only. Create timestamp.
      */
     createTime?: string | null;
     /**
-     * Optional. Whether the association is disabled. True indicates that traffic won't be intercepted
+     * Optional. Whether the association is disabled. Setting this to `true` indicates that traffic isn't intercepted. The default value is `false`.
      */
     disabled?: boolean | null;
     /**
-     * Required. The URL of the FirewallEndpoint that is being associated.
+     * Required. The URL of the `FirewallEndpoint` that is being associated.
      */
     firewallEndpoint?: string | null;
     /**
-     * Optional. Labels as key value pairs
+     * Optional. Labels as key-value pairs.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Immutable. Identifier. name of resource
+     * Immutable. Identifier. The name of the resource.
      */
     name?: string | null;
     /**
@@ -815,7 +815,7 @@ export namespace networksecurity_v1 {
      */
     network?: string | null;
     /**
-     * Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.
+     * Output only. Whether reconciliation is in progress.
      */
     reconciling?: boolean | null;
     /**
@@ -823,24 +823,24 @@ export namespace networksecurity_v1 {
      */
     state?: string | null;
     /**
-     * Optional. The URL of the TlsInspectionPolicy that is being associated.
+     * Optional. The URL of the `TlsInspectionPolicy` that is being associated.
      */
     tlsInspectionPolicy?: string | null;
     /**
-     * Output only. Update time stamp
+     * Output only. Update timestamp.
      */
     updateTime?: string | null;
   }
   /**
-   * This is a subset of the FirewallEndpointAssociation message, containing fields to be used by the consumer.
+   * A subset of the `FirewallEndpointAssociation` message, containing fields to be used by the consumer.
    */
   export interface Schema$FirewallEndpointAssociationReference {
     /**
-     * Output only. The resource name of the FirewallEndpointAssociation. Format: projects/{project\}/locations/{location\}/firewallEndpointAssociations/{id\}
+     * Output only. The resource name of the `FirewallEndpointAssociation`. Format: `projects/{project\}/locations/{location\}/firewallEndpointAssociations/{id\}`.
      */
     name?: string | null;
     /**
-     * Output only. The VPC network associated. Format: projects/{project\}/global/networks/{name\}.
+     * Output only. The associated VPC network. Format: `projects/{project\}/global/networks/{name\}`.
      */
     network?: string | null;
   }
@@ -853,53 +853,53 @@ export namespace networksecurity_v1 {
      */
     contentCloudRegion?: string | null;
     /**
-     * Optional. Whether to block HTTP partial responses for the endpoint. When this is true, resumption of blocked malicious HTTP file downloads will be blocked by the firewall. False provides maximum availability, true provides maximum security.
+     * Optional. Whether to block HTTP partial responses for the endpoint. When set to `true`, the firewall blocks the resumption of HTTP file downloads. Setting this to `false` provides maximum availability, while `true` provides maximum security.
      */
     httpPartialResponseBlocked?: boolean | null;
     /**
-     * Optional. Immutable. Indicates whether Jumbo Frames are enabled. Default value is false.
+     * Optional. Immutable. Indicates whether jumbo frames are enabled. The default value is `false`.
      */
     jumboFramesEnabled?: boolean | null;
   }
   /**
-   * Settings for WildFire analysis.
+   * Settings for Advanced malware sandbox analysis.
    */
   export interface Schema$FirewallEndpointWildfireSettings {
     /**
-     * Optional. Indicates whether WildFire analysis is enabled. Default value is false.
+     * Optional. Indicates whether Advanced malware sandbox analysis is enabled. The default value is `false`.
      */
     enabled?: boolean | null;
     /**
-     * Optional. Settings for WildFire inline cloud analysis.
+     * Optional. Settings for Advanced malware sandbox inline cloud analysis.
      */
     wildfireInlineCloudAnalysisSettings?: Schema$FirewallEndpointWildfireSettingsWildfireInlineCloudAnalysisSettings;
     /**
-     * Optional. Duration in milliseconds on a file being held while the WildFire real time signature cloud performs a signature lookup. Value between 1 to 5000 is valid. Default value is 1000.
+     * Optional. The duration that a file is held while the Advanced malware sandbox real-time signature cloud performs a signature lookup. Valid values are from 1 to 5000 milliseconds. In canonical JSON encoding, this is represented as a string ending in `s` (for example, `"0.001s"` to `"5s"`). The default value is `1000` milliseconds (`"1s"` in JSON).
      */
     wildfireRealtimeLookupDuration?: string | null;
     /**
-     * Optional. Action to take on WildFire real time signature lookup timeout. Default value is ALLOW.
+     * Optional. The action to take on an Advanced malware sandbox real-time signature lookup timeout. The default value is `ALLOW`.
      */
     wildfireRealtimeLookupTimeoutAction?: string | null;
     /**
-     * Optional. The region where WildFire analysis will be performed. Palo Alto Networks supports regions: https://docs.paloaltonetworks.com/advanced-wildfire/administration/advanced-wildfire-overview/advanced-wildfire-deployments/advanced-wildfire-global-cloud
+     * Optional. The region where Advanced malware sandbox analysis is performed. For a list of Palo Alto Networks supported regions, see [Advanced WildFire global cloud](https://docs.paloaltonetworks.com/advanced-wildfire/administration/advanced-wildfire-overview/advanced-wildfire-deployments/advanced-wildfire-global-cloud).
      */
     wildfireRegion?: string | null;
   }
   /**
-   * Settings for WildFire inline cloud analysis.
+   * Settings for Advanced malware sandbox inline cloud analysis.
    */
   export interface Schema$FirewallEndpointWildfireSettingsWildfireInlineCloudAnalysisSettings {
     /**
-     * Optional. Timeout in milliseconds on a file being held while WildFire inline cloud analysis is performed. Value between 1 to 240000 is valid. Default value is 30000.
+     * Optional. The timeout that a file is held while Advanced malware sandbox inline cloud analysis is performed. Valid values are from 1 to 240000 milliseconds. In canonical JSON encoding, this is represented as a string ending in `s` (for example, `"0.001s"` to `"240s"`). The default value is `30000` milliseconds (`"30s"` in JSON).
      */
     maxAnalysisDuration?: string | null;
     /**
-     * Optional. Whether to disable WildFire submission log generation for files that timeout during WildFire inline cloud analysis.
+     * Optional. Whether to disable Advanced malware sandbox submission log generation for files that time out during Advanced malware sandbox inline cloud analysis.
      */
     submissionTimeoutLoggingDisabled?: boolean | null;
     /**
-     * Optional. Action to take when WildFire inline cloud analysis times out. Default value is ALLOW.
+     * Optional. The action to take when Advanced malware sandbox inline cloud analysis times out. The default value is `ALLOW`.
      */
     timeoutAction?: string | null;
   }
@@ -1490,36 +1490,36 @@ export namespace networksecurity_v1 {
     unreachable?: string[] | null;
   }
   /**
-   * Message for response to listing Associations
+   * Message for response to listing associations.
    */
   export interface Schema$ListFirewallEndpointAssociationsResponse {
     /**
-     * The list of Association
+     * The list of associations.
      */
     firewallEndpointAssociations?: Schema$FirewallEndpointAssociation[];
     /**
-     * A token identifying a page of results the server should return.
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
-     * Locations that could not be reached.
+     * Locations that could not be reached. The list of unreachable locations might expand in the future.
      */
     unreachable?: string[] | null;
   }
   /**
-   * Message for response to listing Endpoints
+   * Message for response to listing endpoints.
    */
   export interface Schema$ListFirewallEndpointsResponse {
     /**
-     * The list of Endpoint
+     * The list of endpoints.
      */
     firewallEndpoints?: Schema$FirewallEndpoint[];
     /**
-     * A token identifying a page of results the server should return.
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
-     * Locations that could not be reached.
+     * Locations that could not be reached. The list of unreachable locations might expand in the future.
      */
     unreachable?: string[] | null;
   }
@@ -1734,28 +1734,28 @@ export namespace networksecurity_v1 {
     unreachable?: string[] | null;
   }
   /**
-   * Response returned by the ListSecurityProfileGroups method.
+   * Response returned by the `ListSecurityProfileGroups` method.
    */
   export interface Schema$ListSecurityProfileGroupsResponse {
     /**
-     * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
-     * List of SecurityProfileGroups resources.
+     * List of `SecurityProfileGroup` resources.
      */
     securityProfileGroups?: Schema$SecurityProfileGroup[];
   }
   /**
-   * Response returned by the ListSecurityProfiles method.
+   * Response returned by the `ListSecurityProfiles` method.
    */
   export interface Schema$ListSecurityProfilesResponse {
     /**
-     * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
-     * List of SecurityProfile resources.
+     * List of `SecurityProfile` resources.
      */
     securityProfiles?: Schema$SecurityProfile[];
   }
@@ -1811,11 +1811,11 @@ export namespace networksecurity_v1 {
     urlLists?: Schema$UrlList[];
   }
   /**
-   * Message for response to listing WildfireVerdictChangeRequests.
+   * Message for response to listing `WildfireVerdictChangeRequest` resources.
    */
   export interface Schema$ListWildfireVerdictChangeRequestsResponse {
     /**
-     * A token identifying a page of results the server should return.
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
@@ -1823,7 +1823,7 @@ export namespace networksecurity_v1 {
      */
     unreachable?: string[] | null;
     /**
-     * The list of WildfireVerdictChangeRequests
+     * The list of `WildfireVerdictChangeRequest` resources.
      */
     wildfireVerdictChangeRequests?: Schema$WildfireVerdictChangeRequest[];
   }
@@ -2303,7 +2303,7 @@ export namespace networksecurity_v1 {
     key?: string | null;
   }
   /**
-   * SecurityProfile is a resource that defines the behavior for one of many ProfileTypes.
+   * A resource that defines the behavior for one of many `ProfileType` values.
    */
   export interface Schema$SecurityProfile {
     /**
@@ -2311,15 +2311,15 @@ export namespace networksecurity_v1 {
      */
     createTime?: string | null;
     /**
-     * The custom TPPI configuration for the SecurityProfile.
+     * The custom network security in-band integration configuration for the `SecurityProfile`.
      */
     customInterceptProfile?: Schema$CustomInterceptProfile;
     /**
-     * The custom Packet Mirroring v2 configuration for the SecurityProfile.
+     * The custom network security out-of-band integration configuration for the `SecurityProfile`.
      */
     customMirroringProfile?: Schema$CustomMirroringProfile;
     /**
-     * Optional. An optional description of the profile. Max length 512 characters.
+     * Optional. An optional description of the profile. The maximum length is 512 characters.
      */
     description?: string | null;
     /**
@@ -2327,19 +2327,19 @@ export namespace networksecurity_v1 {
      */
     etag?: string | null;
     /**
-     * Optional. Labels as key value pairs.
+     * Optional. Labels as key-value pairs.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Immutable. Identifier. Name of the SecurityProfile resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile\}`.
+     * Immutable. Identifier. Name of the `SecurityProfile` resource. Format: `organizations/{organization\}/locations/{location\}/securityProfiles/{security_profile\}` or `projects/{project\}/locations/{location\}/securityProfiles/{security_profile\}`.
      */
     name?: string | null;
     /**
-     * The threat prevention configuration for the SecurityProfile.
+     * The threat prevention configuration for the `SecurityProfile`.
      */
     threatPreventionProfile?: Schema$ThreatPreventionProfile;
     /**
-     * Immutable. The single ProfileType that the SecurityProfile resource configures.
+     * Immutable. The single `ProfileType` that the `SecurityProfile` resource configures.
      */
     type?: string | null;
     /**
@@ -2347,16 +2347,16 @@ export namespace networksecurity_v1 {
      */
     updateTime?: string | null;
     /**
-     * The URL filtering configuration for the SecurityProfile.
+     * The URL filtering configuration for the `SecurityProfile`.
      */
     urlFilteringProfile?: Schema$UrlFilteringProfile;
     /**
-     * The WildFire Analysis configurations for SecurityProfile.
+     * The Advanced malware sandbox analysis configuration for the `SecurityProfile`.
      */
     wildfireAnalysisProfile?: Schema$WildfireAnalysisProfile;
   }
   /**
-   * SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes.
+   * A resource that defines the behavior for various `ProfileType` values.
    */
   export interface Schema$SecurityProfileGroup {
     /**
@@ -2364,19 +2364,19 @@ export namespace networksecurity_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. Reference to a SecurityProfile with the CustomIntercept configuration.
+     * Optional. Reference to a `SecurityProfile` with the custom intercept configuration.
      */
     customInterceptProfile?: string | null;
     /**
-     * Optional. Reference to a SecurityProfile with the CustomMirroring configuration.
+     * Optional. Reference to a `SecurityProfile` with the custom mirroring configuration.
      */
     customMirroringProfile?: string | null;
     /**
-     * Output only. Identifier used by the data-path. Unique within `{container, location\}`.
+     * Output only. Identifier used by the data path. Unique within `{container, location\}`.
      */
     dataPathId?: string | null;
     /**
-     * Optional. An optional description of the profile group. Max length 2048 characters.
+     * Optional. An optional description of the profile group. The maximum length is 2048 characters.
      */
     description?: string | null;
     /**
@@ -2384,15 +2384,15 @@ export namespace networksecurity_v1 {
      */
     etag?: string | null;
     /**
-     * Optional. Labels as key value pairs.
+     * Optional. Labels as key-value pairs.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Immutable. Identifier. Name of the SecurityProfileGroup resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     * Immutable. Identifier. Name of the `SecurityProfileGroup` resource. Format: `organizations/{organization\}/locations/{location\}/securityProfileGroups/{security_profile_group\}` or `projects/{project\}/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
      */
     name?: string | null;
     /**
-     * Optional. Reference to a SecurityProfile with the ThreatPrevention configuration.
+     * Optional. Reference to a `SecurityProfile` with the threat prevention configuration.
      */
     threatPreventionProfile?: string | null;
     /**
@@ -2400,11 +2400,11 @@ export namespace networksecurity_v1 {
      */
     updateTime?: string | null;
     /**
-     * Optional. Reference to a SecurityProfile with the UrlFiltering configuration.
+     * Optional. Reference to a `SecurityProfile` with the URL filtering configuration.
      */
     urlFilteringProfile?: string | null;
     /**
-     * Optional. Reference to a SecurityProfile with the WildFire configuration.
+     * Optional. Reference to a `SecurityProfile` with the Advanced malware sandbox (WildFire) configuration.
      */
     wildfireAnalysisProfile?: string | null;
   }
@@ -2636,126 +2636,126 @@ export namespace networksecurity_v1 {
     grpcEndpoint?: Schema$GoogleCloudNetworksecurityV1GrpcEndpoint;
   }
   /**
-   * WildfireAnalysisProfile defines Palo Alto Networks WildFire behavior.
+   * `WildfireAnalysisProfile` defines Palo Alto Networks WildFire behavior.
    */
   export interface Schema$WildfireAnalysisProfile {
     /**
-     * Optional. Configuration for WildFire inline cloud analysis.
+     * Optional. Configuration for Advanced malware sandbox inline cloud analysis.
      */
     wildfireInlineCloudAnalysisRules?: Schema$WildfireInlineCloudAnalysisRule[];
     /**
-     * Optional. Configuration for overriding inline ML WildFire actions per protocol.
+     * Optional. Configuration for overriding inline ML Advanced malware sandbox actions per protocol.
      */
     wildfireInlineMlOverrides?: Schema$WildfireInlineMlOverride[];
     /**
-     * Optional. Settings for WildFire Inline ML analysis.
+     * Optional. Settings for Advanced malware sandbox inline ML analysis.
      */
     wildfireInlineMlSetting?: Schema$WildfireInlineMlSettings;
     /**
-     * Optional. Settings for WildFire Inline ML analysis.
+     * Optional. Deprecated: Use `wildfire_inline_ml_setting` instead. Settings for Advanced malware sandbox inline ML analysis.
      */
     wildfireInlineMlSettings?: Schema$WildfireInlineMlSettings[];
     /**
-     * Optional. Configuration for overriding WildFire actions per protocol.
+     * Optional. Configuration for overriding Advanced malware sandbox actions per protocol.
      */
     wildfireOverrides?: Schema$WildfireOverride[];
     /**
-     * Optional. Whether to hold the transfer of a file while the WildFire real-time signature cloud performs a signature lookup. Default value is false.
+     * Optional. Whether to hold the transfer of a file while the Advanced malware sandbox real-time signature cloud performs a signature lookup. The default value is `false`.
      */
     wildfireRealtimeLookup?: boolean | null;
     /**
-     * Optional. Configurations for WildFire file submissions.
+     * Optional. Configurations for Advanced malware sandbox (WildFire) file submissions.
      */
     wildfireSubmissionRules?: Schema$WildfireSubmissionRule[];
     /**
-     * Optional. Configuration for overriding WildFire threats action by threat_id match.
+     * Optional. Configuration for overriding the Advanced malware sandbox threat action by `threat_id` match.
      */
     wildfireThreatOverrides?: Schema$WildfireThreatOverride[];
   }
   /**
-   * The list of file type configurations to be scanned by WildFire Inline Cloud Analysis.
+   * The list of file type configurations to be scanned by Advanced malware sandbox inline cloud analysis.
    */
   export interface Schema$WildfireInlineCloudAnalysisRule {
     /**
-     * Required. Action to take when a threat is detected using WildFire Inline Cloud Analysis. The default Value is DENY.
+     * Required. Action to take when a threat is detected using Advanced malware sandbox inline cloud analysis. The default value is `DENY`.
      */
     action?: string | null;
     /**
-     * Submit a custom list of file types for WildFire analysis.
+     * Submit a custom list of file types for Advanced malware sandbox inline cloud analysis.
      */
     customFileTypes?: Schema$WildfireInlineCloudAnalysisRuleCustomFileTypes;
     /**
-     * Required. Direction for the file to be analyzed by WildFire Inline Cloud Analysis.
+     * Required. Direction for the files to be analyzed by Advanced malware sandbox inline cloud analysis.
      */
     direction?: string | null;
     /**
-     * Required. File selection mode for WildFire inline cloud analysis.
+     * Required. File selection mode for Advanced malware sandbox inline cloud analysis.
      */
     fileSelectionMode?: string | null;
   }
   /**
-   * The options to submit a custom list of file types for scan.
+   * The options to submit a custom list of file types for scanning.
    */
   export interface Schema$WildfireInlineCloudAnalysisRuleCustomFileTypes {
     /**
-     * Required. File types to be submitted for WildFire inline cloud analysis.
+     * Required. File types to be submitted for Advanced malware sandbox inline cloud analysis.
      */
     fileTypes?: string[] | null;
   }
   /**
-   * Defines the file to exclude from WildFire Inline ML analysis.
+   * Defines the file to exclude from Advanced malware sandbox inline ML analysis.
    */
   export interface Schema$WildfireInlineMlFileException {
     /**
-     * Optional. Name of the file to exclude from WildFire Inline ML analysis.
+     * Optional. Name of the file to exclude from Advanced malware sandbox inline ML analysis.
      */
     filename?: string | null;
     /**
-     * Required. Machine learning partial hash of the file to exclude from WildFire Inline ML analysis.
+     * Required. Machine learning partial hash of the file to exclude from Advanced malware sandbox inline ML analysis.
      */
     partialHash?: string | null;
   }
   /**
-   * Defines what action to take for WildFire Inline ML threats per protocol.
+   * Defines what action to take for Advanced malware sandbox inline ML threats per protocol.
    */
   export interface Schema$WildfireInlineMlOverride {
     /**
-     * Required. The action to take for WildFire Inline ML override.
+     * Required. The action to take for Advanced malware sandbox inline ML override.
      */
     action?: string | null;
     /**
-     * Required. Protocol to match for WildFire Inline ML override.
+     * Required. Protocol to match for Advanced malware sandbox inline ML override.
      */
     protocol?: string | null;
   }
   /**
-   * Defines the settings for WildFire Inline ML analysis.
+   * Defines the settings for Advanced malware sandbox inline ML analysis.
    */
   export interface Schema$WildfireInlineMlSettings {
     /**
-     * Optional. List of files to exclude from WildFire Inline ML analysis.
+     * Optional. List of files to exclude from Advanced malware sandbox inline ML analysis.
      */
     fileExceptions?: Schema$WildfireInlineMlFileException[];
     /**
-     * Optional. List of Inline ML configs to enable in WildFire Inline ML analysis.
+     * Optional. List of inline ML configurations to enable in Advanced malware sandbox inline ML analysis.
      */
     inlineMlConfigs?: Schema$WildfireInlineMlSettingsInlineMlConfig[];
   }
   /**
-   * Configuration for WildFire Inline ML analysis per file type.
+   * Configuration for Advanced malware sandbox inline ML analysis per file type.
    */
   export interface Schema$WildfireInlineMlSettingsInlineMlConfig {
     /**
-     * Required. Action to take when a threat is detected using Inline ML.
+     * Required. Action to take when a threat is detected using inline ML.
      */
     action?: string | null;
     /**
-     * Required. File type to configure Inline ML for.
+     * Required. File type to configure inline ML for.
      */
     fileType?: string | null;
   }
   /**
-   * Defines what action to take for WildFire threats per protocol.
+   * Defines what action to take for Advanced malware sandbox threats per protocol.
    */
   export interface Schema$WildfireOverride {
     /**
@@ -2768,33 +2768,33 @@ export namespace networksecurity_v1 {
     protocol?: string | null;
   }
   /**
-   * Defines the file types to be submitted for WildFire analysis and the direction of the traffic.
+   * Defines the file types to be submitted for Advanced malware sandbox analysis and the direction of the traffic.
    */
   export interface Schema$WildfireSubmissionRule {
     /**
-     * Submit a custom list of file types for WildFire analysis.
+     * Submit a custom list of file types for Advanced malware sandbox analysis.
      */
     customFileTypes?: Schema$WildfireSubmissionRuleCustomFileTypes;
     /**
-     * Required. Direction for the files to be analyzed by WildFire.
+     * Required. Direction for the files to be analyzed by Advanced malware sandbox.
      */
     direction?: string | null;
     /**
-     * Required. File selection mode for WildFire analysis.
+     * Required. File selection mode for Advanced malware sandbox analysis.
      */
     fileSelectionMode?: string | null;
   }
   /**
-   * The options to submit a custom list of file types for scan.
+   * The options to submit a custom list of file types for scanning.
    */
   export interface Schema$WildfireSubmissionRuleCustomFileTypes {
     /**
-     * Required. File types to be submitted for WildFire analysis.
+     * Required. File types to be submitted for Advanced malware sandbox analysis.
      */
     fileTypes?: string[] | null;
   }
   /**
-   * Defines what action to take for a specific WildFire threat_id match.
+   * Defines what action to take for a specific Advanced malware sandbox `threat_id` match.
    */
   export interface Schema$WildfireThreatOverride {
     /**
@@ -2807,63 +2807,63 @@ export namespace networksecurity_v1 {
     threatId?: string | null;
   }
   /**
-   * Message for a WildfireVerdictChangeRequest.
+   * Message for an Advanced malware sandbox verdict change request (`WildfireVerdictChangeRequest`).
    */
   export interface Schema$WildfireVerdictChangeRequest {
     /**
-     * Required. The justification for the verdict change request. Max length 2048 characters.
+     * Required. The justification for the verdict change request. The maximum length is 2048 characters.
      */
     comment?: string | null;
     /**
-     * Output only. The timestamp when the WildfireVerdictChangeRequest was created.
+     * Output only. The timestamp when the `WildfireVerdictChangeRequest` was created.
      */
     createTime?: string | null;
     /**
-     * Output only. The file name of the Malware Sample.
+     * Output only. The file name of the malware sample.
      */
     fileName?: string | null;
     /**
-     * Output only. The file type of the Malware Sample.
+     * Output only. The file type of the malware sample.
      */
     fileType?: string | null;
     /**
-     * Output only. The final verdict of the Malware Sample.
+     * Output only. The final verdict of the malware sample.
      */
     finalVerdict?: string | null;
     /**
-     * Output only. Identifier. The relative name of the WildfireVerdictChangeRequest. Output only. This is a unique identifier generated by the third party API. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\} Where {wildfire_verdict_change_request_id\} is the ID in the format: ^[0-9a-fA-F]{8\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{12\}$
+     * Output only. Identifier. The relative name of the `WildfireVerdictChangeRequest`. This is a unique identifier generated by the third-party API. Format: `organizations/{organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\}` or `projects/{project\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\}`. Where `{wildfire_verdict_change_request_id\}` is an ID in the format `^[0-9a-fA-F]{8\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{12\}$`.
      */
     name?: string | null;
     /**
-     * Required. The suggested verdict to apply to the Malware Sample.
+     * Required. The suggested verdict to apply to the malware sample.
      */
     newVerdict?: string | null;
     /**
-     * Output only. The original verdict of the Malware Sample.
+     * Output only. The original verdict of the malware sample.
      */
     oldVerdict?: string | null;
     /**
-     * Output only. The timestamp when the WildfireVerdictChangeRequest was resolved.
+     * Output only. The timestamp when the `WildfireVerdictChangeRequest` was resolved.
      */
     resolutionTime?: string | null;
     /**
-     * Required. The SHA256 hash of the Malware Sample to change the verdict of.
+     * Required. The SHA256 hash ([FIPS 180-4](https://csrc.nist.gov/publications/detail/fips/180/4/final)) of the malware sample that requires a verdict change.
      */
     sha256?: string | null;
     /**
-     * Output only. The region of the file associated with the Malware Sample.
+     * Output only. The region of the file associated with the malware sample.
      */
     sourceRegion?: string | null;
     /**
-     * Output only. The review state of the WildfireVerdictChangeRequest.
+     * Output only. The review state of the `WildfireVerdictChangeRequest`.
      */
     state?: string | null;
     /**
-     * Output only. The timestamp when the WildfireVerdictChangeRequest was last updated.
+     * Output only. The timestamp when the `WildfireVerdictChangeRequest` was last updated.
      */
     updateTime?: string | null;
     /**
-     * Output only. The ID of the WildfireVerdictChangeRequest. This is a unique identifier generated by the third party API. Format: ^[0-9a-fA-F]{8\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{12\}$
+     * Output only. The ID of the `WildfireVerdictChangeRequest`. This is a unique identifier generated by the third-party API. Format: `^[0-9a-fA-F]{8\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{12\}$`.
      */
     wildfireVerdictChangeRequestId?: string | null;
   }
@@ -4907,7 +4907,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Creates a new FirewallEndpoint in a given organization and location.
+     * Creates a new firewall endpoint in a given organization and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -4938,13 +4938,13 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.firewallEndpoints.create({
-     *       // Required. Id of the requesting object. If auto-generating Id server-side, remove this field and firewall_endpoint_id from the method_signature of Create RPC.
+     *       // Required. The ID to use for the firewall endpoint, which becomes the final component of the endpoint's resource name. This value must be 1-63 characters long, start with a lowercase letter, contain only lowercase letters, numbers, and hyphens, and cannot end with a hyphen.
      *       firewallEndpointId: 'placeholder-value',
-     *       // Required. Value for parent.
+     *       // Required. The parent resource where this firewall endpoint is created. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      *       parent: 'organizations/my-organization/locations/my-location',
-     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (`00000000-0000-0000-0000-000000000000`).
      *       requestId: 'placeholder-value',
-     *       // Optional. If set, validate the request and preview the endpoint, but do not actually create it.
+     *       // Optional. If set, validates the request and previews the endpoint, but does not actually create it.
      *       validateOnly: 'placeholder-value',
      *
      *       // Request body metadata
@@ -5077,7 +5077,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Deletes a single org Endpoint.
+     * Deletes a single organization endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -5108,9 +5108,9 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.firewallEndpoints.delete({
-     *       // Required. Name of the resource
+     *       // Required. The name of the resource.
      *       name: 'organizations/my-organization/locations/my-location/firewallEndpoints/my-firewallEndpoint',
-     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (`00000000-0000-0000-0000-000000000000`).
      *       requestId: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -5219,7 +5219,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Gets details of a single org Endpoint.
+     * Gets details of a single organization endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -5250,7 +5250,7 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.firewallEndpoints.get({
-     *       // Required. Name of the resource
+     *       // Required. The name of the resource.
      *       name: 'organizations/my-organization/locations/my-location/firewallEndpoints/my-firewallEndpoint',
      *     });
      *   console.log(res.data);
@@ -5369,7 +5369,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Lists FirewallEndpoints in a given organization and location.
+     * Lists firewall endpoints in a given organization and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -5400,15 +5400,15 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.firewallEndpoints.list({
-     *       // Optional. Filtering results
+     *       // Optional. Filtering results.
      *       filter: 'placeholder-value',
-     *       // Hint for how to order the results
+     *       // Optional. Hint for how to order the results.
      *       orderBy: 'placeholder-value',
-     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *       // Optional. Requested page size. The server might return fewer items than requested. The maximum value is 1000; values above 1000 are coerced to 1000. If unspecified, the server picks an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
+     *       // A page token, received from a previous `ListFirewallEndpoints` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFirewallEndpoints` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. Parent value for ListEndpointsRequest
+     *       // Required. The parent resource from which the firewall endpoints are listed. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      *       parent: 'organizations/my-organization/locations/my-location',
      *     });
      *   console.log(res.data);
@@ -5525,7 +5525,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Update a single org Endpoint.
+     * Updates a single organization endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -5556,11 +5556,11 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.firewallEndpoints.patch({
-     *       // Immutable. Identifier. Name of resource.
+     *       // Immutable. Identifier. The name of the resource.
      *       name: 'organizations/my-organization/locations/my-location/firewallEndpoints/my-firewallEndpoint',
-     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (`00000000-0000-0000-0000-000000000000`).
      *       requestId: 'placeholder-value',
-     *       // Required. Field mask is used to specify the fields to be overwritten in the Endpoint resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *       // Required. Field mask used to specify the fields to be overwritten in the `FirewallEndpoint` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not provide a mask, then all fields present in the request are overwritten.
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -5692,19 +5692,19 @@ export namespace networksecurity_v1 {
 
   export interface Params$Resource$Organizations$Locations$Firewallendpoints$Create extends StandardParameters {
     /**
-     * Required. Id of the requesting object. If auto-generating Id server-side, remove this field and firewall_endpoint_id from the method_signature of Create RPC.
+     * Required. The ID to use for the firewall endpoint, which becomes the final component of the endpoint's resource name. This value must be 1-63 characters long, start with a lowercase letter, contain only lowercase letters, numbers, and hyphens, and cannot end with a hyphen.
      */
     firewallEndpointId?: string;
     /**
-     * Required. Value for parent.
+     * Required. The parent resource where this firewall endpoint is created. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (`00000000-0000-0000-0000-000000000000`).
      */
     requestId?: string;
     /**
-     * Optional. If set, validate the request and preview the endpoint, but do not actually create it.
+     * Optional. If set, validates the request and previews the endpoint, but does not actually create it.
      */
     validateOnly?: boolean;
 
@@ -5715,53 +5715,53 @@ export namespace networksecurity_v1 {
   }
   export interface Params$Resource$Organizations$Locations$Firewallendpoints$Delete extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The name of the resource.
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (`00000000-0000-0000-0000-000000000000`).
      */
     requestId?: string;
   }
   export interface Params$Resource$Organizations$Locations$Firewallendpoints$Get extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The name of the resource.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Locations$Firewallendpoints$List extends StandardParameters {
     /**
-     * Optional. Filtering results
+     * Optional. Filtering results.
      */
     filter?: string;
     /**
-     * Hint for how to order the results
+     * Optional. Hint for how to order the results.
      */
     orderBy?: string;
     /**
-     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. The server might return fewer items than requested. The maximum value is 1000; values above 1000 are coerced to 1000. If unspecified, the server picks an appropriate default.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.
+     * A page token, received from a previous `ListFirewallEndpoints` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFirewallEndpoints` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Required. Parent value for ListEndpointsRequest
+     * Required. The parent resource from which the firewall endpoints are listed. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Organizations$Locations$Firewallendpoints$Patch extends StandardParameters {
     /**
-     * Immutable. Identifier. Name of resource.
+     * Immutable. Identifier. The name of the resource.
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (`00000000-0000-0000-0000-000000000000`).
      */
     requestId?: string;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the Endpoint resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     * Required. Field mask used to specify the fields to be overwritten in the `FirewallEndpoint` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not provide a mask, then all fields present in the request are overwritten.
      */
     updateMask?: string;
 
@@ -5778,7 +5778,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Create WildfireVerdictChangeRequest in a given Firewall Endpoint in an organization and location.
+     * Creates an Advanced malware sandbox verdict change request in a given firewall endpoint in an organization and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -5810,7 +5810,7 @@ export namespace networksecurity_v1 {
      *   const res =
      *     await networksecurity.organizations.locations.firewallEndpoints.wildfireVerdictChangeRequests.create(
      *       {
-     *         // Required. Parent value for CreateWildfireVerdictChangeRequestRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}
+     *         // Required. Parent value for `CreateWildfireVerdictChangeRequestRequest`. The parent is a firewall endpoint resource. Format: `organizations/{organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}` or `projects/{project\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}`.
      *         parent:
      *           'organizations/my-organization/locations/my-location/firewallEndpoints/my-firewallEndpoint',
      *
@@ -5960,7 +5960,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Get WildfireVerdictChangeRequest in a given Firewall Endpoint in an organization and location.
+     * Gets an Advanced malware sandbox verdict change request in a given firewall endpoint in an organization and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -5992,7 +5992,7 @@ export namespace networksecurity_v1 {
      *   const res =
      *     await networksecurity.organizations.locations.firewallEndpoints.wildfireVerdictChangeRequests.get(
      *       {
-     *         // Required. Name of the WildfireVerdictChangeRequest to retrieve. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\} Where {wildfire_verdict_change_request_id\} is the ID in the format: ^[0-9a-fA-F]{8\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{12\}$
+     *         // Required. The name of the `WildfireVerdictChangeRequest` to retrieve. Format: `organizations/{organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\}` or `projects/{project\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\}`. Where `{wildfire_verdict_change_request_id\}` is an ID in the format `^[0-9a-fA-F]{8\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{12\}$`.
      *         name: 'organizations/my-organization/locations/my-location/firewallEndpoints/my-firewallEndpoint/wildfireVerdictChangeRequests/my-wildfireVerdictChangeRequest',
      *       },
      *     );
@@ -6118,7 +6118,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Lists WildfireVerdictChangeRequests in a given Firewall Endpoint in an organization and location.
+     * Lists the Advanced malware sandbox (WildFire) verdict change requests in a given firewall endpoint in an organization and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -6150,13 +6150,13 @@ export namespace networksecurity_v1 {
      *   const res =
      *     await networksecurity.organizations.locations.firewallEndpoints.wildfireVerdictChangeRequests.list(
      *       {
-     *         // Optional. Filter expression to filter the results. See AIP-160 for filtering syntax. Supported fields are: - `sha256` (string, equality only, e.g. `sha256 = "..."`) - `state` (enum, equality only, e.g. `state = "ACTIVE"`) - `create_time` (timestamp, comparisons, e.g. `create_time \> "2026-01-01T00:00:00Z"`)
+     *         // Optional. Filter expression to filter the results. Supported fields are: - `sha256` (string, equality only, for example, `sha256 = "..."`) - `state` (enum, equality only, valid values are `OPEN`, `CLOSED`, or `PENDING`, for example, `state = "PENDING"`) - `create_time` (timestamp, comparisons, for example, `create_time \>= "2026-01-01T00:00:00Z" AND create_time <= "2026-01-31T23:59:59Z"`). If filtering by `create_time`, you must specify both a start time and an end time. If `create_time` is not specified, the query defaults to the past 30 days.
      *         filter: 'placeholder-value',
-     *         // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *         // Optional. Requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.
      *         pageSize: 'placeholder-value',
-     *         // Optional. A token identifying a page of results the server should return.
+     *         // Optional. A page token, received from a previous `ListWildfireVerdictChangeRequests` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWildfireVerdictChangeRequests` must match the call that provided the page token.
      *         pageToken: 'placeholder-value',
-     *         // Required. Parent value for ListWildfireVerdictChangeRequestsRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}
+     *         // Required. Parent value for `ListWildfireVerdictChangeRequestsRequest`. The parent is a firewall endpoint resource. Format: `organizations/{organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}` or `projects/{project\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}`.
      *         parent:
      *           'organizations/my-organization/locations/my-location/firewallEndpoints/my-firewallEndpoint',
      *       },
@@ -6280,7 +6280,7 @@ export namespace networksecurity_v1 {
 
   export interface Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create extends StandardParameters {
     /**
-     * Required. Parent value for CreateWildfireVerdictChangeRequestRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}
+     * Required. Parent value for `CreateWildfireVerdictChangeRequestRequest`. The parent is a firewall endpoint resource. Format: `organizations/{organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}` or `projects/{project\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}`.
      */
     parent?: string;
 
@@ -6291,25 +6291,25 @@ export namespace networksecurity_v1 {
   }
   export interface Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get extends StandardParameters {
     /**
-     * Required. Name of the WildfireVerdictChangeRequest to retrieve. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\} Where {wildfire_verdict_change_request_id\} is the ID in the format: ^[0-9a-fA-F]{8\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{12\}$
+     * Required. The name of the `WildfireVerdictChangeRequest` to retrieve. Format: `organizations/{organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\}` or `projects/{project\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\}`. Where `{wildfire_verdict_change_request_id\}` is an ID in the format `^[0-9a-fA-F]{8\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{12\}$`.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$List extends StandardParameters {
     /**
-     * Optional. Filter expression to filter the results. See AIP-160 for filtering syntax. Supported fields are: - `sha256` (string, equality only, e.g. `sha256 = "..."`) - `state` (enum, equality only, e.g. `state = "ACTIVE"`) - `create_time` (timestamp, comparisons, e.g. `create_time \> "2026-01-01T00:00:00Z"`)
+     * Optional. Filter expression to filter the results. Supported fields are: - `sha256` (string, equality only, for example, `sha256 = "..."`) - `state` (enum, equality only, valid values are `OPEN`, `CLOSED`, or `PENDING`, for example, `state = "PENDING"`) - `create_time` (timestamp, comparisons, for example, `create_time \>= "2026-01-01T00:00:00Z" AND create_time <= "2026-01-31T23:59:59Z"`). If filtering by `create_time`, you must specify both a start time and an end time. If `create_time` is not specified, the query defaults to the past 30 days.
      */
     filter?: string;
     /**
-     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. A page token, received from a previous `ListWildfireVerdictChangeRequests` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWildfireVerdictChangeRequests` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Required. Parent value for ListWildfireVerdictChangeRequestsRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}
+     * Required. Parent value for `ListWildfireVerdictChangeRequestsRequest`. The parent is a firewall endpoint resource. Format: `organizations/{organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}` or `projects/{project\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}`.
      */
     parent?: string;
   }
@@ -6933,7 +6933,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Creates a new SecurityProfileGroup in a given organization and location.
+     * Creates a new security profile group in a given organization and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -6964,9 +6964,9 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.securityProfileGroups.create({
-     *       // Required. The parent resource of the SecurityProfileGroup. Must be in the format `projects|organizations/x/locations/{location\}`.
+     *       // Required. The parent resource of the `SecurityProfileGroup`. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      *       parent: 'organizations/my-organization/locations/my-location',
-     *       // Required. Short name of the SecurityProfileGroup resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. "security_profile_group1".
+     *       // Required. Short name of the `SecurityProfileGroup` resource to be created. This value must be 1 to 63 characters long, contain only lowercase letters, numbers, and hyphens, and must not start with a number. For example, `security-profile-group1`.
      *       securityProfileGroupId: 'placeholder-value',
      *
      *       // Request body metadata
@@ -7097,7 +7097,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Deletes a single SecurityProfileGroup.
+     * Deletes a single security profile group.
      * @example
      * ```js
      * // Before running the sample:
@@ -7128,9 +7128,9 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.securityProfileGroups.delete({
-     *       // Optional. If client provided etag is out of date, delete will return FAILED_PRECONDITION error.
+     *       // Optional. If the client-provided `etag` is out of date, the delete request returns an `ABORTED` error.
      *       etag: 'placeholder-value',
-     *       // Required. A name of the SecurityProfileGroup to delete. Must be in the format `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     *       // Required. The name of the `SecurityProfileGroup` to delete. Format: `organizations/{organization\}/locations/{location\}/securityProfileGroups/{security_profile_group\}` or `projects/{project\}/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
      *       name: 'organizations/my-organization/locations/my-location/securityProfileGroups/my-securityProfileGroup',
      *     });
      *   console.log(res.data);
@@ -7239,7 +7239,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Gets details of a single SecurityProfileGroup.
+     * Gets details of a single security profile group.
      * @example
      * ```js
      * // Before running the sample:
@@ -7270,7 +7270,7 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.securityProfileGroups.get({
-     *       // Required. A name of the SecurityProfileGroup to get. Must be in the format `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     *       // Required. The name of the `SecurityProfileGroup` to get. Format: `organizations/{organization\}/locations/{location\}/securityProfileGroups/{security_profile_group\}` or `projects/{project\}/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
      *       name: 'organizations/my-organization/locations/my-location/securityProfileGroups/my-securityProfileGroup',
      *     });
      *   console.log(res.data);
@@ -7388,7 +7388,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Lists SecurityProfileGroups in a given organization and location.
+     * Lists security profile group resources in a given organization and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -7419,11 +7419,11 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.securityProfileGroups.list({
-     *       // Optional. Maximum number of SecurityProfileGroups to return per call.
+     *       // Optional. Maximum number of `SecurityProfileGroup` resources to return per call. The maximum value is 1000; values above 1000 are coerced to 1000. If unspecified, the server picks an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // Optional. The value returned by the last `ListSecurityProfileGroupsResponse` Indicates that this is a continuation of a prior `ListSecurityProfileGroups` call, and that the system should return the next page of data.
+     *       // Optional. A page token, received from a previous `ListSecurityProfileGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSecurityProfileGroups` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. The project or organization and location from which the SecurityProfileGroups should be listed, specified in the format `projects|organizations/x/locations/{location\}`.
+     *       // Required. The project or organization and location from which the `SecurityProfileGroup` resources are listed. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      *       parent: 'organizations/my-organization/locations/my-location',
      *     });
      *   console.log(res.data);
@@ -7543,7 +7543,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Updates the parameters of a single SecurityProfileGroup.
+     * Updates the parameters of a single security profile group.
      * @example
      * ```js
      * // Before running the sample:
@@ -7574,9 +7574,9 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.securityProfileGroups.patch({
-     *       // Immutable. Identifier. Name of the SecurityProfileGroup resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     *       // Immutable. Identifier. Name of the `SecurityProfileGroup` resource. Format: `organizations/{organization\}/locations/{location\}/securityProfileGroups/{security_profile_group\}` or `projects/{project\}/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
      *       name: 'organizations/my-organization/locations/my-location/securityProfileGroups/my-securityProfileGroup',
-     *       // Required. Field mask is used to specify the fields to be overwritten in the SecurityProfileGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask.
+     *       // Required. Field mask is used to specify the fields to be overwritten in the `SecurityProfileGroup` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask.
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -7706,11 +7706,11 @@ export namespace networksecurity_v1 {
 
   export interface Params$Resource$Organizations$Locations$Securityprofilegroups$Create extends StandardParameters {
     /**
-     * Required. The parent resource of the SecurityProfileGroup. Must be in the format `projects|organizations/x/locations/{location\}`.
+     * Required. The parent resource of the `SecurityProfileGroup`. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
     /**
-     * Required. Short name of the SecurityProfileGroup resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. "security_profile_group1".
+     * Required. Short name of the `SecurityProfileGroup` resource to be created. This value must be 1 to 63 characters long, contain only lowercase letters, numbers, and hyphens, and must not start with a number. For example, `security-profile-group1`.
      */
     securityProfileGroupId?: string;
 
@@ -7721,41 +7721,41 @@ export namespace networksecurity_v1 {
   }
   export interface Params$Resource$Organizations$Locations$Securityprofilegroups$Delete extends StandardParameters {
     /**
-     * Optional. If client provided etag is out of date, delete will return FAILED_PRECONDITION error.
+     * Optional. If the client-provided `etag` is out of date, the delete request returns an `ABORTED` error.
      */
     etag?: string;
     /**
-     * Required. A name of the SecurityProfileGroup to delete. Must be in the format `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     * Required. The name of the `SecurityProfileGroup` to delete. Format: `organizations/{organization\}/locations/{location\}/securityProfileGroups/{security_profile_group\}` or `projects/{project\}/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Locations$Securityprofilegroups$Get extends StandardParameters {
     /**
-     * Required. A name of the SecurityProfileGroup to get. Must be in the format `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     * Required. The name of the `SecurityProfileGroup` to get. Format: `organizations/{organization\}/locations/{location\}/securityProfileGroups/{security_profile_group\}` or `projects/{project\}/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Locations$Securityprofilegroups$List extends StandardParameters {
     /**
-     * Optional. Maximum number of SecurityProfileGroups to return per call.
+     * Optional. Maximum number of `SecurityProfileGroup` resources to return per call. The maximum value is 1000; values above 1000 are coerced to 1000. If unspecified, the server picks an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional. The value returned by the last `ListSecurityProfileGroupsResponse` Indicates that this is a continuation of a prior `ListSecurityProfileGroups` call, and that the system should return the next page of data.
+     * Optional. A page token, received from a previous `ListSecurityProfileGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSecurityProfileGroups` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Required. The project or organization and location from which the SecurityProfileGroups should be listed, specified in the format `projects|organizations/x/locations/{location\}`.
+     * Required. The project or organization and location from which the `SecurityProfileGroup` resources are listed. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Organizations$Locations$Securityprofilegroups$Patch extends StandardParameters {
     /**
-     * Immutable. Identifier. Name of the SecurityProfileGroup resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     * Immutable. Identifier. Name of the `SecurityProfileGroup` resource. Format: `organizations/{organization\}/locations/{location\}/securityProfileGroups/{security_profile_group\}` or `projects/{project\}/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
      */
     name?: string;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the SecurityProfileGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask.
+     * Required. Field mask is used to specify the fields to be overwritten in the `SecurityProfileGroup` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask.
      */
     updateMask?: string;
 
@@ -7772,7 +7772,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Creates a new SecurityProfile in a given organization and location.
+     * Creates a new security profile in a given organization and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -7803,9 +7803,9 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.securityProfiles.create({
-     *       // Required. The parent resource of the SecurityProfile. Must be in the format `projects|organizations/x/locations/{location\}`.
+     *       // Required. The parent resource of the `SecurityProfile`. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      *       parent: 'organizations/my-organization/locations/my-location',
-     *       // Required. Short name of the SecurityProfile resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. "security_profile1".
+     *       // Required. Short name of the `SecurityProfile` resource to be created. This value must be 1 to 63 characters long, contain only lowercase letters, numbers, and hyphens, and must not start with a number. For example, `security-profile1`.
      *       securityProfileId: 'placeholder-value',
      *
      *       // Request body metadata
@@ -7936,7 +7936,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Deletes a single SecurityProfile.
+     * Deletes a single security profile.
      * @example
      * ```js
      * // Before running the sample:
@@ -7967,9 +7967,9 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.securityProfiles.delete({
-     *       // Optional. If client provided etag is out of date, delete will return FAILED_PRECONDITION error.
+     *       // Optional. If the client-provided `etag` is out of date, the delete request returns an `ABORTED` error.
      *       etag: 'placeholder-value',
-     *       // Required. A name of the SecurityProfile to delete. Must be in the format `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile_id\}`.
+     *       // Required. The name of the `SecurityProfile` to delete. Format: `organizations/{organization\}/locations/{location\}/securityProfiles/{security_profile\}` or `projects/{project\}/locations/{location\}/securityProfiles/{security_profile\}`.
      *       name: 'organizations/my-organization/locations/my-location/securityProfiles/my-securityProfile',
      *     });
      *   console.log(res.data);
@@ -8078,7 +8078,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Gets details of a single SecurityProfile.
+     * Gets details of a single security profile.
      * @example
      * ```js
      * // Before running the sample:
@@ -8109,7 +8109,7 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.securityProfiles.get({
-     *       // Required. A name of the SecurityProfile to get. Must be in the format `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile_id\}`.
+     *       // Required. The name of the `SecurityProfile` to get. Format: `organizations/{organization\}/locations/{location\}/securityProfiles/{security_profile\}` or `projects/{project\}/locations/{location\}/securityProfiles/{security_profile\}`.
      *       name: 'organizations/my-organization/locations/my-location/securityProfiles/my-securityProfile',
      *     });
      *   console.log(res.data);
@@ -8226,7 +8226,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Lists SecurityProfiles in a given organization and location.
+     * Lists security profile resources in a given organization and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -8257,11 +8257,11 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.securityProfiles.list({
-     *       // Optional. Maximum number of SecurityProfiles to return per call.
+     *       // Optional. Maximum number of `SecurityProfile` resources to return per call. The maximum value is 1000; values above 1000 are coerced to 1000. If unspecified, the server picks an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // Optional. The value returned by the last `ListSecurityProfilesResponse` Indicates that this is a continuation of a prior `ListSecurityProfiles` call, and that the system should return the next page of data.
+     *       // Optional. A page token, received from a previous `ListSecurityProfiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSecurityProfiles` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. The project or organization and location from which the SecurityProfiles should be listed, specified in the format `projects|organizations/x/locations/{location\}`.
+     *       // Required. The project or organization and location from which the `SecurityProfile` resources are listed. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      *       parent: 'organizations/my-organization/locations/my-location',
      *     });
      *   console.log(res.data);
@@ -8377,7 +8377,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Updates the parameters of a single SecurityProfile.
+     * Updates the parameters of a single security profile.
      * @example
      * ```js
      * // Before running the sample:
@@ -8408,9 +8408,9 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.securityProfiles.patch({
-     *       // Immutable. Identifier. Name of the SecurityProfile resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile\}`.
+     *       // Immutable. Identifier. Name of the `SecurityProfile` resource. Format: `organizations/{organization\}/locations/{location\}/securityProfiles/{security_profile\}` or `projects/{project\}/locations/{location\}/securityProfiles/{security_profile\}`.
      *       name: 'organizations/my-organization/locations/my-location/securityProfiles/my-securityProfile',
-     *       // Required. Field mask is used to specify the fields to be overwritten in the SecurityProfile resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask.
+     *       // Required. Field mask is used to specify the fields to be overwritten in the `SecurityProfile` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask.
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -8540,11 +8540,11 @@ export namespace networksecurity_v1 {
 
   export interface Params$Resource$Organizations$Locations$Securityprofiles$Create extends StandardParameters {
     /**
-     * Required. The parent resource of the SecurityProfile. Must be in the format `projects|organizations/x/locations/{location\}`.
+     * Required. The parent resource of the `SecurityProfile`. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
     /**
-     * Required. Short name of the SecurityProfile resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. "security_profile1".
+     * Required. Short name of the `SecurityProfile` resource to be created. This value must be 1 to 63 characters long, contain only lowercase letters, numbers, and hyphens, and must not start with a number. For example, `security-profile1`.
      */
     securityProfileId?: string;
 
@@ -8555,41 +8555,41 @@ export namespace networksecurity_v1 {
   }
   export interface Params$Resource$Organizations$Locations$Securityprofiles$Delete extends StandardParameters {
     /**
-     * Optional. If client provided etag is out of date, delete will return FAILED_PRECONDITION error.
+     * Optional. If the client-provided `etag` is out of date, the delete request returns an `ABORTED` error.
      */
     etag?: string;
     /**
-     * Required. A name of the SecurityProfile to delete. Must be in the format `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile_id\}`.
+     * Required. The name of the `SecurityProfile` to delete. Format: `organizations/{organization\}/locations/{location\}/securityProfiles/{security_profile\}` or `projects/{project\}/locations/{location\}/securityProfiles/{security_profile\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Locations$Securityprofiles$Get extends StandardParameters {
     /**
-     * Required. A name of the SecurityProfile to get. Must be in the format `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile_id\}`.
+     * Required. The name of the `SecurityProfile` to get. Format: `organizations/{organization\}/locations/{location\}/securityProfiles/{security_profile\}` or `projects/{project\}/locations/{location\}/securityProfiles/{security_profile\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Locations$Securityprofiles$List extends StandardParameters {
     /**
-     * Optional. Maximum number of SecurityProfiles to return per call.
+     * Optional. Maximum number of `SecurityProfile` resources to return per call. The maximum value is 1000; values above 1000 are coerced to 1000. If unspecified, the server picks an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional. The value returned by the last `ListSecurityProfilesResponse` Indicates that this is a continuation of a prior `ListSecurityProfiles` call, and that the system should return the next page of data.
+     * Optional. A page token, received from a previous `ListSecurityProfiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSecurityProfiles` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Required. The project or organization and location from which the SecurityProfiles should be listed, specified in the format `projects|organizations/x/locations/{location\}`.
+     * Required. The project or organization and location from which the `SecurityProfile` resources are listed. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Organizations$Locations$Securityprofiles$Patch extends StandardParameters {
     /**
-     * Immutable. Identifier. Name of the SecurityProfile resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile\}`.
+     * Immutable. Identifier. Name of the `SecurityProfile` resource. Format: `organizations/{organization\}/locations/{location\}/securityProfiles/{security_profile\}` or `projects/{project\}/locations/{location\}/securityProfiles/{security_profile\}`.
      */
     name?: string;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the SecurityProfile resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask.
+     * Required. Field mask is used to specify the fields to be overwritten in the `SecurityProfile` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask.
      */
     updateMask?: string;
 
@@ -16623,7 +16623,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Creates a new FirewallEndpointAssociation in a given project and location.
+     * Creates a new firewall endpoint association in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -16655,11 +16655,11 @@ export namespace networksecurity_v1 {
      *   const res =
      *     await networksecurity.projects.locations.firewallEndpointAssociations.create(
      *       {
-     *         // Optional. Id of the requesting object. If auto-generating Id server-side, remove this field and firewall_endpoint_association_id from the method_signature of Create RPC.
+     *         // Optional. The ID to use for the firewall endpoint association, which becomes the final component of the association's resource name. This value must be 1-63 characters long, start with a lowercase letter, contain only lowercase letters, numbers, and hyphens, and cannot end with a hyphen.
      *         firewallEndpointAssociationId: 'placeholder-value',
-     *         // Required. Value for parent.
+     *         // Required. The parent resource where this firewall endpoint association is created. Format: `projects/{project\}/locations/{location\}`.
      *         parent: 'projects/my-project/locations/my-location',
-     *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (`00000000-0000-0000-0000-000000000000`).
      *         requestId: 'placeholder-value',
      *
      *         // Request body metadata
@@ -16788,7 +16788,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Deletes a single FirewallEndpointAssociation.
+     * Deletes a single firewall endpoint association.
      * @example
      * ```js
      * // Before running the sample:
@@ -16820,9 +16820,9 @@ export namespace networksecurity_v1 {
      *   const res =
      *     await networksecurity.projects.locations.firewallEndpointAssociations.delete(
      *       {
-     *         // Required. Name of the resource
+     *         // Required. The name of the resource.
      *         name: 'projects/my-project/locations/my-location/firewallEndpointAssociations/my-firewallEndpointAssociation',
-     *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (`00000000-0000-0000-0000-000000000000`).
      *         requestId: 'placeholder-value',
      *       },
      *     );
@@ -16932,7 +16932,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Gets details of a single FirewallEndpointAssociation.
+     * Gets details of a single firewall endpoint association.
      * @example
      * ```js
      * // Before running the sample:
@@ -16963,7 +16963,7 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.projects.locations.firewallEndpointAssociations.get({
-     *       // Required. Name of the resource
+     *       // Required. The name of the resource.
      *       name: 'projects/my-project/locations/my-location/firewallEndpointAssociations/my-firewallEndpointAssociation',
      *     });
      *   console.log(res.data);
@@ -17082,7 +17082,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Lists Associations in a given project and location.
+     * Lists associations in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -17113,15 +17113,15 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.projects.locations.firewallEndpointAssociations.list({
-     *       // Optional. Filtering results
+     *       // Optional. Filtering results.
      *       filter: 'placeholder-value',
-     *       // Hint for how to order the results
+     *       // Hint for how to order the results.
      *       orderBy: 'placeholder-value',
-     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *       // Optional. Requested page size. The server might return fewer items than requested. The maximum value is 1000; values above 1000 are coerced to 1000. If unspecified, the server picks an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
+     *       // A page token, received from a previous `ListFirewallEndpointAssociations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFirewallEndpointAssociations` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. Parent value for ListAssociationsRequest
+     *       // Required. The parent resource from which the firewall endpoint associations are listed. Format: `projects/{project\}/locations/{location\}`.
      *       parent: 'projects/my-project/locations/my-location',
      *     });
      *   console.log(res.data);
@@ -17241,7 +17241,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Update a single FirewallEndpointAssociation.
+     * Updates a single firewall endpoint association.
      * @example
      * ```js
      * // Before running the sample:
@@ -17273,11 +17273,11 @@ export namespace networksecurity_v1 {
      *   const res =
      *     await networksecurity.projects.locations.firewallEndpointAssociations.patch(
      *       {
-     *         // Immutable. Identifier. name of resource
+     *         // Immutable. Identifier. The name of the resource.
      *         name: 'projects/my-project/locations/my-location/firewallEndpointAssociations/my-firewallEndpointAssociation',
-     *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (`00000000-0000-0000-0000-000000000000`).
      *         requestId: 'placeholder-value',
-     *         // Required. Field mask is used to specify the fields to be overwritten in the Association resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *         // Required. Field mask used to specify the fields to be overwritten in the `FirewallEndpointAssociation` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not provide a mask, then all fields present in the request are overwritten.
      *         updateMask: 'placeholder-value',
      *
      *         // Request body metadata
@@ -17406,15 +17406,15 @@ export namespace networksecurity_v1 {
 
   export interface Params$Resource$Projects$Locations$Firewallendpointassociations$Create extends StandardParameters {
     /**
-     * Optional. Id of the requesting object. If auto-generating Id server-side, remove this field and firewall_endpoint_association_id from the method_signature of Create RPC.
+     * Optional. The ID to use for the firewall endpoint association, which becomes the final component of the association's resource name. This value must be 1-63 characters long, start with a lowercase letter, contain only lowercase letters, numbers, and hyphens, and cannot end with a hyphen.
      */
     firewallEndpointAssociationId?: string;
     /**
-     * Required. Value for parent.
+     * Required. The parent resource where this firewall endpoint association is created. Format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (`00000000-0000-0000-0000-000000000000`).
      */
     requestId?: string;
 
@@ -17425,53 +17425,53 @@ export namespace networksecurity_v1 {
   }
   export interface Params$Resource$Projects$Locations$Firewallendpointassociations$Delete extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The name of the resource.
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (`00000000-0000-0000-0000-000000000000`).
      */
     requestId?: string;
   }
   export interface Params$Resource$Projects$Locations$Firewallendpointassociations$Get extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The name of the resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Firewallendpointassociations$List extends StandardParameters {
     /**
-     * Optional. Filtering results
+     * Optional. Filtering results.
      */
     filter?: string;
     /**
-     * Hint for how to order the results
+     * Hint for how to order the results.
      */
     orderBy?: string;
     /**
-     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. The server might return fewer items than requested. The maximum value is 1000; values above 1000 are coerced to 1000. If unspecified, the server picks an appropriate default.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.
+     * A page token, received from a previous `ListFirewallEndpointAssociations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFirewallEndpointAssociations` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Required. Parent value for ListAssociationsRequest
+     * Required. The parent resource from which the firewall endpoint associations are listed. Format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Firewallendpointassociations$Patch extends StandardParameters {
     /**
-     * Immutable. Identifier. name of resource
+     * Immutable. Identifier. The name of the resource.
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (`00000000-0000-0000-0000-000000000000`).
      */
     requestId?: string;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the Association resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     * Required. Field mask used to specify the fields to be overwritten in the `FirewallEndpointAssociation` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not provide a mask, then all fields present in the request are overwritten.
      */
     updateMask?: string;
 
@@ -17493,7 +17493,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Creates a new FirewallEndpoint in a given project and location.
+     * Creates a new firewall endpoint in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -17524,13 +17524,13 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res = await networksecurity.projects.locations.firewallEndpoints.create(
      *     {
-     *       // Required. Id of the requesting object. If auto-generating Id server-side, remove this field and firewall_endpoint_id from the method_signature of Create RPC.
+     *       // Required. The ID to use for the firewall endpoint, which becomes the final component of the endpoint's resource name. This value must be 1-63 characters long, start with a lowercase letter, contain only lowercase letters, numbers, and hyphens, and cannot end with a hyphen.
      *       firewallEndpointId: 'placeholder-value',
-     *       // Required. Value for parent.
+     *       // Required. The parent resource where this firewall endpoint is created. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      *       parent: 'projects/my-project/locations/my-location',
-     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (`00000000-0000-0000-0000-000000000000`).
      *       requestId: 'placeholder-value',
-     *       // Optional. If set, validate the request and preview the endpoint, but do not actually create it.
+     *       // Optional. If set, validates the request and previews the endpoint, but does not actually create it.
      *       validateOnly: 'placeholder-value',
      *
      *       // Request body metadata
@@ -17664,7 +17664,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Deletes a single project Endpoint.
+     * Deletes a single project endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -17695,9 +17695,9 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res = await networksecurity.projects.locations.firewallEndpoints.delete(
      *     {
-     *       // Required. Name of the resource
+     *       // Required. The name of the resource.
      *       name: 'projects/my-project/locations/my-location/firewallEndpoints/my-firewallEndpoint',
-     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (`00000000-0000-0000-0000-000000000000`).
      *       requestId: 'placeholder-value',
      *     },
      *   );
@@ -17807,7 +17807,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Gets details of a single project Endpoint.
+     * Gets details of a single project endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -17837,7 +17837,7 @@ export namespace networksecurity_v1 {
      *
      *   // Do the magic
      *   const res = await networksecurity.projects.locations.firewallEndpoints.get({
-     *     // Required. Name of the resource
+     *     // Required. The name of the resource.
      *     name: 'projects/my-project/locations/my-location/firewallEndpoints/my-firewallEndpoint',
      *   });
      *   console.log(res.data);
@@ -17955,7 +17955,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Lists FirewallEndpoints in a given project and location.
+     * Lists firewall endpoints in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -17985,15 +17985,15 @@ export namespace networksecurity_v1 {
      *
      *   // Do the magic
      *   const res = await networksecurity.projects.locations.firewallEndpoints.list({
-     *     // Optional. Filtering results
+     *     // Optional. Filtering results.
      *     filter: 'placeholder-value',
-     *     // Hint for how to order the results
+     *     // Optional. Hint for how to order the results.
      *     orderBy: 'placeholder-value',
-     *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *     // Optional. Requested page size. The server might return fewer items than requested. The maximum value is 1000; values above 1000 are coerced to 1000. If unspecified, the server picks an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
+     *     // A page token, received from a previous `ListFirewallEndpoints` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFirewallEndpoints` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent value for ListEndpointsRequest
+     *     // Required. The parent resource from which the firewall endpoints are listed. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -18110,7 +18110,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Update a single project Endpoint.
+     * Updates a single project endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -18140,11 +18140,11 @@ export namespace networksecurity_v1 {
      *
      *   // Do the magic
      *   const res = await networksecurity.projects.locations.firewallEndpoints.patch({
-     *     // Immutable. Identifier. Name of resource.
+     *     // Immutable. Identifier. The name of the resource.
      *     name: 'projects/my-project/locations/my-location/firewallEndpoints/my-firewallEndpoint',
-     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (`00000000-0000-0000-0000-000000000000`).
      *     requestId: 'placeholder-value',
-     *     // Required. Field mask is used to specify the fields to be overwritten in the Endpoint resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *     // Required. Field mask used to specify the fields to be overwritten in the `FirewallEndpoint` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not provide a mask, then all fields present in the request are overwritten.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -18276,19 +18276,19 @@ export namespace networksecurity_v1 {
 
   export interface Params$Resource$Projects$Locations$Firewallendpoints$Create extends StandardParameters {
     /**
-     * Required. Id of the requesting object. If auto-generating Id server-side, remove this field and firewall_endpoint_id from the method_signature of Create RPC.
+     * Required. The ID to use for the firewall endpoint, which becomes the final component of the endpoint's resource name. This value must be 1-63 characters long, start with a lowercase letter, contain only lowercase letters, numbers, and hyphens, and cannot end with a hyphen.
      */
     firewallEndpointId?: string;
     /**
-     * Required. Value for parent.
+     * Required. The parent resource where this firewall endpoint is created. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (`00000000-0000-0000-0000-000000000000`).
      */
     requestId?: string;
     /**
-     * Optional. If set, validate the request and preview the endpoint, but do not actually create it.
+     * Optional. If set, validates the request and previews the endpoint, but does not actually create it.
      */
     validateOnly?: boolean;
 
@@ -18299,53 +18299,53 @@ export namespace networksecurity_v1 {
   }
   export interface Params$Resource$Projects$Locations$Firewallendpoints$Delete extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The name of the resource.
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (`00000000-0000-0000-0000-000000000000`).
      */
     requestId?: string;
   }
   export interface Params$Resource$Projects$Locations$Firewallendpoints$Get extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The name of the resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Firewallendpoints$List extends StandardParameters {
     /**
-     * Optional. Filtering results
+     * Optional. Filtering results.
      */
     filter?: string;
     /**
-     * Hint for how to order the results
+     * Optional. Hint for how to order the results.
      */
     orderBy?: string;
     /**
-     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. The server might return fewer items than requested. The maximum value is 1000; values above 1000 are coerced to 1000. If unspecified, the server picks an appropriate default.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.
+     * A page token, received from a previous `ListFirewallEndpoints` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFirewallEndpoints` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Required. Parent value for ListEndpointsRequest
+     * Required. The parent resource from which the firewall endpoints are listed. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Firewallendpoints$Patch extends StandardParameters {
     /**
-     * Immutable. Identifier. Name of resource.
+     * Immutable. Identifier. The name of the resource.
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (`00000000-0000-0000-0000-000000000000`).
      */
     requestId?: string;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the Endpoint resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     * Required. Field mask used to specify the fields to be overwritten in the `FirewallEndpoint` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not provide a mask, then all fields present in the request are overwritten.
      */
     updateMask?: string;
 
@@ -18362,7 +18362,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Create WildfireVerdictChangeRequest in a given Firewall Endpoint in a project and location.
+     * Creates an Advanced malware sandbox verdict change request in a given firewall endpoint in a project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -18394,7 +18394,7 @@ export namespace networksecurity_v1 {
      *   const res =
      *     await networksecurity.projects.locations.firewallEndpoints.wildfireVerdictChangeRequests.create(
      *       {
-     *         // Required. Parent value for CreateWildfireVerdictChangeRequestRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}
+     *         // Required. Parent value for `CreateWildfireVerdictChangeRequestRequest`. The parent is a firewall endpoint resource. Format: `organizations/{organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}` or `projects/{project\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}`.
      *         parent:
      *           'projects/my-project/locations/my-location/firewallEndpoints/my-firewallEndpoint',
      *
@@ -18544,7 +18544,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Get WildfireVerdictChangeRequest in a given Firewall Endpoint in a project and location.
+     * Gets an Advanced malware sandbox verdict change request in a given firewall endpoint in a project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -18576,7 +18576,7 @@ export namespace networksecurity_v1 {
      *   const res =
      *     await networksecurity.projects.locations.firewallEndpoints.wildfireVerdictChangeRequests.get(
      *       {
-     *         // Required. Name of the WildfireVerdictChangeRequest to retrieve. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\} Where {wildfire_verdict_change_request_id\} is the ID in the format: ^[0-9a-fA-F]{8\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{12\}$
+     *         // Required. The name of the `WildfireVerdictChangeRequest` to retrieve. Format: `organizations/{organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\}` or `projects/{project\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\}`. Where `{wildfire_verdict_change_request_id\}` is an ID in the format `^[0-9a-fA-F]{8\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{12\}$`.
      *         name: 'projects/my-project/locations/my-location/firewallEndpoints/my-firewallEndpoint/wildfireVerdictChangeRequests/my-wildfireVerdictChangeRequest',
      *       },
      *     );
@@ -18702,7 +18702,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Lists WildfireVerdictChangeRequests in a given Firewall Endpoint in a project and location.
+     * Lists the Advanced malware sandbox verdict change requests in a given firewall endpoint in a project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -18734,13 +18734,13 @@ export namespace networksecurity_v1 {
      *   const res =
      *     await networksecurity.projects.locations.firewallEndpoints.wildfireVerdictChangeRequests.list(
      *       {
-     *         // Optional. Filter expression to filter the results. See AIP-160 for filtering syntax. Supported fields are: - `sha256` (string, equality only, e.g. `sha256 = "..."`) - `state` (enum, equality only, e.g. `state = "ACTIVE"`) - `create_time` (timestamp, comparisons, e.g. `create_time \> "2026-01-01T00:00:00Z"`)
+     *         // Optional. Filter expression to filter the results. Supported fields are: - `sha256` (string, equality only, for example, `sha256 = "..."`) - `state` (enum, equality only, valid values are `OPEN`, `CLOSED`, or `PENDING`, for example, `state = "PENDING"`) - `create_time` (timestamp, comparisons, for example, `create_time \>= "2026-01-01T00:00:00Z" AND create_time <= "2026-01-31T23:59:59Z"`). If filtering by `create_time`, you must specify both a start time and an end time. If `create_time` is not specified, the query defaults to the past 30 days.
      *         filter: 'placeholder-value',
-     *         // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *         // Optional. Requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.
      *         pageSize: 'placeholder-value',
-     *         // Optional. A token identifying a page of results the server should return.
+     *         // Optional. A page token, received from a previous `ListWildfireVerdictChangeRequests` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWildfireVerdictChangeRequests` must match the call that provided the page token.
      *         pageToken: 'placeholder-value',
-     *         // Required. Parent value for ListWildfireVerdictChangeRequestsRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}
+     *         // Required. Parent value for `ListWildfireVerdictChangeRequestsRequest`. The parent is a firewall endpoint resource. Format: `organizations/{organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}` or `projects/{project\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}`.
      *         parent:
      *           'projects/my-project/locations/my-location/firewallEndpoints/my-firewallEndpoint',
      *       },
@@ -18864,7 +18864,7 @@ export namespace networksecurity_v1 {
 
   export interface Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create extends StandardParameters {
     /**
-     * Required. Parent value for CreateWildfireVerdictChangeRequestRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}
+     * Required. Parent value for `CreateWildfireVerdictChangeRequestRequest`. The parent is a firewall endpoint resource. Format: `organizations/{organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}` or `projects/{project\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}`.
      */
     parent?: string;
 
@@ -18875,25 +18875,25 @@ export namespace networksecurity_v1 {
   }
   export interface Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get extends StandardParameters {
     /**
-     * Required. Name of the WildfireVerdictChangeRequest to retrieve. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\} Where {wildfire_verdict_change_request_id\} is the ID in the format: ^[0-9a-fA-F]{8\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{12\}$
+     * Required. The name of the `WildfireVerdictChangeRequest` to retrieve. Format: `organizations/{organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\}` or `projects/{project\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\}`. Where `{wildfire_verdict_change_request_id\}` is an ID in the format `^[0-9a-fA-F]{8\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{12\}$`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$List extends StandardParameters {
     /**
-     * Optional. Filter expression to filter the results. See AIP-160 for filtering syntax. Supported fields are: - `sha256` (string, equality only, e.g. `sha256 = "..."`) - `state` (enum, equality only, e.g. `state = "ACTIVE"`) - `create_time` (timestamp, comparisons, e.g. `create_time \> "2026-01-01T00:00:00Z"`)
+     * Optional. Filter expression to filter the results. Supported fields are: - `sha256` (string, equality only, for example, `sha256 = "..."`) - `state` (enum, equality only, valid values are `OPEN`, `CLOSED`, or `PENDING`, for example, `state = "PENDING"`) - `create_time` (timestamp, comparisons, for example, `create_time \>= "2026-01-01T00:00:00Z" AND create_time <= "2026-01-31T23:59:59Z"`). If filtering by `create_time`, you must specify both a start time and an end time. If `create_time` is not specified, the query defaults to the past 30 days.
      */
     filter?: string;
     /**
-     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. A page token, received from a previous `ListWildfireVerdictChangeRequests` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWildfireVerdictChangeRequests` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Required. Parent value for ListWildfireVerdictChangeRequestsRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}
+     * Required. Parent value for `ListWildfireVerdictChangeRequestsRequest`. The parent is a firewall endpoint resource. Format: `organizations/{organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}` or `projects/{project\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}`.
      */
     parent?: string;
   }
@@ -29381,7 +29381,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Creates a new SecurityProfileGroup in a given project and location.
+     * Creates a new security profile group in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -29412,9 +29412,9 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.projects.locations.securityProfileGroups.create({
-     *       // Required. The parent resource of the SecurityProfileGroup. Must be in the format `projects|organizations/x/locations/{location\}`.
+     *       // Required. The parent resource of the `SecurityProfileGroup`. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      *       parent: 'projects/my-project/locations/my-location',
-     *       // Required. Short name of the SecurityProfileGroup resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. "security_profile_group1".
+     *       // Required. Short name of the `SecurityProfileGroup` resource to be created. This value must be 1 to 63 characters long, contain only lowercase letters, numbers, and hyphens, and must not start with a number. For example, `security-profile-group1`.
      *       securityProfileGroupId: 'placeholder-value',
      *
      *       // Request body metadata
@@ -29545,7 +29545,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Deletes a single SecurityProfileGroup.
+     * Deletes a single security profile group.
      * @example
      * ```js
      * // Before running the sample:
@@ -29576,9 +29576,9 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.projects.locations.securityProfileGroups.delete({
-     *       // Optional. If client provided etag is out of date, delete will return FAILED_PRECONDITION error.
+     *       // Optional. If the client-provided `etag` is out of date, the delete request returns an `ABORTED` error.
      *       etag: 'placeholder-value',
-     *       // Required. A name of the SecurityProfileGroup to delete. Must be in the format `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     *       // Required. The name of the `SecurityProfileGroup` to delete. Format: `organizations/{organization\}/locations/{location\}/securityProfileGroups/{security_profile_group\}` or `projects/{project\}/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
      *       name: 'projects/my-project/locations/my-location/securityProfileGroups/my-securityProfileGroup',
      *     });
      *   console.log(res.data);
@@ -29687,7 +29687,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Gets details of a single SecurityProfileGroup.
+     * Gets details of a single security profile group.
      * @example
      * ```js
      * // Before running the sample:
@@ -29718,7 +29718,7 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.projects.locations.securityProfileGroups.get({
-     *       // Required. A name of the SecurityProfileGroup to get. Must be in the format `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     *       // Required. The name of the `SecurityProfileGroup` to get. Format: `organizations/{organization\}/locations/{location\}/securityProfileGroups/{security_profile_group\}` or `projects/{project\}/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
      *       name: 'projects/my-project/locations/my-location/securityProfileGroups/my-securityProfileGroup',
      *     });
      *   console.log(res.data);
@@ -29836,7 +29836,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Lists SecurityProfileGroups in a given project and location.
+     * Lists security profile group resources in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -29867,11 +29867,11 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.projects.locations.securityProfileGroups.list({
-     *       // Optional. Maximum number of SecurityProfileGroups to return per call.
+     *       // Optional. Maximum number of `SecurityProfileGroup` resources to return per call. The maximum value is 1000; values above 1000 are coerced to 1000. If unspecified, the server picks an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // Optional. The value returned by the last `ListSecurityProfileGroupsResponse` Indicates that this is a continuation of a prior `ListSecurityProfileGroups` call, and that the system should return the next page of data.
+     *       // Optional. A page token, received from a previous `ListSecurityProfileGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSecurityProfileGroups` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. The project or organization and location from which the SecurityProfileGroups should be listed, specified in the format `projects|organizations/x/locations/{location\}`.
+     *       // Required. The project or organization and location from which the `SecurityProfileGroup` resources are listed. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      *       parent: 'projects/my-project/locations/my-location',
      *     });
      *   console.log(res.data);
@@ -29991,7 +29991,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Updates the parameters of a single SecurityProfileGroup.
+     * Updates the parameters of a single security profile group.
      * @example
      * ```js
      * // Before running the sample:
@@ -30022,9 +30022,9 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.projects.locations.securityProfileGroups.patch({
-     *       // Immutable. Identifier. Name of the SecurityProfileGroup resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     *       // Immutable. Identifier. Name of the `SecurityProfileGroup` resource. Format: `organizations/{organization\}/locations/{location\}/securityProfileGroups/{security_profile_group\}` or `projects/{project\}/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
      *       name: 'projects/my-project/locations/my-location/securityProfileGroups/my-securityProfileGroup',
-     *       // Required. Field mask is used to specify the fields to be overwritten in the SecurityProfileGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask.
+     *       // Required. Field mask is used to specify the fields to be overwritten in the `SecurityProfileGroup` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask.
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -30154,11 +30154,11 @@ export namespace networksecurity_v1 {
 
   export interface Params$Resource$Projects$Locations$Securityprofilegroups$Create extends StandardParameters {
     /**
-     * Required. The parent resource of the SecurityProfileGroup. Must be in the format `projects|organizations/x/locations/{location\}`.
+     * Required. The parent resource of the `SecurityProfileGroup`. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
     /**
-     * Required. Short name of the SecurityProfileGroup resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. "security_profile_group1".
+     * Required. Short name of the `SecurityProfileGroup` resource to be created. This value must be 1 to 63 characters long, contain only lowercase letters, numbers, and hyphens, and must not start with a number. For example, `security-profile-group1`.
      */
     securityProfileGroupId?: string;
 
@@ -30169,41 +30169,41 @@ export namespace networksecurity_v1 {
   }
   export interface Params$Resource$Projects$Locations$Securityprofilegroups$Delete extends StandardParameters {
     /**
-     * Optional. If client provided etag is out of date, delete will return FAILED_PRECONDITION error.
+     * Optional. If the client-provided `etag` is out of date, the delete request returns an `ABORTED` error.
      */
     etag?: string;
     /**
-     * Required. A name of the SecurityProfileGroup to delete. Must be in the format `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     * Required. The name of the `SecurityProfileGroup` to delete. Format: `organizations/{organization\}/locations/{location\}/securityProfileGroups/{security_profile_group\}` or `projects/{project\}/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Securityprofilegroups$Get extends StandardParameters {
     /**
-     * Required. A name of the SecurityProfileGroup to get. Must be in the format `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     * Required. The name of the `SecurityProfileGroup` to get. Format: `organizations/{organization\}/locations/{location\}/securityProfileGroups/{security_profile_group\}` or `projects/{project\}/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Securityprofilegroups$List extends StandardParameters {
     /**
-     * Optional. Maximum number of SecurityProfileGroups to return per call.
+     * Optional. Maximum number of `SecurityProfileGroup` resources to return per call. The maximum value is 1000; values above 1000 are coerced to 1000. If unspecified, the server picks an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional. The value returned by the last `ListSecurityProfileGroupsResponse` Indicates that this is a continuation of a prior `ListSecurityProfileGroups` call, and that the system should return the next page of data.
+     * Optional. A page token, received from a previous `ListSecurityProfileGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSecurityProfileGroups` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Required. The project or organization and location from which the SecurityProfileGroups should be listed, specified in the format `projects|organizations/x/locations/{location\}`.
+     * Required. The project or organization and location from which the `SecurityProfileGroup` resources are listed. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Securityprofilegroups$Patch extends StandardParameters {
     /**
-     * Immutable. Identifier. Name of the SecurityProfileGroup resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     * Immutable. Identifier. Name of the `SecurityProfileGroup` resource. Format: `organizations/{organization\}/locations/{location\}/securityProfileGroups/{security_profile_group\}` or `projects/{project\}/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
      */
     name?: string;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the SecurityProfileGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask.
+     * Required. Field mask is used to specify the fields to be overwritten in the `SecurityProfileGroup` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask.
      */
     updateMask?: string;
 
@@ -30220,7 +30220,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Creates a new SecurityProfile in a given project and location.
+     * Creates a new security profile in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -30250,9 +30250,9 @@ export namespace networksecurity_v1 {
      *
      *   // Do the magic
      *   const res = await networksecurity.projects.locations.securityProfiles.create({
-     *     // Required. The parent resource of the SecurityProfile. Must be in the format `projects|organizations/x/locations/{location\}`.
+     *     // Required. The parent resource of the `SecurityProfile`. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Required. Short name of the SecurityProfile resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. "security_profile1".
+     *     // Required. Short name of the `SecurityProfile` resource to be created. This value must be 1 to 63 characters long, contain only lowercase letters, numbers, and hyphens, and must not start with a number. For example, `security-profile1`.
      *     securityProfileId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -30383,7 +30383,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Deletes a single SecurityProfile.
+     * Deletes a single security profile.
      * @example
      * ```js
      * // Before running the sample:
@@ -30413,9 +30413,9 @@ export namespace networksecurity_v1 {
      *
      *   // Do the magic
      *   const res = await networksecurity.projects.locations.securityProfiles.delete({
-     *     // Optional. If client provided etag is out of date, delete will return FAILED_PRECONDITION error.
+     *     // Optional. If the client-provided `etag` is out of date, the delete request returns an `ABORTED` error.
      *     etag: 'placeholder-value',
-     *     // Required. A name of the SecurityProfile to delete. Must be in the format `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile_id\}`.
+     *     // Required. The name of the `SecurityProfile` to delete. Format: `organizations/{organization\}/locations/{location\}/securityProfiles/{security_profile\}` or `projects/{project\}/locations/{location\}/securityProfiles/{security_profile\}`.
      *     name: 'projects/my-project/locations/my-location/securityProfiles/my-securityProfile',
      *   });
      *   console.log(res.data);
@@ -30524,7 +30524,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Gets details of a single SecurityProfile.
+     * Gets details of a single security profile.
      * @example
      * ```js
      * // Before running the sample:
@@ -30554,7 +30554,7 @@ export namespace networksecurity_v1 {
      *
      *   // Do the magic
      *   const res = await networksecurity.projects.locations.securityProfiles.get({
-     *     // Required. A name of the SecurityProfile to get. Must be in the format `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile_id\}`.
+     *     // Required. The name of the `SecurityProfile` to get. Format: `organizations/{organization\}/locations/{location\}/securityProfiles/{security_profile\}` or `projects/{project\}/locations/{location\}/securityProfiles/{security_profile\}`.
      *     name: 'projects/my-project/locations/my-location/securityProfiles/my-securityProfile',
      *   });
      *   console.log(res.data);
@@ -30670,7 +30670,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Lists SecurityProfiles in a given project and location.
+     * Lists security profiles in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -30700,11 +30700,11 @@ export namespace networksecurity_v1 {
      *
      *   // Do the magic
      *   const res = await networksecurity.projects.locations.securityProfiles.list({
-     *     // Optional. Maximum number of SecurityProfiles to return per call.
+     *     // Optional. Maximum number of `SecurityProfile` resources to return per call. The maximum value is 1000; values above 1000 are coerced to 1000. If unspecified, the server picks an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // Optional. The value returned by the last `ListSecurityProfilesResponse` Indicates that this is a continuation of a prior `ListSecurityProfiles` call, and that the system should return the next page of data.
+     *     // Optional. A page token, received from a previous `ListSecurityProfiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSecurityProfiles` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project or organization and location from which the SecurityProfiles should be listed, specified in the format `projects|organizations/x/locations/{location\}`.
+     *     // Required. The project or organization and location from which the `SecurityProfile` resources are listed. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -30819,7 +30819,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Updates the parameters of a single SecurityProfile.
+     * Updates the parameters of a single security profile.
      * @example
      * ```js
      * // Before running the sample:
@@ -30849,9 +30849,9 @@ export namespace networksecurity_v1 {
      *
      *   // Do the magic
      *   const res = await networksecurity.projects.locations.securityProfiles.patch({
-     *     // Immutable. Identifier. Name of the SecurityProfile resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile\}`.
+     *     // Immutable. Identifier. Name of the `SecurityProfile` resource. Format: `organizations/{organization\}/locations/{location\}/securityProfiles/{security_profile\}` or `projects/{project\}/locations/{location\}/securityProfiles/{security_profile\}`.
      *     name: 'projects/my-project/locations/my-location/securityProfiles/my-securityProfile',
-     *     // Required. Field mask is used to specify the fields to be overwritten in the SecurityProfile resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask.
+     *     // Required. Field mask is used to specify the fields to be overwritten in the `SecurityProfile` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -30981,11 +30981,11 @@ export namespace networksecurity_v1 {
 
   export interface Params$Resource$Projects$Locations$Securityprofiles$Create extends StandardParameters {
     /**
-     * Required. The parent resource of the SecurityProfile. Must be in the format `projects|organizations/x/locations/{location\}`.
+     * Required. The parent resource of the `SecurityProfile`. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
     /**
-     * Required. Short name of the SecurityProfile resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. "security_profile1".
+     * Required. Short name of the `SecurityProfile` resource to be created. This value must be 1 to 63 characters long, contain only lowercase letters, numbers, and hyphens, and must not start with a number. For example, `security-profile1`.
      */
     securityProfileId?: string;
 
@@ -30996,41 +30996,41 @@ export namespace networksecurity_v1 {
   }
   export interface Params$Resource$Projects$Locations$Securityprofiles$Delete extends StandardParameters {
     /**
-     * Optional. If client provided etag is out of date, delete will return FAILED_PRECONDITION error.
+     * Optional. If the client-provided `etag` is out of date, the delete request returns an `ABORTED` error.
      */
     etag?: string;
     /**
-     * Required. A name of the SecurityProfile to delete. Must be in the format `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile_id\}`.
+     * Required. The name of the `SecurityProfile` to delete. Format: `organizations/{organization\}/locations/{location\}/securityProfiles/{security_profile\}` or `projects/{project\}/locations/{location\}/securityProfiles/{security_profile\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Securityprofiles$Get extends StandardParameters {
     /**
-     * Required. A name of the SecurityProfile to get. Must be in the format `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile_id\}`.
+     * Required. The name of the `SecurityProfile` to get. Format: `organizations/{organization\}/locations/{location\}/securityProfiles/{security_profile\}` or `projects/{project\}/locations/{location\}/securityProfiles/{security_profile\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Securityprofiles$List extends StandardParameters {
     /**
-     * Optional. Maximum number of SecurityProfiles to return per call.
+     * Optional. Maximum number of `SecurityProfile` resources to return per call. The maximum value is 1000; values above 1000 are coerced to 1000. If unspecified, the server picks an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional. The value returned by the last `ListSecurityProfilesResponse` Indicates that this is a continuation of a prior `ListSecurityProfiles` call, and that the system should return the next page of data.
+     * Optional. A page token, received from a previous `ListSecurityProfiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSecurityProfiles` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Required. The project or organization and location from which the SecurityProfiles should be listed, specified in the format `projects|organizations/x/locations/{location\}`.
+     * Required. The project or organization and location from which the `SecurityProfile` resources are listed. Format: `organizations/{organization\}/locations/{location\}` or `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Securityprofiles$Patch extends StandardParameters {
     /**
-     * Immutable. Identifier. Name of the SecurityProfile resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile\}`.
+     * Immutable. Identifier. Name of the `SecurityProfile` resource. Format: `organizations/{organization\}/locations/{location\}/securityProfiles/{security_profile\}` or `projects/{project\}/locations/{location\}/securityProfiles/{security_profile\}`.
      */
     name?: string;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the SecurityProfile resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask.
+     * Required. Field mask is used to specify the fields to be overwritten in the `SecurityProfile` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask.
      */
     updateMask?: string;
 
