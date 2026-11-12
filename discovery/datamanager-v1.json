@@ -238,6 +238,61 @@
                 }
               }
             },
+            "reports": {
+              "methods": {
+                "retrievePartnerMatchReport": {
+                  "description": "",
+                  "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/reports:retrievePartnerMatchReport",
+                  "httpMethod": "GET",
+                  "id": "datamanager.accountTypes.accounts.reports.retrievePartnerMatchReport",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "currencyCode": {
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "endDate": {
+                      "format": "int64",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "filter": {
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "location": "path",
+                      "pattern": "^accountTypes/[^/]+/accounts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "startDate": {
+                      "format": "int64",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/reports:retrievePartnerMatchReport",
+                  "response": {
+                    "$ref": "RetrievePartnerMatchReportResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/datamanager"
+                  ]
+                }
+              }
+            },
             "userListDirectLicenses": {
               "methods": {
                 "create": {
@@ -860,7 +915,7 @@
       }
     }
   },
-  "revision": "20261007",
+  "revision": "20261106",
   "rootUrl": "https://datamanager.googleapis.com/",
   "schemas": {
     "AdEvent": {
@@ -1168,6 +1223,9 @@
         "landingPageDeviceInfo": {
           "$ref": "DeviceInfo"
         },
+        "leadId": {
+          "type": "string"
+        },
         "matchId": {
           "type": "string"
         },
@@ -1289,6 +1347,16 @@
         },
         "locationAutoDetectionEnabled": {
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "CallInfo": {
+      "id": "CallInfo",
+      "properties": {
+        "startTimestamp": {
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1636,9 +1704,15 @@
             "PROCESSING_ERROR_REASON_CLICK_NOT_FOUND",
             "PROCESSING_ERROR_REASON_EXTERNAL_ATTRIBUTION_DATA_MISSING",
             "PROCESSING_ERROR_REASON_DESTINATION_TOO_RECENTLY_CREATED",
-            "PROCESSING_ERROR_REASON_EXPIRED_CLICK"
+            "PROCESSING_ERROR_REASON_EXPIRED_CLICK",
+            "PROCESSING_ERROR_REASON_TOO_RECENT_CALL",
+            "PROCESSING_ERROR_REASON_EXPIRED_CALL",
+            "PROCESSING_ERROR_REASON_INVALID_CALL"
           ],
           "enumDescriptions": [
+            "",
+            "",
+            "",
             "",
             "",
             "",
@@ -1692,6 +1766,13 @@
         "recordCount": {
           "format": "int64",
           "type": "string"
+        },
+        "recordIndices": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1722,6 +1803,9 @@
         },
         "appInstanceId": {
           "type": "string"
+        },
+        "callInfo": {
+          "$ref": "CallInfo"
         },
         "cartData": {
           "$ref": "CartData"
@@ -1890,9 +1974,31 @@
             "WARNING_REASON_INVALID_CONTINENT_CODE",
             "WARNING_REASON_INVALID_DEVICE_CATEGORY",
             "WARNING_REASON_INVALID_DEVICE_SCREEN_RESOLUTION",
-            "WARNING_REASON_INVALID_MERCHANT_ID"
+            "WARNING_REASON_INVALID_MERCHANT_ID",
+            "WARNING_REASON_INVALID_NUMBER_FORMAT",
+            "WARNING_REASON_INVALID_SHA256_FORMAT",
+            "WARNING_REASON_INVALID_MERCHANT_FEED_LANGUAGE_CODE",
+            "WARNING_REASON_FIELD_VALUE_TOO_LONG",
+            "WARNING_REASON_FIELD_VALUE_TOO_SHORT",
+            "WARNING_REASON_VALUE_TOO_HIGH",
+            "WARNING_REASON_VALUE_TOO_LOW",
+            "WARNING_REASON_TOO_MANY_ELEMENTS",
+            "WARNING_REASON_DUPLICATE_ELEMENTS",
+            "WARNING_REASON_CUSTOM_VARIABLES_NOT_SUPPORTED_WITH_GBRAID_OR_WBRAID",
+            "WARNING_REASON_ADIDENTIFIER_NOT_USED"
           ],
           "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "",
             "",
             "",
@@ -2691,6 +2797,23 @@
       },
       "type": "object"
     },
+    "Money": {
+      "id": "Money",
+      "properties": {
+        "currencyCode": {
+          "type": "string"
+        },
+        "nanos": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "units": {
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PairData": {
       "id": "PairData",
       "properties": {
@@ -2812,6 +2935,104 @@
             "$ref": "PartnerCustomerAccount"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PartnerMatchAdGroup": {
+      "id": "PartnerMatchAdGroup",
+      "properties": {
+        "adGroupId": {
+          "format": "int64",
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PartnerMatchAdvertiserAccount": {
+      "id": "PartnerMatchAdvertiserAccount",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "accountType": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PartnerMatchCampaign": {
+      "id": "PartnerMatchCampaign",
+      "properties": {
+        "campaignId": {
+          "format": "int64",
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PartnerMatchLineItem": {
+      "id": "PartnerMatchLineItem",
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "lineItemId": {
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PartnerMatchReportEntry": {
+      "id": "PartnerMatchReportEntry",
+      "properties": {
+        "adGroup": {
+          "$ref": "PartnerMatchAdGroup"
+        },
+        "advertiserAccount": {
+          "$ref": "PartnerMatchAdvertiserAccount"
+        },
+        "campaign": {
+          "$ref": "PartnerMatchCampaign"
+        },
+        "dataFees": {
+          "$ref": "Money"
+        },
+        "impressionCount": {
+          "format": "int64",
+          "type": "string"
+        },
+        "lineItem": {
+          "$ref": "PartnerMatchLineItem"
+        },
+        "mediaCost": {
+          "$ref": "Money"
+        },
+        "userList": {
+          "$ref": "PartnerMatchUserList"
+        }
+      },
+      "type": "object"
+    },
+    "PartnerMatchUserList": {
+      "id": "PartnerMatchUserList",
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "userListId": {
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3249,6 +3470,21 @@
         "marketingDataInsights": {
           "items": {
             "$ref": "MarketingDataInsight"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RetrievePartnerMatchReportResponse": {
+      "id": "RetrievePartnerMatchReportResponse",
+      "properties": {
+        "nextPageToken": {
+          "type": "string"
+        },
+        "partnerMatchReportEntries": {
+          "items": {
+            "$ref": "PartnerMatchReportEntry"
           },
           "type": "array"
         }
@@ -3977,9 +4213,13 @@
             "PROCESSING_WARNING_REASON_INVALID_KEK",
             "PROCESSING_WARNING_REASON_USER_IDENTIFIER_DECRYPTION_ERROR",
             "PROCESSING_WARNING_REASON_INTERNAL_ERROR",
-            "PROCESSING_WARNING_REASON_AWS_AUTH_FAILED"
+            "PROCESSING_WARNING_REASON_AWS_AUTH_FAILED",
+            "PROCESSING_WARNING_REASON_CUSTOM_VARIABLE_NOT_ENABLED",
+            "PROCESSING_WARNING_REASON_CUSTOM_VARIABLE_NOT_PREDEFINED"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -3996,6 +4236,13 @@
         "recordCount": {
           "format": "int64",
           "type": "string"
+        },
+        "recordIndices": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
         }
       },
       "type": "object"
