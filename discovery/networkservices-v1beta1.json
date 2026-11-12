@@ -1110,6 +1110,198 @@
                 }
               }
             },
+            "expressLinks": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new ExpressLink in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/expressLinks",
+                  "httpMethod": "POST",
+                  "id": "networkservices.projects.locations.expressLinks.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "expressLinkId": {
+                      "description": "Required. Short name of the ExpressLink resource to be created.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the ExpressLink. Must be in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/expressLinks",
+                  "request": {
+                    "$ref": "ExpressLink"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single ExpressLink.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/expressLinks/{expressLinksId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkservices.projects.locations.expressLinks.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. The etag of the ExpressLink to delete.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. A name of the ExpressLink to delete. Must be in the format `projects/*/locations/*/expressLinks/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/expressLinks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single ExpressLink.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/expressLinks/{expressLinksId}",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.expressLinks.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the ExpressLink to get. Must be in the format `projects/*/locations/*/expressLinks/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/expressLinks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. Determines the information level of the ExpressLink resource returned in the API response.",
+                      "enum": [
+                        "EXPRESS_LINK_VIEW_UNSPECIFIED",
+                        "EXPRESS_LINK_VIEW_BASIC",
+                        "EXPRESS_LINK_VIEW_FULL"
+                      ],
+                      "enumDescriptions": [
+                        "The unset value. The API will default to `EXPRESS_LINK_VIEW_BASIC`.",
+                        "Includes the configuration of an ExpressLink resource, but not the debug information (e.g. PSC endpoints) of the bound service. This is the default value for the Get and List APIs.",
+                        "Includes the configuration of an ExpressLink resource and all the debug information (e.g. PSC endpoints) of the bound service. This is available only for the Get API."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "ExpressLink"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists ExpressLinks in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/expressLinks",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.expressLinks.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Maximum number of ExpressLinks to return per call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last `ListExpressLinksResponse` Indicates that this is a continuation of a prior `ListExpressLinks` call, and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location from which the ExpressLinks should be listed, specified in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. Determines the information level of the ExpressLink resources returned in the API response.",
+                      "enum": [
+                        "EXPRESS_LINK_VIEW_UNSPECIFIED",
+                        "EXPRESS_LINK_VIEW_BASIC",
+                        "EXPRESS_LINK_VIEW_FULL"
+                      ],
+                      "enumDescriptions": [
+                        "The unset value. The API will default to `EXPRESS_LINK_VIEW_BASIC`.",
+                        "Includes the configuration of an ExpressLink resource, but not the debug information (e.g. PSC endpoints) of the bound service. This is the default value for the Get and List APIs.",
+                        "Includes the configuration of an ExpressLink resource and all the debug information (e.g. PSC endpoints) of the bound service. This is available only for the Get API."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/expressLinks",
+                  "response": {
+                    "$ref": "ListExpressLinksResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single ExpressLink.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/expressLinks/{expressLinksId}",
+                  "httpMethod": "PATCH",
+                  "id": "networkservices.projects.locations.expressLinks.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Name of the ExpressLink resource. It matches pattern `projects/*/locations/*/expressLinks/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/expressLinks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the ExpressLink resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "ExpressLink"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "extensionBindings": {
               "methods": {
                 "create": {
@@ -4165,7 +4357,7 @@
       }
     }
   },
-  "revision": "20261015",
+  "revision": "20261101",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AgentConnectivityTemplate": {
@@ -4809,6 +5001,392 @@
       },
       "type": "object"
     },
+    "ExpressLink": {
+      "description": "ExpressLink provides automated, zero-friction service-to-service secure connectivity across network boundaries without manual infrastructure configuration toil.",
+      "id": "ExpressLink",
+      "properties": {
+        "cloudRunSecurityInfo": {
+          "$ref": "ExpressLinkCloudRunSecurityInfo",
+          "description": "Output only. Cloud Run security information if the ExpressLink destination is a Cloud Run service.",
+          "readOnly": true
+        },
+        "cloudRunSourceInfo": {
+          "$ref": "ExpressLinkCloudRunSourceInfo",
+          "description": "Output only. Cloud Run source observability details.",
+          "readOnly": true
+        },
+        "connectionStatus": {
+          "description": "Output only. The connection status and negotiated parameters.",
+          "items": {
+            "$ref": "ExpressLinkConnectionStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. A free-text description of the resource. Max length 1024 characters.",
+          "type": "string"
+        },
+        "destination": {
+          "$ref": "ExpressLinkDestination",
+          "description": "Optional. The destination service(s) for this binding."
+        },
+        "etag": {
+          "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
+          "type": "string"
+        },
+        "forwardingRuleInfo": {
+          "$ref": "ExpressLinkForwardingRuleInfo",
+          "description": "Output only. Forwarding Rule information if the ExpressLink destination is a Forwarding Rule.",
+          "readOnly": true
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Set of label tags associated with the ExpressLink resource.",
+          "type": "object"
+        },
+        "matches": {
+          "description": "Optional. A list of matches define conditions used to match requests to destination services. Each match is independent with the OR semantic, i.e. we consider it matched if ANY one of the matches is satisfied. If an ExpressLink has only one Cloud Run service, Match is optional. If not specified, only the default hostname `-..run.app` can be used. If an ExpressLink has multiple Cloud Run services, at least one Match with valid hostname is required.",
+          "items": {
+            "$ref": "ExpressLinkMatch"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Identifier. Name of the ExpressLink resource. It matches pattern `projects/*/locations/*/expressLinks/`.",
+          "type": "string"
+        },
+        "pscEndpointInfo": {
+          "$ref": "ExpressLinkPscEndpointInfo",
+          "description": "Output only. Private Service Connect (PSC) endpoint information if the ExpressLink destination is a PSC service.",
+          "readOnly": true
+        },
+        "source": {
+          "$ref": "ExpressLinkSource",
+          "description": "Optional. The source service(s) for this binding."
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExpressLinkAuthenticationMethod": {
+      "description": "AuthenticationMethod specifies identity type and credential type pair.",
+      "id": "ExpressLinkAuthenticationMethod",
+      "properties": {
+        "credentialType": {
+          "description": "Output only. Credential type supported or used.",
+          "enum": [
+            "CREDENTIAL_TYPE_UNSPECIFIED",
+            "GCP_ACCESS_TOKEN",
+            "JWT",
+            "BOUND_GCP_ACCESS_TOKEN",
+            "BOUND_JWT",
+            "MTLS"
+          ],
+          "enumDescriptions": [
+            "Unspecified credential type.",
+            "Google Cloud Access Token credential.",
+            "JSON Web Token credential.",
+            "Bound Google Cloud Access Token credential.",
+            "Bound JSON Web Token credential.",
+            "Mutual TLS credential."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "identityType": {
+          "description": "Output only. Identity type supported or used.",
+          "enum": [
+            "IDENTITY_TYPE_UNSPECIFIED",
+            "SERVICE_ACCOUNT",
+            "AGENT_IDENTITY",
+            "WORKLOAD_IDENTITY",
+            "OAUTH"
+          ],
+          "enumDescriptions": [
+            "Unspecified identity type.",
+            "Service Account identity.",
+            "Agent identity.",
+            "Workload identity.",
+            "OAuth identity."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExpressLinkCloudRunSecurityInfo": {
+      "description": "CloudRunSecurityInfo provides security details for Cloud Run to Cloud Run ExpressLinks.",
+      "id": "ExpressLinkCloudRunSecurityInfo",
+      "properties": {
+        "mtlsTier": {
+          "description": "Output only. Identifies the level of mTLS transport security in use.",
+          "enum": [
+            "MTLS_TIER_UNSPECIFIED",
+            "STRICT",
+            "PERMISSIVE"
+          ],
+          "enumDescriptions": [
+            "Unspecified mTLS tier.",
+            "Strict mTLS transport security.",
+            "Permissive mTLS transport security."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "serverAuthenticationMethods": {
+          "description": "Output only. The inbound server authentication methods required by the destination Cloud Run service.",
+          "items": {
+            "$ref": "ExpressLinkAuthenticationMethod"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ExpressLinkCloudRunSourceInfo": {
+      "description": "CloudRunSourceInfo provides observability details for Cloud Run source services.",
+      "id": "ExpressLinkCloudRunSourceInfo",
+      "properties": {
+        "workloads": {
+          "description": "Output only. Observability details for Cloud Run source workloads.",
+          "items": {
+            "$ref": "ExpressLinkCloudRunSourceInfoWorkloadInfo"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ExpressLinkCloudRunSourceInfoWorkloadInfo": {
+      "description": "WorkloadInfo provides observability details for a single Cloud Run source workload.",
+      "id": "ExpressLinkCloudRunSourceInfoWorkloadInfo",
+      "properties": {
+        "clientAuthenticationMethods": {
+          "description": "Output only. The outbound authentication methods the workload is capable of.",
+          "items": {
+            "$ref": "ExpressLinkAuthenticationMethod"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "vpcNetwork": {
+          "description": "Output only. Consumer VPC network resource name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "workloadUri": {
+          "description": "Output only. The URI of the source workload (e.g. Cloud Run revision).",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExpressLinkConnectionStatus": {
+      "description": "ConnectionStatus details the resolved state, error status, and negotiated configuration of the ExpressLink resource.",
+      "id": "ExpressLinkConnectionStatus",
+      "properties": {
+        "credentialType": {
+          "description": "Output only. The negotiated credential type.",
+          "enum": [
+            "CREDENTIAL_TYPE_UNSPECIFIED",
+            "GCP_ACCESS_TOKEN",
+            "JWT",
+            "BOUND_GCP_ACCESS_TOKEN",
+            "BOUND_JWT",
+            "MTLS"
+          ],
+          "enumDescriptions": [
+            "Unspecified credential type.",
+            "Google Cloud Access Token credential.",
+            "JSON Web Token credential.",
+            "Bound Google Cloud Access Token credential.",
+            "Bound JSON Web Token credential.",
+            "Mutual TLS credential."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "error": {
+          "description": "Output only. Code representing the type of error encountered.",
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "NOT_FOUND",
+            "PARTIAL_RESOLUTION_ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified error code.",
+            "The destination service or required endpoint was not found.",
+            "Partial failure: some destination services were resolved, but others failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "Output only. Detailed error message explaining the binding failure.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "hostnames": {
+          "description": "Output only. The list of hostnames that will route to this destination.",
+          "items": {
+            "$ref": "ExpressLinkConnectionStatusHostnameInfo"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "routeType": {
+          "description": "Output only. The route type of the connection (e.g. HTTP).",
+          "enum": [
+            "ROUTE_TYPE_UNSPECIFIED",
+            "HTTP",
+            "TCP",
+            "GRPC"
+          ],
+          "enumDescriptions": [
+            "Unspecified route type.",
+            "HTTP route type.",
+            "TCP route type.",
+            "GRPC route type."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "workloadUri": {
+          "description": "Output only. The URI of the source workload this status applies to.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExpressLinkConnectionStatusHostnameInfo": {
+      "description": "HostnameInfo provides details about a hostname that routes to this destination.",
+      "id": "ExpressLinkConnectionStatusHostnameInfo",
+      "properties": {
+        "hostname": {
+          "description": "Output only. The hostname string.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExpressLinkDestination": {
+      "description": "The destination of the traffic. This defines the service that the source wants to connect to.",
+      "id": "ExpressLinkDestination",
+      "properties": {
+        "services": {
+          "description": "Optional. The service URIs to which the ExpressLink resource is bound. Can be one of the following (all the service URIs should have the same type): `//compute.googleapis.com/projects/*/regions/*/serviceAttachments/`; `//compute.googleapis.com/projects/*/regions/*/forwardingRules/`; `//run.googleapis.com/projects/*/locations/*/services/`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ExpressLinkForwardingRuleInfo": {
+      "description": "ForwardingRuleInfo provides operational details when the ExpressLink destination is a Forwarding Rule.",
+      "id": "ExpressLinkForwardingRuleInfo",
+      "properties": {
+        "ipAddress": {
+          "description": "Output only. The IP address of the forwarding rule.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "port": {
+          "description": "Output only. The port or port range of the forwarding rule.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExpressLinkMatch": {
+      "description": "Match defines the predicate used to match requests to destination services.",
+      "id": "ExpressLinkMatch",
+      "properties": {
+        "hostname": {
+          "description": "Optional. Specifies the hostname to match against the HTTP request host header. Hostname is the fully qualified domain name of a network host, as defined by RFC1123 with the exception that: - IPs are not allowed. - Wildcard labels (`*.`) are not allowed. Hostname must be \"precise\" which is a domain name without the terminating dot of a network host (e.g. `foo.example.com`). Note that as per RFC1035 and RFC1123, a label must consist of lower case alphanumeric characters or '-', and must start and end with an alphanumeric character. No other punctuation is allowed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExpressLinkPscEndpointInfo": {
+      "description": "Private Service Connect (PSC) endpoint information populated in the Get API responses if the ExpressLink resource is bound to a PSC service.",
+      "id": "ExpressLinkPscEndpointInfo",
+      "properties": {
+        "pscEndpoints": {
+          "description": "Output only. A list of PSC endpoints mapped to the PSC producer service.",
+          "items": {
+            "$ref": "ExpressLinkPscEndpointInfoPscEndpoint"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ExpressLinkPscEndpointInfoPscEndpoint": {
+      "description": "Private Service Connect (PSC) endpoint details.",
+      "id": "ExpressLinkPscEndpointInfoPscEndpoint",
+      "properties": {
+        "allowGlobalAccess": {
+          "description": "Output only. Whether the PSC endpoint is accessible from all regions.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "forwardingRule": {
+          "description": "Output only. The ForwardingRule resource name of the PSC endpoint. Should match the pattern: `projects/*/regions/*/forwardingRules/`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pscEndpointAddress": {
+          "description": "Output only. The IP address of the PSC endpoint.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "vpcNetwork": {
+          "description": "Output only. The resource name of the consumer VPC network. Should match the pattern: `projects/*/global/networks/`.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExpressLinkSource": {
+      "description": "The source of the traffic. This defines where the connection originates from.",
+      "id": "ExpressLinkSource",
+      "properties": {
+        "services": {
+          "description": "Optional. A list of resources attached to the ExpressLink. The resources can be Cloud Run services of the format: `//run.googleapis.com/projects/*/locations/*/services/`. The location of the resources must match the location of the ExpressLink (unless the ExpressLink is global).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ExtensionBinding": {
       "description": "`ExtensionBinding` is a resource representing the attachment of an extension to a service.",
       "id": "ExtensionBinding",
@@ -5043,7 +5621,7 @@
       "id": "ExtensionChain",
       "properties": {
         "extensions": {
-          "description": "Required. A set of extensions to execute for the matching request. At least one extension is required. Up to 3 extensions can be defined for each extension chain for `LbTrafficExtension` resource. `LbRouteExtension`, `LbEdgeExtension`, and `LbTcpExtension` chains are limited to 1 extension per extension chain.",
+          "description": "Required. A set of extensions to execute for the matching request. At least one extension is required. Up to 3 extensions can be defined for each extension chain for `LbTrafficExtension` and `CdnEdgeExtension` resources. `LbRouteExtension`, `LbEdgeExtension`, and `LbTcpExtension` chains are limited to 1 extension per extension chain.",
           "items": {
             "$ref": "ExtensionChainExtension"
           },
@@ -5135,7 +5713,7 @@
           "type": "string"
         },
         "service": {
-          "description": "Required. The reference to the service that runs the extension. To configure a callout extension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}` or `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`. To configure a plugin extension, `service` must be a reference to a [`WasmPlugin` resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins) in the format: `projects/{project}/locations/{location}/wasmPlugins/{plugin}` or `//networkservices.googleapis.com/projects/{project}/locations/{location}/wasmPlugins/{wasmPlugin}`. Plugin extensions are currently supported for the `LbTrafficExtension`, the `LbRouteExtension`, and the `LbEdgeExtension` resources.",
+          "description": "Required. The reference to the service that runs the extension. To configure a callout extension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}` or `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`. To configure a plugin extension, `service` must be a reference to a [`WasmPlugin` resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins) in the format: `projects/{project}/locations/{location}/wasmPlugins/{plugin}` or `//networkservices.googleapis.com/projects/{project}/locations/{location}/wasmPlugins/{wasmPlugin}`. Plugin extensions are currently supported for the `LbTrafficExtension`, the `LbRouteExtension`, the `LbEdgeExtension`, and the `CdnEdgeExtension` resources.",
           "type": "string"
         },
         "supportedEvents": {
@@ -6604,6 +7182,31 @@
       },
       "type": "object"
     },
+    "ListExpressLinksResponse": {
+      "description": "Response returned by the ListExpressLinks method.",
+      "id": "ListExpressLinksResponse",
+      "properties": {
+        "expressLinks": {
+          "description": "List of ExpressLink resources.",
+          "items": {
+            "$ref": "ExpressLink"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListExtensionBindingsResponse": {
       "description": "Response returned by the `ListExtensionBindings` method.",
       "id": "ListExtensionBindingsResponse",
@@ -7571,7 +8174,7 @@
       "type": "object"
     },
     "ServiceLbPolicy": {
-      "description": "ServiceLbPolicy holds global load balancing and traffic distribution configuration that can be applied to a BackendService.",
+      "description": "ServiceLbPolicy holds load balancing and traffic distribution configuration that can be applied to a global or regional BackendService.",
       "id": "ServiceLbPolicy",
       "properties": {
         "autoCapacityDrain": {
@@ -7614,10 +8217,10 @@
           ],
           "enumDescriptions": [
             "The type of the loadbalancing algorithm is unspecified.",
-            "Balance traffic across all backends across the world proportionally based on capacity.",
-            "Direct traffic to the nearest region with endpoints and capacity before spilling over to other regions and spread the traffic from each client to all the MIGs/NEGs in a region.",
-            "Direct traffic to the nearest region with endpoints and capacity before spilling over to other regions. All MIGs/NEGs within a region are evenly loaded but each client might not spread the traffic to all the MIGs/NEGs in the region.",
-            "Attempt to keep traffic in a single zone closest to the client, before spilling over to other zones."
+            "Balance traffic across all backends across the world proportionally based on capacity. Only supported for global ServiceLbPolicy with Cloud Service Mesh, not supported for regional ServiceLbPolicy.",
+            "Direct traffic to the nearest region with endpoints and capacity before spilling over to other regions and spread the traffic from each client to all the MIGs/NEGs in a region. For regional ServiceLbPolicy, traffic stays within the configured region and does not spill over to other regions.",
+            "Direct traffic to the nearest region with endpoints and capacity before spilling over to other regions. All MIGs/NEGs within a region are evenly loaded but each client might not spread the traffic to all the MIGs/NEGs in the region. For regional ServiceLbPolicy, traffic stays within the configured region and does not spill over to other regions.",
+            "Attempt to keep traffic in a single zone closest to the client, before spilling over to other zones. For regional ServiceLbPolicy, traffic only spills over to other zones within the same region."
           ],
           "type": "string"
         },
@@ -7635,7 +8238,7 @@
       "type": "object"
     },
     "ServiceLbPolicyAutoCapacityDrain": {
-      "description": "Option to specify if an unhealthy IG/NEG should be considered for global load balancing and traffic routing.",
+      "description": "Option to specify if an unhealthy IG/NEG should be considered for load balancing and traffic routing.",
       "id": "ServiceLbPolicyAutoCapacityDrain",
       "properties": {
         "enable": {
