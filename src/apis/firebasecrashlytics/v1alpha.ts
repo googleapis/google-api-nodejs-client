@@ -816,6 +816,23 @@ export namespace firebasecrashlytics_v1alpha {
     type?: string | null;
   }
   /**
+   * Represents the Android Profiling Manager configuration for a Firebase application, used to manage Crashlytics heap dump collection.
+   */
+  export interface Schema$ProfilingManagerConfig {
+    /**
+     * Optional. Resource name of the Google Cloud Storage bucket where enriched heap dumps are stored. Format: "projects/{project\}/buckets/{bucket\}" (use `_` as `{project\}` for global buckets, for example "projects/_/buckets/my-global-bucket").
+     */
+    bucket?: string | null;
+    /**
+     * Optional. Whether Crashlytics heap dump collection is enabled for the app.
+     */
+    heapDumpCollectionEnabled?: boolean | null;
+    /**
+     * Identifier. The resource name of the Profiling Manager configuration. Format: "projects/{project\}/apps/{app\}/profilingManagerConfig".
+     */
+    name?: string | null;
+  }
+  /**
    * Response message for the GetReport method. A report consists of the results of a query over an application's events. The events may be filtered by various criteria defined in the filters proto. The result will consist of a number of paginated groups, of a type relevant to the report such as issues or device models.
    */
   export interface Schema$Report {
@@ -1188,6 +1205,308 @@ export namespace firebasecrashlytics_v1alpha {
         return createAPIRequest<Schema$GenerateAlertPolicyResponse>(parameters);
       }
     }
+
+    /**
+     * Retrieves the Android Profiling Manager configuration for an app.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasecrashlytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasecrashlytics = google.firebasecrashlytics('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasecrashlytics.projects.apps.getProfilingManagerConfig(
+     *     {
+     *       // Required. The resource name of the Profiling Manager configuration to retrieve. Format: "projects/{project\}/apps/{app\}/profilingManagerConfig".
+     *       name: 'projects/my-project/apps/my-app/profilingManagerConfig',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "heapDumpCollectionEnabled": false,
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getProfilingManagerConfig(
+      params: Params$Resource$Projects$Apps$Getprofilingmanagerconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getProfilingManagerConfig(
+      params?: Params$Resource$Projects$Apps$Getprofilingmanagerconfig,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProfilingManagerConfig>>;
+    getProfilingManagerConfig(
+      params: Params$Resource$Projects$Apps$Getprofilingmanagerconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getProfilingManagerConfig(
+      params: Params$Resource$Projects$Apps$Getprofilingmanagerconfig,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$ProfilingManagerConfig>,
+      callback: BodyResponseCallback<Schema$ProfilingManagerConfig>
+    ): void;
+    getProfilingManagerConfig(
+      params: Params$Resource$Projects$Apps$Getprofilingmanagerconfig,
+      callback: BodyResponseCallback<Schema$ProfilingManagerConfig>
+    ): void;
+    getProfilingManagerConfig(
+      callback: BodyResponseCallback<Schema$ProfilingManagerConfig>
+    ): void;
+    getProfilingManagerConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Getprofilingmanagerconfig
+        | BodyResponseCallback<Schema$ProfilingManagerConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProfilingManagerConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProfilingManagerConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ProfilingManagerConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Getprofilingmanagerconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Getprofilingmanagerconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasecrashlytics.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProfilingManagerConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ProfilingManagerConfig>(parameters);
+      }
+    }
+
+    /**
+     * Updates the Android Profiling Manager configuration for an app.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasecrashlytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasecrashlytics = google.firebasecrashlytics('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebasecrashlytics.projects.apps.updateProfilingManagerConfig({
+     *       // Identifier. The resource name of the Profiling Manager configuration. Format: "projects/{project\}/apps/{app\}/profilingManagerConfig".
+     *       name: 'projects/my-project/apps/my-app/profilingManagerConfig',
+     *       // Optional. The list of ProfilingManagerConfig fields to update (`gcs_bucket`, `heap_dump_collection_enabled`). If omitted, all populated (non-default) fields are updated; specify an explicit `update_mask` (or `*`) when clearing a field to its default value (such as `""` or `false`).
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "bucket": "my_bucket",
+     *         //   "heapDumpCollectionEnabled": false,
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "heapDumpCollectionEnabled": false,
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateProfilingManagerConfig(
+      params: Params$Resource$Projects$Apps$Updateprofilingmanagerconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    updateProfilingManagerConfig(
+      params?: Params$Resource$Projects$Apps$Updateprofilingmanagerconfig,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProfilingManagerConfig>>;
+    updateProfilingManagerConfig(
+      params: Params$Resource$Projects$Apps$Updateprofilingmanagerconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateProfilingManagerConfig(
+      params: Params$Resource$Projects$Apps$Updateprofilingmanagerconfig,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$ProfilingManagerConfig>,
+      callback: BodyResponseCallback<Schema$ProfilingManagerConfig>
+    ): void;
+    updateProfilingManagerConfig(
+      params: Params$Resource$Projects$Apps$Updateprofilingmanagerconfig,
+      callback: BodyResponseCallback<Schema$ProfilingManagerConfig>
+    ): void;
+    updateProfilingManagerConfig(
+      callback: BodyResponseCallback<Schema$ProfilingManagerConfig>
+    ): void;
+    updateProfilingManagerConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Updateprofilingmanagerconfig
+        | BodyResponseCallback<Schema$ProfilingManagerConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProfilingManagerConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProfilingManagerConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ProfilingManagerConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Updateprofilingmanagerconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Apps$Updateprofilingmanagerconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasecrashlytics.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProfilingManagerConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ProfilingManagerConfig>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Apps$Generatealertpolicy extends StandardParameters {
@@ -1200,6 +1519,27 @@ export namespace firebasecrashlytics_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GenerateAlertPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Apps$Getprofilingmanagerconfig extends StandardParameters {
+    /**
+     * Required. The resource name of the Profiling Manager configuration to retrieve. Format: "projects/{project\}/apps/{app\}/profilingManagerConfig".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Apps$Updateprofilingmanagerconfig extends StandardParameters {
+    /**
+     * Identifier. The resource name of the Profiling Manager configuration. Format: "projects/{project\}/apps/{app\}/profilingManagerConfig".
+     */
+    name?: string;
+    /**
+     * Optional. The list of ProfilingManagerConfig fields to update (`gcs_bucket`, `heap_dump_collection_enabled`). If omitted, all populated (non-default) fields are updated; specify an explicit `update_mask` (or `*`) when clearing a field to its default value (such as `""` or `false`).
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProfilingManagerConfig;
   }
 
   export class Resource$Projects$Apps$Events {
@@ -2694,7 +3034,7 @@ export namespace firebasecrashlytics_v1alpha {
      *     'filter.operatingSystem.displayNames': 'placeholder-value',
      *     // Only counts events in the given app version. This string matches Version.display_name. Format: "display_version (build_version)" e.g. "1.2.3 (456)".
      *     'filter.version.displayNames': 'placeholder-value',
-     *     // Optional. Filters the events counted in the report by custom keys. Not all reports support this filter. It is currently only supported for web apps, for the `webMetrics`, `topBrowsers`, `topOperatingSystems`, `topVersions`, and `topCustomKeys` reports. Requests for other apps or reports that set this field are rejected with INVALID_ARGUMENT. Supported forms: * Equality: `custom_keys.level = "vip"` * Has: `custom_keys.level:"vip"` (matches the same events as equality) * Presence: `custom_keys.level:*` * OR across values of one key: `custom_keys.level = "vip" OR custom_keys.level = "enterprise"` * AND across different keys: `custom_keys.level = "vip" AND custom_keys.region = "us"` Keys are case-sensitive. Keys and values containing spaces must be double-quoted, for example `custom_keys."app state" = "background"`. OR across different keys, repeating a key within an AND, NOT, and comparators other than `=` and `:` are rejected with INVALID_ARGUMENT. Wildcards are not supported in values; use `custom_keys.:*` to match events that set a key to any value. This filter expression applies in addition to the `filter` field above. The syntax is a subset of AIP-160 (https://google.aip.dev/160).
+     *     // Optional. Filters the events counted in the report by custom keys. Not all reports support this filter. It is currently only supported for web apps; see the report's `usage` field for whether `filter_expression` is supported. Requests for other apps or unsupported reports that set this field are rejected with `INVALID_ARGUMENT`. Supported forms: * Equality: `custom_keys.level = "vip"` * Has: `custom_keys.level:"vip"` (matches the same events as equality) * Presence: `custom_keys.level:*` * OR across values of one key: `custom_keys.level = "vip" OR custom_keys.level = "enterprise"` * AND across different keys: `custom_keys.level = "vip" AND custom_keys.region = "us"` Keys are case-sensitive. Keys and values containing spaces must be double-quoted, for example `custom_keys."app state" = "background"`. OR across different keys, repeating a key within an AND, NOT, and comparators other than `=` and `:` are rejected with INVALID_ARGUMENT. Wildcards are not supported in values; use `custom_keys.:*` to match events that set a key to any value. This filter expression applies in addition to the `filter` field above. The syntax is a subset of AIP-160 (https://google.aip.dev/160).
      *     filterExpression: 'placeholder-value',
      *     // Optional. The report response will contain one data point per time grain. If omitted, the report will contain a single data point for the complete interval.
      *     granularity: 'placeholder-value',
@@ -3016,7 +3356,7 @@ export namespace firebasecrashlytics_v1alpha {
      */
     'filter.version.displayNames'?: string[];
     /**
-     * Optional. Filters the events counted in the report by custom keys. Not all reports support this filter. It is currently only supported for web apps, for the `webMetrics`, `topBrowsers`, `topOperatingSystems`, `topVersions`, and `topCustomKeys` reports. Requests for other apps or reports that set this field are rejected with INVALID_ARGUMENT. Supported forms: * Equality: `custom_keys.level = "vip"` * Has: `custom_keys.level:"vip"` (matches the same events as equality) * Presence: `custom_keys.level:*` * OR across values of one key: `custom_keys.level = "vip" OR custom_keys.level = "enterprise"` * AND across different keys: `custom_keys.level = "vip" AND custom_keys.region = "us"` Keys are case-sensitive. Keys and values containing spaces must be double-quoted, for example `custom_keys."app state" = "background"`. OR across different keys, repeating a key within an AND, NOT, and comparators other than `=` and `:` are rejected with INVALID_ARGUMENT. Wildcards are not supported in values; use `custom_keys.:*` to match events that set a key to any value. This filter expression applies in addition to the `filter` field above. The syntax is a subset of AIP-160 (https://google.aip.dev/160).
+     * Optional. Filters the events counted in the report by custom keys. Not all reports support this filter. It is currently only supported for web apps; see the report's `usage` field for whether `filter_expression` is supported. Requests for other apps or unsupported reports that set this field are rejected with `INVALID_ARGUMENT`. Supported forms: * Equality: `custom_keys.level = "vip"` * Has: `custom_keys.level:"vip"` (matches the same events as equality) * Presence: `custom_keys.level:*` * OR across values of one key: `custom_keys.level = "vip" OR custom_keys.level = "enterprise"` * AND across different keys: `custom_keys.level = "vip" AND custom_keys.region = "us"` Keys are case-sensitive. Keys and values containing spaces must be double-quoted, for example `custom_keys."app state" = "background"`. OR across different keys, repeating a key within an AND, NOT, and comparators other than `=` and `:` are rejected with INVALID_ARGUMENT. Wildcards are not supported in values; use `custom_keys.:*` to match events that set a key to any value. This filter expression applies in addition to the `filter` field above. The syntax is a subset of AIP-160 (https://google.aip.dev/160).
      */
     filterExpression?: string;
     /**
