@@ -228,6 +228,15 @@ export namespace saasservicemgmt_v1 {
    */
   export interface Schema$Deprovision {}
   /**
+   * DurationLimits defines the time-related constraints for a UnitOperation's execution. This allows users to control how long an operation can run before being cancelled by the system.
+   */
+  export interface Schema$DurationLimits {
+    /**
+     * Optional. The maximum duration a UnitOperation is allowed to execute in the RUNNING state. - Minimum value: 60 seconds (1 minute) - Maximum value: 604800 seconds (7 days) If this field is not set, or if the provided value falls outside the allowed range, the system will use a default timeout of 10800 seconds (3 hours). Upon exceeding this time limit, the UnitOperation will be best-effort cancelled, and its state will be set to FAILED.
+     */
+    unitOperationTimeout?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -1076,6 +1085,10 @@ export namespace saasservicemgmt_v1 {
      */
     dependencies?: Schema$Dependency[];
     /**
+     * Optional. Defines the default duration limits for UnitOperations created from this UnitKind. These settings provide a baseline for execution time constraints. The limits specified here can be overridden by more specific settings on an individual UnitOperation resource. See the DurationLimits message definition for details on the constraints like minimum, maximum, and system default values for unit_operation_timeout. If not set, UnitOperations will use the system default duration limits unless overridden on the UnitOperation.
+     */
+    durationLimits?: Schema$DurationLimits;
+    /**
      * Output only. An opaque value that uniquely identifies a version or generation of a resource. It can be used to confirm that the client and server agree on the ordering of a resource being written.
      */
     etag?: string | null;
@@ -1136,6 +1149,10 @@ export namespace saasservicemgmt_v1 {
      * Optional. Deprovision operation.
      */
     deprovision?: Schema$Deprovision;
+    /**
+     * Optional. Defines the duration limits for this specific UnitOperation instance. These settings override any default duration limits set on the UnitKind. See the DurationLimits message definition for details on the constraints like minimum, maximum, and system default values for unit_operation_timeout.
+     */
+    durationLimits?: Schema$DurationLimits;
     /**
      * Optional. Output only. The engine state for on-going deployment engine operation(s). This field is opaque for external usage.
      */
@@ -6206,6 +6223,7 @@ export namespace saasservicemgmt_v1 {
      *       //   "defaultRelease": "my_defaultRelease",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "dependencies": [],
+     *       //   "durationLimits": {},
      *       //   "etag": "my_etag",
      *       //   "inputVariableMappings": [],
      *       //   "labels": {},
@@ -6229,6 +6247,7 @@ export namespace saasservicemgmt_v1 {
      *   //   "defaultRelease": "my_defaultRelease",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "dependencies": [],
+     *   //   "durationLimits": {},
      *   //   "etag": "my_etag",
      *   //   "inputVariableMappings": [],
      *   //   "labels": {},
@@ -6526,6 +6545,7 @@ export namespace saasservicemgmt_v1 {
      *   //   "defaultRelease": "my_defaultRelease",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "dependencies": [],
+     *   //   "durationLimits": {},
      *   //   "etag": "my_etag",
      *   //   "inputVariableMappings": [],
      *   //   "labels": {},
@@ -6837,6 +6857,7 @@ export namespace saasservicemgmt_v1 {
      *       //   "defaultRelease": "my_defaultRelease",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "dependencies": [],
+     *       //   "durationLimits": {},
      *       //   "etag": "my_etag",
      *       //   "inputVariableMappings": [],
      *       //   "labels": {},
@@ -6860,6 +6881,7 @@ export namespace saasservicemgmt_v1 {
      *   //   "defaultRelease": "my_defaultRelease",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "dependencies": [],
+     *   //   "durationLimits": {},
      *   //   "etag": "my_etag",
      *   //   "inputVariableMappings": [],
      *   //   "labels": {},
@@ -7116,6 +7138,7 @@ export namespace saasservicemgmt_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "deprovision": {},
+     *       //   "durationLimits": {},
      *       //   "engineState": "my_engineState",
      *       //   "errorCategory": "my_errorCategory",
      *       //   "etag": "my_etag",
@@ -7143,6 +7166,7 @@ export namespace saasservicemgmt_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "deprovision": {},
+     *   //   "durationLimits": {},
      *   //   "engineState": "my_engineState",
      *   //   "errorCategory": "my_errorCategory",
      *   //   "etag": "my_etag",
@@ -7445,6 +7469,7 @@ export namespace saasservicemgmt_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "deprovision": {},
+     *   //   "durationLimits": {},
      *   //   "engineState": "my_engineState",
      *   //   "errorCategory": "my_errorCategory",
      *   //   "etag": "my_etag",
@@ -7763,6 +7788,7 @@ export namespace saasservicemgmt_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "deprovision": {},
+     *       //   "durationLimits": {},
      *       //   "engineState": "my_engineState",
      *       //   "errorCategory": "my_errorCategory",
      *       //   "etag": "my_etag",
@@ -7790,6 +7816,7 @@ export namespace saasservicemgmt_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "deprovision": {},
+     *   //   "durationLimits": {},
      *   //   "engineState": "my_engineState",
      *   //   "errorCategory": "my_errorCategory",
      *   //   "etag": "my_etag",
