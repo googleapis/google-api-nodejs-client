@@ -218,6 +218,17 @@ export namespace calendar_v3 {
      * The time zone of the calendar. (Formatted as an IANA Time Zone Database name, e.g. "Europe/Zurich".) Optional.
      */
     timeZone?: string | null;
+    /**
+     * Represents the information about the user's working hours. Only available for primary calendars of Google Workspace users. To update the working hours, the entire working hours object must be passed. If not specified (or passed as null or an empty object), the existing working hours remain unchanged. To disable working hours or clear the schedule, set workingHoursEnabled to false (and omit availableTimes or pass an empty list).
+     */
+    workingHours?: {
+      availableTimes?: Array<{
+        dayOfWeek?: string;
+        periodEnd?: number;
+        periodStart?: number;
+      }>;
+      workingHoursEnabled?: boolean;
+    } | null;
   }
   export interface Schema$CalendarList {
     /**
@@ -4112,7 +4123,8 @@ export namespace calendar_v3 {
      *   //   "labelProperties": {},
      *   //   "location": "my_location",
      *   //   "summary": "my_summary",
-     *   //   "timeZone": "my_timeZone"
+     *   //   "timeZone": "my_timeZone",
+     *   //   "workingHours": {}
      *   // }
      * }
      *
@@ -4261,7 +4273,8 @@ export namespace calendar_v3 {
      *       //   "labelProperties": {},
      *       //   "location": "my_location",
      *       //   "summary": "my_summary",
-     *       //   "timeZone": "my_timeZone"
+     *       //   "timeZone": "my_timeZone",
+     *       //   "workingHours": {}
      *       // }
      *     },
      *   });
@@ -4279,7 +4292,8 @@ export namespace calendar_v3 {
      *   //   "labelProperties": {},
      *   //   "location": "my_location",
      *   //   "summary": "my_summary",
-     *   //   "timeZone": "my_timeZone"
+     *   //   "timeZone": "my_timeZone",
+     *   //   "workingHours": {}
      *   // }
      * }
      *
@@ -4428,7 +4442,8 @@ export namespace calendar_v3 {
      *       //   "labelProperties": {},
      *       //   "location": "my_location",
      *       //   "summary": "my_summary",
-     *       //   "timeZone": "my_timeZone"
+     *       //   "timeZone": "my_timeZone",
+     *       //   "workingHours": {}
      *       // }
      *     },
      *   });
@@ -4446,7 +4461,8 @@ export namespace calendar_v3 {
      *   //   "labelProperties": {},
      *   //   "location": "my_location",
      *   //   "summary": "my_summary",
-     *   //   "timeZone": "my_timeZone"
+     *   //   "timeZone": "my_timeZone",
+     *   //   "workingHours": {}
      *   // }
      * }
      *
@@ -4733,7 +4749,8 @@ export namespace calendar_v3 {
      *       //   "labelProperties": {},
      *       //   "location": "my_location",
      *       //   "summary": "my_summary",
-     *       //   "timeZone": "my_timeZone"
+     *       //   "timeZone": "my_timeZone",
+     *       //   "workingHours": {}
      *       // }
      *     },
      *   });
@@ -4751,7 +4768,8 @@ export namespace calendar_v3 {
      *   //   "labelProperties": {},
      *   //   "location": "my_location",
      *   //   "summary": "my_summary",
-     *   //   "timeZone": "my_timeZone"
+     *   //   "timeZone": "my_timeZone",
+     *   //   "workingHours": {}
      *   // }
      * }
      *
