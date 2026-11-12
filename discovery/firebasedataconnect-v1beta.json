@@ -1502,7 +1502,7 @@
       }
     }
   },
-  "revision": "20261011",
+  "revision": "20261101",
   "rootUrl": "https://firebasedataconnect.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -2590,7 +2590,7 @@
           "type": "object"
         },
         "connectors": {
-          "description": "Output only. The list of connectors in this service.",
+          "description": "Output only. The list of connectors in this service. Connectors returned in this collection are a summary view. Authoritative lifecycle metadata and entity tags are omitted from embedded representations. Call `GetConnector` to retrieve the complete resource.",
           "items": {
             "$ref": "Connector"
           },
@@ -2633,7 +2633,7 @@
           "type": "boolean"
         },
         "schemas": {
-          "description": "Optional. The list of schemas in this service.",
+          "description": "Optional. The list of schemas in this service. Schemas returned in this collection are a summary view. Authoritative lifecycle metadata and entity tags are omitted from embedded representations. Call `GetSchema` to retrieve the complete resource.",
           "items": {
             "$ref": "Schema"
           },

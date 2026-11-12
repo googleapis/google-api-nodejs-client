@@ -856,7 +856,7 @@ export namespace firebasedataconnect_v1 {
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * Output only. The list of connectors in this service.
+     * Output only. The list of connectors in this service. Connectors returned in this collection are a summary view. Authoritative lifecycle metadata and entity tags are omitted from embedded representations. Call `GetConnector` to retrieve the complete resource.
      */
     connectors?: Schema$Connector[];
     /**
@@ -888,7 +888,7 @@ export namespace firebasedataconnect_v1 {
      */
     reconciling?: boolean | null;
     /**
-     * Optional. The list of schemas in this service.
+     * Optional. The list of schemas in this service. Schemas returned in this collection are a summary view. Authoritative lifecycle metadata and entity tags are omitted from embedded representations. Call `GetSchema` to retrieve the complete resource.
      */
     schemas?: Schema$Schema[];
     /**
