@@ -324,7 +324,7 @@
       }
     }
   },
-  "revision": "20261001",
+  "revision": "20261028",
   "rootUrl": "https://solar.googleapis.com/",
   "schemas": {
     "BuildingInsights": {
@@ -400,6 +400,13 @@
       "description": "Information about solar arrays detected on the building.",
       "id": "BuildingInsightsDetectedArrays",
       "properties": {
+        "arrays": {
+          "description": "A list of solar arrays detected on the building.",
+          "items": {
+            "$ref": "BuildingInsightsDetectedArraysSolarArray"
+          },
+          "type": "array"
+        },
         "detectionStatus": {
           "description": "Indicates the detection status of solar arrays for this building.",
           "enum": [
@@ -419,6 +426,21 @@
         "latestCaptureDate": {
           "$ref": "Date",
           "description": "The date indicating when the latest solar array data was captured."
+        }
+      },
+      "type": "object"
+    },
+    "BuildingInsightsDetectedArraysSolarArray": {
+      "description": "Details of a single detected solar array.",
+      "id": "BuildingInsightsDetectedArraysSolarArray",
+      "properties": {
+        "polygonGeojson": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "A GeoJSON representation of the building area where solar panels were detected. The GeoJSON data must be in RFC 7946 format and represent a Polygon for a single contiguous area. The Polygon will be represented by several loops when it contains holes. Example: { \"type\": \"Polygon\", \"coordinates\": [ [ [-1, -1], [-1, 0], [0, 0], [-1, -1] ] ] }",
+          "type": "object"
         }
       },
       "type": "object"
