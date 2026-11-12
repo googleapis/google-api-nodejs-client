@@ -1331,9 +1331,17 @@ export namespace artifactregistry_v1 {
     prewarmedArtifact?: Schema$PrewarmedArtifact;
   }
   /**
-   * PrewarmedArtifact represents a streamed artifact. This is not a request message, so field_behavior annotations are not required.
+   * PrewarmedArtifact represents a streamed artifact.
    */
   export interface Schema$PrewarmedArtifact {
+    /**
+     * Output only. The time the artifact was first prewarmed.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The error message if the state is `FAILED`.
+     */
+    errorMessage?: string | null;
     /**
      * The expiration time of the prewarmed artifact.
      */
@@ -1342,6 +1350,14 @@ export namespace artifactregistry_v1 {
      * The location of the prewarmed artifact.
      */
     location?: string | null;
+    /**
+     * Output only. The compressed size of the prewarmed artifact in bytes. This is the size counted against the prewarm storage quota.
+     */
+    sizeBytes?: string | null;
+    /**
+     * Output only. The caching state of the prewarmed artifact.
+     */
+    state?: string | null;
     /**
      * URL to access the image. Example: us-west4-docker.pkg.dev/test-project/test-repo/nginx@sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf
      */

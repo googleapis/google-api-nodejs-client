@@ -2714,7 +2714,7 @@
       }
     }
   },
-  "revision": "20260925",
+  "revision": "20261031",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -4452,9 +4452,20 @@
       "type": "object"
     },
     "PrewarmedArtifact": {
-      "description": "PrewarmedArtifact represents a streamed artifact. This is not a request message, so field_behavior annotations are not required.",
+      "description": "PrewarmedArtifact represents a streamed artifact.",
       "id": "PrewarmedArtifact",
       "properties": {
+        "createTime": {
+          "description": "Output only. The time the artifact was first prewarmed.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "Output only. The error message if the state is `FAILED`.",
+          "readOnly": true,
+          "type": "string"
+        },
         "expirationTime": {
           "description": "The expiration time of the prewarmed artifact.",
           "format": "google-datetime",
@@ -4462,6 +4473,29 @@
         },
         "location": {
           "description": "The location of the prewarmed artifact.",
+          "type": "string"
+        },
+        "sizeBytes": {
+          "description": "Output only. The compressed size of the prewarmed artifact in bytes. This is the size counted against the prewarm storage quota.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The caching state of the prewarmed artifact.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CACHING",
+            "ACTIVE",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "State not specified.",
+            "The artifact is currently being cached.",
+            "The artifact is cached and ready for streaming.",
+            "Caching the artifact failed. See `error_message` for details."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "uri": {
