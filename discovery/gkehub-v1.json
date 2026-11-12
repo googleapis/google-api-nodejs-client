@@ -2596,7 +2596,7 @@
       }
     }
   },
-  "revision": "20261017",
+  "revision": "20261031",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -7059,7 +7059,7 @@
       "type": "object"
     },
     "RolloutSequence": {
-      "description": "RolloutSequence defines the desired order of upgrades. Next ID: 20",
+      "description": "RolloutSequence defines the desired order of upgrades. Next ID: 22",
       "id": "RolloutSequence",
       "properties": {
         "autoUpgradeConfig": {
@@ -7492,6 +7492,7 @@
             "MODERNIZATION_INCOMPATIBLE_CONFIG",
             "MODERNIZATION_INCOMPATIBLE_GATEWAY_POD_SCALE",
             "MODERNIZATION_REQUIRES_MANUAL_WORKLOAD_RESTART",
+            "MODERNIZATION_UNEVICTABLE_POD_DISRUPTION_BUDGET",
             "MODERNIZATION_SCHEDULED",
             "MODERNIZATION_IN_PROGRESS",
             "MODERNIZATION_COMPLETED",
@@ -7562,6 +7563,7 @@
             "Incompatible config found in the cluster.",
             "Gateway pods per cluster limit exceeded.",
             "Cluster contains workloads that will require manual restart during modernization.",
+            "Cluster contains PodDisruptionBudgets that prevent automated pod eviction during modernization.",
             "Modernization is scheduled for a cluster.",
             "Modernization is in progress for a cluster.",
             "Modernization is completed for a cluster.",
@@ -7764,6 +7766,7 @@
             "MODERNIZATION_INCOMPATIBLE_CONFIG",
             "MODERNIZATION_INCOMPATIBLE_GATEWAY_POD_SCALE",
             "MODERNIZATION_REQUIRES_MANUAL_WORKLOAD_RESTART",
+            "MODERNIZATION_UNEVICTABLE_POD_DISRUPTION_BUDGET",
             "MODERNIZATION_SCHEDULED",
             "MODERNIZATION_IN_PROGRESS",
             "MODERNIZATION_COMPLETED",
@@ -7834,6 +7837,7 @@
             "Incompatible config found in the cluster.",
             "Gateway pods per cluster limit exceeded.",
             "Cluster contains workloads that will require manual restart during modernization.",
+            "Cluster contains PodDisruptionBudgets that prevent automated pod eviction during modernization.",
             "Modernization is scheduled for a cluster.",
             "Modernization is in progress for a cluster.",
             "Modernization is completed for a cluster.",
