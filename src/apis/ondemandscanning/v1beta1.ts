@@ -888,9 +888,26 @@ export namespace ondemandscanning_v1beta1 {
     lineNumber?: number | null;
   }
   /**
+   * LayerAttribute represents a single attribute (such as a tag) that applies to a layer, along with the plugin that generated it.
+   */
+  export interface Schema$GrafeasV1LayerAttribute {
+    /**
+     * The name of the plugin that generated this attribute.
+     */
+    plugin?: string | null;
+    /**
+     * The value of the attribute, with a meaning defined by the plugin.
+     */
+    value?: string | null;
+  }
+  /**
    * Details about the layer a package was found in.
    */
   export interface Schema$GrafeasV1LayerDetails {
+    /**
+     * Attributes that apply to the layer, such as buildpacks metadata.
+     */
+    attributes?: Schema$GrafeasV1LayerAttribute[];
     /**
      * The base images the layer is found within.
      */
