@@ -1040,6 +1040,10 @@ export namespace oracledatabase_v1 {
      */
     identityConnector?: Schema$IdentityConnector;
     /**
+     * Optional. Input only. Immutable. If set to true, disables the automatic provisioning of the Workload Identity Connector during creation. If set to false or omitted, the Workload Identity Connector will be automatically provisioned by default. Note: Provisioning the Workload Identity Connector is a prerequisite for enabling Google Cloud CMEK.
+     */
+    identityConnectorDisabled?: boolean | null;
+    /**
      * Optional. Labels or tags associated with the VM Cluster.
      */
     labels?: {[key: string]: string} | null;
@@ -1229,6 +1233,27 @@ export namespace oracledatabase_v1 {
      * Required. Database-specific type name (e.g., "VARCHAR2(255)", "NUMBER", "DATE", "CLOB")
      */
     type?: string | null;
+  }
+  /**
+   * Parameters detailing the compute performance for a specified DB system shape.
+   */
+  export interface Schema$ComputePerformance {
+    /**
+     * Output only. The number of compute servers for the DB system.
+     */
+    computeCount?: number | null;
+    /**
+     * Output only. The compute model for Base Database Service.
+     */
+    computeModel?: string | null;
+    /**
+     * Output only. The number of CPU cores available.
+     */
+    cpuCoreCount?: number | null;
+    /**
+     * Output only. The amount of memory allocated for the VMDB System in GBs.
+     */
+    memoryInGbs?: number | null;
   }
   /**
    * The request for `CloudExadataInfrastructure.ConfigureExascale`.
@@ -1741,6 +1766,23 @@ export namespace oracledatabase_v1 {
     properties?: Schema$DbSystemProperties;
   }
   /**
+   * Details of the DbSystem compute performance resource.
+   */
+  export interface Schema$DbSystemComputePerformance {
+    /**
+     * Output only. List of Compute performance details for the specified DB system shape.
+     */
+    computePerformances?: Schema$ComputePerformance[];
+    /**
+     * Identifier. The name of the DbSystemComputePerformance resource with the format: projects/{project\}/locations/{location\}/dbSystemComputePerformances/{db_system_compute_performance\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The shape of the DB system.
+     */
+    shape?: string | null;
+  }
+  /**
    * Summary of the DbSystem initial storage size.
    */
   export interface Schema$DbSystemInitialStorageSize {
@@ -2014,9 +2056,25 @@ export namespace oracledatabase_v1 {
     object?: string | null;
   }
   /**
+   * The request for `CloudVmCluster.DisableCloudVmClusterIdentityConnector`.
+   */
+  export interface Schema$DisableCloudVmClusterIdentityConnectorRequest {}
+  /**
+   * The request for `ExadbVmCluster.DisableExadbVmClusterIdentityConnector`.
+   */
+  export interface Schema$DisableExadbVmClusterIdentityConnectorRequest {}
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * The request for `CloudVmCluster.EnableCloudVmClusterIdentityConnector`.
+   */
+  export interface Schema$EnableCloudVmClusterIdentityConnectorRequest {}
+  /**
+   * The request for `ExadbVmCluster.EnableExadbVmClusterIdentityConnector`.
+   */
+  export interface Schema$EnableExadbVmClusterIdentityConnectorRequest {}
   /**
    * The encryption key used to encrypt the Autonomous Database.
    */
@@ -2092,6 +2150,10 @@ export namespace oracledatabase_v1 {
      * Output only. The identity connector details which will allow OCI to securely access the resources in the customer project.
      */
     identityConnector?: Schema$IdentityConnector;
+    /**
+     * Optional. Input only. Immutable. If set to true, disables the automatic provisioning of the Workload Identity Connector during creation. If set to false or omitted, the Workload Identity Connector will be automatically provisioned by default. Note: Provisioning the Workload Identity Connector is a prerequisite for enabling Google Cloud CMEK.
+     */
+    identityConnectorDisabled?: boolean | null;
     /**
      * Optional. The labels or tags associated with the ExadbVmCluster.
      */
@@ -2378,6 +2440,68 @@ export namespace oracledatabase_v1 {
      * Optional. The peer database name to fail over to. Required for cross-region standby, and must be omitted for in-region Data Guard.
      */
     peerAutonomousDatabase?: string | null;
+  }
+  /**
+   * Details of the Flex Component resource.
+   */
+  export interface Schema$FlexComponent {
+    /**
+     * Identifier. Specifies the name of the Flex Component resource with the format: projects/{project\}/locations/{region\}/flexComponents/{flex_component\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The properties of the Flex Component.
+     */
+    properties?: Schema$FlexComponentProperties;
+  }
+  /**
+   * The properties of the Flex Component.
+   */
+  export interface Schema$FlexComponentProperties {
+    /**
+     * Output only. The maximum number of CPU cores that can be enabled on the DB system for this shape.
+     */
+    availableCoreCount?: number | null;
+    /**
+     * Output only. The maximum storage that can be enabled on the Storage Server for this Flex Component.
+     */
+    availableDbNodeStoragePerNodeGb?: number | null;
+    /**
+     * Output only. The maximum local storage that can be enabled on the DB Server for this Flex Component.
+     */
+    availableLocalStorageGb?: number | null;
+    /**
+     * Output only. The maximum memory size that can be enabled on the DB Server for this Flex Component.
+     */
+    availableMemoryGb?: number | null;
+    /**
+     * Output only. The compute model of the DB Server for this Flex Component.
+     */
+    computeModel?: string | null;
+    /**
+     * Output only. The description summary for this Flex Component.
+     */
+    descriptionSummary?: string | null;
+    /**
+     * Output only. The hardware type of the DB (Compute) or Storage (Cell) Server for this Flex Component.
+     */
+    hardwareType?: string | null;
+    /**
+     * Output only. The minimum number of CPU cores that can be enabled on the DB Server for this Flex Component.
+     */
+    minimumCoreCount?: number | null;
+    /**
+     * Output only. The name of the Flex Component used for the DB system.
+     */
+    name?: string | null;
+    /**
+     * Output only. The runtime minimum number of CPU cores that can be enabled for this Flex Component.
+     */
+    runtimeMinimumCoreCount?: number | null;
+    /**
+     * Output only. The name of the DB system shape for this Flex Component.
+     */
+    shape?: string | null;
   }
   /**
    * The request for `AutonomousDatabase.GenerateWallet`.
@@ -4430,9 +4554,21 @@ export namespace oracledatabase_v1 {
      */
     connectionState?: string | null;
     /**
+     * Output only. The unique partner identifier for the Identity Connector, used to establish secure cross-cloud access between Google Cloud and OCI. This corresponds directly to the ID of the OracleDbGcpIdentityConnector resource in Oracle Cloud Infrastructure (OCI).
+     */
+    identityConnectorId?: string | null;
+    /**
+     * Output only. Additional information about the current lifecycle state.
+     */
+    lifecycleStateDetails?: string | null;
+    /**
      * Output only. A google managed service account on which customers can grant roles to access resources in the customer project. Example: `p176944527254-55-75119d87fd8f@gcp-sa-oci.iam.gserviceaccount.com`
      */
     serviceAgentEmail?: string | null;
+    /**
+     * Output only. The resource name of the Workload Identity Pool configured for identity federation with OCI. This exact pool name can be used to configure VPC Service Controls (VPC-SC) egress rules. Format: `projects/{project\}/locations/global/workloadIdentityPools/{workload_identity_pool\}`
+     */
+    workloadIdentityPool?: string | null;
   }
   /**
    * The ingress IPs of the GoldengateDeployment.
@@ -4620,6 +4756,23 @@ export namespace oracledatabase_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Message for response to listing DbSystemComputePerformances
+   */
+  export interface Schema$ListDbSystemComputePerformancesResponse {
+    /**
+     * The list of DbSystemComputePerformance.
+     */
+    dbSystemComputePerformances?: Schema$DbSystemComputePerformance[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unordered list. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * The response for `DbSystemInitialStorageSizes.List`.
    */
   export interface Schema$ListDbSystemInitialStorageSizesResponse {
@@ -4719,6 +4872,23 @@ export namespace oracledatabase_v1 {
     nextPageToken?: string | null;
     /**
      * Unreachable locations when listing resources across all locations using wildcard location '-'.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Message for response to listing FlexComponents
+   */
+  export interface Schema$ListFlexComponentsResponse {
+    /**
+     * The list of FlexComponent
+     */
+    flexComponents?: Schema$FlexComponent[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unordered list. Locations that could not be reached.
      */
     unreachable?: string[] | null;
   }
@@ -5117,7 +5287,7 @@ export namespace oracledatabase_v1 {
      */
     entitlementId?: string | null;
     /**
-     * Optional. The GCP Oracle zone where OdbNetwork is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
+     * Optional. Immutable. The GCP Oracle zone where OdbNetwork is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
      */
     gcpOracleZone?: string | null;
     /**
@@ -5129,7 +5299,7 @@ export namespace oracledatabase_v1 {
      */
     name?: string | null;
     /**
-     * Required. The name of the VPC network in the following format: projects/{project\}/global/networks/{network\}
+     * Required. Immutable. The name of the VPC network in the following format: projects/{project\}/global/networks/{network\}
      */
     network?: string | null;
     /**
@@ -5731,6 +5901,7 @@ export namespace oracledatabase_v1 {
     databaseCharacterSets: Resource$Projects$Locations$Databasecharactersets;
     databaseConnections: Resource$Projects$Locations$Databaseconnections;
     databases: Resource$Projects$Locations$Databases;
+    dbSystemComputePerformances: Resource$Projects$Locations$Dbsystemcomputeperformances;
     dbSystemInitialStorageSizes: Resource$Projects$Locations$Dbsysteminitialstoragesizes;
     dbSystems: Resource$Projects$Locations$Dbsystems;
     dbSystemShapes: Resource$Projects$Locations$Dbsystemshapes;
@@ -5738,6 +5909,7 @@ export namespace oracledatabase_v1 {
     entitlements: Resource$Projects$Locations$Entitlements;
     exadbVmClusters: Resource$Projects$Locations$Exadbvmclusters;
     exascaleDbStorageVaults: Resource$Projects$Locations$Exascaledbstoragevaults;
+    flexComponents: Resource$Projects$Locations$Flexcomponents;
     giVersions: Resource$Projects$Locations$Giversions;
     goldengateConnectionAssignments: Resource$Projects$Locations$Goldengateconnectionassignments;
     goldengateConnections: Resource$Projects$Locations$Goldengateconnections;
@@ -5773,6 +5945,10 @@ export namespace oracledatabase_v1 {
       this.databaseConnections =
         new Resource$Projects$Locations$Databaseconnections(this.context);
       this.databases = new Resource$Projects$Locations$Databases(this.context);
+      this.dbSystemComputePerformances =
+        new Resource$Projects$Locations$Dbsystemcomputeperformances(
+          this.context
+        );
       this.dbSystemInitialStorageSizes =
         new Resource$Projects$Locations$Dbsysteminitialstoragesizes(
           this.context
@@ -5792,6 +5968,9 @@ export namespace oracledatabase_v1 {
       );
       this.exascaleDbStorageVaults =
         new Resource$Projects$Locations$Exascaledbstoragevaults(this.context);
+      this.flexComponents = new Resource$Projects$Locations$Flexcomponents(
+        this.context
+      );
       this.giVersions = new Resource$Projects$Locations$Giversions(
         this.context
       );
@@ -10265,6 +10444,7 @@ export namespace oracledatabase_v1 {
      *       //   "exascaleDbStorageVault": "my_exascaleDbStorageVault",
      *       //   "gcpOracleZone": "my_gcpOracleZone",
      *       //   "identityConnector": {},
+     *       //   "identityConnectorDisabled": false,
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
@@ -10527,6 +10707,312 @@ export namespace oracledatabase_v1 {
     }
 
     /**
+     * Disables the Workload Identity Connector for a Cloud VM Cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.cloudVmClusters.disableIdentityConnector(
+     *       {
+     *         // Required. The name of the Cloud VM Cluster in the following format: projects/{project\}/locations/{location\}/cloudVmClusters/{cloud_vm_cluster\}
+     *         name: 'projects/my-project/locations/my-location/cloudVmClusters/my-cloudVmCluster',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    disableIdentityConnector(
+      params: Params$Resource$Projects$Locations$Cloudvmclusters$Disableidentityconnector,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    disableIdentityConnector(
+      params?: Params$Resource$Projects$Locations$Cloudvmclusters$Disableidentityconnector,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    disableIdentityConnector(
+      params: Params$Resource$Projects$Locations$Cloudvmclusters$Disableidentityconnector,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    disableIdentityConnector(
+      params: Params$Resource$Projects$Locations$Cloudvmclusters$Disableidentityconnector,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    disableIdentityConnector(
+      params: Params$Resource$Projects$Locations$Cloudvmclusters$Disableidentityconnector,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    disableIdentityConnector(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    disableIdentityConnector(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Cloudvmclusters$Disableidentityconnector
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Cloudvmclusters$Disableidentityconnector;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Cloudvmclusters$Disableidentityconnector;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:disableIdentityConnector').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Enables the Workload Identity Connector for a Cloud VM Cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.cloudVmClusters.enableIdentityConnector(
+     *       {
+     *         // Required. The name of the Cloud VM Cluster in the following format: projects/{project\}/locations/{location\}/cloudVmClusters/{cloud_vm_cluster\}
+     *         name: 'projects/my-project/locations/my-location/cloudVmClusters/my-cloudVmCluster',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enableIdentityConnector(
+      params: Params$Resource$Projects$Locations$Cloudvmclusters$Enableidentityconnector,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    enableIdentityConnector(
+      params?: Params$Resource$Projects$Locations$Cloudvmclusters$Enableidentityconnector,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    enableIdentityConnector(
+      params: Params$Resource$Projects$Locations$Cloudvmclusters$Enableidentityconnector,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enableIdentityConnector(
+      params: Params$Resource$Projects$Locations$Cloudvmclusters$Enableidentityconnector,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    enableIdentityConnector(
+      params: Params$Resource$Projects$Locations$Cloudvmclusters$Enableidentityconnector,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    enableIdentityConnector(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    enableIdentityConnector(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Cloudvmclusters$Enableidentityconnector
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Cloudvmclusters$Enableidentityconnector;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Cloudvmclusters$Enableidentityconnector;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:enableIdentityConnector').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Gets details of a single VM Cluster.
      * @example
      * ```js
@@ -10573,6 +11059,7 @@ export namespace oracledatabase_v1 {
      *   //   "exascaleDbStorageVault": "my_exascaleDbStorageVault",
      *   //   "gcpOracleZone": "my_gcpOracleZone",
      *   //   "identityConnector": {},
+     *   //   "identityConnectorDisabled": false,
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
@@ -10877,6 +11364,7 @@ export namespace oracledatabase_v1 {
      *       //   "exascaleDbStorageVault": "my_exascaleDbStorageVault",
      *       //   "gcpOracleZone": "my_gcpOracleZone",
      *       //   "identityConnector": {},
+     *       //   "identityConnectorDisabled": false,
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
@@ -11024,6 +11512,28 @@ export namespace oracledatabase_v1 {
      * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Cloudvmclusters$Disableidentityconnector extends StandardParameters {
+    /**
+     * Required. The name of the Cloud VM Cluster in the following format: projects/{project\}/locations/{location\}/cloudVmClusters/{cloud_vm_cluster\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DisableCloudVmClusterIdentityConnectorRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Cloudvmclusters$Enableidentityconnector extends StandardParameters {
+    /**
+     * Required. The name of the Cloud VM Cluster in the following format: projects/{project\}/locations/{location\}/cloudVmClusters/{cloud_vm_cluster\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EnableCloudVmClusterIdentityConnectorRequest;
   }
   export interface Params$Resource$Projects$Locations$Cloudvmclusters$Get extends StandardParameters {
     /**
@@ -12928,6 +13438,189 @@ export namespace oracledatabase_v1 {
     parent?: string;
   }
 
+  export class Resource$Projects$Locations$Dbsystemcomputeperformances {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all the DbSystemComputePerformances for the given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.dbSystemComputePerformances.list({
+     *       // Optional. An expression for filtering the results of the request. Only the `db_system_shape` field is supported in the following format: `db_system_shape="{db_system_shape\}"`.
+     *       filter: 'placeholder-value',
+     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A token identifying a page of results the server should return.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Parent value for ListDbSystemComputePerformancesRequest Format: projects/{project\}/locations/{location\}
+     *       parent: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dbSystemComputePerformances": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Dbsystemcomputeperformances$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Dbsystemcomputeperformances$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListDbSystemComputePerformancesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Dbsystemcomputeperformances$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Dbsystemcomputeperformances$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDbSystemComputePerformancesResponse>,
+      callback: BodyResponseCallback<Schema$ListDbSystemComputePerformancesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Dbsystemcomputeperformances$List,
+      callback: BodyResponseCallback<Schema$ListDbSystemComputePerformancesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDbSystemComputePerformancesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dbsystemcomputeperformances$List
+        | BodyResponseCallback<Schema$ListDbSystemComputePerformancesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDbSystemComputePerformancesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDbSystemComputePerformancesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListDbSystemComputePerformancesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dbsystemcomputeperformances$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dbsystemcomputeperformances$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/dbSystemComputePerformances'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDbSystemComputePerformancesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDbSystemComputePerformancesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Dbsystemcomputeperformances$List extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request. Only the `db_system_shape` field is supported in the following format: `db_system_shape="{db_system_shape\}"`.
+     */
+    filter?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListDbSystemComputePerformancesRequest Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Dbsysteminitialstoragesizes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -14511,6 +15204,7 @@ export namespace oracledatabase_v1 {
      *       //   "entitlementId": "my_entitlementId",
      *       //   "gcpOracleZone": "my_gcpOracleZone",
      *       //   "identityConnector": {},
+     *       //   "identityConnectorDisabled": false,
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "odbNetwork": "my_odbNetwork",
@@ -14769,6 +15463,312 @@ export namespace oracledatabase_v1 {
     }
 
     /**
+     * Disables the Workload Identity Connector for an Exadb VM Cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.exadbVmClusters.disableIdentityConnector(
+     *       {
+     *         // Required. The name of the Exadb VM Cluster in the following format: projects/{project\}/locations/{location\}/exadbVmClusters/{exadb_vm_cluster\}
+     *         name: 'projects/my-project/locations/my-location/exadbVmClusters/my-exadbVmCluster',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    disableIdentityConnector(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Disableidentityconnector,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    disableIdentityConnector(
+      params?: Params$Resource$Projects$Locations$Exadbvmclusters$Disableidentityconnector,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    disableIdentityConnector(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Disableidentityconnector,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    disableIdentityConnector(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Disableidentityconnector,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    disableIdentityConnector(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Disableidentityconnector,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    disableIdentityConnector(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    disableIdentityConnector(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Exadbvmclusters$Disableidentityconnector
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Exadbvmclusters$Disableidentityconnector;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Exadbvmclusters$Disableidentityconnector;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:disableIdentityConnector').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Enables the Workload Identity Connector for an Exadb VM Cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.exadbVmClusters.enableIdentityConnector(
+     *       {
+     *         // Required. The name of the Exadb VM Cluster in the following format: projects/{project\}/locations/{location\}/exadbVmClusters/{exadb_vm_cluster\}
+     *         name: 'projects/my-project/locations/my-location/exadbVmClusters/my-exadbVmCluster',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enableIdentityConnector(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Enableidentityconnector,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    enableIdentityConnector(
+      params?: Params$Resource$Projects$Locations$Exadbvmclusters$Enableidentityconnector,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    enableIdentityConnector(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Enableidentityconnector,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enableIdentityConnector(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Enableidentityconnector,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    enableIdentityConnector(
+      params: Params$Resource$Projects$Locations$Exadbvmclusters$Enableidentityconnector,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    enableIdentityConnector(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    enableIdentityConnector(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Exadbvmclusters$Enableidentityconnector
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Exadbvmclusters$Enableidentityconnector;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Exadbvmclusters$Enableidentityconnector;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:enableIdentityConnector').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Gets details of a single Exadb (Exascale) VM Cluster.
      * @example
      * ```js
@@ -14812,6 +15812,7 @@ export namespace oracledatabase_v1 {
      *   //   "entitlementId": "my_entitlementId",
      *   //   "gcpOracleZone": "my_gcpOracleZone",
      *   //   "identityConnector": {},
+     *   //   "identityConnectorDisabled": false,
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "odbNetwork": "my_odbNetwork",
@@ -15113,6 +16114,7 @@ export namespace oracledatabase_v1 {
      *       //   "entitlementId": "my_entitlementId",
      *       //   "gcpOracleZone": "my_gcpOracleZone",
      *       //   "identityConnector": {},
+     *       //   "identityConnectorDisabled": false,
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "odbNetwork": "my_odbNetwork",
@@ -15410,6 +16412,28 @@ export namespace oracledatabase_v1 {
      * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Disableidentityconnector extends StandardParameters {
+    /**
+     * Required. The name of the Exadb VM Cluster in the following format: projects/{project\}/locations/{location\}/exadbVmClusters/{exadb_vm_cluster\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DisableExadbVmClusterIdentityConnectorRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Exadbvmclusters$Enableidentityconnector extends StandardParameters {
+    /**
+     * Required. The name of the Exadb VM Cluster in the following format: projects/{project\}/locations/{location\}/exadbVmClusters/{exadb_vm_cluster\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EnableExadbVmClusterIdentityConnectorRequest;
   }
   export interface Params$Resource$Projects$Locations$Exadbvmclusters$Get extends StandardParameters {
     /**
@@ -16488,6 +17512,181 @@ export namespace oracledatabase_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ExascaleDbStorageVault;
+  }
+
+  export class Resource$Projects$Locations$Flexcomponents {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists Flex Components in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.flexComponents.list({
+     *     // Optional. An expression for filtering the results of the request. Only the `shape` field is supported in the following format: `shape="{shape\}"`.
+     *     filter: 'placeholder-value',
+     *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Parent value for ListFlexComponentsRequest Format: projects/{project\}/locations/{location\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "flexComponents": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Flexcomponents$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Flexcomponents$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListFlexComponentsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Flexcomponents$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Flexcomponents$List,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$ListFlexComponentsResponse>,
+      callback: BodyResponseCallback<Schema$ListFlexComponentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Flexcomponents$List,
+      callback: BodyResponseCallback<Schema$ListFlexComponentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListFlexComponentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Flexcomponents$List
+        | BodyResponseCallback<Schema$ListFlexComponentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFlexComponentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFlexComponentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListFlexComponentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Flexcomponents$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Flexcomponents$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/flexComponents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListFlexComponentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListFlexComponentsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Flexcomponents$List extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request. Only the `shape` field is supported in the following format: `shape="{shape\}"`.
+     */
+    filter?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListFlexComponentsRequest Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Giversions {

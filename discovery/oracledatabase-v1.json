@@ -1108,6 +1108,62 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "disableIdentityConnector": {
+                  "description": "Disables the Workload Identity Connector for a Cloud VM Cluster.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/cloudVmClusters/{cloudVmClustersId}:disableIdentityConnector",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.cloudVmClusters.disableIdentityConnector",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Cloud VM Cluster in the following format: projects/{project}/locations/{location}/cloudVmClusters/{cloud_vm_cluster}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/cloudVmClusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:disableIdentityConnector",
+                  "request": {
+                    "$ref": "DisableCloudVmClusterIdentityConnectorRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "enableIdentityConnector": {
+                  "description": "Enables the Workload Identity Connector for a Cloud VM Cluster.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/cloudVmClusters/{cloudVmClustersId}:enableIdentityConnector",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.cloudVmClusters.enableIdentityConnector",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Cloud VM Cluster in the following format: projects/{project}/locations/{location}/cloudVmClusters/{cloud_vm_cluster}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/cloudVmClusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:enableIdentityConnector",
+                  "request": {
+                    "$ref": "EnableCloudVmClusterIdentityConnectorRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets details of a single VM Cluster.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/cloudVmClusters/{cloudVmClustersId}",
@@ -1610,6 +1666,51 @@
                 }
               }
             },
+            "dbSystemComputePerformances": {
+              "methods": {
+                "list": {
+                  "description": "Lists all the DbSystemComputePerformances for the given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dbSystemComputePerformances",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.dbSystemComputePerformances.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request. Only the `db_system_shape` field is supported in the following format: `db_system_shape=\"{db_system_shape}\"`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListDbSystemComputePerformancesRequest Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/dbSystemComputePerformances",
+                  "response": {
+                    "$ref": "ListDbSystemComputePerformancesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "dbSystemInitialStorageSizes": {
               "methods": {
                 "list": {
@@ -2032,6 +2133,62 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "disableIdentityConnector": {
+                  "description": "Disables the Workload Identity Connector for an Exadb VM Cluster.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/exadbVmClusters/{exadbVmClustersId}:disableIdentityConnector",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.exadbVmClusters.disableIdentityConnector",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Exadb VM Cluster in the following format: projects/{project}/locations/{location}/exadbVmClusters/{exadb_vm_cluster}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/exadbVmClusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:disableIdentityConnector",
+                  "request": {
+                    "$ref": "DisableExadbVmClusterIdentityConnectorRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "enableIdentityConnector": {
+                  "description": "Enables the Workload Identity Connector for an Exadb VM Cluster.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/exadbVmClusters/{exadbVmClustersId}:enableIdentityConnector",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.exadbVmClusters.enableIdentityConnector",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Exadb VM Cluster in the following format: projects/{project}/locations/{location}/exadbVmClusters/{exadb_vm_cluster}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/exadbVmClusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:enableIdentityConnector",
+                  "request": {
+                    "$ref": "EnableExadbVmClusterIdentityConnectorRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets details of a single Exadb (Exascale) VM Cluster.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/exadbVmClusters/{exadbVmClustersId}",
@@ -2389,6 +2546,51 @@
                   },
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "flexComponents": {
+              "methods": {
+                "list": {
+                  "description": "Lists Flex Components in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/flexComponents",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.flexComponents.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request. Only the `shape` field is supported in the following format: `shape=\"{shape}\"`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListFlexComponentsRequest Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/flexComponents",
+                  "response": {
+                    "$ref": "ListFlexComponentsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -4010,7 +4212,7 @@
       }
     }
   },
-  "revision": "20261024",
+  "revision": "20261104",
   "rootUrl": "https://oracledatabase.googleapis.com/",
   "schemas": {
     "AllConnectionStrings": {
@@ -5558,6 +5760,10 @@
           "description": "Output only. The identity connector details which will allow OCI to securely access the resources in the customer project.",
           "readOnly": true
         },
+        "identityConnectorDisabled": {
+          "description": "Optional. Input only. Immutable. If set to true, disables the automatic provisioning of the Workload Identity Connector during creation. If set to false or omitted, the Workload Identity Connector will be automatically provisioned by default. Note: Provisioning the Workload Identity Connector is a prerequisite for enabling Google Cloud CMEK.",
+          "type": "boolean"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -5866,6 +6072,46 @@
         "type": {
           "description": "Required. Database-specific type name (e.g., \"VARCHAR2(255)\", \"NUMBER\", \"DATE\", \"CLOB\")",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ComputePerformance": {
+      "description": "Parameters detailing the compute performance for a specified DB system shape.",
+      "id": "ComputePerformance",
+      "properties": {
+        "computeCount": {
+          "description": "Output only. The number of compute servers for the DB system.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "computeModel": {
+          "description": "Output only. The compute model for Base Database Service.",
+          "enum": [
+            "COMPUTE_MODEL_UNSPECIFIED",
+            "COMPUTE_MODEL_ECPU",
+            "COMPUTE_MODEL_OCPU"
+          ],
+          "enumDescriptions": [
+            "Unspecified compute model.",
+            "Abstract measure of compute resources. ECPUs are based on the number of cores elastically allocated from a pool of compute and storage servers.",
+            "Physical measure of compute resources. OCPUs are based on the physical core of a processor."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "cpuCoreCount": {
+          "description": "Output only. The number of CPU cores available.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "memoryInGbs": {
+          "description": "Output only. The amount of memory allocated for the VMDB System in GBs.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -6777,6 +7023,30 @@
       },
       "type": "object"
     },
+    "DbSystemComputePerformance": {
+      "description": "Details of the DbSystem compute performance resource.",
+      "id": "DbSystemComputePerformance",
+      "properties": {
+        "computePerformances": {
+          "description": "Output only. List of Compute performance details for the specified DB system shape.",
+          "items": {
+            "$ref": "ComputePerformance"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Identifier. The name of the DbSystemComputePerformance resource with the format: projects/{project}/locations/{location}/dbSystemComputePerformances/{db_system_compute_performance}",
+          "type": "string"
+        },
+        "shape": {
+          "description": "Output only. The shape of the DB system.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DbSystemInitialStorageSize": {
       "description": "Summary of the DbSystem initial storage size.",
       "id": "DbSystemInitialStorageSize",
@@ -7226,9 +7496,33 @@
       },
       "type": "object"
     },
+    "DisableCloudVmClusterIdentityConnectorRequest": {
+      "description": "The request for `CloudVmCluster.DisableCloudVmClusterIdentityConnector`.",
+      "id": "DisableCloudVmClusterIdentityConnectorRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "DisableExadbVmClusterIdentityConnectorRequest": {
+      "description": "The request for `ExadbVmCluster.DisableExadbVmClusterIdentityConnector`.",
+      "id": "DisableExadbVmClusterIdentityConnectorRequest",
+      "properties": {},
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
+    "EnableCloudVmClusterIdentityConnectorRequest": {
+      "description": "The request for `CloudVmCluster.EnableCloudVmClusterIdentityConnector`.",
+      "id": "EnableCloudVmClusterIdentityConnectorRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "EnableExadbVmClusterIdentityConnectorRequest": {
+      "description": "The request for `ExadbVmCluster.EnableExadbVmClusterIdentityConnector`.",
+      "id": "EnableExadbVmClusterIdentityConnectorRequest",
       "properties": {},
       "type": "object"
     },
@@ -7348,6 +7642,10 @@
           "$ref": "IdentityConnector",
           "description": "Output only. The identity connector details which will allow OCI to securely access the resources in the customer project.",
           "readOnly": true
+        },
+        "identityConnectorDisabled": {
+          "description": "Optional. Input only. Immutable. If set to true, disables the automatic provisioning of the Workload Identity Connector during creation. If set to false or omitted, the Workload Identity Connector will be automatically provisioned by default. Note: Provisioning the Workload Identity Connector is a prerequisite for enabling Google Cloud CMEK.",
+          "type": "boolean"
         },
         "labels": {
           "additionalProperties": {
@@ -7804,6 +8102,110 @@
       "properties": {
         "peerAutonomousDatabase": {
           "description": "Optional. The peer database name to fail over to. Required for cross-region standby, and must be omitted for in-region Data Guard.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FlexComponent": {
+      "description": "Details of the Flex Component resource.",
+      "id": "FlexComponent",
+      "properties": {
+        "name": {
+          "description": "Identifier. Specifies the name of the Flex Component resource with the format: projects/{project}/locations/{region}/flexComponents/{flex_component}",
+          "type": "string"
+        },
+        "properties": {
+          "$ref": "FlexComponentProperties",
+          "description": "Output only. The properties of the Flex Component.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "FlexComponentProperties": {
+      "description": "The properties of the Flex Component.",
+      "id": "FlexComponentProperties",
+      "properties": {
+        "availableCoreCount": {
+          "description": "Output only. The maximum number of CPU cores that can be enabled on the DB system for this shape.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "availableDbNodeStoragePerNodeGb": {
+          "description": "Output only. The maximum storage that can be enabled on the Storage Server for this Flex Component.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "availableLocalStorageGb": {
+          "description": "Output only. The maximum local storage that can be enabled on the DB Server for this Flex Component.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "availableMemoryGb": {
+          "description": "Output only. The maximum memory size that can be enabled on the DB Server for this Flex Component.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "computeModel": {
+          "description": "Output only. The compute model of the DB Server for this Flex Component.",
+          "enum": [
+            "COMPUTE_MODEL_UNSPECIFIED",
+            "COMPUTE_MODEL_ECPU",
+            "COMPUTE_MODEL_OCPU"
+          ],
+          "enumDescriptions": [
+            "Unspecified compute model.",
+            "Abstract measure of compute resources. ECPUs are based on the number of cores elastically allocated from a pool of compute and storage servers.",
+            "Physical measure of compute resources. OCPUs are based on the physical core of a processor."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "descriptionSummary": {
+          "description": "Output only. The description summary for this Flex Component.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "hardwareType": {
+          "description": "Output only. The hardware type of the DB (Compute) or Storage (Cell) Server for this Flex Component.",
+          "enum": [
+            "HARDWARE_TYPE_UNSPECIFIED",
+            "COMPUTE",
+            "CELL"
+          ],
+          "enumDescriptions": [
+            "Unspecified default",
+            "COMPUTE",
+            "CELL"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "minimumCoreCount": {
+          "description": "Output only. The minimum number of CPU cores that can be enabled on the DB Server for this Flex Component.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "name": {
+          "description": "Output only. The name of the Flex Component used for the DB system.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "runtimeMinimumCoreCount": {
+          "description": "Output only. The runtime minimum number of CPU cores that can be enabled for this Flex Component.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "shape": {
+          "description": "Output only. The name of the DB system shape for this Flex Component.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -10846,8 +11248,23 @@
           "readOnly": true,
           "type": "string"
         },
+        "identityConnectorId": {
+          "description": "Output only. The unique partner identifier for the Identity Connector, used to establish secure cross-cloud access between Google Cloud and OCI. This corresponds directly to the ID of the OracleDbGcpIdentityConnector resource in Oracle Cloud Infrastructure (OCI).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lifecycleStateDetails": {
+          "description": "Output only. Additional information about the current lifecycle state.",
+          "readOnly": true,
+          "type": "string"
+        },
         "serviceAgentEmail": {
           "description": "Output only. A google managed service account on which customers can grant roles to access resources in the customer project. Example: `p176944527254-55-75119d87fd8f@gcp-sa-oci.iam.gserviceaccount.com`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "workloadIdentityPool": {
+          "description": "Output only. The resource name of the Workload Identity Pool configured for identity federation with OCI. This exact pool name can be used to configure VPC Service Controls (VPC-SC) egress rules. Format: `projects/{project}/locations/global/workloadIdentityPools/{workload_identity_pool}`",
           "readOnly": true,
           "type": "string"
         }
@@ -11112,6 +11529,31 @@
       },
       "type": "object"
     },
+    "ListDbSystemComputePerformancesResponse": {
+      "description": "Message for response to listing DbSystemComputePerformances",
+      "id": "ListDbSystemComputePerformancesResponse",
+      "properties": {
+        "dbSystemComputePerformances": {
+          "description": "The list of DbSystemComputePerformance.",
+          "items": {
+            "$ref": "DbSystemComputePerformance"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListDbSystemInitialStorageSizesResponse": {
       "description": "The response for `DbSystemInitialStorageSizes.List`.",
       "id": "ListDbSystemInitialStorageSizesResponse",
@@ -11251,6 +11693,31 @@
         },
         "unreachable": {
           "description": "Unreachable locations when listing resources across all locations using wildcard location '-'.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListFlexComponentsResponse": {
+      "description": "Message for response to listing FlexComponents",
+      "id": "ListFlexComponentsResponse",
+      "properties": {
+        "flexComponents": {
+          "description": "The list of FlexComponent",
+          "items": {
+            "$ref": "FlexComponent"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
           "items": {
             "type": "string"
           },
@@ -11898,7 +12365,7 @@
           "type": "string"
         },
         "gcpOracleZone": {
-          "description": "Optional. The GCP Oracle zone where OdbNetwork is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.",
+          "description": "Optional. Immutable. The GCP Oracle zone where OdbNetwork is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.",
           "type": "string"
         },
         "labels": {
@@ -11913,7 +12380,7 @@
           "type": "string"
         },
         "network": {
-          "description": "Required. The name of the VPC network in the following format: projects/{project}/global/networks/{network}",
+          "description": "Required. Immutable. The name of the VPC network in the following format: projects/{project}/global/networks/{network}",
           "type": "string"
         },
         "reconciling": {
