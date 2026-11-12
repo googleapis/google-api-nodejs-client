@@ -892,7 +892,7 @@
       }
     }
   },
-  "revision": "20261019",
+  "revision": "20261109",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -1473,7 +1473,7 @@
         },
         "lineStyle": {
           "$ref": "LineStyle",
-          "description": "The line style of this series. Valid only if the chartType is AREA, LINE, or SCATTER. COMBO charts are also supported if the series chart type is AREA or LINE."
+          "description": "The line style of this series. Valid only if the chartType is AREA, LINE, or SCATTER. COMBO charts are also supported if the series chart type is AREA, STEPPED_AREA, or LINE."
         },
         "pointStyle": {
           "$ref": "PointStyle",
@@ -1507,7 +1507,7 @@
           "type": "string"
         },
         "type": {
-          "description": "The type of this series. Valid only if the chartType is COMBO. Different types will change the way the series is visualized. Only LINE, AREA, and COLUMN are supported.",
+          "description": "The type of this series. Valid only if the chartType is COMBO. Different types will change the way the series is visualized. Only LINE, AREA, STEPPED_AREA, and COLUMN are supported.",
           "enum": [
             "BASIC_CHART_TYPE_UNSPECIFIED",
             "BAR",
@@ -1619,7 +1619,7 @@
           "type": "string"
         },
         "lineSmoothing": {
-          "description": "Gets whether all lines should be rendered smooth or straight by default. Applies to Line charts.",
+          "description": "Gets whether all lines should be rendered smooth or straight by default. Applies to Line and Combo charts.",
           "type": "boolean"
         },
         "series": {
