@@ -157,7 +157,7 @@
     "issueresolution": {
       "methods": {
         "renderaccountissues": {
-          "description": "Provide a list of business's account issues with an issue resolution content and available actions. This content and actions are meant to be rendered and shown in third-party applications.",
+          "description": "Provide a list of business's account issues with an issue resolution content and available actions. This content and actions are meant to be rendered and shown in third-party applications. For more information, see [Display issues and solutions to businesses](https://developers.google.com/merchant/api/guides/accounts/render-issues).",
           "flatPath": "issueresolution/v1/accounts/{accountsId}:renderaccountissues",
           "httpMethod": "POST",
           "id": "merchantapi.issueresolution.renderaccountissues",
@@ -195,7 +195,7 @@
           ]
         },
         "renderproductissues": {
-          "description": "Provide a list of issues for business's product with an issue resolution content and available actions. This content and actions are meant to be rendered and shown in third-party applications.",
+          "description": "Provide a list of issues for business's product with an issue resolution content and available actions. This content and actions are meant to be rendered and shown in third-party applications. For more information, see [Display issues and solutions to businesses](https://developers.google.com/merchant/api/guides/accounts/render-issues).",
           "flatPath": "issueresolution/v1/accounts/{accountsId}/products/{productsId}:renderproductissues",
           "httpMethod": "POST",
           "id": "merchantapi.issueresolution.renderproductissues",
@@ -233,7 +233,7 @@
           ]
         },
         "triggeraction": {
-          "description": "Start an action. The action can be requested by a business in third-party application. Before the business can request the action, the third-party application needs to show them action specific content and display a user input form. Access to the `triggeraction` method is restricted to an allowlist. You can submit an allowlist request in the [Shopping API Support Form](https://support.google.com/merchants/contact/shopping_api_support_form) under \"What is the issue/question?\" to get access to this feature. The action can be successfully started only once all `required` inputs are provided. If any `required` input is missing, or invalid value was provided, the service will return 400 error. Validation errors will contain Ids for all problematic field together with translated, human readable error messages that can be shown to the user.",
+          "description": "Start an action. The action can be requested by a business in third-party application. Before the business can request the action, the third-party application needs to show them action specific content and display a user input form. Access to the `triggeraction` method is restricted to an allowlist. You can submit an allowlist request in the [Shopping API Support Form](https://support.google.com/merchants/contact/shopping_api_support_form) under \"What is the issue/question?\" to get access to this feature. The action can be successfully started only once all `required` inputs are provided. If any `required` input is missing, or invalid value was provided, the service will return 400 error. Validation errors will contain Ids for all problematic field together with translated, human readable error messages that can be shown to the user. For more information, see [Display issues and solutions to businesses](https://developers.google.com/merchant/api/guides/accounts/render-issues).",
           "flatPath": "issueresolution/v1/accounts/{accountsId}:triggeraction",
           "httpMethod": "POST",
           "id": "merchantapi.issueresolution.triggeraction",
@@ -268,7 +268,7 @@
       }
     }
   },
-  "revision": "20260901",
+  "revision": "20261110",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Action": {
@@ -380,7 +380,7 @@
       "type": "object"
     },
     "AggregateProductStatus": {
-      "description": "Aggregate product statuses for a given reporting context and country.",
+      "description": "Aggregate product statuses for a given reporting context and country. For more information, see [View Aggregate Product Statuses](https://developers.google.com/merchant/api/guides/accounts/aggregate-product-statuses).",
       "id": "AggregateProductStatus",
       "properties": {
         "country": {
@@ -940,7 +940,7 @@
       "type": "object"
     },
     "ProductStatusChangeMessage": {
-      "description": "The message that the merchant will receive to notify about product status change event",
+      "description": "The message that the merchant will receive to notify about product status change event. For more information, see [Product status changes](https://developers.google.com/merchant/api/guides/notifications/product-status-changes).",
       "id": "ProductStatusChangeMessage",
       "properties": {
         "account": {
@@ -1101,7 +1101,7 @@
       "type": "object"
     },
     "RenderedIssue": {
-      "description": "An issue affecting specific business or their product.",
+      "description": "An issue affecting specific business or their product. For more information, see [Display issues and solutions to businesses](https://developers.google.com/merchant/api/guides/accounts/render-issues).",
       "id": "RenderedIssue",
       "properties": {
         "actions": {

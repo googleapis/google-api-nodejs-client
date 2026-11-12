@@ -125,7 +125,7 @@ export namespace merchantapi_quota_v1 {
   }
 
   /**
-   * A limit of a certain type that is applied to an account.
+   * A limit of a certain type that is applied to an account. For more information, see [Quotas and limits overview](https://developers.google.com/merchant/api/guides/quotas-limits/overview) and [Merchant Center limits](https://developers.google.com/merchant/api/guides/quotas-limits/limits).
    */
   export interface Schema$AccountLimit {
     /**
@@ -219,7 +219,7 @@ export namespace merchantapi_quota_v1 {
     scope?: string | null;
   }
   /**
-   * The message that the merchant will receive to notify about product status change event
+   * The message that the merchant will receive to notify about product status change event. For more information, see [Product status changes](https://developers.google.com/merchant/api/guides/notifications/product-status-changes).
    */
   export interface Schema$ProductStatusChangeMessage {
     /**
@@ -260,7 +260,7 @@ export namespace merchantapi_quota_v1 {
     resourceType?: string | null;
   }
   /**
-   * The group information for methods in the Merchant API. The quota is shared between all methods in the group. Even if none of the methods within the group have usage the information for the group is returned.
+   * The group information for methods in the Merchant API. The quota is shared between all methods in the group. Even if none of the methods within the group have usage the information for the group is returned. For more information, see [Quotas and limits overview](https://developers.google.com/merchant/api/guides/quotas-limits/overview) and [Quotas](https://developers.google.com/merchant/api/guides/quotas-limits/quotas).
    */
   export interface Schema$QuotaGroup {
     /**

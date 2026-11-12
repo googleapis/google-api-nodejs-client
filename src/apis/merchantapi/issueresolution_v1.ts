@@ -215,7 +215,7 @@ export namespace merchantapi_issueresolution_v1 {
     title?: string | null;
   }
   /**
-   * Aggregate product statuses for a given reporting context and country.
+   * Aggregate product statuses for a given reporting context and country. For more information, see [View Aggregate Product Statuses](https://developers.google.com/merchant/api/guides/accounts/aggregate-product-statuses).
    */
   export interface Schema$AggregateProductStatus {
     /**
@@ -495,7 +495,7 @@ export namespace merchantapi_issueresolution_v1 {
     reportingContext?: string | null;
   }
   /**
-   * The message that the merchant will receive to notify about product status change event
+   * The message that the merchant will receive to notify about product status change event. For more information, see [Product status changes](https://developers.google.com/merchant/api/guides/notifications/product-status-changes).
    */
   export interface Schema$ProductStatusChangeMessage {
     /**
@@ -575,7 +575,7 @@ export namespace merchantapi_issueresolution_v1 {
     renderedIssues?: Schema$RenderedIssue[];
   }
   /**
-   * An issue affecting specific business or their product.
+   * An issue affecting specific business or their product. For more information, see [Display issues and solutions to businesses](https://developers.google.com/merchant/api/guides/accounts/render-issues).
    */
   export interface Schema$RenderedIssue {
     /**
@@ -908,7 +908,7 @@ export namespace merchantapi_issueresolution_v1 {
     }
 
     /**
-     * Provide a list of business's account issues with an issue resolution content and available actions. This content and actions are meant to be rendered and shown in third-party applications.
+     * Provide a list of business's account issues with an issue resolution content and available actions. This content and actions are meant to be rendered and shown in third-party applications. For more information, see [Display issues and solutions to businesses](https://developers.google.com/merchant/api/guides/accounts/render-issues).
      * @example
      * ```js
      * // Before running the sample:
@@ -1061,7 +1061,7 @@ export namespace merchantapi_issueresolution_v1 {
     }
 
     /**
-     * Provide a list of issues for business's product with an issue resolution content and available actions. This content and actions are meant to be rendered and shown in third-party applications.
+     * Provide a list of issues for business's product with an issue resolution content and available actions. This content and actions are meant to be rendered and shown in third-party applications. For more information, see [Display issues and solutions to businesses](https://developers.google.com/merchant/api/guides/accounts/render-issues).
      * @example
      * ```js
      * // Before running the sample:
@@ -1214,7 +1214,7 @@ export namespace merchantapi_issueresolution_v1 {
     }
 
     /**
-     * Start an action. The action can be requested by a business in third-party application. Before the business can request the action, the third-party application needs to show them action specific content and display a user input form. Access to the `triggeraction` method is restricted to an allowlist. You can submit an allowlist request in the [Shopping API Support Form](https://support.google.com/merchants/contact/shopping_api_support_form) under "What is the issue/question?" to get access to this feature. The action can be successfully started only once all `required` inputs are provided. If any `required` input is missing, or invalid value was provided, the service will return 400 error. Validation errors will contain Ids for all problematic field together with translated, human readable error messages that can be shown to the user.
+     * Start an action. The action can be requested by a business in third-party application. Before the business can request the action, the third-party application needs to show them action specific content and display a user input form. Access to the `triggeraction` method is restricted to an allowlist. You can submit an allowlist request in the [Shopping API Support Form](https://support.google.com/merchants/contact/shopping_api_support_form) under "What is the issue/question?" to get access to this feature. The action can be successfully started only once all `required` inputs are provided. If any `required` input is missing, or invalid value was provided, the service will return 400 error. Validation errors will contain Ids for all problematic field together with translated, human readable error messages that can be shown to the user. For more information, see [Display issues and solutions to businesses](https://developers.google.com/merchant/api/guides/accounts/render-issues).
      * @example
      * ```js
      * // Before running the sample:

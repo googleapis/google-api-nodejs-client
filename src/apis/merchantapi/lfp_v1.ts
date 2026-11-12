@@ -183,7 +183,7 @@ export namespace merchantapi_lfp_v1 {
     unsubmittedEntries?: string | null;
   }
   /**
-   * Local Inventory for the merchant.
+   * Local Inventory for the merchant. For more information, see [Manage local feeds partnership](https://developers.google.com/merchant/api/guides/local-feeds-partnership/overview).
    */
   export interface Schema$LfpInventory {
     /**
@@ -199,7 +199,7 @@ export namespace merchantapi_lfp_v1 {
      */
     contentLanguage?: string | null;
     /**
-     * Optional. The [feed label](https://developers.google.com/shopping-content/guides/products/feed-labels) for the product. If this is not set, it will default to `regionCode`.
+     * Optional. The [feed label](https://developers.google.com/merchant/api/guides/data-sources/api-sources) for the product. If this is not set, it will default to `regionCode`.
      */
     feedLabel?: string | null;
     /**
@@ -244,7 +244,7 @@ export namespace merchantapi_lfp_v1 {
     targetAccount?: string | null;
   }
   /**
-   * The LFP state of a merchant.
+   * The LFP state of a merchant. For more information, see [Manage local feeds partnership](https://developers.google.com/merchant/api/guides/local-feeds-partnership/overview).
    */
   export interface Schema$LfpMerchantState {
     /**
@@ -269,7 +269,7 @@ export namespace merchantapi_lfp_v1 {
     storeStates?: Schema$LfpStoreState[];
   }
   /**
-   * A sale for the merchant.
+   * A sale for the merchant. For more information, see [Manage local feeds partnership](https://developers.google.com/merchant/api/guides/local-feeds-partnership/overview).
    */
   export interface Schema$LfpSale {
     /**
@@ -277,7 +277,7 @@ export namespace merchantapi_lfp_v1 {
      */
     contentLanguage?: string | null;
     /**
-     * Optional. The [feed label](https://developers.google.com/shopping-content/guides/products/feed-labels) for the product. If this is not set, it will default to `regionCode`.
+     * Optional. The [feed label](https://developers.google.com/merchant/api/guides/data-sources/api-sources) for the product. If this is not set, it will default to `regionCode`.
      */
     feedLabel?: string | null;
     /**
@@ -322,7 +322,7 @@ export namespace merchantapi_lfp_v1 {
     uid?: string | null;
   }
   /**
-   * A store for the merchant. This will be used to match to a store under the Google Business Profile of the target merchant. If a matching store can't be found, the inventories or sales submitted with the store code will not be used.
+   * A store for the merchant. This will be used to match to a store under the Google Business Profile of the target merchant. If a matching store can't be found, the inventories or sales submitted with the store code will not be used. For more information, see [Manage local feeds partnership](https://developers.google.com/merchant/api/guides/local-feeds-partnership/overview).
    */
   export interface Schema$LfpStore {
     /**
@@ -435,7 +435,7 @@ export namespace merchantapi_lfp_v1 {
     reportingContext?: string | null;
   }
   /**
-   * The message that the merchant will receive to notify about product status change event
+   * The message that the merchant will receive to notify about product status change event. For more information, see [Product status changes](https://developers.google.com/merchant/api/guides/notifications/product-status-changes).
    */
   export interface Schema$ProductStatusChangeMessage {
     /**

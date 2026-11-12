@@ -142,7 +142,7 @@ export namespace merchantapi_conversions_v1 {
     conversionType?: Schema$ConversionType[];
   }
   /**
-   * Represents a conversion source owned by a Merchant account. A merchant account can have up to 200 conversion sources.
+   * Represents a conversion source owned by a Merchant account. A merchant account can have up to 200 conversion sources. For more information, see [Manage conversion sources](https://developers.google.com/merchant/api/guides/conversion-sources/overview).
    */
   export interface Schema$ConversionSource {
     /**
@@ -260,7 +260,7 @@ export namespace merchantapi_conversions_v1 {
     reportingContext?: string | null;
   }
   /**
-   * The message that the merchant will receive to notify about product status change event
+   * The message that the merchant will receive to notify about product status change event. For more information, see [Product status changes](https://developers.google.com/merchant/api/guides/notifications/product-status-changes).
    */
   export interface Schema$ProductStatusChangeMessage {
     /**

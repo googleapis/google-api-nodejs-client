@@ -125,7 +125,7 @@ export namespace merchantapi_datasources_v1 {
   }
 
   /**
-   * The [data source](/merchant/api/guides/data-sources/overview) for the Merchant Center account.
+   * The [data source](https://developers.google.com/merchant/api/guides/data-sources/overview) for the Merchant Center account. For more information, see [Manage API data sources](https://developers.google.com/merchant/api/guides/data-sources/api-sources) and [Manage various data source types](https://developers.google.com/merchant/api/guides/data-sources/manage-various-data-sources).
    */
   export interface Schema$DataSource {
     /**
@@ -283,7 +283,7 @@ export namespace merchantapi_datasources_v1 {
     fileName?: string | null;
   }
   /**
-   * The file upload of a specific data source, that is, the result of the retrieval of the data source at a certain timestamp computed asynchronously when the data source processing is finished. Only applicable to file data sources.
+   * The file upload of a specific data source, that is, the result of the retrieval of the data source at a certain timestamp computed asynchronously when the data source processing is finished. Only applicable to file data sources. For more information, see [Monitor and trigger data source processing](https://developers.google.com/merchant/api/guides/data-sources/monitor-status) and [Manage various data source types](https://developers.google.com/merchant/api/guides/data-sources/manage-various-data-sources).
    */
   export interface Schema$FileUpload {
     /**
@@ -433,7 +433,7 @@ export namespace merchantapi_datasources_v1 {
    */
   export interface Schema$ProductReviewDataSource {}
   /**
-   * The message that the merchant will receive to notify about product status change event
+   * The message that the merchant will receive to notify about product status change event. For more information, see [Product status changes](https://developers.google.com/merchant/api/guides/notifications/product-status-changes).
    */
   export interface Schema$ProductStatusChangeMessage {
     /**
@@ -555,7 +555,7 @@ export namespace merchantapi_datasources_v1 {
     }
 
     /**
-     * Creates the new data source configuration for the given account. This method always creates a new data source.
+     * Creates the new data source configuration for the given account. This method always creates a new data source. For more information, see [Manage API data sources](https://developers.google.com/merchant/api/guides/data-sources/api-sources) and [Manage various data source types](https://developers.google.com/merchant/api/guides/data-sources/manage-various-data-sources).
      * @example
      * ```js
      * // Before running the sample:
@@ -855,7 +855,7 @@ export namespace merchantapi_datasources_v1 {
     }
 
     /**
-     * Performs the data fetch immediately (even outside fetch schedule) on a data source from your Merchant Center Account. If you need to call this method more than once per day, you should use the Products service to update your product data instead. This method only works on data sources with a file input set.
+     * Performs the data fetch immediately (even outside fetch schedule) on a data source from your Merchant Center Account. If you need to call this method more than once per day, you should use the Products service to update your product data instead. This method only works on data sources with a file input set. For more information, see [Monitor and trigger data source processing](https://developers.google.com/merchant/api/guides/data-sources/monitor-status).
      * @example
      * ```js
      * // Before running the sample:

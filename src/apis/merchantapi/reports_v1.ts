@@ -125,7 +125,7 @@ export namespace merchantapi_reports_v1 {
   }
 
   /**
-   * Fields available for query in `best_sellers_brand_view` table. [Best sellers](https://support.google.com/merchants/answer/9488679) report with top brands. Values are only set for fields requested explicitly in the request's search query.
+   * Fields available for query in `best_sellers_brand_view` table. [Best sellers](https://support.google.com/merchants/answer/9488679) report with top brands. Values are only set for fields requested explicitly in the request's search query. For more information, see [Understand the market](https://developers.google.com/merchant/api/guides/reports/understand-the-market).
    */
   export interface Schema$BestSellersBrandView {
     /**
@@ -170,7 +170,7 @@ export namespace merchantapi_reports_v1 {
     reportGranularity?: string | null;
   }
   /**
-   * Fields available for query in `best_sellers_product_cluster_view` table. [Best sellers](https://support.google.com/merchants/answer/9488679) report with top product clusters. A product cluster is a grouping for different offers and variants that represent the same product, for example, Google Pixel 7. Values are only set for fields requested explicitly in the request's search query.
+   * Fields available for query in `best_sellers_product_cluster_view` table. [Best sellers](https://support.google.com/merchants/answer/9488679) report with top product clusters. A product cluster is a grouping for different offers and variants that represent the same product, for example, Google Pixel 7. Values are only set for fields requested explicitly in the request's search query. For more information, see [Understand the market](https://developers.google.com/merchant/api/guides/reports/understand-the-market).
    */
   export interface Schema$BestSellersProductClusterView {
     /**
@@ -251,7 +251,7 @@ export namespace merchantapi_reports_v1 {
     variantGtins?: string[] | null;
   }
   /**
-   * Fields available for query in `competitive_visibility_benchmark_view` table. [Competitive visibility](https://support.google.com/merchants/answer/11366442) report with the category benchmark. Values are only set for fields requested explicitly in the request's search query.
+   * Fields available for query in `competitive_visibility_benchmark_view` table. [Competitive visibility](https://support.google.com/merchants/answer/11366442) report with the category benchmark. Values are only set for fields requested explicitly in the request's search query. For more information, see [Explore your competitive landscape](https://developers.google.com/merchant/api/guides/reports/explore-competitive-landscape).
    */
   export interface Schema$CompetitiveVisibilityBenchmarkView {
     /**
@@ -280,7 +280,7 @@ export namespace merchantapi_reports_v1 {
     yourDomainVisibilityTrend?: number | null;
   }
   /**
-   * Fields available for query in `competitive_visibility_competitor_view` table. [Competitive visibility](https://support.google.com/merchants/answer/11366442) report with businesses with similar visibility. Values are only set for fields requested explicitly in the request's search query.
+   * Fields available for query in `competitive_visibility_competitor_view` table. [Competitive visibility](https://support.google.com/merchants/answer/11366442) report with businesses with similar visibility. Values are only set for fields requested explicitly in the request's search query. For more information, see [Explore your competitive landscape](https://developers.google.com/merchant/api/guides/reports/explore-competitive-landscape).
    */
   export interface Schema$CompetitiveVisibilityCompetitorView {
     /**
@@ -329,7 +329,7 @@ export namespace merchantapi_reports_v1 {
     trafficSource?: string | null;
   }
   /**
-   * Fields available for query in `competitive_visibility_top_merchant_view` table. [Competitive visibility](https://support.google.com/merchants/answer/11366442) report with business with highest visibility. Values are only set for fields requested explicitly in the request's search query.
+   * Fields available for query in `competitive_visibility_top_merchant_view` table. [Competitive visibility](https://support.google.com/merchants/answer/11366442) report with business with highest visibility. Values are only set for fields requested explicitly in the request's search query. For more information, see [Explore your competitive landscape](https://developers.google.com/merchant/api/guides/reports/explore-competitive-landscape).
    */
   export interface Schema$CompetitiveVisibilityTopMerchantView {
     /**
@@ -446,12 +446,12 @@ export namespace merchantapi_reports_v1 {
      */
     canonicalAttribute?: string | null;
     /**
-     * Error code of the issue, equivalent to the `code` of [Product issues](https://developers.google.com/shopping-content/guides/product-issues).
+     * Error code of the issue, equivalent to the `code` of [Product issues](https://developers.google.com/merchant/api/guides/products/list-products-data-issues).
      */
     code?: string | null;
   }
   /**
-   * Fields available for query in `non_product_performance_view` table. Performance data on images and online store links leading to your non-product pages. This includes performance metrics (for example, `clicks`) and dimensions according to which performance metrics are segmented (for example, `date`). Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for fields requested explicitly in the request's search query.
+   * Fields available for query in `non_product_performance_view` table. Performance data on images and online store links leading to your non-product pages. This includes performance metrics (for example, `clicks`) and dimensions according to which performance metrics are segmented (for example, `date`). Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for fields requested explicitly in the request's search query. For more information, see [Performance reports](https://developers.google.com/merchant/api/guides/reports/performance-reports).
    */
   export interface Schema$NonProductPerformanceView {
     /**
@@ -489,7 +489,7 @@ export namespace merchantapi_reports_v1 {
     currencyCode?: string | null;
   }
   /**
-   * Fields available for query in `price_competitiveness_product_view` table. [Price competitiveness](https://support.google.com/merchants/answer/9626903) report. Values are only set for fields requested explicitly in the request's search query.
+   * Fields available for query in `price_competitiveness_product_view` table. [Price competitiveness](https://support.google.com/merchants/answer/9626903) report. Values are only set for fields requested explicitly in the request's search query. For more information, see [Understand the market](https://developers.google.com/merchant/api/guides/reports/understand-the-market).
    */
   export interface Schema$PriceCompetitivenessProductView {
     /**
@@ -562,7 +562,7 @@ export namespace merchantapi_reports_v1 {
     title?: string | null;
   }
   /**
-   * Fields available for query in `price_insights_product_view` table. [Price insights](https://support.google.com/merchants/answer/11916926) report. Values are only set for fields requested explicitly in the request's search query.
+   * Fields available for query in `price_insights_product_view` table. [Price insights](https://support.google.com/merchants/answer/11916926) report. Values are only set for fields requested explicitly in the request's search query. For more information, see [Understand the market](https://developers.google.com/merchant/api/guides/reports/understand-the-market).
    */
   export interface Schema$PriceInsightsProductView {
     /**
@@ -668,7 +668,7 @@ export namespace merchantapi_reports_v1 {
     reportingContext?: string | null;
   }
   /**
-   * Fields available for query in `product_performance_view` table. Product performance data for your account, including performance metrics (for example, `clicks`) and dimensions according to which performance metrics are segmented (for example, `offer_id`). Values of product dimensions, such as `offer_id`, reflect the state of a product at the time of the impression. Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for fields requested explicitly in the request's search query.
+   * Fields available for query in `product_performance_view` table. Product performance data for your account, including performance metrics (for example, `clicks`) and dimensions according to which performance metrics are segmented (for example, `offer_id`). Values of product dimensions, such as `offer_id`, reflect the state of a product at the time of the impression. Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for fields requested explicitly in the request's search query. For more information, see [Performance reports](https://developers.google.com/merchant/api/guides/reports/performance-reports).
    */
   export interface Schema$ProductPerformanceView {
     /**
@@ -676,23 +676,23 @@ export namespace merchantapi_reports_v1 {
      */
     brand?: string | null;
     /**
-     * [Product category (1st level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy. Segment.
+     * [Product category (1st level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in Google's product taxonomy. Segment.
      */
     categoryL1?: string | null;
     /**
-     * [Product category (2nd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy. Segment.
+     * [Product category (2nd level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in Google's product taxonomy. Segment.
      */
     categoryL2?: string | null;
     /**
-     * [Product category (3rd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy. Segment.
+     * [Product category (3rd level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in Google's product taxonomy. Segment.
      */
     categoryL3?: string | null;
     /**
-     * [Product category (4th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy. Segment.
+     * [Product category (4th level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in Google's product taxonomy. Segment.
      */
     categoryL4?: string | null;
     /**
-     * [Product category (5th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy. Segment.
+     * [Product category (5th level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in Google's product taxonomy. Segment.
      */
     categoryL5?: string | null;
     /**
@@ -760,23 +760,23 @@ export namespace merchantapi_reports_v1 {
      */
     offerId?: string | null;
     /**
-     * [Product type (1st level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy. Segment.
+     * [Product type (1st level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in merchant's own product taxonomy. Segment.
      */
     productTypeL1?: string | null;
     /**
-     * [Product type (2nd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy. Segment.
+     * [Product type (2nd level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in merchant's own product taxonomy. Segment.
      */
     productTypeL2?: string | null;
     /**
-     * [Product type (3rd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy. Segment.
+     * [Product type (3rd level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in merchant's own product taxonomy. Segment.
      */
     productTypeL3?: string | null;
     /**
-     * [Product type (4th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy. Segment.
+     * [Product type (4th level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in merchant's own product taxonomy. Segment.
      */
     productTypeL4?: string | null;
     /**
-     * [Product type (5th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy. Segment.
+     * [Product type (5th level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in merchant's own product taxonomy. Segment.
      */
     productTypeL5?: string | null;
     /**
@@ -793,7 +793,7 @@ export namespace merchantapi_reports_v1 {
     week?: Schema$Date;
   }
   /**
-   * The message that the merchant will receive to notify about product status change event
+   * The message that the merchant will receive to notify about product status change event. For more information, see [Product status changes](https://developers.google.com/merchant/api/guides/notifications/product-status-changes).
    */
   export interface Schema$ProductStatusChangeMessage {
     /**
@@ -834,7 +834,7 @@ export namespace merchantapi_reports_v1 {
     resourceType?: string | null;
   }
   /**
-   * Fields available for query in `product_view` table. Products in the current inventory. Products in this table are the same as a [Product resource in Products sub-API](https://developers.google.com/merchant/api/reference/rest/products_v1/accounts.products) but not all product attributes from Products sub-API are available for query in this table. In contrast to Products sub-API, this table allows to filter the returned list of products by product attributes. To retrieve a single product by `id` or list all products, Products sub-API should be used. Values are only set for fields requested explicitly in the request's search query.
+   * Fields available for query in `product_view` table. Products in the current inventory. Products in this table are the same as a [Product resource in Products sub-API](https://developers.google.com/merchant/api/reference/rest/products_v1/accounts.products) but not all product attributes from Products sub-API are available for query in this table. In contrast to Products sub-API, this table allows to filter the returned list of products by product attributes. To retrieve a single product by `id` or list all products, Products sub-API should be used. Values are only set for fields requested explicitly in the request's search query. For more information, see [Evaluate your products](https://developers.google.com/merchant/api/guides/reports/evaluate-products).
    */
   export interface Schema$ProductView {
     /**
@@ -967,7 +967,7 @@ export namespace merchantapi_reports_v1 {
     title?: string | null;
   }
   /**
-   * Result row returned from the search query. Only the message corresponding to the queried table is populated in the response. Within the populated message, only the fields requested explicitly in the query are populated.
+   * Result row returned from the search query. Only the message corresponding to the queried table is populated in the response. Within the populated message, only the fields requested explicitly in the query are populated. For more information, see [Reports overview](https://developers.google.com/merchant/api/guides/reports/overview) and [Use Merchant Center Query Language](https://developers.google.com/merchant/api/guides/reports/query-language).
    */
   export interface Schema$ReportRow {
     /**
@@ -1024,7 +1024,7 @@ export namespace merchantapi_reports_v1 {
      */
     pageToken?: string | null;
     /**
-     * Required. Query that defines a report to be retrieved. For details on how to construct your query, see the [Query Language guide](/merchant/api/guides/reports/query-language). For the full list of available tables and fields, see the Available fields.
+     * Required. Query that defines a report to be retrieved. For details on how to construct your query, see the [Query Language guide](https://developers.google.com/merchant/api/guides/reports/query-language). For the full list of available tables and fields, see the Available fields.
      */
     query?: string | null;
   }
@@ -1079,7 +1079,7 @@ export namespace merchantapi_reports_v1 {
     }
 
     /**
-     * Retrieves a report defined by a search query. The response might contain fewer rows than specified by `page_size`. Rely on `next_page_token` to determine if there are more rows to be requested.
+     * Retrieves a report defined by a search query. The response might contain fewer rows than specified by `page_size`. Rely on `next_page_token` to determine if there are more rows to be requested. For more information, see [Get started](https://developers.google.com/merchant/api/guides/reports/get-started), [Use Merchant Center Query Language](https://developers.google.com/merchant/api/guides/reports/query-language), and [Paginate query results](https://developers.google.com/merchant/api/guides/reports/paging).
      * @example
      * ```js
      * // Before running the sample:

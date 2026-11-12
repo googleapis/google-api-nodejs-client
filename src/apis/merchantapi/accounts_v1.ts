@@ -140,7 +140,7 @@ export namespace merchantapi_accounts_v1 {
     uri?: string | null;
   }
   /**
-   * Describes the [accepted terms of service](https://developers.google.com/merchant/api/guides/accounts/create-and-configure#accept_the_merchant_center_terms_of_service).
+   * Describes the [accepted terms of service](https://developers.google.com/merchant/api/guides/accounts/manage-tos-agreements#accept-tos).
    */
   export interface Schema$Accepted {
     /**
@@ -166,7 +166,7 @@ export namespace merchantapi_accounts_v1 {
     termsOfServiceAgreementState?: Schema$TermsOfServiceAgreementState;
   }
   /**
-   * The `Account` message represents a business's account within Merchant Center. It's the primary entity for managing product data, settings, and interactions with Google's services and external providers. Accounts can operate as standalone entities or be part of a advanced account structure. In an advanced account setup the parent account manages multiple sub-accounts. Establishing an account involves configuring attributes like the account name, time zone, and language preferences. The `Account` message is the parent entity for many other resources, for example, `AccountRelationship`, `Homepage`, `BusinessInfo` and so on.
+   * The `Account` message represents a business's account within Merchant Center. It's the primary entity for managing product data, settings, and interactions with Google's services and external providers. Accounts can operate as standalone entities or be part of a advanced account structure. In an advanced account setup the parent account manages multiple sub-accounts. Establishing an account involves configuring attributes like the account name, time zone, and language preferences. The `Account` message is the parent entity for many other resources, for example, `AccountRelationship`, `Homepage`, `BusinessInfo` and so on. For more information, see [Sign up for Merchant Center](https://support.google.com/merchants/answer/188924), [Manage accounts and settings](https://developers.google.com/merchant/api/guides/accounts/overview), [Create accounts](https://developers.google.com/merchant/api/guides/accounts/create-accounts), [Create test accounts](https://developers.google.com/merchant/api/guides/accounts/test-accounts), and [Filter accounts you can access](https://developers.google.com/merchant/api/guides/accounts/filter).
    */
   export interface Schema$Account {
     /**
@@ -207,7 +207,7 @@ export namespace merchantapi_accounts_v1 {
    */
   export interface Schema$AccountAggregation {}
   /**
-   * Issues with your Merchant Center account that can impact all your products. For more information, see [Account-level issues in Merchant Center](https://support.google.com/merchants/answer/12153802?sjid=17798438912526418908-EU#account).
+   * Issues with your Merchant Center account that can impact all your products. For more information, see [Account-level issues in Merchant Center](https://support.google.com/merchants/answer/12153802#account) and [View account issues](https://developers.google.com/merchant/api/guides/accounts/view-issues).
    */
   export interface Schema$AccountIssue {
     /**
@@ -240,7 +240,7 @@ export namespace merchantapi_accounts_v1 {
    */
   export interface Schema$AccountManagement {}
   /**
-   * The `AccountRelationship` message defines a formal connection between a merchant's account and a service provider's account. This relationship enables the provider to offer specific services to the business, such as product management or campaign management. It specifies the access rights and permissions to the business's data relevant to those services. Establishing an account relationship involves linking the merchant's account with a provider's account. The provider could be another Google account (like Google Ads or Google My Business) or a third-party platform (such as Shopify or WooCommerce).
+   * The `AccountRelationship` message defines a formal connection between a merchant's account and a service provider's account. This relationship enables the provider to offer specific services to the business, such as product management or campaign management. It specifies the access rights and permissions to the business's data relevant to those services. Establishing an account relationship involves linking the merchant's account with a provider's account. The provider could be another Google account (like Google Ads or Google My Business) or a third-party platform (such as Shopify or WooCommerce). For more information, see [Account relationships](https://developers.google.com/merchant/api/guides/accounts/relationships).
    */
   export interface Schema$AccountRelationship {
     /**
@@ -261,11 +261,11 @@ export namespace merchantapi_accounts_v1 {
     providerDisplayName?: string | null;
   }
   /**
-   * The `AccountService` message represents a specific service that a provider account offers to a Merchant Center account. `AccountService` defines the permissions and capabilities granted to the provider, allowing for operations such as product management or campaign management. The lifecycle of an `AccountService` involves a proposal phase, where one party suggests the service, and an approval phase, where the other party accepts or rejects it. This handshake mechanism ensures mutual consent before any access is granted. This mechanism safeguards both parties by ensuring that access rights are granted appropriately and that both the business and provider are aware of the services enabled. In scenarios where a user is an admin of both accounts, the approval can happen automatically. The mutability of a service is also managed through `AccountService`. Some services might be immutable, for example, if they were established through other systems or APIs, and you cannot alter them through this API.
+   * The `AccountService` message represents a specific service that a provider account offers to a Merchant Center account. `AccountService` defines the permissions and capabilities granted to the provider, allowing for operations such as product management or campaign management. The lifecycle of an `AccountService` involves a proposal phase, where one party suggests the service, and an approval phase, where the other party accepts or rejects it. This handshake mechanism ensures mutual consent before any access is granted. This mechanism safeguards both parties by ensuring that access rights are granted appropriately and that both the business and provider are aware of the services enabled. In scenarios where a user is an admin of both accounts, the approval can happen automatically. The mutability of a service is also managed through `AccountService`. Some services might be immutable, for example, if they were established through other systems or APIs, and you cannot alter them through this API. For more information, see [Account relationships](https://developers.google.com/merchant/api/guides/accounts/relationships) and [Account service changes](https://developers.google.com/merchant/api/guides/notifications/account-service-changes).
    */
   export interface Schema$AccountService {
     /**
-     * Service type for account aggregation. This enables the provider, which is an advanced account, to manage multiple sub-accounts (client accounts). Through this service, the advanced account provider can perform administrative and operational tasks across all linked sub-accounts. This is useful for agencies, aggregators, or large retailers that need centralized control over many Merchant Center accounts.
+     * Service type for account aggregation. This enables the provider, which is a multi-client advanced account, to manage multiple sub-accounts (client accounts). Through this service, the service provider can perform administrative and operational tasks across all linked sub-accounts. This is used by store builders (ecommerce platforms), channel partners, marketplaces, multi-brand retailers, and international retailers that need centralized control over sub-accounts in Merchant Center.
      */
     accountAggregation?: Schema$AccountAggregation;
     /**
@@ -393,7 +393,7 @@ export namespace merchantapi_accounts_v1 {
    */
   export interface Schema$ApproveAccountServiceRequest {}
   /**
-   * Collection of information related to the [autofeed](https://support.google.com/merchants/answer/7538732) settings.
+   * Collection of information related to the [autofeed](https://support.google.com/merchants/answer/7538732) settings. For more information, see [Configure Autofeed settings](https://developers.google.com/merchant/api/guides/data-sources/manage-various-data-sources#autofeed-settings).
    */
   export interface Schema$AutofeedSettings {
     /**
@@ -423,7 +423,7 @@ export namespace merchantapi_accounts_v1 {
     effectiveAllowAutomaticImageImprovements?: boolean | null;
   }
   /**
-   * Collection of information related to the [automatic improvements](https://developers.google.com/shopping-content/guides/automatic-improvements) of an account.
+   * Collection of information related to the [automatic improvements](https://support.google.com/merchants/answer/12157888) of an account. For more information, see [Enable automatic improvements](https://developers.google.com/merchant/api/guides/automatic-improvements/overview).
    */
   export interface Schema$AutomaticImprovements {
     /**
@@ -532,7 +532,7 @@ export namespace merchantapi_accounts_v1 {
     businessDays?: string[] | null;
   }
   /**
-   * Collection of information related to the [identity of a business](https://support.google.com/merchants/answer/12564247).
+   * Collection of information related to the [identity of a business](https://support.google.com/merchants/answer/12564247). For more information, see [Manage business identity](https://developers.google.com/merchant/api/guides/accounts/business-identity).
    */
   export interface Schema$BusinessIdentity {
     /**
@@ -565,7 +565,7 @@ export namespace merchantapi_accounts_v1 {
     womenOwned?: Schema$IdentityAttribute;
   }
   /**
-   * The `BusinessInfo` message contains essential information about a business. This message captures key business details such as physical address, customer service contacts, and region-specific identifiers.
+   * The `BusinessInfo` message contains essential information about a business. This message captures key business details such as physical address, customer service contacts, and region-specific identifiers. For more information, see [Add your business information](https://support.google.com/merchants/answer/14286818#add_bus_info) and [Update your business information](https://developers.google.com/merchant/api/guides/accounts/create-accounts#update_your_business_information).
    */
   export interface Schema$BusinessInfo {
     /**
@@ -627,7 +627,7 @@ export namespace merchantapi_accounts_v1 {
     percentageAdjustment?: string | null;
   }
   /**
-   * [CheckoutSettings](https://support.google.com/merchants/answer/13945960) for a specific merchant.
+   * [CheckoutSettings](https://support.google.com/merchants/answer/13945960) for a specific merchant. For more information, see [Add a checkout link for your products](https://support.google.com/merchants/answer/13945960) and [Manage checkout settings](https://developers.google.com/merchant/api/guides/products/checkout-settings).
    */
   export interface Schema$CheckoutSettings {
     /**
@@ -833,7 +833,7 @@ export namespace merchantapi_accounts_v1 {
     warehouseBasedDeliveryTimes?: Schema$WarehouseBasedDeliveryTime[];
   }
   /**
-   * Represents a developer registration owned by a Merchant account.
+   * Represents a developer registration owned by a Merchant account. For more information, see [Register as a developer](https://developers.google.com/merchant/api/guides/quickstart/registration) and [Manage and transition Google Cloud projects](https://developers.google.com/merchant/api/guides/accounts/manage-transition-gcp-projects).
    */
   export interface Schema$DeveloperRegistration {
     /**
@@ -863,7 +863,7 @@ export namespace merchantapi_accounts_v1 {
     value?: string | null;
   }
   /**
-   * The categories of notifications the user opted into / opted out of. The email preferences do not include mandatory announcements as users can't opt out of them.
+   * The categories of notifications the user opted into / opted out of. The email preferences do not include mandatory announcements as users can't opt out of them. For more information, see [Change your Merchant Center email preferences](https://support.google.com/merchants/answer/9370919) and [Manage Merchant Center email preferences](https://developers.google.com/merchant/api/guides/accounts/email-notifications).
    */
   export interface Schema$EmailPreferences {
     /**
@@ -897,7 +897,7 @@ export namespace merchantapi_accounts_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * Collection of information related to a Google Business Profile (GBP) account.
+   * Collection of information related to a Google Business Profile (GBP) account. For more information, see [Link a Google business profile](https://developers.google.com/merchant/api/guides/accounts/link-business-profile).
    */
   export interface Schema$GbpAccount {
     /**
@@ -978,7 +978,7 @@ export namespace merchantapi_accounts_v1 {
     weights?: Schema$Weight[];
   }
   /**
-   * The `Homepage` message represents a business's store homepage within the system. A business's homepage is the primary domain where customers interact with their store. The homepage can be claimed and verified as a proof of ownership and allows the business to unlock features that require a verified website. For more information, see [Understanding online store URL verification](//support.google.com/merchants/answer/176793).
+   * The `Homepage` message represents a business's store homepage within the system. A business's homepage is the primary domain where customers interact with their store. The homepage can be claimed and verified as a proof of ownership and allows the business to unlock features that require a verified website. For more information, see [Understanding online store URL verification](//support.google.com/merchants/answer/176793). For step-by-step instructions, see [Manage homepage settings](https://developers.google.com/merchant/api/guides/accounts/manage-homepage-settings).
    */
   export interface Schema$Homepage {
     /**
@@ -1124,7 +1124,7 @@ export namespace merchantapi_accounts_v1 {
     state?: string | null;
   }
   /**
-   * Collection of information related to a Local Feed Partnership (LFP) provider.
+   * Collection of information related to a Local Feed Partnership (LFP) provider. For more information, see [Manage Local Feeds Partnership (LFP) providers](https://developers.google.com/merchant/api/guides/accounts/manage-lfp-providers) and [Manage local feeds partnership](https://developers.google.com/merchant/api/guides/local-feeds-partnership/overview).
    */
   export interface Schema$LfpProvider {
     /**
@@ -1377,7 +1377,7 @@ export namespace merchantapi_accounts_v1 {
     storeCodeSetWithMovs?: Schema$StoreCodeSetWithMov[];
   }
   /**
-   * Collection of information related to the omnichannel settings of a merchant.
+   * Collection of information related to the omnichannel settings of a merchant. For more information, see [Manage omnichannel settings](https://developers.google.com/merchant/api/guides/accounts/manage-omnichannel-settings).
    */
   export interface Schema$OmnichannelSetting {
     /**
@@ -1431,7 +1431,7 @@ export namespace merchantapi_accounts_v1 {
     uri?: string | null;
   }
   /**
-   * [Online return policy](https://support.google.com/merchants/answer/10220642) object. This is currently used to represent return policies for ads and free listings programs.
+   * [Online return policy](https://support.google.com/merchants/answer/10220642) object. This is currently used to represent return policies for ads and free listings programs. For more information, see [Manage your online return policies](https://developers.google.com/merchant/api/guides/online-return-policies/overview).
    */
   export interface Schema$OnlineReturnPolicy {
     /**
@@ -1652,7 +1652,7 @@ export namespace merchantapi_accounts_v1 {
    */
   export interface Schema$ProductsManagement {}
   /**
-   * The message that the merchant will receive to notify about product status change event
+   * The message that the merchant will receive to notify about product status change event. For more information, see [Product status changes](https://developers.google.com/merchant/api/guides/notifications/product-status-changes).
    */
   export interface Schema$ProductStatusChangeMessage {
     /**
@@ -1693,7 +1693,7 @@ export namespace merchantapi_accounts_v1 {
     resourceType?: string | null;
   }
   /**
-   * Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * [`checkout`](https://developers.google.com/merchant/api/guides/products/checkout-settings) * `free-listings` * [`loyalty`](https://developers.google.com/merchant/api/guides/loyalty/loyalty-programs) * `product-ratings` * `shopping-ads` * [`ucp-integration` (limited access)](https://developers.google.com/merchant/api/reference/rest/accounts_v1alpha/accounts.programs.ucpSettings) * [`youtube-affiliate`](https://support.google.com/merchants/answer/14815513) * `youtube-shopping-checkout`
+   * Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. For more information, see [Manage programs](https://developers.google.com/merchant/api/guides/programs/overview). The following list is the available set of program resource IDs accessible through the API: * [`checkout`](https://developers.google.com/merchant/api/guides/products/checkout-settings) * `free-listings` * [`loyalty`](https://developers.google.com/merchant/api/guides/loyalty/loyalty-programs) * `product-ratings` * `shopping-ads` * [`ucp-integration` (limited access)](https://developers.google.com/merchant/api/reference/rest/accounts_v1alpha/accounts.programs.ucpSettings) * [`youtube-affiliate`](https://support.google.com/merchants/answer/14815513) * `youtube-shopping-checkout`
    */
   export interface Schema$Program {
     /**
@@ -1781,7 +1781,7 @@ export namespace merchantapi_accounts_v1 {
     subtables?: Schema$Table[];
   }
   /**
-   * Represents a geographic region that you can use as a target with both the `RegionalInventory` and `ShippingSettings` services. You can define regions as collections of either postal codes, radius areas or, in some countries, using predefined geotargets. A region must be defined by specifying exactly one of `postal_code_area`, `geotarget_area`, or `radius_area`. For more information, see [Set up regions ](https://support.google.com/merchants/answer/7410946#zippy=%2Ccreate-a-new-region) for more information.
+   * Represents a geographic region that you can use as a target with both the `RegionalInventory` and `ShippingSettings` services. You can define regions as collections of either postal codes, radius areas or, in some countries, using predefined geotargets. A region must be defined by specifying exactly one of `postal_code_area`, `geotarget_area`, or `radius_area`. For more information, see [Set up regions ](https://support.google.com/merchants/answer/7410946#zippy=%2Ccreate-a-new-region), [Create and update regions](https://developers.google.com/merchant/api/guides/accounts/regions), and [Manage region batching](https://developers.google.com/merchant/api/guides/accounts/manage-region-batching).
    */
   export interface Schema$Region {
     /**
@@ -1989,7 +1989,7 @@ export namespace merchantapi_accounts_v1 {
     provider?: string | null;
   }
   /**
-   * The Merchant Center account's [shipping settings](https://support.google.com/merchants/answer/6069284). The `ShippingSettings` resource lets you retrieve and update the shipping settings of your advanced account and all its associated sub-accounts.
+   * The Merchant Center account's [shipping settings](https://support.google.com/merchants/answer/6069284). The `ShippingSettings` resource lets you retrieve and update the shipping settings of your advanced account and all its associated sub-accounts. For more information, see [Manage shipping settings](https://developers.google.com/merchant/api/guides/accounts/manage-shipping-settings).
    */
   export interface Schema$ShippingSettings {
     /**
@@ -2078,7 +2078,7 @@ export namespace merchantapi_accounts_v1 {
     rows?: Schema$Row[];
   }
   /**
-   * The `TermsOfService` message represents a specific version of the terms of service that merchants must accept to access certain features or services. For more information, see [Terms of Service](https://support.google.com/merchants/answer/160173). This message is important for the onboarding process, ensuring that merchants agree to the necessary legal agreements for using the service. Merchants can retrieve the latest terms of service for a given `kind` and `region` through `RetrieveLatestTermsOfService`, and accept them as required through `AcceptTermsOfService`.
+   * The `TermsOfService` message represents a specific version of the terms of service that merchants must accept to access certain features or services. For more information, see [Terms of Service](https://support.google.com/merchants/answer/160173). This message is important for the onboarding process, ensuring that merchants agree to the necessary legal agreements for using the service. Merchants can retrieve the latest terms of service for a given `kind` and `region` through `RetrieveLatestTermsOfService`, and accept them as required through `AcceptTermsOfService`. For step-by-step instructions, see [Manage Terms of Service](https://developers.google.com/merchant/api/guides/accounts/manage-tos-agreements).
    */
   export interface Schema$TermsOfService {
     /**
@@ -2103,7 +2103,7 @@ export namespace merchantapi_accounts_v1 {
     regionCode?: string | null;
   }
   /**
-   * This resource represents the agreement state for a given account and terms of service kind. The state is as follows: * If the business has accepted a terms of service, `accepted` will be populated, otherwise it will be empty * If the business must sign a terms of service, `required` will be populated, otherwise it will be empty. Note that both `required` and `accepted` can be present. In this case the `accepted` terms of services will have an expiration date set in the `valid_until` field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services we expect third-party providers to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as `tos_file_uri`). The actual acceptance of the terms of service is done by calling accept on the `TermsOfService` resource. `valid_until` field.
+   * This resource represents the agreement state for a given account and terms of service kind. The state is as follows: * If the business has accepted a terms of service, `accepted` will be populated, otherwise it will be empty * If the business must sign a terms of service, `required` will be populated, otherwise it will be empty. Note that both `required` and `accepted` can be present. In this case the `accepted` terms of services will have an expiration date set in the `valid_until` field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services we expect third-party providers to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as `tos_file_uri`). The actual acceptance of the terms of service is done by calling accept on the `TermsOfService` resource. `valid_until` field. For more information, see [Manage Terms of Service](https://developers.google.com/merchant/api/guides/accounts/manage-tos-agreements).
    */
   export interface Schema$TermsOfServiceAgreementState {
     /**
@@ -2214,11 +2214,11 @@ export namespace merchantapi_accounts_v1 {
     checkoutUriTemplate?: string | null;
   }
   /**
-   * The `User` resource represents a user associated with a Merchant Center account. It is used to manage user permissions and access rights within the account. For more information, see [Frequently asked questions about people and access levels](//support.google.com/merchants/answer/12160472).
+   * The `User` resource represents a user associated with a Merchant Center account. It is used to manage user permissions and access rights within the account. For more information, see [Frequently asked questions about people and access levels](//support.google.com/merchants/answer/12160472) and [Control access to your account](https://developers.google.com/merchant/api/guides/accounts/control-access).
    */
   export interface Schema$User {
     /**
-     * Required. The [access rights](https://support.google.com/merchants/answer/12160472?sjid=6789834943175119429-EU#accesstypes) the user has.
+     * Required. The [access rights](https://support.google.com/merchants/answer/12160472#accesstypes) the user has.
      */
     accessRights?: string[] | null;
     /**
@@ -2397,7 +2397,7 @@ export namespace merchantapi_accounts_v1 {
     }
 
     /**
-     * Creates a Merchant Center account with additional configuration. Adds the user that makes the request as an admin for the new account.
+     * Creates a Merchant Center account with additional configuration. Adds the user that makes the request as an admin for the new account. For step-by-step instructions, see [Create accounts](https://developers.google.com/merchant/api/guides/accounts/create-accounts).
      * @example
      * ```js
      * // Before running the sample:
@@ -2548,7 +2548,7 @@ export namespace merchantapi_accounts_v1 {
     }
 
     /**
-     * Creates a Merchant Center test account. Test accounts are intended for development and testing purposes, such as validating API integrations or new feature behavior. Key characteristics and limitations of test accounts: - Immutable Type: A test account cannot be converted into a regular (live) Merchant Center account. Likewise, a regular account cannot be converted into a test account. - Non-Serving Products: Any products, offers, or data created within a test account will not be published or made visible to end-users on any Google surfaces. They are strictly for testing environments. - Separate Environment: Test accounts operate in a sandbox-like manner, isolated from live serving and real user traffic.
+     * Creates a Merchant Center test account. Test accounts are intended for development and testing purposes, such as validating API integrations or new feature behavior. Key characteristics and limitations of test accounts: - Immutable Type: A test account cannot be converted into a regular (live) Merchant Center account. Likewise, a regular account cannot be converted into a test account. - Non-Serving Products: Any products, offers, or data created within a test account will not be published or made visible to end-users on any Google surfaces. They are strictly for testing environments. - Separate Environment: Test accounts operate in a sandbox-like manner, isolated from live serving and real user traffic. For more information, see [Create test accounts](https://developers.google.com/merchant/api/guides/accounts/test-accounts).
      * @example
      * ```js
      * // Before running the sample:
@@ -2983,7 +2983,7 @@ export namespace merchantapi_accounts_v1 {
     }
 
     /**
-     * Note: For the `accounts.list` method, quota and limits usage are charged for each user, and not for the Merchant Center ID or the advanced account ID. To list several sub-accounts, you should use the `accounts.listSubaccounts` method, which is more suitable for advanced accounts use case.
+     * Note: For the `accounts.list` method, quota and limits usage are charged for each user, and not for the Merchant Center ID or the advanced account ID. To list several sub-accounts, you should use the `accounts.listSubaccounts` method, which is more suitable for advanced accounts use case. For more information, see [Filter accounts you can access](https://developers.google.com/merchant/api/guides/accounts/filter).
      * @example
      * ```js
      * // Before running the sample:
@@ -4841,7 +4841,7 @@ export namespace merchantapi_accounts_v1 {
     }
 
     /**
-     * Retrieves the merchant account that the calling GCP is registered with.
+     * Retrieves the merchant account that the calling GCP is registered with. For more information, see [Verify your account's connection to Merchant API](https://developers.google.com/merchant/api/guides/accounts/verify-api-access).
      * @example
      * ```js
      * // Before running the sample:
@@ -5131,7 +5131,7 @@ export namespace merchantapi_accounts_v1 {
     }
 
     /**
-     * Registers the GCP used for the API call to the shopping account passed in the request. Will create a user with an "API developer" and add the "developer_email" as a contact with "API notifications" email preference on. Restrictions: * The caller account must be authenticated and must not impersonate another account at registration time. Registering for subaccounts is not supported if the caller account is authenticated with the parent or the managing advanced account. * The caller account must have a [verified website](https://support.google.com/merchants/answer/11586344) in Merchant Center. * [Test accounts](https://developers.google.com/merchant/api/guides/accounts/test-accounts) are not eligible for registration.
+     * Registers the GCP used for the API call to the shopping account passed in the request. Will create a user with an "API developer" and add the "developer_email" as a contact with "API notifications" email preference on. Restrictions: * The caller account must be authenticated and must not impersonate another account at registration time. Registering for subaccounts is not supported if the caller account is authenticated with the parent or the managing advanced account. * The caller account must have a [verified website](https://support.google.com/merchants/answer/11586344) in Merchant Center. * [Test accounts](https://developers.google.com/merchant/api/guides/accounts/test-accounts) are not eligible for registration. For step-by-step instructions, see [Register as a developer](https://developers.google.com/merchant/api/guides/quickstart/registration).
      * @example
      * ```js
      * // Before running the sample:
@@ -5161,7 +5161,7 @@ export namespace merchantapi_accounts_v1 {
      *
      *   // Do the magic
      *   const res = await merchantapi.accounts.developerRegistration.registerGcp({
-     *     // Required. The name of the developer registration to be created for the merchant account that the GCP will be registered with. Format: `accounts/{account\}/developerRegistration` The {account\} used must be the same account where user calling this API method is directly added to. Note: The account used must be a production account (can't be a [test account](https://developers.google.com/merchant/api/guides/accounts/test-accounts) ) and must have a [verified website](https://support.google.com/merchants/answer/11586344) in Merchant Center.
+     *     // Required. The name of the developer registration to be created for the merchant account that the GCP will be registered with. Format: `accounts/{account\}/developerRegistration` The {account\} used must be the same account where user calling this API method is directly added to. Note: The account used must be a production account (can't be a [test account](https://developers.google.com/merchant/api/guides/accounts/test-accounts)) and must have a [verified website](https://support.google.com/merchants/answer/11586344) in Merchant Center.
      *     name: 'accounts/my-account/developerRegistration',
      *
      *     // Request body metadata
@@ -5281,7 +5281,7 @@ export namespace merchantapi_accounts_v1 {
     }
 
     /**
-     * Unregister the calling GCP from the calling shopping account. Note that the GCP will still be able to access the API for at most 1 day from the unregister succussful call.
+     * Unregister the calling GCP from the calling shopping account. Note that the GCP will still be able to access the API for at most 1 day from the unregister successful call. For more information, see [Manage and transition Google Cloud projects](https://developers.google.com/merchant/api/guides/accounts/manage-transition-gcp-projects).
      * @example
      * ```js
      * // Before running the sample:
@@ -5431,7 +5431,7 @@ export namespace merchantapi_accounts_v1 {
   }
   export interface Params$Resource$Accounts$Developerregistration$Registergcp extends StandardParameters {
     /**
-     * Required. The name of the developer registration to be created for the merchant account that the GCP will be registered with. Format: `accounts/{account\}/developerRegistration` The {account\} used must be the same account where user calling this API method is directly added to. Note: The account used must be a production account (can't be a [test account](https://developers.google.com/merchant/api/guides/accounts/test-accounts) ) and must have a [verified website](https://support.google.com/merchants/answer/11586344) in Merchant Center.
+     * Required. The name of the developer registration to be created for the merchant account that the GCP will be registered with. Format: `accounts/{account\}/developerRegistration` The {account\} used must be the same account where user calling this API method is directly added to. Note: The account used must be a production account (can't be a [test account](https://developers.google.com/merchant/api/guides/accounts/test-accounts)) and must have a [verified website](https://support.google.com/merchants/answer/11586344) in Merchant Center.
      */
     name?: string;
 
@@ -10022,7 +10022,7 @@ export namespace merchantapi_accounts_v1 {
     }
 
     /**
-     * Creates one or more regions in your Merchant Center account. Executing this method requires admin access.
+     * Creates one or more regions in your Merchant Center account. Executing this method requires admin access. For more information, see [Manage region batching](https://developers.google.com/merchant/api/guides/accounts/manage-region-batching).
      * @example
      * ```js
      * // Before running the sample:
@@ -10169,7 +10169,7 @@ export namespace merchantapi_accounts_v1 {
     }
 
     /**
-     * Deletes multiple regions by name from your Merchant Center account. Executing this method requires admin access.
+     * Deletes multiple regions by name from your Merchant Center account. Executing this method requires admin access. For more information, see [Manage region batching](https://developers.google.com/merchant/api/guides/accounts/manage-region-batching).
      * @example
      * ```js
      * // Before running the sample:
@@ -10310,7 +10310,7 @@ export namespace merchantapi_accounts_v1 {
     }
 
     /**
-     * Updates one or more regions in your Merchant Center account. Executing this method requires admin access.
+     * Updates one or more regions in your Merchant Center account. Executing this method requires admin access. For more information, see [Manage region batching](https://developers.google.com/merchant/api/guides/accounts/manage-region-batching).
      * @example
      * ```js
      * // Before running the sample:

@@ -110,7 +110,7 @@
         "reports": {
           "methods": {
             "search": {
-              "description": "Retrieves a report defined by a search query. The response might contain fewer rows than specified by `page_size`. Rely on `next_page_token` to determine if there are more rows to be requested.",
+              "description": "Retrieves a report defined by a search query. The response might contain fewer rows than specified by `page_size`. Rely on `next_page_token` to determine if there are more rows to be requested. For more information, see [Get started](https://developers.google.com/merchant/api/guides/reports/get-started), [Use Merchant Center Query Language](https://developers.google.com/merchant/api/guides/reports/query-language), and [Paginate query results](https://developers.google.com/merchant/api/guides/reports/paging).",
               "flatPath": "reports/v1/accounts/{accountsId}/reports:search",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.reports.search",
@@ -142,11 +142,11 @@
       }
     }
   },
-  "revision": "20261026",
+  "revision": "20261110",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "BestSellersBrandView": {
-      "description": "Fields available for query in `best_sellers_brand_view` table. [Best sellers](https://support.google.com/merchants/answer/9488679) report with top brands. Values are only set for fields requested explicitly in the request's search query.",
+      "description": "Fields available for query in `best_sellers_brand_view` table. [Best sellers](https://support.google.com/merchants/answer/9488679) report with top brands. Values are only set for fields requested explicitly in the request's search query. For more information, see [Understand the market](https://developers.google.com/merchant/api/guides/reports/understand-the-market).",
       "id": "BestSellersBrandView",
       "properties": {
         "brand": {
@@ -250,7 +250,7 @@
       "type": "object"
     },
     "BestSellersProductClusterView": {
-      "description": "Fields available for query in `best_sellers_product_cluster_view` table. [Best sellers](https://support.google.com/merchants/answer/9488679) report with top product clusters. A product cluster is a grouping for different offers and variants that represent the same product, for example, Google Pixel 7. Values are only set for fields requested explicitly in the request's search query.",
+      "description": "Fields available for query in `best_sellers_product_cluster_view` table. [Best sellers](https://support.google.com/merchants/answer/9488679) report with top product clusters. A product cluster is a grouping for different offers and variants that represent the same product, for example, Google Pixel 7. Values are only set for fields requested explicitly in the request's search query. For more information, see [Understand the market](https://developers.google.com/merchant/api/guides/reports/understand-the-market).",
       "id": "BestSellersProductClusterView",
       "properties": {
         "brand": {
@@ -417,7 +417,7 @@
       "type": "object"
     },
     "CompetitiveVisibilityBenchmarkView": {
-      "description": "Fields available for query in `competitive_visibility_benchmark_view` table. [Competitive visibility](https://support.google.com/merchants/answer/11366442) report with the category benchmark. Values are only set for fields requested explicitly in the request's search query.",
+      "description": "Fields available for query in `competitive_visibility_benchmark_view` table. [Competitive visibility](https://support.google.com/merchants/answer/11366442) report with the category benchmark. Values are only set for fields requested explicitly in the request's search query. For more information, see [Explore your competitive landscape](https://developers.google.com/merchant/api/guides/reports/explore-competitive-landscape).",
       "id": "CompetitiveVisibilityBenchmarkView",
       "properties": {
         "categoryBenchmarkVisibilityTrend": {
@@ -463,7 +463,7 @@
       "type": "object"
     },
     "CompetitiveVisibilityCompetitorView": {
-      "description": "Fields available for query in `competitive_visibility_competitor_view` table. [Competitive visibility](https://support.google.com/merchants/answer/11366442) report with businesses with similar visibility. Values are only set for fields requested explicitly in the request's search query.",
+      "description": "Fields available for query in `competitive_visibility_competitor_view` table. [Competitive visibility](https://support.google.com/merchants/answer/11366442) report with businesses with similar visibility. Values are only set for fields requested explicitly in the request's search query. For more information, see [Explore your competitive landscape](https://developers.google.com/merchant/api/guides/reports/explore-competitive-landscape).",
       "id": "CompetitiveVisibilityCompetitorView",
       "properties": {
         "adsOrganicRatio": {
@@ -532,7 +532,7 @@
       "type": "object"
     },
     "CompetitiveVisibilityTopMerchantView": {
-      "description": "Fields available for query in `competitive_visibility_top_merchant_view` table. [Competitive visibility](https://support.google.com/merchants/answer/11366442) report with business with highest visibility. Values are only set for fields requested explicitly in the request's search query.",
+      "description": "Fields available for query in `competitive_visibility_top_merchant_view` table. [Competitive visibility](https://support.google.com/merchants/answer/11366442) report with business with highest visibility. Values are only set for fields requested explicitly in the request's search query. For more information, see [Explore your competitive landscape](https://developers.google.com/merchant/api/guides/reports/explore-competitive-landscape).",
       "id": "CompetitiveVisibilityTopMerchantView",
       "properties": {
         "adsOrganicRatio": {
@@ -779,14 +779,14 @@
           "type": "string"
         },
         "code": {
-          "description": "Error code of the issue, equivalent to the `code` of [Product issues](https://developers.google.com/shopping-content/guides/product-issues).",
+          "description": "Error code of the issue, equivalent to the `code` of [Product issues](https://developers.google.com/merchant/api/guides/products/list-products-data-issues).",
           "type": "string"
         }
       },
       "type": "object"
     },
     "NonProductPerformanceView": {
-      "description": "Fields available for query in `non_product_performance_view` table. Performance data on images and online store links leading to your non-product pages. This includes performance metrics (for example, `clicks`) and dimensions according to which performance metrics are segmented (for example, `date`). Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for fields requested explicitly in the request's search query.",
+      "description": "Fields available for query in `non_product_performance_view` table. Performance data on images and online store links leading to your non-product pages. This includes performance metrics (for example, `clicks`) and dimensions according to which performance metrics are segmented (for example, `date`). Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for fields requested explicitly in the request's search query. For more information, see [Performance reports](https://developers.google.com/merchant/api/guides/reports/performance-reports).",
       "id": "NonProductPerformanceView",
       "properties": {
         "clickThroughRate": {
@@ -832,7 +832,7 @@
       "type": "object"
     },
     "PriceCompetitivenessProductView": {
-      "description": "Fields available for query in `price_competitiveness_product_view` table. [Price competitiveness](https://support.google.com/merchants/answer/9626903) report. Values are only set for fields requested explicitly in the request's search query.",
+      "description": "Fields available for query in `price_competitiveness_product_view` table. [Price competitiveness](https://support.google.com/merchants/answer/9626903) report. Values are only set for fields requested explicitly in the request's search query. For more information, see [Understand the market](https://developers.google.com/merchant/api/guides/reports/understand-the-market).",
       "id": "PriceCompetitivenessProductView",
       "properties": {
         "benchmarkPrice": {
@@ -907,7 +907,7 @@
       "type": "object"
     },
     "PriceInsightsProductView": {
-      "description": "Fields available for query in `price_insights_product_view` table. [Price insights](https://support.google.com/merchants/answer/11916926) report. Values are only set for fields requested explicitly in the request's search query.",
+      "description": "Fields available for query in `price_insights_product_view` table. [Price insights](https://support.google.com/merchants/answer/11916926) report. Values are only set for fields requested explicitly in the request's search query. For more information, see [Understand the market](https://developers.google.com/merchant/api/guides/reports/understand-the-market).",
       "id": "PriceInsightsProductView",
       "properties": {
         "brand": {
@@ -1101,7 +1101,7 @@
       "type": "object"
     },
     "ProductPerformanceView": {
-      "description": "Fields available for query in `product_performance_view` table. Product performance data for your account, including performance metrics (for example, `clicks`) and dimensions according to which performance metrics are segmented (for example, `offer_id`). Values of product dimensions, such as `offer_id`, reflect the state of a product at the time of the impression. Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for fields requested explicitly in the request's search query.",
+      "description": "Fields available for query in `product_performance_view` table. Product performance data for your account, including performance metrics (for example, `clicks`) and dimensions according to which performance metrics are segmented (for example, `offer_id`). Values of product dimensions, such as `offer_id`, reflect the state of a product at the time of the impression. Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for fields requested explicitly in the request's search query. For more information, see [Performance reports](https://developers.google.com/merchant/api/guides/reports/performance-reports).",
       "id": "ProductPerformanceView",
       "properties": {
         "brand": {
@@ -1109,23 +1109,23 @@
           "type": "string"
         },
         "categoryL1": {
-          "description": "[Product category (1st level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy. Segment.",
+          "description": "[Product category (1st level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in Google's product taxonomy. Segment.",
           "type": "string"
         },
         "categoryL2": {
-          "description": "[Product category (2nd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy. Segment.",
+          "description": "[Product category (2nd level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in Google's product taxonomy. Segment.",
           "type": "string"
         },
         "categoryL3": {
-          "description": "[Product category (3rd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy. Segment.",
+          "description": "[Product category (3rd level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in Google's product taxonomy. Segment.",
           "type": "string"
         },
         "categoryL4": {
-          "description": "[Product category (4th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy. Segment.",
+          "description": "[Product category (4th level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in Google's product taxonomy. Segment.",
           "type": "string"
         },
         "categoryL5": {
-          "description": "[Product category (5th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy. Segment.",
+          "description": "[Product category (5th level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in Google's product taxonomy. Segment.",
           "type": "string"
         },
         "clickThroughRate": {
@@ -1238,23 +1238,23 @@
           "type": "string"
         },
         "productTypeL1": {
-          "description": "[Product type (1st level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy. Segment.",
+          "description": "[Product type (1st level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in merchant's own product taxonomy. Segment.",
           "type": "string"
         },
         "productTypeL2": {
-          "description": "[Product type (2nd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy. Segment.",
+          "description": "[Product type (2nd level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in merchant's own product taxonomy. Segment.",
           "type": "string"
         },
         "productTypeL3": {
-          "description": "[Product type (3rd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy. Segment.",
+          "description": "[Product type (3rd level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in merchant's own product taxonomy. Segment.",
           "type": "string"
         },
         "productTypeL4": {
-          "description": "[Product type (4th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy. Segment.",
+          "description": "[Product type (4th level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in merchant's own product taxonomy. Segment.",
           "type": "string"
         },
         "productTypeL5": {
-          "description": "[Product type (5th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy. Segment.",
+          "description": "[Product type (5th level)](https://developers.google.com/merchant/api/guides/reports/performance-reports#category_and_product_type) in merchant's own product taxonomy. Segment.",
           "type": "string"
         },
         "storeType": {
@@ -1283,7 +1283,7 @@
       "type": "object"
     },
     "ProductStatusChangeMessage": {
-      "description": "The message that the merchant will receive to notify about product status change event",
+      "description": "The message that the merchant will receive to notify about product status change event. For more information, see [Product status changes](https://developers.google.com/merchant/api/guides/notifications/product-status-changes).",
       "id": "ProductStatusChangeMessage",
       "properties": {
         "account": {
@@ -1349,7 +1349,7 @@
       "type": "object"
     },
     "ProductView": {
-      "description": "Fields available for query in `product_view` table. Products in the current inventory. Products in this table are the same as a [Product resource in Products sub-API](https://developers.google.com/merchant/api/reference/rest/products_v1/accounts.products) but not all product attributes from Products sub-API are available for query in this table. In contrast to Products sub-API, this table allows to filter the returned list of products by product attributes. To retrieve a single product by `id` or list all products, Products sub-API should be used. Values are only set for fields requested explicitly in the request's search query.",
+      "description": "Fields available for query in `product_view` table. Products in the current inventory. Products in this table are the same as a [Product resource in Products sub-API](https://developers.google.com/merchant/api/reference/rest/products_v1/accounts.products) but not all product attributes from Products sub-API are available for query in this table. In contrast to Products sub-API, this table allows to filter the returned list of products by product attributes. To retrieve a single product by `id` or list all products, Products sub-API should be used. Values are only set for fields requested explicitly in the request's search query. For more information, see [Evaluate your products](https://developers.google.com/merchant/api/guides/reports/evaluate-products).",
       "id": "ProductView",
       "properties": {
         "aggregatedReportingContextStatus": {
@@ -1600,7 +1600,7 @@
       "type": "object"
     },
     "ReportRow": {
-      "description": "Result row returned from the search query. Only the message corresponding to the queried table is populated in the response. Within the populated message, only the fields requested explicitly in the query are populated.",
+      "description": "Result row returned from the search query. Only the message corresponding to the queried table is populated in the response. Within the populated message, only the fields requested explicitly in the query are populated. For more information, see [Reports overview](https://developers.google.com/merchant/api/guides/reports/overview) and [Use Merchant Center Query Language](https://developers.google.com/merchant/api/guides/reports/query-language).",
       "id": "ReportRow",
       "properties": {
         "bestSellersBrandView": {
@@ -1660,7 +1660,7 @@
           "type": "string"
         },
         "query": {
-          "description": "Required. Query that defines a report to be retrieved. For details on how to construct your query, see the [Query Language guide](/merchant/api/guides/reports/query-language). For the full list of available tables and fields, see the Available fields.",
+          "description": "Required. Query that defines a report to be retrieved. For details on how to construct your query, see the [Query Language guide](https://developers.google.com/merchant/api/guides/reports/query-language). For the full list of available tables and fields, see the Available fields.",
           "type": "string"
         }
       },

@@ -562,7 +562,7 @@ export namespace merchantapi_products_v1 {
     currencyCode?: string | null;
   }
   /**
-   * The processed product, built from multiple product inputs after applying rules and supplemental data sources. This processed product matches what is shown in your Merchant Center account. Each product is built from exactly one primary data source product input, and multiple supplemental data source inputs. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved. All fields in the processed product and its sub-messages match the name of their corresponding attribute in the [Product data specification](https://support.google.com/merchants/answer/7052112) with some exceptions.
+   * The processed product, built from multiple product inputs after applying rules and supplemental data sources. This processed product matches what is shown in your Merchant Center account. Each product is built from exactly one primary data source product input, and multiple supplemental data source inputs. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved. All fields in the processed product and its sub-messages match the name of their corresponding attribute in the [Product data specification](https://support.google.com/merchants/answer/7052112) with some exceptions. For product ingestion workflows and status checks, see [Manage products](https://developers.google.com/merchant/api/guides/products/overview), [Add and manage products](https://developers.google.com/merchant/api/guides/products/add-manage), and [List your products data and product issues](https://developers.google.com/merchant/api/guides/products/list-products-data-issues).
    */
   export interface Schema$Product {
     /**
@@ -1107,7 +1107,7 @@ export namespace merchantapi_products_v1 {
      */
     sizeSystem?: string | null;
     /**
-     * The cut of the item. It can be used to represent combined size types for apparel items. Maximum two of size types can be provided, see [Size type](https://support.google.com/merchants/answer/6324497).
+     * The cut of the item. It can be used to represent combined size types for apparel items. You can provide up to two `SizeType` values, for example, `["PETITE", "MATERNITY"]` or `["BIG", "TALL"]`. For more information, see [Size type](https://support.google.com/merchants/answer/6324497).
      */
     sizeTypes?: string[] | null;
     /**
@@ -1297,7 +1297,7 @@ export namespace merchantapi_products_v1 {
     type?: string | null;
   }
   /**
-   * This resource represents input data you submit for a product, not the processed product that you see in Merchant Center, in Shopping ads, or across Google surfaces. Product inputs, rules and supplemental data source data are combined to create the processed Product. For more information, see [Manage products](/merchant/api/guides/products/overview). Required product input attributes to pass data validation checks are primarily defined in the [Products Data Specification](https://support.google.com/merchants/answer/188494). The following attributes are required: feedLabel, contentLanguage and offerId. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. All fields in the product input and its sub-messages match the English name of their corresponding attribute in the [Products Data Specification](https://support.google.com/merchants/answer/188494) with [some exceptions](https://support.google.com/merchants/answer/7052112). The following reference documentation lists the field names in the **camelCase** casing style while the Products Data Specification lists the names in the **snake_case** casing style.
+   * This resource represents input data you submit for a product, not the processed product that you see in Merchant Center, in Shopping ads, or across Google surfaces. Product inputs, rules and supplemental data source data are combined to create the processed Product. For more information, see [Manage products](https://developers.google.com/merchant/api/guides/products/overview), [Add and manage products](https://developers.google.com/merchant/api/guides/products/add-manage), [Make frequent updates to your products](https://developers.google.com/merchant/api/guides/products/frequent-updates), and [Manage API data sources](https://developers.google.com/merchant/api/guides/data-sources/api-sources#create-primary-data-source). Required product input attributes to pass data validation checks are primarily defined in the [Products Data Specification](https://support.google.com/merchants/answer/188494). The following attributes are required: feedLabel, contentLanguage and offerId. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. All fields in the product input and its sub-messages match the English name of their corresponding attribute in the [Products Data Specification](https://support.google.com/merchants/answer/188494) with [some exceptions](https://support.google.com/merchants/answer/7052112). The following reference documentation lists the field names in the **camelCase** casing style while the Products Data Specification lists the names in the **snake_case** casing style.
    */
   export interface Schema$ProductInput {
     /**
@@ -1379,7 +1379,7 @@ export namespace merchantapi_products_v1 {
     totalAmount?: Schema$Price;
   }
   /**
-   * The minimum order value in the cart before the checkout is permitted.
+   * [Minimum order value](https://support.google.com/merchants/answer/16989009) in the cart before the checkout is permitted.
    */
   export interface Schema$ProductMinimumOrderValue {
     /**
@@ -1425,7 +1425,7 @@ export namespace merchantapi_products_v1 {
     lastUpdateDate?: string | null;
   }
   /**
-   * The message that the merchant will receive to notify about product status change event
+   * The message that the merchant will receive to notify about product status change event. For more information, see [Product status changes](https://developers.google.com/merchant/api/guides/notifications/product-status-changes).
    */
   export interface Schema$ProductStatusChangeMessage {
     /**
@@ -1945,7 +1945,7 @@ export namespace merchantapi_products_v1 {
     }
 
     /**
-     * [Uploads a product input to your Merchant Center account](/merchant/api/guides/products/add-manage#add_a_product). You must have a products [data source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source) to be able to insert a product. The unique identifier of the data source is passed as a query parameter in the request URL. If a product input with the same contentLanguage, offerId, and dataSource already exists, then the product input inserted by this method replaces that entry. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.
+     * [Uploads a product input to your Merchant Center account](https://developers.google.com/merchant/api/guides/products/add-manage#add_a_product). You must have a products [data source](https://developers.google.com/merchant/api/guides/data-sources/api-sources#create-primary-data-source) to be able to insert a product. The unique identifier of the data source is passed as a query parameter in the request URL. If a product input with the same contentLanguage, offerId, and dataSource already exists, then the product input inserted by this method replaces that entry. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.
      * @example
      * ```js
      * // Before running the sample:
@@ -1975,7 +1975,7 @@ export namespace merchantapi_products_v1 {
      *
      *   // Do the magic
      *   const res = await merchantapi.accounts.productInputs.insert({
-     *     // Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. For more information, see [Create a primary data source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source). Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
+     *     // Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. For more information, see [Create a primary data source](https://developers.google.com/merchant/api/guides/data-sources/api-sources#create-primary-data-source). Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
      *     dataSource: 'placeholder-value',
      *     // Required. The account where this product will be inserted. Format: `accounts/{account\}`
      *     parent: 'accounts/my-account',
@@ -2111,7 +2111,7 @@ export namespace merchantapi_products_v1 {
     }
 
     /**
-     * Updates the existing product input in your Merchant Center account. The name of the product input to update is taken from the `name` field within the `ProductInput` resource. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.
+     * Updates the existing product input in your Merchant Center account. The name of the product input to update is taken from the `name` field within the `ProductInput` resource. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. For more information, see [Add and manage products](https://developers.google.com/merchant/api/guides/products/add-manage) and [Make frequent updates to your products](https://developers.google.com/merchant/api/guides/products/frequent-updates).
      * @example
      * ```js
      * // Before running the sample:
@@ -2292,7 +2292,7 @@ export namespace merchantapi_products_v1 {
   }
   export interface Params$Resource$Accounts$Productinputs$Insert extends StandardParameters {
     /**
-     * Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. For more information, see [Create a primary data source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source). Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
+     * Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. For more information, see [Create a primary data source](https://developers.google.com/merchant/api/guides/data-sources/api-sources#create-primary-data-source). Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
      */
     dataSource?: string;
     /**
@@ -2480,7 +2480,7 @@ export namespace merchantapi_products_v1 {
     }
 
     /**
-     * Lists the processed products in your Merchant Center account. The response might contain fewer items than specified by `pageSize`. Rely on `pageToken` to determine if there are more items to be requested. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved.
+     * Lists the processed products in your Merchant Center account. The response might contain fewer items than specified by `pageSize`. Rely on `pageToken` to determine if there are more items to be requested. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved. For more information, see [List your products data and product issues](https://developers.google.com/merchant/api/guides/products/list-products-data-issues).
      * @example
      * ```js
      * // Before running the sample:

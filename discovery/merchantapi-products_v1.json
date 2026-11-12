@@ -140,7 +140,7 @@
               ]
             },
             "insert": {
-              "description": "[Uploads a product input to your Merchant Center account](/merchant/api/guides/products/add-manage#add_a_product). You must have a products [data source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source) to be able to insert a product. The unique identifier of the data source is passed as a query parameter in the request URL. If a product input with the same contentLanguage, offerId, and dataSource already exists, then the product input inserted by this method replaces that entry. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.",
+              "description": "[Uploads a product input to your Merchant Center account](https://developers.google.com/merchant/api/guides/products/add-manage#add_a_product). You must have a products [data source](https://developers.google.com/merchant/api/guides/data-sources/api-sources#create-primary-data-source) to be able to insert a product. The unique identifier of the data source is passed as a query parameter in the request URL. If a product input with the same contentLanguage, offerId, and dataSource already exists, then the product input inserted by this method replaces that entry. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.",
               "flatPath": "products/v1/accounts/{accountsId}/productInputs:insert",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.productInputs.insert",
@@ -149,7 +149,7 @@
               ],
               "parameters": {
                 "dataSource": {
-                  "description": "Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. For more information, see [Create a primary data source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source). Only API data sources are supported. Format: `accounts/{account}/dataSources/{datasource}`. For example, `accounts/123456/dataSources/104628`.",
+                  "description": "Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. For more information, see [Create a primary data source](https://developers.google.com/merchant/api/guides/data-sources/api-sources#create-primary-data-source). Only API data sources are supported. Format: `accounts/{account}/dataSources/{datasource}`. For example, `accounts/123456/dataSources/104628`.",
                   "location": "query",
                   "type": "string"
                 },
@@ -173,7 +173,7 @@
               ]
             },
             "patch": {
-              "description": "Updates the existing product input in your Merchant Center account. The name of the product input to update is taken from the `name` field within the `ProductInput` resource. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.",
+              "description": "Updates the existing product input in your Merchant Center account. The name of the product input to update is taken from the `name` field within the `ProductInput` resource. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. For more information, see [Add and manage products](https://developers.google.com/merchant/api/guides/products/add-manage) and [Make frequent updates to your products](https://developers.google.com/merchant/api/guides/products/frequent-updates).",
               "flatPath": "products/v1/accounts/{accountsId}/productInputs/{productInputsId}",
               "httpMethod": "PATCH",
               "id": "merchantapi.accounts.productInputs.patch",
@@ -241,7 +241,7 @@
               ]
             },
             "list": {
-              "description": "Lists the processed products in your Merchant Center account. The response might contain fewer items than specified by `pageSize`. Rely on `pageToken` to determine if there are more items to be requested. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved.",
+              "description": "Lists the processed products in your Merchant Center account. The response might contain fewer items than specified by `pageSize`. Rely on `pageToken` to determine if there are more items to be requested. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved. For more information, see [List your products data and product issues](https://developers.google.com/merchant/api/guides/products/list-products-data-issues).",
               "flatPath": "products/v1/accounts/{accountsId}/products",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.products.list",
@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20261012",
+  "revision": "20261110",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AutomatedDiscounts": {
@@ -1244,7 +1244,7 @@
       "type": "object"
     },
     "Product": {
-      "description": "The processed product, built from multiple product inputs after applying rules and supplemental data sources. This processed product matches what is shown in your Merchant Center account. Each product is built from exactly one primary data source product input, and multiple supplemental data source inputs. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved. All fields in the processed product and its sub-messages match the name of their corresponding attribute in the [Product data specification](https://support.google.com/merchants/answer/7052112) with some exceptions.",
+      "description": "The processed product, built from multiple product inputs after applying rules and supplemental data sources. This processed product matches what is shown in your Merchant Center account. Each product is built from exactly one primary data source product input, and multiple supplemental data source inputs. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved. All fields in the processed product and its sub-messages match the name of their corresponding attribute in the [Product data specification](https://support.google.com/merchants/answer/7052112) with some exceptions. For product ingestion workflows and status checks, see [Manage products](https://developers.google.com/merchant/api/guides/products/overview), [Add and manage products](https://developers.google.com/merchant/api/guides/products/add-manage), and [List your products data and product issues](https://developers.google.com/merchant/api/guides/products/list-products-data-issues).",
       "id": "Product",
       "properties": {
         "archived": {
@@ -2397,7 +2397,7 @@
           "type": "string"
         },
         "sizeTypes": {
-          "description": "The cut of the item. It can be used to represent combined size types for apparel items. Maximum two of size types can be provided, see [Size type](https://support.google.com/merchants/answer/6324497).",
+          "description": "The cut of the item. It can be used to represent combined size types for apparel items. You can provide up to two `SizeType` values, for example, `[\"PETITE\", \"MATERNITY\"]` or `[\"BIG\", \"TALL\"]`. For more information, see [Size type](https://support.google.com/merchants/answer/6324497).",
           "items": {
             "enum": [
               "SIZE_TYPE_UNSPECIFIED",
@@ -2801,7 +2801,7 @@
       "type": "object"
     },
     "ProductInput": {
-      "description": "This resource represents input data you submit for a product, not the processed product that you see in Merchant Center, in Shopping ads, or across Google surfaces. Product inputs, rules and supplemental data source data are combined to create the processed Product. For more information, see [Manage products](/merchant/api/guides/products/overview). Required product input attributes to pass data validation checks are primarily defined in the [Products Data Specification](https://support.google.com/merchants/answer/188494). The following attributes are required: feedLabel, contentLanguage and offerId. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. All fields in the product input and its sub-messages match the English name of their corresponding attribute in the [Products Data Specification](https://support.google.com/merchants/answer/188494) with [some exceptions](https://support.google.com/merchants/answer/7052112). The following reference documentation lists the field names in the **camelCase** casing style while the Products Data Specification lists the names in the **snake_case** casing style.",
+      "description": "This resource represents input data you submit for a product, not the processed product that you see in Merchant Center, in Shopping ads, or across Google surfaces. Product inputs, rules and supplemental data source data are combined to create the processed Product. For more information, see [Manage products](https://developers.google.com/merchant/api/guides/products/overview), [Add and manage products](https://developers.google.com/merchant/api/guides/products/add-manage), [Make frequent updates to your products](https://developers.google.com/merchant/api/guides/products/frequent-updates), and [Manage API data sources](https://developers.google.com/merchant/api/guides/data-sources/api-sources#create-primary-data-source). Required product input attributes to pass data validation checks are primarily defined in the [Products Data Specification](https://support.google.com/merchants/answer/188494). The following attributes are required: feedLabel, contentLanguage and offerId. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. All fields in the product input and its sub-messages match the English name of their corresponding attribute in the [Products Data Specification](https://support.google.com/merchants/answer/188494) with [some exceptions](https://support.google.com/merchants/answer/7052112). The following reference documentation lists the field names in the **camelCase** casing style while the Products Data Specification lists the names in the **snake_case** casing style.",
       "id": "ProductInput",
       "properties": {
         "base64EncodedName": {
@@ -2906,7 +2906,7 @@
       "type": "object"
     },
     "ProductMinimumOrderValue": {
-      "description": "The minimum order value in the cart before the checkout is permitted.",
+      "description": "[Minimum order value](https://support.google.com/merchants/answer/16989009) in the cart before the checkout is permitted.",
       "id": "ProductMinimumOrderValue",
       "properties": {
         "country": {
@@ -2930,10 +2930,10 @@
             "ONLINE_LOCAL"
           ],
           "enumDescriptions": [
-            "Surface is unspecified.",
-            "Surface value to indicate online purchases.",
-            "Surface value to indicate local purchases.",
-            "Surface value to indicate online and local purchases."
+            "Indicates that the surface is unspecified. Defaults to `ONLINE_LOCAL`.",
+            "Applies exclusively to delivery/shipping orders (all delivery routes).",
+            "Applies exclusively to local in-store pickup (buy online, pickup in store). See [in-store pickup](https://support.google.com/merchants/answer/14634021).",
+            "Applies to both delivery/shipping and local in-store pickup."
           ],
           "type": "string"
         }
@@ -2977,7 +2977,7 @@
       "type": "object"
     },
     "ProductStatusChangeMessage": {
-      "description": "The message that the merchant will receive to notify about product status change event",
+      "description": "The message that the merchant will receive to notify about product status change event. For more information, see [Product status changes](https://developers.google.com/merchant/api/guides/notifications/product-status-changes).",
       "id": "ProductStatusChangeMessage",
       "properties": {
         "account": {
