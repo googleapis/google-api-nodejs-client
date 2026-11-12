@@ -754,7 +754,7 @@ export namespace networkservices_v1 {
    */
   export interface Schema$ExtensionChain {
     /**
-     * Required. A set of extensions to execute for the matching request. At least one extension is required. Up to 3 extensions can be defined for each extension chain for `LbTrafficExtension` resource. `LbRouteExtension`, `LbEdgeExtension`, and `LbTcpExtension` chains are limited to 1 extension per extension chain.
+     * Required. A set of extensions to execute for the matching request. At least one extension is required. Up to 3 extensions can be defined for each extension chain for `LbTrafficExtension` and `CdnEdgeExtension` resources. `LbRouteExtension`, `LbEdgeExtension`, and `LbTcpExtension` chains are limited to 1 extension per extension chain.
      */
     extensions?: Schema$ExtensionChainExtension[];
     /**
@@ -807,7 +807,7 @@ export namespace networkservices_v1 {
      */
     responseBodySendMode?: string | null;
     /**
-     * Required. The reference to the service that runs the extension. To configure a callout extension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/backendServices/{backendService\}` or `https://www.googleapis.com/compute/v1/projects/{project\}/global/backendServices/{backendService\}`. To configure a plugin extension, `service` must be a reference to a [`WasmPlugin` resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins) in the format: `projects/{project\}/locations/{location\}/wasmPlugins/{plugin\}` or `//networkservices.googleapis.com/projects/{project\}/locations/{location\}/wasmPlugins/{wasmPlugin\}`. Plugin extensions are currently supported for the `LbTrafficExtension`, the `LbRouteExtension`, and the `LbEdgeExtension` resources.
+     * Required. The reference to the service that runs the extension. To configure a callout extension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/backendServices/{backendService\}` or `https://www.googleapis.com/compute/v1/projects/{project\}/global/backendServices/{backendService\}`. To configure a plugin extension, `service` must be a reference to a [`WasmPlugin` resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins) in the format: `projects/{project\}/locations/{location\}/wasmPlugins/{plugin\}` or `//networkservices.googleapis.com/projects/{project\}/locations/{location\}/wasmPlugins/{wasmPlugin\}`. Plugin extensions are currently supported for the `LbTrafficExtension`, the `LbRouteExtension`, the `LbEdgeExtension`, and the `CdnEdgeExtension` resources.
      */
     service?: string | null;
     /**
@@ -2514,7 +2514,7 @@ export namespace networkservices_v1 {
     updateTime?: string | null;
   }
   /**
-   * ServiceLbPolicy holds global load balancing and traffic distribution configuration that can be applied to a BackendService.
+   * ServiceLbPolicy holds load balancing and traffic distribution configuration that can be applied to a global or regional BackendService.
    */
   export interface Schema$ServiceLbPolicy {
     /**
@@ -2555,7 +2555,7 @@ export namespace networkservices_v1 {
     updateTime?: string | null;
   }
   /**
-   * Option to specify if an unhealthy IG/NEG should be considered for global load balancing and traffic routing.
+   * Option to specify if an unhealthy IG/NEG should be considered for load balancing and traffic routing.
    */
   export interface Schema$ServiceLbPolicyAutoCapacityDrain {
     /**

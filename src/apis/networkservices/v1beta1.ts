@@ -537,6 +537,227 @@ export namespace networkservices_v1beta1 {
     updateTime?: string | null;
   }
   /**
+   * ExpressLink provides automated, zero-friction service-to-service secure connectivity across network boundaries without manual infrastructure configuration toil.
+   */
+  export interface Schema$ExpressLink {
+    /**
+     * Output only. Cloud Run security information if the ExpressLink destination is a Cloud Run service.
+     */
+    cloudRunSecurityInfo?: Schema$ExpressLinkCloudRunSecurityInfo;
+    /**
+     * Output only. Cloud Run source observability details.
+     */
+    cloudRunSourceInfo?: Schema$ExpressLinkCloudRunSourceInfo;
+    /**
+     * Output only. The connection status and negotiated parameters.
+     */
+    connectionStatus?: Schema$ExpressLinkConnectionStatus[];
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A free-text description of the resource. Max length 1024 characters.
+     */
+    description?: string | null;
+    /**
+     * Optional. The destination service(s) for this binding.
+     */
+    destination?: Schema$ExpressLinkDestination;
+    /**
+     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string | null;
+    /**
+     * Output only. Forwarding Rule information if the ExpressLink destination is a Forwarding Rule.
+     */
+    forwardingRuleInfo?: Schema$ExpressLinkForwardingRuleInfo;
+    /**
+     * Optional. Set of label tags associated with the ExpressLink resource.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. A list of matches define conditions used to match requests to destination services. Each match is independent with the OR semantic, i.e. we consider it matched if ANY one of the matches is satisfied. If an ExpressLink has only one Cloud Run service, Match is optional. If not specified, only the default hostname `-..run.app` can be used. If an ExpressLink has multiple Cloud Run services, at least one Match with valid hostname is required.
+     */
+    matches?: Schema$ExpressLinkMatch[];
+    /**
+     * Identifier. Name of the ExpressLink resource. It matches pattern `projects/x/locations/x/expressLinks/`.
+     */
+    name?: string | null;
+    /**
+     * Output only. Private Service Connect (PSC) endpoint information if the ExpressLink destination is a PSC service.
+     */
+    pscEndpointInfo?: Schema$ExpressLinkPscEndpointInfo;
+    /**
+     * Optional. The source service(s) for this binding.
+     */
+    source?: Schema$ExpressLinkSource;
+    /**
+     * Output only. The timestamp when the resource was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * AuthenticationMethod specifies identity type and credential type pair.
+   */
+  export interface Schema$ExpressLinkAuthenticationMethod {
+    /**
+     * Output only. Credential type supported or used.
+     */
+    credentialType?: string | null;
+    /**
+     * Output only. Identity type supported or used.
+     */
+    identityType?: string | null;
+  }
+  /**
+   * CloudRunSecurityInfo provides security details for Cloud Run to Cloud Run ExpressLinks.
+   */
+  export interface Schema$ExpressLinkCloudRunSecurityInfo {
+    /**
+     * Output only. Identifies the level of mTLS transport security in use.
+     */
+    mtlsTier?: string | null;
+    /**
+     * Output only. The inbound server authentication methods required by the destination Cloud Run service.
+     */
+    serverAuthenticationMethods?: Schema$ExpressLinkAuthenticationMethod[];
+  }
+  /**
+   * CloudRunSourceInfo provides observability details for Cloud Run source services.
+   */
+  export interface Schema$ExpressLinkCloudRunSourceInfo {
+    /**
+     * Output only. Observability details for Cloud Run source workloads.
+     */
+    workloads?: Schema$ExpressLinkCloudRunSourceInfoWorkloadInfo[];
+  }
+  /**
+   * WorkloadInfo provides observability details for a single Cloud Run source workload.
+   */
+  export interface Schema$ExpressLinkCloudRunSourceInfoWorkloadInfo {
+    /**
+     * Output only. The outbound authentication methods the workload is capable of.
+     */
+    clientAuthenticationMethods?: Schema$ExpressLinkAuthenticationMethod[];
+    /**
+     * Output only. Consumer VPC network resource name.
+     */
+    vpcNetwork?: string | null;
+    /**
+     * Output only. The URI of the source workload (e.g. Cloud Run revision).
+     */
+    workloadUri?: string | null;
+  }
+  /**
+   * ConnectionStatus details the resolved state, error status, and negotiated configuration of the ExpressLink resource.
+   */
+  export interface Schema$ExpressLinkConnectionStatus {
+    /**
+     * Output only. The negotiated credential type.
+     */
+    credentialType?: string | null;
+    /**
+     * Output only. Code representing the type of error encountered.
+     */
+    error?: string | null;
+    /**
+     * Output only. Detailed error message explaining the binding failure.
+     */
+    errorMessage?: string | null;
+    /**
+     * Output only. The list of hostnames that will route to this destination.
+     */
+    hostnames?: Schema$ExpressLinkConnectionStatusHostnameInfo[];
+    /**
+     * Output only. The route type of the connection (e.g. HTTP).
+     */
+    routeType?: string | null;
+    /**
+     * Output only. The URI of the source workload this status applies to.
+     */
+    workloadUri?: string | null;
+  }
+  /**
+   * HostnameInfo provides details about a hostname that routes to this destination.
+   */
+  export interface Schema$ExpressLinkConnectionStatusHostnameInfo {
+    /**
+     * Output only. The hostname string.
+     */
+    hostname?: string | null;
+  }
+  /**
+   * The destination of the traffic. This defines the service that the source wants to connect to.
+   */
+  export interface Schema$ExpressLinkDestination {
+    /**
+     * Optional. The service URIs to which the ExpressLink resource is bound. Can be one of the following (all the service URIs should have the same type): `//compute.googleapis.com/projects/x/regions/x/serviceAttachments/`; `//compute.googleapis.com/projects/x/regions/x/forwardingRules/`; `//run.googleapis.com/projects/x/locations/x/services/`.
+     */
+    services?: string[] | null;
+  }
+  /**
+   * ForwardingRuleInfo provides operational details when the ExpressLink destination is a Forwarding Rule.
+   */
+  export interface Schema$ExpressLinkForwardingRuleInfo {
+    /**
+     * Output only. The IP address of the forwarding rule.
+     */
+    ipAddress?: string | null;
+    /**
+     * Output only. The port or port range of the forwarding rule.
+     */
+    port?: string | null;
+  }
+  /**
+   * Match defines the predicate used to match requests to destination services.
+   */
+  export interface Schema$ExpressLinkMatch {
+    /**
+     * Optional. Specifies the hostname to match against the HTTP request host header. Hostname is the fully qualified domain name of a network host, as defined by RFC1123 with the exception that: - IPs are not allowed. - Wildcard labels (`*.`) are not allowed. Hostname must be "precise" which is a domain name without the terminating dot of a network host (e.g. `foo.example.com`). Note that as per RFC1035 and RFC1123, a label must consist of lower case alphanumeric characters or '-', and must start and end with an alphanumeric character. No other punctuation is allowed.
+     */
+    hostname?: string | null;
+  }
+  /**
+   * Private Service Connect (PSC) endpoint information populated in the Get API responses if the ExpressLink resource is bound to a PSC service.
+   */
+  export interface Schema$ExpressLinkPscEndpointInfo {
+    /**
+     * Output only. A list of PSC endpoints mapped to the PSC producer service.
+     */
+    pscEndpoints?: Schema$ExpressLinkPscEndpointInfoPscEndpoint[];
+  }
+  /**
+   * Private Service Connect (PSC) endpoint details.
+   */
+  export interface Schema$ExpressLinkPscEndpointInfoPscEndpoint {
+    /**
+     * Output only. Whether the PSC endpoint is accessible from all regions.
+     */
+    allowGlobalAccess?: boolean | null;
+    /**
+     * Output only. The ForwardingRule resource name of the PSC endpoint. Should match the pattern: `projects/x/regions/x/forwardingRules/`.
+     */
+    forwardingRule?: string | null;
+    /**
+     * Output only. The IP address of the PSC endpoint.
+     */
+    pscEndpointAddress?: string | null;
+    /**
+     * Output only. The resource name of the consumer VPC network. Should match the pattern: `projects/x/global/networks/`.
+     */
+    vpcNetwork?: string | null;
+  }
+  /**
+   * The source of the traffic. This defines where the connection originates from.
+   */
+  export interface Schema$ExpressLinkSource {
+    /**
+     * Optional. A list of resources attached to the ExpressLink. The resources can be Cloud Run services of the format: `//run.googleapis.com/projects/x/locations/x/services/`. The location of the resources must match the location of the ExpressLink (unless the ExpressLink is global).
+     */
+    services?: string[] | null;
+  }
+  /**
    * `ExtensionBinding` is a resource representing the attachment of an extension to a service.
    */
   export interface Schema$ExtensionBinding {
@@ -710,7 +931,7 @@ export namespace networkservices_v1beta1 {
    */
   export interface Schema$ExtensionChain {
     /**
-     * Required. A set of extensions to execute for the matching request. At least one extension is required. Up to 3 extensions can be defined for each extension chain for `LbTrafficExtension` resource. `LbRouteExtension`, `LbEdgeExtension`, and `LbTcpExtension` chains are limited to 1 extension per extension chain.
+     * Required. A set of extensions to execute for the matching request. At least one extension is required. Up to 3 extensions can be defined for each extension chain for `LbTrafficExtension` and `CdnEdgeExtension` resources. `LbRouteExtension`, `LbEdgeExtension`, and `LbTcpExtension` chains are limited to 1 extension per extension chain.
      */
     extensions?: Schema$ExtensionChainExtension[];
     /**
@@ -767,7 +988,7 @@ export namespace networkservices_v1beta1 {
      */
     responseBodySendMode?: string | null;
     /**
-     * Required. The reference to the service that runs the extension. To configure a callout extension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/backendServices/{backendService\}` or `https://www.googleapis.com/compute/v1/projects/{project\}/global/backendServices/{backendService\}`. To configure a plugin extension, `service` must be a reference to a [`WasmPlugin` resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins) in the format: `projects/{project\}/locations/{location\}/wasmPlugins/{plugin\}` or `//networkservices.googleapis.com/projects/{project\}/locations/{location\}/wasmPlugins/{wasmPlugin\}`. Plugin extensions are currently supported for the `LbTrafficExtension`, the `LbRouteExtension`, and the `LbEdgeExtension` resources.
+     * Required. The reference to the service that runs the extension. To configure a callout extension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/backendServices/{backendService\}` or `https://www.googleapis.com/compute/v1/projects/{project\}/global/backendServices/{backendService\}`. To configure a plugin extension, `service` must be a reference to a [`WasmPlugin` resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins) in the format: `projects/{project\}/locations/{location\}/wasmPlugins/{plugin\}` or `//networkservices.googleapis.com/projects/{project\}/locations/{location\}/wasmPlugins/{wasmPlugin\}`. Plugin extensions are currently supported for the `LbTrafficExtension`, the `LbRouteExtension`, the `LbEdgeExtension`, and the `CdnEdgeExtension` resources.
      */
     service?: string | null;
     /**
@@ -1783,6 +2004,23 @@ export namespace networkservices_v1beta1 {
     unreachable?: string[] | null;
   }
   /**
+   * Response returned by the ListExpressLinks method.
+   */
+  export interface Schema$ListExpressLinksResponse {
+    /**
+     * List of ExpressLink resources.
+     */
+    expressLinks?: Schema$ExpressLink[];
+    /**
+     * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unordered list. Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response returned by the `ListExtensionBindings` method.
    */
   export interface Schema$ListExtensionBindingsResponse {
@@ -2422,7 +2660,7 @@ export namespace networkservices_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * ServiceLbPolicy holds global load balancing and traffic distribution configuration that can be applied to a BackendService.
+   * ServiceLbPolicy holds load balancing and traffic distribution configuration that can be applied to a global or regional BackendService.
    */
   export interface Schema$ServiceLbPolicy {
     /**
@@ -2463,7 +2701,7 @@ export namespace networkservices_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * Option to specify if an unhealthy IG/NEG should be considered for global load balancing and traffic routing.
+   * Option to specify if an unhealthy IG/NEG should be considered for load balancing and traffic routing.
    */
   export interface Schema$ServiceLbPolicyAutoCapacityDrain {
     /**
@@ -3004,6 +3242,7 @@ export namespace networkservices_v1beta1 {
     authzExtensions: Resource$Projects$Locations$Authzextensions;
     cdnEdgeExtensions: Resource$Projects$Locations$Cdnedgeextensions;
     endpointPolicies: Resource$Projects$Locations$Endpointpolicies;
+    expressLinks: Resource$Projects$Locations$Expresslinks;
     extensionBindings: Resource$Projects$Locations$Extensionbindings;
     gateways: Resource$Projects$Locations$Gateways;
     grpcRoutes: Resource$Projects$Locations$Grpcroutes;
@@ -3036,6 +3275,9 @@ export namespace networkservices_v1beta1 {
       this.cdnEdgeExtensions =
         new Resource$Projects$Locations$Cdnedgeextensions(this.context);
       this.endpointPolicies = new Resource$Projects$Locations$Endpointpolicies(
+        this.context
+      );
+      this.expressLinks = new Resource$Projects$Locations$Expresslinks(
         this.context
       );
       this.extensionBindings =
@@ -7594,6 +7836,844 @@ export namespace networkservices_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$EndpointPolicy;
+  }
+
+  export class Resource$Projects$Locations$Expresslinks {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new ExpressLink in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.expressLinks.create({
+     *     // Required. Short name of the ExpressLink resource to be created.
+     *     expressLinkId: 'placeholder-value',
+     *     // Required. The parent resource of the ExpressLink. Must be in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cloudRunSecurityInfo": {},
+     *       //   "cloudRunSourceInfo": {},
+     *       //   "connectionStatus": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": {},
+     *       //   "etag": "my_etag",
+     *       //   "forwardingRuleInfo": {},
+     *       //   "labels": {},
+     *       //   "matches": [],
+     *       //   "name": "my_name",
+     *       //   "pscEndpointInfo": {},
+     *       //   "source": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Expresslinks$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Expresslinks$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Expresslinks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Expresslinks$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Expresslinks$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Expresslinks$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Expresslinks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Expresslinks$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/expressLinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single ExpressLink.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.expressLinks.delete({
+     *     // Optional. The etag of the ExpressLink to delete.
+     *     etag: 'placeholder-value',
+     *     // Required. A name of the ExpressLink to delete. Must be in the format `projects/x/locations/x/expressLinks/x`.
+     *     name: 'projects/my-project/locations/my-location/expressLinks/my-expressLink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Expresslinks$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Expresslinks$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Expresslinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Expresslinks$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Expresslinks$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Expresslinks$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Expresslinks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Expresslinks$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single ExpressLink.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.expressLinks.get({
+     *     // Required. A name of the ExpressLink to get. Must be in the format `projects/x/locations/x/expressLinks/x`.
+     *     name: 'projects/my-project/locations/my-location/expressLinks/my-expressLink',
+     *     // Optional. Determines the information level of the ExpressLink resource returned in the API response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cloudRunSecurityInfo": {},
+     *   //   "cloudRunSourceInfo": {},
+     *   //   "connectionStatus": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": {},
+     *   //   "etag": "my_etag",
+     *   //   "forwardingRuleInfo": {},
+     *   //   "labels": {},
+     *   //   "matches": [],
+     *   //   "name": "my_name",
+     *   //   "pscEndpointInfo": {},
+     *   //   "source": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Expresslinks$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Expresslinks$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ExpressLink>>;
+    get(
+      params: Params$Resource$Projects$Locations$Expresslinks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Expresslinks$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ExpressLink>,
+      callback: BodyResponseCallback<Schema$ExpressLink>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Expresslinks$Get,
+      callback: BodyResponseCallback<Schema$ExpressLink>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ExpressLink>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Expresslinks$Get
+        | BodyResponseCallback<Schema$ExpressLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExpressLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExpressLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ExpressLink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Expresslinks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Expresslinks$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExpressLink>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExpressLink>(parameters);
+      }
+    }
+
+    /**
+     * Lists ExpressLinks in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.expressLinks.list({
+     *     // Maximum number of ExpressLinks to return per call.
+     *     pageSize: 'placeholder-value',
+     *     // The value returned by the last `ListExpressLinksResponse` Indicates that this is a continuation of a prior `ListExpressLinks` call, and that the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project and location from which the ExpressLinks should be listed, specified in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. Determines the information level of the ExpressLink resources returned in the API response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expressLinks": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Expresslinks$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Expresslinks$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListExpressLinksResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Expresslinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Expresslinks$List,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$ListExpressLinksResponse>,
+      callback: BodyResponseCallback<Schema$ListExpressLinksResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Expresslinks$List,
+      callback: BodyResponseCallback<Schema$ListExpressLinksResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListExpressLinksResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Expresslinks$List
+        | BodyResponseCallback<Schema$ListExpressLinksResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExpressLinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExpressLinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListExpressLinksResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Expresslinks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Expresslinks$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/expressLinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListExpressLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListExpressLinksResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the parameters of a single ExpressLink.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkservices.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkservices = google.networkservices('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkservices.projects.locations.expressLinks.patch({
+     *     // Identifier. Name of the ExpressLink resource. It matches pattern `projects/x/locations/x/expressLinks/`.
+     *     name: 'projects/my-project/locations/my-location/expressLinks/my-expressLink',
+     *     // Optional. Field mask is used to specify the fields to be overwritten in the ExpressLink resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cloudRunSecurityInfo": {},
+     *       //   "cloudRunSourceInfo": {},
+     *       //   "connectionStatus": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": {},
+     *       //   "etag": "my_etag",
+     *       //   "forwardingRuleInfo": {},
+     *       //   "labels": {},
+     *       //   "matches": [],
+     *       //   "name": "my_name",
+     *       //   "pscEndpointInfo": {},
+     *       //   "source": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Expresslinks$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Expresslinks$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Expresslinks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Expresslinks$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Expresslinks$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Expresslinks$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Expresslinks$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Expresslinks$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Expresslinks$Create extends StandardParameters {
+    /**
+     * Required. Short name of the ExpressLink resource to be created.
+     */
+    expressLinkId?: string;
+    /**
+     * Required. The parent resource of the ExpressLink. Must be in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExpressLink;
+  }
+  export interface Params$Resource$Projects$Locations$Expresslinks$Delete extends StandardParameters {
+    /**
+     * Optional. The etag of the ExpressLink to delete.
+     */
+    etag?: string;
+    /**
+     * Required. A name of the ExpressLink to delete. Must be in the format `projects/x/locations/x/expressLinks/x`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Expresslinks$Get extends StandardParameters {
+    /**
+     * Required. A name of the ExpressLink to get. Must be in the format `projects/x/locations/x/expressLinks/x`.
+     */
+    name?: string;
+    /**
+     * Optional. Determines the information level of the ExpressLink resource returned in the API response.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Expresslinks$List extends StandardParameters {
+    /**
+     * Maximum number of ExpressLinks to return per call.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListExpressLinksResponse` Indicates that this is a continuation of a prior `ListExpressLinks` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location from which the ExpressLinks should be listed, specified in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+    /**
+     * Optional. Determines the information level of the ExpressLink resources returned in the API response.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Expresslinks$Patch extends StandardParameters {
+    /**
+     * Identifier. Name of the ExpressLink resource. It matches pattern `projects/x/locations/x/expressLinks/`.
+     */
+    name?: string;
+    /**
+     * Optional. Field mask is used to specify the fields to be overwritten in the ExpressLink resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExpressLink;
   }
 
   export class Resource$Projects$Locations$Extensionbindings {
