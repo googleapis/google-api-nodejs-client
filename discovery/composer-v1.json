@@ -770,6 +770,35 @@
                     "https://www.googleapis.com/auth/cloudcomposer.readonly"
                   ]
                 },
+                "hibernate": {
+                  "description": "Hibernates (pauses) a running environment. It requests the environment to switch to the `HIBERNATED` state, keeping its data and minimizing cost, but not running any DAGs. This method is supported for Cloud Composer environments in development mode in versions composer-3-airflow-*.*.*-build.* and newer.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}:hibernate",
+                  "httpMethod": "POST",
+                  "id": "composer.projects.locations.environments.hibernate",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the environment to hibernate, in the form: \"projects/{project}/locations/{location}/environments/{environment}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:hibernate",
+                  "request": {
+                    "$ref": "HibernateEnvironmentRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudcomposer"
+                  ]
+                },
                 "list": {
                   "description": "List environments.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/environments",
@@ -922,6 +951,35 @@
                   "path": "v1/{+name}:restartWebServer",
                   "request": {
                     "$ref": "RestartWebServerRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudcomposer"
+                  ]
+                },
+                "resume": {
+                  "description": "Resumes (unpauses) a hibernated environment. It requests the environment to switch to the `RUNNING` state, so that it is ready to use and run DAGs. This method is supported for Cloud Composer environments in development mode in versions composer-3-airflow-*.*.*-build.* and newer.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}:resume",
+                  "httpMethod": "POST",
+                  "id": "composer.projects.locations.environments.resume",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the environment to resume, in the form: \"projects/{project}/locations/{location}/environments/{environment}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:resume",
+                  "request": {
+                    "$ref": "ResumeEnvironmentRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -1503,7 +1561,7 @@
       }
     }
   },
-  "revision": "20261015",
+  "revision": "20261106",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {
@@ -1970,14 +2028,16 @@
             "ENVIRONMENT_SIZE_SMALL",
             "ENVIRONMENT_SIZE_MEDIUM",
             "ENVIRONMENT_SIZE_LARGE",
-            "ENVIRONMENT_SIZE_EXTRA_LARGE"
+            "ENVIRONMENT_SIZE_EXTRA_LARGE",
+            "ENVIRONMENT_SIZE_X_EXTRA_LARGE"
           ],
           "enumDescriptions": [
             "The size of the environment is unspecified.",
             "The environment size is small.",
             "The environment size is medium.",
             "The environment size is large.",
-            "The environment size is extra large."
+            "The environment size is extra large.",
+            "The environment size is double extra large."
           ],
           "type": "string"
         },
@@ -2119,6 +2179,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "HibernateEnvironmentRequest": {
+      "description": "Request to hibernate a Composer environment.",
+      "id": "HibernateEnvironmentRequest",
+      "properties": {},
       "type": "object"
     },
     "IPAllocationPolicy": {
@@ -2747,6 +2813,12 @@
     "RestartWebServerRequest": {
       "description": "Restart Airflow web server.",
       "id": "RestartWebServerRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "ResumeEnvironmentRequest": {
+      "description": "Request to resume a Composer environment.",
+      "id": "ResumeEnvironmentRequest",
       "properties": {},
       "type": "object"
     },
