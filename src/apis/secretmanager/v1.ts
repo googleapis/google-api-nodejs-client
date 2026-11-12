@@ -210,7 +210,7 @@ export namespace secretmanager_v1 {
   /**
    * These are the credentials required for Cloud SQL DB for Single user Managed Rotation.
    */
-  export interface Schema$CloudSQLSingleUserCredentials {
+  export interface Schema$CloudSqlSingleUserCredentials {
     /**
      * Required. Instance ID of the Cloud SQL instance.
      */
@@ -271,7 +271,7 @@ export namespace secretmanager_v1 {
     /**
      * Credentials required for Cloud SQL DB for Single user Managed Rotation.
      */
-    cloudSqlSingleUserCredentials?: Schema$CloudSQLSingleUserCredentials;
+    cloudSqlSingleUserCredentials?: Schema$CloudSqlSingleUserCredentials;
   }
   /**
    * Request message for SecretManagerService.EnableSecretVersion.
