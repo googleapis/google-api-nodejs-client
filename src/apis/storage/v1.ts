@@ -570,6 +570,10 @@ export namespace storage_v1 {
      * The type of the bucket location.
      */
     locationType?: string | null;
+    /**
+     * The Rapid Cache configuration for the bucket.
+     */
+    rapidCacheInfo?: {cacheType?: string} | null;
   }
   /**
    * A bulk restore objects request.
@@ -2148,162 +2152,7 @@ export namespace storage_v1 {
     }
 
     /**
-     * Pauses an Anywhere Cache instance.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.anywhereCaches.pause({
-     *     // The ID of requested Anywhere Cache instance.
-     *     anywhereCacheId: 'placeholder-value',
-     *     // Name of the parent bucket.
-     *     bucket: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "admissionPolicy": "my_admissionPolicy",
-     *   //   "anywhereCacheId": "my_anywhereCacheId",
-     *   //   "bucket": "my_bucket",
-     *   //   "createTime": "my_createTime",
-     *   //   "id": "my_id",
-     *   //   "ingestOnWrite": false,
-     *   //   "kind": "my_kind",
-     *   //   "pendingUpdate": false,
-     *   //   "selfLink": "my_selfLink",
-     *   //   "state": "my_state",
-     *   //   "ttl": "my_ttl",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "zone": "my_zone"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    pause(
-      params: Params$Resource$Anywherecaches$Pause,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    pause(
-      params?: Params$Resource$Anywherecaches$Pause,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$AnywhereCache>>;
-    pause(
-      params: Params$Resource$Anywherecaches$Pause,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    pause(
-      params: Params$Resource$Anywherecaches$Pause,
-      options: MethodOptions | BodyResponseCallback<Schema$AnywhereCache>,
-      callback: BodyResponseCallback<Schema$AnywhereCache>
-    ): void;
-    pause(
-      params: Params$Resource$Anywherecaches$Pause,
-      callback: BodyResponseCallback<Schema$AnywhereCache>
-    ): void;
-    pause(callback: BodyResponseCallback<Schema$AnywhereCache>): void;
-    pause(
-      paramsOrCallback?:
-        | Params$Resource$Anywherecaches$Pause
-        | BodyResponseCallback<Schema$AnywhereCache>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$AnywhereCache>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$AnywhereCache>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$AnywhereCache>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Anywherecaches$Pause;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Anywherecaches$Pause;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/storage/v1/b/{bucket}/anywhereCaches/{anywhereCacheId}/pause'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['bucket', 'anywhereCacheId'],
-        pathParams: ['anywhereCacheId', 'bucket'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$AnywhereCache>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$AnywhereCache>(parameters);
-      }
-    }
-
-    /**
-     * Resumes a paused or disabled Anywhere Cache instance.
+     * Resumes a disabled Anywhere Cache instance.
      * @example
      * ```js
      * // Before running the sample:
@@ -2674,16 +2523,6 @@ export namespace storage_v1 {
      * A previously-returned page token representing part of the larger set of results to view.
      */
     pageToken?: string;
-  }
-  export interface Params$Resource$Anywherecaches$Pause extends StandardParameters {
-    /**
-     * The ID of requested Anywhere Cache instance.
-     */
-    anywhereCacheId?: string;
-    /**
-     * Name of the parent bucket.
-     */
-    bucket?: string;
   }
   export interface Params$Resource$Anywherecaches$Resume extends StandardParameters {
     /**
@@ -4292,7 +4131,8 @@ export namespace storage_v1 {
      *   //   "hierarchicalNamespace": {},
      *   //   "kind": "my_kind",
      *   //   "location": "my_location",
-     *   //   "locationType": "my_locationType"
+     *   //   "locationType": "my_locationType",
+     *   //   "rapidCacheInfo": {}
      *   // }
      * }
      *
