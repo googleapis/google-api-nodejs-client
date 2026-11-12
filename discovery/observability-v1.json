@@ -1141,6 +1141,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "reprovision": {
+                  "description": "Initiates reprovisioning of a bucket. This is allowed only a single time for a bucket and results in data loss. Subsequent calls to this method for the same bucket will result in a FAILED_PRECONDITION (400 Bad Request) error.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/buckets/{bucketsId}:reprovision",
+                  "httpMethod": "POST",
+                  "id": "observability.projects.locations.buckets.reprovision",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the bucket to reprovision. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/buckets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:reprovision",
+                  "request": {
+                    "$ref": "ReprovisionBucketRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               },
               "resources": {
@@ -1793,7 +1821,7 @@
       }
     }
   },
-  "revision": "20261022",
+  "revision": "20261029",
   "rootUrl": "https://observability.googleapis.com/",
   "schemas": {
     "Bucket": {
@@ -2182,6 +2210,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "ReprovisionBucketRequest": {
+      "description": "Request for reprovisioning a bucket, replaces configuration with that of the configured Observability settings.",
+      "id": "ReprovisionBucketRequest",
+      "properties": {},
       "type": "object"
     },
     "Scope": {
