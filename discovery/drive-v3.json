@@ -3044,7 +3044,7 @@
       }
     }
   },
-  "revision": "20261023",
+  "revision": "20261106",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3427,6 +3427,10 @@
       "properties": {
         "approvalId": {
           "description": "The approval ID.",
+          "type": "string"
+        },
+        "approvedRevisionId": {
+          "description": "The revision ID of the file when the approval completed successfully. This is only set when the approval status is APPROVED.",
           "type": "string"
         },
         "completeTime": {

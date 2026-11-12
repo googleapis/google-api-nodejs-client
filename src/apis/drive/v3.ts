@@ -420,6 +420,10 @@ export namespace drive_v3 {
      */
     approvalId?: string | null;
     /**
+     * The revision ID of the file when the approval completed successfully. This is only set when the approval status is APPROVED.
+     */
+    approvedRevisionId?: string | null;
+    /**
      * The time the approval was completed.
      */
     completeTime?: string | null;
@@ -2728,6 +2732,7 @@ export namespace drive_v3 {
      *   // Example response
      *   // {
      *   //   "approvalId": "my_approvalId",
+     *   //   "approvedRevisionId": "my_approvedRevisionId",
      *   //   "completeTime": "my_completeTime",
      *   //   "createTime": "my_createTime",
      *   //   "dueTime": "my_dueTime",
@@ -2888,6 +2893,7 @@ export namespace drive_v3 {
      *   // Example response
      *   // {
      *   //   "approvalId": "my_approvalId",
+     *   //   "approvedRevisionId": "my_approvedRevisionId",
      *   //   "completeTime": "my_completeTime",
      *   //   "createTime": "my_createTime",
      *   //   "dueTime": "my_dueTime",
@@ -3046,6 +3052,7 @@ export namespace drive_v3 {
      *   // Example response
      *   // {
      *   //   "approvalId": "my_approvalId",
+     *   //   "approvedRevisionId": "my_approvedRevisionId",
      *   //   "completeTime": "my_completeTime",
      *   //   "createTime": "my_createTime",
      *   //   "dueTime": "my_dueTime",
@@ -3206,6 +3213,7 @@ export namespace drive_v3 {
      *   // Example response
      *   // {
      *   //   "approvalId": "my_approvalId",
+     *   //   "approvedRevisionId": "my_approvedRevisionId",
      *   //   "completeTime": "my_completeTime",
      *   //   "createTime": "my_createTime",
      *   //   "dueTime": "my_dueTime",
@@ -3361,6 +3369,7 @@ export namespace drive_v3 {
      *   // Example response
      *   // {
      *   //   "approvalId": "my_approvalId",
+     *   //   "approvedRevisionId": "my_approvedRevisionId",
      *   //   "completeTime": "my_completeTime",
      *   //   "createTime": "my_createTime",
      *   //   "dueTime": "my_dueTime",
@@ -3670,6 +3679,7 @@ export namespace drive_v3 {
      *   // Example response
      *   // {
      *   //   "approvalId": "my_approvalId",
+     *   //   "approvedRevisionId": "my_approvedRevisionId",
      *   //   "completeTime": "my_completeTime",
      *   //   "createTime": "my_createTime",
      *   //   "dueTime": "my_dueTime",
@@ -3832,6 +3842,7 @@ export namespace drive_v3 {
      *   // Example response
      *   // {
      *   //   "approvalId": "my_approvalId",
+     *   //   "approvedRevisionId": "my_approvedRevisionId",
      *   //   "completeTime": "my_completeTime",
      *   //   "createTime": "my_createTime",
      *   //   "dueTime": "my_dueTime",
