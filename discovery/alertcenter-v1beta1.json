@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20260921",
+  "revision": "20261030",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AbuseDetected": {
@@ -744,6 +744,24 @@
           "description": "Output only. The time this alert was last updated.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AlertDetail": {
+      "description": "The alert data relevant for this alert",
+      "id": "AlertDetail",
+      "properties": {
+        "fieldName": {
+          "description": "Audit data key",
+          "type": "string"
+        },
+        "fieldValues": {
+          "description": "Audit data values",
+          "items": {
+            "$ref": "SystemDefinedAlertDataAlertDetailFieldValue"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2343,6 +2361,45 @@
         },
         "serialNumber": {
           "description": "The serial number of the device.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SystemDefinedAlertData": {
+      "description": "System defined alerts which trigger when an relevant audit event occures.",
+      "id": "SystemDefinedAlertData",
+      "properties": {
+        "alertDetails": {
+          "description": "Details of the conditions which led to alert being created",
+          "items": {
+            "$ref": "AlertDetail"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SystemDefinedAlertDataAlertDetailFieldValue": {
+      "description": "Audit data value",
+      "id": "SystemDefinedAlertDataAlertDetailFieldValue",
+      "properties": {
+        "boolValue": {
+          "description": "Value if the type is boolean",
+          "type": "boolean"
+        },
+        "intValue": {
+          "description": "Value if the type is integer",
+          "format": "int64",
+          "type": "string"
+        },
+        "stringValue": {
+          "description": "Value if the type is string",
+          "type": "string"
+        },
+        "timestampValue": {
+          "description": "Value is the type is a timestamp",
+          "format": "google-datetime",
           "type": "string"
         }
       },
