@@ -310,7 +310,7 @@ export namespace recaptchaenterprise_v1 {
      */
     name?: string | null;
     /**
-     * Output only. Assessment returned when a site key, a token, and a phone number as `user_id` are provided. SMS defense needs to be enabled.
+     * Output only. Assessment returned when a site key, a token, `user_info.account_id`, and a phone number in `user_info.user_ids` are provided. SMS defense must be enabled.
      */
     phoneFraudAssessment?: Schema$GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment;
     /**
@@ -352,7 +352,7 @@ export namespace recaptchaenterprise_v1 {
      */
     botType?: string | null;
     /**
-     * Optional. Enumerated string value that indicates the identity of the bot, formatted in kebab-case. Current example values include the following: * google-agent - AI_AGENT * browser-base - AI_AGENT * chat-gpt - AI_AGENT * aws-bedrock - AI_AGENT * cybaa-bot - AI_AGENT * cloudflare - AI_AGENT * payhawk - AI_AGENT * duck-duck-go - SEARCH_INDEXER * mediaboard - CONTENT_SCRAPER * marker-io - AI_AGENT * anchor-browser - AI_AGENT * shopify - AI_AGENT * stackscope - CONTENT_SCRAPER * manus - AI_AGENT * kernel-sh - AI_AGENT * zvelo - SEARCH_INDEXER Ensure that your applications can handle identifier values not explicitly listed here. Deprecated values might take some time to stop showing up in responses. New values can be pushed so this list should be taken as non exhaustive.
+     * Optional. Enumerated string value that indicates the identity of the bot, formatted in kebab-case. Current example values include the following: * google-agent - AI_AGENT * browser-base - AI_AGENT * chat-gpt - AI_AGENT * aws-bedrock - AI_AGENT * cybaa-bot - AI_AGENT * cloudflare - AI_AGENT * payhawk - AI_AGENT * duck-duck-go - AI_AGENT * mediaboard - CONTENT_SCRAPER * marker-io - AI_AGENT * anchor-browser - AI_AGENT * shopify - AI_AGENT * stackscope - CONTENT_SCRAPER * manus - AI_AGENT * kernel-sh - AI_AGENT * zvelo - SEARCH_INDEXER * meta-muse - AI_AGENT * duck-duck-bot - SEARCH_INDEXER * my-porta - SEARCH_INDEXER * ison-search - SEARCH_INDEXER * rokt - SEARCH_INDEXER Ensure that your applications can handle identifier values not explicitly listed here. Deprecated values might take some time to stop showing up in responses. New values can be pushed so this list should be taken as non exhaustive.
      */
     name?: string | null;
   }
@@ -386,7 +386,7 @@ export namespace recaptchaenterprise_v1 {
      */
     challenge?: Schema$GoogleCloudRecaptchaenterpriseV1ChallengeRuleChallengeOutcome;
     /**
-     * Optional. A CEL condition that must be met for this rule to apply. If unspecified, the rule applies unconditionally. The following fields can be referenced in the condition: * `score` * `user_ip_address` * `user_asn` * `user_agent` * `verified_bots.name` * `verified_bots.bot_type` Examples: * `score < 0.5` * `user_ip_address == "123.45.67.89"` * `user_agent.contains("Chrome")` * `score < 0.5 && user_ip_address == "123.45.67.89"`
+     * Optional. A CEL condition that must be met for this rule to apply. If unspecified, the rule applies unconditionally. The following fields can be referenced in the condition: * `score` * `user_ip_address` * `user_asn` * `user_agent` * `region_code` * `verified_bots.name` * `verified_bots.bot_type` Examples: * `score < 0.5` * `user_ip_address == "123.45.67.89"` * `user_agent.contains("Chrome")` * `score < 0.5 && user_ip_address == "123.45.67.89"`
      */
     condition?: string | null;
     /**
@@ -988,7 +988,7 @@ export namespace recaptchaenterprise_v1 {
      */
     action?: string | null;
     /**
-     * Required. URI path of the API endpoint to protect. Must start with '/'. Supports glob characters '*' to match a single path segment and '**' to match multiple path segments. Standalone root catch-alls ('/x' and '/x*') are invalid because it can negatively impact performance to trigger reCAPTCHA on every single request to your backend. Matching is evaluated against the URL path only (domain, scheme, and query parameters are ignored). Examples: - `/login` matches `/login`, `https://example.com/login`, and `/login?query=1`, but not `/login/step1`. - `/products/x` matches `/products/123`, but not `/products/123/456`. - `/content/x*` matches `/content/articles/2024/01/01`.
+     * Required. The URI path of the API endpoint to protect. The path is case-sensitive and must meet the following criteria: * Be unique, start with `/`, and contain 1 to 200 characters without consecutive slashes (`//`). * Include at least one non-wildcard segment. For example, cannot be `/`, `/x`, `/x*`, or `/x/`. * Wildcards must occupy complete segments: `*` matches a single segment. For example, `/api/x/login` or `/api/x` are valid; `/api/login*` is invalid, and `**` matches multiple segments as the final segment only. For example, `/api/x*` is valid; `/api/xx/login` is invalid. Matching is evaluated against the URL path only. Domain, scheme, and query parameters are ignored. Examples: * `/login` matches `/login`, `https://example.com/login`, and `/login?query=1`, but not `/login/step1`. * `/products/x` matches `/products/123`, but not `/products/123/456`. * `/content/x*` matches `/content/articles/2024/01/01`.
      */
     path?: string | null;
   }
@@ -1167,7 +1167,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1TestingOptions {
     /**
-     * Optional. For challenge-based keys only (CHECKBOX, INVISIBLE), all challenge requests for this site return nocaptcha if NOCAPTCHA, or an unsolvable challenge if CHALLENGE.
+     * Optional. For challenge-based keys only (`CHECKBOX`, `INVISIBLE`), all challenge requests for this site do not show a challenge if `NOCAPTCHA`, or show an unsolvable challenge if `UNSOLVABLE_CHALLENGE`.
      */
     testingChallenge?: string | null;
     /**
@@ -1362,7 +1362,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataUser {
     /**
-     * Optional. Unique account identifier for this user. If using Account defense, this should match the hashed_account_id field. Otherwise, a unique and persistent identifier for this account.
+     * Optional. Unique account identifier for this user. If using Account defense, this should match the `user_info.account_id` field. Otherwise, a unique and persistent identifier for this account.
      */
     accountId?: string | null;
     /**

@@ -845,7 +845,7 @@
       }
     }
   },
-  "revision": "20261003",
+  "revision": "20261106",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -1212,7 +1212,7 @@
         },
         "phoneFraudAssessment": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment",
-          "description": "Output only. Assessment returned when a site key, a token, and a phone number as `user_id` are provided. SMS defense needs to be enabled.",
+          "description": "Output only. Assessment returned when a site key, a token, `user_info.account_id`, and a phone number in `user_info.user_ids` are provided. SMS defense must be enabled.",
           "readOnly": true
         },
         "policyEvaluation": {
@@ -1273,7 +1273,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Optional. Enumerated string value that indicates the identity of the bot, formatted in kebab-case. Current example values include the following: * google-agent - AI_AGENT * browser-base - AI_AGENT * chat-gpt - AI_AGENT * aws-bedrock - AI_AGENT * cybaa-bot - AI_AGENT * cloudflare - AI_AGENT * payhawk - AI_AGENT * duck-duck-go - SEARCH_INDEXER * mediaboard - CONTENT_SCRAPER * marker-io - AI_AGENT * anchor-browser - AI_AGENT * shopify - AI_AGENT * stackscope - CONTENT_SCRAPER * manus - AI_AGENT * kernel-sh - AI_AGENT * zvelo - SEARCH_INDEXER Ensure that your applications can handle identifier values not explicitly listed here. Deprecated values might take some time to stop showing up in responses. New values can be pushed so this list should be taken as non exhaustive.",
+          "description": "Optional. Enumerated string value that indicates the identity of the bot, formatted in kebab-case. Current example values include the following: * google-agent - AI_AGENT * browser-base - AI_AGENT * chat-gpt - AI_AGENT * aws-bedrock - AI_AGENT * cybaa-bot - AI_AGENT * cloudflare - AI_AGENT * payhawk - AI_AGENT * duck-duck-go - AI_AGENT * mediaboard - CONTENT_SCRAPER * marker-io - AI_AGENT * anchor-browser - AI_AGENT * shopify - AI_AGENT * stackscope - CONTENT_SCRAPER * manus - AI_AGENT * kernel-sh - AI_AGENT * zvelo - SEARCH_INDEXER * meta-muse - AI_AGENT * duck-duck-bot - SEARCH_INDEXER * my-porta - SEARCH_INDEXER * ison-search - SEARCH_INDEXER * rokt - SEARCH_INDEXER Ensure that your applications can handle identifier values not explicitly listed here. Deprecated values might take some time to stop showing up in responses. New values can be pushed so this list should be taken as non exhaustive.",
           "type": "string"
         }
       },
@@ -1315,7 +1315,7 @@
           "description": "Present a challenge to the user."
         },
         "condition": {
-          "description": "Optional. A CEL condition that must be met for this rule to apply. If unspecified, the rule applies unconditionally. The following fields can be referenced in the condition: * `score` * `user_ip_address` * `user_asn` * `user_agent` * `verified_bots.name` * `verified_bots.bot_type` Examples: * `score < 0.5` * `user_ip_address == \"123.45.67.89\"` * `user_agent.contains(\"Chrome\")` * `score < 0.5 && user_ip_address == \"123.45.67.89\"`",
+          "description": "Optional. A CEL condition that must be met for this rule to apply. If unspecified, the rule applies unconditionally. The following fields can be referenced in the condition: * `score` * `user_ip_address` * `user_asn` * `user_agent` * `region_code` * `verified_bots.name` * `verified_bots.bot_type` Examples: * `score < 0.5` * `user_ip_address == \"123.45.67.89\"` * `user_agent.contains(\"Chrome\")` * `score < 0.5 && user_ip_address == \"123.45.67.89\"`",
           "type": "string"
         },
         "noChallenge": {
@@ -2151,7 +2151,7 @@
           "type": "string"
         },
         "path": {
-          "description": "Required. URI path of the API endpoint to protect. Must start with '/'. Supports glob characters '*' to match a single path segment and '**' to match multiple path segments. Standalone root catch-alls ('/*' and '/**') are invalid because it can negatively impact performance to trigger reCAPTCHA on every single request to your backend. Matching is evaluated against the URL path only (domain, scheme, and query parameters are ignored). Examples: - `/login` matches `/login`, `https://example.com/login`, and `/login?query=1`, but not `/login/step1`. - `/products/*` matches `/products/123`, but not `/products/123/456`. - `/content/**` matches `/content/articles/2024/01/01`.",
+          "description": "Required. The URI path of the API endpoint to protect. The path is case-sensitive and must meet the following criteria: * Be unique, start with `/`, and contain 1 to 200 characters without consecutive slashes (`//`). * Include at least one non-wildcard segment. For example, cannot be `/`, `/*`, `/**`, or `/*/`. * Wildcards must occupy complete segments: `*` matches a single segment. For example, `/api/*/login` or `/api/*` are valid; `/api/login*` is invalid, and `**` matches multiple segments as the final segment only. For example, `/api/**` is valid; `/api/**/login` is invalid. Matching is evaluated against the URL path only. Domain, scheme, and query parameters are ignored. Examples: * `/login` matches `/login`, `https://example.com/login`, and `/login?query=1`, but not `/login/step1`. * `/products/*` matches `/products/123`, but not `/products/123/456`. * `/content/**` matches `/content/articles/2024/01/01`.",
           "type": "string"
         }
       },
@@ -2285,12 +2285,14 @@
           "enum": [
             "CHALLENGE_TYPE_UNSPECIFIED",
             "CHALLENGE_TYPE_VISUAL",
-            "CHALLENGE_TYPE_AUDIO"
+            "CHALLENGE_TYPE_AUDIO",
+            "CHALLENGE_TYPE_QR_CODE"
           ],
           "enumDescriptions": [
             "Default unspecified type.",
             "A visual challenge.",
-            "An audio challenge."
+            "An audio challenge.",
+            "A challenge requiring mobile device verification, completed by scanning a QR code on desktop or clicking a verification button directly on a mobile device."
           ],
           "readOnly": true,
           "type": "string"
@@ -2461,7 +2463,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1TestingOptions",
       "properties": {
         "testingChallenge": {
-          "description": "Optional. For challenge-based keys only (CHECKBOX, INVISIBLE), all challenge requests for this site return nocaptcha if NOCAPTCHA, or an unsolvable challenge if CHALLENGE.",
+          "description": "Optional. For challenge-based keys only (`CHECKBOX`, `INVISIBLE`), all challenge requests for this site do not show a challenge if `NOCAPTCHA`, or show an unsolvable challenge if `UNSOLVABLE_CHALLENGE`.",
           "enum": [
             "TESTING_CHALLENGE_UNSPECIFIED",
             "NOCAPTCHA",
@@ -2539,7 +2541,7 @@
             "The user verification had already been seen.",
             "The user verification token was not present.",
             "A retriable error (such as network failure) occurred on the browser. Could easily be simulated by an attacker.",
-            "The action provided at token generation was different than the `expected_action` in the assessment request. The comparison is case-insensitive. This reason can only be returned if all of the following are true: - your `site_key` has the POLICY_BASED_CHALLENGE integration type - you set an action score threshold higher than 0.0 - you provided a non-empty `expected_action`",
+            "The action provided at token generation was different than the `expected_action` in the assessment request. The comparison is case-insensitive. This reason can only be returned if an `expected_action` is provided and either: - your `site_key` is a Universal key, or - your `site_key` has the `POLICY_BASED_CHALLENGE` integration type with an action score threshold higher than 0.0",
             "The key used to generate the token does not match the `site_key`.",
             "The domain of the page on which the token was generated does not match the `allowed_domains` configured in the `site_key`."
           ],
@@ -2730,7 +2732,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1TransactionDataUser",
       "properties": {
         "accountId": {
-          "description": "Optional. Unique account identifier for this user. If using Account defense, this should match the hashed_account_id field. Otherwise, a unique and persistent identifier for this account.",
+          "description": "Optional. Unique account identifier for this user. If using Account defense, this should match the `user_info.account_id` field. Otherwise, a unique and persistent identifier for this account.",
           "type": "string"
         },
         "creationMs": {
