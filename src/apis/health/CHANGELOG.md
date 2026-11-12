@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/health-v7.0.1...health-v7.0.2) (2026-11-12)
+
+
+### Bug Fixes
+
+* **health:** update the API ([dd53df0](https://github.com/googleapis/google-api-nodejs-client/commit/dd53df01dc31b1365847b15886e4da641b23960c))
+
 ## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/health-v7.0.0...health-v7.0.1) (2026-10-22)
 
 

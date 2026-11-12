@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/cloudfunctions-v18.0.1...cloudfunctions-v18.0.2) (2026-11-12)
+
+
+### Bug Fixes
+
+* **cloudfunctions:** update the API ([bb932c4](https://github.com/googleapis/google-api-nodejs-client/commit/bb932c4c9affd0cec96c258a58d74cbdcf1d5753))
+
 ## [18.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudfunctions-v18.0.0...cloudfunctions-v18.0.1) (2026-09-23)
 
 

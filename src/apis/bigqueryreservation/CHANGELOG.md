@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigqueryreservation-v10.0.1...bigqueryreservation-v10.1.0) (2026-11-12)
+
+
+### Features
+
+* **bigqueryreservation:** update the API ([1e2aa58](https://github.com/googleapis/google-api-nodejs-client/commit/1e2aa589ae6e4c73cdc7dcf5a6f8bc9afc0478fe))
+
 ## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/bigqueryreservation-v10.0.0...bigqueryreservation-v10.0.1) (2026-09-23)
 
 

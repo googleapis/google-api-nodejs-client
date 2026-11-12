@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/auditmanager-v2.1.0...auditmanager-v2.2.0) (2026-11-12)
+
+
+### Features
+
+* **auditmanager:** update the API ([f294708](https://github.com/googleapis/google-api-nodejs-client/commit/f294708c29348f78182b26eef3cef98b2729291c))
+
 ## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/auditmanager-v2.0.0...auditmanager-v2.1.0) (2026-09-23)
 
 

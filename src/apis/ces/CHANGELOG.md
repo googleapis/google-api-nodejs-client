@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/ces-v6.1.0...ces-v6.2.0) (2026-11-12)
+
+
+### Features
+
+* **ces:** update the API ([88d85fb](https://github.com/googleapis/google-api-nodejs-client/commit/88d85fbecde9fe5c9c1f682288769b01c3804a0c))
+
 ## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/ces-v6.0.0...ces-v6.1.0) (2026-10-22)
 
 

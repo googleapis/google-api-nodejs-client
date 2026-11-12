@@ -1,5 +1,12 @@
 # Changelog
 
+## [24.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v24.0.2...artifactregistry-v24.1.0) (2026-11-12)
+
+
+### Features
+
+* **artifactregistry:** update the API ([0436844](https://github.com/googleapis/google-api-nodejs-client/commit/0436844b16395d1069ad362cc138b7d1e7a51ad3))
+
 ## [24.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v24.0.1...artifactregistry-v24.0.2) (2026-10-07)
 
 

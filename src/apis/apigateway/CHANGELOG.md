@@ -1,5 +1,16 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apigateway-v9.0.2...apigateway-v10.0.0) (2026-11-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* **apigateway:** This release has breaking changes.
+
+### Features
+
+* **apigateway:** update the API ([8bd1e3b](https://github.com/googleapis/google-api-nodejs-client/commit/8bd1e3bea1dd49f746f500247840f1aaeedbeffa))
+
 ## [9.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/apigateway-v9.0.1...apigateway-v9.0.2) (2026-10-29)
 
 

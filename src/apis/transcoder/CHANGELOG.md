@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/transcoder-v13.0.1...transcoder-v13.0.2) (2026-11-12)
+
+
+### Bug Fixes
+
+* **transcoder:** update the API ([d0fa0bd](https://github.com/googleapis/google-api-nodejs-client/commit/d0fa0bd6f5c7497e29d4a09f25188e18ecc40519))
+
 ## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/transcoder-v13.0.0...transcoder-v13.0.1) (2026-09-23)
 
 

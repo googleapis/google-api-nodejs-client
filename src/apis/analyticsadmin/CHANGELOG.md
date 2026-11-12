@@ -1,5 +1,12 @@
 # Changelog
 
+## [22.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v22.0.1...analyticsadmin-v22.0.2) (2026-11-12)
+
+
+### Bug Fixes
+
+* **analyticsadmin:** update the API ([1333bd0](https://github.com/googleapis/google-api-nodejs-client/commit/1333bd0e7d70ab3be7942d7f769615eee0a80035))
+
 ## [22.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v22.0.0...analyticsadmin-v22.0.1) (2026-09-23)
 
 

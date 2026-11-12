@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/managedkafka-v13.0.1...managedkafka-v13.0.2) (2026-11-12)
+
+
+### Bug Fixes
+
+* **managedkafka:** update the API ([ebe459e](https://github.com/googleapis/google-api-nodejs-client/commit/ebe459e14d7597cd028154e4eb08afd6a1324592))
+
 ## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/managedkafka-v13.0.0...managedkafka-v13.0.1) (2026-09-23)
 
 

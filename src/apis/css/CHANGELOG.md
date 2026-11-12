@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/css-v7.0.2...css-v7.0.3) (2026-11-12)
+
+
+### Bug Fixes
+
+* **css:** update the API ([b642d6d](https://github.com/googleapis/google-api-nodejs-client/commit/b642d6d8f39fe11d85c16baaf1385db4055333b9))
+
 ## [7.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/css-v7.0.1...css-v7.0.2) (2026-10-03)
 
 
