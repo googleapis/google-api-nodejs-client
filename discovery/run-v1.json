@@ -3652,7 +3652,7 @@
       }
     }
   },
-  "revision": "20261016",
+  "revision": "20261108",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -3746,6 +3746,25 @@
         },
         "role": {
           "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BuildStatus": {
+      "description": "BuildStatus holds the status of a build.",
+      "id": "BuildStatus",
+      "properties": {
+        "cloudBuildLogUrl": {
+          "description": "The log URL for the Cloud Build execution.",
+          "type": "string"
+        },
+        "message": {
+          "description": "The message details of the build.",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status of the build.",
           "type": "string"
         }
       },
@@ -4061,6 +4080,26 @@
       },
       "type": "object"
     },
+    "ContainerStatus": {
+      "description": "ContainerStatus holds the information of container name and image digest value.",
+      "id": "ContainerStatus",
+      "properties": {
+        "buildStatus": {
+          "$ref": "BuildStatus",
+          "description": "Output only. The build status of the container image.",
+          "readOnly": true
+        },
+        "imageDigest": {
+          "description": "ImageDigest holds the resolved digest for the image specified and resolved during the creation of Revision. This field holds the digest value regardless of whether a tag or digest was originally specified in the Container object.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the container, if specified.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DomainMapping": {
       "description": "Resource to hold the state and status of a user's domain mapping. NOTE: This resource is currently in Beta.",
       "id": "DomainMapping",
@@ -4162,11 +4201,11 @@
       "id": "EmptyDirVolumeSource",
       "properties": {
         "medium": {
-          "description": "The medium on which the data is stored. The default is \"\" which means to use the node's default medium. Must be an empty string (default), `Memory`, or `Disk`. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+          "description": "The medium on which the data is stored. The default is `\"\"` which means to use the node's default medium. Must be an empty string (default), `Memory`, or `Disk`. For more information, see the [Kubernetes `emptyDir` volume documentation](https://kubernetes.io/docs/concepts/storage/volumes#emptydir).",
           "type": "string"
         },
         "sizeLimit": {
-          "description": "Limit on the storage usable by this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers. The default is nil which means that the limit is undefined. More info: https://cloud.google.com/run/docs/configuring/in-memory-volumes#configure-volume. Info in Kubernetes: https://kubernetes.io/docs/concepts/storage/volumes/#emptydir",
+          "description": "Limit on the storage usable by this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers. The default is nil which means that the limit is undefined. For more information, see [Configure in-memory volume mounts](https://cloud.google.com/run/docs/configuring/in-memory-volumes#configure-volume) and the [Kubernetes `emptyDir` volume documentation](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir).",
           "type": "string"
         }
       },
@@ -4878,10 +4917,15 @@
             "REGIONAL_USER_OWNED_BUCKET",
             "LEGACY_BUCKET"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "Unspecified.",
             "Bucket is located in user-owned project in the same region as the build. The builder service account must have access to create and write to Cloud Storage buckets in the build project.",
-            "Bucket is located in a Google-owned project and is not regionalized."
+            "Deprecated: Use `REGIONAL_USER_OWNED_BUCKET` instead. Bucket is located in a Google-owned project and is not regionalized."
           ],
           "type": "string"
         },
@@ -4987,7 +5031,8 @@
           "type": "string"
         },
         "rankedMachineSeries": {
-          "description": "Optional. Ranked list (earlier items have higher priority) of Machine Series to consider when provisioning Worker VMs. A concrete machine type will be selected based on machine availability in the given region. This field must be empty for the Build to be eligible to be paired with a pre-provisioned worker VM.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use PrivatePoolV1Config.WorkerConfig.ranked_machine_series instead. This field has no effect.",
           "items": {
             "enum": [
               "MACHINE_SERIES_UNSPECIFIED",
@@ -6439,6 +6484,10 @@
           "description": "Optional. Restart policy for the Instance. Allowable values are 'Always', 'OnFailure', or 'Never'.",
           "type": "string"
         },
+        "sandboxes": {
+          "$ref": "SandboxConfiguration",
+          "description": "Optional. Sandbox configuration that can be launched through the `sandbox` CLI."
+        },
         "serviceAccountName": {
           "description": "Optional. Email address of the IAM service account associated with the Instance. The service account represents the identity of the running container, and determines what permissions the Instance has. If not provided, the Instance will use the project's default service account.",
           "type": "string"
@@ -7388,6 +7437,10 @@
           "description": "Optional. Runtime. Leave unset for default.",
           "type": "string"
         },
+        "sandboxes": {
+          "$ref": "SandboxConfiguration",
+          "description": "Optional. Sandbox configuration that can be launched through the `sandbox` CLI."
+        },
         "serviceAccountName": {
           "description": "Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project's default service account.",
           "type": "string"
@@ -7415,6 +7468,14 @@
           "items": {
             "$ref": "GoogleCloudRunV1Condition"
           },
+          "type": "array"
+        },
+        "containerStatuses": {
+          "description": "Output only. Status information for each of the specified containers. The status includes the resolved digest for specified images.",
+          "items": {
+            "$ref": "ContainerStatus"
+          },
+          "readOnly": true,
           "type": "array"
         },
         "desiredReplicas": {
@@ -7540,6 +7601,67 @@
         "overrides": {
           "$ref": "Overrides",
           "description": "Optional. Overrides existing job configuration for one specific new job execution only, using the specified values to update the job configuration for the new execution."
+        }
+      },
+      "type": "object"
+    },
+    "SandboxConfiguration": {
+      "description": "Configuration for sandboxes.",
+      "id": "SandboxConfiguration",
+      "properties": {
+        "templates": {
+          "description": "Required. Sandbox templates that can be launched through the `sandbox` CLI.",
+          "items": {
+            "$ref": "SandboxTemplate"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SandboxTemplate": {
+      "description": "Template for a single sandbox.",
+      "id": "SandboxTemplate",
+      "properties": {
+        "args": {
+          "description": "Optional. Arguments to the entrypoint. The docker image's CMD is used if this is not provided.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "command": {
+          "description": "Optional. Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "env": {
+          "description": "Optional. List of environment variables to set in the sandbox.",
+          "items": {
+            "$ref": "EnvVar"
+          },
+          "type": "array"
+        },
+        "image": {
+          "description": "Required. Name of the container image in Dockerhub or Artifact Registry. If the host is not provided, Dockerhub is assumed.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Name of the sandbox specified as a DNS_LABEL (RFC 1123).",
+          "type": "string"
+        },
+        "volumeMounts": {
+          "description": "Optional. Volume to mount into the container's filesystem.",
+          "items": {
+            "$ref": "VolumeMount"
+          },
+          "type": "array"
+        },
+        "workingDir": {
+          "description": "Optional. Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -7925,6 +8047,10 @@
           },
           "description": "Optional. The Node Selector configuration. Map of selector key to a value which matches a node.",
           "type": "object"
+        },
+        "sandboxes": {
+          "$ref": "SandboxConfiguration",
+          "description": "Optional. Sandbox configuration that can be launched through the `sandbox` CLI."
         },
         "serviceAccountName": {
           "description": "Optional. Email address of the IAM service account associated with the task of a job execution. The service account represents the identity of the running task, and determines what permissions the task has. If not provided, the task will use the project's default service account.",
