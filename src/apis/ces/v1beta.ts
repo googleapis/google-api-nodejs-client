@@ -873,7 +873,7 @@ export namespace ces_v1beta {
     updateTime?: string | null;
   }
   /**
-   * A streamed fragment of a document artifact (e.g. a markdown TDD) that the assistant is generating. Content deltas stream while the document is being written so clients can render a live preview; the FINALIZED chunk carries the GCS URI once the file has been persisted.
+   * A streamed fragment of a document artifact (e.g. a markdown TDD) that the assistant is generating. Content deltas stream while the document is being written so clients can render a live preview; the FINALIZED chunk carries the Cloud Storage URI once the file has been persisted.
    */
   export interface Schema$ArtifactChunk {
     /**
@@ -889,7 +889,7 @@ export namespace ces_v1beta {
      */
     displayName?: string | null;
     /**
-     * The GCS object the artifact was persisted to. Set on FINALIZED chunks.
+     * The Cloud Storage object the artifact was persisted to. Set on FINALIZED chunks.
      */
     gcsUri?: string | null;
     /**
@@ -900,6 +900,10 @@ export namespace ces_v1beta {
      * Lifecycle position of this chunk.
      */
     state?: string | null;
+    /**
+     * Output only. The app this artifact was produced for, when it was produced for one. Format: `projects/{project\}/locations/{location\}/apps/{app\}`
+     */
+    targetApp?: string | null;
   }
   /**
    * A chunk of data in an assistant message.
@@ -959,9 +963,34 @@ export namespace ces_v1beta {
      */
     questions?: Schema$OptionQuestionsChunkQuestion[];
     /**
+     * Everything the confirmed action will change, so the console can render "Update 2 apps" and one badge per app. Empty for legacy single-target cards.
+     */
+    targets?: Schema$AssistantConfirmationRequestTarget[];
+    /**
      * Name of the tool call the agent paused on (e.g. "update_app"), for the card header. Unset for pure questions.
      */
     tool?: string | null;
+  }
+  /**
+   * One resource the confirmed action will change.
+   */
+  export interface Schema$AssistantConfirmationRequestTarget {
+    /**
+     * The action, e.g. `CREATE`, `UPDATE`, `DELETE`, `COPY`, `LINK`.
+     */
+    action?: string | null;
+    /**
+     * Display name of the resource or app, for the card.
+     */
+    displayName?: string | null;
+    /**
+     * The resource that will change, as a full resource name.
+     */
+    resource?: string | null;
+    /**
+     * The app the resource belongs to, or empty for a location-scoped action such as creating an app. Format: `projects/{project\}/locations/{location\}/apps/{app\}`
+     */
+    targetApp?: string | null;
   }
   /**
    * The user's answer to an AssistantConfirmationRequest, sent on the next SessionService.StreamChatAiAssistant call to resume the paused agent.
@@ -1054,6 +1083,10 @@ export namespace ces_v1beta {
      * Output only. The status of the assistant session.
      */
     state?: string | null;
+    /**
+     * Output only. Apps this session has targeted or changed (project-scoped sessions only), for history tags. Format: `projects/{project\}/locations/{location\}/apps/{app\}`
+     */
+    touchedApps?: string[] | null;
     /**
      * Output only. The time the assistant session was last updated.
      */
@@ -3183,6 +3216,10 @@ export namespace ces_v1beta {
      */
     hallucinationResult?: Schema$EvaluationResultHallucinationResult[];
     /**
+     * Output only. The results of each milestone in the scenario.
+     */
+    milestoneResults?: Schema$EvaluationResultScenarioResultMilestoneResult[];
+    /**
      * Output only. The outcome of the rubric.
      */
     rubricOutcomes?: Schema$EvaluationResultScenarioRubricOutcome[];
@@ -3214,6 +3251,23 @@ export namespace ces_v1beta {
      * Output only. The result of the user goal satisfaction check.
      */
     userGoalSatisfactionResult?: Schema$EvaluationResultUserGoalSatisfactionResult;
+  }
+  /**
+   * Represents the result of a milestone execution.
+   */
+  export interface Schema$EvaluationResultScenarioResultMilestoneResult {
+    /**
+     * Output only. The justification for the current status.
+     */
+    justification?: string | null;
+    /**
+     * Output only. The milestone being tracked.
+     */
+    milestone?: Schema$EvaluationScenarioMilestone;
+    /**
+     * Output only. The current status of the milestone.
+     */
+    status?: string | null;
   }
   /**
    * The outcome of the evaluation against the rubric.
@@ -3528,6 +3582,10 @@ export namespace ces_v1beta {
      */
     maxTurns?: number | null;
     /**
+     * Optional. The milestones for this scenario.
+     */
+    milestones?: Schema$EvaluationScenarioMilestone[];
+    /**
      * Required. The rubrics to score the scenario against.
      */
     rubrics?: string[] | null;
@@ -3585,6 +3643,35 @@ export namespace ces_v1beta {
      * Required. The tool response to mock, with the parameters of interest specified. Any parameters not specified will be hallucinated by the LLM.
      */
     mockToolResponse?: Schema$ToolResponse;
+  }
+  /**
+   * Represents a single milestone in the scenario. Used to guide the behaviour of the user simulator to follow a protocol. The user simulator executes the milestone sequentially and only proceeds to the next one if the success_criteria of that milestone is achieved.
+   */
+  export interface Schema$EvaluationScenarioMilestone {
+    /**
+     * Optional. An event input to send instead of dynamic generation.
+     */
+    event?: Schema$Event;
+    /**
+     * Required. The goal of the milestone.
+     */
+    goal?: string | null;
+    /**
+     * Optional. The maximum number of turns for this milestone.
+     */
+    maxTurnCount?: number | null;
+    /**
+     * Optional. The guidelines the agent should follow during the conversation.
+     */
+    protocol?: string | null;
+    /**
+     * Optional. A static utterance that the simulator will send exactly, instead of dynamically generating user input.
+     */
+    staticUtterance?: string | null;
+    /**
+     * Optional. The success criteria of the milestone.
+     */
+    successCriteria?: string | null;
   }
   /**
    * Facts about the user as a key value pair.
@@ -3779,7 +3866,7 @@ export namespace ces_v1beta {
      */
     state?: string | null;
     /**
-     * Optional. Traffic allocations for the version release.
+     * Optional. Traffic allocations for the version release. When non-empty, the `traffic_percentage` values across all allocations must sum to `100`, representing the split of remaining non-study traffic.
      */
     trafficAllocations?: Schema$ExperimentConfigVersionReleaseTrafficAllocation[];
   }
@@ -3796,7 +3883,7 @@ export namespace ces_v1beta {
      */
     id?: string | null;
     /**
-     * Optional. Traffic percentage of the traffic allocation. Must be between 0 and 100.
+     * Optional. Traffic percentage of the traffic allocation, relative to the remaining non-study traffic. Must be between `0` and `100`.
      */
     trafficPercentage?: number | null;
   }
@@ -3813,7 +3900,7 @@ export namespace ces_v1beta {
      */
     exportFormat?: string | null;
     /**
-     * Optional. The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to which to export the app. The format of this URI must be `gs:///`. The exported app archive will be written directly to the specified GCS object.
+     * Optional. The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to which to export the app. The format of this URI must be `gs:///`. The exported app archive will be written directly to the specified Cloud Storage object.
      */
     gcsUri?: string | null;
   }
@@ -7277,7 +7364,7 @@ export namespace ces_v1beta {
    */
   export interface Schema$StreamChatAiAssistantResponse {
     /**
-     * Generated-document artifact event (live preview deltas + final GCS pointer).
+     * Generated-document artifact event (live preview deltas + final Cloud Storage pointer).
      */
     artifactChunk?: Schema$ArtifactChunk;
     /**
@@ -7554,6 +7641,10 @@ export namespace ces_v1beta {
      */
     parentToolCallId?: string | null;
     /**
+     * Output only. The app this call targets, derived by the assistant from the call's resource arguments: an app resource name, `PROJECT` for location-scoped tools, or empty for session-local tools. Set only in project-scoped assistant sessions.
+     */
+    targetApp?: string | null;
+    /**
      * Optional. The name of the tool to execute. Format: `projects/{project\}/locations/{location\}/apps/{app\}/tools/{tool\}`
      */
     tool?: string | null;
@@ -7608,6 +7699,10 @@ export namespace ces_v1beta {
      * Required. The tool execution result in JSON object format. Use "output" key to specify tool response and "error" key to specify error details (if any). If "output" and "error" keys are not specified, then whole "response" is treated as tool execution result.
      */
     response?: {[key: string]: any} | null;
+    /**
+     * Output only. The app the executed tool targeted; mirrors ToolCall.target_app.
+     */
+    targetApp?: string | null;
     /**
      * Optional. The name of the tool to execute. Format: `projects/{project\}/locations/{location\}/apps/{app\}/tools/{tool\}`
      */
@@ -7805,6 +7900,10 @@ export namespace ces_v1beta {
      */
     reason?: string | null;
     /**
+     * Apps this turn targeted or changed, so the console can refresh exactly those apps' stores. Project-scoped sessions only. Format: `projects/{project\}/locations/{location\}/apps/{app\}`
+     */
+    touchedApps?: string[] | null;
+    /**
      * Identifier of the turn that ended; matches TurnResumeSnapshot.turn_id and ActiveTurnInfo.turn_id.
      */
     turnId?: string | null;
@@ -7865,7 +7964,7 @@ export namespace ces_v1beta {
     turnId?: string | null;
   }
   /**
-   * Payload with a type.
+   * Payload with a type. Used by the assistant history (`AssistantChunk`) and by the streaming `typed_payload` event; lives here because both assistant_service.proto and session_service.proto need it.
    */
   export interface Schema$TypedPayload {
     /**
@@ -12859,6 +12958,7 @@ export namespace ces_v1beta {
      *   //   "requestor": "my_requestor",
      *   //   "sessionCheckpoint": {},
      *   //   "state": "my_state",
+     *   //   "touchedApps": [],
      *   //   "updateTime": "my_updateTime",
      *   //   "userResponseSuggestions": {}
      *   // }
@@ -13145,6 +13245,7 @@ export namespace ces_v1beta {
      *   //   "requestor": "my_requestor",
      *   //   "sessionCheckpoint": {},
      *   //   "state": "my_state",
+     *   //   "touchedApps": [],
      *   //   "updateTime": "my_updateTime",
      *   //   "userResponseSuggestions": {}
      *   // }

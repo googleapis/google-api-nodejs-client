@@ -4146,7 +4146,7 @@
       }
     }
   },
-  "revision": "20261016",
+  "revision": "20261106",
   "rootUrl": "https://ces.googleapis.com/",
   "schemas": {
     "Action": {
@@ -5221,7 +5221,7 @@
       "type": "object"
     },
     "ArtifactChunk": {
-      "description": "A streamed fragment of a document artifact (e.g. a markdown TDD) that the assistant is generating. Content deltas stream while the document is being written so clients can render a live preview; the FINALIZED chunk carries the GCS URI once the file has been persisted.",
+      "description": "A streamed fragment of a document artifact (e.g. a markdown TDD) that the assistant is generating. Content deltas stream while the document is being written so clients can render a live preview; the FINALIZED chunk carries the Cloud Storage URI once the file has been persisted.",
       "id": "ArtifactChunk",
       "properties": {
         "artifactId": {
@@ -5237,7 +5237,7 @@
           "type": "string"
         },
         "gcsUri": {
-          "description": "The GCS object the artifact was persisted to. Set on FINALIZED chunks.",
+          "description": "The Cloud Storage object the artifact was persisted to. Set on FINALIZED chunks.",
           "type": "string"
         },
         "mimeType": {
@@ -5262,6 +5262,11 @@
             "Generation or persistence failed; the artifact was not saved.",
             "The document finished streaming: its content was fully delivered via content_delta chunks. Persistence may still follow; a FINALIZED chunk with a gcs_uri is sent if and when the artifact is saved."
           ],
+          "type": "string"
+        },
+        "targetApp": {
+          "description": "Output only. The app this artifact was produced for, when it was produced for one. Format: `projects/{project}/locations/{location}/apps/{app}`",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -5335,8 +5340,38 @@
           },
           "type": "array"
         },
+        "targets": {
+          "description": "Everything the confirmed action will change, so the console can render \"Update 2 apps\" and one badge per app. Empty for legacy single-target cards.",
+          "items": {
+            "$ref": "AssistantConfirmationRequestTarget"
+          },
+          "type": "array"
+        },
         "tool": {
           "description": "Name of the tool call the agent paused on (e.g. \"update_app\"), for the card header. Unset for pure questions.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AssistantConfirmationRequestTarget": {
+      "description": "One resource the confirmed action will change.",
+      "id": "AssistantConfirmationRequestTarget",
+      "properties": {
+        "action": {
+          "description": "The action, e.g. `CREATE`, `UPDATE`, `DELETE`, `COPY`, `LINK`.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display name of the resource or app, for the card.",
+          "type": "string"
+        },
+        "resource": {
+          "description": "The resource that will change, as a full resource name.",
+          "type": "string"
+        },
+        "targetApp": {
+          "description": "The app the resource belongs to, or empty for a location-scoped action such as creating an app. Format: `projects/{project}/locations/{location}/apps/{app}`",
           "type": "string"
         }
       },
@@ -5471,6 +5506,14 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "touchedApps": {
+          "description": "Output only. Apps this session has targeted or changed (project-scoped sessions only), for history tags. Format: `projects/{project}/locations/{location}/apps/{app}`",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "updateTime": {
           "description": "Output only. The time the assistant session was last updated.",
@@ -8657,6 +8700,14 @@
           "readOnly": true,
           "type": "array"
         },
+        "milestoneResults": {
+          "description": "Output only. The results of each milestone in the scenario.",
+          "items": {
+            "$ref": "EvaluationResultScenarioResultMilestoneResult"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "rubricOutcomes": {
           "description": "Output only. The outcome of the rubric.",
           "items": {
@@ -8709,6 +8760,40 @@
           "$ref": "EvaluationResultUserGoalSatisfactionResult",
           "description": "Output only. The result of the user goal satisfaction check.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "EvaluationResultScenarioResultMilestoneResult": {
+      "description": "Represents the result of a milestone execution.",
+      "id": "EvaluationResultScenarioResultMilestoneResult",
+      "properties": {
+        "justification": {
+          "description": "Output only. The justification for the current status.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "milestone": {
+          "$ref": "EvaluationScenarioMilestone",
+          "description": "Output only. The milestone being tracked.",
+          "readOnly": true
+        },
+        "status": {
+          "description": "Output only. The current status of the milestone.",
+          "enum": [
+            "MILESTONE_STATUS_UNSPECIFIED",
+            "NOT_STARTED",
+            "IN_PROGRESS",
+            "COMPLETED"
+          ],
+          "enumDescriptions": [
+            "Unspecified status.",
+            "The milestone has not started yet.",
+            "The milestone is currently in progress.",
+            "The milestone has been successfully completed."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -9214,6 +9299,13 @@
           "format": "int32",
           "type": "integer"
         },
+        "milestones": {
+          "description": "Optional. The milestones for this scenario.",
+          "items": {
+            "$ref": "EvaluationScenarioMilestone"
+          },
+          "type": "array"
+        },
         "rubrics": {
           "description": "Required. The rubrics to score the scenario against.",
           "items": {
@@ -9321,6 +9413,38 @@
         "mockToolResponse": {
           "$ref": "ToolResponse",
           "description": "Required. The tool response to mock, with the parameters of interest specified. Any parameters not specified will be hallucinated by the LLM."
+        }
+      },
+      "type": "object"
+    },
+    "EvaluationScenarioMilestone": {
+      "description": "Represents a single milestone in the scenario. Used to guide the behaviour of the user simulator to follow a protocol. The user simulator executes the milestone sequentially and only proceeds to the next one if the success_criteria of that milestone is achieved.",
+      "id": "EvaluationScenarioMilestone",
+      "properties": {
+        "event": {
+          "$ref": "Event",
+          "description": "Optional. An event input to send instead of dynamic generation."
+        },
+        "goal": {
+          "description": "Required. The goal of the milestone.",
+          "type": "string"
+        },
+        "maxTurnCount": {
+          "description": "Optional. The maximum number of turns for this milestone.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "protocol": {
+          "description": "Optional. The guidelines the agent should follow during the conversation.",
+          "type": "string"
+        },
+        "staticUtterance": {
+          "description": "Optional. A static utterance that the simulator will send exactly, instead of dynamically generating user input.",
+          "type": "string"
+        },
+        "successCriteria": {
+          "description": "Optional. The success criteria of the milestone.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9630,7 +9754,7 @@
           "type": "string"
         },
         "trafficAllocations": {
-          "description": "Optional. Traffic allocations for the version release.",
+          "description": "Optional. Traffic allocations for the version release. When non-empty, the `traffic_percentage` values across all allocations must sum to `100`, representing the split of remaining non-study traffic.",
           "items": {
             "$ref": "ExperimentConfigVersionReleaseTrafficAllocation"
           },
@@ -9652,7 +9776,7 @@
           "type": "string"
         },
         "trafficPercentage": {
-          "description": "Optional. Traffic percentage of the traffic allocation. Must be between 0 and 100.",
+          "description": "Optional. Traffic percentage of the traffic allocation, relative to the remaining non-study traffic. Must be between `0` and `100`.",
           "format": "int32",
           "type": "integer"
         }
@@ -9682,7 +9806,7 @@
           "type": "string"
         },
         "gcsUri": {
-          "description": "Optional. The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to which to export the app. The format of this URI must be `gs:///`. The exported app archive will be written directly to the specified GCS object.",
+          "description": "Optional. The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to which to export the app. The format of this URI must be `gs:///`. The exported app archive will be written directly to the specified Cloud Storage object.",
           "type": "string"
         }
       },
@@ -14423,12 +14547,14 @@
             "enum": [
               "CLIENT_CAPABILITY_UNSPECIFIED",
               "CONFIRMATION_CARDS",
-              "CLIENT_MANAGED_LRO"
+              "CLIENT_MANAGED_LRO",
+              "PROJECT_SCOPE"
             ],
             "enumDescriptions": [
               "Unspecified capability; ignored.",
               "The client renders AssistantConfirmationRequest cards and answers them via `confirmation_response`.",
-              "The client manages long-running operations out-of-band by polling the operation and sending `operation_completed_event` to resume the turn. If not declared, the server manages LRO polling and completes the turn inline."
+              "The client manages long-running operations out-of-band by polling the operation and sending `operation_completed_event` to resume the turn. If not declared, the server manages LRO polling and completes the turn inline.",
+              "The client renders project-scope events: `typed_payload` cards, `target_app` on tool calls and responses, `targets` on confirmation requests and `touched_apps` on turn completion."
             ],
             "type": "string"
           },
@@ -14464,7 +14590,7 @@
       "properties": {
         "artifactChunk": {
           "$ref": "ArtifactChunk",
-          "description": "Generated-document artifact event (live preview deltas + final GCS pointer)."
+          "description": "Generated-document artifact event (live preview deltas + final Cloud Storage pointer)."
         },
         "confirmationRequest": {
           "$ref": "AssistantConfirmationRequest",
@@ -14791,6 +14917,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "targetApp": {
+          "description": "Output only. The app this call targets, derived by the assistant from the call's resource arguments: an app resource name, `PROJECT` for location-scoped tools, or empty for session-local tools. Set only in project-scoped assistant sessions.",
+          "readOnly": true,
+          "type": "string"
+        },
         "tool": {
           "description": "Optional. The name of the tool to execute. Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`",
           "type": "string"
@@ -14861,6 +14992,11 @@
           },
           "description": "Required. The tool execution result in JSON object format. Use \"output\" key to specify tool response and \"error\" key to specify error details (if any). If \"output\" and \"error\" keys are not specified, then whole \"response\" is treated as tool execution result.",
           "type": "object"
+        },
+        "targetApp": {
+          "description": "Output only. The app the executed tool targeted; mirrors ToolCall.target_app.",
+          "readOnly": true,
+          "type": "string"
         },
         "tool": {
           "description": "Optional. The name of the tool to execute. Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`",
@@ -15126,6 +15262,13 @@
           ],
           "type": "string"
         },
+        "touchedApps": {
+          "description": "Apps this turn targeted or changed, so the console can refresh exactly those apps' stores. Project-scoped sessions only. Format: `projects/{project}/locations/{location}/apps/{app}`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "turnId": {
           "description": "Identifier of the turn that ended; matches TurnResumeSnapshot.turn_id and ActiveTurnInfo.turn_id.",
           "type": "string"
@@ -15218,7 +15361,7 @@
       "type": "object"
     },
     "TypedPayload": {
-      "description": "Payload with a type.",
+      "description": "Payload with a type. Used by the assistant history (`AssistantChunk`) and by the streaming `typed_payload` event; lives here because both assistant_service.proto and session_service.proto need it.",
       "id": "TypedPayload",
       "properties": {
         "displayName": {
