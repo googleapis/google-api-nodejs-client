@@ -112,9 +112,7 @@ export namespace assuredworkloads_v1beta1 {
    */
   export class Assuredworkloads {
     context: APIRequestContext;
-    folders: Resource$Folders;
     organizations: Resource$Organizations;
-    projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -122,59 +120,35 @@ export namespace assuredworkloads_v1beta1 {
         google,
       };
 
-      this.folders = new Resource$Folders(this.context);
       this.organizations = new Resource$Organizations(this.context);
-      this.projects = new Resource$Projects(this.context);
     }
   }
 
   /**
-   * Request for acknowledging the violation
+   * Request message for acknowledging a violation.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest {
     /**
-     * Optional. Acknowledge type of specified violation.
+     * Optional. The scope of the acknowledgement for the specified violation. If not specified, `SINGLE_VIOLATION` is used.
      */
     acknowledgeType?: string | null;
     /**
-     * Required. Business justification explaining the need for violation acknowledgement
+     * Required. The business justification for acknowledging the violation. The comment can't be empty or contain only whitespace characters.
      */
     comment?: string | null;
     /**
-     * Optional. This field is deprecated and will be removed in future version of the API. Name of the OrgPolicy which was modified with non-compliant change and resulted in this violation. Format: projects/{project_number\}/policies/{constraint_name\} folders/{folder_id\}/policies/{constraint_name\} organizations/{organization_id\}/policies/{constraint_name\}
+     * Optional. Deprecated: This field is deprecated and will be removed in a future version of the API. The service identifies the violation to acknowledge by `name`, and ignores this field. Don't set this field. The name of the organization policy that was modified with a non-compliant change and resulted in this violation. Formats: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}`
      */
     nonCompliantOrgPolicy?: string | null;
     /**
-     * Optional. Specifies the violation view (`AssuredWorkloads` or `DataBoundary`) for acknowledging violations.
+     * Optional. The violation view (`VIOLATION_VIEW_ASSURED_WORKLOADS` or `VIOLATION_VIEW_DATA_BOUNDARY`) that the violation belongs to. If not specified, `VIOLATION_VIEW_ASSURED_WORKLOADS` is used.
      */
     view?: string | null;
   }
   /**
-   * Response for violation acknowledgement
+   * Response message for acknowledging a violation. This message is empty.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponse {}
-  /**
-   * The response message for AggregateDbFrameworkComplianceReport.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse {
-    /**
-     * The list of aggregated compliance reports.
-     */
-    aggregatedComplianceReports?: Schema$GoogleCloudAssuredworkloadsV1beta1AggregatedComplianceReport[];
-  }
-  /**
-   * The aggregated compliance report.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1AggregatedComplianceReport {
-    /**
-     * The control assessment details of the framework.
-     */
-    controlAssessmentDetails?: Schema$GoogleCloudAssuredworkloadsV1beta1ControlAssessmentDetails;
-    /**
-     * The report time of the aggregated compliance report.
-     */
-    reportTime?: string | null;
-  }
   /**
    * Response containing the analysis results for the hypothetical resource move.
    */
@@ -241,146 +215,6 @@ export namespace assuredworkloads_v1beta1 {
     assetType?: string | null;
   }
   /**
-   * A Common Expression Language (CEL) expression that's used to create a rule.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1CELExpression {
-    /**
-     * Required. The logical expression in CEL. The maximum length of the condition is 1000 characters. For more information, see [CEL expression](https://cloud.google.com/security-command-center/docs/compliance-manager-write-cel-expressions).
-     */
-    expression?: string | null;
-    /**
-     * The resource instance types on which this expression is defined. The format is `/`. For example: `compute.googleapis.com/Instance`
-     */
-    resourceTypesValues?: Schema$GoogleCloudAssuredworkloadsV1beta1StringList;
-  }
-  /**
-   * The cloud control assessment details for non-manual cloud controls.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1CloudControlAssessmentDetails {
-    /**
-     * Output only. The evaluation status of the cloud control.
-     */
-    evaluationState?: string | null;
-    /**
-     * The number of findings for the cloud control.
-     */
-    findingsCount?: number | null;
-    /**
-     * Output only. Number of organization policy findings for the cloud control.
-     */
-    orgPolicyFindingCount?: string | null;
-    /**
-     * Output only. Number of resource findings for the cloud control.
-     */
-    resourceFindingCount?: string | null;
-  }
-  /**
-   * The cloud control report.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1CloudControlReport {
-    /**
-     * The list of categories for the cloud control.
-     */
-    categories?: string[] | null;
-    /**
-     * The name of the cloud control.
-     */
-    cloudControl?: string | null;
-    /**
-     * The details of a cloud control assessment.
-     */
-    cloudControlAssessmentDetails?: Schema$GoogleCloudAssuredworkloadsV1beta1CloudControlAssessmentDetails;
-    /**
-     * The name of the cloud control deployment.
-     */
-    cloudControlDeployment?: string | null;
-    /**
-     * The type of the cloud control.
-     */
-    cloudControlType?: string | null;
-    /**
-     * The description of the cloud control.
-     */
-    description?: string | null;
-    /**
-     * The display name of the cloud control.
-     */
-    displayName?: string | null;
-    /**
-     * The enforcement mode of the cloud control.
-     */
-    enforcementMode?: string | null;
-    /**
-     * The category of the finding.
-     */
-    findingCategory?: string | null;
-    /**
-     * The severity of the finding.
-     */
-    findingSeverity?: string | null;
-    /**
-     * The major revision IDs of the frameworks that the cloud control belongs to.
-     */
-    frameworkMajorRevisionIds?: string[] | null;
-    /**
-     * The major revision ID of the cloud control.
-     */
-    majorRevisionId?: string | null;
-    /**
-     * The details of a manual cloud control assessment.
-     */
-    manualCloudControlAssessmentDetails?: Schema$GoogleCloudAssuredworkloadsV1beta1ManualCloudControlAssessmentDetails;
-    /**
-     * The minor revision ID of the cloud control.
-     */
-    minorRevisionId?: string | null;
-    /**
-     * The list of rules that correspond to the cloud control.
-     */
-    rules?: Schema$GoogleCloudAssuredworkloadsV1beta1Rule[];
-    /**
-     * The list of similar controls.
-     */
-    similarControls?: Schema$GoogleCloudAssuredworkloadsV1beta1SimilarControls[];
-  }
-  /**
-   * The details for a control assessment.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1ControlAssessmentDetails {
-    /**
-     * The list of controls that were assessed and are passing.
-     */
-    assessedPassingControlIds?: string[] | null;
-    /**
-     * The number of controls that were assessed and are passing.
-     */
-    assessedPassingControls?: number | null;
-    /**
-     * The list of controls that are failing.
-     */
-    failingControlIds?: string[] | null;
-    /**
-     * The number of controls that are failing.
-     */
-    failingControls?: number | null;
-    /**
-     * The list of controls that aren't assessed because they require manual review.
-     */
-    notAssessedControlIds?: string[] | null;
-    /**
-     * The number of controls that aren't assessed because they require manual review.
-     */
-    notAssessedControls?: number | null;
-    /**
-     * The list of controls that are passing or not assessed.
-     */
-    passingControlIds?: string[] | null;
-    /**
-     * The number of controls that are passing or not assessed.
-     */
-    passingControls?: number | null;
-  }
-  /**
    * Operation metadata to give request details of CreateWorkload.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1CreateWorkloadOperationMetadata {
@@ -406,157 +240,6 @@ export namespace assuredworkloads_v1beta1 {
     resourceSettings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings[];
   }
   /**
-   * The details for control compliance.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1DbControlComplianceSummary {
-    /**
-     * The list of cloud control reports.
-     */
-    cloudControlReports?: Schema$GoogleCloudAssuredworkloadsV1beta1CloudControlReport[];
-    /**
-     * The list of compliance frameworks that the control belongs to.
-     */
-    complianceFrameworks?: string[] | null;
-    /**
-     * The name of the control.
-     */
-    control?: string | null;
-    /**
-     * The responsibility type for the control.
-     */
-    controlResponsibilityType?: string | null;
-    /**
-     * The description of the control.
-     */
-    description?: string | null;
-    /**
-     * The display name of the control.
-     */
-    displayName?: string | null;
-    /**
-     * Whether the control is a fake control. Fake controls are created and mapped to cloud controls that don't belong to a control group.
-     */
-    isFakeControl?: boolean | null;
-    /**
-     * Identifier. The name of the control compliance summary.
-     */
-    name?: string | null;
-    /**
-     * Output only. Number of organization policy findings for this control.
-     */
-    orgPolicyFindingCount?: string | null;
-    /**
-     * Output only. The overall evaluation status of the control.
-     */
-    overallEvaluationState?: string | null;
-    /**
-     * Output only. Number of resource findings for this control.
-     */
-    resourceFindingCount?: string | null;
-    /**
-     * The list of similar controls.
-     */
-    similarControls?: Schema$GoogleCloudAssuredworkloadsV1beta1SimilarControls[];
-    /**
-     * The total number of findings for the control.
-     */
-    totalFindingsCount?: number | null;
-  }
-  /**
-   * The details for a finding.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1DbFindingSummary {
-    /**
-     * Output only. The category of the finding.
-     */
-    findingCategory?: string | null;
-    /**
-     * Output only. The class of the finding.
-     */
-    findingClass?: string | null;
-    /**
-     * Output only. The count of the finding.
-     */
-    findingCount?: string | null;
-    /**
-     * Identifier. The name of the finding summary.
-     */
-    name?: string | null;
-    /**
-     * Output only. Number of active organization policy findings for this category.
-     */
-    organizationPolicyFindingCount?: string | null;
-    /**
-     * Optional. The list of compliance frameworks that the finding belongs to.
-     */
-    relatedFrameworks?: string[] | null;
-    /**
-     * Output only. Number of active resource findings for this category.
-     */
-    resourceFindingCount?: string | null;
-    /**
-     * Output only. The severity of the finding.
-     */
-    severity?: string | null;
-    /**
-     * Output only. The last updated time of the finding.
-     */
-    updateTime?: string | null;
-  }
-  /**
-   * The details for a framework compliance summary.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1DbFrameworkComplianceSummary {
-    /**
-     * The control assessment details of the framework.
-     */
-    controlAssessmentDetails?: Schema$GoogleCloudAssuredworkloadsV1beta1ControlAssessmentDetails;
-    /**
-     * Output only. The trend of controls that are passing for the given duration.
-     */
-    controlsPassingTrend?: Schema$GoogleCloudAssuredworkloadsV1beta1Trend;
-    /**
-     * Output only. The count of the findings generated against the framework.
-     */
-    findingCount?: string | null;
-    /**
-     * The name of the framework.
-     */
-    framework?: string | null;
-    /**
-     * The list of framework categories supported by the framework.
-     */
-    frameworkCategories?: string[] | null;
-    /**
-     * Optional. The display name for the framework.
-     */
-    frameworkDisplayName?: string | null;
-    /**
-     * The type of framework.
-     */
-    frameworkType?: string | null;
-    /**
-     * The major revision ID of the framework.
-     */
-    majorRevisionId?: string | null;
-    /**
-     * The minor revision ID of the framework.
-     */
-    minorRevisionId?: string | null;
-    /**
-     * Identifier. The name of the framework compliance summary.
-     */
-    name?: string | null;
-    /**
-     * The list of cloud providers supported by the framework.
-     */
-    supportedCloudProviders?: string[] | null;
-    /**
-     * The target resource details for the framework.
-     */
-    targetResourceDetails?: Schema$GoogleCloudAssuredworkloadsV1beta1TargetResourceDetails[];
-  }
-  /**
    * Response for EnableComplianceUpdates endpoint.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse {}
@@ -565,111 +248,19 @@ export namespace assuredworkloads_v1beta1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse {}
   /**
-   * The response message for FetchDbFrameworkComplianceReport.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse {
-    /**
-     * The control assessment details of the framework.
-     */
-    controlAssessmentDetails?: Schema$GoogleCloudAssuredworkloadsV1beta1ControlAssessmentDetails;
-    /**
-     * The name of the framework.
-     */
-    framework?: string | null;
-    /**
-     * The list of framework categories supported.
-     */
-    frameworkCategories?: string[] | null;
-    /**
-     * The description of the framework.
-     */
-    frameworkDescription?: string | null;
-    /**
-     * Optional. The display name for the framework.
-     */
-    frameworkDisplayName?: string | null;
-    /**
-     * The type of the framework.
-     */
-    frameworkType?: string | null;
-    /**
-     * The latest major revision ID of the framework.
-     */
-    majorRevisionId?: string | null;
-    /**
-     * The latest minor revision ID of the latest major revision of the framework.
-     */
-    minorRevisionId?: string | null;
-    /**
-     * The name of the framework compliance report.
-     */
-    name?: string | null;
-    /**
-     * The list of cloud providers that are supported by the framework.
-     */
-    supportedCloudProviders?: string[] | null;
-    /**
-     * The target resource details of the framework.
-     */
-    targetResourceDetails?: Schema$GoogleCloudAssuredworkloadsV1beta1TargetResourceDetails[];
-    /**
-     * Output only. The last updated time of the report.
-     */
-    updateTime?: string | null;
-  }
-  /**
-   * The response message for ListDBControlComplianceSummaries.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse {
-    /**
-     * The list of control compliance details.
-     */
-    dbControlComplianceSummaries?: Schema$GoogleCloudAssuredworkloadsV1beta1DbControlComplianceSummary[];
-    /**
-     * Output only. The token to retrieve the next page of results.
-     */
-    nextPageToken?: string | null;
-  }
-  /**
-   * The response message for ListDbFindingSummaries.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse {
-    /**
-     * List of finding summary by category.
-     */
-    dbFindingSummaries?: Schema$GoogleCloudAssuredworkloadsV1beta1DbFindingSummary[];
-    /**
-     * Output only. The token to retrieve the next page of results.
-     */
-    nextPageToken?: string | null;
-  }
-  /**
-   * The response message for ListDbFrameworkComplianceSummariesResponse.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse {
-    /**
-     * The list of framework compliance summaries.
-     */
-    dbFrameworkComplianceSummaries?: Schema$GoogleCloudAssuredworkloadsV1beta1DbFrameworkComplianceSummary[];
-    /**
-     * Output only. The token to retrieve the next page of results.
-     */
-    nextPageToken?: string | null;
-  }
-  /**
-   * Response of ListViolations endpoint.
+   * Response message for the `ListViolations` method.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1ListViolationsResponse {
     /**
-     * The next page token. Returns empty if reached the last page.
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
-     * The total number of violations.
+     * The total number of violations that match the request, across all pages. This field might not be populated for all requests; when it's not populated, its value is `0`.
      */
     totalSize?: number | null;
     /**
-     * List of Violations under a Workload.
+     * The list of violations.
      */
     violations?: Schema$GoogleCloudAssuredworkloadsV1beta1Violation[];
   }
@@ -698,15 +289,6 @@ export namespace assuredworkloads_v1beta1 {
      * The list of workload updates for a given workload.
      */
     workloadUpdates?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadUpdate[];
-  }
-  /**
-   * The details for a manual cloud control assessment.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1ManualCloudControlAssessmentDetails {
-    /**
-     * The guide for assessing a cloud control manually.
-     */
-    manualCloudControlGuide?: string[] | null;
   }
   /**
    * Represents a logical group of checks performed for an asset. If successful, the group contains the analysis result, otherwise it contains an error with the failure reason.
@@ -833,91 +415,6 @@ export namespace assuredworkloads_v1beta1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesResponse {}
   /**
-   * A rule in the cloud control.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1Rule {
-    /**
-     * The rule's logic expression in Common Expression Language (CEL).
-     */
-    celExpression?: Schema$GoogleCloudAssuredworkloadsV1beta1CELExpression;
-    /**
-     * Optional. The rule description. The maximum length is 2000 characters.
-     */
-    description?: string | null;
-    /**
-     * Required. The functionality that's enabled by the rule.
-     */
-    ruleActionTypes?: string[] | null;
-  }
-  /**
-   * The similar controls.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1SimilarControls {
-    /**
-     * The ID of the control.
-     */
-    controlId?: string | null;
-    /**
-     * The name of the framework.
-     */
-    framework?: string | null;
-  }
-  /**
-   * A list of strings for the parameter value.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1StringList {
-    /**
-     * Required. The strings in the list.
-     */
-    values?: string[] | null;
-  }
-  /**
-   * The details for a target resource.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1TargetResourceDetails {
-    /**
-     * The create time of the target resource.
-     */
-    createTime?: string | null;
-    /**
-     * The framework deployment name for the target resource. For example, `organizations/{organization_id\}/locations/{location\}/frameworkDeployments/{framework_deployment_id\}`
-     */
-    frameworkDeployment?: string | null;
-    /**
-     * The major revision ID of the framework for the target resource.
-     */
-    majorRevisionId?: string | null;
-    /**
-     * The minor revision ID of the framework for the target resource.
-     */
-    minorRevisionId?: string | null;
-    /**
-     * The target resource. For example, `organizations/1234567890`, `projects/1234567890`, or `folders/1234567890`.
-     */
-    targetResource?: string | null;
-    /**
-     * The display name of the target resource. For example, `google.com`, `staging-project`, or `development-folder`.
-     */
-    targetResourceDisplayName?: string | null;
-    /**
-     * The update time of the target resource.
-     */
-    updateTime?: string | null;
-  }
-  /**
-   * The trend of a compliance metric.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1Trend {
-    /**
-     * Output only. The duration for the trend.
-     */
-    duration?: string | null;
-    /**
-     * Output only. The trend value as a percentage. The value can be positive or negative.
-     */
-    valuePercent?: number | null;
-  }
-  /**
    * The details of the update.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1UpdateDetails {
@@ -927,180 +424,180 @@ export namespace assuredworkloads_v1beta1 {
     orgPolicyUpdate?: Schema$GoogleCloudAssuredworkloadsV1beta1OrgPolicyUpdate;
   }
   /**
-   * Workload monitoring Violation.
+   * A compliance violation that's detected by Assured Workloads monitoring. A violation is created when an organization policy or a resource in a workload (or a Data Boundary scope) changes in a way that doesn't comply with the controls of the applicable compliance regime or framework.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1Violation {
     /**
-     * A boolean that indicates if the violation is acknowledged
+     * Whether the violation has been acknowledged.
      */
     acknowledged?: boolean | null;
     /**
-     * Optional. Timestamp when this violation was acknowledged first. Check exception_contexts to find the last time the violation was acknowledged when there are more than one violations. This field will be absent when acknowledged field is marked as false.
+     * Optional. The time when the violation was first acknowledged. To find the most recent time that the violation was acknowledged, check `exception_contexts`. This field is absent when `acknowledged` is `false`.
      */
     acknowledgementTime?: string | null;
     /**
-     * Output only. List of compliance frameworks that are affected by this violation. This field is only populated when using `VIOLATION_VIEW_DATA_BOUNDARY`. e.g. "FedRAMP High", "NIST 800-53".
+     * Output only. The IDs of the compliance frameworks that are affected by this violation. For example, `builtin-fedramp-high`. This field is only populated when using `VIOLATION_VIEW_DATA_BOUNDARY`.
      */
     affectedFrameworks?: string[] | null;
     /**
-     * Optional. Output only. Violation Id of the org-policy violation due to which the resource violation is caused. Empty for org-policy violations.
+     * Optional. Output only. For resource violations, the ID of the organization policy violation that caused this resource violation. This field is empty for organization policy violations.
      */
     associatedOrgPolicyViolationId?: string | null;
     /**
-     * Output only. Immutable. Audit Log Link for violated resource Format: https://console.cloud.google.com/logs/query;query={logName\}{protoPayload.resourceName\}{timeRange\}{folder\}
+     * Output only. Immutable. A link to the Cloud Audit Logs entries for the violated resource. Format: `https://console.cloud.google.com/logs/query;query={logName\}{protoPayload.resourceName\}{timeRange\}{folder\}`
      */
     auditLogLink?: string | null;
     /**
-     * Output only. Time of the event which triggered the Violation.
+     * Output only. The time of the event that triggered the violation.
      */
     beginTime?: string | null;
     /**
-     * Output only. Category under which this violation is mapped. e.g. Location, Service Usage, Access, Encryption, etc.
+     * Output only. The category that the violation is mapped to. For example, `Location`, `Service Usage`, `Access`, or `Encryption`.
      */
     category?: string | null;
     /**
-     * Optional. Output only. The number of resource violations for particular org policy violation. This will be 0 in case of resource violation.
+     * Optional. Output only. For organization policy violations, the number of resource violations that are associated with this violation. This field is `0` for resource violations.
      */
     childResourceViolationCount?: number | null;
     /**
-     * Output only. Description for the Violation. e.g. OrgPolicy gcp.resourceLocations has non compliant value.
+     * Output only. A description of the violation. For example, `OrgPolicy gcp.resourceLocations has non compliant value.`
      */
     description?: string | null;
     /**
-     * Output only. Immutable. Audit Log link to find business justification provided for violation exception. Format: https://console.cloud.google.com/logs/query;query={logName\}{protoPayload.resourceName\}{protoPayload.methodName\}{timeRange\}{organization\}
+     * Output only. Immutable. A link to the Cloud Audit Logs entries that contain the business justification that was provided when the violation was acknowledged. Format: `https://console.cloud.google.com/logs/query;query={logName\}{protoPayload.resourceName\}{protoPayload.methodName\}{timeRange\}{organization\}`
      */
     exceptionAuditLogLink?: string | null;
     /**
-     * Output only. List of all the exception detail added for the violation.
+     * Output only. The details of all of the acknowledgements (exceptions) for the violation.
      */
     exceptionContexts?: Schema$GoogleCloudAssuredworkloadsV1beta1ViolationExceptionContext[];
     /**
-     * Output only. Immutable. Name of the Violation. Format: organizations/{organization\}/locations/{location\}/workloads/{workload_id\}/violations/{violations_id\}
+     * Output only. Immutable. The resource name of the violation. Format: `organizations/{organization\}/locations/{location\}/workloads/{workload_id\}/violations/{violations_id\}`
      */
     name?: string | null;
     /**
-     * Output only. Immutable. Name of the OrgPolicy which was modified with non-compliant change and resulted this violation. Format: projects/{project_number\}/policies/{constraint_name\} folders/{folder_id\}/policies/{constraint_name\} organizations/{organization_id\}/policies/{constraint_name\}
+     * Output only. Immutable. The name of the organization policy that was modified with a non-compliant change and resulted in this violation. Formats: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}`
      */
     nonCompliantOrgPolicy?: string | null;
     /**
-     * Output only. Immutable. The org-policy-constraint that was incorrectly changed, which resulted in this violation.
+     * Output only. Immutable. Deprecated: This field is deprecated and might be removed in a future version of the API. Use `non_compliant_org_policy` instead, which contains the full resource name of the organization policy, including the constraint name. The organization policy constraint that was changed in a non-compliant way, which resulted in this violation.
      */
     orgPolicyConstraint?: string | null;
     /**
-     * Optional. Output only. Parent project number where resource is present. Empty for org-policy violations.
+     * Optional. Output only. For resource violations, the number of the project that contains the non-compliant resource. This field is empty for organization policy violations.
      */
     parentProjectNumber?: string | null;
     /**
-     * Output only. Compliance violation remediation
+     * Output only. The remediation guidance for the violation.
      */
     remediation?: Schema$GoogleCloudAssuredworkloadsV1beta1ViolationRemediation;
     /**
-     * Output only. Contains the remediation instructions for the violation in markdown format.
+     * Output only. The remediation instructions for the violation, in Markdown format. This field is only populated by `GetViolation` when using `VIOLATION_VIEW_DATA_BOUNDARY`. When this field isn't populated, see `remediation` instead.
      */
     remediationMarkdown?: string | null;
     /**
-     * Output only. Time of the event which fixed the Violation. If the violation is ACTIVE this will be empty.
+     * Output only. The time of the event that resolved the violation. This field is empty if the violation is unresolved.
      */
     resolveTime?: string | null;
     /**
-     * Optional. Output only. Name of the resource like //storage.googleapis.com/myprojectxyz-testbucket. Empty for org-policy violations.
+     * Optional. Output only. For resource violations, the full resource name of the non-compliant resource. For example, `//storage.googleapis.com/myprojectxyz-testbucket`. This field is empty for organization policy violations.
      */
     resourceName?: string | null;
     /**
-     * Optional. Output only. Type of the resource like compute.googleapis.com/Disk, etc. Empty for org-policy violations.
+     * Optional. Output only. For resource violations, the type of the non-compliant resource. For example, `compute.googleapis.com/Disk`. This field is empty for organization policy violations.
      */
     resourceType?: string | null;
     /**
-     * Output only. State of the violation
+     * Output only. The state of the violation.
      */
     state?: string | null;
     /**
-     * Output only. The last time when the Violation record was updated.
+     * Output only. The time when the violation record was last updated.
      */
     updateTime?: string | null;
     /**
-     * Output only. Type of the violation
+     * Output only. The type of the violation.
      */
     violationType?: string | null;
   }
   /**
-   * Violation exception detail.
+   * Details about an acknowledgement (exception) of a violation.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1ViolationExceptionContext {
     /**
-     * Timestamp when the violation was acknowledged.
+     * The time when the violation was acknowledged.
      */
     acknowledgementTime?: string | null;
     /**
-     * Business justification provided towards the acknowledgement of the violation.
+     * The business justification that was provided when the violation was acknowledged.
      */
     comment?: string | null;
     /**
-     * Name of the user (or service account) who acknowledged the violation.
+     * The name of the user (or service account) who acknowledged the violation.
      */
     userName?: string | null;
   }
   /**
-   * Represents remediation guidance to resolve compliance violation for AssuredWorkload
+   * Remediation guidance to resolve a compliance violation.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1ViolationRemediation {
     /**
-     * Values that can resolve the violation For example: for list org policy violations, this will either be the list of allowed or denied values
+     * The values that can resolve the violation. For example, for list organization policy violations, this field contains the list of allowed or denied values.
      */
     compliantValues?: string[] | null;
     /**
-     * Required. Remediation instructions to resolve violations
+     * Required. The instructions to resolve the violation.
      */
     instructions?: Schema$GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructions;
     /**
-     * Output only. Reemediation type based on the type of org policy values violated
+     * Output only. The remediation type, which is based on the type of organization policy values that were violated.
      */
     remediationType?: string | null;
   }
   /**
-   * Instructions to remediate violation
+   * Instructions to remediate a violation.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructions {
     /**
-     * Remediation instructions to resolve violation via cloud console
+     * Instructions to resolve the violation by using the Google Cloud console.
      */
     consoleInstructions?: Schema$GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructionsConsole;
     /**
-     * Remediation instructions to resolve violation via gcloud cli
+     * Instructions to resolve the violation by using the gcloud CLI.
      */
     gcloudInstructions?: Schema$GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructionsGcloud;
   }
   /**
-   * Remediation instructions to resolve violation via cloud console
+   * Instructions to remediate a violation by using the Google Cloud console.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructionsConsole {
     /**
-     * Additional urls for more information about steps
+     * Additional URLs with more information about the steps.
      */
     additionalLinks?: string[] | null;
     /**
-     * Link to console page where violations can be resolved
+     * Links to the Google Cloud console pages where the violation can be resolved.
      */
     consoleUris?: string[] | null;
     /**
-     * Steps to resolve violation via cloud console
+     * The steps to resolve the violation by using the Google Cloud console.
      */
     steps?: string[] | null;
   }
   /**
-   * Remediation instructions to resolve violation via gcloud cli
+   * Instructions to remediate a violation by using the Google Cloud CLI.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructionsGcloud {
     /**
-     * Additional urls for more information about steps
+     * Additional URLs with more information about the steps.
      */
     additionalLinks?: string[] | null;
     /**
-     * Gcloud command to resolve violation
+     * The gcloud CLI commands that resolve the violation.
      */
     gcloudCommands?: string[] | null;
     /**
-     * Steps to resolve violation via gcloud cli
+     * The steps to resolve the violation by using the gcloud CLI.
      */
     steps?: string[] | null;
   }
@@ -1474,962 +971,6 @@ export namespace assuredworkloads_v1beta1 {
     message?: string | null;
   }
 
-  export class Resource$Folders {
-    context: APIRequestContext;
-    locations: Resource$Folders$Locations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.locations = new Resource$Folders$Locations(this.context);
-    }
-  }
-
-  export class Resource$Folders$Locations {
-    context: APIRequestContext;
-    dbFindingSummaries: Resource$Folders$Locations$Dbfindingsummaries;
-    dbFrameworkComplianceReports: Resource$Folders$Locations$Dbframeworkcompliancereports;
-    dbFrameworkComplianceSummaries: Resource$Folders$Locations$Dbframeworkcompliancesummaries;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.dbFindingSummaries =
-        new Resource$Folders$Locations$Dbfindingsummaries(this.context);
-      this.dbFrameworkComplianceReports =
-        new Resource$Folders$Locations$Dbframeworkcompliancereports(
-          this.context
-        );
-      this.dbFrameworkComplianceSummaries =
-        new Resource$Folders$Locations$Dbframeworkcompliancesummaries(
-          this.context
-        );
-    }
-  }
-
-  export class Resource$Folders$Locations$Dbfindingsummaries {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Lists the finding summary by category for a given scope.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await assuredworkloads.folders.locations.dbFindingSummaries.list({
-     *     // Optional. The filtering results.
-     *     filter: 'placeholder-value',
-     *     // Optional. The requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A token that identifies the page of results that the server should return.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The parent scope for the framework overview page. Formats: - projects/{project\}/locations/{location\} - folders/{folder\}/locations/{location\} - organizations/{organization\}/locations/{location\}
-     *     parent: 'folders/my-folder/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "dbFindingSummaries": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Folders$Locations$Dbfindingsummaries$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Folders$Locations$Dbfindingsummaries$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-    >;
-    list(
-      params: Params$Resource$Folders$Locations$Dbfindingsummaries$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Folders$Locations$Dbfindingsummaries$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Folders$Locations$Dbfindingsummaries$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Folders$Locations$Dbfindingsummaries$List
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Folders$Locations$Dbfindingsummaries$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Folders$Locations$Dbfindingsummaries$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+parent}/dbFindingSummaries').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Folders$Locations$Dbfindingsummaries$List extends StandardParameters {
-    /**
-     * Optional. The filtering results.
-     */
-    filter?: string;
-    /**
-     * Optional. The requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A token that identifies the page of results that the server should return.
-     */
-    pageToken?: string;
-    /**
-     * Required. The parent scope for the framework overview page. Formats: - projects/{project\}/locations/{location\} - folders/{folder\}/locations/{location\} - organizations/{organization\}/locations/{location\}
-     */
-    parent?: string;
-  }
-
-  export class Resource$Folders$Locations$Dbframeworkcompliancereports {
-    context: APIRequestContext;
-    dbControlComplianceSummaries: Resource$Folders$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.dbControlComplianceSummaries =
-        new Resource$Folders$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries(
-          this.context
-        );
-    }
-
-    /**
-     * Gets the aggregated compliance report over time for a given scope.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.folders.locations.dbFrameworkComplianceReports.aggregate(
-     *       {
-     *         // Optional. The filtering results.
-     *         filter: 'placeholder-value',
-     *         // Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
-     *         'interval.endTime': 'placeholder-value',
-     *         // Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
-     *         'interval.startTime': 'placeholder-value',
-     *         // Required. The name of the aggregated compliance report over time to retrieve. Format: `organizations/{organization_id\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\}`
-     *         name: 'folders/my-folder/locations/my-location/dbFrameworkComplianceReports/my-dbFrameworkComplianceReport',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "aggregatedComplianceReports": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    aggregate(
-      params: Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Aggregate,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    aggregate(
-      params?: Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Aggregate,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-    >;
-    aggregate(
-      params: Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Aggregate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    aggregate(
-      params: Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Aggregate,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-    ): void;
-    aggregate(
-      params: Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Aggregate,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-    ): void;
-    aggregate(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-    ): void;
-    aggregate(
-      paramsOrCallback?:
-        | Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Aggregate
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Aggregate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Aggregate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+name}:aggregate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Fetches the framework compliance report for a given scope.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.folders.locations.dbFrameworkComplianceReports.fetch(
-     *       {
-     *         // Optional. The end time of the report.
-     *         endTime: 'placeholder-value',
-     *         // Optional. The filtering results.
-     *         filter: 'placeholder-value',
-     *         // Required. The name of the framework compliance report to retrieve.
-     *         name: 'folders/my-folder/locations/my-location/dbFrameworkComplianceReports/my-dbFrameworkComplianceReport',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "controlAssessmentDetails": {},
-     *   //   "framework": "my_framework",
-     *   //   "frameworkCategories": [],
-     *   //   "frameworkDescription": "my_frameworkDescription",
-     *   //   "frameworkDisplayName": "my_frameworkDisplayName",
-     *   //   "frameworkType": "my_frameworkType",
-     *   //   "majorRevisionId": "my_majorRevisionId",
-     *   //   "minorRevisionId": "my_minorRevisionId",
-     *   //   "name": "my_name",
-     *   //   "supportedCloudProviders": [],
-     *   //   "targetResourceDetails": [],
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    fetch(
-      params: Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Fetch,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    fetch(
-      params?: Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Fetch,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-    >;
-    fetch(
-      params: Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Fetch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    fetch(
-      params: Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Fetch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-    ): void;
-    fetch(
-      params: Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Fetch,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-    ): void;
-    fetch(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-    ): void;
-    fetch(
-      paramsOrCallback?:
-        | Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Fetch
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Fetch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Fetch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+name}:fetch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Aggregate extends StandardParameters {
-    /**
-     * Optional. The filtering results.
-     */
-    filter?: string;
-    /**
-     * Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
-     */
-    'interval.endTime'?: string;
-    /**
-     * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
-     */
-    'interval.startTime'?: string;
-    /**
-     * Required. The name of the aggregated compliance report over time to retrieve. Format: `organizations/{organization_id\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\}`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Fetch extends StandardParameters {
-    /**
-     * Optional. The end time of the report.
-     */
-    endTime?: string;
-    /**
-     * Optional. The filtering results.
-     */
-    filter?: string;
-    /**
-     * Required. The name of the framework compliance report to retrieve.
-     */
-    name?: string;
-  }
-
-  export class Resource$Folders$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Lists the control compliance summary for a given scope.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.folders.locations.dbFrameworkComplianceReports.dbControlComplianceSummaries.list(
-     *       {
-     *         // Optional. The filtering results.
-     *         filter: 'placeholder-value',
-     *         // Optional. The requested page size. The server might return fewer items than requested. If unspecified, the default page size is 50. The maximum value is 1000.
-     *         pageSize: 'placeholder-value',
-     *         // Optional. A token that identifies the page of results that the server should return.
-     *         pageToken: 'placeholder-value',
-     *         // Required. The parent scope for the framework overview page. Format: organizations/{organization\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\} folders/{folder\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\} projects/{project\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\}
-     *         parent:
-     *           'folders/my-folder/locations/my-location/dbFrameworkComplianceReports/my-dbFrameworkComplianceReport',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "dbControlComplianceSummaries": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-    >;
-    list(
-      params: Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1beta1/{+parent}/dbControlComplianceSummaries'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Folders$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List extends StandardParameters {
-    /**
-     * Optional. The filtering results.
-     */
-    filter?: string;
-    /**
-     * Optional. The requested page size. The server might return fewer items than requested. If unspecified, the default page size is 50. The maximum value is 1000.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A token that identifies the page of results that the server should return.
-     */
-    pageToken?: string;
-    /**
-     * Required. The parent scope for the framework overview page. Format: organizations/{organization\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\} folders/{folder\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\} projects/{project\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\}
-     */
-    parent?: string;
-  }
-
-  export class Resource$Folders$Locations$Dbframeworkcompliancesummaries {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Lists the framework compliance summary for a given scope.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.folders.locations.dbFrameworkComplianceSummaries.list(
-     *       {
-     *         // Optional. The filtering results.
-     *         filter: 'placeholder-value',
-     *         // Optional. The requested page size. The server might return fewer items than requested. If unspecified, the default page size is 50. The maximum value is 1000.
-     *         pageSize: 'placeholder-value',
-     *         // Optional. A token that identifies the page of results that the server should return. Pass the next_page_token value from a previous result.
-     *         pageToken: 'placeholder-value',
-     *         // Required. The parent scope for the framework compliance summary. Format: organizations/{organization\}/locations/{location\} folders/{folder\}/locations/{location\} projects/{project\}/locations/{location\}
-     *         parent: 'folders/my-folder/locations/my-location',
-     *         // Optional. Specifies the level of detail to return in the response.
-     *         view: 'placeholder-value',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "dbFrameworkComplianceSummaries": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Folders$Locations$Dbframeworkcompliancesummaries$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Folders$Locations$Dbframeworkcompliancesummaries$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-    >;
-    list(
-      params: Params$Resource$Folders$Locations$Dbframeworkcompliancesummaries$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Folders$Locations$Dbframeworkcompliancesummaries$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Folders$Locations$Dbframeworkcompliancesummaries$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Folders$Locations$Dbframeworkcompliancesummaries$List
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Folders$Locations$Dbframeworkcompliancesummaries$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Folders$Locations$Dbframeworkcompliancesummaries$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1beta1/{+parent}/dbFrameworkComplianceSummaries'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Folders$Locations$Dbframeworkcompliancesummaries$List extends StandardParameters {
-    /**
-     * Optional. The filtering results.
-     */
-    filter?: string;
-    /**
-     * Optional. The requested page size. The server might return fewer items than requested. If unspecified, the default page size is 50. The maximum value is 1000.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A token that identifies the page of results that the server should return. Pass the next_page_token value from a previous result.
-     */
-    pageToken?: string;
-    /**
-     * Required. The parent scope for the framework compliance summary. Format: organizations/{organization\}/locations/{location\} folders/{folder\}/locations/{location\} projects/{project\}/locations/{location\}
-     */
-    parent?: string;
-    /**
-     * Optional. Specifies the level of detail to return in the response.
-     */
-    view?: string;
-  }
-
   export class Resource$Organizations {
     context: APIRequestContext;
     locations: Resource$Organizations$Locations;
@@ -2441,23 +982,10 @@ export namespace assuredworkloads_v1beta1 {
 
   export class Resource$Organizations$Locations {
     context: APIRequestContext;
-    dbFindingSummaries: Resource$Organizations$Locations$Dbfindingsummaries;
-    dbFrameworkComplianceReports: Resource$Organizations$Locations$Dbframeworkcompliancereports;
-    dbFrameworkComplianceSummaries: Resource$Organizations$Locations$Dbframeworkcompliancesummaries;
     operations: Resource$Organizations$Locations$Operations;
     workloads: Resource$Organizations$Locations$Workloads;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.dbFindingSummaries =
-        new Resource$Organizations$Locations$Dbfindingsummaries(this.context);
-      this.dbFrameworkComplianceReports =
-        new Resource$Organizations$Locations$Dbframeworkcompliancereports(
-          this.context
-        );
-      this.dbFrameworkComplianceSummaries =
-        new Resource$Organizations$Locations$Dbframeworkcompliancesummaries(
-          this.context
-        );
       this.operations = new Resource$Organizations$Locations$Operations(
         this.context
       );
@@ -2465,934 +993,6 @@ export namespace assuredworkloads_v1beta1 {
         this.context
       );
     }
-  }
-
-  export class Resource$Organizations$Locations$Dbfindingsummaries {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Lists the finding summary by category for a given scope.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.organizations.locations.dbFindingSummaries.list({
-     *       // Optional. The filtering results.
-     *       filter: 'placeholder-value',
-     *       // Optional. The requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. A token that identifies the page of results that the server should return.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The parent scope for the framework overview page. Formats: - projects/{project\}/locations/{location\} - folders/{folder\}/locations/{location\} - organizations/{organization\}/locations/{location\}
-     *       parent: 'organizations/my-organization/locations/my-location',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "dbFindingSummaries": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Organizations$Locations$Dbfindingsummaries$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Organizations$Locations$Dbfindingsummaries$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-    >;
-    list(
-      params: Params$Resource$Organizations$Locations$Dbfindingsummaries$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Organizations$Locations$Dbfindingsummaries$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Organizations$Locations$Dbfindingsummaries$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Dbfindingsummaries$List
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Dbfindingsummaries$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Organizations$Locations$Dbfindingsummaries$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+parent}/dbFindingSummaries').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Organizations$Locations$Dbfindingsummaries$List extends StandardParameters {
-    /**
-     * Optional. The filtering results.
-     */
-    filter?: string;
-    /**
-     * Optional. The requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A token that identifies the page of results that the server should return.
-     */
-    pageToken?: string;
-    /**
-     * Required. The parent scope for the framework overview page. Formats: - projects/{project\}/locations/{location\} - folders/{folder\}/locations/{location\} - organizations/{organization\}/locations/{location\}
-     */
-    parent?: string;
-  }
-
-  export class Resource$Organizations$Locations$Dbframeworkcompliancereports {
-    context: APIRequestContext;
-    dbControlComplianceSummaries: Resource$Organizations$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.dbControlComplianceSummaries =
-        new Resource$Organizations$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries(
-          this.context
-        );
-    }
-
-    /**
-     * Gets the aggregated compliance report over time for a given scope.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.organizations.locations.dbFrameworkComplianceReports.aggregate(
-     *       {
-     *         // Optional. The filtering results.
-     *         filter: 'placeholder-value',
-     *         // Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
-     *         'interval.endTime': 'placeholder-value',
-     *         // Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
-     *         'interval.startTime': 'placeholder-value',
-     *         // Required. The name of the aggregated compliance report over time to retrieve. Format: `organizations/{organization_id\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\}`
-     *         name: 'organizations/my-organization/locations/my-location/dbFrameworkComplianceReports/my-dbFrameworkComplianceReport',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "aggregatedComplianceReports": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    aggregate(
-      params: Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Aggregate,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    aggregate(
-      params?: Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Aggregate,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-    >;
-    aggregate(
-      params: Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Aggregate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    aggregate(
-      params: Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Aggregate,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-    ): void;
-    aggregate(
-      params: Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Aggregate,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-    ): void;
-    aggregate(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-    ): void;
-    aggregate(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Aggregate
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Aggregate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Aggregate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+name}:aggregate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Fetches the framework compliance report for a given scope.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.organizations.locations.dbFrameworkComplianceReports.fetch(
-     *       {
-     *         // Optional. The end time of the report.
-     *         endTime: 'placeholder-value',
-     *         // Optional. The filtering results.
-     *         filter: 'placeholder-value',
-     *         // Required. The name of the framework compliance report to retrieve.
-     *         name: 'organizations/my-organization/locations/my-location/dbFrameworkComplianceReports/my-dbFrameworkComplianceReport',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "controlAssessmentDetails": {},
-     *   //   "framework": "my_framework",
-     *   //   "frameworkCategories": [],
-     *   //   "frameworkDescription": "my_frameworkDescription",
-     *   //   "frameworkDisplayName": "my_frameworkDisplayName",
-     *   //   "frameworkType": "my_frameworkType",
-     *   //   "majorRevisionId": "my_majorRevisionId",
-     *   //   "minorRevisionId": "my_minorRevisionId",
-     *   //   "name": "my_name",
-     *   //   "supportedCloudProviders": [],
-     *   //   "targetResourceDetails": [],
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    fetch(
-      params: Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Fetch,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    fetch(
-      params?: Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Fetch,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-    >;
-    fetch(
-      params: Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Fetch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    fetch(
-      params: Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Fetch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-    ): void;
-    fetch(
-      params: Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Fetch,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-    ): void;
-    fetch(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-    ): void;
-    fetch(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Fetch
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Fetch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Fetch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+name}:fetch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Aggregate extends StandardParameters {
-    /**
-     * Optional. The filtering results.
-     */
-    filter?: string;
-    /**
-     * Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
-     */
-    'interval.endTime'?: string;
-    /**
-     * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
-     */
-    'interval.startTime'?: string;
-    /**
-     * Required. The name of the aggregated compliance report over time to retrieve. Format: `organizations/{organization_id\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\}`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Fetch extends StandardParameters {
-    /**
-     * Optional. The end time of the report.
-     */
-    endTime?: string;
-    /**
-     * Optional. The filtering results.
-     */
-    filter?: string;
-    /**
-     * Required. The name of the framework compliance report to retrieve.
-     */
-    name?: string;
-  }
-
-  export class Resource$Organizations$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Lists the control compliance summary for a given scope.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.organizations.locations.dbFrameworkComplianceReports.dbControlComplianceSummaries.list(
-     *       {
-     *         // Optional. The filtering results.
-     *         filter: 'placeholder-value',
-     *         // Optional. The requested page size. The server might return fewer items than requested. If unspecified, the default page size is 50. The maximum value is 1000.
-     *         pageSize: 'placeholder-value',
-     *         // Optional. A token that identifies the page of results that the server should return.
-     *         pageToken: 'placeholder-value',
-     *         // Required. The parent scope for the framework overview page. Format: organizations/{organization\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\} folders/{folder\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\} projects/{project\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\}
-     *         parent:
-     *           'organizations/my-organization/locations/my-location/dbFrameworkComplianceReports/my-dbFrameworkComplianceReport',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "dbControlComplianceSummaries": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-    >;
-    list(
-      params: Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1beta1/{+parent}/dbControlComplianceSummaries'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Organizations$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List extends StandardParameters {
-    /**
-     * Optional. The filtering results.
-     */
-    filter?: string;
-    /**
-     * Optional. The requested page size. The server might return fewer items than requested. If unspecified, the default page size is 50. The maximum value is 1000.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A token that identifies the page of results that the server should return.
-     */
-    pageToken?: string;
-    /**
-     * Required. The parent scope for the framework overview page. Format: organizations/{organization\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\} folders/{folder\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\} projects/{project\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\}
-     */
-    parent?: string;
-  }
-
-  export class Resource$Organizations$Locations$Dbframeworkcompliancesummaries {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Lists the framework compliance summary for a given scope.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.organizations.locations.dbFrameworkComplianceSummaries.list(
-     *       {
-     *         // Optional. The filtering results.
-     *         filter: 'placeholder-value',
-     *         // Optional. The requested page size. The server might return fewer items than requested. If unspecified, the default page size is 50. The maximum value is 1000.
-     *         pageSize: 'placeholder-value',
-     *         // Optional. A token that identifies the page of results that the server should return. Pass the next_page_token value from a previous result.
-     *         pageToken: 'placeholder-value',
-     *         // Required. The parent scope for the framework compliance summary. Format: organizations/{organization\}/locations/{location\} folders/{folder\}/locations/{location\} projects/{project\}/locations/{location\}
-     *         parent: 'organizations/my-organization/locations/my-location',
-     *         // Optional. Specifies the level of detail to return in the response.
-     *         view: 'placeholder-value',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "dbFrameworkComplianceSummaries": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Organizations$Locations$Dbframeworkcompliancesummaries$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Organizations$Locations$Dbframeworkcompliancesummaries$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-    >;
-    list(
-      params: Params$Resource$Organizations$Locations$Dbframeworkcompliancesummaries$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Organizations$Locations$Dbframeworkcompliancesummaries$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Organizations$Locations$Dbframeworkcompliancesummaries$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Dbframeworkcompliancesummaries$List
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Dbframeworkcompliancesummaries$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Organizations$Locations$Dbframeworkcompliancesummaries$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1beta1/{+parent}/dbFrameworkComplianceSummaries'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Organizations$Locations$Dbframeworkcompliancesummaries$List extends StandardParameters {
-    /**
-     * Optional. The filtering results.
-     */
-    filter?: string;
-    /**
-     * Optional. The requested page size. The server might return fewer items than requested. If unspecified, the default page size is 50. The maximum value is 1000.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A token that identifies the page of results that the server should return. Pass the next_page_token value from a previous result.
-     */
-    pageToken?: string;
-    /**
-     * Required. The parent scope for the framework compliance summary. Format: organizations/{organization\}/locations/{location\} folders/{folder\}/locations/{location\} projects/{project\}/locations/{location\}
-     */
-    parent?: string;
-    /**
-     * Optional. Specifies the level of detail to return in the response.
-     */
-    view?: string;
   }
 
   export class Resource$Organizations$Locations$Operations {
@@ -3423,7 +1023,11 @@ export namespace assuredworkloads_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/assuredworkloads',
+     *       'https://www.googleapis.com/auth/assuredworkloads.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3565,7 +1169,11 @@ export namespace assuredworkloads_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/assuredworkloads',
+     *       'https://www.googleapis.com/auth/assuredworkloads.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3766,7 +1374,11 @@ export namespace assuredworkloads_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/assuredworkloads',
+     *       'https://www.googleapis.com/auth/assuredworkloads.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3785,7 +1397,7 @@ export namespace assuredworkloads_v1beta1 {
      *         pageToken: 'placeholder-value',
      *         // The source type is a project. Specify the project's relative resource name, formatted as either a project number or a project ID: "projects/{PROJECT_NUMBER\}" or "projects/{PROJECT_ID\}" For example: "projects/951040570662" when specifying a project number, or "projects/my-project-123" when specifying a project ID.
      *         project: 'placeholder-value',
-     *         // Required. The resource ID of the folder-based destination workload. This workload is where the source resource will hypothetically be moved to. Specify the workload's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-2"
+     *         // Required. The resource name of the folder-based destination workload. This workload is where the source resource will hypothetically be moved to. Specify the workload's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-2"
      *         target:
      *           'organizations/my-organization/locations/my-location/workloads/my-workload',
      *       },
@@ -3928,7 +1540,10 @@ export namespace assuredworkloads_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/assuredworkloads',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4111,7 +1726,10 @@ export namespace assuredworkloads_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/assuredworkloads',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4246,7 +1864,10 @@ export namespace assuredworkloads_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/assuredworkloads',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4396,7 +2017,10 @@ export namespace assuredworkloads_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/assuredworkloads',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4545,7 +2169,11 @@ export namespace assuredworkloads_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/assuredworkloads',
+     *       'https://www.googleapis.com/auth/assuredworkloads.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4718,7 +2346,11 @@ export namespace assuredworkloads_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/assuredworkloads',
+     *       'https://www.googleapis.com/auth/assuredworkloads.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4873,7 +2505,10 @@ export namespace assuredworkloads_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/assuredworkloads',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5084,7 +2719,10 @@ export namespace assuredworkloads_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/assuredworkloads',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5238,7 +2876,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     project?: string;
     /**
-     * Required. The resource ID of the folder-based destination workload. This workload is where the source resource will hypothetically be moved to. Specify the workload's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-2"
+     * Required. The resource name of the folder-based destination workload. This workload is where the source resource will hypothetically be moved to. Specify the workload's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-2"
      */
     target?: string;
   }
@@ -5358,7 +2996,10 @@ export namespace assuredworkloads_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/assuredworkloads',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5513,7 +3154,11 @@ export namespace assuredworkloads_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/assuredworkloads',
+     *       'https://www.googleapis.com/auth/assuredworkloads.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5702,7 +3347,10 @@ export namespace assuredworkloads_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/assuredworkloads',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5713,7 +3361,7 @@ export namespace assuredworkloads_v1beta1 {
      *   const res =
      *     await assuredworkloads.organizations.locations.workloads.violations.acknowledge(
      *       {
-     *         // Required. The resource name of the Violation to acknowledge. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}/violations/{violation\}
+     *         // Required. The resource name of the violation to acknowledge. Format: `organizations/{organization\}/locations/{location\}/workloads/{workload\}/violations/{violation\}`
      *         name: 'organizations/my-organization/locations/my-location/workloads/my-workload/violations/my-violation',
      *
      *         // Request body metadata
@@ -5842,7 +3490,7 @@ export namespace assuredworkloads_v1beta1 {
     }
 
     /**
-     * Retrieves Assured Workload Violation based on ID.
+     * Retrieves an Assured Workloads violation by its resource name.
      * @example
      * ```js
      * // Before running the sample:
@@ -5863,7 +3511,11 @@ export namespace assuredworkloads_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/assuredworkloads',
+     *       'https://www.googleapis.com/auth/assuredworkloads.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5873,9 +3525,9 @@ export namespace assuredworkloads_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await assuredworkloads.organizations.locations.workloads.violations.get({
-     *       // Required. The resource name of the Violation to fetch (ie. Violation.name). Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}/violations/{violation\}
+     *       // Required. The resource name of the violation to retrieve (that is, the value of `Violation.name`). Format: `organizations/{organization\}/locations/{location\}/workloads/{workload\}/violations/{violation\}`
      *       name: 'organizations/my-organization/locations/my-location/workloads/my-workload/violations/my-violation',
-     *       // Optional. Specifies the violation view (`AssuredWorkloads` or `DataBoundary`) for fetching violations.
+     *       // Optional. The violation view (`VIOLATION_VIEW_ASSURED_WORKLOADS` or `VIOLATION_VIEW_DATA_BOUNDARY`) that the violation belongs to. If not specified, `VIOLATION_VIEW_ASSURED_WORKLOADS` is used.
      *       view: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -6034,7 +3686,11 @@ export namespace assuredworkloads_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/assuredworkloads',
+     *       'https://www.googleapis.com/auth/assuredworkloads.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6044,22 +3700,22 @@ export namespace assuredworkloads_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await assuredworkloads.organizations.locations.workloads.violations.list({
-     *       // Optional. A custom filter for filtering by the Violations properties.
+     *       // Optional. A filter expression that restricts the violations that are returned. The syntax follows [AIP-160](https://google.aip.dev/160). Only the equality operator (`=`) is supported, and expressions can be combined with `AND`, `OR`, and `NOT`. When `view` is `VIOLATION_VIEW_DATA_BOUNDARY`, the following fields are supported: `violationId`, `category`, `state` (`UNRESOLVED`, `RESOLVED`, or `EXCEPTION`), `violationType` (`ORG_POLICY` or `RESOURCE`), `resourceType`, `resourceName`, `project`, `associatedOrgPolicyViolationId`, `cloudControlName`, `workloadDisplayName`, and `complianceType` (a framework ID). Example: `state = "UNRESOLVED" AND complianceType = "builtin-fedramp-high"`
      *       filter: 'placeholder-value',
      *       // The end of the time window.
      *       'interval.endTime': 'placeholder-value',
      *       // The start of the time window.
      *       'interval.startTime': 'placeholder-value',
-     *       // Optional. Actionable sorting delegation.
+     *       // Optional. A comma-separated list of fields to sort the results by. The default sort order is ascending; to sort in descending order, append ` desc` to the field name. For example, `update_time desc,category`. When `view` is `VIOLATION_VIEW_DATA_BOUNDARY`, the following fields are supported: `begin_time`, `update_time`, `resource_type`, `state`, and `category`. If not specified, results are sorted by `begin_time` in descending order.
      *       orderBy: 'placeholder-value',
-     *       // Optional. Page size.
+     *       // Optional. The maximum number of violations to return. The service might return fewer violations than this value. If unspecified, at most 100 violations are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      *       pageSize: 'placeholder-value',
-     *       // Optional. Page token returned from previous request.
+     *       // Optional. A page token, received from a previous `ListViolations` call. Provide this token to retrieve the subsequent page. When paginating, all other parameters that are provided to `ListViolations` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. The Workload name. Format `organizations/{org_id\}/locations/{location\}/workloads/{workload\}`.
+     *       // Required. The workload to list violations for. To list violations across all workloads in an organization, use `-` as the workload ID. When `view` is `VIOLATION_VIEW_DATA_BOUNDARY`, violations are listed for the entire organization and location, and the workload ID is ignored. Format: `organizations/{organization\}/locations/{location\}/workloads/{workload\}`
      *       parent:
      *         'organizations/my-organization/locations/my-location/workloads/my-workload',
-     *       // Optional. Specifies the violation view(AssuredWorkloads or DataBoundary) for fetching violations.
+     *       // Optional. The violation view (`VIOLATION_VIEW_ASSURED_WORKLOADS` or `VIOLATION_VIEW_DATA_BOUNDARY`) to list violations for. If not specified, `VIOLATION_VIEW_ASSURED_WORKLOADS` is used.
      *       view: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -6182,7 +3838,7 @@ export namespace assuredworkloads_v1beta1 {
 
   export interface Params$Resource$Organizations$Locations$Workloads$Violations$Acknowledge extends StandardParameters {
     /**
-     * Required. The resource name of the Violation to acknowledge. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}/violations/{violation\}
+     * Required. The resource name of the violation to acknowledge. Format: `organizations/{organization\}/locations/{location\}/workloads/{workload\}/violations/{violation\}`
      */
     name?: string;
 
@@ -6193,17 +3849,17 @@ export namespace assuredworkloads_v1beta1 {
   }
   export interface Params$Resource$Organizations$Locations$Workloads$Violations$Get extends StandardParameters {
     /**
-     * Required. The resource name of the Violation to fetch (ie. Violation.name). Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}/violations/{violation\}
+     * Required. The resource name of the violation to retrieve (that is, the value of `Violation.name`). Format: `organizations/{organization\}/locations/{location\}/workloads/{workload\}/violations/{violation\}`
      */
     name?: string;
     /**
-     * Optional. Specifies the violation view (`AssuredWorkloads` or `DataBoundary`) for fetching violations.
+     * Optional. The violation view (`VIOLATION_VIEW_ASSURED_WORKLOADS` or `VIOLATION_VIEW_DATA_BOUNDARY`) that the violation belongs to. If not specified, `VIOLATION_VIEW_ASSURED_WORKLOADS` is used.
      */
     view?: string;
   }
   export interface Params$Resource$Organizations$Locations$Workloads$Violations$List extends StandardParameters {
     /**
-     * Optional. A custom filter for filtering by the Violations properties.
+     * Optional. A filter expression that restricts the violations that are returned. The syntax follows [AIP-160](https://google.aip.dev/160). Only the equality operator (`=`) is supported, and expressions can be combined with `AND`, `OR`, and `NOT`. When `view` is `VIOLATION_VIEW_DATA_BOUNDARY`, the following fields are supported: `violationId`, `category`, `state` (`UNRESOLVED`, `RESOLVED`, or `EXCEPTION`), `violationType` (`ORG_POLICY` or `RESOURCE`), `resourceType`, `resourceName`, `project`, `associatedOrgPolicyViolationId`, `cloudControlName`, `workloadDisplayName`, and `complianceType` (a framework ID). Example: `state = "UNRESOLVED" AND complianceType = "builtin-fedramp-high"`
      */
     filter?: string;
     /**
@@ -6215,981 +3871,23 @@ export namespace assuredworkloads_v1beta1 {
      */
     'interval.startTime'?: string;
     /**
-     * Optional. Actionable sorting delegation.
+     * Optional. A comma-separated list of fields to sort the results by. The default sort order is ascending; to sort in descending order, append ` desc` to the field name. For example, `update_time desc,category`. When `view` is `VIOLATION_VIEW_DATA_BOUNDARY`, the following fields are supported: `begin_time`, `update_time`, `resource_type`, `state`, and `category`. If not specified, results are sorted by `begin_time` in descending order.
      */
     orderBy?: string;
     /**
-     * Optional. Page size.
+     * Optional. The maximum number of violations to return. The service might return fewer violations than this value. If unspecified, at most 100 violations are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      */
     pageSize?: number;
     /**
-     * Optional. Page token returned from previous request.
+     * Optional. A page token, received from a previous `ListViolations` call. Provide this token to retrieve the subsequent page. When paginating, all other parameters that are provided to `ListViolations` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Required. The Workload name. Format `organizations/{org_id\}/locations/{location\}/workloads/{workload\}`.
+     * Required. The workload to list violations for. To list violations across all workloads in an organization, use `-` as the workload ID. When `view` is `VIOLATION_VIEW_DATA_BOUNDARY`, violations are listed for the entire organization and location, and the workload ID is ignored. Format: `organizations/{organization\}/locations/{location\}/workloads/{workload\}`
      */
     parent?: string;
     /**
-     * Optional. Specifies the violation view(AssuredWorkloads or DataBoundary) for fetching violations.
-     */
-    view?: string;
-  }
-
-  export class Resource$Projects {
-    context: APIRequestContext;
-    locations: Resource$Projects$Locations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.locations = new Resource$Projects$Locations(this.context);
-    }
-  }
-
-  export class Resource$Projects$Locations {
-    context: APIRequestContext;
-    dbFindingSummaries: Resource$Projects$Locations$Dbfindingsummaries;
-    dbFrameworkComplianceReports: Resource$Projects$Locations$Dbframeworkcompliancereports;
-    dbFrameworkComplianceSummaries: Resource$Projects$Locations$Dbframeworkcompliancesummaries;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.dbFindingSummaries =
-        new Resource$Projects$Locations$Dbfindingsummaries(this.context);
-      this.dbFrameworkComplianceReports =
-        new Resource$Projects$Locations$Dbframeworkcompliancereports(
-          this.context
-        );
-      this.dbFrameworkComplianceSummaries =
-        new Resource$Projects$Locations$Dbframeworkcompliancesummaries(
-          this.context
-        );
-    }
-  }
-
-  export class Resource$Projects$Locations$Dbfindingsummaries {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Lists the finding summary by category for a given scope.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await assuredworkloads.projects.locations.dbFindingSummaries.list(
-     *     {
-     *       // Optional. The filtering results.
-     *       filter: 'placeholder-value',
-     *       // Optional. The requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. A token that identifies the page of results that the server should return.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The parent scope for the framework overview page. Formats: - projects/{project\}/locations/{location\} - folders/{folder\}/locations/{location\} - organizations/{organization\}/locations/{location\}
-     *       parent: 'projects/my-project/locations/my-location',
-     *     },
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "dbFindingSummaries": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Dbfindingsummaries$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Dbfindingsummaries$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Dbfindingsummaries$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Dbfindingsummaries$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Dbfindingsummaries$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Dbfindingsummaries$List
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Dbfindingsummaries$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Dbfindingsummaries$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+parent}/dbFindingSummaries').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Dbfindingsummaries$List extends StandardParameters {
-    /**
-     * Optional. The filtering results.
-     */
-    filter?: string;
-    /**
-     * Optional. The requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A token that identifies the page of results that the server should return.
-     */
-    pageToken?: string;
-    /**
-     * Required. The parent scope for the framework overview page. Formats: - projects/{project\}/locations/{location\} - folders/{folder\}/locations/{location\} - organizations/{organization\}/locations/{location\}
-     */
-    parent?: string;
-  }
-
-  export class Resource$Projects$Locations$Dbframeworkcompliancereports {
-    context: APIRequestContext;
-    dbControlComplianceSummaries: Resource$Projects$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.dbControlComplianceSummaries =
-        new Resource$Projects$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries(
-          this.context
-        );
-    }
-
-    /**
-     * Gets the aggregated compliance report over time for a given scope.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.projects.locations.dbFrameworkComplianceReports.aggregate(
-     *       {
-     *         // Optional. The filtering results.
-     *         filter: 'placeholder-value',
-     *         // Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
-     *         'interval.endTime': 'placeholder-value',
-     *         // Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
-     *         'interval.startTime': 'placeholder-value',
-     *         // Required. The name of the aggregated compliance report over time to retrieve. Format: `organizations/{organization_id\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\}`
-     *         name: 'projects/my-project/locations/my-location/dbFrameworkComplianceReports/my-dbFrameworkComplianceReport',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "aggregatedComplianceReports": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    aggregate(
-      params: Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Aggregate,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    aggregate(
-      params?: Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Aggregate,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-    >;
-    aggregate(
-      params: Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Aggregate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    aggregate(
-      params: Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Aggregate,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-    ): void;
-    aggregate(
-      params: Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Aggregate,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-    ): void;
-    aggregate(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-    ): void;
-    aggregate(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Aggregate
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Aggregate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Aggregate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+name}:aggregate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Fetches the framework compliance report for a given scope.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.projects.locations.dbFrameworkComplianceReports.fetch(
-     *       {
-     *         // Optional. The end time of the report.
-     *         endTime: 'placeholder-value',
-     *         // Optional. The filtering results.
-     *         filter: 'placeholder-value',
-     *         // Required. The name of the framework compliance report to retrieve.
-     *         name: 'projects/my-project/locations/my-location/dbFrameworkComplianceReports/my-dbFrameworkComplianceReport',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "controlAssessmentDetails": {},
-     *   //   "framework": "my_framework",
-     *   //   "frameworkCategories": [],
-     *   //   "frameworkDescription": "my_frameworkDescription",
-     *   //   "frameworkDisplayName": "my_frameworkDisplayName",
-     *   //   "frameworkType": "my_frameworkType",
-     *   //   "majorRevisionId": "my_majorRevisionId",
-     *   //   "minorRevisionId": "my_minorRevisionId",
-     *   //   "name": "my_name",
-     *   //   "supportedCloudProviders": [],
-     *   //   "targetResourceDetails": [],
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    fetch(
-      params: Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Fetch,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    fetch(
-      params?: Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Fetch,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-    >;
-    fetch(
-      params: Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Fetch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    fetch(
-      params: Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Fetch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-    ): void;
-    fetch(
-      params: Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Fetch,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-    ): void;
-    fetch(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-    ): void;
-    fetch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Fetch
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Fetch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Fetch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+name}:fetch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Aggregate extends StandardParameters {
-    /**
-     * Optional. The filtering results.
-     */
-    filter?: string;
-    /**
-     * Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
-     */
-    'interval.endTime'?: string;
-    /**
-     * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
-     */
-    'interval.startTime'?: string;
-    /**
-     * Required. The name of the aggregated compliance report over time to retrieve. Format: `organizations/{organization_id\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\}`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Fetch extends StandardParameters {
-    /**
-     * Optional. The end time of the report.
-     */
-    endTime?: string;
-    /**
-     * Optional. The filtering results.
-     */
-    filter?: string;
-    /**
-     * Required. The name of the framework compliance report to retrieve.
-     */
-    name?: string;
-  }
-
-  export class Resource$Projects$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Lists the control compliance summary for a given scope.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.projects.locations.dbFrameworkComplianceReports.dbControlComplianceSummaries.list(
-     *       {
-     *         // Optional. The filtering results.
-     *         filter: 'placeholder-value',
-     *         // Optional. The requested page size. The server might return fewer items than requested. If unspecified, the default page size is 50. The maximum value is 1000.
-     *         pageSize: 'placeholder-value',
-     *         // Optional. A token that identifies the page of results that the server should return.
-     *         pageToken: 'placeholder-value',
-     *         // Required. The parent scope for the framework overview page. Format: organizations/{organization\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\} folders/{folder\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\} projects/{project\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\}
-     *         parent:
-     *           'projects/my-project/locations/my-location/dbFrameworkComplianceReports/my-dbFrameworkComplianceReport',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "dbControlComplianceSummaries": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1beta1/{+parent}/dbControlComplianceSummaries'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Dbframeworkcompliancereports$Dbcontrolcompliancesummaries$List extends StandardParameters {
-    /**
-     * Optional. The filtering results.
-     */
-    filter?: string;
-    /**
-     * Optional. The requested page size. The server might return fewer items than requested. If unspecified, the default page size is 50. The maximum value is 1000.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A token that identifies the page of results that the server should return.
-     */
-    pageToken?: string;
-    /**
-     * Required. The parent scope for the framework overview page. Format: organizations/{organization\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\} folders/{folder\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\} projects/{project\}/locations/{location\}/dbFrameworkComplianceReports/{db_framework_compliance_report\}
-     */
-    parent?: string;
-  }
-
-  export class Resource$Projects$Locations$Dbframeworkcompliancesummaries {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Lists the framework compliance summary for a given scope.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.projects.locations.dbFrameworkComplianceSummaries.list(
-     *       {
-     *         // Optional. The filtering results.
-     *         filter: 'placeholder-value',
-     *         // Optional. The requested page size. The server might return fewer items than requested. If unspecified, the default page size is 50. The maximum value is 1000.
-     *         pageSize: 'placeholder-value',
-     *         // Optional. A token that identifies the page of results that the server should return. Pass the next_page_token value from a previous result.
-     *         pageToken: 'placeholder-value',
-     *         // Required. The parent scope for the framework compliance summary. Format: organizations/{organization\}/locations/{location\} folders/{folder\}/locations/{location\} projects/{project\}/locations/{location\}
-     *         parent: 'projects/my-project/locations/my-location',
-     *         // Optional. Specifies the level of detail to return in the response.
-     *         view: 'placeholder-value',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "dbFrameworkComplianceSummaries": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Dbframeworkcompliancesummaries$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Dbframeworkcompliancesummaries$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Dbframeworkcompliancesummaries$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Dbframeworkcompliancesummaries$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Dbframeworkcompliancesummaries$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Dbframeworkcompliancesummaries$List
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Dbframeworkcompliancesummaries$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Dbframeworkcompliancesummaries$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1beta1/{+parent}/dbFrameworkComplianceSummaries'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Dbframeworkcompliancesummaries$List extends StandardParameters {
-    /**
-     * Optional. The filtering results.
-     */
-    filter?: string;
-    /**
-     * Optional. The requested page size. The server might return fewer items than requested. If unspecified, the default page size is 50. The maximum value is 1000.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A token that identifies the page of results that the server should return. Pass the next_page_token value from a previous result.
-     */
-    pageToken?: string;
-    /**
-     * Required. The parent scope for the framework compliance summary. Format: organizations/{organization\}/locations/{location\} folders/{folder\}/locations/{location\} projects/{project\}/locations/{location\}
-     */
-    parent?: string;
-    /**
-     * Optional. Specifies the level of detail to return in the response.
+     * Optional. The violation view (`VIOLATION_VIEW_ASSURED_WORKLOADS` or `VIOLATION_VIEW_DATA_BOUNDARY`) to list violations for. If not specified, `VIOLATION_VIEW_ASSURED_WORKLOADS` is used.
      */
     view?: string;
   }
