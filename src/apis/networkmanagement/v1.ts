@@ -143,7 +143,7 @@ export namespace networkmanagement_v1 {
      */
     projectsMissingPermission?: string[] | null;
     /**
-     * URI of the resource that caused the abort. Format: * `projects/{project_id\}/global/networks/{network_id\}` (VPC network) * `projects/{project_id\}/zones/{zone\}/instances/{instance_id\}` (VM instance)
+     * URI of the resource that caused the abort. Format: * `projects/{project\}/global/networks/{network\}` (VPC network) * `projects/{project\}/zones/{zone\}/instances/{instance\}` (VM instance)
      */
     resourceUri?: string | null;
   }
@@ -173,7 +173,7 @@ export namespace networkmanagement_v1 {
      */
     runtime?: string | null;
     /**
-     * URI of the App Engine version. Format: `apps/{app_id\}/services/{service_id\}/versions/{version_id\}`
+     * URI of the App Engine version. Format: `apps/{app\}/services/{service\}/versions/{version\}`
      */
     uri?: string | null;
   }
@@ -246,7 +246,7 @@ export namespace networkmanagement_v1 {
      */
     location?: string | null;
     /**
-     * URI of the Cloud Function. Format: `projects/{project_id\}/locations/{location\}/functions/{function_id\}`
+     * URI of the Cloud Function. Format: `projects/{project\}/locations/{location\}/functions/{function\}`
      */
     uri?: string | null;
     /**
@@ -267,7 +267,7 @@ export namespace networkmanagement_v1 {
      */
     location?: string | null;
     /**
-     * URI of the Cloud Run job. Format: `projects/{project_id\}/locations/{location\}/jobs/{job_id\}`
+     * URI of the Cloud Run job. Format: `projects/{project\}/locations/{location\}/jobs/{job\}`
      */
     uri?: string | null;
   }
@@ -301,15 +301,15 @@ export namespace networkmanagement_v1 {
      */
     location?: string | null;
     /**
-     * URI of Cloud Run service this revision belongs to. Format: `projects/{project_id\}/locations/{location\}/services/{service_id\}` Mutually exclusive with `worker_pool_uri`.
+     * URI of Cloud Run service this revision belongs to. Format: `projects/{project\}/locations/{location\}/services/{service\}` Mutually exclusive with `worker_pool_uri`.
      */
     serviceUri?: string | null;
     /**
-     * URI of the Cloud Run revision. Format: `projects/{project_id\}/locations/{location\}/revisions/{revision_id\}`
+     * URI of the Cloud Run revision. Format: `projects/{project\}/locations/{location\}/revisions/{revision\}`
      */
     uri?: string | null;
     /**
-     * URI of Cloud Run worker pool this revision belongs to. Format: `projects/{project_id\}/locations/{location\}/workerPools/{worker_pool_id\}` Mutually exclusive with `service_uri`.
+     * URI of Cloud Run worker pool this revision belongs to. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}` Mutually exclusive with `service_uri`.
      */
     workerPoolUri?: string | null;
   }
@@ -441,7 +441,7 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$DirectVpcEgressConnectionInfo {
     /**
-     * URI of the VPC network for direct egress. Format: `projects/{project_id\}/global/networks/{network_id\}`
+     * URI of the VPC network for direct egress. Format: `projects/{project\}/global/networks/{network\}`
      */
     networkUri?: string | null;
     /**
@@ -457,7 +457,7 @@ export namespace networkmanagement_v1 {
      */
     selectedIpRange?: string | null;
     /**
-     * URI of the subnetwork for direct egress. Format: `projects/{project_id\}/regions/{region\}/subnetworks/{subnetwork_id\}`
+     * URI of the subnetwork for direct egress. Format: `projects/{project\}/regions/{region\}/subnetworks/{subnetwork\}`
      */
     subnetworkUri?: string | null;
   }
@@ -482,7 +482,7 @@ export namespace networkmanagement_v1 {
      */
     region?: string | null;
     /**
-     * URI of the resource that caused the drop. Format: * `projects/{project_id\}/global/firewalls/{firewall_id\}` (firewall rule) * `projects/{project_id\}/global/routes/{route_id\}` (route)
+     * URI of the resource that caused the drop. Format: * `projects/{project\}/global/firewalls/{firewall\}` (firewall rule) * `projects/{project\}/global/routes/{route\}` (subnet, static or peering subnet route) * `projects/{project\}/locations/{location\}/policyBasedRoutes/{route\}` (policy-based route)
      */
     resourceUri?: string | null;
     /**
@@ -593,6 +593,10 @@ export namespace networkmanagement_v1 {
      */
     cloudSqlInstance?: string | null;
     /**
+     * A [Datastream Private Connection](https://docs.cloud.google.com/datastream/docs/reference/rest/v1/projects.locations.privateConnections) name format: projects/{project\}/locations/{location\}/privateConnections/{privateConnection\}.
+     */
+    datastreamPrivateConnection?: string | null;
+    /**
      * A [DMS Private Connection](https://docs.cloud.google.com/database-migration/docs/reference/rest/v1/projects.locations.privateConnections) name format: projects/{project\}/locations/{location\}/privateConnections/{privateConnection\}.
      */
     dmsPrivateConnection?: string | null;
@@ -666,7 +670,7 @@ export namespace networkmanagement_v1 {
      */
     destinationIp?: string | null;
     /**
-     * URI of the network where this packet is sent to. Format: `projects/{project_id\}/global/networks/{network_id\}`
+     * URI of the network where this packet is sent to. Format: `projects/{project\}/global/networks/{network\}`
      */
     destinationNetworkUri?: string | null;
     /**
@@ -686,7 +690,7 @@ export namespace networkmanagement_v1 {
      */
     sourceIp?: string | null;
     /**
-     * URI of the network where this packet originates from. Format: `projects/{project_id\}/global/networks/{network_id\}`
+     * URI of the network where this packet originates from. Format: `projects/{project\}/global/networks/{network\}`
      */
     sourceNetworkUri?: string | null;
     /**
@@ -748,7 +752,7 @@ export namespace networkmanagement_v1 {
      */
     policyPriority?: number | null;
     /**
-     * The URI of the firewall policy that this rule is associated with. This field is not applicable to VPC firewall rules and implied VPC firewall rules. Format: * `locations/global/firewallPolicies/{policy_id\}` (hierarchical policy) * `projects/{project_id\}/global/firewallPolicies/{policy_id\}` (global network firewall policy) * `projects/{project_id\}/regions/{region\}/firewallPolicies/{policy_id\}` (regional network firewall policy)
+     * The URI of the firewall policy that this rule is associated with. This field is not applicable to VPC firewall rules and implied VPC firewall rules. Format: * `locations/global/firewallPolicies/{policy\}` (hierarchical policy) * `projects/{project\}/global/firewallPolicies/{policy\}` (global network firewall policy) * `projects/{project\}/regions/{region\}/firewallPolicies/{policy\}` (regional network firewall policy)
      */
     policyUri?: string | null;
     /**
@@ -768,7 +772,7 @@ export namespace networkmanagement_v1 {
      */
     targetType?: string | null;
     /**
-     * The URI of the firewall rule in format "projects/{project\}/global/firewalls/{firewall\}". This field is not applicable to implied VPC firewall rules.
+     * The URI of the firewall rule in format * `locations/global/firewallPolicies/{policy\}/priority/{priority\}` (hierarchical policy) * `projects/{project\}/global/firewallPolicies/{policy\}/priority/{priority\}` (global network firewall policy) * `projects/{project\}/regions/{region\}/firewallPolicies/{policy\}/priority/{priority\}` (regional network firewall policy) * `projects/{project\}/global/firewalls/{firewall\}` (VPC firewall rule). This field is not applicable to implied VPC firewall rules.
      */
     uri?: string | null;
   }
@@ -781,7 +785,7 @@ export namespace networkmanagement_v1 {
      */
     ipAddress?: string | null;
     /**
-     * URI of the resource that the packet is forwarded to. Format: * `projects/{project_id\}/global/networks/{network_id\}` (VPC peering network) * `projects/{project_id\}/regions/{region\}/vpnGateways/{vpn_gateway_id\}` (VPN gateway)
+     * URI of the resource that the packet is forwarded to. Format: * `projects/{project\}/global/networks/{network\}` (VPC peering network) * `projects/{project\}/regions/{region\}/vpnGateways/{vpn_gateway\}` (VPN gateway)
      */
     resourceUri?: string | null;
     /**
@@ -878,11 +882,11 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$GKEMasterInfo {
     /**
-     * URI of the GKE cluster network. Format: `projects/{project_id\}/global/networks/{network_id\}`
+     * URI of the GKE cluster network. Format: `projects/{project\}/global/networks/{network\}`
      */
     clusterNetworkUri?: string | null;
     /**
-     * URI of the GKE cluster. Format: * `projects/{project_id\}/locations/{location\}/clusters/{cluster_id\}` (regional cluster) * `projects/{project_id\}/zones/{zone\}/clusters/{cluster_id\}` (zonal cluster)
+     * URI of the GKE cluster. Format: * `projects/{project\}/locations/{location\}/clusters/{cluster\}` (regional cluster) * `projects/{project\}/zones/{zone\}/clusters/{cluster\}` (zonal cluster)
      */
     clusterUri?: string | null;
     /**
@@ -937,7 +941,7 @@ export namespace networkmanagement_v1 {
      */
     ipAddress?: string | null;
     /**
-     * URI of the network containing the GKE Pod. Format: `projects/{project_id\}/global/networks/{network_id\}`
+     * URI of the network containing the GKE Pod. Format: `projects/{project\}/global/networks/{network\}`
      */
     networkUri?: string | null;
     /**
@@ -1021,7 +1025,7 @@ export namespace networkmanagement_v1 {
      */
     region?: string | null;
     /**
-     * URI of the hybrid subnet. Format: `projects/{project_id\}/regions/{region\}/subnetworks/{subnetwork_id\}`
+     * URI of the hybrid subnet. Format: `projects/{project\}/regions/{region\}/subnetworks/{subnetwork\}`
      */
     uri?: string | null;
   }
@@ -1079,7 +1083,7 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$InterconnectAttachmentInfo {
     /**
-     * URI of the Cloud Router to be used for dynamic routing. Format: `projects/{project_id\}/regions/{region\}/routers/{router_id\}`
+     * URI of the Cloud Router to be used for dynamic routing. Format: `projects/{project\}/regions/{region\}/routers/{router\}`
      */
     cloudRouterUri?: string | null;
     /**
@@ -1087,7 +1091,7 @@ export namespace networkmanagement_v1 {
      */
     displayName?: string | null;
     /**
-     * URI of the Interconnect. Format: `projects/{project_id\}/global/interconnects/{interconnect_id\}`
+     * URI of the Interconnect. Format: `projects/{project\}/global/interconnects/{interconnect\}`
      */
     interconnectUri?: string | null;
     /**
@@ -1103,7 +1107,7 @@ export namespace networkmanagement_v1 {
      */
     type?: string | null;
     /**
-     * URI of the Interconnect attachment. Format: `projects/{project_id\}/regions/{region\}/interconnectAttachments/{attachment_id\}`
+     * URI of the Interconnect attachment. Format: `projects/{project\}/regions/{region\}/interconnectAttachments/{attachment\}`
      */
     uri?: string | null;
   }
@@ -1279,7 +1283,7 @@ export namespace networkmanagement_v1 {
      */
     healthCheckFirewallState?: string | null;
     /**
-     * URI of the backend instance or network endpoint. Format: * `projects/{project_id\}/zones/{zone\}/instances/{instance_id\}` (instance) * `projects/{project_id\}/zones/{zone\}/networkEndpointGroups/{neg_id\}` (zonal NEG) * `projects/{project_id\}/regions/{region\}/networkEndpointGroups/{neg_id\}` (regional NEG) * `projects/{project_id\}/global/networkEndpointGroups/{neg_id\}` (global NEG)
+     * URI of the backend instance or network endpoint. Format: * `projects/{project\}/zones/{zone\}/instances/{instance\}` (instance) * `projects/{project\}/zones/{zone\}/networkEndpointGroups/{neg\}` (zonal NEG) * `projects/{project\}/regions/{region\}/networkEndpointGroups/{neg\}` (regional NEG) * `projects/{project\}/global/networkEndpointGroups/{neg\}` (global NEG)
      */
     uri?: string | null;
   }
@@ -1300,7 +1304,7 @@ export namespace networkmanagement_v1 {
      */
     healthCheckFirewallsConfigState?: string | null;
     /**
-     * URI of the health check attached to this backend (if applicable). Format: * `projects/{project_id\}/global/healthChecks/{health_check_id\}` * `projects/{project_id\}/regions/{region\}/healthChecks/{health_check_id\}` * `projects/{project_id\}/global/httpHealthChecks/{health_check_id\}` (legacy)
+     * URI of the health check attached to this backend (if applicable). Format: * `projects/{project\}/global/healthChecks/{health_check\}` * `projects/{project\}/regions/{region\}/healthChecks/{health_check\}` * `projects/{project\}/global/httpHealthChecks/{health_check\}` (legacy)
      */
     healthCheckUri?: string | null;
     /**
@@ -1316,7 +1320,7 @@ export namespace networkmanagement_v1 {
      */
     name?: string | null;
     /**
-     * URI of the network endpoint group this backend belongs to (if applicable) Format: * `projects/{project_id\}/zones/{zone\}/networkEndpointGroups/{neg_id\}` (zonal NEG) * `projects/{project_id\}/regions/{region\}/networkEndpointGroups/{neg_id\}` (regional NEG) * `projects/{project_id\}/global/networkEndpointGroups/{neg_id\}` (global NEG)
+     * URI of the network endpoint group this backend belongs to (if applicable) Format: * `projects/{project\}/zones/{zone\}/networkEndpointGroups/{neg\}` (zonal NEG) * `projects/{project\}/regions/{region\}/networkEndpointGroups/{neg\}` (regional NEG) * `projects/{project\}/global/networkEndpointGroups/{neg\}` (global NEG)
      */
     networkEndpointGroupUri?: string | null;
     /**
@@ -1341,7 +1345,7 @@ export namespace networkmanagement_v1 {
      */
     backendType?: string | null;
     /**
-     * URI of the backend associated with the load balancer. Format: * `projects/{project_id\}/regions/{region\}/backendServices/{backend_service_id\}` * `projects/{project_id\}/global/backendServices/{backend_service_id\}` * `projects/{project_id\}/regions/{region\}/targetPools/{target_pool_id\}` * `projects/{project_id\}/zones/{zone\}/targetInstances/{target_instance_id\}`
+     * URI of the backend associated with the load balancer. Format: * `projects/{project\}/regions/{region\}/backendServices/{backend_service\}` * `projects/{project\}/global/backendServices/{backend_service\}` * `projects/{project\}/regions/{region\}/targetPools/{target_pool\}` * `projects/{project\}/zones/{zone\}/targetInstances/{target_instance\}`
      */
     backendUri?: string | null;
     /**
@@ -1472,7 +1476,7 @@ export namespace networkmanagement_v1 {
      */
     natGatewayName?: string | null;
     /**
-     * URI of the VPC network where NAT translation takes place. Format: `projects/{project_id\}/global/networks/{network_id\}`
+     * URI of the VPC network where NAT translation takes place. Format: `projects/{project\}/global/networks/{network\}`
      */
     networkUri?: string | null;
     /**
@@ -1512,7 +1516,7 @@ export namespace networkmanagement_v1 {
      */
     protocol?: string | null;
     /**
-     * URI of the Cloud Router. Only valid when type is CLOUD_NAT. Format: `projects/{project_id\}/regions/{region\}/routers/{router_id\}`
+     * URI of the Cloud Router. Only valid when type is CLOUD_NAT. Format: `projects/{project\}/regions/{region\}/routers/{router\}`
      */
     routerUri?: string | null;
     /**
@@ -1689,7 +1693,7 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$NgfwPacketInspectionInfo {
     /**
-     * URI of the security profile group associated with this firewall packet inspection. Format: `organizations/{organization_id\}/locations/global/securityProfileGroups/{security_profile_group_id\}`
+     * URI of the security profile group associated with this firewall packet inspection. Format: `organizations/{organization\}/locations/global/securityProfileGroups/{security_profile_group\}`
      */
     securityProfileGroupUri?: string | null;
   }
@@ -1777,7 +1781,7 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$PrivateConnectionInfo {
     /**
-     * URI of the Private Connection in format "projects/{project_id\}/locations/{location\}/privateConnections/{private_connection_id\}"
+     * URI of the Private Connection in format "projects/{project\}/locations/{location\}/privateConnections/{private_connection\}"
      */
     uri?: string | null;
   }
@@ -1852,7 +1856,7 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$ProxyConnectionInfo {
     /**
-     * URI of the VPC network where connection is proxied. Format: `projects/{project_id\}/global/networks/{network_id\}`
+     * URI of the VPC network where connection is proxied. Format: `projects/{project\}/global/networks/{network\}`
      */
     networkUri?: string | null;
     /**
@@ -1892,7 +1896,7 @@ export namespace networkmanagement_v1 {
      */
     protocol?: string | null;
     /**
-     * URI of the proxy subnet. Format: `projects/{project_id\}/regions/{region\}/subnetworks/{subnetwork_id\}`
+     * URI of the proxy subnet. Format: `projects/{project\}/regions/{region\}/subnetworks/{subnetwork\}`
      */
     subnetUri?: string | null;
   }
@@ -1951,7 +1955,7 @@ export namespace networkmanagement_v1 {
      */
     location?: string | null;
     /**
-     * URI of the network containing the Redis Cluster endpoints in format "projects/{project_id\}/global/networks/{network_id\}".
+     * URI of the network containing the Redis Cluster endpoints in format "projects/{project\}/global/networks/{network\}".
      */
     networkUri?: string | null;
     /**
@@ -1959,7 +1963,7 @@ export namespace networkmanagement_v1 {
      */
     secondaryEndpointIpAddress?: string | null;
     /**
-     * URI of a Redis Cluster in format "projects/{project_id\}/locations/{location\}/clusters/{cluster_id\}"
+     * URI of a Redis Cluster in format "projects/{project\}/locations/{location\}/clusters/{cluster\}"
      */
     uri?: string | null;
   }
@@ -2025,7 +2029,7 @@ export namespace networkmanagement_v1 {
      */
     instanceTags?: string[] | null;
     /**
-     * For PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub, the URI of the corresponding route in NCC Hub's routing table. Format: `projects/{project_id\}/locations/global/hubs/{hub_id\}/routeTables/{route_table_id\}/routes/{route_id\}`
+     * For PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub, the URI of the corresponding route in NCC Hub's routing table. Format: `projects/{project\}/locations/global/hubs/{hub\}/routeTables/{route_table\}/routes/{route\}`
      */
     nccHubRouteUri?: string | null;
     /**
@@ -2061,7 +2065,7 @@ export namespace networkmanagement_v1 {
      */
     originatingRouteDisplayName?: string | null;
     /**
-     * For PEERING_SUBNET and PEERING_STATIC routes, the URI of the originating SUBNET/STATIC route. Format: `projects/{project_id\}/global/routes/{route_id\}`
+     * For PEERING_SUBNET and PEERING_STATIC routes, the URI of the originating SUBNET/STATIC route. Format: `projects/{project\}/global/routes/{route\}`
      */
     originatingRouteUri?: string | null;
     /**
@@ -2093,7 +2097,7 @@ export namespace networkmanagement_v1 {
      */
     srcPortRanges?: string[] | null;
     /**
-     * URI of a route in format "projects/{project\}/global/routes/{route\}". SUBNET, STATIC, PEERING_SUBNET (only for peering network) and POLICY_BASED routes only.
+     * For SUBNET, STATIC and PEERING_SUBNET (only for peering network) URI of a route in format "projects/{project\}/global/routes/{route\}". For POLICY_BASED routes URI of a route in format "projects/{project\}/locations/{location\}/policyBasedRoutes/{route\}". Not set for other route types.
      */
     uri?: string | null;
   }
@@ -2438,7 +2442,7 @@ export namespace networkmanagement_v1 {
      */
     location?: string | null;
     /**
-     * URI of a VPC connector. Format: `projects/{project_id\}/locations/{location\}/connectors/{connector_id\}`
+     * URI of a VPC connector. Format: `projects/{project\}/locations/{location\}/connectors/{connector\}`
      */
     uri?: string | null;
   }
@@ -2532,7 +2536,7 @@ export namespace networkmanagement_v1 {
      */
     ipAddress?: string | null;
     /**
-     * URI of the VPC network where the VPN gateway is configured. Format: `projects/{project_id\}/global/networks/{network_id\}`
+     * URI of the VPC network where the VPN gateway is configured. Format: `projects/{project\}/global/networks/{network\}`
      */
     networkUri?: string | null;
     /**
@@ -2540,11 +2544,11 @@ export namespace networkmanagement_v1 {
      */
     region?: string | null;
     /**
-     * URI of the VPN gateway. Format: * `projects/{project_id\}/regions/{region\}/vpnGateways/{vpn_gateway_id\}` (HA VPN gateway) * `projects/{project_id\}/regions/{region\}/targetVpnGateways/{target_vpn_gateway_id\}` (Classic VPN gateway)
+     * URI of the VPN gateway. Format: * `projects/{project\}/regions/{region\}/vpnGateways/{vpn_gateway\}` (HA VPN gateway) * `projects/{project\}/regions/{region\}/targetVpnGateways/{target_vpn_gateway\}` (Classic VPN gateway)
      */
     uri?: string | null;
     /**
-     * URI of the VPN tunnel associated with the VPN gateway. There may be multiple VPN tunnels configured on a VPN gateway, and only the one relevant to the test is displayed. Format: `projects/{project_id\}/regions/{region\}/vpnTunnels/{vpn_tunnel_id\}`
+     * URI of the VPN tunnel associated with the VPN gateway. There may be multiple VPN tunnels configured on a VPN gateway, and only the one relevant to the test is displayed. Format: `projects/{project\}/regions/{region\}/vpnTunnels/{vpn_tunnel\}`
      */
     vpnTunnelUri?: string | null;
   }
@@ -2557,7 +2561,7 @@ export namespace networkmanagement_v1 {
      */
     displayName?: string | null;
     /**
-     * URI of the VPC network where the VPN tunnel is configured. Format: `projects/{project_id\}/global/networks/{network_id\}`
+     * URI of the VPC network where the VPN tunnel is configured. Format: `projects/{project\}/global/networks/{network\}`
      */
     networkUri?: string | null;
     /**
@@ -2565,7 +2569,7 @@ export namespace networkmanagement_v1 {
      */
     region?: string | null;
     /**
-     * URI of a VPN gateway at remote end of the tunnel. Format: * `projects/{project_id\}/regions/{region\}/vpnGateways/{vpn_gateway_id\}` (GCP HA VPN gateway) * `projects/{project_id\}/global/peerVpnGateways/{peer_vpn_gateway_id\}` (GCP peer VPN gateway)
+     * URI of a VPN gateway at remote end of the tunnel. Format: * `projects/{project\}/regions/{region\}/vpnGateways/{vpn_gateway\}` (GCP HA VPN gateway) * `projects/{project\}/global/peerVpnGateways/{peer_vpn_gateway\}` (GCP peer VPN gateway)
      */
     remoteGateway?: string | null;
     /**
@@ -2577,7 +2581,7 @@ export namespace networkmanagement_v1 {
      */
     routingType?: string | null;
     /**
-     * URI of the VPN gateway at local end of the tunnel. Format: * `projects/{project_id\}/regions/{region\}/vpnGateways/{vpn_gateway_id\}` (HA VPN gateway) * `projects/{project_id\}/regions/{region\}/targetVpnGateways/{target_vpn_gateway_id\}` (Classic VPN gateway)
+     * URI of the VPN gateway at local end of the tunnel. Format: * `projects/{project\}/regions/{region\}/vpnGateways/{vpn_gateway\}` (HA VPN gateway) * `projects/{project\}/regions/{region\}/targetVpnGateways/{target_vpn_gateway\}` (Classic VPN gateway)
      */
     sourceGateway?: string | null;
     /**
@@ -2585,7 +2589,7 @@ export namespace networkmanagement_v1 {
      */
     sourceGatewayIp?: string | null;
     /**
-     * URI of the VPN tunnel. Format: `projects/{project_id\}/regions/{region\}/vpnTunnels/{vpn_tunnel_id\}`
+     * URI of the VPN tunnel. Format: `projects/{project\}/regions/{region\}/vpnTunnels/{vpn_tunnel\}`
      */
     uri?: string | null;
   }
@@ -7987,7 +7991,7 @@ export namespace networkmanagement_v1 {
      *   const res =
      *     await networkmanagement.projects.locations.networkMonitoringProviders.monitoringPoints.downloadInstallScript(
      *       {
-     *         // Optional. The deployment type for Cloud Monitoring Points.
+     *         // Optional. Specifies the deployment type for Cloud Monitoring Points. Supported values: `TERRAFORM` for `GCE_VM`; `BICEP` or `TERRAFORM` for `AZURE_VM`; and `CLOUD_FORMATION` or `TERRAFORM` for `AWS_EC2`. If unspecified, defaults to `TERRAFORM`, `BICEP`, and `CLOUD_FORMATION`, respectively. Leave it unspecified for other types.
      *         cloudDeploymentType: 'placeholder-value',
      *         // Required. The hostname of the MonitoringPoint, e.g. "test-vm"
      *         hostname: 'placeholder-value',
@@ -8737,7 +8741,7 @@ export namespace networkmanagement_v1 {
 
   export interface Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadinstallscript extends StandardParameters {
     /**
-     * Optional. The deployment type for Cloud Monitoring Points.
+     * Optional. Specifies the deployment type for Cloud Monitoring Points. Supported values: `TERRAFORM` for `GCE_VM`; `BICEP` or `TERRAFORM` for `AZURE_VM`; and `CLOUD_FORMATION` or `TERRAFORM` for `AWS_EC2`. If unspecified, defaults to `TERRAFORM`, `BICEP`, and `CLOUD_FORMATION`, respectively. Leave it unspecified for other types.
      */
     cloudDeploymentType?: string;
     /**
