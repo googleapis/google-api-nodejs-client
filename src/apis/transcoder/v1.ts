@@ -102,7 +102,7 @@ export namespace transcoder_v1 {
   /**
    * Transcoder API
    *
-   * This API converts video files into formats suitable for consumer distribution. For more information, see the Transcoder API overview.
+   * This API converts video files into formats suitable for consumer distribution.
    *
    * @example
    * ```js
