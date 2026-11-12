@@ -1890,13 +1890,21 @@
       }
     }
   },
-  "revision": "20261016",
+  "revision": "20261028",
   "rootUrl": "https://auditmanager.googleapis.com/",
   "schemas": {
     "AuditReport": {
       "description": "An audit report.",
       "id": "AuditReport",
       "properties": {
+        "cloudControlParameterStates": {
+          "additionalProperties": {
+            "$ref": "CloudControlParameterStates"
+          },
+          "description": "Output only. Parameter values provided by the user and values for tunable parameters, stored in the DB, keyed by control name.",
+          "readOnly": true,
+          "type": "object"
+        },
         "complianceFramework": {
           "description": "Output only. Compliance framework to use for the audit report. For example, `CIS_GCP_FOUNDATIONS_V1_2_0`.",
           "readOnly": true,
@@ -2016,6 +2024,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "parameterOverrides": {
+          "additionalProperties": {
+            "$ref": "ParameterOverrides"
+          },
+          "description": "Optional. Maps dynamic parameter overrides by Cloud Control resource name at execution time. For example, `{\"organizations/123/locations/global/cloudControls/control-1\": {parameters: [...]}}`",
+          "type": "object"
+        },
         "reportFormat": {
           "description": "Required. Format for the audit report.",
           "enum": [
@@ -2083,6 +2098,21 @@
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "CloudControlParameterStates": {
+      "description": "Collection of parameter states for a cloud control.",
+      "id": "CloudControlParameterStates",
+      "properties": {
+        "parameterStates": {
+          "description": "Output only. The parameter states for the cloud control.",
+          "items": {
+            "$ref": "ParameterState"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "Control": {
@@ -2317,6 +2347,13 @@
           "description": "URL for the Cloud Storage bucket where the report and evidence is uploaded. You must select a bucket that was provided during the enrollment process.",
           "type": "string"
         },
+        "parameterOverrides": {
+          "additionalProperties": {
+            "$ref": "ParameterOverrides"
+          },
+          "description": "Optional. Maps dynamic parameter overrides by Cloud Control resource name at execution time. For example, `{\"organizations/123/locations/global/cloudControls/control-1\": {parameters: [...]}}`",
+          "type": "object"
+        },
         "reportFormat": {
           "description": "Required. Format for the audit report.",
           "enum": [
@@ -2348,6 +2385,13 @@
           "deprecated": true,
           "description": "Optional. Deprecated. The standard (industry or regulatory requirements) that the audit scope report is run against. Use the `compliance_framework` field instead.",
           "type": "string"
+        },
+        "parameterOverrides": {
+          "additionalProperties": {
+            "$ref": "ParameterOverrides"
+          },
+          "description": "Optional. Maps dynamic parameter overrides by Cloud Control resource name at execution time. For example, `{\"organizations/123/locations/global/cloudControls/control-1\": {parameters: [...]}}`",
+          "type": "object"
         },
         "reportFormat": {
           "description": "Required. Format for the audit scope report.",
@@ -2608,6 +2652,80 @@
       },
       "type": "object"
     },
+    "ParamValue": {
+      "description": "The possible parameter value types.",
+      "id": "ParamValue",
+      "properties": {
+        "boolValue": {
+          "description": "Optional. A boolean value.",
+          "type": "boolean"
+        },
+        "numberValue": {
+          "description": "Optional. A double value.",
+          "format": "double",
+          "type": "number"
+        },
+        "oneofValue": {
+          "$ref": "Parameter",
+          "description": "Optional. Sub-parameter values."
+        },
+        "stringListValue": {
+          "$ref": "StringList",
+          "description": "Optional. A repeated string."
+        },
+        "stringValue": {
+          "description": "Optional. A string value.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Parameter": {
+      "description": "Parameters are key-value pairs that let you provide your custom location requirements, environment requirements, or other settings that are relevant to the cloud control.",
+      "id": "Parameter",
+      "properties": {
+        "name": {
+          "description": "Required. The name or key of the parameter.",
+          "type": "string"
+        },
+        "parameterValue": {
+          "$ref": "ParamValue",
+          "description": "Required. The value of the parameter."
+        }
+      },
+      "type": "object"
+    },
+    "ParameterOverrides": {
+      "description": "Wrapper message to associate a list of CSC internal parameter overrides with a control name.",
+      "id": "ParameterOverrides",
+      "properties": {
+        "parameters": {
+          "description": "The list of parameter overrides.",
+          "items": {
+            "$ref": "Parameter"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ParameterState": {
+      "description": "State of a parameter for a cloud control.",
+      "id": "ParameterState",
+      "properties": {
+        "isOverridden": {
+          "description": "Output only. Whether this parameter was overridden by the user.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "parameter": {
+          "$ref": "Parameter",
+          "description": "Output only. The parameter key and value.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "ReportGenerationProgress": {
       "description": "Details about the current status of the report-generation process.",
       "id": "ReportGenerationProgress",
@@ -2812,6 +2930,20 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StringList": {
+      "description": "A list of strings for the parameter value.",
+      "id": "StringList",
+      "properties": {
+        "values": {
+          "description": "Required. The strings in the list.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
