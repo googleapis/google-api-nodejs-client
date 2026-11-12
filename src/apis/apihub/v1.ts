@@ -1466,6 +1466,90 @@ export namespace apihub_v1 {
     pluginInstance?: string | null;
   }
   /**
+   * An API the pipeline is tracking for spec generation.
+   */
+  export interface Schema$GoogleCloudApihubV1GeneratedSpecApi {
+    /**
+     * Output only. The full resource name of the associated catalog API. Format: `projects/{project\}/locations/{location\}/apis/{api\}`
+     */
+    api?: string | null;
+    /**
+     * Output only. The time at which the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The full resource name of the associated catalog Deployment. Format: `projects/{project\}/locations/{location\}/deployments/{deployment\}`
+     */
+    deployment?: string | null;
+    /**
+     * Output only. Human-readable display name; server-derived.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The time at which the most recent spec was generated. Unset while `state == SPEC_API_REGISTERED`.
+     */
+    lastSpecGeneratedTime?: string | null;
+    /**
+     * Identifier. The full resource name. The trailing segment is the pipeline-generated identifier. Format: `projects/{project\}/locations/{location\}/generatedSpecApis/{generated_spec_api\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. Where the pipeline observed this API.
+     */
+    source?: Schema$GoogleCloudApihubV1GeneratedSpecApiSource;
+    /**
+     * Output only. The full resource name of the associated catalog Spec; populated only when `state == SPEC_ASSOCIATED`. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/specs/{spec\}`
+     */
+    spec?: string | null;
+    /**
+     * Output only. The current lifecycle state.
+     */
+    state?: string | null;
+    /**
+     * Output only. The time at which the resource was last updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. The full resource name of the associated catalog Version. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}`
+     */
+    version?: string | null;
+  }
+  /**
+   * User-facing collapse of the source-side identity tuple.
+   */
+  export interface Schema$GoogleCloudApihubV1GeneratedSpecApiSource {
+    /**
+     * Output only. Per-source instance label (e.g. "/" for Apigee X).
+     */
+    sourceDisplayName?: string | null;
+    /**
+     * Output only. The source type.
+     */
+    type?: string | null;
+    /**
+     * Output only. Server-supplied label (e.g. "Apigee X").
+     */
+    typeDisplayName?: string | null;
+  }
+  /**
+   * Request for GenerateSpec.
+   */
+  export interface Schema$GoogleCloudApihubV1GenerateSpecRequest {
+    /**
+     * Required. The observation window. The server quantizes to day boundaries and caps the span at 90 days.
+     */
+    observationWindow?: Schema$GoogleTypeInterval;
+  }
+  /**
+   * Response for GenerateSpec.
+   */
+  export interface Schema$GoogleCloudApihubV1GenerateSpecResponse {
+    /**
+     * The merged OpenAPI document for the requested window.
+     */
+    generatedSpec?: Schema$GoogleCloudApihubV1SpecContents;
+  }
+  /**
    * Config for Google service account authentication.
    */
   export interface Schema$GoogleCloudApihubV1GoogleServiceAccountConfig {
@@ -1804,6 +1888,19 @@ export namespace apihub_v1 {
     externalApis?: Schema$GoogleCloudApihubV1ExternalApi[];
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response for ListGeneratedSpecApis.
+   */
+  export interface Schema$GoogleCloudApihubV1ListGeneratedSpecApisResponse {
+    /**
+     * The tracked APIs for the requested parent, ordered by `update_time desc`.
+     */
+    generatedSpecApis?: Schema$GoogleCloudApihubV1GeneratedSpecApi[];
+    /**
+     * A token to retrieve the next page of results; empty when there are no more results.
      */
     nextPageToken?: string | null;
   }
@@ -2661,7 +2758,7 @@ export namespace apihub_v1 {
    */
   export interface Schema$GoogleCloudApihubV1SpecContents {
     /**
-     * Required. The contents of the spec.
+     * Required. The contents of the spec. The contents should be base64 encoded while calling the OnePlatform APIs like CreateSpec, UpdateSpec and CollectApiData.
      */
     contents?: string | null;
     /**
@@ -3035,6 +3132,19 @@ export namespace apihub_v1 {
      */
     message?: string | null;
   }
+  /**
+   * Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.
+   */
+  export interface Schema$GoogleTypeInterval {
+    /**
+     * Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     */
+    endTime?: string | null;
+    /**
+     * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     */
+    startTime?: string | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -3056,6 +3166,7 @@ export namespace apihub_v1 {
     deployments: Resource$Projects$Locations$Deployments;
     discoveredApiObservations: Resource$Projects$Locations$Discoveredapiobservations;
     externalApis: Resource$Projects$Locations$Externalapis;
+    generatedSpecApis: Resource$Projects$Locations$Generatedspecapis;
     hostProjectRegistrations: Resource$Projects$Locations$Hostprojectregistrations;
     operations: Resource$Projects$Locations$Operations;
     plugins: Resource$Projects$Locations$Plugins;
@@ -3083,6 +3194,8 @@ export namespace apihub_v1 {
       this.externalApis = new Resource$Projects$Locations$Externalapis(
         this.context
       );
+      this.generatedSpecApis =
+        new Resource$Projects$Locations$Generatedspecapis(this.context);
       this.hostProjectRegistrations =
         new Resource$Projects$Locations$Hostprojectregistrations(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
@@ -14652,6 +14765,526 @@ export namespace apihub_v1 {
     requestBody?: Schema$GoogleCloudApihubV1ExternalApi;
   }
 
+  export class Resource$Projects$Locations$Generatedspecapis {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Merges the per-day stored specs across the requested window and returns the merged OpenAPI document. Preview: this method is in Public Preview. Behavior and the API surface may change until the Spec Generation feature reaches General Availability.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apihub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apihub = google.apihub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await apihub.projects.locations.generatedSpecApis.generateSpec({
+     *     // Required. The resource name of the GeneratedSpecApi to generate from. Format: `projects/{project\}/locations/{location\}/generatedSpecApis/{generated_spec_api\}`
+     *     name: 'projects/my-project/locations/my-location/generatedSpecApis/my-generatedSpecApi',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "observationWindow": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "generatedSpec": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateSpec(
+      params: Params$Resource$Projects$Locations$Generatedspecapis$Generatespec,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generateSpec(
+      params?: Params$Resource$Projects$Locations$Generatedspecapis$Generatespec,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1GenerateSpecResponse>
+    >;
+    generateSpec(
+      params: Params$Resource$Projects$Locations$Generatedspecapis$Generatespec,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateSpec(
+      params: Params$Resource$Projects$Locations$Generatedspecapis$Generatespec,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1GenerateSpecResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1GenerateSpecResponse>
+    ): void;
+    generateSpec(
+      params: Params$Resource$Projects$Locations$Generatedspecapis$Generatespec,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1GenerateSpecResponse>
+    ): void;
+    generateSpec(
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1GenerateSpecResponse>
+    ): void;
+    generateSpec(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Generatedspecapis$Generatespec
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1GenerateSpecResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1GenerateSpecResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1GenerateSpecResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1GenerateSpecResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Generatedspecapis$Generatespec;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Generatedspecapis$Generatespec;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apihub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:generateSpec').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudApihubV1GenerateSpecResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudApihubV1GenerateSpecResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets a single GeneratedSpecApi by resource name. Preview: this method is in Public Preview. Behavior and the API surface may change until the Spec Generation feature reaches General Availability.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apihub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apihub = google.apihub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await apihub.projects.locations.generatedSpecApis.get({
+     *     // Required. The resource name of the GeneratedSpecApi to retrieve. Format: `projects/{project\}/locations/{location\}/generatedSpecApis/{generated_spec_api\}`
+     *     name: 'projects/my-project/locations/my-location/generatedSpecApis/my-generatedSpecApi',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "api": "my_api",
+     *   //   "createTime": "my_createTime",
+     *   //   "deployment": "my_deployment",
+     *   //   "displayName": "my_displayName",
+     *   //   "lastSpecGeneratedTime": "my_lastSpecGeneratedTime",
+     *   //   "name": "my_name",
+     *   //   "source": {},
+     *   //   "spec": "my_spec",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Generatedspecapis$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Generatedspecapis$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1GeneratedSpecApi>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Generatedspecapis$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Generatedspecapis$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1GeneratedSpecApi>,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1GeneratedSpecApi>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Generatedspecapis$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1GeneratedSpecApi>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1GeneratedSpecApi>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Generatedspecapis$Get
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1GeneratedSpecApi>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1GeneratedSpecApi>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1GeneratedSpecApi>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1GeneratedSpecApi>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Generatedspecapis$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Generatedspecapis$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apihub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudApihubV1GeneratedSpecApi>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudApihubV1GeneratedSpecApi>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists the APIs the pipeline is tracking, ordered by `update_time desc`. Preview: this method is in Public Preview. Behavior and the API surface may change until the Spec Generation feature reaches General Availability.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apihub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apihub = google.apihub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await apihub.projects.locations.generatedSpecApis.list({
+     *     // Optional. An AIP-160 filter. This release supports the fields `state` and `source.source_type`, the `=` comparison operator only, and `AND` conjunction only. Examples: - `state = "SPEC_GENERATED"` - `state = "SPEC_ASSOCIATED" AND source.source_type = APIGEE_X`
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of results to return. The service may return fewer. If unspecified, at most 50 will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListGeneratedSpecApis` call. Provide this to retrieve the subsequent page. When paginating, all other parameters (except `page_size`) provided to `ListGeneratedSpecApis` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource, which owns this collection of tracked APIs. Format: `projects/{project\}/locations/{location\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "generatedSpecApis": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Generatedspecapis$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Generatedspecapis$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1ListGeneratedSpecApisResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Generatedspecapis$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Generatedspecapis$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ListGeneratedSpecApisResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1ListGeneratedSpecApisResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Generatedspecapis$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1ListGeneratedSpecApisResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1ListGeneratedSpecApisResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Generatedspecapis$List
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ListGeneratedSpecApisResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ListGeneratedSpecApisResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ListGeneratedSpecApisResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1ListGeneratedSpecApisResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Generatedspecapis$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Generatedspecapis$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apihub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/generatedSpecApis').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudApihubV1ListGeneratedSpecApisResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudApihubV1ListGeneratedSpecApisResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Generatedspecapis$Generatespec extends StandardParameters {
+    /**
+     * Required. The resource name of the GeneratedSpecApi to generate from. Format: `projects/{project\}/locations/{location\}/generatedSpecApis/{generated_spec_api\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudApihubV1GenerateSpecRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Generatedspecapis$Get extends StandardParameters {
+    /**
+     * Required. The resource name of the GeneratedSpecApi to retrieve. Format: `projects/{project\}/locations/{location\}/generatedSpecApis/{generated_spec_api\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Generatedspecapis$List extends StandardParameters {
+    /**
+     * Optional. An AIP-160 filter. This release supports the fields `state` and `source.source_type`, the `=` comparison operator only, and `AND` conjunction only. Examples: - `state = "SPEC_GENERATED"` - `state = "SPEC_ASSOCIATED" AND source.source_type = APIGEE_X`
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of results to return. The service may return fewer. If unspecified, at most 50 will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListGeneratedSpecApis` call. Provide this to retrieve the subsequent page. When paginating, all other parameters (except `page_size`) provided to `ListGeneratedSpecApis` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource, which owns this collection of tracked APIs. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Hostprojectregistrations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -14659,7 +15292,7 @@ export namespace apihub_v1 {
     }
 
     /**
-     * Create a host project registration. A Google cloud project can be registered as a host project if it is not attached as a runtime project to another host project. A project can be registered as a host project only once. Subsequent register calls for the same project will fail.
+     * Create a host project registration. A Google cloud project can be registered as a host project if it is not attached as a runtime project to another host project. A project can have only one host project registration at a time. Subsequent register calls for the same project will fail until the existing registration is deleted.
      * @example
      * ```js
      * // Before running the sample:

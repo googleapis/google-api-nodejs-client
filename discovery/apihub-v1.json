@@ -2499,10 +2499,114 @@
                 }
               }
             },
+            "generatedSpecApis": {
+              "methods": {
+                "generateSpec": {
+                  "description": "Merges the per-day stored specs across the requested window and returns the merged OpenAPI document. Preview: this method is in Public Preview. Behavior and the API surface may change until the Spec Generation feature reaches General Availability.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/generatedSpecApis/{generatedSpecApisId}:generateSpec",
+                  "httpMethod": "POST",
+                  "id": "apihub.projects.locations.generatedSpecApis.generateSpec",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the GeneratedSpecApi to generate from. Format: `projects/{project}/locations/{location}/generatedSpecApis/{generated_spec_api}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/generatedSpecApis/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:generateSpec",
+                  "request": {
+                    "$ref": "GoogleCloudApihubV1GenerateSpecRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApihubV1GenerateSpecResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a single GeneratedSpecApi by resource name. Preview: this method is in Public Preview. Behavior and the API surface may change until the Spec Generation feature reaches General Availability.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/generatedSpecApis/{generatedSpecApisId}",
+                  "httpMethod": "GET",
+                  "id": "apihub.projects.locations.generatedSpecApis.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the GeneratedSpecApi to retrieve. Format: `projects/{project}/locations/{location}/generatedSpecApis/{generated_spec_api}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/generatedSpecApis/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApihubV1GeneratedSpecApi"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists the APIs the pipeline is tracking, ordered by `update_time desc`. Preview: this method is in Public Preview. Behavior and the API surface may change until the Spec Generation feature reaches General Availability.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/generatedSpecApis",
+                  "httpMethod": "GET",
+                  "id": "apihub.projects.locations.generatedSpecApis.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An AIP-160 filter. This release supports the fields `state` and `source.source_type`, the `=` comparison operator only, and `AND` conjunction only. Examples: - `state = \"SPEC_GENERATED\"` - `state = \"SPEC_ASSOCIATED\" AND source.source_type = APIGEE_X`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of results to return. The service may return fewer. If unspecified, at most 50 will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListGeneratedSpecApis` call. Provide this to retrieve the subsequent page. When paginating, all other parameters (except `page_size`) provided to `ListGeneratedSpecApis` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource, which owns this collection of tracked APIs. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/generatedSpecApis",
+                  "response": {
+                    "$ref": "GoogleCloudApihubV1ListGeneratedSpecApisResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apihub.readonly",
+                    "https://www.googleapis.com/auth/apihub.readwrite",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "hostProjectRegistrations": {
               "methods": {
                 "create": {
-                  "description": "Create a host project registration. A Google cloud project can be registered as a host project if it is not attached as a runtime project to another host project. A project can be registered as a host project only once. Subsequent register calls for the same project will fail.",
+                  "description": "Create a host project registration. A Google cloud project can be registered as a host project if it is not attached as a runtime project to another host project. A project can have only one host project registration at a time. Subsequent register calls for the same project will fail until the existing registration is deleted.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/hostProjectRegistrations",
                   "httpMethod": "POST",
                   "id": "apihub.projects.locations.hostProjectRegistrations.create",
@@ -3495,7 +3599,7 @@
       }
     }
   },
-  "revision": "20261022",
+  "revision": "20261104",
   "rootUrl": "https://apihub.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -5449,6 +5553,134 @@
       },
       "type": "object"
     },
+    "GoogleCloudApihubV1GenerateSpecRequest": {
+      "description": "Request for GenerateSpec.",
+      "id": "GoogleCloudApihubV1GenerateSpecRequest",
+      "properties": {
+        "observationWindow": {
+          "$ref": "GoogleTypeInterval",
+          "description": "Required. The observation window. The server quantizes to day boundaries and caps the span at 90 days."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1GenerateSpecResponse": {
+      "description": "Response for GenerateSpec.",
+      "id": "GoogleCloudApihubV1GenerateSpecResponse",
+      "properties": {
+        "generatedSpec": {
+          "$ref": "GoogleCloudApihubV1SpecContents",
+          "description": "The merged OpenAPI document for the requested window."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1GeneratedSpecApi": {
+      "description": "An API the pipeline is tracking for spec generation.",
+      "id": "GoogleCloudApihubV1GeneratedSpecApi",
+      "properties": {
+        "api": {
+          "description": "Output only. The full resource name of the associated catalog API. Format: `projects/{project}/locations/{location}/apis/{api}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time at which the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deployment": {
+          "description": "Output only. The full resource name of the associated catalog Deployment. Format: `projects/{project}/locations/{location}/deployments/{deployment}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. Human-readable display name; server-derived.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastSpecGeneratedTime": {
+          "description": "Output only. The time at which the most recent spec was generated. Unset while `state == SPEC_API_REGISTERED`.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The full resource name. The trailing segment is the pipeline-generated identifier. Format: `projects/{project}/locations/{location}/generatedSpecApis/{generated_spec_api}`",
+          "type": "string"
+        },
+        "source": {
+          "$ref": "GoogleCloudApihubV1GeneratedSpecApiSource",
+          "description": "Output only. Where the pipeline observed this API.",
+          "readOnly": true
+        },
+        "spec": {
+          "description": "Output only. The full resource name of the associated catalog Spec; populated only when `state == SPEC_ASSOCIATED`. Format: `projects/{project}/locations/{location}/apis/{api}/versions/{version}/specs/{spec}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current lifecycle state.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SPEC_API_REGISTERED",
+            "SPEC_GENERATED",
+            "SPEC_ASSOCIATED"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is unused.",
+            "Observed; no spec written yet.",
+            "At least one generated spec exists.",
+            "User-linked to a catalog Spec; spec set."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time at which the resource was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "description": "Output only. The full resource name of the associated catalog Version. Format: `projects/{project}/locations/{location}/apis/{api}/versions/{version}`",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1GeneratedSpecApiSource": {
+      "description": "User-facing collapse of the source-side identity tuple.",
+      "id": "GoogleCloudApihubV1GeneratedSpecApiSource",
+      "properties": {
+        "sourceDisplayName": {
+          "description": "Output only. Per-source instance label (e.g. \"/\" for Apigee X).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The source type.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "APIGEE_X"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is unused.",
+            "Apigee X."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "typeDisplayName": {
+          "description": "Output only. Server-supplied label (e.g. \"Apigee X\").",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApihubV1GoogleServiceAccountConfig": {
       "description": "Config for Google service account authentication.",
       "id": "GoogleCloudApihubV1GoogleServiceAccountConfig",
@@ -6002,6 +6234,24 @@
         },
         "nextPageToken": {
           "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1ListGeneratedSpecApisResponse": {
+      "description": "Response for ListGeneratedSpecApis.",
+      "id": "GoogleCloudApihubV1ListGeneratedSpecApisResponse",
+      "properties": {
+        "generatedSpecApis": {
+          "description": "The tracked APIs for the requested parent, ordered by `update_time desc`.",
+          "items": {
+            "$ref": "GoogleCloudApihubV1GeneratedSpecApi"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results; empty when there are no more results.",
           "type": "string"
         }
       },
@@ -7273,7 +7523,7 @@
       "id": "GoogleCloudApihubV1SpecContents",
       "properties": {
         "contents": {
-          "description": "Required. The contents of the spec.",
+          "description": "Required. The contents of the spec. The contents should be base64 encoded while calling the OnePlatform APIs like CreateSpec, UpdateSpec and CollectApiData.",
           "format": "byte",
           "type": "string"
         },
@@ -7791,6 +8041,23 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleTypeInterval": {
+      "description": "Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.",
+      "id": "GoogleTypeInterval",
+      "properties": {
+        "endTime": {
+          "description": "Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
