@@ -496,6 +496,10 @@ export namespace discoveryengine_v1alpha {
      */
     createBapConnection?: boolean | null;
     /**
+     * Optional. Customer-supplied OAuth scopes for connectors that opt into customer- managed scopes via ConnectorSource.enable_customer_managed_scopes. When non-empty on an opted-in connector, this list **replaces** the connector's built-in per-tool scopes: the OAuth authorization URL requests exactly these scopes for every operation, and the built-in scopes are never merged in. Ignored for connectors that do not opt in.
+     */
+    customerManagedScopes?: string[] | null;
+    /**
      * Output only. The connector contains the necessary parameters and is configured to support actions.
      */
     isActionConfigured?: boolean | null;
@@ -679,6 +683,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. Whether to create a BAP connection for the connector.
      */
     createBapConnection?: boolean | null;
+    /**
+     * Optional. Customer-supplied OAuth scopes for connectors that opt into customer- managed scopes via ConnectorSource.enable_customer_managed_scopes. When non-empty on an opted-in connector, this list **replaces** the connector's built-in per-tool scopes: the OAuth authorization URL requests exactly these scopes for every operation, and the built-in scopes are never merged in. Ignored for connectors that do not opt in.
+     */
+    customerManagedScopes?: string[] | null;
     /**
      * Output only. The connector contains the necessary parameters and is configured to support actions.
      */
@@ -990,6 +998,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. The custom placeholder text that appears in the text box before the user enters any text.
      */
     customPlaceholderText?: string | null;
+    /**
+     * Optional. Whether the agent is pinned by default for users who have access to it and have not explicitly unpinned it. Setting this field requires an admin.
+     */
+    defaultPinned?: boolean | null;
     /**
      * Output only. The reason why the agent deployment failed. Only set if the state is DEPLOYMENT_FAILED.
      */
@@ -2453,6 +2465,10 @@ export namespace discoveryengine_v1alpha {
      * State of the answer generation.
      */
     state?: string | null;
+    /**
+     * Output only. Maps a tool name (for example, `Internal-KB-Search` or `custom_mcp__agent__Internal-KB-Search`) to its human-readable display title (for example, `@Internal-KB Search`), populated from MCP tool `title` or `annotations.title` metadata so user-facing surfaces can display the tool title instead of the raw function declaration identifier. Empty when no tool display titles are present.
+     */
+    toolDisplayNames?: {[key: string]: string} | null;
   }
   /**
    * Customer policy enforcement results. Contains the results of the various policy checks, like the banned phrases or the Model Armor checks.
@@ -3079,6 +3095,24 @@ export namespace discoveryengine_v1alpha {
     uri?: string | null;
   }
   /**
+   * Request message for UserStoreService.BatchUpdateUserAvailabilities method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesRequest {
+    /**
+     * Required. The UserAvailabilitys to update. Maximum of 1000 at a time: if more are passed in, returns INVALID_ARGUMENT. Batch is all or nothing; either all updates succeed or none. The `parent` field in each child request must either be empty, or match the `parent` field in the batch request. If there is a mismatch, that will also result in an INVALID_ARGUMENT being returned.
+     */
+    requests?: Schema$GoogleCloudDiscoveryengineV1alphaUpdateUserAvailabilityRequest[];
+  }
+  /**
+   * Response message for UserStoreService.BatchUpdateUserAvailabilities method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesResponse {
+    /**
+     * The updated UserAvailabilitys.
+     */
+    userAvailabilities?: Schema$GoogleCloudDiscoveryengineV1alphaUserAvailability[];
+  }
+  /**
    * Metadata related to the progress of the UserLicenseService.BatchUpdateUserLicenses operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaBatchUpdateUserLicensesMetadata {
@@ -3434,6 +3468,41 @@ export namespace discoveryengine_v1alpha {
      * Required. The text of the suggested prompt.
      */
     promptText?: string | null;
+  }
+  /**
+   * Request for EngineService.CheckFeaturePolicyMembers method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersRequest {
+    /**
+     * Required. The members to check, in the form a policy takes them. At least 1 and at most 100. `verification` is ignored.
+     */
+    members?: Schema$GoogleCloudDiscoveryengineV1alphaEngineFeaturePolicyMember[];
+  }
+  /**
+   * Response for EngineService.CheckFeaturePolicyMembers method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponse {
+    /**
+     * Where the project's groups are looked up.
+     */
+    directorySource?: string | null;
+    /**
+     * One result per requested member, in request order. Members are checked independently, so two emails for the same Google group both pass.
+     */
+    memberChecks?: Schema$GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponseMemberCheck[];
+  }
+  /**
+   * The result for one requested member.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponseMemberCheck {
+    /**
+     * The member as EngineService.UpdateEngine would save it: `id` normalized, `display_name` taken from the directory when it has one, and `verification` set. Echoes the request's member when `status` is an INVALID_ARGUMENT from the member's format.
+     */
+    member?: Schema$GoogleCloudDiscoveryengineV1alphaEngineFeaturePolicyMember;
+    /**
+     * OK when the member is valid and, for a group, in the directory. Otherwise INVALID_ARGUMENT for a malformed member or a group the directory doesn't have, and UNAVAILABLE for a Google group the directory couldn't be asked about. EngineService.UpdateEngine fails on all of these, except that it leaves out an allowed group the directory doesn't have, saves the other members, and lists the group in Engine.feature_policy_rejections.
+     */
+    status?: Schema$GoogleRpcStatus;
   }
   /**
    * Request message for GroundedGenerationService.CheckGrounding method.
@@ -4770,7 +4839,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDataConnectorConnectorMetadata {
     /**
-     * Optional. The party that authored the connector, e.g. "Google" or a third-party provider name. Lets end users see who authored a connector (future: third-party-authored connectors).
+     * Optional. The party that authored the connector, e.g. "Google" or a third-party provider name. Lets end users see who authored a connector.
      */
     author?: string | null;
     /**
@@ -5145,7 +5214,7 @@ export namespace discoveryengine_v1alpha {
      */
     appName?: string | null;
     /**
-     * Optional. The instance name identifying the 3P app, e.g., "vaissptbots-my". This is different from the instance_uri which is the full URL of the 3P app e.g., "https://vaissptbots-my.sharepoint.com".
+     * Optional. The instance name identifying the 3P app, e.g., "-my". This is different from the instance_uri which is the full URL of the 3P app e.g., "https://-my.sharepoint.com".
      */
     instanceName?: string | null;
   }
@@ -5710,6 +5779,10 @@ export namespace discoveryengine_v1alpha {
      * Required. The name of the tool.
      */
     name?: string | null;
+    /**
+     * Optional. Indicates whether the tool is read-only and does not perform write operations.
+     */
+    readonly?: boolean | null;
   }
   /**
    * Defines embedding config, used for bring your own embeddings feature.
@@ -5790,6 +5863,10 @@ export namespace discoveryengine_v1alpha {
      */
     dataStoreIds?: string[] | null;
     /**
+     * Output only. Whether the project is allowed to set `global_feature_toggle_state` to `DELAYED`.
+     */
+    delayedGlobalFeatureToggleStateAllowed?: boolean | null;
+    /**
      * Optional. Whether to disable analytics for searches performed on this engine.
      */
     disableAnalytics?: boolean | null;
@@ -5798,9 +5875,25 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge`
+     * Output only. The complete, server-resolved state of every known feature toggle. Unlike `features`, which stores only explicit admin overrides, this map always contains an entry for every toggle. Clients should read toggle state from this field.
+     */
+    effectiveFeatures?: {[key: string]: string} | null;
+    /**
+     * Optional. Per-feature access policies, keyed by feature toggle name (see `features`). A feature with no entry is available to every user when it is on. Only features that support access policies are accepted.
+     */
+    featurePolicies?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDiscoveryengineV1alphaEngineFeaturePolicy;
+    } | null;
+    /**
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `music-generation` * `speech-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `skill-security-scan` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge` * `canvas-app-sharing` * `agent-marketplace` * `agent-scheduling` * `preview-agents` * `plugins`
      */
     features?: {[key: string]: string} | null;
+    /**
+     * Optional. Controls the global feature toggle state for the engine.
+     */
+    globalFeatureToggleState?: string | null;
     /**
      * Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
      */
@@ -5913,6 +6006,44 @@ export namespace discoveryengine_v1alpha {
      * The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.
      */
     companyName?: string | null;
+  }
+  /**
+   * Restricts which users may use a feature that is turned on in `features`.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaEngineFeaturePolicy {
+    /**
+     * Optional. Members who may use the feature.
+     */
+    allowedMembers?: Schema$GoogleCloudDiscoveryengineV1alphaEngineFeaturePolicyMember[];
+    /**
+     * Optional. Access for users who match neither list.
+     */
+    defaultAccess?: string | null;
+    /**
+     * Optional. Members who may not use the feature. Takes precedence over `allowed_members`.
+     */
+    deniedMembers?: Schema$GoogleCloudDiscoveryengineV1alphaEngineFeaturePolicyMember[];
+  }
+  /**
+   * A user or group the policy refers to.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaEngineFeaturePolicyMember {
+    /**
+     * Optional. Label shown in the console. Never used for evaluation.
+     */
+    displayName?: string | null;
+    /**
+     * Required. Identifier evaluated at serving time. Its format depends on the project's identity provider: * Google identity (`GSUITE`): the group or user email. For groups, the server resolves the email to a group ID on write and returns the email on read. * Workforce Identity Federation (`THIRD_PARTY`), groups: the value the provider emits in `google.groups`. With SCIM this is the SCIM group ID; without SCIM and with the default Microsoft Entra mapping it is the Entra group object ID. * Workforce Identity Federation, users: the user's workforce identity subject.
+     */
+    id?: string | null;
+    /**
+     * Required. Kind of member.
+     */
+    type?: string | null;
+    /**
+     * Output only. Result of the server's directory check when the member was saved.
+     */
+    verification?: string | null;
   }
   /**
    * Configuration message for the Knowledge Graph.
@@ -6293,7 +6424,7 @@ export namespace discoveryengine_v1alpha {
      */
     givenName?: string | null;
     /**
-     * The user's primary email address. Do not use this for IAM bindings. Use ExternalIdentity.subject.
+     * The user's primary email address (populated from SCIM `emails[type=work]`). Do not use this for IAM bindings. Use ExternalIdentity.subject.
      */
     primaryEmail?: string | null;
   }
@@ -7413,7 +7544,7 @@ export namespace discoveryengine_v1alpha {
      */
     billingAccountLicenseConfig?: string | null;
     /**
-     * Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.
+     * Output only. Indication of whether the subscription is terminated earlier than the expiration date.
      */
     earlyTerminated?: boolean | null;
     /**
@@ -7904,6 +8035,19 @@ export namespace discoveryengine_v1alpha {
     totalSize?: number | null;
   }
   /**
+   * Response message for UserStoreService.ListUserAvailabilities method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaListUserAvailabilitiesResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The UserAvailabilitys matching the request.
+     */
+    userAvailabilities?: Schema$GoogleCloudDiscoveryengineV1alphaUserAvailability[];
+  }
+  /**
    * Response message for UserLicenseService.ListUserLicenses.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaListUserLicensesResponse {
@@ -8142,6 +8286,10 @@ export namespace discoveryengine_v1alpha {
      */
     customerProvidedConfig?: Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfig;
     /**
+     * Output only. The current experience state of the project.
+     */
+    experienceState?: string | null;
+    /**
      * Output only. Full resource name of the project, for example `projects/{project\}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.
      */
     name?: string | null;
@@ -8343,6 +8491,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. The identity provider for this location. When provided, the location's AclConfig is set from it as part of provisioning.
      */
     idpConfig?: Schema$GoogleCloudDiscoveryengineV1alphaIdpConfig;
+    /**
+     * Optional. The caller states whether the provisioning is for the new or the classic Gemini Enterprise experience.
+     */
+    provisionIntent?: string | null;
     /**
      * Optional. Parameters for Agentspace.
      */
@@ -11733,6 +11885,44 @@ export namespace discoveryengine_v1alpha {
     updateTime?: string | null;
   }
   /**
+   * Request message for UserStoreService.UpdateUserAvailability method. Also nested within BatchUpdateUserAvailabilityRequest for the UserStoreService.BatchUpdateUserAvailability method. `parent` is a required field when this message is used for a single Update, but is optional when used for a BatchUpdate.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaUpdateUserAvailabilityRequest {
+    /**
+     * Optional. The parent UserStore resource name, format: `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
+     */
+    parent?: string | null;
+    /**
+     * Optional. The list of fields to update. Only 'state' is supported; if unset, defaults to 'state'.
+     */
+    updateMask?: string | null;
+    /**
+     * Required. The UserAvailability to update.
+     */
+    userAvailability?: Schema$GoogleCloudDiscoveryengineV1alphaUserAvailability;
+  }
+  /**
+   * Tracks whether a resource is available for a given user (distinct from whether the user is allowed to use that resource by licensing, etc).
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaUserAvailability {
+    /**
+     * Optional. Deprecated: use `update_time` only.
+     */
+    observeTime?: string | null;
+    /**
+     * Optional. Whether the user can currently use the resource. Set by the caller on update. If unspecified, defaults to `ACTIVE`.
+     */
+    state?: string | null;
+    /**
+     * Output only. Timestamp when the most recent update to `state` was saved.
+     */
+    updateTime?: string | null;
+    /**
+     * Required. Immutable. User principal (IdP subject for Workforce Identity, email for Google sign-in).
+     */
+    userPrincipal?: string | null;
+  }
+  /**
    * UserEvent captures all metadata information Discovery Engine API needs to know about how end users interact with your website.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaUserEvent {
@@ -12184,7 +12374,7 @@ export namespace discoveryengine_v1alpha {
      */
     connectorAuthState?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigConnectorAuthState;
     /**
-     * Output only. It is the batch authorization group placeholder full resource name. This is not a real data connector (not existed in DataConnector table in spanner). It's a resource name existing only in the connector_authorization in the user table. E.g. projects/{project\}/locations/{location\}/collections/oauth_placeholder_google_workspace/dataStores/dataConnector.
+     * Output only. It is the batch authorization group placeholder full resource name. This is not a real data connector resource. E.g. projects/{project\}/locations/{location\}/collections/oauth_placeholder_google_workspace/dataStores/dataConnector.
      */
     placeholder?: string | null;
   }
@@ -12229,7 +12419,7 @@ export namespace discoveryengine_v1alpha {
      */
     id?: string | null;
     /**
-     * Output only. Whether this is a first-party (Google-owned) connector, as opposed to a third-party connector. Used by the frontend to group 1P vs 3P connectors.
+     * Output only. Whether this is a first-party (Google-owned) connector, as opposed to a third-party connector.
      */
     isFirstParty?: boolean | null;
     /**
@@ -12481,9 +12671,13 @@ export namespace discoveryengine_v1alpha {
      */
     enableVisualContentSummary?: boolean | null;
     /**
-     * Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge`
+     * Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `music-generation` * `speech-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `skill-security-scan` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge` * `canvas-app-sharing` * `agent-marketplace` * `agent-scheduling` * `preview-agents` * `plugins`
      */
     features?: {[key: string]: string} | null;
+    /**
+     * Output only. The resolved, server-side view of the feature toggle registry (launch stage per toggle).
+     */
+    featureToggleInfo?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsFeatureToggleInfo;
     /**
      * Describes generative answer configuration.
      */
@@ -12520,6 +12714,36 @@ export namespace discoveryengine_v1alpha {
      * Optional. Whether to show the admin-configured display name for data connectors in the widget sources UI (instead of the connector kind). Opt-in; defaults to false.
      */
     sourceAdminDisplayNameEnabled?: boolean | null;
+  }
+  /**
+   * The resolved, server-side view of the feature toggle registry containing detailed info about each feature.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsFeatureToggleInfo {
+    /**
+     * Output only. The feature toggles known to the registry.
+     */
+    featureToggles?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsFeatureToggleInfoFeatureToggle[];
+  }
+  /**
+   * A single feature toggle with its server-provided metadata.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsFeatureToggleInfoFeatureToggle {
+    /**
+     * Output only. Matches a key in the engine `features` map.
+     */
+    id?: string | null;
+    /**
+     * Output only. Launch stage of the feature behind a toggle.
+     */
+    launchStage?: string | null;
+    /**
+     * Output only. The informational date the toggle is scheduled to retire, after which the feature is on for every customer. This is for display purposes only. The system does not transition feature states automatically on this date. Only when the launch stage is set to RETIRED does the feature turn on for every customer. Unset if no retirement is scheduled.
+     */
+    retirementDate?: Schema$GoogleTypeDate;
+    /**
+     * Output only. Whether the engine's `feature_policies` may restrict this feature to specific users or groups. When false, EngineService.UpdateEngine rejects a policy for this feature.
+     */
+    supportsAccessPolicy?: boolean | null;
   }
   /**
    * Describes configuration for generative answer.
@@ -12688,7 +12912,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaWorkspaceSettings {
     /**
-     * Whether the calling user's customer domain matches the workspace data stores under this engine.
+     * Whether the calling user's customer domain matches the workspace data stores under this engine. Unset when the check did not run or could not complete, which clients treat as unknown.
      */
     customerDomainValid?: boolean | null;
     /**
@@ -13634,7 +13858,7 @@ export namespace discoveryengine_v1alpha {
      */
     appName?: string | null;
     /**
-     * Optional. The instance name identifying the 3P app, e.g., "vaissptbots-my". This is different from the instance_uri which is the full URL of the 3P app e.g., "https://vaissptbots-my.sharepoint.com".
+     * Optional. The instance name identifying the 3P app, e.g., "-my". This is different from the instance_uri which is the full URL of the 3P app e.g., "https://-my.sharepoint.com".
      */
     instanceName?: string | null;
   }
@@ -13947,6 +14171,10 @@ export namespace discoveryengine_v1alpha {
      */
     dataStoreIds?: string[] | null;
     /**
+     * Output only. Whether the project is allowed to set `global_feature_toggle_state` to `DELAYED`.
+     */
+    delayedGlobalFeatureToggleStateAllowed?: boolean | null;
+    /**
      * Optional. Whether to disable analytics for searches performed on this engine.
      */
     disableAnalytics?: boolean | null;
@@ -13955,9 +14183,23 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge`
+     * Output only. The complete, server-resolved state of every known feature toggle. Unlike `features`, which stores only explicit admin overrides, this map always contains an entry for every toggle. Clients should read toggle state from this field.
+     */
+    effectiveFeatures?: {[key: string]: string} | null;
+    /**
+     * Optional. Per-feature access policies, keyed by feature toggle name (see `features`). A feature with no entry is available to every user when it is on. Only features that support access policies are accepted.
+     */
+    featurePolicies?: {
+      [key: string]: Schema$GoogleCloudDiscoveryengineV1betaEngineFeaturePolicy;
+    } | null;
+    /**
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `music-generation` * `speech-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `skill-security-scan` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge` * `canvas-app-sharing` * `agent-marketplace` * `agent-scheduling` * `preview-agents` * `plugins`
      */
     features?: {[key: string]: string} | null;
+    /**
+     * Optional. Controls the global feature toggle state for the engine.
+     */
+    globalFeatureToggleState?: string | null;
     /**
      * Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
      */
@@ -14062,6 +14304,44 @@ export namespace discoveryengine_v1alpha {
      * The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.
      */
     companyName?: string | null;
+  }
+  /**
+   * Restricts which users may use a feature that is turned on in `features`.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEngineFeaturePolicy {
+    /**
+     * Optional. Members who may use the feature.
+     */
+    allowedMembers?: Schema$GoogleCloudDiscoveryengineV1betaEngineFeaturePolicyMember[];
+    /**
+     * Optional. Access for users who match neither list.
+     */
+    defaultAccess?: string | null;
+    /**
+     * Optional. Members who may not use the feature. Takes precedence over `allowed_members`.
+     */
+    deniedMembers?: Schema$GoogleCloudDiscoveryengineV1betaEngineFeaturePolicyMember[];
+  }
+  /**
+   * A user or group the policy refers to.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEngineFeaturePolicyMember {
+    /**
+     * Optional. Label shown in the console. Never used for evaluation.
+     */
+    displayName?: string | null;
+    /**
+     * Required. Identifier evaluated at serving time. Its format depends on the project's identity provider: * Google identity (`GSUITE`): the group or user email. For groups, the server resolves the email to a group ID on write and returns the email on read. * Workforce Identity Federation (`THIRD_PARTY`), groups: the value the provider emits in `google.groups`. With SCIM this is the SCIM group ID; without SCIM and with the default Microsoft Entra mapping it is the Entra group object ID. * Workforce Identity Federation, users: the user's workforce identity subject.
+     */
+    id?: string | null;
+    /**
+     * Required. Kind of member.
+     */
+    type?: string | null;
+    /**
+     * Output only. Result of the server's directory check when the member was saved.
+     */
+    verification?: string | null;
   }
   /**
    * Configuration message for the Knowledge Graph.
@@ -14561,7 +14841,7 @@ export namespace discoveryengine_v1alpha {
      */
     autoRenew?: boolean | null;
     /**
-     * Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.
+     * Output only. Indication of whether the subscription is terminated earlier than the expiration date.
      */
     earlyTerminated?: boolean | null;
     /**
@@ -14681,6 +14961,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. Customer provided configurations.
      */
     customerProvidedConfig?: Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfig;
+    /**
+     * Output only. The current experience state of the project.
+     */
+    experienceState?: string | null;
     /**
      * Output only. Full resource name of the project, for example `projects/{project\}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.
      */
@@ -16593,7 +16877,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DataConnectorConnectorMetadata {
     /**
-     * Optional. The party that authored the connector, e.g. "Google" or a third-party provider name. Lets end users see who authored a connector (future: third-party-authored connectors).
+     * Optional. The party that authored the connector, e.g. "Google" or a third-party provider name. Lets end users see who authored a connector.
      */
     author?: string | null;
     /**
@@ -16956,7 +17240,7 @@ export namespace discoveryengine_v1alpha {
      */
     appName?: string | null;
     /**
-     * Optional. The instance name identifying the 3P app, e.g., "vaissptbots-my". This is different from the instance_uri which is the full URL of the 3P app e.g., "https://vaissptbots-my.sharepoint.com".
+     * Optional. The instance name identifying the 3P app, e.g., "-my". This is different from the instance_uri which is the full URL of the 3P app e.g., "https://-my.sharepoint.com".
      */
     instanceName?: string | null;
   }
@@ -17262,6 +17546,10 @@ export namespace discoveryengine_v1alpha {
      * Required. The name of the tool.
      */
     name?: string | null;
+    /**
+     * Optional. Indicates whether the tool is read-only and does not perform write operations.
+     */
+    readonly?: boolean | null;
   }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.EnableAdvancedSiteSearch operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -17329,6 +17617,10 @@ export namespace discoveryengine_v1alpha {
      */
     dataStoreIds?: string[] | null;
     /**
+     * Output only. Whether the project is allowed to set `global_feature_toggle_state` to `DELAYED`.
+     */
+    delayedGlobalFeatureToggleStateAllowed?: boolean | null;
+    /**
      * Optional. Whether to disable analytics for searches performed on this engine.
      */
     disableAnalytics?: boolean | null;
@@ -17337,9 +17629,23 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge`
+     * Output only. The complete, server-resolved state of every known feature toggle. Unlike `features`, which stores only explicit admin overrides, this map always contains an entry for every toggle. Clients should read toggle state from this field.
+     */
+    effectiveFeatures?: {[key: string]: string} | null;
+    /**
+     * Optional. Per-feature access policies, keyed by feature toggle name (see `features`). A feature with no entry is available to every user when it is on. Only features that support access policies are accepted.
+     */
+    featurePolicies?: {
+      [key: string]: Schema$GoogleCloudDiscoveryengineV1EngineFeaturePolicy;
+    } | null;
+    /**
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `music-generation` * `speech-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `skill-security-scan` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge` * `canvas-app-sharing` * `agent-marketplace` * `agent-scheduling` * `preview-agents` * `plugins`
      */
     features?: {[key: string]: string} | null;
+    /**
+     * Optional. Controls the global feature toggle state for the engine.
+     */
+    globalFeatureToggleState?: string | null;
     /**
      * Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
      */
@@ -17444,6 +17750,44 @@ export namespace discoveryengine_v1alpha {
      * The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.
      */
     companyName?: string | null;
+  }
+  /**
+   * Restricts which users may use a feature that is turned on in `features`.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1EngineFeaturePolicy {
+    /**
+     * Optional. Members who may use the feature.
+     */
+    allowedMembers?: Schema$GoogleCloudDiscoveryengineV1EngineFeaturePolicyMember[];
+    /**
+     * Optional. Access for users who match neither list.
+     */
+    defaultAccess?: string | null;
+    /**
+     * Optional. Members who may not use the feature. Takes precedence over `allowed_members`.
+     */
+    deniedMembers?: Schema$GoogleCloudDiscoveryengineV1EngineFeaturePolicyMember[];
+  }
+  /**
+   * A user or group the policy refers to.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1EngineFeaturePolicyMember {
+    /**
+     * Optional. Label shown in the console. Never used for evaluation.
+     */
+    displayName?: string | null;
+    /**
+     * Required. Identifier evaluated at serving time. Its format depends on the project's identity provider: * Google identity (`GSUITE`): the group or user email. For groups, the server resolves the email to a group ID on write and returns the email on read. * Workforce Identity Federation (`THIRD_PARTY`), groups: the value the provider emits in `google.groups`. With SCIM this is the SCIM group ID; without SCIM and with the default Microsoft Entra mapping it is the Entra group object ID. * Workforce Identity Federation, users: the user's workforce identity subject.
+     */
+    id?: string | null;
+    /**
+     * Required. Kind of member.
+     */
+    type?: string | null;
+    /**
+     * Output only. Result of the server's directory check when the member was saved.
+     */
+    verification?: string | null;
   }
   /**
    * Configuration message for the Knowledge Graph.
@@ -17817,7 +18161,7 @@ export namespace discoveryengine_v1alpha {
      */
     autoRenew?: boolean | null;
     /**
-     * Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.
+     * Output only. Indication of whether the subscription is terminated earlier than the expiration date.
      */
     earlyTerminated?: boolean | null;
     /**
@@ -17903,6 +18247,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. Customer provided configurations.
      */
     customerProvidedConfig?: Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfig;
+    /**
+     * Output only. The current experience state of the project.
+     */
+    experienceState?: string | null;
     /**
      * Output only. Full resource name of the project, for example `projects/{project\}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.
      */
@@ -20444,6 +20792,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "configurableBillingStatus": {},
      *   //   "createTime": "my_createTime",
      *   //   "customerProvidedConfig": {},
+     *   //   "experienceState": "my_experienceState",
      *   //   "name": "my_name",
      *   //   "provisionCompletionTime": "my_provisionCompletionTime",
      *   //   "serviceTermsMap": {}
@@ -20599,6 +20948,7 @@ export namespace discoveryengine_v1alpha {
      *       //   "configurableBillingStatus": {},
      *       //   "createTime": "my_createTime",
      *       //   "customerProvidedConfig": {},
+     *       //   "experienceState": "my_experienceState",
      *       //   "name": "my_name",
      *       //   "provisionCompletionTime": "my_provisionCompletionTime",
      *       //   "serviceTermsMap": {}
@@ -20612,6 +20962,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "configurableBillingStatus": {},
      *   //   "createTime": "my_createTime",
      *   //   "customerProvidedConfig": {},
+     *   //   "experienceState": "my_experienceState",
      *   //   "name": "my_name",
      *   //   "provisionCompletionTime": "my_provisionCompletionTime",
      *   //   "serviceTermsMap": {}
@@ -20765,6 +21116,7 @@ export namespace discoveryengine_v1alpha {
      *       //   "acceptDataUseTerms": false,
      *       //   "dataUseTermsVersion": "my_dataUseTermsVersion",
      *       //   "idpConfig": {},
+     *       //   "provisionIntent": "my_provisionIntent",
      *       //   "saasParams": {}
      *       // }
      *     },
@@ -20935,6 +21287,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "configurableBillingStatus": {},
      *   //   "createTime": "my_createTime",
      *   //   "customerProvidedConfig": {},
+     *   //   "experienceState": "my_experienceState",
      *   //   "name": "my_name",
      *   //   "provisionCompletionTime": "my_provisionCompletionTime",
      *   //   "serviceTermsMap": {}
@@ -21162,7 +21515,7 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
-     * This method provides suggestions for users and groups managed in an external identity provider, based on the provided prefix.
+     * This method provides suggestions for users and groups managed in an external identity provider, based on the provided prefix. See CompleteExternalIdentitiesRequest.prefix_query for the fields matched during completion.
      * @example
      * ```js
      * // Before running the sample:
@@ -21204,7 +21557,7 @@ export namespace discoveryengine_v1alpha {
      *       maxSuggestions: 'placeholder-value',
      *       // Required. The parent location resource name, such as `projects/x/locations/global`.
      *       parent: 'projects/my-project/locations/my-location',
-     *       // Required. The prefix to search for. For users, this prefix is matched against the `primary_email`. For groups, this prefix is matched against the `display_name`. The matching is case-insensitive.
+     *       // Required. The prefix to search for. The matching is case-insensitive. * Users: * Supported: `primary_email` (SCIM `emails[type=work]` only), `given_name`, and `family_name` by leading prefix, and `display_name` per word. * Not supported: `subject`, `external_id`, and SCIM `userName` (not stored; only used to derive `subject` when `google.subject` maps `user.userName`). * Groups: * Supported: `display_name` per word.
      *       prefixQuery: 'placeholder-value',
      *       // Optional. Whether to use scim identities for external identity completion. If false, we will call the Microsoft graph API to fetch the external identities.
      *       useScimIdentities: 'placeholder-value',
@@ -21995,6 +22348,7 @@ export namespace discoveryengine_v1alpha {
      *       //   "acceptDataUseTerms": false,
      *       //   "dataUseTermsVersion": "my_dataUseTermsVersion",
      *       //   "idpConfig": {},
+     *       //   "provisionIntent": "my_provisionIntent",
      *       //   "saasParams": {}
      *       // }
      *     },
@@ -23306,7 +23660,7 @@ export namespace discoveryengine_v1alpha {
      */
     parent?: string;
     /**
-     * Required. The prefix to search for. For users, this prefix is matched against the `primary_email`. For groups, this prefix is matched against the `display_name`. The matching is case-insensitive.
+     * Required. The prefix to search for. The matching is case-insensitive. * Users: * Supported: `primary_email` (SCIM `emails[type=work]` only), `given_name`, and `family_name` by leading prefix, and `display_name` per word. * Not supported: `subject`, `external_id`, and SCIM `userName` (not stored; only used to derive `subject` when `google.subject` maps `user.userName`). * Groups: * Supported: `display_name` per word.
      */
     prefixQuery?: string;
     /**
@@ -46640,7 +46994,7 @@ export namespace discoveryengine_v1alpha {
      *           'placeholder-value',
      *         // Optional. BCP-47 language tag (e.g. "en", "fr-CA"). Used to localize human-readable strings in the response, such as the model selector `display_name` / `description` on `WidgetConfig.UiSettings.ModelConfigInfo`. Empty / unset falls back to the default language (English).
      *         languageCode: 'placeholder-value',
-     *         // Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin "Feature Management" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.
+     *         // Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin "Feature Management" page to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.
      *         modelInfoView: 'placeholder-value',
      *         // Required. Full WidgetConfig resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`
      *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/widgetConfigs/my-widgetConfig',
@@ -47048,7 +47402,7 @@ export namespace discoveryengine_v1alpha {
      */
     languageCode?: string;
     /**
-     * Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin "Feature Management" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.
+     * Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin "Feature Management" page to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.
      */
     modelInfoView?: string;
     /**
@@ -47124,6 +47478,170 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Checks members for Engine.feature_policies against the project's directory, as EngineService.UpdateEngine does when it saves them, and saves nothing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.checkFeaturePolicyMembers(
+     *       {
+     *         // Required. The engine resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "members": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "directorySource": "my_directorySource",
+     *   //   "memberChecks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    checkFeaturePolicyMembers(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Checkfeaturepolicymembers,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    checkFeaturePolicyMembers(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Checkfeaturepolicymembers,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponse>
+    >;
+    checkFeaturePolicyMembers(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Checkfeaturepolicymembers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkFeaturePolicyMembers(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Checkfeaturepolicymembers,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponse>
+    ): void;
+    checkFeaturePolicyMembers(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Checkfeaturepolicymembers,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponse>
+    ): void;
+    checkFeaturePolicyMembers(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponse>
+    ): void;
+    checkFeaturePolicyMembers(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Checkfeaturepolicymembers
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Checkfeaturepolicymembers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Checkfeaturepolicymembers;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+name}:checkFeaturePolicyMembers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Creates an Engine.
      * @example
      * ```js
@@ -47180,9 +47698,13 @@ export namespace discoveryengine_v1alpha {
      *         //   "connectorTenantInfo": {},
      *         //   "createTime": "my_createTime",
      *         //   "dataStoreIds": [],
+     *         //   "delayedGlobalFeatureToggleStateAllowed": false,
      *         //   "disableAnalytics": false,
      *         //   "displayName": "my_displayName",
+     *         //   "effectiveFeatures": {},
+     *         //   "featurePolicies": {},
      *         //   "features": {},
+     *         //   "globalFeatureToggleState": "my_globalFeatureToggleState",
      *         //   "industryVertical": "my_industryVertical",
      *         //   "knowledgeGraphConfig": {},
      *         //   "marketplaceAgentVisibility": "my_marketplaceAgentVisibility",
@@ -47513,9 +48035,13 @@ export namespace discoveryengine_v1alpha {
      *   //   "connectorTenantInfo": {},
      *   //   "createTime": "my_createTime",
      *   //   "dataStoreIds": [],
+     *   //   "delayedGlobalFeatureToggleStateAllowed": false,
      *   //   "disableAnalytics": false,
      *   //   "displayName": "my_displayName",
+     *   //   "effectiveFeatures": {},
+     *   //   "featurePolicies": {},
      *   //   "features": {},
+     *   //   "globalFeatureToggleState": "my_globalFeatureToggleState",
      *   //   "industryVertical": "my_industryVertical",
      *   //   "knowledgeGraphConfig": {},
      *   //   "marketplaceAgentVisibility": "my_marketplaceAgentVisibility",
@@ -48326,9 +48852,13 @@ export namespace discoveryengine_v1alpha {
      *         //   "connectorTenantInfo": {},
      *         //   "createTime": "my_createTime",
      *         //   "dataStoreIds": [],
+     *         //   "delayedGlobalFeatureToggleStateAllowed": false,
      *         //   "disableAnalytics": false,
      *         //   "displayName": "my_displayName",
+     *         //   "effectiveFeatures": {},
+     *         //   "featurePolicies": {},
      *         //   "features": {},
+     *         //   "globalFeatureToggleState": "my_globalFeatureToggleState",
      *         //   "industryVertical": "my_industryVertical",
      *         //   "knowledgeGraphConfig": {},
      *         //   "marketplaceAgentVisibility": "my_marketplaceAgentVisibility",
@@ -48361,9 +48891,13 @@ export namespace discoveryengine_v1alpha {
      *   //   "connectorTenantInfo": {},
      *   //   "createTime": "my_createTime",
      *   //   "dataStoreIds": [],
+     *   //   "delayedGlobalFeatureToggleStateAllowed": false,
      *   //   "disableAnalytics": false,
      *   //   "displayName": "my_displayName",
+     *   //   "effectiveFeatures": {},
+     *   //   "featurePolicies": {},
      *   //   "features": {},
+     *   //   "globalFeatureToggleState": "my_globalFeatureToggleState",
      *   //   "industryVertical": "my_industryVertical",
      *   //   "knowledgeGraphConfig": {},
      *   //   "marketplaceAgentVisibility": "my_marketplaceAgentVisibility",
@@ -48545,9 +49079,13 @@ export namespace discoveryengine_v1alpha {
      *   //   "connectorTenantInfo": {},
      *   //   "createTime": "my_createTime",
      *   //   "dataStoreIds": [],
+     *   //   "delayedGlobalFeatureToggleStateAllowed": false,
      *   //   "disableAnalytics": false,
      *   //   "displayName": "my_displayName",
+     *   //   "effectiveFeatures": {},
+     *   //   "featurePolicies": {},
      *   //   "features": {},
+     *   //   "globalFeatureToggleState": "my_globalFeatureToggleState",
      *   //   "industryVertical": "my_industryVertical",
      *   //   "knowledgeGraphConfig": {},
      *   //   "marketplaceAgentVisibility": "my_marketplaceAgentVisibility",
@@ -48732,9 +49270,13 @@ export namespace discoveryengine_v1alpha {
      *   //   "connectorTenantInfo": {},
      *   //   "createTime": "my_createTime",
      *   //   "dataStoreIds": [],
+     *   //   "delayedGlobalFeatureToggleStateAllowed": false,
      *   //   "disableAnalytics": false,
      *   //   "displayName": "my_displayName",
+     *   //   "effectiveFeatures": {},
+     *   //   "featurePolicies": {},
      *   //   "features": {},
+     *   //   "globalFeatureToggleState": "my_globalFeatureToggleState",
      *   //   "industryVertical": "my_industryVertical",
      *   //   "knowledgeGraphConfig": {},
      *   //   "marketplaceAgentVisibility": "my_marketplaceAgentVisibility",
@@ -49356,6 +49898,17 @@ export namespace discoveryengine_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Checkfeaturepolicymembers extends StandardParameters {
+    /**
+     * Required. The engine resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersRequest;
+  }
   export interface Params$Resource$Projects$Locations$Collections$Engines$Create extends StandardParameters {
     /**
      * Required. The ID to use for the Engine, which will become the final component of the Engine's resource name. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an INVALID_ARGUMENT error is returned.
@@ -51195,6 +51748,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "createTime": "my_createTime",
      *           //   "creationFailureReason": "my_creationFailureReason",
      *           //   "customPlaceholderText": "my_customPlaceholderText",
+     *           //   "defaultPinned": false,
      *           //   "deploymentFailureReason": "my_deploymentFailureReason",
      *           //   "description": "my_description",
      *           //   "dialogflowAgentDefinition": {},
@@ -51224,6 +51778,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "creationFailureReason": "my_creationFailureReason",
      *   //   "customPlaceholderText": "my_customPlaceholderText",
+     *   //   "defaultPinned": false,
      *   //   "deploymentFailureReason": "my_deploymentFailureReason",
      *   //   "description": "my_description",
      *   //   "dialogflowAgentDefinition": {},
@@ -51552,6 +52107,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "creationFailureReason": "my_creationFailureReason",
      *   //   "customPlaceholderText": "my_customPlaceholderText",
+     *   //   "defaultPinned": false,
      *   //   "deploymentFailureReason": "my_deploymentFailureReason",
      *   //   "description": "my_description",
      *   //   "dialogflowAgentDefinition": {},
@@ -51894,6 +52450,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "createTime": "my_createTime",
      *           //   "creationFailureReason": "my_creationFailureReason",
      *           //   "customPlaceholderText": "my_customPlaceholderText",
+     *           //   "defaultPinned": false,
      *           //   "deploymentFailureReason": "my_deploymentFailureReason",
      *           //   "description": "my_description",
      *           //   "dialogflowAgentDefinition": {},
@@ -51923,6 +52480,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "creationFailureReason": "my_creationFailureReason",
      *   //   "customPlaceholderText": "my_customPlaceholderText",
+     *   //   "defaultPinned": false,
      *   //   "deploymentFailureReason": "my_deploymentFailureReason",
      *   //   "description": "my_description",
      *   //   "dialogflowAgentDefinition": {},
@@ -61666,7 +62224,7 @@ export namespace discoveryengine_v1alpha {
      *           'placeholder-value',
      *         // Optional. BCP-47 language tag (e.g. "en", "fr-CA"). Used to localize human-readable strings in the response, such as the model selector `display_name` / `description` on `WidgetConfig.UiSettings.ModelConfigInfo`. Empty / unset falls back to the default language (English).
      *         languageCode: 'placeholder-value',
-     *         // Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin "Feature Management" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.
+     *         // Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin "Feature Management" page to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.
      *         modelInfoView: 'placeholder-value',
      *         // Required. Full WidgetConfig resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`
      *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/widgetConfigs/my-widgetConfig',
@@ -62074,7 +62632,7 @@ export namespace discoveryengine_v1alpha {
      */
     languageCode?: string;
     /**
-     * Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin "Feature Management" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.
+     * Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin "Feature Management" page to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.
      */
     modelInfoView?: string;
     /**
@@ -78773,7 +79331,7 @@ export namespace discoveryengine_v1alpha {
      *         'placeholder-value',
      *       // Optional. BCP-47 language tag (e.g. "en", "fr-CA"). Used to localize human-readable strings in the response, such as the model selector `display_name` / `description` on `WidgetConfig.UiSettings.ModelConfigInfo`. Empty / unset falls back to the default language (English).
      *       languageCode: 'placeholder-value',
-     *       // Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin "Feature Management" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.
+     *       // Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin "Feature Management" page to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.
      *       modelInfoView: 'placeholder-value',
      *       // Required. Full WidgetConfig resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`
      *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/widgetConfigs/my-widgetConfig',
@@ -79178,7 +79736,7 @@ export namespace discoveryengine_v1alpha {
      */
     languageCode?: string;
     /**
-     * Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin "Feature Management" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.
+     * Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin "Feature Management" page to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.
      */
     modelInfoView?: string;
     /**
@@ -87957,6 +88515,8 @@ export namespace discoveryengine_v1alpha {
     context: APIRequestContext;
     licenseConfigsUsageStats: Resource$Projects$Locations$Userstores$Licenseconfigsusagestats;
     operations: Resource$Projects$Locations$Userstores$Operations;
+    userAvailabilities: Resource$Projects$Locations$Userstores$Useravailabilities;
+    userAvailability: Resource$Projects$Locations$Userstores$Useravailability;
     userLicenses: Resource$Projects$Locations$Userstores$Userlicenses;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -87967,6 +88527,14 @@ export namespace discoveryengine_v1alpha {
       this.operations = new Resource$Projects$Locations$Userstores$Operations(
         this.context
       );
+      this.userAvailabilities =
+        new Resource$Projects$Locations$Userstores$Useravailabilities(
+          this.context
+        );
+      this.userAvailability =
+        new Resource$Projects$Locations$Userstores$Useravailability(
+          this.context
+        );
       this.userLicenses =
         new Resource$Projects$Locations$Userstores$Userlicenses(this.context);
     }
@@ -89003,6 +89571,559 @@ export namespace discoveryengine_v1alpha {
      * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
+  }
+
+  export class Resource$Projects$Locations$Userstores$Useravailabilities {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Updates multiple UserAvailabilitys.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.userStores.userAvailabilities.batchUpdate(
+     *       {
+     *         // Required. The parent UserStore resource name, format: `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/userStores/my-userStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "requests": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "userAvailabilities": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchUpdate(
+      params: Params$Resource$Projects$Locations$Userstores$Useravailabilities$Batchupdate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchUpdate(
+      params?: Params$Resource$Projects$Locations$Userstores$Useravailabilities$Batchupdate,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesResponse>
+    >;
+    batchUpdate(
+      params: Params$Resource$Projects$Locations$Userstores$Useravailabilities$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Projects$Locations$Userstores$Useravailabilities$Batchupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesResponse>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Projects$Locations$Userstores$Useravailabilities$Batchupdate,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesResponse>
+    ): void;
+    batchUpdate(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesResponse>
+    ): void;
+    batchUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Userstores$Useravailabilities$Batchupdate
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Userstores$Useravailabilities$Batchupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Userstores$Useravailabilities$Batchupdate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/userAvailabilities:batchUpdate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists the UserAvailabilitys.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.userStores.userAvailabilities.list(
+     *       {
+     *         // Optional. Filter for the list request. Supported fields (only `user_principal` is supported for now): * `user_principal` (will be normalized for matching) Examples: * `user_principal = "user1@example.com"` to list user availability for `user1@example.com`.
+     *         filter: 'placeholder-value',
+     *         // Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 100. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListUserAvailabilities` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserAvailabilities` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent UserStore resource name, format: `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/userStores/my-userStore',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "userAvailabilities": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Useravailabilities$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Userstores$Useravailabilities$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaListUserAvailabilitiesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Useravailabilities$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Useravailabilities$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListUserAvailabilitiesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListUserAvailabilitiesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Userstores$Useravailabilities$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListUserAvailabilitiesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListUserAvailabilitiesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Userstores$Useravailabilities$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListUserAvailabilitiesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListUserAvailabilitiesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListUserAvailabilitiesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaListUserAvailabilitiesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Userstores$Useravailabilities$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Userstores$Useravailabilities$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/userAvailabilities').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListUserAvailabilitiesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListUserAvailabilitiesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Userstores$Useravailabilities$Batchupdate extends StandardParameters {
+    /**
+     * Required. The parent UserStore resource name, format: `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Userstores$Useravailabilities$List extends StandardParameters {
+    /**
+     * Optional. Filter for the list request. Supported fields (only `user_principal` is supported for now): * `user_principal` (will be normalized for matching) Examples: * `user_principal = "user1@example.com"` to list user availability for `user1@example.com`.
+     */
+    filter?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 100. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListUserAvailabilities` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserAvailabilities` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent UserStore resource name, format: `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Userstores$Useravailability {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Updates a UserAvailability.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.userStores.userAvailability.update(
+     *       {
+     *         // Optional. The parent UserStore resource name, format: `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/userStores/my-userStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "parent": "my_parent",
+     *           //   "updateMask": "my_updateMask",
+     *           //   "userAvailability": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "observeTime": "my_observeTime",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userPrincipal": "my_userPrincipal"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Projects$Locations$Userstores$Useravailability$Update,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    update(
+      params?: Params$Resource$Projects$Locations$Userstores$Useravailability$Update,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaUserAvailability>
+    >;
+    update(
+      params: Params$Resource$Projects$Locations$Userstores$Useravailability$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Projects$Locations$Userstores$Useravailability$Update,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaUserAvailability>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaUserAvailability>
+    ): void;
+    update(
+      params: Params$Resource$Projects$Locations$Userstores$Useravailability$Update,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaUserAvailability>
+    ): void;
+    update(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaUserAvailability>
+    ): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Userstores$Useravailability$Update
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaUserAvailability>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaUserAvailability>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaUserAvailability>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaUserAvailability>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Userstores$Useravailability$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Userstores$Useravailability$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/userAvailability:update'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaUserAvailability>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaUserAvailability>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Userstores$Useravailability$Update extends StandardParameters {
+    /**
+     * Optional. The parent UserStore resource name, format: `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaUpdateUserAvailabilityRequest;
   }
 
   export class Resource$Projects$Locations$Userstores$Userlicenses {

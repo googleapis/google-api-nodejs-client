@@ -387,7 +387,7 @@
         "locations": {
           "methods": {
             "completeExternalIdentities": {
-              "description": "This method provides suggestions for users and groups managed in an external identity provider, based on the provided prefix.",
+              "description": "This method provides suggestions for users and groups managed in an external identity provider, based on the provided prefix. See CompleteExternalIdentitiesRequest.prefix_query for the fields matched during completion.",
               "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}:completeExternalIdentities",
               "httpMethod": "GET",
               "id": "discoveryengine.projects.locations.completeExternalIdentities",
@@ -424,7 +424,7 @@
                   "type": "string"
                 },
                 "prefixQuery": {
-                  "description": "Required. The prefix to search for. For users, this prefix is matched against the `primary_email`. For groups, this prefix is matched against the `display_name`. The matching is case-insensitive.",
+                  "description": "Required. The prefix to search for. The matching is case-insensitive. * Users: * Supported: `primary_email` (SCIM `emails[type=work]` only), `given_name`, and `family_name` by leading prefix, and `display_name` per word. * Not supported: `subject`, `external_id`, and SCIM `userName` (not stored; only used to derive `subject` when `google.subject` maps `user.userName`). * Groups: * Supported: `display_name` per word.",
                   "location": "query",
                   "type": "string"
                 },
@@ -5369,7 +5369,7 @@
                               "type": "string"
                             },
                             "modelInfoView": {
-                              "description": "Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin \"Feature Management\" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.",
+                              "description": "Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin \"Feature Management\" page to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.",
                               "enum": [
                                 "MODEL_INFO_VIEW_UNSPECIFIED",
                                 "END_USER_WEB",
@@ -5447,6 +5447,36 @@
                 },
                 "engines": {
                   "methods": {
+                    "checkFeaturePolicyMembers": {
+                      "description": "Checks members for Engine.feature_policies against the project's directory, as EngineService.UpdateEngine does when it saves them, and saves nothing.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}:checkFeaturePolicyMembers",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.collections.engines.checkFeaturePolicyMembers",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The engine resource name. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}:checkFeaturePolicyMembers",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                      ]
+                    },
                     "create": {
                       "description": "Creates an Engine.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines",
@@ -8158,7 +8188,7 @@
                               "type": "string"
                             },
                             "modelInfoView": {
-                              "description": "Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin \"Feature Management\" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.",
+                              "description": "Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin \"Feature Management\" page to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.",
                               "enum": [
                                 "MODEL_INFO_VIEW_UNSPECIFIED",
                                 "END_USER_WEB",
@@ -11489,7 +11519,7 @@
                           "type": "string"
                         },
                         "modelInfoView": {
-                          "description": "Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin \"Feature Management\" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.",
+                          "description": "Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `ADMIN` is set by the Cloud Console admin \"Feature Management\" page to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web selector.",
                           "enum": [
                             "MODEL_INFO_VIEW_UNSPECIFIED",
                             "END_USER_WEB",
@@ -13485,6 +13515,117 @@
                     }
                   }
                 },
+                "userAvailabilities": {
+                  "methods": {
+                    "batchUpdate": {
+                      "description": "Updates multiple UserAvailabilitys.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}/userAvailabilities:batchUpdate",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.userStores.userAvailabilities.batchUpdate",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent UserStore resource name, format: `projects/{project}/locations/{location}/userStores/{user_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/userStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/userAvailabilities:batchUpdate",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists the UserAvailabilitys.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}/userAvailabilities",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.userStores.userAvailabilities.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filter for the list request. Supported fields (only `user_principal` is supported for now): * `user_principal` (will be normalized for matching) Examples: * `user_principal = \"user1@example.com\"` to list user availability for `user1@example.com`.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 100. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListUserAvailabilities` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserAvailabilities` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent UserStore resource name, format: `projects/{project}/locations/{location}/userStores/{user_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/userStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/userAvailabilities",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaListUserAvailabilitiesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                      ]
+                    }
+                  }
+                },
+                "userAvailability": {
+                  "methods": {
+                    "update": {
+                      "description": "Updates a UserAvailability.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/userStores/{userStoresId}/userAvailability:update",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.userStores.userAvailability.update",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Optional. The parent UserStore resource name, format: `projects/{project}/locations/{location}/userStores/{user_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/userStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/userAvailability:update",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaUpdateUserAvailabilityRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaUserAvailability"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+                      ]
+                    }
+                  }
+                },
                 "userLicenses": {
                   "methods": {
                     "export": {
@@ -13653,7 +13794,7 @@
       }
     }
   },
-  "revision": "20261022",
+  "revision": "20261106",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "ApiservingMcpMcpToolVisibility": {
@@ -14146,6 +14287,13 @@
         "createBapConnection": {
           "description": "Optional. Whether to create a BAP connection for the connector.",
           "type": "boolean"
+        },
+        "customerManagedScopes": {
+          "description": "Optional. Customer-supplied OAuth scopes for connectors that opt into customer- managed scopes via ConnectorSource.enable_customer_managed_scopes. When non-empty on an opted-in connector, this list **replaces** the connector's built-in per-tool scopes: the OAuth authorization URL requests exactly these scopes for every operation, and the built-in scopes are never merged in. Ignored for connectors that do not opt in.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "isActionConfigured": {
           "description": "Output only. The connector contains the necessary parameters and is configured to support actions.",
@@ -15564,7 +15712,7 @@
       "id": "GoogleCloudDiscoveryengineV1DataConnectorConnectorMetadata",
       "properties": {
         "author": {
-          "description": "Optional. The party that authored the connector, e.g. \"Google\" or a third-party provider name. Lets end users see who authored a connector (future: third-party-authored connectors).",
+          "description": "Optional. The party that authored the connector, e.g. \"Google\" or a third-party provider name. Lets end users see who authored a connector.",
           "type": "string"
         },
         "description": {
@@ -16077,7 +16225,7 @@
           "type": "string"
         },
         "instanceName": {
-          "description": "Optional. The instance name identifying the 3P app, e.g., \"vaissptbots-my\". This is different from the instance_uri which is the full URL of the 3P app e.g., \"https://vaissptbots-my.sharepoint.com\".",
+          "description": "Optional. The instance name identifying the 3P app, e.g., \"-my\". This is different from the instance_uri which is the full URL of the 3P app e.g., \"https://-my.sharepoint.com\".",
           "type": "string"
         }
       },
@@ -16466,6 +16614,10 @@
         "name": {
           "description": "Required. The name of the tool.",
           "type": "string"
+        },
+        "readonly": {
+          "description": "Optional. Indicates whether the tool is read-only and does not perform write operations.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -16568,6 +16720,11 @@
           },
           "type": "array"
         },
+        "delayedGlobalFeatureToggleStateAllowed": {
+          "description": "Output only. Whether the project is allowed to set `global_feature_toggle_state` to `DELAYED`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "disableAnalytics": {
           "description": "Optional. Whether to disable analytics for searches performed on this engine.",
           "type": "boolean"
@@ -16575,6 +16732,31 @@
         "displayName": {
           "description": "Required. The display name of the engine. Should be human readable. UTF-8 encoded string with limit of 1024 characters.",
           "type": "string"
+        },
+        "effectiveFeatures": {
+          "additionalProperties": {
+            "enum": [
+              "FEATURE_STATE_UNSPECIFIED",
+              "FEATURE_STATE_ON",
+              "FEATURE_STATE_OFF"
+            ],
+            "enumDescriptions": [
+              "The feature state is unspecified.",
+              "The feature is turned on to be accessible.",
+              "The feature is turned off to be inaccessible."
+            ],
+            "type": "string"
+          },
+          "description": "Output only. The complete, server-resolved state of every known feature toggle. Unlike `features`, which stores only explicit admin overrides, this map always contains an entry for every toggle. Clients should read toggle state from this field.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "featurePolicies": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1EngineFeaturePolicy"
+          },
+          "description": "Optional. Per-feature access policies, keyed by feature toggle name (see `features`). A feature with no entry is available to every user when it is on. Only features that support access policies are accepted.",
+          "type": "object"
         },
         "features": {
           "additionalProperties": {
@@ -16590,8 +16772,26 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `music-generation` * `speech-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `skill-security-scan` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge` * `canvas-app-sharing` * `agent-marketplace` * `agent-scheduling` * `preview-agents` * `plugins`",
           "type": "object"
+        },
+        "globalFeatureToggleState": {
+          "description": "Optional. Controls the global feature toggle state for the engine.",
+          "enum": [
+            "GLOBAL_FEATURE_TOGGLE_STATE_UNSPECIFIED",
+            "DELAYED",
+            "SCHEDULED",
+            "GENERAL",
+            "EARLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified feature toggle state. Treated as `GENERAL`.",
+            "Gets features and models 4 weeks post GA. Features will be ON at the 4 weeks mark post GA.",
+            "Gets features and models 2 weeks post GA. Features will be ON at the 2 weeks mark post GA.",
+            "Gets features and models at GA. Features will be ON at GA.",
+            "Gets features and models at EAP (if in EAP). Features will only be ON if the project is allowlisted."
+          ],
+          "type": "string"
         },
         "industryVertical": {
           "description": "Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.",
@@ -16763,6 +16963,89 @@
       "properties": {
         "companyName": {
           "description": "The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1EngineFeaturePolicy": {
+      "description": "Restricts which users may use a feature that is turned on in `features`.",
+      "id": "GoogleCloudDiscoveryengineV1EngineFeaturePolicy",
+      "properties": {
+        "allowedMembers": {
+          "description": "Optional. Members who may use the feature.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1EngineFeaturePolicyMember"
+          },
+          "type": "array"
+        },
+        "defaultAccess": {
+          "description": "Optional. Access for users who match neither list.",
+          "enum": [
+            "DEFAULT_ACCESS_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "Treated as `ALLOW`.",
+            "Users who match neither list may use the feature.",
+            "Users who match neither list may not use the feature."
+          ],
+          "type": "string"
+        },
+        "deniedMembers": {
+          "description": "Optional. Members who may not use the feature. Takes precedence over `allowed_members`.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1EngineFeaturePolicyMember"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1EngineFeaturePolicyMember": {
+      "description": "A user or group the policy refers to.",
+      "id": "GoogleCloudDiscoveryengineV1EngineFeaturePolicyMember",
+      "properties": {
+        "displayName": {
+          "description": "Optional. Label shown in the console. Never used for evaluation.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Required. Identifier evaluated at serving time. Its format depends on the project's identity provider: * Google identity (`GSUITE`): the group or user email. For groups, the server resolves the email to a group ID on write and returns the email on read. * Workforce Identity Federation (`THIRD_PARTY`), groups: the value the provider emits in `google.groups`. With SCIM this is the SCIM group ID; without SCIM and with the default Microsoft Entra mapping it is the Entra group object ID. * Workforce Identity Federation, users: the user's workforce identity subject.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Kind of member.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "USER",
+            "GROUP"
+          ],
+          "enumDescriptions": [
+            "Not allowed.",
+            "A single user.",
+            "A group of users."
+          ],
+          "type": "string"
+        },
+        "verification": {
+          "description": "Output only. Result of the server's directory check when the member was saved.",
+          "enum": [
+            "VERIFICATION_UNSPECIFIED",
+            "VERIFIED",
+            "NOT_FOUND",
+            "NOT_VERIFIABLE",
+            "CHECK_FAILED"
+          ],
+          "enumDescriptions": [
+            "Not checked.",
+            "Found in the project's directory.",
+            "Microsoft Graph has no such group. Saved anyway, because a custom `google.groups` mapping can emit IDs that Graph doesn't know.",
+            "The project has no directory to check against.",
+            "The directory lookup failed. Saved anyway."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -17313,7 +17596,7 @@
           "type": "boolean"
         },
         "earlyTerminated": {
-          "description": "Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.",
+          "description": "Output only. Indication of whether the subscription is terminated earlier than the expiration date.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -17489,6 +17772,23 @@
         "customerProvidedConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfig",
           "description": "Optional. Customer provided configurations."
+        },
+        "experienceState": {
+          "description": "Output only. The current experience state of the project.",
+          "enum": [
+            "EXPERIENCE_STATE_UNSPECIFIED",
+            "SOBI_ONLY",
+            "LEGACY_ONLY",
+            "LEGACY_AND_SOBI"
+          ],
+          "enumDescriptions": [
+            "No experience is stated for this location.",
+            "Only the new Gemini Enterprise experience.",
+            "Only the classic Gemini Enterprise experience.",
+            "Legacy engines serve the classic experience, the Sobi engine serves the Sobi experience."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "name": {
           "description": "Output only. Full resource name of the project, for example `projects/{project}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.",
@@ -18879,6 +19179,13 @@
           "description": "Optional. Whether to create a BAP connection for the connector.",
           "type": "boolean"
         },
+        "customerManagedScopes": {
+          "description": "Optional. Customer-supplied OAuth scopes for connectors that opt into customer- managed scopes via ConnectorSource.enable_customer_managed_scopes. When non-empty on an opted-in connector, this list **replaces** the connector's built-in per-tool scopes: the OAuth authorization URL requests exactly these scopes for every operation, and the built-in scopes are never merged in. Ignored for connectors that do not opt in.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "isActionConfigured": {
           "description": "Output only. The connector contains the necessary parameters and is configured to support actions.",
           "readOnly": true,
@@ -19319,6 +19626,10 @@
         "customPlaceholderText": {
           "description": "Optional. The custom placeholder text that appears in the text box before the user enters any text.",
           "type": "string"
+        },
+        "defaultPinned": {
+          "description": "Optional. Whether the agent is pinned by default for users who have access to it and have not explicitly unpinned it. Setting this field requires an admin.",
+          "type": "boolean"
         },
         "deploymentFailureReason": {
           "description": "Output only. The reason why the agent deployment failed. Only set if the state is DEPLOYMENT_FAILED.",
@@ -21443,6 +21754,14 @@
             "Assist operation has been cancelled (e.g. client closed the stream). May contain a partial response."
           ],
           "type": "string"
+        },
+        "toolDisplayNames": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. Maps a tool name (for example, `Internal-KB-Search` or `custom_mcp__agent__Internal-KB-Search`) to its human-readable display title (for example, `@Internal-KB Search`), populated from MCP tool `title` or `annotations.title` metadata so user-facing surfaces can display the tool title instead of the raw function declaration identifier. Empty when no tool display titles are present.",
+          "readOnly": true,
+          "type": "object"
         }
       },
       "type": "object"
@@ -22327,6 +22646,34 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesRequest": {
+      "description": "Request message for UserStoreService.BatchUpdateUserAvailabilities method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The UserAvailabilitys to update. Maximum of 1000 at a time: if more are passed in, returns INVALID_ARGUMENT. Batch is all or nothing; either all updates succeed or none. The `parent` field in each child request must either be empty, or match the `parent` field in the batch request. If there is a mismatch, that will also result in an INVALID_ARGUMENT being returned.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaUpdateUserAvailabilityRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesResponse": {
+      "description": "Response message for UserStoreService.BatchUpdateUserAvailabilities method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaBatchUpdateUserAvailabilitiesResponse",
+      "properties": {
+        "userAvailabilities": {
+          "description": "The updated UserAvailabilitys.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaUserAvailability"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaBatchUpdateUserLicensesMetadata": {
       "description": "Metadata related to the progress of the UserLicenseService.BatchUpdateUserLicenses operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaBatchUpdateUserLicensesMetadata",
@@ -22879,6 +23226,65 @@
         "promptText": {
           "description": "Required. The text of the suggested prompt.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersRequest": {
+      "description": "Request for EngineService.CheckFeaturePolicyMembers method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersRequest",
+      "properties": {
+        "members": {
+          "description": "Required. The members to check, in the form a policy takes them. At least 1 and at most 100. `verification` is ignored.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaEngineFeaturePolicyMember"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponse": {
+      "description": "Response for EngineService.CheckFeaturePolicyMembers method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponse",
+      "properties": {
+        "directorySource": {
+          "description": "Where the project's groups are looked up.",
+          "enum": [
+            "DIRECTORY_SOURCE_UNSPECIFIED",
+            "GOOGLE",
+            "SCIM",
+            "NONE"
+          ],
+          "enumDescriptions": [
+            "The source couldn't be determined; every group is `CHECK_FAILED`.",
+            "Google identity (Workspace or Cloud Identity). Groups are emails.",
+            "Workforce Identity Federation with SCIM groups in the project's workforce pool.",
+            "Workforce Identity Federation without SCIM groups: no directory to check against."
+          ],
+          "type": "string"
+        },
+        "memberChecks": {
+          "description": "One result per requested member, in request order. Members are checked independently, so two emails for the same Google group both pass.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponseMemberCheck"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponseMemberCheck": {
+      "description": "The result for one requested member.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCheckFeaturePolicyMembersResponseMemberCheck",
+      "properties": {
+        "member": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaEngineFeaturePolicyMember",
+          "description": "The member as EngineService.UpdateEngine would save it: `id` normalized, `display_name` taken from the directory when it has one, and `verification` set. Echoes the request's member when `status` is an INVALID_ARGUMENT from the member's format."
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "OK when the member is valid and, for a group, in the directory. Otherwise INVALID_ARGUMENT for a malformed member or a group the directory doesn't have, and UNAVAILABLE for a Google group the directory couldn't be asked about. EngineService.UpdateEngine fails on all of these, except that it leaves out an allowed group the directory doesn't have, saves the other members, and lists the group in Engine.feature_policy_rejections."
         }
       },
       "type": "object"
@@ -24956,7 +25362,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaDataConnectorConnectorMetadata",
       "properties": {
         "author": {
-          "description": "Optional. The party that authored the connector, e.g. \"Google\" or a third-party provider name. Lets end users see who authored a connector (future: third-party-authored connectors).",
+          "description": "Optional. The party that authored the connector, e.g. \"Google\" or a third-party provider name. Lets end users see who authored a connector.",
           "type": "string"
         },
         "description": {
@@ -25483,7 +25889,7 @@
           "type": "string"
         },
         "instanceName": {
-          "description": "Optional. The instance name identifying the 3P app, e.g., \"vaissptbots-my\". This is different from the instance_uri which is the full URL of the 3P app e.g., \"https://vaissptbots-my.sharepoint.com\".",
+          "description": "Optional. The instance name identifying the 3P app, e.g., \"-my\". This is different from the instance_uri which is the full URL of the 3P app e.g., \"https://-my.sharepoint.com\".",
           "type": "string"
         }
       },
@@ -26203,6 +26609,10 @@
         "name": {
           "description": "Required. The name of the tool.",
           "type": "string"
+        },
+        "readonly": {
+          "description": "Optional. Indicates whether the tool is read-only and does not perform write operations.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -26322,6 +26732,11 @@
           },
           "type": "array"
         },
+        "delayedGlobalFeatureToggleStateAllowed": {
+          "description": "Output only. Whether the project is allowed to set `global_feature_toggle_state` to `DELAYED`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "disableAnalytics": {
           "description": "Optional. Whether to disable analytics for searches performed on this engine.",
           "type": "boolean"
@@ -26329,6 +26744,31 @@
         "displayName": {
           "description": "Required. The display name of the engine. Should be human readable. UTF-8 encoded string with limit of 1024 characters.",
           "type": "string"
+        },
+        "effectiveFeatures": {
+          "additionalProperties": {
+            "enum": [
+              "FEATURE_STATE_UNSPECIFIED",
+              "FEATURE_STATE_ON",
+              "FEATURE_STATE_OFF"
+            ],
+            "enumDescriptions": [
+              "The feature state is unspecified.",
+              "The feature is turned on to be accessible.",
+              "The feature is turned off to be inaccessible."
+            ],
+            "type": "string"
+          },
+          "description": "Output only. The complete, server-resolved state of every known feature toggle. Unlike `features`, which stores only explicit admin overrides, this map always contains an entry for every toggle. Clients should read toggle state from this field.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "featurePolicies": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaEngineFeaturePolicy"
+          },
+          "description": "Optional. Per-feature access policies, keyed by feature toggle name (see `features`). A feature with no entry is available to every user when it is on. Only features that support access policies are accepted.",
+          "type": "object"
         },
         "features": {
           "additionalProperties": {
@@ -26344,8 +26784,26 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `music-generation` * `speech-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `skill-security-scan` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge` * `canvas-app-sharing` * `agent-marketplace` * `agent-scheduling` * `preview-agents` * `plugins`",
           "type": "object"
+        },
+        "globalFeatureToggleState": {
+          "description": "Optional. Controls the global feature toggle state for the engine.",
+          "enum": [
+            "GLOBAL_FEATURE_TOGGLE_STATE_UNSPECIFIED",
+            "DELAYED",
+            "SCHEDULED",
+            "GENERAL",
+            "EARLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified feature toggle state. Treated as `GENERAL`.",
+            "Gets features and models 4 weeks post GA. Features will be ON at the 4 weeks mark post GA.",
+            "Gets features and models 2 weeks post GA. Features will be ON at the 2 weeks mark post GA.",
+            "Gets features and models at GA. Features will be ON at GA.",
+            "Gets features and models at EAP (if in EAP). Features will only be ON if the project is allowlisted."
+          ],
+          "type": "string"
         },
         "industryVertical": {
           "description": "Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.",
@@ -26526,6 +26984,89 @@
       "properties": {
         "companyName": {
           "description": "The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEngineFeaturePolicy": {
+      "description": "Restricts which users may use a feature that is turned on in `features`.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEngineFeaturePolicy",
+      "properties": {
+        "allowedMembers": {
+          "description": "Optional. Members who may use the feature.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaEngineFeaturePolicyMember"
+          },
+          "type": "array"
+        },
+        "defaultAccess": {
+          "description": "Optional. Access for users who match neither list.",
+          "enum": [
+            "DEFAULT_ACCESS_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "Treated as `ALLOW`.",
+            "Users who match neither list may use the feature.",
+            "Users who match neither list may not use the feature."
+          ],
+          "type": "string"
+        },
+        "deniedMembers": {
+          "description": "Optional. Members who may not use the feature. Takes precedence over `allowed_members`.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaEngineFeaturePolicyMember"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEngineFeaturePolicyMember": {
+      "description": "A user or group the policy refers to.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEngineFeaturePolicyMember",
+      "properties": {
+        "displayName": {
+          "description": "Optional. Label shown in the console. Never used for evaluation.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Required. Identifier evaluated at serving time. Its format depends on the project's identity provider: * Google identity (`GSUITE`): the group or user email. For groups, the server resolves the email to a group ID on write and returns the email on read. * Workforce Identity Federation (`THIRD_PARTY`), groups: the value the provider emits in `google.groups`. With SCIM this is the SCIM group ID; without SCIM and with the default Microsoft Entra mapping it is the Entra group object ID. * Workforce Identity Federation, users: the user's workforce identity subject.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Kind of member.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "USER",
+            "GROUP"
+          ],
+          "enumDescriptions": [
+            "Not allowed.",
+            "A single user.",
+            "A group of users."
+          ],
+          "type": "string"
+        },
+        "verification": {
+          "description": "Output only. Result of the server's directory check when the member was saved.",
+          "enum": [
+            "VERIFICATION_UNSPECIFIED",
+            "VERIFIED",
+            "NOT_FOUND",
+            "NOT_VERIFIABLE",
+            "CHECK_FAILED"
+          ],
+          "enumDescriptions": [
+            "Not checked.",
+            "Found in the project's directory.",
+            "Microsoft Graph has no such group. Saved anyway, because a custom `google.groups` mapping can emit IDs that Graph doesn't know.",
+            "The project has no directory to check against.",
+            "The directory lookup failed. Saved anyway."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -27101,7 +27642,7 @@
           "type": "string"
         },
         "primaryEmail": {
-          "description": "The user's primary email address. Do not use this for IAM bindings. Use ExternalIdentity.subject.",
+          "description": "The user's primary email address (populated from SCIM `emails[type=work]`). Do not use this for IAM bindings. Use ExternalIdentity.subject.",
           "type": "string"
         }
       },
@@ -28748,7 +29289,7 @@
           "type": "string"
         },
         "earlyTerminated": {
-          "description": "Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.",
+          "description": "Output only. Indication of whether the subscription is terminated earlier than the expiration date.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -29482,6 +30023,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaListUserAvailabilitiesResponse": {
+      "description": "Response message for UserStoreService.ListUserAvailabilities method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaListUserAvailabilitiesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "userAvailabilities": {
+          "description": "The UserAvailabilitys matching the request.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaUserAvailability"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaListUserLicensesResponse": {
       "description": "Response message for UserLicenseService.ListUserLicenses.",
       "id": "GoogleCloudDiscoveryengineV1alphaListUserLicensesResponse",
@@ -29791,6 +30350,23 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfig",
           "description": "Optional. Customer provided configurations."
         },
+        "experienceState": {
+          "description": "Output only. The current experience state of the project.",
+          "enum": [
+            "EXPERIENCE_STATE_UNSPECIFIED",
+            "SOBI_ONLY",
+            "LEGACY_ONLY",
+            "LEGACY_AND_SOBI"
+          ],
+          "enumDescriptions": [
+            "No experience is stated for this location.",
+            "Only the new Gemini Enterprise experience.",
+            "Only the classic Gemini Enterprise experience.",
+            "Legacy engines serve the classic experience, the Sobi engine serves the Sobi experience."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "name": {
           "description": "Output only. Full resource name of the project, for example `projects/{project}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.",
           "readOnly": true,
@@ -30083,6 +30659,20 @@
         "idpConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaIdpConfig",
           "description": "Optional. The identity provider for this location. When provided, the location's AclConfig is set from it as part of provisioning."
+        },
+        "provisionIntent": {
+          "description": "Optional. The caller states whether the provisioning is for the new or the classic Gemini Enterprise experience.",
+          "enum": [
+            "PROVISION_INTENT_UNSPECIFIED",
+            "PROVISION_INTENT_SOBI",
+            "PROVISION_INTENT_LEGACY"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "The caller is provisioning for the new Gemini Enterprise experience.",
+            "The caller is provisioning for the classic Gemini Enterprise experience."
+          ],
+          "type": "string"
         },
         "saasParams": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaProvisionProjectRequestSaasParams",
@@ -34822,6 +35412,63 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaUpdateUserAvailabilityRequest": {
+      "description": "Request message for UserStoreService.UpdateUserAvailability method. Also nested within BatchUpdateUserAvailabilityRequest for the UserStoreService.BatchUpdateUserAvailability method. `parent` is a required field when this message is used for a single Update, but is optional when used for a BatchUpdate.",
+      "id": "GoogleCloudDiscoveryengineV1alphaUpdateUserAvailabilityRequest",
+      "properties": {
+        "parent": {
+          "description": "Optional. The parent UserStore resource name, format: `projects/{project}/locations/{location}/userStores/{user_store_id}`.",
+          "type": "string"
+        },
+        "updateMask": {
+          "description": "Optional. The list of fields to update. Only 'state' is supported; if unset, defaults to 'state'.",
+          "format": "google-fieldmask",
+          "type": "string"
+        },
+        "userAvailability": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaUserAvailability",
+          "description": "Required. The UserAvailability to update."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaUserAvailability": {
+      "description": "Tracks whether a resource is available for a given user (distinct from whether the user is allowed to use that resource by licensing, etc).",
+      "id": "GoogleCloudDiscoveryengineV1alphaUserAvailability",
+      "properties": {
+        "observeTime": {
+          "deprecated": true,
+          "description": "Optional. Deprecated: use `update_time` only.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "Optional. Whether the user can currently use the resource. Set by the caller on update. If unspecified, defaults to `ACTIVE`.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "INACTIVE"
+          ],
+          "enumDescriptions": [
+            "Unspecified state (defaults to active).",
+            "Active state.",
+            "Inactive state."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when the most recent update to `state` was saved.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "userPrincipal": {
+          "description": "Required. Immutable. User principal (IdP subject for Workforce Identity, email for Google sign-in).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaUserEvent": {
       "description": "UserEvent captures all metadata information Discovery Engine API needs to know about how end users interact with your website.",
       "id": "GoogleCloudDiscoveryengineV1alphaUserEvent",
@@ -35470,7 +36117,7 @@
           "readOnly": true
         },
         "placeholder": {
-          "description": "Output only. It is the batch authorization group placeholder full resource name. This is not a real data connector (not existed in DataConnector table in spanner). It's a resource name existing only in the connector_authorization in the user table. E.g. projects/{project}/locations/{location}/collections/oauth_placeholder_google_workspace/dataStores/dataConnector.",
+          "description": "Output only. It is the batch authorization group placeholder full resource name. This is not a real data connector resource. E.g. projects/{project}/locations/{location}/collections/oauth_placeholder_google_workspace/dataStores/dataConnector.",
           "readOnly": true,
           "type": "string"
         }
@@ -35528,7 +36175,7 @@
           "type": "string"
         },
         "isFirstParty": {
-          "description": "Output only. Whether this is a first-party (Google-owned) connector, as opposed to a third-party connector. Used by the frontend to group 1P vs 3P connectors.",
+          "description": "Output only. Whether this is a first-party (Google-owned) connector, as opposed to a third-party connector.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -35596,13 +36243,15 @@
             "COMPLIANCE_LEVEL_UNSPECIFIED",
             "COMPLIANCE_LEVEL_FEDRAMP_HIGH",
             "COMPLIANCE_LEVEL_IL4",
-            "COMPLIANCE_LEVEL_IL5"
+            "COMPLIANCE_LEVEL_IL5",
+            "COMPLIANCE_LEVEL_ITAR"
           ],
           "enumDescriptions": [
             "The project has no Assured Workloads compliance level, or reports one that this API version does not model.",
             "FedRAMP High compliance level.",
             "Impact Level 4 (IL4) compliance level.",
-            "Impact Level 5 (IL5) compliance level."
+            "Impact Level 5 (IL5) compliance level.",
+            "International Traffic in Arms Regulations (ITAR) compliance level."
           ],
           "readOnly": true,
           "type": "string"
@@ -35947,6 +36596,11 @@
           "description": "If set to true, the widget will enable visual content summary on applicable search requests. Only used by healthcare search.",
           "type": "boolean"
         },
+        "featureToggleInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsFeatureToggleInfo",
+          "description": "Output only. The resolved, server-side view of the feature toggle registry (launch stage per toggle).",
+          "readOnly": true
+        },
         "features": {
           "additionalProperties": {
             "enum": [
@@ -35961,7 +36615,7 @@
             ],
             "type": "string"
           },
-          "description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge`",
+          "description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `music-generation` * `speech-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `skill-security-scan` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge` * `canvas-app-sharing` * `agent-marketplace` * `agent-scheduling` * `preview-agents` * `plugins`",
           "readOnly": true,
           "type": "object"
         },
@@ -36038,6 +36692,64 @@
         },
         "sourceAdminDisplayNameEnabled": {
           "description": "Optional. Whether to show the admin-configured display name for data connectors in the widget sources UI (instead of the connector kind). Opt-in; defaults to false.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsFeatureToggleInfo": {
+      "description": "The resolved, server-side view of the feature toggle registry containing detailed info about each feature.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsFeatureToggleInfo",
+      "properties": {
+        "featureToggles": {
+          "description": "Output only. The feature toggles known to the registry.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsFeatureToggleInfoFeatureToggle"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsFeatureToggleInfoFeatureToggle": {
+      "description": "A single feature toggle with its server-provided metadata.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsFeatureToggleInfoFeatureToggle",
+      "properties": {
+        "id": {
+          "description": "Output only. Matches a key in the engine `features` map.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "launchStage": {
+          "description": "Output only. Launch stage of the feature behind a toggle.",
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "PREVIEW",
+            "GA",
+            "SCHEDULED_GA",
+            "DELAYED_GA",
+            "RETIRED"
+          ],
+          "enumDescriptions": [
+            "Unspecified launch stage.",
+            "The feature is in preview.",
+            "The feature is generally available.",
+            "The feature has reached scheduled availability, conventionally two weeks after GA.",
+            "The feature has reached delayed availability, conventionally four weeks after GA.",
+            "The feature is on for every customer and can no longer be turned off."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "retirementDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Output only. The informational date the toggle is scheduled to retire, after which the feature is on for every customer. This is for display purposes only. The system does not transition feature states automatically on this date. Only when the launch stage is set to RETIRED does the feature turn on for every customer. Unset if no retirement is scheduled.",
+          "readOnly": true
+        },
+        "supportsAccessPolicy": {
+          "description": "Output only. Whether the engine's `feature_policies` may restrict this feature to specific users or groups. When false, EngineService.UpdateEngine rejects a policy for this feature.",
+          "readOnly": true,
           "type": "boolean"
         }
       },
@@ -36283,7 +36995,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaWorkspaceSettings",
       "properties": {
         "customerDomainValid": {
-          "description": "Whether the calling user's customer domain matches the workspace data stores under this engine.",
+          "description": "Whether the calling user's customer domain matches the workspace data stores under this engine. Unset when the check did not run or could not complete, which clients treat as unknown.",
           "type": "boolean"
         },
         "workspaceAccessEnabled": {
@@ -37247,7 +37959,7 @@
           "type": "string"
         },
         "instanceName": {
-          "description": "Optional. The instance name identifying the 3P app, e.g., \"vaissptbots-my\". This is different from the instance_uri which is the full URL of the 3P app e.g., \"https://vaissptbots-my.sharepoint.com\".",
+          "description": "Optional. The instance name identifying the 3P app, e.g., \"-my\". This is different from the instance_uri which is the full URL of the 3P app e.g., \"https://-my.sharepoint.com\".",
           "type": "string"
         }
       },
@@ -37658,6 +38370,11 @@
           },
           "type": "array"
         },
+        "delayedGlobalFeatureToggleStateAllowed": {
+          "description": "Output only. Whether the project is allowed to set `global_feature_toggle_state` to `DELAYED`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "disableAnalytics": {
           "description": "Optional. Whether to disable analytics for searches performed on this engine.",
           "type": "boolean"
@@ -37665,6 +38382,31 @@
         "displayName": {
           "description": "Required. The display name of the engine. Should be human readable. UTF-8 encoded string with limit of 1024 characters.",
           "type": "string"
+        },
+        "effectiveFeatures": {
+          "additionalProperties": {
+            "enum": [
+              "FEATURE_STATE_UNSPECIFIED",
+              "FEATURE_STATE_ON",
+              "FEATURE_STATE_OFF"
+            ],
+            "enumDescriptions": [
+              "The feature state is unspecified.",
+              "The feature is turned on to be accessible.",
+              "The feature is turned off to be inaccessible."
+            ],
+            "type": "string"
+          },
+          "description": "Output only. The complete, server-resolved state of every known feature toggle. Unlike `features`, which stores only explicit admin overrides, this map always contains an entry for every toggle. Clients should read toggle state from this field.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "featurePolicies": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaEngineFeaturePolicy"
+          },
+          "description": "Optional. Per-feature access policies, keyed by feature toggle name (see `features`). A feature with no entry is available to every user when it is on. Only features that support access policies are accepted.",
+          "type": "object"
         },
         "features": {
           "additionalProperties": {
@@ -37680,8 +38422,26 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `music-generation` * `speech-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `skill-security-scan` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications` * `code-extraction` * `remote-vm` * `license-tier-badge` * `canvas-app-sharing` * `agent-marketplace` * `agent-scheduling` * `preview-agents` * `plugins`",
           "type": "object"
+        },
+        "globalFeatureToggleState": {
+          "description": "Optional. Controls the global feature toggle state for the engine.",
+          "enum": [
+            "GLOBAL_FEATURE_TOGGLE_STATE_UNSPECIFIED",
+            "DELAYED",
+            "SCHEDULED",
+            "GENERAL",
+            "EARLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified feature toggle state. Treated as `GENERAL`.",
+            "Gets features and models 4 weeks post GA. Features will be ON at the 4 weeks mark post GA.",
+            "Gets features and models 2 weeks post GA. Features will be ON at the 2 weeks mark post GA.",
+            "Gets features and models at GA. Features will be ON at GA.",
+            "Gets features and models at EAP (if in EAP). Features will only be ON if the project is allowlisted."
+          ],
+          "type": "string"
         },
         "industryVertical": {
           "description": "Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.",
@@ -37853,6 +38613,89 @@
       "properties": {
         "companyName": {
           "description": "The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaEngineFeaturePolicy": {
+      "description": "Restricts which users may use a feature that is turned on in `features`.",
+      "id": "GoogleCloudDiscoveryengineV1betaEngineFeaturePolicy",
+      "properties": {
+        "allowedMembers": {
+          "description": "Optional. Members who may use the feature.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaEngineFeaturePolicyMember"
+          },
+          "type": "array"
+        },
+        "defaultAccess": {
+          "description": "Optional. Access for users who match neither list.",
+          "enum": [
+            "DEFAULT_ACCESS_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "Treated as `ALLOW`.",
+            "Users who match neither list may use the feature.",
+            "Users who match neither list may not use the feature."
+          ],
+          "type": "string"
+        },
+        "deniedMembers": {
+          "description": "Optional. Members who may not use the feature. Takes precedence over `allowed_members`.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaEngineFeaturePolicyMember"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaEngineFeaturePolicyMember": {
+      "description": "A user or group the policy refers to.",
+      "id": "GoogleCloudDiscoveryengineV1betaEngineFeaturePolicyMember",
+      "properties": {
+        "displayName": {
+          "description": "Optional. Label shown in the console. Never used for evaluation.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Required. Identifier evaluated at serving time. Its format depends on the project's identity provider: * Google identity (`GSUITE`): the group or user email. For groups, the server resolves the email to a group ID on write and returns the email on read. * Workforce Identity Federation (`THIRD_PARTY`), groups: the value the provider emits in `google.groups`. With SCIM this is the SCIM group ID; without SCIM and with the default Microsoft Entra mapping it is the Entra group object ID. * Workforce Identity Federation, users: the user's workforce identity subject.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Kind of member.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "USER",
+            "GROUP"
+          ],
+          "enumDescriptions": [
+            "Not allowed.",
+            "A single user.",
+            "A group of users."
+          ],
+          "type": "string"
+        },
+        "verification": {
+          "description": "Output only. Result of the server's directory check when the member was saved.",
+          "enum": [
+            "VERIFICATION_UNSPECIFIED",
+            "VERIFIED",
+            "NOT_FOUND",
+            "NOT_VERIFIABLE",
+            "CHECK_FAILED"
+          ],
+          "enumDescriptions": [
+            "Not checked.",
+            "Found in the project's directory.",
+            "Microsoft Graph has no such group. Saved anyway, because a custom `google.groups` mapping can emit IDs that Graph doesn't know.",
+            "The project has no directory to check against.",
+            "The directory lookup failed. Saved anyway."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -38580,7 +39423,7 @@
           "type": "boolean"
         },
         "earlyTerminated": {
-          "description": "Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.",
+          "description": "Output only. Indication of whether the subscription is terminated earlier than the expiration date.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -38805,6 +39648,23 @@
         "customerProvidedConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfig",
           "description": "Optional. Customer provided configurations."
+        },
+        "experienceState": {
+          "description": "Output only. The current experience state of the project.",
+          "enum": [
+            "EXPERIENCE_STATE_UNSPECIFIED",
+            "SOBI_ONLY",
+            "LEGACY_ONLY",
+            "LEGACY_AND_SOBI"
+          ],
+          "enumDescriptions": [
+            "No experience is stated for this location.",
+            "Only the new Gemini Enterprise experience.",
+            "Only the classic Gemini Enterprise experience.",
+            "Legacy engines serve the classic experience, the Sobi engine serves the Sobi experience."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "name": {
           "description": "Output only. Full resource name of the project, for example `projects/{project}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.",
