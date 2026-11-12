@@ -146,7 +146,7 @@ export namespace firebaseappcheck_v1 {
    */
   export interface Schema$GoogleFirebaseAppcheckV1AppCheckToken {
     /**
-     * The App Check token. App Check tokens are signed [JWTs](https://tools.ietf.org/html/rfc7519) containing claims that identify the attested app and GCP project. This token is used to access Google services protected by App Check. These tokens can also be [verified by your own custom backends](https://firebase.google.com/docs/app-check/custom-resource-backend) using the Firebase Admin SDK or third-party libraries.
+     * The App Check token. App Check tokens are signed [JWTs](https://www.rfc-editor.org/info/rfc7519/) containing claims that identify the attested app and GCP project. This token is used to access Google services protected by App Check. These tokens can also be [verified by your own custom backends](https://firebase.google.com/docs/app-check/custom-resource-backend) using the Firebase Admin SDK or third-party libraries.
      */
     token?: string | null;
     /**
@@ -591,40 +591,40 @@ export namespace firebaseappcheck_v1 {
     minDeviceRecognitionLevel?: string | null;
   }
   /**
-   * A JWK as specified by [section 4 of RFC 7517](https://tools.ietf.org/html/rfc7517#section-4) and [section 6.3.1 of RFC 7518](https://tools.ietf.org/html/rfc7518#section-6.3.1).
+   * A JWK as specified by [section 4 of RFC 7517](https://www.rfc-editor.org/info/rfc7517/#section-4) and [section 6.3.1 of RFC 7518](https://www.rfc-editor.org/info/rfc7518/#section-6.3.1).
    */
   export interface Schema$GoogleFirebaseAppcheckV1PublicJwk {
     /**
-     * See [section 4.4 of RFC 7517](https://tools.ietf.org/html/rfc7517#section-4.4).
+     * See [section 4.4 of RFC 7517](https://www.rfc-editor.org/info/rfc7517/#section-4.4).
      */
     alg?: string | null;
     /**
-     * See [section 6.3.1.2 of RFC 7518](https://tools.ietf.org/html/rfc7518#section-6.3.1.2).
+     * See [section 6.3.1.2 of RFC 7518](https://www.rfc-editor.org/info/rfc7518/#section-6.3.1.2).
      */
     e?: string | null;
     /**
-     * See [section 4.5 of RFC 7517](https://tools.ietf.org/html/rfc7517#section-4.5).
+     * See [section 4.5 of RFC 7517](https://www.rfc-editor.org/info/rfc7517/#section-4.5).
      */
     kid?: string | null;
     /**
-     * See [section 4.1 of RFC 7517](https://tools.ietf.org/html/rfc7517#section-4.1).
+     * See [section 4.1 of RFC 7517](https://www.rfc-editor.org/info/rfc7517/#section-4.1).
      */
     kty?: string | null;
     /**
-     * See [section 6.3.1.1 of RFC 7518](https://tools.ietf.org/html/rfc7518#section-6.3.1.1).
+     * See [section 6.3.1.1 of RFC 7518](https://www.rfc-editor.org/info/rfc7518/#section-6.3.1.1).
      */
     n?: string | null;
     /**
-     * See [section 4.2 of RFC 7517](https://tools.ietf.org/html/rfc7517#section-4.2).
+     * See [section 4.2 of RFC 7517](https://www.rfc-editor.org/info/rfc7517/#section-4.2).
      */
     use?: string | null;
   }
   /**
-   * The currently active set of public keys that can be used to verify App Check tokens. This object is a JWK set as specified by [section 5 of RFC 7517](https://tools.ietf.org/html/rfc7517#section-5). For security, the response **must not** be cached for longer than six hours.
+   * The currently active set of public keys that can be used to verify App Check tokens. This object is a JWK set as specified by [section 5 of RFC 7517](https://www.rfc-editor.org/info/rfc7517#section-5). For security, the response **must not** be cached for longer than six hours.
    */
   export interface Schema$GoogleFirebaseAppcheckV1PublicJwkSet {
     /**
-     * The set of public keys. See [section 5.1 of RFC 7517](https://tools.ietf.org/html/rfc7517#section-5).
+     * The set of public keys. See [section 5.1 of RFC 7517](https://www.rfc-editor.org/info/rfc7517#section-5).
      */
     keys?: Schema$GoogleFirebaseAppcheckV1PublicJwk[];
   }
@@ -771,7 +771,7 @@ export namespace firebaseappcheck_v1 {
     }
 
     /**
-     * Returns a public JWK set as specified by [RFC 7517](https://tools.ietf.org/html/rfc7517) that can be used to verify App Check tokens. Exactly one of the public keys in the returned set will successfully validate any App Check token that is currently valid.
+     * Returns a public JWK set as specified by [RFC 7517](https://www.rfc-editor.org/info/rfc7517/) that can be used to verify App Check tokens. Exactly one of the public keys in the returned set will successfully validate any App Check token that is currently valid.
      * @example
      * ```js
      * // Before running the sample:
