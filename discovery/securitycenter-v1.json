@@ -5766,7 +5766,7 @@
       }
     }
   },
-  "revision": "20261023",
+  "revision": "20261110",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -13394,6 +13394,52 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2RuntimeInfo": {
+      "id": "GoogleCloudSecuritycenterV2RuntimeInfo",
+      "properties": {
+        "evidence": {
+          "enum": [
+            "RUNTIME_EVIDENCE_UNSPECIFIED",
+            "VULNERABLE_PACKAGE_NOT_LOADED",
+            "VULNERABLE_PACKAGE_LOADED",
+            "VULNERABLE_CLASS_OR_SCRIPT_LOADED",
+            "VULNERABLE_FUNCTION_EXECUTED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "firstObservedTime": {
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "impact": {
+          "enum": [
+            "RUNTIME_IMPACT_UNSPECIFIED",
+            "NO_IMPACT",
+            "POTENTIAL_IMPACT",
+            "ACTIVE_IMPACT"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "lastObservedTime": {
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2Secret": {
       "id": "GoogleCloudSecuritycenterV2Secret",
       "properties": {
@@ -13749,6 +13795,9 @@
         },
         "reachable": {
           "type": "boolean"
+        },
+        "runtimeInfo": {
+          "$ref": "GoogleCloudSecuritycenterV2RuntimeInfo"
         },
         "securityBulletin": {
           "$ref": "GoogleCloudSecuritycenterV2SecurityBulletin"
@@ -15815,6 +15864,52 @@
       "properties": {},
       "type": "object"
     },
+    "RuntimeInfo": {
+      "id": "RuntimeInfo",
+      "properties": {
+        "evidence": {
+          "enum": [
+            "RUNTIME_EVIDENCE_UNSPECIFIED",
+            "VULNERABLE_PACKAGE_NOT_LOADED",
+            "VULNERABLE_PACKAGE_LOADED",
+            "VULNERABLE_CLASS_OR_SCRIPT_LOADED",
+            "VULNERABLE_FUNCTION_EXECUTED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "firstObservedTime": {
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "impact": {
+          "enum": [
+            "RUNTIME_IMPACT_UNSPECIFIED",
+            "NO_IMPACT",
+            "POTENTIAL_IMPACT",
+            "ACTIVE_IMPACT"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "lastObservedTime": {
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Secret": {
       "id": "Secret",
       "properties": {
@@ -16455,6 +16550,9 @@
         },
         "reachable": {
           "type": "boolean"
+        },
+        "runtimeInfo": {
+          "$ref": "RuntimeInfo"
         },
         "securityBulletin": {
           "$ref": "SecurityBulletin"
