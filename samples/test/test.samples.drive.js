@@ -31,6 +31,7 @@ const samples = {
   list: {path: '../drive/list'},
   upload: {path: '../drive/upload'},
   quickstart: {path: '../drive/quickstart'},
+  createPermission: {path: '../drive/create-permission'},
 };
 
 const stubs = getStubs();
@@ -90,6 +91,16 @@ describe('Drive samples', () => {
       .post('/upload/drive/v3/files?uploadType=multipart')
       .reply(200, {});
     const data = await samples.upload.runSample(someFile);
+    assert(data);
+    scope.done();
+  });
+
+  it('should create a permission', async () => {
+    const fileId = '1EkgdLY3T-_9hWml0VssdDWQZLEc8qqpMB77Nvsx6khA';
+    const scope = nock(baseUrl)
+      .post(`/drive/v3/files/${fileId}/permissions`)
+      .reply(200, {});
+    const data = await samples.createPermission.runSample(fileId);
     assert(data);
     scope.done();
   });
