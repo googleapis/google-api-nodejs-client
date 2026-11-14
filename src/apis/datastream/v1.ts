@@ -390,7 +390,7 @@ export namespace datastream_v1 {
      */
     oracleProfile?: Schema$OracleProfile;
     /**
-     * Profile for connecting to a PostgreSQL source.
+     * Profile for connecting to a PostgreSQL source or destination.
      */
     postgresqlProfile?: Schema$PostgresqlProfile;
     /**
@@ -1822,7 +1822,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * Profile for connecting to a PostgreSQL source.
+   * Profile for connecting to a PostgreSQL source or destination.
    */
   export interface Schema$PostgresqlProfile {
     /**
