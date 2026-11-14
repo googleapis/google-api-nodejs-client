@@ -1159,7 +1159,7 @@
       }
     }
   },
-  "revision": "20261030",
+  "revision": "20261111",
   "rootUrl": "https://health.googleapis.com/",
   "schemas": {
     "ActiveEnergyBurned": {
@@ -4793,7 +4793,8 @@
             "LUTEINIZING_HORMONE_SURGE",
             "ESTROGEN_SURGE",
             "POSITIVE",
-            "INDETERMINATE"
+            "INDETERMINATE",
+            "OWN_METHOD"
           ],
           "enumDescriptions": [
             "Unspecified result.",
@@ -4801,13 +4802,30 @@
             "Luteinizing hormone surge.",
             "Estrogen surge.",
             "Positive result.",
-            "Indeterminate result."
+            "Indeterminate result.",
+            "Ovulation day the user identified by their own method, not a test kit."
           ],
           "type": "string"
         },
         "sampleTime": {
           "$ref": "ObservationSampleTime",
           "description": "Required. The time at which ovulation test was measured."
+        },
+        "testType": {
+          "description": "Optional. The type of ovulation test.",
+          "enum": [
+            "TEST_TYPE_UNSPECIFIED",
+            "STRIP",
+            "DIGITAL",
+            "OWN_METHOD"
+          ],
+          "enumDescriptions": [
+            "Unspecified test type.",
+            "Test strip.",
+            "Digital test.",
+            "The user's own method, not a test kit."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -6304,7 +6322,10 @@
               "SWELLING",
               "VAGINAL_DRYNESS",
               "VAGINAL_ITCHING",
-              "VOMITING"
+              "VOMITING",
+              "LIMBS_SWELLING",
+              "FACE_SWELLING",
+              "NASAL_CONGESTION"
             ],
             "enumDescriptions": [
               "Unspecified symptom value.",
@@ -6372,7 +6393,10 @@
               "Swelling.",
               "Vaginal dryness.",
               "Vaginal itching.",
-              "Vomiting."
+              "Vomiting.",
+              "Swelling of the arms or legs.",
+              "Swelling of the face.",
+              "Nasal congestion."
             ],
             "type": "string"
           },
