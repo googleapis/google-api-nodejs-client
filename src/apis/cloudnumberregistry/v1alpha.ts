@@ -152,7 +152,7 @@ export namespace cloudnumberregistry_v1alpha {
     uniqueScopesCount?: number | null;
   }
   /**
-   * A key-value pair representing a custom attribute associated with a resource.
+   * A key-value pair representing a custom attribute associated with a resource. Attributes are resource metadata used to organize and search for resources. Do not include sensitive information, such as personally identifiable information or credentials, in attribute `key` or `value`.
    */
   export interface Schema$Attribute {
     /**
@@ -195,7 +195,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     attributes?: Schema$Attribute[];
     /**
-     * Optional. The description of the CustomRange.
+     * Optional. The description of the CustomRange. Do not include sensitive information, such as personally identifiable information or credentials, in the `description` field.
      */
     description?: string | null;
     /**
@@ -415,7 +415,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     nextPageToken?: string | null;
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached.
      */
     unreachable?: string[] | null;
   }
@@ -432,7 +432,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     nextPageToken?: string | null;
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached.
      */
     unreachable?: string[] | null;
   }
@@ -449,7 +449,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     nextPageToken?: string | null;
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached.
      */
     unreachable?: string[] | null;
   }
@@ -496,7 +496,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     orgNumberRegistries?: Schema$OrgNumberRegistry[];
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached.
      */
     unreachable?: string[] | null;
   }
@@ -513,7 +513,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     realms?: Schema$Realm[];
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached.
      */
     unreachable?: string[] | null;
   }
@@ -530,7 +530,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     registryBooks?: Schema$RegistryBook[];
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached.
      */
     unreachable?: string[] | null;
   }
@@ -838,7 +838,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     results?: Schema$SearchIpResourcesResult[];
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached.
      */
     unreachable?: string[] | null;
   }
