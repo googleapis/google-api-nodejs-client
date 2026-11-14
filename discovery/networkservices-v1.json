@@ -1246,12 +1246,12 @@
                   ],
                   "parameters": {
                     "etag": {
-                      "description": "Optional. The etag of the ExtensionBinding to delete.",
+                      "description": "Optional. The ETag of the `ExtensionBinding` to delete.",
                       "location": "query",
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. A name of the `ExtensionBinding` resource to delete. Must be in the format `projects/{project}/locations/{location}/extensionBindings/{extension_binding}`.",
+                      "description": "Required. The name of the `ExtensionBinding` resource to delete. Must be in the format `projects/{project}/locations/{location}/extensionBindings/{extension_binding}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/extensionBindings/[^/]+$",
                       "required": true,
@@ -1276,7 +1276,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. A name of the `ExtensionBinding` resource to get. Must be in the format `projects/{project}/locations/{location}/extensionBindings/{extension_binding}`.",
+                      "description": "Required. The name of the `ExtensionBinding` resource to get. Must be in the format `projects/{project}/locations/{location}/extensionBindings/{extension_binding}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/extensionBindings/[^/]+$",
                       "required": true,
@@ -1307,7 +1307,7 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. The value returned by the last `ListExtensionBindingsResponse` Indicates that this is a continuation of a prior `ListExtensionBindings` call, and that the system should return the next page of data.",
+                      "description": "Optional. The value returned by the last `ListExtensionBindingsResponse`. Indicates that this is a continuation of a prior `ListExtensionBindings` call, and that the system should return the next page of data.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1344,7 +1344,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the `ExtensionBinding` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the `ExtensionBinding` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not provide a mask then all fields are overwritten.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -3207,7 +3207,7 @@
                       "type": "string"
                     },
                     "producerExtensionId": {
-                      "description": "Required. Short name of the `ProducerExtension` resource to be created.",
+                      "description": "Required. The short name of the `ProducerExtension` resource to be created.",
                       "location": "query",
                       "type": "string"
                     }
@@ -3233,12 +3233,12 @@
                   ],
                   "parameters": {
                     "etag": {
-                      "description": "Optional. The etag of the ProducerExtension to delete.",
+                      "description": "Optional. The ETag of the `ProducerExtension` to delete.",
                       "location": "query",
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. A name of the `ProducerExtension` resource to delete. Must be in the format `projects/{project}/locations/{location}/producerExtensions/{producer_extension}`.",
+                      "description": "Required. The name of the `ProducerExtension` resource to delete. It must be in this format: `projects/{project}/locations/{location}/producerExtensions/{producer_extension}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/producerExtensions/[^/]+$",
                       "required": true,
@@ -3263,7 +3263,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. A name of the `ProducerExtension` resource to get. Must be in the format `projects/{project}/locations/{location}/producerExtensions/{producer_extension}`.",
+                      "description": "Required. The name of the `ProducerExtension` resource to get. It must be in this format: `projects/{project}/locations/{location}/producerExtensions/{producer_extension}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/producerExtensions/[^/]+$",
                       "required": true,
@@ -3294,12 +3294,12 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. The value returned by the last `ListProducerExtensionsResponse` Indicates that this is a continuation of a prior `ListProducerExtensions` call, and that the system should return the next page of data.",
+                      "description": "Optional. The value returned by the last `ListProducerExtensionsResponse`. It indicates that this is a continuation of a prior `ListProducerExtensions` call, and that the system should return the next page of data.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The project and location from which the `ProducerExtension` resources should be listed, specified in the format `projects/{project}/locations/{location}`.",
+                      "description": "Required. The project and location from which the `ProducerExtension` resources should be listed, specified in this format: `projects/{project}/locations/{location}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -4046,7 +4046,7 @@
                       "type": "string"
                     },
                     "view": {
-                      "description": "Determines how much data must be returned in the response. See [AIP-157](https://google.aip.dev/157).",
+                      "description": "Optional. Determines how much data must be returned in the response. See [AIP-157](https://google.aip.dev/157).",
                       "enum": [
                         "WASM_PLUGIN_VIEW_UNSPECIFIED",
                         "WASM_PLUGIN_VIEW_BASIC",
@@ -4079,13 +4079,13 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "Maximum number of `WasmPlugin` resources to return per call. If not specified, at most 50 `WasmPlugin` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
+                      "description": "Optional. Maximum number of `WasmPlugin` resources to return per call. If not specified, at most 50 `WasmPlugin` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The value returned by the last `ListWasmPluginsResponse` call. Indicates that this is a continuation of a prior `ListWasmPlugins` call, and that the next page of data is to be returned.",
+                      "description": "Optional. The value returned by the last `ListWasmPluginsResponse` call. Indicates that this is a continuation of a prior `ListWasmPlugins` call, and that the next page of data is to be returned.",
                       "location": "query",
                       "type": "string"
                     },
@@ -4236,13 +4236,13 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "Maximum number of `WasmPluginVersion` resources to return per call. If not specified, at most 50 `WasmPluginVersion` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
+                          "description": "Optional. Maximum number of `WasmPluginVersion` resources to return per call. If not specified, at most 50 `WasmPluginVersion` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "The value returned by the last `ListWasmPluginVersionsResponse` call. Indicates that this is a continuation of a prior `ListWasmPluginVersions` call, and that the next page of data is to be returned.",
+                          "description": "Optional. The value returned by the last `ListWasmPluginVersionsResponse` call. Indicates that this is a continuation of a prior `ListWasmPluginVersions` call, and that the next page of data is to be returned.",
                           "location": "query",
                           "type": "string"
                         },
@@ -4271,7 +4271,7 @@
       }
     }
   },
-  "revision": "20261027",
+  "revision": "20261109",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AgentConnectivityTemplate": {
@@ -4691,7 +4691,7 @@
           "type": "string"
         },
         "service": {
-          "description": "Required. The reference to the service that runs the extension. To configure a callout extension: For global AuthzExtension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`. For regional AuthzExtension, `service` must be a fully-qualified reference to one of the following: * a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}`. * a fully qualified domain name that can be resolved by the Google Cloud DNS. * `iap.googleapis.com` and it can only be referenced by an AuthzPolicy with the policyProfile set to REQUEST_AUTHZ. * `modelarmor..rep.googleapis.com` and it can only be referenced by an AuthzPolicy with the policyProfile set to CONTENT_AUTHZ.",
+          "description": "Required. The reference to the service that runs the extension. To configure a callout extension: For a global AuthzExtension, `service` must be a fully qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`. For a regional AuthzExtension, `service` must be a fully qualified reference to one of the following: * A [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}`. * A fully qualified domain name that can be resolved by Cloud DNS. * `iap.googleapis.com` and can be referenced only by an `AuthzPolicy` with the `policyProfile` set to `REQUEST_AUTHZ`. * `modelarmor..rep.googleapis.com` and it can only be referenced by an `AuthzPolicy` with the `policyProfile` set to `CONTENT_AUTHZ`.",
           "type": "string"
         },
         "timeout": {
@@ -5007,7 +5007,7 @@
           "type": "string"
         },
         "failOpen": {
-          "description": "Optional. Determines the behavior of the extension binding when the call to the extension fails or times out. Default value is `FALSE`. When set to `TRUE`, failures of the extension are silently ignored.",
+          "description": "Optional. Determines the behavior of the extension binding when the call to the extension fails or times out. Default value is `false`. When set to `true`, failures of the extension are silently ignored.",
           "type": "boolean"
         },
         "labels": {
@@ -5034,7 +5034,7 @@
           "type": "integer"
         },
         "producerExtension": {
-          "description": "Required. The name of the extension that this binding should attach to target resources. Format: For Google-provided extensions, specify the service endpoint, for example `modelarmor.us-central1.rep.googleapis.com`.",
+          "description": "Required. The name of the extension that this binding should attach to target resources. Format: * For Google-provided extensions, specify the service endpoint, for example `modelarmor.us-central1.rep.googleapis.com`.",
           "type": "string"
         },
         "producerMetadata": {
@@ -5092,7 +5092,7 @@
           "type": "string"
         },
         "exact": {
-          "description": "Optional. The input string must match exactly the string specified here. Examples: * `abc` only matches the value `abc`.",
+          "description": "Optional. The input string must match exactly the string specified here. Examples: * `abc` matches only the value `abc`.",
           "type": "string"
         },
         "ignoreCase": {
@@ -5120,7 +5120,7 @@
         },
         "notDestination": {
           "$ref": "ExtensionBindingMatchConditionToDestination",
-          "description": "Optional. Describes the negated properties of the request destination. Extension will not be invoked on requests that match the criteria specified in this field. At least one of destination or not_destination must be specified."
+          "description": "Optional. Describes the negated properties of the request destination. The extension will not be invoked on requests that match the criteria specified in this field. At least one of `destination` or `not_destination` must be specified."
         }
       },
       "type": "object"
@@ -5134,21 +5134,21 @@
           "description": "Optional. A set of HTTP headers to match against. If not specified, requests with any headers are matched."
         },
         "hosts": {
-          "description": "Optional. A list of HTTP Hosts to match against. Limited to 10 hosts. If not specified, any host is allowed. If specified, a match occurs if any of the hosts matches the host value in the request.",
+          "description": "Optional. A list of HTTP hosts to match against. Limited to 10 hosts. If not specified, any host is allowed. If specified, a match occurs if any of the hosts matches the host value in the request.",
           "items": {
             "$ref": "ExtensionBindingMatchConditionStringMatch"
           },
           "type": "array"
         },
         "paths": {
-          "description": "Optional. A list of paths to match against. Limited to 10 paths. If not specified, any path is allowed. Note that this path match includes the query parameters. For gRPC services, this should be a fully-qualified name of the form /package.service/method.",
+          "description": "Optional. A list of paths to match against. Limited to 10 paths. If not specified, any path is allowed. Note that this path match includes the query parameters. For gRPC services, this should be a fully qualified name of the form `/package.service/method`.",
           "items": {
             "$ref": "ExtensionBindingMatchConditionStringMatch"
           },
           "type": "array"
         },
         "resources": {
-          "description": "Optional. A list of non-empty strings whose value is matched against the resource to which a request is sent (e.g., an Agent in AiApplication). If not specified, any resource is allowed. If specified, a match occurs if any of the resources matches the resource value in the request. Limited to 5 resources. When matching against resources in the AgentRegistry, use the URNs of the registry resources.",
+          "description": "Optional. A list of non-empty strings whose value is matched against the resource to which a request is sent (for example, an `Agent` in `AiApplication`). If not specified, any resource is allowed. If specified, a match occurs if any of the resources matches the resource value in the request. Limited to 5 resources. When matching against resources in the Agent Registry, use the URNs of the registry resources.",
           "items": {
             "$ref": "ExtensionBindingMatchConditionStringMatch"
           },
@@ -5222,7 +5222,7 @@
       "id": "ExtensionChain",
       "properties": {
         "extensions": {
-          "description": "Required. A set of extensions to execute for the matching request. At least one extension is required. Up to 3 extensions can be defined for each extension chain for `LbTrafficExtension` and `CdnEdgeExtension` resources. `LbRouteExtension`, `LbEdgeExtension`, and `LbTcpExtension` chains are limited to 1 extension per extension chain.",
+          "description": "Required. A set of extensions to run for the matching request. Up to three extensions can be defined for each extension chain for the `LbTrafficExtension` resource. You can define a maximum of two extensions for each extension chain for the `CdnEdgeExtension` resource. `LbRouteExtension`, `LbEdgeExtension`, and `LbTcpExtension` chains are limited to one extension per extension chain.",
           "items": {
             "$ref": "ExtensionChainExtension"
           },
@@ -5310,7 +5310,7 @@
           "type": "string"
         },
         "service": {
-          "description": "Required. The reference to the service that runs the extension. To configure a callout extension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}` or `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`. To configure a plugin extension, `service` must be a reference to a [`WasmPlugin` resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins) in the format: `projects/{project}/locations/{location}/wasmPlugins/{plugin}` or `//networkservices.googleapis.com/projects/{project}/locations/{location}/wasmPlugins/{wasmPlugin}`. Plugin extensions are currently supported for the `LbTrafficExtension`, the `LbRouteExtension`, the `LbEdgeExtension`, and the `CdnEdgeExtension` resources.",
+          "description": "Required. The reference to the service that runs the extension. To configure a callout extension, `service` must be a fully qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}` or `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`. To configure a plugin extension, `service` must be a reference to a [`WasmPlugin` resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins) in the format: `projects/{project}/locations/{location}/wasmPlugins/{plugin}` or `//networkservices.googleapis.com/projects/{project}/locations/{location}/wasmPlugins/{wasmPlugin}`. Supports plugin extensions for `LbTrafficExtension`, `LbRouteExtension`, `LbEdgeExtension`, and `CdnEdgeExtension` resources.",
           "type": "string"
         },
         "supportedEvents": {
@@ -5331,8 +5331,8 @@
               "If included in `supported_events`, the extension is called when the HTTP request body arrives.",
               "If included in `supported_events`, the extension is called when the HTTP response headers arrive.",
               "If included in `supported_events`, the extension is called when the HTTP response body arrives.",
-              "If included in `supported_events`, the extension is called when the HTTP request trailers arrives.",
-              "If included in `supported_events`, the extension is called when the HTTP response trailers arrives."
+              "If included in `supported_events`, the extension is called when the HTTP request trailers arrive.",
+              "If included in `supported_events`, the extension is called when the HTTP response trailers arrive."
             ],
             "type": "string"
           },
@@ -7472,11 +7472,6 @@
           "description": "Required. The resource name of the multicast consumer association that is in the same zone as this multicast group consumer activation. Use the following format: `projects/*/locations/*/multicastConsumerAssociations/*`.",
           "type": "string"
         },
-        "multicastGroup": {
-          "deprecated": true,
-          "description": "Optional. The resource name of the multicast group created by the admin in the same zone as this multicast group consumer activation. Use the following format: `projects/*/locations/*/multicastGroups/*`. This field is deprecated. Use multicast_group_range_activation instead.",
-          "type": "string"
-        },
         "multicastGroupRangeActivation": {
           "description": "Required. The resource name of the multicast group range activation created by the admin in the same zone as this multicast group consumer activation. Use the following format: `projects/*/locations/*/multicastGroupRangeActivations/*`.",
           "type": "string"
@@ -7675,7 +7670,7 @@
       "type": "object"
     },
     "ProducerExtension": {
-      "description": "`ProducerExtension` is a resource representing producer defined configuration for their service extension.",
+      "description": "`ProducerExtension` is a resource that represents a producer-defined configuration for its service extension.",
       "id": "ProducerExtension",
       "properties": {
         "createTime": {
@@ -7689,7 +7684,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
+          "description": "Optional. ETag of the resource. If this is provided, it must match the server's ETag. If the provided ETag doesn't match the server's ETag, then the request fails with a `409 ABORTED` error.",
           "type": "string"
         },
         "extensionSettings": {
@@ -7708,7 +7703,7 @@
           "type": "string"
         },
         "phase": {
-          "description": "Required. The phase in which this `ProducerExtension` should execute.",
+          "description": "Required. The phase in which this `ProducerExtension` runs.",
           "enum": [
             "PHASE_UNSPECIFIED",
             "TRAFFIC",
@@ -7716,7 +7711,7 @@
           ],
           "enumDescriptions": [
             "Unspecified phase.",
-            "The `ProducerExtension` will be executed during the traffic phase.",
+            "Not supported.",
             "The `ProducerExtension` will be executed during the authorization phase."
           ],
           "type": "string"
@@ -7743,7 +7738,7 @@
           "type": "boolean"
         },
         "service": {
-          "description": "Required. URI of the PSC attachment.",
+          "description": "Required. The URI of the Private Service Connect (PSC) attachment.",
           "type": "string"
         },
         "supportedEvents": {
@@ -7764,8 +7759,8 @@
               "If included in `supported_events`, the extension is called when the HTTP request body arrives.",
               "If included in `supported_events`, the extension is called when the HTTP response headers arrive.",
               "If included in `supported_events`, the extension is called when the HTTP response body arrives.",
-              "If included in `supported_events`, the extension is called when the HTTP request trailers arrives.",
-              "If included in `supported_events`, the extension is called when the HTTP response trailers arrives."
+              "If included in `supported_events`, the extension is called when the HTTP request trailers arrive.",
+              "If included in `supported_events`, the extension is called when the HTTP response trailers arrive."
             ],
             "type": "string"
           },
@@ -8319,6 +8314,15 @@
         },
         "description": {
           "description": "Optional. A human-readable description of the resource.",
+          "type": "string"
+        },
+        "kmsKeyName": {
+          "description": "Optional. The name of the customer-managed [CryptoKey](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys) to be used to encrypt the `WasmPlugin` image (provided by image_uri) and configuration (provided by plugin_config_data or plugin_config_uri) that are stored by the `Service Extensions` product at rest. Format: `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}` By default, Google Cloud automatically encrypts all data at rest using Google-owned and Google-managed encryption keys. If you need ownership and control of the keys that protect your data at rest, you can specify a customer-managed encryption key (CMEK) to encrypt your `WasmPlugin` data. For more information, see [Using customer-managed encryption keys](https://cloud.google.com/service-extensions/docs/cmek).",
+          "type": "string"
+        },
+        "kmsKeyVersion": {
+          "description": "Output only. The name of the specific [CryptoKeyVersion](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions) used to encrypt the `WasmPlugin` data, if the kms_key_name field is set. Format: `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}/cryptoKeyVersions/{version}` This is a read-only field. `WasmPlugin` data is automatically encrypted using the most recent `CryptoKeyVersion` of the `CryptoKey` provided in the `kms_key_name` field. See [Cloud KMS resources](https://cloud.google.com/kms/docs/resource-hierarchy) for more information.",
+          "readOnly": true,
           "type": "string"
         },
         "labels": {

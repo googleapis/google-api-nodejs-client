@@ -155,10 +155,6 @@ export namespace looker_v1 {
    */
   export interface Schema$ComponentMetrics {
     /**
-     * Type of the exported component.
-     */
-    componentType?: string | null;
-    /**
      * Duration of the component export.
      */
     duration?: string | null;
@@ -178,6 +174,10 @@ export namespace looker_v1 {
      * Start timestamp of the component export.
      */
     startTime?: string | null;
+    /**
+     * Type of the exported component.
+     */
+    type?: string | null;
   }
   /**
    * Controlled egress configuration.
@@ -291,7 +291,7 @@ export namespace looker_v1 {
    */
   export interface Schema$ExportMetadata {
     /**
-     * Opaque capability token for O2C Elite System Activity (ESA) direct dataset migration. It is minted by the exporter together with the cloned source dataset and presented back to Looker Original when the import requests access to that dataset.
+     * Opaque capability token for O2C Elite System Activity (ESA) direct dataset migration, encrypted by the exporter with the export encryption key (base64-encoded Cloud KMS ciphertext). It is minted by the exporter together with the cloned source dataset; Looker Core CLH decrypts it with the import's service account and presents the plaintext to Looker Original when the import requests access to that dataset.
      */
     esaMigrationToken?: string | null;
     /**

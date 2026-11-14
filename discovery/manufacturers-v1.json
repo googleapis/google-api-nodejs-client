@@ -416,7 +416,7 @@
       }
     }
   },
-  "revision": "20250815",
+  "revision": "20261112",
   "rootUrl": "https://manufacturers.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -464,6 +464,13 @@
         "disclosureDate": {
           "description": "The disclosure date of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#disclosure.",
           "type": "string"
+        },
+        "documentLink": {
+          "description": "Optional. URLs of PDF documents for the product, such as user manuals or specifications.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "excludedDestination": {
           "description": "A list of excluded destinations such as \"ClientExport\", \"ClientShoppingCatalog\" or \"PartnerShoppingCatalog\". For more information, see https://support.google.com/manufacturers/answer/7443550",
@@ -524,6 +531,10 @@
           "description": "The item group id of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#itemgroupid.",
           "type": "string"
         },
+        "itemGroupTitle": {
+          "description": "Optional. The shared title of the product group that this variant belongs to.",
+          "type": "string"
+        },
         "material": {
           "description": "The material of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#material.",
           "type": "string"
@@ -539,6 +550,11 @@
         "pattern": {
           "description": "The pattern of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#pattern.",
           "type": "string"
+        },
+        "popularityRank": {
+          "description": "Optional. The popularity rank of the product from 0.0 (lowest) to 100.0 (highest).",
+          "format": "double",
+          "type": "number"
         },
         "productDetail": {
           "description": "The details of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productdetail.",
@@ -570,6 +586,20 @@
           "description": "The type or category of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#producttype.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        },
+        "questionAndAnswer": {
+          "description": "Optional. Frequently asked questions and answers about the product.",
+          "items": {
+            "$ref": "QuestionAndAnswer"
+          },
+          "type": "array"
+        },
+        "relatedProduct": {
+          "description": "Optional. Products related to this product, such as accessories or substitutes.",
+          "items": {
+            "$ref": "RelatedProduct"
           },
           "type": "array"
         },
@@ -619,6 +649,13 @@
           "description": "The title of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#title.",
           "type": "string"
         },
+        "variantOption": {
+          "description": "Optional. The list of all variant-identifying options for the product.",
+          "items": {
+            "$ref": "VariantOption"
+          },
+          "type": "array"
+        },
         "videoLink": {
           "description": "The videos of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#video.",
           "items": {
@@ -659,6 +696,14 @@
         },
         "code": {
           "description": "Optional. A unique code to identify the certification.",
+          "type": "string"
+        },
+        "documentLink": {
+          "description": "Optional. A URL to the certification fiche. For example: https://eprel.ec.europa.eu/fiches/smartphonestablets20231669/Fiche_2556297_EN.pdf In case of multiple languages, the English version is preferred.",
+          "type": "string"
+        },
+        "labelLink": {
+          "description": "Optional. A URL to the certification label. For example: https://eprel.ec.europa.eu/labels/smartphonestablets20231669/Label_2556297.pdf",
           "type": "string"
         },
         "link": {
@@ -802,6 +847,14 @@
         },
         "code": {
           "description": "Optional. A unique code to identify the certification.",
+          "type": "string"
+        },
+        "documentLink": {
+          "description": "Optional. A URL to the (English if >1 language) certification fiche. For example: https://eprel.ec.europa.eu/fiches/smartphonestablets20231669/Fiche_2556297_EN.pdf",
+          "type": "string"
+        },
+        "labelLink": {
+          "description": "Optional. A URL to the certification label. For example: https://eprel.ec.europa.eu/labels/smartphonestablets20231669/Label_2556297.pdf",
           "type": "string"
         },
         "link": {
@@ -1385,6 +1438,55 @@
         },
         "sectionName": {
           "description": "A short section name that can be reused between multiple product details.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "QuestionAndAnswer": {
+      "description": "A question and answer about the product.",
+      "id": "QuestionAndAnswer",
+      "properties": {
+        "answer": {
+          "description": "Required. The answer text.",
+          "type": "string"
+        },
+        "question": {
+          "description": "Required. The question text.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RelatedProduct": {
+      "description": "A product related to this product.",
+      "id": "RelatedProduct",
+      "properties": {
+        "identifier": {
+          "description": "Required. The identifier of the related product.",
+          "type": "string"
+        },
+        "identifierType": {
+          "description": "Required. The identifier type of the related product, such as \"GTIN\" or \"ID\".",
+          "type": "string"
+        },
+        "relationshipType": {
+          "description": "Required. The relationship to the related product, such as \"ACCESSORY\", \"PART_OF_SET\", \"REQUIRED_PART\", \"OFTEN_BOUGHT_WITH\", \"SUBSTITUTE\", or \"DIFFERENT_BRAND\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VariantOption": {
+      "description": "A variant-identifying option for the product.",
+      "id": "VariantOption",
+      "properties": {
+        "name": {
+          "description": "Required. The name of the variant option, such as \"Color\" or \"Watch band style\".",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The value of the variant option, such as \"Red\" or \"Milanese loop\".",
           "type": "string"
         }
       },

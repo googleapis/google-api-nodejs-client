@@ -5400,6 +5400,40 @@
                 "https://www.googleapis.com/auth/androidpublisher"
               ]
             },
+            "cancelplantransition": {
+              "description": "Cancel a plan transition for a subscription.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:cancelPlanTransition",
+              "httpMethod": "POST",
+              "id": "androidpublisher.purchases.subscriptionsv2.cancelplantransition",
+              "parameterOrder": [
+                "packageName",
+                "token"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "Required. The package of the application for which this subscription was purchased (for example, 'com.some.thing').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "token": {
+                  "description": "Required. The token provided to the user's device when the subscription was purchased.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:cancelPlanTransition",
+              "request": {
+                "$ref": "CancelPlanTransitionRequest"
+              },
+              "response": {
+                "$ref": "CancelPlanTransitionResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
             "defer": {
               "description": "Defers the renewal of a subscription.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:defer",
@@ -5494,6 +5528,40 @@
               },
               "response": {
                 "$ref": "RevokeSubscriptionPurchaseResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "scheduleplantransition": {
+              "description": "Schedule a plan transition for a subscription.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:schedulePlanTransition",
+              "httpMethod": "POST",
+              "id": "androidpublisher.purchases.subscriptionsv2.scheduleplantransition",
+              "parameterOrder": [
+                "packageName",
+                "token"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "Required. The package of the application for which this subscription was purchased (for example, 'com.some.thing').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "token": {
+                  "description": "Required. The token provided to the user's device when the subscription was purchased.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:schedulePlanTransition",
+              "request": {
+                "$ref": "SchedulePlanTransitionRequest"
+              },
+              "response": {
+                "$ref": "SchedulePlanTransitionResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/androidpublisher"
@@ -5970,7 +6038,7 @@
       }
     }
   },
-  "revision": "20261111",
+  "revision": "20261112",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -6766,6 +6834,10 @@
           "$ref": "InstallmentPlan",
           "description": "The installment plan commitment and state related info for the auto renewing plan."
         },
+        "planTransitionDetails": {
+          "$ref": "PlanTransitionDetails",
+          "description": "The information of the associated plan transition. Will be present only if this plan has a transition plan associated with it and will only include the latest transition details associated with the item."
+        },
         "priceChangeDetails": {
           "$ref": "SubscriptionItemPriceChangeDetails",
           "description": "The information of the last price change for the item since subscription signup."
@@ -6841,6 +6913,10 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "transitionTargetConfig": {
+          "$ref": "TransitionTargetConfig",
+          "description": "Transition target base plan information when this base plan has a transition plan."
         }
       },
       "type": "object"
@@ -7346,6 +7422,27 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "CancelPlanTransitionRequest": {
+      "description": "Request for the purchases.subscriptionsv2.cancelplantransition API.",
+      "id": "CancelPlanTransitionRequest",
+      "properties": {
+        "etag": {
+          "description": "If set, the API will fail if the etag does not match the latest etag for this subscription. The etag is retrieved from purchases.subscriptionsv2.get: https://developers.google.com/android-publisher/api-ref/rest/v3/purchases.subscriptionsv2/get",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The subscription product (for example, 'premium_plan') for which an in process plan transition should be canceled.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CancelPlanTransitionResponse": {
+      "description": "Response for the purchases.subscriptionsv2.cancelplantransition API.",
+      "id": "CancelPlanTransitionResponse",
+      "properties": {},
       "type": "object"
     },
     "CancelSubscriptionPurchaseRequest": {
@@ -8164,6 +8261,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "DefiniteTransition": {
+      "description": "Used to indicate that the plan transition is definite.",
+      "id": "DefiniteTransition",
+      "properties": {},
       "type": "object"
     },
     "DeleteOneTimeProductOfferRequest": {
@@ -11606,6 +11709,25 @@
       "properties": {},
       "type": "object"
     },
+    "PlanTransitionDetails": {
+      "description": "Information related to a plan transition.",
+      "id": "PlanTransitionDetails",
+      "properties": {
+        "basePlanId": {
+          "description": "[Required] The base plan ID to which this plan would be transitioned.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "[Required] The product ID to which this plan would be transitioned, (for example, 'monthly001').",
+          "type": "string"
+        },
+        "transitionInfo": {
+          "$ref": "TransitionInfo",
+          "description": "Additional info about the scheduled plan transition. Will be present only if a plan transition has been scheduled."
+        }
+      },
+      "type": "object"
+    },
     "PointsDetails": {
       "description": "Details relating to any Play Points applied to an order.",
       "id": "PointsDetails",
@@ -12957,6 +13079,45 @@
       "properties": {},
       "type": "object"
     },
+    "SchedulePlanTransitionRequest": {
+      "description": "Request for the purchases.subscriptionsv2.schedulePlanTransition API.",
+      "id": "SchedulePlanTransitionRequest",
+      "properties": {
+        "definiteTransition": {
+          "$ref": "DefiniteTransition",
+          "description": "When using this mode, the user's transition to the new plan is definite, and cannot be canceled."
+        },
+        "earliestTransitionEffectiveTime": {
+          "description": "Required. The earliest time at which the plan transition may take effect. The actual transition will take place at the time of renewal on or after this time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "etag": {
+          "description": "If set, the API will fail if the etag does not match the latest etag for this subscription. The etag is retrieved from purchases.subscriptionsv2.get: https://developers.google.com/android-publisher/api-ref/rest/v3/purchases.subscriptionsv2/get",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The subscription product (for example, 'premium_plan') for which the transition must be scheduled.",
+          "type": "string"
+        },
+        "tentativeTransition": {
+          "$ref": "TentativeTransition",
+          "description": "When using this mode, the user's transition to the new plan is tentative, and can be canceled."
+        }
+      },
+      "type": "object"
+    },
+    "SchedulePlanTransitionResponse": {
+      "description": "Response for the purchases.subscriptionsv2.schedulePlanTransition API.",
+      "id": "SchedulePlanTransitionResponse",
+      "properties": {
+        "planTransitionDetails": {
+          "$ref": "PlanTransitionDetails",
+          "description": "The plan transition details of the subscription item."
+        }
+      },
+      "type": "object"
+    },
     "ScreenDensity": {
       "description": "Represents a screen density.",
       "id": "ScreenDensity",
@@ -13872,6 +14033,12 @@
       },
       "type": "object"
     },
+    "TentativeTransition": {
+      "description": "Used to indicate that the plan transition is tentative.",
+      "id": "TentativeTransition",
+      "properties": {},
+      "type": "object"
+    },
     "TestPurchase": {
       "description": "Whether this subscription purchase is a test purchase.",
       "id": "TestPurchase",
@@ -14162,6 +14329,56 @@
             "$ref": "Track"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TransitionInfo": {
+      "description": "Information related to a scheduled plan transition.",
+      "id": "TransitionInfo",
+      "properties": {
+        "expectedTransitionTime": {
+          "description": "The current expected time at which the plan may be transitioned. This is subject to change (to a future time) due to cases where the renewal time shifts like pause and account hold.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "price": {
+          "$ref": "Money",
+          "description": "The default base plan price to which the plan will be transitioned."
+        },
+        "transitionState": {
+          "description": "Output only. [Required] The current state of the transition.",
+          "enum": [
+            "TRANSITION_STATE_UNSPECIFIED",
+            "SCHEDULED",
+            "IN_PROGRESS",
+            "COMPLETED",
+            "CANCELED"
+          ],
+          "enumDescriptions": [
+            "Unspecified transition state.",
+            "The transition is scheduled to start in the future.",
+            "The transition process has been initiated and the initial transition notification has been sent to the user.",
+            "The transition has been completed.",
+            "The transition was canceled."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TransitionTargetConfig": {
+      "description": "Configuration for a transition target base plan.",
+      "id": "TransitionTargetConfig",
+      "properties": {
+        "basePlanId": {
+          "description": "Required. The ID of the transition target base plan.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The ID of the parent subscription this transition target base plan belongs to.",
+          "type": "string"
         }
       },
       "type": "object"

@@ -180,6 +180,10 @@
     "package": "@google-cloud/lineage"
   },
   {
+    "api": "datamanager",
+    "package": "@google-ads/datamanager"
+  },
+  {
     "api": "datamigration",
     "package": "@google-cloud/dms"
   },
@@ -640,10 +644,6 @@
     "package": "@google-cloud/configmanagement"
   },
   {
-    "api": "datamanager",
-    "package": "@google-ads/datamanager"
-  },
-  {
     "api": "dataqna",
     "package": "@google-cloud/data-qna"
   },
@@ -818,6 +818,10 @@
   {
     "api": "networkservices",
     "package": "@google-cloud/networkservices"
+  },
+  {
+    "api": "observability",
+    "package": "@google-cloud/observability"
   },
   {
     "api": "oracledatabase",

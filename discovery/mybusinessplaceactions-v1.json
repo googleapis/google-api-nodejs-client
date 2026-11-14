@@ -224,7 +224,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. The specific fields to update. The only editable fields are `uri`, `place_action_type` and `is_preferred`. If the updated link already exists at the same location with the same `place_action_type` and `uri`, fails with an `ALREADY_EXISTS` error.",
+                  "description": "Required. The specific fields to update. The only editable fields are `uri`, `place_action_type`, `is_preferred` and `is_disabled`. If the updated link already exists at the same location with the same `place_action_type` and `uri`, fails with an `ALREADY_EXISTS` error.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20261026",
+  "revision": "20261111",
   "rootUrl": "https://mybusinessplaceactions.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -335,6 +335,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "isDisabled": {
+          "description": "Optional. Whether the merchant disabled this link. Defaults to `false`, which means the link is enabled. If `provider_type` is `AGGREGATOR_3P`, the merchant can disable or enable this link through `UpdatePlaceActionLink`. If `provider_type` is `MERCHANT`, this field is always `false` and `UpdatePlaceActionLink` rejects updates to it.",
+          "type": "boolean"
         },
         "isEditable": {
           "description": "Output only. Indicates whether this link can be edited by the client.",

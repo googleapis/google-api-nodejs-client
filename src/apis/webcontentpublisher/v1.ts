@@ -185,7 +185,7 @@ export namespace webcontentpublisher_v1 {
    */
   export interface Schema$Cta {
     /**
-     * Required. The user-visible display name of the CTA.
+     * Optional. The user-visible display name of the CTA (up to 40 characters). Defaults to a server-specified name based on the CTA type when omitted on creation.
      */
     displayName?: string | null;
     /**
@@ -231,7 +231,7 @@ export namespace webcontentpublisher_v1 {
      */
     categoryLabel?: string | null;
     /**
-     * Optional. The question prompt displayed to readers (up to 140 characters).
+     * Required. The question prompt displayed to readers (up to 140 characters).
      */
     displayText?: string | null;
     /**

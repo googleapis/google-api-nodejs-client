@@ -353,7 +353,7 @@ export namespace networkservices_v1beta1 {
      */
     name?: string | null;
     /**
-     * Required. The reference to the service that runs the extension. To configure a callout extension: For global AuthzExtension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project\}/global/backendServices/{backendService\}`. For regional AuthzExtension, `service` must be a fully-qualified reference to one of the following: * a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/backendServices/{backendService\}`. * a fully qualified domain name that can be resolved by the Google Cloud DNS. * `iap.googleapis.com` and it can only be referenced by an AuthzPolicy with the policyProfile set to REQUEST_AUTHZ. * `modelarmor..rep.googleapis.com` and it can only be referenced by an AuthzPolicy with the policyProfile set to CONTENT_AUTHZ.
+     * Required. The reference to the service that runs the extension. To configure a callout extension: For a global AuthzExtension, `service` must be a fully qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project\}/global/backendServices/{backendService\}`. For a regional AuthzExtension, `service` must be a fully qualified reference to one of the following: * A [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/backendServices/{backendService\}`. * A fully qualified domain name that can be resolved by Cloud DNS. * `iap.googleapis.com` and can be referenced only by an `AuthzPolicy` with the `policyProfile` set to `REQUEST_AUTHZ`. * `modelarmor..rep.googleapis.com` and it can only be referenced by an `AuthzPolicy` with the `policyProfile` set to `CONTENT_AUTHZ`.
      */
     service?: string | null;
     /**
@@ -374,7 +374,7 @@ export namespace networkservices_v1beta1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * `CdnEdgeExtension` is a resource that lets the extension service modify the headers of both requests to the cache and responses from the cache served by an [`EdgeCacheService`](https://cloud.google.com/media-cdn/docs/reference/rest/v1/projects.locations.edgeCacheServices).
+   * `CdnEdgeExtension` is a resource that lets the extension service modify the headers of both requests to the cache and responses from the cache served by an [`EdgeCacheService`](/media-cdn/docs/reference/rest/v1/projects.locations.edgeCacheServices).
    */
   export interface Schema$CdnEdgeExtension {
     /**
@@ -398,7 +398,7 @@ export namespace networkservices_v1beta1 {
      */
     name?: string | null;
     /**
-     * Required. Specifies the set of resources to which this extension should be applied to.
+     * Required. Specifies the set of resources to which this extension will be applied.
      */
     target?: Schema$CdnEdgeExtensionTarget;
     /**
@@ -407,11 +407,11 @@ export namespace networkservices_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * Specifies the set of targets to which `CdnEdgeExtension` should be applied to.
+   * Specifies the set of targets to which a `CdnEdgeExtension` will be applied.
    */
   export interface Schema$CdnEdgeExtensionTarget {
     /**
-     * Required. A list of references to the resources that are targeted by `CdnEdgeExtension`. Types of resources supported: `EdgeCacheService`. The format must be the full resource name of [EdgeCacheService](https://cloud.google.com/media-cdn/docs/reference/rest/v1/projects.locations.edgeCacheServices) in the following format: `//networkservices.googleapis.com/projects/{project\}/locations/{location\}/edgeCacheServices/{edgeCacheService\}`.
+     * Required. A list of references to the resources that are targeted by `CdnEdgeExtension`. Types of resources supported: `EdgeCacheService`. The format must be the full resource name of an [`EdgeCacheService`](/media-cdn/docs/reference/rest/v1/projects.locations.edgeCacheServices) in the following format: `//networkservices.googleapis.com/projects/{project\}/locations/{location\}/edgeCacheServices/{edgeCacheService\}`.
      */
     resources?: string[] | null;
   }
@@ -774,7 +774,7 @@ export namespace networkservices_v1beta1 {
      */
     etag?: string | null;
     /**
-     * Optional. Determines the behavior of the extension binding when the call to the extension fails or times out. Default value is `FALSE`. When set to `TRUE`, failures of the extension are silently ignored.
+     * Optional. Determines the behavior of the extension binding when the call to the extension fails or times out. Default value is `false`. When set to `true`, failures of the extension are silently ignored.
      */
     failOpen?: boolean | null;
     /**
@@ -794,7 +794,7 @@ export namespace networkservices_v1beta1 {
      */
     priority?: number | null;
     /**
-     * Required. The name of the extension that this binding should attach to target resources. Format: For Google-provided extensions, specify the service endpoint, for example `modelarmor.us-central1.rep.googleapis.com`.
+     * Required. The name of the extension that this binding should attach to target resources. Format: * For Google-provided extensions, specify the service endpoint, for example `modelarmor.us-central1.rep.googleapis.com`.
      */
     producerExtension?: string | null;
     /**
@@ -841,7 +841,7 @@ export namespace networkservices_v1beta1 {
      */
     contains?: string | null;
     /**
-     * Optional. The input string must match exactly the string specified here. Examples: * `abc` only matches the value `abc`.
+     * Optional. The input string must match exactly the string specified here. Examples: * `abc` matches only the value `abc`.
      */
     exact?: string | null;
     /**
@@ -866,7 +866,7 @@ export namespace networkservices_v1beta1 {
      */
     destination?: Schema$ExtensionBindingMatchConditionToDestination;
     /**
-     * Optional. Describes the negated properties of the request destination. Extension will not be invoked on requests that match the criteria specified in this field. At least one of destination or not_destination must be specified.
+     * Optional. Describes the negated properties of the request destination. The extension will not be invoked on requests that match the criteria specified in this field. At least one of `destination` or `not_destination` must be specified.
      */
     notDestination?: Schema$ExtensionBindingMatchConditionToDestination;
   }
@@ -879,15 +879,15 @@ export namespace networkservices_v1beta1 {
      */
     headerSet?: Schema$ExtensionBindingMatchConditionToDestinationHeaderSet;
     /**
-     * Optional. A list of HTTP Hosts to match against. Limited to 10 hosts. If not specified, any host is allowed. If specified, a match occurs if any of the hosts matches the host value in the request.
+     * Optional. A list of HTTP hosts to match against. Limited to 10 hosts. If not specified, any host is allowed. If specified, a match occurs if any of the hosts matches the host value in the request.
      */
     hosts?: Schema$ExtensionBindingMatchConditionStringMatch[];
     /**
-     * Optional. A list of paths to match against. Limited to 10 paths. If not specified, any path is allowed. Note that this path match includes the query parameters. For gRPC services, this should be a fully-qualified name of the form /package.service/method.
+     * Optional. A list of paths to match against. Limited to 10 paths. If not specified, any path is allowed. Note that this path match includes the query parameters. For gRPC services, this should be a fully qualified name of the form `/package.service/method`.
      */
     paths?: Schema$ExtensionBindingMatchConditionStringMatch[];
     /**
-     * Optional. A list of non-empty strings whose value is matched against the resource to which a request is sent (e.g., an Agent in AiApplication). If not specified, any resource is allowed. If specified, a match occurs if any of the resources matches the resource value in the request. Limited to 5 resources. When matching against resources in the AgentRegistry, use the URNs of the registry resources.
+     * Optional. A list of non-empty strings whose value is matched against the resource to which a request is sent (for example, an `Agent` in `AiApplication`). If not specified, any resource is allowed. If specified, a match occurs if any of the resources matches the resource value in the request. Limited to 5 resources. When matching against resources in the Agent Registry, use the URNs of the registry resources.
      */
     resources?: Schema$ExtensionBindingMatchConditionStringMatch[];
   }
@@ -931,7 +931,7 @@ export namespace networkservices_v1beta1 {
    */
   export interface Schema$ExtensionChain {
     /**
-     * Required. A set of extensions to execute for the matching request. At least one extension is required. Up to 3 extensions can be defined for each extension chain for `LbTrafficExtension` and `CdnEdgeExtension` resources. `LbRouteExtension`, `LbEdgeExtension`, and `LbTcpExtension` chains are limited to 1 extension per extension chain.
+     * Required. A set of extensions to run for the matching request. Up to three extensions can be defined for each extension chain for the `LbTrafficExtension` resource. You can define a maximum of two extensions for each extension chain for the `CdnEdgeExtension` resource. `LbRouteExtension`, `LbEdgeExtension`, and `LbTcpExtension` chains are limited to one extension per extension chain.
      */
     extensions?: Schema$ExtensionChainExtension[];
     /**
@@ -988,7 +988,7 @@ export namespace networkservices_v1beta1 {
      */
     responseBodySendMode?: string | null;
     /**
-     * Required. The reference to the service that runs the extension. To configure a callout extension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/backendServices/{backendService\}` or `https://www.googleapis.com/compute/v1/projects/{project\}/global/backendServices/{backendService\}`. To configure a plugin extension, `service` must be a reference to a [`WasmPlugin` resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins) in the format: `projects/{project\}/locations/{location\}/wasmPlugins/{plugin\}` or `//networkservices.googleapis.com/projects/{project\}/locations/{location\}/wasmPlugins/{wasmPlugin\}`. Plugin extensions are currently supported for the `LbTrafficExtension`, the `LbRouteExtension`, the `LbEdgeExtension`, and the `CdnEdgeExtension` resources.
+     * Required. The reference to the service that runs the extension. To configure a callout extension, `service` must be a fully qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/backendServices/{backendService\}` or `https://www.googleapis.com/compute/v1/projects/{project\}/global/backendServices/{backendService\}`. To configure a plugin extension, `service` must be a reference to a [`WasmPlugin` resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins) in the format: `projects/{project\}/locations/{location\}/wasmPlugins/{plugin\}` or `//networkservices.googleapis.com/projects/{project\}/locations/{location\}/wasmPlugins/{wasmPlugin\}`. Supports plugin extensions for `LbTrafficExtension`, `LbRouteExtension`, `LbEdgeExtension`, and `CdnEdgeExtension` resources.
      */
     service?: string | null;
     /**
@@ -1970,7 +1970,7 @@ export namespace networkservices_v1beta1 {
     unreachable?: string[] | null;
   }
   /**
-   * Message for response to listing `CdnEdgeExtension` resources.
+   * Contains the response from listing `CdnEdgeExtension` resources.
    */
   export interface Schema$ListCdnEdgeExtensionsResponse {
     /**
@@ -2408,6 +2408,35 @@ export namespace networkservices_v1beta1 {
     logSeverity?: string | null;
   }
   /**
+   * Configuration for logging collection.
+   */
+  export interface Schema$LoggingConfiguration {
+    /**
+     * Optional. Indicates whether logging is enabled or disabled. Set to true to explicitly enable, or false to explicitly disable.
+     */
+    enable?: boolean | null;
+    /**
+     * Optional. The list of HTTP request headers to be logged. This field can only be specified if logging is enabled.
+     */
+    loggingHttpRequestHeaders?: string[] | null;
+    /**
+     * Optional. The list of HTTP response headers to be logged. This field can only be specified if logging is enabled.
+     */
+    loggingHttpResponseHeaders?: string[] | null;
+    /**
+     * Optional. Contains a list of optional fields to include in the logs. This field can only be specified if logging is enabled and `optional_mode` is set to `CUSTOM`.
+     */
+    optionalFields?: string[] | null;
+    /**
+     * Optional. Configures whether all, none, or a subset of optional fields should be added to the reported logs. This field can only be specified if logging is enabled.
+     */
+    optionalMode?: string | null;
+    /**
+     * Optional. Specifies the logging sampling rate. The sampling rate is a float number in the interval [0, 1]. This field can only be specified if logging is enabled.
+     */
+    sampleRate?: number | null;
+  }
+  /**
    * Mesh represents a logical configuration grouping for workload to workload communication within a service mesh. Routes that point to mesh dictate how requests are routed within this logical mesh boundary.
    */
   export interface Schema$Mesh {
@@ -2563,7 +2592,7 @@ export namespace networkservices_v1beta1 {
     verb?: string | null;
   }
   /**
-   * `ProducerExtension` is a resource representing producer defined configuration for their service extension.
+   * `ProducerExtension` is a resource that represents a producer-defined configuration for its service extension.
    */
   export interface Schema$ProducerExtension {
     /**
@@ -2575,7 +2604,7 @@ export namespace networkservices_v1beta1 {
      */
     description?: string | null;
     /**
-     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     * Optional. ETag of the resource. If this is provided, it must match the server's ETag. If the provided ETag doesn't match the server's ETag, then the request fails with a `409 ABORTED` error.
      */
     etag?: string | null;
     /**
@@ -2591,7 +2620,7 @@ export namespace networkservices_v1beta1 {
      */
     name?: string | null;
     /**
-     * Required. The phase in which this `ProducerExtension` should execute.
+     * Required. The phase in which this `ProducerExtension` runs.
      */
     phase?: string | null;
     /**
@@ -2612,7 +2641,7 @@ export namespace networkservices_v1beta1 {
      */
     observabilityMode?: boolean | null;
     /**
-     * Required. URI of the PSC attachment.
+     * Required. The URI of the Private Service Connect (PSC) attachment.
      */
     service?: string | null;
     /**
@@ -2873,6 +2902,10 @@ export namespace networkservices_v1beta1 {
      * Optional. Set of label tags associated with the TelemetryPolicy resource.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Specifies the top-level configuration block within the telemetry policy that contains all the settings for how logging will be applied to the target resources.
+     */
+    loggingConfiguration?: Schema$LoggingConfiguration;
     /**
      * Optional. Specifies the top-level configuration block within the telemetry policy that contains all the settings for how metrics will be applied to the target resources.
      */
@@ -6210,7 +6243,7 @@ export namespace networkservices_v1beta1 {
      *       cdnEdgeExtensionId: 'placeholder-value',
      *       // Required. The parent resource of the `CdnEdgeExtension` resource. Must be in the format `projects/{project\}/locations/{location\}`.
      *       parent: 'projects/my-project/locations/my-location',
-     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees this behavior for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that the zero UUID isn't supported (`00000000-0000-0000-0000-000000000000`).
      *       requestId: 'placeholder-value',
      *
      *       // Request body metadata
@@ -6370,7 +6403,7 @@ export namespace networkservices_v1beta1 {
      *     {
      *       // Required. The name of the `CdnEdgeExtension` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/cdnEdgeExtensions/{cdn_edge_extension\}`.
      *       name: 'projects/my-project/locations/my-location/cdnEdgeExtensions/my-cdnEdgeExtension',
-     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees this behavior for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that the zero UUID isn't supported (`00000000-0000-0000-0000-000000000000`).
      *       requestId: 'placeholder-value',
      *     },
      *   );
@@ -6510,7 +6543,7 @@ export namespace networkservices_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.cdnEdgeExtensions.get({
-     *     // Required. A name of the `CdnEdgeExtension` resource to get. Must be in the format `projects/{project\}/locations/{location\}/cdnEdgeExtensions/{cdn_edge_extension\}`.
+     *     // Required. The name of the `CdnEdgeExtension` resource to get. It must be in the `projects/{project\}/locations/{location\}/cdnEdgeExtensions/{cdn_edge_extension\}` format.
      *     name: 'projects/my-project/locations/my-location/cdnEdgeExtensions/my-cdnEdgeExtension',
      *   });
      *   console.log(res.data);
@@ -6621,7 +6654,7 @@ export namespace networkservices_v1beta1 {
     }
 
     /**
-     * Lists `CdnEdgeExtensions` resources in a given project and location.
+     * Lists `CdnEdgeExtension` resources in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -6651,9 +6684,9 @@ export namespace networkservices_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.cdnEdgeExtensions.list({
-     *     // Optional. Filtering results.
+     *     // Optional. Specifies a filter expression that restricts the resources listed in the response. The expression must be of the form ` `, where `` is a field name (in `snake_case` or `camelCase`) and `` is one of `<`, `\>`, `<=`, `\>=`, `!=`, `=`, or `:` (the `HAS` operator). Multiple expressions can be combined using `AND`, `OR`, and `NOT`. For example, `extension_chains.name = "my-chain"` or `labels.env = "prod"`.
      *     filter: 'placeholder-value',
-     *     // Optional. Hint about how to order the results.
+     *     // Optional. Comma-separated list of fields by which you can sort the results.
      *     orderBy: 'placeholder-value',
      *     // Optional. Requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.
      *     pageSize: 'placeholder-value',
@@ -6808,7 +6841,7 @@ export namespace networkservices_v1beta1 {
      *   const res = await networkservices.projects.locations.cdnEdgeExtensions.patch({
      *     // Required. Identifier. Name of the `CdnEdgeExtension` resource in the following format: `projects/{project\}/locations/{location\}/cdnEdgeExtensions/{cdn_edge_extension\}`.
      *     name: 'projects/my-project/locations/my-location/cdnEdgeExtensions/my-cdnEdgeExtension',
-     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees this behavior for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that the zero UUID isn't supported (`00000000-0000-0000-0000-000000000000`).
      *     requestId: 'placeholder-value',
      *     // Optional. Used to specify the fields to be overwritten in the `CdnEdgeExtension` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not specify a mask, then all fields are overwritten.
      *     updateMask: 'placeholder-value',
@@ -6943,7 +6976,7 @@ export namespace networkservices_v1beta1 {
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees this behavior for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that the zero UUID isn't supported (`00000000-0000-0000-0000-000000000000`).
      */
     requestId?: string;
 
@@ -6958,23 +6991,23 @@ export namespace networkservices_v1beta1 {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees this behavior for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that the zero UUID isn't supported (`00000000-0000-0000-0000-000000000000`).
      */
     requestId?: string;
   }
   export interface Params$Resource$Projects$Locations$Cdnedgeextensions$Get extends StandardParameters {
     /**
-     * Required. A name of the `CdnEdgeExtension` resource to get. Must be in the format `projects/{project\}/locations/{location\}/cdnEdgeExtensions/{cdn_edge_extension\}`.
+     * Required. The name of the `CdnEdgeExtension` resource to get. It must be in the `projects/{project\}/locations/{location\}/cdnEdgeExtensions/{cdn_edge_extension\}` format.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Cdnedgeextensions$List extends StandardParameters {
     /**
-     * Optional. Filtering results.
+     * Optional. Specifies a filter expression that restricts the resources listed in the response. The expression must be of the form ` `, where `` is a field name (in `snake_case` or `camelCase`) and `` is one of `<`, `\>`, `<=`, `\>=`, `!=`, `=`, or `:` (the `HAS` operator). Multiple expressions can be combined using `AND`, `OR`, and `NOT`. For example, `extension_chains.name = "my-chain"` or `labels.env = "prod"`.
      */
     filter?: string;
     /**
-     * Optional. Hint about how to order the results.
+     * Optional. Comma-separated list of fields by which you can sort the results.
      */
     orderBy?: string;
     /**
@@ -6996,7 +7029,7 @@ export namespace networkservices_v1beta1 {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees this behavior for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that the zero UUID isn't supported (`00000000-0000-0000-0000-000000000000`).
      */
     requestId?: string;
     /**
@@ -8879,9 +8912,9 @@ export namespace networkservices_v1beta1 {
      *   // Do the magic
      *   const res = await networkservices.projects.locations.extensionBindings.delete(
      *     {
-     *       // Optional. The etag of the ExtensionBinding to delete.
+     *       // Optional. The ETag of the `ExtensionBinding` to delete.
      *       etag: 'placeholder-value',
-     *       // Required. A name of the `ExtensionBinding` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/extensionBindings/{extension_binding\}`.
+     *       // Required. The name of the `ExtensionBinding` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/extensionBindings/{extension_binding\}`.
      *       name: 'projects/my-project/locations/my-location/extensionBindings/my-extensionBinding',
      *     },
      *   );
@@ -9021,7 +9054,7 @@ export namespace networkservices_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.extensionBindings.get({
-     *     // Required. A name of the `ExtensionBinding` resource to get. Must be in the format `projects/{project\}/locations/{location\}/extensionBindings/{extension_binding\}`.
+     *     // Required. The name of the `ExtensionBinding` resource to get. Must be in the format `projects/{project\}/locations/{location\}/extensionBindings/{extension_binding\}`.
      *     name: 'projects/my-project/locations/my-location/extensionBindings/my-extensionBinding',
      *   });
      *   console.log(res.data);
@@ -9169,7 +9202,7 @@ export namespace networkservices_v1beta1 {
      *   const res = await networkservices.projects.locations.extensionBindings.list({
      *     // Optional. Maximum number of `ExtensionBinding` resources to return per call.
      *     pageSize: 'placeholder-value',
-     *     // Optional. The value returned by the last `ListExtensionBindingsResponse` Indicates that this is a continuation of a prior `ListExtensionBindings` call, and that the system should return the next page of data.
+     *     // Optional. The value returned by the last `ListExtensionBindingsResponse`. Indicates that this is a continuation of a prior `ListExtensionBindings` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
      *     // Required. The project and location from which the `ExtensionBinding` resources should be listed, specified in the format `projects/{project\}/locations/{location\}`.
      *     parent: 'projects/my-project/locations/my-location',
@@ -9320,7 +9353,7 @@ export namespace networkservices_v1beta1 {
      *   const res = await networkservices.projects.locations.extensionBindings.patch({
      *     // Identifier. Name of the `ExtensionBinding` resource in the following format: `projects/{project\}/locations/{location\}/extensionBindings/{extension_binding\}`.
      *     name: 'projects/my-project/locations/my-location/extensionBindings/my-extensionBinding',
-     *     // Optional. Field mask is used to specify the fields to be overwritten in the `ExtensionBinding` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *     // Optional. Field mask is used to specify the fields to be overwritten in the `ExtensionBinding` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not provide a mask then all fields are overwritten.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -9465,17 +9498,17 @@ export namespace networkservices_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Extensionbindings$Delete extends StandardParameters {
     /**
-     * Optional. The etag of the ExtensionBinding to delete.
+     * Optional. The ETag of the `ExtensionBinding` to delete.
      */
     etag?: string;
     /**
-     * Required. A name of the `ExtensionBinding` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/extensionBindings/{extension_binding\}`.
+     * Required. The name of the `ExtensionBinding` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/extensionBindings/{extension_binding\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Extensionbindings$Get extends StandardParameters {
     /**
-     * Required. A name of the `ExtensionBinding` resource to get. Must be in the format `projects/{project\}/locations/{location\}/extensionBindings/{extension_binding\}`.
+     * Required. The name of the `ExtensionBinding` resource to get. Must be in the format `projects/{project\}/locations/{location\}/extensionBindings/{extension_binding\}`.
      */
     name?: string;
   }
@@ -9485,7 +9518,7 @@ export namespace networkservices_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. The value returned by the last `ListExtensionBindingsResponse` Indicates that this is a continuation of a prior `ListExtensionBindings` call, and that the system should return the next page of data.
+     * Optional. The value returned by the last `ListExtensionBindingsResponse`. Indicates that this is a continuation of a prior `ListExtensionBindings` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
@@ -9499,7 +9532,7 @@ export namespace networkservices_v1beta1 {
      */
     name?: string;
     /**
-     * Optional. Field mask is used to specify the fields to be overwritten in the `ExtensionBinding` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     * Optional. Field mask is used to specify the fields to be overwritten in the `ExtensionBinding` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not provide a mask then all fields are overwritten.
      */
     updateMask?: string;
 
@@ -17462,7 +17495,7 @@ export namespace networkservices_v1beta1 {
      *     await networkservices.projects.locations.producerExtensions.create({
      *       // Required. The parent resource of the `ProducerExtension` resource. Must be in the format `projects/{project\}/locations/{location\}`.
      *       parent: 'projects/my-project/locations/my-location',
-     *       // Required. Short name of the `ProducerExtension` resource to be created.
+     *       // Required. The short name of the `ProducerExtension` resource to be created.
      *       producerExtensionId: 'placeholder-value',
      *
      *       // Request body metadata
@@ -17620,9 +17653,9 @@ export namespace networkservices_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await networkservices.projects.locations.producerExtensions.delete({
-     *       // Optional. The etag of the ProducerExtension to delete.
+     *       // Optional. The ETag of the `ProducerExtension` to delete.
      *       etag: 'placeholder-value',
-     *       // Required. A name of the `ProducerExtension` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/producerExtensions/{producer_extension\}`.
+     *       // Required. The name of the `ProducerExtension` resource to delete. It must be in this format: `projects/{project\}/locations/{location\}/producerExtensions/{producer_extension\}`.
      *       name: 'projects/my-project/locations/my-location/producerExtensions/my-producerExtension',
      *     });
      *   console.log(res.data);
@@ -17761,7 +17794,7 @@ export namespace networkservices_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.producerExtensions.get({
-     *     // Required. A name of the `ProducerExtension` resource to get. Must be in the format `projects/{project\}/locations/{location\}/producerExtensions/{producer_extension\}`.
+     *     // Required. The name of the `ProducerExtension` resource to get. It must be in this format: `projects/{project\}/locations/{location\}/producerExtensions/{producer_extension\}`.
      *     name: 'projects/my-project/locations/my-location/producerExtensions/my-producerExtension',
      *   });
      *   console.log(res.data);
@@ -17906,9 +17939,9 @@ export namespace networkservices_v1beta1 {
      *   const res = await networkservices.projects.locations.producerExtensions.list({
      *     // Optional. Maximum number of `ProducerExtension` resources to return per call.
      *     pageSize: 'placeholder-value',
-     *     // Optional. The value returned by the last `ListProducerExtensionsResponse` Indicates that this is a continuation of a prior `ListProducerExtensions` call, and that the system should return the next page of data.
+     *     // Optional. The value returned by the last `ListProducerExtensionsResponse`. It indicates that this is a continuation of a prior `ListProducerExtensions` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location from which the `ProducerExtension` resources should be listed, specified in the format `projects/{project\}/locations/{location\}`.
+     *     // Required. The project and location from which the `ProducerExtension` resources should be listed, specified in this format: `projects/{project\}/locations/{location\}`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -18031,7 +18064,7 @@ export namespace networkservices_v1beta1 {
      */
     parent?: string;
     /**
-     * Required. Short name of the `ProducerExtension` resource to be created.
+     * Required. The short name of the `ProducerExtension` resource to be created.
      */
     producerExtensionId?: string;
 
@@ -18042,17 +18075,17 @@ export namespace networkservices_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Producerextensions$Delete extends StandardParameters {
     /**
-     * Optional. The etag of the ProducerExtension to delete.
+     * Optional. The ETag of the `ProducerExtension` to delete.
      */
     etag?: string;
     /**
-     * Required. A name of the `ProducerExtension` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/producerExtensions/{producer_extension\}`.
+     * Required. The name of the `ProducerExtension` resource to delete. It must be in this format: `projects/{project\}/locations/{location\}/producerExtensions/{producer_extension\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Producerextensions$Get extends StandardParameters {
     /**
-     * Required. A name of the `ProducerExtension` resource to get. Must be in the format `projects/{project\}/locations/{location\}/producerExtensions/{producer_extension\}`.
+     * Required. The name of the `ProducerExtension` resource to get. It must be in this format: `projects/{project\}/locations/{location\}/producerExtensions/{producer_extension\}`.
      */
     name?: string;
   }
@@ -18062,11 +18095,11 @@ export namespace networkservices_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. The value returned by the last `ListProducerExtensionsResponse` Indicates that this is a continuation of a prior `ListProducerExtensions` call, and that the system should return the next page of data.
+     * Optional. The value returned by the last `ListProducerExtensionsResponse`. It indicates that this is a continuation of a prior `ListProducerExtensions` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
-     * Required. The project and location from which the `ProducerExtension` resources should be listed, specified in the format `projects/{project\}/locations/{location\}`.
+     * Required. The project and location from which the `ProducerExtension` resources should be listed, specified in this format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
@@ -20574,6 +20607,7 @@ export namespace networkservices_v1beta1 {
      *         //   "displayName": "my_displayName",
      *         //   "etag": "my_etag",
      *         //   "labels": {},
+     *         //   "loggingConfiguration": {},
      *         //   "metricsConfiguration": {},
      *         //   "name": "my_name",
      *         //   "reconciling": false,
@@ -20880,6 +20914,7 @@ export namespace networkservices_v1beta1 {
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "labels": {},
+     *   //   "loggingConfiguration": {},
      *   //   "metricsConfiguration": {},
      *   //   "name": "my_name",
      *   //   "reconciling": false,
@@ -21182,6 +21217,7 @@ export namespace networkservices_v1beta1 {
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
      *       //   "labels": {},
+     *       //   "loggingConfiguration": {},
      *       //   "metricsConfiguration": {},
      *       //   "name": "my_name",
      *       //   "reconciling": false,
@@ -22518,7 +22554,7 @@ export namespace networkservices_v1beta1 {
      *   const res = await networkservices.projects.locations.wasmPlugins.get({
      *     // Required. A name of the `WasmPlugin` resource to get. Must be in the format `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}`.
      *     name: 'projects/my-project/locations/my-location/wasmPlugins/my-wasmPlugin',
-     *     // Determines how much data must be returned in the response. See [AIP-157](https://google.aip.dev/157).
+     *     // Optional. Determines how much data must be returned in the response. See [AIP-157](https://google.aip.dev/157).
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -22662,9 +22698,9 @@ export namespace networkservices_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.wasmPlugins.list({
-     *     // Maximum number of `WasmPlugin` resources to return per call. If not specified, at most 50 `WasmPlugin` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
+     *     // Optional. Maximum number of `WasmPlugin` resources to return per call. If not specified, at most 50 `WasmPlugin` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      *     pageSize: 'placeholder-value',
-     *     // The value returned by the last `ListWasmPluginsResponse` call. Indicates that this is a continuation of a prior `ListWasmPlugins` call, and that the next page of data is to be returned.
+     *     // Optional. The value returned by the last `ListWasmPluginsResponse` call. Indicates that this is a continuation of a prior `ListWasmPlugins` call, and that the next page of data is to be returned.
      *     pageToken: 'placeholder-value',
      *     // Required. The project and location from which the `WasmPlugin` resources are listed, specified in the following format: `projects/{project\}/locations/global`.
      *     parent: 'projects/my-project/locations/my-location',
@@ -22962,17 +22998,17 @@ export namespace networkservices_v1beta1 {
      */
     name?: string;
     /**
-     * Determines how much data must be returned in the response. See [AIP-157](https://google.aip.dev/157).
+     * Optional. Determines how much data must be returned in the response. See [AIP-157](https://google.aip.dev/157).
      */
     view?: string;
   }
   export interface Params$Resource$Projects$Locations$Wasmplugins$List extends StandardParameters {
     /**
-     * Maximum number of `WasmPlugin` resources to return per call. If not specified, at most 50 `WasmPlugin` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
+     * Optional. Maximum number of `WasmPlugin` resources to return per call. If not specified, at most 50 `WasmPlugin` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListWasmPluginsResponse` call. Indicates that this is a continuation of a prior `ListWasmPlugins` call, and that the next page of data is to be returned.
+     * Optional. The value returned by the last `ListWasmPluginsResponse` call. Indicates that this is a continuation of a prior `ListWasmPlugins` call, and that the next page of data is to be returned.
      */
     pageToken?: string;
     /**
@@ -23484,9 +23520,9 @@ export namespace networkservices_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await networkservices.projects.locations.wasmPlugins.versions.list({
-     *       // Maximum number of `WasmPluginVersion` resources to return per call. If not specified, at most 50 `WasmPluginVersion` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
+     *       // Optional. Maximum number of `WasmPluginVersion` resources to return per call. If not specified, at most 50 `WasmPluginVersion` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      *       pageSize: 'placeholder-value',
-     *       // The value returned by the last `ListWasmPluginVersionsResponse` call. Indicates that this is a continuation of a prior `ListWasmPluginVersions` call, and that the next page of data is to be returned.
+     *       // Optional. The value returned by the last `ListWasmPluginVersionsResponse` call. Indicates that this is a continuation of a prior `ListWasmPluginVersions` call, and that the next page of data is to be returned.
      *       pageToken: 'placeholder-value',
      *       // Required. The `WasmPlugin` resource whose `WasmPluginVersion`s are listed, specified in the following format: `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}`.
      *       parent:
@@ -23635,11 +23671,11 @@ export namespace networkservices_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Wasmplugins$Versions$List extends StandardParameters {
     /**
-     * Maximum number of `WasmPluginVersion` resources to return per call. If not specified, at most 50 `WasmPluginVersion` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
+     * Optional. Maximum number of `WasmPluginVersion` resources to return per call. If not specified, at most 50 `WasmPluginVersion` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListWasmPluginVersionsResponse` call. Indicates that this is a continuation of a prior `ListWasmPluginVersions` call, and that the next page of data is to be returned.
+     * Optional. The value returned by the last `ListWasmPluginVersionsResponse` call. Indicates that this is a continuation of a prior `ListWasmPluginVersions` call, and that the next page of data is to be returned.
      */
     pageToken?: string;
     /**
