@@ -514,7 +514,7 @@
       }
     }
   },
-  "revision": "20261103",
+  "revision": "20261111",
   "rootUrl": "https://webcontentpublisher.googleapis.com/",
   "schemas": {
     "AnswerChoiceTemplate": {
@@ -1634,7 +1634,7 @@
       "id": "Cta",
       "properties": {
         "displayName": {
-          "description": "Required. The user-visible display name of the CTA.",
+          "description": "Optional. The user-visible display name of the CTA (up to 40 characters). Defaults to a server-specified name based on the CTA type when omitted on creation.",
           "type": "string"
         },
         "name": {
@@ -1707,7 +1707,7 @@
           "type": "string"
         },
         "displayText": {
-          "description": "Optional. The question prompt displayed to readers (up to 140 characters).",
+          "description": "Required. The question prompt displayed to readers (up to 140 characters).",
           "type": "string"
         },
         "id": {
