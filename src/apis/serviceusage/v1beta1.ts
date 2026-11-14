@@ -603,7 +603,7 @@ export namespace serviceusage_v1beta1 {
    */
   export interface Schema$CommonLanguageSettings {
     /**
-     * The destination where API teams want this client library to be published.
+     * Deprecated: Client libraries are published for all supported languages by default when a `library_settings` entry is present with a `version` and `launch_stage`. The destination where API teams want this client library to be published.
      */
     destinations?: string[] | null;
     /**
@@ -668,10 +668,6 @@ export namespace serviceusage_v1beta1 {
      * List of all supported locations. This field is present only if the limit has a {region\} or {zone\} dimension.
      */
     supportedLocations?: string[] | null;
-    /**
-     * Indicates the traffic type attribution for this quota limit (e.g. agentic). This is an informational field used to categorize and filter the quota limits.
-     */
-    trafficSource?: string | null;
     /**
      * The limit unit. An example unit would be `1/{project\}/{region\}` Note that `{project\}` and `{region\}` are not placeholders in this example; the literal characters `{` and `\}` occur in the string.
      */
@@ -4836,7 +4832,6 @@ export namespace serviceusage_v1beta1 {
      *   //   "name": "my_name",
      *   //   "quotaBuckets": [],
      *   //   "supportedLocations": [],
-     *   //   "trafficSource": "my_trafficSource",
      *   //   "unit": "my_unit"
      *   // }
      * }
