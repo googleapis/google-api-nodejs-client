@@ -3822,6 +3822,45 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    },
+                    "patch": {
+                      "description": "Updates the `labels` of a single ODB DNS Zone.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/odbNetworks/{odbNetworksId}/odbDnsZones/{odbDnsZonesId}",
+                      "httpMethod": "PATCH",
+                      "id": "oracledatabase.projects.locations.odbNetworks.odbDnsZones.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Identifier. The name of the OdbDnsZone resource in the following format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbDnsZones/{odb_dns_zone}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/odbNetworks/[^/]+/odbDnsZones/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Optional. A mask specifying which fields in the OdbDnsZone should be updated. A field specified in the mask is updated. If a mask isn't provided, the service treats this as an implied field mask equivalent to all fields that are populated (have a non-empty value). To clear or unset a field, the field must be explicitly specified in the `update_mask`.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "OdbDnsZone"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   }
                 },
@@ -4212,7 +4251,7 @@
       }
     }
   },
-  "revision": "20261104",
+  "revision": "20261112",
   "rootUrl": "https://oracledatabase.googleapis.com/",
   "schemas": {
     "AllConnectionStrings": {
