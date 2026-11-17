@@ -1735,7 +1735,7 @@
       }
     }
   },
-  "revision": "20260826",
+  "revision": "20261109",
   "rootUrl": "https://cloudnumberregistry.googleapis.com/",
   "schemas": {
     "AggregatedData": {
@@ -1776,7 +1776,7 @@
       "type": "object"
     },
     "Attribute": {
-      "description": "A key-value pair representing a custom attribute associated with a resource.",
+      "description": "A key-value pair representing a custom attribute associated with a resource. Attributes are resource metadata used to organize and search for resources. Do not include sensitive information, such as personally identifiable information or credentials, in attribute `key` or `value`.",
       "id": "Attribute",
       "properties": {
         "key": {
@@ -1833,7 +1833,7 @@
           "type": "array"
         },
         "description": {
-          "description": "Optional. The description of the CustomRange.",
+          "description": "Optional. The description of the CustomRange. Do not include sensitive information, such as personally identifiable information or credentials, in the `description` field.",
           "type": "string"
         },
         "ipv4CidrRange": {
@@ -2192,7 +2192,7 @@
           "type": "string"
         },
         "unreachable": {
-          "description": "Locations that could not be reached.",
+          "description": "Unordered list. Locations that could not be reached.",
           "items": {
             "type": "string"
           },
@@ -2217,7 +2217,7 @@
           "type": "string"
         },
         "unreachable": {
-          "description": "Locations that could not be reached.",
+          "description": "Unordered list. Locations that could not be reached.",
           "items": {
             "type": "string"
           },
@@ -2242,7 +2242,7 @@
           "type": "string"
         },
         "unreachable": {
-          "description": "Locations that could not be reached.",
+          "description": "Unordered list. Locations that could not be reached.",
           "items": {
             "type": "string"
           },
@@ -2310,7 +2310,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Locations that could not be reached.",
+          "description": "Unordered list. Locations that could not be reached.",
           "items": {
             "type": "string"
           },
@@ -2335,7 +2335,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Locations that could not be reached.",
+          "description": "Unordered list. Locations that could not be reached.",
           "items": {
             "type": "string"
           },
@@ -2360,7 +2360,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Locations that could not be reached.",
+          "description": "Unordered list. Locations that could not be reached.",
           "items": {
             "type": "string"
           },
@@ -2820,7 +2820,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Locations that could not be reached.",
+          "description": "Unordered list. Locations that could not be reached.",
           "items": {
             "type": "string"
           },
