@@ -257,7 +257,7 @@ export namespace apikeys_v2 {
      */
     etag?: string | null;
     /**
-     * Output only. An encrypted and signed value held by this key. This field can be accessed only through the `GetKeyString` method.
+     * Output only. An encrypted and signed value held by this key. This field is returned upon initial key creation (`CreateKey`) and can afterward be accessed only through the `GetKeyString` method.
      */
     keyString?: string | null;
     /**
@@ -679,7 +679,7 @@ export namespace apikeys_v2 {
     }
 
     /**
-     * Creates a new API key. NOTE: Key is a global resource; hence the only supported value for location is `global`.
+     * Creates a new API key. The key string of the API key is included in the response and can afterward only be retrieved through the `GetKeyString` method. NOTE: Key is a global resource; hence the only supported value for location is `global`.
      * @example
      * ```js
      * // Before running the sample:
@@ -839,7 +839,7 @@ export namespace apikeys_v2 {
     }
 
     /**
-     * Deletes an API key. Deleted key can be retrieved within 30 days of deletion. Afterward, key will be purged from the project. NOTE: Key is a global resource; hence the only supported value for location is `global`.
+     * Deletes an API key. Deleted key can be retrieved within 30 days of deletion. Afterward, key will be purged from the project. The key string of the API key isn't included in the response and can only be retrieved through the `GetKeyString` method. NOTE: Key is a global resource; hence the only supported value for location is `global`.
      * @example
      * ```js
      * // Before running the sample:
@@ -1422,7 +1422,7 @@ export namespace apikeys_v2 {
     }
 
     /**
-     * Patches the modifiable fields of an API key. The key string of the API key isn't included in the response. NOTE: Key is a global resource; hence the only supported value for location is `global`.
+     * Patches the modifiable fields of an API key. The key string of the API key isn't included in the response and can only be retrieved through the `GetKeyString` method. NOTE: Key is a global resource; hence the only supported value for location is `global`.
      * @example
      * ```js
      * // Before running the sample:
@@ -1584,7 +1584,7 @@ export namespace apikeys_v2 {
     }
 
     /**
-     * Undeletes an API key which was deleted within 30 days. NOTE: Key is a global resource; hence the only supported value for location is `global`.
+     * Undeletes an API key which was deleted within 30 days. The key string of the API key isn't included in the response and can only be retrieved through the `GetKeyString` method. NOTE: Key is a global resource; hence the only supported value for location is `global`.
      * @example
      * ```js
      * // Before running the sample:

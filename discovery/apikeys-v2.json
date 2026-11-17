@@ -181,7 +181,7 @@
             "keys": {
               "methods": {
                 "create": {
-                  "description": "Creates a new API key. NOTE: Key is a global resource; hence the only supported value for location is `global`.",
+                  "description": "Creates a new API key. The key string of the API key is included in the response and can afterward only be retrieved through the `GetKeyString` method. NOTE: Key is a global resource; hence the only supported value for location is `global`.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/keys",
                   "httpMethod": "POST",
                   "id": "apikeys.projects.locations.keys.create",
@@ -215,7 +215,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes an API key. Deleted key can be retrieved within 30 days of deletion. Afterward, key will be purged from the project. NOTE: Key is a global resource; hence the only supported value for location is `global`.",
+                  "description": "Deletes an API key. Deleted key can be retrieved within 30 days of deletion. Afterward, key will be purged from the project. The key string of the API key isn't included in the response and can only be retrieved through the `GetKeyString` method. NOTE: Key is a global resource; hence the only supported value for location is `global`.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/keys/{keysId}",
                   "httpMethod": "DELETE",
                   "id": "apikeys.projects.locations.keys.delete",
@@ -361,7 +361,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Patches the modifiable fields of an API key. The key string of the API key isn't included in the response. NOTE: Key is a global resource; hence the only supported value for location is `global`.",
+                  "description": "Patches the modifiable fields of an API key. The key string of the API key isn't included in the response and can only be retrieved through the `GetKeyString` method. NOTE: Key is a global resource; hence the only supported value for location is `global`.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/keys/{keysId}",
                   "httpMethod": "PATCH",
                   "id": "apikeys.projects.locations.keys.patch",
@@ -411,7 +411,7 @@
                   ]
                 },
                 "undelete": {
-                  "description": "Undeletes an API key which was deleted within 30 days. NOTE: Key is a global resource; hence the only supported value for location is `global`.",
+                  "description": "Undeletes an API key which was deleted within 30 days. The key string of the API key isn't included in the response and can only be retrieved through the `GetKeyString` method. NOTE: Key is a global resource; hence the only supported value for location is `global`.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/keys/{keysId}:undelete",
                   "httpMethod": "POST",
                   "id": "apikeys.projects.locations.keys.undelete",
@@ -446,7 +446,7 @@
       }
     }
   },
-  "revision": "20260818",
+  "revision": "20261110",
   "rootUrl": "https://apikeys.googleapis.com/",
   "schemas": {
     "Operation": {
@@ -629,7 +629,7 @@
           "type": "string"
         },
         "keyString": {
-          "description": "Output only. An encrypted and signed value held by this key. This field can be accessed only through the `GetKeyString` method.",
+          "description": "Output only. An encrypted and signed value held by this key. This field is returned upon initial key creation (`CreateKey`) and can afterward be accessed only through the `GetKeyString` method.",
           "readOnly": true,
           "type": "string"
         },
