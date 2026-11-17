@@ -635,7 +635,7 @@ export namespace cloudbuild_v1 {
      */
     pubsubTopic?: string | null;
     /**
-     * Optional. Ranked list (earlier items have higher priority) of Machine Series to consider when provisioning Worker VMs. A concrete machine type will be selected based on machine availability in the given region. This field must be empty for the Build to be eligible to be paired with a pre-provisioned worker VM.
+     * Optional. Deprecated: Use PrivatePoolV1Config.WorkerConfig.ranked_machine_series instead. This field has no effect.
      */
     rankedMachineSeries?: string[] | null;
     /**
@@ -1749,7 +1749,7 @@ export namespace cloudbuild_v1 {
      */
     networkConfig?: Schema$NetworkConfig;
     /**
-     * Immutable. Private Service Connect(PSC) Network configuration for the pool.
+     * Immutable. Deprecated: Private Service Connect is no longer supported. Private Service Connect(PSC) Network configuration for the pool.
      */
     privateServiceConnect?: Schema$PrivateServiceConnect;
     /**
@@ -1758,7 +1758,7 @@ export namespace cloudbuild_v1 {
     workerConfig?: Schema$WorkerConfig;
   }
   /**
-   * Defines the Private Service Connect network configuration for the pool.
+   * Deprecated: Private Service Connect is no longer supported. Defines the Private Service Connect network configuration for the pool.
    */
   export interface Schema$PrivateServiceConnect {
     /**
@@ -2419,7 +2419,7 @@ export namespace cloudbuild_v1 {
      */
     machineType?: string | null;
     /**
-     * Optional. Ranked list (earlier items have higher priority) of Machine Series to consider when provisioning Worker VMs. A concrete machine type will be selected based on machine availability in the given region.
+     * Optional. Ranked list (earlier items have higher priority) of Machine Series to consider when provisioning worker VMs. The pool's requirements will be matched to a [pre-sized machine type](/compute/docs/general-purpose-machines) which is available in the pool's region. If left blank, Cloud Build will use a sensible default.
      */
     rankedMachineSeries?: string[] | null;
     /**

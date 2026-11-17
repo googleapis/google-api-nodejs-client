@@ -2324,7 +2324,7 @@
       }
     }
   },
-  "revision": "20261029",
+  "revision": "20261109",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -3091,7 +3091,8 @@
           "type": "string"
         },
         "rankedMachineSeries": {
-          "description": "Optional. Ranked list (earlier items have higher priority) of Machine Series to consider when provisioning Worker VMs. A concrete machine type will be selected based on machine availability in the given region. This field must be empty for the Build to be eligible to be paired with a pre-provisioned worker VM.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use PrivatePoolV1Config.WorkerConfig.ranked_machine_series instead. This field has no effect.",
           "items": {
             "enum": [
               "MACHINE_SERIES_UNSPECIFIED",
@@ -4659,7 +4660,8 @@
         },
         "privateServiceConnect": {
           "$ref": "PrivateServiceConnect",
-          "description": "Immutable. Private Service Connect(PSC) Network configuration for the pool."
+          "deprecated": true,
+          "description": "Immutable. Deprecated: Private Service Connect is no longer supported. Private Service Connect(PSC) Network configuration for the pool."
         },
         "workerConfig": {
           "$ref": "WorkerConfig",
@@ -4669,7 +4671,8 @@
       "type": "object"
     },
     "PrivateServiceConnect": {
-      "description": "Defines the Private Service Connect network configuration for the pool.",
+      "deprecated": true,
+      "description": "Deprecated: Private Service Connect is no longer supported. Defines the Private Service Connect network configuration for the pool.",
       "id": "PrivateServiceConnect",
       "properties": {
         "networkAttachment": {
@@ -5562,7 +5565,7 @@
           "type": "string"
         },
         "rankedMachineSeries": {
-          "description": "Optional. Ranked list (earlier items have higher priority) of Machine Series to consider when provisioning Worker VMs. A concrete machine type will be selected based on machine availability in the given region.",
+          "description": "Optional. Ranked list (earlier items have higher priority) of Machine Series to consider when provisioning worker VMs. The pool's requirements will be matched to a [pre-sized machine type](/compute/docs/general-purpose-machines) which is available in the pool's region. If left blank, Cloud Build will use a sensible default.",
           "items": {
             "enum": [
               "MACHINE_SERIES_UNSPECIFIED",
