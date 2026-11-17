@@ -1493,7 +1493,7 @@
       }
     }
   },
-  "revision": "20260923",
+  "revision": "20261105",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -1864,7 +1864,7 @@
         },
         "postgresqlProfile": {
           "$ref": "PostgresqlProfile",
-          "description": "Profile for connecting to a PostgreSQL source."
+          "description": "Profile for connecting to a PostgreSQL source or destination."
         },
         "privateConnectivity": {
           "$ref": "PrivateConnectivity",
@@ -3660,7 +3660,7 @@
       "type": "object"
     },
     "PostgresqlProfile": {
-      "description": "Profile for connecting to a PostgreSQL source.",
+      "description": "Profile for connecting to a PostgreSQL source or destination.",
       "id": "PostgresqlProfile",
       "properties": {
         "database": {
