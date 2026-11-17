@@ -18,6 +18,11 @@
   "endpoints": [
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://developerconnect.africa-south1.rep.googleapis.com/",
+      "location": "africa-south1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://developerconnect.asia-east1.rep.googleapis.com/",
       "location": "asia-east1"
     },
@@ -165,6 +170,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://developerconnect.northamerica-northeast2.rep.googleapis.com/",
       "location": "northamerica-northeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://developerconnect.northamerica-south1.rep.googleapis.com/",
+      "location": "northamerica-south1"
     },
     {
       "description": "Regional Endpoint",
@@ -1353,7 +1363,7 @@
                           "type": "string"
                         },
                         "name": {
-                          "description": "Required. The resource name of the GitRepositoryLink.",
+                          "description": "Required. The resource name of the GitRepositoryLink in the format `projects/*/locations/*/connections/*/gitRepositoryLinks/*`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/gitRepositoryLinks/[^/]+$",
                           "required": true,
@@ -2343,7 +2353,7 @@
       }
     }
   },
-  "revision": "20261025",
+  "revision": "20261109",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "AccountConnector": {
@@ -2430,10 +2440,10 @@
       "properties": {
         "comment": {
           "$ref": "PullRequestReviewComment",
-          "description": "Required. The review comment to add."
+          "description": "Required. The review comment to add. Input fields used: `body`, `path`, `first_line`, `last_line`, `side`."
         },
         "commitId": {
-          "description": "Optional. The commit SHA to comment on. If not specified, defaults to the HEAD commit of the Pull Request.",
+          "description": "Optional. The SHA of a commit in the pull request to comment on. If not specified, defaults to the HEAD commit of the pull request. Set this only to comment on a specific, known commit in the pull request.",
           "type": "string"
         },
         "pullRequestId": {
@@ -4258,7 +4268,7 @@
           "type": "string"
         },
         "baseRef": {
-          "description": "Required. The target commit SHA of the base branch.",
+          "description": "Required. The name of the target (base) branch that the changes are merged into.",
           "type": "string"
         },
         "body": {
@@ -4284,7 +4294,7 @@
           "type": "string"
         },
         "headRef": {
-          "description": "Required. The source commit SHA of the head branch.",
+          "description": "Required. The name of the source (head) branch that contains the changes.",
           "type": "string"
         },
         "htmlUrl": {
@@ -4293,7 +4303,7 @@
           "type": "string"
         },
         "id": {
-          "description": "Required. The ID of the PR.",
+          "description": "Optional. The ID of the PR, assigned by the SCM provider (for example, \"45\"). Ignored by `OpenGitRepositoryLinkPullRequest`.",
           "type": "string"
         },
         "mergeTime": {
@@ -4398,7 +4408,7 @@
           "type": "string"
         },
         "commitId": {
-          "description": "Output only. The commit SHA the comment was actually applied to.",
+          "description": "Output only. The commit SHA the comment was actually applied to. Ignored in requests; to choose the commit to comment on, set `AddGitRepositoryLinkPullRequestReviewCommentRequest.commit_id`.",
           "readOnly": true,
           "type": "string"
         },

@@ -191,11 +191,11 @@ export namespace developerconnect_v1 {
    */
   export interface Schema$AddGitRepositoryLinkPullRequestReviewCommentRequest {
     /**
-     * Required. The review comment to add.
+     * Required. The review comment to add. Input fields used: `body`, `path`, `first_line`, `last_line`, `side`.
      */
     comment?: Schema$PullRequestReviewComment;
     /**
-     * Optional. The commit SHA to comment on. If not specified, defaults to the HEAD commit of the Pull Request.
+     * Optional. The SHA of a commit in the pull request to comment on. If not specified, defaults to the HEAD commit of the pull request. Set this only to comment on a specific, known commit in the pull request.
      */
     commitId?: string | null;
     /**
@@ -1536,7 +1536,7 @@ export namespace developerconnect_v1 {
      */
     author?: string | null;
     /**
-     * Required. The target commit SHA of the base branch.
+     * Required. The name of the target (base) branch that the changes are merged into.
      */
     baseRef?: string | null;
     /**
@@ -1556,7 +1556,7 @@ export namespace developerconnect_v1 {
      */
     declineTime?: string | null;
     /**
-     * Required. The source commit SHA of the head branch.
+     * Required. The name of the source (head) branch that contains the changes.
      */
     headRef?: string | null;
     /**
@@ -1564,7 +1564,7 @@ export namespace developerconnect_v1 {
      */
     htmlUrl?: string | null;
     /**
-     * Required. The ID of the PR.
+     * Optional. The ID of the PR, assigned by the SCM provider (for example, "45"). Ignored by `OpenGitRepositoryLinkPullRequest`.
      */
     id?: string | null;
     /**
@@ -1626,7 +1626,7 @@ export namespace developerconnect_v1 {
      */
     body?: string | null;
     /**
-     * Output only. The commit SHA the comment was actually applied to.
+     * Output only. The commit SHA the comment was actually applied to. Ignored in requests; to choose the commit to comment on, set `AddGitRepositoryLinkPullRequestReviewCommentRequest.commit_id`.
      */
     commitId?: string | null;
     /**
@@ -6473,7 +6473,7 @@ export namespace developerconnect_v1 {
      *         baseSha: 'placeholder-value',
      *         // Required. The head commit SHA or ref.
      *         headSha: 'placeholder-value',
-     *         // Required. The resource name of the GitRepositoryLink.
+     *         // Required. The resource name of the GitRepositoryLink in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
      *         name: 'projects/my-project/locations/my-location/connections/my-connection/gitRepositoryLinks/my-gitRepositoryLink',
      *         // Optional. Path patterns or exact paths to filter returned files. When `path_filters` is specified, `FileDiff.patch` is populated for all matching files (use `["**"]` to include patches for all changed files). When `path_filters` is omitted or empty, the full list of `FileDiff` is returned without patch diffs (`FileDiff.patch` is empty).
      *         pathFilters: 'placeholder-value',
@@ -9156,7 +9156,7 @@ export namespace developerconnect_v1 {
      */
     headSha?: string;
     /**
-     * Required. The resource name of the GitRepositoryLink.
+     * Required. The resource name of the GitRepositoryLink in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
      */
     name?: string;
     /**
