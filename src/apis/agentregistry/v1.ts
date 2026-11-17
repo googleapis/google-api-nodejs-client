@@ -586,7 +586,7 @@ export namespace agentregistry_v1 {
    */
   export interface Schema$Frontmatter {
     /**
-     * Optional. Environmental dependencies or local sidecars.
+     * Optional. Environmental dependencies or companion services.
      */
     compatibility?: string | null;
     /**
