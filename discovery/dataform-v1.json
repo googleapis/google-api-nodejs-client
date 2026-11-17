@@ -2205,6 +2205,40 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "createLongRunning": {
+                      "description": "Creates a new Workspace in a given Repository asynchronously.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/workspaces:createLongRunning",
+                      "httpMethod": "POST",
+                      "id": "dataform.projects.locations.repositories.workspaces.createLongRunning",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The repository in which to create the workspace. Must be in the format `projects/*/locations/*/repositories/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "workspaceId": {
+                          "description": "Required. The ID to use for the workspace, which will become the final component of the workspace's resource name.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/workspaces:createLongRunning",
+                      "request": {
+                        "$ref": "Workspace"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "delete": {
                       "description": "Deletes a single Workspace.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/workspaces/{workspacesId}",
@@ -3249,7 +3283,7 @@
       }
     }
   },
-  "revision": "20261030",
+  "revision": "20261108",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
