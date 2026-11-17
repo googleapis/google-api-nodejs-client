@@ -167,6 +167,10 @@ export namespace mybusinessplaceactions_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. Whether the merchant disabled this link. Defaults to `false`, which means the link is enabled. If `provider_type` is `AGGREGATOR_3P`, the merchant can disable or enable this link through `UpdatePlaceActionLink`. If `provider_type` is `MERCHANT`, this field is always `false` and `UpdatePlaceActionLink` rejects updates to it.
+     */
+    isDisabled?: boolean | null;
+    /**
      * Output only. Indicates whether this link can be edited by the client.
      */
     isEditable?: boolean | null;
@@ -265,6 +269,7 @@ export namespace mybusinessplaceactions_v1 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "isDisabled": false,
      *       //   "isEditable": false,
      *       //   "isPreferred": false,
      *       //   "name": "my_name",
@@ -280,6 +285,7 @@ export namespace mybusinessplaceactions_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "isDisabled": false,
      *   //   "isEditable": false,
      *   //   "isPreferred": false,
      *   //   "name": "my_name",
@@ -557,6 +563,7 @@ export namespace mybusinessplaceactions_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "isDisabled": false,
      *   //   "isEditable": false,
      *   //   "isPreferred": false,
      *   //   "name": "my_name",
@@ -844,7 +851,7 @@ export namespace mybusinessplaceactions_v1 {
      *   const res = await mybusinessplaceactions.locations.placeActionLinks.patch({
      *     // Optional. The resource name, in the format `locations/{location_id\}/placeActionLinks/{place_action_link_id\}`. The name field will only be considered in UpdatePlaceActionLink and DeletePlaceActionLink requests for updating and deleting links respectively. However, it will be ignored in CreatePlaceActionLink request, where `place_action_link_id` will be assigned by the server on successful creation of a new link and returned as part of the response.
      *     name: 'locations/my-location/placeActionLinks/my-placeActionLink',
-     *     // Required. The specific fields to update. The only editable fields are `uri`, `place_action_type` and `is_preferred`. If the updated link already exists at the same location with the same `place_action_type` and `uri`, fails with an `ALREADY_EXISTS` error.
+     *     // Required. The specific fields to update. The only editable fields are `uri`, `place_action_type`, `is_preferred` and `is_disabled`. If the updated link already exists at the same location with the same `place_action_type` and `uri`, fails with an `ALREADY_EXISTS` error.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -852,6 +859,7 @@ export namespace mybusinessplaceactions_v1 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "isDisabled": false,
      *       //   "isEditable": false,
      *       //   "isPreferred": false,
      *       //   "name": "my_name",
@@ -867,6 +875,7 @@ export namespace mybusinessplaceactions_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "isDisabled": false,
      *   //   "isEditable": false,
      *   //   "isPreferred": false,
      *   //   "name": "my_name",
@@ -1018,7 +1027,7 @@ export namespace mybusinessplaceactions_v1 {
      */
     name?: string;
     /**
-     * Required. The specific fields to update. The only editable fields are `uri`, `place_action_type` and `is_preferred`. If the updated link already exists at the same location with the same `place_action_type` and `uri`, fails with an `ALREADY_EXISTS` error.
+     * Required. The specific fields to update. The only editable fields are `uri`, `place_action_type`, `is_preferred` and `is_disabled`. If the updated link already exists at the same location with the same `place_action_type` and `uri`, fails with an `ALREADY_EXISTS` error.
      */
     updateMask?: string;
 
