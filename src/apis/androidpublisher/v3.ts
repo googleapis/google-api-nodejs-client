@@ -729,6 +729,10 @@ export namespace androidpublisher_v3 {
      */
     installmentDetails?: Schema$InstallmentPlan;
     /**
+     * The information of the associated plan transition. Will be present only if this plan has a transition plan associated with it and will only include the latest transition details associated with the item.
+     */
+    planTransitionDetails?: Schema$PlanTransitionDetails;
+    /**
      * The information of the last price change for the item since subscription signup.
      */
     priceChangeDetails?: Schema$SubscriptionItemPriceChangeDetails;
@@ -781,6 +785,10 @@ export namespace androidpublisher_v3 {
      * Output only. The state of the base plan, i.e. whether it's active. Draft and inactive base plans can be activated or deleted. Active base plans can be made inactive. Inactive base plans can be canceled. This field cannot be changed by updating the resource. Use the dedicated endpoints instead.
      */
     state?: string | null;
+    /**
+     * Transition target base plan information when this base plan has a transition plan.
+     */
+    transitionTargetConfig?: Schema$TransitionTargetConfig;
   }
   /**
    * Details about base price offer phase.
@@ -1154,6 +1162,23 @@ export namespace androidpublisher_v3 {
      */
     purchaseOptionId?: string | null;
   }
+  /**
+   * Request for the purchases.subscriptionsv2.cancelplantransition API.
+   */
+  export interface Schema$CancelPlanTransitionRequest {
+    /**
+     * If set, the API will fail if the etag does not match the latest etag for this subscription. The etag is retrieved from purchases.subscriptionsv2.get: https://developers.google.com/android-publisher/api-ref/rest/v3/purchases.subscriptionsv2/get
+     */
+    etag?: string | null;
+    /**
+     * Required. The subscription product (for example, 'premium_plan') for which an in process plan transition should be canceled.
+     */
+    productId?: string | null;
+  }
+  /**
+   * Response for the purchases.subscriptionsv2.cancelplantransition API.
+   */
+  export interface Schema$CancelPlanTransitionResponse {}
   /**
    * Request for the purchases.subscriptionsv2.cancel API.
    */
@@ -1691,6 +1716,10 @@ export namespace androidpublisher_v3 {
      */
     itemExpiryTimeDetails?: Schema$ItemExpiryTimeDetails[];
   }
+  /**
+   * Used to indicate that the plan transition is definite.
+   */
+  export interface Schema$DefiniteTransition {}
   /**
    * Request message for deleting an one-time product offer.
    */
@@ -4090,6 +4119,23 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$PendingCancellation {}
   /**
+   * Information related to a plan transition.
+   */
+  export interface Schema$PlanTransitionDetails {
+    /**
+     * [Required] The base plan ID to which this plan would be transitioned.
+     */
+    basePlanId?: string | null;
+    /**
+     * [Required] The product ID to which this plan would be transitioned, (for example, 'monthly001').
+     */
+    productId?: string | null;
+    /**
+     * Additional info about the scheduled plan transition. Will be present only if a plan transition has been scheduled.
+     */
+    transitionInfo?: Schema$TransitionInfo;
+  }
+  /**
    * Details relating to any Play Points applied to an order.
    */
   export interface Schema$PointsDetails {
@@ -5000,6 +5046,40 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$SafetyLabelsUpdateResponse {}
   /**
+   * Request for the purchases.subscriptionsv2.schedulePlanTransition API.
+   */
+  export interface Schema$SchedulePlanTransitionRequest {
+    /**
+     * When using this mode, the user's transition to the new plan is definite, and cannot be canceled.
+     */
+    definiteTransition?: Schema$DefiniteTransition;
+    /**
+     * Required. The earliest time at which the plan transition may take effect. The actual transition will take place at the time of renewal on or after this time.
+     */
+    earliestTransitionEffectiveTime?: string | null;
+    /**
+     * If set, the API will fail if the etag does not match the latest etag for this subscription. The etag is retrieved from purchases.subscriptionsv2.get: https://developers.google.com/android-publisher/api-ref/rest/v3/purchases.subscriptionsv2/get
+     */
+    etag?: string | null;
+    /**
+     * Required. The subscription product (for example, 'premium_plan') for which the transition must be scheduled.
+     */
+    productId?: string | null;
+    /**
+     * When using this mode, the user's transition to the new plan is tentative, and can be canceled.
+     */
+    tentativeTransition?: Schema$TentativeTransition;
+  }
+  /**
+   * Response for the purchases.subscriptionsv2.schedulePlanTransition API.
+   */
+  export interface Schema$SchedulePlanTransitionResponse {
+    /**
+     * The plan transition details of the subscription item.
+     */
+    planTransitionDetails?: Schema$PlanTransitionDetails;
+  }
+  /**
    * Represents a screen density.
    */
   export interface Schema$ScreenDensity {
@@ -5655,6 +5735,10 @@ export namespace androidpublisher_v3 {
     regions?: Schema$Regions;
   }
   /**
+   * Used to indicate that the plan transition is tentative.
+   */
+  export interface Schema$TentativeTransition {}
+  /**
    * The testers of an app. The resource for TestersService. Note: while it is possible in the Play Console UI to add testers via email lists, email lists are not supported by this resource.
    */
   export interface Schema$Testers {
@@ -5822,6 +5906,36 @@ export namespace androidpublisher_v3 {
      * The country that can be targeted, as a two-letter CLDR code.
      */
     countryCode?: string | null;
+  }
+  /**
+   * Information related to a scheduled plan transition.
+   */
+  export interface Schema$TransitionInfo {
+    /**
+     * The current expected time at which the plan may be transitioned. This is subject to change (to a future time) due to cases where the renewal time shifts like pause and account hold.
+     */
+    expectedTransitionTime?: string | null;
+    /**
+     * The default base plan price to which the plan will be transitioned.
+     */
+    price?: Schema$Money;
+    /**
+     * Output only. [Required] The current state of the transition.
+     */
+    transitionState?: string | null;
+  }
+  /**
+   * Configuration for a transition target base plan.
+   */
+  export interface Schema$TransitionTargetConfig {
+    /**
+     * Required. The ID of the transition target base plan.
+     */
+    basePlanId?: string | null;
+    /**
+     * Required. The ID of the parent subscription this transition target base plan belongs to.
+     */
+    productId?: string | null;
   }
   /**
    * Request to update the publish status of an app store hosted app. The default state for any app with an update is PUBLISHED. It is not necessary to call this RPC explicitly to set an app to PUBLISHED.
@@ -28743,6 +28857,161 @@ export namespace androidpublisher_v3 {
     }
 
     /**
+     * Cancel a plan transition for a subscription.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.purchases.subscriptionsv2.cancelplantransition({
+     *       // Required. The package of the application for which this subscription was purchased (for example, 'com.some.thing').
+     *       packageName: 'placeholder-value',
+     *       // Required. The token provided to the user's device when the subscription was purchased.
+     *       token: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "etag": "my_etag",
+     *         //   "productId": "my_productId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancelplantransition(
+      params: Params$Resource$Purchases$Subscriptionsv2$Cancelplantransition,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    cancelplantransition(
+      params?: Params$Resource$Purchases$Subscriptionsv2$Cancelplantransition,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CancelPlanTransitionResponse>>;
+    cancelplantransition(
+      params: Params$Resource$Purchases$Subscriptionsv2$Cancelplantransition,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancelplantransition(
+      params: Params$Resource$Purchases$Subscriptionsv2$Cancelplantransition,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CancelPlanTransitionResponse>,
+      callback: BodyResponseCallback<Schema$CancelPlanTransitionResponse>
+    ): void;
+    cancelplantransition(
+      params: Params$Resource$Purchases$Subscriptionsv2$Cancelplantransition,
+      callback: BodyResponseCallback<Schema$CancelPlanTransitionResponse>
+    ): void;
+    cancelplantransition(
+      callback: BodyResponseCallback<Schema$CancelPlanTransitionResponse>
+    ): void;
+    cancelplantransition(
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Subscriptionsv2$Cancelplantransition
+        | BodyResponseCallback<Schema$CancelPlanTransitionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CancelPlanTransitionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CancelPlanTransitionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CancelPlanTransitionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Purchases$Subscriptionsv2$Cancelplantransition;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Purchases$Subscriptionsv2$Cancelplantransition;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:cancelPlanTransition'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'token'],
+        pathParams: ['packageName', 'token'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CancelPlanTransitionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CancelPlanTransitionResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Defers the renewal of a subscription.
      * @example
      * ```js
@@ -29211,6 +29480,166 @@ export namespace androidpublisher_v3 {
         );
       }
     }
+
+    /**
+     * Schedule a plan transition for a subscription.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.purchases.subscriptionsv2.scheduleplantransition({
+     *       // Required. The package of the application for which this subscription was purchased (for example, 'com.some.thing').
+     *       packageName: 'placeholder-value',
+     *       // Required. The token provided to the user's device when the subscription was purchased.
+     *       token: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "definiteTransition": {},
+     *         //   "earliestTransitionEffectiveTime": "my_earliestTransitionEffectiveTime",
+     *         //   "etag": "my_etag",
+     *         //   "productId": "my_productId",
+     *         //   "tentativeTransition": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "planTransitionDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    scheduleplantransition(
+      params: Params$Resource$Purchases$Subscriptionsv2$Scheduleplantransition,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    scheduleplantransition(
+      params?: Params$Resource$Purchases$Subscriptionsv2$Scheduleplantransition,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SchedulePlanTransitionResponse>>;
+    scheduleplantransition(
+      params: Params$Resource$Purchases$Subscriptionsv2$Scheduleplantransition,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    scheduleplantransition(
+      params: Params$Resource$Purchases$Subscriptionsv2$Scheduleplantransition,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SchedulePlanTransitionResponse>,
+      callback: BodyResponseCallback<Schema$SchedulePlanTransitionResponse>
+    ): void;
+    scheduleplantransition(
+      params: Params$Resource$Purchases$Subscriptionsv2$Scheduleplantransition,
+      callback: BodyResponseCallback<Schema$SchedulePlanTransitionResponse>
+    ): void;
+    scheduleplantransition(
+      callback: BodyResponseCallback<Schema$SchedulePlanTransitionResponse>
+    ): void;
+    scheduleplantransition(
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Subscriptionsv2$Scheduleplantransition
+        | BodyResponseCallback<Schema$SchedulePlanTransitionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SchedulePlanTransitionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SchedulePlanTransitionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SchedulePlanTransitionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Purchases$Subscriptionsv2$Scheduleplantransition;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Purchases$Subscriptionsv2$Scheduleplantransition;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:schedulePlanTransition'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'token'],
+        pathParams: ['packageName', 'token'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SchedulePlanTransitionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SchedulePlanTransitionResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Purchases$Subscriptionsv2$Cancel extends StandardParameters {
@@ -29227,6 +29656,21 @@ export namespace androidpublisher_v3 {
      * Request body metadata
      */
     requestBody?: Schema$CancelSubscriptionPurchaseRequest;
+  }
+  export interface Params$Resource$Purchases$Subscriptionsv2$Cancelplantransition extends StandardParameters {
+    /**
+     * Required. The package of the application for which this subscription was purchased (for example, 'com.some.thing').
+     */
+    packageName?: string;
+    /**
+     * Required. The token provided to the user's device when the subscription was purchased.
+     */
+    token?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelPlanTransitionRequest;
   }
   export interface Params$Resource$Purchases$Subscriptionsv2$Defer extends StandardParameters {
     /**
@@ -29267,6 +29711,21 @@ export namespace androidpublisher_v3 {
      * Request body metadata
      */
     requestBody?: Schema$RevokeSubscriptionPurchaseRequest;
+  }
+  export interface Params$Resource$Purchases$Subscriptionsv2$Scheduleplantransition extends StandardParameters {
+    /**
+     * Required. The package of the application for which this subscription was purchased (for example, 'com.some.thing').
+     */
+    packageName?: string;
+    /**
+     * Required. The token provided to the user's device when the subscription was purchased.
+     */
+    token?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SchedulePlanTransitionRequest;
   }
 
   export class Resource$Purchases$Voidedpurchases {
