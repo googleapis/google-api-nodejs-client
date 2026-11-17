@@ -790,7 +790,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees this behavior for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that the zero UUID isn't supported (`00000000-0000-0000-0000-000000000000`).",
                       "location": "query",
                       "type": "string"
                     }
@@ -823,7 +823,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees this behavior for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that the zero UUID isn't supported (`00000000-0000-0000-0000-000000000000`).",
                       "location": "query",
                       "type": "string"
                     }
@@ -846,7 +846,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. A name of the `CdnEdgeExtension` resource to get. Must be in the format `projects/{project}/locations/{location}/cdnEdgeExtensions/{cdn_edge_extension}`.",
+                      "description": "Required. The name of the `CdnEdgeExtension` resource to get. It must be in the `projects/{project}/locations/{location}/cdnEdgeExtensions/{cdn_edge_extension}` format.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/cdnEdgeExtensions/[^/]+$",
                       "required": true,
@@ -862,7 +862,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists `CdnEdgeExtensions` resources in a given project and location.",
+                  "description": "Lists `CdnEdgeExtension` resources in a given project and location.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/cdnEdgeExtensions",
                   "httpMethod": "GET",
                   "id": "networkservices.projects.locations.cdnEdgeExtensions.list",
@@ -871,12 +871,12 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filtering results.",
+                      "description": "Optional. Specifies a filter expression that restricts the resources listed in the response. The expression must be of the form ` `, where `` is a field name (in `snake_case` or `camelCase`) and `` is one of `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:` (the `HAS` operator). Multiple expressions can be combined using `AND`, `OR`, and `NOT`. For example, `extension_chains.name = \"my-chain\"` or `labels.env = \"prod\"`.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Hint about how to order the results.",
+                      "description": "Optional. Comma-separated list of fields by which you can sort the results.",
                       "location": "query",
                       "type": "string"
                     },
@@ -924,7 +924,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees this behavior for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that the zero UUID isn't supported (`00000000-0000-0000-0000-000000000000`).",
                       "location": "query",
                       "type": "string"
                     },
@@ -1347,12 +1347,12 @@
                   ],
                   "parameters": {
                     "etag": {
-                      "description": "Optional. The etag of the ExtensionBinding to delete.",
+                      "description": "Optional. The ETag of the `ExtensionBinding` to delete.",
                       "location": "query",
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. A name of the `ExtensionBinding` resource to delete. Must be in the format `projects/{project}/locations/{location}/extensionBindings/{extension_binding}`.",
+                      "description": "Required. The name of the `ExtensionBinding` resource to delete. Must be in the format `projects/{project}/locations/{location}/extensionBindings/{extension_binding}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/extensionBindings/[^/]+$",
                       "required": true,
@@ -1377,7 +1377,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. A name of the `ExtensionBinding` resource to get. Must be in the format `projects/{project}/locations/{location}/extensionBindings/{extension_binding}`.",
+                      "description": "Required. The name of the `ExtensionBinding` resource to get. Must be in the format `projects/{project}/locations/{location}/extensionBindings/{extension_binding}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/extensionBindings/[^/]+$",
                       "required": true,
@@ -1408,7 +1408,7 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. The value returned by the last `ListExtensionBindingsResponse` Indicates that this is a continuation of a prior `ListExtensionBindings` call, and that the system should return the next page of data.",
+                      "description": "Optional. The value returned by the last `ListExtensionBindingsResponse`. Indicates that this is a continuation of a prior `ListExtensionBindings` call, and that the system should return the next page of data.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1445,7 +1445,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the `ExtensionBinding` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the `ExtensionBinding` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not provide a mask then all fields are overwritten.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -3126,7 +3126,7 @@
                       "type": "string"
                     },
                     "producerExtensionId": {
-                      "description": "Required. Short name of the `ProducerExtension` resource to be created.",
+                      "description": "Required. The short name of the `ProducerExtension` resource to be created.",
                       "location": "query",
                       "type": "string"
                     }
@@ -3152,12 +3152,12 @@
                   ],
                   "parameters": {
                     "etag": {
-                      "description": "Optional. The etag of the ProducerExtension to delete.",
+                      "description": "Optional. The ETag of the `ProducerExtension` to delete.",
                       "location": "query",
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. A name of the `ProducerExtension` resource to delete. Must be in the format `projects/{project}/locations/{location}/producerExtensions/{producer_extension}`.",
+                      "description": "Required. The name of the `ProducerExtension` resource to delete. It must be in this format: `projects/{project}/locations/{location}/producerExtensions/{producer_extension}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/producerExtensions/[^/]+$",
                       "required": true,
@@ -3182,7 +3182,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. A name of the `ProducerExtension` resource to get. Must be in the format `projects/{project}/locations/{location}/producerExtensions/{producer_extension}`.",
+                      "description": "Required. The name of the `ProducerExtension` resource to get. It must be in this format: `projects/{project}/locations/{location}/producerExtensions/{producer_extension}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/producerExtensions/[^/]+$",
                       "required": true,
@@ -3213,12 +3213,12 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. The value returned by the last `ListProducerExtensionsResponse` Indicates that this is a continuation of a prior `ListProducerExtensions` call, and that the system should return the next page of data.",
+                      "description": "Optional. The value returned by the last `ListProducerExtensionsResponse`. It indicates that this is a continuation of a prior `ListProducerExtensions` call, and that the system should return the next page of data.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The project and location from which the `ProducerExtension` resources should be listed, specified in the format `projects/{project}/locations/{location}`.",
+                      "description": "Required. The project and location from which the `ProducerExtension` resources should be listed, specified in this format: `projects/{project}/locations/{location}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -4132,7 +4132,7 @@
                       "type": "string"
                     },
                     "view": {
-                      "description": "Determines how much data must be returned in the response. See [AIP-157](https://google.aip.dev/157).",
+                      "description": "Optional. Determines how much data must be returned in the response. See [AIP-157](https://google.aip.dev/157).",
                       "enum": [
                         "WASM_PLUGIN_VIEW_UNSPECIFIED",
                         "WASM_PLUGIN_VIEW_BASIC",
@@ -4165,13 +4165,13 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "Maximum number of `WasmPlugin` resources to return per call. If not specified, at most 50 `WasmPlugin` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
+                      "description": "Optional. Maximum number of `WasmPlugin` resources to return per call. If not specified, at most 50 `WasmPlugin` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The value returned by the last `ListWasmPluginsResponse` call. Indicates that this is a continuation of a prior `ListWasmPlugins` call, and that the next page of data is to be returned.",
+                      "description": "Optional. The value returned by the last `ListWasmPluginsResponse` call. Indicates that this is a continuation of a prior `ListWasmPlugins` call, and that the next page of data is to be returned.",
                       "location": "query",
                       "type": "string"
                     },
@@ -4322,13 +4322,13 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "Maximum number of `WasmPluginVersion` resources to return per call. If not specified, at most 50 `WasmPluginVersion` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
+                          "description": "Optional. Maximum number of `WasmPluginVersion` resources to return per call. If not specified, at most 50 `WasmPluginVersion` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "The value returned by the last `ListWasmPluginVersionsResponse` call. Indicates that this is a continuation of a prior `ListWasmPluginVersions` call, and that the next page of data is to be returned.",
+                          "description": "Optional. The value returned by the last `ListWasmPluginVersionsResponse` call. Indicates that this is a continuation of a prior `ListWasmPluginVersions` call, and that the next page of data is to be returned.",
                           "location": "query",
                           "type": "string"
                         },
@@ -4357,7 +4357,7 @@
       }
     }
   },
-  "revision": "20261101",
+  "revision": "20261109",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AgentConnectivityTemplate": {
@@ -4729,7 +4729,7 @@
           "type": "string"
         },
         "service": {
-          "description": "Required. The reference to the service that runs the extension. To configure a callout extension: For global AuthzExtension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`. For regional AuthzExtension, `service` must be a fully-qualified reference to one of the following: * a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}`. * a fully qualified domain name that can be resolved by the Google Cloud DNS. * `iap.googleapis.com` and it can only be referenced by an AuthzPolicy with the policyProfile set to REQUEST_AUTHZ. * `modelarmor..rep.googleapis.com` and it can only be referenced by an AuthzPolicy with the policyProfile set to CONTENT_AUTHZ.",
+          "description": "Required. The reference to the service that runs the extension. To configure a callout extension: For a global AuthzExtension, `service` must be a fully qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`. For a regional AuthzExtension, `service` must be a fully qualified reference to one of the following: * A [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}`. * A fully qualified domain name that can be resolved by Cloud DNS. * `iap.googleapis.com` and can be referenced only by an `AuthzPolicy` with the `policyProfile` set to `REQUEST_AUTHZ`. * `modelarmor..rep.googleapis.com` and it can only be referenced by an `AuthzPolicy` with the `policyProfile` set to `CONTENT_AUTHZ`.",
           "type": "string"
         },
         "timeout": {
@@ -4767,7 +4767,7 @@
       "type": "object"
     },
     "CdnEdgeExtension": {
-      "description": "`CdnEdgeExtension` is a resource that lets the extension service modify the headers of both requests to the cache and responses from the cache served by an [`EdgeCacheService`](https://cloud.google.com/media-cdn/docs/reference/rest/v1/projects.locations.edgeCacheServices).",
+      "description": "`CdnEdgeExtension` is a resource that lets the extension service modify the headers of both requests to the cache and responses from the cache served by an [`EdgeCacheService`](/media-cdn/docs/reference/rest/v1/projects.locations.edgeCacheServices).",
       "id": "CdnEdgeExtension",
       "properties": {
         "createTime": {
@@ -4800,7 +4800,7 @@
         },
         "target": {
           "$ref": "CdnEdgeExtensionTarget",
-          "description": "Required. Specifies the set of resources to which this extension should be applied to."
+          "description": "Required. Specifies the set of resources to which this extension will be applied."
         },
         "updateTime": {
           "description": "Output only. The timestamp when the resource was updated.",
@@ -4812,11 +4812,11 @@
       "type": "object"
     },
     "CdnEdgeExtensionTarget": {
-      "description": "Specifies the set of targets to which `CdnEdgeExtension` should be applied to.",
+      "description": "Specifies the set of targets to which a `CdnEdgeExtension` will be applied.",
       "id": "CdnEdgeExtensionTarget",
       "properties": {
         "resources": {
-          "description": "Required. A list of references to the resources that are targeted by `CdnEdgeExtension`. Types of resources supported: `EdgeCacheService`. The format must be the full resource name of [EdgeCacheService](https://cloud.google.com/media-cdn/docs/reference/rest/v1/projects.locations.edgeCacheServices) in the following format: `//networkservices.googleapis.com/projects/{project}/locations/{location}/edgeCacheServices/{edgeCacheService}`.",
+          "description": "Required. A list of references to the resources that are targeted by `CdnEdgeExtension`. Types of resources supported: `EdgeCacheService`. The format must be the full resource name of an [`EdgeCacheService`](/media-cdn/docs/reference/rest/v1/projects.locations.edgeCacheServices) in the following format: `//networkservices.googleapis.com/projects/{project}/locations/{location}/edgeCacheServices/{edgeCacheService}`.",
           "items": {
             "type": "string"
           },
@@ -5406,7 +5406,7 @@
           "type": "string"
         },
         "failOpen": {
-          "description": "Optional. Determines the behavior of the extension binding when the call to the extension fails or times out. Default value is `FALSE`. When set to `TRUE`, failures of the extension are silently ignored.",
+          "description": "Optional. Determines the behavior of the extension binding when the call to the extension fails or times out. Default value is `false`. When set to `true`, failures of the extension are silently ignored.",
           "type": "boolean"
         },
         "labels": {
@@ -5433,7 +5433,7 @@
           "type": "integer"
         },
         "producerExtension": {
-          "description": "Required. The name of the extension that this binding should attach to target resources. Format: For Google-provided extensions, specify the service endpoint, for example `modelarmor.us-central1.rep.googleapis.com`.",
+          "description": "Required. The name of the extension that this binding should attach to target resources. Format: * For Google-provided extensions, specify the service endpoint, for example `modelarmor.us-central1.rep.googleapis.com`.",
           "type": "string"
         },
         "producerMetadata": {
@@ -5491,7 +5491,7 @@
           "type": "string"
         },
         "exact": {
-          "description": "Optional. The input string must match exactly the string specified here. Examples: * `abc` only matches the value `abc`.",
+          "description": "Optional. The input string must match exactly the string specified here. Examples: * `abc` matches only the value `abc`.",
           "type": "string"
         },
         "ignoreCase": {
@@ -5519,7 +5519,7 @@
         },
         "notDestination": {
           "$ref": "ExtensionBindingMatchConditionToDestination",
-          "description": "Optional. Describes the negated properties of the request destination. Extension will not be invoked on requests that match the criteria specified in this field. At least one of destination or not_destination must be specified."
+          "description": "Optional. Describes the negated properties of the request destination. The extension will not be invoked on requests that match the criteria specified in this field. At least one of `destination` or `not_destination` must be specified."
         }
       },
       "type": "object"
@@ -5533,21 +5533,21 @@
           "description": "Optional. A set of HTTP headers to match against. If not specified, requests with any headers are matched."
         },
         "hosts": {
-          "description": "Optional. A list of HTTP Hosts to match against. Limited to 10 hosts. If not specified, any host is allowed. If specified, a match occurs if any of the hosts matches the host value in the request.",
+          "description": "Optional. A list of HTTP hosts to match against. Limited to 10 hosts. If not specified, any host is allowed. If specified, a match occurs if any of the hosts matches the host value in the request.",
           "items": {
             "$ref": "ExtensionBindingMatchConditionStringMatch"
           },
           "type": "array"
         },
         "paths": {
-          "description": "Optional. A list of paths to match against. Limited to 10 paths. If not specified, any path is allowed. Note that this path match includes the query parameters. For gRPC services, this should be a fully-qualified name of the form /package.service/method.",
+          "description": "Optional. A list of paths to match against. Limited to 10 paths. If not specified, any path is allowed. Note that this path match includes the query parameters. For gRPC services, this should be a fully qualified name of the form `/package.service/method`.",
           "items": {
             "$ref": "ExtensionBindingMatchConditionStringMatch"
           },
           "type": "array"
         },
         "resources": {
-          "description": "Optional. A list of non-empty strings whose value is matched against the resource to which a request is sent (e.g., an Agent in AiApplication). If not specified, any resource is allowed. If specified, a match occurs if any of the resources matches the resource value in the request. Limited to 5 resources. When matching against resources in the AgentRegistry, use the URNs of the registry resources.",
+          "description": "Optional. A list of non-empty strings whose value is matched against the resource to which a request is sent (for example, an `Agent` in `AiApplication`). If not specified, any resource is allowed. If specified, a match occurs if any of the resources matches the resource value in the request. Limited to 5 resources. When matching against resources in the Agent Registry, use the URNs of the registry resources.",
           "items": {
             "$ref": "ExtensionBindingMatchConditionStringMatch"
           },
@@ -5621,7 +5621,7 @@
       "id": "ExtensionChain",
       "properties": {
         "extensions": {
-          "description": "Required. A set of extensions to execute for the matching request. At least one extension is required. Up to 3 extensions can be defined for each extension chain for `LbTrafficExtension` and `CdnEdgeExtension` resources. `LbRouteExtension`, `LbEdgeExtension`, and `LbTcpExtension` chains are limited to 1 extension per extension chain.",
+          "description": "Required. A set of extensions to run for the matching request. Up to three extensions can be defined for each extension chain for the `LbTrafficExtension` resource. You can define a maximum of two extensions for each extension chain for the `CdnEdgeExtension` resource. `LbRouteExtension`, `LbEdgeExtension`, and `LbTcpExtension` chains are limited to one extension per extension chain.",
           "items": {
             "$ref": "ExtensionChainExtension"
           },
@@ -5713,7 +5713,7 @@
           "type": "string"
         },
         "service": {
-          "description": "Required. The reference to the service that runs the extension. To configure a callout extension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}` or `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`. To configure a plugin extension, `service` must be a reference to a [`WasmPlugin` resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins) in the format: `projects/{project}/locations/{location}/wasmPlugins/{plugin}` or `//networkservices.googleapis.com/projects/{project}/locations/{location}/wasmPlugins/{wasmPlugin}`. Plugin extensions are currently supported for the `LbTrafficExtension`, the `LbRouteExtension`, the `LbEdgeExtension`, and the `CdnEdgeExtension` resources.",
+          "description": "Required. The reference to the service that runs the extension. To configure a callout extension, `service` must be a fully qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}` or `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`. To configure a plugin extension, `service` must be a reference to a [`WasmPlugin` resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins) in the format: `projects/{project}/locations/{location}/wasmPlugins/{plugin}` or `//networkservices.googleapis.com/projects/{project}/locations/{location}/wasmPlugins/{wasmPlugin}`. Supports plugin extensions for `LbTrafficExtension`, `LbRouteExtension`, `LbEdgeExtension`, and `CdnEdgeExtension` resources.",
           "type": "string"
         },
         "supportedEvents": {
@@ -5734,8 +5734,8 @@
               "If included in `supported_events`, the extension is called when the HTTP request body arrives.",
               "If included in `supported_events`, the extension is called when the HTTP response headers arrive.",
               "If included in `supported_events`, the extension is called when the HTTP response body arrives.",
-              "If included in `supported_events`, the extension is called when the HTTP request trailers arrives.",
-              "If included in `supported_events`, the extension is called when the HTTP response trailers arrives."
+              "If included in `supported_events`, the extension is called when the HTTP request trailers arrive.",
+              "If included in `supported_events`, the extension is called when the HTTP response trailers arrive."
             ],
             "type": "string"
           },
@@ -7133,7 +7133,7 @@
       "type": "object"
     },
     "ListCdnEdgeExtensionsResponse": {
-      "description": "Message for response to listing `CdnEdgeExtension` resources.",
+      "description": "Contains the response from listing `CdnEdgeExtension` resources.",
       "id": "ListCdnEdgeExtensionsResponse",
       "properties": {
         "cdnEdgeExtensions": {
@@ -7794,6 +7794,59 @@
       },
       "type": "object"
     },
+    "LoggingConfiguration": {
+      "description": "Configuration for logging collection.",
+      "id": "LoggingConfiguration",
+      "properties": {
+        "enable": {
+          "description": "Optional. Indicates whether logging is enabled or disabled. Set to true to explicitly enable, or false to explicitly disable.",
+          "type": "boolean"
+        },
+        "loggingHttpRequestHeaders": {
+          "description": "Optional. The list of HTTP request headers to be logged. This field can only be specified if logging is enabled.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "loggingHttpResponseHeaders": {
+          "description": "Optional. The list of HTTP response headers to be logged. This field can only be specified if logging is enabled.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "optionalFields": {
+          "description": "Optional. Contains a list of optional fields to include in the logs. This field can only be specified if logging is enabled and `optional_mode` is set to `CUSTOM`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "optionalMode": {
+          "description": "Optional. Configures whether all, none, or a subset of optional fields should be added to the reported logs. This field can only be specified if logging is enabled.",
+          "enum": [
+            "OPTIONAL_MODE_UNSPECIFIED",
+            "INCLUDE_ALL_OPTIONAL",
+            "EXCLUDE_ALL_OPTIONAL",
+            "CUSTOM"
+          ],
+          "enumDescriptions": [
+            "Unspecified optional mode.",
+            "Include all optional fields.",
+            "Exclude all optional fields.",
+            "Include a custom subset of optional fields."
+          ],
+          "type": "string"
+        },
+        "sampleRate": {
+          "description": "Optional. Specifies the logging sampling rate. The sampling rate is a float number in the interval [0, 1]. This field can only be specified if logging is enabled.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "Mesh": {
       "description": "Mesh represents a logical configuration grouping for workload to workload communication within a service mesh. Routes that point to mesh dictate how requests are routed within this logical mesh boundary.",
       "id": "Mesh",
@@ -8019,7 +8072,7 @@
       "type": "object"
     },
     "ProducerExtension": {
-      "description": "`ProducerExtension` is a resource representing producer defined configuration for their service extension.",
+      "description": "`ProducerExtension` is a resource that represents a producer-defined configuration for its service extension.",
       "id": "ProducerExtension",
       "properties": {
         "createTime": {
@@ -8033,7 +8086,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
+          "description": "Optional. ETag of the resource. If this is provided, it must match the server's ETag. If the provided ETag doesn't match the server's ETag, then the request fails with a `409 ABORTED` error.",
           "type": "string"
         },
         "extensionSettings": {
@@ -8052,7 +8105,7 @@
           "type": "string"
         },
         "phase": {
-          "description": "Required. The phase in which this `ProducerExtension` should execute.",
+          "description": "Required. The phase in which this `ProducerExtension` runs.",
           "enum": [
             "PHASE_UNSPECIFIED",
             "TRAFFIC",
@@ -8060,7 +8113,7 @@
           ],
           "enumDescriptions": [
             "Unspecified phase.",
-            "The `ProducerExtension` will be executed during the traffic phase.",
+            "Not supported.",
             "The `ProducerExtension` will be executed during the authorization phase."
           ],
           "type": "string"
@@ -8087,7 +8140,7 @@
           "type": "boolean"
         },
         "service": {
-          "description": "Required. URI of the PSC attachment.",
+          "description": "Required. The URI of the Private Service Connect (PSC) attachment.",
           "type": "string"
         },
         "supportedEvents": {
@@ -8108,8 +8161,8 @@
               "If included in `supported_events`, the extension is called when the HTTP request body arrives.",
               "If included in `supported_events`, the extension is called when the HTTP response headers arrive.",
               "If included in `supported_events`, the extension is called when the HTTP response body arrives.",
-              "If included in `supported_events`, the extension is called when the HTTP request trailers arrives.",
-              "If included in `supported_events`, the extension is called when the HTTP response trailers arrives."
+              "If included in `supported_events`, the extension is called when the HTTP request trailers arrive.",
+              "If included in `supported_events`, the extension is called when the HTTP response trailers arrive."
             ],
             "type": "string"
           },
@@ -8489,6 +8542,10 @@
           },
           "description": "Optional. Set of label tags associated with the TelemetryPolicy resource.",
           "type": "object"
+        },
+        "loggingConfiguration": {
+          "$ref": "LoggingConfiguration",
+          "description": "Optional. Specifies the top-level configuration block within the telemetry policy that contains all the settings for how logging will be applied to the target resources."
         },
         "metricsConfiguration": {
           "$ref": "MetricsConfiguration",
