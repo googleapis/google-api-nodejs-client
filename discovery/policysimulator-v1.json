@@ -1061,7 +1061,7 @@
       }
     }
   },
-  "revision": "20260716",
+  "revision": "20261108",
   "rootUrl": "https://policysimulator.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2AlternatePolicySpec": {
@@ -1098,7 +1098,7 @@
           "type": "string"
         },
         "condition": {
-          "description": "A Common Expression Language (CEL) condition which is used in the evaluation of the constraint. For example: `resource.instanceName.matches(\"(production|test)_(.+_)?[\\d]+\")` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters.",
+          "description": "A Common Expression Language (CEL) condition which is used in the evaluation of the constraint. For example: `resource.instanceName.matches(\"(production|test)_(.+_)?[\\d]+\")` or, `resource.management.auto_upgrade == true` The max length of the condition is 1,500 characters.",
           "type": "string"
         },
         "description": {
