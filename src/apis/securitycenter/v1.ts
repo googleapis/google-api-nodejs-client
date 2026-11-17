@@ -1763,6 +1763,12 @@ export namespace securitycenter_v1 {
     name?: string | null;
     ns?: string | null;
   }
+  export interface Schema$GoogleCloudSecuritycenterV2RuntimeInfo {
+    evidence?: string | null;
+    firstObservedTime?: string | null;
+    impact?: string | null;
+    lastObservedTime?: string | null;
+  }
   export interface Schema$GoogleCloudSecuritycenterV2Secret {
     environmentVariable?: Schema$GoogleCloudSecuritycenterV2SecretEnvironmentVariable;
     filePath?: Schema$GoogleCloudSecuritycenterV2SecretFilePath;
@@ -1847,6 +1853,7 @@ export namespace securitycenter_v1 {
     offendingPackage?: Schema$GoogleCloudSecuritycenterV2Package;
     providerRiskScore?: string | null;
     reachable?: boolean | null;
+    runtimeInfo?: Schema$GoogleCloudSecuritycenterV2RuntimeInfo;
     securityBulletin?: Schema$GoogleCloudSecuritycenterV2SecurityBulletin;
   }
   export interface Schema$GoogleCloudSecuritycenterV2YaraRuleSignature {
@@ -2215,6 +2222,12 @@ export namespace securitycenter_v1 {
     ns?: string | null;
   }
   export interface Schema$RunAssetDiscoveryRequest {}
+  export interface Schema$RuntimeInfo {
+    evidence?: string | null;
+    firstObservedTime?: string | null;
+    impact?: string | null;
+    lastObservedTime?: string | null;
+  }
   export interface Schema$Secret {
     environmentVariable?: Schema$SecretEnvironmentVariable;
     filePath?: Schema$SecretFilePath;
@@ -2376,6 +2389,7 @@ export namespace securitycenter_v1 {
     offendingPackage?: Schema$Package;
     providerRiskScore?: string | null;
     reachable?: boolean | null;
+    runtimeInfo?: Schema$RuntimeInfo;
     securityBulletin?: Schema$SecurityBulletin;
   }
   export interface Schema$VulnerabilityCountBySeverity {
