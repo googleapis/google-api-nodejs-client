@@ -329,6 +329,14 @@ export namespace workstations_v1 {
      */
     maxSizeGb?: number | null;
     /**
+     * Optional. Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 3,000 and 100,000.
+     */
+    provisionedIops?: string | null;
+    /**
+     * Optional. Indicates how much throughput to provision for the disk. This sets the number of throughput MB per second that the disk can handle. Values must be between 1 and 2,400.
+     */
+    provisionedThroughput?: string | null;
+    /**
      * Optional. Whether the persistent disk should be deleted when the workstation is deleted. Valid values are `DELETE` and `RETAIN`. Defaults to `DELETE`.
      */
     reclaimPolicy?: string | null;
@@ -1017,6 +1025,10 @@ export namespace workstations_v1 {
      * Output only. Status conditions describing the workstation cluster's current state.
      */
     conditions?: Schema$Status[];
+    /**
+     * Optional. Specifies a custom base URL for the Google Cloud Console. This field is intended to be user-configurable to support data residency for Cloud Workstations users. This will be used generally for user journeys where users need to go to the Cloud Console from Code OSS. When the Auth and Launch URLs are unset, this will be used as the base URL for those endpoints if set.
+     */
+    consoleBaseUrl?: string | null;
     /**
      * Output only. The private IP address of the control plane for this workstation cluster. Workstation VMs need access to this IP address to work with the service, so make sure that your firewall rules allow egress from the workstation VMs to this address.
      */
@@ -2220,6 +2232,7 @@ export namespace workstations_v1 {
      *       // {
      *       //   "annotations": {},
      *       //   "conditions": [],
+     *       //   "consoleBaseUrl": "my_consoleBaseUrl",
      *       //   "controlPlaneIp": "my_controlPlaneIp",
      *       //   "createTime": "my_createTime",
      *       //   "degraded": false,
@@ -2533,6 +2546,7 @@ export namespace workstations_v1 {
      *   // {
      *   //   "annotations": {},
      *   //   "conditions": [],
+     *   //   "consoleBaseUrl": "my_consoleBaseUrl",
      *   //   "controlPlaneIp": "my_controlPlaneIp",
      *   //   "createTime": "my_createTime",
      *   //   "degraded": false,
@@ -2846,6 +2860,7 @@ export namespace workstations_v1 {
      *       // {
      *       //   "annotations": {},
      *       //   "conditions": [],
+     *       //   "consoleBaseUrl": "my_consoleBaseUrl",
      *       //   "controlPlaneIp": "my_controlPlaneIp",
      *       //   "createTime": "my_createTime",
      *       //   "degraded": false,

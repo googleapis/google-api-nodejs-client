@@ -1291,7 +1291,7 @@
       }
     }
   },
-  "revision": "20260923",
+  "revision": "20261108",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1562,6 +1562,16 @@
           "description": "Optional. Maximum size in GB to which this persistent directory can be resized. Defaults to `0`, which indicates no maximum limit is enforced by this configuration. Resizing is still subject to the quotas and limits of the underlying disk type.",
           "format": "int32",
           "type": "integer"
+        },
+        "provisionedIops": {
+          "description": "Optional. Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 3,000 and 100,000.",
+          "format": "int64",
+          "type": "string"
+        },
+        "provisionedThroughput": {
+          "description": "Optional. Indicates how much throughput to provision for the disk. This sets the number of throughput MB per second that the disk can handle. Values must be between 1 and 2,400.",
+          "format": "int64",
+          "type": "string"
         },
         "reclaimPolicy": {
           "description": "Optional. Whether the persistent disk should be deleted when the workstation is deleted. Valid values are `DELETE` and `RETAIN`. Defaults to `DELETE`.",
@@ -2517,6 +2527,10 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "consoleBaseUrl": {
+          "description": "Optional. Specifies a custom base URL for the Google Cloud Console. This field is intended to be user-configurable to support data residency for Cloud Workstations users. This will be used generally for user journeys where users need to go to the Cloud Console from Code OSS. When the Auth and Launch URLs are unset, this will be used as the base URL for those endpoints if set.",
+          "type": "string"
         },
         "controlPlaneIp": {
           "description": "Output only. The private IP address of the control plane for this workstation cluster. Workstation VMs need access to this IP address to work with the service, so make sure that your firewall rules allow egress from the workstation VMs to this address.",
