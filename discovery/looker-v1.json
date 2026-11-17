@@ -18,6 +18,16 @@
   "endpoints": [
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://looker.asia-south1.rep.googleapis.com/",
+      "location": "asia-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://looker.asia-south2.rep.googleapis.com/",
+      "location": "asia-south2"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://looker.us-central1.rep.googleapis.com/",
       "location": "us-central1"
     },
@@ -800,7 +810,7 @@
       }
     }
   },
-  "revision": "20261020",
+  "revision": "20261108",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {
@@ -842,24 +852,6 @@
       "description": "ComponentMetrics contains sizing, timing, retries, and metrics for an exported component.",
       "id": "ComponentMetrics",
       "properties": {
-        "componentType": {
-          "description": "Type of the exported component.",
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "BQ_ESA",
-            "DB",
-            "FS",
-            "ALL"
-          ],
-          "enumDescriptions": [
-            "Unspecified component type.",
-            "BigQuery Elite System Activity component.",
-            "Database component.",
-            "File system component.",
-            "Overall Export Job."
-          ],
-          "type": "string"
-        },
         "duration": {
           "description": "Duration of the component export.",
           "format": "google-duration",
@@ -883,6 +875,24 @@
         "startTime": {
           "description": "Start timestamp of the component export.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of the exported component.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "BQ_ESA",
+            "DB",
+            "FS",
+            "ALL"
+          ],
+          "enumDescriptions": [
+            "Unspecified component type.",
+            "BigQuery Elite System Activity component.",
+            "Database component.",
+            "File system component.",
+            "Overall Export Job."
+          ],
           "type": "string"
         }
       },
@@ -1057,7 +1067,7 @@
       "id": "ExportMetadata",
       "properties": {
         "esaMigrationToken": {
-          "description": "Opaque capability token for O2C Elite System Activity (ESA) direct dataset migration. It is minted by the exporter together with the cloned source dataset and presented back to Looker Original when the import requests access to that dataset.",
+          "description": "Opaque capability token for O2C Elite System Activity (ESA) direct dataset migration, encrypted by the exporter with the export encryption key (base64-encoded Cloud KMS ciphertext). It is minted by the exporter together with the cloned source dataset; Looker Core CLH decrypts it with the import's service account and presents the plaintext to Looker Original when the import requests access to that dataset.",
           "type": "string"
         },
         "esaSourceDatasetId": {
