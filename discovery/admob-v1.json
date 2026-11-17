@@ -134,7 +134,8 @@
           "scopes": [
             "https://www.googleapis.com/auth/admob.readonly",
             "https://www.googleapis.com/auth/admob.report"
-          ]
+          ],
+          "streamingType": "NONE"
         },
         "list": {
           "description": "Lists the AdMob publisher account that was most recently signed in to from the AdMob UI. For more information, see https://support.google.com/admob/answer/10243672.",
@@ -162,7 +163,8 @@
           "scopes": [
             "https://www.googleapis.com/auth/admob.readonly",
             "https://www.googleapis.com/auth/admob.report"
-          ]
+          ],
+          "streamingType": "NONE"
         }
       },
       "resources": {
@@ -202,7 +204,8 @@
               },
               "scopes": [
                 "https://www.googleapis.com/auth/admob.readonly"
-              ]
+              ],
+              "streamingType": "NONE"
             }
           }
         },
@@ -242,7 +245,8 @@
               },
               "scopes": [
                 "https://www.googleapis.com/auth/admob.readonly"
-              ]
+              ],
+              "streamingType": "NONE"
             }
           }
         },
@@ -275,7 +279,8 @@
               "scopes": [
                 "https://www.googleapis.com/auth/admob.readonly",
                 "https://www.googleapis.com/auth/admob.report"
-              ]
+              ],
+              "streamingType": "SERVER_SIDE"
             }
           }
         },
@@ -308,14 +313,15 @@
               "scopes": [
                 "https://www.googleapis.com/auth/admob.readonly",
                 "https://www.googleapis.com/auth/admob.report"
-              ]
+              ],
+              "streamingType": "SERVER_SIDE"
             }
           }
         }
       }
     }
   },
-  "revision": "20261106",
+  "revision": "20261111",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "AdUnit": {
