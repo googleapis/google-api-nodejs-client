@@ -162,6 +162,10 @@ export namespace bigqueryconnection_v1 {
      * A unique Google-owned and Google-generated identity for the Connection. This identity will be used to access the user's AWS IAM Role.
      */
     identity?: string | null;
+    /**
+     * Output only. The email address of the Google-owned service account that represents the connection's identity. Grant IAM roles to this service account, for example, to let the connection resolve the Service Directory service in `AwsProperties.service_directory_service`.
+     */
+    serviceAccountId?: string | null;
   }
   /**
    * Connection properties specific to Amazon Web Services (AWS).
@@ -175,6 +179,10 @@ export namespace bigqueryconnection_v1 {
      * Optional. Configuration options for cross-cloud caching of data and metadata files.
      */
     crossCloudCacheOptions?: Schema$CrossCloudCacheOptions;
+    /**
+     * Optional. The Service Directory resource name for routing traffic to AWS over a private network connection through Cross-Cloud Interconnect, in the format `projects/{project_id\}/locations/{location\}/namespaces/{namespace_id\}/services/{service_id\}`. If both this field and `s3_service_directory_service` are set, this field takes precedence.
+     */
+    serviceDirectoryService?: string | null;
   }
   /**
    * Container for connection properties specific to Azure.
@@ -212,6 +220,14 @@ export namespace bigqueryconnection_v1 {
      * The URL user will be redirected to after granting consent during connection setup.
      */
     redirectUri?: string | null;
+    /**
+     * Output only. The email address of the Google-owned service account that represents the connection's identity. Grant IAM roles to this service account, for example, to let the connection resolve the Service Directory service in `AzureProperties.service_directory_service`.
+     */
+    serviceAccountId?: string | null;
+    /**
+     * Optional. The service directory resource name for routing traffic over a private network connection through Cross-Cloud Interconnect, in the format `projects/{project_id\}/locations/{location\}/namespaces/{namespace_id\}/services/{service_id\}`.
+     */
+    serviceDirectoryService?: string | null;
   }
   /**
    * Associates `members`, or principals, with a `role`.
