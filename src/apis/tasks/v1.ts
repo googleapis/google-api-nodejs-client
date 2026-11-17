@@ -2026,7 +2026,7 @@ export namespace tasks_v1 {
      *
      *   // Do the magic
      *   const res = await tasks.tasks.move({
-     *     // Optional. Destination task list identifier. If set, the task is moved from tasklist to the destinationTasklist list. Otherwise the task is moved within its current list. Recurrent tasks cannot currently be moved between lists.
+     *     // Optional. Destination task list identifier. If set, the task is moved from tasklist to the destinationTasklist list. Otherwise the task is moved within its current list.
      *     destinationTasklist: 'placeholder-value',
      *     // Optional. New parent task identifier. If the task is moved to the top level, this parameter is omitted. The task set as parent must exist in the task list and can not be hidden. Exceptions: 1. Assigned and repeating tasks cannot be set as parent tasks (have subtasks), or be moved under a parent task (become subtasks). 2. Tasks that are both completed and hidden cannot be nested, so the parent field must be empty.
      *     parent: 'placeholder-value',
@@ -2605,7 +2605,7 @@ export namespace tasks_v1 {
   }
   export interface Params$Resource$Tasks$Move extends StandardParameters {
     /**
-     * Optional. Destination task list identifier. If set, the task is moved from tasklist to the destinationTasklist list. Otherwise the task is moved within its current list. Recurrent tasks cannot currently be moved between lists.
+     * Optional. Destination task list identifier. If set, the task is moved from tasklist to the destinationTasklist list. Otherwise the task is moved within its current list.
      */
     destinationTasklist?: string;
     /**

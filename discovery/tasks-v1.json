@@ -470,7 +470,7 @@
           ],
           "parameters": {
             "destinationTasklist": {
-              "description": "Optional. Destination task list identifier. If set, the task is moved from tasklist to the destinationTasklist list. Otherwise the task is moved within its current list. Recurrent tasks cannot currently be moved between lists.",
+              "description": "Optional. Destination task list identifier. If set, the task is moved from tasklist to the destinationTasklist list. Otherwise the task is moved within its current list.",
               "location": "query",
               "type": "string"
             },
@@ -576,7 +576,7 @@
       }
     }
   },
-  "revision": "20261101",
+  "revision": "20261110",
   "rootUrl": "https://tasks.googleapis.com/",
   "schemas": {
     "AssignmentInfo": {
