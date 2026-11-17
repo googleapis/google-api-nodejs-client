@@ -431,7 +431,7 @@
       }
     }
   },
-  "revision": "20260921",
+  "revision": "20261110",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AddEnableRulesMetadata": {
@@ -1137,7 +1137,8 @@
       "id": "CommonLanguageSettings",
       "properties": {
         "destinations": {
-          "description": "The destination where API teams want this client library to be published.",
+          "deprecated": true,
+          "description": "Deprecated: Client libraries are published for all supported languages by default when a `library_settings` entry is present with a `version` and `launch_stage`. The destination where API teams want this client library to be published.",
           "items": {
             "enum": [
               "CLIENT_LIBRARY_DESTINATION_UNSPECIFIED",
