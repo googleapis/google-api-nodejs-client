@@ -2182,6 +2182,10 @@ export namespace health_v4beta {
      * Required. The time at which ovulation test was measured.
      */
     sampleTime?: Schema$ObservationSampleTime;
+    /**
+     * Optional. The type of ovulation test.
+     */
+    testType?: string | null;
   }
   /**
    * Captures the user's instantaneous oxygen saturation percentage (SpO2).
