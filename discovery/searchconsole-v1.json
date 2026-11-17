@@ -400,7 +400,7 @@
       }
     }
   },
-  "revision": "20260805",
+  "revision": "20261115",
   "rootUrl": "https://searchconsole.googleapis.com/",
   "schemas": {
     "AmpInspectionResult": {
@@ -587,14 +587,16 @@
             "PAGE",
             "COUNTRY",
             "DEVICE",
-            "SEARCH_APPEARANCE"
+            "SEARCH_APPEARANCE",
+            "BRANDED_CLASSIFICATION"
           ],
           "enumDescriptions": [
             "",
             "",
             "",
             "",
-            ""
+            "",
+            "Filters by branded query classification (`BRANDED` or `NON_BRANDED`)."
           ],
           "type": "string"
         },
@@ -627,8 +629,15 @@
       "description": "A set of `dimension` value filters to test against each row. Only rows that pass all filter groups will be returned. All results within a filter group are either AND'ed or OR'ed together, depending on the group type selected. All filter groups are AND'ed together.",
       "id": "ApiDimensionFilterGroup",
       "properties": {
+        "filterLists": {
+          "description": "Optional. Unlike the `filters` field which only supports a single value per entry, `filter_lists` allows matching against a list of values for a single dimension in one filter. `filter_lists` supports `COUNTRY` and `DEVICE` dimensions only. The maximum number of `expressions` allowed in a single filter list is 1000.",
+          "items": {
+            "$ref": "ApiDimensionFilterList"
+          },
+          "type": "array"
+        },
         "filters": {
-          "description": "Optional. A list of single-value filters in this group.",
+          "description": "Optional. A list of single-value filters in this group. A list of multi-value dimension filters. A row matches if its value for the specified dimension matches any of the values in the filter list (implicit OR logic, e.g., `COUNTRY` is `'usa'` OR `'can'`).",
           "items": {
             "$ref": "ApiDimensionFilter"
           },
@@ -643,6 +652,40 @@
             ""
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApiDimensionFilterList": {
+      "description": "A filter that allows specifying multiple values for a single dimension. The matching logic is an implicit OR of equality matches (e.g., `COUNTRY` is `'usa'` OR `'can'`). Only supported for `COUNTRY` and `DEVICE`.",
+      "id": "ApiDimensionFilterList",
+      "properties": {
+        "dimension": {
+          "description": "Required. The dimension to filter by. Only supported for `COUNTRY` and `DEVICE`.",
+          "enum": [
+            "QUERY",
+            "PAGE",
+            "COUNTRY",
+            "DEVICE",
+            "SEARCH_APPEARANCE",
+            "BRANDED_CLASSIFICATION"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Filters by branded query classification (`BRANDED` or `NON_BRANDED`)."
+          ],
+          "type": "string"
+        },
+        "expressions": {
+          "description": "Required. The values to filter against. A row matches if its value for the specified `dimension` equals any of these `expressions` (implicit OR logic between the `expressions`). The maximum number of `expressions` allowed is 1000.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1175,7 +1218,8 @@
               "COUNTRY",
               "DEVICE",
               "SEARCH_APPEARANCE",
-              "HOUR"
+              "HOUR",
+              "BRANDED_CLASSIFICATION"
             ],
             "enumDescriptions": [
               "Group by date, which is returned in YYYY-MM-DD format, in PT time (UTC - 7:00/8:00).",
@@ -1184,7 +1228,8 @@
               "Group by country, specified by 3-letter country code ([ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)).",
               "Group by device type (DESKTOP, MOBILE and TABLET).",
               "Group by search result feature.",
-              "Group by hour, which is returned in YYYY-MM-DDThh:mm:ss[+|-]hh:mm format (ISO-8601 extended offset date-time format) in PT time (UTC - 7:00/8:00). Data is available up to 10 days. Requires setting the dataState to HOURLY_ALL."
+              "Group by hour, which is returned in YYYY-MM-DDThh:mm:ss[+|-]hh:mm format (ISO-8601 extended offset date-time format) in PT time (UTC - 7:00/8:00). Data is available up to 10 days. Requires setting the dataState to HOURLY_ALL.",
+              "Group by branded query classification (`BRANDED` and `NON_BRANDED`)."
             ],
             "type": "string"
           },
@@ -1207,7 +1252,8 @@
             "VIDEO",
             "NEWS",
             "DISCOVER",
-            "GOOGLE_NEWS"
+            "GOOGLE_NEWS",
+            "WEB_MULTIMODAL"
           ],
           "enumDescriptions": [
             "",
@@ -1215,7 +1261,8 @@
             "",
             "News tab in search.",
             "Discover.",
-            "Google News (news.google.com or mobile app)."
+            "Google News (news.google.com or mobile app).",
+            "Web multimodal search."
           ],
           "type": "string"
         },
@@ -1236,7 +1283,8 @@
             "VIDEO",
             "NEWS",
             "DISCOVER",
-            "GOOGLE_NEWS"
+            "GOOGLE_NEWS",
+            "WEB_MULTIMODAL"
           ],
           "enumDescriptions": [
             "",
@@ -1244,7 +1292,8 @@
             "",
             "News tab in search.",
             "Discover.",
-            "Google News (news.google.com or mobile app)."
+            "Google News (news.google.com or mobile app).",
+            "Web multimodal search."
           ],
           "type": "string"
         }

@@ -202,13 +202,30 @@ export namespace searchconsole_v1 {
    */
   export interface Schema$ApiDimensionFilterGroup {
     /**
-     * Optional. A list of single-value filters in this group.
+     * Optional. Unlike the `filters` field which only supports a single value per entry, `filter_lists` allows matching against a list of values for a single dimension in one filter. `filter_lists` supports `COUNTRY` and `DEVICE` dimensions only. The maximum number of `expressions` allowed in a single filter list is 1000.
+     */
+    filterLists?: Schema$ApiDimensionFilterList[];
+    /**
+     * Optional. A list of single-value filters in this group. A list of multi-value dimension filters. A row matches if its value for the specified dimension matches any of the values in the filter list (implicit OR logic, e.g., `COUNTRY` is `'usa'` OR `'can'`).
      */
     filters?: Schema$ApiDimensionFilter[];
     /**
      * Optional. The logic operator between filters of the same group.
      */
     groupType?: string | null;
+  }
+  /**
+   * A filter that allows specifying multiple values for a single dimension. The matching logic is an implicit OR of equality matches (e.g., `COUNTRY` is `'usa'` OR `'can'`). Only supported for `COUNTRY` and `DEVICE`.
+   */
+  export interface Schema$ApiDimensionFilterList {
+    /**
+     * Required. The dimension to filter by. Only supported for `COUNTRY` and `DEVICE`.
+     */
+    dimension?: string | null;
+    /**
+     * Required. The values to filter against. A row matches if its value for the specified `dimension` equals any of these `expressions` (implicit OR logic between the `expressions`). The maximum number of `expressions` allowed is 1000.
+     */
+    expressions?: string[] | null;
   }
   /**
    * Blocked resource.
