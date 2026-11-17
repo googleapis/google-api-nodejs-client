@@ -172,6 +172,23 @@
                 "parent"
               ],
               "parameters": {
+                "adCategoryTaxonomyOverride": {
+                  "description": "Optional. The category taxonomy to use for the response. Overrides the default category taxonomy for the bidder.",
+                  "enum": [
+                    "AD_CATEGORY_TAXONOMY_UNSPECIFIED",
+                    "GOOGLE_AD_CATEGORY_TAXONOMY",
+                    "IAB_CONTENT_1_0",
+                    "IAB_CONTENT_2_2"
+                  ],
+                  "enumDescriptions": [
+                    "Default value that should never be used.",
+                    "Google ad categories taxonomy, including product categories and sensitive categories. Find the category lists at https://developers.google.com/authorized-buyers/rtb/data#reference-data",
+                    "IAB Content Taxonomy 1.0. See [Content Taxonomy 1.0.tsv](https://github.com/InteractiveAdvertisingBureau/Taxonomies/blob/main/Content%20Taxonomies/Content%20Taxonomy%201.0.tsv) for more details.",
+                    "IAB Content Taxonomy 2.2. See [Content Taxonomy 2.2.tsv](https://github.com/InteractiveAdvertisingBureau/Taxonomies/blob/main/Content%20Taxonomies/Content%20Taxonomy%202.2.tsv) for more details."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
                 "filter": {
                   "description": "Query string to filter creatives. If no filter is specified, all active creatives will be returned. Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'",
                   "location": "query",
@@ -1005,6 +1022,23 @@
                 "name"
               ],
               "parameters": {
+                "adCategoryTaxonomyOverride": {
+                  "description": "Optional. The category taxonomy to use for the response. Overrides the default category taxonomy for the bidder.",
+                  "enum": [
+                    "AD_CATEGORY_TAXONOMY_UNSPECIFIED",
+                    "GOOGLE_AD_CATEGORY_TAXONOMY",
+                    "IAB_CONTENT_1_0",
+                    "IAB_CONTENT_2_2"
+                  ],
+                  "enumDescriptions": [
+                    "Default value that should never be used.",
+                    "Google ad categories taxonomy, including product categories and sensitive categories. Find the category lists at https://developers.google.com/authorized-buyers/rtb/data#reference-data",
+                    "IAB Content Taxonomy 1.0. See [Content Taxonomy 1.0.tsv](https://github.com/InteractiveAdvertisingBureau/Taxonomies/blob/main/Content%20Taxonomies/Content%20Taxonomy%201.0.tsv) for more details.",
+                    "IAB Content Taxonomy 2.2. See [Content Taxonomy 2.2.tsv](https://github.com/InteractiveAdvertisingBureau/Taxonomies/blob/main/Content%20Taxonomies/Content%20Taxonomy%202.2.tsv) for more details."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
                 "name": {
                   "description": "Required. Name of the creative to retrieve. See creative.name.",
                   "location": "path",
@@ -1045,6 +1079,23 @@
                 "parent"
               ],
               "parameters": {
+                "adCategoryTaxonomyOverride": {
+                  "description": "Optional. The category taxonomy to use for the response. Overrides the default category taxonomy for the bidder.",
+                  "enum": [
+                    "AD_CATEGORY_TAXONOMY_UNSPECIFIED",
+                    "GOOGLE_AD_CATEGORY_TAXONOMY",
+                    "IAB_CONTENT_1_0",
+                    "IAB_CONTENT_2_2"
+                  ],
+                  "enumDescriptions": [
+                    "Default value that should never be used.",
+                    "Google ad categories taxonomy, including product categories and sensitive categories. Find the category lists at https://developers.google.com/authorized-buyers/rtb/data#reference-data",
+                    "IAB Content Taxonomy 1.0. See [Content Taxonomy 1.0.tsv](https://github.com/InteractiveAdvertisingBureau/Taxonomies/blob/main/Content%20Taxonomies/Content%20Taxonomy%201.0.tsv) for more details.",
+                    "IAB Content Taxonomy 2.2. See [Content Taxonomy 2.2.tsv](https://github.com/InteractiveAdvertisingBureau/Taxonomies/blob/main/Content%20Taxonomies/Content%20Taxonomy%202.2.tsv) for more details."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
                 "filter": {
                   "description": "Query string to filter creatives. If no filter is specified, all active creatives will be returned. Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'",
                   "location": "query",
@@ -1333,7 +1384,7 @@
       }
     }
   },
-  "revision": "20260929",
+  "revision": "20261111",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "ActivatePretargetingConfigRequest": {
@@ -2026,12 +2077,14 @@
           "enum": [
             "AD_CATEGORY_TAXONOMY_UNSPECIFIED",
             "GOOGLE_AD_CATEGORY_TAXONOMY",
-            "IAB_CONTENT_1_0"
+            "IAB_CONTENT_1_0",
+            "IAB_CONTENT_2_2"
           ],
           "enumDescriptions": [
             "Default value that should never be used.",
             "Google ad categories taxonomy, including product categories and sensitive categories. Find the category lists at https://developers.google.com/authorized-buyers/rtb/data#reference-data",
-            "IAB Content Taxonomy 1.0. See https://github.com/InteractiveAdvertisingBureau/Taxonomies/blob/main/Content%20Taxonomies/Content%20Taxonomy%201.0.tsv for more details."
+            "IAB Content Taxonomy 1.0. See [Content Taxonomy 1.0.tsv](https://github.com/InteractiveAdvertisingBureau/Taxonomies/blob/main/Content%20Taxonomies/Content%20Taxonomy%201.0.tsv) for more details.",
+            "IAB Content Taxonomy 2.2. See [Content Taxonomy 2.2.tsv](https://github.com/InteractiveAdvertisingBureau/Taxonomies/blob/main/Content%20Taxonomies/Content%20Taxonomy%202.2.tsv) for more details."
           ],
           "readOnly": true,
           "type": "string"
