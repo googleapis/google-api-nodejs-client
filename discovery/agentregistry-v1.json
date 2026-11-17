@@ -2130,7 +2130,7 @@
       }
     }
   },
-  "revision": "20261029",
+  "revision": "20261108",
   "rootUrl": "https://agentregistry.googleapis.com/",
   "schemas": {
     "A2ASkill": {
@@ -2851,7 +2851,7 @@
       "id": "Frontmatter",
       "properties": {
         "compatibility": {
-          "description": "Optional. Environmental dependencies or local sidecars.",
+          "description": "Optional. Environmental dependencies or companion services.",
           "type": "string"
         },
         "description": {
