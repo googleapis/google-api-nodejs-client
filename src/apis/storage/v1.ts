@@ -1131,6 +1131,10 @@ export namespace storage_v1 {
      * The modification time of the object metadata in RFC 3339 format. Set initially to object creation time and then updated whenever any metadata of the object changes. This includes changes made by a requester, such as modifying custom metadata, as well as changes made by Cloud Storage on behalf of a requester, such as changing the storage class based on an Object Lifecycle Configuration.
      */
     updated?: string | null;
+    /**
+     * Information about the object's availability in Rapid Cache Ultra (RCU) zonal caches. This field will only populate once the object is loaded into the cache.
+     */
+    zonalAvailabilityInfo?: {availableZones?: string[]} | null;
   }
   /**
    * An access-control entry.
@@ -11790,7 +11794,8 @@ export namespace storage_v1 {
      *   //   "timeDeleted": "my_timeDeleted",
      *   //   "timeFinalized": "my_timeFinalized",
      *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *   //   "updated": "my_updated"
+     *   //   "updated": "my_updated",
+     *   //   "zonalAvailabilityInfo": {}
      *   // }
      * }
      *
@@ -11998,7 +12003,8 @@ export namespace storage_v1 {
      *       //   "timeDeleted": "my_timeDeleted",
      *       //   "timeFinalized": "my_timeFinalized",
      *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *       //   "updated": "my_updated"
+     *       //   "updated": "my_updated",
+     *       //   "zonalAvailabilityInfo": {}
      *       // }
      *     },
      *   });
@@ -12043,7 +12049,8 @@ export namespace storage_v1 {
      *   //   "timeDeleted": "my_timeDeleted",
      *   //   "timeFinalized": "my_timeFinalized",
      *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *   //   "updated": "my_updated"
+     *   //   "updated": "my_updated",
+     *   //   "zonalAvailabilityInfo": {}
      *   // }
      * }
      *
@@ -12398,7 +12405,8 @@ export namespace storage_v1 {
      *   //   "timeDeleted": "my_timeDeleted",
      *   //   "timeFinalized": "my_timeFinalized",
      *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *   //   "updated": "my_updated"
+     *   //   "updated": "my_updated",
+     *   //   "zonalAvailabilityInfo": {}
      *   // }
      * }
      *
@@ -12746,7 +12754,8 @@ export namespace storage_v1 {
      *       //   "timeDeleted": "my_timeDeleted",
      *       //   "timeFinalized": "my_timeFinalized",
      *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *       //   "updated": "my_updated"
+     *       //   "updated": "my_updated",
+     *       //   "zonalAvailabilityInfo": {}
      *       // }
      *     },
      *     media: {
@@ -12795,7 +12804,8 @@ export namespace storage_v1 {
      *   //   "timeDeleted": "my_timeDeleted",
      *   //   "timeFinalized": "my_timeFinalized",
      *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *   //   "updated": "my_updated"
+     *   //   "updated": "my_updated",
+     *   //   "zonalAvailabilityInfo": {}
      *   // }
      * }
      *
@@ -13171,7 +13181,8 @@ export namespace storage_v1 {
      *   //   "timeDeleted": "my_timeDeleted",
      *   //   "timeFinalized": "my_timeFinalized",
      *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *   //   "updated": "my_updated"
+     *   //   "updated": "my_updated",
+     *   //   "zonalAvailabilityInfo": {}
      *   // }
      * }
      *
@@ -13366,7 +13377,8 @@ export namespace storage_v1 {
      *       //   "timeDeleted": "my_timeDeleted",
      *       //   "timeFinalized": "my_timeFinalized",
      *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *       //   "updated": "my_updated"
+     *       //   "updated": "my_updated",
+     *       //   "zonalAvailabilityInfo": {}
      *       // }
      *     },
      *   });
@@ -13411,7 +13423,8 @@ export namespace storage_v1 {
      *   //   "timeDeleted": "my_timeDeleted",
      *   //   "timeFinalized": "my_timeFinalized",
      *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *   //   "updated": "my_updated"
+     *   //   "updated": "my_updated",
+     *   //   "zonalAvailabilityInfo": {}
      *   // }
      * }
      *
@@ -13606,7 +13619,8 @@ export namespace storage_v1 {
      *   //   "timeDeleted": "my_timeDeleted",
      *   //   "timeFinalized": "my_timeFinalized",
      *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *   //   "updated": "my_updated"
+     *   //   "updated": "my_updated",
+     *   //   "zonalAvailabilityInfo": {}
      *   // }
      * }
      *
@@ -13822,7 +13836,8 @@ export namespace storage_v1 {
      *       //   "timeDeleted": "my_timeDeleted",
      *       //   "timeFinalized": "my_timeFinalized",
      *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *       //   "updated": "my_updated"
+     *       //   "updated": "my_updated",
+     *       //   "zonalAvailabilityInfo": {}
      *       // }
      *     },
      *   });
@@ -14357,7 +14372,8 @@ export namespace storage_v1 {
      *       //   "timeDeleted": "my_timeDeleted",
      *       //   "timeFinalized": "my_timeFinalized",
      *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *       //   "updated": "my_updated"
+     *       //   "updated": "my_updated",
+     *       //   "zonalAvailabilityInfo": {}
      *       // }
      *     },
      *   });
@@ -14402,7 +14418,8 @@ export namespace storage_v1 {
      *   //   "timeDeleted": "my_timeDeleted",
      *   //   "timeFinalized": "my_timeFinalized",
      *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *   //   "updated": "my_updated"
+     *   //   "updated": "my_updated",
+     *   //   "zonalAvailabilityInfo": {}
      *   // }
      * }
      *
