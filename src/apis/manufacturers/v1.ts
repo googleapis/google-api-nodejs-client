@@ -165,6 +165,10 @@ export namespace manufacturers_v1 {
      */
     disclosureDate?: string | null;
     /**
+     * Optional. URLs of PDF documents for the product, such as user manuals or specifications.
+     */
+    documentLink?: string[] | null;
+    /**
      * A list of excluded destinations such as "ClientExport", "ClientShoppingCatalog" or "PartnerShoppingCatalog". For more information, see https://support.google.com/manufacturers/answer/7443550
      */
     excludedDestination?: string[] | null;
@@ -209,6 +213,10 @@ export namespace manufacturers_v1 {
      */
     itemGroupId?: string | null;
     /**
+     * Optional. The shared title of the product group that this variant belongs to.
+     */
+    itemGroupTitle?: string | null;
+    /**
      * The material of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#material.
      */
     material?: string | null;
@@ -224,6 +232,10 @@ export namespace manufacturers_v1 {
      * The pattern of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#pattern.
      */
     pattern?: string | null;
+    /**
+     * Optional. The popularity rank of the product from 0.0 (lowest) to 100.0 (highest).
+     */
+    popularityRank?: number | null;
     /**
      * The details of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productdetail.
      */
@@ -248,6 +260,14 @@ export namespace manufacturers_v1 {
      * The type or category of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#producttype.
      */
     productType?: string[] | null;
+    /**
+     * Optional. Frequently asked questions and answers about the product.
+     */
+    questionAndAnswer?: Schema$QuestionAndAnswer[];
+    /**
+     * Optional. Products related to this product, such as accessories or substitutes.
+     */
+    relatedProduct?: Schema$RelatedProduct[];
     /**
      * The release date of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#release.
      */
@@ -289,6 +309,10 @@ export namespace manufacturers_v1 {
      */
     title?: string | null;
     /**
+     * Optional. The list of all variant-identifying options for the product.
+     */
+    variantOption?: Schema$VariantOption[];
+    /**
      * The videos of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#video.
      */
     videoLink?: string[] | null;
@@ -322,6 +346,14 @@ export namespace manufacturers_v1 {
      * Optional. A unique code to identify the certification.
      */
     code?: string | null;
+    /**
+     * Optional. A URL to the certification fiche. For example: https://eprel.ec.europa.eu/fiches/smartphonestablets20231669/Fiche_2556297_EN.pdf In case of multiple languages, the English version is preferred.
+     */
+    documentLink?: string | null;
+    /**
+     * Optional. A URL to the certification label. For example: https://eprel.ec.europa.eu/labels/smartphonestablets20231669/Label_2556297.pdf
+     */
+    labelLink?: string | null;
     /**
      * Optional. A URL link to the certification.
      */
@@ -427,6 +459,14 @@ export namespace manufacturers_v1 {
      * Optional. A unique code to identify the certification.
      */
     code?: string | null;
+    /**
+     * Optional. A URL to the (English if \>1 language) certification fiche. For example: https://eprel.ec.europa.eu/fiches/smartphonestablets20231669/Fiche_2556297_EN.pdf
+     */
+    documentLink?: string | null;
+    /**
+     * Optional. A URL to the certification label. For example: https://eprel.ec.europa.eu/labels/smartphonestablets20231669/Label_2556297.pdf
+     */
+    labelLink?: string | null;
     /**
      * Optional. A URL link to the certification.
      */
@@ -856,6 +896,49 @@ export namespace manufacturers_v1 {
      * A short section name that can be reused between multiple product details.
      */
     sectionName?: string | null;
+  }
+  /**
+   * A question and answer about the product.
+   */
+  export interface Schema$QuestionAndAnswer {
+    /**
+     * Required. The answer text.
+     */
+    answer?: string | null;
+    /**
+     * Required. The question text.
+     */
+    question?: string | null;
+  }
+  /**
+   * A product related to this product.
+   */
+  export interface Schema$RelatedProduct {
+    /**
+     * Required. The identifier of the related product.
+     */
+    identifier?: string | null;
+    /**
+     * Required. The identifier type of the related product, such as "GTIN" or "ID".
+     */
+    identifierType?: string | null;
+    /**
+     * Required. The relationship to the related product, such as "ACCESSORY", "PART_OF_SET", "REQUIRED_PART", "OFTEN_BOUGHT_WITH", "SUBSTITUTE", or "DIFFERENT_BRAND".
+     */
+    relationshipType?: string | null;
+  }
+  /**
+   * A variant-identifying option for the product.
+   */
+  export interface Schema$VariantOption {
+    /**
+     * Required. The name of the variant option, such as "Color" or "Watch band style".
+     */
+    name?: string | null;
+    /**
+     * Required. The value of the variant option, such as "Red" or "Milanese loop".
+     */
+    value?: string | null;
   }
   /**
    * Voluntary Nutrition Facts.
@@ -2034,6 +2117,7 @@ export namespace manufacturers_v1 {
      *       //   "count": {},
      *       //   "description": "my_description",
      *       //   "disclosureDate": "my_disclosureDate",
+     *       //   "documentLink": [],
      *       //   "excludedDestination": [],
      *       //   "featureDescription": [],
      *       //   "flavor": "my_flavor",
@@ -2045,16 +2129,20 @@ export namespace manufacturers_v1 {
      *       //   "includedDestination": [],
      *       //   "intendedCountry": [],
      *       //   "itemGroupId": "my_itemGroupId",
+     *       //   "itemGroupTitle": "my_itemGroupTitle",
      *       //   "material": "my_material",
      *       //   "mpn": "my_mpn",
      *       //   "nutrition": {},
      *       //   "pattern": "my_pattern",
+     *       //   "popularityRank": {},
      *       //   "productDetail": [],
      *       //   "productHighlight": [],
      *       //   "productLine": "my_productLine",
      *       //   "productName": "my_productName",
      *       //   "productPageUrl": "my_productPageUrl",
      *       //   "productType": [],
+     *       //   "questionAndAnswer": [],
+     *       //   "relatedProduct": [],
      *       //   "releaseDate": "my_releaseDate",
      *       //   "richProductContent": [],
      *       //   "scent": "my_scent",
@@ -2065,6 +2153,7 @@ export namespace manufacturers_v1 {
      *       //   "targetClientId": "my_targetClientId",
      *       //   "theme": "my_theme",
      *       //   "title": "my_title",
+     *       //   "variantOption": [],
      *       //   "videoLink": [],
      *       //   "virtualModelLink": "my_virtualModelLink"
      *       // }
