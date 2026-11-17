@@ -531,7 +531,7 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$CommonLanguageSettings {
     /**
-     * The destination where API teams want this client library to be published.
+     * Deprecated: Client libraries are published for all supported languages by default when a `library_settings` entry is present with a `version` and `launch_stage`. The destination where API teams want this client library to be published.
      */
     destinations?: string[] | null;
     /**
@@ -1045,6 +1045,19 @@ export namespace servicemanagement_v1 {
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     requestedPolicyVersion?: number | null;
+  }
+  /**
+   * Rich semantic information of an API field beyond basic typing.
+   */
+  export interface Schema$GoogleApiFieldInfo {
+    /**
+     * The standard format of a field value. This does not explicitly configure any API consumer, just documents the API's format for the field it is applied to.
+     */
+    format?: string | null;
+    /**
+     * The type(s) that the annotated, generic field may represent. Currently, this must only be used on fields of type `google.protobuf.Any`. Supporting other generic types may be considered in the future.
+     */
+    referencedTypes?: Schema$TypeReference[];
   }
   /**
    * Settings for Go client libraries.
@@ -2174,6 +2187,15 @@ export namespace servicemanagement_v1 {
      * The source syntax.
      */
     syntax?: string | null;
+  }
+  /**
+   * A reference to a message type, for use in FieldInfo.
+   */
+  export interface Schema$TypeReference {
+    /**
+     * The name of the type that the annotated, generic field may represent. If the type is in the same protobuf package, the value can be the simple message name e.g., `"MyMessage"`. Otherwise, the value must be the fully-qualified message name e.g., `"google.library.v1.Book"`. If the type(s) are unknown to the service (e.g. the field accepts generic user input), use the wildcard `"*"` to denote this behavior. See [AIP-202](https://google.aip.dev/202#type-references) for more details.
+     */
+    typeName?: string | null;
   }
   /**
    * Response message for UndeleteService method.
