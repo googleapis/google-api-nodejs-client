@@ -1596,6 +1596,8 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.bidders.creatives.list({
+     *     // Optional. The category taxonomy to use for the response. Overrides the default category taxonomy for the bidder.
+     *     adCategoryTaxonomyOverride: 'placeholder-value',
      *     // Query string to filter creatives. If no filter is specified, all active creatives will be returned. Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
      *     filter: 'placeholder-value',
      *     // Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available through another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
@@ -1861,6 +1863,10 @@ export namespace realtimebidding_v1 {
   }
 
   export interface Params$Resource$Bidders$Creatives$List extends StandardParameters {
+    /**
+     * Optional. The category taxonomy to use for the response. Overrides the default category taxonomy for the bidder.
+     */
+    adCategoryTaxonomyOverride?: string;
     /**
      * Query string to filter creatives. If no filter is specified, all active creatives will be returned. Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
      */
@@ -6206,6 +6212,8 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.creatives.get({
+     *     // Optional. The category taxonomy to use for the response. Overrides the default category taxonomy for the bidder.
+     *     adCategoryTaxonomyOverride: 'placeholder-value',
      *     // Required. Name of the creative to retrieve. See creative.name.
      *     name: 'buyers/my-buyer/creatives/my-creative',
      *     // Controls the amount of information included in the response. By default only creativeServingDecision is included. To retrieve the entire creative resource (including the declared fields and the creative content) specify the view as "FULL".
@@ -6362,6 +6370,8 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.creatives.list({
+     *     // Optional. The category taxonomy to use for the response. Overrides the default category taxonomy for the bidder.
+     *     adCategoryTaxonomyOverride: 'placeholder-value',
      *     // Query string to filter creatives. If no filter is specified, all active creatives will be returned. Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
      *     filter: 'placeholder-value',
      *     // Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available through another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
@@ -6688,6 +6698,10 @@ export namespace realtimebidding_v1 {
   }
   export interface Params$Resource$Buyers$Creatives$Get extends StandardParameters {
     /**
+     * Optional. The category taxonomy to use for the response. Overrides the default category taxonomy for the bidder.
+     */
+    adCategoryTaxonomyOverride?: string;
+    /**
      * Required. Name of the creative to retrieve. See creative.name.
      */
     name?: string;
@@ -6697,6 +6711,10 @@ export namespace realtimebidding_v1 {
     view?: string;
   }
   export interface Params$Resource$Buyers$Creatives$List extends StandardParameters {
+    /**
+     * Optional. The category taxonomy to use for the response. Overrides the default category taxonomy for the bidder.
+     */
+    adCategoryTaxonomyOverride?: string;
     /**
      * Query string to filter creatives. If no filter is specified, all active creatives will be returned. Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
      */
