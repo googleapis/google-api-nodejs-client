@@ -185,6 +185,10 @@ export namespace deploymentmanager_v2 {
      */
     deletedVmCount?: number | null;
     /**
+     * Output only. [Output Only] The time when the scheduler expects capacity for this location. The field is set only while the status is PENDING. The value 9999-12-31T23:59:59.999999999Z means that the scheduler expects no capacity. The field is absent when the scheduler gives no estimate, and it is cleared when the status changes.
+     */
+    estimatedAvailabilityTime?: string | null;
+    /**
      * [Output Only] Count of VMs that started creating but encountered an error.
      */
     failedToCreateVmCount?: number | null;
@@ -410,7 +414,22 @@ export namespace deploymentmanager_v2 {
     updateTime?: string | null;
   }
   export interface Schema$GetVersionOperationMetadata {
+    inlineHbomInfo?: Schema$GetVersionOperationMetadataHbomInfo;
     inlineSbomInfo?: Schema$GetVersionOperationMetadataSbomInfo;
+  }
+  export interface Schema$GetVersionOperationMetadataHbomInfo {
+    /**
+     * A mapping of hardware sub-component categories to their component values.
+     */
+    hardwareComponentInfo?: {
+      [key: string]: Schema$GetVersionOperationMetadataHbomInfoComponentValues;
+    } | null;
+  }
+  export interface Schema$GetVersionOperationMetadataHbomInfoComponentValues {
+    /**
+     * List of obfuscated hardware component identifiers.
+     */
+    values?: string[] | null;
   }
   export interface Schema$GetVersionOperationMetadataSbomInfo {
     /**
@@ -559,6 +578,64 @@ export namespace deploymentmanager_v2 {
     nextPageToken?: string | null;
   }
   /**
+   * [Output Only] Operation metadata for microVms.export.
+   */
+  export interface Schema$MicroVmsExportOperationMetadata {
+    /**
+     * Output only. [Output Only] SHA-256 hex digest of the exported archive.
+     */
+    archiveSha256?: string | null;
+    /**
+     * Output only. [Output Only] Target Cloud Storage bucket name.
+     */
+    bucketName?: string | null;
+    /**
+     * Output only. [Output Only] Total bytes transferred to Cloud Storage.
+     */
+    bytesTransferred?: string | null;
+    /**
+     * Output only. [Output Only] Total files archived.
+     */
+    filesTransferred?: string | null;
+    /**
+     * Output only. [Output Only] Target Cloud Storage object name or prefix.
+     */
+    objectName?: string | null;
+  }
+  /**
+   * [Output Only] Operation metadata for microVms.import.
+   */
+  export interface Schema$MicroVmsImportOperationMetadata {
+    /**
+     * Output only. [Output Only] SHA-256 hex digest of the imported archive.
+     */
+    archiveSha256?: string | null;
+    /**
+     * Output only. [Output Only] Source Cloud Storage bucket name.
+     */
+    bucketName?: string | null;
+    /**
+     * Output only. [Output Only] Total bytes transferred from Cloud Storage.
+     */
+    bytesTransferred?: string | null;
+    /**
+     * Output only. [Output Only] Total files imported.
+     */
+    filesTransferred?: string | null;
+    /**
+     * Output only. [Output Only] Source Cloud Storage object name or prefix.
+     */
+    objectName?: string | null;
+    /**
+     * Output only. [Output Only] The current phase of the import operation.
+     */
+    phase?: string | null;
+    /**
+     * Output only. [Output Only] Size of the source object in bytes. Unset for DIRECTORY_SYNC.
+     */
+    totalBytes?: string | null;
+  }
+  /**
    * Represents an Operation resource. Google Compute Engine has three Operation resources: * [Global](/compute/docs/reference/rest/{$api_version\}/globalOperations) * [Regional](/compute/docs/reference/rest/{$api_version\}/regionOperations) * [Zonal](/compute/docs/reference/rest/{$api_version\}/zoneOperations) You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses. Operations can be global, regional or zonal. - For global operations, use the `globalOperations` resource. - For regional operations, use the `regionOperations` resource. - For zonal operations, use the `zoneOperations` resource. For more information, read Global, Regional, and Zonal Resources. Note that completed Operation resources have a limited retention period.
    */
   export interface Schema$Operation {
@@ -634,6 +711,14 @@ export namespace deploymentmanager_v2 {
      * Output only. [Output Only] Type of the resource. Always `compute#operation` for Operation resources.
      */
     kind?: string | null;
+    /**
+     * Output only. [Output Only] Operation metadata for microVms.export.
+     */
+    microVmsExportOperationMetadata?: Schema$MicroVmsExportOperationMetadata;
+    /**
+     * Output only. [Output Only] Operation metadata for microVms.import.
+     */
+    microVmsImportOperationMetadata?: Schema$MicroVmsImportOperationMetadata;
     /**
      * [Output Only] Name of the operation.
      */
@@ -1088,6 +1173,8 @@ export namespace deploymentmanager_v2 {
      *   //   "instancesBulkInsertOperationMetadata": {},
      *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
+     *   //   "microVmsExportOperationMetadata": {},
+     *   //   "microVmsImportOperationMetadata": {},
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
@@ -1267,6 +1354,8 @@ export namespace deploymentmanager_v2 {
      *   //   "instancesBulkInsertOperationMetadata": {},
      *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
+     *   //   "microVmsExportOperationMetadata": {},
+     *   //   "microVmsImportOperationMetadata": {},
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
@@ -1771,6 +1860,8 @@ export namespace deploymentmanager_v2 {
      *   //   "instancesBulkInsertOperationMetadata": {},
      *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
+     *   //   "microVmsExportOperationMetadata": {},
+     *   //   "microVmsImportOperationMetadata": {},
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
@@ -2126,6 +2217,8 @@ export namespace deploymentmanager_v2 {
      *   //   "instancesBulkInsertOperationMetadata": {},
      *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
+     *   //   "microVmsExportOperationMetadata": {},
+     *   //   "microVmsImportOperationMetadata": {},
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
@@ -2466,6 +2559,8 @@ export namespace deploymentmanager_v2 {
      *   //   "instancesBulkInsertOperationMetadata": {},
      *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
+     *   //   "microVmsExportOperationMetadata": {},
+     *   //   "microVmsImportOperationMetadata": {},
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
@@ -2823,6 +2918,8 @@ export namespace deploymentmanager_v2 {
      *   //   "instancesBulkInsertOperationMetadata": {},
      *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
+     *   //   "microVmsExportOperationMetadata": {},
+     *   //   "microVmsImportOperationMetadata": {},
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
@@ -3594,6 +3691,8 @@ export namespace deploymentmanager_v2 {
      *   //   "instancesBulkInsertOperationMetadata": {},
      *   //   "instancesTroubleshootOperationMetadata": {},
      *   //   "kind": "my_kind",
+     *   //   "microVmsExportOperationMetadata": {},
+     *   //   "microVmsImportOperationMetadata": {},
      *   //   "name": "my_name",
      *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
