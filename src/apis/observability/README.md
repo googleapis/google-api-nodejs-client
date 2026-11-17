@@ -4,6 +4,15 @@
 
 > Provides functionality for configuring the observability scope, which controls the log, metric, and trace data that you can view.
 
+## Support status
+**Note**: Google provides multiple libraries for this service. This library is in
+maintenance mode, and will continue to be made available for users who have
+existing applications. If you're building a new application, or modernizing a
+legacy application, please use [@google-cloud/observability](https://www.npmjs.com/package/@google-cloud/observability) instead.
+The [@google-cloud/observability](https://www.npmjs.com/package/@google-cloud/observability) library is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh
