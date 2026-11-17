@@ -1636,7 +1636,7 @@
       }
     }
   },
-  "revision": "20260827",
+  "revision": "20261112",
   "rootUrl": "https://deploymentmanager.googleapis.com/",
   "schemas": {
     "AsyncOptions": {
@@ -1775,6 +1775,12 @@
           "description": "[Output Only] Count of VMs that got deleted during rollback.",
           "format": "int32",
           "type": "integer"
+        },
+        "estimatedAvailabilityTime": {
+          "description": "Output only. [Output Only] The time when the scheduler expects capacity for this location. The field is set only while the status is PENDING. The value 9999-12-31T23:59:59.999999999Z means that the scheduler expects no capacity. The field is absent when the scheduler gives no estimate, and it is cleared when the status changes.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         },
         "failedToCreateVmCount": {
           "description": "[Output Only] Count of VMs that started creating but encountered an error.",
@@ -2288,8 +2294,37 @@
     "GetVersionOperationMetadata": {
       "id": "GetVersionOperationMetadata",
       "properties": {
+        "inlineHbomInfo": {
+          "$ref": "GetVersionOperationMetadataHbomInfo"
+        },
         "inlineSbomInfo": {
           "$ref": "GetVersionOperationMetadataSbomInfo"
+        }
+      },
+      "type": "object"
+    },
+    "GetVersionOperationMetadataHbomInfo": {
+      "id": "GetVersionOperationMetadataHbomInfo",
+      "properties": {
+        "hardwareComponentInfo": {
+          "additionalProperties": {
+            "$ref": "GetVersionOperationMetadataHbomInfoComponentValues"
+          },
+          "description": "A mapping of hardware sub-component categories to their component values.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GetVersionOperationMetadataHbomInfoComponentValues": {
+      "id": "GetVersionOperationMetadataHbomInfoComponentValues",
+      "properties": {
+        "values": {
+          "description": "List of obfuscated hardware component identifiers.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2534,6 +2569,99 @@
       },
       "type": "object"
     },
+    "MicroVmsExportOperationMetadata": {
+      "description": "[Output Only] Operation metadata for microVms.export.",
+      "id": "MicroVmsExportOperationMetadata",
+      "properties": {
+        "archiveSha256": {
+          "description": "Output only. [Output Only] SHA-256 hex digest of the exported archive.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "bucketName": {
+          "description": "Output only. [Output Only] Target Cloud Storage bucket name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "bytesTransferred": {
+          "description": "Output only. [Output Only] Total bytes transferred to Cloud Storage.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "filesTransferred": {
+          "description": "Output only. [Output Only] Total files archived.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "objectName": {
+          "description": "Output only. [Output Only] Target Cloud Storage object name or prefix.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MicroVmsImportOperationMetadata": {
+      "description": "[Output Only] Operation metadata for microVms.import.",
+      "id": "MicroVmsImportOperationMetadata",
+      "properties": {
+        "archiveSha256": {
+          "description": "Output only. [Output Only] SHA-256 hex digest of the imported archive.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "bucketName": {
+          "description": "Output only. [Output Only] Source Cloud Storage bucket name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "bytesTransferred": {
+          "description": "Output only. [Output Only] Total bytes transferred from Cloud Storage.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "filesTransferred": {
+          "description": "Output only. [Output Only] Total files imported.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "objectName": {
+          "description": "Output only. [Output Only] Source Cloud Storage object name or prefix.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "phase": {
+          "description": "Output only. [Output Only] The current phase of the import operation.",
+          "enum": [
+            "PHASE_UNSPECIFIED",
+            "SCHEDULING",
+            "PROVISIONING_STORAGE",
+            "IMPORTING",
+            "BOOTING"
+          ],
+          "enumDescriptions": [
+            "Default value; not used.",
+            "Selecting a host and reserving capacity for the MicroVM.",
+            "Creating and attaching the MicroVM's persistent session storage.",
+            "Streaming user data from Cloud Storage into the session storage.",
+            "Booting the guest VM."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalBytes": {
+          "description": "Output only. [Output Only] Size of the source object in bytes. Unset for DIRECTORY_SYNC.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Operation": {
       "description": "Represents an Operation resource. Google Compute Engine has three Operation resources: * [Global](/compute/docs/reference/rest/{$api_version}/globalOperations) * [Regional](/compute/docs/reference/rest/{$api_version}/regionOperations) * [Zonal](/compute/docs/reference/rest/{$api_version}/zoneOperations) You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses. Operations can be global, regional or zonal. - For global operations, use the `globalOperations` resource. - For regional operations, use the `regionOperations` resource. - For zonal operations, use the `zoneOperations` resource. For more information, read Global, Regional, and Zonal Resources. Note that completed Operation resources have a limited retention period.",
       "id": "Operation",
@@ -2670,6 +2798,16 @@
           "readOnly": true,
           "type": "string"
         },
+        "microVmsExportOperationMetadata": {
+          "$ref": "MicroVmsExportOperationMetadata",
+          "description": "Output only. [Output Only] Operation metadata for microVms.export.",
+          "readOnly": true
+        },
+        "microVmsImportOperationMetadata": {
+          "$ref": "MicroVmsImportOperationMetadata",
+          "description": "Output only. [Output Only] Operation metadata for microVms.import.",
+          "readOnly": true
+        },
         "name": {
           "description": "[Output Only] Name of the operation.",
           "type": "string"
@@ -2787,8 +2925,8 @@
                   "QUOTA_INFO_UNAVAILABLE",
                   "RESOURCE_USES_GLOBAL_DNS",
                   "RATE_LIMIT_EXCEEDED",
+                  "ASYNC_REPLICATION_SECONDARY_UPDATE_PENDING",
                   "UPCOMING_MAINTENANCES_UNAVAILABLE",
-                  "RESERVED_ENTRY_136",
                   "RESERVED_ENTRY_139",
                   "RESERVED_ENTRY_141",
                   "RESERVED_ENTRY_142",
@@ -2873,9 +3011,9 @@
                   "Quota information is not available to client requests (e.g: regions.list).",
                   "Indicates that a VM is using global DNS. Can also be used to indicate that a resource has attributes that could result in the creation of a VM that uses global DNS.",
                   "Resource can't be retrieved due to api quota exceeded.",
+                  "Primary disk resized. Secondary disk resize is in-progress and awaiting resource allocation in the secondary region.",
                   "Upcoming maintenance schedule is unavailable for the resource.",
                   "Reserved entries for quickly adding new warnings without breaking dependent clients.",
-                  "",
                   "",
                   "",
                   ""
@@ -3172,8 +3310,8 @@
                   "QUOTA_INFO_UNAVAILABLE",
                   "RESOURCE_USES_GLOBAL_DNS",
                   "RATE_LIMIT_EXCEEDED",
+                  "ASYNC_REPLICATION_SECONDARY_UPDATE_PENDING",
                   "UPCOMING_MAINTENANCES_UNAVAILABLE",
-                  "RESERVED_ENTRY_136",
                   "RESERVED_ENTRY_139",
                   "RESERVED_ENTRY_141",
                   "RESERVED_ENTRY_142",
@@ -3258,9 +3396,9 @@
                   "Quota information is not available to client requests (e.g: regions.list).",
                   "Indicates that a VM is using global DNS. Can also be used to indicate that a resource has attributes that could result in the creation of a VM that uses global DNS.",
                   "Resource can't be retrieved due to api quota exceeded.",
+                  "Primary disk resized. Secondary disk resize is in-progress and awaiting resource allocation in the secondary region.",
                   "Upcoming maintenance schedule is unavailable for the resource.",
                   "Reserved entries for quickly adding new warnings without breaking dependent clients.",
-                  "",
                   "",
                   "",
                   ""
@@ -3473,8 +3611,8 @@
                   "QUOTA_INFO_UNAVAILABLE",
                   "RESOURCE_USES_GLOBAL_DNS",
                   "RATE_LIMIT_EXCEEDED",
+                  "ASYNC_REPLICATION_SECONDARY_UPDATE_PENDING",
                   "UPCOMING_MAINTENANCES_UNAVAILABLE",
-                  "RESERVED_ENTRY_136",
                   "RESERVED_ENTRY_139",
                   "RESERVED_ENTRY_141",
                   "RESERVED_ENTRY_142",
@@ -3559,9 +3697,9 @@
                   "Quota information is not available to client requests (e.g: regions.list).",
                   "Indicates that a VM is using global DNS. Can also be used to indicate that a resource has attributes that could result in the creation of a VM that uses global DNS.",
                   "Resource can't be retrieved due to api quota exceeded.",
+                  "Primary disk resized. Secondary disk resize is in-progress and awaiting resource allocation in the secondary region.",
                   "Upcoming maintenance schedule is unavailable for the resource.",
                   "Reserved entries for quickly adding new warnings without breaking dependent clients.",
-                  "",
                   "",
                   "",
                   ""
