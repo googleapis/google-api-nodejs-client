@@ -136,6 +136,30 @@
   "protocol": "rest",
   "resources": {
     "customers": {
+      "methods": {
+        "getSubscriptionInfo": {
+          "description": "Gets the aggregated subscription and license information for a given customer as a singleton resource. Note: Because the data is snapshotted for ChromeOS devices, the exact numbers can be delayed by up to 10 seconds.",
+          "flatPath": "v1/customers/{customersId}/subscriptionInfo",
+          "httpMethod": "GET",
+          "id": "chromemanagement.customers.getSubscriptionInfo",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The resource name of the customer subscription info to retrieve. Format: customers/{customer}/subscriptionInfo",
+              "location": "path",
+              "pattern": "^customers/[^/]+/subscriptionInfo$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "GoogleChromeManagementVersionsV1SubscriptionInfo"
+          }
+        }
+      },
       "resources": {
         "apps": {
           "methods": {
@@ -2866,7 +2890,7 @@
       }
     }
   },
-  "revision": "20261104",
+  "revision": "20261112",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -7206,6 +7230,24 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementVersionsV1AnnualSubscriptionInfo": {
+      "description": "Information for annually recurring subscriptions/licenses.",
+      "id": "GoogleChromeManagementVersionsV1AnnualSubscriptionInfo",
+      "properties": {
+        "counts": {
+          "$ref": "GoogleChromeManagementVersionsV1LicenseCounts",
+          "description": "Output only. License counts for this subscription.",
+          "readOnly": true
+        },
+        "subscriptionEndTime": {
+          "description": "Output only. The date when the current subscription period ends.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementVersionsV1AttestationCredential": {
       "description": "Information of public key associated with a Chrome browser profile.",
       "id": "GoogleChromeManagementVersionsV1AttestationCredential",
@@ -8717,6 +8759,31 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementVersionsV1LicenseCounts": {
+      "description": "Resource counts for a specific license type.",
+      "id": "GoogleChromeManagementVersionsV1LicenseCounts",
+      "properties": {
+        "assignedCount": {
+          "description": "Output only. Total number of licenses currently assigned to users or devices.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalPurchasedCount": {
+          "description": "Output only. Total number of licenses purchased.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "unassignedCount": {
+          "description": "Output only. Total number of licenses available for assignment.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse": {
       "description": "Response to ListChromeBrowserProfileCommands method.",
       "id": "GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse",
@@ -8897,6 +8964,30 @@
         "reportingSettings": {
           "$ref": "GoogleChromeManagementVersionsV1ReportingSettings",
           "description": "Required. The reporting settings for the Palo Alto Networks config."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1PerpetualLicenseInfo": {
+      "description": "Information for perpetual licenses.",
+      "id": "GoogleChromeManagementVersionsV1PerpetualLicenseInfo",
+      "properties": {
+        "conditionallyAvailableCount": {
+          "description": "Output only. Number of standalone perpetual upgrades that were previously enrolled and later unenrolled for RMA, warranty, or repair reasons, and are only available to be reused on a same model device. Conditionally available licenses are a subset of the Assigned total.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "counts": {
+          "$ref": "GoogleChromeManagementVersionsV1LicenseCounts",
+          "description": "Output only. License counts for the perpetual SKU.",
+          "readOnly": true
+        },
+        "retiredCount": {
+          "description": "Output only. Number of perpetual upgrades that were purchased but are no longer available for enrollment. These are perpetual upgrades that were enrolled to a device that has since been retired, and the upgrade cannot be transferred or re-used on a different device. Retired licenses are a subset of the Assigned total.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -9719,6 +9810,32 @@
         "value": {
           "description": "Output only. The value of the subject alternative name with respect to the `type`.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1SubscriptionInfo": {
+      "description": "Singleton resource representing the subscription and license information for a given customer.",
+      "id": "GoogleChromeManagementVersionsV1SubscriptionInfo",
+      "properties": {
+        "chromeEnterpriseUpgradeAnnual": {
+          "$ref": "GoogleChromeManagementVersionsV1AnnualSubscriptionInfo",
+          "description": "Output only. Details for Chrome Enterprise Upgrade Annual SKU.",
+          "readOnly": true
+        },
+        "chromePerpetualUpgrade": {
+          "$ref": "GoogleChromeManagementVersionsV1PerpetualLicenseInfo",
+          "description": "Output only. Details for Chrome Ent/Edu Upgrade Perpetual SKU.",
+          "readOnly": true
+        },
+        "kioskSignageUpgradeAnnual": {
+          "$ref": "GoogleChromeManagementVersionsV1AnnualSubscriptionInfo",
+          "description": "Output only. Details for Kiosk & Signage Upgrade Annual SKU.",
+          "readOnly": true
+        },
+        "name": {
+          "description": "Identifier. The resource name of the customer subscription info. Format: customers/{customer}/subscriptionInfo",
           "type": "string"
         }
       },

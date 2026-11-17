@@ -2649,6 +2649,19 @@ export namespace chromemanagement_v1 {
     justification?: string | null;
   }
   /**
+   * Information for annually recurring subscriptions/licenses.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1AnnualSubscriptionInfo {
+    /**
+     * Output only. License counts for this subscription.
+     */
+    counts?: Schema$GoogleChromeManagementVersionsV1LicenseCounts;
+    /**
+     * Output only. The date when the current subscription period ends.
+     */
+    subscriptionEndTime?: string | null;
+  }
+  /**
    * Information of public key associated with a Chrome browser profile.
    */
   export interface Schema$GoogleChromeManagementVersionsV1AttestationCredential {
@@ -3588,6 +3601,23 @@ export namespace chromemanagement_v1 {
     reportingSettings?: Schema$GoogleChromeManagementVersionsV1ReportingSettings;
   }
   /**
+   * Resource counts for a specific license type.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1LicenseCounts {
+    /**
+     * Output only. Total number of licenses currently assigned to users or devices.
+     */
+    assignedCount?: string | null;
+    /**
+     * Output only. Total number of licenses purchased.
+     */
+    totalPurchasedCount?: string | null;
+    /**
+     * Output only. Total number of licenses available for assignment.
+     */
+    unassignedCount?: string | null;
+  }
+  /**
    * Response to ListChromeBrowserProfileCommands method.
    */
   export interface Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse {
@@ -3724,6 +3754,23 @@ export namespace chromemanagement_v1 {
      * Required. The reporting settings for the Palo Alto Networks config.
      */
     reportingSettings?: Schema$GoogleChromeManagementVersionsV1ReportingSettings;
+  }
+  /**
+   * Information for perpetual licenses.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1PerpetualLicenseInfo {
+    /**
+     * Output only. Number of standalone perpetual upgrades that were previously enrolled and later unenrolled for RMA, warranty, or repair reasons, and are only available to be reused on a same model device. Conditionally available licenses are a subset of the Assigned total.
+     */
+    conditionallyAvailableCount?: string | null;
+    /**
+     * Output only. License counts for the perpetual SKU.
+     */
+    counts?: Schema$GoogleChromeManagementVersionsV1LicenseCounts;
+    /**
+     * Output only. Number of perpetual upgrades that were purchased but are no longer available for enrollment. These are perpetual upgrades that were enrolled to a device that has since been retired, and the upgrade cannot be transferred or re-used on a different device. Retired licenses are a subset of the Assigned total.
+     */
+    retiredCount?: string | null;
   }
   /**
    * Information about a Chrome browser plugin installed on a reported Chrome installation on a device with managed Chrome browsers.
@@ -4182,6 +4229,27 @@ export namespace chromemanagement_v1 {
     value?: string | null;
   }
   /**
+   * Singleton resource representing the subscription and license information for a given customer.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1SubscriptionInfo {
+    /**
+     * Output only. Details for Chrome Enterprise Upgrade Annual SKU.
+     */
+    chromeEnterpriseUpgradeAnnual?: Schema$GoogleChromeManagementVersionsV1AnnualSubscriptionInfo;
+    /**
+     * Output only. Details for Chrome Ent/Edu Upgrade Perpetual SKU.
+     */
+    chromePerpetualUpgrade?: Schema$GoogleChromeManagementVersionsV1PerpetualLicenseInfo;
+    /**
+     * Output only. Details for Kiosk & Signage Upgrade Annual SKU.
+     */
+    kioskSignageUpgradeAnnual?: Schema$GoogleChromeManagementVersionsV1AnnualSubscriptionInfo;
+    /**
+     * Identifier. The resource name of the customer subscription info. Format: customers/{customer\}/subscriptionInfo
+     */
+    name?: string | null;
+  }
+  /**
    * A representation of non-Google (third party) user that is associated with a managed Chrome profile.
    */
   export interface Schema$GoogleChromeManagementVersionsV1ThirdPartyProfileUser {
@@ -4362,6 +4430,161 @@ export namespace chromemanagement_v1 {
       this.thirdPartyProfileUsers =
         new Resource$Customers$Thirdpartyprofileusers(this.context);
     }
+
+    /**
+     * Gets the aggregated subscription and license information for a given customer as a singleton resource. Note: Because the data is snapshotted for ChromeOS devices, the exact numbers can be delayed by up to 10 seconds.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.getSubscriptionInfo({
+     *     // Required. The resource name of the customer subscription info to retrieve. Format: customers/{customer\}/subscriptionInfo
+     *     name: 'customers/my-customer/subscriptionInfo',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chromeEnterpriseUpgradeAnnual": {},
+     *   //   "chromePerpetualUpgrade": {},
+     *   //   "kioskSignageUpgradeAnnual": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getSubscriptionInfo(
+      params: Params$Resource$Customers$Getsubscriptioninfo,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getSubscriptionInfo(
+      params?: Params$Resource$Customers$Getsubscriptioninfo,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1SubscriptionInfo>
+    >;
+    getSubscriptionInfo(
+      params: Params$Resource$Customers$Getsubscriptioninfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getSubscriptionInfo(
+      params: Params$Resource$Customers$Getsubscriptioninfo,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1SubscriptionInfo>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1SubscriptionInfo>
+    ): void;
+    getSubscriptionInfo(
+      params: Params$Resource$Customers$Getsubscriptioninfo,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1SubscriptionInfo>
+    ): void;
+    getSubscriptionInfo(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1SubscriptionInfo>
+    ): void;
+    getSubscriptionInfo(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Getsubscriptioninfo
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1SubscriptionInfo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1SubscriptionInfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1SubscriptionInfo>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1SubscriptionInfo>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Getsubscriptioninfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Getsubscriptioninfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1SubscriptionInfo>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1SubscriptionInfo>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Getsubscriptioninfo extends StandardParameters {
+    /**
+     * Required. The resource name of the customer subscription info to retrieve. Format: customers/{customer\}/subscriptionInfo
+     */
+    name?: string;
   }
 
   export class Resource$Customers$Apps {
