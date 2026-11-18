@@ -1,5 +1,16 @@
 # Changelog
 
+## [39.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v38.5.0...networkservices-v39.0.0) (2026-11-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **networkservices:** This release has breaking changes.
+
+### Features
+
+* **networkservices:** update the API ([44cac5c](https://github.com/googleapis/google-api-nodejs-client/commit/44cac5ce9ee08a68a581aa49abdda88f00ac9d2a))
+
 ## [38.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v38.4.0...networkservices-v38.5.0) (2026-11-12)
 
 

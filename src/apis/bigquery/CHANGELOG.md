@@ -1,5 +1,12 @@
 # Changelog
 
+## [27.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v27.2.0...bigquery-v27.3.0) (2026-11-18)
+
+
+### Features
+
+* **bigquery:** update the API ([5669c16](https://github.com/googleapis/google-api-nodejs-client/commit/5669c165216e73f1e744b13d53da196b82508f28))
+
 ## [27.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v27.1.0...bigquery-v27.2.0) (2026-11-12)
 
 

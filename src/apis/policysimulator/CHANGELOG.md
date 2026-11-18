@@ -1,5 +1,12 @@
 # Changelog
 
+## [20.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v20.0.1...policysimulator-v20.0.2) (2026-11-18)
+
+
+### Bug Fixes
+
+* **policysimulator:** update the API ([b98c8ff](https://github.com/googleapis/google-api-nodejs-client/commit/b98c8ff35e8ad12f45d9d92432417ab8fdfda004))
+
 ## [20.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v20.0.0...policysimulator-v20.0.1) (2026-09-23)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [31.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v31.3.0...chromemanagement-v31.4.0) (2026-11-18)
+
+
+### Features
+
+* **chromemanagement:** update the API ([7eeda03](https://github.com/googleapis/google-api-nodejs-client/commit/7eeda035c162df9d0d0c862690107416f37c53a8))
+
 ## [31.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v31.2.3...chromemanagement-v31.3.0) (2026-11-12)
 
 

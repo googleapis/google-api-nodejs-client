@@ -1,5 +1,12 @@
 # Changelog
 
+## [42.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v42.3.1...androidpublisher-v42.4.0) (2026-11-18)
+
+
+### Features
+
+* **androidpublisher:** update the API ([d7ab3fd](https://github.com/googleapis/google-api-nodejs-client/commit/d7ab3fdbf9f7bf828a6353858dc93c817c75a6eb))
+
 ## [42.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v42.3.0...androidpublisher-v42.3.1) (2026-11-12)
 
 

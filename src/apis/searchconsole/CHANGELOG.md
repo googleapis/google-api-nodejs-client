@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/searchconsole-v11.0.1...searchconsole-v11.1.0) (2026-11-18)
+
+
+### Features
+
+* **searchconsole:** update the API ([03c13e6](https://github.com/googleapis/google-api-nodejs-client/commit/03c13e6d271d3b815ec06af772765c2450c72207))
+
 ## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/searchconsole-v11.0.0...searchconsole-v11.0.1) (2026-09-23)
 
 
