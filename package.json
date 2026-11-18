@@ -100,11 +100,11 @@
     "yargs-parser": "^21.1.1"
   },
   "overrides": {
-    "@sinonjs/fake-timers": "15.4.0"
+    "@sinonjs/fake-timers": "15.5.0"
   },
   "pnpm": {
     "overrides": {
-      "@sinonjs/fake-timers": "15.4.0"
+      "@sinonjs/fake-timers": "15.5.0"
     }
   }
 }
