@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v18.0.0...tasks-v18.0.1) (2026-11-18)
+
+
+### Bug Fixes
+
+* **tasks:** update the API ([6e68263](https://github.com/googleapis/google-api-nodejs-client/commit/6e6826318e8d81bf385529928fb1a5f768da01ee))
+
 ## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v17.1.0...tasks-v18.0.0) (2026-11-12)
 
 

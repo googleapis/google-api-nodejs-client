@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/agentregistry-v5.0.0...agentregistry-v5.0.1) (2026-11-18)
+
+
+### Bug Fixes
+
+* **agentregistry:** update the API ([3b556e9](https://github.com/googleapis/google-api-nodejs-client/commit/3b556e9324be07a5fb60464a33c44bf41325ffaa))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/agentregistry-v4.4.0...agentregistry-v5.0.0) (2026-11-12)
 
 

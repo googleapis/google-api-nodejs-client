@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessplaceactions-v10.0.2...mybusinessplaceactions-v10.1.0) (2026-11-18)
+
+
+### Features
+
+* **mybusinessplaceactions:** update the API ([d4e6c30](https://github.com/googleapis/google-api-nodejs-client/commit/d4e6c3055ed4400fa39051fb585c506b165f30fb))
+
 ## [10.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessplaceactions-v10.0.1...mybusinessplaceactions-v10.0.2) (2026-10-29)
 
 
