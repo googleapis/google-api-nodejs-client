@@ -4413,6 +4413,8 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.list({
+     *     // Optional. The filter to apply to the list results. Only filtering by reservation group is supported. Examples: "reservation_group=my-group"
+     *     filter: 'placeholder-value',
      *     // The maximum number of items to return per page.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
@@ -5072,6 +5074,10 @@ export namespace bigqueryreservation_v1 {
     resource?: string;
   }
   export interface Params$Resource$Projects$Locations$Reservations$List extends StandardParameters {
+    /**
+     * Optional. The filter to apply to the list results. Only filtering by reservation group is supported. Examples: "reservation_group=my-group"
+     */
+    filter?: string;
     /**
      * The maximum number of items to return per page.
      */
