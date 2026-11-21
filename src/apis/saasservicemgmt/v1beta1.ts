@@ -1271,7 +1271,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * Output only. If the state is FAILED, the corresponding error code and message. Defaults to code=OK for all other states.
+     * Output only. If the state is `FAILED`, the corresponding error code and message. Defaults to code=OK for all other states.
      */
     error?: Schema$Status;
     /**
@@ -1736,7 +1736,7 @@ export namespace saasservicemgmt_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * UnitOperation encapsulates the intent of changing/interacting with the service component represented by the specific Unit. Multiple UnitOperations can be created (requested) and scheduled in the future, however only one will be allowed to execute at a time (that can change in the future for non-mutating operations). UnitOperations allow different actors interacting with the same unit to focus only on the change they have requested. This is a base object that contains the common fields in all unit operations. Next: 22
+   * UnitOperation encapsulates the intent of changing/interacting with the service component represented by the specific Unit. Multiple UnitOperations can be created (requested) and scheduled in the future, however only one will be allowed to execute at a time (that can change in the future for non-mutating operations). UnitOperations allow different actors interacting with the same unit to focus only on the change they have requested. This is a base object that contains the common fields in all unit operations.
    */
   export interface Schema$UnitOperation {
     /**
@@ -1771,6 +1771,10 @@ export namespace saasservicemgmt_v1beta1 {
      * Optional. Output only. The engine state for on-going deployment engine operation(s). This field is opaque for external usage.
      */
     engineState?: string | null;
+    /**
+     * Optional. Output only. If the state is `FAILED`, the corresponding error code, message, and details. Unset when there is no error.
+     */
+    error?: Schema$Status;
     /**
      * Optional. Output only. UnitOperationErrorCategory describe the error category.
      */
@@ -12103,6 +12107,7 @@ export namespace saasservicemgmt_v1beta1 {
      *       //   "deprovision": {},
      *       //   "durationLimits": {},
      *       //   "engineState": "my_engineState",
+     *       //   "error": {},
      *       //   "errorCategory": "my_errorCategory",
      *       //   "etag": "my_etag",
      *       //   "flagUpdate": {},
@@ -12132,6 +12137,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "deprovision": {},
      *   //   "durationLimits": {},
      *   //   "engineState": "my_engineState",
+     *   //   "error": {},
      *   //   "errorCategory": "my_errorCategory",
      *   //   "etag": "my_etag",
      *   //   "flagUpdate": {},
@@ -12436,6 +12442,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "deprovision": {},
      *   //   "durationLimits": {},
      *   //   "engineState": "my_engineState",
+     *   //   "error": {},
      *   //   "errorCategory": "my_errorCategory",
      *   //   "etag": "my_etag",
      *   //   "flagUpdate": {},
@@ -12756,6 +12763,7 @@ export namespace saasservicemgmt_v1beta1 {
      *       //   "deprovision": {},
      *       //   "durationLimits": {},
      *       //   "engineState": "my_engineState",
+     *       //   "error": {},
      *       //   "errorCategory": "my_errorCategory",
      *       //   "etag": "my_etag",
      *       //   "flagUpdate": {},
@@ -12785,6 +12793,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "deprovision": {},
      *   //   "durationLimits": {},
      *   //   "engineState": "my_engineState",
+     *   //   "error": {},
      *   //   "errorCategory": "my_errorCategory",
      *   //   "etag": "my_etag",
      *   //   "flagUpdate": {},
