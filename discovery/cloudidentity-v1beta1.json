@@ -2180,7 +2180,7 @@
           "parameterOrder": [],
           "parameters": {
             "filter": {
-              "description": "A CEL expression to filter the results. The only supported filter is filtering by customer. For example: `customer==customers/C0123abc`. Omitting the filter or specifying a filter of `customer==customers/my_customer` will return the assignments for the customer that the caller (authenticated user) belongs to.",
+              "description": "A CEL expression to filter the results. The only supported filter is filtering by customer. For example: `customer==\"customers/C0123abc\"`. Omitting the filter or specifying a filter of `customer==\"customers/my_customer\"` will return the assignments for the customer that the caller (authenticated user) belongs to.",
               "location": "query",
               "type": "string"
             },
@@ -2461,7 +2461,7 @@
       }
     }
   },
-  "revision": "20261019",
+  "revision": "20261116",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
