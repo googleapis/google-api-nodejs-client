@@ -164,6 +164,19 @@ export namespace firebaseml_v2beta {
     apiKeyString?: string | null;
   }
   /**
+   * Metadata describes the input audio content. Set this in `Part.audio_metadata` or `FunctionResponsePart.audio_metadata` when `inline_data` or `file_data` contains audio to configure static audio preprocessing.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1AudioMetadata {
+    /**
+     * Optional. The end offset of the audio, relative to the start of the audio stream.
+     */
+    endOffset?: string | null;
+    /**
+     * Optional. The start offset of the audio, relative to the start of the audio stream.
+     */
+    startOffset?: string | null;
+  }
+  /**
    * Configuration for audio-specific output formatting.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1AudioResponseFormat {
@@ -547,6 +560,23 @@ export namespace firebaseml_v2beta {
     totalTokens?: number | null;
   }
   /**
+   * Metadata describes the input document content. Set this in `Part.document_metadata` or `FunctionResponsePart.document_metadata` when `inline_data` or `file_data` contains a document to configure static document preprocessing.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1DocumentMediaMetadata {
+    /**
+     * Optional. Content layers to return. If empty, defaults to [PAGE_IMAGE] when DocumentMediaMetadata is set. When DocumentMediaMetadata is not set, default document processing is used (for example, page images for PDFs).
+     */
+    contentLayers?: string[] | null;
+    /**
+     * Optional. 1-indexed inclusive end page.
+     */
+    endPage?: number | null;
+    /**
+     * Optional. 1-indexed inclusive start page.
+     */
+    startPage?: number | null;
+  }
+  /**
    * Describes the options to customize dynamic retrieval.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1DynamicRetrievalConfig {
@@ -765,7 +795,7 @@ export namespace firebaseml_v2beta {
      */
     data?: string | null;
     /**
-     * Optional. Display name of the blob. Used to provide a label or filename to distinguish blobs. This field is only returned in PromptMessage for prompt management. It is currently used in the Gemini GenerateContent calls only when server side tools (code_execution, google_search, and url_context) are enabled.
+     * Optional. Display name of the blob. Used to provide a label or filename to distinguish blobs, and to reference the blob from `FunctionResponse.response` (for example, via `{"$ref": ""\}`).
      */
     displayName?: string | null;
     /**
@@ -778,7 +808,7 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1FunctionResponseFileData {
     /**
-     * Optional. Display name of the file data. Used to provide a label or filename to distinguish file datas. This field is only returned in PromptMessage for prompt management. It is currently used in the Gemini GenerateContent calls only when server side tools (code_execution, google_search, and url_context) are enabled.
+     * Optional. Display name of the file. Used to provide a label or filename to distinguish file data, and to reference the file from `FunctionResponse.response` (for example, via `{"$ref": ""\}`).
      */
     displayName?: string | null;
     /**
@@ -791,9 +821,26 @@ export namespace firebaseml_v2beta {
     mimeType?: string | null;
   }
   /**
+   * Media resolution for the input media of a `FunctionResponsePart`.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1FunctionResponseMediaResolution {
+    /**
+     * The tokenization quality used for given media.
+     */
+    level?: string | null;
+  }
+  /**
    * A datatype containing media that is part of a `FunctionResponse` message. A `FunctionResponsePart` consists of data which has an associated datatype. A `FunctionResponsePart` can only contain one of the accepted types in `FunctionResponsePart.data`. A `FunctionResponsePart` must have a fixed IANA MIME type identifying the type and subtype of the media if the `inline_data` field is filled with raw bytes.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1FunctionResponsePart {
+    /**
+     * Optional. Audio metadata. The metadata should only be specified while the audio data is presented in inline_data or file_data.
+     */
+    audioMetadata?: Schema$GoogleCloudAiplatformV1beta1AudioMetadata;
+    /**
+     * Optional. Document metadata. The metadata should only be specified while the document data is presented in inline_data or file_data.
+     */
+    documentMetadata?: Schema$GoogleCloudAiplatformV1beta1DocumentMediaMetadata;
     /**
      * URI based data.
      */
@@ -803,9 +850,42 @@ export namespace firebaseml_v2beta {
      */
     inlineData?: Schema$GoogleCloudAiplatformV1beta1FunctionResponseBlob;
     /**
-     * Optional. Processes this part's media for understanding. Only meaningful for video parts (`inline_data` or `file_data` with video mime). Non-video parts ignore this field.
+     * Optional. The strategy used by the model to process this part's media. This field is only meaningful for video parts (`inline_data` or `file_data` with a video MIME type). Non-video parts ignore this field.
      */
     mediaProcessing?: string | null;
+    /**
+     * Optional. Media resolution for the input media.
+     */
+    mediaResolution?: Schema$GoogleCloudAiplatformV1beta1FunctionResponseMediaResolution;
+    /**
+     * Optional. Spreadsheet metadata. The metadata should only be specified while the spreadsheet data is presented in inline_data or file_data.
+     */
+    spreadsheetMetadata?: Schema$GoogleCloudAiplatformV1beta1SpreadsheetMetadata;
+    /**
+     * Optional. Video metadata. The metadata should only be specified while the video data is presented in inline_data or file_data.
+     */
+    videoMetadata?: Schema$GoogleCloudAiplatformV1beta1FunctionResponseVideoMetadata;
+  }
+  /**
+   * Metadata describes the input video content of a `FunctionResponsePart`. Set this in `FunctionResponsePart.video_metadata` when `inline_data` or `file_data` contains video to configure static video preprocessing.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1FunctionResponseVideoMetadata {
+    /**
+     * Optional. Content layers to return. If empty, defaults to [FRAMES, AUDIO].
+     */
+    contentLayers?: string[] | null;
+    /**
+     * Optional. The end offset of the video.
+     */
+    endOffset?: string | null;
+    /**
+     * Optional. The frame rate of the video sent to the model. If not specified, the default value is 1.0. The valid range is (0.0, 24.0].
+     */
+    fps?: number | null;
+    /**
+     * Optional. The start offset of the video.
+     */
+    startOffset?: string | null;
   }
   /**
    * Request message for [PredictionService.GenerateContent].
@@ -1529,7 +1609,7 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1MultiSpeakerVoiceConfig {
     /**
-     * Required. A list of configurations for the voices of the speakers. Exactly two speaker voice configurations must be provided.
+     * Required. A list of configurations for the voices of the speakers. Between two and ten speaker voice configurations must be provided.
      */
     speakerVoiceConfigs?: Schema$GoogleCloudAiplatformV1beta1SpeakerVoiceConfig[];
   }
@@ -1538,6 +1618,10 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Part {
     /**
+     * Optional. Audio metadata. The metadata should only be specified while the audio data is presented in inline_data or file_data.
+     */
+    audioMetadata?: Schema$GoogleCloudAiplatformV1beta1AudioMetadata;
+    /**
      * Optional. Audio (input or output) transcription. This is only set when this `Part` contains audio data.
      */
     audioTranscription?: Schema$GoogleCloudAiplatformV1beta1AudioTranscription;
@@ -1545,6 +1629,10 @@ export namespace firebaseml_v2beta {
      * Optional. The result of executing the ExecutableCode.
      */
     codeExecutionResult?: Schema$GoogleCloudAiplatformV1beta1CodeExecutionResult;
+    /**
+     * Optional. Document metadata. The metadata should only be specified while the document data is presented in inline_data or file_data.
+     */
+    documentMetadata?: Schema$GoogleCloudAiplatformV1beta1DocumentMediaMetadata;
     /**
      * Optional. Code generated by the model that is intended to be executed.
      */
@@ -1566,7 +1654,7 @@ export namespace firebaseml_v2beta {
      */
     inlineData?: Schema$GoogleCloudAiplatformV1beta1Blob;
     /**
-     * Optional. How the model processes this part's media for understanding. Only meaningful for video parts (`inline_data` or `file_data` with video mime). Non-video parts ignore this field.
+     * Optional. The strategy used by the model to process this part's media. This field is only meaningful for video parts (`inline_data` or `file_data` with a video MIME type). Non-video parts ignore this field.
      */
     mediaProcessing?: string | null;
     /**
@@ -1577,6 +1665,10 @@ export namespace firebaseml_v2beta {
      * Optional. Turn-level metadata for speech generation (e.g. Daikon speaker/style). May be set alongside `text` to attach speaker and style information to a text part.
      */
     speechMetadata?: Schema$GoogleCloudAiplatformV1beta1SpeechMetadata;
+    /**
+     * Optional. Spreadsheet metadata. The metadata should only be specified while the spreadsheet data is presented in inline_data or file_data.
+     */
+    spreadsheetMetadata?: Schema$GoogleCloudAiplatformV1beta1SpreadsheetMetadata;
     /**
      * Optional. The text content of the part. When sent from the VSCode Gemini Code Assist extension, references to @mentioned items will be converted to markdown boldface text. For example `@my-repo` will be converted to and sent as `**my-repo**` by the IDE agent.
      */
@@ -1589,6 +1681,14 @@ export namespace firebaseml_v2beta {
      * Optional. An opaque signature for the thought so it can be reused in subsequent requests.
      */
     thoughtSignature?: string | null;
+    /**
+     * Optional. Server-side tool call. This field is populated when the model predicts a tool invocation that should be executed on the server. The client is expected to echo this message back to the API.
+     */
+    toolCall?: Schema$GoogleCloudAiplatformV1beta1PartToolCall;
+    /**
+     * Optional. The output from a server-side `ToolCall` execution. This field is populated by the client with the results of executing the corresponding `ToolCall`.
+     */
+    toolResponse?: Schema$GoogleCloudAiplatformV1beta1PartToolResponse;
     /**
      * Optional. Video metadata. The metadata should only be specified while the video data is presented in inline_data or file_data.
      */
@@ -1631,6 +1731,40 @@ export namespace firebaseml_v2beta {
      * The tokenization quality used for given media.
      */
     level?: string | null;
+  }
+  /**
+   * A predicted server-side `ToolCall` returned from the model. This message contains information about a tool that the model wants to invoke. The client is NOT expected to execute this `ToolCall`. Instead, the client should pass this `ToolCall` back to the API in a subsequent turn within a `Content` message, along with the corresponding `ToolResponse`.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PartToolCall {
+    /**
+     * Optional. The tool call arguments. Example: {"arg1" : "value1", "arg2" : "value2" , ...\}
+     */
+    args?: {[key: string]: any} | null;
+    /**
+     * Optional. Unique identifier of the tool call. The server returns the tool response with the matching `id`.
+     */
+    id?: string | null;
+    /**
+     * Optional. The type of tool that was called.
+     */
+    toolType?: string | null;
+  }
+  /**
+   * The output from a server-side `ToolCall` execution. This message contains the results of a tool invocation that was initiated by a `ToolCall` from the model. The client should pass this `ToolResponse` back to the API in a subsequent turn within a `Content` message, along with the corresponding `ToolCall`.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PartToolResponse {
+    /**
+     * Optional. The identifier of the tool call this response is for.
+     */
+    id?: string | null;
+    /**
+     * Optional. The tool response.
+     */
+    response?: {[key: string]: any} | null;
+    /**
+     * Optional. The type of tool that was called, matching the `tool_type` in the corresponding `ToolCall`.
+     */
+    toolType?: string | null;
   }
   /**
    * Configuration for a prebuilt voice.
@@ -2047,6 +2181,10 @@ export namespace firebaseml_v2beta {
      */
     multiSpeakerVoiceConfig?: Schema$GoogleCloudAiplatformV1beta1MultiSpeakerVoiceConfig;
     /**
+     * Optional. Controls text normalization before speech synthesis.
+     */
+    textNormalization?: string | null;
+    /**
      * The configuration for the voice to use.
      */
     voiceConfig?: Schema$GoogleCloudAiplatformV1beta1VoiceConfig;
@@ -2063,6 +2201,23 @@ export namespace firebaseml_v2beta {
      * Optional. Natural language description of the vocal style (e.g., "cheerful").
      */
     style?: string | null;
+  }
+  /**
+   * Metadata describes the input spreadsheet content. Set this in `Part.spreadsheet_metadata` or `FunctionResponsePart.spreadsheet_metadata` when `inline_data` or `file_data` contains a spreadsheet to configure static spreadsheet preprocessing.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SpreadsheetMetadata {
+    /**
+     * Optional. Content layers to return. If empty, defaults to [DATA, FORMULAS] when SpreadsheetMetadata is set.
+     */
+    contentLayers?: string[] | null;
+    /**
+     * Optional. The 1-indexed index of the sheet to extract, in workbook order. If not set, all sheets are extracted.
+     */
+    sheetIndex?: number | null;
+    /**
+     * Optional. The range of cells to extract, in A1 notation (e.g. "A1:D10"). If not set, the full occupied area of the sheet is used.
+     */
+    visibleCells?: string | null;
   }
   /**
    * Configuration for text-specific output formatting.
@@ -2363,6 +2518,10 @@ export namespace firebaseml_v2beta {
    * Provides metadata for a video, including the start and end offsets for clipping and the frame rate.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1VideoMetadata {
+    /**
+     * Optional. Content layers to return. If empty, defaults to [FRAMES, AUDIO].
+     */
+    contentLayers?: string[] | null;
     /**
      * Optional. The end offset of the video.
      */

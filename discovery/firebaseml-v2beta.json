@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20261108",
+  "revision": "20261119",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -252,6 +252,23 @@
         },
         "apiKeyString": {
           "description": "The API key string. Either this or `api_key_secret_version` must be set.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1AudioMetadata": {
+      "description": "Metadata describes the input audio content. Set this in `Part.audio_metadata` or `FunctionResponsePart.audio_metadata` when `inline_data` or `file_data` contains audio to configure static audio preprocessing.",
+      "id": "GoogleCloudAiplatformV1beta1AudioMetadata",
+      "properties": {
+        "endOffset": {
+          "description": "Optional. The end offset of the audio, relative to the start of the audio stream.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "startOffset": {
+          "description": "Optional. The start offset of the audio, relative to the start of the audio stream.",
+          "format": "google-duration",
           "type": "string"
         }
       },
@@ -881,6 +898,40 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1DocumentMediaMetadata": {
+      "description": "Metadata describes the input document content. Set this in `Part.document_metadata` or `FunctionResponsePart.document_metadata` when `inline_data` or `file_data` contains a document to configure static document preprocessing.",
+      "id": "GoogleCloudAiplatformV1beta1DocumentMediaMetadata",
+      "properties": {
+        "contentLayers": {
+          "description": "Optional. Content layers to return. If empty, defaults to [PAGE_IMAGE] when DocumentMediaMetadata is set. When DocumentMediaMetadata is not set, default document processing is used (for example, page images for PDFs).",
+          "items": {
+            "enum": [
+              "CONTENT_LAYER_UNSPECIFIED",
+              "PAGE_IMAGE",
+              "PAGE_TEXT"
+            ],
+            "enumDescriptions": [
+              "Default value.",
+              "Rendered page images.",
+              "Extracted page text."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "endPage": {
+          "description": "Optional. 1-indexed inclusive end page.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startPage": {
+          "description": "Optional. 1-indexed inclusive start page.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1DynamicRetrievalConfig": {
       "description": "Describes the options to customize dynamic retrieval.",
       "id": "GoogleCloudAiplatformV1beta1DynamicRetrievalConfig",
@@ -1226,7 +1277,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. Display name of the blob. Used to provide a label or filename to distinguish blobs. This field is only returned in PromptMessage for prompt management. It is currently used in the Gemini GenerateContent calls only when server side tools (code_execution, google_search, and url_context) are enabled.",
+          "description": "Optional. Display name of the blob. Used to provide a label or filename to distinguish blobs, and to reference the blob from `FunctionResponse.response` (for example, via `{\"$ref\": \"\"}`).",
           "type": "string"
         },
         "mimeType": {
@@ -1241,7 +1292,7 @@
       "id": "GoogleCloudAiplatformV1beta1FunctionResponseFileData",
       "properties": {
         "displayName": {
-          "description": "Optional. Display name of the file data. Used to provide a label or filename to distinguish file datas. This field is only returned in PromptMessage for prompt management. It is currently used in the Gemini GenerateContent calls only when server side tools (code_execution, google_search, and url_context) are enabled.",
+          "description": "Optional. Display name of the file. Used to provide a label or filename to distinguish file data, and to reference the file from `FunctionResponse.response` (for example, via `{\"$ref\": \"\"}`).",
           "type": "string"
         },
         "fileUri": {
@@ -1255,10 +1306,43 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1FunctionResponseMediaResolution": {
+      "description": "Media resolution for the input media of a `FunctionResponsePart`.",
+      "id": "GoogleCloudAiplatformV1beta1FunctionResponseMediaResolution",
+      "properties": {
+        "level": {
+          "description": "The tokenization quality used for given media.",
+          "enum": [
+            "MEDIA_RESOLUTION_UNSPECIFIED",
+            "MEDIA_RESOLUTION_LOW",
+            "MEDIA_RESOLUTION_MEDIUM",
+            "MEDIA_RESOLUTION_HIGH",
+            "MEDIA_RESOLUTION_ULTRA_HIGH"
+          ],
+          "enumDescriptions": [
+            "Media resolution has not been set.",
+            "Media resolution set to low.",
+            "Media resolution set to medium.",
+            "Media resolution set to high.",
+            "Media resolution set to ultra high. This is for image only."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1FunctionResponsePart": {
       "description": "A datatype containing media that is part of a `FunctionResponse` message. A `FunctionResponsePart` consists of data which has an associated datatype. A `FunctionResponsePart` can only contain one of the accepted types in `FunctionResponsePart.data`. A `FunctionResponsePart` must have a fixed IANA MIME type identifying the type and subtype of the media if the `inline_data` field is filled with raw bytes.",
       "id": "GoogleCloudAiplatformV1beta1FunctionResponsePart",
       "properties": {
+        "audioMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1AudioMetadata",
+          "description": "Optional. Audio metadata. The metadata should only be specified while the audio data is presented in inline_data or file_data."
+        },
+        "documentMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1DocumentMediaMetadata",
+          "description": "Optional. Document metadata. The metadata should only be specified while the document data is presented in inline_data or file_data."
+        },
         "fileData": {
           "$ref": "GoogleCloudAiplatformV1beta1FunctionResponseFileData",
           "description": "URI based data."
@@ -1268,17 +1352,70 @@
           "description": "Inline media bytes."
         },
         "mediaProcessing": {
-          "description": "Optional. Processes this part's media for understanding. Only meaningful for video parts (`inline_data` or `file_data` with video mime). Non-video parts ignore this field.",
+          "description": "Optional. The strategy used by the model to process this part's media. This field is only meaningful for video parts (`inline_data` or `file_data` with a video MIME type). Non-video parts ignore this field.",
           "enum": [
             "MEDIA_PROCESSING_UNSPECIFIED",
             "STATIC",
             "AGENTIC"
           ],
           "enumDescriptions": [
-            "Defaults to model-specific processing.",
-            "Fixed-rate frame extraction. All frames placed in context.",
-            "Model-driven dynamic navigation. Recommended for most use cases."
+            "Default value. The model uses its specific default processing strategy.",
+            "Fixed-rate frame extraction. The model extracts frames at a fixed rate and places all of them into the context.",
+            "Model-driven dynamic navigation. The model dynamically navigates the media. This is recommended for most use cases."
           ],
+          "type": "string"
+        },
+        "mediaResolution": {
+          "$ref": "GoogleCloudAiplatformV1beta1FunctionResponseMediaResolution",
+          "description": "Optional. Media resolution for the input media."
+        },
+        "spreadsheetMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1SpreadsheetMetadata",
+          "description": "Optional. Spreadsheet metadata. The metadata should only be specified while the spreadsheet data is presented in inline_data or file_data."
+        },
+        "videoMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1FunctionResponseVideoMetadata",
+          "description": "Optional. Video metadata. The metadata should only be specified while the video data is presented in inline_data or file_data."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FunctionResponseVideoMetadata": {
+      "description": "Metadata describes the input video content of a `FunctionResponsePart`. Set this in `FunctionResponsePart.video_metadata` when `inline_data` or `file_data` contains video to configure static video preprocessing.",
+      "id": "GoogleCloudAiplatformV1beta1FunctionResponseVideoMetadata",
+      "properties": {
+        "contentLayers": {
+          "description": "Optional. Content layers to return. If empty, defaults to [FRAMES, AUDIO].",
+          "items": {
+            "enum": [
+              "CONTENT_LAYER_UNSPECIFIED",
+              "FRAMES",
+              "AUDIO",
+              "TRANSCRIPT"
+            ],
+            "enumDescriptions": [
+              "Default value.",
+              "Extract video frames.",
+              "Extract audio track.",
+              "Extract audio transcript."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "endOffset": {
+          "description": "Optional. The end offset of the video.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "fps": {
+          "description": "Optional. The frame rate of the video sent to the model. If not specified, the default value is 1.0. The valid range is (0.0, 24.0].",
+          "format": "double",
+          "type": "number"
+        },
+        "startOffset": {
+          "description": "Optional. The start offset of the video.",
+          "format": "google-duration",
           "type": "string"
         }
       },
@@ -1789,14 +1926,16 @@
             "LOW",
             "MEDIUM",
             "HIGH",
-            "MINIMAL"
+            "MINIMAL",
+            "XHIGH"
           ],
           "enumDescriptions": [
             "Unspecified thinking level.",
             "Low thinking level.",
             "Medium thinking level.",
             "High thinking level.",
-            "MINIMAL thinking level."
+            "MINIMAL thinking level.",
+            "XHIGH thinking level."
           ],
           "type": "string"
         }
@@ -2413,7 +2552,7 @@
       "id": "GoogleCloudAiplatformV1beta1MultiSpeakerVoiceConfig",
       "properties": {
         "speakerVoiceConfigs": {
-          "description": "Required. A list of configurations for the voices of the speakers. Exactly two speaker voice configurations must be provided.",
+          "description": "Required. A list of configurations for the voices of the speakers. Between two and ten speaker voice configurations must be provided.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1beta1SpeakerVoiceConfig"
           },
@@ -2426,6 +2565,10 @@
       "description": "A datatype containing media that is part of a multi-part Content message. A `Part` consists of data which has an associated datatype. A `Part` must contain one of the accepted types in `Part.data`. For media types that are not text, `Part` must have a fixed IANA MIME type identifying the type and subtype of the media if `inline_data` or `file_data` field is filled with raw bytes.",
       "id": "GoogleCloudAiplatformV1beta1Part",
       "properties": {
+        "audioMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1AudioMetadata",
+          "description": "Optional. Audio metadata. The metadata should only be specified while the audio data is presented in inline_data or file_data."
+        },
         "audioTranscription": {
           "$ref": "GoogleCloudAiplatformV1beta1AudioTranscription",
           "description": "Optional. Audio (input or output) transcription. This is only set when this `Part` contains audio data."
@@ -2433,6 +2576,10 @@
         "codeExecutionResult": {
           "$ref": "GoogleCloudAiplatformV1beta1CodeExecutionResult",
           "description": "Optional. The result of executing the ExecutableCode."
+        },
+        "documentMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1DocumentMediaMetadata",
+          "description": "Optional. Document metadata. The metadata should only be specified while the document data is presented in inline_data or file_data."
         },
         "executableCode": {
           "$ref": "GoogleCloudAiplatformV1beta1ExecutableCode",
@@ -2455,16 +2602,16 @@
           "description": "Optional. The inline data content of the part. This can be used to include images, audio, or video in a request."
         },
         "mediaProcessing": {
-          "description": "Optional. How the model processes this part's media for understanding. Only meaningful for video parts (`inline_data` or `file_data` with video mime). Non-video parts ignore this field.",
+          "description": "Optional. The strategy used by the model to process this part's media. This field is only meaningful for video parts (`inline_data` or `file_data` with a video MIME type). Non-video parts ignore this field.",
           "enum": [
             "MEDIA_PROCESSING_UNSPECIFIED",
             "STATIC",
             "AGENTIC"
           ],
           "enumDescriptions": [
-            "Defaults to model-specific processing.",
-            "Fixed-rate frame extraction. All frames placed in context.",
-            "Model-driven dynamic navigation. Recommended for most use cases."
+            "Default value. The model uses its specific default processing strategy.",
+            "Fixed-rate frame extraction. The model extracts frames at a fixed rate and places all of them into the context.",
+            "Model-driven dynamic navigation. The model dynamically navigates the media. This is recommended for most use cases."
           ],
           "type": "string"
         },
@@ -2475,6 +2622,10 @@
         "speechMetadata": {
           "$ref": "GoogleCloudAiplatformV1beta1SpeechMetadata",
           "description": "Optional. Turn-level metadata for speech generation (e.g. Daikon speaker/style). May be set alongside `text` to attach speaker and style information to a text part."
+        },
+        "spreadsheetMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1SpreadsheetMetadata",
+          "description": "Optional. Spreadsheet metadata. The metadata should only be specified while the spreadsheet data is presented in inline_data or file_data."
         },
         "text": {
           "description": "Optional. The text content of the part. When sent from the VSCode Gemini Code Assist extension, references to @mentioned items will be converted to markdown boldface text. For example `@my-repo` will be converted to and sent as `**my-repo**` by the IDE agent.",
@@ -2488,6 +2639,14 @@
           "description": "Optional. An opaque signature for the thought so it can be reused in subsequent requests.",
           "format": "byte",
           "type": "string"
+        },
+        "toolCall": {
+          "$ref": "GoogleCloudAiplatformV1beta1PartToolCall",
+          "description": "Optional. Server-side tool call. This field is populated when the model predicts a tool invocation that should be executed on the server. The client is expected to echo this message back to the API."
+        },
+        "toolResponse": {
+          "$ref": "GoogleCloudAiplatformV1beta1PartToolResponse",
+          "description": "Optional. The output from a server-side `ToolCall` execution. This field is populated by the client with the results of executing the corresponding `ToolCall`."
         },
         "videoMetadata": {
           "$ref": "GoogleCloudAiplatformV1beta1VideoMetadata",
@@ -2515,6 +2674,84 @@
             "Media resolution set to medium.",
             "Media resolution set to high.",
             "Media resolution set to ultra high. This is for image only."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1PartToolCall": {
+      "description": "A predicted server-side `ToolCall` returned from the model. This message contains information about a tool that the model wants to invoke. The client is NOT expected to execute this `ToolCall`. Instead, the client should pass this `ToolCall` back to the API in a subsequent turn within a `Content` message, along with the corresponding `ToolResponse`.",
+      "id": "GoogleCloudAiplatformV1beta1PartToolCall",
+      "properties": {
+        "args": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The tool call arguments. Example: {\"arg1\" : \"value1\", \"arg2\" : \"value2\" , ...}",
+          "type": "object"
+        },
+        "id": {
+          "description": "Optional. Unique identifier of the tool call. The server returns the tool response with the matching `id`.",
+          "type": "string"
+        },
+        "toolType": {
+          "description": "Optional. The type of tool that was called.",
+          "enum": [
+            "TOOL_TYPE_UNSPECIFIED",
+            "GOOGLE_SEARCH_WEB",
+            "GOOGLE_SEARCH_IMAGE",
+            "URL_CONTEXT",
+            "GOOGLE_MAPS",
+            "MEDIA_PROCESSING"
+          ],
+          "enumDescriptions": [
+            "Unspecified tool type.",
+            "Google search tool, maps to Tool.google_search.search_types.web_search.",
+            "Image search tool, maps to Tool.google_search.search_types.image_search.",
+            "URL context tool, maps to Tool.url_context.",
+            "Google maps tool, maps to Tool.google_maps.",
+            "Media Processing tool types (e.g. video, audio, etc.)."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1PartToolResponse": {
+      "description": "The output from a server-side `ToolCall` execution. This message contains the results of a tool invocation that was initiated by a `ToolCall` from the model. The client should pass this `ToolResponse` back to the API in a subsequent turn within a `Content` message, along with the corresponding `ToolCall`.",
+      "id": "GoogleCloudAiplatformV1beta1PartToolResponse",
+      "properties": {
+        "id": {
+          "description": "Optional. The identifier of the tool call this response is for.",
+          "type": "string"
+        },
+        "response": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The tool response.",
+          "type": "object"
+        },
+        "toolType": {
+          "description": "Optional. The type of tool that was called, matching the `tool_type` in the corresponding `ToolCall`.",
+          "enum": [
+            "TOOL_TYPE_UNSPECIFIED",
+            "GOOGLE_SEARCH_WEB",
+            "GOOGLE_SEARCH_IMAGE",
+            "URL_CONTEXT",
+            "GOOGLE_MAPS",
+            "MEDIA_PROCESSING"
+          ],
+          "enumDescriptions": [
+            "Unspecified tool type.",
+            "Google search tool, maps to Tool.google_search.search_types.web_search.",
+            "Image search tool, maps to Tool.google_search.search_types.image_search.",
+            "URL context tool, maps to Tool.url_context.",
+            "Google maps tool, maps to Tool.google_maps.",
+            "Media Processing tool types (e.g. video, audio, etc.)."
           ],
           "type": "string"
         }
@@ -3231,6 +3468,22 @@
           "$ref": "GoogleCloudAiplatformV1beta1MultiSpeakerVoiceConfig",
           "description": "The configuration for a multi-speaker text-to-speech request. This field is mutually exclusive with `voice_config`."
         },
+        "textNormalization": {
+          "description": "Optional. Controls text normalization before speech synthesis.",
+          "enum": [
+            "TEXT_NORMALIZATION_UNSPECIFIED",
+            "AUTO",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified text normalization mode. Defaults to `AUTO`.",
+            "Automatically determines whether to apply text normalization based on the model and speech mode.",
+            "Enables text normalization for numbers, currencies, dates, and units.",
+            "Disables text normalization for pre-normalized or phonetic inputs."
+          ],
+          "type": "string"
+        },
         "voiceConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1VoiceConfig",
           "description": "The configuration for the voice to use."
@@ -3248,6 +3501,41 @@
         },
         "style": {
           "description": "Optional. Natural language description of the vocal style (e.g., \"cheerful\").",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1SpreadsheetMetadata": {
+      "description": "Metadata describes the input spreadsheet content. Set this in `Part.spreadsheet_metadata` or `FunctionResponsePart.spreadsheet_metadata` when `inline_data` or `file_data` contains a spreadsheet to configure static spreadsheet preprocessing.",
+      "id": "GoogleCloudAiplatformV1beta1SpreadsheetMetadata",
+      "properties": {
+        "contentLayers": {
+          "description": "Optional. Content layers to return. If empty, defaults to [DATA, FORMULAS] when SpreadsheetMetadata is set.",
+          "items": {
+            "enum": [
+              "CONTENT_LAYER_UNSPECIFIED",
+              "DATA",
+              "FORMULAS",
+              "VISUAL"
+            ],
+            "enumDescriptions": [
+              "Default value.",
+              "Cell values, merges, and formats.",
+              "Formula expressions and their computed results.",
+              "A rendered image of the sheet."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sheetIndex": {
+          "description": "Optional. The 1-indexed index of the sheet to extract, in workbook order. If not set, all sheets are extracted.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "visibleCells": {
+          "description": "Optional. The range of cells to extract, in A1 notation (e.g. \"A1:D10\"). If not set, the full occupied area of the sheet is used.",
           "type": "string"
         }
       },
@@ -3704,6 +3992,25 @@
       "description": "Provides metadata for a video, including the start and end offsets for clipping and the frame rate.",
       "id": "GoogleCloudAiplatformV1beta1VideoMetadata",
       "properties": {
+        "contentLayers": {
+          "description": "Optional. Content layers to return. If empty, defaults to [FRAMES, AUDIO].",
+          "items": {
+            "enum": [
+              "CONTENT_LAYER_UNSPECIFIED",
+              "FRAMES",
+              "AUDIO",
+              "TRANSCRIPT"
+            ],
+            "enumDescriptions": [
+              "Default value.",
+              "Extract video frames.",
+              "Extract audio track.",
+              "Extract audio transcript."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
         "endOffset": {
           "description": "Optional. The end offset of the video.",
           "format": "google-duration",
