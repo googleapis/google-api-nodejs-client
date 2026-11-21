@@ -426,6 +426,10 @@ export namespace travelimpactmodel_v1 {
      */
     emissionsMetadata?: Schema$EmissionsMetadata;
     /**
+     * Output only. Errors detailing why detailed emission estimates could not be returned for the flight. Empty when emission estimates are present.
+     */
+    errors?: Schema$Status[];
+    /**
      * Output only. Matches the flight identifiers in the request. Note: all IATA codes are capitalized.
      */
     flight?: Schema$Flight;
@@ -450,6 +454,10 @@ export namespace travelimpactmodel_v1 {
      * Optional. Per-passenger emission estimate numbers. Will not be present if emissions could not be computed. For the list of reasons why emissions could not be computed, see ComputeFlightEmissions.
      */
     emissionsGramsPerPax?: Schema$EmissionsGramsPerPax;
+    /**
+     * Output only. Errors detailing why emission estimates could not be returned for the flight. Empty when emission estimates are present.
+     */
+    errors?: Schema$Status[];
     /**
      * Identifier. Matches the flight identifiers in the request. Note: all IATA codes are capitalized.
      */
@@ -556,6 +564,23 @@ export namespace travelimpactmodel_v1 {
     origin?: string | null;
   }
   /**
+   * Represents an error encountered while processing an individual flight or market in a request. When emission estimates cannot be computed for a requested item, the `errors` field contains one or more `Status` objects describing why: * `INVALID_ARGUMENT` (`code` `3`): Reports input errors on the requested item, such as missing or invalid airport codes, operating carrier codes, flight numbers, or departure dates. Multiple `Status` entries may be returned if multiple input fields are invalid. * `NOT_FOUND` (`code` `5`): Indicates that no emission estimates matched the requested flight or market inputs.
+   */
+  export interface Schema$Status {
+    /**
+     * The numeric status code corresponding to a `google.rpc.Code` enum value: * `3` (`INVALID_ARGUMENT`): Input error (for example, a missing or invalid airport or carrier code). * `5` (`NOT_FOUND`): No emission estimates matched the requested inputs.
+     */
+    code?: number | null;
+    /**
+     * Additional structured error details, when available.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A human-readable error message in English describing why emission estimates could not be returned for the requested item.
+     */
+    message?: string | null;
+  }
+  /**
    * Typical flight emission estimates for a certain market
    */
   export interface Schema$TypicalFlightEmissions {
@@ -563,6 +588,10 @@ export namespace travelimpactmodel_v1 {
      * Optional. Typical flight emissions per passenger for requested market. Will not be present if a typical emissions could not be computed. For the list of reasons why typical flight emissions could not be computed, see [GitHub](https://github.com/google/travel-impact-model/blob/main/projects/typical_flight_emissions.md#step-7-validate-dataset).
      */
     emissionsGramsPerPax?: Schema$EmissionsGramsPerPax;
+    /**
+     * Output only. Errors detailing why typical flight emission estimates could not be returned for the market. Empty when emission estimates are present.
+     */
+    errors?: Schema$Status[];
     /**
      * Identifier. Matches the flight identifiers in the request. Note: all IATA codes are capitalized.
      */
