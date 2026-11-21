@@ -1278,6 +1278,14 @@ export namespace searchads360_v0 {
      */
     verticalAdsListingRegion?: string | null;
     /**
+     * Integer value specifying the user rating of the vertical ads listing as a number from 1 to 5, where 5 is the best. The value will always be within this range.
+     */
+    verticalAdsListingUserRating?: string | null;
+    /**
+     * The name of the venue for the vertical ads listing, for example, the venue for a concert event.
+     */
+    verticalAdsListingVenue?: string | null;
+    /**
      * A specific partner account within a Partner Center (for example, Hotel Center) that supplies inventory feed data for Vertical Ads.
      */
     verticalAdsPartnerAccount?: string | null;
@@ -1303,7 +1311,7 @@ export namespace searchads360_v0 {
      */
     source?: string | null;
     /**
-     * Indicates whether the content is considered synthetic by this source.
+     * Indicates the attestation status for whether the content should be labeled as created or edited with AI by this source.
      */
     status?: string | null;
   }
@@ -1984,7 +1992,7 @@ export namespace searchads360_v0 {
      */
     enableLocal?: boolean | null;
     /**
-     * Feed label of products to include in the campaign. Valid feed labels may contain a maximum of 20 characters including uppercase letters, numbers, hyphens, and underscores. If you previously used the deprecated `sales_country` in the two-letter country code (`XX`) format, the `feed_label` field should be used instead. For more information see the [feed label](//support.google.com/merchants/answer/12453549) support article.
+     * Feed label of products to include in the campaign. Valid feed labels may contain a maximum of 20 characters including uppercase letters, numbers, hyphens, and underscores. If you previously used the deprecated `sales_country` in the two-letter country code (`XX`) format, the `feed_label` field should be used instead. For more information see the [feed label](https://support.google.com/merchants/answer/12453549) support article.
      */
     feedLabel?: string | null;
     /**
@@ -3019,6 +3027,10 @@ export namespace searchads360_v0 {
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__BiddingStrategy {
     /**
+     * Immutable. Whether Google Ads auction-time bidding is enabled for this bidding strategy. This field does not cover Microsoft Advertising auction-time bidding.
+     */
+    auctionTimeBiddingEnabled?: boolean | null;
+    /**
      * Output only. The number of campaigns attached to this bidding strategy. This field is read-only.
      */
     campaignCount?: string | null;
@@ -3054,6 +3066,10 @@ export namespace searchads360_v0 {
      * Output only. The number of non-removed campaigns attached to this bidding strategy. This field is read-only.
      */
     nonRemovedCampaignCount?: string | null;
+    /**
+     * Immutable. Whether this bidding strategy is a Search Ads 360 portfolio group. A portfolio group is the parent strategy of a multi-target portfolio.
+     */
+    portfolioGroupEnabled?: boolean | null;
     /**
      * Immutable. The resource name of the bidding strategy. Bidding strategy resource names have the form: `customers/{customer_id\}/biddingStrategies/{bidding_strategy_id\}`
      */
@@ -4219,6 +4235,19 @@ export namespace searchads360_v0 {
     resourceName?: string | null;
   }
   /**
+   * Search Ads 360 settings for a bidding strategy.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__SearchAds360BiddingStrategy {
+    /**
+     * The resource name of the portfolio group bidding strategy that this sub-strategy belongs to.
+     */
+    portfolioGroupBiddingStrategy?: string | null;
+    /**
+     * Immutable. The resource name of the Search Ads 360 bidding strategy. Search Ads 360 bidding strategy resource names have the form: `customers/{customer_id\}/searchAds360BiddingStrategies/{bidding_strategy_id\}`
+     */
+    resourceName?: string | null;
+  }
+  /**
    * A field or resource (artifact) used by SearchAds360Service.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__SearchAds360Field {
@@ -4699,6 +4728,10 @@ export namespace searchads360_v0 {
      * The product group view referenced in the query.
      */
     productGroupView?: Schema$GoogleAdsSearchads360V0Resources__ProductGroupView;
+    /**
+     * The Search Ads 360 bidding strategy referenced in the query.
+     */
+    searchAds360BiddingStrategy?: Schema$GoogleAdsSearchads360V0Resources__SearchAds360BiddingStrategy;
     /**
      * The segments.
      */
@@ -6785,7 +6818,7 @@ export namespace searchads360_v0 {
     }
 
     /**
-     * Returns all fields that match the search [query](/search-ads/reporting/concepts/field-service#use_a_query_to_get_field_details). List of thrown errors: [AuthenticationError]() [AuthorizationError]() [HeaderError]() [InternalError]() [QueryError]() [QuotaError]() [RequestError]()
+     * Returns all fields that match the search [query](https://developers.google.com/search-ads/reporting/concepts/field-service#use_a_query_to_get_field_details). List of thrown errors: [AuthenticationError]() [AuthorizationError]() [HeaderError]() [InternalError]() [QueryError]() [QuotaError]() [RequestError]()
      * @example
      * ```js
      * // Before running the sample:
