@@ -212,6 +212,19 @@ export namespace androidpublisher_v3 {
     productId?: string | null;
   }
   /**
+   * Request to activate targeting for a specific offer.
+   */
+  export interface Schema$ActivateOfferTargetingRequest {
+    /**
+     * Required. The specific discounted offer ID to target for base item. Required.
+     */
+    offerId?: string | null;
+  }
+  /**
+   * Response for ActivateOfferTargeting.
+   */
+  export interface Schema$ActivateOfferTargetingResponse {}
+  /**
    * Request message for ActivateOneTimeProductOffer.
    */
   export interface Schema$ActivateOneTimeProductOfferRequest {
@@ -1127,6 +1140,10 @@ export namespace androidpublisher_v3 {
      * Required. The type of cancellation for the purchased subscription.
      */
     cancellationType?: string | null;
+    /**
+     * Optional. The ETag representing the subscription state. If provided, the cancellation will only proceed if it matches the current server state.
+     */
+    etag?: string | null;
   }
   /**
    * Details of when the order was canceled.
@@ -1598,6 +1615,19 @@ export namespace androidpublisher_v3 {
     productId?: string | null;
   }
   /**
+   * Request to deactivate targeting for a specific offer.
+   */
+  export interface Schema$DeactivateOfferTargetingRequest {
+    /**
+     * Required. The specific discounted offer ID to target for base item. Required.
+     */
+    offerId?: string | null;
+  }
+  /**
+   * Response for DeactivateOfferTargeting.
+   */
+  export interface Schema$DeactivateOfferTargetingResponse {}
+  /**
    * Request message for DeactivateOneTimeProductOffer.
    */
   export interface Schema$DeactivateOneTimeProductOfferRequest {
@@ -1855,6 +1885,19 @@ export namespace androidpublisher_v3 {
    * Information specific to cancellations initiated by developers.
    */
   export interface Schema$DeveloperInitiatedCancellation {}
+  /**
+   * Information about a developer-targeted offer for a subscription line item.
+   */
+  export interface Schema$DeveloperTargetedOffer {
+    /**
+     * Optional. Time at which the offer targeting was activated.
+     */
+    activateTime?: string | null;
+    /**
+     * Optional. The developer-created offer ID targeted for the subscription.
+     */
+    offerId?: string | null;
+  }
   /**
    * Defines a set of device compatibility requirements for the app. A device must satisfy all of the requirements in a set to be considered compatible with the app.
    */
@@ -4127,6 +4170,10 @@ export namespace androidpublisher_v3 {
      */
     basePlanId?: string | null;
     /**
+     * The offer ID. Only present for discounted offers. This is only set if the target plan is not a base plan.
+     */
+    offerId?: string | null;
+    /**
      * [Required] The product ID to which this plan would be transitioned, (for example, 'monthly001').
      */
     productId?: string | null;
@@ -4886,6 +4933,31 @@ export namespace androidpublisher_v3 {
     regionCodes?: string[] | null;
   }
   /**
+   * Represents a targeting rule for retaining existing users via Developer API.
+   */
+  export interface Schema$RetentionPerUserTargetingRule {}
+  /**
+   * Represents a targeting rule for retaining existing users.
+   */
+  export interface Schema$RetentionTargetingRule {
+    /**
+     * Optional. Whether this offer can be claimed multiple times by a user. If set to false, a user who has ever subscribed to this offer will never be eligible for it again. If set to true, a user may become eligible again after the duration specified in `min_offer_cooldown_duration` has passed since the end of the previous retention offer's discount period. Defaults to false if not specified.
+     */
+    allowMultipleClaims?: boolean | null;
+    /**
+     * Optional. The minimum duration a user must have been a paid subscriber to be eligible, specified in ISO 8601 format. If not specified, no minimum subscription time is considered for this rule.
+     */
+    minDuration?: string | null;
+    /**
+     * Optional. The minimum duration that must pass after the previous retention offer's discount period ends before the user is eligible again. Specified in ISO 8601 format. Applicable only if allow_multiple_claims is true.
+     */
+    minOfferCooldownDuration?: string | null;
+    /**
+     * Optional. The scope of subscriptions this rule considers. Only allows "this subscription".
+     */
+    scope?: Schema$TargetingRuleScope;
+  }
+  /**
    * An Android app review.
    */
   export interface Schema$Review {
@@ -4954,6 +5026,10 @@ export namespace androidpublisher_v3 {
    * Revocation context of the purchases.subscriptionsv2.revoke API.
    */
   export interface Schema$RevocationContext {
+    /**
+     * Optional. The ETag representing the subscription state. If provided, the revocation will only proceed if it matches the current server state.
+     */
+    etag?: string | null;
     /**
      * Optional. Used when users should be refunded the full amount of latest charge on each item in the subscription.
      */
@@ -5352,6 +5428,10 @@ export namespace androidpublisher_v3 {
      */
     basePlanId?: string | null;
     /**
+     * Optional. The timestamp when this subscription offer ceases to be available regardless of the state of the offer. If unset, the offer has no end date.
+     */
+    endTime?: string | null;
+    /**
      * Required. Immutable. Unique ID of this subscription offer. Must be unique within the base plan.
      */
     offerId?: string | null;
@@ -5379,6 +5459,10 @@ export namespace androidpublisher_v3 {
      * Required. The region-specific configuration of this offer. Must contain at least one entry.
      */
     regionalConfigs?: Schema$RegionalSubscriptionOfferConfig[];
+    /**
+     * Optional. The timestamp when this subscription offer becomes available to eligible users. Optional. If unset, it becomes active depending on the state of the offer.
+     */
+    startTime?: string | null;
     /**
      * Output only. The current state of this offer. Can be changed using Activate and Deactivate actions. NB: the base plan state supersedes this state, so an active offer may not be available if the base plan is not active.
      */
@@ -5418,6 +5502,14 @@ export namespace androidpublisher_v3 {
      */
     acquisitionRule?: Schema$AcquisitionTargetingRule;
     /**
+     * Offer targeting rule for retaining existing users via Developer API.
+     */
+    retentionPerUserRule?: Schema$RetentionPerUserTargetingRule;
+    /**
+     * Offer targeting rule for retaining existing users.
+     */
+    retentionRule?: Schema$RetentionTargetingRule;
+    /**
      * Offer targeting rule for upgrading users' existing plans.
      */
     upgradeRule?: Schema$UpgradeTargetingRule;
@@ -5438,6 +5530,10 @@ export namespace androidpublisher_v3 {
      * Information for deferred item replacement.
      */
     deferredItemReplacement?: Schema$DeferredItemReplacement;
+    /**
+     * Optional. Details of developer-targeted offers registered for this line item.
+     */
+    developerTargetedOffers?: Schema$DeveloperTargetedOffer[];
     /**
      * Time at which the subscription expired or will expire unless the access is extended (ex. renews).
      */
@@ -25084,6 +25180,7 @@ export namespace androidpublisher_v3 {
      *   // Example response
      *   // {
      *   //   "basePlanId": "my_basePlanId",
+     *   //   "endTime": "my_endTime",
      *   //   "offerId": "my_offerId",
      *   //   "offerTags": [],
      *   //   "otherRegionsConfig": {},
@@ -25091,6 +25188,7 @@ export namespace androidpublisher_v3 {
      *   //   "phases": [],
      *   //   "productId": "my_productId",
      *   //   "regionalConfigs": [],
+     *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "targeting": {}
      *   // }
@@ -25733,6 +25831,7 @@ export namespace androidpublisher_v3 {
      *         // request body parameters
      *         // {
      *         //   "basePlanId": "my_basePlanId",
+     *         //   "endTime": "my_endTime",
      *         //   "offerId": "my_offerId",
      *         //   "offerTags": [],
      *         //   "otherRegionsConfig": {},
@@ -25740,6 +25839,7 @@ export namespace androidpublisher_v3 {
      *         //   "phases": [],
      *         //   "productId": "my_productId",
      *         //   "regionalConfigs": [],
+     *         //   "startTime": "my_startTime",
      *         //   "state": "my_state",
      *         //   "targeting": {}
      *         // }
@@ -25750,6 +25850,7 @@ export namespace androidpublisher_v3 {
      *   // Example response
      *   // {
      *   //   "basePlanId": "my_basePlanId",
+     *   //   "endTime": "my_endTime",
      *   //   "offerId": "my_offerId",
      *   //   "offerTags": [],
      *   //   "otherRegionsConfig": {},
@@ -25757,6 +25858,7 @@ export namespace androidpublisher_v3 {
      *   //   "phases": [],
      *   //   "productId": "my_productId",
      *   //   "regionalConfigs": [],
+     *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "targeting": {}
      *   // }
@@ -25919,6 +26021,7 @@ export namespace androidpublisher_v3 {
      *   // Example response
      *   // {
      *   //   "basePlanId": "my_basePlanId",
+     *   //   "endTime": "my_endTime",
      *   //   "offerId": "my_offerId",
      *   //   "offerTags": [],
      *   //   "otherRegionsConfig": {},
@@ -25926,6 +26029,7 @@ export namespace androidpublisher_v3 {
      *   //   "phases": [],
      *   //   "productId": "my_productId",
      *   //   "regionalConfigs": [],
+     *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "targeting": {}
      *   // }
@@ -26213,6 +26317,7 @@ export namespace androidpublisher_v3 {
      *   // Example response
      *   // {
      *   //   "basePlanId": "my_basePlanId",
+     *   //   "endTime": "my_endTime",
      *   //   "offerId": "my_offerId",
      *   //   "offerTags": [],
      *   //   "otherRegionsConfig": {},
@@ -26220,6 +26325,7 @@ export namespace androidpublisher_v3 {
      *   //   "phases": [],
      *   //   "productId": "my_productId",
      *   //   "regionalConfigs": [],
+     *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "targeting": {}
      *   // }
@@ -26531,6 +26637,7 @@ export namespace androidpublisher_v3 {
      *         // request body parameters
      *         // {
      *         //   "basePlanId": "my_basePlanId",
+     *         //   "endTime": "my_endTime",
      *         //   "offerId": "my_offerId",
      *         //   "offerTags": [],
      *         //   "otherRegionsConfig": {},
@@ -26538,6 +26645,7 @@ export namespace androidpublisher_v3 {
      *         //   "phases": [],
      *         //   "productId": "my_productId",
      *         //   "regionalConfigs": [],
+     *         //   "startTime": "my_startTime",
      *         //   "state": "my_state",
      *         //   "targeting": {}
      *         // }
@@ -26548,6 +26656,7 @@ export namespace androidpublisher_v3 {
      *   // Example response
      *   // {
      *   //   "basePlanId": "my_basePlanId",
+     *   //   "endTime": "my_endTime",
      *   //   "offerId": "my_offerId",
      *   //   "offerTags": [],
      *   //   "otherRegionsConfig": {},
@@ -26555,6 +26664,7 @@ export namespace androidpublisher_v3 {
      *   //   "phases": [],
      *   //   "productId": "my_productId",
      *   //   "regionalConfigs": [],
+     *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "targeting": {}
      *   // }
@@ -28701,6 +28811,160 @@ export namespace androidpublisher_v3 {
     }
 
     /**
+     * Activates targeting for a specific offer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.purchases.subscriptionsv2.activateoffertargeting({
+     *       // Required. The package of the application for which this subscription was purchased. Required.
+     *       packageName: 'placeholder-value',
+     *       // Required. The purchase token provided to the user's device when the subscription was purchased. Required.
+     *       purchaseToken: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "offerId": "my_offerId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    activateoffertargeting(
+      params: Params$Resource$Purchases$Subscriptionsv2$Activateoffertargeting,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    activateoffertargeting(
+      params?: Params$Resource$Purchases$Subscriptionsv2$Activateoffertargeting,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ActivateOfferTargetingResponse>>;
+    activateoffertargeting(
+      params: Params$Resource$Purchases$Subscriptionsv2$Activateoffertargeting,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    activateoffertargeting(
+      params: Params$Resource$Purchases$Subscriptionsv2$Activateoffertargeting,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ActivateOfferTargetingResponse>,
+      callback: BodyResponseCallback<Schema$ActivateOfferTargetingResponse>
+    ): void;
+    activateoffertargeting(
+      params: Params$Resource$Purchases$Subscriptionsv2$Activateoffertargeting,
+      callback: BodyResponseCallback<Schema$ActivateOfferTargetingResponse>
+    ): void;
+    activateoffertargeting(
+      callback: BodyResponseCallback<Schema$ActivateOfferTargetingResponse>
+    ): void;
+    activateoffertargeting(
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Subscriptionsv2$Activateoffertargeting
+        | BodyResponseCallback<Schema$ActivateOfferTargetingResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ActivateOfferTargetingResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ActivateOfferTargetingResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ActivateOfferTargetingResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Purchases$Subscriptionsv2$Activateoffertargeting;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Purchases$Subscriptionsv2$Activateoffertargeting;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{purchaseToken}:activateOfferTargeting'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'purchaseToken'],
+        pathParams: ['packageName', 'purchaseToken'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ActivateOfferTargetingResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ActivateOfferTargetingResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Cancel a subscription purchase for the user.
      * @example
      * ```js
@@ -29006,6 +29270,164 @@ export namespace androidpublisher_v3 {
         );
       } else {
         return createAPIRequest<Schema$CancelPlanTransitionResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deactivates targeting for a specific offer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.purchases.subscriptionsv2.deactivateoffertargeting({
+     *       // Required. The package of the application for which this subscription was purchased. Required.
+     *       packageName: 'placeholder-value',
+     *       // Required. The purchase token provided to the user's device when the subscription was purchased. Required.
+     *       purchaseToken: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "offerId": "my_offerId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deactivateoffertargeting(
+      params: Params$Resource$Purchases$Subscriptionsv2$Deactivateoffertargeting,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    deactivateoffertargeting(
+      params?: Params$Resource$Purchases$Subscriptionsv2$Deactivateoffertargeting,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$DeactivateOfferTargetingResponse>
+    >;
+    deactivateoffertargeting(
+      params: Params$Resource$Purchases$Subscriptionsv2$Deactivateoffertargeting,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deactivateoffertargeting(
+      params: Params$Resource$Purchases$Subscriptionsv2$Deactivateoffertargeting,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeactivateOfferTargetingResponse>,
+      callback: BodyResponseCallback<Schema$DeactivateOfferTargetingResponse>
+    ): void;
+    deactivateoffertargeting(
+      params: Params$Resource$Purchases$Subscriptionsv2$Deactivateoffertargeting,
+      callback: BodyResponseCallback<Schema$DeactivateOfferTargetingResponse>
+    ): void;
+    deactivateoffertargeting(
+      callback: BodyResponseCallback<Schema$DeactivateOfferTargetingResponse>
+    ): void;
+    deactivateoffertargeting(
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Subscriptionsv2$Deactivateoffertargeting
+        | BodyResponseCallback<Schema$DeactivateOfferTargetingResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeactivateOfferTargetingResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeactivateOfferTargetingResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$DeactivateOfferTargetingResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Purchases$Subscriptionsv2$Deactivateoffertargeting;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Purchases$Subscriptionsv2$Deactivateoffertargeting;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{purchaseToken}:deactivateOfferTargeting'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'purchaseToken'],
+        pathParams: ['packageName', 'purchaseToken'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeactivateOfferTargetingResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DeactivateOfferTargetingResponse>(
           parameters
         );
       }
@@ -29642,6 +30064,21 @@ export namespace androidpublisher_v3 {
     }
   }
 
+  export interface Params$Resource$Purchases$Subscriptionsv2$Activateoffertargeting extends StandardParameters {
+    /**
+     * Required. The package of the application for which this subscription was purchased. Required.
+     */
+    packageName?: string;
+    /**
+     * Required. The purchase token provided to the user's device when the subscription was purchased. Required.
+     */
+    purchaseToken?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ActivateOfferTargetingRequest;
+  }
   export interface Params$Resource$Purchases$Subscriptionsv2$Cancel extends StandardParameters {
     /**
      * Required. The package of the application for which this subscription was purchased (for example, 'com.some.thing').
@@ -29671,6 +30108,21 @@ export namespace androidpublisher_v3 {
      * Request body metadata
      */
     requestBody?: Schema$CancelPlanTransitionRequest;
+  }
+  export interface Params$Resource$Purchases$Subscriptionsv2$Deactivateoffertargeting extends StandardParameters {
+    /**
+     * Required. The package of the application for which this subscription was purchased. Required.
+     */
+    packageName?: string;
+    /**
+     * Required. The purchase token provided to the user's device when the subscription was purchased. Required.
+     */
+    purchaseToken?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeactivateOfferTargetingRequest;
   }
   export interface Params$Resource$Purchases$Subscriptionsv2$Defer extends StandardParameters {
     /**
