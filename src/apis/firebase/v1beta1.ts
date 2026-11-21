@@ -768,6 +768,10 @@ export namespace firebase_v1beta1 {
      */
     expireTime?: string | null;
     /**
+     * Optional. Set of labels assigned to the `WebApp`. Valid label keys have two segments: an optional prefix and a name, separated by a slash (`/`). `firebase.x/` prefixes are reserved for Firebase-service use, and `express.cloud/` is reserved for Google Cloud Express. In update requests, `labels` is only replaced when explicitly named in `update_mask` or populated in the request. To change one label, name it in `update_mask` as `labels.`, for example `labels.env`. If the request's `labels` doesn't have that key, the label is removed. Write keys in lowercase. In REST requests, `update_mask` uses the [JSON encoding](https://protobuf.dev/programming-guides/json/), which converts each path from lowerCamelCase to snake_case, keys included. So `labels.myKey` becomes `labels.my_key`, and `labels.Env` becomes `labels.env`.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * The resource name of the WebApp, in the format: projects/PROJECT_IDENTIFIER /webApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.webApps#WebApp.FIELDS.app_id)).
      */
     name?: string | null;
@@ -5807,6 +5811,7 @@ export namespace firebase_v1beta1 {
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
      *       //   "expireTime": "my_expireTime",
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "projectId": "my_projectId",
      *       //   "state": "my_state",
@@ -5969,6 +5974,7 @@ export namespace firebase_v1beta1 {
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "expireTime": "my_expireTime",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "projectId": "my_projectId",
      *   //   "state": "my_state",
@@ -6416,6 +6422,7 @@ export namespace firebase_v1beta1 {
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
      *       //   "expireTime": "my_expireTime",
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "projectId": "my_projectId",
      *       //   "state": "my_state",
@@ -6433,6 +6440,7 @@ export namespace firebase_v1beta1 {
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "expireTime": "my_expireTime",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "projectId": "my_projectId",
      *   //   "state": "my_state",
