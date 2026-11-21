@@ -6097,7 +6097,7 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * Updates a cluster within an instance. Note that UpdateCluster does not support updating cluster_config.cluster_autoscaling_config. In order to update it, you must use PartialUpdateCluster.
+     * Updates a cluster within an instance. This method updates only the serve_nodes for a Cluster, and can only be used on manually scaled clusters. To update autoscaled clusters or enable autoscaling via cluster_config.cluster_autoscaling_config, use PartialUpdateCluster.
      * @example
      * ```js
      * // Before running the sample:
