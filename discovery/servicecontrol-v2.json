@@ -169,7 +169,7 @@
       }
     }
   },
-  "revision": "20261015",
+  "revision": "20261107",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "Api": {
@@ -506,26 +506,7 @@
     "CallerAgent": {
       "description": "Information set when the caller is an agent.",
       "id": "CallerAgent",
-      "properties": {
-        "authority": {
-          "description": "The type of authority for the caller agent.",
-          "enum": [
-            "AUTHORITY_TYPE_UNSPECIFIED",
-            "SELF",
-            "ON_BEHALF_OF"
-          ],
-          "enumDescriptions": [
-            "Default value. Should not be used.",
-            "Acts under its own authority.",
-            "Acts on behalf of another authority."
-          ],
-          "type": "string"
-        },
-        "id": {
-          "description": "The agent identifier of the caller agent. This is a globally unique, immutable name in Uniform Resource Name (URN) format. Example: 'urn:agent:projects-123456789:projects:123456789:locations:us-central1:aiplatform:reasoningEngines:987654321'",
-          "type": "string"
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "CheckRequest": {
