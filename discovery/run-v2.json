@@ -2669,7 +2669,7 @@
       }
     }
   },
-  "revision": "20261108",
+  "revision": "20261113",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2AmbientNetworking": {
@@ -2783,7 +2783,7 @@
           "type": "array"
         },
         "imageRepositoryUri": {
-          "description": "Required. Artifact Registry URI to store the built image.",
+          "description": "Optional. Stores the built image in the given Artifact Registry repository. When not specified, Cloud Run will generate an Artifact Registry repository. The user is responsible for managing the repository, cleaning up images, and setting deletion policy.",
           "type": "string"
         },
         "serviceAccount": {

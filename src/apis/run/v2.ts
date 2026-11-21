@@ -212,7 +212,7 @@ export namespace run_v2 {
      */
     environmentVariables?: Schema$GoogleCloudRunV2EnvVar[];
     /**
-     * Required. Artifact Registry URI to store the built image.
+     * Optional. Stores the built image in the given Artifact Registry repository. When not specified, Cloud Run will generate an Artifact Registry repository. The user is responsible for managing the repository, cleaning up images, and setting deletion policy.
      */
     imageRepositoryUri?: string | null;
     /**
