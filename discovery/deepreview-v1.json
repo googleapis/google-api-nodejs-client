@@ -4,9 +4,6 @@
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
-        },
-        "https://www.googleapis.com/auth/drive.file": {
-          "description": "See, edit, create, and delete only the specific Google Drive files you use with this app"
         }
       }
     }
@@ -142,8 +139,7 @@
             "$ref": "Empty"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/drive.file"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "estimateReviewCost": {
@@ -171,8 +167,7 @@
             "$ref": "EstimateReviewCostResponse"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/drive.file"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "get": {
@@ -197,8 +192,7 @@
             "$ref": "Document"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/drive.file"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "list": {
@@ -235,8 +229,7 @@
             "$ref": "ListDocumentsResponse"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/drive.file"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         }
       },
@@ -278,8 +271,7 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/drive.file"
+                "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
             "get": {
@@ -304,8 +296,7 @@
                 "$ref": "Review"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/drive.file"
+                "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
             "list": {
@@ -351,8 +342,7 @@
                 "$ref": "ListReviewsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/drive.file"
+                "https://www.googleapis.com/auth/cloud-platform"
               ]
             }
           }
@@ -383,8 +373,7 @@
             "$ref": "DownloadDocumentResponse"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/drive.file"
+            "https://www.googleapis.com/auth/cloud-platform"
           ],
           "supportsMediaDownload": true,
           "useMediaDownloadService": true
@@ -431,8 +420,7 @@
             "$ref": "Document"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/drive.file"
+            "https://www.googleapis.com/auth/cloud-platform"
           ],
           "supportsMediaUpload": true
         }
@@ -466,8 +454,7 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/drive.file"
+                    "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
               }
@@ -500,14 +487,13 @@
             "$ref": "UserQuota"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/drive.file"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         }
       }
     }
   },
-  "revision": "20261030",
+  "revision": "20261117",
   "rootUrl": "https://deepreview.googleapis.com/",
   "schemas": {
     "AnchoredReviewComment": {
