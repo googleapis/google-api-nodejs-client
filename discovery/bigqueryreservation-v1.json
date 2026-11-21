@@ -966,6 +966,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. The filter to apply to the list results. Only filtering by reservation group is supported. Examples: \"reservation_group=my-group\"",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "The maximum number of items to return per page.",
                       "format": "int32",
@@ -1351,7 +1356,7 @@
       }
     }
   },
-  "revision": "20261102",
+  "revision": "20261116",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {

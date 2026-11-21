@@ -167,6 +167,10 @@ export namespace auditmanager_v1 {
      */
     operationId?: string | null;
     /**
+     * Output only. Additional formats in which the audit report was requested to be exported.
+     */
+    reportExportFormats?: string[] | null;
+    /**
      * Output only. State of audit report generation.
      */
     reportGenerationState?: string | null;
@@ -223,6 +227,10 @@ export namespace auditmanager_v1 {
      * Optional. Maps dynamic parameter overrides by Cloud Control resource name at execution time. For example, `{"organizations/123/locations/global/cloudControls/control-1": {parameters: [...]\}\}`
      */
     parameterOverrides?: {[key: string]: Schema$ParameterOverrides} | null;
+    /**
+     * Optional. Formats in which to export each scheduled audit report, in addition to the ODF report. Each format can be listed only once.
+     */
+    reportExportFormats?: string[] | null;
     /**
      * Required. Format for the audit report.
      */
@@ -409,6 +417,10 @@ export namespace auditmanager_v1 {
      * Optional. Maps dynamic parameter overrides by Cloud Control resource name at execution time. For example, `{"organizations/123/locations/global/cloudControls/control-1": {parameters: [...]\}\}`
      */
     parameterOverrides?: {[key: string]: Schema$ParameterOverrides} | null;
+    /**
+     * Optional. Formats in which to export the audit report, in addition to the ODF report. Each format can be listed only once.
+     */
+    reportExportFormats?: string[] | null;
     /**
      * Required. Format for the audit report.
      */
@@ -1056,6 +1068,7 @@ export namespace auditmanager_v1 {
      *       //   "complianceStandard": "my_complianceStandard",
      *       //   "gcsUri": "my_gcsUri",
      *       //   "parameterOverrides": {},
+     *       //   "reportExportFormats": [],
      *       //   "reportFormat": "my_reportFormat",
      *       //   "validateOnly": false
      *       // }
@@ -1216,6 +1229,7 @@ export namespace auditmanager_v1 {
      *   //   "destinationDetails": {},
      *   //   "name": "my_name",
      *   //   "operationId": "my_operationId",
+     *   //   "reportExportFormats": [],
      *   //   "reportGenerationState": "my_reportGenerationState",
      *   //   "reportSummary": {},
      *   //   "scope": "my_scope",
@@ -1554,6 +1568,7 @@ export namespace auditmanager_v1 {
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
      *       //   "parameterOverrides": {},
+     *       //   "reportExportFormats": [],
      *       //   "reportFormat": "my_reportFormat",
      *       //   "scheduleConfig": {},
      *       //   "state": "my_state",
@@ -1574,6 +1589,7 @@ export namespace auditmanager_v1 {
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "parameterOverrides": {},
+     *   //   "reportExportFormats": [],
      *   //   "reportFormat": "my_reportFormat",
      *   //   "scheduleConfig": {},
      *   //   "state": "my_state",
@@ -1726,6 +1742,7 @@ export namespace auditmanager_v1 {
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "parameterOverrides": {},
+     *   //   "reportExportFormats": [],
      *   //   "reportFormat": "my_reportFormat",
      *   //   "scheduleConfig": {},
      *   //   "state": "my_state",
@@ -2028,6 +2045,7 @@ export namespace auditmanager_v1 {
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
      *       //   "parameterOverrides": {},
+     *       //   "reportExportFormats": [],
      *       //   "reportFormat": "my_reportFormat",
      *       //   "scheduleConfig": {},
      *       //   "state": "my_state",
@@ -2048,6 +2066,7 @@ export namespace auditmanager_v1 {
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "parameterOverrides": {},
+     *   //   "reportExportFormats": [],
      *   //   "reportFormat": "my_reportFormat",
      *   //   "scheduleConfig": {},
      *   //   "state": "my_state",
@@ -3456,6 +3475,7 @@ export namespace auditmanager_v1 {
      *       //   "complianceStandard": "my_complianceStandard",
      *       //   "gcsUri": "my_gcsUri",
      *       //   "parameterOverrides": {},
+     *       //   "reportExportFormats": [],
      *       //   "reportFormat": "my_reportFormat",
      *       //   "validateOnly": false
      *       // }
@@ -3617,6 +3637,7 @@ export namespace auditmanager_v1 {
      *   //   "destinationDetails": {},
      *   //   "name": "my_name",
      *   //   "operationId": "my_operationId",
+     *   //   "reportExportFormats": [],
      *   //   "reportGenerationState": "my_reportGenerationState",
      *   //   "reportSummary": {},
      *   //   "scope": "my_scope",
@@ -3956,6 +3977,7 @@ export namespace auditmanager_v1 {
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
      *       //   "parameterOverrides": {},
+     *       //   "reportExportFormats": [],
      *       //   "reportFormat": "my_reportFormat",
      *       //   "scheduleConfig": {},
      *       //   "state": "my_state",
@@ -3976,6 +3998,7 @@ export namespace auditmanager_v1 {
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "parameterOverrides": {},
+     *   //   "reportExportFormats": [],
      *   //   "reportFormat": "my_reportFormat",
      *   //   "scheduleConfig": {},
      *   //   "state": "my_state",
@@ -4129,6 +4152,7 @@ export namespace auditmanager_v1 {
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "parameterOverrides": {},
+     *   //   "reportExportFormats": [],
      *   //   "reportFormat": "my_reportFormat",
      *   //   "scheduleConfig": {},
      *   //   "state": "my_state",
@@ -4433,6 +4457,7 @@ export namespace auditmanager_v1 {
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
      *       //   "parameterOverrides": {},
+     *       //   "reportExportFormats": [],
      *       //   "reportFormat": "my_reportFormat",
      *       //   "scheduleConfig": {},
      *       //   "state": "my_state",
@@ -4453,6 +4478,7 @@ export namespace auditmanager_v1 {
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "parameterOverrides": {},
+     *   //   "reportExportFormats": [],
      *   //   "reportFormat": "my_reportFormat",
      *   //   "scheduleConfig": {},
      *   //   "state": "my_state",
@@ -6803,6 +6829,7 @@ export namespace auditmanager_v1 {
      *       //   "complianceStandard": "my_complianceStandard",
      *       //   "gcsUri": "my_gcsUri",
      *       //   "parameterOverrides": {},
+     *       //   "reportExportFormats": [],
      *       //   "reportFormat": "my_reportFormat",
      *       //   "validateOnly": false
      *       // }
@@ -6963,6 +6990,7 @@ export namespace auditmanager_v1 {
      *   //   "destinationDetails": {},
      *   //   "name": "my_name",
      *   //   "operationId": "my_operationId",
+     *   //   "reportExportFormats": [],
      *   //   "reportGenerationState": "my_reportGenerationState",
      *   //   "reportSummary": {},
      *   //   "scope": "my_scope",
@@ -7301,6 +7329,7 @@ export namespace auditmanager_v1 {
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
      *       //   "parameterOverrides": {},
+     *       //   "reportExportFormats": [],
      *       //   "reportFormat": "my_reportFormat",
      *       //   "scheduleConfig": {},
      *       //   "state": "my_state",
@@ -7321,6 +7350,7 @@ export namespace auditmanager_v1 {
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "parameterOverrides": {},
+     *   //   "reportExportFormats": [],
      *   //   "reportFormat": "my_reportFormat",
      *   //   "scheduleConfig": {},
      *   //   "state": "my_state",
@@ -7473,6 +7503,7 @@ export namespace auditmanager_v1 {
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "parameterOverrides": {},
+     *   //   "reportExportFormats": [],
      *   //   "reportFormat": "my_reportFormat",
      *   //   "scheduleConfig": {},
      *   //   "state": "my_state",
@@ -7775,6 +7806,7 @@ export namespace auditmanager_v1 {
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
      *       //   "parameterOverrides": {},
+     *       //   "reportExportFormats": [],
      *       //   "reportFormat": "my_reportFormat",
      *       //   "scheduleConfig": {},
      *       //   "state": "my_state",
@@ -7795,6 +7827,7 @@ export namespace auditmanager_v1 {
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "parameterOverrides": {},
+     *   //   "reportExportFormats": [],
      *   //   "reportFormat": "my_reportFormat",
      *   //   "scheduleConfig": {},
      *   //   "state": "my_state",

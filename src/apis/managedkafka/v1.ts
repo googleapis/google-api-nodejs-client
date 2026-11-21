@@ -895,7 +895,7 @@ export namespace managedkafka_v1 {
    */
   export interface Schema$RebalanceConfig {
     /**
-     * Optional. The rebalance behavior for the cluster. When not specified, defaults to `NO_REBALANCE`.
+     * Optional. The rebalance behavior for the cluster. When not specified, defaults to `AUTO_REBALANCE_ON_SCALE_UP`. Clusters created before July 2026 defaulted to `NO_REBALANCE` if created without a gcloud, Terraform, or Cloud Console client.
      */
     mode?: string | null;
   }

@@ -146,6 +146,34 @@
                 "https://www.googleapis.com/auth/cloud-platform.read-only"
               ]
             },
+            "getSkillEncryptionSpec": {
+              "description": "========================================================================= # Skill Encryption Spec Service Methods Gets the customer-managed encryption key (CMEK) configuration for Skills in a specific project and location.",
+              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/skillEncryptionSpec",
+              "httpMethod": "GET",
+              "id": "agentregistry.projects.locations.getSkillEncryptionSpec",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the SkillEncryptionSpec to retrieve. Format: `projects/{project}/locations/{location}/skillEncryptionSpec`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/skillEncryptionSpec$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "SkillEncryptionSpec"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/agentregistry.read-only",
+                "https://www.googleapis.com/auth/agentregistry.read-write",
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
             "list": {
               "description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
               "flatPath": "v1alpha/projects/{projectsId}/locations",
@@ -188,6 +216,43 @@
               "path": "v1alpha/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/agentregistry.read-only",
+                "https://www.googleapis.com/auth/agentregistry.read-write",
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
+            "updateSkillEncryptionSpec": {
+              "description": "Updates the customer-managed encryption key (CMEK) configuration for Skills in a specific project and location. This method is only allowed when no Skills exist in the target project and location. If any Skill already exists in the location, the request fails with `FAILED_PRECONDITION`.",
+              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/skillEncryptionSpec",
+              "httpMethod": "PATCH",
+              "id": "agentregistry.projects.locations.updateSkillEncryptionSpec",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. Resource name of the SkillEncryptionSpec. Format: `projects/{project}/locations/{location}/skillEncryptionSpec`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/skillEncryptionSpec$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. Field mask is used to specify the fields to be overwritten in the SkillEncryptionSpec resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "SkillEncryptionSpec"
+              },
+              "response": {
+                "$ref": "Operation"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/agentregistry.read-only",
@@ -2130,7 +2195,7 @@
       }
     }
   },
-  "revision": "20261108",
+  "revision": "20261114",
   "rootUrl": "https://agentregistry.googleapis.com/",
   "schemas": {
     "A2ASkill": {
@@ -4041,6 +4106,33 @@
         },
         "updateTime": {
           "description": "Output only. Update time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SkillEncryptionSpec": {
+      "description": "Once the SkillEncryptionSpec is configured, new Skill payloads are protected using the provided customer-managed encryption key instead of a Google-managed encryption key. SkillEncryptionSpec cannot be set if any Skills have already been created in the project and location.",
+      "id": "SkillEncryptionSpec",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Creation timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "cryptoKeyName": {
+          "description": "Required. The Cloud KMS CryptoKey resource name used to protect Skill payloads in this project and location. This field can be set or updated only when no Skills exist in the target project and location. Once any Skill exists in the location, updating this field is rejected with `FAILED_PRECONDITION`. Format: `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}`",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Resource name of the SkillEncryptionSpec. Format: `projects/{project}/locations/{location}/skillEncryptionSpec`",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Most recent update timestamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"

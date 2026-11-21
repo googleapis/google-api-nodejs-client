@@ -310,6 +310,10 @@ export namespace firebasecrashlytics_v1alpha {
      */
     crashlyticsSdkVersion?: string | null;
     /**
+     * Output only. Mobile only. Unique identifier for the Crashlytics device session.
+     */
+    crashlyticsSessionId?: string | null;
+    /**
      * Custom keys set by the developer during the session.
      */
     customKeys?: {[key: string]: string} | null;
@@ -534,7 +538,11 @@ export namespace firebasecrashlytics_v1alpha {
      */
     alertType?: string | null;
     /**
-     * Optional. Language to use for the alert policy. Defaults to USER_PREFERENCE.
+     * Optional. Channel format to generate the alert policy for, which determines both the template format and language. `EMAIL` always uses the requester's language preference with a rich HTML template, and `INTEGRATION` always uses en-US with a concise Markdown template. Defaults to EMAIL behavior when unspecified.
+     */
+    channelFormat?: string | null;
+    /**
+     * Optional. Deprecated: Prefer `channel_format`, which determines both the template format and language (`EMAIL` always uses the requester's language preference with a rich HTML template, and `INTEGRATION` always uses en-US with a concise Markdown template). Optional. Language to use for the alert policy. Defaults to USER_PREFERENCE.
      */
     language?: string | null;
   }
@@ -1094,6 +1102,7 @@ export namespace firebasecrashlytics_v1alpha {
      *       // request body parameters
      *       // {
      *       //   "alertType": "my_alertType",
+     *       //   "channelFormat": "my_channelFormat",
      *       //   "language": "my_language"
      *       // }
      *     },
@@ -1758,7 +1767,7 @@ export namespace firebasecrashlytics_v1alpha {
      *     'filter.operatingSystem.displayNames': 'placeholder-value',
      *     // Only counts events in the given app version. This string matches Version.display_name. Format: "display_version (build_version)" e.g. "1.2.3 (456)".
      *     'filter.version.displayNames': 'placeholder-value',
-     *     // Optional. Filters events by custom keys (https://firebase.google.com/docs/crashlytics/customize-crash-reports#add-keys). Supported forms: * Equality: `custom_keys.level = "vip"` * Has: `custom_keys.level:"vip"` (matches the same events as equality) * Presence: `custom_keys.level:*` * OR across values of one key: `custom_keys.level = "vip" OR custom_keys.level = "enterprise"` * AND across different keys: `custom_keys.level = "vip" AND custom_keys.region = "us"` Keys are case-sensitive. Keys and values containing spaces must be double-quoted, for example `custom_keys."app state" = "background"`. OR across different keys, repeating a key within an AND, NOT, and comparators other than `=` and `:` are rejected with INVALID_ARGUMENT. Wildcards are not supported in values; use `custom_keys.:*` to match events that set a key to any value. This filter expression applies in addition to the `filter` field above. The syntax is a subset of AIP-160 (https://google.aip.dev/160).
+     *     // Optional. Filters events by `crashlytics_session_id` and/or `custom_keys` (https://firebase.google.com/docs/crashlytics/customize-crash-reports#add-keys). Supported fields and forms: * `crashlytics_session_id` (mobile apps only; matches Event.crashlytics_session_id): * Equality: `crashlytics_session_id = "abc"` * Has: `crashlytics_session_id:"abc"` (matches the same events as equality) * OR across session IDs: `crashlytics_session_id = "abc" OR crashlytics_session_id = "def"` * `custom_keys.` (matches Event.custom_keys): * Equality: `custom_keys.level = "vip"` * Has: `custom_keys.level:"vip"` (matches the same events as equality) * Presence: `custom_keys.level:*` * OR across values of one key: `custom_keys.level = "vip" OR custom_keys.level = "enterprise"` * AND across different fields or custom keys: * `(crashlytics_session_id = "abc" OR crashlytics_session_id = "def") AND custom_keys.level = "vip"` * `custom_keys.level = "vip" AND custom_keys.region = "us"` Filtering by `crashlytics_session_id` is supported only for mobile apps; requests for web apps that specify `crashlytics_session_id` are rejected with INVALID_ARGUMENT. Custom keys and values are case-sensitive. Keys and values containing spaces must be double-quoted, for example `custom_keys."app state" = "background"`. Empty `crashlytics_session_id` values, OR across different fields or keys, repeating the same field or key within an AND, NOT, and comparators other than `=` and `:` are rejected with INVALID_ARGUMENT. Wildcards are not supported in values; for custom keys, use `custom_keys.:*` to match events that set a key to any value. This filter expression applies in addition to the `filter` field above. The syntax is a subset of AIP-160 (https://google.aip.dev/160).
      *     filterExpression: 'placeholder-value',
      *     // Optional. The maximum number of events per page. If omitted, defaults to 10.
      *     pageSize: 'placeholder-value',
@@ -1947,7 +1956,7 @@ export namespace firebasecrashlytics_v1alpha {
      */
     'filter.version.displayNames'?: string[];
     /**
-     * Optional. Filters events by custom keys (https://firebase.google.com/docs/crashlytics/customize-crash-reports#add-keys). Supported forms: * Equality: `custom_keys.level = "vip"` * Has: `custom_keys.level:"vip"` (matches the same events as equality) * Presence: `custom_keys.level:*` * OR across values of one key: `custom_keys.level = "vip" OR custom_keys.level = "enterprise"` * AND across different keys: `custom_keys.level = "vip" AND custom_keys.region = "us"` Keys are case-sensitive. Keys and values containing spaces must be double-quoted, for example `custom_keys."app state" = "background"`. OR across different keys, repeating a key within an AND, NOT, and comparators other than `=` and `:` are rejected with INVALID_ARGUMENT. Wildcards are not supported in values; use `custom_keys.:*` to match events that set a key to any value. This filter expression applies in addition to the `filter` field above. The syntax is a subset of AIP-160 (https://google.aip.dev/160).
+     * Optional. Filters events by `crashlytics_session_id` and/or `custom_keys` (https://firebase.google.com/docs/crashlytics/customize-crash-reports#add-keys). Supported fields and forms: * `crashlytics_session_id` (mobile apps only; matches Event.crashlytics_session_id): * Equality: `crashlytics_session_id = "abc"` * Has: `crashlytics_session_id:"abc"` (matches the same events as equality) * OR across session IDs: `crashlytics_session_id = "abc" OR crashlytics_session_id = "def"` * `custom_keys.` (matches Event.custom_keys): * Equality: `custom_keys.level = "vip"` * Has: `custom_keys.level:"vip"` (matches the same events as equality) * Presence: `custom_keys.level:*` * OR across values of one key: `custom_keys.level = "vip" OR custom_keys.level = "enterprise"` * AND across different fields or custom keys: * `(crashlytics_session_id = "abc" OR crashlytics_session_id = "def") AND custom_keys.level = "vip"` * `custom_keys.level = "vip" AND custom_keys.region = "us"` Filtering by `crashlytics_session_id` is supported only for mobile apps; requests for web apps that specify `crashlytics_session_id` are rejected with INVALID_ARGUMENT. Custom keys and values are case-sensitive. Keys and values containing spaces must be double-quoted, for example `custom_keys."app state" = "background"`. Empty `crashlytics_session_id` values, OR across different fields or keys, repeating the same field or key within an AND, NOT, and comparators other than `=` and `:` are rejected with INVALID_ARGUMENT. Wildcards are not supported in values; for custom keys, use `custom_keys.:*` to match events that set a key to any value. This filter expression applies in addition to the `filter` field above. The syntax is a subset of AIP-160 (https://google.aip.dev/160).
      */
     filterExpression?: string;
     /**

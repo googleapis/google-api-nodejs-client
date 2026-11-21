@@ -3186,7 +3186,7 @@
       }
     }
   },
-  "revision": "20261029",
+  "revision": "20261105",
   "rootUrl": "https://managedkafka.googleapis.com/",
   "schemas": {
     "AccessConfig": {
@@ -4306,7 +4306,7 @@
       "id": "RebalanceConfig",
       "properties": {
         "mode": {
-          "description": "Optional. The rebalance behavior for the cluster. When not specified, defaults to `NO_REBALANCE`.",
+          "description": "Optional. The rebalance behavior for the cluster. When not specified, defaults to `AUTO_REBALANCE_ON_SCALE_UP`. Clusters created before July 2026 defaulted to `NO_REBALANCE` if created without a gcloud, Terraform, or Cloud Console client.",
           "enum": [
             "MODE_UNSPECIFIED",
             "NO_REBALANCE",

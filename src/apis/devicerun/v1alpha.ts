@@ -585,6 +585,19 @@ export namespace devicerun_v1alpha {
     supportedIosVersions?: string[] | null;
   }
   /**
+   * Information about the client which invoked the session.
+   */
+  export interface Schema$ClientInfo {
+    /**
+     * Required. Client name, such as gcloud. Maximum string size is 64 bytes (UTF-8 encoded).
+     */
+    client?: string | null;
+    /**
+     * Optional. Client version. Maximum string size is 64 bytes (UTF-8 encoded).
+     */
+    version?: string | null;
+  }
+  /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$Date {
@@ -1223,6 +1236,10 @@ export namespace devicerun_v1alpha {
    */
   export interface Schema$SessionConfig {
     /**
+     * Optional. Information about the client which invoked the session.
+     */
+    clientInfo?: Schema$ClientInfo;
+    /**
      * Optional. User-settable, human-readable name for the session. Maximum size is 63 bytes when encoded as UTF-8. If set, must match regex: `^A-Za-z0-9*$`.
      */
     displayName?: string | null;
@@ -1244,7 +1261,7 @@ export namespace devicerun_v1alpha {
    */
   export interface Schema$SessionConfigSessionNotificationConfig {
     /**
-     * Optional. The Pub/Sub topics to which session events are published. Format: `projects/{project\}/topics/{topic\}`. See https://cloud.google.com/pubsub/docs/admin#topic_and_subscription_name_restrictions
+     * Optional. The Pub/Sub topics to which session events are published. Format: `projects/{project\}/topics/{topic\}`. See https://cloud.google.com/pubsub/docs/admin#topic_and_subscription_name_restrictions Each published Pub/Sub message includes the following attributes: - `eventType`: The type of event (`JOB_ENDED` or `SESSION_ENDED`). - `payloadFormat`: The format of the `data` field (`JSON`). - `sessionName`: The resource name of the session, in the format `projects/{project\}/locations/{location\}/sessions/{session\}`, where `{project\}` is the project number. The `data` field contains a UTF-8 JSON payload corresponding to `eventType`: - `JOB_ENDED`: UTF-8 JSON representation of JobReport. - `SESSION_ENDED`: UTF-8 JSON representation of SessionReport.
      */
     pubsubTopic?: string[] | null;
   }

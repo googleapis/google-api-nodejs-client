@@ -1460,6 +1460,10 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$Job {
     /**
+     * Output only. Indicates whether [Auto VM Selection](https://cloud.google.com/dataflow/docs/guides/auto-vm-selection) is enabled for the job. Set to `true` on a best-effort basis once any worker pool of the job was created with Auto VM Selection. Populated for `ListJobs` and all `GetJob` views `SUMMARY` and higher.
+     */
+    autoVmSelectionEnabled?: boolean | null;
+    /**
      * The client's unique identifier of the job, re-used across retried attempts. If this field is set, the service will ensure its uniqueness. The request to create a job will fail if the service has knowledge of a previously submitted job with the same client's ID and job name. The caller may use this field to ensure idempotence of job creation across retried attempts to create a job. By default, the field is empty and, in that case, the service ignores it.
      */
     clientRequestId?: string | null;
@@ -1492,7 +1496,7 @@ export namespace dataflow_v1b3 {
      */
     id?: string | null;
     /**
-     * This field is populated by the Dataflow service to support filtering jobs by the metadata values provided here. Populated for ListJobs and all GetJob views SUMMARY and higher.
+     * This field is populated by the Dataflow service to support filtering jobs by the metadata values provided here. Populated for `ListJobs` and all `GetJob` views `SUMMARY` and higher.
      */
     jobMetadata?: Schema$JobMetadata;
     /**
@@ -1512,7 +1516,7 @@ export namespace dataflow_v1b3 {
      */
     pausable?: boolean | null;
     /**
-     * Preliminary field: The format of this data may change at any time. A description of the user pipeline and stages through which it is executed. Created by Cloud Dataflow service. Only retrieved with JOB_VIEW_DESCRIPTION or JOB_VIEW_ALL.
+     * Preliminary field: The format of this data may change at any time. A description of the user pipeline and stages through which it is executed. Created by Cloud Dataflow service. Only retrieved with `JOB_VIEW_DESCRIPTION` or `JOB_VIEW_ALL`.
      */
     pipelineDescription?: Schema$PipelineDescription;
     /**
@@ -1556,7 +1560,7 @@ export namespace dataflow_v1b3 {
      */
     startTime?: string | null;
     /**
-     * Exactly one of step or steps_location should be specified. The top-level steps that constitute the entire job. Only retrieved with JOB_VIEW_ALL.
+     * Exactly one of step or steps_location should be specified. The top-level steps that constitute the entire job. Only retrieved with `JOB_VIEW_ALL`.
      */
     steps?: Schema$Step[];
     /**
@@ -1629,7 +1633,7 @@ export namespace dataflow_v1b3 {
     time?: string | null;
   }
   /**
-   * Metadata available primarily for filtering jobs. Will be included in the ListJob response and Job SUMMARY view.
+   * Metadata available primarily for filtering jobs. Will be included in the `ListJobs` response and Job `SUMMARY` view.
    */
   export interface Schema$JobMetadata {
     /**
@@ -3408,7 +3412,7 @@ export namespace dataflow_v1b3 {
      */
     name?: string | null;
     /**
-     * Named properties associated with the step. Each kind of predefined step has its own required set of properties. Must be provided on Create. Only retrieved with JOB_VIEW_ALL.
+     * Named properties associated with the step. Each kind of predefined step has its own required set of properties. Must be provided on Create. Only retrieved with `JOB_VIEW_ALL`.
      */
     properties?: {[key: string]: any} | null;
   }
@@ -6518,6 +6522,8 @@ export namespace dataflow_v1b3 {
      *     'createTimeRange.startTime': 'placeholder-value',
      *     // The kind of filter to use.
      *     filter: 'placeholder-value',
+     *     // Optional. Restricts the results to jobs that match this [AIP-160](https://google.aip.dev/160) filter expression. The expression is ANDed with `filter` and the time ranges, and is limited to 4 KiB and 32 levels of nesting. Not yet implemented: the service currently ignores this field and returns unfiltered results. Support will be added in a future release. Supported fields are `name`, `id`, `location`, `job_metadata.sdk_version.version`, `type`, `current_state`, `create_time` and `current_state_time`: * String fields support `=` and `!=`, where `*` in the value matches any sequence of characters, and `:`, which matches the same way but ignores ASCII case. `field:*` matches any non-empty value. * `type` and `current_state` support `=`, `!=` and `:` with enum value names, e.g. `current_state = JOB_STATE_RUNNING`. * Timestamp fields support `=`, `!=`, `<`, `<=`, `\>` and `\>=` with RFC 3339 values, e.g. `create_time \>= "2026-10-01T00:00:00Z"`. A job without the timestamp doesn't match any comparison on it. Restrictions can be combined with `AND`, `OR`, `NOT` (or its equivalent, `-`) and parentheses; `AND` and `OR` can't be mixed without parentheses. For example: `name:"wordcount-*" AND -type = JOB_TYPE_STREAMING AND (current_state = JOB_STATE_FAILED OR current_state = JOB_STATE_CANCELLED)`.
+     *     filterExpression: 'placeholder-value',
      *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      *     location: 'placeholder-value',
      *     // Optional. The job name.
@@ -6534,7 +6540,7 @@ export namespace dataflow_v1b3 {
      *     'terminationTimeRange.endTime': 'placeholder-value',
      *     // Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
      *     'terminationTimeRange.startTime': 'placeholder-value',
-     *     // Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
+     *     // Deprecated. `ListJobs` always returns summaries now. Use `GetJob` for other `JobView`s.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6688,6 +6694,7 @@ export namespace dataflow_v1b3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "autoVmSelectionEnabled": false,
      *       //   "clientRequestId": "my_clientRequestId",
      *       //   "createTime": "my_createTime",
      *       //   "createdFromSnapshotId": "my_createdFromSnapshotId",
@@ -6724,6 +6731,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Example response
      *   // {
+     *   //   "autoVmSelectionEnabled": false,
      *   //   "clientRequestId": "my_clientRequestId",
      *   //   "createTime": "my_createTime",
      *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
@@ -6897,6 +6905,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Example response
      *   // {
+     *   //   "autoVmSelectionEnabled": false,
      *   //   "clientRequestId": "my_clientRequestId",
      *   //   "createTime": "my_createTime",
      *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
@@ -7208,6 +7217,8 @@ export namespace dataflow_v1b3 {
      *     'createTimeRange.startTime': 'placeholder-value',
      *     // The kind of filter to use.
      *     filter: 'placeholder-value',
+     *     // Optional. Restricts the results to jobs that match this [AIP-160](https://google.aip.dev/160) filter expression. The expression is ANDed with `filter` and the time ranges, and is limited to 4 KiB and 32 levels of nesting. Not yet implemented: the service currently ignores this field and returns unfiltered results. Support will be added in a future release. Supported fields are `name`, `id`, `location`, `job_metadata.sdk_version.version`, `type`, `current_state`, `create_time` and `current_state_time`: * String fields support `=` and `!=`, where `*` in the value matches any sequence of characters, and `:`, which matches the same way but ignores ASCII case. `field:*` matches any non-empty value. * `type` and `current_state` support `=`, `!=` and `:` with enum value names, e.g. `current_state = JOB_STATE_RUNNING`. * Timestamp fields support `=`, `!=`, `<`, `<=`, `\>` and `\>=` with RFC 3339 values, e.g. `create_time \>= "2026-10-01T00:00:00Z"`. A job without the timestamp doesn't match any comparison on it. Restrictions can be combined with `AND`, `OR`, `NOT` (or its equivalent, `-`) and parentheses; `AND` and `OR` can't be mixed without parentheses. For example: `name:"wordcount-*" AND -type = JOB_TYPE_STREAMING AND (current_state = JOB_STATE_FAILED OR current_state = JOB_STATE_CANCELLED)`.
+     *     filterExpression: 'placeholder-value',
      *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      *     location: 'placeholder-value',
      *     // Optional. The job name.
@@ -7224,7 +7235,7 @@ export namespace dataflow_v1b3 {
      *     'terminationTimeRange.endTime': 'placeholder-value',
      *     // Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
      *     'terminationTimeRange.startTime': 'placeholder-value',
-     *     // Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
+     *     // Deprecated. `ListJobs` always returns summaries now. Use `GetJob` for other `JobView`s.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7539,6 +7550,7 @@ export namespace dataflow_v1b3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "autoVmSelectionEnabled": false,
      *       //   "clientRequestId": "my_clientRequestId",
      *       //   "createTime": "my_createTime",
      *       //   "createdFromSnapshotId": "my_createdFromSnapshotId",
@@ -7575,6 +7587,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Example response
      *   // {
+     *   //   "autoVmSelectionEnabled": false,
      *   //   "clientRequestId": "my_clientRequestId",
      *   //   "createTime": "my_createTime",
      *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
@@ -7716,6 +7729,10 @@ export namespace dataflow_v1b3 {
      */
     filter?: string;
     /**
+     * Optional. Restricts the results to jobs that match this [AIP-160](https://google.aip.dev/160) filter expression. The expression is ANDed with `filter` and the time ranges, and is limited to 4 KiB and 32 levels of nesting. Not yet implemented: the service currently ignores this field and returns unfiltered results. Support will be added in a future release. Supported fields are `name`, `id`, `location`, `job_metadata.sdk_version.version`, `type`, `current_state`, `create_time` and `current_state_time`: * String fields support `=` and `!=`, where `*` in the value matches any sequence of characters, and `:`, which matches the same way but ignores ASCII case. `field:*` matches any non-empty value. * `type` and `current_state` support `=`, `!=` and `:` with enum value names, e.g. `current_state = JOB_STATE_RUNNING`. * Timestamp fields support `=`, `!=`, `<`, `<=`, `\>` and `\>=` with RFC 3339 values, e.g. `create_time \>= "2026-10-01T00:00:00Z"`. A job without the timestamp doesn't match any comparison on it. Restrictions can be combined with `AND`, `OR`, `NOT` (or its equivalent, `-`) and parentheses; `AND` and `OR` can't be mixed without parentheses. For example: `name:"wordcount-*" AND -type = JOB_TYPE_STREAMING AND (current_state = JOB_STATE_FAILED OR current_state = JOB_STATE_CANCELLED)`.
+     */
+    filterExpression?: string;
+    /**
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string;
@@ -7748,7 +7765,7 @@ export namespace dataflow_v1b3 {
      */
     'terminationTimeRange.startTime'?: string;
     /**
-     * Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
+     * Deprecated. `ListJobs` always returns summaries now. Use `GetJob` for other `JobView`s.
      */
     view?: string;
   }
@@ -7825,6 +7842,10 @@ export namespace dataflow_v1b3 {
      */
     filter?: string;
     /**
+     * Optional. Restricts the results to jobs that match this [AIP-160](https://google.aip.dev/160) filter expression. The expression is ANDed with `filter` and the time ranges, and is limited to 4 KiB and 32 levels of nesting. Not yet implemented: the service currently ignores this field and returns unfiltered results. Support will be added in a future release. Supported fields are `name`, `id`, `location`, `job_metadata.sdk_version.version`, `type`, `current_state`, `create_time` and `current_state_time`: * String fields support `=` and `!=`, where `*` in the value matches any sequence of characters, and `:`, which matches the same way but ignores ASCII case. `field:*` matches any non-empty value. * `type` and `current_state` support `=`, `!=` and `:` with enum value names, e.g. `current_state = JOB_STATE_RUNNING`. * Timestamp fields support `=`, `!=`, `<`, `<=`, `\>` and `\>=` with RFC 3339 values, e.g. `create_time \>= "2026-10-01T00:00:00Z"`. A job without the timestamp doesn't match any comparison on it. Restrictions can be combined with `AND`, `OR`, `NOT` (or its equivalent, `-`) and parentheses; `AND` and `OR` can't be mixed without parentheses. For example: `name:"wordcount-*" AND -type = JOB_TYPE_STREAMING AND (current_state = JOB_STATE_FAILED OR current_state = JOB_STATE_CANCELLED)`.
+     */
+    filterExpression?: string;
+    /**
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string;
@@ -7857,7 +7878,7 @@ export namespace dataflow_v1b3 {
      */
     'terminationTimeRange.startTime'?: string;
     /**
-     * Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
+     * Deprecated. `ListJobs` always returns summaries now. Use `GetJob` for other `JobView`s.
      */
     view?: string;
   }
@@ -10038,6 +10059,7 @@ export namespace dataflow_v1b3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "autoVmSelectionEnabled": false,
      *       //   "clientRequestId": "my_clientRequestId",
      *       //   "createTime": "my_createTime",
      *       //   "createdFromSnapshotId": "my_createdFromSnapshotId",
@@ -10074,6 +10096,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Example response
      *   // {
+     *   //   "autoVmSelectionEnabled": false,
      *   //   "clientRequestId": "my_clientRequestId",
      *   //   "createTime": "my_createTime",
      *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
@@ -10246,6 +10269,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Example response
      *   // {
+     *   //   "autoVmSelectionEnabled": false,
      *   //   "clientRequestId": "my_clientRequestId",
      *   //   "createTime": "my_createTime",
      *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
@@ -10710,6 +10734,8 @@ export namespace dataflow_v1b3 {
      *     'createTimeRange.startTime': 'placeholder-value',
      *     // The kind of filter to use.
      *     filter: 'placeholder-value',
+     *     // Optional. Restricts the results to jobs that match this [AIP-160](https://google.aip.dev/160) filter expression. The expression is ANDed with `filter` and the time ranges, and is limited to 4 KiB and 32 levels of nesting. Not yet implemented: the service currently ignores this field and returns unfiltered results. Support will be added in a future release. Supported fields are `name`, `id`, `location`, `job_metadata.sdk_version.version`, `type`, `current_state`, `create_time` and `current_state_time`: * String fields support `=` and `!=`, where `*` in the value matches any sequence of characters, and `:`, which matches the same way but ignores ASCII case. `field:*` matches any non-empty value. * `type` and `current_state` support `=`, `!=` and `:` with enum value names, e.g. `current_state = JOB_STATE_RUNNING`. * Timestamp fields support `=`, `!=`, `<`, `<=`, `\>` and `\>=` with RFC 3339 values, e.g. `create_time \>= "2026-10-01T00:00:00Z"`. A job without the timestamp doesn't match any comparison on it. Restrictions can be combined with `AND`, `OR`, `NOT` (or its equivalent, `-`) and parentheses; `AND` and `OR` can't be mixed without parentheses. For example: `name:"wordcount-*" AND -type = JOB_TYPE_STREAMING AND (current_state = JOB_STATE_FAILED OR current_state = JOB_STATE_CANCELLED)`.
+     *     filterExpression: 'placeholder-value',
      *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      *     location: 'placeholder-value',
      *     // Optional. The job name.
@@ -10726,7 +10752,7 @@ export namespace dataflow_v1b3 {
      *     'terminationTimeRange.endTime': 'placeholder-value',
      *     // Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
      *     'terminationTimeRange.startTime': 'placeholder-value',
-     *     // Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
+     *     // Deprecated. `ListJobs` always returns summaries now. Use `GetJob` for other `JobView`s.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -11043,6 +11069,7 @@ export namespace dataflow_v1b3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "autoVmSelectionEnabled": false,
      *       //   "clientRequestId": "my_clientRequestId",
      *       //   "createTime": "my_createTime",
      *       //   "createdFromSnapshotId": "my_createdFromSnapshotId",
@@ -11079,6 +11106,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Example response
      *   // {
+     *   //   "autoVmSelectionEnabled": false,
      *   //   "clientRequestId": "my_clientRequestId",
      *   //   "createTime": "my_createTime",
      *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
@@ -11301,6 +11329,10 @@ export namespace dataflow_v1b3 {
      */
     filter?: string;
     /**
+     * Optional. Restricts the results to jobs that match this [AIP-160](https://google.aip.dev/160) filter expression. The expression is ANDed with `filter` and the time ranges, and is limited to 4 KiB and 32 levels of nesting. Not yet implemented: the service currently ignores this field and returns unfiltered results. Support will be added in a future release. Supported fields are `name`, `id`, `location`, `job_metadata.sdk_version.version`, `type`, `current_state`, `create_time` and `current_state_time`: * String fields support `=` and `!=`, where `*` in the value matches any sequence of characters, and `:`, which matches the same way but ignores ASCII case. `field:*` matches any non-empty value. * `type` and `current_state` support `=`, `!=` and `:` with enum value names, e.g. `current_state = JOB_STATE_RUNNING`. * Timestamp fields support `=`, `!=`, `<`, `<=`, `\>` and `\>=` with RFC 3339 values, e.g. `create_time \>= "2026-10-01T00:00:00Z"`. A job without the timestamp doesn't match any comparison on it. Restrictions can be combined with `AND`, `OR`, `NOT` (or its equivalent, `-`) and parentheses; `AND` and `OR` can't be mixed without parentheses. For example: `name:"wordcount-*" AND -type = JOB_TYPE_STREAMING AND (current_state = JOB_STATE_FAILED OR current_state = JOB_STATE_CANCELLED)`.
+     */
+    filterExpression?: string;
+    /**
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string;
@@ -11333,7 +11365,7 @@ export namespace dataflow_v1b3 {
      */
     'terminationTimeRange.startTime'?: string;
     /**
-     * Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
+     * Deprecated. `ListJobs` always returns summaries now. Use `GetJob` for other `JobView`s.
      */
     view?: string;
   }
@@ -13414,6 +13446,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Example response
      *   // {
+     *   //   "autoVmSelectionEnabled": false,
      *   //   "clientRequestId": "my_clientRequestId",
      *   //   "createTime": "my_createTime",
      *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
@@ -14309,6 +14342,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Example response
      *   // {
+     *   //   "autoVmSelectionEnabled": false,
      *   //   "clientRequestId": "my_clientRequestId",
      *   //   "createTime": "my_createTime",
      *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",

@@ -390,16 +390,7 @@ export namespace servicecontrol_v1 {
   /**
    * Information set when the caller is an agent.
    */
-  export interface Schema$CallerAgent {
-    /**
-     * The type of authority for the caller agent.
-     */
-    authority?: string | null;
-    /**
-     * The agent identifier of the caller agent. This is a globally unique, immutable name in Uniform Resource Name (URN) format. Example: 'urn:agent:projects-123456789:projects:123456789:locations:us-central1:aiplatform:reasoningEngines:987654321'
-     */
-    id?: string | null;
-  }
+  export interface Schema$CallerAgent {}
   /**
    * Defines the errors to be returned in google.api.servicecontrol.v1.CheckResponse.check_errors.
    */

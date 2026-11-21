@@ -941,7 +941,7 @@
                   ]
                 },
                 "update": {
-                  "description": "Updates a cluster within an instance. Note that UpdateCluster does not support updating cluster_config.cluster_autoscaling_config. In order to update it, you must use PartialUpdateCluster.",
+                  "description": "Updates a cluster within an instance. This method updates only the serve_nodes for a Cluster, and can only be used on manually scaled clusters. To update autoscaled clusters or enable autoscaling via cluster_config.cluster_autoscaling_config, use PartialUpdateCluster.",
                   "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/clusters/{clustersId}",
                   "httpMethod": "PUT",
                   "id": "bigtableadmin.projects.instances.clusters.update",
@@ -3238,7 +3238,7 @@
       }
     }
   },
-  "revision": "20261017",
+  "revision": "20261112",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {

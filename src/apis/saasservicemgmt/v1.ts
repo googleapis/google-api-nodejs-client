@@ -751,7 +751,7 @@ export namespace saasservicemgmt_v1 {
      */
     createTime?: string | null;
     /**
-     * Output only. If the state is FAILED, the corresponding error code and message. Defaults to code=OK for all other states.
+     * Output only. If the state is `FAILED`, the corresponding error code and message. Defaults to code=OK for all other states.
      */
     error?: Schema$Status;
     /**
@@ -1122,7 +1122,7 @@ export namespace saasservicemgmt_v1 {
     updateTime?: string | null;
   }
   /**
-   * UnitOperation encapsulates the intent of changing/interacting with the service component represented by the specific Unit. Multiple UnitOperations can be created (requested) and scheduled in the future, however only one will be allowed to execute at a time (that can change in the future for non-mutating operations). UnitOperations allow different actors interacting with the same unit to focus only on the change they have requested. This is a base object that contains the common fields in all unit operations. Next: 22
+   * UnitOperation encapsulates the intent of changing/interacting with the service component represented by the specific Unit. Multiple UnitOperations can be created (requested) and scheduled in the future, however only one will be allowed to execute at a time (that can change in the future for non-mutating operations). UnitOperations allow different actors interacting with the same unit to focus only on the change they have requested. This is a base object that contains the common fields in all unit operations.
    */
   export interface Schema$UnitOperation {
     /**

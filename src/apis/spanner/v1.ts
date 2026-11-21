@@ -204,6 +204,23 @@ export namespace spanner_v1 {
    */
   export interface Schema$AddSplitPointsResponse {}
   /**
+   * Defines a range of processing units supported by an instance configuration.
+   */
+  export interface Schema$AllowedProcessingUnits {
+    /**
+     * The maximum value of processing units applicable to this interval, inclusive. If unset, there is no predefined limit to the supported number of processing units, although project quota limits still apply.
+     */
+    maxProcessingUnits?: number | null;
+    /**
+     * The minimum value of processing units applicable to this interval, inclusive.
+     */
+    minProcessingUnits?: number | null;
+    /**
+     * Allowed increments of processing units between “min” and “max”.
+     */
+    processingUnitIncrement?: number | null;
+  }
+  /**
    * AsymmetricAutoscalingOption specifies the scaling of replicas identified by the given selection.
    */
   export interface Schema$AsymmetricAutoscalingOption {
@@ -480,7 +497,7 @@ export namespace spanner_v1 {
    */
   export interface Schema$BatchWriteRequest {
     /**
-     * Optional. If you don't set the `exclude_txn_from_change_streams` option or if it's set to `false`, then any change streams monitoring columns modified by transactions will capture the updates made within that transaction.
+     * Optional. For change streams monitoring columns modified by transactions, when `exclude_txn_from_change_streams` is set to `true`, two scenarios are possible: * If the DDL option `allow_txn_exclusion` is set to `true`, then the updates made within all transactions in this batch write aren't recorded in the change stream. * If you don't set the DDL option `allow_txn_exclusion` or if it's set to `false`, then the updates made within this transaction are recorded in the change stream. If you don't set the `exclude_txn_from_change_streams` option or if it's set to `false`, then any change streams monitoring columns modified by transactions will capture the updates made within that transaction.
      */
     excludeTxnFromChangeStreams?: boolean | null;
     /**
@@ -1037,6 +1054,14 @@ export namespace spanner_v1 {
      * Output only. The read-write region which contains the database's leader replicas. This is the same as the value of default_leader database option set using DatabaseAdmin.CreateDatabase or DatabaseAdmin.UpdateDatabaseDdl. If not explicitly set, this is empty.
      */
     defaultLeader?: string | null;
+    /**
+     * Output only. The default read lock mode for transactions. If not configured via DDL, `READ_LOCK_MODE_UNSPECIFIED` will be returned. For transactions, if lock mode is unspecified, it defaults to `PESSIMISTIC` for `SERIALIZABLE` isolation and `OPTIMISTIC` for `REPEATABLE_READ` isolation.
+     */
+    defaultReadLockMode?: string | null;
+    /**
+     * Output only. The default isolation level for transactions in this database. If not configured via DDL, `ISOLATION_LEVEL_UNSPECIFIED` will be returned. For transactions, if isolation level is unspecified, it defaults to `SERIALIZABLE`.
+     */
+    defaultTransactionIsolation?: string | null;
     /**
      * Output only. Earliest timestamp at which older versions of the data can be read. This value is continuously updated by Cloud Spanner and becomes stale the moment it is queried. If you are using this value to recover data, make sure to account for the time from the moment when the value is queried to the moment when you initiate the recovery.
      */
@@ -1604,6 +1629,10 @@ export namespace spanner_v1 {
    * A possible configuration for a Cloud Spanner instance. Configurations define the geographic placement of nodes and their replication.
    */
   export interface Schema$InstanceConfig {
+    /**
+     * Output only. Defines the ranges of allowed processing units supported by this instance configuration. If multiple ranges are specified, an instance using this configuration may use a valid increment in any of the given ranges. For example, an allowed_processing_units specification of `[{min_processing_units:100, max_processing_units:900, processing_unit_increment:100\}, {min_processing_units:1000, processing_unit_increment:1000\}]` specifies that the instance configuration supports instances with quantities of processing units in multiples of 100 processing units (100, 200, 300 and so on) up to and including 900 processing units and quantities that are at least 1000 processing units and multiples of 1000 processing units (1000, 2000, 3000 and so on).
+     */
+    allowedProcessingUnits?: Schema$AllowedProcessingUnits[];
     /**
      * Base configuration name, e.g. projects//instanceConfigs/nam3, based on which this configuration is created. Only set for user-managed configurations. `base_config` must refer to a configuration of type `GOOGLE_MANAGED` in the same project as this configuration.
      */
@@ -4024,6 +4053,7 @@ export namespace spanner_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "allowedProcessingUnits": [],
      *   //   "baseConfig": "my_baseConfig",
      *   //   "configType": "my_configType",
      *   //   "displayName": "my_displayName",
@@ -10347,6 +10377,8 @@ export namespace spanner_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "databaseDialect": "my_databaseDialect",
      *   //   "defaultLeader": "my_defaultLeader",
+     *   //   "defaultReadLockMode": "my_defaultReadLockMode",
+     *   //   "defaultTransactionIsolation": "my_defaultTransactionIsolation",
      *   //   "earliestVersionTime": "my_earliestVersionTime",
      *   //   "enableDropProtection": false,
      *   //   "encryptionConfig": {},
@@ -11081,6 +11113,8 @@ export namespace spanner_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "databaseDialect": "my_databaseDialect",
      *       //   "defaultLeader": "my_defaultLeader",
+     *       //   "defaultReadLockMode": "my_defaultReadLockMode",
+     *       //   "defaultTransactionIsolation": "my_defaultTransactionIsolation",
      *       //   "earliestVersionTime": "my_earliestVersionTime",
      *       //   "enableDropProtection": false,
      *       //   "encryptionConfig": {},

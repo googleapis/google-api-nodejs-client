@@ -619,7 +619,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Optional. Maximum number of results to return. Maximum and default are 100.",
+                  "description": "Optional. Maximum number of results to return. Maximum and default are 50.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -2890,7 +2890,7 @@
       }
     }
   },
-  "revision": "20261112",
+  "revision": "20261117",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {

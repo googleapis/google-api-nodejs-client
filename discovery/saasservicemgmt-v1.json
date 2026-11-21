@@ -1983,7 +1983,7 @@
       }
     }
   },
-  "revision": "20261106",
+  "revision": "20261111",
   "rootUrl": "https://saasservicemgmt.googleapis.com/",
   "schemas": {
     "Aggregate": {
@@ -2874,7 +2874,7 @@
         },
         "error": {
           "$ref": "Status",
-          "description": "Output only. If the state is FAILED, the corresponding error code and message. Defaults to code=OK for all other states.",
+          "description": "Output only. If the state is `FAILED`, the corresponding error code and message. Defaults to code=OK for all other states.",
           "readOnly": true
         },
         "etag": {
@@ -3513,7 +3513,7 @@
       "type": "object"
     },
     "UnitOperation": {
-      "description": "UnitOperation encapsulates the intent of changing/interacting with the service component represented by the specific Unit. Multiple UnitOperations can be created (requested) and scheduled in the future, however only one will be allowed to execute at a time (that can change in the future for non-mutating operations). UnitOperations allow different actors interacting with the same unit to focus only on the change they have requested. This is a base object that contains the common fields in all unit operations. Next: 22",
+      "description": "UnitOperation encapsulates the intent of changing/interacting with the service component represented by the specific Unit. Multiple UnitOperations can be created (requested) and scheduled in the future, however only one will be allowed to execute at a time (that can change in the future for non-mutating operations). UnitOperations allow different actors interacting with the same unit to focus only on the change they have requested. This is a base object that contains the common fields in all unit operations.",
       "id": "UnitOperation",
       "properties": {
         "annotations": {

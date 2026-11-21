@@ -7050,7 +7050,7 @@ export namespace chromemanagement_v1 {
      *     filter: 'placeholder-value',
      *     // Optional. The fields used to specify the ordering of the results. The supported fields are: * `browser_permanent_id` * `virtual_device_id` * `last_policy_fetch_time` * `annotated_user` * `annotated_location` * `annotated_asset_id` * `annotated_notes` * `org_unit_path` * `os_version` * `last_registration_time` * `extension_count` * `policy_count` * `last_device_user` * `machine_name` * `browser_version_channel` * `os_platform_version` * `last_activity_time` * `browser_version` By default, sorting is in ascending order, to specify descending order for a field, a suffix ` desc` should be added to the field name. The default ordering is the ascending order of `browser_permanent_id`.
      *     orderBy: 'placeholder-value',
-     *     // Optional. Maximum number of results to return. Maximum and default are 100.
+     *     // Optional. Maximum number of results to return. Maximum and default are 50.
      *     pageSize: 'placeholder-value',
      *     // Optional. Token to specify next page in the list.
      *     pageToken: 'placeholder-value',
@@ -7561,7 +7561,7 @@ export namespace chromemanagement_v1 {
      */
     orderBy?: string;
     /**
-     * Optional. Maximum number of results to return. Maximum and default are 100.
+     * Optional. Maximum number of results to return. Maximum and default are 50.
      */
     pageSize?: number;
     /**

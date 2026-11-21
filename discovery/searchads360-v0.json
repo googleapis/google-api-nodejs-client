@@ -240,7 +240,7 @@
           ]
         },
         "search": {
-          "description": "Returns all fields that match the search [query](/search-ads/reporting/concepts/field-service#use_a_query_to_get_field_details). List of thrown errors: [AuthenticationError]() [AuthorizationError]() [HeaderError]() [InternalError]() [QueryError]() [QuotaError]() [RequestError]()",
+          "description": "Returns all fields that match the search [query](https://developers.google.com/search-ads/reporting/concepts/field-service#use_a_query_to_get_field_details). List of thrown errors: [AuthenticationError]() [AuthorizationError]() [HeaderError]() [InternalError]() [QueryError]() [QuotaError]() [RequestError]()",
           "flatPath": "v0/searchAds360Fields:search",
           "httpMethod": "POST",
           "id": "searchads360.searchAds360Fields.search",
@@ -260,7 +260,7 @@
       }
     }
   },
-  "revision": "20260810",
+  "revision": "20261116",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
     "GoogleAdsSearchads360V0Common__AdScheduleInfo": {
@@ -1752,7 +1752,13 @@
             "CONTENT",
             "YOUTUBE_SEARCH",
             "YOUTUBE_WATCH",
-            "MIXED"
+            "MIXED",
+            "YOUTUBE",
+            "GOOGLE_TV",
+            "GOOGLE_OWNED_CHANNELS",
+            "GMAIL",
+            "DISCOVER",
+            "MAPS"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -1762,7 +1768,13 @@
             "Display Network.",
             "YouTube Search.",
             "YouTube Videos",
-            "Cross-network."
+            "Cross-network.",
+            "YouTube",
+            "Google TV",
+            "This network is used for Google Owned channels such as Discover feed, Gmail, YouTube. Demand Gen stats are attributed to more granular network types such as GMAIL, DISCOVER, MAPS, YOUTUBE; this value is only used for historical data.",
+            "Gmail",
+            "Discover Feed",
+            "Maps"
           ],
           "type": "string"
         },
@@ -2194,6 +2206,15 @@
           "description": "The region where the vertical ads listing is located.",
           "type": "string"
         },
+        "verticalAdsListingUserRating": {
+          "description": "Integer value specifying the user rating of the vertical ads listing as a number from 1 to 5, where 5 is the best. The value will always be within this range.",
+          "format": "int64",
+          "type": "string"
+        },
+        "verticalAdsListingVenue": {
+          "description": "The name of the venue for the vertical ads listing, for example, the venue for a concert event.",
+          "type": "string"
+        },
         "verticalAdsPartnerAccount": {
           "description": "A specific partner account within a Partner Center (for example, Hotel Center) that supplies inventory feed data for Vertical Ads.",
           "format": "int64",
@@ -2258,7 +2279,7 @@
           "type": "string"
         },
         "status": {
-          "description": "Indicates whether the content is considered synthetic by this source.",
+          "description": "Indicates the attestation status for whether the content should be labeled as created or edited with AI by this source.",
           "enum": [
             "UNSPECIFIED",
             "UNKNOWN",
@@ -2268,8 +2289,8 @@
           "enumDescriptions": [
             "Not specified.",
             "Used for return values only. Represents value unknown in this version.",
-            "The content is attested as not synthetic.",
-            "The content is attested as synthetic."
+            "The content is attested as not needing to be labeled as created or edited with AI.",
+            "The content is attested as needing to be labeled as created or edited with AI."
           ],
           "type": "string"
         }
@@ -3687,7 +3708,7 @@
           "type": "boolean"
         },
         "feedLabel": {
-          "description": "Feed label of products to include in the campaign. Valid feed labels may contain a maximum of 20 characters including uppercase letters, numbers, hyphens, and underscores. If you previously used the deprecated `sales_country` in the two-letter country code (`XX`) format, the `feed_label` field should be used instead. For more information see the [feed label](//support.google.com/merchants/answer/12453549) support article.",
+          "description": "Feed label of products to include in the campaign. Valid feed labels may contain a maximum of 20 characters including uppercase letters, numbers, hyphens, and underscores. If you previously used the deprecated `sales_country` in the two-letter country code (`XX`) format, the `feed_label` field should be used instead. For more information see the [feed label](https://support.google.com/merchants/answer/12453549) support article.",
           "type": "string"
         },
         "merchantId": {
@@ -5840,6 +5861,10 @@
       "description": "A bidding strategy.",
       "id": "GoogleAdsSearchads360V0Resources__BiddingStrategy",
       "properties": {
+        "auctionTimeBiddingEnabled": {
+          "description": "Immutable. Whether Google Ads auction-time bidding is enabled for this bidding strategy. This field does not cover Microsoft Advertising auction-time bidding.",
+          "type": "boolean"
+        },
         "campaignCount": {
           "description": "Output only. The number of campaigns attached to this bidding strategy. This field is read-only.",
           "format": "int64",
@@ -5882,6 +5907,10 @@
           "format": "int64",
           "readOnly": true,
           "type": "string"
+        },
+        "portfolioGroupEnabled": {
+          "description": "Immutable. Whether this bidding strategy is a Search Ads 360 portfolio group. A portfolio group is the parent strategy of a multi-target portfolio.",
+          "type": "boolean"
         },
         "resourceName": {
           "description": "Immutable. The resource name of the bidding strategy. Bidding strategy resource names have the form: `customers/{customer_id}/biddingStrategies/{bidding_strategy_id}`",
@@ -7412,7 +7441,7 @@
             "Floodlight activity that tracks the number of sales made or the number of items purchased. Can also capture the total value of each sale. Read only.",
             "Conversions that track local actions from Google's products and services after interacting with an ad. Read only.",
             "Conversions reported when a user submits a lead form. Read only.",
-            "Deprecated: The Salesforce integration ended on May 31, 2025. See [Legacy Salesforce integration for conversions upgrade FAQ](//support.google.com/google-ads/answer/14728349).",
+            "Deprecated: The Salesforce integration ended on May 31, 2025. See [Legacy Salesforce integration for conversions upgrade FAQ](https://support.google.com/google-ads/answer/14728349).",
             "Conversions imported from Search Ads 360 Floodlight data. Read only.",
             "Call conversions that occur on Smart campaign Ads without call tracking setup, using Smart campaign custom criteria. Read only.",
             "The user clicks on a call element within Google Maps. Smart campaign only. Read only.",
@@ -8457,6 +8486,21 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Resources__SearchAds360BiddingStrategy": {
+      "description": "Search Ads 360 settings for a bidding strategy.",
+      "id": "GoogleAdsSearchads360V0Resources__SearchAds360BiddingStrategy",
+      "properties": {
+        "portfolioGroupBiddingStrategy": {
+          "description": "The resource name of the portfolio group bidding strategy that this sub-strategy belongs to.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the Search Ads 360 bidding strategy. Search Ads 360 bidding strategy resource names have the form: `customers/{customer_id}/searchAds360BiddingStrategies/{bidding_strategy_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Resources__SearchAds360Field": {
       "description": "A field or resource (artifact) used by SearchAds360Service.",
       "id": "GoogleAdsSearchads360V0Resources__SearchAds360Field",
@@ -9180,6 +9224,10 @@
         "productGroupView": {
           "$ref": "GoogleAdsSearchads360V0Resources__ProductGroupView",
           "description": "The product group view referenced in the query."
+        },
+        "searchAds360BiddingStrategy": {
+          "$ref": "GoogleAdsSearchads360V0Resources__SearchAds360BiddingStrategy",
+          "description": "The Search Ads 360 bidding strategy referenced in the query."
         },
         "segments": {
           "$ref": "GoogleAdsSearchads360V0Common__Segments",
@@ -11213,7 +11261,12 @@
             "CANNOT_CHANGE_BIDDING_STRATEGY_TYPE",
             "CANNOT_REMOVE_ASSOCIATED_STRATEGY",
             "BIDDING_STRATEGY_NOT_SUPPORTED",
-            "INCOMPATIBLE_BIDDING_STRATEGY_AND_BIDDING_STRATEGY_GOAL_TYPE"
+            "INCOMPATIBLE_BIDDING_STRATEGY_AND_BIDDING_STRATEGY_GOAL_TYPE",
+            "CANNOT_ATTACH_BIDDING_STRATEGY_TO_NON_PORTFOLIO_GROUP",
+            "DIFFERENT_AUCTION_TIME_BIDDING_STATUS_IN_PORTFOLIO_GROUP",
+            "DIFFERENT_BIDDING_STRATEGY_TYPE_IN_PORTFOLIO_GROUP",
+            "DIFFERENT_CURRENCY_IN_PORTFOLIO_GROUP",
+            "CANNOT_ATTACH_PORTFOLIO_GROUP_TO_PORTFOLIO_GROUP"
           ],
           "enumDescriptions": [
             "Enum unspecified.",
@@ -11222,7 +11275,12 @@
             "Bidding strategy type is immutable.",
             "Only bidding strategies not linked to campaigns, adgroups or adgroup criteria can be removed.",
             "The specified bidding strategy is not supported.",
-            "The bidding strategy is incompatible with the campaign's bidding strategy goal type."
+            "The bidding strategy is incompatible with the campaign's bidding strategy goal type.",
+            "Cannot attach a bidding strategy to a target strategy that is not a portfolio group.",
+            "The bidding strategy and the portfolio group must have the same Google Ads and Microsoft Advertising auction-time bidding settings.",
+            "The bidding strategy and the portfolio group must have the same bidding strategy type.",
+            "The bidding strategy and the portfolio group must use the same currency.",
+            "Cannot attach a portfolio group to another portfolio group."
           ],
           "type": "string"
         },

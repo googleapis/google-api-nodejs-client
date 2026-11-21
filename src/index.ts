@@ -342,8 +342,6 @@ export {gkehub_v2alpha} from './apis/gkehub/v2alpha';
 export {gkehub_v2beta} from './apis/gkehub/v2beta';
 export {gkeonprem_v1} from './apis/gkeonprem/v1';
 export {gmail_v1} from './apis/gmail/v1';
-export {gmailpostmastertools_v1} from './apis/gmailpostmastertools/v1';
-export {gmailpostmastertools_v1beta1} from './apis/gmailpostmastertools/v1beta1';
 export {gmailpostmastertools_v2} from './apis/gmailpostmastertools/v2';
 export {groupsmigration_v1} from './apis/groupsmigration/v1';
 export {groupssettings_v1} from './apis/groupssettings/v1';

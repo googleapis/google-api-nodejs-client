@@ -1156,7 +1156,7 @@ export namespace youtube_v3 {
      */
     videoCount?: string | null;
     /**
-     * The number of times the channel has been viewed.
+     * The sum of the number of times all the videos in all formats have been viewed for a channel. For all video formats (long-form, Live, and Shorts) on a channel, `viewCount` counts views the moment a video begins to play (includes autoplay, hold the pointer over, and click/tap to play). For all video formats (long-form, Live, and Shorts) on a channel, `viewCount` includes co-views when multiple people watch together on a television screen.
      */
     viewCount?: string | null;
   }
@@ -4514,7 +4514,7 @@ export namespace youtube_v3 {
      */
     actualStartTime?: string | null;
     /**
-     * The number of viewers currently watching the broadcast. The property and its value will be present if the broadcast has current viewers and the broadcast owner has not hidden the viewcount for the video. Note that YouTube stops tracking the number of concurrent viewers for a broadcast when the broadcast ends. So, this property would not identify the number of viewers watching an archived video of a live broadcast that already ended.
+     * The number of viewers watching the broadcast at the time of the request. This count includes co-viewers when multiple people watch together on a television screen. The property and its value will be present if the broadcast has current viewers and the broadcast owner has not hidden the viewcount for the video. Note that YouTube stops tracking the number of concurrent viewers for a broadcast when the broadcast ends. So, this property would not identify the number of viewers watching an archived video of a live broadcast that already ended. The concurrent viewer counts that the YouTube Data API returns might differ from the processed, despammed concurrent viewer counts available through YouTube Analytics. Learn more about live streaming metrics in the [YouTube Help Center](https://support.google.com/youtube/answer/2853833).
      */
     concurrentViewers?: string | null;
     /**
@@ -4762,7 +4762,7 @@ export namespace youtube_v3 {
      */
     likeCount?: string | null;
     /**
-     * The number of times the video has been viewed.
+     * The number of times the video has been viewed. For all video formats (long-form, Live, and Shorts), `viewCount` counts views the moment a video begins to play (includes autoplay, hold the pointer over, and click/tap to play). For all video formats (long-form, Live, and Shorts), `viewCount` includes co-views when multiple people watch together on a television screen.
      */
     viewCount?: string | null;
   }
@@ -4797,7 +4797,7 @@ export namespace youtube_v3 {
      */
     likeCount?: string | null;
     /**
-     * Output only. The number of times the video has been viewed.
+     * Output only. The number of times the video has been viewed. For all video formats (long-form, Live, and Shorts), `viewCount` includes co-views when multiple people watch together on a television screen.
      */
     viewCount?: string | null;
   }

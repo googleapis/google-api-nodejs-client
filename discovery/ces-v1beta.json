@@ -4146,7 +4146,7 @@
       }
     }
   },
-  "revision": "20261106",
+  "revision": "20261114",
   "rootUrl": "https://ces.googleapis.com/",
   "schemas": {
     "Action": {
@@ -4539,7 +4539,7 @@
           "type": "object"
         },
         "respectResponseInterruptionSettings": {
-          "description": "Optional. Indicates whether to respect the message-level interruption settings configured in the Dialogflow agent. * If false: all response messages from the Dialogflow agent follow the app-level barge-in settings. * If true: only response messages with [`allow_playback_interruption`](https://docs.cloud.google.com/dialogflow/cx/docs/reference/rpc/google.cloud.dialogflow.cx.v3#text) set to true will be interruptable, all other messages follow the app-level barge-in settings.",
+          "description": "Optional. Indicates whether to respect the message-level interruption settings configured in the Dialogflow agent. * If false: all response messages from the Dialogflow agent follow the app-level barge-in settings. * If true: response messages with [`allow_playback_interruption`](https://docs.cloud.google.com/dialogflow/cx/docs/reference/rpc/google.cloud.dialogflow.cx.v3#text) set to false will not be interruptable regardless of the app-level barge-in settings, all other messages follow the app-level barge-in settings.",
           "type": "boolean"
         }
       },
@@ -10719,7 +10719,7 @@
             "Content is matched for substrings character by character.",
             "Content only matches if the pattern found in the text is surrounded by word delimiters. Banned phrases can also contain word delimiters.",
             "Content is matched using regular expression syntax.",
-            "Content is matched against a system-managed list of sensitive words and phrases. Attaching a guardrail with this match type to an app or agent replaces the default sensitive words filter for the affected agents; disable the guardrail to opt out of the default filter."
+            "Content is matched against a system-managed list of sensitive words and phrases. Attaching an enabled guardrail with this match type to an app or agent replaces the default sensitive words filter for the affected agents. A disabled guardrail with this match type is ignored; the default filter can't be turned off."
           ],
           "type": "string"
         },
@@ -10900,7 +10900,9 @@
             "MISSING_TOOL_CALL",
             "CUSTOM",
             "CHOPPY_AUDIO",
-            "PROFANITY"
+            "PROFANITY",
+            "THOUGHT_LEAKAGE",
+            "AUTOMATED_BOT"
           ],
           "enumDescriptions": [
             "Type is unspecified.",
@@ -10911,7 +10913,9 @@
             "Missing tool call issue type.",
             "Custom issue type.",
             "Choppy audio issue type.",
-            "Agent profanity issue type."
+            "Agent profanity issue type.",
+            "Thought leakage issue type: the agent spoke internal reasoning, instructions, variables, or function names aloud.",
+            "Automated bot issue type: the incoming caller (the end user) is an automated bot, e.g. a text-to-speech voice, rather than a live human."
           ],
           "type": "string"
         }

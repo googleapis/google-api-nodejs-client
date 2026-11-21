@@ -1596,6 +1596,191 @@
                 }
               }
             },
+            "reports": {
+              "methods": {
+                "create": {
+                  "description": "Create a Report.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reports",
+                  "httpMethod": "POST",
+                  "id": "observability.projects.locations.reports.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The full resource name of the location where the report should be created projects/[PROJECT_ID]/locations/[LOCATION_ID] For example: projects/my-project/locations/global",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "reportId": {
+                      "description": "Required. A client-assigned identifier for the report. The maximum length is 63 characters. Valid characters are `a-zA-Z0-9-._~%!$&'()*+,;=@`",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/reports",
+                  "request": {
+                    "$ref": "Report"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a Report resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reports/{reportsId}",
+                  "httpMethod": "DELETE",
+                  "id": "observability.projects.locations.reports.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the report to delete. Format: projects/{project}/locations/{location}/reports/{REPORT_ID}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/reports/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Report Endpoints Gets a Report resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reports/{reportsId}",
+                  "httpMethod": "GET",
+                  "id": "observability.projects.locations.reports.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the report to retrieve. Format: projects/{project}/locations/{location}/reports/{REPORT_ID}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/reports/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Report"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Report resources",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reports",
+                  "httpMethod": "GET",
+                  "id": "observability.projects.locations.reports.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of results to return from this request. Note that the server may return fewer reports than requested. If unspecified, the server will pick an appropriate default. The maximum value is 100; values above 100 will be coerced to 100. If not provided, the default page size is 10.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReports` must match the call that provided the page token (except `page_size`, which may differ).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The scope of reports to list Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/reports",
+                  "response": {
+                    "$ref": "ListReportsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a Report resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reports/{reportsId}",
+                  "httpMethod": "PATCH",
+                  "id": "observability.projects.locations.reports.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the report. Format: projects/{project}/locations/{location}/reports/{report}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/reports/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The field mask specifying which fields of the report are to be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "Report"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "send": {
+                  "description": "Sends a Report resource via email.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reports/{reportsId}:send",
+                  "httpMethod": "POST",
+                  "id": "observability.projects.locations.reports.send",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the report to send. Format: projects/{project}/locations/{location}/reports/{REPORT_ID}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/reports/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:send",
+                  "request": {
+                    "$ref": "SendReportRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "scopes": {
               "methods": {
                 "get": {
@@ -1821,7 +2006,7 @@
       }
     }
   },
-  "revision": "20261029",
+  "revision": "20261112",
   "rootUrl": "https://observability.googleapis.com/",
   "schemas": {
     "Bucket": {
@@ -2063,6 +2248,24 @@
       },
       "type": "object"
     },
+    "ListReportsResponse": {
+      "description": "Response for listing Reports.",
+      "id": "ListReportsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "reports": {
+          "description": "The list of reports.",
+          "items": {
+            "$ref": "Report"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListTraceScopesResponse": {
       "description": "Response for listing TraceScopes.",
       "id": "ListTraceScopesResponse",
@@ -2212,6 +2415,112 @@
       },
       "type": "object"
     },
+    "RenderingOptions": {
+      "description": "Rendering options for the report.",
+      "id": "RenderingOptions",
+      "properties": {
+        "collapsibleGroupsExpanded": {
+          "description": "Optional. Whether widgets within a collapsible group are expanded by default.",
+          "type": "boolean"
+        },
+        "legendsIncluded": {
+          "description": "Optional. Whether legends are included on widgets.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "Report": {
+      "description": "A Cloud Observability report configuration.",
+      "id": "Report",
+      "properties": {
+        "createTime": {
+          "description": "Output only. When the report was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creatorUsername": {
+          "description": "Output only. The username of the user who created the report. This may be an email or a formatted subject and identity pool identifier. The following are examples: alice.smith@example.com alice.smith@example.com (global/workforcePools/example-com-us-employees) my-workload (projects/1234/locations/global/workloadIdentityPools/example-workload-pool) This value may be empty if the creating user was deleted, or if the username is otherwise unavailable.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dashboard": {
+          "description": "Required. The dashboard to render in the report. Note that dashboards are snapshotted on report creation, so changes to the dashboard after report creation will not be reflected in the report. For example: //monitoring.googleapis.com/projects/my-project/dashboards/my-dashboard",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. A description of the report. Useful for documenting how the report is intended to be used.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. The human readable name of the report. The maximum length is 63 characters.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "latestRunTime": {
+          "description": "Output only. When the report was last successfully run.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the report. Format: projects/{project}/locations/{location}/reports/{report}",
+          "type": "string"
+        },
+        "recipientEmails": {
+          "description": "Optional. The list of email addresses to receive the report.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "renderingOptions": {
+          "$ref": "RenderingOptions",
+          "description": "Optional. Rendering options for the report."
+        },
+        "reportType": {
+          "description": "Optional. The type of the report.",
+          "enum": [
+            "REPORT_TYPE_UNSPECIFIED",
+            "PNG",
+            "PDF",
+            "HTML"
+          ],
+          "enumDescriptions": [
+            "Unspecified report type.",
+            "Render the report to a PNG image.",
+            "Render the report to a PDF document.",
+            "Render the report as an HTML document."
+          ],
+          "type": "string"
+        },
+        "schedulingJob": {
+          "description": "Optional. The associated cloud scheduling job, if this is a scheduled report. For example: cloudscheduler.googleapis.com/projects/my-project/locations/global/jobs/my-job",
+          "type": "string"
+        },
+        "timeWindow": {
+          "description": "Optional. The time window of the report data, ending at the time the report is generated. If not specified, defaults to the last 7 days.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. When the report was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updaterUsername": {
+          "description": "Output only. The username of the user who updated the report. This may be an email or a formatted subject and identity pool identifier. The following are examples: alice.smith@example.com alice.smith@example.com (global/workforcePools/example-com-us-employees) my-workload (projects/1234/locations/global/workloadIdentityPools/example-workload-pool) This value may be empty if the updating user was deleted, or if the username is otherwise unavailable.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ReprovisionBucketRequest": {
       "description": "Request for reprovisioning a bucket, replaces configuration with that of the configured Observability settings.",
       "id": "ReprovisionBucketRequest",
@@ -2241,6 +2550,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "SendReportRequest": {
+      "description": "Request for sending a Report via email.",
+      "id": "SendReportRequest",
+      "properties": {},
       "type": "object"
     },
     "Settings": {

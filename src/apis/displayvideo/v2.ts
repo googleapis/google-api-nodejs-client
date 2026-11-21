@@ -1397,6 +1397,10 @@ export namespace displayvideo_v2 {
      */
     displayName?: string | null;
     /**
+     * Output only. The exclusion status of the category.
+     */
+    exclusionStatus?: string | null;
+    /**
      * Indicates if this option is being negatively targeted.
      */
     negative?: boolean | null;
@@ -1413,6 +1417,10 @@ export namespace displayvideo_v2 {
      * Output only. The display name of the category.
      */
     displayName?: string | null;
+    /**
+     * Output only. The exclusion status of the category.
+     */
+    exclusionStatus?: string | null;
   }
   /**
    * A single channel. Channels are custom groups of related websites and apps.
@@ -5327,7 +5335,7 @@ export namespace displayvideo_v2 {
      */
     actionButtonLabels?: string[] | null;
     /**
-     * Optional. The business name shown on the ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.
+     * Optional. The business name shown on the ad. This setting is required unless defaultBusinessName is set for the parent advertiser. If this field is unset, the advertiser's default business name is used.
      */
     businessName?: string | null;
     /**
@@ -5363,7 +5371,7 @@ export namespace displayvideo_v2 {
      */
     headlines?: string[] | null;
     /**
-     * Optional. The logo image used by this ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.
+     * Optional. The logo image used by this ad. This setting is required unless defaultLogoAssetId is set for the parent advertiser. If this field is unset, the advertiser's default logo asset is used.
      */
     logo?: Schema$ImageAsset;
     /**

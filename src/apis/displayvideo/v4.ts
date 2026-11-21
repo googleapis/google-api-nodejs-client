@@ -347,7 +347,7 @@ export namespace displayvideo_v4 {
      */
     videoDiscoverAd?: Schema$VideoDiscoveryAd;
     /**
-     * Optional. Details of an [ad used in a video action campaign](//support.google.com/google-ads/answer/10147229) to drive actions to the business, service or product.
+     * Optional. Details of a YouTube ad that can be served across various formats, such as in-stream (bumper, skippable, non-skippable), Shorts, and in-feed.
      */
     videoPerformanceAd?: Schema$VideoPerformanceAd;
   }
@@ -2362,6 +2362,10 @@ export namespace displayvideo_v4 {
      */
     displayName?: string | null;
     /**
+     * Output only. The exclusion status of the category.
+     */
+    exclusionStatus?: string | null;
+    /**
      * Indicates if this option is being negatively targeted.
      */
     negative?: boolean | null;
@@ -2378,6 +2382,10 @@ export namespace displayvideo_v4 {
      * Output only. The display name of the category.
      */
     displayName?: string | null;
+    /**
+     * Output only. The exclusion status of the category.
+     */
+    exclusionStatus?: string | null;
   }
   /**
    * A single channel. Channels are custom groups of related websites and apps.
@@ -7618,7 +7626,7 @@ export namespace displayvideo_v4 {
      */
     actionButtonLabels?: string[] | null;
     /**
-     * Optional. The business name shown on the ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.
+     * Optional. The business name shown on the ad. This setting is required unless defaultBusinessName is set for the parent advertiser. If this field is unset, the advertiser's default business name is used.
      */
     businessName?: string | null;
     /**
@@ -7654,7 +7662,7 @@ export namespace displayvideo_v4 {
      */
     headlines?: string[] | null;
     /**
-     * Optional. The logo image used by this ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.
+     * Optional. The logo image used by this ad. This setting is required unless defaultLogoAssetId is set for the parent advertiser. If this field is unset, the advertiser's default logo asset is used.
      */
     logo?: Schema$ImageAsset;
     /**
@@ -10379,7 +10387,7 @@ export namespace displayvideo_v4 {
     }
 
     /**
-     * Creates an ad group ad.
+     * Creates an ad group ad. This method is only supported for Demand Gen and video performance ads.
      * @example
      * ```js
      * // Before running the sample:
@@ -10562,7 +10570,7 @@ export namespace displayvideo_v4 {
     }
 
     /**
-     * Deletes an ad group ad.
+     * Deletes an ad group ad. This method is only supported for Demand Gen and video performance ads.
      * @example
      * ```js
      * // Before running the sample:
@@ -11002,7 +11010,7 @@ export namespace displayvideo_v4 {
     }
 
     /**
-     * Updates an ad group ad.
+     * Updates an ad group ad. This method is only supported for Demand Gen and video performance ads.
      * @example
      * ```js
      * // Before running the sample:

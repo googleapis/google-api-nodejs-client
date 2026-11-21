@@ -780,6 +780,11 @@
                   "location": "query",
                   "type": "string"
                 },
+                "filterExpression": {
+                  "description": "Optional. Restricts the results to jobs that match this [AIP-160](https://google.aip.dev/160) filter expression. The expression is ANDed with `filter` and the time ranges, and is limited to 4 KiB and 32 levels of nesting. Not yet implemented: the service currently ignores this field and returns unfiltered results. Support will be added in a future release. Supported fields are `name`, `id`, `location`, `job_metadata.sdk_version.version`, `type`, `current_state`, `create_time` and `current_state_time`: * String fields support `=` and `!=`, where `*` in the value matches any sequence of characters, and `:`, which matches the same way but ignores ASCII case. `field:*` matches any non-empty value. * `type` and `current_state` support `=`, `!=` and `:` with enum value names, e.g. `current_state = JOB_STATE_RUNNING`. * Timestamp fields support `=`, `!=`, `<`, `<=`, `>` and `>=` with RFC 3339 values, e.g. `create_time >= \"2026-10-01T00:00:00Z\"`. A job without the timestamp doesn't match any comparison on it. Restrictions can be combined with `AND`, `OR`, `NOT` (or its equivalent, `-`) and parentheses; `AND` and `OR` can't be mixed without parentheses. For example: `name:\"wordcount-*\" AND -type = JOB_TYPE_STREAMING AND (current_state = JOB_STATE_FAILED OR current_state = JOB_STATE_CANCELLED)`.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "location": {
                   "description": "The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.",
                   "location": "query",
@@ -826,7 +831,7 @@
                 },
                 "view": {
                   "deprecated": true,
-                  "description": "Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.",
+                  "description": "Deprecated. `ListJobs` always returns summaries now. Use `GetJob` for other `JobView`s.",
                   "enum": [
                     "JOB_VIEW_UNKNOWN",
                     "JOB_VIEW_SUMMARY",
@@ -1042,6 +1047,11 @@
                   "location": "query",
                   "type": "string"
                 },
+                "filterExpression": {
+                  "description": "Optional. Restricts the results to jobs that match this [AIP-160](https://google.aip.dev/160) filter expression. The expression is ANDed with `filter` and the time ranges, and is limited to 4 KiB and 32 levels of nesting. Not yet implemented: the service currently ignores this field and returns unfiltered results. Support will be added in a future release. Supported fields are `name`, `id`, `location`, `job_metadata.sdk_version.version`, `type`, `current_state`, `create_time` and `current_state_time`: * String fields support `=` and `!=`, where `*` in the value matches any sequence of characters, and `:`, which matches the same way but ignores ASCII case. `field:*` matches any non-empty value. * `type` and `current_state` support `=`, `!=` and `:` with enum value names, e.g. `current_state = JOB_STATE_RUNNING`. * Timestamp fields support `=`, `!=`, `<`, `<=`, `>` and `>=` with RFC 3339 values, e.g. `create_time >= \"2026-10-01T00:00:00Z\"`. A job without the timestamp doesn't match any comparison on it. Restrictions can be combined with `AND`, `OR`, `NOT` (or its equivalent, `-`) and parentheses; `AND` and `OR` can't be mixed without parentheses. For example: `name:\"wordcount-*\" AND -type = JOB_TYPE_STREAMING AND (current_state = JOB_STATE_FAILED OR current_state = JOB_STATE_CANCELLED)`.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "location": {
                   "description": "The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.",
                   "location": "query",
@@ -1088,7 +1098,7 @@
                 },
                 "view": {
                   "deprecated": true,
-                  "description": "Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.",
+                  "description": "Deprecated. `ListJobs` always returns summaries now. Use `GetJob` for other `JobView`s.",
                   "enum": [
                     "JOB_VIEW_UNKNOWN",
                     "JOB_VIEW_SUMMARY",
@@ -1915,6 +1925,11 @@
                       "location": "query",
                       "type": "string"
                     },
+                    "filterExpression": {
+                      "description": "Optional. Restricts the results to jobs that match this [AIP-160](https://google.aip.dev/160) filter expression. The expression is ANDed with `filter` and the time ranges, and is limited to 4 KiB and 32 levels of nesting. Not yet implemented: the service currently ignores this field and returns unfiltered results. Support will be added in a future release. Supported fields are `name`, `id`, `location`, `job_metadata.sdk_version.version`, `type`, `current_state`, `create_time` and `current_state_time`: * String fields support `=` and `!=`, where `*` in the value matches any sequence of characters, and `:`, which matches the same way but ignores ASCII case. `field:*` matches any non-empty value. * `type` and `current_state` support `=`, `!=` and `:` with enum value names, e.g. `current_state = JOB_STATE_RUNNING`. * Timestamp fields support `=`, `!=`, `<`, `<=`, `>` and `>=` with RFC 3339 values, e.g. `create_time >= \"2026-10-01T00:00:00Z\"`. A job without the timestamp doesn't match any comparison on it. Restrictions can be combined with `AND`, `OR`, `NOT` (or its equivalent, `-`) and parentheses; `AND` and `OR` can't be mixed without parentheses. For example: `name:\"wordcount-*\" AND -type = JOB_TYPE_STREAMING AND (current_state = JOB_STATE_FAILED OR current_state = JOB_STATE_CANCELLED)`.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "location": {
                       "description": "The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.",
                       "location": "path",
@@ -1962,7 +1977,7 @@
                     },
                     "view": {
                       "deprecated": true,
-                      "description": "Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.",
+                      "description": "Deprecated. `ListJobs` always returns summaries now. Use `GetJob` for other `JobView`s.",
                       "enum": [
                         "JOB_VIEW_UNKNOWN",
                         "JOB_VIEW_SUMMARY",
@@ -2976,7 +2991,7 @@
       }
     }
   },
-  "revision": "20261018",
+  "revision": "20261116",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -4848,6 +4863,11 @@
       "description": "Defines a job to be run by the Cloud Dataflow service. Do not enter confidential information when you supply string values using the API.",
       "id": "Job",
       "properties": {
+        "autoVmSelectionEnabled": {
+          "description": "Output only. Indicates whether [Auto VM Selection](https://cloud.google.com/dataflow/docs/guides/auto-vm-selection) is enabled for the job. Set to `true` on a best-effort basis once any worker pool of the job was created with Auto VM Selection. Populated for `ListJobs` and all `GetJob` views `SUMMARY` and higher.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "clientRequestId": {
           "description": "The client's unique identifier of the job, re-used across retried attempts. If this field is set, the service will ensure its uniqueness. The request to create a job will fail if the service has knowledge of a previously submitted job with the same client's ID and job name. The caller may use this field to ensure idempotence of job creation across retried attempts to create a job. By default, the field is empty and, in that case, the service ignores it.",
           "type": "string"
@@ -4918,7 +4938,7 @@
         },
         "jobMetadata": {
           "$ref": "JobMetadata",
-          "description": "This field is populated by the Dataflow service to support filtering jobs by the metadata values provided here. Populated for ListJobs and all GetJob views SUMMARY and higher."
+          "description": "This field is populated by the Dataflow service to support filtering jobs by the metadata values provided here. Populated for `ListJobs` and all `GetJob` views `SUMMARY` and higher."
         },
         "labels": {
           "additionalProperties": {
@@ -4942,7 +4962,7 @@
         },
         "pipelineDescription": {
           "$ref": "PipelineDescription",
-          "description": "Preliminary field: The format of this data may change at any time. A description of the user pipeline and stages through which it is executed. Created by Cloud Dataflow service. Only retrieved with JOB_VIEW_DESCRIPTION or JOB_VIEW_ALL."
+          "description": "Preliminary field: The format of this data may change at any time. A description of the user pipeline and stages through which it is executed. Created by Cloud Dataflow service. Only retrieved with `JOB_VIEW_DESCRIPTION` or `JOB_VIEW_ALL`."
         },
         "projectId": {
           "description": "The ID of the Google Cloud project that the job belongs to.",
@@ -5025,7 +5045,7 @@
           "type": "string"
         },
         "steps": {
-          "description": "Exactly one of step or steps_location should be specified. The top-level steps that constitute the entire job. Only retrieved with JOB_VIEW_ALL.",
+          "description": "Exactly one of step or steps_location should be specified. The top-level steps that constitute the entire job. Only retrieved with `JOB_VIEW_ALL`.",
           "items": {
             "$ref": "Step"
           },
@@ -5153,7 +5173,7 @@
       "type": "object"
     },
     "JobMetadata": {
-      "description": "Metadata available primarily for filtering jobs. Will be included in the ListJob response and Job SUMMARY view.",
+      "description": "Metadata available primarily for filtering jobs. Will be included in the `ListJobs` response and Job `SUMMARY` view.",
       "id": "JobMetadata",
       "properties": {
         "bigTableDetails": {
@@ -7682,7 +7702,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Named properties associated with the step. Each kind of predefined step has its own required set of properties. Must be provided on Create. Only retrieved with JOB_VIEW_ALL.",
+          "description": "Named properties associated with the step. Each kind of predefined step has its own required set of properties. Must be provided on Create. Only retrieved with `JOB_VIEW_ALL`.",
           "type": "object"
         }
       },

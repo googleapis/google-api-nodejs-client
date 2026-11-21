@@ -247,11 +247,11 @@ export namespace config_v1 {
      */
     errorCode?: string | null;
     /**
-     * Output only. Location of Terraform error logs in Google Cloud Storage. Format: `gs://{bucket\}/{object\}`.
+     * Output only. Location of actuation engine error logs in Google Cloud Storage. Format: `gs://{bucket\}/{object\}`.
      */
     errorLogs?: string | null;
     /**
-     * By default, Infra Manager will return a failure when Terraform encounters a 409 code (resource conflict error) during actuation. If this flag is set to true, Infra Manager will instead attempt to automatically import the resource into the Terraform state (for supported resource types) and continue actuation. Not all resource types are supported, refer to documentation.
+     * By default, Infra Manager will return a failure when the actuation engine encounters a 409 code (resource conflict error) during actuation. If this flag is set to true, Infra Manager will instead attempt to automatically import the resource into the state (for supported resource types) and continue actuation. Not all resource types are supported, refer to documentation.
      */
     importExistingResources?: boolean | null;
     /**
@@ -275,7 +275,7 @@ export namespace config_v1 {
      */
     providerConfig?: Schema$ProviderConfig;
     /**
-     * Optional. Input to control quota checks for resources in terraform configuration files. There are limited resources on which quota validation applies.
+     * Optional. Input to control quota checks for resources in configuration files. There are limited resources on which quota validation applies.
      */
     quotaValidation?: string | null;
     /**
@@ -836,11 +836,11 @@ export namespace config_v1 {
      */
     lockId?: string | null;
     /**
-     * Terraform operation, provided by the caller.
+     * Actuation engine operation, provided by the caller.
      */
     operation?: string | null;
     /**
-     * Terraform version
+     * Actuation engine version
      */
     version?: string | null;
     /**
@@ -968,7 +968,7 @@ export namespace config_v1 {
      */
     errorCode?: string | null;
     /**
-     * Output only. Link to tf-error.ndjson file, which contains the full list of the errors encountered during a Terraform preview. Format: `gs://{bucket\}/{object\}`.
+     * Output only. Link to the error log file, which contains the full list of the errors encountered during a preview. Format: `gs://{bucket\}/{object\}`.
      */
     errorLogs?: string | null;
     /**
@@ -1316,11 +1316,11 @@ export namespace config_v1 {
      */
     errorCode?: string | null;
     /**
-     * Output only. Location of Terraform error logs in Google Cloud Storage. Format: `gs://{bucket\}/{object\}`.
+     * Output only. Location of actuation engine error logs in Google Cloud Storage. Format: `gs://{bucket\}/{object\}`.
      */
     errorLogs?: string | null;
     /**
-     * Output only. By default, Infra Manager will return a failure when Terraform encounters a 409 code (resource conflict error) during actuation. If this flag is set to true, Infra Manager will instead attempt to automatically import the resource into the Terraform state (for supported resource types) and continue actuation. Not all resource types are supported, refer to documentation.
+     * Output only. By default, Infra Manager will return a failure when the actuation engine encounters a 409 code (resource conflict error) during actuation. If this flag is set to true, Infra Manager will instead attempt to automatically import the resource into the state (for supported resource types) and continue actuation. Not all resource types are supported, refer to documentation.
      */
     importExistingResources?: boolean | null;
     /**
@@ -1336,7 +1336,7 @@ export namespace config_v1 {
      */
     providerConfig?: Schema$ProviderConfig;
     /**
-     * Optional. Input to control quota checks for resources in terraform configuration files. There are limited resources on which quota validation applies.
+     * Optional. Input to control quota checks for resources in configuration files. There are limited resources on which quota validation applies.
      */
     quotaValidation?: string | null;
     /**
@@ -1360,7 +1360,7 @@ export namespace config_v1 {
      */
     terraformBlueprint?: Schema$TerraformBlueprint;
     /**
-     * Output only. Errors encountered when creating or updating this deployment. Errors are truncated to 10 entries, see `delete_results` and `error_logs` for full details.
+     * Output only. Errors encountered when creating or updating this deployment. Errors are truncated to 10 entries, see `apply_results` and `error_logs` for full details.
      */
     tfErrors?: Schema$TerraformError[];
     /**
@@ -1394,7 +1394,7 @@ export namespace config_v1 {
     updateMask?: string | null;
   }
   /**
-   * Contains info about a Terraform state file
+   * Contains info about a state file.
    */
   export interface Schema$Statefile {
     /**
@@ -1441,7 +1441,7 @@ export namespace config_v1 {
     inputValues?: {[key: string]: Schema$TerraformVariable} | null;
   }
   /**
-   * Errors encountered during actuation using Terraform
+   * Errors encountered during actuation using Terraform.
    */
   export interface Schema$TerraformError {
     /**
@@ -4027,7 +4027,7 @@ export namespace config_v1 {
     }
 
     /**
-     * Deletes Terraform state file in a given deployment.
+     * Deletes state file in a given deployment.
      * @example
      * ```js
      * // Before running the sample:
@@ -4312,7 +4312,7 @@ export namespace config_v1 {
     }
 
     /**
-     * Exports Terraform state file from a given deployment.
+     * Exports state file from a given deployment.
      * @example
      * ```js
      * // Before running the sample:
@@ -4757,7 +4757,7 @@ export namespace config_v1 {
     }
 
     /**
-     * Imports Terraform state file in a given deployment. The state file does not take effect until the Deployment has been unlocked.
+     * Imports state file in a given deployment. The state file does not take effect until the Deployment has been unlocked.
      * @example
      * ```js
      * // Before running the sample:
@@ -6001,7 +6001,7 @@ export namespace config_v1 {
     }
 
     /**
-     * Exports Terraform state file from a given revision.
+     * Exports state file from a given revision.
      * @example
      * ```js
      * // Before running the sample:
