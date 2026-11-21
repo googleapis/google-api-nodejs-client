@@ -94,11 +94,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://spanner.us-east7.rep.googleapis.com/",
-      "location": "us-east7"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://spanner.us.rep.googleapis.com/",
       "location": "us"
     }
@@ -3446,7 +3441,7 @@
       }
     }
   },
-  "revision": "20261006",
+  "revision": "20261115",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "Ack": {
@@ -3550,6 +3545,28 @@
       "description": "The response for AddSplitPoints.",
       "id": "AddSplitPointsResponse",
       "properties": {},
+      "type": "object"
+    },
+    "AllowedProcessingUnits": {
+      "description": "Defines a range of processing units supported by an instance configuration.",
+      "id": "AllowedProcessingUnits",
+      "properties": {
+        "maxProcessingUnits": {
+          "description": "The maximum value of processing units applicable to this interval, inclusive. If unset, there is no predefined limit to the supported number of processing units, although project quota limits still apply.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minProcessingUnits": {
+          "description": "The minimum value of processing units applicable to this interval, inclusive.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "processingUnitIncrement": {
+          "description": "Allowed increments of processing units between “min” and “max”.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "AsymmetricAutoscalingOption": {
@@ -3945,7 +3962,7 @@
       "id": "BatchWriteRequest",
       "properties": {
         "excludeTxnFromChangeStreams": {
-          "description": "Optional. If you don't set the `exclude_txn_from_change_streams` option or if it's set to `false`, then any change streams monitoring columns modified by transactions will capture the updates made within that transaction.",
+          "description": "Optional. For change streams monitoring columns modified by transactions, when `exclude_txn_from_change_streams` is set to `true`, two scenarios are possible: * If the DDL option `allow_txn_exclusion` is set to `true`, then the updates made within all transactions in this batch write aren't recorded in the change stream. * If you don't set the DDL option `allow_txn_exclusion` or if it's set to `false`, then the updates made within this transaction are recorded in the change stream. If you don't set the `exclude_txn_from_change_streams` option or if it's set to `false`, then any change streams monitoring columns modified by transactions will capture the updates made within that transaction.",
           "type": "boolean"
         },
         "mutationGroups": {
@@ -4802,6 +4819,36 @@
           "readOnly": true,
           "type": "string"
         },
+        "defaultReadLockMode": {
+          "description": "Output only. The default read lock mode for transactions. If not configured via DDL, `READ_LOCK_MODE_UNSPECIFIED` will be returned. For transactions, if lock mode is unspecified, it defaults to `PESSIMISTIC` for `SERIALIZABLE` isolation and `OPTIMISTIC` for `REPEATABLE_READ` isolation.",
+          "enum": [
+            "READ_LOCK_MODE_UNSPECIFIED",
+            "PESSIMISTIC",
+            "OPTIMISTIC"
+          ],
+          "enumDescriptions": [
+            "If `READ_LOCK_MODE_UNSPECIFIED` is used, the default behavior described in `ReadLockMode` applies.",
+            "Pessimistic lock mode. Read locks are acquired immediately on read.",
+            "Optimistic lock mode. Locks for reads within the transaction are not acquired on read. Instead the locks are acquired on a commit to validate that read/queried data has not changed since the transaction started."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "defaultTransactionIsolation": {
+          "description": "Output only. The default isolation level for transactions in this database. If not configured via DDL, `ISOLATION_LEVEL_UNSPECIFIED` will be returned. For transactions, if isolation level is unspecified, it defaults to `SERIALIZABLE`.",
+          "enum": [
+            "ISOLATION_LEVEL_UNSPECIFIED",
+            "SERIALIZABLE",
+            "REPEATABLE_READ"
+          ],
+          "enumDescriptions": [
+            "Default value. If the value is not specified, the `SERIALIZABLE` isolation level is used.",
+            "All transactions appear as if they executed in a serial order, even if some of the reads, writes, and other operations of distinct transactions actually occurred in parallel. Spanner assigns commit timestamps that reflect the order of committed transactions to implement this property. Spanner offers a stronger guarantee than serializability called external consistency. For more information, see [TrueTime and external consistency](https://cloud.google.com/spanner/docs/true-time-external-consistency#serializability).",
+            "All reads performed during the transaction observe a consistent snapshot of the database, and the transaction is only successfully committed in the absence of conflicts between its updates and any concurrent updates that have occurred since that snapshot. Consequently, in contrast to `SERIALIZABLE` transactions, only write-write conflicts are detected in snapshot transactions. This isolation level does not support read-only and partitioned DML transactions. When `REPEATABLE_READ` is specified on a read-write transaction, the locking semantics default to `OPTIMISTIC`."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "earliestVersionTime": {
           "description": "Output only. Earliest timestamp at which older versions of the data can be read. This value is continuously updated by Cloud Spanner and becomes stale the moment it is queried. If you are using this value to recover data, make sure to account for the time from the moment when the value is queried to the moment when you initiate the recovery.",
           "format": "google-datetime",
@@ -5559,6 +5606,14 @@
       "description": "A possible configuration for a Cloud Spanner instance. Configurations define the geographic placement of nodes and their replication.",
       "id": "InstanceConfig",
       "properties": {
+        "allowedProcessingUnits": {
+          "description": "Output only. Defines the ranges of allowed processing units supported by this instance configuration. If multiple ranges are specified, an instance using this configuration may use a valid increment in any of the given ranges. For example, an allowed_processing_units specification of `[{min_processing_units:100, max_processing_units:900, processing_unit_increment:100}, {min_processing_units:1000, processing_unit_increment:1000}]` specifies that the instance configuration supports instances with quantities of processing units in multiples of 100 processing units (100, 200, 300 and so on) up to and including 900 processing units and quantities that are at least 1000 processing units and multiples of 1000 processing units (1000, 2000, 3000 and so on).",
+          "items": {
+            "$ref": "AllowedProcessingUnits"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "baseConfig": {
           "description": "Base configuration name, e.g. projects//instanceConfigs/nam3, based on which this configuration is created. Only set for user-managed configurations. `base_config` must refer to a configuration of type `GOOGLE_MANAGED` in the same project as this configuration.",
           "type": "string"
