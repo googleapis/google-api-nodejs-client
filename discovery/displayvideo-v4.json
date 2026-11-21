@@ -606,7 +606,7 @@
         "adGroupAds": {
           "methods": {
             "create": {
-              "description": "Creates an ad group ad.",
+              "description": "Creates an ad group ad. This method is only supported for Demand Gen and video performance ads.",
               "flatPath": "v4/advertisers/{advertisersId}/adGroupAds",
               "httpMethod": "POST",
               "id": "displayvideo.advertisers.adGroupAds.create",
@@ -635,7 +635,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes an ad group ad.",
+              "description": "Deletes an ad group ad. This method is only supported for Demand Gen and video performance ads.",
               "flatPath": "v4/advertisers/{advertisersId}/adGroupAds/{adGroupAdsId}",
               "httpMethod": "DELETE",
               "id": "displayvideo.advertisers.adGroupAds.delete",
@@ -752,7 +752,7 @@
               ]
             },
             "patch": {
-              "description": "Updates an ad group ad.",
+              "description": "Updates an ad group ad. This method is only supported for Demand Gen and video performance ads.",
               "flatPath": "v4/advertisers/{advertisersId}/adGroupAds/{adGroupAdsId}",
               "httpMethod": "PATCH",
               "id": "displayvideo.advertisers.adGroupAds.patch",
@@ -9618,7 +9618,7 @@
       }
     }
   },
-  "revision": "20261021",
+  "revision": "20261117",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -10020,7 +10020,7 @@
         },
         "videoPerformanceAd": {
           "$ref": "VideoPerformanceAd",
-          "description": "Optional. Details of an [ad used in a video action campaign](//support.google.com/google-ads/answer/10147229) to drive actions to the business, service or product."
+          "description": "Optional. Details of a YouTube ad that can be served across various formats, such as in-stream (bumper, skippable, non-skippable), Shorts, and in-feed."
         }
       },
       "type": "object"
@@ -14013,6 +14013,23 @@
           "readOnly": true,
           "type": "string"
         },
+        "exclusionStatus": {
+          "description": "Output only. The exclusion status of the category.",
+          "enum": [
+            "CATEGORY_EXCLUSION_STATUS_UNSPECIFIED",
+            "CATEGORY_EXCLUSION_STATUS_ALLOWED",
+            "CATEGORY_EXCLUSION_STATUS_DEPRECATED",
+            "CATEGORY_EXCLUSION_STATUS_NOT_ALLOWED"
+          ],
+          "enumDescriptions": [
+            "The exclusion status is unspecified.",
+            "The category can be excluded.",
+            "The category is deprecated for exclusion and will be disallowed in the future.",
+            "The category cannot be excluded."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "negative": {
           "description": "Indicates if this option is being negatively targeted.",
           "type": "boolean"
@@ -14030,6 +14047,23 @@
       "properties": {
         "displayName": {
           "description": "Output only. The display name of the category.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "exclusionStatus": {
+          "description": "Output only. The exclusion status of the category.",
+          "enum": [
+            "CATEGORY_EXCLUSION_STATUS_UNSPECIFIED",
+            "CATEGORY_EXCLUSION_STATUS_ALLOWED",
+            "CATEGORY_EXCLUSION_STATUS_DEPRECATED",
+            "CATEGORY_EXCLUSION_STATUS_NOT_ALLOWED"
+          ],
+          "enumDescriptions": [
+            "The exclusion status is unspecified.",
+            "The category can be excluded.",
+            "The category is deprecated for exclusion and will be disallowed in the future.",
+            "The category cannot be excluded."
+          ],
           "readOnly": true,
           "type": "string"
         }
@@ -25783,7 +25817,7 @@
           "type": "array"
         },
         "businessName": {
-          "description": "Optional. The business name shown on the ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.",
+          "description": "Optional. The business name shown on the ad. This setting is required unless defaultBusinessName is set for the parent advertiser. If this field is unset, the advertiser's default business name is used.",
           "type": "string"
         },
         "companionBanners": {
@@ -25833,7 +25867,7 @@
         },
         "logo": {
           "$ref": "ImageAsset",
-          "description": "Optional. The logo image used by this ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied."
+          "description": "Optional. The logo image used by this ad. This setting is required unless defaultLogoAssetId is set for the parent advertiser. If this field is unset, the advertiser's default logo asset is used."
         },
         "longHeadlines": {
           "description": "Optional. The list of long headlines shown on the call-to-action banner. Must be set unless the parent line item's lineItemType is `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE`, in which case this field cannot be set.",
