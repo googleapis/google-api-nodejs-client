@@ -717,7 +717,7 @@
                   ]
                 },
                 "deleteState": {
-                  "description": "Deletes Terraform state file in a given deployment.",
+                  "description": "Deletes state file in a given deployment.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments/{deploymentsId}:deleteState",
                   "httpMethod": "POST",
                   "id": "config.projects.locations.deployments.deleteState",
@@ -770,7 +770,7 @@
                   ]
                 },
                 "exportState": {
-                  "description": "Exports Terraform state file from a given deployment.",
+                  "description": "Exports state file from a given deployment.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments/{deploymentsId}:exportState",
                   "httpMethod": "POST",
                   "id": "config.projects.locations.deployments.exportState",
@@ -854,7 +854,7 @@
                   ]
                 },
                 "importState": {
-                  "description": "Imports Terraform state file in a given deployment. The state file does not take effect until the Deployment has been unlocked.",
+                  "description": "Imports state file in a given deployment. The state file does not take effect until the Deployment has been unlocked.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments/{deploymentsId}:importState",
                   "httpMethod": "POST",
                   "id": "config.projects.locations.deployments.importState",
@@ -1083,7 +1083,7 @@
                 "revisions": {
                   "methods": {
                     "exportState": {
-                      "description": "Exports Terraform state file from a given revision.",
+                      "description": "Exports state file from a given revision.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments/{deploymentsId}/revisions/{revisionsId}:exportState",
                       "httpMethod": "POST",
                       "id": "config.projects.locations.deployments.revisions.exportState",
@@ -1793,7 +1793,7 @@
       }
     }
   },
-  "revision": "20261016",
+  "revision": "20261111",
   "rootUrl": "https://config.googleapis.com/",
   "schemas": {
     "ApplyResults": {
@@ -1989,12 +1989,12 @@
           "type": "string"
         },
         "errorLogs": {
-          "description": "Output only. Location of Terraform error logs in Google Cloud Storage. Format: `gs://{bucket}/{object}`.",
+          "description": "Output only. Location of actuation engine error logs in Google Cloud Storage. Format: `gs://{bucket}/{object}`.",
           "readOnly": true,
           "type": "string"
         },
         "importExistingResources": {
-          "description": "By default, Infra Manager will return a failure when Terraform encounters a 409 code (resource conflict error) during actuation. If this flag is set to true, Infra Manager will instead attempt to automatically import the resource into the Terraform state (for supported resource types) and continue actuation. Not all resource types are supported, refer to documentation.",
+          "description": "By default, Infra Manager will return a failure when the actuation engine encounters a 409 code (resource conflict error) during actuation. If this flag is set to true, Infra Manager will instead attempt to automatically import the resource into the state (for supported resource types) and continue actuation. Not all resource types are supported, refer to documentation.",
           "type": "boolean"
         },
         "labels": {
@@ -2041,16 +2041,16 @@
           "description": "Optional. This field specifies the provider configurations."
         },
         "quotaValidation": {
-          "description": "Optional. Input to control quota checks for resources in terraform configuration files. There are limited resources on which quota validation applies.",
+          "description": "Optional. Input to control quota checks for resources in configuration files. There are limited resources on which quota validation applies.",
           "enum": [
             "QUOTA_VALIDATION_UNSPECIFIED",
             "ENABLED",
             "ENFORCED"
           ],
           "enumDescriptions": [
-            "The default value. QuotaValidation on terraform configuration files will be disabled in this case.",
-            "Enable computing quotas for resources in terraform configuration files to get visibility on resources with insufficient quotas.",
-            "Enforce quota checks so deployment fails if there isn't sufficient quotas available to deploy resources in terraform configuration files."
+            "The default value. QuotaValidation on configuration files will be disabled in this case.",
+            "Enable computing quotas for resources in configuration files to get visibility on resources with insufficient quotas.",
+            "Enforce quota checks so deployment fails if there isn't sufficient quotas available to deploy resources in configuration files."
           ],
           "type": "string"
         },
@@ -2297,7 +2297,12 @@
             "SUCCEEDED",
             "FAILED",
             "VALIDATING_REPOSITORY",
-            "RUNNING_QUOTA_VALIDATION"
+            "RUNNING_QUOTA_VALIDATION",
+            "RUNNING_ENGINE_INIT",
+            "RUNNING_ENGINE_PLAN",
+            "RUNNING_ENGINE_APPLY",
+            "RUNNING_ENGINE_DESTROY",
+            "RUNNING_ENGINE_VALIDATE"
           ],
           "enumDescriptions": [
             "Unspecified deployment step",
@@ -2312,7 +2317,12 @@
             "Operation was successful",
             "Operation failed",
             "Validating the provided repository.",
-            "Running quota validation"
+            "Running quota validation",
+            "Initializing the actuation engine.",
+            "Generating an execution plan using the actuation engine.",
+            "Actuating resources using the actuation engine.",
+            "Destroying resources using the actuation engine.",
+            "Validating the uploaded state file when unlocking a deployment."
           ],
           "type": "string"
         }
@@ -2353,7 +2363,12 @@
             "SUCCEEDED",
             "FAILED",
             "VALIDATING_REPOSITORY",
-            "RUNNING_QUOTA_VALIDATION"
+            "RUNNING_QUOTA_VALIDATION",
+            "RUNNING_ENGINE_INIT",
+            "RUNNING_ENGINE_PLAN",
+            "RUNNING_ENGINE_APPLY",
+            "RUNNING_ENGINE_DESTROY",
+            "RUNNING_ENGINE_VALIDATE"
           ],
           "enumDescriptions": [
             "Unspecified deployment step",
@@ -2368,7 +2383,12 @@
             "Operation was successful",
             "Operation failed",
             "Validating the provided repository.",
-            "Running quota validation"
+            "Running quota validation",
+            "Initializing the actuation engine.",
+            "Generating an execution plan using the actuation engine.",
+            "Actuating resources using the actuation engine.",
+            "Destroying resources using the actuation engine.",
+            "Validating the uploaded state file when unlocking a deployment."
           ],
           "readOnly": true,
           "type": "string"
@@ -2972,11 +2992,11 @@
           "type": "string"
         },
         "operation": {
-          "description": "Terraform operation, provided by the caller.",
+          "description": "Actuation engine operation, provided by the caller.",
           "type": "string"
         },
         "version": {
-          "description": "Terraform version",
+          "description": "Actuation engine version",
           "type": "string"
         },
         "who": {
@@ -3167,7 +3187,7 @@
           "type": "string"
         },
         "errorLogs": {
-          "description": "Output only. Link to tf-error.ndjson file, which contains the full list of the errors encountered during a Terraform preview. Format: `gs://{bucket}/{object}`.",
+          "description": "Output only. Link to the error log file, which contains the full list of the errors encountered during a preview. Format: `gs://{bucket}/{object}`.",
           "readOnly": true,
           "type": "string"
         },
@@ -3320,7 +3340,9 @@
             "UNLOCKING_DEPLOYMENT",
             "SUCCEEDED",
             "FAILED",
-            "VALIDATING_REPOSITORY"
+            "VALIDATING_REPOSITORY",
+            "RUNNING_ENGINE_INIT",
+            "RUNNING_ENGINE_PLAN"
           ],
           "enumDescriptions": [
             "Unspecified preview step.",
@@ -3333,7 +3355,9 @@
             "Unlocking a deployment.",
             "Operation was successful.",
             "Operation failed.",
-            "Validating the provided repository."
+            "Validating the provided repository.",
+            "Initializing the engine.",
+            "Generating an execution plan using the engine."
           ],
           "type": "string"
         }
@@ -3784,19 +3808,19 @@
             "Cloud Build failed due to a permission issue.",
             "Cloud Build job associated with creating or updating a deployment could not be started.",
             "Cloud Build job associated with creating or updating a deployment was started but failed.",
-            "quota validation failed for one or more resources in terraform configuration files.",
+            "Quota validation failed for one or more resources in configuration files.",
             "Failed to import values from an external source."
           ],
           "readOnly": true,
           "type": "string"
         },
         "errorLogs": {
-          "description": "Output only. Location of Terraform error logs in Google Cloud Storage. Format: `gs://{bucket}/{object}`.",
+          "description": "Output only. Location of actuation engine error logs in Google Cloud Storage. Format: `gs://{bucket}/{object}`.",
           "readOnly": true,
           "type": "string"
         },
         "importExistingResources": {
-          "description": "Output only. By default, Infra Manager will return a failure when Terraform encounters a 409 code (resource conflict error) during actuation. If this flag is set to true, Infra Manager will instead attempt to automatically import the resource into the Terraform state (for supported resource types) and continue actuation. Not all resource types are supported, refer to documentation.",
+          "description": "Output only. By default, Infra Manager will return a failure when the actuation engine encounters a 409 code (resource conflict error) during actuation. If this flag is set to true, Infra Manager will instead attempt to automatically import the resource into the state (for supported resource types) and continue actuation. Not all resource types are supported, refer to documentation.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -3815,16 +3839,16 @@
           "readOnly": true
         },
         "quotaValidation": {
-          "description": "Optional. Input to control quota checks for resources in terraform configuration files. There are limited resources on which quota validation applies.",
+          "description": "Optional. Input to control quota checks for resources in configuration files. There are limited resources on which quota validation applies.",
           "enum": [
             "QUOTA_VALIDATION_UNSPECIFIED",
             "ENABLED",
             "ENFORCED"
           ],
           "enumDescriptions": [
-            "The default value. QuotaValidation on terraform configuration files will be disabled in this case.",
-            "Enable computing quotas for resources in terraform configuration files to get visibility on resources with insufficient quotas.",
-            "Enforce quota checks so deployment fails if there isn't sufficient quotas available to deploy resources in terraform configuration files."
+            "The default value. QuotaValidation on configuration files will be disabled in this case.",
+            "Enable computing quotas for resources in configuration files to get visibility on resources with insufficient quotas.",
+            "Enforce quota checks so deployment fails if there isn't sufficient quotas available to deploy resources in configuration files."
           ],
           "type": "string"
         },
@@ -3866,7 +3890,7 @@
           "readOnly": true
         },
         "tfErrors": {
-          "description": "Output only. Errors encountered when creating or updating this deployment. Errors are truncated to 10 entries, see `delete_results` and `error_logs` for full details.",
+          "description": "Output only. Errors encountered when creating or updating this deployment. Errors are truncated to 10 entries, see `apply_results` and `error_logs` for full details.",
           "items": {
             "$ref": "TerraformError"
           },
@@ -3914,7 +3938,7 @@
       "type": "object"
     },
     "Statefile": {
-      "description": "Contains info about a Terraform state file",
+      "description": "Contains info about a state file.",
       "id": "Statefile",
       "properties": {
         "signedUri": {
@@ -3982,7 +4006,7 @@
       "type": "object"
     },
     "TerraformError": {
-      "description": "Errors encountered during actuation using Terraform",
+      "description": "Errors encountered during actuation using Terraform.",
       "id": "TerraformError",
       "properties": {
         "error": {
