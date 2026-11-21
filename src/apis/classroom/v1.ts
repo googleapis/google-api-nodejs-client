@@ -545,7 +545,7 @@ export namespace classroom_v1 {
      */
     dueDate?: Schema$Date;
     /**
-     * Optional time of day, in UTC, that submissions for this course work are due. This must be specified if `due_date` is specified.
+     * Optional time of day, in UTC, that submissions for this course work are due. If `due_time` is not specified on course work with a `due_date`, the course work's `due_time` is set to `23:59` on the due date.
      */
     dueTime?: Schema$TimeOfDay;
     /**

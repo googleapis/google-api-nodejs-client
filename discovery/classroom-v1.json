@@ -4432,7 +4432,7 @@
       }
     }
   },
-  "revision": "20261028",
+  "revision": "20261115",
   "rootUrl": "https://classroom.googleapis.com/",
   "schemas": {
     "AddOnAttachment": {
@@ -4974,7 +4974,7 @@
         },
         "dueTime": {
           "$ref": "TimeOfDay",
-          "description": "Optional time of day, in UTC, that submissions for this course work are due. This must be specified if `due_date` is specified."
+          "description": "Optional time of day, in UTC, that submissions for this course work are due. If `due_time` is not specified on course work with a `due_date`, the course work's `due_time` is set to `23:59` on the due date."
         },
         "gradeCategory": {
           "$ref": "GradeCategory",
