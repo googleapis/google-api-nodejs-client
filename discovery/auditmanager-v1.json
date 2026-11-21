@@ -1890,7 +1890,7 @@
       }
     }
   },
-  "revision": "20261028",
+  "revision": "20261116",
   "rootUrl": "https://auditmanager.googleapis.com/",
   "schemas": {
     "AuditReport": {
@@ -1944,6 +1944,22 @@
           "readOnly": true,
           "type": "string"
         },
+        "reportExportFormats": {
+          "description": "Output only. Additional formats in which the audit report was requested to be exported.",
+          "items": {
+            "enum": [
+              "REPORT_EXPORT_FORMAT_UNSPECIFIED",
+              "REPORT_EXPORT_FORMAT_PDF"
+            ],
+            "enumDescriptions": [
+              "Default value. This value is unused.",
+              "Portable Document Format (PDF)."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "reportGenerationState": {
           "description": "Output only. State of audit report generation.",
           "enum": [
@@ -1951,14 +1967,16 @@
             "IN_PROGRESS",
             "COMPLETED",
             "FAILED",
-            "SUMMARY_UNKNOWN"
+            "SUMMARY_UNKNOWN",
+            "DONE_WITH_ERRORS"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
             "The process is in progress. The operation can have any state except for `OPERATION_STATE_DONE` or `OPERATION_STATE_FAILED`.",
             "The process is completed. The operation state is `OPERATION_STATE_DONE`.",
             "The process has failed. The operation state is `OPERATION_STATE_FAILED`.",
-            "The process completed, but the report summary's status is unknown. This state isn't used for new reports."
+            "The process completed, but the report summary's status is unknown. This state isn't used for new reports.",
+            "The process completed and the mandatory report was generated, but an optional additional report export (for example, PDF) failed. The operation state is `OPERATION_STATE_DONE`."
           ],
           "readOnly": true,
           "type": "string"
@@ -2030,6 +2048,21 @@
           },
           "description": "Optional. Maps dynamic parameter overrides by Cloud Control resource name at execution time. For example, `{\"organizations/123/locations/global/cloudControls/control-1\": {parameters: [...]}}`",
           "type": "object"
+        },
+        "reportExportFormats": {
+          "description": "Optional. Formats in which to export each scheduled audit report, in addition to the ODF report. Each format can be listed only once.",
+          "items": {
+            "enum": [
+              "REPORT_EXPORT_FORMAT_UNSPECIFIED",
+              "REPORT_EXPORT_FORMAT_PDF"
+            ],
+            "enumDescriptions": [
+              "Default value. This value is unused.",
+              "Portable Document Format (PDF)."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         },
         "reportFormat": {
           "description": "Required. Format for the audit report.",
@@ -2353,6 +2386,21 @@
           },
           "description": "Optional. Maps dynamic parameter overrides by Cloud Control resource name at execution time. For example, `{\"organizations/123/locations/global/cloudControls/control-1\": {parameters: [...]}}`",
           "type": "object"
+        },
+        "reportExportFormats": {
+          "description": "Optional. Formats in which to export the audit report, in addition to the ODF report. Each format can be listed only once.",
+          "items": {
+            "enum": [
+              "REPORT_EXPORT_FORMAT_UNSPECIFIED",
+              "REPORT_EXPORT_FORMAT_PDF"
+            ],
+            "enumDescriptions": [
+              "Default value. This value is unused.",
+              "Portable Document Format (PDF)."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         },
         "reportFormat": {
           "description": "Required. Format for the audit report.",
