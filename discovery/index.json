@@ -4131,36 +4131,6 @@
     },
     {
       "description": "The Postmaster Tools API is a RESTful API that provides programmatic access to email traffic metrics (like spam reports, delivery errors etc) otherwise available through the Gmail Postmaster Tools UI currently.",
-      "discoveryRestUrl": "https://gmailpostmastertools.googleapis.com/$discovery/rest?version=v1beta1",
-      "documentationLink": "https://developers.google.com/workspace/gmail/postmaster",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "id": "gmailpostmastertools:v1beta1",
-      "kind": "discovery#directoryItem",
-      "name": "gmailpostmastertools",
-      "preferred": false,
-      "title": "Gmail Postmaster Tools API",
-      "version": "v1beta1"
-    },
-    {
-      "description": "The Postmaster Tools API is a RESTful API that provides programmatic access to email traffic metrics (like spam reports, delivery errors etc) otherwise available through the Gmail Postmaster Tools UI currently.",
-      "discoveryRestUrl": "https://gmailpostmastertools.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "https://developers.google.com/workspace/gmail/postmaster",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "id": "gmailpostmastertools:v1",
-      "kind": "discovery#directoryItem",
-      "name": "gmailpostmastertools",
-      "preferred": false,
-      "title": "Gmail Postmaster Tools API",
-      "version": "v1"
-    },
-    {
-      "description": "The Postmaster Tools API is a RESTful API that provides programmatic access to email traffic metrics (like spam reports, delivery errors etc) otherwise available through the Gmail Postmaster Tools UI currently.",
       "discoveryRestUrl": "https://gmailpostmastertools.googleapis.com/$discovery/rest?version=v2",
       "documentationLink": "https://developers.google.com/workspace/gmail/postmaster",
       "icons": {

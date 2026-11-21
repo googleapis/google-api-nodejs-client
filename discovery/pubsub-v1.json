@@ -1803,7 +1803,7 @@
       }
     }
   },
-  "revision": "20261027",
+  "revision": "20261110",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AIInference": {
@@ -2335,11 +2335,13 @@
           "description": "Required. Specifies the compression algorithm to use.",
           "enum": [
             "COMPRESSION_ALGORITHM_UNSPECIFIED",
-            "ZLIB"
+            "ZLIB",
+            "ZSTD"
           ],
           "enumDescriptions": [
             "Unspecified algorithm.",
-            "ZLIB compression."
+            "ZLIB compression.",
+            "Zstd compression."
           ],
           "type": "string"
         },
